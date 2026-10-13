@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-13T10:12:25.843102+00:00",
+  "recordedAtUTC": "2026-10-13T10:18:08.166765+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
   "fileCount": 79,
   "files": [
@@ -200,8 +200,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 14748,
-      "sha256": "704862f673d1d778820a768d5cf5b8a6b529871287e1f57a4d712ef3bbc5ce60"
+      "bytes": 15197,
+      "sha256": "9dbcbfba0b6a943109f408da76777765b87c22be41e7b748ad9fac200c075128"
     },
     {
       "path": "PROJECT_STATUS.md",
