@@ -4,6 +4,8 @@
 
 ## 当前断点
 
+2026-10-13 真机反馈：iPhone13 / iOS16.6.1 / TrollStore 安装正常；EPUB 在 iCloud 文件选择器中可选，点击“打开”无反应（用户截图），此前也反馈文件呈灰色。已写入明确 UIKit 导入副本模式、宽文件过滤/严格格式校验、一次 delegate 回调、导入完成反馈和原创内置样书；Build 2，新增 6 iOS 回归。Windows 结构/39 Swift grammar 与 6 Python tooling tests 已通过（首次误用不存在的 tooling 目录，已按实际 scripts 目录重跑成功），下一步提交并运行完整 CI。详见 IMPORT_FIX.md。真实 iCloud 修复仍需用户复测；TXT 尚未实现，不提前进入 M2。
+
 **M0 已通过；M1 搜索切片已通过真实 CI，完整 M1 仍待页面/设备验收。** 当前没有运行中的项目构建/测试，没有未完成登录/UAC。不要大规模进入 M2。
 
 最新已验证代码：`b95aa4d117984ddb85e81b1901b82e42d453758b`；成功 [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563)。仓库检查、Linux/macOS Core 各 14 tests、20 iOS tests、设备 Release 与 IPA 全通过；应用源码编译 warning 为 0。原 Binding Sendable 警告及新增冗余类型转换警告均已清理，没有关闭检查、删除测试或改变依赖版本。

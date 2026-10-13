@@ -8,9 +8,18 @@ struct ImportOutcome {
 }
 
 enum ImportError: LocalizedError {
+    case noFilesSelected
+    case unsupportedFile
+    case missingSample
     case cleanupFailed(original: String, cleanup: String)
     var errorDescription: String? {
         switch self {
+        case .noFilesSelected:
+            return "文件选择器没有返回文件。请在“文件”中下载 EPUB，再从“我的 iPhone”重新导入。"
+        case .unsupportedFile:
+            return "请选择 .epub 文件。当前版本尚未支持 TXT 阅读。"
+        case .missingSample:
+            return "安装包中的测试样书缺失，请更新应用后重试。"
         case .cleanupFailed(let original, let cleanup):
             return "导入失败：\(original)。临时文件清理也失败：\(cleanup)，下次启动将重试恢复。"
         }
@@ -29,6 +38,9 @@ enum ImportError: LocalizedError {
     }
 
     func importBook(from source: URL) async throws -> ImportOutcome {
+        guard source.isFileURL, source.pathExtension.lowercased() == "epub" else {
+            throw ImportError.unsupportedFile
+        }
         let scoped = source.startAccessingSecurityScopedResource()
         defer { if scoped { source.stopAccessingSecurityScopedResource() } }
         let id = UUID()

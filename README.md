@@ -7,7 +7,7 @@
 ## 当前已写入
 
 - SwiftUI 应用入口、基础网格书库、封面/书名/作者/阅读进度/最近阅读时间。
-- Files Document Picker 多选 EPUB，后台协调复制、Readium 元数据读取、缩略封面与目录缓存。
+- Files Document Picker 多选 EPUB，后台协调复制、Readium 元数据读取、缩略封面与目录缓存。真机 iCloud 导入阻塞正在修复：明确导入副本模式，并增加原创内置样书入口，详见 [导入修复](Documentation/IMPORT_FIX.md)。
 - 基于 Readium 的 Reader：目录跳转、手势分页、左右区域点击分页、中央点击菜单、分页/滚动切换、位置保存/恢复、书签添加/跳转/删除。
 - SQLite actor、事务迁移、隔离的业务模型和阅读引擎接口、失败导入回滚与重启恢复。
 - Reader 关闭时使尚未完成的打开请求失效，过滤旧 Navigator 回调；文件复制支持失败注入，Apple 分支保留 File Provider 协调。
@@ -73,7 +73,7 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_SEARCH_VALIDATION_REPORT.json](Documentation/M1_SEARCH_VALIDATION_REPORT.json)；IOS_VALIDATION_REPORT.json 保留历史 M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
 
-用户测试设备为 iPhone13/iOS16.6.1/TrollStore，当前未验收安装和阅读。`build/XianxiaReader-iPhone13-TestKit.zip` 包含最新 IPA、两本原创 EPUB 和操作说明，具体步骤见 [真机验收](Documentation/DEVICE_ACCEPTANCE.md)。
+用户测试设备为 iPhone13/iOS16.6.1/TrollStore，应用安装正常；iCloud 导入失败，阅读尚未验收。`build/XianxiaReader-iPhone13-TestKit.zip` 包含已通过 CI 的 IPA、两本原创 EPUB 和操作说明，具体步骤见 [真机验收](Documentation/DEVICE_ACCEPTANCE.md)。本次导入修复包在新 CI 通过前不覆盖旧产物。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 

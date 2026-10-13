@@ -1,12 +1,12 @@
 import ReadiumAdapter
 import SwiftUI
-import UniformTypeIdentifiers
 import XianxiaCore
 
 @MainActor struct LibraryView: View {
     let services: AppServices
     @StateObject private var model: LibraryViewModel
     @State private var showImporter = false
+    @State private var pendingImport: Result<[URL], Error>?
     @State private var selectedBook: Book?
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20)]
 
@@ -26,6 +26,10 @@ import XianxiaCore
                             .foregroundStyle(.secondary).multilineTextAlignment(.center)
                         Button("导入 EPUB") { showImporter = true }.buttonStyle(.borderedProminent)
                             .disabled(model.isImporting)
+                        Button("导入内置样书") { Task { await model.importSamples() } }
+                            .disabled(model.isImporting)
+                        Text("当前支持 EPUB；TXT 暂未支持。\n若 iCloud 文件无法打开，请先下载到“我的 iPhone”再导入。")
+                            .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     }.padding(.horizontal, 32).padding(.top, 100)
                 } else {
                     LazyVGrid(columns: columns, alignment: .leading, spacing: 28) {
@@ -55,8 +59,11 @@ import XianxiaCore
             .navigationTitle("藏书阁")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { showImporter = true } label: { Image(systemName: "plus") }
-                        .accessibilityLabel("导入 EPUB").disabled(model.isImporting)
+                    Menu {
+                        Button("从文件导入 EPUB") { showImporter = true }
+                        Button("导入内置样书") { Task { await model.importSamples() } }
+                    } label: { Image(systemName: "plus") }
+                        .accessibilityLabel("导入书籍").disabled(model.isImporting)
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -65,14 +72,14 @@ import XianxiaCore
                         ProgressView()
                         Text("正在导入 \(model.importingName)").font(.footnote).lineLimit(1)
                     }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                } else if let status = model.importStatus {
+                    Text(status).font(.footnote).padding().frame(maxWidth: .infinity).background(.regularMaterial)
                 }
             }
-            .fileImporter(isPresented: $showImporter,
-                          allowedContentTypes: [UTType(filenameExtension: "epub") ?? .data],
-                          allowsMultipleSelection: true) { result in
-                switch result {
-                case .success(let urls): Task { await model.importBooks(urls) }
-                case .failure(let error): model.errorMessage = error.localizedDescription
+            .sheet(isPresented: $showImporter, onDismiss: finishPicking) {
+                EPUBDocumentPicker { result in
+                    pendingImport = result
+                    showImporter = false
                 }
             }
             .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { book in
@@ -83,6 +90,18 @@ import XianxiaCore
                 Button("知道了") { model.errorMessage = nil }
             } message: { Text(model.errorMessage ?? "") }
             .task { await model.refresh() }
+        }
+    }
+
+    private func finishPicking() {
+        // Wait for the picker sheet to dismiss before showing an error or starting
+        // the app's import. A local import-mode copy remains valid after dismissal.
+        let result = pendingImport
+        pendingImport = nil
+        switch result {
+        case .success(let urls): Task { await model.importBooks(urls) }
+        case .failure(let error): model.errorMessage = error.localizedDescription
+        case nil: break
         }
     }
 }

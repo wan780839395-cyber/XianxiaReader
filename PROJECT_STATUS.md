@@ -38,7 +38,7 @@
 - Docker 已升级至 4.95.0.242831，engine 29.8.2 正常响应，原有两个停止容器保留；升级后 Core 编译/14 个 tests 再次通过。首次 UAC 取消日志保留。
 - 最新 CI 38402285563（b95aa4d）success：Linux/macOS 各 14 Core、20 iOS tests、Release 与 IPA 全通过，应用源码 compiler warnings=0，依赖 pins 不变。
 - 最新 IPA build/XianxiaReader.ipa：7,365,913 bytes，SHA-256 9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365；另有 build/XianxiaReader-iPhone13-TestKit.zip（IPA+原创样书+说明），均已核验。上述 M0 hash 是历史包，原件保留在对应 run 目录。
-- 用户确认 iPhone13 / iOS16.6.1 / 已安装 TrollStore；应用安装与阅读未实测。DEVICE_ACCEPTANCE.md 已准备步骤，不将设备准备写成验收成功。
+- 用户确认 iPhone13 / iOS16.6.1 / TrollStore：应用安装正常；EPUB 在 iCloud 选择后按“打开”无反应，导入验收失败，阅读无法继续。当前正在修复文件选择与交接；TXT 尚未实现。
 - 最新证据 M1_SEARCH_VALIDATION_REPORT.json / M1_SEARCH_ACCEPTANCE.md。IOS_VALIDATION_REPORT.json 是历史 M0，CORE_VALIDATION_REPORT.json 是本机 Linux，VALIDATION_REPORT.json 是静态检查；各 scope 独立。
 
 ## 下一步
