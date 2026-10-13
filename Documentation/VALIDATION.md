@@ -36,7 +36,7 @@ JSON 结果分为两个范围：`VALIDATION_REPORT.json` 只记录静态检查�
 2. Readium Publication 尚非 Sendable；loader actor 到 MainActor 的单向交接在 Swift 5 targeted 模式下需真实编译与运行确认。之后单独规划 Swift 6 严格模式迁移。
 3. 首次 macOS 真实解析的 11 个依赖已审阅并纳入根 `Package.resolved`；CI resolve/test/build 严格锁定版本。其来源为 run 38385729586 的诊断 artifact，Readium revision 与精确基线一致。
 4. Runner 的 Xcode 16.4/iOS 18.5 当前官方清单可用，未来镜像可能移除；脚本会显式失败，不能静默换 compiler 或跳过 simulator test。
-5. 当前没有正式 AppIcon，设备可能显示系统占位图标；正式视觉资产留后续，不影响源码验证切片的范围定义。
+5. 第二次 CI 暴露缺少 AppIcon 的实际编译错误。已新增原创 SVG、1024 RGB PNG、appiconset 与工程设置，静态核对与视觉检查通过；第三次 CI 验证 asset compiler。图标生成依赖仅用于资产维护，PNG 已提交，不要求 CI 安装 Pillow。
 6. 未签名 IPA 尚未生成；即使 CI 生成，也需另行普通设备签名/TrollStore 安装验证，不能承诺系统安装兼容性。
 7. Reader 菜单遮挡/安全区、旋转、滚动转换、链接选择、iCloud materialization、巨大 EPUB 的 position 计算仍需实际阅读验收与性能测量。
 

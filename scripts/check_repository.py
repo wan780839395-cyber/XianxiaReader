@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import plistlib
 import sqlite3
+import struct
 import sys
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile, ZIP_STORED
@@ -45,6 +46,14 @@ def check_project() -> None:
     require("info" not in project["targets"]["XianxiaReader"], "XcodeGen must not overwrite the committed plist")
     for asset in (ROOT / "App/Resources/Assets.xcassets").rglob("Contents.json"):
         json.loads(asset.read_text(encoding="utf-8"))
+    require(project["targets"]["XianxiaReader"]["settings"]["base"]["ASSETCATALOG_COMPILER_APPICON_NAME"] == "AppIcon",
+            "App icon setting missing")
+    iconset = ROOT / "App/Resources/Assets.xcassets/AppIcon.appiconset"
+    icon = json.loads((iconset / "Contents.json").read_text(encoding="utf-8"))["images"][0]
+    png = (iconset / icon["filename"]).read_bytes()
+    require(png[:8] == b"\x89PNG\r\n\x1a\n" and png[12:16] == b"IHDR"
+            and struct.unpack(">II", png[16:24]) == (1024, 1024) and png[25] == 2,
+            "AppIcon must contain an opaque RGB 1024x1024 PNG")
     manifest = (ROOT / "Packages/XianxiaReading/Package.swift").read_text(encoding="utf-8")
     require('exact: "3.11.0"' in manifest, "Readium exact version pin missing")
     lock = json.loads((ROOT / "Package.resolved").read_text(encoding="utf-8"))

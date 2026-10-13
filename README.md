@@ -2,7 +2,7 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**当前是 M0 工程与技术验证阶段，包含待验收的 M1 EPUB 验证切片；不是完整 MVP。** Windows 检查与 Linux/macOS Core 14 tests 已通过；首次 iOS 构建在 SQLite 链接失败，正在修复，未产生真实 IPA。以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 和 CI 结果为准。
+**当前是 M0 工程与技术验证阶段，包含待验收的 M1 EPUB 验证切片；不是完整 MVP。** Windows 检查与 Linux/macOS Core 14 tests 已通过；前两次 CI 分别暴露 SQLite 链接与 AppIcon 缺失，修复后待再次构建，未产生真实 IPA。以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 和 CI 结果为准。
 
 ## 当前已写入
 
@@ -92,6 +92,8 @@ pwsh -File scripts/test_core_container.ps1
 本轮已恢复 Docker 的失效旧 socket 故障，并实际编译 Core、运行全部 14 个 XCTest，退出码为 0；首次失败暴露的路径边界缺陷已修复。成功日志和源码 hash 见 [Core 验证报告](Documentation/CORE_VALIDATION_REPORT.json)，环境修复见 [Docker 恢复记录](Documentation/DOCKER_RECOVERY.md)，完整边界见 [验证记录](Documentation/VALIDATION.md)。官方镜像来源见 [Swift Docker 安装文档](https://www.swift.org/install/linux/docker/)。
 
 ## 样书与维护
+
+AppIcon 为原创书页/山峰/月亮图案；Xcode 直接使用提交的 PNG。维护图标时可安装 `scripts/requirements-assets.txt` 并运行 `python scripts/generate_app_icon.py`，同时生成 SVG 源稿和 PNG；这不是构建依赖。
 
 `Tests/Fixtures/chinese-epub2.epub`、`chinese-epub3.epub` 的正文与封面均为项目原创测试内容，含中文标点、CSS、图像和内部链接。
 

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>XianxiaReader: open book, mountain and moon</title>
+  <rect width="1024" height="1024" fill="#193C3A"/>
+  <circle cx="748" cy="250" r="44" fill="#F3E8CF"/>
+  <path d="M252 522 L404 367 L515 508 L660 305 L772 522" fill="none" stroke="#DCC99E" stroke-width="22" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M192 592 Q350 559 512 624 Q674 559 832 592 L832 817 Q674 791 512 856 Q350 791 192 817 Z" fill="#F3E8CF"/>
+  <path d="M512 624 L512 856" stroke="#193C3A" stroke-width="18"/>
+  <path d="M244 666 Q352 649 455 691 M244 724 Q352 709 455 750 M569 691 Q672 649 780 666 M569 750 Q672 709 780 724" fill="none" stroke="#DCC99E" stroke-width="12" stroke-linecap="round"/>
+</svg>

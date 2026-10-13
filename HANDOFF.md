@@ -8,6 +8,8 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows/L
 
 ## 最新恢复点（优先于下方历史记录）
 
+第二次 run 38389603242 已 failure。锁文件解析及 Linux/macOS Core 通过；新错误是 asset catalog 缺少 AppIcon，iOS tests 再次未运行。日志/xcresult 保存在 `build/ci/38389603242/ios/`。已经新增真实 1024 RGB PNG、appiconset、原创 SVG/生成脚本，并显式配置工程 AppIcon；图标已视觉检查。本地重新进行受影响的静态/tooling 检查后提交/推送第三次 CI，不重跑未变的 Core 源码。当前最新已推送提交仍为 7a2263b，图标修复待提交。
+
 2026-10-13：GitHub CLI 已登录，私有仓库已创建并正常推送；Docker Desktop 4.95.0 / engine 29.8.2 已恢复，用户原容器保留。无需重新请求登录、UAC、建仓或推送许可。
 
 首次 run 38385729586 已 failure，repository-checks 和 Linux Core 成功；macOS 完整日志下载至 `build/ci/38385729586/ios/build/logs/build.log`，诊断包含 `.xcresult` 和真实解析后的 lockfile。断点为 iOS 模拟器链接使用了宿主 Homebrew SQLite：`ld: building for 'iOS-simulator', but linking in dylib (...) built for 'macOS'`。不是 Readium API 编译错误，不能删除 SQLite 功能绕过。
@@ -15,6 +17,8 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows/L
 修复：Core 的 CSQLite 去除 pkgConfig/Homebrew provider，由 Apple SDK 或 Linux 系统目录提供 SQLite。保留 modulemap 的 `link "sqlite3"` 和全部测试。将首次真实解析的 11 个依赖锁文件纳入根目录，生成工程后复制，CI 严格使用锁定版本。准备重跑本地 Core 与静态检查，更新源码 hash，再提交并推送第二次 macOS CI。失败日志保留，新的结果出来前不得标 iOS tests/build/IPA 成功。
 
 再次恢复核实：自己的容器测试 session 91831 已 exit 0，修复后 Core 完整编译 6.70 秒、14 XCTest 通过；项目测试容器已自动退出，无运行中的 CI（只有首次失败 run）。下一步保留旧成功日志，绑定新 manifest/source hash，执行静态/tooling/shell 检查，再普通提交/推送触发第二次 CI。
+
+修复已提交并正常推送：`7a2263b4ae75abf733d2edd188e4b298bf80369c`。第二次 run `38389603242` 实际 in_progress：[Actions](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38389603242)。本地 14 Core tests、30 Swift grammar、6 tooling tests、Bash/Python 语法通过，Core report 与 86 文件 hash 清单已更新。先等待此 run 结果，期间不推送纯文档触发 cancel-in-progress；失败时取日志继续修复，成功时下载 IPA/完整诊断并记录 Apple/iOS/Release 的独立证据。
 
 ## 环境实测
 

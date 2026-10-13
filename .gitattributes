@@ -5,4 +5,5 @@
 *.md text eol=lf
 *.sql text eol=lf
 *.epub binary
+*.png binary
 Documentation/ValidationLogs/*.log -text

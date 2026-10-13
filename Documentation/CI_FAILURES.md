@@ -21,3 +21,13 @@ clang: error: linker command failed with exit code 1
 修复：去除 pkgConfig 和 Homebrew provider；Apple 直接使用目标 SDK 的 SQLite，Linux 使用系统开发包。保留 modulemap、数据库实现和全部失败/成功测试；重新运行 Linux Core 和完整 macOS CI，不能把源码修改当修复已验证。
 
 首次依赖解析实际成功，11 个远程依赖的原始 lockfile 已复制至根 `Package.resolved`；Readium 3.11.0 revision 与已审查源码一致。下次 CI 严格锁定版本，避免修复期间传递依赖漂移。
+
+## 第二次构建：38389603242
+
+- [GitHub Actions](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38389603242)
+- Head：`7a2263b4ae75abf733d2edd188e4b298bf80369c`
+- 仓库、Linux/macOS Core 通过；严格依赖锁解析通过。未再报告宿主 SQLite 链接错误。
+- iOS 构建在 asset catalog 失败：`None of the input catalogs contained a matching stickers icon set or app icon set named "AppIcon"`。exit 65，tests 取消，未生成 IPA。
+- 完整诊断下载至 `build/ci/38389603242/ios/`。
+
+修复：新增真正的 AppIcon.appiconset、1024 RGB 不透明 PNG，并显式指定工程 AppIcon。图案为原创书页/山峰/月亮；保留 SVG 与生成脚本，PNG 直接提交供 Xcode 使用，构建不依赖图标生成环境。采用 [Apple 单张高分辨率 asset catalog 配置](https://developer.apple.com/documentation/xcode/configuring-your-app-icon)，不删除图标设置来绕过错误。静态检查现在核对图标文件引用、PNG 尺寸和 RGB 格式；仍须第三次真实 CI。
