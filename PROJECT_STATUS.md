@@ -30,7 +30,7 @@
 - CI 增加 Linux Core job 并锁定 image digest；Windows 容器脚本已实测成功及 engine 不可用失败分支，超时分支尚未实测。
 - Docker 旧 AF_UNIX 端点阻塞启动的问题已有限修复，原运行目录保留备份，engine 已恢复；详见 Documentation/DOCKER_RECOVERY.md。
 - **iOS 9 个 Swift 测试、Apple 文件协调、Xcode build、模拟器阅读、真机与 TrollStore 尚未验证；没有真实 `XianxiaReader.ipa`。**
-- 用户已选择私有 GitHub 仓库；GitHub 连接已确认 `wan780839395-cyber`，本地作者仅在此仓库配置为该 login 与 noreply 邮箱。正在准备初始 Git 提交；本机 CLI OAuth 和 Docker UAC 重试尚待用户完成，尚未创建远端或推送。
+- 用户已选择私有 GitHub 仓库；GitHub 连接已确认 `wan780839395-cyber`，本地作者仅在此仓库配置为该 login 与 noreply 邮箱。初始提交 `a6466a6` 已保存 80 个项目文件；本机 CLI OAuth 和 Docker UAC 重试尚待用户完成，尚未创建远端或推送。当前提交/工作区以 `git log/status` 为准。
 - Docker 4.95.0 官方安装包签名/校验已验证，但本次系统管理员授权返回“操作已被用户取消”，尚未升级。已保留诊断；当前 4.77 engine 正常。
 - 最新证据见 Documentation/VALIDATION.md、CORE_VALIDATION_REPORT.json（真实 Core 编译/测试）与 VALIDATION_REPORT.json（静态检查）。两份 JSON 的验证范围不同。
 

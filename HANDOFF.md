@@ -11,8 +11,8 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows �
 - 工作区：`D:\ai项目\XianxiaReader`，初始目录为空。
 - Windows 11 家庭版 64 位，10.0.26200；PowerShell 7.6.5。
 - Git 2.54.0、Python 3.11、Node 可用。
-- Swift、Xcode、xcodebuild、XcodeGen、GitHub CLI 不可用。
-- 本轮初始化本地 Git；尚未设置远端、提交或触发 GitHub Actions。
+- 本机没有 Swift、Xcode、xcodebuild、XcodeGen；Swift 可在容器运行，GitHub CLI 2.102.0 便携路径记录于忽略的 `.cache/tools/github-cli.json`。
+- 本地 Git main 初始提交已建立；远端/CI 的最新状态见下方当前工作。
 - 禁止以 localhost HTTP 服务作为主要预览方式。
 
 ## 恢复步骤
@@ -51,6 +51,10 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows �
 ## 当前停靠点与下一步
 
 ### 当前工作：已获准升级 Docker，准备 GitHub
+
+最新断点（18:11）：本地初始提交 `a6466a6` 已完成（80 个文件），当时工作区干净；后续交接同步另行提交。GitHub connector 已连接并确认账户 `wan780839395-cyber`；GCM 无已存账户，本机便携 CLI 仍未登录。`gh auth login --web --git-protocol https --scopes workflow` 在等待本人设备授权；当前 exec session 80177 尚在，通常会到期退出，恢复时先核对 `gh auth status`，若已授权不要重复发起。一次性代码不持久化。
+
+Docker 升级失败在 UAC 取消，已关闭自己的 updater CLI/shell，旧 4.77 backend/29.5.3 engine 保持正常；不能标升级成功。已向用户询问是否重试，未收到回复前不重复弹管理员窗口。所有 Core/静态/工具测试均已完成，无进行中的项目测试或 iOS build。仓库 `wan780839395-cyber/XianxiaReader` 尚未创建/推送；用户已确认私有，CLI 成功后可核对重名并继续创建、正常推送及首轮 CI，无需再次询问仓库可见性或提交权限。
 
 用户已明确允许升级 Docker，并要求继续、帮助 Git/GitHub。正在核对官方升级器、签名、现有容器及账户连接；GitHub 插件已找到但尚未连接，准备提供登录入口。当前 main 仍无提交/remote/作者配置，不能使用猜测身份提交。先完成可在本地审查的源文件/忽略规则检查；账户登录和 UAC 由用户本人完成，后续仓库创建/推送依据已确认账户和可见性，不覆盖现有仓库。
 

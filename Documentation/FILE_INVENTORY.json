@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-13T10:10:12.996459+00:00",
+  "recordedAtUTC": "2026-10-13T10:12:25.843102+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
   "fileCount": 79,
   "files": [
@@ -95,8 +95,8 @@
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
-      "bytes": 3313,
-      "sha256": "3c45265a74ebe3ddb248d188c9e0c7d8187e7ad06684af481891d33e2f2b907f"
+      "bytes": 3917,
+      "sha256": "2d54926db4323956b3bc9b55b5f8bb5a5db38ebf58fde6bf95a3001f7545a6de"
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
@@ -200,13 +200,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 13598,
-      "sha256": "feab032182c9b4003289235cbb014001b51b02c1cf21b57e86466f37fc31eb0a"
+      "bytes": 14748,
+      "sha256": "704862f673d1d778820a768d5cf5b8a6b529871287e1f57a4d712ef3bbc5ce60"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 3358,
-      "sha256": "9890f6c35dd62809a987eda78494852ec74ad0a51bc67d125c5ed26851a2512b"
+      "bytes": 3432,
+      "sha256": "c4ebeaecc2295f0100e38dd88d25c2503d4127b98f1ab221ac7db9869a9bc220"
     },
     {
       "path": "Packages/XianxiaCore/Package.swift",

@@ -33,6 +33,8 @@ remove ...dockerInference: The file cannot be accessed by the system.
 
 Docker 维护者在 [同类故障 issue #625](https://github.com/docker/desktop-feedback/issues/625) 中表示 4.92 已包含此区域的修复。本机仍是 4.77；应通过 Docker Desktop 的官方更新流程升级到包含修复的稳定版本。2026-10-13 查阅的 [官方 release notes](https://docs.docker.com/desktop/release-notes/) 最新稳定版本为 4.95.0（2026-10-12）。本次没有执行安装或系统重启。
 
+后续用户已明确授权升级。官方 updater 确认可用 4.95.0.242831，安装包签名 Valid / Docker Inc，SHA-256 与官方 checksum 一致。调用 `docker desktop update --quiet` 后，installer 请求管理员授权，2026-10-13 18:02:49 日志返回“操作已被用户取消”；因此本次尝试没有完成升级。失败日志为 `ValidationLogs/docker-upgrade-cancelled.log` 与 `docker-upgrade-error.json`。已终止自己的挂起更新命令，旧 engine 保持运行；等待用户选择是否重试并确认 Windows UAC，不能通过忽略该错误宣称新版已安装。
+
 若复发，保留新的 backend 日志，核实失败端点和 Docker 版本；不要删除项目、重置 Docker 全部数据或反复无证据改名目录。
 
 ## 与项目验证的关系
