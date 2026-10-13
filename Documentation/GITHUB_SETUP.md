@@ -2,6 +2,8 @@
 
 当前账户和连接以现场查询为准，不从旧聊天推断。2026-10-13 已确认 connector 账户 `wan780839395-cyber`，用户选择 `XianxiaReader` 私有仓库。
 
+当前已完成 CLI 授权、私有建仓及 main 推送，origin 为 https://github.com/wan780839395-cyber/XianxiaReader.git 。成功 CI run 38390862584 已输出真实 IPA；以下是维护/首次设置流程，不是当前授权阻塞。无需重新生成设备码。
+
 ## 两条授权路径
 
 GitHub connector 用于查询仓库、CI 与 PR；本机 GitHub CLI 用于创建仓库、Git push 和取回构建日志。连接 connector 不等于本机 `gh auth login` 成功。

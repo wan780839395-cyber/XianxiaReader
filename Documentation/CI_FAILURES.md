@@ -31,3 +31,7 @@ clang: error: linker command failed with exit code 1
 - 完整诊断下载至 `build/ci/38389603242/ios/`。
 
 修复：新增真正的 AppIcon.appiconset、1024 RGB 不透明 PNG，并显式指定工程 AppIcon。图案为原创书页/山峰/月亮；保留 SVG 与生成脚本，PNG 直接提交供 Xcode 使用，构建不依赖图标生成环境。采用 [Apple 单张高分辨率 asset catalog 配置](https://developer.apple.com/documentation/xcode/configuring-your-app-icon)，不删除图标设置来绕过错误。静态检查现在核对图标文件引用、PNG 尺寸和 RGB 格式；仍须第三次真实 CI。
+
+## 第三次构建：修复已验证
+
+[Run 38390862584](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38390862584)，head `184aa09355ed0f44e9e27763c5d44fa0a8161434`：仓库、Linux/macOS 各 14 Core tests、9 iOS tests、设备 Release、IPA 全通过。没有删除原功能或失败测试。下载的真实 IPA 链接系统 SQLite，图标资源在模拟器与设备构建均通过。完整日志、测试结果、源码及 IPA hash 见 IOS_VALIDATION_REPORT.json；M0 放行范围见 M0_ACCEPTANCE.md。

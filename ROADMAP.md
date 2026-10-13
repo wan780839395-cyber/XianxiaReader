@@ -16,6 +16,8 @@
 
 ## M0 当前切片
 
+2026-10-13 已通过 M0 自动门槛（run 38390862584）；详情见 Documentation/M0_ACCEPTANCE.md。下一阶段 M1，真实页面/设备验收仍待完成。
+
 完成源码结构、工程定义、CI、独立模型/repository/引擎接口、基础 EPUB 导入和 Reader、最基本测试。它包含 M1 所需的技术验证切片，不代表整个 M1 已通过。
 
 M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `.xcresult`、设备构建与生成 IPA 的 hash。CI 通过仍不能替代 M1 的真实阅读体验验收。

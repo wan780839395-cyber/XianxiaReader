@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T11:31:49.420429+00:00",
+  "recordedAtUTC": "2026-10-13T11:54:49.545985+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 91,
+  "fileCount": 94,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 9392,
-      "sha256": "29e308b29bb39aed5e9e42088d25b1638a61e60b00fb001b0e75e110e4bd1fa9"
+      "bytes": 9493,
+      "sha256": "38b6fe48e618cb53e1cb009c43225c22c5e6f05be9ab065392aca7ab67cc1271"
     },
     {
       "path": "App/AppRootView.swift",
@@ -105,8 +105,8 @@
     },
     {
       "path": "Documentation/CI_FAILURES.md",
-      "bytes": 2559,
-      "sha256": "0c3f2ceb07e658e676c73b9a9dc7dfbf3095582bb04da33633cdc94c0d59465f"
+      "bytes": 3087,
+      "sha256": "91e1d23bb614b106b1078a5d30f8580ed9da9918d38903f8a1420bf519706b9c"
     },
     {
       "path": "Documentation/CORE_VALIDATION_REPORT.json",
@@ -120,13 +120,28 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 2303,
-      "sha256": "7c7e0ccdbdc6a7f42c60d5699c36ba35b3e68300ff27f486b8ca2115c69d8c74"
+      "bytes": 2447,
+      "sha256": "6b94cfd48f28715417f86e2a923a31b18d9f7e918d9878d549bcfb4d0dac0401"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
-      "bytes": 2417,
-      "sha256": "c965e88237ae341137ad1dd5c906e3fb476c99ac184433ff502ed39881b5ed82"
+      "bytes": 2690,
+      "sha256": "7d7675aa6daa437bdc77c4a278aff18c72ddbaa1be06acde2a960881e3062c97"
+    },
+    {
+      "path": "Documentation/HANDOFF_HISTORY_2026-10-13.md",
+      "bytes": 21124,
+      "sha256": "acc308601956ffc8aa635b4c45b7af3dc7d20f1ff1a82b04a071fa2ba0a90590"
+    },
+    {
+      "path": "Documentation/IOS_VALIDATION_REPORT.json",
+      "bytes": 12956,
+      "sha256": "6c9e7cb169f2c6ce5bc6eeee1190e775045d3f2f56a5a0beebd2139066c6e346"
+    },
+    {
+      "path": "Documentation/M0_ACCEPTANCE.md",
+      "bytes": 3334,
+      "sha256": "c19642befd7ddb69185c7c2f2987aa244e371fd387da4d474b4d198a6a73b263"
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
@@ -135,13 +150,13 @@
     },
     {
       "path": "Documentation/VALIDATION.md",
-      "bytes": 8424,
-      "sha256": "e3faacff34c8d77d581946c4e52f95c11803969551e2b80326da6e38adcea359"
+      "bytes": 8721,
+      "sha256": "de4630e792992548bd52cf57ae42be40eca7f4448712b59fd8c6c6787d14e091"
     },
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "f62e0587990bab0f4cbc7086ec9cee1184a0db02db72e38fa171e605356a09ca"
+      "sha256": "82ff70b75da482c945d7787d489253808fcb8d9c8a7696ad2655b5671765ede7"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -245,13 +260,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 20647,
-      "sha256": "7be712ae432a5dcea67faa9d79dc96232f7a34e3863a7b56295a0842b1699119"
+      "bytes": 4697,
+      "sha256": "6d2674692754cf8f815d30f28ba1a160820430d9dd4c4963331e8b9e43379fb9"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 3852,
-      "sha256": "ad68140c14ab35a7532d2288c4db896f2a29858a1e834fe1158bc586b0d0c200"
+      "bytes": 4063,
+      "sha256": "d832cfdf06ea62bd3b3c1ec5c53adca8b34e25d526a02f879d61f4cf269fd5b3"
     },
     {
       "path": "Package.resolved",
@@ -365,13 +380,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 7993,
-      "sha256": "3febd1d4cff31e51d49ab422cd6f81069cda5018c9925b73d3bbbf3527d264ea"
+      "bytes": 8450,
+      "sha256": "55f2efd8120197fda4bdb5cc68039741d2786f20e80fcaecfa38b289a27ea701"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 4521,
-      "sha256": "39c7a482acc06fefb820c6e406ee32756f48f2e94f3f75f30c5434db982c1dd5"
+      "bytes": 4684,
+      "sha256": "5dd99471b4d9bd1473717b9c00516bc20e501c7de284e12eb730f6b3333e606f"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

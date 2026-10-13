@@ -4,8 +4,8 @@
 
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
-| M0 结构与技术验证 | Core 通过；第二次 CI 缺少 AppIcon，修复后待重跑 | 工程定义、文档、CI、隔离接口、基础测试已写入 |
-| M1 基础 EPUB | 基础导入/阅读验证切片已写入，未验收 | 先取得 M0 build/test 结果，再完成搜索与阅读体验验收 |
+| M0 结构与技术验证 | **自动验收通过** | Linux/macOS Core、9 iOS tests、设备 Release 与真实 IPA 均成功 |
+| M1 基础 EPUB | 基础切片已过编译/集成测试，完整阶段未验收 | 下一步隔离警告、搜索及真实阅读体验 |
 | M2 TXT | 未开始 | 后台流式分章、索引缓存与长文件测试 |
 | M3 完整书库 | 未开始 | 完整编辑、封面修改与操作一致性 |
 | M4 设置与主题 | 未开始 | 排版、字体、主题与交互验收 |
@@ -29,13 +29,14 @@
 - **Core 在官方 Swift 6.1.2 Linux 容器中编译成功，14 个 XCTest 全通过，命令 exit 0。** 原路径越界失败已修复，失败/成功日志均保留。
 - CI 增加 Linux Core job 并锁定 image digest；Windows 容器脚本已实测成功及 engine 不可用失败分支，超时分支尚未实测。
 - Docker 旧 AF_UNIX 端点阻塞启动的问题已有限修复，原运行目录保留备份，engine 已恢复；详见 Documentation/DOCKER_RECOVERY.md。
-- **iOS 9 个 Swift 测试、Apple 文件协调、Xcode build、模拟器阅读、真机与 TrollStore 尚未验证；没有真实 `XianxiaReader.ipa`。**
+- **真实 CI run 38390862584 全部 success：Linux/macOS 各 14 Core tests、9 iOS tests、设备 Release 构建与 IPA 通过。** Apple 文件协调覆盖本地测试文件，未验收 iCloud/File Provider；模拟器实际页面体验、真机与 TrollStore 尚未验证。
 - 已创建私有仓库 https://github.com/wan780839395-cyber/XianxiaReader，origin 已配置，main 已推送；connector 与本机 CLI 均已确认同一账户。本地作者仅在此仓库配置为 login 与 noreply 邮箱。
-- 首次 CI run 38385729586 已 failure：仓库检查、Linux Core 和 macOS Core 14 tests 通过；iOS 模拟器误链接宿主 Homebrew SQLite，tests 被取消，未产出 IPA。已去除 pkgConfig/Homebrew provider，改为目标 SDK 链接；准备完整重跑。真实解析的 11 个依赖已纳入根 Package.resolved。
-- 第二次 CI run 38389603242：严格依赖锁解析、Linux/macOS Core 通过；缺 AppIcon 导致 asset catalog 编译失败。已补齐原创实际图标及配置，准备第三次 CI；无 iOS tests/IPA 成功证据。
+- 历史首次 run 38385729586：误链接宿主 SQLite，iOS tests 取消；已改为目标 SDK。真实解析的 11 个依赖纳入根 Package.resolved。
+- 历史第二次 run 38389603242：缺 AppIcon，iOS tests 取消；已补齐真实图标。两项修复均已通过第三次 CI。
+- 第三次 CI run 38390862584（head 184aa09355ed0f44e9e27763c5d44fa0a8161434）已通过前述所有门槛；前两条是保留的失败历史。产物为 build/XianxiaReader.ipa，SHA-256 847e61e3bb2de8227df59860fae86b561ebf4f839a3202fcd579098899e88d99，已核对 arm64/iOS 平台、系统 SQLite、ZIP 与 executable 权限。
 - Docker 已升级至 4.95.0.242831，engine 29.8.2 正常响应，原有两个停止容器保留；升级后 Core 编译/14 个 tests 再次通过。首次 UAC 取消日志保留。
-- 最新证据见 Documentation/VALIDATION.md、CORE_VALIDATION_REPORT.json（真实 Core 编译/测试）与 VALIDATION_REPORT.json（静态检查）。两份 JSON 的验证范围不同。
+- 最新证据见 Documentation/M0_ACCEPTANCE.md、IOS_VALIDATION_REPORT.json（真实 CI）、CORE_VALIDATION_REPORT.json（本机 Linux Core）与 VALIDATION_REPORT.json（静态检查），三个范围分别记录。
 
 ## 下一步
 
-在 macOS 执行构建，或获得 GitHub 仓库后执行现成 CI；修复实际日志中的编译问题并固定解析后的依赖。M0 通过后推进 M1 搜索与设备阅读验收，再进入 TXT。
+开始 M1：先修复 ReaderView Binding 的 Sendable 转换警告，再增量接入搜索与结果跳转，完成真实 EPUB 阅读/位置恢复/交互验收。当前没有运行中的 CI 或本机项目测试；不大规模进入 M2。

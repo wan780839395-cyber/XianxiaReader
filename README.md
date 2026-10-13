@@ -2,7 +2,7 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**当前是 M0 工程与技术验证阶段，包含待验收的 M1 EPUB 验证切片；不是完整 MVP。** Windows 检查与 Linux/macOS Core 14 tests 已通过；前两次 CI 分别暴露 SQLite 链接与 AppIcon 缺失，修复后待再次构建，未产生真实 IPA。以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 和 CI 结果为准。
+**M0 自动构建/测试/打包已通过，下一阶段为 M1；不是完整 MVP。** [CI 38390862584](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38390862584) 完成 Linux/macOS 各 14 Core tests、9 iOS tests 与设备 Release，真实 IPA 已生成。模拟器实际阅读、真机与 TrollStore 尚未验收，详见 [M0 验收](Documentation/M0_ACCEPTANCE.md) 和 [项目状态](PROJECT_STATUS.md)。
 
 ## 当前已写入
 
@@ -69,7 +69,9 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 ## GitHub Actions / IPA
 
-项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。首次 CI 已运行，最新结论见 PROJECT_STATUS 和 GitHub Actions；推送成功不代表 iOS 构建成功。
+项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。第三次 CI 已全通过，完整结论见 PROJECT_STATUS 和 GitHub Actions；阅读/设备验收与自动构建结果分开记录。
+
+最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [IOS_VALIDATION_REPORT.json](Documentation/IOS_VALIDATION_REPORT.json)。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 
