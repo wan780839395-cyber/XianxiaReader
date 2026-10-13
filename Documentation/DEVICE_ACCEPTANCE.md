@@ -2,13 +2,15 @@
 
 ## 当前设备与状态
 
-2026-10-13 用户确认：iPhone 13、iOS 16.6.1、TrollStore 安装应用正常。EPUB 在 iCloud 云盘选中后按“打开”无反应（用户截图），导入失败，无法继续阅读验收。本次 Build 2 修复待 CI/真机复测，见 IMPORT_FIX.md；不能把安装通过扩展为阅读通过。
+2026-10-13 用户确认：iPhone 13、iOS 16.6.1、TrollStore 安装旧包正常。EPUB 在 iCloud 云盘选中后按“打开”无反应（用户截图），导入失败，无法继续阅读验收。Build 2 已过完整 CI，待真机复测，见 IMPORT_FIX.md；不能把安装通过扩展为阅读通过。
 
 最新可用包与构建 SHA/校验值见 HANDOFF 和对应 CI 验证报告。M0 包原件保存在 `build/ci/38390862584/ipa/XianxiaReader.ipa`；M1 包只在新 CI 通过、下载和核验后提供。请保留原有应用/书籍数据，使用 TrollStore 的正常安装/更新操作，不通过卸载或删除数据库解决阅读/升级问题。
 
-最新 M1 包已经 [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563) 验证，完整测试 ZIP 在 `build/XianxiaReader-iPhone13-TestKit.zip`，包含 IPA、原创样书和 TESTING.txt。转到 iPhone“文件”后先解压外层 ZIP，选择内部 XianxiaReader.ipa，通过分享菜单交给 TrollStore；随后在应用里导入 Samples 中两本 EPUB。包内说明记录确切提交和 SHA，原件可单独用 build/XianxiaReader.ipa。
+最新 M1 Build 2 已经 [CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842) 验证，完整测试 ZIP 在 `build/XianxiaReader-iPhone13-TestKit.zip`，包含 IPA、原创样书和 TESTING.txt。转到 iPhone“文件”后先解压外层 ZIP，选择内部 XianxiaReader.ipa，通过分享菜单交给 TrollStore 更新；随后先点击“导入内置样书”，再测试本地和 iCloud 的 Samples 文件。包内说明记录确切提交和 SHA，原件可单独用 build/XianxiaReader.ipa。
 
 ## 第一轮步骤
+
+Build 2 的导入回归优先：更新后先点击“导入内置样书”（书架有书时使用 + 菜单），确认无需 File Provider 的真实导入和阅读；再导入“我的 iPhone”本地 EPUB；最后重试截图中的 iCloud 选中/打开流程。文件类型过滤放宽，TXT 等其他文件明确报错；不能把本地/内置成功写成 iCloud 通过。
 
 使用项目原创 `Tests/Fixtures/chinese-epub2.epub`、`chinese-epub3.epub`，再使用自己合法持有的中文 EPUB。将测试文件放到 iPhone“文件”中，点击应用“导入 EPUB”。记录以下每项的实际结果：
 
@@ -29,7 +31,9 @@
 | 安装结果 | 先前提供的包安装正常（用户报告）；Build 2 更新待复测 |
 | 构建 SHA / IPA hash | 使用实际测试包填写 |
 | EPUB 样本 hash / 文件来源 | 待填写，不上传个人小说到 Git |
-| 导入 | iCloud 选中后“打开”无反应；修复待复测 |
+| 内置样书导入 | Build 2 待复测 |
+| 本机 Files 导入 | Build 2 待复测 |
+| iCloud 导入 | 旧包选中后“打开”无反应；Build 2 待复测 |
 | 目录 / 图片 / 内部链接 | 因导入阻塞，待测试 |
 | 点击 / 手势 / 分页 / 滚动 / 旋转 | 待测试 |
 | 搜索 / 结果定位 / 取消 / 无结果 | 待测试 |

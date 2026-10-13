@@ -2,14 +2,14 @@
 
 本轮开发于 2026-10-13（Asia/Shanghai）。Windows 11，PowerShell 7.6.5，Git 2.54.0.windows.1，Python 3.11；无 Swift/Xcode/xcodebuild/XcodeGen 可执行文件。官方依赖源码仅保存在忽略的 `.cache/` 用于 API 审查，不作为产品源码提交。
 
-**最新结论：M1 搜索切片自动验证通过。** [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563)，提交 b95aa4d117984ddb85e81b1901b82e42d453758b：Linux/macOS 各14 Core、20 iOS tests、设备 Release、IPA 全成功，源码编译零警告。证据 M1_SEARCH_VALIDATION_REPORT.json / M1_SEARCH_ACCEPTANCE.md；历史 M0 证据仍保留。iPhone13/iOS16.6.1/TrollStore 安装、模拟器实际页面体验和完整 M1 未验收。
+**最新结论：M1 搜索与导入修复自动验证通过。** [CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842)，提交 0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9：Linux/macOS 各14 Core、26 iOS tests、设备 Release、Build 2 IPA 全成功，应用源码 compiler warnings=0；6 条 AppIntents metadata 提示单列保留。证据 M1_IMPORT_VALIDATION_REPORT.json / IMPORT_FIX.md；之前搜索和 M0 证据保留。用户报告旧包 TrollStore 安装正常，iCloud 选中/打开失败；新包设备导入/阅读、模拟器实际页面体验和完整 M1 未验收。
 
 ## 本地完成的验证
 
 - 项目文档、Swift Package 路径、target 来源、资源 JSON/plist 与 YAML 结构。
 - 实际 `001_initial.sql` 迁移在 Python SQLite 中执行；版本、完整性、外键、章节唯一序号/非负约束、进度范围及级联规则通过。
 - 两个原创 EPUB 的 mimetype 首位/不压缩、XML、manifest/spine 引用与中文元数据通过。
-- 37 个 Swift 文件 tree-sitter 语法检查通过。此检查不验证 Swift 类型、SDK、链接和并发隔离。
+- 39 个 Swift 文件 tree-sitter 语法检查通过。此检查不验证 Swift 类型、SDK、链接和并发隔离。
 - 6 个 Python 构建工具测试通过（可用模拟器选择、缺失 runtime 拒绝、IPA 结构、模拟器包拒绝、缺 executable 拒绝、越出 bundle 的 executable 拒绝）；Windows 未执行 Unix 可执行权限/符号链接断言，这些断言由 Linux/macOS 测试执行。
 - `scripts/ci_ios.sh` 使用 Git Bash `bash -n` 检查通过；这不是 macOS CI 执行。
 - `scripts/test_core_container.ps1` 通过 PowerShell AST 语法检查；这不代表容器命令实际成功执行。
@@ -18,7 +18,7 @@
 - 对照 Readium 3.11.0（commit `d82f44f4f05d87add9e22a8b75abbd61dce745dd`）检查打开、Navigator、preferences、TOC、cover、Locator JSON 与 input observers 签名。
 - 对照 XcodeGen 2.46.0（commit `8445e778451c7e44237b90281bde622d764b0084`）检查工程定义。App 明确使用已有 `INFOPLIST_FILE`，避免 generator 重写应用 plist。
 
-JSON 按四个范围保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示命令不执行编译；CORE_VALIDATION_REPORT.json 为本机 Linux Core；IOS_VALIDATION_REPORT.json 为历史 M0 CI；M1_SEARCH_VALIDATION_REPORT.json 为最新 M1 CI/52 源码 hash/20 tests/Release/IPA/零 compiler warnings。自动结果均不表示真机阅读或 TrollStore 验收。
+JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示命令不执行编译；CORE_VALIDATION_REPORT.json 为本机 Linux Core；IOS_VALIDATION_REPORT.json 为历史 M0 CI；M1_SEARCH_VALIDATION_REPORT.json 为之前搜索 CI/52 源码 hash/20 tests；M1_IMPORT_VALIDATION_REPORT.json 为最新 CI/54 源码 hash/26 tests/Release/Build 2 IPA。自动结果均不表示真机阅读或 TrollStore 验收。ValidationLogs/m1-import-cancelled.json 保留 Agent 误读旧网页日志而提前取消的部分成功测试；同提交完整重试已成功。
 
 最终本地日志已保存：`ValidationLogs/windows-static.log`、`python-tooling.log`、`script-syntax.log`。Python packaging 测试仅打包临时合成 bundle，日志中的 `test.ipa` 不是产品 `XianxiaReader.ipa`。
 
@@ -27,7 +27,7 @@ JSON 按四个范围保存：VALIDATION_REPORT.json 为静态检查，编译 fal
 - Core 14 个：**Linux 全通过**。数据库重开/阅读位置/书签、旧位置拒绝、事务回滚、孤立位置外键、目录排序/隔离、进度范围、文件暂存/恢复、路径与 symlink 越界、内部/断链拒绝、系统父级链接下新 root 的规范化、未支持格式拒绝、较高数据库 schema 拒绝且保留原数据、部分复制失败清理且保留原件。
 - macOS Core 14 个：首次 CI 中全部执行通过（Apple 文件协调分支）。
 - iOS 9 个：**第三次 CI 全通过、0 failures**。EPUB 2/3 元数据/目录、无 HTTP server Navigator 构造、真实导入、损坏 EPUB 回滚、Locator 完整往返、错误 book/engine/version/JSON 拒绝，以及阅读中途关闭/失败重试/关闭后迟到位置三个生命周期回归。前两次构建错误和被取消测试保留在 CI_FAILURES.md。
-- M1 新增11个搜索测试，连同原9个共20，最新 CI 全通过。覆盖真实中文 EPUB2/3、组合字形/inline、分页/snippet/上限、读取错误、并发 next/取消、改词/迟到结果及跳转委托。
+- M1 搜索11个新增回归与原9个全部保留，再加6个导入回归，共26，最新 CI 全通过。覆盖真实中文 EPUB2/3、组合字形/inline、分页/snippet/上限、读取错误、并发 next/取消、改词/迟到结果及跳转委托；另覆盖文件选择终止/取消/空回调、TXT与大写 EPUB 混合批次、主应用样书资源导入和重试。
 
 首次真实 Core 编译成功，但原 symlink 越界测试失败：Linux Foundation 对末端不存在的路径没有解析父级链接。修复为逐级拒绝受管理存储的链接并保留正常缺失目录；不删除测试或绕过错误。第二次仅根别名测试因目录 URL 尾斜杠不同而失败，断言修正为文件系统路径比较。三次完整日志分别保留为 `ValidationLogs/core-container-first-failure.log`、`core-container-root-url-failure.log`、`core-container-success.log`。最终 14 个 XCTest 与 exit 0 共同证明通过；日志末尾 Swift Testing 的“0 tests passed”属于未使用的另一测试框架，不能据此忽略 XCTest 失败。
 
@@ -40,12 +40,12 @@ JSON 按四个范围保存：VALIDATION_REPORT.json 为静态检查，编译 fal
 3. 首次 macOS 真实解析的 11 个依赖已审阅并纳入根 `Package.resolved`；CI resolve/test/build 严格锁定版本。其来源为 run 38385729586 的诊断 artifact，Readium revision 与精确基线一致。
 4. Runner 的 Xcode 16.4/iOS 18.5 当前官方清单可用，未来镜像可能移除；脚本会显式失败，不能静默换 compiler 或跳过 simulator test。
 5. 第二次缺 AppIcon 已修复；第三次 CI 的模拟器和设备 asset compiler 均成功。原创 SVG、1024 RGB PNG、appiconset 已提交；图标生成依赖仅用于维护，构建不需 Pillow。
-6. 未签名 IPA 已生成并核验 arm64/iOS device、最低 iOS 16、ZIP/Payload/0755 与 hash；普通设备签名/TrollStore 安装和 iOS 16 真机运行尚未验证。
+6. Build 2 未签名 IPA 已生成并核验 arm64/iOS device、最低 iOS16、ZIP/Payload/0755/hash/打包样书；用户确认旧包 TrollStore 安装正常，但 iCloud 导入失败。新包更新/导入/阅读与普通设备签名仍待验证。
 7. Reader 菜单遮挡/安全区、旋转、滚动转换、链接选择、iCloud materialization、巨大 EPUB 的 position 计算仍需实际阅读验收与性能测量。
 
 ## 下一验证顺序
 
-M0 与 M1 搜索切片自动门槛已通过；下一步真实位置/交互/排版和 iPhone13/iOS16.6.1/TrollStore 验收。完整 M1 通过后才进入 M2。
+M0 与 M1 搜索/导入修复自动门槛已通过；下一步 iPhone13/iOS16.6.1/TrollStore 内置样书、本机 Files、iCloud 三条导入路径，以及真实位置/交互/排版验收。完整 M1 通过后才进入 M2。
 
 恢复时无 GitHub 连接/remote；用户随后选择私有并完成授权，已建立私有仓库、核实本项目 noreply 作者并推送 main。前两次真实失败已修复，第三次 CI 全部成功；当前没有运行中的项目构建，也无需再次登录/UAC。历史过程见 HANDOFF_HISTORY_2026-10-13.md。
 

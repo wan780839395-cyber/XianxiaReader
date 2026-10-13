@@ -14,7 +14,9 @@ Apple 说明导入会提供沙盒内的临时副本，而原位打开依赖外�
 
 ## 验证边界
 
-新增 6 个 iOS 回归：选中/重复回调、取消/迟到、空回调、TXT 与大写 EPUB 混合批次、主应用包中的样书真实导入、空批次重试。原来的 EPUB/生命周期/位置/搜索回归全部保留。当前待完整 CI，Windows grammar 不能替代编译。
+新增 6 个 iOS 回归：选中/重复回调、取消/迟到、空回调、TXT 与大写 EPUB 混合批次、主应用包中的样书真实导入、空批次重试。原来的 EPUB/生命周期/位置/搜索回归全部保留。Windows 39 grammar 与 6 Python tooling tests 已通过。[完整 CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842) 的 Linux/macOS 各 14 Core、26 iOS tests、设备 Release/Build 2 IPA 全通过；54 构建来源 hash 匹配提交 0649833，样书/版本/IPA 完整性已核验，详见 M1_IMPORT_VALIDATION_REPORT.json。应用源码 compiler warnings=0，AppIntents metadata 的 6 条提示另行保留。
+
+首轮 CI 38409222759 因 Agent 误读网页旧片段，过早取消了正在进行的设备 Release；完整日志证实当时测试已通过。取消记录见 ValidationLogs/m1-import-cancelled.json，同提交重试已成功。不能把那次取消写成代码失败，也不能把本次 CI 通过写成真实 iCloud 导入已通过。
 
 真机依次验证：
 

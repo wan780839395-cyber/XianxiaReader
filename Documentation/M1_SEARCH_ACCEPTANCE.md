@@ -4,7 +4,7 @@
 
 最终 [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563)，提交 `b95aa4d117984ddb85e81b1901b82e42d453758b`：仓库、Linux/macOS Core 各 14 tests、20 iOS tests、设备 Release 与 IPA 均通过。应用源码编译 warning 为 0，Binding Sendable 与多余类型转换均已清理。首轮成功 run38399996364 的日志/包/报告仍保留。
 
-IPA：`build/XianxiaReader.ipa`，7,365,913 bytes，SHA-256 `9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365`。真机测试包 `build/XianxiaReader-iPhone13-TestKit.zip` 已含原始 IPA、两本原创 EPUB 与 TESTING.txt，CRC/内部 IPA hash 已验证。完整日志/xcresult 位于 `build/ci/38402285563/ios/`，最新日志副本 `build/logs/ios-build.log`。
+此搜索切片 IPA 原件：`build/ci/38402285563/ipa/XianxiaReader.ipa`，7,365,913 bytes，SHA-256 `9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365`。原测试 ZIP 另存 `build/ci/38402285563/XianxiaReader-iPhone13-TestKit.zip`，完整日志/xcresult 在该 run 的 ios 目录。后续导入修复 Build 2 已过 CI 38411028842，原20测试与新6测试共26再次通过；当前 build 根目录的包/日志已更新，具体来源以 M1_IMPORT_VALIDATION_REPORT.json / HANDOFF 为准。
 
 机器可读证据 M1_SEARCH_VALIDATION_REPORT.json 绑定 52 构建来源文件 hash；根锁文件 11 个 pins 与实际 CI 解析一致。收尾仅文档/证据，代码保持成功 SHA 一致，不会把 skip-ci 文档提交冒充新代码构建成功。
 

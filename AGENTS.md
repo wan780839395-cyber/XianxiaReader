@@ -52,6 +52,7 @@
 - Readium 3.11 搜索使用已回归的 TextContentElement 服务扩展（issue876），不要切回有组合字形窗口缺陷的默认服务。批次/上下文/界面上限与跨段落限制的变更须有相应回归，不先收集全书匹配或全文。
 - Docker 等工具不可用时保留实际错误并终止自己启动的挂起任务，不重置用户工具或把测试“未执行”改写为“通过”。
 - CI 必须保留 `set -euo pipefail`、真实 test/build 退出码、完整日志及失败诊断 artifact；不得跳过失败生成成功 IPA。
+- CI 网页可能只显示旧日志片段，不根据可见尾部推断任务挂起或测试未执行。核对 job 状态、完整下载日志和 xcresult；取消/重试须记录实际未完成阶段，不能把 Agent 的取消写成源码失败。
 - 不伪造 `Package.resolved`。第一次真实解析后审阅并纳入锁文件，固定传递依赖。
 - 根 `Package.resolved` 来自真实 CI；生成工程后复制到 workspace 的 swiftpm 目录，resolve/test/build 均严格使用锁文件。依赖升级需要重新真实解析和完整 CI。
 - 自动检查、Swift 编译、模拟器阅读、普通设备、TrollStore 设备五种结果分开记录。没有测试环境仍继续可在 Windows 完成的工作，并明确剩余风险。

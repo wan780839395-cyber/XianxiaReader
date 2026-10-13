@@ -1,0 +1,59 @@
+{
+  "validationKind": "partial_cancelled_ci; not a completed Release build",
+  "run": {
+    "id": 38409222759,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38409222759",
+    "headSha": "0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9",
+    "conclusion": "cancelled"
+  },
+  "cancellationRequestedBy": "Agent",
+  "reason": "Agent misread a stale partial web log as a generator stall and cancelled prematurely. Full downloaded log proves tests had already passed and device Release was compiling ReadiumShared. No compiler error was observed.",
+  "linuxCoreTestsPassed": true,
+  "appleCoreTestsPassed": true,
+  "coreTestCountEach": 14,
+  "iosIntegrationTestsPassed": true,
+  "iosTestCount": 26,
+  "iosTests": [
+    "XianxiaReaderTests.DocumentImportTests testBroadPickerRejectsTXTButImportsUppercaseEPUBInSameBatch",
+    "XianxiaReaderTests.DocumentImportTests testBundledSamplesImportWithoutFileProvider",
+    "XianxiaReaderTests.DocumentImportTests testCancelledPickerCannotStartImportWithLateFiles",
+    "XianxiaReaderTests.DocumentImportTests testEmptyBatchReportsErrorAndCanRetryWithSamples",
+    "XianxiaReaderTests.DocumentImportTests testEmptyPickerCallbackExplainsMissingFile",
+    "XianxiaReaderTests.DocumentImportTests testPickerDeliversSelectedFilesOnceAndIgnoresLateCancellation",
+    "XianxiaReaderTests.EPUBIntegrationTests testCorruptEPUBImportRollsBackFilesAndDatabase",
+    "XianxiaReaderTests.EPUBIntegrationTests testEPUB2AndEPUB3MetadataAndNavigationIndex",
+    "XianxiaReaderTests.EPUBIntegrationTests testNavigatorCanBeCreatedWithoutAnHTTPServer",
+    "XianxiaReaderTests.EPUBIntegrationTests testRealImportPersistsBookAndCachedTOC",
+    "XianxiaReaderTests.PositionCodecTests testLocatorRoundTripPreservesFragmentsAndTextContext",
+    "XianxiaReaderTests.PositionCodecTests testWrongBookEngineVersionAndCorruptDataAreRejected",
+    "XianxiaReaderTests.ReaderLifecycleTests testCloseDuringOpenCannotReturnReaderToReadyState",
+    "XianxiaReaderTests.ReaderLifecycleTests testFailedOpenCanRetryAndBecomeReady",
+    "XianxiaReaderTests.ReaderLifecycleTests testLatePositionAfterCloseIsNotPersisted",
+    "XianxiaReaderTests.ReaderSearchViewModelTests testEmptyAndOversizedQueryNeverStartEngineSearch",
+    "XianxiaReaderTests.ReaderSearchViewModelTests testLatePageCannotReplaceNewQueryResults",
+    "XianxiaReaderTests.ReaderSearchViewModelTests testLateStartedSessionIsCancelledAfterQueryChanges",
+    "XianxiaReaderTests.ReaderSearchViewModelTests testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+    "XianxiaReaderTests.ReaderSearchViewModelTests testSelectionDelegatesOpaquePositionAndReportsNavigationFailure",
+    "XianxiaReaderTests.ReadiumSearchTests testBatchSizeSnippetBoundsAndEndPreserveCSSLocator",
+    "XianxiaReaderTests.ReadiumSearchTests testCombiningCharactersEmojiAndInlineSegmentBoundaries",
+    "XianxiaReaderTests.ReadiumSearchTests testConcurrentNextRejectedAndCancelledSessionRejectsLatePage",
+    "XianxiaReaderTests.ReadiumSearchTests testContentReadFailureIsNotReportedAsNoMatches",
+    "XianxiaReaderTests.ReadiumSearchTests testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch",
+    "XianxiaReaderTests.ReadiumSearchTests testRealEPUB2AndEPUB3ChineseSearchPositions"
+  ],
+  "releaseDeviceBuildPassed": false,
+  "ipaProduced": false,
+  "buildLog": {
+    "path": "build/ci/38409222759/ios/build/logs/build.log",
+    "sha256": "46a6bcfa036569d74a38082290fb21059057dadb4f6bec387f9b936bc4d76cb5"
+  },
+  "githubRawLog": {
+    "path": "build/ci/38409222759/github-actions.log",
+    "sha256": "64ec9e451360563d4fe314d9b6bf49c5bf900b9ac0227f7739c9351f86509aa8"
+  },
+  "compilerWarnings": [],
+  "simulatorReadingAccepted": false,
+  "deviceReadingAccepted": false,
+  "currentFileProviderImportAccepted": false,
+  "retryRunID": "38411028842"
+}
