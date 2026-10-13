@@ -4,6 +4,10 @@
 
 ## 当前断点
 
+2026-10-13 新真机反馈：用户确认 EPUB 可以导入；图像只显示窄横条，并明确想要上下滚动时无缝跨章（不是下一章按钮）。已写入 ReaderSurface 明确完整 viewport、Readium 官方 frame/autoresizing 容器、目录/书签菜单与迟到导航过滤；恢复章内滚动的默认横向跨资源手势并明确界面标签。Build 3，新增原创图像/长短章样书、3真实页面/2导航竞态回归，待静态检查及完整CI，旧包未覆盖。真连续滚动尚未实现：3.11仅章内滚动，issue684/PR811未合并；独立 M1 引擎切片见 CONTINUOUS_SCROLL_DESIGN.md，不能将本次横向跨节写成无缝纵向。图像原因仅据源码布局合同推断，用户书CSS未提供。导入来源未细分，其他设备体验未验收；字体/主题等M4后续，不跳入M2。
+
+构建前检查点：Windows 结构/样书/41 Swift grammar 与6 tooling tests通过，首次diff发现EOF空行已规范化，git diff --cached --check通过。准备提交并执行31 iOS tests/Release完整CI；xcresulttool附件导出采用Xcode16公开命令，失败同样必须修复，不跳过测试。
+
 **M0 自动门槛通过；M1 搜索与 EPUB 导入修复已通过完整 CI，Build 2 已下载核验。完整 M1 待用户真机反馈，不进入 M2。** 当前没有运行中的项目构建/测试、未完成登录或 UAC。
 
 用户设备 iPhone13 / iOS16.6.1 / TrollStore。用户报告旧包安装正常，但 iCloud 中选中 chinese-epub3.epub 后按“打开”无反应，阅读无法测试；此前也报告文件呈灰色。截图只证明交接阻塞，没有系统 File Provider 日志，不认定唯一根因。新包的安装/导入/阅读尚未获得用户确认。

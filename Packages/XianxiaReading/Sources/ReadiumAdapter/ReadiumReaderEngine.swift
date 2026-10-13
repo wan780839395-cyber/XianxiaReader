@@ -38,7 +38,7 @@ import XianxiaCore
         guard openRequestID == requestID else { throw CancellationError() }
         let locator = try position.map { try ReadiumPositionCodec.decode($0, bookID: book.id) }
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
-            config: .init(preferences: preferences, disablePageTurnsWhileScrolling: true,
+            config: .init(preferences: preferences, disablePageTurnsWhileScrolling: false,
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
         self.bookID = book.id
         self.navigator = navigator
@@ -62,14 +62,12 @@ import XianxiaCore
         })
         host.loadViewIfNeeded()
         host.addChild(navigator)
-        navigator.view.translatesAutoresizingMaskIntoConstraints = false
+        // Seed a valid viewport before Readium starts its asynchronous layout.
+        // Match the upstream SwiftUI container recipe instead of mounting a
+        // zero-frame child and waiting for a later Auto Layout pass.
+        navigator.view.frame = host.view.bounds
+        navigator.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         host.view.addSubview(navigator.view)
-        NSLayoutConstraint.activate([
-            navigator.view.leadingAnchor.constraint(equalTo: host.view.leadingAnchor),
-            navigator.view.trailingAnchor.constraint(equalTo: host.view.trailingAnchor),
-            navigator.view.topAnchor.constraint(equalTo: host.view.topAnchor),
-            navigator.view.bottomAnchor.constraint(equalTo: host.view.bottomAnchor)
-        ])
         navigator.didMove(toParent: host)
     }
 

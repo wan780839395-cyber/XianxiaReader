@@ -20,7 +20,7 @@ import XianxiaCore
     var body: some View {
         ZStack {
             if let engine = model.engine {
-                ReaderController(viewController: engine.viewController)
+                ReaderSurface(viewController: engine.viewController)
                     .accessibilityAction(named: "显示阅读菜单") { model.menuVisible = true }
             }
             if let failure = model.openFailure {
@@ -54,20 +54,25 @@ import XianxiaCore
                         HStack {
                             Button("目录") { showContents = true }
                             Spacer()
-                            Button("上一页") { Task { await model.engine?.turnPage(forward: false) } }
+                            Button(model.scrolling ? "上一节" : "上一页") { Task { await model.engine?.turnPage(forward: false) } }
                             Spacer()
-                            Button("下一页") { Task { await model.engine?.turnPage(forward: true) } }
+                            Button(model.scrolling ? "下一节" : "下一页") { Task { await model.engine?.turnPage(forward: true) } }
                             Spacer()
                             Button("书签") { showBookmarks = true }
                         }
-                        Toggle("上下滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
+                        Toggle("章内上下滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
                             .font(.footnote)
+                        if model.scrolling {
+                            Text("章末可左右划动，或使用上一节 / 下一节接着阅读。")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
                         Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }
                             .disabled(model.engine?.searchProvider == nil)
                     }.padding().background(.regularMaterial).disabled(!model.isReady)
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $showContents) {
             NavigationStack {
                 List(model.chapters) { chapter in
@@ -122,10 +127,4 @@ import XianxiaCore
             if phase != .active { Task { await model.saveNow() } }
         }
     }
-}
-
-@MainActor private struct ReaderController: UIViewControllerRepresentable {
-    let viewController: UIViewController
-    func makeUIViewController(context: Context) -> UIViewController { viewController }
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }

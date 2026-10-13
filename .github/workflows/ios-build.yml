@@ -84,6 +84,7 @@ jobs:
           path: |
             build/logs/
             build/*.xcresult/
+            build/ReaderSnapshots/
             build/build-environment.txt
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA

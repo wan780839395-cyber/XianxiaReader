@@ -85,18 +85,36 @@ import XianxiaCore
     }
 
     func go(to chapter: Chapter) async {
-        do { try await engine?.go(to: chapter) }
-        catch { errorMessage = error.localizedDescription }
+        guard isReady, let engine else { return }
+        let requestID = openRequestID
+        do {
+            try await engine.go(to: chapter)
+            guard openRequestID == requestID else { return }
+            menuVisible = false
+        } catch {
+            guard openRequestID == requestID else { return }
+            errorMessage = error.localizedDescription
+        }
     }
 
     func go(to bookmark: Bookmark) async {
-        do { try await engine?.go(to: bookmark.position) }
-        catch { errorMessage = error.localizedDescription }
+        guard isReady, let engine else { return }
+        let requestID = openRequestID
+        do {
+            try await engine.go(to: bookmark.position)
+            guard openRequestID == requestID else { return }
+            menuVisible = false
+        } catch {
+            guard openRequestID == requestID else { return }
+            errorMessage = error.localizedDescription
+        }
     }
 
     func go(to result: ReaderSearchHit) async throws {
         guard isReady, let engine else { throw ReaderSearchError.unavailable }
+        let requestID = openRequestID
         try await engine.go(to: result.position)
+        guard openRequestID == requestID else { throw CancellationError() }
         menuVisible = false
     }
 

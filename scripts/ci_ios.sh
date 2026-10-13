@@ -34,6 +34,9 @@ xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
   -resultBundlePath "$PWD/build/SimulatorTests.xcresult" CODE_SIGNING_ALLOWED=NO
 
+# Keep real WKWebView image snapshots from the rendering regressions for visual review.
+xcrun xcresulttool export attachments --path build/SimulatorTests.xcresult --output-path build/ReaderSnapshots
+
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
   -configuration Release -destination 'generic/platform=iOS' \

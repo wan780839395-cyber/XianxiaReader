@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T14:36:35.284661+00:00",
+  "recordedAtUTC": "2026-10-13T15:44:43.719639+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 113,
+  "fileCount": 119,
   "files": [
     {
       "path": ".gitattributes",
@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/ios-build.yml",
-      "bytes": 2934,
-      "sha256": "2d170a2a59d60511e56376d7c7e65995b958f9012150e1c2293569000d106e3e"
+      "bytes": 2969,
+      "sha256": "688a56a8f6ca3d930136f5d803f8c39c2edec42ebae3b67a6f09bd6f1004708a"
     },
     {
       "path": ".gitignore",
@@ -64,14 +64,19 @@
       "sha256": "39ac78ab15cb6e81521d6b258af50ca0078d57cbcea009c10a3006c917c76ee0"
     },
     {
+      "path": "App/Reader/ReaderSurface.swift",
+      "bytes": 811,
+      "sha256": "e6a44ffbb2400e3d8094d0d779c14fa7ffe8df775d4b87858ea42fc7bd9c21a1"
+    },
+    {
       "path": "App/Reader/ReaderView.swift",
-      "bytes": 6466,
-      "sha256": "10a2017f0efcb03bf78f591584c13a545cffad1c1d341a6b6a4527f1c485f2e8"
+      "bytes": 6546,
+      "sha256": "bb9e05a9d6b8e1e8bf28324f27c06b42b34fe3ebd52ffa6d72c3c6c2dd793c46"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "bytes": 4761,
-      "sha256": "14f7dbe61f793b096dd97a1cb8123870151268a3f15ade41b17045e52c03bb5b"
+      "bytes": 5421,
+      "sha256": "7f3fd45f5d03002d99a9d37f6d97647ba1880fc43c563ad27f553246039a8a58"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -122,6 +127,11 @@
       "path": "Documentation/CI_FAILURES.md",
       "bytes": 3087,
       "sha256": "91e1d23bb614b106b1078a5d30f8580ed9da9918d38903f8a1420bf519706b9c"
+    },
+    {
+      "path": "Documentation/CONTINUOUS_SCROLL_DESIGN.md",
+      "bytes": 2788,
+      "sha256": "b7d3b7bcf23ae3f136f1a61484cccd179e69f763e648ac5ee00bd6d88f9a3eb3"
     },
     {
       "path": "Documentation/CORE_VALIDATION_REPORT.json",
@@ -194,6 +204,11 @@
       "sha256": "dc1433e39b55786861995fa78494f89b90d0651810299f8f2d0113e4909ecf2a"
     },
     {
+      "path": "Documentation/READER_VIEWPORT_FIX.md",
+      "bytes": 2650,
+      "sha256": "28f72d5451fa43601f1a58925bd5d904c5ec2c41239bb177ea4915f49f324732"
+    },
+    {
       "path": "Documentation/SEARCH_DESIGN.md",
       "bytes": 2637,
       "sha256": "bf099671dcff1f507dc9c069450541fc5d84058ab1e36f73163dc3979175ef6d"
@@ -206,7 +221,7 @@
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "4e4a519668c0921a32baeb1e567bcbc19194c06ebeb0c268c4a8f3434db14e59"
+      "sha256": "7dfafd848df085a00922cce79989b16528140a413ccc5461cc6bc78cb54f038a"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -320,8 +335,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 5766,
-      "sha256": "2133997cac13d685d1e4a01f4d4370e3a8964928848d9d965545eb1dc2a8bdd8"
+      "bytes": 6923,
+      "sha256": "3597110eeb477395173315998e21487e76edd83f8253ae82673162e3e06d7319"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -330,8 +345,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 6146,
-      "sha256": "2c641e0286d1a1a4b226b0bcc95ceb6384482a322551bb9115c756c7abd210e5"
+      "bytes": 6155,
+      "sha256": "a2440488a3f9b2b4c821271ca6e92988653ea8d596d78a72dbe888b5ed393d17"
     },
     {
       "path": "Package.resolved",
@@ -445,8 +460,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "bytes": 6222,
-      "sha256": "5f7b6ea05c8db5d4575db9dbf57a55ff8c45e0e106ed35685d5f914b5b04b40f"
+      "bytes": 6113,
+      "sha256": "2c9ee2f7c723966ba916d912533377ddd5e484e041c4878013160f874ad12c61"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -479,6 +494,11 @@
       "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
     },
     {
+      "path": "Tests/Fixtures/reader-layout.epub",
+      "bytes": 3116,
+      "sha256": "b241bc8a379554aaa319e8c5e260d4ef49fd4bf044d4b8249a07fc2281cf5ab4"
+    },
+    {
       "path": "Tests/iOS/DocumentImportTests.swift",
       "bytes": 4931,
       "sha256": "dde7b7dd09e8cc92e8e244785634de19911ae226fe7c03f431fa4f27f93373e7"
@@ -495,8 +515,13 @@
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "bytes": 4755,
-      "sha256": "0e51412f42b2c63a5d5bd895a784edc28616e3e866156d80a60a929e9bd52c02"
+      "bytes": 7749,
+      "sha256": "b4d08c47043d3ce862758650f1af86bdaa5f87e297d693cc755d00285771ca91"
+    },
+    {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "bytes": 7693,
+      "sha256": "0bf4c5dc6ae6748ea0960db0483aa5f0e262f9d60f854ccbbf9f22e199eaf7a6"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -511,17 +536,17 @@
     {
       "path": "project.yml",
       "bytes": 1994,
-      "sha256": "78d8a4a3f802c4853d6ab6ad1512693530a7f31bf4614d48767dcd6b1334d2d4"
+      "sha256": "29ed4f59899347f5e58b85b226595b4f023ee156f79d9d65886f279b65683c4b"
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 10471,
-      "sha256": "9c996870afad5008e8e47869bcf8827da1a5afdbaf81bf57d458d7c45bde5e3f"
+      "bytes": 11533,
+      "sha256": "5d70d1ac9fdf9f8c4f169e9b855318f59f2e4ba2c8380e50233bd2e0f40896fb"
     },
     {
       "path": "scripts/ci_ios.sh",
-      "bytes": 2449,
-      "sha256": "ec49467e561753f00a5f48ffe5c9a7b3c9019f1587732f6c036269795edb68c2"
+      "bytes": 2649,
+      "sha256": "ef1cf5da72cdbdd77199957c31fe9eae0e0380634b0ea373369773b8e1d3569a"
     },
     {
       "path": "scripts/generate_app_icon.py",
@@ -532,6 +557,11 @@
       "path": "scripts/generate_fixtures.py",
       "bytes": 4641,
       "sha256": "26cbbe7dfe4999744a58ab3bc16e4bb92380f8f4af626425a338f9aab535b962"
+    },
+    {
+      "path": "scripts/generate_reader_fixture.py",
+      "bytes": 3822,
+      "sha256": "a2e8a398c8449f3f4541d517647d0baf8f20708ea6a03e9deb4588b5f815b335"
     },
     {
       "path": "scripts/package_ipa.py",

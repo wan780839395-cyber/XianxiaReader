@@ -130,6 +130,19 @@ def check_fixtures() -> None:
             for item in opf.findall("opf:manifest/opf:item", ns):
                 require("OEBPS/" + item.attrib["href"] in archive.namelist(), "Broken EPUB manifest link")
             require(len(opf.findall("opf:spine/opf:itemref", ns)) == 2, "Fixture spine missing")
+    with ZipFile(ROOT / "Tests/Fixtures/reader-layout.epub") as archive:
+        require(archive.testzip() is None, "Reader layout fixture ZIP corrupt")
+        require(archive.infolist()[0].filename == "mimetype" and archive.infolist()[0].compress_type == ZIP_STORED,
+                "Reader fixture mimetype must be first and stored")
+        require(archive.read("mimetype") == b"application/epub+zip", "Reader fixture format invalid")
+        for name in archive.namelist():
+            require(not name.startswith("/") and ".." not in Path(name).parts, "Reader fixture path invalid")
+            if name.endswith((".xml", ".opf", ".xhtml", ".svg")):
+                ET.fromstring(archive.read(name))
+        opf = ET.fromstring(archive.read("OEBPS/package.opf"))
+        require(len(opf.findall("opf:spine/opf:itemref", ns)) == 3, "Reader fixture needs cover, long and short chapters")
+        for item in opf.findall("opf:manifest/opf:item", ns):
+            require("OEBPS/" + item.attrib["href"] in archive.namelist(), "Reader fixture resource missing")
 
 
 def check_swift_syntax() -> int:
