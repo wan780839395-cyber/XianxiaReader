@@ -52,6 +52,12 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows �
 
 ### 当前工作：已获准升级 Docker，准备 GitHub
 
+最新工作（18:40）：用户明确要求再次发起 Docker UAC，并请求协助打开 GitHub 登录页；无需再次询问是否重试。现场确认 Git 工作区干净、CLI 仍未登录，session 3140 也已 expired_token / exit 1。准备使用已核验官方缓存 installer 重新发起 RunAs 升级，另生成新的 GitHub 设备代码并实际打开可见浏览器。旧代码均失效，不复用；账户登录/系统管理员挑战由用户本人完成，不将一次性代码写入仓库。
+
+18:45 本机 CLI session 92908 已 Authentication complete / exit 0，账户 wan780839395-cyber；不再生成登录代码。GitHub 登录已完成，可以继续已获准的私有仓库创建/推送/CI。Docker 4.95.0 安装成功但 engine 未响应，Desktop CLI start 误报 already running，现场无 Desktop/backend 进程且 status 挂起；准备关闭自己的挂起 status 查询并直接启动新版 Desktop，保留旧容器/数据。
+
+18:41 Docker installer RunAs 已成功（PID 14872 已退出；admin log 显示 Installation succeeded），程序版本核实为 4.95.0.242831；但后续 engine 查询失败，npipe/dockerDesktopLinuxEngine 不存在，不能标引擎已恢复或原容器已核对。Core 脚本也明确 exit 1 / 未运行 tests；正在核对新 backend 启动日志，历史 Core 成功证据保留。安装成功日志为 `docker-upgrade-success.log`。新 GitHub CLI 设备登录 session 92908 正在等待本人授权；通过 cua 已打开可见 IAB 登录页（tab 1），页面显示 Continue as wan780839395-cyber，已告知新代码并保留该 tab。user 未登录 CLI 前不创建/推送远端；如果用户授权完成，直接核对同一账户并继续私有建仓/CI。
+
 最新断点（18:11）：本地初始提交 `a6466a6` 已完成（80 个文件），当时工作区干净；后续交接同步另行提交。GitHub connector 已连接并确认账户 `wan780839395-cyber`；GCM 无已存账户，本机便携 CLI 仍未登录。`gh auth login --web --git-protocol https --scopes workflow` 在等待本人设备授权；当前 exec session 80177 尚在，通常会到期退出，恢复时先核对 `gh auth status`，若已授权不要重复发起。一次性代码不持久化。
 
 18:17 GitHub 安装完成回调后再次现场核对：connector 账户正常，本机 CLI 未登录；旧 session 80177 实际以 expired_token / exit 1 结束。重新发起设备登录，当前 exec session 3140 等待本人授权（新代码不入库）。本地已有 `a6466a6` 与交接提交 `b26dadf`，远端仍未创建；connector 对候选仓库的读取返回 404，最终建仓前还须使用授权后的 CLI 核实重名与权限。

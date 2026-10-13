@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------->8
+Version: 4.95.0 (242831)
+Sha1: 
+Started on: 2026/10/13 10:40:39.879
+Resources: C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\resources
+OS: Windows 10 Home China
+Edition: CoreCountrySpecific
+Id: 2009
+Build: 26200
+BuildLabName: 26100.1.amd64fre.ge_release.240331-1435
+File: C:\ProgramData\DockerDesktop\install-log-admin.txt
+CommandLine: "C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\Docker Desktop Installer.exe" install -package C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\DockerDesktop.d4w --quiet -vm-package C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\DockerDesktopVM.d4w
+You can send feedback, including this log file, at https://dockr.ly/desktop-feedback
+[2026-10-13T10:40:40.000430600Z][Installer][I] Existing installation found: build=228796, version=4.77.0, basePath=C:\Program Files\Docker\Docker
+[2026-10-13T10:40:40.019167900Z][ProcessEnvironmentDetector][I] Launching from base path: False
+[2026-10-13T10:40:40.022167900Z][AdminInstallHandler][I] Running admin installation
+[2026-10-13T10:40:41.088781000Z][InstallWorkflow][I] Granting ReadAndExecute on C:\ProgramData\DockerDesktop
+[2026-10-13T10:40:41.088781000Z][InstallWorkflow][I] Using package: C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\DockerDesktop.d4w
+[2026-10-13T10:40:41.239280100Z][InstallWorkflow][I] Phase 0: Pre-check
+[2026-10-13T10:40:41.559657400Z][InstallWorkflow][I] Checking prerequisites
+[2026-10-13T10:40:41.922238400Z][InstallWorkflow][I] settings from previous installation exist: match the backend mode to that
+[2026-10-13T10:40:41.923275600Z][InstallWorkflow][I] backend mode detected from existing settings: wsl-2
+[2026-10-13T10:40:41.923275600Z][InstallWorkflow][I] Selected backend mode: wsl-2
+[2026-10-13T10:40:42.071343700Z][InstallWorkflow][I] Phase 1: Staging
+[2026-10-13T10:40:42.081731500Z][DeployArtifacts][I] Unpacking C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\DockerDesktop.d4w to C:\Program Files\Docker\Docker.staging
+[2026-10-13T10:40:42.086965600Z][DeployArtifacts][I] Unpacking with C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\7zr.exe
+[2026-10-13T10:40:51.562825100Z][DeployArtifacts][I] Unpacking C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\DockerDesktopVM.d4w to C:\Program Files\Docker\Docker.staging
+[2026-10-13T10:40:51.562825100Z][DeployArtifacts][I] Unpacking with C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791888038101069700\7zr.exe
+[2026-10-13T10:40:59.041306500Z][InstallWorkflow][I] Verifying payload signatures
+[2026-10-13T10:41:00.640203500Z][InstallWorkflow][I] Phase 1b: Teardown
+[2026-10-13T10:41:00.658944300Z][InstallWorkflow][I] Uninstalling previous version in update mode
+[2026-10-13T10:41:00.666954400Z][UninstallWorkflow][I] Running before update actions
+[2026-10-13T10:41:00.667954100Z][UninstallWorkflow][I] Proceeding with Docker.Installer.ExecAction
+[2026-10-13T10:41:00.731434000Z][UninstallWorkflow-ExecAction][I] Running: C:\Program Files\Docker\Docker.staging\InstallerCli.exe -k -p with timeout=60000
+[2026-10-13T10:41:01.882192900Z][UninstallWorkflow][I] Done with Docker.Installer.ExecAction
+[2026-10-13T10:41:01.882192900Z][UninstallWorkflow][I] Proceeding with installed components
+[2026-10-13T10:41:01.882192900Z][UninstallWorkflow][I] Proceeding with Docker.Installer.ExecAction
+[2026-10-13T10:41:01.882192900Z][UninstallWorkflow][I] Proceeding with Docker.Installer.PathAction
+[2026-10-13T10:41:02.164291400Z][UninstallWorkflow][I] Proceeding with Docker.Installer.AutoStartAction
+[2026-10-13T10:41:02.168081800Z][UninstallWorkflow][I] Proceeding with Docker.Installer.ShortcutAction
+[2026-10-13T10:41:02.169081200Z][UninstallWorkflow][I] Proceeding with Docker.Installer.ShortcutAction
+[2026-10-13T10:41:02.170081700Z][UninstallWorkflow][I] Proceeding with Docker.Installer.ServiceAction
+[2026-10-13T10:41:02.174166500Z][UninstallWorkflow][I] Proceeding with Docker.Installer.EnableFeaturesAction
+[2026-10-13T10:41:02.174166500Z][UninstallWorkflow][I] Proceeding with Docker.Installer.EnableFeaturesAction
+[2026-10-13T10:41:02.174166500Z][UninstallWorkflow][I] Proceeding with Docker.Installer.AddToGroupAction
+[2026-10-13T10:41:02.174166500Z][UninstallWorkflow][I] Proceeding with Docker.Installer.CreateGroupAction
+[2026-10-13T10:41:02.174166500Z][UninstallWorkflow][I] Uninstalled finished
+[2026-10-13T10:41:02.174166500Z][InstallWorkflow][I] Phase 2: Backup (file-by-file move)
+[2026-10-13T10:41:02.260284900Z][InstallWorkflow][I] Moved 192 file(s) from 'C:\Program Files\Docker\Docker' to 'C:\Program Files\Docker\Docker.backup'
+[2026-10-13T10:41:02.272509800Z][InstallWorkflow][I] Phase 3: Activation (file-by-file move)
+[2026-10-13T10:41:02.368383000Z][InstallWorkflow][I] Moved 184 file(s) from 'C:\Program Files\Docker\Docker.staging' to 'C:\Program Files\Docker\Docker'
+[2026-10-13T10:41:02.377730500Z][InstallWorkflow][I] Phase 4: Components
+[2026-10-13T10:41:02.379895900Z][InstallWorkflow][I] Reading existing install-settings
+[2026-10-13T10:41:02.402716000Z][InstallWorkflow][I] Saving C:\ProgramData\DockerDesktop\install-settings.json
+[2026-10-13T10:41:02.410334100Z][InstallWorkflow][I] Deploying component Docker.Installer.CreateGroupAction
+[2026-10-13T10:41:02.579885400Z][InstallWorkflow][I] Deploying component Docker.Installer.AddToGroupAction
+[2026-10-13T10:41:02.644377200Z][InstallWorkflow][I] Deploying component Docker.Installer.EnableFeaturesAction
+[2026-10-13T10:41:02.645376500Z][InstallWorkflow-EnableFeaturesAction][I] Required features: VirtualMachinePlatform, Microsoft-Windows-Subsystem-Linux
+[2026-10-13T10:41:03.073995600Z][InstallWorkflow-EnableFeaturesAction][I] All features are already installed.
+[2026-10-13T10:41:03.073995600Z][InstallWorkflow][I] Deploying component Docker.Installer.ServiceAction
+[2026-10-13T10:41:03.075442900Z][InstallWorkflow-ServiceAction][I] Removing service
+[2026-10-13T10:41:03.076745000Z][InstallWorkflow-ServiceAction][I] Creating service
+[2026-10-13T10:41:03.079474300Z][InstallWorkflow][I] Deploying component Docker.Installer.ShortcutAction
+[2026-10-13T10:41:03.118756300Z][InstallWorkflow-ShortcutAction][I] Creating shortcut: C:\ProgramData\Microsoft\Windows\Start Menu\Docker Desktop.lnk/Docker Desktop
+[2026-10-13T10:41:03.130230600Z][InstallWorkflow][I] Deploying component Docker.Installer.ShortcutAction
+[2026-10-13T10:41:03.133099200Z][InstallWorkflow-ShortcutAction][I] Creating shortcut: C:\Users\78083\Desktop\Docker Desktop.lnk/Docker Desktop
+[2026-10-13T10:41:03.135106400Z][InstallWorkflow][I] Deploying component Docker.Installer.AutoStartAction
+[2026-10-13T10:41:03.135106400Z][InstallWorkflow][I] Deploying component Docker.Installer.PathAction
+[2026-10-13T10:41:03.258822800Z][InstallWorkflow][I] Deploying component Docker.Installer.ExecAction
+[2026-10-13T10:41:03.258822800Z][InstallWorkflow-ExecAction][I] Running: C:\Program Files\Docker\Docker\InstallerCli.exe -i with timeout=-1
+[2026-10-13T10:41:03.927478200Z][InstallWorkflow][I] Registering new product
+[2026-10-13T10:41:03.928477300Z][RegisterProductStep][I] Registering product information
+[2026-10-13T10:41:04.004726700Z][RegisterProductStep][I] Registering docker-desktop url-protocol
+[2026-10-13T10:41:04.007064300Z][InstallWorkflow][I] Phase 5: Validation
+[2026-10-13T10:41:04.007064300Z][InstallWorkflow][I] Phase 6: Cleanup
+[2026-10-13T10:41:04.008065700Z][InstallWorkflow][I] Installation succeeded
