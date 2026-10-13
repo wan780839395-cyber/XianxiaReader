@@ -1,0 +1,27 @@
+{
+  "validationKind": "real_ci_test_bundle_link_failure",
+  "run": {
+    "id": 38424689048,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38424689048",
+    "headSha": "336b21a1731fdde7a44c48e5892befd3379565f0",
+    "conclusion": "failure"
+  },
+  "linuxCoreTestsPassed": true,
+  "appleCoreTestsPassed": true,
+  "coreTestCountEach": 14,
+  "iosIntegrationTestsExecuted": false,
+  "iosIntegrationTestsPassed": false,
+  "releaseDeviceBuildPassed": false,
+  "ipaProduced": false,
+  "failure": "New rendering test referenced concrete statically linked Navigator class/error metadata not exported by host app. Test bundle failed linking, not a runtime test failure.",
+  "fix": "Keep all geometry/snapshot/navigation assertions; inspect actual WKWebView via public UIKit/WebKit APIs instead of linking a second Navigator copy.",
+  "buildLog": {
+    "path": "build/ci/38424689048/ios/build/logs/build.log",
+    "sha256": "d910518b4ed67388f994950e85b70d200464ad3e427cb85597aecc589644453e"
+  },
+  "linkerWarnings": [
+    "ld: warning: Could not find or use auto-linked framework 'CoreAudioTypes': framework 'CoreAudioTypes' not found",
+    "ld: warning: Could not parse or use implicit file '/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/SwiftUICore.framework/SwiftUICore.tbd': cannot link directly with 'SwiftUICore' because product being built is not an allowed client of it"
+  ],
+  "retryRunID": "38426725252"
+}

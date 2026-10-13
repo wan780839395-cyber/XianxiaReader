@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T15:59:06.413911+00:00",
+  "recordedAtUTC": "2026-10-13T16:27:31.999664+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 119,
+  "fileCount": 121,
   "files": [
     {
       "path": ".gitattributes",
@@ -304,6 +304,16 @@
       "sha256": "15260830f98d0a614fc4e5a484ec335d045fdc186a17ed3c0992e0d4ab10053d"
     },
     {
+      "path": "Documentation/ValidationLogs/m1-reader-link-failure.json",
+      "bytes": 1532,
+      "sha256": "e69db8ac23b49911f1878d42c9b108bf232d974920f7430cff9ea1e6f11cb30b"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m1-reader-navigation-failure.json",
+      "bytes": 1157,
+      "sha256": "c26783e745f4705d02fa3ab6931f4d549ac5c87b95064920b71d7763acd7990c"
+    },
+    {
       "path": "Documentation/ValidationLogs/m1-search-first-pass.json",
       "bytes": 15989,
       "sha256": "327d8bcac3ff6f5f4bd2853818870ee5c1ca4bc57a7eedef4644a4c9aaa3c03a"
@@ -335,8 +345,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 7212,
-      "sha256": "d221f216ab594785e90ca5f94fce308fe59acee31c931077bae66bde08d0d088"
+      "bytes": 8299,
+      "sha256": "e28f28ee78c60934739c69f3f401a74e49354b01b4d0b38934b795b947f0d01b"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -520,8 +530,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 7789,
-      "sha256": "111be9b64d0f3560e843cdd97f2316b78144ec5d77577cf425ec789a9f04eeb0"
+      "bytes": 8891,
+      "sha256": "22f031cf39c6379a19b94df77f543b39ea0e91898f9d5b4f66c9d38ceabe3b8a"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",

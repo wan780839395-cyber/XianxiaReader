@@ -1,0 +1,24 @@
+{
+  "validationKind": "real_ci_runtime_rendering_test_failure",
+  "run": {
+    "id": 38426725252,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38426725252",
+    "headSha": "43d4b374b7ad9c76bae676ddcffe55ad8dbb581c",
+    "conclusion": "failure"
+  },
+  "coreTestCountEach": 14,
+  "linuxCoreTestsPassed": true,
+  "appleCoreTestsPassed": true,
+  "iosTestsExecuted": 31,
+  "iosTestsPassed": 30,
+  "iosTestsFailed": 1,
+  "imageGeometryTestsPassed": true,
+  "releaseDeviceBuildPassed": false,
+  "ipaProduced": false,
+  "failure": "Scroll navigation probe timed out waiting for one.xhtml after a single turnPage request. DOM readiness alone did not prove native Readium readiness; exact cause still being verified.",
+  "followup": "Probe must observe DOM readiness and the corresponding native Locator; visible WebView must intersect the viewport on both axes. Preserve all geometry, image, navigation and lifecycle assertions and record last DOM/Locator on timeout.",
+  "buildLog": {
+    "path": "build/ci/38426725252/ios/build/logs/build.log",
+    "sha256": "c58fa57516b3dc329c5044b17bdad4cfe0f53a8baea89bd49837fb13ecc52f2a"
+  }
+}

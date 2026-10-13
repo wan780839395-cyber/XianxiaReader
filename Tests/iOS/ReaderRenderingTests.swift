@@ -28,7 +28,7 @@ final class ReaderRenderingTests: XCTestCase {
         }
     }
 
-    private enum RenderFailure: Error { case timedOut(String), invalidProbe }
+    private enum RenderFailure: Error { case timedOut(String, String), invalidProbe }
 
     @MainActor private func mount(_ engine: ReadiumReaderEngine) throws -> (UIWindow, OverlayState) {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
@@ -57,8 +57,10 @@ final class ReaderRenderingTests: XCTestCase {
         return (book, try XCTUnwrap(engine.viewController.children.first))
     }
 
-    @MainActor private func probe(_ navigator: UIViewController, resource: String) async throws -> [String: Any] {
+    @MainActor private func probe(_ navigator: UIViewController, engine: ReadiumReaderEngine,
+                                 resource: String) async throws -> [String: Any] {
         let deadline = Date().addingTimeInterval(20)
+        var lastProbe = "No visible web view"
         let script = """
         (() => {
           const image = document.querySelector('img');
@@ -76,18 +78,30 @@ final class ReaderRenderingTests: XCTestCase {
                 // concrete Navigator metadata here would require duplicate linkage.
                 let value = try await webView.evaluateJavaScript(script)
                 guard let data = value as? [String: Any] else { throw RenderFailure.invalidProbe }
-                if (data["href"] as? String)?.hasSuffix(resource) == true, data["ready"] as? Bool == true { return data }
+                var locatedHref: String?
+                if let position = engine.currentPosition {
+                    guard let locator = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any] else {
+                        throw RenderFailure.invalidProbe
+                    }
+                    locatedHref = locator["href"] as? String
+                }
+                lastProbe = "DOM: \(data); reported location: \(locatedHref ?? "not emitted")"
+                // document.readyState precedes Readium's spreadLoaded message
+                // and native location update. Wait for both before sending the
+                // next navigation command, just as a reader sees a ready page.
+                if (data["href"] as? String)?.hasSuffix(resource) == true,
+                   data["ready"] as? Bool == true, locatedHref?.hasSuffix(resource) == true { return data }
             }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
-        throw RenderFailure.timedOut(resource)
+        throw RenderFailure.timedOut(resource, lastProbe)
     }
 
     @MainActor func testViewportKeepsScreenHeightWhenMenuHidesAndReturns() async throws {
         let engine = ReadiumReaderEngine()
         let (window, state) = try mount(engine)
         let (_, navigator) = try await open(engine)
-        let before = try await probe(navigator, resource: "cover.xhtml")
+        let before = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         let initialHeight = try XCTUnwrap(before["height"] as? Double)
         XCTAssertGreaterThan(initialHeight, Double(window.bounds.height) * 0.7)
         XCTAssertGreaterThan(engine.viewController.view.bounds.height, window.bounds.height * 0.85)
@@ -97,7 +111,7 @@ final class ReaderRenderingTests: XCTestCase {
             window.layoutIfNeeded()
             // Allow SwiftUI's observed-object transaction to reach UIKit.
             try await Task.sleep(nanoseconds: 200_000_000)
-            let updated = try await probe(navigator, resource: "cover.xhtml")
+            let updated = try await probe(navigator, engine: engine, resource: "cover.xhtml")
             XCTAssertEqual(try XCTUnwrap(updated["height"] as? Double), initialHeight, accuracy: 2)
             XCTAssertEqual(navigator.view.bounds.height, engine.viewController.view.bounds.height, accuracy: 1)
         }
@@ -110,7 +124,7 @@ final class ReaderRenderingTests: XCTestCase {
             let (window, state) = try mount(engine)
             state.visible = false
             let (_, navigator) = try await open(engine)
-            let data = try await probe(navigator, resource: "cover.xhtml")
+            let data = try await probe(navigator, engine: engine, resource: "cover.xhtml")
             let height = try XCTUnwrap(data["height"] as? Double)
             let imageHeight = try XCTUnwrap(data["imageHeight"] as? Double)
             XCTAssertGreaterThan(height, Double(window.bounds.height) * 0.7)
@@ -131,13 +145,13 @@ final class ReaderRenderingTests: XCTestCase {
         engine.setScrolling(true)
         let (_, _) = try mount(engine)
         let (book, navigator) = try await open(engine)
-        _ = try await probe(navigator, resource: "cover.xhtml")
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         await engine.turnPage(forward: true)
-        let next = try await probe(navigator, resource: "one.xhtml")
+        let next = try await probe(navigator, engine: engine, resource: "one.xhtml")
         XCTAssertEqual(next["title"] as? String, "第一章 山门")
         try await engine.go(to: Chapter(id: "test:two", bookID: book.id, ordinal: 2,
                                        title: "第二章 云海", href: "OEBPS/two.xhtml#start"))
-        let target = try await probe(navigator, resource: "two.xhtml")
+        let target = try await probe(navigator, engine: engine, resource: "two.xhtml")
         XCTAssertEqual(target["title"] as? String, "第二章 云海")
         XCTAssertGreaterThan(try XCTUnwrap(target["height"] as? Double), 300)
     }
@@ -149,7 +163,9 @@ final class ReaderRenderingTests: XCTestCase {
 
     @MainActor private func visibleWebView(in root: UIView) -> WKWebView? {
         webViews(in: root).first {
-            $0.window != nil && root.bounds.intersection($0.convert($0.bounds, to: root)).height > root.bounds.height * 0.5
+            let visible = root.bounds.intersection($0.convert($0.bounds, to: root))
+            return $0.window != nil && visible.width > root.bounds.width * 0.5
+                && visible.height > root.bounds.height * 0.5
         }
     }
 
