@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T16:58:53.829013+00:00",
+  "recordedAtUTC": "2026-10-13T17:22:37.249559+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 125,
+  "fileCount": 126,
   "files": [
     {
       "path": ".gitattributes",
@@ -140,8 +140,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 5084,
-      "sha256": "9b8766493bb543d8596fb58cd487bf6587ae488d5d332507a93d9a22f7dc230c"
+      "bytes": 5086,
+      "sha256": "ea8c1b9edb97dab693c31d40ed2149e7335a5f3f25cfce67c29d92b875d04e28"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -150,8 +150,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 2891,
-      "sha256": "4880e9b8ff6ce5a240c60dc4646e6036f4f153c029547297387dd7e5c9d81bce"
+      "bytes": 2909,
+      "sha256": "a6368b23b5a335b41414cac63359e48183e7102e23719932a9e8e3beb86df976"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -189,6 +189,11 @@
       "sha256": "567bcc7729c08436fc31623275b73c29201ac2c628515645b5a0d7652116bd3b"
     },
     {
+      "path": "Documentation/M1_READER_VALIDATION_REPORT.json",
+      "bytes": 23583,
+      "sha256": "79416767f466aa7b0c5bc45ae252068308a0947bbd4368077e162e4bc1d01f54"
+    },
+    {
       "path": "Documentation/M1_SEARCH_ACCEPTANCE.md",
       "bytes": 3349,
       "sha256": "dabc6aed890fcffb5f8997c4e6de9876364535b4a7caf346136186e9746430a8"
@@ -205,8 +210,8 @@
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
-      "bytes": 3482,
-      "sha256": "093af7a0c158e53d5f4cd8d631836ddee9970a066a5c0832764e4098d52cbc22"
+      "bytes": 3914,
+      "sha256": "388d16bf3550101484dfa8dd72960c1393a578bc1103d25c0dc0b374a86e04d9"
     },
     {
       "path": "Documentation/SEARCH_DESIGN.md",
@@ -215,13 +220,13 @@
     },
     {
       "path": "Documentation/VALIDATION.md",
-      "bytes": 10076,
-      "sha256": "d5f988ff77fc55faa1ad3d27e99e8982535413c3e15894f8dde6ebdb7c06224c"
+      "bytes": 9730,
+      "sha256": "f4615350a82eb8e739a5967fa1af41aba6cfeb48019c851c9fa1fbaac885c757"
     },
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "172337381b70de81f8634b965cf5823be421a5fe4a3ffa605611c7872b62c3c2"
+      "sha256": "ebe25a6942d0b8ee5f51ad399a5470f6f6c7d604b075a2f079a40304144b5144"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -350,8 +355,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6833,
-      "sha256": "850d00546a6682ef545696422ca9edeb3f27791510d27da30a28162a89ad4cbb"
+      "bytes": 7194,
+      "sha256": "e96f0b1cd13a9aec2bb9025c89b069500610ce25cb0424613b7bc52b1a9ba349"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -360,13 +365,13 @@
     },
     {
       "path": "HANDOFF_M1_READER_HISTORY_2026-10-14.md",
-      "bytes": 3622,
-      "sha256": "eef2ceb10926b8f4ce261df86170c0ec8efd01f0554e47c9b3842476fd9c550c"
+      "bytes": 3955,
+      "sha256": "6ae4a56f79126eefffbdcd4c527854aee7cd172e963b2cd1fb34ab868ff0e49f"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 6603,
-      "sha256": "fbfaaf7441160c54c3d2f4e71728536150a435f1c24fd9613aa725c329efb586"
+      "bytes": 5017,
+      "sha256": "d459a6ade4cfdb260151ba987a70e0fc4b7ff7ac3963ac966399083e9a9b2711"
     },
     {
       "path": "Package.resolved",
@@ -500,13 +505,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 9393,
-      "sha256": "874b7198d03eabfe22946cc52b9df8274c10ff93068c54dca58875b5e733d770"
+      "bytes": 9624,
+      "sha256": "25114c86c1aec8f1e197ac31d7e4b7838ffbb0b33187393172a969c0e17b4ba6"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 5429,
-      "sha256": "db15d952f6b9ff33fe41783488cd8b485d5dd45e01a3e2ef2d49a5f9d9bf0a31"
+      "bytes": 5582,
+      "sha256": "befd8e6ede0b40f9f3b28464660ac1c2e6bfc5b6c82f6b60c8bf7ff64151cefd"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

@@ -4,48 +4,42 @@
 
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
-| M0 结构与技术验证 | **自动验收通过** | Linux/macOS Core、9 iOS tests、设备 Release 与真实 IPA 均成功 |
-| M1 基础 EPUB | **搜索与导入修复自动验证通过**；完整阶段未验收 | 26 iOS tests、Build 2 Release/IPA；用户确认 EPUB 可导入（来源未细分）；图片与真实阅读待验收 |
-| M2 TXT | 未开始 | 后台流式分章、索引缓存与长文件测试 |
-| M3 完整书库 | 未开始 | 完整编辑、封面修改与操作一致性 |
-| M4 设置与主题 | 未开始 | 排版、字体、主题与交互验收 |
-| M5 性能 | 未开始 | 超长书、内存、恢复与性能基线 |
+| M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
+| M1 基础 EPUB | 搜索、导入、阅读视口/图像切片自动验证通过；完整M1未验收 | Build3 /31 iOS；原书真机及真正纵向无缝跨章待完成 |
+| M2 TXT | 未开始 | 后台流式分章、窗口加载/缓存、长文件 |
+| M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
+| M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
+| M5 性能 | 未开始 | 百万字/数千章基线 |
 
 ## 当前实际实现
 
-- SwiftUI 基础网格书库，封面/书名/作者/最近阅读/可用进度展示。
-- EPUB Files 导入：UIKit 明确导入副本模式、宽类型选择/严格后缀与 Readium 实际格式校验、一次 delegate 回调/取消、sheet 关闭后交接；后台协调复制、Readium 3.11.0 元数据/限定尺寸封面/TOC。内置两本原创 EPUB 可通过相同流程导入，提供可见完成反馈。
-- SQLite 存储 Book/Chapter/ReadingPosition/Bookmark；事务与 import recovery。
-- Readium 隔离引擎、基础 Reader、目录/书签跳转、两侧点击与手势分页、中央菜单、分页/滚动、位置保存/恢复。
-- Reader 请求失效和旧回调过滤；SourceFileCopying 隔离平台复制与失败注入。
-- 引擎搜索协议、Readium SearchService 扩展、分批/取消/迟到回调过滤与结果跳转委托。每批 40、片段上下文各 64、界面最多 1000 条；不跨文本元素/资源匹配。
-- 文件路径逐级检查，拒绝受管理存储内的符号链接/断链；先创建再规范化 root，兼容系统父级路径别名。
-- 项目源 `project.yml`，两个 Swift Package，macOS GitHub Actions 与无签名 IPA 打包脚本。
-- 四份指定根文档、恢复交接文档、XBook/无剧透草案、功能矩阵和性能计划。
+- SwiftUI网格书库，封面/书名/作者/可用进度/最近阅读。
+- EPUB Files多选副本导入、可见成功/失败；后台文件协调复制、Readium元数据/缩略封面、缓存TOC。原创EPUB2/3内置导入入口。
+- Core的SQLite actor保存Book/Chapter/ReadingPosition/Bookmark，事务/导入恢复/路径和符号链接边界。位置保存完整版本化Locator，拒绝旧异步覆盖。
+- ReadiumAdapter隔离引擎；分页、章内上下滚动、横向跨资源、中央菜单、目录/内部链接、书签、搜索/结果跳转、位置保存/恢复。关闭/重开过滤旧异步回调。
+- ReaderSurface独立完整viewport、官方frame/autoresizing容器；横排重排媒体保护按实际innerHeight校准，固定/竖排保留原路径。目录/书签跳转后收起菜单；原创长短章/高封面样书和实际窗口回归。
+- 安全SearchService扩展保留issue876回归；每批40、上下文64、UI最多1000；不跨文本元素/资源匹配，不收集全书结果。
+- project.yml唯一工程源；两个Swift Packages；根真实Package.resolved锁定Readium3.11.0与11 pins；macOS完整CI和无签名IPA。
 
-## 验证与限制
+## 最新证据与设备边界
 
-最新恢复：Build3容器/图像源码已保留，CI38426725252实际31 iOS tests中30通过/1导航探针超时，图片几何和菜单尺寸两项通过，Release/IPA未执行。已修正探针的双轴可见性和原生Locator就绪；提交7221274的CI38430692977当前仓库/Linux14通过、macOS job等待runner。当前最新成功IPA仍是Build2，尚未覆盖。真实纵向连续跨章未实现。
+[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。
 
-- Windows 静态检查：结构/工程/CI/实际 SQL migration/EPUB 样书通过；41 个 Swift 文件 grammar 通过（不是编译）。
-- Python 构建工具：6 tests 通过；Git Bash `bash -n` 与 Python compileall 通过。
-- **Core 在官方 Swift 6.1.2 Linux 容器中编译成功，14 个 XCTest 全通过，命令 exit 0。** 原路径越界失败已修复，失败/成功日志均保留。
-- CI 增加 Linux Core job 并锁定 image digest；Windows 容器脚本已实测成功及 engine 不可用失败分支，超时分支尚未实测。
-- Docker 旧 AF_UNIX 端点阻塞启动的问题已有限修复，原运行目录保留备份，engine 已恢复；详见 Documentation/DOCKER_RECOVERY.md。
-- **真实 CI run 38390862584 全部 success：Linux/macOS 各 14 Core tests、9 iOS tests、设备 Release 构建与 IPA 通过。** Apple 文件协调覆盖本地测试文件，未验收 iCloud/File Provider；模拟器实际页面体验、真机与 TrollStore 尚未验证。
-- 已创建私有仓库 https://github.com/wan780839395-cyber/XianxiaReader，origin 已配置，main 已推送；connector 与本机 CLI 均已确认同一账户。本地作者仅在此仓库配置为 login 与 noreply 邮箱。
-- 历史首次 run 38385729586：误链接宿主 SQLite，iOS tests 取消；已改为目标 SDK。真实解析的 11 个依赖纳入根 Package.resolved。
-- 历史第二次 run 38389603242：缺 AppIcon，iOS tests 取消；已补齐真实图标。两项修复均已通过第三次 CI。
-- 第三次 CI run 38390862584（head 184aa09355ed0f44e9e27763c5d44fa0a8161434）已通过前述所有门槛；前两条是保留的失败历史。产物为 build/XianxiaReader.ipa，SHA-256 847e61e3bb2de8227df59860fae86b561ebf4f839a3202fcd579098899e88d99，已核对 arm64/iOS 平台、系统 SQLite、ZIP 与 executable 权限。
-- Docker 已升级至 4.95.0.242831，engine 29.8.2 正常响应，原有两个停止容器保留；升级后 Core 编译/14 个 tests 再次通过。首次 UAC 取消日志保留。
-- 之前 CI 38402285563（b95aa4d）success：Linux/macOS 各 14 Core、20 iOS tests、Release 与 IPA 全通过，应用源码 compiler warnings=0，依赖 pins 不变。
-- 上一搜索 IPA 原件 build/ci/38402285563/ipa/XianxiaReader.ipa：7,365,913 bytes，SHA-256 9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365；原测试 ZIP 已另存此 run 目录。
-- 用户确认 iPhone13 / iOS16.6.1 / TrollStore：旧包安装正常；EPUB 在 iCloud 选择后按“打开”无反应，导入验收失败，阅读无法继续。Build 2 修复已过 CI，真机待复测；TXT 尚未实现。
-- 最新 CI 38411028842（0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9）全部 success：Linux/macOS 各 14 Core、26 iOS tests、设备 Release 与 IPA。应用源码 compiler warnings=0；另有 6 条 AppIntents metadata 提取提示，已完整保留，非源码编译错误。11 个依赖 pins 不变。
-- 最新 Build 2 IPA build/XianxiaReader.ipa：7,386,778 bytes，SHA-256 fb3bf3adb825e1d40e97c962188aac238a05012ba1e36e07367d5d3eab38b181；测试 ZIP 7,287,337 bytes。核验 ZIP/arm64/iOS/0755/最低 iOS16、Build 2、打包样书与源码一致、54 构建文件逐一匹配已测提交。
-- 首轮导入 CI 38409222759 由 Agent 误读旧网页日志而提前取消；完整日志已证实各 14 Core 与 26 iOS tests 通过，设备 Release 中断，无 IPA。原日志/xcresult 与 ValidationLogs/m1-import-cancelled.json 保留；同代码完整重试成功。
-- 最新证据 M1_IMPORT_VALIDATION_REPORT.json / IMPORT_FIX.md。M1_SEARCH_VALIDATION_REPORT.json 是之前搜索切片，IOS_VALIDATION_REPORT.json 是历史 M0，CORE_VALIDATION_REPORT.json 是本机 Linux，VALIDATION_REPORT.json 是静态检查；各 scope 独立。
+- Windows结构/SQL/三本EPUB/42 Swift grammar通过（不是编译）；9 Python/tooling测试与bash -n通过。Linux/macOS Core各14，iOS实际31，结果范围分别记录。
+- 新报告 `Documentation/M1_READER_VALIDATION_REPORT.json`：69个构建/验证来源hash匹配已测提交，11依赖pins不变，日志/IPA/快照hash。完整日志 `build/logs/ios-build.log`，原始日志/xcresult/快照/工程保留在 `build/ci/38434939423/ios/`。
+- 最新 `build/XianxiaReader.ipa`：7,393,693 bytes；SHA-256 `12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2`，Build3/iPhoneOS/arm64/系统SQLite/0755/最低iOS16/ZIP核验通过，CODE_SIGNING_ALLOWED=NO。
+- 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes，包含IPA、三本原创EPUB和TESTING.txt，CRC与内部IPA hash一致。Build2及更早原件保留在对应run目录。
+- 用户iPhone13/iOS16.6.1/TrollStore：安装正常、EPUB可以导入（用户报告，来源未细分）；原书图像窄横条。当前Build3安装/原书图片/完整阅读仍待复测；没有普通设备签名验收。
+- **真正纵向连续跨章尚未实现**，不是下一章按钮。当前为章内滚动/横向资源切换；独立M1引擎适配见CONTINUOUS_SCROLL_DESIGN.md，不宣称已完成微信读书式滚动。
+
+## 失败历史与报告范围
+
+Build3首轮38424689048 test bundle链接失败，第二轮38426725252导航探针超时，第三轮38430692977图片超限；原记录/完整日志保留在ValidationLogs与各run目录。修正后本轮全部通过，未删除测试/降低原图片断言/升级依赖。
+
+M1_IMPORT_VALIDATION_REPORT.json属于Build2的26 tests；M1_SEARCH_VALIDATION_REPORT.json属于此前搜索；IOS_VALIDATION_REPORT.json属于M0；CORE_VALIDATION_REPORT.json是本机Linux；VALIDATION_REPORT.json仅静态。历史导入run38409222759由Agent提前取消，实际26iOS已通过、Release中断，不能写成源码失败。M0的SDK SQLite与缺AppIcon失败已在run38390862584修复验证。
+
+Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。私有GitHub origin/main已建立且CLI已授权。Docker已恢复并升级4.95.0，原容器/备份保留。GitHub artifacts保留14天，忽略的build/.cache不随clone；过期后按锁文件重新CI。
 
 ## 下一步
 
-用户确认 Build 2 后 EPUB 可以导入；截图显示阅读图片只剩窄横条，章节切换不方便。当前优先修复 M1 图片/渲染容器及章节导航，并加入真实页面回归；本地/iCloud 来源未细分，其他阅读项目尚待实测。M1 完整门槛未放行，不进入 M2。
+先用Build3在现有TrollStore应用上正常更新，保留数据；复测原书图像及reader-layout上下标记、目录/内部链接、搜索/书签/位置。继续M1真正纵向连续跨章引擎切片，完成有限窗口、原Locator、双章边界/逆向/图片高度变化回归。完整M1未放行，不大规模进入M2/M4。TXT、完整书库、字体/主题/音量键、百万字性能及XBook知识库均未实现。

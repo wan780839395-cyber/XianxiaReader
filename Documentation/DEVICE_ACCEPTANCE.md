@@ -6,7 +6,7 @@
 
 最新可用包与构建 SHA/校验值见 HANDOFF 和对应 CI 验证报告。M0 包原件保存在 `build/ci/38390862584/ipa/XianxiaReader.ipa`；M1 包只在新 CI 通过、下载和核验后提供。请保留原有应用/书籍数据，使用 TrollStore 的正常安装/更新操作，不通过卸载或删除数据库解决阅读/升级问题。
 
-最新成功包仍为 Build 2（CI38411028842）；Build 3 阅读视口/图像回归正在完整 CI，尚未覆盖产物。提供 Build 3 后，在 iPhone“文件”中解压测试 ZIP，选择内部 XianxiaReader.ipa，分享给 TrollStore 更新。包内 TESTING.txt 记录确切提交和 SHA；以 HANDOFF 及对应报告为准。
+最新成功包为Build3（CI38434939423，31 iOS/Release通过），IPA/测试ZIP已下载核验，原创样书分页/滚动快照复查通过。在 iPhone“文件”中解压测试 ZIP，选择内部 XianxiaReader.ipa，分享给 TrollStore 更新。包内 TESTING.txt 记录确切提交和 SHA；以 HANDOFF 及对应报告为准。
 
 ## 阅读视口与图片复测
 

@@ -2,12 +2,12 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**M0 已通过，M1 搜索与导入修复已自动验证；不是完整 MVP。** [最新 CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842) 完成 Linux/macOS 各 14 Core tests、26 iOS tests、设备 Release 与 Build 2 IPA，应用源码 compiler warnings=0。旧包安装正常，但 iCloud 选中/打开失败；修复包的导入与阅读仍待真机复测，详见 [导入修复](Documentation/IMPORT_FIX.md) 和 [项目状态](PROJECT_STATUS.md)。
+**M0通过，M1阅读视口/图像切片自动验证通过；不是完整MVP。** [CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 见[阅读修复](Documentation/READER_VIEWPORT_FIX.md)和[项目状态](PROJECT_STATUS.md)。
 
 ## 当前已写入
 
 - SwiftUI 应用入口、基础网格书库、封面/书名/作者/阅读进度/最近阅读时间。
-- Files Document Picker 多选 EPUB，明确导入副本模式、后台协调复制、Readium 元数据读取、缩略封面与目录缓存；新增原创内置样书入口。iCloud 阻塞修复已过 CI，待设备复测，详见 [导入修复](Documentation/IMPORT_FIX.md)。
+- Files Document Picker 多选 EPUB，明确导入副本模式、后台协调复制、Readium 元数据读取、缩略封面与目录缓存；新增原创内置样书入口。导入修复已过CI，用户确认EPUB可以导入、来源未细分，详见 [导入修复](Documentation/IMPORT_FIX.md)。
 - 基于 Readium 的 Reader：目录跳转、手势分页、左右区域点击分页、中央点击菜单、分页/滚动切换、位置保存/恢复、书签添加/跳转/删除。
 - SQLite actor、事务迁移、隔离的业务模型和阅读引擎接口、失败导入回滚与重启恢复。
 - Reader 关闭时使尚未完成的打开请求失效，过滤旧 Navigator 回调；文件复制支持失败注入，Apple 分支保留 File Provider 协调。
@@ -71,9 +71,9 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。第三次 CI 已全通过，完整结论见 PROJECT_STATUS 和 GitHub Actions；阅读/设备验收与自动构建结果分开记录。
 
-最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_IMPORT_VALIDATION_REPORT.json](Documentation/M1_IMPORT_VALIDATION_REPORT.json)；M1_SEARCH_VALIDATION_REPORT.json 和 IOS_VALIDATION_REPORT.json 保留之前的搜索/M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
+最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_READER_VALIDATION_REPORT.json](Documentation/M1_READER_VALIDATION_REPORT.json)；M1_SEARCH_VALIDATION_REPORT.json 和 IOS_VALIDATION_REPORT.json 保留之前的搜索/M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
 
-用户测试设备为 iPhone13/iOS16.6.1/TrollStore，旧包安装正常；iCloud 导入失败，阅读尚未验收。`build/XianxiaReader-iPhone13-TestKit.zip` 包含最新 Build 2 IPA、两本原创 EPUB 和操作说明；先验证内置样书，再分别测试本机和 iCloud 导入，具体步骤见 [真机验收](Documentation/DEVICE_ACCEPTANCE.md)。旧包原件保留在各 CI 目录。
+用户测试设备为iPhone13/iOS16.6.1/TrollStore，安装/EPUB导入用户报告正常；原书图片裁切、完整阅读待复测。`build/XianxiaReader-iPhone13-TestKit.zip`包含Build3 IPA、三本原创EPUB和操作说明；先复测原书图像，再对照reader-layout.epub的上下标记。真正纵向无缝跨章尚未实现；见[真机验收](Documentation/DEVICE_ACCEPTANCE.md)。旧包原件保留在各CI目录。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 
@@ -99,7 +99,7 @@ pwsh -File scripts/test_core_container.ps1
 
 AppIcon 为原创书页/山峰/月亮图案；Xcode 直接使用提交的 PNG。维护图标时可安装 `scripts/requirements-assets.txt` 并运行 `python scripts/generate_app_icon.py`，同时生成 SVG 源稿和 PNG；这不是构建依赖。
 
-`Tests/Fixtures/chinese-epub2.epub`、`chinese-epub3.epub` 的正文与封面均为项目原创测试内容，含中文标点、CSS、图像和内部链接。
+`Tests/Fixtures/chinese-epub2.epub`、`chinese-epub3.epub`的正文与封面均为项目原创测试内容；`reader-layout.epub`为独立高封面/长短章样书。分别运行generate_fixtures.py和generate_reader_fixture.py，不覆盖原搜索回归。
 
 ```powershell
 python scripts/generate_fixtures.py

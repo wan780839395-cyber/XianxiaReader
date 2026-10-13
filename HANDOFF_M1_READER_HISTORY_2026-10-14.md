@@ -19,3 +19,7 @@
 构建检查点：Windows 结构/样书/41 Swift grammar 与6 tooling tests通过。首轮源码336b21a / CI38424689048：仓库/Linux/macOS Core通过，App Debug编译完成；新增测试直接引用静态ReadiumNavigator具体类型导致test bundle链接metadata失败，31 iOS tests未执行，Release/IPA未执行。原失败日志/xcresult保留在build/ci/38424689048。已改测试通过UIKit容器的公开子视图访问实际WKWebView并保留同一DOM/快照/导航检查，避免重复SDK链接；待重跑检查和完整CI。不是删除测试/关闭错误。旧Build2包未覆盖。
 
 2026-10-14：修正后41 Swift grammar通过，源码43d4b374b7ad9c76bae676ddcffe55ad8dbb581c已推送；完整CI38426725252运行中：https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38426725252 。首轮失败的完整日志/项目/xcresult和Core日志已下载。PR811仅在忽略的cache做了apply --check（通过，未修改/执行）；初查有整本估算空白及只按progression定位的缺口，正式依赖仍3.11不变。
+
+## 媒体断言失败后的最终检查点
+
+CI38430692977导航已过、原图像上限断言失败。新公开视口媒体保护提交0b30d53 /CI38434939423完整通过；31 tests、Release/IPA及两张真实封面快照通过。最终产物与范围以HANDOFF/M1_READER_VALIDATION_REPORT为准，所有先前失败记录保留。

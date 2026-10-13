@@ -2,55 +2,55 @@
 
 更新时间：2026-10-14（Asia/Shanghai）
 
-## 当前断点
+## 最新实际断点
 
-2026-10-14 01:00后续断点：CI38430692977 failure，31 tests中导航/菜单已通过，图像框830.3 > 正文812点使原上限断言失败；Release/IPA未执行。完整日志/xcresult已下载，旧Build2未覆盖。新增ReadiumViewportScript经公开setupUserScripts校准现有媒体保护到innerHeight95%，横排重排限定，固定/竖排不改；测试断言全部保留、增加尺寸附件。CI失败也导出附件再返回原test exit，任何test/export失败都不构建IPA。新记录ValidationLogs/m1-reader-media-failure.json。42 Swift grammar、9 Python/tooling及bash -n已通过，之后完整CI；后面的上一轮运行中描述为已结束的历史，收尾须替换。
+M0自动门槛通过；M1搜索、导入、阅读视口/图片切片已通过完整CI，**完整M1尚未验收，真正纵向无缝跨章未实现**。本轮构建/下载/产物核验/原创样书快照复查已完成；无运行中的项目构建/测试或未完成登录/UAC。下一步是现有iPhone13上复测原书图片，并继续独立M1连续滚动引擎切片，不进入M2/M4。
 
-已保留全部 M1 导入、阅读视口、目录/书签导航和测试改动。源码提交 `722127447057ef4555832d3950d98a2cb80114fd` 已推送 main。
+已测源码 `0b30d539d7eb6d557d8b5e5e8efad600c4c4435b`；[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)三jobs全部success。Linux/macOS各14 Core、31 iOS tests、设备Release、Build3 IPA通过。9 Python/tooling和42 Swift grammar通过，grammar不是编译；应用源码compiler warnings=0，6 AppIntents metadata提示单列保留。11依赖pins不变。
 
-[CI 38430692977](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38430692977)：仓库检查与 Linux Core 14 tests 通过；macOS runner 已分配，iOS job 正在执行完整流程。尚未获得最终测试/Release/IPA 结果。Windows 无遗留构建/测试进程，无未完成登录或 UAC。
+本轮保留前次所有导入、viewport、导航、搜索和生命周期改动；没有删除测试、降低图片断言、修改原书/数据库/依赖版本。源码提交已推送main，证据文档收尾提交用skip-ci。
 
-本机最新成功产物仍是 **Build 2**，不能把它当成 Build 3。尚未覆盖 `build/XianxiaReader.ipa` 或测试 ZIP。
+## 产物与验证范围
 
-恢复后先用 `.cache/tools/github-cli.json` 中的 executable 查询上述 run；等 job 完成后下载完整 diagnostics/Core/IPA。网页可见日志尾部可能陈旧，不能据此取消构建。不要另起重复构建或重新登录。
+- 最新IPA `build/XianxiaReader.ipa`：7,393,693 bytes；SHA-256 `12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2`。Build3 /version0.0.1 /com.xianxiareader.app /最低iOS16 /iPhoneOS arm64 /系统SQLite /0755 /ZIP核验通过，CODE_SIGNING_ALLOWED=NO。
+- 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes；SHA-256 `02df81e145ffbe4f6a30dbceb6e23c6e69a52e07d78fcbe56e44d5935086722a`。包含上述IPA、chinese-epub2/3和reader-layout三本原创样书、TESTING.txt；CRC与内部IPA hash已核对。
+- 完整日志 `build/logs/ios-build.log`；原IPA/Core日志、生成工程/环境/锁文件、SimulatorTests/DeviceBuild xcresult、ReaderSnapshots和测试ZIP备份在 `build/ci/38434939423/`。旧Build2和更早包仍在各原run目录。
+- `Documentation/M1_READER_VALIDATION_REPORT.json`：69个构建/验证来源hash匹配已测提交、实际test列表、完整日志/IPA/快照hash、命名附件和DOM尺寸。
+- 分页实际正文视口750点、图像712点；滚动812点、图像771点。两张WKWebView快照已查看，原创新封面上下色带完整、比例正常。模拟器为iPhone16Pro/iOS18.5，**只验收原创样书图像，不代表完整模拟器产品/原书/普通设备/TrollStore体验验收**。
 
-## 用户反馈与实现范围
+## 用户反馈与本轮实现
 
-- 测试设备 iPhone13 / iOS16.6.1 / TrollStore；此前安装正常，iCloud 导入选择/打开阻塞。
-- 导入修复后用户已确认 EPUB 可以导入，文件来源未细分；图片在阅读页面仅显示窄横条。
-- 用户明确要求上下滑动无缝跨章，参考微信读书；不是增加下一章按钮。**真正纵向连续跨章尚未实现。** 独立 M1 引擎切片及有限资源窗口/定位要求见 `Documentation/CONTINUOUS_SCROLL_DESIGN.md`。
-- Build 3：ReaderSurface 显式完整 viewport；Adapter 采用官方 frame/autoresizing 容器；目录/书签成功跳转收起菜单并过滤旧请求；恢复默认滚动时横向跨资源通路，界面明确“章内上下滚动”。不修改用户 EPUB/CSS、依赖版本或数据库。
-- 原创 reader-layout.epub 有高纵横比封面上下标记和长短章；新增3实际窗口/DOM/快照测试、2导航生命周期回归。原26 iOS、Core及搜索80命中回归保留。
-- 用户原书/CSS未取得，不认定唯一图像裁切原因；原创样书通过也不代表原书设备验收。
+设备iPhone13 /iOS16.6.1 /TrollStore。用户报告先前安装正常；导入修复后EPUB可以导入（本地/iCloud来源未细分），原书阅读图片仅显示窄横条。用户明确要求上下滑动时本章末尾与下一章开头在同一滚动流中，参考微信读书，不是加下一章按钮。
 
-## 本轮失败与修正
+- ReaderSurface显式完整viewport，独立于菜单；Adapter采用官方frame/autoresizing挂载。
+- 横排重排媒体通过公开setupUserScripts按实际innerHeight校准ReadiumCSS原95%媒体保护；不改作者width/aspect/object-fit或原文件，固定布局和竖排保留原路径。
+- 目录/书签成功跳转收菜单，关闭/重开过滤迟到导航；搜索跳转同样核对请求ID。
+- 当前滚动是章内模式，恢复默认横向跨资源/上一节下一节通路；这**不是**真正纵向连续跨章。
+- 3实际页面测试、2导航竞态回归新增；原26 iOS/Core及原2本搜索80命中回归保留。新reader-layout.epub为独立高封面/长短章样书。
 
-1. CI38424689048 / 336b21a：App Debug编译完成，新增测试直接引用静态 ReadiumNavigator 的具体类型导致 test bundle metadata 链接失败。31 tests、Release/IPA未执行；改用公开 UIKit/WebKit 查看现有实例，未删除断言或重复链接 SDK。
-2. CI38426725252 / 43d4b37：31 iOS执行，30通过/1等待one.xhtml超时；图片几何/菜单viewport通过。Release/IPA未执行。原探针仅检查纵向交集，横向移出屏幕的预加载页面可能被误认；DOM完成也不保证原生位置就绪。
-3. 7221274：探针同时核对可视宽度/高度、DOM readiness及对应原生Locator；超时保留最后DOM/Locator。所有尺寸、图像、导航和生命周期断言不变。完整CI正在验证，具体失败原因不能仅凭推断标为已修复。
+原书/CSS未取得，不能认定原书唯一裁切原因；当前Build3安装与原书图像仍待用户复测。TXT仅索引协议，导入/正文/分章未实现。完整书库、字体/主题/排版/音量键、百万字性能、XBook知识库仍按原路线。
 
-失败记录分别在 `Documentation/ValidationLogs/m1-reader-link-failure.json`、`m1-reader-navigation-failure.json`；原完整日志/生成工程/xcresult 在 `build/ci/38424689048/` 和 `build/ci/38426725252/`。过程检查点归档 `HANDOFF_M1_READER_HISTORY_2026-10-14.md`，历史“运行中”不覆盖本文件。
+## 本轮失败与修复证据
 
-## 已通过的独立证据与旧包
+1. 38424689048 /336b21a：App Debug编译完成，test bundle链接静态ReadiumNavigator具体类型metadata失败，31 tests/Release/IPA未执行。改用已有容器的公开UIKit/WebKit查询，保留断言。
+2. 38426725252 /43d4b37：31 tests执行，30通过/1导航探针超时。改为双轴可见性交集+对应原生Locator就绪，保留超时最后DOM/位置；不能只看DOM readyState或垂直交集。
+3. 38430692977 /7221274：导航/菜单回归通过，图像830.3点大于正文812点，原上限断言失败。校准实际媒体上限并增加尺寸附件；失败也导出快照再返回原test exit，test/export任一失败都停止Release/IPA。9 tooling tests覆盖此控制流，最终本轮完整通过。
 
-- Windows 结构/SQL/三本EPUB/41 Swift grammar与6 Python tooling tests通过；grammar不是编译。
-- 最新完整成功CI38411028842 / 0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9：Linux/macOS各14 Core、26 iOS tests、Release和Build2 IPA；应用源码 compiler warnings=0，另有6 AppIntents metadata提示。
-- Build2原件 `build/ci/38411028842/ipa/XianxiaReader.ipa`：7,386,778 bytes，SHA-256 `fb3bf3adb825e1d40e97c962188aac238a05012ba1e36e07367d5d3eab38b181`。旧测试ZIP也在此run目录备份。
-- `M1_IMPORT_VALIDATION_REPORT.json` 的54来源hash属于Build2；`M1_SEARCH_VALIDATION_REPORT.json` 属于之前搜索、`IOS_VALIDATION_REPORT.json` 属于M0、`CORE_VALIDATION_REPORT.json`属于本机Linux、`VALIDATION_REPORT.json`仅静态。保留原报告，不混合覆盖。
-- 更早CI38409222759由Agent误读网页旧片段而提前取消，实际26 iOS已通过、Release中断；原记录保留，不能写成源码失败或测试未执行。
+三条原失败记录在Documentation/ValidationLogs/m1-reader-*-failure.json，完整日志/xcresult在各原run目录。过程检查点 `HANDOFF_M1_READER_HISTORY_2026-10-14.md` 保留，历史“运行中”不覆盖本文件。
 
-## 本轮下一可恢复步骤
+## 下一可恢复步骤
 
-1. CI完成后下载实际日志、xcresult、ReaderSnapshots、IPA，确认31 tests与设备Release；失败则继续修具体问题，不降低断言。
-2. 用 `.cache/diagnostics/inspect_ci_ipa.py` 核对 ZIP/Info/arm64/iOS/系统SQLite/权限；`.cache/diagnostics/record_reader_ci.py <runID> 31`核对来源hash/锁文件并生成独立阅读报告。查看分页/滚动的实际图像快照，再记录人工复查边界。
-3. 核验后才替换最新IPA/完整日志，运行 `.cache/diagnostics/make_reader_testkit.py <runID>`生成Build3测试ZIP，原包留在原run目录。
-4. 更新PROJECT_STATUS/README/ROADMAP/FEATURE_MATRIX/VALIDATION/DEVICE_ACCEPTANCE及文件hash快照；文档收尾提交用skip-ci，后续源码变更须完整CI。
-5. 用户原书图片复测与真正纵向连续跨章仍属于M1。M1完整门槛未放行，不大规模进入M2/M4。
+1. 将测试ZIP传到现有iPhone并解压，分享IPA给TrollStore正常更新；保留应用/书籍数据，不卸载或删除数据库。先复测原书图片，再导入reader-layout检查上下标记；目录/链接、搜索/书签、章中段后台/重启恢复分别记录。见DEVICE_ACCEPTANCE.md。
+2. 按CONTINUOUS_SCROLL_DESIGN.md实施真正纵向连续跨章：有界资源窗口、双章同屏/正反向惯性、延迟图像高度变化、原始Locator/搜索/书签/恢复全套回归。保持Readium排版/稳定分页路径，不拼接整本HTML，不用瞬间跳章冒充无缝。
+3. PR811仅在忽略cache做apply --check通过，未应用/运行；初查整本估算空白与仅按progression定位缺口。正式依赖仍3.11，不直接切未经验证的PR，不改SourcePackages缓存。引擎扩展须明确版本/许可证/补丁、真实解析锁文件并完整CI。
+4. 每个可恢复子步骤/生成/构建/测试前更新本文件，阶段后同步PROJECT_STATUS/ROADMAP/ARCHITECTURE及FILE_INVENTORY。没有新任务/自动化时不宣称后台永久维护。
 
-## 环境与恢复纪律
+## 环境与历史边界
 
-Windows11 / PowerShell7.6.5 / Git2.54 / Python3.11，本机无Xcode/Swift。CI macOS15 / Xcode16.4 / Swift6.1.2 / iOS18.5 simulator，设备最低iOS16。Docker Desktop4.95.0.242831 / engine29.8.2已恢复，不reset/prune用户工具。
+Windows11 /PowerShell7.6.5 /Git2.54 /Python3.11，本机无Xcode/Swift；CI macOS15/Xcode16.4/Swift6.1.2/iOS18.5，设备最低iOS16。Docker Desktop4.95.0/engine29.8.2已恢复，用户原容器/socket备份保留，不reset/prune。
 
-私有仓库 https://github.com/wan780839395-cyber/XianxiaReader ，main跟踪origin/main，CLI已授权，不输出令牌/重新生成设备码。Readium exact3.11.0、11 pins来自真实CI；root锁文件复制到生成workspace并严格resolve/test/build。PR811只在忽略cache做apply --check（通过），未应用或执行，正式依赖未改。
+私有仓库 https://github.com/wan780839395-cyber/XianxiaReader ，main跟踪origin/main，CLI已授权，路径.cache/tools/github-cli.json，不输出令牌/重新生成设备码。Root Package.resolved来自真实CI，复制到workspace，resolve/test/build严格使用11 pins。project.yml唯一工程源；禁止localhost HTTP主要预览。
 
-先读PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE并核对实际Git/进程/完整日志；每个可恢复子步骤和长构建前更新本文件。project.yml是工程源；禁止localhost HTTP主要预览。自动/模拟器视觉/普通设备/TrollStore验收分别记录；TXT、完整书库、字体/主题/音量键、性能及XBook知识库仍按原路线。
+旧M1_IMPORT_VALIDATION_REPORT.json属于Build2的26 tests/54 hashes，M1_SEARCH属于此前搜索，IOS属于M0，CORE是本机Linux，VALIDATION_REPORT仅静态；不混合覆盖。旧38409222759由Agent提前取消，当时26 tests已过、Release中断，不写成源码失败。各历史handoff/失败记录保留。
+
+GitHub artifacts保留14天；忽略的build/.cache不随clone。当前cache有inspect_ci_ipa/record_reader_ci/make_reader_testkit/finalize_reader_docs辅助脚本；不存在时按README重建CI并核对报告，不能假定cache已保存。恢复先读PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，再核对实际Git/进程/完整日志与hash，不用聊天记忆替代事实。
