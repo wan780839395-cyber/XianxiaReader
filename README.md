@@ -2,7 +2,7 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**当前是 M0 工程与技术验证阶段，包含待验收的 M1 EPUB 验证切片；不是完整 MVP。** Windows 静态检查与官方 Swift 6.1.2 Linux 容器的 Core 编译/14 个测试已通过；iOS 构建、模拟器与真机验收尚未执行，未产生真实 IPA。以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 和 CI 结果为准。
+**当前是 M0 工程与技术验证阶段，包含待验收的 M1 EPUB 验证切片；不是完整 MVP。** Windows 检查与 Linux/macOS Core 14 tests 已通过；首次 iOS 构建在 SQLite 链接失败，正在修复，未产生真实 IPA。以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 和 CI 结果为准。
 
 ## 当前已写入
 
@@ -50,7 +50,9 @@ Swift 语法检查使用 tree-sitter，只发现语法和结构错误，不能�
 ```bash
 export DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer
 xcodegen generate --spec project.yml
-xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme XianxiaReader
+mkdir -p XianxiaReader.xcodeproj/project.xcworkspace/xcshareddata/swiftpm
+cp Package.resolved XianxiaReader.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme XianxiaReader -onlyUsePackageVersionsFromResolvedFile
 swift test --package-path Packages/XianxiaCore
 open XianxiaReader.xcodeproj
 ```
@@ -67,7 +69,7 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 ## GitHub Actions / IPA
 
-将仓库推送到你指定的 GitHub remote 后，`main` push、PR 和手动 `workflow_dispatch` 会执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。当前没有 remote，未推送、未触发 CI。
+项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。首次 CI 已运行，最新结论见 PROJECT_STATUS 和 GitHub Actions；推送成功不代表 iOS 构建成功。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 

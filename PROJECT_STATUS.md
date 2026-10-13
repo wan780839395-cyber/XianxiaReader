@@ -4,7 +4,7 @@
 
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
-| M0 结构与技术验证 | Windows 检查与 Linux Core 编译/14 tests 通过；macOS gate 待验证 | 工程定义、文档、CI、隔离接口、基础测试已写入 |
+| M0 结构与技术验证 | Windows/Linux/Apple Core 通过；首次 iOS 链接失败，正在修复 | 工程定义、文档、CI、隔离接口、基础测试已写入 |
 | M1 基础 EPUB | 基础导入/阅读验证切片已写入，未验收 | 先取得 M0 build/test 结果，再完成搜索与阅读体验验收 |
 | M2 TXT | 未开始 | 后台流式分章、索引缓存与长文件测试 |
 | M3 完整书库 | 未开始 | 完整编辑、封面修改与操作一致性 |
@@ -30,8 +30,9 @@
 - CI 增加 Linux Core job 并锁定 image digest；Windows 容器脚本已实测成功及 engine 不可用失败分支，超时分支尚未实测。
 - Docker 旧 AF_UNIX 端点阻塞启动的问题已有限修复，原运行目录保留备份，engine 已恢复；详见 Documentation/DOCKER_RECOVERY.md。
 - **iOS 9 个 Swift 测试、Apple 文件协调、Xcode build、模拟器阅读、真机与 TrollStore 尚未验证；没有真实 `XianxiaReader.ipa`。**
-- 用户已选择私有 GitHub 仓库；connector 与本机 CLI 均已确认 `wan780839395-cyber`（id 284319074），本地作者仅在此仓库配置为该 login 与 noreply 邮箱。初始提交 `a6466a6` 已保存 80 个项目文件；已核对目标仓库返回 404，正在创建私有远端并准备首次推送。当前提交/工作区以 `git log/status` 为准。
-- Docker 重试 UAC 后已升级至 4.95.0.242831（安装日志/文件版本确认），正在核实新版 engine；此时不把安装完成标为引擎验证通过。首次 UAC 取消日志保留。
+- 已创建私有仓库 https://github.com/wan780839395-cyber/XianxiaReader，origin 已配置，main 已推送；connector 与本机 CLI 均已确认同一账户。本地作者仅在此仓库配置为 login 与 noreply 邮箱。
+- 首次 CI run 38385729586 已 failure：仓库检查、Linux Core 和 macOS Core 14 tests 通过；iOS 模拟器误链接宿主 Homebrew SQLite，tests 被取消，未产出 IPA。已去除 pkgConfig/Homebrew provider，改为目标 SDK 链接；准备完整重跑。真实解析的 11 个依赖已纳入根 Package.resolved。
+- Docker 已升级至 4.95.0.242831，engine 29.8.2 正常响应，原有两个停止容器保留；升级后 Core 编译/14 个 tests 再次通过。首次 UAC 取消日志保留。
 - 最新证据见 Documentation/VALIDATION.md、CORE_VALIDATION_REPORT.json（真实 Core 编译/测试）与 VALIDATION_REPORT.json（静态检查）。两份 JSON 的验证范围不同。
 
 ## 下一步

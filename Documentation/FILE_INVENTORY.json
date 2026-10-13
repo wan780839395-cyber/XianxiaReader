@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T10:45:55.493011+00:00",
+  "recordedAtUTC": "2026-10-13T11:20:54.577672+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 81,
+  "fileCount": 86,
   "files": [
     {
       "path": ".gitattributes",
@@ -20,13 +20,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 5143,
-      "sha256": "8c4cae192c0586bd9e7b258c7d5e4128190dc26d0cdd0ec51fea7859814c6b8e"
+      "bytes": 5510,
+      "sha256": "3b94f861621108f590cd6f6ae17ab2a06e150e64a676ab841da8e94d1ffb2dac"
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 8997,
-      "sha256": "56ee2565b0e07cd3150660d43facd4d1ac936124e2c763fd084805abff9ba44c"
+      "bytes": 9392,
+      "sha256": "29e308b29bb39aed5e9e42088d25b1638a61e60b00fb001b0e75e110e4bd1fa9"
     },
     {
       "path": "App/AppRootView.swift",
@@ -89,14 +89,19 @@
       "sha256": "498fed27efc62b4a9c194e348c28fdd4798d58ead8fd70a15b1b63560c637f97"
     },
     {
+      "path": "Documentation/CI_FAILURES.md",
+      "bytes": 1515,
+      "sha256": "fd2c482fe3df703fbee5b3dc8ecbf85c46b5ecc9a97000b072532796262e2fcd"
+    },
+    {
       "path": "Documentation/CORE_VALIDATION_REPORT.json",
-      "bytes": 5664,
-      "sha256": "c83d140fa651155921a626f21c0b7fda6d2381a49190d784f27581c99c47342f"
+      "bytes": 5746,
+      "sha256": "98ff117a4f352221fc3437c15bfe9a56a062c3dd19276ebf0524e158ee1d22a7"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
-      "bytes": 3917,
-      "sha256": "2d54926db4323956b3bc9b55b5f8bb5a5db38ebf58fde6bf95a3001f7545a6de"
+      "bytes": 4584,
+      "sha256": "75c6e6eecfe30c016b6c06d9eed92ebe99c458feac2d25404732d37c9a27768a"
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
@@ -115,18 +120,28 @@
     },
     {
       "path": "Documentation/VALIDATION.md",
-      "bytes": 7865,
-      "sha256": "0c7f7ae2e539dc36fb8e019406935becb9fc8238c93ac169fe27b17c9ba2b261"
+      "bytes": 8283,
+      "sha256": "5a5772882845e2e98f2496235a39d44318594714917cba5d8163e0c275d7d7fd"
     },
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "7b83a5a43f9240ff3614b109db5ffc9563c672e73fd50255b37ea895c021a151"
+      "sha256": "d179e6313095c0f8349c1f647a6cba05d74a3f7ee3a5ed15aa7d8adb6d7e6c4f"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
+      "bytes": 5420,
+      "sha256": "c22d6c86d05441c4180d69c5bffebdd3aa82456ed55e475fe549756a61d1520a"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-git-format.log",
       "bytes": 5420,
       "sha256": "9dafb7ee6324488d2c699e4a07389b5dd2acb5781446cde9aa706d34e50ef354"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-before-sdk-sqlite-fix.log",
+      "bytes": 5420,
+      "sha256": "5dd652f2d9f676c2544de705cd792193c5d8ee7b2531ce8d72bbd897b64fe023"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-first-failure.log",
@@ -141,7 +156,7 @@
     {
       "path": "Documentation/ValidationLogs/core-container-success.log",
       "bytes": 5420,
-      "sha256": "c22d6c86d05441c4180d69c5bffebdd3aa82456ed55e475fe549756a61d1520a"
+      "sha256": "857d339c3ed90821eb25d936e6e6db4b6d4ceacc9ce7bd4de59d8dc233034c6e"
     },
     {
       "path": "Documentation/ValidationLogs/core-environment.log",
@@ -150,8 +165,8 @@
     },
     {
       "path": "Documentation/ValidationLogs/docker-engine-after-upgrade.log",
-      "bytes": 6,
-      "sha256": "abdfbffecbe18ed94df9829819e596ee285b52a94aa108514452a9121721c789"
+      "bytes": 918,
+      "sha256": "49e0efebac3f86dbe1c422cc9c5398a8b69fadf3448cf1204de4c7f86730ef1c"
     },
     {
       "path": "Documentation/ValidationLogs/docker-engine-recovered.log",
@@ -184,9 +199,14 @@
       "sha256": "d314c090dcae6c2b64f9613cae53044b58c03042e0b7ea6c2d38923ab05abf96"
     },
     {
+      "path": "Documentation/ValidationLogs/docker-upgrade-verified.json",
+      "bytes": 369,
+      "sha256": "e5904c364cca4526b06d448f7fdfb360e3dd4153c29a89da31cca8adaa4d4ef5"
+    },
+    {
       "path": "Documentation/ValidationLogs/python-tooling.log",
       "bytes": 1055,
-      "sha256": "7b83ca5a5c62651d8d09fb76cb7aa48c6008594ba04d7b00c743e931351a5171"
+      "sha256": "455ffc6fe3b41b14b51626007f4868330355f90287d458004fdb6a738ebf6cd4"
     },
     {
       "path": "Documentation/ValidationLogs/script-syntax.log",
@@ -210,18 +230,23 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 16933,
-      "sha256": "b235de967a6068d1d80b462f7e20c1961898803852d4fd62d69f8e29f43258ec"
+      "bytes": 19576,
+      "sha256": "803509a93fe39a1cae451aa8360d991dbc26ea79b43f9ba4ba73c982f03b2508"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 3471,
-      "sha256": "7655e419add4d17f219690f9eab824b16b32a3ee2821e9f07c99e9f5d93e26e8"
+      "bytes": 3637,
+      "sha256": "9cb85d7d5408ad294f4934c0ad305bfc67dda34a435616306ff3593ab8021b93"
+    },
+    {
+      "path": "Package.resolved",
+      "bytes": 3079,
+      "sha256": "4439358b111b49087662a40acbabac6bfc552bb0d395d36c9680babcb917cf8c"
     },
     {
       "path": "Packages/XianxiaCore/Package.swift",
-      "bytes": 564,
-      "sha256": "0d2fae0ae2e7618b10bb5acfe3d337272fe72177721bc55f0a851ee0da73046a"
+      "bytes": 692,
+      "sha256": "b515d0c2e79272133dd3d25342ec234b2d15eb76f4170253671bdea7e0f7ac5c"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
@@ -325,8 +350,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7375,
-      "sha256": "a82f55e1030fb09f494f27a4f9f7cfa6cd8e2666401de9776059c2f5f43e4126"
+      "bytes": 7716,
+      "sha256": "e224aadb816500391dd1698de65f275d49fd34ce94e35988bd8f2efc09b39143"
     },
     {
       "path": "ROADMAP.md",
@@ -365,13 +390,13 @@
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 9356,
-      "sha256": "f39a6312ec3917f94813c80fe9b31263db680b96d57f133779b78d934c050c0d"
+      "bytes": 9864,
+      "sha256": "91e2c39025fd7654a3f6da0898ee65e2eafbaafa0a32845cf234a722e79112d6"
     },
     {
       "path": "scripts/ci_ios.sh",
-      "bytes": 2056,
-      "sha256": "6413ec8130c06f031eb4f89240ecc64c14b7cc1a8e3c1009ba75d10a2c3d8a26"
+      "bytes": 2449,
+      "sha256": "ec49467e561753f00a5f48ffe5c9a7b3c9019f1587732f6c036269795edb68c2"
     },
     {
       "path": "scripts/generate_fixtures.py",

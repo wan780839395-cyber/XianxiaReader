@@ -1,6 +1,6 @@
 {
   "validationKind": "core_linux_compilation_and_xctest",
-  "recordedAtUTC": "2026-10-13T10:07:29.9799296Z",
+  "recordedAtUTC": "2026-10-13T11:20:11.997520+00:00",
   "scope": "XianxiaCore only; Linux debug; Swift 5 language mode; Foundation and SQLite",
   "command": "pwsh -NoProfile -File scripts/test_core_container.ps1",
   "containerCommand": "swift test --package-path Packages/XianxiaCore --scratch-path /tmp/xianxia-core-build --parallel",
@@ -13,23 +13,23 @@
   "testFramework": "XCTest",
   "testCount": 14,
   "tests": [
-    "XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook",
-    "XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal",
-    "XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint",
-    "XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition",
-    "XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues",
     "XianxiaCoreTests.FileStoreTests/testUnsupportedImportDoesNotCreateBookFiles",
-    "XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks",
-    "XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage",
-    "XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing",
-    "XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening",
-    "XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport",
     "XianxiaCoreTests.FileStoreTests/testSymlinkCannotEscapeStorage",
+    "XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing",
+    "XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks",
+    "XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal",
+    "XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage",
+    "XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook",
+    "XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase",
+    "XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint",
+    "XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues",
+    "XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition",
+    "XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport",
     "XianxiaCoreTests.RepositoryTests/testChapterOrderAndBookIsolation",
-    "XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase"
+    "XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening"
   ],
   "log": "Documentation/ValidationLogs/core-container-success.log",
-  "logSha256": "c22d6c86d05441c4180d69c5bffebdd3aa82456ed55e475fe549756a61d1520a",
+  "logSha256": "857d339c3ed90821eb25d936e6e6db4b6d4ceacc9ce7bd4de59d8dc233034c6e",
   "appleFileCoordinationTested": false,
   "xcodeBuildPassed": false,
   "iosTestsPassed": false,
@@ -52,7 +52,7 @@
   "sourceFiles": [
     {
       "path": "Packages/XianxiaCore/Package.swift",
-      "sha256": "0d2fae0ae2e7618b10bb5acfe3d337272fe72177721bc55f0a851ee0da73046a"
+      "sha256": "b515d0c2e79272133dd3d25342ec234b2d15eb76f4170253671bdea7e0f7ac5c"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
@@ -114,5 +114,7 @@
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
       "sha256": "e1d57e76fe6d59690620bae6b98915435f39f94ce5e88cc96626458562f14822"
     }
-  ]
+  ],
+  "dockerDesktopVersion": "4.95.0.242831",
+  "dockerEngineVersion": "29.8.2"
 }

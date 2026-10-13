@@ -17,6 +17,7 @@
 ## 架构与代码
 
 - `XianxiaCore` 保持 Foundation/SQLite 业务边界，不导入 Readium/UIKit/SwiftUI。
+- Apple SQLite 必须通过 SDK 的头文件和库链接；禁止让宿主 Homebrew 的 pkg-config 路径进入 iOS 交叉构建。Linux 使用系统 SQLite 开发包。
 - UI 通过 `ReadingInterfaces` 操作引擎；Readium API 只存在 `ReadiumAdapter` 与它的集成测试中。
 - EPUB 使用 Readium，不自建排版引擎。精确版本升级须查官方对应版本 API 并运行完整验证。
 - `project.yml` 是工程唯一源，不手工修改生成的 `.xcodeproj`。新增文件需确保 XcodeGen 与 SwiftPM target/resource 正确。
@@ -50,6 +51,7 @@
 - Docker 等工具不可用时保留实际错误并终止自己启动的挂起任务，不重置用户工具或把测试“未执行”改写为“通过”。
 - CI 必须保留 `set -euo pipefail`、真实 test/build 退出码、完整日志及失败诊断 artifact；不得跳过失败生成成功 IPA。
 - 不伪造 `Package.resolved`。第一次真实解析后审阅并纳入锁文件，固定传递依赖。
+- 根 `Package.resolved` 来自真实 CI；生成工程后复制到 workspace 的 swiftpm 目录，resolve/test/build 均严格使用锁文件。依赖升级需要重新真实解析和完整 CI。
 - 自动检查、Swift 编译、模拟器阅读、普通设备、TrollStore 设备五种结果分开记录。没有测试环境仍继续可在 Windows 完成的工作，并明确剩余风险。
 - 只提交源码、配置、文档和原创小样书，不提交个人小说、证书、令牌、大生成缓存或构建包。
 - 完成报告包含文件、实现范围、尚未实现、验证结果、编译/设备风险及合理下一阶段；不得承诺在无新请求/自动化时自行永久运行。

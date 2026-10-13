@@ -47,6 +47,10 @@ def check_project() -> None:
         json.loads(asset.read_text(encoding="utf-8"))
     manifest = (ROOT / "Packages/XianxiaReading/Package.swift").read_text(encoding="utf-8")
     require('exact: "3.11.0"' in manifest, "Readium exact version pin missing")
+    lock = json.loads((ROOT / "Package.resolved").read_text(encoding="utf-8"))
+    readium = next(pin for pin in lock["pins"] if pin["identity"] == "swift-toolkit")
+    require(readium["state"] == {"version": "3.11.0", "revision": "d82f44f4f05d87add9e22a8b75abbd61dce745dd"},
+            "Resolved Readium pin differs from reviewed release")
     require('ReadiumAdapterGCDWebServer' not in manifest, "Do not add an EPUB HTTP server dependency")
     for source in (ROOT / "Packages/XianxiaCore/Sources/XianxiaCore").rglob("*.swift"):
         for line in source.read_text(encoding="utf-8").splitlines():
@@ -69,6 +73,8 @@ def check_workflow() -> None:
     script = (ROOT / "scripts/ci_ios.sh").read_text(encoding="utf-8")
     require("set -euo pipefail" in script, "CI failure propagation missing")
     require("CODE_SIGNING_ALLOWED=NO" in script and "xcodebuild test" in script, "Build/test flags missing")
+    require(script.count("-onlyUsePackageVersionsFromResolvedFile") == 3,
+            "Resolve, simulator test and device build must use locked dependency versions")
     require("|| true" not in script and "continue-on-error" not in (ROOT / ".github/workflows/ios-build.yml").read_text(),
             "CI must not hide failures")
 

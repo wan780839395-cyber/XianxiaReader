@@ -15,7 +15,7 @@ After this operation, 3167 kB of additional disk space will be used.
 Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsqlite3-0 amd64 3.37.2-2ubuntu0.8 [642 kB]
 Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsqlite3-dev amd64 3.37.2-2ubuntu0.8 [847 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-Fetched 1488 kB in 3s (509 kB/s)
+Fetched 1488 kB in 2s (651 kB/s)
 (Reading database ... 
 (Reading database ... 5%
 (Reading database ... 10%
@@ -54,20 +54,20 @@ Building for debugging...
 [3/14] Write swift-version-24593BA9C3E375BF.txt
 [5/26] Compiling XianxiaCore resource_bundle_accessor.swift
 [6/26] Compiling XianxiaCore TXTIndexing.swift
-[7/26] Compiling XianxiaCore SourceFileCopying.swift
-[8/26] Compiling XianxiaCore Book.swift
-[9/26] Compiling XianxiaCore BookFileStore.swift
-[10/26] Compiling XianxiaCore Chapter.swift
-[11/26] Compiling XianxiaCore Bookmark.swift
-[12/26] Compiling XianxiaCore ReadingPosition.swift
-[13/26] Compiling XianxiaCore SQLiteConnection.swift
-[14/26] Compiling XianxiaCore SQLiteBookRepository.swift
-[15/26] Emitting module XianxiaCore
-[16/26] Compiling XianxiaCore BookRepository.swift
+[7/26] Compiling XianxiaCore Bookmark.swift
+[8/26] Compiling XianxiaCore Chapter.swift
+[9/26] Compiling XianxiaCore ReadingPosition.swift
+[10/26] Compiling XianxiaCore Book.swift
+[11/26] Compiling XianxiaCore SQLiteConnection.swift
+[12/26] Compiling XianxiaCore SourceFileCopying.swift
+[13/26] Compiling XianxiaCore BookRepository.swift
+[14/26] Emitting module XianxiaCore
+[15/26] Compiling XianxiaCore SQLiteBookRepository.swift
+[16/26] Compiling XianxiaCore BookFileStore.swift
 [17/27] Wrapping AST for XianxiaCore for debugging
 [19/30] Compiling XianxiaCoreTests FileStoreTests.swift
-[20/30] Compiling XianxiaCoreTests RepositoryTests.swift
-[21/30] Emitting module XianxiaCoreTests
+[20/30] Emitting module XianxiaCoreTests
+[21/30] Compiling XianxiaCoreTests RepositoryTests.swift
 [22/31] /tmp/xianxia-core-build/x86_64-unknown-linux-gnu/debug/XianxiaCorePackageDiscoveredTests.derived/all-discovered-tests.swift
 [23/31] Write sources
 [24/31] Wrapping AST for XianxiaCoreTests for debugging
@@ -82,21 +82,21 @@ Building for debugging...
 [35/38] Wrapping AST for XianxiaCorePackageTests for debugging
 [36/38] Write Objects.LinkFileList
 [37/38] Linking XianxiaCorePackageTests.xctest
-Build complete! (6.68s)
-[1/14] Testing XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook
-[2/14] Testing XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal
-[3/14] Testing XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint
-[4/14] Testing XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition
-[5/14] Testing XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues
-[6/14] Testing XianxiaCoreTests.FileStoreTests/testUnsupportedImportDoesNotCreateBookFiles
-[7/14] Testing XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks
-[8/14] Testing XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage
-[9/14] Testing XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing
-[10/14] Testing XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening
-[11/14] Testing XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport
-[12/14] Testing XianxiaCoreTests.FileStoreTests/testSymlinkCannotEscapeStorage
+Build complete! (6.70s)
+[1/14] Testing XianxiaCoreTests.FileStoreTests/testUnsupportedImportDoesNotCreateBookFiles
+[2/14] Testing XianxiaCoreTests.FileStoreTests/testSymlinkCannotEscapeStorage
+[3/14] Testing XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing
+[4/14] Testing XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks
+[5/14] Testing XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal
+[6/14] Testing XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage
+[7/14] Testing XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook
+[8/14] Testing XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase
+[9/14] Testing XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint
+[10/14] Testing XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues
+[11/14] Testing XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition
+[12/14] Testing XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport
 [13/14] Testing XianxiaCoreTests.RepositoryTests/testChapterOrderAndBookIsolation
-[14/14] Testing XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase
+[14/14] Testing XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening
 ◇ Test run started.
 ↳ Testing Library Version: 6.1.2 (d6b70f9ef9eb207)
 ↳ Target Platform: x86_64-unknown-linux-gnu

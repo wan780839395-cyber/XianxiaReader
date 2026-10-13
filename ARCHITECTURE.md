@@ -46,10 +46,10 @@ scripts/               结构验证、样书、CI 与 IPA 打包
 ## 平台与语言
 
 - iOS 16 起步，优先覆盖普通设备及部分 TrollStore 使用场景；不代表所有系统版本都有 TrollStore 安装能力。
-- SwiftData 需要更高系统基线，因此 M0 使用系统 SQLite3。ORM 可以以后替换，`BookRepository` 屏蔽 UI 对具体存储的依赖。
+- SwiftData 需要更高系统基线，因此 M0 使用系统 SQLite3。Apple 构建通过 modulemap 使用目标 SDK 的头文件和库；不能使用宿主 Homebrew 的 pkg-config，否则 iOS 会误链接 macOS dylib。Linux 安装 libsqlite3-dev，使用标准系统搜索路径。ORM 可以以后替换，`BookRepository` 屏蔽 UI 对具体存储的依赖。
 - Swift tools 5.10、Swift 5 语言模式配合 Xcode 16.4。并发检查当前为 targeted；Readium Publication 在后台 loader actor 与主线程 Navigator 间传递，需在真正构建中检查警告和线程行为。不得用无依据的 `@unchecked Sendable` 或关掉错误来伪造验证通过。
 - `project.yml` 为工程配置源。`.xcodeproj` 由锁定 XcodeGen 生成并在 CI 输出，不手写 PBX 文件，避免 Windows 维护重复配置。
-- Readium 精确锁定 3.11.0，API 已对照同标签源码。传递依赖还需首次 macOS resolution；解析后锁文件随诊断上传。获得首次成功结果后审阅并把应用的 `Package.resolved` 纳入版本控制，再增加严格锁文件验证。当前不伪造一个未经解析的锁文件。
+- Readium 精确锁定 3.11.0，API 已对照同标签源码。根 `Package.resolved` 来自首次 macOS CI run 38385729586 的真实解析，共 11 个远程依赖；Readium revision 与审查源码一致。生成工程后将其复制到 workspace 的 swiftpm 目录，所有 xcodebuild resolve/test/build 使用 `-onlyUsePackageVersionsFromResolvedFile`。首次解析成功但 iOS 链接失败，锁文件不代表应用已验收。未来升级重新真实解析、审阅并执行完整 CI。
 
 ## 持久化与文件一致性
 

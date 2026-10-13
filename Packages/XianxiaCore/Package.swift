@@ -6,7 +6,9 @@ let package = Package(
     platforms: [.iOS(.v16), .macOS(.v13)],
     products: [.library(name: "XianxiaCore", targets: ["XianxiaCore"])],
     targets: [
-        .systemLibrary(name: "CSQLite", pkgConfig: "sqlite3", providers: [.apt(["libsqlite3-dev"]), .brew(["sqlite3"])]),
+        // Apple builds must use the selected SDK's SQLite, not host Homebrew paths.
+        // Linux installs the standard system headers/library with the apt provider.
+        .systemLibrary(name: "CSQLite", providers: [.apt(["libsqlite3-dev"])]),
         .target(name: "XianxiaCore", dependencies: ["CSQLite"], resources: [.process("Database/Migrations")]),
         .testTarget(name: "XianxiaCoreTests", dependencies: ["XianxiaCore", "CSQLite"])
     ]

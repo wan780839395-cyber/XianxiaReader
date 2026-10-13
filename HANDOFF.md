@@ -4,7 +4,17 @@
 
 ## 当前阶段
 
-Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows 静态验证与官方 Swift 6.1.2 Linux Core 编译/14 个 XCTest 已通过。基础 EPUB 流程是 M1 技术切片，尚未通过 macOS/iOS 构建验收。
+Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows/Linux Core 通过。首次 macOS CI 的 Apple Core 14 tests 已执行通过，iOS 模拟器在链接阶段失败，尚无 IPA。
+
+## 最新恢复点（优先于下方历史记录）
+
+2026-10-13：GitHub CLI 已登录，私有仓库已创建并正常推送；Docker Desktop 4.95.0 / engine 29.8.2 已恢复，用户原容器保留。无需重新请求登录、UAC、建仓或推送许可。
+
+首次 run 38385729586 已 failure，repository-checks 和 Linux Core 成功；macOS 完整日志下载至 `build/ci/38385729586/ios/build/logs/build.log`，诊断包含 `.xcresult` 和真实解析后的 lockfile。断点为 iOS 模拟器链接使用了宿主 Homebrew SQLite：`ld: building for 'iOS-simulator', but linking in dylib (...) built for 'macOS'`。不是 Readium API 编译错误，不能删除 SQLite 功能绕过。
+
+修复：Core 的 CSQLite 去除 pkgConfig/Homebrew provider，由 Apple SDK 或 Linux 系统目录提供 SQLite。保留 modulemap 的 `link "sqlite3"` 和全部测试。将首次真实解析的 11 个依赖锁文件纳入根目录，生成工程后复制，CI 严格使用锁定版本。准备重跑本地 Core 与静态检查，更新源码 hash，再提交并推送第二次 macOS CI。失败日志保留，新的结果出来前不得标 iOS tests/build/IPA 成功。
+
+再次恢复核实：自己的容器测试 session 91831 已 exit 0，修复后 Core 完整编译 6.70 秒、14 XCTest 通过；项目测试容器已自动退出，无运行中的 CI（只有首次失败 run）。下一步保留旧成功日志，绑定新 manifest/source hash，执行静态/tooling/shell 检查，再普通提交/推送触发第二次 CI。
 
 ## 环境实测
 
@@ -55,6 +65,10 @@ Milestone 0：源码、工程定义、文档、CI 和测试已写入；Windows �
 最新工作（18:40）：用户明确要求再次发起 Docker UAC，并请求协助打开 GitHub 登录页；无需再次询问是否重试。现场确认 Git 工作区干净、CLI 仍未登录，session 3140 也已 expired_token / exit 1。准备使用已核验官方缓存 installer 重新发起 RunAs 升级，另生成新的 GitHub 设备代码并实际打开可见浏览器。旧代码均失效，不复用；账户登录/系统管理员挑战由用户本人完成，不将一次性代码写入仓库。
 
 18:45 本机 CLI session 92908 已 Authentication complete / exit 0，账户 wan780839395-cyber；不再生成登录代码。GitHub 登录已完成，可以继续已获准的私有仓库创建/推送/CI。Docker 4.95.0 安装成功但 engine 未响应，Desktop CLI start 误报 already running，现场无 Desktop/backend 进程且 status 挂起；准备关闭自己的挂起 status 查询并直接启动新版 Desktop，保留旧容器/数据。
+
+18:47 已创建并核实私有仓库 `https://github.com/wan780839395-cyber/XianxiaReader`，origin 指向该 HTTPS 地址；main 已正常推送（首次 head f9c3520），并跟踪 origin/main。Docker 直接启动新版 Desktop 后 engine 已响应，29.8.2 / Linux amd64；原 glm2api、zai2api 两个停止容器保留。安装/engine 证据与 verified JSON 已保存。首次 run list 暂为空，正在检查工作流登记/服务端状态；不把推送成功当 CI 成功。重试之前未运行的升级后 Core 容器测试，随后同步文档与 CI 证据。
+
+18:50 首次 CI run `38385729586`（head f9c3520f361f6f4b73546c6c5af195071b32c727）实际运行，repository-checks 与 Linux core-tests 已 success，macOS ios job 正在 Build/test/package 步骤。URL：`https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38385729586`。本机升级后 Core 容器编译/14 个 tests 也已 success / exit 0（8.55 秒）。暂不推送纯文档收尾以免 cancel-in-progress 重启正在运行的构建；等结果后处理真实错误或归档日志/IPA/依赖锁。没有未完成登录/UAC，无需再问授权。
 
 18:41 Docker installer RunAs 已成功（PID 14872 已退出；admin log 显示 Installation succeeded），程序版本核实为 4.95.0.242831；但后续 engine 查询失败，npipe/dockerDesktopLinuxEngine 不存在，不能标引擎已恢复或原容器已核对。Core 脚本也明确 exit 1 / 未运行 tests；正在核对新 backend 启动日志，历史 Core 成功证据保留。安装成功日志为 `docker-upgrade-success.log`。新 GitHub CLI 设备登录 session 92908 正在等待本人授权；通过 cua 已打开可见 IAB 登录页（tab 1），页面显示 Continue as wan780839395-cyber，已告知新代码并保留该 tab。user 未登录 CLI 前不创建/推送远端；如果用户授权完成，直接核对同一账户并继续私有建仓/CI。
 
