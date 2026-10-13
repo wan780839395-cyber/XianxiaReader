@@ -29,12 +29,17 @@ public protocol EPUBMetadataReading: Sendable {
     var onPositionChanged: ((ReadingPosition) -> Void)? { get set }
     var onCenterTap: (() -> Void)? { get set }
     var onError: ((String) -> Void)? { get set }
+    var searchProvider: (any ReaderSearchProviding)? { get }
     func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws
     func turnPage(forward: Bool) async
     func go(to chapter: Chapter) async throws
     func go(to position: ReadingPosition) async throws
     func setScrolling(_ enabled: Bool)
     func close()
+}
+
+public extension ReaderEngine {
+    var searchProvider: (any ReaderSearchProviding)? { nil }
 }
 
 @MainActor public protocol ReaderEngineFactory {

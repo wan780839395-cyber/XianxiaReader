@@ -14,7 +14,7 @@
 - 原创中文 EPUB 2/3 样书、Core 单元测试、iOS 集成测试、Windows 可运行的结构/语法检查。
 - GitHub Actions：macOS 构建、模拟器测试、无签名设备应用、`Payload/` 打包与完整日志 artifact。
 
-TXT 正文阅读/自动分章、完整书库编辑、搜索、自定义字体、五种主题、全部排版设置、音量键翻页和长篇性能验收尚未实现，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
+M1 搜索切片已写入：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托，待新一轮 CI/真实页面验收；细节见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 正文阅读/自动分章、完整书库编辑、自定义字体、五种主题、全部排版设置、音量键翻页和长篇性能验收尚未实现，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
 
 ## 技术基线
 

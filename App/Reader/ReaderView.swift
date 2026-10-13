@@ -10,6 +10,7 @@ import XianxiaCore
     @Environment(\.scenePhase) private var scenePhase
     @State private var showContents = false
     @State private var showBookmarks = false
+    @State private var showSearch = false
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -59,8 +60,10 @@ import XianxiaCore
                             Spacer()
                             Button("书签") { showBookmarks = true }
                         }
-                        Toggle("上下滚动", isOn: Binding(get: { model.scrolling }, set: model.setScrolling))
+                        Toggle("上下滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
                             .font(.footnote)
+                        Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }
+                            .disabled(model.engine?.searchProvider == nil)
                     }.padding().background(.regularMaterial).disabled(!model.isReady)
                 }
             }
@@ -99,6 +102,14 @@ import XianxiaCore
                     }
                 }.navigationTitle("书签")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showBookmarks = false } } }
+            }
+        }
+        .sheet(isPresented: $showSearch) {
+            if let provider = model.engine?.searchProvider {
+                ReaderSearchView(provider: provider) { result in
+                    try await model.go(to: result)
+                    showSearch = false
+                }
             }
         }
         .alert("阅读提示", isPresented: Binding(get: { model.errorMessage != nil },

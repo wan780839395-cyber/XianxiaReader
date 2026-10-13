@@ -94,6 +94,12 @@ import XianxiaCore
         catch { errorMessage = error.localizedDescription }
     }
 
+    func go(to result: ReaderSearchHit) async throws {
+        guard isReady, let engine else { throw ReaderSearchError.unavailable }
+        try await engine.go(to: result.position)
+        menuVisible = false
+    }
+
     func addBookmark() async {
         guard let position = engine?.currentPosition else {
             errorMessage = "阅读页面尚未准备好，请稍后添加书签。"

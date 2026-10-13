@@ -37,7 +37,10 @@ public actor ReadiumPublicationLoader: EPUBMetadataReading {
         guard let fileURL = FileURL(url: url) else { throw EPUBError.invalidURL }
         let asset = try await retriever.retrieve(url: fileURL).get()
         guard asset.format.conformsTo(.epub) else { throw EPUBError.unsupported }
-        let publication = try await opener.open(asset: asset, allowUserInteraction: false).get()
+        let publication = try await opener.open(asset: asset, allowUserInteraction: false,
+            onCreatePublication: { _, _, services in
+                services.setSearchServiceFactory(SafeTextSearchService.makeFactory())
+            }).get()
         guard !publication.isRestricted else { throw EPUBError.restricted }
         guard publication.conforms(to: .epub), !publication.readingOrder.isEmpty else { throw EPUBError.unsupported }
         try Task.checkCancellation()

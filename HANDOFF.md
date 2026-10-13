@@ -4,6 +4,10 @@
 
 ## 当前断点
 
+M1 本轮恢复已开始：现场核对 main=9643bb6、工作区干净、最近 CI 38390862584 success，清单/IPA/build.log hash 一致，无本机测试或远端 CI 在运行。保留全部 M0 产物和失败历史。准备修复 ReaderView Binding setter 的并发警告，随后按 Readium 3.11.0 对应源码设计独立搜索协议/适配器、可取消增量结果 UI 与回归；尚未写入搜索功能或新构建结果。M2 不启动。
+
+M1 搜索切片已写入，准备本地检查与首次真实 CI：ReadingInterfaces 增加可选搜索 capability 和 Sendable DTO/session；ReadiumAdapter 使用 SearchService factory 按 TextContentElement 实现安全字面搜索（上游 3.11 默认服务存在 issue 876），每批 40、上下文各 64、UI 上限 1000。新增 Search UI/ViewModel、11 个搜索回归（预期 iOS 共 20），覆盖原始 EPUB2/3、组合字形/inline、读取错误、并发 next、取消/改词迟到结果、加载上限/跳转委托。ReaderView Binding 已改为显式 closure；是否消除警告待真实构建。详细设计 SEARCH_DESIGN.md；尚未验收源码，M0 产物保留不覆盖。
+
 **M0 自动构建/测试/打包门槛已通过，下一阶段为 M1。** 尚未进行中文排版、真实点击/链接/滚动、iCloud 导入或真机/TrollStore 安装验收。当前没有运行中的项目测试或 CI，没有未完成登录/UAC。
 
 已验证提交：`184aa09355ed0f44e9e27763c5d44fa0a8161434`。成功 run：[38390862584](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38390862584)。仓库检查、Linux Core、macOS/iOS job 均 success；14 Linux + 14 macOS Core XCTest、9 iOS XCTest 全通过，设备 Release 构建成功，CODE_SIGNING_ALLOWED=NO。

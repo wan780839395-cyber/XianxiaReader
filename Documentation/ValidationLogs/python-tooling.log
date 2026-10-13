@@ -6,7 +6,7 @@ test_selects_only_available_pinned_runtime_iphone (test_tooling.BuildToolingTest
 test_simulator_app_cannot_be_packaged_as_device_ipa (test_tooling.BuildToolingTests.test_simulator_app_cannot_be_packaged_as_device_ipa) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.041s
+Ran 6 tests in 0.048s
 
 OK
-Packaged unsigned device IPA: C:\Users\78083\AppData\Local\Temp\tmpbiralxbk\test.ipa
+Packaged unsigned device IPA: C:\Users\78083\AppData\Local\Temp\tmpkj_ktrrf\test.ipa

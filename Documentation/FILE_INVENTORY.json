@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T11:54:49.545985+00:00",
+  "recordedAtUTC": "2026-10-13T12:48:00.988588+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 94,
+  "fileCount": 102,
   "files": [
     {
       "path": ".gitattributes",
@@ -60,13 +60,13 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "bytes": 5922,
-      "sha256": "6dcdd691f282bb1c518770553c910f8ef74fdf784987ae66b1865048559b78ea"
+      "bytes": 6466,
+      "sha256": "10a2017f0efcb03bf78f591584c13a545cffad1c1d341a6b6a4527f1c485f2e8"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "bytes": 4543,
-      "sha256": "13c98a79720f2d8a95edd7b3af5b09a9d9b6d6742bcf059443f2fdfb42b49408"
+      "bytes": 4761,
+      "sha256": "14f7dbe61f793b096dd97a1cb8123870151268a3f15ade41b17045e52c03bb5b"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -92,6 +92,16 @@
       "path": "App/Resources/Info.plist",
       "bytes": 1363,
       "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
+    },
+    {
+      "path": "App/Search/ReaderSearchView.swift",
+      "bytes": 3040,
+      "sha256": "2757b881542e68898454d8a5fce8644468722de9ea376a60000b4ba7fdf35a6c"
+    },
+    {
+      "path": "App/Search/ReaderSearchViewModel.swift",
+      "bytes": 4007,
+      "sha256": "13998bb5d7ef476659463b1fed306bb0acd84d2ff14047a30e0565d6796226e0"
     },
     {
       "path": "App/XianxiaReaderApp.swift",
@@ -120,8 +130,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 2447,
-      "sha256": "6b94cfd48f28715417f86e2a923a31b18d9f7e918d9878d549bcfb4d0dac0401"
+      "bytes": 2513,
+      "sha256": "96e9ae00a6ab08127a67a149cc6f5d9345aac49a743dee526bfc1945a5a6883f"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -149,6 +159,11 @@
       "sha256": "dc1433e39b55786861995fa78494f89b90d0651810299f8f2d0113e4909ecf2a"
     },
     {
+      "path": "Documentation/SEARCH_DESIGN.md",
+      "bytes": 2492,
+      "sha256": "88824c54228735df877abfe7f83e5004ddf85575e7f645e5e0b056805d6f4559"
+    },
+    {
       "path": "Documentation/VALIDATION.md",
       "bytes": 8721,
       "sha256": "de4630e792992548bd52cf57ae42be40eca7f4448712b59fd8c6c6787d14e091"
@@ -156,7 +171,7 @@
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "82ff70b75da482c945d7787d489253808fcb8d9c8a7696ad2655b5671765ede7"
+      "sha256": "0916a2c5dbf73c2b5ff774b0b63ae25ffcc3b1ee121e5214daab3f0f67a0bd71"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -236,7 +251,7 @@
     {
       "path": "Documentation/ValidationLogs/python-tooling.log",
       "bytes": 1055,
-      "sha256": "f537072c2075dc4b4939d503d5953b468755c99d2528f10ec6c7c3ecca2a9b6f"
+      "sha256": "46af2dfcc59faa870cc1dcbff74061437fa9d664839147a4a368d0a59117d11c"
     },
     {
       "path": "Documentation/ValidationLogs/script-syntax.log",
@@ -246,7 +261,7 @@
     {
       "path": "Documentation/ValidationLogs/windows-static.log",
       "bytes": 157,
-      "sha256": "d57438d8da3fb592977d124bcbdc1af861d5d3f8184b826a7049d51a54becad9"
+      "sha256": "c1ae46ebf644df6d5f718f098a30e0814f580a5c7eab9a75b93159be071e203e"
     },
     {
       "path": "Future/Knowledge/README.md",
@@ -260,13 +275,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 4697,
-      "sha256": "6d2674692754cf8f815d30f28ba1a160820430d9dd4c4963331e8b9e43379fb9"
+      "bytes": 5841,
+      "sha256": "ab2157fd2a9708924cf97d8a226ae8a40effb15660e42ec66c81d709e5fbb817"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 4063,
-      "sha256": "d832cfdf06ea62bd3b3c1ec5c53adca8b34e25d526a02f879d61f4cf269fd5b3"
+      "bytes": 4227,
+      "sha256": "22c8213a78b960c8c821a2d24f078872ff8035184c9e502eb25cccd81b7cc5a1"
     },
     {
       "path": "Package.resolved",
@@ -360,8 +375,13 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
-      "bytes": 1482,
-      "sha256": "98952621f5655ddb3d8241eb42f0bcfdc93d2386953cf5e4734e91750e78a3f6"
+      "bytes": 1639,
+      "sha256": "0e09d893304027151ab65c82e1c3e6d5e8e433ff87798de87060cdfde085e32f"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
+      "bytes": 1652,
+      "sha256": "a5485477799b6f00af720fd956c8f68e6ab1e4323e9b389568c8e0d6335faff4"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
@@ -370,18 +390,28 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPublicationLoader.swift",
-      "bytes": 3492,
-      "sha256": "5f314dcf700b35aae7091e590aacdb7df982dced6c01bcef81debad1ea1e1a98"
+      "bytes": 3646,
+      "sha256": "259ce5b03f6cbddcd5965e368add7c7efe951f0af7ae070d6bda30ba235a8d50"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "bytes": 5997,
-      "sha256": "ba9a02348ac37a856dc9991d2d21b7f002cde386da470893ff67d03e00e996ca"
+      "bytes": 6222,
+      "sha256": "5f7b6ea05c8db5d4575db9dbf57a55ff8c45e0e106ed35685d5f914b5b04b40f"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
+      "bytes": 3164,
+      "sha256": "c577adc1817b03ca1d79aa28db87e1460aa8cc54daa4b451ca2bd64133999df1"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift",
+      "bytes": 5246,
+      "sha256": "4da4fcaa3e7c64d6c437796348b596b9c7077ed4d7ff631bbd35952b1ff4b70b"
     },
     {
       "path": "README.md",
-      "bytes": 8450,
-      "sha256": "55f2efd8120197fda4bdb5cc68039741d2786f20e80fcaecfa38b289a27ea701"
+      "bytes": 8653,
+      "sha256": "340770e315911b18a1e1eb202156776f3547398197992972b7ec8f17a8c276ec"
     },
     {
       "path": "ROADMAP.md",
@@ -412,6 +442,16 @@
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
       "bytes": 4755,
       "sha256": "0e51412f42b2c63a5d5bd895a784edc28616e3e866156d80a60a929e9bd52c02"
+    },
+    {
+      "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
+      "bytes": 6920,
+      "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75"
+    },
+    {
+      "path": "Tests/iOS/ReadiumSearchTests.swift",
+      "bytes": 6528,
+      "sha256": "b7b297fef436c652a78a8c3ed7bc8b161644aefce81e2c6182e6cf69c1a57701"
     },
     {
       "path": "project.yml",

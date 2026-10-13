@@ -3,4 +3,4 @@ PASS check_project
 PASS check_workflow
 PASS check_schema
 PASS check_fixtures
-PASS Swift grammar: 30 files (NOT Swift compilation)
+PASS Swift grammar: 37 files (NOT Swift compilation)

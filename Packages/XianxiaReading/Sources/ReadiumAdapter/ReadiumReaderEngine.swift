@@ -25,6 +25,7 @@ import XianxiaCore
     public var onError: ((String) -> Void)?
     public var viewController: UIViewController { host }
     public private(set) var currentPosition: ReadingPosition?
+    public private(set) var searchProvider: (any ReaderSearchProviding)?
 
     public override init() { super.init() }
 
@@ -41,6 +42,7 @@ import XianxiaCore
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
         self.bookID = book.id
         self.navigator = navigator
+        searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id) : nil
         currentPosition = position
         navigator.delegate = self
         // Readium dispatches only taps not consumed by links, selection, etc.
@@ -107,6 +109,7 @@ import XianxiaCore
         navigator = nil
         bookID = nil
         currentPosition = nil
+        searchProvider = nil
     }
 
     public func navigator(_ navigator: Navigator, locationDidChange locator: Locator) {
