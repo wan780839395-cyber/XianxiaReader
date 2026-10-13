@@ -27,15 +27,30 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 # A simulator is selected by real availability, not a hardcoded device UUID/name.
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
+test_status=0
+if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
   -configuration Debug -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
   -derivedDataPath "$PWD/build/DerivedData" \
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
-  -resultBundlePath "$PWD/build/SimulatorTests.xcresult" CODE_SIGNING_ALLOWED=NO
+  -resultBundlePath "$PWD/build/SimulatorTests.xcresult" CODE_SIGNING_ALLOWED=NO; then
+  test_status=0
+else
+  test_status=$?
+fi
 
 # Keep real WKWebView image snapshots from the rendering regressions for visual review.
-xcrun xcresulttool export attachments --path build/SimulatorTests.xcresult --output-path build/ReaderSnapshots
+export_status=0
+if xcrun xcresulttool export attachments --path build/SimulatorTests.xcresult --output-path build/ReaderSnapshots; then
+  export_status=0
+else
+  export_status=$?
+fi
+# Export failed-test screenshots too, then propagate the ORIGINAL test exit.
+# A successful test with a failed export also fails, never producing an IPA.
+echo "Simulator test exit: $test_status; attachment export exit: $export_status"
+if (( test_status != 0 )); then exit "$test_status"; fi
+if (( export_status != 0 )); then exit "$export_status"; fi
 
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \

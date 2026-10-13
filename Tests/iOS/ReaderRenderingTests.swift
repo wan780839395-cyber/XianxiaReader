@@ -68,7 +68,8 @@ final class ReaderRenderingTests: XCTestCase {
           return {href: location.pathname, height: innerHeight, width: innerWidth,
                   ready: document.readyState === 'complete' && (!image || image.complete),
                   imageHeight: rect?.height ?? 0, imageWidth: rect?.width ?? 0,
-                  fit: image ? getComputedStyle(image).objectFit : '', title: document.title};
+                  fit: image ? getComputedStyle(image).objectFit : '', title: document.title,
+                  mediaLimit: getComputedStyle(document.documentElement).getPropertyValue('--RS__maxMediaHeight')};
         })()
         """
         while Date() < deadline {
@@ -125,11 +126,15 @@ final class ReaderRenderingTests: XCTestCase {
             state.visible = false
             let (_, navigator) = try await open(engine)
             let data = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            let metrics = XCTAttachment(string: "scrolling=\(scrolling); DOM=\(data); native viewport=\(navigator.view.bounds)")
+            metrics.name = scrolling ? "cover-metrics-scrolling" : "cover-metrics-paginated"
+            metrics.lifetime = .keepAlways
+            add(metrics)
             let height = try XCTUnwrap(data["height"] as? Double)
             let imageHeight = try XCTUnwrap(data["imageHeight"] as? Double)
             XCTAssertGreaterThan(height, Double(window.bounds.height) * 0.7)
             XCTAssertGreaterThan(imageHeight, height * 0.65)
-            XCTAssertLessThanOrEqual(imageHeight, height + 2)
+            XCTAssertLessThanOrEqual(imageHeight, height + 2, "scrolling=\(scrolling); \(data)")
             XCTAssertEqual(data["fit"] as? String, "contain")
             let attachment = XCTAttachment(image: try await snapshotVisibleWebView(in: navigator.view))
             attachment.name = scrolling ? "tall-cover-scrolling" : "tall-cover-paginated"

@@ -77,6 +77,14 @@ M0 为简单演进，将领域 record 编码为 JSON BLOB，并保留关系、�
 
 Readium 负责 EPUB 解析、EPUB Navigator、分页/滚动、CSS、图片、内部链接及后续搜索/Decoration/TTS/Preferences；本项目只构建控制层和产品 UI。M0 不覆盖全套 Readium 能力。
 
+SwiftUI 的 `ReaderSurface` 使用显式 viewport 尺寸，菜单只叠加在阅读区域之上，不参与正文尺寸计算。Adapter 在挂载 Navigator 时设置有效 frame 和 autoresizing，与上游 SwiftUI 容器合同一致。图像/CSS 仍由 Readium 解析、排版，不修改用户 EPUB 或全局强制覆盖作者图像样式。
+
+横排重排媒体仅校准 ReadiumCSS 已有的 `--RS__maxMediaHeight` 保护：公开 setupUserScripts 钩子按真实 `innerHeight` 的95%设定像素上限，resize同步；避免WebKit的device-height/vh与实际正文视口不一致。不改作者width/aspect/object-fit，固定布局和竖排不接入此修正。原图/CSS仍保留，实际图像尺寸与原书体验分别验收。
+
+Readium 3.11 的 `scroll` 是资源内部上下滚动，外部仍横向分页；当前开启跨资源手势，界面明确标注章内模式。用户要求的真正纵向连续跨章需要独立引擎扩展，尚未接入，设计与窗口/定位门槛见 `Documentation/CONTINUOUS_SCROLL_DESIGN.md`。不能用瞬间跳章或拼接整本 HTML 代替该需求。
+
+实际窗口测试通过公开 UIKit/WebKit API 检查 DOM、完整原生 Locator 和可视区域。DOM `readyState` 与 Readium 原生位置就绪分别等待；预加载 WebView 必须在两个轴上与 viewport 重叠才算当前页。快照保存在 xcresult，几何断言与视觉复查分别记录；原创样书通过不代表用户书籍完成设备验收。
+
 `ReaderEngine` 提供渲染控制器、分页、章节/位置跳转、滚动模式、事件回调；业务层只持有 `ReadingPosition`。持久化完整 Locator JSON，包括 href、fragment、资源/全书 progression 与文本上下文，并带 `engineID`/版本。不能用一个浮点百分比代替可靠位置恢复。
 
 保存每次位置回调；SQLite UPSERT 按 `updated_at` 拒绝过期写入，处理异步任务顺序颠倒。关闭阅读与进入后台额外保存。损坏/不兼容 Locator 显式报错，不能静默归零。首次成功定位前“正在打开”不等于已读。

@@ -3,6 +3,7 @@ import ReadiumNavigator
 import ReadiumShared
 import ReadingInterfaces
 import UIKit
+import WebKit
 import XianxiaCore
 
 @MainActor public final class ReadiumEngineFactory: ReaderEngineFactory {
@@ -121,6 +122,13 @@ import XianxiaCore
     public func navigator(_ navigator: Navigator, didFailToLoadResourceAt href: RelativeURL, withError error: ReadError) {
         guard (navigator as AnyObject) === self.navigator else { return }
         onError?("正文资源读取失败：\(error.localizedDescription)")
+    }
+
+    public func navigator(_ navigator: EPUBNavigatorViewController,
+                          setupUserScripts userContentController: WKUserContentController) {
+        guard navigator.publication.metadata.layout != .fixed else { return }
+        userContentController.addUserScript(WKUserScript(source: ReadiumViewportScript.mediaBounds,
+            injectionTime: .atDocumentEnd, forMainFrameOnly: true))
     }
 
     private func capture(_ locator: Locator) {

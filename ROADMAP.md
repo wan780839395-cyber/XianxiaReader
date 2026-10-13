@@ -24,13 +24,14 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
-2026-10-13：搜索与导入修复、26 iOS tests 与 Build 2 Release/IPA 已过 CI，应用源码 compiler warnings=0。用户旧包安装正常，iCloud“打开”无反应；新包内置/本地/iCloud 导入与完整 M1 页面阅读仍待 iPhone13/iOS16.6.1/TrollStore 验收。详情 Documentation/IMPORT_FIX.md / DEVICE_ACCEPTANCE.md。
+2026-10-14：搜索与导入修复、26 iOS tests 与 Build 2 Release/IPA 已过 CI；用户后续确认 EPUB 可以导入，但图像只显示窄横条，并要求上下滑动无缝跨章。Build 3 阅读容器及图像回归正在完整 CI，上一轮31 tests中1项导航超时，原失败记录保留。完整 M1 仍待 iPhone13/iOS16.6.1/TrollStore 验收。详情 Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 
 - EPUB 2 NCX / EPUB 3 nav、nested TOC、图片、CSS、fragment 链接与脚注；损坏文件和 DRM 错误可解释。
 - Files 本地/iCloud 导入；取消、批次部分失败、后台/退出恢复不丢已提交书籍。
 - 搜索增量结果及跳转；不能一次读取全书到主线程。
 - 首次位置回调、关页/后台/重启恢复，含章节中段与链接 fragment；旋转和分页/滚动转换后恢复。
 - 中心菜单、两侧翻页、手势、目录与书签；不同字号、VoiceOver、横竖屏下不遮正文。
+- 用户要求的真正纵向连续跨章：章末/下一章能同时显示、保留拖动与惯性；有限资源窗口、逆向滚动、图片高度变化、原始 Locator 恢复。作为独立 M1 引擎切片执行，不能把现有章内滚动标为完成。见 Documentation/CONTINUOUS_SCROLL_DESIGN.md。
 - 真机体验记录及关键截图/录屏；不能把“构造了 Navigator”当成排版已验证。
 
 ## M2 识别回归

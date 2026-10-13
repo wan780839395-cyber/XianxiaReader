@@ -1,11 +1,11 @@
 # 项目状态
 
-更新时间：2026-10-13（Asia/Shanghai）
+更新时间：2026-10-14（Asia/Shanghai）
 
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | **自动验收通过** | Linux/macOS Core、9 iOS tests、设备 Release 与真实 IPA 均成功 |
-| M1 基础 EPUB | **搜索与导入修复自动验证通过**；完整阶段未验收 | 26 iOS tests、Build 2 Release/IPA；本机/iCloud 导入及真实阅读待验收 |
+| M1 基础 EPUB | **搜索与导入修复自动验证通过**；完整阶段未验收 | 26 iOS tests、Build 2 Release/IPA；用户确认 EPUB 可导入（来源未细分）；图片与真实阅读待验收 |
 | M2 TXT | 未开始 | 后台流式分章、索引缓存与长文件测试 |
 | M3 完整书库 | 未开始 | 完整编辑、封面修改与操作一致性 |
 | M4 设置与主题 | 未开始 | 排版、字体、主题与交互验收 |
@@ -25,7 +25,9 @@
 
 ## 验证与限制
 
-- Windows 静态检查：结构/工程/CI/实际 SQL migration/EPUB 样书通过；39 个 Swift 文件 grammar 通过（不是编译）。
+最新恢复：Build3容器/图像源码已保留，CI38426725252实际31 iOS tests中30通过/1导航探针超时，图片几何和菜单尺寸两项通过，Release/IPA未执行。已修正探针的双轴可见性和原生Locator就绪；提交7221274的CI38430692977当前仓库/Linux14通过、macOS job等待runner。当前最新成功IPA仍是Build2，尚未覆盖。真实纵向连续跨章未实现。
+
+- Windows 静态检查：结构/工程/CI/实际 SQL migration/EPUB 样书通过；41 个 Swift 文件 grammar 通过（不是编译）。
 - Python 构建工具：6 tests 通过；Git Bash `bash -n` 与 Python compileall 通过。
 - **Core 在官方 Swift 6.1.2 Linux 容器中编译成功，14 个 XCTest 全通过，命令 exit 0。** 原路径越界失败已修复，失败/成功日志均保留。
 - CI 增加 Linux Core job 并锁定 image digest；Windows 容器脚本已实测成功及 engine 不可用失败分支，超时分支尚未实测。

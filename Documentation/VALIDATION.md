@@ -1,15 +1,17 @@
 # 当前验证与已知风险
 
-本轮开发于 2026-10-13（Asia/Shanghai）。Windows 11，PowerShell 7.6.5，Git 2.54.0.windows.1，Python 3.11；无 Swift/Xcode/xcodebuild/XcodeGen 可执行文件。官方依赖源码仅保存在忽略的 `.cache/` 用于 API 审查，不作为产品源码提交。
+本轮恢复于 2026-10-14（Asia/Shanghai）。Windows 11，PowerShell 7.6.5，Git 2.54.0.windows.1，Python 3.11；无 Swift/Xcode/xcodebuild/XcodeGen 可执行文件。官方依赖源码仅保存在忽略的 `.cache/` 用于 API 审查，不作为产品源码提交。
 
-**最新结论：M1 搜索与导入修复自动验证通过。** [CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842)，提交 0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9：Linux/macOS 各14 Core、26 iOS tests、设备 Release、Build 2 IPA 全成功，应用源码 compiler warnings=0；6 条 AppIntents metadata 提示单列保留。证据 M1_IMPORT_VALIDATION_REPORT.json / IMPORT_FIX.md；之前搜索和 M0 证据保留。用户报告旧包 TrollStore 安装正常，iCloud 选中/打开失败；新包设备导入/阅读、模拟器实际页面体验和完整 M1 未验收。
+**最新结论：M1 搜索与导入修复自动验证通过。** [CI 38411028842](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38411028842)，提交 0649833a2b48b5be3ea3ec24f8c62bd8d0dffef9：Linux/macOS 各14 Core、26 iOS tests、设备 Release、Build 2 IPA 全成功，应用源码 compiler warnings=0；6 条 AppIntents metadata 提示单列保留。证据 M1_IMPORT_VALIDATION_REPORT.json / IMPORT_FIX.md；之前搜索和 M0 证据保留。用户后续确认 EPUB 可以导入（来源未细分），阅读图片裁切、完整阅读与真正纵向跨章仍未验收。
 
 ## 本地完成的验证
 
+Build 3 当前：Windows 41 Swift grammar、三本原创 EPUB 结构及6 tooling tests通过。首轮CI38424689048 test bundle链接失败；修正后38426725252执行31 iOS tests，30通过/1导航探针超时，图片尺寸/菜单viewport回归通过，均未执行Release/IPA。失败证据在ValidationLogs/m1-reader-link-failure.json与m1-reader-navigation-failure.json。原生Locator及双轴可见性修正提交7221274已重新CI38430692977：仓库/Linux Core通过，macOS job等待runner，未覆盖Build2产物。
+
 - 项目文档、Swift Package 路径、target 来源、资源 JSON/plist 与 YAML 结构。
 - 实际 `001_initial.sql` 迁移在 Python SQLite 中执行；版本、完整性、外键、章节唯一序号/非负约束、进度范围及级联规则通过。
-- 两个原创 EPUB 的 mimetype 首位/不压缩、XML、manifest/spine 引用与中文元数据通过。
-- 39 个 Swift 文件 tree-sitter 语法检查通过。此检查不验证 Swift 类型、SDK、链接和并发隔离。
+- 三个原创 EPUB 的 mimetype 首位/不压缩、XML、manifest/spine 引用与中文元数据通过。
+- 41 个 Swift 文件 tree-sitter 语法检查通过。此检查不验证 Swift 类型、SDK、链接和并发隔离。
 - 6 个 Python 构建工具测试通过（可用模拟器选择、缺失 runtime 拒绝、IPA 结构、模拟器包拒绝、缺 executable 拒绝、越出 bundle 的 executable 拒绝）；Windows 未执行 Unix 可执行权限/符号链接断言，这些断言由 Linux/macOS 测试执行。
 - `scripts/ci_ios.sh` 使用 Git Bash `bash -n` 检查通过；这不是 macOS CI 执行。
 - `scripts/test_core_container.ps1` 通过 PowerShell AST 语法检查；这不代表容器命令实际成功执行。
@@ -47,7 +49,7 @@ JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示
 
 M0 与 M1 搜索/导入修复自动门槛已通过；下一步 iPhone13/iOS16.6.1/TrollStore 内置样书、本机 Files、iCloud 三条导入路径，以及真实位置/交互/排版验收。完整 M1 通过后才进入 M2。
 
-恢复时无 GitHub 连接/remote；用户随后选择私有并完成授权，已建立私有仓库、核实本项目 noreply 作者并推送 main。前两次真实失败已修复，第三次 CI 全部成功；当前没有运行中的项目构建，也无需再次登录/UAC。历史过程见 HANDOFF_HISTORY_2026-10-13.md。
+恢复时无 GitHub 连接/remote；用户随后选择私有并完成授权，已建立私有仓库、核实本项目 noreply 作者并推送 main。前两次真实失败已修复，第三次 CI 全部成功；当前Windows无遗留构建进程，GitHub CI38430692977的macOS job正在排队，无需再次登录/UAC。历史过程见 HANDOFF_HISTORY_2026-10-13.md。
 
 ## 本轮 Core 编译环境恢复
 

@@ -1,0 +1,25 @@
+{
+  "validationKind": "real_ci_media_viewport_assertion_failure",
+  "run": {
+    "id": 38430692977,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38430692977",
+    "headSha": "722127447057ef4555832d3950d98a2cb80114fd",
+    "conclusion": "failure"
+  },
+  "linuxCoreTestsPassed": true,
+  "appleCoreTestsPassed": true,
+  "coreTestCountEach": 14,
+  "iosTestsExecuted": 31,
+  "iosTestsPassed": 30,
+  "iosTestsFailed": 1,
+  "scrollingResourceNavigationPassed": true,
+  "menuViewportTestPassed": true,
+  "releaseDeviceBuildPassed": false,
+  "ipaProduced": false,
+  "failure": "Tall-cover image box 830.296875 points exceeds innerHeight 812 plus 2-point tolerance; original assertion retained.",
+  "fixPendingValidation": "Calibrate existing ReadiumCSS max-media-height to actual viewport through public document-end script; preserve author size/aspect/fit, skip fixed layout and vertical writing. Export failed-test attachments while propagating original test exit.",
+  "buildLog": {
+    "path": "build/ci/38430692977/ios/build/logs/build.log",
+    "sha256": "ac9359b736a8789552d54a3121f5debde8aff0cc1a572b7e3932dc7bef3d2a97"
+  }
+}
