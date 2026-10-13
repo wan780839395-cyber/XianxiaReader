@@ -20,7 +20,7 @@ Build3成功run38434939423；首三轮失败记录完整保留。42 Swift gramma
 - 对照 Readium 3.11.0（commit `d82f44f4f05d87add9e22a8b75abbd61dce745dd`）检查打开、Navigator、preferences、TOC、cover、Locator JSON 与 input observers 签名。
 - 对照 XcodeGen 2.46.0（commit `8445e778451c7e44237b90281bde622d764b0084`）检查工程定义。App 明确使用已有 `INFOPLIST_FILE`，避免 generator 重写应用 plist。
 
-JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示命令不执行编译；CORE_VALIDATION_REPORT.json 为本机 Linux Core；IOS_VALIDATION_REPORT.json 为历史 M0 CI；M1_SEARCH_VALIDATION_REPORT.json 为之前搜索 CI/52 源码 hash/20 tests；M1_IMPORT_VALIDATION_REPORT.json 为最新 CI/54 源码 hash/26 tests/Release/Build 2 IPA。自动结果均不表示真机阅读或 TrollStore 验收。ValidationLogs/m1-import-cancelled.json 保留 Agent 误读旧网页日志而提前取消的部分成功测试；同提交完整重试已成功。
+JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示命令不执行编译；CORE_VALIDATION_REPORT.json 为本机 Linux Core；IOS_VALIDATION_REPORT.json 为历史 M0 CI；M1_SEARCH_VALIDATION_REPORT.json 为之前搜索 CI/52 源码 hash/20 tests；M1_IMPORT_VALIDATION_REPORT.json为之前导入CI/54源码hash/26 tests/Build2；M1_READER_VALIDATION_REPORT.json为最新阅读切片CI/69来源hash/31 tests/Build3及实际快照。自动结果均不表示真机阅读或 TrollStore 验收。ValidationLogs/m1-import-cancelled.json 保留 Agent 误读旧网页日志而提前取消的部分成功测试；同提交完整重试已成功。
 
 最终本地日志已保存：`ValidationLogs/windows-static.log`、`python-tooling.log`、`script-syntax.log`。Python packaging 测试仅打包临时合成 bundle，日志中的 `test.ipa` 不是产品 `XianxiaReader.ipa`。
 
@@ -29,7 +29,9 @@ JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示
 - Core 14 个：**Linux 全通过**。数据库重开/阅读位置/书签、旧位置拒绝、事务回滚、孤立位置外键、目录排序/隔离、进度范围、文件暂存/恢复、路径与 symlink 越界、内部/断链拒绝、系统父级链接下新 root 的规范化、未支持格式拒绝、较高数据库 schema 拒绝且保留原数据、部分复制失败清理且保留原件。
 - macOS Core 14 个：首次 CI 中全部执行通过（Apple 文件协调分支）。
 - iOS 9 个：**第三次 CI 全通过、0 failures**。EPUB 2/3 元数据/目录、无 HTTP server Navigator 构造、真实导入、损坏 EPUB 回滚、Locator 完整往返、错误 book/engine/version/JSON 拒绝，以及阅读中途关闭/失败重试/关闭后迟到位置三个生命周期回归。前两次构建错误和被取消测试保留在 CI_FAILURES.md。
-- M1 搜索11个新增回归与原9个全部保留，再加6个导入回归，共26，最新 CI 全通过。覆盖真实中文 EPUB2/3、组合字形/inline、分页/snippet/上限、读取错误、并发 next/取消、改词/迟到结果及跳转委托；另覆盖文件选择终止/取消/空回调、TXT与大写 EPUB 混合批次、主应用样书资源导入和重试。
+- M1 搜索11个新增回归与原9个全部保留，再加6个导入回归，共26，导入切片CI38411028842全通过。覆盖真实中文 EPUB2/3、组合字形/inline、分页/snippet/上限、读取错误、并发 next/取消、改词/迟到结果及跳转委托；另覆盖文件选择终止/取消/空回调、TXT与大写 EPUB 混合批次、主应用样书资源导入和重试。
+
+本轮另增加3实际窗口/图像/跨资源与2导航竞态测试，总计31，CI38434939423全通过；分页/滚动真实快照仅验收原创样书图像。
 
 首次真实 Core 编译成功，但原 symlink 越界测试失败：Linux Foundation 对末端不存在的路径没有解析父级链接。修复为逐级拒绝受管理存储的链接并保留正常缺失目录；不删除测试或绕过错误。第二次仅根别名测试因目录 URL 尾斜杠不同而失败，断言修正为文件系统路径比较。三次完整日志分别保留为 `ValidationLogs/core-container-first-failure.log`、`core-container-root-url-failure.log`、`core-container-success.log`。最终 14 个 XCTest 与 exit 0 共同证明通过；日志末尾 Swift Testing 的“0 tests passed”属于未使用的另一测试框架，不能据此忽略 XCTest 失败。
 
@@ -47,7 +49,7 @@ JSON 分别保存：VALIDATION_REPORT.json 为静态检查，编译 false 表示
 
 ## 下一验证顺序
 
-M0 与 M1 搜索/导入修复自动门槛已通过；下一步 iPhone13/iOS16.6.1/TrollStore 内置样书、本机 Files、iCloud 三条导入路径，以及真实位置/交互/排版验收。完整 M1 通过后才进入 M2。
+M0与M1搜索/导入/视口图像切片自动门槛已通过；下一步iPhone13/iOS16.6.1/TrollStore原书图片和高封面样书复测，以及位置/交互/排版和各导入来源分别验收。真正纵向连续跨章仍未实现，继续独立M1引擎切片；完整M1通过后才进入M2。
 
 恢复时无 GitHub 连接/remote；用户随后选择私有并完成授权，已建立私有仓库、核实本项目 noreply 作者并推送 main。前两次真实失败已修复，第三次 CI 全部成功；当前Windows无遗留构建进程，最新GitHub CI已完成，无需再次登录/UAC。历史过程见 HANDOFF_HISTORY_2026-10-13.md。
 
