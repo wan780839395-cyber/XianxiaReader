@@ -39,7 +39,7 @@ final class SafeTextSearchService: SearchService {
             return .success(SafeTextSearchIterator(content: content.iterator(), query: query,
                 caseSensitive: options?.caseSensitive ?? false, titles: titles))
         } catch {
-            return .failure(.reading(error as? ReadError ?? ReadError.wrap(error) ?? .decoding(error)))
+            return .failure(.reading(error))
         }
     }
 }

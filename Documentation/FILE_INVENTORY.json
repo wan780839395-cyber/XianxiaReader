@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-13T12:48:00.988588+00:00",
+  "recordedAtUTC": "2026-10-13T13:05:50.690549+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 102,
+  "fileCount": 105,
   "files": [
     {
       "path": ".gitattributes",
@@ -124,6 +124,11 @@
       "sha256": "98ff117a4f352221fc3437c15bfe9a56a062c3dd19276ebf0524e158ee1d22a7"
     },
     {
+      "path": "Documentation/DEVICE_ACCEPTANCE.md",
+      "bytes": 2894,
+      "sha256": "10826bbb020c63eaf5cbe7f0039c8e786854aa9a659b0782cbb0fe1df450b109"
+    },
+    {
       "path": "Documentation/DOCKER_RECOVERY.md",
       "bytes": 4584,
       "sha256": "75c6e6eecfe30c016b6c06d9eed92ebe99c458feac2d25404732d37c9a27768a"
@@ -154,14 +159,19 @@
       "sha256": "c19642befd7ddb69185c7c2f2987aa244e371fd387da4d474b4d198a6a73b263"
     },
     {
+      "path": "Documentation/M1_SEARCH_VALIDATION_REPORT.json",
+      "bytes": 15989,
+      "sha256": "327d8bcac3ff6f5f4bd2853818870ee5c1ca4bc57a7eedef4644a4c9aaa3c03a"
+    },
+    {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
       "bytes": 2183,
       "sha256": "dc1433e39b55786861995fa78494f89b90d0651810299f8f2d0113e4909ecf2a"
     },
     {
       "path": "Documentation/SEARCH_DESIGN.md",
-      "bytes": 2492,
-      "sha256": "88824c54228735df877abfe7f83e5004ddf85575e7f645e5e0b056805d6f4559"
+      "bytes": 2628,
+      "sha256": "e899edc80a0ffa1477d57c309d6e8ac62a910eccaf9493ce64ce272ebd3ee5cb"
     },
     {
       "path": "Documentation/VALIDATION.md",
@@ -171,7 +181,7 @@
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "0916a2c5dbf73c2b5ff774b0b63ae25ffcc3b1ee121e5214daab3f0f67a0bd71"
+      "sha256": "058c9945e8a1529568ba26363acd48164f88df58519043ef3b9ccf34fd371072"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -249,6 +259,11 @@
       "sha256": "e5904c364cca4526b06d448f7fdfb360e3dd4153c29a89da31cca8adaa4d4ef5"
     },
     {
+      "path": "Documentation/ValidationLogs/m1-search-first-pass.json",
+      "bytes": 15989,
+      "sha256": "327d8bcac3ff6f5f4bd2853818870ee5c1ca4bc57a7eedef4644a4c9aaa3c03a"
+    },
+    {
       "path": "Documentation/ValidationLogs/python-tooling.log",
       "bytes": 1055,
       "sha256": "46af2dfcc59faa870cc1dcbff74061437fa9d664839147a4a368d0a59117d11c"
@@ -275,13 +290,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 5841,
-      "sha256": "ab2157fd2a9708924cf97d8a226ae8a40effb15660e42ec66c81d709e5fbb817"
+      "bytes": 7228,
+      "sha256": "fce0237b8afb4fc0f2a429bde32b9a154953bf28988818e5ce006cee99831f19"
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 4227,
-      "sha256": "22c8213a78b960c8c821a2d24f078872ff8035184c9e502eb25cccd81b7cc5a1"
+      "bytes": 4243,
+      "sha256": "c1ab638493a7209857cfc7596e8f81e91b242504944da4e3d732f444c823d018"
     },
     {
       "path": "Package.resolved",
@@ -405,8 +420,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift",
-      "bytes": 5246,
-      "sha256": "4da4fcaa3e7c64d6c437796348b596b9c7077ed4d7ff631bbd35952b1ff4b70b"
+      "bytes": 5187,
+      "sha256": "e1cb4c52a06051ff3a98b03b6e2745093c8e8fc6f80ea321dc5bcab409a5a48e"
     },
     {
       "path": "README.md",

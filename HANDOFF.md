@@ -4,6 +4,12 @@
 
 ## 当前断点
 
+M1 首次 CI run 38399996364 已 success：14 Linux + 14 Apple Core、20 iOS tests、设备 Release/IPA 全通过，原 Binding Sendable 警告消除。搜索包已下载，SHA-256 423ba0acad23f8bcd42ca22c43f2316cebb003e8d80ce8e8a099211121548167（7,365,998 bytes）。该报告另存 ValidationLogs/m1-search-first-pass.json，M0 原件保留。实际日志有 SafeTextSearchService.swift:42 的多余 ReadError cast 警告，已改为直接保留 typed ReadError；准备重跑同一套 CI，不扩展新功能。搜索切片已有编译/自动测试证据，完整 M1 与 iPhone 13/iOS16.6.1/TrollStore 安装仍待实测。
+
+最新 M1 CI 已启动：run `38399996364`，head `4d5d86ea0cf45e47dc2337aaada48f26ecebbcc5`，URL https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38399996364 。搜索切片已提交/推送；本地 37 grammar/6 tooling 通过，M0 编译包与日志仍保留。当前等待远端真正类型检查、20 iOS tests 和设备 Release。先核对此 run，失败时取完整日志修复；不要推送纯文档打断 CI，不在结果出来前标搜索已验收。
+
+用户已明确测试设备：iPhone 13、iOS 16.6.1，已安装 TrollStore（巨魔）。这是设备准备信息，不是安装/阅读通过证据。M1 新包通过后准备实际导入/搜索跳转/分页滚动/恢复验收；无需再次询问设备型号/安装方式。
+
 M1 本轮恢复已开始：现场核对 main=9643bb6、工作区干净、最近 CI 38390862584 success，清单/IPA/build.log hash 一致，无本机测试或远端 CI 在运行。保留全部 M0 产物和失败历史。准备修复 ReaderView Binding setter 的并发警告，随后按 Readium 3.11.0 对应源码设计独立搜索协议/适配器、可取消增量结果 UI 与回归；尚未写入搜索功能或新构建结果。M2 不启动。
 
 M1 搜索切片已写入，准备本地检查与首次真实 CI：ReadingInterfaces 增加可选搜索 capability 和 Sendable DTO/session；ReadiumAdapter 使用 SearchService factory 按 TextContentElement 实现安全字面搜索（上游 3.11 默认服务存在 issue 876），每批 40、上下文各 64、UI 上限 1000。新增 Search UI/ViewModel、11 个搜索回归（预期 iOS 共 20），覆盖原始 EPUB2/3、组合字形/inline、读取错误、并发 next、取消/改词迟到结果、加载上限/跳转委托。ReaderView Binding 已改为显式 closure；是否消除警告待真实构建。详细设计 SEARCH_DESIGN.md；尚未验收源码，M0 产物保留不覆盖。

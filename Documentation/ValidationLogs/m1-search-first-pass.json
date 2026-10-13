@@ -1,0 +1,372 @@
+{
+  "validationKind": "real_github_macos_ios_build_and_xctest",
+  "recordedAtUTC": "2026-10-13T13:04:40.604506+00:00",
+  "milestoneScope": "M1 incremental search slice; full M1 visual/device acceptance still pending",
+  "run": {
+    "id": "38399996364",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38399996364",
+    "headSha": "4d5d86ea0cf45e47dc2337aaada48f26ecebbcc5",
+    "conclusion": "success"
+  },
+  "environment": [
+    "Xcode 16.4",
+    "Build version 16F6",
+    "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+    "Target: arm64-apple-macosx15.0",
+    "ProductName:\t\tmacOS",
+    "ProductVersion:\t\t15.7.9",
+    "BuildVersion:\t\t24G830"
+  ],
+  "jobs": [
+    {
+      "name": "repository-checks",
+      "conclusion": "success"
+    },
+    {
+      "name": "core-tests",
+      "conclusion": "success"
+    },
+    {
+      "name": "ios",
+      "conclusion": "success"
+    }
+  ],
+  "linuxCoreTests": {
+    "count": 14,
+    "passed": true
+  },
+  "appleCoreTests": {
+    "count": 14,
+    "passed": true,
+    "fileCoordinationScope": "Local files only; File Provider/iCloud pending"
+  },
+  "iosTests": {
+    "count": 20,
+    "passed": true,
+    "tests": [
+      "XianxiaReaderTests.EPUBIntegrationTests testCorruptEPUBImportRollsBackFilesAndDatabase",
+      "XianxiaReaderTests.EPUBIntegrationTests testEPUB2AndEPUB3MetadataAndNavigationIndex",
+      "XianxiaReaderTests.EPUBIntegrationTests testNavigatorCanBeCreatedWithoutAnHTTPServer",
+      "XianxiaReaderTests.EPUBIntegrationTests testRealImportPersistsBookAndCachedTOC",
+      "XianxiaReaderTests.PositionCodecTests testLocatorRoundTripPreservesFragmentsAndTextContext",
+      "XianxiaReaderTests.PositionCodecTests testWrongBookEngineVersionAndCorruptDataAreRejected",
+      "XianxiaReaderTests.ReaderLifecycleTests testCloseDuringOpenCannotReturnReaderToReadyState",
+      "XianxiaReaderTests.ReaderLifecycleTests testFailedOpenCanRetryAndBecomeReady",
+      "XianxiaReaderTests.ReaderLifecycleTests testLatePositionAfterCloseIsNotPersisted",
+      "XianxiaReaderTests.ReaderSearchViewModelTests testEmptyAndOversizedQueryNeverStartEngineSearch",
+      "XianxiaReaderTests.ReaderSearchViewModelTests testLatePageCannotReplaceNewQueryResults",
+      "XianxiaReaderTests.ReaderSearchViewModelTests testLateStartedSessionIsCancelledAfterQueryChanges",
+      "XianxiaReaderTests.ReaderSearchViewModelTests testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+      "XianxiaReaderTests.ReaderSearchViewModelTests testSelectionDelegatesOpaquePositionAndReportsNavigationFailure",
+      "XianxiaReaderTests.ReadiumSearchTests testBatchSizeSnippetBoundsAndEndPreserveCSSLocator",
+      "XianxiaReaderTests.ReadiumSearchTests testCombiningCharactersEmojiAndInlineSegmentBoundaries",
+      "XianxiaReaderTests.ReadiumSearchTests testConcurrentNextRejectedAndCancelledSessionRejectsLatePage",
+      "XianxiaReaderTests.ReadiumSearchTests testContentReadFailureIsNotReportedAsNoMatches",
+      "XianxiaReaderTests.ReadiumSearchTests testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch",
+      "XianxiaReaderTests.ReadiumSearchTests testRealEPUB2AndEPUB3ChineseSearchPositions"
+    ]
+  },
+  "xcodeBuildPassed": true,
+  "iosTestsPassed": true,
+  "releaseDeviceBuildPassed": true,
+  "codeSigningAllowed": false,
+  "ipaProduced": true,
+  "ipaInspection": {
+    "ipa": "build\\ci\\38399996364\\ipa\\XianxiaReader.ipa",
+    "bytes": 7365998,
+    "sha256": "423ba0acad23f8bcd42ca22c43f2316cebb003e8d80ce8e8a099211121548167",
+    "zipEntries": 70,
+    "zipIntegrityPassed": true,
+    "bundleID": "com.xianxiareader.app",
+    "minimumOS": "16.0",
+    "supportedPlatforms": [
+      "iPhoneOS"
+    ],
+    "executable": "Payload/XianxiaReader.app/XianxiaReader",
+    "executableMode": "0o755",
+    "machOArchitecture": "arm64",
+    "machOPlatform": "iOS device",
+    "linkedLibraries": [
+      "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+      "/System/Library/Frameworks/UIKit.framework/UIKit",
+      "/usr/lib/libxml2.2.dylib",
+      "/usr/lib/libz.1.dylib",
+      "/System/Library/Frameworks/Foundation.framework/Foundation",
+      "/usr/lib/libobjc.A.dylib",
+      "/usr/lib/libSystem.B.dylib",
+      "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+      "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+      "/System/Library/Frameworks/Combine.framework/Combine",
+      "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+      "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+      "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+      "/System/Library/Frameworks/NaturalLanguage.framework/NaturalLanguage",
+      "/System/Library/Frameworks/PDFKit.framework/PDFKit",
+      "/System/Library/Frameworks/Security.framework/Security",
+      "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+      "/System/Library/Frameworks/WebKit.framework/WebKit",
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libcompression.dylib",
+      "/usr/lib/libsqlite3.dylib",
+      "/usr/lib/swift/libswiftAVFoundation.dylib",
+      "/usr/lib/swift/libswiftCompression.dylib",
+      "/usr/lib/swift/libswiftCore.dylib",
+      "/usr/lib/swift/libswiftCoreAudio.dylib",
+      "/usr/lib/swift/libswiftCoreFoundation.dylib",
+      "/usr/lib/swift/libswiftCoreImage.dylib",
+      "/usr/lib/swift/libswiftCoreMIDI.dylib",
+      "/usr/lib/swift/libswiftCoreMedia.dylib",
+      "/usr/lib/swift/libswiftDarwin.dylib",
+      "/usr/lib/swift/libswiftDataDetection.dylib",
+      "/usr/lib/swift/libswiftDispatch.dylib",
+      "/usr/lib/swift/libswiftMetal.dylib",
+      "/usr/lib/swift/libswiftNaturalLanguage.dylib",
+      "/usr/lib/swift/libswiftOSLog.dylib",
+      "/usr/lib/swift/libswiftObjectiveC.dylib",
+      "/usr/lib/swift/libswiftQuartzCore.dylib",
+      "/usr/lib/swift/libswiftSpatial.dylib",
+      "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+      "/usr/lib/swift/libswiftXPC.dylib",
+      "/usr/lib/swift/libswift_Concurrency.dylib",
+      "/usr/lib/swift/libswiftos.dylib",
+      "/usr/lib/swift/libswiftsimd.dylib",
+      "/usr/lib/swift/libswiftUIKit.dylib"
+    ],
+    "deviceAccepted": false,
+    "trollStoreAccepted": false
+  },
+  "buildLog": {
+    "path": "build/ci/38399996364/ios/build/logs/build.log",
+    "sha256": "0c02e6de91c3b7d622e20610e8d66ad6b490764da68de9197868433c19d666ff"
+  },
+  "linuxCoreLog": {
+    "path": "build/ci/38399996364/core/core-tests.log",
+    "sha256": "e7f7b18aac31e465ad5f622618f0b400cbc997fc3d0b8a854860398822c92976"
+  },
+  "resolvedDependencyCount": 11,
+  "lockSha256": "4439358b111b49087662a40acbabac6bfc552bb0d395d36c9680babcb917cf8c",
+  "sourceFiles": [
+    {
+      "path": "App/AppRootView.swift",
+      "sha256": "f0666e29515c2b91c9c96c21aed158aef85497f333bb50a6d1a85d0014a45c92"
+    },
+    {
+      "path": "App/AppServices.swift",
+      "sha256": "33cdc1e5a1cf444680e2989adbf74ca6cb319bcf450b4c0f9be7af8f15ca061a"
+    },
+    {
+      "path": "App/Import/EPUBImportService.swift",
+      "sha256": "3e9e574a57a7df5456f9575440fac15239a1faf4a69d0fb74729a7f74195816a"
+    },
+    {
+      "path": "App/Library/BookCoverView.swift",
+      "sha256": "3aec9fb22f1625b97748c22753f1d0b70c8b59cc3883df0a882bb5b1b527c16c"
+    },
+    {
+      "path": "App/Library/LibraryView.swift",
+      "sha256": "7f4e89a537585fa4f8f84d0c6f206f0bd9cf0eca90f22e4a9faa86f717bb0870"
+    },
+    {
+      "path": "App/Library/LibraryViewModel.swift",
+      "sha256": "dc4ae87ba517e64744462f28129a89188e5f2ffa3e96b0f581c67e6792de383a"
+    },
+    {
+      "path": "App/Reader/ReaderView.swift",
+      "sha256": "10a2017f0efcb03bf78f591584c13a545cffad1c1d341a6b6a4527f1c485f2e8"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "sha256": "14f7dbe61f793b096dd97a1cb8123870151268a3f15ade41b17045e52c03bb5b"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "4ff59f84e094ea8a283785a1aa07d18a6a580372eb96940cc03aa67629b7f93f"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "412c9c9bc971304e71c454ff9f8d50f1a312a1dfac93e0445db0356d7c5f460b"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/Contents.json",
+      "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49"
+    },
+    {
+      "path": "App/Resources/Info.plist",
+      "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
+    },
+    {
+      "path": "App/Search/ReaderSearchView.swift",
+      "sha256": "2757b881542e68898454d8a5fce8644468722de9ea376a60000b4ba7fdf35a6c"
+    },
+    {
+      "path": "App/Search/ReaderSearchViewModel.swift",
+      "sha256": "13998bb5d7ef476659463b1fed306bb0acd84d2ff14047a30e0565d6796226e0"
+    },
+    {
+      "path": "App/XianxiaReaderApp.swift",
+      "sha256": "498fed27efc62b4a9c194e348c28fdd4798d58ead8fd70a15b1b63560c637f97"
+    },
+    {
+      "path": "Package.resolved",
+      "sha256": "4439358b111b49087662a40acbabac6bfc552bb0d395d36c9680babcb917cf8c"
+    },
+    {
+      "path": "Packages/XianxiaCore/Package.swift",
+      "sha256": "b515d0c2e79272133dd3d25342ec234b2d15eb76f4170253671bdea7e0f7ac5c"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+      "sha256": "bbfe59a972a3e8e09e347c04bc22c0eacd2544881af8a4b6068bfc30b38466e8"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+      "sha256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+      "sha256": "ef93070e1ab2ce471a50c1840a98419a801d0287d82f7f003dc308031e411bc1"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+      "sha256": "13368de0f9334bc1ff1ee171410db7655abf92ff305b2f4e5cd6c09db5e80845"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+      "sha256": "a43729c80e297b19246fb6a0aef4e0f3eba2bc1723e3591636ff1109a0f4cec6"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+      "sha256": "aa487abde3602c88c87550b82cfc8584182b04fbb6ceac2784e57dd64d50104e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+      "sha256": "0fbdc204b489dfd946d010660c99566c89d7d0bb0e0d0f998ec93a953b8ee478"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+      "sha256": "544d50ed01f307aa2cada2c63d7abd37d760c190f7e96982874a7d318f8752aa"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+      "sha256": "acef01932b798b2f6d8ab336f76019146fafca16af034ff5615246d8c40017eb"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+      "sha256": "dcff87fc3ddeb18b7d9ae1f99eb5956b4d49e45093a838dc611db1f76ae930b0"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+      "sha256": "42de49f68d4590ebac50849817356eead9bb5ae3de43c9397cad41ece2659399"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+      "sha256": "c550f99a01b41b6b4aab476a153fe31e32cdae96b5b509a532529f861c505265"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+      "sha256": "2edecb04d1d07c405756c70f649115572eb102605c8d85ffe83b6434e6c7cf6d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+      "sha256": "b9f1443e24047f6b844a44d21b33799e7c6d0e45a3478dce0c6cef50d6c543ef"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+      "sha256": "e1d57e76fe6d59690620bae6b98915435f39f94ce5e88cc96626458562f14822"
+    },
+    {
+      "path": "Packages/XianxiaReading/Package.swift",
+      "sha256": "2b3e70db5a1f97171ef67f7564c581ed425f43166786930bbab7bfe2515d8abb"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
+      "sha256": "0e09d893304027151ab65c82e1c3e6d5e8e433ff87798de87060cdfde085e32f"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
+      "sha256": "a5485477799b6f00af720fd956c8f68e6ab1e4323e9b389568c8e0d6335faff4"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
+      "sha256": "c2c2ac71881b8a2868f71d03488ac869ffb2dbe97c4fdd4e8b99d3ee48fe3097"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPublicationLoader.swift",
+      "sha256": "259ce5b03f6cbddcd5965e368add7c7efe951f0af7ae070d6bda30ba235a8d50"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "sha256": "5f7b6ea05c8db5d4575db9dbf57a55ff8c45e0e106ed35685d5f914b5b04b40f"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
+      "sha256": "c577adc1817b03ca1d79aa28db87e1460aa8cc54daa4b451ca2bd64133999df1"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift",
+      "sha256": "4da4fcaa3e7c64d6c437796348b596b9c7077ed4d7ff631bbd35952b1ff4b70b"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub2.epub",
+      "sha256": "210266e6953706373e0758c39aabaf70db65f2f7acd7ea0ea9f4f2ffa5856dfb"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Tests/iOS/EPUBIntegrationTests.swift",
+      "sha256": "ca6afd02922568004cd7fd91b21850becdd3197c1823343224604fd822c6122a"
+    },
+    {
+      "path": "Tests/iOS/PositionCodecTests.swift",
+      "sha256": "b41b6b7fce304a3e081e24184780d59dc3690f7e045b275d11725c96d8ab3d0a"
+    },
+    {
+      "path": "Tests/iOS/ReaderLifecycleTests.swift",
+      "sha256": "0e51412f42b2c63a5d5bd895a784edc28616e3e866156d80a60a929e9bd52c02"
+    },
+    {
+      "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
+      "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75"
+    },
+    {
+      "path": "Tests/iOS/ReadiumSearchTests.swift",
+      "sha256": "b7b297fef436c652a78a8c3ed7bc8b161644aefce81e2c6182e6cf69c1a57701"
+    },
+    {
+      "path": "project.yml",
+      "sha256": "ea10e1d6cac16377347e015985024e77efc97c40563488d69b005e144cc27844"
+    },
+    {
+      "path": "scripts/ci_ios.sh",
+      "sha256": "ec49467e561753f00a5f48ffe5c9a7b3c9019f1587732f6c036269795edb68c2"
+    },
+    {
+      "path": "scripts/package_ipa.py",
+      "sha256": "79d9f3c61ac0af7e7b9ddf37bcac49610c32eb2b81a4c989c61aa86927a391e6"
+    },
+    {
+      "path": "scripts/select_simulator.py",
+      "sha256": "8a445855e12e8e0d7e1f8fcc0cba67c62f33a5ae23ce048f85d09bd27978913a"
+    }
+  ],
+  "compilerWarnings": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift:42:44: warning: conditional cast from 'ReadError' to 'ReadError' always succeeds",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift:42:44: warning: conditional cast from 'ReadError' to 'ReadError' always succeeds"
+  ],
+  "bindingSendableWarningPresent": false,
+  "simulatorAccepted": false,
+  "deviceAccepted": false,
+  "trollStoreAccepted": false,
+  "limitations": [
+    "Search does not span text element/resource boundaries",
+    "Readium parses one XHTML resource at a time; large-resource memory/cancel delay unmeasured",
+    "UI result cap 1000; not full-book total count",
+    "Search target navigation and visual highlight require actual page acceptance"
+  ]
+}

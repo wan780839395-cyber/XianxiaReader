@@ -5,7 +5,7 @@
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | **自动验收通过** | Linux/macOS Core、9 iOS tests、设备 Release 与真实 IPA 均成功 |
-| M1 基础 EPUB | 搜索增量切片已写入，待本轮 CI；完整阶段未验收 | 37 Swift grammar、11 新搜索回归源码；真实阅读仍待设备验收 |
+| M1 基础 EPUB | 首轮搜索切片自动验证通过；清理警告后重跑；完整阶段未验收 | 20 iOS tests、设备 Release/IPA 通过；真实阅读仍待设备验收 |
 | M2 TXT | 未开始 | 后台流式分章、索引缓存与长文件测试 |
 | M3 完整书库 | 未开始 | 完整编辑、封面修改与操作一致性 |
 | M4 设置与主题 | 未开始 | 排版、字体、主题与交互验收 |
@@ -39,4 +39,4 @@
 
 ## 下一步
 
-正在 M1：Binding 改为显式 closure，搜索协议/actor/安全 Readium SearchService/结果 UI/11 回归已写入。37 Swift grammar、6 Python tests 通过；准备推送完整 CI（预期 iOS 20 tests），不能把静态检查写成编译成功。详细设计 SEARCH_DESIGN.md。CI 后继续真实 EPUB 阅读/位置恢复/交互验收，不大规模进入 M2。
+正在 M1：首轮搜索 CI 38399996364 已全通过，20 iOS tests、设备 Release 和真实 IPA；Binding 警告已消除。已清理多余 ReadError cast，准备再次完整 CI；详细证据 M1_SEARCH_VALIDATION_REPORT.json 和设计 SEARCH_DESIGN.md。用户设备为 iPhone13/iOS16.6.1/已装 TrollStore，安装/页面体验尚待实测，不大规模进入 M2。
