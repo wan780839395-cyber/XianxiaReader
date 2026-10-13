@@ -10,6 +10,8 @@
 
 ## 下一 M1 切片
 
+候选技术审查：PR811 原始补丁已下载到忽略的 .cache/continuous-scroll，`git apply --check` 在未修改的3.11.0标签上 exit0。这只验证补丁上下文能匹配，不是编译/运行通过。初查其 `layoutSubviews` 对所有 reading-order 项累加约1400点的估算高度；未加载资源没有阻止快速滑越空白的边界，定位也需要核对 fragment/CSS/text，而非只换算 progression。尚未修改正式依赖或执行候选代码；接入前须解决并回归这些问题。上游维护者也表示新功能因v4准备暂缓审查，不能把候选标为稳定发行。
+
 优先评估 Readium 层的可维护扩展，而非重新实现 EPUB 排版：原 PaginationView 增加垂直连续布局，重用 resource serving、ReadiumCSS、DOM locator、内部链接、搜索及状态机。适配保持在引擎侧，UI/数据库继续只操作 ReadingInterfaces/ReadingPosition。
 
 必须有可审阅的版本/补丁和许可证记录；不能临时修改 CI 的 SourcePackages 缓存，不能将未合并PR伪装成官方3.11。若采用维护分支/本地源码依赖，要真实解析、审查锁文件与完整 CI，再替换当前稳定路径。

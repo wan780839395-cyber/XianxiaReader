@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-13T15:44:43.719639+00:00",
+  "recordedAtUTC": "2026-10-13T15:59:06.413911+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
   "fileCount": 119,
   "files": [
@@ -130,8 +130,8 @@
     },
     {
       "path": "Documentation/CONTINUOUS_SCROLL_DESIGN.md",
-      "bytes": 2788,
-      "sha256": "b7d3b7bcf23ae3f136f1a61484cccd179e69f763e648ac5ee00bd6d88f9a3eb3"
+      "bytes": 3406,
+      "sha256": "800c677fc98c5d3d96b4df4c10fe3d4f9c68c5cd0e4cf7719afa40477ee233a9"
     },
     {
       "path": "Documentation/CORE_VALIDATION_REPORT.json",
@@ -221,7 +221,7 @@
     {
       "path": "Documentation/VALIDATION_REPORT.json",
       "bytes": 413,
-      "sha256": "7dfafd848df085a00922cce79989b16528140a413ccc5461cc6bc78cb54f038a"
+      "sha256": "172337381b70de81f8634b965cf5823be421a5fe4a3ffa605611c7872b62c3c2"
     },
     {
       "path": "Documentation/ValidationLogs/core-container-before-docker-upgrade.log",
@@ -335,8 +335,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6923,
-      "sha256": "3597110eeb477395173315998e21487e76edd83f8253ae82673162e3e06d7319"
+      "bytes": 7212,
+      "sha256": "d221f216ab594785e90ca5f94fce308fe59acee31c931077bae66bde08d0d088"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -520,8 +520,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 7693,
-      "sha256": "0bf4c5dc6ae6748ea0960db0483aa5f0e262f9d60f854ccbbf9f22e199eaf7a6"
+      "bytes": 7789,
+      "sha256": "111be9b64d0f3560e843cdd97f2316b78144ec5d77577cf425ec789a9f04eeb0"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",

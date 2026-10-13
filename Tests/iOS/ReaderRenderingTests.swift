@@ -1,5 +1,4 @@
 import ReadiumAdapter
-import ReadiumNavigator
 import SwiftUI
 import UIKit
 import WebKit
@@ -51,14 +50,14 @@ final class ReaderRenderingTests: XCTestCase {
         return (window, state)
     }
 
-    @MainActor private func open(_ engine: ReadiumReaderEngine) async throws -> (Book, EPUBNavigatorViewController) {
+    @MainActor private func open(_ engine: ReadiumReaderEngine) async throws -> (Book, UIViewController) {
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
         let book = Book(title: "阅读页面测试", format: .epub, filePath: "reader-layout.epub")
         try await engine.open(book: book, fileURL: url, position: nil)
-        return (book, try XCTUnwrap(engine.viewController.children.first as? EPUBNavigatorViewController))
+        return (book, try XCTUnwrap(engine.viewController.children.first))
     }
 
-    @MainActor private func probe(_ navigator: EPUBNavigatorViewController, resource: String) async throws -> [String: Any] {
+    @MainActor private func probe(_ navigator: UIViewController, resource: String) async throws -> [String: Any] {
         let deadline = Date().addingTimeInterval(20)
         let script = """
         (() => {
@@ -71,14 +70,13 @@ final class ReaderRenderingTests: XCTestCase {
         })()
         """
         while Date() < deadline {
-            switch await navigator.evaluateJavaScript(script) {
-            case .success(let value):
+            if let webView = visibleWebView(in: navigator.view) {
+                // Query the actual rendered WKWebView through its public API.
+                // The host app owns Readium's static symbols; importing its
+                // concrete Navigator metadata here would require duplicate linkage.
+                let value = try await webView.evaluateJavaScript(script)
                 guard let data = value as? [String: Any] else { throw RenderFailure.invalidProbe }
                 if (data["href"] as? String)?.hasSuffix(resource) == true, data["ready"] as? Bool == true { return data }
-            case .failure(let error):
-                // Public API reports this while the initial/target spread is loading.
-                guard let epub = error as? EPUBNavigatorViewController.EPUBError,
-                      case .spreadNotLoaded = epub else { throw error }
             }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
@@ -145,12 +143,18 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
-        func webViews(_ view: UIView) -> [WKWebView] {
-            (view as? WKWebView).map { [$0] } ?? view.subviews.flatMap(webViews)
-        }
-        let webView = try XCTUnwrap(webViews(root).first {
-            $0.window != nil && root.bounds.intersection($0.convert($0.bounds, to: root)).height > root.bounds.height * 0.5
-        })
+        let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)
+    }
+
+    @MainActor private func visibleWebView(in root: UIView) -> WKWebView? {
+        webViews(in: root).first {
+            $0.window != nil && root.bounds.intersection($0.convert($0.bounds, to: root)).height > root.bounds.height * 0.5
+        }
+    }
+
+    @MainActor private func webViews(in view: UIView) -> [WKWebView] {
+        if let webView = view as? WKWebView { return [webView] }
+        return view.subviews.flatMap { webViews(in: $0) }
     }
 }
