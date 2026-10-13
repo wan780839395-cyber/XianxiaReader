@@ -1,0 +1,12 @@
+test_executable_outside_bundle_is_rejected (test_tooling.BuildToolingTests.test_executable_outside_bundle_is_rejected) ... ok
+test_ipa_has_payload_executable_resources_and_unix_modes (test_tooling.BuildToolingTests.test_ipa_has_payload_executable_resources_and_unix_modes) ... ok
+test_missing_application_executable_cannot_produce_ipa (test_tooling.BuildToolingTests.test_missing_application_executable_cannot_produce_ipa) ... ok
+test_missing_runtime_fails_instead_of_skipping_tests (test_tooling.BuildToolingTests.test_missing_runtime_fails_instead_of_skipping_tests) ... ok
+test_selects_only_available_pinned_runtime_iphone (test_tooling.BuildToolingTests.test_selects_only_available_pinned_runtime_iphone) ... ok
+test_simulator_app_cannot_be_packaged_as_device_ipa (test_tooling.BuildToolingTests.test_simulator_app_cannot_be_packaged_as_device_ipa) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.027s
+
+OK
+Packaged unsigned device IPA: C:\Users\78083\AppData\Local\Temp\tmpyp5hej0r\test.ipa

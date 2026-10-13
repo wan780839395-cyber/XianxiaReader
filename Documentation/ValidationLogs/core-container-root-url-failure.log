@@ -1,0 +1,113 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libsqlite3-0
+Suggested packages:
+  sqlite3-doc
+The following NEW packages will be installed:
+  libsqlite3-dev
+The following packages will be upgraded:
+  libsqlite3-0
+1 upgraded, 1 newly installed, 0 to remove and 115 not upgraded.
+Need to get 1488 kB of archives.
+After this operation, 3167 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsqlite3-0 amd64 3.37.2-2ubuntu0.8 [642 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsqlite3-dev amd64 3.37.2-2ubuntu0.8 [847 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 1488 kB in 3s (506 kB/s)
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 18228 files and directories currently installed.)
+Preparing to unpack .../libsqlite3-0_3.37.2-2ubuntu0.8_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.37.2-2ubuntu0.8) over (3.37.2-2ubuntu0.5) ...
+Selecting previously unselected package libsqlite3-dev:amd64.
+Preparing to unpack .../libsqlite3-dev_3.37.2-2ubuntu0.8_amd64.deb ...
+Unpacking libsqlite3-dev:amd64 (3.37.2-2ubuntu0.8) ...
+Setting up libsqlite3-0:amd64 (3.37.2-2ubuntu0.8) ...
+Setting up libsqlite3-dev:amd64 (3.37.2-2ubuntu0.8) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.10) ...
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+Target: x86_64-unknown-linux-gnu
+Building for debugging...
+[0/14] Write sources
+[2/14] Copying 001_initial.sql
+[3/14] Write swift-version-24593BA9C3E375BF.txt
+[5/26] Compiling XianxiaCore Bookmark.swift
+[6/26] Compiling XianxiaCore SourceFileCopying.swift
+[7/26] Compiling XianxiaCore Book.swift
+[8/26] Compiling XianxiaCore BookFileStore.swift
+[9/26] Compiling XianxiaCore SQLiteBookRepository.swift
+[10/26] Compiling XianxiaCore BookRepository.swift
+[11/26] Emitting module XianxiaCore
+[12/26] Compiling XianxiaCore SQLiteConnection.swift
+[13/26] Compiling XianxiaCore Chapter.swift
+[14/26] Compiling XianxiaCore resource_bundle_accessor.swift
+[15/26] Compiling XianxiaCore ReadingPosition.swift
+[16/26] Compiling XianxiaCore TXTIndexing.swift
+[17/27] Wrapping AST for XianxiaCore for debugging
+[19/30] Compiling XianxiaCoreTests FileStoreTests.swift
+[20/30] Emitting module XianxiaCoreTests
+[21/30] Compiling XianxiaCoreTests RepositoryTests.swift
+[22/31] /tmp/xianxia-core-build/x86_64-unknown-linux-gnu/debug/XianxiaCorePackageDiscoveredTests.derived/all-discovered-tests.swift
+[23/31] Write sources
+[24/31] Wrapping AST for XianxiaCoreTests for debugging
+[26/34] Compiling XianxiaCorePackageDiscoveredTests all-discovered-tests.swift
+[27/34] Emitting module XianxiaCorePackageDiscoveredTests
+[28/34] Compiling XianxiaCorePackageDiscoveredTests XianxiaCoreTests.swift
+[29/35] /tmp/xianxia-core-build/x86_64-unknown-linux-gnu/debug/XianxiaCorePackageTests.derived/runner.swift
+[30/35] Write sources
+[31/35] Wrapping AST for XianxiaCorePackageDiscoveredTests for debugging
+[33/37] Emitting module XianxiaCorePackageTests
+[34/37] Compiling XianxiaCorePackageTests runner.swift
+[35/38] Wrapping AST for XianxiaCorePackageTests for debugging
+[36/38] Write Objects.LinkFileList
+[37/38] Linking XianxiaCorePackageTests.xctest
+Build complete! (6.37s)
+[1/14] Testing XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage
+[2/14] Testing XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal
+[3/14] Testing XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing
+[4/14] Testing XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks
+[5/14] Testing XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues
+[6/14] Testing XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase
+[7/14] Testing XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint
+[8/14] Testing XianxiaCoreTests.FileStoreTests/testUnsupportedImportDoesNotCreateBookFiles
+[9/14] Testing XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition
+[10/14] Testing XianxiaCoreTests.RepositoryTests/testChapterOrderAndBookIsolation
+[11/14] Testing XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook
+[12/14] Testing XianxiaCoreTests.FileStoreTests/testSymlinkCannotEscapeStorage
+[13/14] Testing XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport
+[14/14] Testing XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening
+Test Suite 'Selected tests' started at 2026-10-13 09:48:13.516
+Test Suite 'FileStoreTests' started at 2026-10-13 09:48:13.519
+Test Case 'FileStoreTests.testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks' started at 2026-10-13 09:48:13.519
+/workspace/Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift:81: error: FileStoreTests.testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks : XCTAssertEqual failed: ("file:///tmp/16C84D82-9980-4D39-92BB-338848720DDB/Actual/NewStorage") is not equal to ("file:///tmp/16C84D82-9980-4D39-92BB-338848720DDB/Actual/NewStorage/") - 
+Test Case 'FileStoreTests.testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks' failed (0.009 seconds)
+Test Suite 'FileStoreTests' failed at 2026-10-13 09:48:13.528
+	 Executed 1 test, with 1 failure (0 unexpected) in 0.009 (0.009) seconds
+Test Suite 'Selected tests' failed at 2026-10-13 09:48:13.528
+	 Executed 1 test, with 1 failure (0 unexpected) in 0.009 (0.009) seconds
+
+◇ Test run started.
+↳ Testing Library Version: 6.1.2 (d6b70f9ef9eb207)
+↳ Target Platform: x86_64-unknown-linux-gnu
+✔ Test run with 0 tests passed after 0.001 seconds.

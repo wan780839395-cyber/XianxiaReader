@@ -1,0 +1,22 @@
+2026-10-13 (Asia/Shanghai): local Core compilation attempt
+Windows Swift/Xcode executables: unavailable
+WSL inventory: docker-desktop only
+Docker CLI: present; engine initially unavailable
+docker desktop start --detach: startup requested
+Observed backend error at 2026-10-13T08:59:23 UTC:
+starting services: initializing Inference manager:
+listening on unix://C:/Users/78083/AppData/Local/Docker/run/dockerInference:
+remove C:/Users/78083/AppData/Local/Docker/run/dockerInference:
+The file cannot be accessed by the system.
+(listener: The filename, directory name, or volume label syntax is incorrect.)
+Backend log reported engines shutdown complete and backend crashed.
+Own startup/query processes ended. No Docker settings/data reset.
+Official registry manifest query succeeded independently of the engine.
+swift:6.1.2-jammy linux/amd64:
+sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f
+Swift container run: NOT EXECUTED
+Core compilation/tests: NOT EXECUTED
+Windows Core script failure-path check: exit 1, engine unavailable; returned promptly
+Diagnostic logs: build/logs/docker-engine.stdout.log and docker-engine.stderr.log
+iOS build/tests: NOT EXECUTED
+XianxiaReader.ipa: NOT PRODUCED

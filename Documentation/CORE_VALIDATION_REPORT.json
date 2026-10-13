@@ -1,0 +1,118 @@
+{
+  "validationKind": "core_linux_compilation_and_xctest",
+  "recordedAtUTC": "2026-10-13T10:07:29.9799296Z",
+  "scope": "XianxiaCore only; Linux debug; Swift 5 language mode; Foundation and SQLite",
+  "command": "pwsh -NoProfile -File scripts/test_core_container.ps1",
+  "containerCommand": "swift test --package-path Packages/XianxiaCore --scratch-path /tmp/xianxia-core-build --parallel",
+  "image": "swift:6.1.2-jammy@sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f",
+  "compiler": "Swift version 6.1.2 (swift-6.1.2-RELEASE)",
+  "target": "x86_64-unknown-linux-gnu",
+  "commandExitCode": 0,
+  "swiftCompiled": true,
+  "coreTestsPassed": true,
+  "testFramework": "XCTest",
+  "testCount": 14,
+  "tests": [
+    "XianxiaCoreTests.FileStoreTests/testStageFinalizeAndRecoveryPreserveCommittedBook",
+    "XianxiaCoreTests.FileStoreTests/testPartialCopyFailureRemovesStagingAndPreservesOriginal",
+    "XianxiaCoreTests.RepositoryTests/testPositionForMissingBookFailsForeignKeyConstraint",
+    "XianxiaCoreTests.RepositoryTests/testStalePositionCannotOverwriteNewerPosition",
+    "XianxiaCoreTests.RepositoryTests/testProgressionSanitizesOutOfRangeAndNonFiniteValues",
+    "XianxiaCoreTests.FileStoreTests/testUnsupportedImportDoesNotCreateBookFiles",
+    "XianxiaCoreTests.FileStoreTests/testRootUnderExistingSymlinkIsCanonicalizedBeforePathChecks",
+    "XianxiaCoreTests.FileStoreTests/testPathsCannotEscapeStorage",
+    "XianxiaCoreTests.FileStoreTests/testManagedSymlinksAreRejectedEvenWhenTargetIsInsideRootOrMissing",
+    "XianxiaCoreTests.RepositoryTests/testLibraryPositionAndBookmarksSurviveReopening",
+    "XianxiaCoreTests.RepositoryTests/testInvalidChapterRollsBackWholeImport",
+    "XianxiaCoreTests.FileStoreTests/testSymlinkCannotEscapeStorage",
+    "XianxiaCoreTests.RepositoryTests/testChapterOrderAndBookIsolation",
+    "XianxiaCoreTests.RepositoryTests/testNewerSchemaIsRejectedWithoutChangingOrDeletingDatabase"
+  ],
+  "log": "Documentation/ValidationLogs/core-container-success.log",
+  "logSha256": "c22d6c86d05441c4180d69c5bffebdd3aa82456ed55e475fe549756a61d1520a",
+  "appleFileCoordinationTested": false,
+  "xcodeBuildPassed": false,
+  "iosTestsPassed": false,
+  "simulatorAccepted": false,
+  "deviceAccepted": false,
+  "trollStoreAccepted": false,
+  "ipaProduced": false,
+  "previousFailures": [
+    {
+      "exitCode": 1,
+      "log": "Documentation/ValidationLogs/core-container-first-failure.log",
+      "reason": "Symlink escape accepted when the leaf did not exist; production path validation fixed."
+    },
+    {
+      "exitCode": 1,
+      "log": "Documentation/ValidationLogs/core-container-root-url-failure.log",
+      "reason": "Directory URL equality differed only by a trailing slash; regression assertion now compares canonical filesystem paths."
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "Packages/XianxiaCore/Package.swift",
+      "sha256": "0d2fae0ae2e7618b10bb5acfe3d337272fe72177721bc55f0a851ee0da73046a"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+      "sha256": "bbfe59a972a3e8e09e347c04bc22c0eacd2544881af8a4b6068bfc30b38466e8"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+      "sha256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+      "sha256": "ef93070e1ab2ce471a50c1840a98419a801d0287d82f7f003dc308031e411bc1"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+      "sha256": "13368de0f9334bc1ff1ee171410db7655abf92ff305b2f4e5cd6c09db5e80845"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+      "sha256": "a43729c80e297b19246fb6a0aef4e0f3eba2bc1723e3591636ff1109a0f4cec6"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+      "sha256": "aa487abde3602c88c87550b82cfc8584182b04fbb6ceac2784e57dd64d50104e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+      "sha256": "0fbdc204b489dfd946d010660c99566c89d7d0bb0e0d0f998ec93a953b8ee478"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+      "sha256": "544d50ed01f307aa2cada2c63d7abd37d760c190f7e96982874a7d318f8752aa"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+      "sha256": "acef01932b798b2f6d8ab336f76019146fafca16af034ff5615246d8c40017eb"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+      "sha256": "dcff87fc3ddeb18b7d9ae1f99eb5956b4d49e45093a838dc611db1f76ae930b0"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+      "sha256": "42de49f68d4590ebac50849817356eead9bb5ae3de43c9397cad41ece2659399"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+      "sha256": "c550f99a01b41b6b4aab476a153fe31e32cdae96b5b509a532529f861c505265"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+      "sha256": "2edecb04d1d07c405756c70f649115572eb102605c8d85ffe83b6434e6c7cf6d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+      "sha256": "b9f1443e24047f6b844a44d21b33799e7c6d0e45a3478dce0c6cef50d6c543ef"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+      "sha256": "e1d57e76fe6d59690620bae6b98915435f39f94ce5e88cc96626458562f14822"
+    }
+  ]
+}

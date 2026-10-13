@@ -1,0 +1,23 @@
+-------------------------------------------------------------------------------->8
+Version: 4.95.0 (242831)
+Sha1: 
+Started on: 2026/10/13 10:00:47.156
+Resources: C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791885644767063800\resources
+OS: Windows 10 Home China
+Edition: CoreCountrySpecific
+Id: 2009
+Build: 26200
+BuildLabName: 26100.1.amd64fre.ge_release.240331-1435
+File: C:\Users\78083\AppData\Local\Docker\install-log.txt
+CommandLine: "C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791885644767063800\Docker Desktop Installer.exe" install -package C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791885644767063800\DockerDesktop.d4w --auto-update --confirm --auto-close-and-start-app --errfile=C:\Users\78083\AppData\Local\Docker\installer.error.json -vm-package C:\Users\78083\AppData\Local\Temp\DockerDesktopInstallers\1791885644767063800\DockerDesktopVM.d4w
+You can send feedback, including this log file, at https://dockr.ly/desktop-feedback
+[2026-10-13T10:00:47.270591700Z][Installer][I] Existing installation found: build=228796, version=4.77.0, basePath=C:\Program Files\Docker\Docker
+[2026-10-13T10:00:47.585779100Z][ProcessEnvironmentDetector][I] Launching from base path: False
+[2026-10-13T10:00:47.631077100Z][ProcessEnvironmentDetector][I] Not run as admin, relaunching with UAC prompt
+[2026-10-13T10:02:49.971017100Z][Installer][E] System.ComponentModel.Win32Exception (0x80004005): 操作已被用户取消。
+   在 System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   在 System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   在 Docker.Installer.ProcessEnvironmentDetector.RelaunchAsAdmin(InstallerSettings settings)
+   在 Docker.Installer.Cmd.AdminInstallHandler.RelaunchAsAdmin(InstallerSettings settings, String installPath)
+   在 Docker.Installer.Cmd.AdminInstallHandler.Run(InstallerSettings settings)
+   在 Docker.Installer.Program.Main(String[] args)

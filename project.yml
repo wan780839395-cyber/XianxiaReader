@@ -1,0 +1,73 @@
+name: XianxiaReader
+options:
+  minimumXcodeGenVersion: 2.46.0
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hans
+packages:
+  XianxiaCore:
+    path: Packages/XianxiaCore
+  XianxiaReading:
+    path: Packages/XianxiaReading
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: targeted
+    MARKETING_VERSION: 0.0.1
+    CURRENT_PROJECT_VERSION: 1
+    TARGETED_DEVICE_FAMILY: "1,2"
+targets:
+  XianxiaReader:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes: ["Resources/Info.plist"]
+    dependencies:
+      - package: XianxiaCore
+        product: XianxiaCore
+      - package: XianxiaReading
+        product: ReadingInterfaces
+      - package: XianxiaReading
+        product: ReadiumAdapter
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.app
+        INFOPLIST_FILE: App/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+  XianxiaReaderTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/iOS
+      - path: Tests/Fixtures
+        buildPhase: resources
+        type: folder
+    dependencies:
+      - target: XianxiaReader
+      - package: XianxiaCore
+        product: XianxiaCore
+      - package: XianxiaReading
+        product: ReadingInterfaces
+      - package: XianxiaReading
+        product: ReadiumAdapter
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  XianxiaReader:
+    build:
+      targets:
+        XianxiaReader: all
+        XianxiaReaderTests: [test]
+    test:
+      targets: [XianxiaReaderTests]
+      gatherCoverageData: true
+    run:
+      config: Debug
+    archive:
+      config: Release

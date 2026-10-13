@@ -1,0 +1,95 @@
+name: iOS Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install static validation dependencies
+        run: python -m pip install -r scripts/requirements-checks.txt
+      - name: Validate repository and Swift syntax
+        run: python scripts/check_repository.py --swift-syntax
+      - name: Test simulator selection and IPA packaging safeguards
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
+
+  core-tests:
+    needs: repository-checks
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    container:
+      image: swift:6.1.2-jammy@sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SQLite development headers inside test container
+        run: |
+          set -euo pipefail
+          apt-get update -qq
+          apt-get install -y --no-install-recommends libsqlite3-dev
+      - name: Compile and test Core with official Swift toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          swift --version 2>&1 | tee build/logs/core-environment.log
+          swift test --package-path Packages/XianxiaCore --parallel 2>&1 | tee build/logs/core-tests.log
+      - name: Upload Core compilation and test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-core-diagnostics
+          if-no-files-found: warn
+          path: build/logs/
+
+  ios:
+    needs: [repository-checks, core-tests]
+    runs-on: macos-15
+    timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build, test, and package unsigned IPA
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
+      - name: Upload build logs, test results, project, and resolved packages
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-build-diagnostics
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            build/logs/
+            build/*.xcresult/
+            build/build-environment.txt
+            XianxiaReader.xcodeproj/
+      - name: Upload unsigned device IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-unsigned-ipa
+          if-no-files-found: error
+          retention-days: 14
+          path: build/XianxiaReader.ipa

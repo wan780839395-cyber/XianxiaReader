@@ -1,0 +1,133 @@
+import Foundation
+import ReadiumNavigator
+import ReadiumShared
+import ReadingInterfaces
+import UIKit
+import XianxiaCore
+
+@MainActor public final class ReadiumEngineFactory: ReaderEngineFactory {
+    public init() {}
+    public func makeEngine(for format: BookFormat) throws -> any ReaderEngine {
+        guard format == .epub else { throw EPUBError.unsupported }
+        return ReadiumReaderEngine()
+    }
+}
+
+@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, EPUBNavigatorDelegate {
+    private let host = UIViewController()
+    private let loader = ReadiumPublicationLoader()
+    private var navigator: EPUBNavigatorViewController?
+    private var bookID: UUID?
+    private var openRequestID: UUID?
+    private var preferences = EPUBPreferences(scroll: false)
+    public var onPositionChanged: ((ReadingPosition) -> Void)?
+    public var onCenterTap: (() -> Void)?
+    public var onError: ((String) -> Void)?
+    public var viewController: UIViewController { host }
+    public private(set) var currentPosition: ReadingPosition?
+
+    public override init() { super.init() }
+
+    public func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws {
+        close()
+        let requestID = UUID()
+        openRequestID = requestID
+        let publication = try await loader.open(at: fileURL)
+        try Task.checkCancellation()
+        guard openRequestID == requestID else { throw CancellationError() }
+        let locator = try position.map { try ReadiumPositionCodec.decode($0, bookID: book.id) }
+        let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
+            config: .init(preferences: preferences, disablePageTurnsWhileScrolling: true,
+                          preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
+        self.bookID = book.id
+        self.navigator = navigator
+        currentPosition = position
+        navigator.delegate = self
+        // Readium dispatches only taps not consumed by links, selection, etc.
+        // Avoid a SwiftUI gesture overlay that would block publication interactions.
+        navigator.addObserver(.tap { [weak self, weak navigator] event in
+            guard let self, let navigator else { return false }
+            let width = navigator.view.bounds.width
+            guard width > 0 else { return false }
+            if event.location.x < width * 0.3 {
+                if !navigator.presentation.scroll { await self.turnPage(forward: false) }
+            } else if event.location.x > width * 0.7 {
+                if !navigator.presentation.scroll { await self.turnPage(forward: true) }
+            } else {
+                self.onCenterTap?()
+            }
+            return true
+        })
+        host.loadViewIfNeeded()
+        host.addChild(navigator)
+        navigator.view.translatesAutoresizingMaskIntoConstraints = false
+        host.view.addSubview(navigator.view)
+        NSLayoutConstraint.activate([
+            navigator.view.leadingAnchor.constraint(equalTo: host.view.leadingAnchor),
+            navigator.view.trailingAnchor.constraint(equalTo: host.view.trailingAnchor),
+            navigator.view.topAnchor.constraint(equalTo: host.view.topAnchor),
+            navigator.view.bottomAnchor.constraint(equalTo: host.view.bottomAnchor)
+        ])
+        navigator.didMove(toParent: host)
+    }
+
+    public func turnPage(forward: Bool) async {
+        guard let navigator else { return }
+        if forward { await navigator.goForward(options: .animated) }
+        else { await navigator.goBackward(options: .animated) }
+    }
+
+    public func go(to chapter: Chapter) async throws {
+        guard chapter.bookID == bookID, let href = chapter.href, AnyURL(string: href) != nil,
+              let navigator else { throw EPUBError.navigationFailed }
+        guard await navigator.go(to: Link(href: href), options: .animated) else { throw EPUBError.navigationFailed }
+    }
+
+    public func go(to position: ReadingPosition) async throws {
+        guard let bookID, let navigator else { throw EPUBError.navigationFailed }
+        let locator = try ReadiumPositionCodec.decode(position, bookID: bookID)
+        guard await navigator.go(to: locator, options: .animated) else { throw EPUBError.navigationFailed }
+    }
+
+    public func setScrolling(_ enabled: Bool) {
+        preferences.scroll = enabled
+        navigator?.submitPreferences(preferences)
+    }
+
+    public func close() {
+        // A suspended publication load must not mount a navigator after this reader closes.
+        openRequestID = nil
+        if let navigator {
+            if let locator = navigator.currentLocation { capture(locator) }
+            navigator.delegate = nil
+            navigator.willMove(toParent: nil)
+            navigator.view.removeFromSuperview()
+            navigator.removeFromParent()
+        }
+        navigator = nil
+        bookID = nil
+        currentPosition = nil
+    }
+
+    public func navigator(_ navigator: Navigator, locationDidChange locator: Locator) {
+        guard (navigator as AnyObject) === self.navigator else { return }
+        capture(locator)
+    }
+    public func navigator(_ navigator: Navigator, presentError error: NavigatorError) {
+        guard (navigator as AnyObject) === self.navigator else { return }
+        onError?(error.localizedDescription)
+    }
+    public func navigator(_ navigator: Navigator, didFailToLoadResourceAt href: RelativeURL, withError error: ReadError) {
+        guard (navigator as AnyObject) === self.navigator else { return }
+        onError?("正文资源读取失败：\(error.localizedDescription)")
+    }
+
+    private func capture(_ locator: Locator) {
+        guard let bookID else { return }
+        do {
+            let position = try ReadiumPositionCodec.encode(locator, bookID: bookID)
+            currentPosition = position
+            onPositionChanged?(position)
+        } catch { onError?("阅读位置保存失败：\(error.localizedDescription)") }
+    }
+}

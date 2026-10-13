@@ -1,0 +1,18 @@
+[
+  {
+    "original": "C:\\Users\\78083\\AppData\\Local\\Docker\\run",
+    "backup": "C:\\Users\\78083\\AppData\\Local\\Docker\\run.xianxia-backup-20261013-174018",
+    "entries": [
+      "dockerEthernetVfkit",
+      "dockerInference",
+      "userAnalyticsOtlpHttp.sock"
+    ]
+  },
+  {
+    "original": "C:\\Users\\78083\\AppData\\Local\\docker-secrets-engine",
+    "backup": "C:\\Users\\78083\\AppData\\Local\\docker-secrets-engine.xianxia-backup-20261013-174018",
+    "entries": [
+      "engine.sock"
+    ]
+  }
+]

@@ -1,0 +1,3 @@
+PASS bash -n scripts/ci_ios.sh
+PASS PowerShell AST scripts/test_core_container.ps1
+PASS python -m compileall -q scripts

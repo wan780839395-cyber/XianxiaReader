@@ -1,0 +1,38 @@
+[
+  {
+    "path": "C:\\Users\\78083\\AppData\\Local\\Docker\\run\\dockerInference",
+    "enumerated": true,
+    "attributes": 1056,
+    "tag": "0x80000023",
+    "bytes": 0,
+    "noFollowOpened": false,
+    "noFollowError": 1920
+  },
+  {
+    "path": "C:\\Users\\78083\\AppData\\Local\\Docker\\run\\dockerEthernetVfkit",
+    "enumerated": true,
+    "attributes": 1056,
+    "tag": "0x80000023",
+    "bytes": 0,
+    "noFollowOpened": false,
+    "noFollowError": 1920
+  },
+  {
+    "path": "C:\\Users\\78083\\AppData\\Local\\Docker\\run\\userAnalyticsOtlpHttp.sock",
+    "enumerated": true,
+    "attributes": 1056,
+    "tag": "0x80000023",
+    "bytes": 0,
+    "noFollowOpened": false,
+    "noFollowError": 1920
+  },
+  {
+    "path": "C:\\Users\\78083\\AppData\\Local\\docker-secrets-engine\\engine.sock",
+    "enumerated": true,
+    "attributes": 1056,
+    "tag": "0x80000023",
+    "bytes": 0,
+    "noFollowOpened": false,
+    "noFollowError": 1920
+  }
+]

@@ -1,0 +1,402 @@
+{
+  "recordedAtUTC": "2026-10-13T10:10:12.996459+00:00",
+  "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
+  "fileCount": 79,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 164,
+      "sha256": "d7bf016b8cc64d11af87df1145372588e37cdbd7ad538506b830f35f15a2b241"
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "bytes": 2934,
+      "sha256": "2d170a2a59d60511e56376d7c7e65995b958f9012150e1c2293569000d106e3e"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 162,
+      "sha256": "fd95ca343d79a94b5d6705ca1981c4f649f59d5bd4dac7e4cf6f7ecaf5100d1b"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 5143,
+      "sha256": "8c4cae192c0586bd9e7b258c7d5e4128190dc26d0cdd0ec51fea7859814c6b8e"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 8997,
+      "sha256": "56ee2565b0e07cd3150660d43facd4d1ac936124e2c763fd084805abff9ba44c"
+    },
+    {
+      "path": "App/AppRootView.swift",
+      "bytes": 1014,
+      "sha256": "f0666e29515c2b91c9c96c21aed158aef85497f333bb50a6d1a85d0014a45c92"
+    },
+    {
+      "path": "App/AppServices.swift",
+      "bytes": 1054,
+      "sha256": "33cdc1e5a1cf444680e2989adbf74ca6cb319bcf450b4c0f9be7af8f15ca061a"
+    },
+    {
+      "path": "App/Import/EPUBImportService.swift",
+      "bytes": 2127,
+      "sha256": "3e9e574a57a7df5456f9575440fac15239a1faf4a69d0fb74729a7f74195816a"
+    },
+    {
+      "path": "App/Library/BookCoverView.swift",
+      "bytes": 1458,
+      "sha256": "3aec9fb22f1625b97748c22753f1d0b70c8b59cc3883df0a882bb5b1b527c16c"
+    },
+    {
+      "path": "App/Library/LibraryView.swift",
+      "bytes": 4727,
+      "sha256": "7f4e89a537585fa4f8f84d0c6f206f0bd9cf0eca90f22e4a9faa86f717bb0870"
+    },
+    {
+      "path": "App/Library/LibraryViewModel.swift",
+      "bytes": 1707,
+      "sha256": "dc4ae87ba517e64744462f28129a89188e5f2ffa3e96b0f581c67e6792de383a"
+    },
+    {
+      "path": "App/Reader/ReaderView.swift",
+      "bytes": 5922,
+      "sha256": "6dcdd691f282bb1c518770553c910f8ef74fdf784987ae66b1865048559b78ea"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "bytes": 4543,
+      "sha256": "13c98a79720f2d8a95edd7b3af5b09a9d9b6d6742bcf059443f2fdfb42b49408"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "bytes": 389,
+      "sha256": "4ff59f84e094ea8a283785a1aa07d18a6a580372eb96940cc03aa67629b7f93f"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/Contents.json",
+      "bytes": 40,
+      "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49"
+    },
+    {
+      "path": "App/Resources/Info.plist",
+      "bytes": 1363,
+      "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
+    },
+    {
+      "path": "App/XianxiaReaderApp.swift",
+      "bytes": 137,
+      "sha256": "498fed27efc62b4a9c194e348c28fdd4798d58ead8fd70a15b1b63560c637f97"
+    },
+    {
+      "path": "Documentation/CORE_VALIDATION_REPORT.json",
+      "bytes": 5664,
+      "sha256": "c83d140fa651155921a626f21c0b7fda6d2381a49190d784f27581c99c47342f"
+    },
+    {
+      "path": "Documentation/DOCKER_RECOVERY.md",
+      "bytes": 3313,
+      "sha256": "3c45265a74ebe3ddb248d188c9e0c7d8187e7ad06684af481891d33e2f2b907f"
+    },
+    {
+      "path": "Documentation/FEATURE_MATRIX.md",
+      "bytes": 2303,
+      "sha256": "7c7e0ccdbdc6a7f42c60d5699c36ba35b3e68300ff27f486b8ca2115c69d8c74"
+    },
+    {
+      "path": "Documentation/GITHUB_SETUP.md",
+      "bytes": 2417,
+      "sha256": "c965e88237ae341137ad1dd5c906e3fb476c99ac184433ff502ed39881b5ed82"
+    },
+    {
+      "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
+      "bytes": 2183,
+      "sha256": "dc1433e39b55786861995fa78494f89b90d0651810299f8f2d0113e4909ecf2a"
+    },
+    {
+      "path": "Documentation/VALIDATION.md",
+      "bytes": 7865,
+      "sha256": "0c7f7ae2e539dc36fb8e019406935becb9fc8238c93ac169fe27b17c9ba2b261"
+    },
+    {
+      "path": "Documentation/VALIDATION_REPORT.json",
+      "bytes": 413,
+      "sha256": "7b83a5a43f9240ff3614b109db5ffc9563c672e73fd50255b37ea895c021a151"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-before-git-format.log",
+      "bytes": 5420,
+      "sha256": "9dafb7ee6324488d2c699e4a07389b5dd2acb5781446cde9aa706d34e50ef354"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-first-failure.log",
+      "bytes": 6784,
+      "sha256": "fee20d29beff6bed019379b978c80db901aef7cab48309e53789ccdd2437797d"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-root-url-failure.log",
+      "bytes": 6410,
+      "sha256": "48d240872b1d657d68b6a6961a30bbbd39be599b89d7287c930d85494feb0bd4"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-container-success.log",
+      "bytes": 5420,
+      "sha256": "c22d6c86d05441c4180d69c5bffebdd3aa82456ed55e475fe549756a61d1520a"
+    },
+    {
+      "path": "Documentation/ValidationLogs/core-environment.log",
+      "bytes": 1213,
+      "sha256": "6829f83abbaa60ce9f31f8e570af2bbec758fc794d44c4bb38dce3ba6dc456b5"
+    },
+    {
+      "path": "Documentation/ValidationLogs/docker-engine-recovered.log",
+      "bytes": 918,
+      "sha256": "c50ee9ff69f07f8320006bbfb35385c6cf47e0eab43f4ccb3df1e873e9e47554"
+    },
+    {
+      "path": "Documentation/ValidationLogs/docker-runtime-quarantine.json",
+      "bytes": 514,
+      "sha256": "6fbc4bd021381da2f3a44f02272b5f2d0247142b35844942d974b58bd4153e53"
+    },
+    {
+      "path": "Documentation/ValidationLogs/docker-socket-probe.json",
+      "bytes": 948,
+      "sha256": "17dbc8e1a589f4db07bd82872da1b0258a31357e7dfe9808556ac63bd590fdea"
+    },
+    {
+      "path": "Documentation/ValidationLogs/docker-upgrade-cancelled.log",
+      "bytes": 1981,
+      "sha256": "face8f64f0fe80e9c6d75701b30353d265e0c229bc53c0833f693bb2ea61793e"
+    },
+    {
+      "path": "Documentation/ValidationLogs/docker-upgrade-error.json",
+      "bytes": 675,
+      "sha256": "f8f70a13cc5c43354d0d213b684f685691ec77645b87b59bcf8f3765f0fff5c5"
+    },
+    {
+      "path": "Documentation/ValidationLogs/python-tooling.log",
+      "bytes": 1055,
+      "sha256": "7b83ca5a5c62651d8d09fb76cb7aa48c6008594ba04d7b00c743e931351a5171"
+    },
+    {
+      "path": "Documentation/ValidationLogs/script-syntax.log",
+      "bytes": 123,
+      "sha256": "40a90f416247f9e2e087597b9cd9d1aa7ee2392e5cfe29fd9412992494caec98"
+    },
+    {
+      "path": "Documentation/ValidationLogs/windows-static.log",
+      "bytes": 157,
+      "sha256": "d57438d8da3fb592977d124bcbdc1af861d5d3f8184b826a7049d51a54becad9"
+    },
+    {
+      "path": "Future/Knowledge/README.md",
+      "bytes": 1552,
+      "sha256": "de0ed5d8affb85a795d2b41f77518fae91918bc4eea9a5879a1a86631f54a6af"
+    },
+    {
+      "path": "Future/XBook/SPEC.md",
+      "bytes": 1589,
+      "sha256": "c813def865427f67db245409dadbded2ce8a3aefe77589bb344a17f135444f78"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 13598,
+      "sha256": "feab032182c9b4003289235cbb014001b51b02c1cf21b57e86466f37fc31eb0a"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "bytes": 3358,
+      "sha256": "9890f6c35dd62809a987eda78494852ec74ad0a51bc67d125c5ed26851a2512b"
+    },
+    {
+      "path": "Packages/XianxiaCore/Package.swift",
+      "bytes": 564,
+      "sha256": "0d2fae0ae2e7618b10bb5acfe3d337272fe72177721bc55f0a851ee0da73046a"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+      "bytes": 80,
+      "sha256": "bbfe59a972a3e8e09e347c04bc22c0eacd2544881af8a4b6068bfc30b38466e8"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+      "bytes": 21,
+      "sha256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+      "bytes": 523,
+      "sha256": "ef93070e1ab2ce471a50c1840a98419a801d0287d82f7f003dc308031e411bc1"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+      "bytes": 969,
+      "sha256": "13368de0f9334bc1ff1ee171410db7655abf92ff305b2f4e5cd6c09db5e80845"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+      "bytes": 3875,
+      "sha256": "a43729c80e297b19246fb6a0aef4e0f3eba2bc1723e3591636ff1109a0f4cec6"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+      "bytes": 4842,
+      "sha256": "aa487abde3602c88c87550b82cfc8584182b04fbb6ceac2784e57dd64d50104e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+      "bytes": 5347,
+      "sha256": "0fbdc204b489dfd946d010660c99566c89d7d0bb0e0d0f998ec93a953b8ee478"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+      "bytes": 1214,
+      "sha256": "544d50ed01f307aa2cada2c63d7abd37d760c190f7e96982874a7d318f8752aa"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+      "bytes": 1252,
+      "sha256": "acef01932b798b2f6d8ab336f76019146fafca16af034ff5615246d8c40017eb"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+      "bytes": 509,
+      "sha256": "dcff87fc3ddeb18b7d9ae1f99eb5956b4d49e45093a838dc611db1f76ae930b0"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+      "bytes": 901,
+      "sha256": "42de49f68d4590ebac50849817356eead9bb5ae3de43c9397cad41ece2659399"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+      "bytes": 925,
+      "sha256": "c550f99a01b41b6b4aab476a153fe31e32cdae96b5b509a532529f861c505265"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+      "bytes": 228,
+      "sha256": "2edecb04d1d07c405756c70f649115572eb102605c8d85ffe83b6434e6c7cf6d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+      "bytes": 6259,
+      "sha256": "b9f1443e24047f6b844a44d21b33799e7c6d0e45a3478dce0c6cef50d6c543ef"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+      "bytes": 6714,
+      "sha256": "e1d57e76fe6d59690620bae6b98915435f39f94ce5e88cc96626458562f14822"
+    },
+    {
+      "path": "Packages/XianxiaReading/Package.swift",
+      "bytes": 984,
+      "sha256": "2b3e70db5a1f97171ef67f7564c581ed425f43166786930bbab7bfe2515d8abb"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
+      "bytes": 1482,
+      "sha256": "98952621f5655ddb3d8241eb42f0bcfdc93d2386953cf5e4734e91750e78a3f6"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
+      "bytes": 817,
+      "sha256": "c2c2ac71881b8a2868f71d03488ac869ffb2dbe97c4fdd4e8b99d3ee48fe3097"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPublicationLoader.swift",
+      "bytes": 3492,
+      "sha256": "5f314dcf700b35aae7091e590aacdb7df982dced6c01bcef81debad1ea1e1a98"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "bytes": 5997,
+      "sha256": "ba9a02348ac37a856dc9991d2d21b7f002cde386da470893ff67d03e00e996ca"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7375,
+      "sha256": "a82f55e1030fb09f494f27a4f9f7cfa6cd8e2666401de9776059c2f5f43e4126"
+    },
+    {
+      "path": "ROADMAP.md",
+      "bytes": 4521,
+      "sha256": "39c7a482acc06fefb820c6e406ee32756f48f2e94f3f75f30c5434db982c1dd5"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub2.epub",
+      "bytes": 3122,
+      "sha256": "210266e6953706373e0758c39aabaf70db65f2f7acd7ea0ea9f4f2ffa5856dfb"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub3.epub",
+      "bytes": 3524,
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Tests/iOS/EPUBIntegrationTests.swift",
+      "bytes": 3585,
+      "sha256": "ca6afd02922568004cd7fd91b21850becdd3197c1823343224604fd822c6122a"
+    },
+    {
+      "path": "Tests/iOS/PositionCodecTests.swift",
+      "bytes": 1707,
+      "sha256": "b41b6b7fce304a3e081e24184780d59dc3690f7e045b275d11725c96d8ab3d0a"
+    },
+    {
+      "path": "Tests/iOS/ReaderLifecycleTests.swift",
+      "bytes": 4755,
+      "sha256": "0e51412f42b2c63a5d5bd895a784edc28616e3e866156d80a60a929e9bd52c02"
+    },
+    {
+      "path": "project.yml",
+      "bytes": 1862,
+      "sha256": "83783e86df86d61a9abf44d8ecf11e19540d08a3916c1dc14c1cfafb0fa03122"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "bytes": 9356,
+      "sha256": "f39a6312ec3917f94813c80fe9b31263db680b96d57f133779b78d934c050c0d"
+    },
+    {
+      "path": "scripts/ci_ios.sh",
+      "bytes": 2056,
+      "sha256": "6413ec8130c06f031eb4f89240ecc64c14b7cc1a8e3c1009ba75d10a2c3d8a26"
+    },
+    {
+      "path": "scripts/generate_fixtures.py",
+      "bytes": 4641,
+      "sha256": "26cbbe7dfe4999744a58ab3bc16e4bb92380f8f4af626425a338f9aab535b962"
+    },
+    {
+      "path": "scripts/package_ipa.py",
+      "bytes": 2535,
+      "sha256": "79d9f3c61ac0af7e7b9ddf37bcac49610c32eb2b81a4c989c61aa86927a391e6"
+    },
+    {
+      "path": "scripts/requirements-checks.txt",
+      "bytes": 59,
+      "sha256": "2d9f32a3779f936a0332921172efa5efb6d9f6b20006ee50a617ecf777cf2144"
+    },
+    {
+      "path": "scripts/select_simulator.py",
+      "bytes": 695,
+      "sha256": "8a445855e12e8e0d7e1f8fcc0cba67c62f33a5ae23ce048f85d09bd27978913a"
+    },
+    {
+      "path": "scripts/test_core_container.ps1",
+      "bytes": 2530,
+      "sha256": "14ec03f62867ec9ff50ac6a51e21e6359fcee11a59dc31bccc4f1cbbdc25132e"
+    },
+    {
+      "path": "scripts/test_tooling.py",
+      "bytes": 4041,
+      "sha256": "d6825cf62062b3c0dc8100e574e16379db7b98d4db96079c544e19e9493c4f50"
+    },
+    {
+      "path": "scripts/write_inventory.py",
+      "bytes": 1333,
+      "sha256": "0e44ed924cef12161f5a90cabcc46324857e5ae1fbeabe93acc64ef08bfe8364"
+    }
+  ]
+}

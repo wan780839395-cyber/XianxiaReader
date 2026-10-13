@@ -1,0 +1,119 @@
+import Foundation
+import ReadingInterfaces
+import SwiftUI
+import XianxiaCore
+
+@MainActor final class ReaderViewModel: ObservableObject {
+    @Published private(set) var isReady = false
+    @Published private(set) var chapters: [Chapter] = []
+    @Published private(set) var bookmarks: [Bookmark] = []
+    @Published private(set) var position: ReadingPosition?
+    @Published private(set) var openFailure: String?
+    @Published var menuVisible = true
+    @Published var scrolling = false
+    @Published var errorMessage: String?
+    let engine: (any ReaderEngine)?
+    private let book: Book
+    private let services: AppServices
+    private var started = false
+    private var openRequestID: UUID?
+
+    init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
+        self.book = book
+        self.services = services
+        do { engine = try factory.makeEngine(for: book.format) }
+        catch { engine = nil; openFailure = error.localizedDescription }
+        engine?.onCenterTap = { [weak self] in self?.menuVisible.toggle() }
+        engine?.onError = { [weak self] message in self?.errorMessage = message }
+        engine?.onPositionChanged = { [weak self] position in
+            guard let self, self.openRequestID != nil else { return }
+            self.position = position
+            // Save each emitted position immediately; SQLite rejects stale out-of-order writes.
+            Task { await self.persist(position) }
+        }
+    }
+
+    func open() async {
+        guard !started, let engine else { return }
+        started = true
+        let requestID = UUID()
+        openRequestID = requestID
+        do {
+            let restored = try await services.repository.position(for: book.id)
+            chapters = try await services.repository.chapters(for: book.id)
+            bookmarks = try await services.repository.bookmarks(for: book.id)
+            try Task.checkCancellation()
+            guard openRequestID == requestID else { throw CancellationError() }
+            try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: restored)
+            try Task.checkCancellation()
+            guard openRequestID == requestID else { throw CancellationError() }
+            position = engine.currentPosition
+            isReady = true
+        } catch is CancellationError {
+            guard openRequestID == requestID else { return }
+            engine.close()
+            openRequestID = nil
+            started = false
+        } catch {
+            guard openRequestID == requestID else { return }
+            openFailure = error.localizedDescription
+        }
+    }
+
+    func retryOpen() async {
+        guard engine != nil else { return }
+        started = false
+        openFailure = nil
+        await open()
+    }
+
+    func close() {
+        // Allow the engine's final position callback before invalidating this session.
+        engine?.close()
+        openRequestID = nil
+        started = false
+        isReady = false
+    }
+
+    func saveNow() async {
+        if let position = engine?.currentPosition { await persist(position) }
+    }
+
+    func setScrolling(_ value: Bool) {
+        scrolling = value
+        engine?.setScrolling(value)
+    }
+
+    func go(to chapter: Chapter) async {
+        do { try await engine?.go(to: chapter) }
+        catch { errorMessage = error.localizedDescription }
+    }
+
+    func go(to bookmark: Bookmark) async {
+        do { try await engine?.go(to: bookmark.position) }
+        catch { errorMessage = error.localizedDescription }
+    }
+
+    func addBookmark() async {
+        guard let position = engine?.currentPosition else {
+            errorMessage = "阅读页面尚未准备好，请稍后添加书签。"
+            return
+        }
+        do {
+            try await services.repository.add(Bookmark(position: position, title: position.chapterTitle ?? book.title))
+            bookmarks = try await services.repository.bookmarks(for: book.id)
+        } catch { errorMessage = error.localizedDescription }
+    }
+
+    func removeBookmark(_ bookmark: Bookmark) async {
+        do {
+            try await services.repository.removeBookmark(bookmark.id)
+            bookmarks = try await services.repository.bookmarks(for: book.id)
+        } catch { errorMessage = error.localizedDescription }
+    }
+
+    private func persist(_ position: ReadingPosition) async {
+        do { try await services.repository.save(position) }
+        catch { errorMessage = "阅读进度未能写入：\(error.localizedDescription)" }
+    }
+}
