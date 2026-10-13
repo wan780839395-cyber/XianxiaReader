@@ -30,7 +30,7 @@
 
 ## 剩余边界
 
-- 当前 Swift 5 targeted 模式有一处 ReaderView Binding 到 Sendable closure 的编译警告；不是零警告构建。M1 先修复明确隔离，再单独规划 Swift 6 严格模式。
+- M0 当时的 Swift 5 targeted 模式有一处 ReaderView Binding 到 Sendable closure 的编译警告；不是零警告构建。M1 先修复明确隔离，再单独规划 Swift 6 严格模式。
 - CI 还有 Actions Node 20 弃用与 ubuntu-latest 镜像迁移提示，应独立升级/固定并验证；这些不是本次构建失败原因。
 - Navigator 构造与 API 测试没有验收正文实际渲染、中文标点/标题节奏、页面点击和图片/内部链接。iOS 16 设备兼容性、iCloud/File Provider、普通签名/TrollStore 安装仍未验证。
 - TXT、完整书库编辑、搜索、字体/主题/排版设置、音量键与长篇性能测试待对应阶段；XBook/世界观知识库只有草案。

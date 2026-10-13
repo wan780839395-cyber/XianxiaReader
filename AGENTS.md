@@ -48,6 +48,8 @@
 - macOS 上跑 Core Swift tests；iOS target 跑 Readium/真实导入/位置集成测试；最终设备 Release build 使用 `CODE_SIGNING_ALLOWED=NO`。
 - Linux Core 测试可使用锁定 digest 的官方 Swift 容器；Apple 文件协调分支仍须 macOS 验证。`SourceFileCopying` 不得在 iOS 上静默改用普通 copy。
 - 关闭 reader 要使尚未完成的打开请求失效，并过滤旧回调；修改 async 生命周期时运行相应竞态/重试/迟到位置回归。
+- 搜索通过 ReadingInterfaces 的可选 capability，UI 不持有 Readium Locator；改词/关闭须取消 task/session，并在 await 返回后核对 request ID。异步清理不能回头清空新的 session。
+- Readium 3.11 搜索使用已回归的 TextContentElement 服务扩展（issue876），不要切回有组合字形窗口缺陷的默认服务。批次/上下文/界面上限与跨段落限制的变更须有相应回归，不先收集全书匹配或全文。
 - Docker 等工具不可用时保留实际错误并终止自己启动的挂起任务，不重置用户工具或把测试“未执行”改写为“通过”。
 - CI 必须保留 `set -euo pipefail`、真实 test/build 退出码、完整日志及失败诊断 artifact；不得跳过失败生成成功 IPA。
 - 不伪造 `Package.resolved`。第一次真实解析后审阅并纳入锁文件，固定传递依赖。

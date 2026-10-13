@@ -1,6 +1,6 @@
 # M1 搜索设计与边界
 
-2026-10-13：首次搜索切片 CI 38399996364 已通过全部 20 iOS tests、设备 Release 与 IPA。保持 Readium exact 3.11.0 与现有锁文件；清理一处冗余类型转换后再次验证，完整阶段/设备体验未验收。
+2026-10-13：最终 CI 38402285563 已通过全部 20 iOS tests、设备 Release 与 IPA，源码编译零警告。保持 Readium exact 3.11.0 与现有锁文件，完整阶段/设备体验未验收。证据见 M1_SEARCH_VALIDATION_REPORT.json。
 
 ## 引擎边界
 

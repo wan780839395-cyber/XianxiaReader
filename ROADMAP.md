@@ -24,6 +24,8 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
+2026-10-13：搜索切片、20 iOS tests 与设备 Release/IPA 已过 CI，源码编译零警告；完整 M1 仍待真实页面与用户 iPhone13/iOS16.6.1/TrollStore 验收。详情 Documentation/M1_SEARCH_ACCEPTANCE.md / DEVICE_ACCEPTANCE.md。
+
 - EPUB 2 NCX / EPUB 3 nav、nested TOC、图片、CSS、fragment 链接与脚注；损坏文件和 DRM 错误可解释。
 - Files 本地/iCloud 导入；取消、批次部分失败、后台/退出恢复不丢已提交书籍。
 - 搜索增量结果及跳转；不能一次读取全书到主线程。

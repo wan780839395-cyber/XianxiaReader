@@ -6,6 +6,8 @@
 
 最新可用包与构建 SHA/校验值见 HANDOFF 和对应 CI 验证报告。M0 包原件保存在 `build/ci/38390862584/ipa/XianxiaReader.ipa`；M1 包只在新 CI 通过、下载和核验后提供。请保留原有应用/书籍数据，使用 TrollStore 的正常安装/更新操作，不通过卸载或删除数据库解决阅读/升级问题。
 
+最新 M1 包已经 [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563) 验证，完整测试 ZIP 在 `build/XianxiaReader-iPhone13-TestKit.zip`，包含 IPA、原创样书和 TESTING.txt。转到 iPhone“文件”后先解压外层 ZIP，选择内部 XianxiaReader.ipa，通过分享菜单交给 TrollStore；随后在应用里导入 Samples 中两本 EPUB。包内说明记录确切提交和 SHA，原件可单独用 build/XianxiaReader.ipa。
+
 ## 第一轮步骤
 
 使用项目原创 `Tests/Fixtures/chinese-epub2.epub`、`chinese-epub3.epub`，再使用自己合法持有的中文 EPUB。将测试文件放到 iPhone“文件”中，点击应用“导入 EPUB”。记录以下每项的实际结果：

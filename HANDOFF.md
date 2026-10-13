@@ -4,56 +4,48 @@
 
 ## 当前断点
 
-M1 首次 CI run 38399996364 已 success：14 Linux + 14 Apple Core、20 iOS tests、设备 Release/IPA 全通过，原 Binding Sendable 警告消除。搜索包已下载，SHA-256 423ba0acad23f8bcd42ca22c43f2316cebb003e8d80ce8e8a099211121548167（7,365,998 bytes）。该报告另存 ValidationLogs/m1-search-first-pass.json，M0 原件保留。实际日志有 SafeTextSearchService.swift:42 的多余 ReadError cast 警告，已改为直接保留 typed ReadError；准备重跑同一套 CI，不扩展新功能。搜索切片已有编译/自动测试证据，完整 M1 与 iPhone 13/iOS16.6.1/TrollStore 安装仍待实测。
+**M0 已通过；M1 搜索切片已通过真实 CI，完整 M1 仍待页面/设备验收。** 当前没有运行中的项目构建/测试，没有未完成登录/UAC。不要大规模进入 M2。
 
-最新 M1 CI 已启动：run `38399996364`，head `4d5d86ea0cf45e47dc2337aaada48f26ecebbcc5`，URL https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38399996364 。搜索切片已提交/推送；本地 37 grammar/6 tooling 通过，M0 编译包与日志仍保留。当前等待远端真正类型检查、20 iOS tests 和设备 Release。先核对此 run，失败时取完整日志修复；不要推送纯文档打断 CI，不在结果出来前标搜索已验收。
+最新已验证代码：`b95aa4d117984ddb85e81b1901b82e42d453758b`；成功 [CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563)。仓库检查、Linux/macOS Core 各 14 tests、20 iOS tests、设备 Release 与 IPA 全通过；应用源码编译 warning 为 0。原 Binding Sendable 警告及新增冗余类型转换警告均已清理，没有关闭检查、删除测试或改变依赖版本。
 
-用户已明确测试设备：iPhone 13、iOS 16.6.1，已安装 TrollStore（巨魔）。这是设备准备信息，不是安装/阅读通过证据。M1 新包通过后准备实际导入/搜索跳转/分页滚动/恢复验收；无需再次询问设备型号/安装方式。
+## 用户设备与下一步
 
-M1 本轮恢复已开始：现场核对 main=9643bb6、工作区干净、最近 CI 38390862584 success，清单/IPA/build.log hash 一致，无本机测试或远端 CI 在运行。保留全部 M0 产物和失败历史。准备修复 ReaderView Binding setter 的并发警告，随后按 Readium 3.11.0 对应源码设计独立搜索协议/适配器、可取消增量结果 UI 与回归；尚未写入搜索功能或新构建结果。M2 不启动。
+用户确认：**iPhone 13 / iOS 16.6.1 / 已安装 TrollStore（巨魔）**。这不代表应用安装或阅读已通过。无需再询问型号/安装方式。
 
-M1 搜索切片已写入，准备本地检查与首次真实 CI：ReadingInterfaces 增加可选搜索 capability 和 Sendable DTO/session；ReadiumAdapter 使用 SearchService factory 按 TextContentElement 实现安全字面搜索（上游 3.11 默认服务存在 issue 876），每批 40、上下文各 64、UI 上限 1000。新增 Search UI/ViewModel、11 个搜索回归（预期 iOS 共 20），覆盖原始 EPUB2/3、组合字形/inline、读取错误、并发 next、取消/改词迟到结果、加载上限/跳转委托。ReaderView Binding 已改为显式 closure；是否消除警告待真实构建。详细设计 SEARCH_DESIGN.md；尚未验收源码，M0 产物保留不覆盖。
+1. 用户安装最新已验证 IPA，按 `Documentation/DEVICE_ACCEPTANCE.md` 测试。已提供含 IPA、两本原创 EPUB、TESTING.txt 的真机测试 ZIP。
+2. 收到安装/阅读反馈后按具体问题修复。优先核对搜索命中定位、目录/内部链接/图片、菜单/分页/滚动/旋转、书签与后台/重启位置恢复；不能用 Navigator 构造或模拟器 XCTest 代替页面验收。
+3. iCloud/File Provider 导入、异常/DRM 反馈与真实长篇阅读还待 M1 验收。M2 TXT、M3 完整书库、M4 排版主题字体/音量键、M5 性能均未进入。
 
-**M0 自动构建/测试/打包门槛已通过，下一阶段为 M1。** 尚未进行中文排版、真实点击/链接/滚动、iCloud 导入或真机/TrollStore 安装验收。当前没有运行中的项目测试或 CI，没有未完成登录/UAC。
+## 当前产物与验证
 
-已验证提交：`184aa09355ed0f44e9e27763c5d44fa0a8161434`。成功 run：[38390862584](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38390862584)。仓库检查、Linux Core、macOS/iOS job 均 success；14 Linux + 14 macOS Core XCTest、9 iOS XCTest 全通过，设备 Release 构建成功，CODE_SIGNING_ALLOWED=NO。
+- 最新 IPA：`build/XianxiaReader.ipa`，7,365,913 bytes；SHA-256 `9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365`。核验 iPhoneOS/最低 iOS16/arm64 Mach-O/iOS platform、ZIP/Payload/0755；CODE_SIGNING_ALLOWED=NO，仍需实际 TrollStore 安装。
+- 真机测试 ZIP：`build/XianxiaReader-iPhone13-TestKit.zip`，7,266,207 bytes，包含已核验 IPA、Samples/chinese-epub2.epub、chinese-epub3.epub 与操作说明。ZIP CRC 与内部 IPA hash 已核对。
+- 完整日志：`build/logs/ios-build.log`；原件、SimulatorTests/DeviceBuild `.xcresult`、生成工程和环境在 `build/ci/38402285563/ios/`。
+- `Documentation/M1_SEARCH_VALIDATION_REPORT.json`：最新 CI、20 测试名字、52 构建来源文件 hash、IPA/日志 hash、compiler warnings 与验收范围。
+- `Documentation/IOS_VALIDATION_REPORT.json`：历史 M0 提交 184aa09 / run38390862584；不是当前 M1 来源。M0 包原件 `build/ci/38390862584/ipa/XianxiaReader.ipa` 与日志保留。
+- 首轮已通过的 M1 搜索包在 `build/ci/38399996364/ipa/`，报告另存 `Documentation/ValidationLogs/m1-search-first-pass.json`，当时有冗余 cast 警告。
+- `CORE_VALIDATION_REPORT.json` 为本机 Linux Core，`VALIDATION_REPORT.json` 为静态检查；不能混用 scope 的布尔字段。`FILE_INVENTORY.json` 记录维护文件 hash。
 
-## 必须先核对的证据
+GitHub artifacts 保留 14 天，忽略的 build/.cache 不随 clone。新机器先核对 artifact 是否有效，必要时使用已锁依赖重新 workflow_dispatch；不要把旧 IPA hash 赋给新包。
 
-- `Documentation/IOS_VALIDATION_REPORT.json`：真实 CI、环境、测试、45 个构建来源文件 hash、依赖锁、完整日志 hash 与 IPA 检查。
-- `Documentation/CORE_VALIDATION_REPORT.json`：独立本机 Linux Core 编译/14 tests；字段不代表 iOS 检查。
-- `Documentation/VALIDATION_REPORT.json`：Windows 静态检查，明确不执行 Swift 编译。
-- `Documentation/FILE_INVENTORY.json`：维护文件恢复清单，不包含忽略的缓存/build。
-- `Documentation/M0_ACCEPTANCE.md`：阶段门槛、产物与尚未验收内容。
+## 本轮源码与限制
 
-最新 IPA：`build/XianxiaReader.ipa`，7,286,692 bytes，SHA-256 `847e61e3bb2de8227df59860fae86b561ebf4f839a3202fcd579098899e88d99`。ZIP 完整性、Payload、iPhoneOS、最低 iOS 16、arm64 Mach-O/iOS 平台和 executable 0755 均已检查；SQLite 实际链接 `/usr/lib/libsqlite3.dylib`。不是普通设备签名包，不代表已在 TrollStore 安装。
+ReadingInterfaces 的可选 ReaderSearchProviding/ReaderSearchSession 与 Sendable DTO 隔离 Readium。ReadiumAdapter 注册 SearchService factory，按 TextContentElement 使用同一 String 的原生索引匹配，避开锁定 3.11 默认服务的组合字形窗口缺陷（上游 issue876）。正文解析/DOM/reading order 由 Readium 提供。
 
-完整构建日志：`build/logs/ios-build.log`；下载原件及 SimulatorTests/DeviceBuild `.xcresult`、生成工程、实际 Package.resolved 在 `build/ci/38390862584/ios/`。GitHub IPA/诊断 artifact 保留 14 天，忽略目录不随 Git clone；换机器时先核对 artifacts 是否有效，必要时按已锁版本重新 workflow_dispatch。
+每批 40、上下文各最多 64 字符；UI 最多 1000 条并提示更具体关键词，显式加载更多。改词/停止/关闭取消任务/session，request ID 拒绝迟到数据；并发 next 被拒绝。搜索位置经原有 ReaderEngine.go 委托。11 新搜索回归 + 原 9 iOS 回归全部保留并通过。
+
+搜索不跨文本元素/资源，不支持 regex/模糊匹配；Readium 内部仍一次解析整个 XHTML，大单章内存/取消延迟尚未测量。详见 SEARCH_DESIGN.md 和 M1_SEARCH_ACCEPTANCE.md。未来知识库搜索必须另行受 canonical chapter 范围限制，不能直接复用全文正文搜索来读取未来增强事实。
 
 ## 环境与 Git
 
-- 工作区 `D:\ai项目\XianxiaReader`；Windows 11、PowerShell 7.6.5、Git 2.54.0、Python 3.11；没有本机 Xcode/Swift。
-- 本机 Docker Desktop 4.95.0.242831、engine 29.8.2 正常；用户原有 glm2api/zai2api 停止容器保留。不要重做 socket 修复或 reset。详情见 DOCKER_RECOVERY.md。
-- 私有仓库 https://github.com/wan780839395-cyber/XianxiaReader ，origin/main 已建立并正常推送。CLI 已认证；无需再登录、询问可见性或推送许可。便携 gh 路径在忽略的 `.cache/tools/github-cli.json`，可用系统 gh 替代。
-- Git 作者仅在此仓库使用已确认 login 与 ID-based noreply。不要输出令牌/设备码或提交个人小说。
-
-## 本轮真实修复
-
-1. 第一轮 CI 误用宿主 Homebrew SQLite：Core 去除 pkg-config/Homebrew provider，通过目标 SDK 头文件和库链接；数据库与全部测试保留。
-2. 首次真实解析的 11 个依赖纳入根 Package.resolved。生成工程后复制到 workspace，resolve/test/build 全部严格锁定版本。
-3. 第二轮缺少 AppIcon：新增原创 SVG、1024 RGB PNG、appiconset、工程设置与静态资源校验；第三轮完整 CI 已通过。
-
-失败 run/log 位置与原始错误见 CI_FAILURES.md。早期 Docker、GitHub 授权和恢复过程完整归档于 `Documentation/HANDOFF_HISTORY_2026-10-13.md`；该文档是历史，不覆盖此处当前状态。
-
-## 下一步：M1 基础 EPUB
-
-1. 处理真实编译警告：ReaderView 的 Binding(set: model.setScrolling) 转换为 Sendable closure，先明确 MainActor 边界，不能禁用检查或使用无依据 unchecked Sendable。完整 CI 后记录结果。
-2. 通过引擎协议增量接入 Readium search service，加入可取消搜索/结果跳转测试，不在 UI 读取全书。
-3. 真实阅读验收 EPUB 2/3、图片/CSS/fragment 链接、目录、分页/滚动、中心菜单、书签及位置恢复；包含旋转/后台/重启。
-4. 本机没有 iOS 设备控制能力；安装与页面体验由可用 Mac/用户真机测试，记录设备/iOS/构建 SHA，不能用 Navigator 构造测试代替。
-
-M2 TXT、M3 完整书库、M4 字体/主题/排版/音量键、M5 长篇性能均尚未实现。XBook/知识库仅协议草案。严格按 ROADMAP 推进，禁止以 localhost HTTP server 为主要预览。
+- 工作区 `D:\ai项目\XianxiaReader`，Windows 11 / PowerShell7.6.5 / Git2.54 / Python3.11，无本机 Xcode/Swift。CI Xcode16.4 / Swift6.1.2 / iOS18.5 simulator，Swift5 targeted 模式；通过不代表 Swift6 strict 已验收。
+- Docker Desktop4.95.0.242831 / engine29.8.2 已恢复；保留用户原有容器和 socket 备份，不 reset/prune。Core 容器脚本只验证 Linux 分支。
+- 私有仓库 https://github.com/wan780839395-cyber/XianxiaReader ，main 跟踪 origin/main，CLI 已授权。路径 `.cache/tools/github-cli.json`；不输出令牌，不重复生成设备码。
+- Readium exact3.11.0 和 11 个实际解析 pins 不变，根 Package.resolved 复制到生成 workspace，resolve/test/build 严格使用锁文件。
+- 文档收尾提交仅包含文档/证据，代码来源逐文件匹配上述成功 SHA；用 skip-ci 避免重建未变代码，后续代码修改必须完整 CI。
 
 ## 恢复纪律
 
-先读 AGENTS → PROJECT_STATUS → HANDOFF → ROADMAP/ARCHITECTURE，核对 Git、实际进程和最近 CI。修改前、每个可恢复步骤后、长测试前更新此文档；保留原始书籍、失败日志和已提交功能。文档收尾提交只包含证据，不重新运行未变的应用源码构建；CI 对应上述已验证 SHA。
+先 AGENTS → PROJECT_STATUS → HANDOFF → ROADMAP/ARCHITECTURE，核对 Git、进程、CI 和日志 hash。保留原始书籍、失败证据与已完成功能；每个可恢复步骤及长测试前更新本文件。禁止以 localhost HTTP server 为主要预览。
+
+M0 早期过程归档 `HANDOFF_HISTORY_2026-10-13.md`；本轮 M1 恢复/CI 过程归档 `HANDOFF_M1_SEARCH_HISTORY_2026-10-13.md`。历史里的“准备/运行中”不覆盖当前结论。

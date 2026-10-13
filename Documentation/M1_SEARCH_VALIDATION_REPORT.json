@@ -1,11 +1,11 @@
 {
   "validationKind": "real_github_macos_ios_build_and_xctest",
-  "recordedAtUTC": "2026-10-13T13:04:40.604506+00:00",
+  "recordedAtUTC": "2026-10-13T13:31:47.589052+00:00",
   "milestoneScope": "M1 incremental search slice; full M1 visual/device acceptance still pending",
   "run": {
-    "id": "38399996364",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38399996364",
-    "headSha": "4d5d86ea0cf45e47dc2337aaada48f26ecebbcc5",
+    "id": "38402285563",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563",
+    "headSha": "b95aa4d117984ddb85e81b1901b82e42d453758b",
     "conclusion": "success"
   },
   "environment": [
@@ -72,9 +72,9 @@
   "codeSigningAllowed": false,
   "ipaProduced": true,
   "ipaInspection": {
-    "ipa": "build\\ci\\38399996364\\ipa\\XianxiaReader.ipa",
-    "bytes": 7365998,
-    "sha256": "423ba0acad23f8bcd42ca22c43f2316cebb003e8d80ce8e8a099211121548167",
+    "ipa": "build\\ci\\38402285563\\ipa\\XianxiaReader.ipa",
+    "bytes": 7365913,
+    "sha256": "9673200a941600e2224870da6d006fa35679abc98a166887d5f4bb1151fd2365",
     "zipEntries": 70,
     "zipIntegrityPassed": true,
     "bundleID": "com.xianxiareader.app",
@@ -136,12 +136,12 @@
     "trollStoreAccepted": false
   },
   "buildLog": {
-    "path": "build/ci/38399996364/ios/build/logs/build.log",
-    "sha256": "0c02e6de91c3b7d622e20610e8d66ad6b490764da68de9197868433c19d666ff"
+    "path": "build/ci/38402285563/ios/build/logs/build.log",
+    "sha256": "7a6ec18fff7aea2f4cf9aaca9ebd1822932ce315d233484536f5391c06b94ec9"
   },
   "linuxCoreLog": {
-    "path": "build/ci/38399996364/core/core-tests.log",
-    "sha256": "e7f7b18aac31e465ad5f622618f0b400cbc997fc3d0b8a854860398822c92976"
+    "path": "build/ci/38402285563/core/core-tests.log",
+    "sha256": "9ae1591a9080470f99487b7dab195c3c28974e4408975a8a851aa26505eb2f53"
   },
   "resolvedDependencyCount": 11,
   "lockSha256": "4439358b111b49087662a40acbabac6bfc552bb0d395d36c9680babcb917cf8c",
@@ -308,7 +308,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift",
-      "sha256": "4da4fcaa3e7c64d6c437796348b596b9c7077ed4d7ff631bbd35952b1ff4b70b"
+      "sha256": "e1cb4c52a06051ff3a98b03b6e2745093c8e8fc6f80ea321dc5bcab409a5a48e"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -355,10 +355,7 @@
       "sha256": "8a445855e12e8e0d7e1f8fcc0cba67c62f33a5ae23ce048f85d09bd27978913a"
     }
   ],
-  "compilerWarnings": [
-    "/Users/runner/work/XianxiaReader/XianxiaReader/Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift:42:44: warning: conditional cast from 'ReadError' to 'ReadError' always succeeds",
-    "/Users/runner/work/XianxiaReader/XianxiaReader/Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift:42:44: warning: conditional cast from 'ReadError' to 'ReadError' always succeeds"
-  ],
+  "compilerWarnings": [],
   "bindingSendableWarningPresent": false,
   "simulatorAccepted": false,
   "deviceAccepted": false,

@@ -2,7 +2,7 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**M0 自动构建/测试/打包已通过，下一阶段为 M1；不是完整 MVP。** [CI 38390862584](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38390862584) 完成 Linux/macOS 各 14 Core tests、9 iOS tests 与设备 Release，真实 IPA 已生成。模拟器实际阅读、真机与 TrollStore 尚未验收，详见 [M0 验收](Documentation/M0_ACCEPTANCE.md) 和 [项目状态](PROJECT_STATUS.md)。
+**M0 已通过，M1 搜索切片已自动验证；不是完整 MVP。** [最新 CI 38402285563](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38402285563) 完成 Linux/macOS 各 14 Core tests、20 iOS tests、设备 Release 与 IPA，源码编译零警告。实际阅读/真机仍未验收，详见 [M1 搜索验收](Documentation/M1_SEARCH_ACCEPTANCE.md) 和 [项目状态](PROJECT_STATUS.md)。
 
 ## 当前已写入
 
@@ -14,7 +14,7 @@
 - 原创中文 EPUB 2/3 样书、Core 单元测试、iOS 集成测试、Windows 可运行的结构/语法检查。
 - GitHub Actions：macOS 构建、模拟器测试、无签名设备应用、`Payload/` 打包与完整日志 artifact。
 
-M1 搜索切片已写入：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托，待新一轮 CI/真实页面验收；细节见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 正文阅读/自动分章、完整书库编辑、自定义字体、五种主题、全部排版设置、音量键翻页和长篇性能验收尚未实现，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
+M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托；真实命中定位仍待页面验收，详见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 正文阅读/自动分章、完整书库编辑、自定义字体、五种主题、全部排版设置、音量键翻页和长篇性能验收尚未实现，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
 
 ## 技术基线
 
@@ -71,7 +71,9 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。第三次 CI 已全通过，完整结论见 PROJECT_STATUS 和 GitHub Actions；阅读/设备验收与自动构建结果分开记录。
 
-最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [IOS_VALIDATION_REPORT.json](Documentation/IOS_VALIDATION_REPORT.json)。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
+最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_SEARCH_VALIDATION_REPORT.json](Documentation/M1_SEARCH_VALIDATION_REPORT.json)；IOS_VALIDATION_REPORT.json 保留历史 M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
+
+用户测试设备为 iPhone13/iOS16.6.1/TrollStore，当前未验收安装和阅读。`build/XianxiaReader-iPhone13-TestKit.zip` 包含最新 IPA、两本原创 EPUB 和操作说明，具体步骤见 [真机验收](Documentation/DEVICE_ACCEPTANCE.md)。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 

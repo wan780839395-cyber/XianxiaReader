@@ -47,7 +47,7 @@ scripts/               结构验证、样书、CI 与 IPA 打包
 
 - iOS 16 起步，优先覆盖普通设备及部分 TrollStore 使用场景；不代表所有系统版本都有 TrollStore 安装能力。
 - SwiftData 需要更高系统基线，因此 M0 使用系统 SQLite3。Apple 构建通过 modulemap 使用目标 SDK 的头文件和库；不能使用宿主 Homebrew 的 pkg-config，否则 iOS 会误链接 macOS dylib。Linux 安装 libsqlite3-dev，使用标准系统搜索路径。ORM 可以以后替换，`BookRepository` 屏蔽 UI 对具体存储的依赖。
-- Swift tools 5.10、Swift 5 语言模式配合 Xcode 16.4。第三次真实 CI 构建与测试已通过，targeted 模式仍有 ReaderView Binding 转换为 Sendable closure 的警告。M1 先修复明确隔离；Readium Publication 在后台 actor 与 MainActor 间的交接以及 Swift 6 严格模式迁移单独审查。不得用无依据的 `@unchecked Sendable` 或关掉错误来伪造验证通过。
+- Swift tools 5.10、Swift 5 语言模式配合 Xcode 16.4。M1 搜索 CI 38402285563 已通过，targeted 模式的 Binding 警告已修复，应用源码编译零警告。Readium Publication 在后台 actor 与 MainActor 间的交接以及 Swift 6 严格模式迁移仍须独立审查，不用无依据的 `@unchecked Sendable` 或关闭检查伪造通过。
 - `project.yml` 为工程配置源。`.xcodeproj` 由锁定 XcodeGen 生成并在 CI 输出，不手写 PBX 文件，避免 Windows 维护重复配置。
 - Readium 精确锁定 3.11.0，API 已对照同标签源码。根 `Package.resolved` 来自首次 macOS CI run 38385729586 的真实解析，共 11 个远程依赖；Readium revision 与审查源码一致。生成工程后将其复制到 workspace 的 swiftpm 目录，所有 xcodebuild resolve/test/build 使用 `-onlyUsePackageVersionsFromResolvedFile`。首次解析成功但 iOS 链接失败，锁文件不代表应用已验收。未来升级重新真实解析、审阅并执行完整 CI。
 
@@ -86,6 +86,14 @@ TOC 导入时持久化，打开目录只读取现有数组。EPUB TOC 可能含�
 输入通过 Readium observers 处理，不叠加透明 SwiftUI 点击层遮挡链接和选择。当前左右 30% 翻页、中间 40% 切换菜单；滚动模式保留正常滚动。菜单覆盖空间、字体变化与旋转定位需 M1/M4 真机验收。
 
 引擎和 ViewModel 的每次打开请求具有独立 UUID。`close` 使悬挂的 publication load 失效；load 返回时先检查请求仍有效，再挂载控制器/发布 ready。旧请求不能关闭较新的 session，旧 Navigator 的 delegate 回调也不能更新当前书的阅读位置。关闭后的迟到 position 回调在 ViewModel 被拒绝；正常关闭时的最终位置回调仍保留。
+
+## M1 搜索切片
+
+引擎提供可选 ReaderSearchProviding / ReaderSearchSession，actor 隔离读取游标。UI 仅持有 Sendable 命中 DTO 与完整 ReadingPosition；位置跳转复用 ReaderEngine.go。关闭/改词取消 task 和 session，通过 request ID 拒绝迟到数据；清理前先解除当前 session 引用，避免 await 返回后覆盖较新查询。
+
+锁定的 Readium3.11 默认 ContentSearchService 存在组合字形拼接偏移缺陷，因此使用官方 SearchService factory 扩展；Readium 仍负责正文解析/DOM locator。服务按 TextContentElement 的 joined String 原生索引匹配，每批40、上下文各64；界面最多1000条、手动加载更多，不报告未计算的全书总数。跨 inline segment 可匹配，跨元素/资源不可；不开放 regex。实现与上游依据见 Documentation/SEARCH_DESIGN.md。
+
+原9+新增11 iOS tests 已过真实 CI，尚未验收页面命中定位。Readium 内部按整个 XHTML 解析，超大单资源内存/取消延迟留 M5 实测；正文全文搜索与未来知识库的章节范围查询分别管理。
 
 ## TXT 预定实现（M2）
 
