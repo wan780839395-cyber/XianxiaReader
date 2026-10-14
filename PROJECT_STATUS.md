@@ -23,7 +23,7 @@
 
 ## 最新证据与设备边界
 
-TXT产品接入验证中：CI38552463402/97307de2292b33cafb1534fa4e3245a48b3296f7，bootstrap=false，Linux68 Core已成功，macOS/iOS46/Build5设备Release尚未取得完整结果。支持受管理原件/索引cache/事务导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator位置与TXT搜索目录的源码已写入；此前Core60与旧iOS41不等于产品TXT验收。首轮38552124765已编译Core，1项夹具把合法“尾声”标题当正文导致数组断言失败，iOS/Release未执行；更正普通叙述后保留规则/原断言，失败原件留档。原Build4包保持不动，新资源包含三本原创编码TXT小样；数十MB/cache重开/中文页面/设备尚未验收，完整M2仍未完成。当前来源hash报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。
+TXT产品接入验证中：最新CI38553767324/ed5ae3f8c8088751a4b7e8cf645e006539767fcd，bootstrap=false，Linux68 Core已成功，Apple/iOS46/Build5设备Release尚未取得最终结果。前轮38552463402：各68 Core及应用编译通过，测试代码Locator.Text参数顺序错误导致test bundle未编译、summary0/result unknown，test65，Release未执行；按锁定API调整参数，保留原断言和失败原文。支持受管理原件/cache/事务导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator位置与TXT搜索目录的源码已写入；此前Core60与旧iOS41不等于产品TXT验收。首轮38552124765已编译Core，1项夹具把合法“尾声”标题当正文导致数组断言失败，iOS/Release未执行；更正普通叙述后保留规则/原断言。原Build4包保持不动，三本原创编码TXT小样已纳入资源；数十MB/cache重开/中文页面/设备尚未验收，完整M2仍未完成。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。
 
 M2编码/cache第二切片完整自动CI通过：[CI 38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)，运行源码 `65c1b8d6dbebf311c1e6b4b9534cda59373940b6`，Linux/macOS各60 Core（原33+新增27）、41/41既有iOS集成及设备Release CODE_SIGNING_ALLOWED=NO/IPA通过；445运行文件hash与当前源码匹配、三份锁一致。Windows372 grammar新增诊断0/14 tooling通过。支持严格UTF8/UTF16 LE/BE/GB18030分块转换、原/正规正文/目录SHA与编码/版本绑定cache。首轮Apple iconv两项四字节真实失败保留，现改用公开SDK CoreFoundation并通过同样及扩展向量；Linux保持glibc iconv，无新远程依赖。自动编码仅BOM/严格UTF8，其他要求选择；cache复用仍流式核验摘要，TXT导入/阅读/位置未接入，iOS真实TXT codec/导入/页面与设备未验收，完整M2尚未完成。当前Build4用户包保持不动，报告M2_TXT_NORMALIZATION_VALIDATION_REPORT.json。
 

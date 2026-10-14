@@ -137,15 +137,35 @@ final class TXTReadingTests: XCTestCase {
         try await wait("TXT first real location") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
         let paragraphByte = "第一章 长段\n".utf8.count
         let selector = "document.getElementById('txt-b\(paragraphByte)')?.getBoundingClientRect().top ?? 10000"
+        let resource = try XCTUnwrap(context.plan.resources.first)
+        let href = try XCTUnwrap(AnyURL(string: resource.href))
+        let initial = Locator(href: href,mediaType: .xhtml,locations: .init(fragments: ["txt-b\(paragraphByte)"],
+            otherLocations: ["cssSelector":.string("#txt-b\(paragraphByte)")]))
+        // Like the existing EPUB long-paragraph regression, finish a known DOM
+        // navigation before synthesizing a scroll; first location precedes initialization completion.
+        try await engine.go(to: TXTPositionCodec.encode(initial,bookID: book.id,plan: context.plan))
+        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.0",root: engine.viewController.view))).first)
+        try await wait("TXT known paragraph ready") { abs((try await target.evaluateJavaScript(selector) as? Double ?? 10000)) < 5 }
+        let initialImage = try await target.takeSnapshot(configuration: nil)
+        let initialAttachment = XCTAttachment(image: initialImage); initialAttachment.name = "txt-paragraph-before-scroll"; initialAttachment.lifetime = .keepAlways; add(initialAttachment)
         let scroll = try XCTUnwrap(view("readium.continuous-scroll",root: engine.viewController.view) as? UIScrollView)
         scroll.setContentOffset(CGPoint(x: 0,y: scroll.contentOffset.y+600),animated: false)
-        try await wait("TXT nonzero character anchor") {
-            guard let saved = engine.currentPosition else { return false }
-            let (_,anchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
-            return anchor.characterUTF16Offset > 100
+        do {
+            try await wait("TXT nonzero character anchor") {
+                guard let saved = engine.currentPosition else { return false }
+                let (_,anchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
+                return anchor.characterUTF16Offset > 100
+            }
+        } catch {
+            let dom = try await target.evaluateJavaScript("JSON.stringify({title:document.title,y:scrollY,height:document.documentElement.scrollHeight,p:document.getElementById('txt-b\(paragraphByte)')?.getBoundingClientRect().top})")
+            let encoded = engine.currentPosition.flatMap { String(data: $0.locatorData,encoding: .utf8) } ?? "no position"
+            let diagnostic = XCTAttachment(string: "DOM=\(dom ?? "nil"); outerY=\(scroll.contentOffset.y); state=\(engine.continuousDiagnosticState); position=\(encoded)")
+            diagnostic.name = "txt-anchor-timeout-diagnostic"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+            let image = try await target.takeSnapshot(configuration: nil)
+            let attachment = XCTAttachment(image: image); attachment.name = "txt-anchor-timeout-page"; attachment.lifetime = .keepAlways; add(attachment)
+            throw error
         }
         let saved = try XCTUnwrap(engine.currentPosition)
-        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.0",root: engine.viewController.view))).first)
         let beforeValue = try await target.evaluateJavaScript(selector) as? Double
         let before = try XCTUnwrap(beforeValue); XCTAssertLessThan(before,-300)
         let image = try await target.takeSnapshot(configuration: nil)

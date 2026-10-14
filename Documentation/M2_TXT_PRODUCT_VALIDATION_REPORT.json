@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-14T10:52:40.011027+00:00",
+  "recordedAtUTC": "2026-10-14T11:03:13.946735+00:00",
   "stage": "M2 TXT product source integration - full compilation/test pending",
-  "sourceRevision": "97307de2292b33cafb1534fa4e3245a48b3296f7",
+  "sourceRevision": "ed5ae3f8c8088751a4b7e8cf645e006539767fcd",
   "branch": "codex/m2-txt-index",
-  "run": 38552463402,
+  "run": 38553767324,
   "build": "5",
   "expectedCoreTests": 68,
   "expectedIOSTests": 46,
@@ -325,7 +325,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "50391eecd66eef82527838becf22f4d90a4f1d2d2fc1efe4ce55b010051b3030"
+      "sha256": "89a01eb8c9c9575f8b204f6f176df9b22fded2931d6d97adc2ff58fee07f21d6"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -1840,7 +1840,7 @@
     "swiftCompilation": false
   },
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -1849,8 +1849,8 @@
     "M2Accepted": false
   },
   "inProgressRun": {
-    "databaseId": 38552463402,
-    "source": "97307de2292b33cafb1534fa4e3245a48b3296f7",
+    "databaseId": 38553767324,
+    "source": "ed5ae3f8c8088751a4b7e8cf645e006539767fcd",
     "bootstrap": false
   },
   "scope": "Managed original copy/cache/DB import, explicit encoding choice+retry+cancel, <=64KiB lazy Readium resources, source-bound byte/text/full Locator, search/TOC/continuous restore.",
@@ -1863,11 +1863,5 @@
   "preservedUserBuild4": {
     "path": "build/XianxiaReader.ipa",
     "sha256": "7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1"
-  },
-  "linuxEvidence": {
-    "passedTests": 68,
-    "path": "build/ci/38552463402/core/core-tests.log",
-    "sha256": "eceb6545c7a34125d8d2ebec2a5f139b5b41e10001a4e518d38db466d0dcbc4b"
-  },
-  "priorFailure": "Documentation/ValidationLogs/m2-txt-product-fixture-heading-failure.json"
+  }
 }

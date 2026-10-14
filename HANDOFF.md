@@ -6,7 +6,9 @@
 
 ### TXT产品接入开始（覆盖下方上一切片的完成点）
 
-**最新真实验证：CI38552463402 / 97307de2292b33cafb1534fa4e3245a48b3296f7 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 夹具修正快照已正常push并dispatch，main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch或从旧60/41推断TXT通过；455候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。上一轮38552124765/c454a60的真实夹具失败原件保留。
+38553767324/ed5ae3f真实failure：各68 Core/应用+test bundle编译通过，iOS45/46/0 skipped。新三编码导入/有界资源/位置拒绝/搜索通过，只有TXT长段“滚动600点后非零char anchor”采样超时；Release/IPA未执行，根因此刻未确认。完整summary/xcresult/full/log保留build/ci/38553767324与ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json。依据既有EPUB长段测试先完成明确段落Locator跳转并确认DOM top，再合成600点滚动，仍要求char>100/重开3px，增加原生PNG/DOM/outer offset/完整位置诊断；不改引擎或增大等待、降低断言。此改动待完整CI，不把它写成已修复产品问题。
+
+**最新真实验证：CI38553767324 / ed5ae3f8c8088751a4b7e8cf645e006539767fcd / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 测试接口顺序修正已正常push并dispatch，main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch或从旧60/41推断TXT通过；455候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。前两轮真实失败原件保留。
 
 已核实新Linux Core success及完整artifact build/ci/38552463402/core/core-tests.log：真实Swift/C编译、68项（原60+新8）全部通过，无源码warning/error匹配；Apple/iOS真实页面/Release尚未完成。新样书由项目原创文本生成UTF8/带BOM UTF16LE/GB18030三个小文件，纳入资源与候选hash；没有用户小说。
 
