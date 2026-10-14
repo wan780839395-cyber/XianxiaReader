@@ -2,6 +2,10 @@
 
 ## 当前设备与状态
 
+Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。
+
+新包`build/XianxiaReader-TXT-Memory-Build8-TestKit.zip` / SHA256 `7ed19e6a595b8bd14624298689efbd68a81b39be0021e7335dbe211e7c875533`，含Build8 IPA与8个原创大小样本；正常更新保留书库，+菜单确认0.0.1 (8)。8个旧Build4/5/6/7包及基线长样本ZIP逐hash保留。App导入/UI、Readium3.11/Vendor/6 pins/文件协调/Locator和cache版本不改。首轮38583014146/908ee29各68Core/探针通过、iOS55/56系统DocumentManager迟到host异常且Apple内存增长，完整失败/测量原件保留；修复测试仅保留六个隐藏完整host与tmp repository到worker结束，原所有断言/15秒门槛保留，未宣布修复Apple系统bug。缓存重开仍全文流式校验/构造plan；只读元数据秒开尚未实现。Build7首次导入已获用户确认，Build8及长书/普通设备/完整中文排版仍待设备验证，M2Accepted=false；M3/M4未开始。报告[M2_TXT_LONGBOOK_VALIDATION_REPORT.json](M2_TXT_LONGBOOK_VALIDATION_REPORT.json)，性能合同[PERFORMANCE_TEST_PLAN.md](PERFORMANCE_TEST_PLAN.md)。
+
 2026-10-14最新用户确认：“ok 能正常导入了 没问题”。在Build7交付与软件首次导入问题复测的上下文中，记录首次导入正常；此次验收通过。具体格式/本地或iCloud/实际Build和OS未分别核读，不延伸为全矩阵。普通签名设备、TXT目录/搜索/书签/位置/旋转及数十MB长篇性能仍单列待验收；Build6失败及之前待确认记录保留为历史。证据m2-import-build7-device-feedback.json。
 
 2026-10-14最新：用户报告Build6上下文首次导入仍无反应/提示，第二次可成功/报错，设备首次验收失败；实际安装Build/OS尚未独立读取。Build7随后通过CI38572197917（各68Core/55iOS/Release），新包build/XianxiaReader-Import-Build7-TestKit.zip / SHA5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172。正常更新保留书库，+菜单确认0.0.1 (7)，完全退出重开后第一次选TXT，再重开第一次选EPUB，分别本地/已下载iCloud、取消/错误、旧书库。引用生命周期/无关闭事件/完整书架回归通过不代替真实Files/用户设备确认；M2完整设备/长书仍待验收。

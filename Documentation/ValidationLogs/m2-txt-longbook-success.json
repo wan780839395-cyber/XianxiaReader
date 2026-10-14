@@ -1,0 +1,550 @@
+{
+  "recordedAtUTC": "2026-10-14T15:30:48.530078+00:00",
+  "run": 38587015887,
+  "sourceRevision": "1d4ee302daf32534fb367ccc1c4f4b5af8489fcd",
+  "coreEach": 68,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 56,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1791991349.503,
+    "passedTests": 56,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1791990997.01,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "33% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 15.20s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 56
+  },
+  "desktopMeasurements": {
+    "linux": {
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "cases": [
+        {
+          "afterImportPeakRSSBytes": 25268224,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21729280,
+          "coldImportMilliseconds": 542.997126,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 7.711892,
+          "finalPeakRSSBytes": 27820032,
+          "maximumWindowBytes": 4897,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 169.530359,
+              "peakRSSBytes": 26337280,
+              "readingPlanMilliseconds": 216.856467
+            },
+            {
+              "cacheValidationMilliseconds": 169.888098,
+              "peakRSSBytes": 27598848,
+              "readingPlanMilliseconds": 216.070847
+            },
+            {
+              "cacheValidationMilliseconds": 169.338138,
+              "peakRSSBytes": 27820032,
+              "readingPlanMilliseconds": 215.69803
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf8-5MiB-1000chapters",
+            "normalizedBytes": 4895893,
+            "normalizedSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "sourceBytes": 4895893,
+            "sourceSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 4894,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 4895893,
+              "startByte": 4890996,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 4895893,
+          "windowTraversalMilliseconds": 289.466794
+        },
+        {
+          "afterImportPeakRSSBytes": 28930048,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21983232,
+          "coldImportMilliseconds": 5362.904877,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 21.338554,
+          "finalPeakRSSBytes": 34357248,
+          "maximumWindowBytes": 17077,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1637.848588,
+              "peakRSSBytes": 31977472,
+              "readingPlanMilliseconds": 978.205753
+            },
+            {
+              "cacheValidationMilliseconds": 1639.031672,
+              "peakRSSBytes": 34222080,
+              "readingPlanMilliseconds": 997.679853
+            },
+            {
+              "cacheValidationMilliseconds": 1647.157205,
+              "peakRSSBytes": 34357248,
+              "readingPlanMilliseconds": 977.281749
+            }
+          ],
+          "resourceCount": 3000,
+          "sample": {
+            "name": "utf8-50MiB-3000chapters",
+            "normalizedBytes": 51229893,
+            "normalizedSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "sourceBytes": 51229893,
+            "sourceSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "chapterCount": 3000,
+            "firstChapter": {
+              "endByte": 17074,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 51229893,
+              "startByte": 51212816,
+              "title": "第3000章 云海问道"
+            }
+          },
+          "visitedBytes": 51229893,
+          "windowTraversalMilliseconds": 1162.10425
+        },
+        {
+          "afterImportPeakRSSBytes": 23330816,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21626880,
+          "coldImportMilliseconds": 5382.890699,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 0.211585,
+          "finalPeakRSSBytes": 24510464,
+          "maximumWindowBytes": 65536,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1660.02561,
+              "peakRSSBytes": 23986176,
+              "readingPlanMilliseconds": 658.786711
+            },
+            {
+              "cacheValidationMilliseconds": 1658.817477,
+              "peakRSSBytes": 24248320,
+              "readingPlanMilliseconds": 654.458717
+            },
+            {
+              "cacheValidationMilliseconds": 1663.513998,
+              "peakRSSBytes": 24510464,
+              "readingPlanMilliseconds": 616.201341
+            }
+          ],
+          "resourceCount": 800,
+          "sample": {
+            "name": "utf8-50MiB-no-newline",
+            "normalizedBytes": 52427840,
+            "normalizedSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "sourceBytes": 52427840,
+            "sourceSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "chapterCount": 1,
+            "firstChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            },
+            "lastChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            }
+          },
+          "visitedBytes": 52427840,
+          "windowTraversalMilliseconds": 699.09148
+        },
+        {
+          "afterImportPeakRSSBytes": 25268224,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21991424,
+          "coldImportMilliseconds": 1047.406727,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 7.598105,
+          "finalPeakRSSBytes": 27561984,
+          "maximumWindowBytes": 7333,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 213.385441,
+              "peakRSSBytes": 26075136,
+              "readingPlanMilliseconds": 236.471766
+            },
+            {
+              "cacheValidationMilliseconds": 213.334525,
+              "peakRSSBytes": 27340800,
+              "readingPlanMilliseconds": 235.362072
+            },
+            {
+              "cacheValidationMilliseconds": 212.826646,
+              "peakRSSBytes": 27561984,
+              "readingPlanMilliseconds": 235.669152
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf16-5MiB-1000chapters",
+            "normalizedBytes": 7331893,
+            "normalizedSHA256": "72f2eba92028ba24730b3e7c6f492445a9656322469b5855f8b3e98d33244c60",
+            "sourceBytes": 5231788,
+            "sourceSHA256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 7330,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 7331893,
+              "startByte": 7324560,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 7331893,
+          "windowTraversalMilliseconds": 298.558358
+        }
+      ],
+      "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
+    },
+    "macOS": {
+      "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+      "cases": [
+        {
+          "afterImportPeakRSSBytes": 10371072,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 5996544,
+          "coldImportMilliseconds": 469.809166,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 4.989583,
+          "finalPeakRSSBytes": 15122432,
+          "maximumWindowBytes": 4897,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 164.341041,
+              "peakRSSBytes": 12173312,
+              "readingPlanMilliseconds": 72.514542
+            },
+            {
+              "cacheValidationMilliseconds": 160.004333,
+              "peakRSSBytes": 14221312,
+              "readingPlanMilliseconds": 64.136
+            },
+            {
+              "cacheValidationMilliseconds": 164.5425,
+              "peakRSSBytes": 14696448,
+              "readingPlanMilliseconds": 70.183708
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf8-5MiB-1000chapters",
+            "normalizedBytes": 4895893,
+            "normalizedSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "sourceBytes": 4895893,
+            "sourceSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 4894,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 4895893,
+              "startByte": 4890996,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 4895893,
+          "windowTraversalMilliseconds": 95.379375
+        },
+        {
+          "afterImportPeakRSSBytes": 14761984,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 6815744,
+          "coldImportMilliseconds": 4815.860833,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 15.342583,
+          "finalPeakRSSBytes": 27082752,
+          "maximumWindowBytes": 17077,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1628.639458,
+              "peakRSSBytes": 21479424,
+              "readingPlanMilliseconds": 672.991959
+            },
+            {
+              "cacheValidationMilliseconds": 1786.843167,
+              "peakRSSBytes": 24838144,
+              "readingPlanMilliseconds": 542.490875
+            },
+            {
+              "cacheValidationMilliseconds": 1463.321709,
+              "peakRSSBytes": 27082752,
+              "readingPlanMilliseconds": 518.835541
+            }
+          ],
+          "resourceCount": 3000,
+          "sample": {
+            "name": "utf8-50MiB-3000chapters",
+            "normalizedBytes": 51229893,
+            "normalizedSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "sourceBytes": 51229893,
+            "sourceSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "chapterCount": 3000,
+            "firstChapter": {
+              "endByte": 17074,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 51229893,
+              "startByte": 51212816,
+              "title": "第3000章 云海问道"
+            }
+          },
+          "visitedBytes": 51229893,
+          "windowTraversalMilliseconds": 568.376917
+        },
+        {
+          "afterImportPeakRSSBytes": 7995392,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 5439488,
+          "coldImportMilliseconds": 4235.228333,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 0.099375,
+          "finalPeakRSSBytes": 9601024,
+          "maximumWindowBytes": 65536,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1457.368833,
+              "peakRSSBytes": 8765440,
+              "readingPlanMilliseconds": 470.011917
+            },
+            {
+              "cacheValidationMilliseconds": 1367.797417,
+              "peakRSSBytes": 9060352,
+              "readingPlanMilliseconds": 424.456417
+            },
+            {
+              "cacheValidationMilliseconds": 1508.5655,
+              "peakRSSBytes": 9191424,
+              "readingPlanMilliseconds": 566.271875
+            }
+          ],
+          "resourceCount": 800,
+          "sample": {
+            "name": "utf8-50MiB-no-newline",
+            "normalizedBytes": 52427840,
+            "normalizedSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "sourceBytes": 52427840,
+            "sourceSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "chapterCount": 1,
+            "firstChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            },
+            "lastChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            }
+          },
+          "visitedBytes": 52427840,
+          "windowTraversalMilliseconds": 620.330583
+        },
+        {
+          "afterImportPeakRSSBytes": 11108352,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 5947392,
+          "coldImportMilliseconds": 880.719958,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 4.205542,
+          "finalPeakRSSBytes": 15597568,
+          "maximumWindowBytes": 7333,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 274.051416,
+              "peakRSSBytes": 12484608,
+              "readingPlanMilliseconds": 77.803583
+            },
+            {
+              "cacheValidationMilliseconds": 175.23175,
+              "peakRSSBytes": 14073856,
+              "readingPlanMilliseconds": 131.889916
+            },
+            {
+              "cacheValidationMilliseconds": 214.045709,
+              "peakRSSBytes": 15204352,
+              "readingPlanMilliseconds": 106.016542
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf16-5MiB-1000chapters",
+            "normalizedBytes": 7331893,
+            "normalizedSHA256": "72f2eba92028ba24730b3e7c6f492445a9656322469b5855f8b3e98d33244c60",
+            "sourceBytes": 5231788,
+            "sourceSHA256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 7330,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 7331893,
+              "startByte": 7324560,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 7331893,
+          "windowTraversalMilliseconds": 131.628875
+        }
+      ],
+      "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
+    }
+  },
+  "nativeMiddleResourceScrollPixels": 600,
+  "nativeReopenErrorPixelsLessThan": 3,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "runtimeMemoryFixComparedWithBaseline": true,
+  "sourceHashesMatched": 460,
+  "preservedPackageCount": 8,
+  "locksMatched": true,
+  "appleBaselineComparison": [
+    {
+      "sample": "utf8-5MiB-1000chapters",
+      "sourceSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+      "beforeImportPeakRSSBytes": 34652160,
+      "afterImportPeakRSSBytes": 10371072,
+      "beforeFinalPeakRSSBytes": 42254336,
+      "afterFinalPeakRSSBytes": 15122432
+    },
+    {
+      "sample": "utf8-50MiB-3000chapters",
+      "sourceSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+      "beforeImportPeakRSSBytes": 271237120,
+      "afterImportPeakRSSBytes": 14761984,
+      "beforeFinalPeakRSSBytes": 335429632,
+      "afterFinalPeakRSSBytes": 27082752
+    },
+    {
+      "sample": "utf8-50MiB-no-newline",
+      "sourceSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+      "beforeImportPeakRSSBytes": 269926400,
+      "afterImportPeakRSSBytes": 7995392,
+      "beforeFinalPeakRSSBytes": 271433728,
+      "afterFinalPeakRSSBytes": 9601024
+    },
+    {
+      "sample": "utf16-5MiB-1000chapters",
+      "sourceSHA256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+      "beforeImportPeakRSSBytes": 40583168,
+      "afterImportPeakRSSBytes": 11108352,
+      "beforeFinalPeakRSSBytes": 61636608,
+      "afterFinalPeakRSSBytes": 15597568
+    }
+  ],
+  "gates": {
+    "linuxCorePassed": true,
+    "macOSCorePassed": true,
+    "iOSTestsPassed": true,
+    "deviceReleaseBuilt": true,
+    "desktopLongTXTValidated": true,
+    "deviceLongTXTPerformanceAccepted": false,
+    "M2Accepted": false
+  },
+  "artifacts": [
+    {
+      "path": "build/ci/38587015887/full.log",
+      "bytes": 2815276,
+      "sha256": "594b770190ed1345230aca80023db3a9593ee159e025af1996c9b00d38c8437a"
+    },
+    {
+      "path": "build/ci/38587015887/core/logs/core-tests.log",
+      "bytes": 9884,
+      "sha256": "85066f334430e37c539f46613c2c0626960e31ee635971fb0412ba6cbb4f311e"
+    },
+    {
+      "path": "build/ci/38587015887/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 2055992,
+      "sha256": "50dd36b3df1a9ae4c797814a870833dae223ae25c902fcf103a258ff22174859"
+    },
+    {
+      "path": "build/ci/38587015887/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1172,
+      "sha256": "88dd9ac19ccfc048d05f23fc2d90830ef9eb9445c46654becc588563cbf07610"
+    },
+    {
+      "path": "build/ci/38587015887/core/TXTPerformance/summary.json",
+      "bytes": 696384,
+      "sha256": "11c48489cfc2272e9f004f880f354b04b85b2ce4d4d524a838e2f0eb57edc59c"
+    },
+    {
+      "path": "build/ci/38587015887/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
+      "bytes": 696399,
+      "sha256": "708210ceb8b0f5a6961fdf9cd3126eefd905c11e4281d721835348ff831f6a0b"
+    },
+    {
+      "path": "build/ci/38587015887/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa",
+      "bytes": 7705388,
+      "sha256": "db344d2b7da478639b79d7e7cf64554ef59e003dd8dd9fd1266cd21dd9ed15f4"
+    }
+  ]
+}

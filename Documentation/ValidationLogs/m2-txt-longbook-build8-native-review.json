@@ -1,0 +1,30 @@
+{
+  "recordedAtUTC": "2026-10-14T15:32:08.766979+00:00",
+  "run": 38587015887,
+  "sourceRevision": "1d4ee302daf32534fb367ccc1c4f4b5af8489fcd",
+  "image": {
+    "path": "build/ci/38587015887/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D0AAC3EE-0017-4237-A822-B0737EF6DA9E.png",
+    "sha256": "1f6db3a41d862cb6a8a1737129ff0f5c09f774132ff3f7482abfb201ecf933b6",
+    "attachment": {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+      "deviceName": "iPhone 16 Pro",
+      "exportedFileName": "D0AAC3EE-0017-4237-A822-B0737EF6DA9E.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "txt-continuous-long-paragraph_0_29206310-1EED-468C-8E4F-247BFE1388E6.png",
+      "timestamp": 1791991340.351
+    }
+  },
+  "inspected": true,
+  "observations": [
+    "Real WKWebView screenshot shows Chinese body and emoji after physical scrolling in the second giant-paragraph resource.",
+    "Top/bottom partial lines correspond to the scrolled viewport; no heading is expected in this middle resource."
+  ],
+  "nativeAssertions": {
+    "scrollPixels": 600,
+    "characterOffsetGreaterThan": 100,
+    "reopenErrorPixelsLessThan": 3
+  },
+  "scope": "Actual iOS18.5 simulator WK viewport; not full app layout, font/theme or user-device acceptance",
+  "M2Accepted": false
+}

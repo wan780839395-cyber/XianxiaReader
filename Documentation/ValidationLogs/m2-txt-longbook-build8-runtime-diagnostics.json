@@ -1,0 +1,27 @@
+{
+  "recordedAtUTC": "2026-10-14T15:32:08.770514+00:00",
+  "run": 38587015887,
+  "sourceRevision": "1d4ee302daf32534fb367ccc1c4f4b5af8489fcd",
+  "currentCounts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 6,
+    "webKitProcessAssertions": 31
+  },
+  "baselineCounts": {
+    "sqliteVnodeUnlink": 15,
+    "documentManagerDeadHost": 5,
+    "appIntentsMetadata": 5,
+    "webKitProcessAssertions": 41
+  },
+  "fullLog": {
+    "path": "build/ci/38587015887/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "50dd36b3df1a9ae4c797814a870833dae223ae25c902fcf103a258ff22174859"
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Native host/temporary repository fixtures now survive worker lifetime; this run has no dead-host or SQLite unlink diagnostics. Metadata/WebKit diagnostics are retained, and passing one run does not claim the system bug is permanently fixed.",
+  "productionPickerChanged": false,
+  "productionDatabaseDeletionAdded": false
+}

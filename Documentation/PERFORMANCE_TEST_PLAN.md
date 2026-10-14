@@ -1,6 +1,6 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
-当前设备性能尚未验收；本轮新增Release桌面Core探针，首轮Linux/macOS编译和测量已完成，发现Apple长循环临时对象增长，修复候选尚待完整CI。以下目标不是已达成指标。
+当前Build8完整自动CI与Release桌面实测已通过，Apple长循环临时对象增长已由同hash样本验证改善；设备性能仍未验收。以下目标保持独立，不把桌面结果当iPhone指标。
 
 ## M2 长篇探针（本轮进行中）
 
@@ -15,6 +15,8 @@ Linux/macOS都跑真实Release探针并上传完整JSON/log；iOS原长段回归
 38583014146/908ee29各68Core编译通过，4个Release探针均完成正确性核验，新增iOS巨章与第二窗口600点/3px回归均通过；但已有完整书架测试遭DocumentManager迟到host proxy异常，iOS55/56，test65/export0/summary0，Release未执行。macOS15.7.9数据：51.23MB/3000章导入后RSS高水位258.67MiB，最终319.89MiB；52.43MB无换行单章导入后257.42MiB。Linux同样本峰值32.49/23.38MiB，差异不能被Linux有界窗口结果覆盖。
 
 参照[Apple WWDC24 Analyze heap memory](https://developer.apple.com/videos/play/wwdc2024/10173/)对Swift循环autorelease增长的说明，以及[Apple swift-mmio FileManager+Hashing](https://github.com/apple/swift-mmio/blob/main/Tests/SVDTests/FileManager%2BHashing.swift)的文件hash实践，采用Foundation公开autoreleasepool，将读取及处理放在每chunk的同步作用域内，摘要/decoder/章节等Swift值状态跨chunk保留；窗口完整读取也有同步pool，Linux直接执行原操作。不跨await持有pool、不改文件协调、字节校验/错误/取消合同、不升级parser/cache/Locator版本。探针的独立参考读也包住自己的临时对象，导入后RSS采样早于参考读，不能把探针清理当产品修复。源码变化会交付Build8，必须重新完整CI和设备验证。
+
+版本/差异核对：2026-10-14实际读取swift-mmio main的[原始源码](https://raw.githubusercontent.com/apple/swift-mmio/main/Tests/SVDTests/FileManager%2BHashing.swift)，它使用System.FileDescriptor和2048byte可重用临时buffer，依赖CryptoKit/System，**没有autoreleasepool**；这是可选底层buffer路线，未照搬其try?关闭或引入新依赖。此项目锁定Swift tools5.10/Xcode16.4/iOS16，保持已有Foundation错误/close合同，以WWDC24明确的嵌套pool例子作最小改动；Linux无Objective-C时直接原操作。效果必须由同hash的Apple Release实测确认，不能根据参考方案推定已修复。
 
 已有picker测试只保留picker到case teardown，仍销毁SwiftUI host tree；完整日志异常在前一case结束后通过XPC迟到布局回调送达，不证明当前TXT测试/用户首次导入失败。[WebKit官方问题269615](https://bugs.webkit.org/show_bug.cgi?id=269615)有iOS16/17同类异常；它只证明系统晚回调风险，不能证明本项目唯一根因。测试工具保留六个已隐藏完整native host到worker进程结束，所有原生呈现/关闭/迟到/编码/导入断言和15秒门槛保持；其tmp数据库也保留到worker结束，避免在存活repository下unlink。仅测试fixture生命周期变更，生产App picker路径保持Build7用户已确认方案，未捕获/禁用系统异常或删除失败测试。
 
@@ -42,3 +44,21 @@ EPUB 样本分别覆盖一个巨大 XHTML、3000 个小 XHTML、嵌套 TOC、大
 导入复制/解析/文件提交/DB 事务四个位置分别中断；测取消、杀进程、磁盘不足、iCloud 暂未下载、数据库升级、索引版本变更及损坏 cache。原始用户书籍不能因失败丢失。索引正确性检查首末 byte range、随机 100 个章节标题、文件末尾、UTF-8 边界与重复章身份。
 
 当前 Readium 每次打开 publication 的 manifest/position 计算仍可能成为大 EPUB 瓶颈。M5 先测量再通过服务扩展或持久 cache 优化，不用“接入了 Readium”代替性能保证。
+
+
+### Build8完整实测（设备仍待验收）
+
+Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。
+
+新包`build/XianxiaReader-TXT-Memory-Build8-TestKit.zip` / SHA256 `7ed19e6a595b8bd14624298689efbd68a81b39be0021e7335dbe211e7c875533`，含Build8 IPA与8个原创大小样本；正常更新保留书库，+菜单确认0.0.1 (8)。8个旧Build4/5/6/7包及基线长样本ZIP逐hash保留。App导入/UI、Readium3.11/Vendor/6 pins/文件协调/Locator和cache版本不改。首轮38583014146/908ee29各68Core/探针通过、iOS55/56系统DocumentManager迟到host异常且Apple内存增长，完整失败/测量原件保留；修复测试仅保留六个隐藏完整host与tmp repository到worker结束，原所有断言/15秒门槛保留，未宣布修复Apple系统bug。缓存重开仍全文流式校验/构造plan；只读元数据秒开尚未实现。Build7首次导入已获用户确认，Build8及长书/普通设备/完整中文排版仍待设备验证，M2Accepted=false；M3/M4未开始。报告[M2_TXT_LONGBOOK_VALIDATION_REPORT.json](M2_TXT_LONGBOOK_VALIDATION_REPORT.json)，性能合同[PERFORMANCE_TEST_PLAN.md](PERFORMANCE_TEST_PLAN.md)。
+
+| 平台/样本 | 实际原始MB | 章数 | 冷导入s | 三次cache校验+plan s | 最终进程RSS MiB |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Linux/utf8-5MiB-1000chapters | 4.90 | 1000 | 0.54 | 0.39–0.39 | 26.53 |
+| Linux/utf8-50MiB-3000chapters | 51.23 | 3000 | 5.36 | 2.62–2.64 | 32.77 |
+| Linux/utf8-50MiB-no-newline | 52.43 | 1 | 5.38 | 2.28–2.32 | 23.38 |
+| Linux/utf16-5MiB-1000chapters | 5.23 | 1000 | 1.05 | 0.45–0.45 | 26.29 |
+| macOS/utf8-5MiB-1000chapters | 4.90 | 1000 | 0.47 | 0.22–0.24 | 14.42 |
+| macOS/utf8-50MiB-3000chapters | 51.23 | 3000 | 4.82 | 1.98–2.33 | 25.83 |
+| macOS/utf8-50MiB-no-newline | 52.43 | 1 | 4.24 | 1.79–2.07 | 9.16 |
+| macOS/utf16-5MiB-1000chapters | 5.23 | 1000 | 0.88 | 0.31–0.35 | 14.88 |
