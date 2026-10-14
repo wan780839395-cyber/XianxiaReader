@@ -20,7 +20,7 @@
 | 总章节数 | 当前仅报告目录条目；TXT canonical 章数在 M2 | M1/M2 |
 | 书签添加/跳转/删除 | 已写入 | M1 |
 | TXT 导入/编码/正文阅读 | 独立Core组件已写入，转码/cache/产品入口尚未接入，不能导入TXT | M2 |
-| 八种标题识别、streaming、chunk、窗口 | 初始实现与19项Core回归已写入，Windows静态通过；Swift编译待执行，内容版本cache未实现 | M2 |
+| 八种标题识别、streaming、chunk、窗口 | 新增19项在各33 Core内通过，完整CI attempt2为41/41 iOS及Release；首轮EPUB超时留档；cache未实现 | M2 |
 | 自定义字体导入/选择、字号/字重 | 计划，经 Readium preferences 实现 | M4 |
 | 行距/段距/四边距/缩进/对齐/字间距 | 计划 | M4 |
 | 页面亮度、翻页方式持久化 | 计划；当前只有分页/滚动会话切换 | M4 |

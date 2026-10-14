@@ -1,0 +1,23 @@
+{
+  "validationKind": "static_only",
+  "recordedAtUTC": "2026-10-14T09:31:02.634917+00:00",
+  "checks": [
+    "check_documents",
+    "check_project",
+    "check_workflow",
+    "check_schema",
+    "check_fixtures",
+    "check_vendor"
+  ],
+  "swiftGrammarFiles": 367,
+  "swiftCompiled": false,
+  "xcodeBuildPassed": false,
+  "simulatorAccepted": false,
+  "deviceAccepted": false,
+  "trollStoreAccepted": false,
+  "ipaProduced": false,
+  "sourceRevision": "0643093d32fdc9801cba34671d9eba3d1eb35de4",
+  "pythonToolingPassed": 14,
+  "pristineParserLimitations": 54,
+  "newGrammarDiagnostics": 0
+}
