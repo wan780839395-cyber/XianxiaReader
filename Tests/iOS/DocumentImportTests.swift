@@ -5,19 +5,14 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class DocumentImportTests: XCTestCase {
-    @MainActor private final class Presentation: ObservableObject {
-        @Published var visible = false
-        var pickers: [UIDocumentPickerViewController] = []
-    }
-
-    @MainActor private struct PickerHarness: View {
-        @ObservedObject var presentation: Presentation
+    @MainActor private final class Presentation {
         let model: LibraryViewModel
-
-        var body: some View {
-            Text("文件导入回归")
-                .modifier(DocumentImportSheet(isPresented: $presentation.visible, model: model))
+        var pickers: [UIDocumentPickerViewController] = []
+        var visible: Bool {
+            get { model.presentedSheet == .importFiles }
+            set { model.presentedSheet = newValue ? .importFiles : nil }
         }
+        init(model: LibraryViewModel) { self.model = model }
     }
 
     private enum PresentationFailure: Error { case timedOut(String) }
@@ -31,13 +26,13 @@ final class DocumentImportTests: XCTestCase {
         throw PresentationFailure.timedOut(description)
     }
 
-    @MainActor private func mountPicker(model: LibraryViewModel) throws -> (UIWindow, Presentation) {
+    @MainActor private func mountPicker(services: AppServices, model: LibraryViewModel) throws -> (UIWindow, Presentation) {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }
-        let presentation = Presentation()
+        let presentation = Presentation(model: model)
         let window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
-        window.rootViewController = UIHostingController(rootView: PickerHarness(presentation: presentation, model: model))
+        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model))
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
         addTeardownBlock {
@@ -88,9 +83,21 @@ final class DocumentImportTests: XCTestCase {
         }
     }
 
-    // Use the production SwiftUI sheet and real UIKit delegate, rather than
-    // calling importBooks directly. No second presentation or shelf refresh
-    // may be needed to transfer the very first selection to the import task.
+    @MainActor private func attachShelf(_ window: UIWindow, name: String) {
+        window.layoutIfNeeded()
+        var rendered = false
+        let image = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            rendered = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }
+        XCTAssertTrue(rendered)
+        let attachment = XCTAttachment(image: image)
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    // Mount the entire production LibraryView, including its navigation,
+    // encoding sheet, reader cover and feedback, not a single-sheet Text view.
     @MainActor private func verifyFirstSelection(format: BookFormat) async throws {
         let (root, services, model) = try context()
         let url: URL
@@ -100,7 +107,7 @@ final class DocumentImportTests: XCTestCase {
             url = root.appendingPathComponent("首次导入.txt")
             try Data("第一章 起点\n第一次选中的正文。\n第二章 继续\n下一章正文。".utf8).write(to: url)
         }
-        let (window, presentation) = try mountPicker(model: model)
+        let (window, presentation) = try mountPicker(services: services, model: model)
         let picker = try await presentPicker(window: window, presentation: presentation)
         let delegate = try XCTUnwrap(picker.delegate)
         delegate.documentPicker?(picker, didPickDocumentsAt: [url])
@@ -115,6 +122,7 @@ final class DocumentImportTests: XCTestCase {
         XCTAssertEqual(stored.map(\.book.id), [book.id])
         let original = try Data(contentsOf: url)
         XCTAssertEqual(try Data(contentsOf: services.files.resolve(book.filePath)), original)
+        if format == .txt { attachShelf(window, name: "library-first-txt-success") }
     }
 
     @MainActor func testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry() async throws {
@@ -126,8 +134,8 @@ final class DocumentImportTests: XCTestCase {
     }
 
     @MainActor func testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles() async throws {
-        let (_, _, model) = try context()
-        let (window, presentation) = try mountPicker(model: model)
+        let (_, services, model) = try context()
+        let (window, presentation) = try mountPicker(services: services, model: model)
         let cancelled = try await presentPicker(window: window, presentation: presentation)
         let cancelledDelegate = try XCTUnwrap(cancelled.delegate)
         cancelledDelegate.documentPickerWasCancelled?(cancelled)
@@ -169,6 +177,109 @@ final class DocumentImportTests: XCTestCase {
         coordinator.documentPicker(picker, didPickDocumentsAt: urls)
         coordinator.documentPickerWasCancelled(picker)
         XCTAssertEqual(received, [urls])
+    }
+
+    @MainActor func testSingleURLDelegateDeliversOnceAndIgnoresDuplicateArrayAndCancel() {
+        let url = URL(fileURLWithPath: "/tmp/legacy.epub")
+        var received: [[URL]] = []
+        let coordinator = EPUBDocumentPicker.Coordinator { result in
+            if case .success(let urls) = result { received.append(urls) }
+            else { XCTFail("Expected the selected URL") }
+        }
+        let picker = EPUBDocumentPicker.makePicker()
+        coordinator.documentPicker(picker, didPickDocumentAt: url)
+        coordinator.documentPicker(picker, didPickDocumentsAt: [url])
+        coordinator.documentPickerWasCancelled(picker)
+        XCTAssertEqual(received, [[url]])
+    }
+
+    @MainActor func testSelectionStartsImportWithoutAnySheetDismissalCallback() async throws {
+        for format in [BookFormat.txt, .epub] {
+            let (root, services, model) = try context()
+            let url: URL
+            if format == .txt {
+                url = root.appendingPathComponent("直接交接.txt")
+                try Data("第一章 起点\n首次回调直接交给导入任务。".utf8).write(to: url)
+            } else {
+                url = try XCTUnwrap(Bundle.main.url(forResource: "chinese-epub3", withExtension: "epub", subdirectory: "Fixtures"))
+            }
+            model.presentedSheet = .importFiles
+            let coordinator = EPUBDocumentPicker.Coordinator(onCompletion: model.receivePickedDocuments)
+            let picker = EPUBDocumentPicker.makePicker()
+            coordinator.documentPicker(picker, didPickDocumentsAt: [url])
+            // Intentionally no sheet, onDismiss, refresh, or second selection.
+            // Build6 queued this result indefinitely without finishPicking.
+            try await waitFor("selected file imports independently of dismissal") { model.books.count == 1 && !model.isImporting }
+            XCTAssertNil(model.presentedSheet)
+            XCTAssertNil(model.errorMessage)
+            XCTAssertEqual(model.importStatus, "已导入 1 本书")
+            coordinator.documentPicker(picker, didPickDocumentAt: url)
+            coordinator.documentPickerWasCancelled(picker)
+            let stored = try await services.repository.books()
+            XCTAssertEqual(stored.count, 1)
+        }
+    }
+
+    @MainActor func testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry() async throws {
+        let (root, services, model) = try context()
+        let bad = root.appendingPathComponent("unsupported.pdf")
+        try Data("not a supported book".utf8).write(to: bad)
+        let (window, presentation) = try mountPicker(services: services, model: model)
+        let picker = try await presentPicker(window: window, presentation: presentation)
+        let delegate = try XCTUnwrap(picker.delegate)
+        delegate.documentPicker?(picker, didPickDocumentsAt: [bad])
+        try await waitForDismissal(window: window, picker: picker)
+        try await waitFor("first invalid selection reports error") { model.errorMessage != nil && !model.isImporting }
+        XCTAssertTrue(model.errorMessage?.contains("unsupported.pdf") == true)
+        XCTAssertTrue(model.books.isEmpty)
+        XCTAssertNil(model.importStatus)
+        XCTAssertNil(window.rootViewController?.presentedViewController, "Feedback must not need a second modal")
+        attachShelf(window, name: "library-first-import-error")
+        let good = root.appendingPathComponent("再次选择.txt")
+        try Data("第一章 起点\n失败后的首次有效选择。".utf8).write(to: good)
+        let retry = try await presentPicker(window: window, presentation: presentation)
+        let retryDelegate = try XCTUnwrap(retry.delegate)
+        retryDelegate.documentPicker?(retry, didPickDocumentsAt: [good])
+        try await waitForDismissal(window: window, picker: retry)
+        try await waitFor("retry after visible error") { model.books.count == 1 && !model.isImporting }
+        XCTAssertNil(model.errorMessage)
+        XCTAssertEqual(model.importStatus, "已导入 1 本书")
+    }
+
+    @MainActor func testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip() async throws {
+        let (root, services, model) = try context()
+        let original = root.appendingPathComponent("已有书籍.txt")
+        try Data("第一章 旧书\n既有书库必须保留。".utf8).write(to: original)
+        await model.importBooks([original])
+        let originalID = try XCTUnwrap(model.books.first?.id)
+        let (window, presentation) = try mountPicker(services: services, model: model)
+        let added = root.appendingPathComponent("首次选择.txt")
+        try Data("第一章 新书\n有书库时的第一次文件导入。".utf8).write(to: added)
+        let picker = try await presentPicker(window: window, presentation: presentation)
+        let delegate = try XCTUnwrap(picker.delegate)
+        delegate.documentPicker?(picker, didPickDocumentsAt: [added])
+        try await waitForDismissal(window: window, picker: picker)
+        try await waitFor("first import on populated shelf") { model.books.count == 2 && !model.isImporting }
+        XCTAssertTrue(model.books.contains { $0.id == originalID })
+        model.presentedSheet = .txtEncoding
+        try await waitFor("encoding sheet presentation") {
+            window.rootViewController?.presentedViewController?.view.window != nil
+                && window.rootViewController?.presentedViewController?.transitionCoordinator == nil
+        }
+        XCTAssertNil(findPicker(in: window.rootViewController))
+        model.txtEncoding = .gb18030
+        model.presentedSheet = nil
+        try await waitFor("encoding sheet dismissal") {
+            window.rootViewController?.presentedViewController == nil
+                && window.rootViewController?.transitionCoordinator == nil
+        }
+        XCTAssertEqual(model.txtEncoding, .gb18030)
+        model.txtEncoding = .automatic
+        let afterEncoding = try await presentPicker(window: window, presentation: presentation)
+        let afterDelegate = try XCTUnwrap(afterEncoding.delegate)
+        afterDelegate.documentPickerWasCancelled?(afterEncoding)
+        try await waitForDismissal(window: window, picker: afterEncoding)
+        XCTAssertEqual(model.books.count, 2)
     }
 
     @MainActor func testCancelledPickerCannotStartImportWithLateFiles() {

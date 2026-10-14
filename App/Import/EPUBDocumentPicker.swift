@@ -34,6 +34,16 @@ import UniformTypeIdentifiers
         }
 
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            deliver(urls)
+        }
+
+        // Readium 3.11's TestApp also implements the older single-URL delegate.
+        // Both entry points share the same one-shot terminal state.
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+            deliver([url])
+        }
+
+        private func deliver(_ urls: [URL]) {
             guard !completed else { return }
             completed = true
             if urls.isEmpty { onCompletion(.failure(ImportError.noFilesSelected)) }

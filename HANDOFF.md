@@ -4,6 +4,10 @@
 
 ## 实际断点
 
+2026-10-14 Build6设备反馈更新：用户报告“打开软件第一次导入好像还是不会有反应和提示，第二次能成功导入和有错误提示”。Build6首次设备验收失败，不能继续把参考模型交接视为设备修复成功。已核实main/原空index与所有旧改动/包保留、无运行CI或本地任务。当前重新检查完整LibraryView（两种sheet/fullScreenCover/alert）与UIKit delegate自动关闭时序；上轮Text+单sheet harness未覆盖完整书架/真实File Provider，iOS18.5自动结果仍保留但不足以证明此设备问题解决。即将补完整书架冷首次回归，并改为直接从delegate触发导入，去掉onDismiss必须先发生的依赖；先查官方/锁定Readium成熟实现，尚未写入或编译新修复。
+
+新源码已写入但待编译：LibraryViewModel.receivePickedDocuments直接触发导入/错误，不再排队等onDismiss；LibrarySheet统一文件/编码为单个item sheet，完整LibraryView错误改为持续书架提示（可关闭），避免picker关闭时再争抢alert。TXTEncodingSheet仅提取原编码页面；保留asCopy/NSFileCoordinator/DB/原件/Readium原路径。Coordinator按官方Readium3.11样例补单URL公共delegate，和数组/取消共用终止过滤。Build7。原3个sheet回归现在全部挂载完整生产LibraryView（空/非空书架、reader cover、编码、反馈），新增4项：无任何dismiss事件也要导入、冷首次无效文件与提示/重试、已有书库+编码弹窗往返、单URL/重复数组/取消。保留原断言/15秒deadline/关闭transition；首次成功/错误导出真实书架截图。即将Windows381 grammar/14 tooling及完整CI，各68Core/iOS53/Build7Release均待执行；不是已修复设备根因。
+
 **首次文件导入交接已改为参考模型保存并通过Build6完整自动CI；用户iOS16.6.1首次选择仍待实测确认。完整M2设备/长书未完成，不提前进入M3/M4。** 用户反馈为“选择器关闭了，但书架没有新书，也没有提示”，TXT正常可导入但首次不生效，EPUB此前同样发生。不是把后端直接导入通过当成整个File Provider流程已验收。
 
 最新CI38566503849 / 已测运行源码5522489906224a089c91e92180bdcebbe9be2095 / codex/import-first-selection / bootstrap=false，所有job success。Linux/macOS各68 Core、iOS49/49、0 failed/skipped，新增3个真实SwiftUI/UIDocumentPicker交接回归全部通过；test/附件/summary退出码0，设备Release CODE_SIGNING_ALLOWED=NO和Build6 IPA通过。完整run/full/Core/Apple日志、原始xcresult及ReaderSnapshots位于build/ci/38566503849，456个运行Git blob SHA与工作区源码一致，根/下载/workspace锁文件逐字节一致。源码Swift/C warning/error=0，AppIntents/WebKit诊断仍原样保留。Windows380 grammar新增0/pristine54限制保留、14 Python tooling通过，语法不是编译。

@@ -5,14 +5,12 @@ import XianxiaCore
 @MainActor struct LibraryView: View {
     let services: AppServices
     @StateObject private var model: LibraryViewModel
-    @State private var showImporter = false
     @State private var selectedBook: Book?
-    @State private var showTXTEncoding = false
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20)]
 
-    init(services: AppServices) {
+    init(services: AppServices, model: LibraryViewModel? = nil) {
         self.services = services
-        _model = StateObject(wrappedValue: LibraryViewModel(services: services))
+        _model = StateObject(wrappedValue: model ?? LibraryViewModel(services: services))
     }
 
     var body: some View {
@@ -24,7 +22,7 @@ import XianxiaCore
                         Text("把你的江湖，放进书架").font(.title2)
                         Text("从“文件”导入 EPUB 或 TXT，在这里继续阅读。")
                             .foregroundStyle(.secondary).multilineTextAlignment(.center)
-                        Button("导入书籍") { showImporter = true }.buttonStyle(.borderedProminent)
+                        Button("导入书籍") { model.presentedSheet = .importFiles }.buttonStyle(.borderedProminent)
                             .disabled(model.isImporting)
                         Button("导入内置样书") { model.startSamplesImport() }
                             .disabled(model.isImporting)
@@ -61,10 +59,11 @@ import XianxiaCore
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Button("从文件导入 EPUB / TXT") { showImporter = true }
+                        Button("从文件导入 EPUB / TXT") { model.presentedSheet = .importFiles }
                         Button("导入内置样书") { model.startSamplesImport() }
                         Button("导入 TXT 样书") { model.startTXTSamplesImport() }
-                        Button("TXT 编码") { showTXTEncoding = true }
+                        Button("TXT 编码") { model.presentedSheet = .txtEncoding }
+                        Text("版本 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "未知") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "未知"))")
                     } label: { Image(systemName: "plus") }
                         .accessibilityLabel("导入书籍").disabled(model.isImporting)
                 }
@@ -79,37 +78,23 @@ import XianxiaCore
                 } else if let status = model.importStatus {
                     Text(status).font(.footnote).padding().frame(maxWidth: .infinity).background(.regularMaterial)
                 }
+                if let error = model.errorMessage, !model.isImporting {
+                    HStack(alignment: .top, spacing: 12) {
+                        Image(systemName: "exclamationmark.circle").foregroundStyle(.red)
+                        ScrollView { Text(error).font(.footnote).frame(maxWidth: .infinity, alignment: .leading) }
+                            .frame(maxHeight: 120)
+                        Button("关闭") { model.errorMessage = nil }
+                    }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                        .accessibilityIdentifier("library.import.error")
+                }
                 if !model.retryTXTFiles.isEmpty, !model.isImporting {
-                    Button("选择 TXT 编码并重试") { showTXTEncoding = true }.padding(.bottom, 8)
+                    Button("选择 TXT 编码并重试") { model.presentedSheet = .txtEncoding }.padding(.bottom, 8)
                 }
             }
-            .modifier(DocumentImportSheet(isPresented: $showImporter, model: model))
+            .modifier(DocumentImportSheet(model: model))
             .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { book in
                 ReaderView(book: book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root))
             }
-            .sheet(isPresented: $showTXTEncoding) {
-                NavigationStack {
-                    Form {
-                        Picker("TXT 编码", selection: $model.txtEncoding) {
-                            Text("自动识别").tag(TXTEncoding.automatic)
-                            Text("UTF-8").tag(TXTEncoding.utf8)
-                            Text("UTF-16 小端").tag(TXTEncoding.utf16LittleEndian)
-                            Text("UTF-16 大端").tag(TXTEncoding.utf16BigEndian)
-                            Text("GB18030 / GBK").tag(TXTEncoding.gb18030)
-                        }.pickerStyle(.inline)
-                        Text("有编码标记的 TXT 可自动识别。不确定时请按文件实际编码选择；原文件会保留。")
-                            .font(.footnote).foregroundStyle(.secondary)
-                        if !model.retryTXTFiles.isEmpty {
-                            Button("按所选编码重试") { showTXTEncoding = false; model.retryTXTImport() }
-                        }
-                    }.navigationTitle("TXT 编码")
-                        .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showTXTEncoding = false } } }
-                }
-            }
-            .alert("书库提示", isPresented: Binding(get: { model.errorMessage != nil },
-                                                  set: { if !$0 { model.errorMessage = nil } })) {
-                Button("知道了") { model.errorMessage = nil }
-            } message: { Text(model.errorMessage ?? "") }
             .task { await model.refresh() }
         }
     }

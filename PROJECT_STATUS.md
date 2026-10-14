@@ -23,6 +23,8 @@
 
 ## 最新证据与设备边界
 
+2026-10-14最新用户设备反馈：Build6打开软件首次导入仍无反应/提示，第二次成功且可出现错误。Build6自动通过不等于首次设备修复通过，当前先处理该问题，不推进下一阶段。Build7候选已写入：picker delegate直接启动导入、单item sheet管理文件/编码、持续书架反馈、完整LibraryView回归及无dismiss事件独立导入回归；尚未编译。保留Build6/全部原件与未提交改动，最新状态见HANDOFF。
+
 2026-10-14首次文件导入修复已通过[CI38566503849](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849) / 5522489906224a089c91e92180bdcebbe9be2095 / Build6：结果由LibraryViewModel持有并在sheet关闭后消费一次，EPUB/TXT共用；各68Core/iOS49/49/Release通过，456运行hash与三份锁一致，源码compiler warnings/errors0。新增首次TXT、首次EPUB及取消/空选择/重试/迟到文件原生回归通过；两个先前48/49系统DocumentManager崩溃完整原件保留，最新仅修测试过渡/生命周期等待，不降低断言/增加timeout。iOS18.5旧交接未复现用户iOS16.6.1首次关闭无书无提示，设备唯一根因不宣称已证实，Build6设备首次选择仍待确认。新包build/XianxiaReader-Import-Build6-TestKit.zip，SHA256 112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c；Build4/5原件不变。报告M2_IMPORT_HANDOFF_VALIDATION_REPORT.json，设计IMPORT_HANDOFF_FIX.md。M2长书/设备未完成，M3/M4未开始，恢复点见HANDOFF。
 
 TXT产品接入自动门槛已通过：[CI38559906005](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38559906005)，运行源码 `37eb86a46dc9002af381a44204f9bc36d07e11a4`，Linux/macOS各68 Core、46/46 iOS、test/export/summary全0，Build5设备Release/IPA通过；455运行hash匹配、三份锁一致，Windows379 grammar新增0/14 tooling通过。已接入受管理原件/cache/事务TXT导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator位置、目录/书签/搜索/连续。真实iOS模拟器三编码导入、长段600点滑动/3px重开、错正文/字符边界拒绝回归通过；原41 EPUB/lifecycle回归保留。五次真实失败原件保留，包含字节selector实际修复与测试就绪修正，未降低断言。新包另存 `build/XianxiaReader-TXT-Build5.ipa`、测试ZIP `build/XianxiaReader-TXT-Build5-TestKit.zip`；原Build4不覆盖。数十MB/cache重开耗时/巨段边界与用户设备中文页面未验收，完整M2尚未完成，暂不大规模M3/M4。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。

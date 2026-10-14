@@ -3,6 +3,11 @@ import ReadiumAdapter
 import SwiftUI
 import XianxiaCore
 
+enum LibrarySheet: String, Identifiable {
+    case importFiles, txtEncoding
+    var id: String { rawValue }
+}
+
 @MainActor final class LibraryViewModel: ObservableObject {
     @Published private(set) var books: [BookSummary] = []
     @Published private(set) var isImporting = false
@@ -10,9 +15,9 @@ import XianxiaCore
     @Published private(set) var importStatus: String?
     @Published var errorMessage: String?
     @Published var txtEncoding: TXTEncoding = .automatic
+    @Published var presentedSheet: LibrarySheet?
     @Published private(set) var retryTXTFiles: [URL] = []
     private var importTask: Task<Void,Never>?
-    private var pickedDocuments: Result<[URL], Error>?
     private let services: AppServices
     private let importer: EPUBImportService
 
@@ -28,16 +33,10 @@ import XianxiaCore
     }
 
     func receivePickedDocuments(_ result: Result<[URL], Error>?) {
-        // A reference-owned handoff survives SwiftUI view snapshots. Reading an
-        // otherwise unused @State value from sheet's onDismiss can see its old
-        // value on the first presentation. Never use view state as this queue.
-        pickedDocuments = result
-    }
-
-    func finishPicking() {
-        // Consume once, after dismissal, so errors are not covered by Files.
-        let result = pickedDocuments
-        pickedDocuments = nil
+        // UIKit has already delivered the import-mode local copy. Start from
+        // that event, as Readium's TestApp does, even if SwiftUI omits onDismiss.
+        // Feedback stays in the shelf instead of racing another presentation.
+        presentedSheet = nil
         switch result {
         case .success(let urls): startImport(urls)
         case .failure(let error): errorMessage = error.localizedDescription

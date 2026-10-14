@@ -1,0 +1,10 @@
+{
+  "recordedDate": "2026-10-14",
+  "source": "direct user feedback after Build6 delivery",
+  "reportedBehavior": "打开软件第一次导入好像还是不会有反应和提示，第二次能成功导入和有错误提示",
+  "firstImportDeviceAccepted": false,
+  "buildContext": "Build6 test kit delivered in previous turn; installed build and device OS not independently read",
+  "automatedEvidencePreserved": {"run": 38566503849, "sourceRevision": "5522489906224a089c91e92180bdcebbe9be2095", "coreEach": 68, "iOS": 49, "ReleaseBuild": "6"},
+  "coverageGap": "Prior Text plus single sheet harness did not mount full LibraryView or exercise the real Files selection UI; old handoff also passed iOS18.5 first-selection tests.",
+  "nextScope": "Start import directly from picker delegate without onDismiss; unify sheet routing, persistent shelf error, full-library and missing-dismissal regressions."
+}
