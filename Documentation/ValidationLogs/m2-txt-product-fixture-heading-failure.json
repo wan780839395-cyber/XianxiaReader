@@ -1,0 +1,28 @@
+{
+  "recordedAtUTC": "2026-10-14T10:51:09.272951+00:00",
+  "run": 38552124765,
+  "sourceRevision": "c454a6087a89875af5ac43f87dc36b8d8ff57cd9",
+  "conclusion": "failure",
+  "linuxCoreCompiled": true,
+  "linuxCoreEnumerated": 68,
+  "failedTest": "testTXTImportPersistsOriginalEncodingTOCAndCacheAcrossRestart",
+  "cause": "Test fixture used a recognized epilogue heading as prose; expected3 vs actual4. Parser is correct.",
+  "remediation": "Change prose fixture wording; retain all assertions and heading rules.",
+  "iOSTestsExecuted": false,
+  "releaseBuilt": false,
+  "IPACreated": false,
+  "artifacts": [
+    {
+      "path": "build/ci/38552124765/core/core-tests.log",
+      "sha256": "b3bd1f3a5740a22b555515016ddb32c194eaf7144ee1719743fc089165e08ea8"
+    },
+    {
+      "path": "build/ci/38552124765/full.log",
+      "sha256": "b2551fee3044c33725bb113e02c792a3e1fd4002b539b51cb914c3a96e650da2"
+    },
+    {
+      "path": "build/ci/38552124765/run.json",
+      "sha256": "19cae9dbf7dd311a61d3beacb70ea4ba5eb08cb92b74033fdb525f1f26683988"
+    }
+  ]
+}

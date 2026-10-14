@@ -24,7 +24,7 @@ final class TXTProductTests: XCTestCase {
     }
     func testTXTImportPersistsOriginalEncodingTOCAndCacheAcrossRestart() async throws {
         let (root,files,repository) = try context(), source = root.appendingPathComponent("江湖.TXT")
-        let text = "第一卷 山门\r\n第一章 云海\r\n正文🙂\r\n第二章 问道\r\n尾声"
+        let text = "第一卷 山门\r\n第一章 云海\r\n正文🙂\r\n第二章 问道\r\n山门的灯火仍在"
         let bytes = try XCTUnwrap(text.data(using: .utf16BigEndian)); try bytes.write(to: source)
         let book = try await TXTBookImportService(files: files, repository: repository).importBook(from: source, encoding: .utf16BigEndian)
         XCTAssertEqual(book.format,.txt); XCTAssertEqual(book.txtEncoding,.utf16BigEndian)

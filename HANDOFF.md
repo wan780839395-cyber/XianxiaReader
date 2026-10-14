@@ -6,6 +6,10 @@
 
 ### TXT产品接入开始（覆盖下方上一切片的完成点）
 
+**当前真实验证：CI38552124765 / c454a6087a89875af5ac43f87dc36b8d8ff57cd9 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 源快照已正常push并dispatch，main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch或从旧60/41推断TXT通过；候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。
+
+真实首轮已结束failure：Linux新Core成功编译，68项中testTXTImportPersistsOriginalEncodingTOCAndCacheAcrossRestart的标题数组失败。夹具正文独立行“尾声”正属于已有标题识别器的合法章节标题，实际4条与测试错误预期3条不符；iOS未开始、没有IPA。完整Core/full/run已下载build/ci/38552124765。修正夹具为普通叙述“山门的灯火仍在”，同时将真实页面测试“第二章原创终点”（也符合允许无空格的章标题）改为“原创故事终点”；保留识别规则和原3条/章标题/窗口恢复断言，不降低测试。此修复待新完整CI。
+
 2026-10-14用户再次要求继续。已按顺序核对文档、main6d76174/原空index、M2分支2eaa974、CI38547339868/65c1b8d真实success及本机无挂起任务。下一切片接入受管理TXT导入、明确编码选择、Readium公开Publication/Container有界资源及完整TXT位置；原书/现有书库/Build4保留。先阅读锁定3.11本地公开API，再写最小实现与真实导入/窗口/位置/生命周期回归；此刻尚未写入新源码，不把上轮Core60/旧iOS41当产品TXT验收。
 
 构建前检查点：已写入TXTBookImportService（原件/索引cache/Book+TOC事务与失败恢复），可选Book.txtEncoding向后兼容旧EPUB JSON；BookFileStore保留NSFileCoordinator并支持TXT。TXTReadingPlanner将大章拆为最多64KiB轻量范围，Adapter公开Publication/Container/DataResource按窗口转XHTML、转义正文、字节段落ID，复用Readium排版与安全搜索。TXT独立完整位置envelope绑定原/normalized摘要、parser/normalizer/codec与稳定章ID、段落byte/UTF16字符和完整原生Locator，恢复在后台验证段落边界/代理对，不只百分比。UI支持TXT编码选择/失败重试/取消及原创TXT样书；Build号5，原Build4包不覆盖。新增8 Core/5 iOS回归，预期各68 Core/46 iOS；旧生命周期/迟到保存回归均保留，原TXT拒绝混合导入测试改为TXT+EPUB成功并保留不支持文件失败断言。Windows379 grammar新增0/14 tooling通过（不是编译）；此刻所有新源码待真实完整CI，Readium/vendor/远程锁未修改。

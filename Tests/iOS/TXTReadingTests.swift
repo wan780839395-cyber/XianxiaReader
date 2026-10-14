@@ -128,7 +128,7 @@ final class TXTReadingTests: XCTestCase {
         throw Failure.timedOut(description)
     }
     @MainActor func testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC() async throws {
-        let text = "第一章 长段\n"+String(repeating:"修行🙂再问道。",count:1000)+"\n第二章 尾声\n第二章原创终点"
+        let text = "第一章 长段\n"+String(repeating:"修行🙂再问道。",count:1000)+"\n第二章 尾声\n原创故事终点"
         let (book,url,services) = try await imported(text)
         let context = try await TXTReadiumPublicationLoader().open(book: book,fileURL: url,storageRoot: services.files.root)
         let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
