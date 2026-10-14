@@ -81,13 +81,15 @@ SwiftUI 的 `ReaderSurface` 使用显式 viewport 尺寸，菜单只叠加在阅
 
 横排重排媒体仅校准 ReadiumCSS 已有的 `--RS__maxMediaHeight` 保护：公开 setupUserScripts 钩子按真实 `innerHeight` 的95%设定像素上限，resize同步；避免WebKit的device-height/vh与实际正文视口不一致。不改作者width/aspect/object-fit，固定布局和竖排不接入此修正。原图/CSS仍保留，实际图像尺寸与原书体验分别验收。
 
-Build3的官方Readium3.11 `scroll` 仅章内滚动。连续跨章候选通过 `ReadingInterfaces` 可选能力接入本地Navigator扩展，外部UIScrollView只分配有界已加载资源，每章WKWebView保持视口尺寸；显示加载边界，最多12个资源并按可见距离回收。仍复用Readium资源服务/CSS/正文DOM，不拼接全书或分配数千章空白。横排LTR重排支持范围显式检查；固定布局/RTL/竖排保留原路径。候选在Windows可静态验证，实际跨章/惯性/位置/设备仍需完整CI与页面验收，详见 `Documentation/CONTINUOUS_SCROLL_DESIGN.md`。
+Build3的官方Readium3.11 `scroll` 仅章内滚动。Build4连续候选通过 `ReadingInterfaces` 可选能力接入本地Navigator扩展，外部UIScrollView只分配有界已加载资源，每章WKWebView保持视口尺寸；显示加载边界，最多12个资源并按可见距离回收。仍复用Readium资源服务/CSS/正文DOM，不拼接全书或分配数千章空白。横排LTR重排支持范围显式检查；固定布局/RTL/竖排保留原路径。CI38530334549/d62af3b完整自动回归、设备Release/IPA通过；当前边界PNG未完整显示第二章，实际视觉、手势惯性、内存和设备仍未验收，详见 `Documentation/CONTINUOUS_SCROLL_DESIGN.md`。
 
-连续候选位置保持标准Locator href/CSS/text/progression，并附加DOMRange字符位置及版本化局部视口偏移；只取64字符上下文。超长单段不退回段首。原搜索Locator继续走Readium文本定位；仅标记过的连续保存锚点使用精确字符恢复。异步位置/测量结果核对资源epoch和视口revision，未加载资源不发出假位置。close显式取消窗口任务、恢复待定位continuation并移除JS handlers。以上行为尚须iOS回归通过。
+连续候选位置保持标准Locator href/CSS/text/progression，并附加DOMRange字符位置及版本化局部视口偏移；只取64字符上下文。超长单段不退回段首。原搜索Locator继续走Readium文本定位；仅标记过的连续保存锚点使用精确字符恢复。异步位置/测量结果核对资源epoch和视口revision，未加载资源不发出假位置。close显式取消窗口任务、恢复待定位continuation并移除JS handlers。上述自动回归及600点滑动后字符/重开3px门槛在CI38530334549通过，不能代替实际设备体验。
 
 模式转换先异步取得实际DOM锚点，request ID/Task取消与Navigator identity防止迟到切换作用于新session。Readium的isSpreadLoaded早于延迟初始定位/decoration完成，因此增加显式完整初始化等待，clear也恢复等待者；原生go期间暂缓容器覆盖inner offset。go后读取DOM scrollY作为实际坐标，显式目录/搜索/书签定位原子提交外层offset，普通拖动/惯性与按屏滚动保留原路径。所有修复以完整CI为准，不能仅凭可见DOM就把位置恢复写成验收通过。
 
-回收章节的clear还必须断开spread、WKNavigationDelegate/WKUIDelegate和内层scroll delegate；已clear的WebKit进程终止以及取消加载完成回调不能要求当前Navigator重载。公开后首次CI38511938460为37/39通过，暴露长段导航/模式往返失败；上述迟到回调修复及新增真实窗口回归仍待40-test完整CI，不能把代码审查的可能原因写成已验证因果。
+显式跳转通过同一次JS执行原Readium定位并读取scrollY；位置保存则原子读取Locator/documentY/documentTop，发生DOM与原生视口不一致时最多采样3次，每次都核对epoch/revision/当前slot，不无限等待。原生didFinish公开WK探针启动同一完整初始化管线，避免后台rAF加载桥暂停；回收取消任务并解除等待链。已通过41项iOS自动验证，完整M1仍待页面/设备验收。用户要求卡点参考成熟实现，已审阅epub.js/Foliate/Readium连续方案；具体适用范围与保持原架构的取舍见 `Documentation/MATURE_READER_REFERENCES.md`。
+
+回收章节的clear还必须断开spread、WKNavigationDelegate/WKUIDelegate和内层scroll delegate；已clear的WebKit进程终止以及取消加载完成回调不能要求当前Navigator重载。公开后首次CI38511938460为37/39，历史失败已保留；迟到termination真实窗口回归及全部41项在38530334549通过，不能据此把每一处旧失败都归为同一原因。
 
 实际窗口测试通过公开 UIKit/WebKit API 检查 DOM、完整原生 Locator 和可视区域。DOM `readyState` 与 Readium 原生位置就绪分别等待；预加载 WebView 必须在两个轴上与 viewport 重叠才算当前页。快照保存在 xcresult，几何断言与视觉复查分别记录；原创样书通过不代表用户书籍完成设备验收。
 

@@ -2,49 +2,49 @@
 
 更新时间：2026-10-14（Asia/Shanghai）
 
-## 先核对这个实际断点
+## 实际断点
 
-当前候选分支codex/m1-continuous-recovery，实际Git ref=2590801d2d60314728ab8f9062dc33b5e661a4c1。
-正在验证的CI：38528382505，源码2590801d2d60314728ab8f9062dc33b5e661a4c1，resolve_local_readium=false，预期41项iOS；恢复先查该run，禁止重复启动/假定通过。
+**连续候选完整自动CI成功，Build4测试包已核验；下一步是实际阅读/设备验收，完整M1未放行。**
 
-最新已经执行的CI为38526015806，源码93ef44fbd12ca85d03ad57acda5db955d6a35c93：Linux/macOS各14 Core，iOS 38/41通过、3 failed、0 skipped；设备Release/IPA未执行。失败详情：
-- failed - Continuous reader did not reach expected state at jump(_:book:href:):237 (testContinuousFragmentAndDOMBookmarkRestore())
-- failed - Continuous reader did not reach expected state at jump(_:book:href:):237 (testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor())
-- failed - Continuous reader did not reach expected state at jump(_:book:href:):237 (testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge())
+- CI [38530334549](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38530334549)，已测运行源码 `d62af3b7576a11a1b7318e029355ef1847710113`，三个job completed/success，bootstrap=false。
+- Linux/macOS各14 Core、iOS41 passed/0 failed/0 skipped，测试/附件导出/summary退出码均0；设备Release `CODE_SIGNING_ALLOWED=NO`与IPA成功。
+- 下载原始日志/summary/xcresult/工程/锁/IPA；433个运行源码Git blob SHA与当前工作文件匹配，根锁/下载锁/workspace锁逐字节一致。本轮只更新文档/证据，不再追加运行代码补丁或重复CI。源码编译warning/error=0，6条AppIntents metadata提示及WebKit运行诊断原样保留。
+- 当前无本项目进行中的CI或gh/python/swift/docker任务；其他项目node进程未修改。文档快照可在候选分支d62之后，不能把文档commit当成另一版已测试源码；恢复时查Git实际ref。
 
-本地仍为main/HEAD6d761749911233122bcd031fcf718d22a19f9e77，原index为空，原未提交改动全部保留；通过独立临时index创建候选快照，没有reset/stash/删库/改原书。原370文件备份.cache/recovery/20261014-092934已核验所有SHA/ZIP CRC；各次原始交接和检查点保存在HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md。旧candidate.json/documentation-snapshot.json不是最新Git状态。
+## 用户最新开发原则
 
-## 当前源码与待验证内容
+用户用于自用，希望尽快实际能用。遇到陌生问题/反复失败，先参考官方文档与成熟实现，核对适用版本和差异再改，不持续盲补。微信读书是交互参考，其余按既定方案走。已写入AGENTS.md；本轮审阅epub.js连续窗口、Foliate Range锚点与Readium PR811，固定来源/取舍见 `Documentation/MATURE_READER_REFERENCES.md`。未换引擎、未升级依赖或扩展下一阶段。
 
-Atomic Readium target command plus scroll coordinate read in one JS callback。该候选通过Windows362文件grammar（pristine54限制/新增0）与14 tooling；当前新候选尚未Swift编译，最后已编译版本见上方真实CI。
+## 已实现与验证边界
 
-原生bootstrap已能在抑制spreadLoaded rAF后取得首次位置，当前阻塞转移为章节已显示one.xhtml但位置仍cover.xhtml。新诊断仅记录当前index/revision/ready/positioning/wrapper/frame以及documentY-offset-localTop，不输出正文；需读取失败附件/完整日志确认何处拒绝，不把推测写成根因。
+Readium3.11.0/d82f44f本地扩展，UI经ReadingInterfaces，Core保持Foundation/SQLite。最多12资源窗口、固定WK视口、实际章节高度、加载边界/重试、前后回收；完整Locator+字符/版本化局部视口锚点，64字符上下文。fixed/RTL/竖排保留原路径；搜索保留issue876扩展。
 
-已加候选行为：完整初始化等待；原生didFinish直接WK探针启动同一CSS/初始定位/decoration管线（不再通过会等待spreadLoaded的包装器）；单次启动避免native/JS重复完成互相取消。clear取消bootstrap/load task、断开UI/WebKit delegate并释放两条加载等待链；清理后脚本拒绝执行、后到加载等待立即结束。positioning期间不捕获位置/做anchor补偿；cache使用实际localTop，DOM/UI origin不一致拒绝；mode/reload revision与view identity过滤迟到计算，nil不覆盖可靠位置。
+标准定位与DOMscrollY同次JS执行，保存位置原子采集Locator/documentY/documentTop，不一致最多采样3次；过滤epoch/revision/旧slot。公开didFinish探针启动同一完整初始化管线，清理取消任务、断开delegate并释放等待链。自动回归含双章/逆向窗口、fragment/书签、图片高度、失败重试、600点长段滑动后charOffset>100/重开误差<3px、搜索/模式往返、千资源回收、迟到termination及rAF桥暂停。
 
-41条回归保持（原31+连续8+旧termination1+rAF桥1），charOffset>100、重开3px、双章/逆向/高度/重试断言均未降低。长段最近几轮未到字符断言，不能宣称字符修复通过。
+**当前边界PNG只显示第一章末尾和空白，未显示第二章标题，已查看并记录，原因未判定。** DOM/可见窗口测试通过不能等同于视觉通过，不推断只是截图管线问题。分页/章内滚动封面上下色带完整。手动模拟器阅读、原生拖动/惯性、峰值内存、普通设备、iPhone13/iOS16.6.1/TrollStore和原书仍待验收。
 
-## 架构和范围
+## 产物
 
-Vendor/ReadiumToolkit为官方3.11.0/d82f44f4f05d87add9e22a8b75abbd61dce745dd本地维护扩展，保留BSD许可/PR811参考/逐文件来源和hash；不是官方合并功能，不修改SourcePackages缓存。最多12资源，固定WK viewport、实际DOM章节高度、前后回收/加载边界/重试。保留标准href/CSS/text/progression并附加DOMRange字符/版本1视口偏移/64字符上下文；搜索保持原Readium文本定位。UI经ReadingInterfaces，Core仅Foundation/SQLite；fixed/RTL/竖排保留分页。
+- `build/XianxiaReader.ipa`：Build4/0.0.1，7502213 bytes，SHA256 `7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1`。ZIP CRC、iPhoneOS/arm64、最低16.0、0755、系统SQLite及第三方声明通过；不冒充普通签名安装包。
+- `build/XianxiaReader-Continuous-Build4-TestKit.zip`：7429683 bytes，SHA256 `f37cda047f5bcf7357d0865635cd7d4e0129a88401f9127ac92ad443a5caf9f7`，四本原创EPUB、UTF-8说明、CRC/内部IPA hash通过。
+- 原件：`build/ci/38530334549/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa`；诊断位于同run的 `XianxiaReader-build-diagnostics/build/`，完整Actions日志 `build/ci/38530334549/full.log`。
+- 旧Build3原件 `build/ci/38434939423/ipa/XianxiaReader.ipa`（12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2）保留，旧 `build/XianxiaReader-iPhone13-TestKit.zip`/更早包未覆盖。
 
-Package.resolved来自真实解析38496501326，6远程pins版本/revision未变；bootstrap=false，resolve/test/build严格锁定。
+## Git与恢复保障
 
-## 证据和旧产物
+本地仍main/HEAD `6d761749911233122bcd031fcf718d22a19f9e77`，原index为空，所有原未提交改动保留；候选分支codex/m1-continuous-recovery通过独立临时index快照/正常push，不reset/stash/删库/改原书。原370文件备份 `.cache/recovery/20261014-092934/` 已核验CRC/全部SHA；历史交接和所有失败原文保留在HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md与ValidationLogs，旧candidate.json/documentation-snapshot.json不代表最新ref。
 
-完整原始日志、summary、xcresult与附件在build/ci/各实际run/artifacts/XianxiaReader-build-diagnostics/build；最新38526015806日志已下载。Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json记录433候选Git blob SHA与最后真实测试；M1_CONTINUOUS_STATIC_REPORT.json仅静态，各失败原文见ValidationLogs。
+Package.resolved来自真实解析38496501326，6远程pins版本/revision不变，resolve/test/build严格用根锁；不要重新bootstrap或伪造锁。运行源码以成功报告433个Git blob SHA为准，FILE_INVENTORY用于当前文档/文件恢复，不把新增文档hash说成已编译。
 
-build/XianxiaReader.ipa仍是Build3，7393693 bytes，SHA256 12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2；原件build/ci/38434939423/ipa，旧测试ZIP/Build2/3全部保留。没有新成功Build4包。普通设备签名、iPhone13/iOS16.6.1/TrollStore、原书图像/位置、原生手动拖动惯性、峰值内存及完整模拟器阅读均未验收；旧双章原创截图复查不能代替以上门槛。
+## 检查点与接下来的工作
 
-## 下一步
+本轮文档同步后Windows结构/来源/锁文件/SQL/四本EPUB检查通过；362文件Swift grammar（pristine54限制/新增0）及14项Python tooling全部通过，git diff --check通过。静态不等于编译，iOS编译/Release证据仍只绑定d62/38530334549。当前证据与FILE_INVENTORY同步后，通过独立index保存/推送文档快照至候选分支；运行源码不变，不触发重复CI，main/原index继续保留。
 
-CI38528382505/2590801已完成：40/41通过，0 skipped；章节fragment/重试/rAF桥/边界/模式均通过。只剩长段344：outer3119/local2367/DOMscrollY2367，实时caret499/506/513，但第一次候选仍是滚动前documentY1769.875、offset2.875、savedTop1767，一致性检查正确拒绝后没有再次采样。当前把Locator/documentY/documentTop放在同一JS快照，DOM尚未跟上原生视口时最多3次32ms重采样；epoch/revision/localTop/关闭取消仍核对，不无限轮询，不降低字符/3px断言。静态核验后完整41-test CI，补充尚未编译。
-
-1. 先核对上方正在运行的CI实际状态/head/完整日志/xcresult，不重跑旧候选。读取数字诊断解决正确章节位置发布，再验证长段字符与完整41项；失败禁止Release/IPA。
-2. 全套Core/iOS成功后设备Release CODE_SIGNING_ALLOWED=NO，下载核验CRC/arm64/系统SQLite/0755/最低iOS16/许可，保留旧Build3再提供Build4测试包。
-3. 用户设备正常更新保留数据，不卸载/删库；原书、拖动惯性、普通设备/TrollStore分别验收。完整M1未放行，不进入M2/M4；TXT、完整书库、字体主题/音量键、百万字性能/XBook知识库均未实现。
-4. 每个可恢复步骤和构建前更新本文件，阶段结束同步PROJECT_STATUS/设计/FILE_INVENTORY；不将未编译代码写成已通过。
+1. 使用Build4测试ZIP在现有TrollStore应用正常更新，保留数据、不卸载/删库。菜单启用“上下连续滚动”，核对reader-layout章末/下一章同屏、反向、拖动与惯性；长段中部书签、重开/后台、分页↔连续、目录/搜索/链接及原书图像分别记录。
+2. 若出现空白/跳动/位置漂移，先记录实际步骤、章节/位置与最小复现，对照成熟窗口/锚点实现后选择修改；不增加无限等待、不降低断言。未取得新证据不重复跑同一源码CI。
+3. 普通设备与TrollStore、自动CI与手动阅读分开；M1尚未完整放行，不大规模进入M2/M4。TXT、完整书库编辑、字体/主题/音量键、百万字性能及XBook知识库仍未实现。
+4. 恢复先AGENTS→PROJECT_STATUS→本文件→ROADMAP→ARCHITECTURE，再核对Git、文件、日志、任务，阶段结束同步文档；不要把旧进行中/失败状态覆盖最新成功。
 
 ## 环境与公开
 
-用户已授权GitHub仓库公开，API PUBLIC；标准Ubuntu/macOS runner正常启动，旧38508277189账单拒绝是历史，没有修改付款/支出限额。公开审计原27 commits/718 blobs/64 logs及四本原创样书无待处理发现，模式扫描有范围限制；后续来源/日志也复核。Windows/PowerShell/Git/Python可用，无本机Xcode；未启动/重置Docker或localhost，其他项目进程保留。GitHub artifacts保留14天，build/.cache不随clone。
+Windows/PowerShell/Git/Python可用，无本机Xcode。用户已授权GitHub公开，API PUBLIC，公开标准Ubuntu/macOS runner已成功执行，未修改付款/支出限额；旧账单拒绝仅历史。本轮未启动/重置Docker或localhost。GitHub artifacts保留14天，忽略build/.cache不随clone，过期后按锁重新完整CI。证据见M1_CONTINUOUS_VALIDATION_REPORT.json及ValidationLogs/m1-continuous-build4-success.json。

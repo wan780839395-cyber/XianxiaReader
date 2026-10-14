@@ -24,9 +24,9 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
-2026-10-14再次中断恢复：公开标准runner正常；最新38523628789/eb07c4e为Linux/macOS各14 Core、38/41 iOS、0 skipped。native加载备用路径进入章节跳转，但位置发布仍封面，长段字符断言未执行。93ef44f有界数字诊断/清理后等待补充已过Windows静态，完整41-test CI38526015806运行中，无新Release/IPA可宣称通过。最新证据见M1_CONTINUOUS_VALIDATION_REPORT.json/HANDOFF；原书与真机/惯性仍独立待验收，继续M1，不放行M2/M4。
+2026-10-14恢复结果：CI38530334549/d62af3b完整成功，Linux/macOS各14 Core、41/41 iOS、设备Release/Build4 IPA及测试包已核验，433个运行源码hash一致。当前边界PNG未完整显示第二章，DOM断言通过不等于视觉验收；原书、手动拖动/惯性、峰值内存与设备仍待完成。先交付Build4正常更新测试，不重复盲补竞态；卡点参考成熟实现，微信读书作为交互目标，沿现有方案继续M1，不放行M2/M4。最新证据见M1_CONTINUOUS_VALIDATION_REPORT.json/HANDOFF及MATURE_READER_REFERENCES.md。
 
-2026-10-14：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 用户要求的真正纵向无缝跨章仍须独立M1引擎切片；完整M1待真机验收，不推进M2。详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
+历史Build3：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）各14 Core、31 iOS及设备Release成功，原创封面上下色带完整。它仅支持章内滚动与横向资源切换；连续候选的最新证据以上方Build4为准。完整M1待实际阅读和设备验收，不推进M2；详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 
 - EPUB 2 NCX / EPUB 3 nav、nested TOC、图片、CSS、fragment 链接与脚注；损坏文件和 DRM 错误可解释。
 - Files 本地/iCloud 导入；取消、批次部分失败、后台/退出恢复不丢已提交书籍。

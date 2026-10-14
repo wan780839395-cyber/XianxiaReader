@@ -2,9 +2,9 @@
 
 面向中文玄幻、修仙、仙侠、武侠和超长网文的本地 iOS 阅读器。用户从自己的文件导入书籍；项目不提供小说下载站或在线书城。
 
-**M0通过，M1阅读视口/图像切片自动验证通过；不是完整MVP。** [CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 见[阅读修复](Documentation/READER_VIEWPORT_FIX.md)和[项目状态](PROJECT_STATUS.md)。
+**M0通过，M1连续跨章候选完整自动CI通过；完整M1仍待实际阅读/设备验收。** [CI 38530334549](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38530334549)（已测源码d62af3b7576a11a1b7318e029355ef1847710113）：Linux/macOS各14 Core、41/41 iOS tests、无签名设备Release与Build4 IPA成功。测试包已核验，旧Build3原件保留；见[项目状态](PROJECT_STATUS.md)。
 
-当前连续跨章恢复点：已编译候选ad555ab的[CI 38513634971](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38513634971)为Linux/macOS各14 Core、iOS39/40、0 skipped；双章同屏/逆向、模式往返、迟到回调通过，只剩长段字符缓存。54ffd91补充实际文档localTop锚点校验，[完整CI 38519173808](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38519173808)正在运行。仓库已获用户授权公开，标准runner正常执行；旧账单拒绝仅是历史，无新Release/IPA可宣称通过。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
+当前连续恢复点：433个运行源码hash与已测提交匹配，长段字符/重开、目录/搜索/书签、模式往返、窗口回收、迟到回调及加载桥回归通过。当前边界PNG只看到第一章末尾与空白，未完整显示第二章，原因未判定；实际双章观感、拖动/惯性、原书图像、峰值内存及iPhone13/iOS16.6.1仍待实测。`build/XianxiaReader-Continuous-Build4-TestKit.zip`可用于保留数据的TrollStore正常更新；不会以自动CI代替完整M1验收。自用优先、卡点参考成熟方案、微信读书交互与现有路线原则见[参考记录](Documentation/MATURE_READER_REFERENCES.md)；恢复见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
 
 ## 当前已写入
 
@@ -75,7 +75,7 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_READER_VALIDATION_REPORT.json](Documentation/M1_READER_VALIDATION_REPORT.json)；M1_SEARCH_VALIDATION_REPORT.json 和 IOS_VALIDATION_REPORT.json 保留之前的搜索/M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
 
-用户测试设备为iPhone13/iOS16.6.1/TrollStore，安装/EPUB导入用户报告正常；原书图片裁切、完整阅读待复测。`build/XianxiaReader-iPhone13-TestKit.zip`包含Build3 IPA、三本原创EPUB和操作说明；先复测原书图像，再对照reader-layout.epub的上下标记。真正纵向无缝跨章尚未实现；见[真机验收](Documentation/DEVICE_ACCEPTANCE.md)。旧包原件保留在各CI目录。
+用户测试设备为iPhone13/iOS16.6.1/TrollStore，先前安装/EPUB导入用户报告正常；Build4原书图片、连续双章/逆向、惯性与重开位置待实测。当前 `build/XianxiaReader-Continuous-Build4-TestKit.zip` 包含Build4 IPA、四本原创EPUB和UTF-8说明；保留数据正常更新，菜单启用“上下连续滚动”。候选自动CI通过，当前边界PNG未完整显示第二章，完整阅读仍待验收；见[真机验收](Documentation/DEVICE_ACCEPTANCE.md)。旧Build3包及测试ZIP原件保留。
 
 CI 先检查仓库、运行 Core 测试与 iOS 集成测试，然后使用 `CODE_SIGNING_ALLOWED=NO` 构建设备 Release `.app`。测试或编译失败会使 job 失败，不会跳过错误输出成功 IPA。
 

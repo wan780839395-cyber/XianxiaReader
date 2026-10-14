@@ -10,7 +10,7 @@
 
 公开前已核对两个远程分支的27个可达commit、718个历史blob、四本原创样书的六个历史版本及64份已下载CI日志，未发现模式匹配的凭据、个人小说、证书、IPA或大构建缓存。审计范围与限制见ValidationLogs/publication-audit-2026-10-14.json。仓库历史与Actions记录均会公开；个人导入文件和本地build/.cache仍保持忽略。
 
-首次公开后完整验证为run38511938460，实际head=008e6075bb9acd4418d539608cebde19f4ef1dfc，与89a46ce运行源码一致，bootstrap=false。该run已经执行并通过repository-checks，原先账单启动拒绝已不再阻止该步骤；Core/iOS/Release结果以真实完成状态为准。
+首次公开run38511938460已经实际执行，iOS37/39，未执行Release/IPA，失败原文保留。后续最新成功为38530334549/d62af3b，bootstrap=false：三个job全部success、Linux/macOS各14 Core、41/41 iOS及设备Release/Build4 IPA，下载产物已核验。账单启动拒绝仅为旧历史；没有本项目进行中的CI。
 
 ## 两条授权路径
 

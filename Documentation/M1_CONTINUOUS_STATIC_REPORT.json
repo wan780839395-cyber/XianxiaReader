@@ -1,6 +1,6 @@
 {
   "validationKind": "static_only",
-  "recordedAtUTC": "2026-10-14T05:57:49.894805+00:00",
+  "recordedAtUTC": "2026-10-14T08:14:49.067414+00:00",
   "checks": [
     "check_documents",
     "check_project",
@@ -16,8 +16,9 @@
   "deviceAccepted": false,
   "trollStoreAccepted": false,
   "ipaProduced": false,
-  "sourceCandidateRevision": "54ffd91b1f532debf3a43be73d6a051e1c43bbe3",
+  "sourceCandidateRevision": "d62af3b7576a11a1b7318e029355ef1847710113",
   "pythonToolingPassed": 14,
   "pristineParserLimitations": 54,
-  "newGrammarDiagnostics": 0
+  "newGrammarDiagnostics": 0,
+  "scope": "Windows static verification; compilation evidence is separate CI38530334549."
 }

@@ -2,7 +2,7 @@
 
 ## 用户需求与当前差距
 
-再次中断恢复事实：最新完整执行38513634971/ad555ab为Linux/macOS各14 Core、iOS39/40、0 skipped，原31保持；双章同屏/逆向、fragment、图像高度变化、可见重试、搜索/模式往返、千章窗口/释放与旧WebKit termination回归通过。仍是长段实际滑动600点但Locator charOffset2。54ffd91补充实际文档localTop cache key/measure/await校验，静态通过，完整CI38519173808运行中。仓库已获用户授权公开，标准runner正常；38508277189账单拒绝是历史，没有新IPA可宣称通过。以下较早候选审查保留为历史，不替代最新报告；完整M1/惯性/峰值内存/设备均不放行。
+当前断点：CI38530334549/d62af3b完整success，Linux/macOS各14 Core、iOS41/41/0 skipped、设备Release与Build4 IPA成功。下载日志/summary/xcresult/锁文件及433运行源码hash核验一致；原31及全部连续、长段字符/重开、旧termination、rAF桥回归通过。当前边界PNG人工查看只见第一章末尾和空白，未显示第二章，原因未确认；程序窗口/DOM断言通过不等于实际显示验收。完整M1、手动拖动/惯性、峰值内存、原书与设备仍不放行。Build4候选测试包已准备，不再无依据追加同一竞态补丁；旧失败/账单日志保留。
 
 2026-10-13 用户明确要求上下滚动时本章末尾和下一章开头连在同一滚动流中，参考微信读书的交互。不是增加“下一章”按钮，不是到章末瞬间跳页。
 
@@ -10,17 +10,21 @@
 
 依据：[issue684](https://github.com/readium/swift-toolkit/issues/684)、[PR766](https://github.com/readium/swift-toolkit/pull/766)、[PR811](https://github.com/readium/swift-toolkit/pull/811)。GitHub API核实：766 closed/unmerged，811 open/unmerged；不能用“最新版本已有”或已关闭PR冒充正式支持。
 
-## 下一 M1 切片
+## 当前 M1 实现
 
-2026-10-14恢复状态：上一聊天在本地已写入Vendor/ReadiumToolkit、接口/UI和渲染回归，未提交且未编译；remote compact后已保存370文件原样快照。现在候选只显示已ready的连续窗口（最多12资源、前后按距离回收），短章包裹层按实际DOM高度排列，WKWebView始终固定viewport，外部滚动时同步内部局部offset。加载失败/超时显示边界重试，不设置全书估计空白。新增字符级DOMRange、64字符上下文、局部视口偏移；只覆盖标记过的连续锚点，搜索Locator复用上游文本定位。布局/位置await结果过滤旧epoch/revision，关闭主动清理pending任务/JS handlers。固定/RTL/竖排不启用连续能力。
+中断原370文件快照及main/原index保留；运行源码已在候选分支快照d62af3b通过完整CI，本地main工作区仍保留原未提交状态。候选只显示已ready的连续窗口（最多12资源、前后按距离回收），短章包裹层按实际DOM高度排列，WKWebView始终固定viewport，外部滚动时同步内部局部offset。加载失败/超时显示边界重试，不设置全书估计空白。字符级DOMRange、64字符上下文、局部视口偏移只覆盖标记过的连续保存锚点，搜索Locator复用上游文本定位。布局/位置await结果过滤旧epoch/revision，关闭主动清理pending任务/JS handlers。固定/RTL/竖排不启用连续能力。
 
-官方3.11来源与BSD许可逐文件登记；PR811只作为Navigator集成参考，不直接采用整本placeholder。首轮macOS真实解析38496501326保留6个旧版本pins，裁剪四个未使用server/SQLite/LCP传递依赖及远程Readium，原始锁artifact已纳入；源代码/新回归仍待严格锁完整CI。Windows362文件grammar delta、完整来源hash与13tooling通过，不代表编译/页面/惯性/设备验收。当前候选开发分支codex/m1-continuous-recovery，本地main及未提交原改动保留。
+官方3.11来源与BSD许可逐文件登记；PR811只作为Navigator集成参考，不直接采用整本placeholder。首轮macOS真实解析38496501326保留6个旧版本pins，裁剪四个未使用server/SQLite/LCP传递依赖及远程Readium；38530334549根锁/生成workspace锁/下载锁逐字节一致，严格锁完整CI通过。Windows362文件grammar delta、完整来源hash与14tooling通过，静态不是编译；iOS编译依据独立CI。当前候选分支codex/m1-continuous-recovery，本地main及原未提交状态保留。
 
-候选技术审查：PR811 原始补丁已下载到忽略的 .cache/continuous-scroll，`git apply --check` 在未修改的3.11.0标签上 exit0。这只验证补丁上下文能匹配，不是编译/运行通过。初查其 `layoutSubviews` 对所有 reading-order 项累加约1400点的估算高度；未加载资源没有阻止快速滑越空白的边界，定位也需要核对 fragment/CSS/text，而非只换算 progression。尚未修改正式依赖或执行候选代码；接入前须解决并回归这些问题。上游维护者也表示新功能因v4准备暂缓审查，不能把候选标为稳定发行。
+本次关键位置修正：跳转在同一次JS执行原Readium定位与读取scrollY；保存位置原子采样Locator/documentY/documentTop，对视口不一致最多重采样3次并过滤过期状态。完整初始化可由公开WK didFinish探针启动，不依赖后台rAF桥及时触发；已清理视图不再执行脚本或积累等待。
+
+最初PR811审查（历史）：原始补丁在3.11.0上 `git apply --check` exit0，仅表示上下文匹配。其全书估算高度/未加载边界/Locator风险因此没有原样采用；本地有限窗口与完整定位已独立回归。2026-10-14再次查询PR811仍为open/draft/unmerged，上游维护者因v4准备暂缓新功能审查；本地扩展不能标为官方稳定发行。
 
 优先评估 Readium 层的可维护扩展，而非重新实现 EPUB 排版：原 PaginationView 增加垂直连续布局，重用 resource serving、ReadiumCSS、DOM locator、内部链接、搜索及状态机。适配保持在引擎侧，UI/数据库继续只操作 ReadingInterfaces/ReadingPosition。
 
 必须有可审阅的版本/补丁和许可证记录；不能临时修改 CI 的 SourcePackages 缓存，不能将未合并PR伪装成官方3.11。若采用维护分支/本地源码依赖，要真实解析、审查锁文件与完整 CI，再替换当前稳定路径。
+
+用户最新原则和实际参考epub.js/Foliate的窗口/Range锚点实现见 `MATURE_READER_REFERENCES.md`。这轮保持Readium架构，先交付Build4并验证实际体验；若出现空白/跳动，先建立最小复现及参考差异，再选改动，不无限调等待次数。
 
 关键门槛：
 
