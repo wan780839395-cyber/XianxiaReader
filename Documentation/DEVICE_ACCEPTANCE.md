@@ -2,6 +2,8 @@
 
 ## 当前设备与状态
 
+2026-10-14 后续反馈：用户报告书籍可正常导入，但第一次选择后，系统选择器关闭，书架无新增且无提示；之前 EPUB 也发生同样情况。该反馈只确认部分导入可用并指出首次交接缺陷，不代表完整 TXT 阅读或 File Provider 矩阵验收。当前优先补真实 SwiftUI/UIDocumentPicker 首次关闭回归和 Build6 结果交接修复；设备复测需要在完全退出重开后分别首次选择 TXT 与 EPUB，不卸载、不清空书库。编译及新包状态见 HANDOFF / IMPORT_HANDOFF_FIX.md。
+
 ### TXT Build5准备（尚未设备验收）
 
 2026-10-14 TXT Build5已过完整CI38559906005：各68 Core、46 iOS与设备Release。新测试包build/XianxiaReader-TXT-Build5-TestKit.zip，SHA256 7d547c7582230e35860e0b591bb51adcf51f988a20470ff421d8805c6d1ac668，含原生设备IPA与三个原创编码TXT/说明；原Build4原件保留。TrollStore正常更新，不卸载/删库；TXT实际设备尚未验收，自动CI不能写成设备通过。

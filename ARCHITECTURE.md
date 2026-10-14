@@ -63,7 +63,7 @@ M0 为简单演进，将领域 record 编码为 JSON BLOB，并保留关系、�
 
 导入顺序：
 
-1. App 使用 UIKit Document Picker 的 `asCopy: true` 请求本地导入副本，允许 data 类型选择，再验证 `.epub` 后缀与实际内容。一次 delegate 完成后先关闭 sheet，再开始导入；若 URL 提供 security-scoped access，持有到导入完成。用户真机报告 iCloud 选中后无响应，本次路径修复已过 CI 38411028842 / 26 tests，真实 File Provider 仍待实测（IMPORT_FIX.md）。
+1. App 使用 UIKit Document Picker 的 `asCopy: true` 请求本地导入副本，允许 data 类型选择，再验证 `.epub` / `.txt` 后缀与实际内容。一次 delegate 完成后，DocumentImportSheet 将结果交给 LibraryViewModel 的引用存储，再关闭 sheet；onDismiss 消费并清空同一结果，之后开始导入或展示错误，不依赖未在正文读取的 @State 交接。若 URL 提供 security-scoped access，持有到导入完成。首次关闭无书籍/无提示的新反馈及原生回归见 IMPORT_HANDOFF_FIX.md；此前类型/副本修复 CI38411028842 / 26 tests 是历史证据，不能证明首次 sheet 或真实 File Provider 通过。
 2. FileStore actor 通过 `SourceFileCopying` 复制到 `Staging/<id>/book.epub`，避免将全部文件读成内存 Data。默认 Apple copier 使用 `NSFileCoordinator`；Linux 验证使用普通 local copy，测试可注入写入部分文件后失败的 copier。
 3. Loader actor 通过 Readium 识别实际格式、检查 DRM/reading order，读取元数据、TOC 和限定尺寸封面。
 4. 移动到 `Books/<id>/`，再提交 Book + TOC 数据库事务。

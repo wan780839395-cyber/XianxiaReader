@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T12:21:19.265778+00:00",
+  "recordedAtUTC": "2026-10-14T12:32:18.599129+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 558,
+  "fileCount": 559,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 17373,
-      "sha256": "6a7e37743b0fc2daa2967889910eb1dd238a9deb015fa3be11ed1920c39fc461"
+      "bytes": 17619,
+      "sha256": "4b5f4a86363d5855f32f1890fb5b5149193e9f7cbacf844ae4a14b0c580fe5fd"
     },
     {
       "path": "App/AppRootView.swift",
@@ -40,8 +40,8 @@
     },
     {
       "path": "App/Import/DocumentImportSheet.swift",
-      "bytes": 867,
-      "sha256": "8ab2baa76fe3e3abca661500434d49cee99e185cbc3348db9fa8aab1e4cd3e8c"
+      "bytes": 525,
+      "sha256": "0be9c086fffac8f4ceb85ff0629ad405c018d6e71da4eb73715a25c635bb3816"
     },
     {
       "path": "App/Import/EPUBDocumentPicker.swift",
@@ -60,13 +60,13 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 6918,
-      "sha256": "f2691f58edeb0f4d4d83fa50d7c8e35a3163d6e7529e3f9d9028f6304908aea4"
+      "bytes": 6917,
+      "sha256": "2a24e2c0d39ae8deb2a51db519c780be6a7f32f4da6d7c1228417bb704f975aa"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
-      "bytes": 4114,
-      "sha256": "28f0ebd7b225fd3cfb87f1a9f2e0305f80cada27ea5daa8ffc3ac6a642c96849"
+      "bytes": 4881,
+      "sha256": "d31445616335928fbea6a85053c898cfc2fb40baaf1d29dde7730380ed744d19"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -150,8 +150,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 7039,
-      "sha256": "29ce67bdffdad4ceb66d46b12937a798c6c44e63584b33e29183294db4323acf"
+      "bytes": 7604,
+      "sha256": "59e13db9e88633f09aab3c28c97649482db546724d696ec650ea976d6d33eced"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -182,6 +182,11 @@
       "path": "Documentation/IMPORT_FIX.md",
       "bytes": 3669,
       "sha256": "3e1263fda69a873e39ce06f8b897d1387ddd76d6efe6cf60a7a109f110e51a26"
+    },
+    {
+      "path": "Documentation/IMPORT_HANDOFF_FIX.md",
+      "bytes": 2575,
+      "sha256": "447b744f879efc97b0fe2eb1c1fd2a2f23f690365c877c42462ca9e857e44f29"
     },
     {
       "path": "Documentation/IOS_VALIDATION_REPORT.json",
@@ -226,7 +231,7 @@
     {
       "path": "Documentation/M2_IMPORT_HANDOFF_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "ab96413f97acd7f5a91249e8a042fa449e7b80777322a904a44c4478c3e63c39"
+      "sha256": "6cf4b113d2a92cdeaa124eb2f088702a06b692c7bb7da9bb0cd250ae8940db07"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -575,8 +580,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9755,
-      "sha256": "a947b062f0b888c85fd8ba08c7060dab810f702fa9287d2a05c9318127e7438d"
+      "bytes": 10532,
+      "sha256": "4a7d434c00adf453f1ef98a3318f151bf9cd93796e89a0d4b9b3c6275538f7ac"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
@@ -605,8 +610,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 11236,
-      "sha256": "09577707df4e0bfd6755b998e0bd91387781f7383ed2699ad0df6f5628df479a"
+      "bytes": 11718,
+      "sha256": "a33649d5f52d59d860894685d0a77120801d7783495a51f8a768e50c37178cea"
     },
     {
       "path": "Package.resolved",
@@ -2701,7 +2706,7 @@
     {
       "path": "project.yml",
       "bytes": 1994,
-      "sha256": "a6ff46c1fc114e8b4cf5264f65031ab9ca20597e2a4bd786be1377e1b43b03ed"
+      "sha256": "0755a143728d6feabf866c6e4f1d26298b9eed916e99b5139ef125299f3656e0"
     },
     {
       "path": "scripts/check_repository.py",
