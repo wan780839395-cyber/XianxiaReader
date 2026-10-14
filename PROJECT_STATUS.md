@@ -23,6 +23,8 @@
 
 ## 最新证据与设备边界
 
+M2编码/cache第二切片（本轮待编译）：UTF8/UTF16 LE/BE/GB18030有界转换、原/正规正文/目录SHA256、绑定编码/版本的cache与完整索引facade已写入，新增27项Swift回归（Core预期60）。Windows372 grammar/14项tooling通过；自动编码仅BOM/严格UTF8，其他要求选择；cache目前仍流式校验摘要，产品导入/阅读入口未接入。GB18030内部桥采用目标SDK/glibc iconv，无新远程依赖。下一步真实完整CI，当前Build4用户包保持不动。
+
 2026-10-14用户反馈：“这个功能可以了，重开位置也是正常的”，并要求按计划继续。依据上一轮Build4上下文记录连续跨章/重开位置的用户设备确认，沿用iPhone13/iOS16.6.1/TrollStore背景；未报告的普通设备、原书图片、旋转和性能不扩写为通过。M1已有完整CI构建/测试门槛，现推进M2独立Core切片。UI完整书库在M3，排版/主题在M4。
 
 M2新源码：独立标题识别器、UTF-8有界流式扫描/卷章目录/Int64范围、严格跨块UTF-8校验与有界窗口读取，19个新增Swift回归。Windows367文件grammar/新诊断0/14项Python通过，CI38538141364/0643093首轮Linux/macOS各33 Core通过，iOS编译后40/41、0 skipped，旧EPUB首次打开等待位置超时；test exit65，Release未执行。首次原文/诊断已保留；同一源码只重试失败iOS job一次，attempt2全部success：各33 Core、41/41 iOS及设备Release/IPA。438运行源码hash及根/workspace/下载锁匹配，旧Build4用户包保持不动；首轮超时原因未确认，不宣称已修复。TXT新组件未接入导入阅读，不冒称TXT可用。Docker管道查询错误已保留，未启动/重置工具。见M2_TXT_INDEX_VALIDATION_REPORT.json、TXT_INDEX_DESIGN.md和HANDOFF。

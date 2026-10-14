@@ -1,7 +1,7 @@
 import Foundation
 
-/// Full normalization/import/cache facade, still to be integrated in M2.
-/// TXTUTF8ChapterScanner is the independent streaming index component.
+/// Normalization+index contract implemented by StreamingTXTIndexer.
+/// Managed version-cache and product import/reading are separate layers.
 public protocol TXTIndexing: Sendable {
     func buildIndex(source: URL, normalizedUTF8: URL, bookID: UUID) async throws -> [Chapter]
 }

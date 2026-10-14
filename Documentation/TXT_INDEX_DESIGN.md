@@ -33,6 +33,12 @@ attempt1已完成：Linux/macOS各33项Core/新增19项TXT全部通过，iOS编�
 
 ## 接下来M2切片的次序（尚未实现）
 
+2026-10-14第二切片已写入、待真实编译：TXTNormalizer严格UTF8/UTF16/GB18030正规化，TXTContentDigest增量SHA256，TXTIndexCache版本cache与StreamingTXTIndexer facade。新增27项Swift回归，预期Core60项，Windows372 grammar/14项tooling通过（不是编译）。原书不变，UTF8 sidecar仅成功后发布；自动识别只接受BOM/完整严格UTF8，不确定编码要求选择。cache复用避免转码与分章，但目前仍流式计算原/normalized摘要，尚非仅元数据快开；产品入口/位置与设备验收尚未接入。
+
+GB18030复用[Apple公开iconv_open](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/iconv_open.3.html)与[POSIX iconv](https://pubs.opengroup.org/onlinepubs/9799919799.2024edition/functions/iconv.html)，内部C桥只链接目标Apple SDK libiconv/Linux glibc，禁用IGNORE/TRANSLIT，保留最多3字节截尾，拒绝非可逆/非法转换；不会把Homebrew路径放入交叉构建。系统GB18030标准修订差异未假定相同，codecIdentifier区分Apple/Linux，常用中文/emoji/补充汉字通过同样向量才放行。
+
+摘要按[NIST FIPS180-4](https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.180-4.pdf)独立实现流式SHA256，仅作为cache内容身份，已写入空串/abc/跨block/百万a/中文emoji独立向量；未声称密码学认证。cache绑定bookID、原SHA/编码/normalizer/parser/codec版本及normalized/目录SHA，manifest上限8MiB，只存经过BookFileStore校验的同key/generation相对路径。新generation完整后原子提交manifest，旧generation先保留；损坏/缺失重建，不删除原书/数据库，链接/越界拒绝。cache原件hash不变但标题元数据损坏也须重建。旧generation清理与快速元数据重开属于后续。
+
 1. 编码正规化：先保留并协调复制原件到受管理目录；BOM/严格UTF-8校验与明确编码选择，UTF16/GB18030跨块转码到UTF-8旁路文件。无法确定时由用户选择，不覆盖原件。取消/截断/磁盘错误须留下明确失败并清理本次暂存，Apple仍使用NSFileCoordinator。
 2. 版本cache：绑定原件SHA256、编码/normalizer版本、parser版本；保存normalized摘要、相对路径和索引。缓存损坏/版本失配可重建，数据库和原书不删除。缓存重开只加载有效元数据/当前窗口；正文改变不得沿用旧索引或位置。摘要实现/跨平台一致性须单独验证，不凭文件大小假装内容hash。
 3. TXT位置：完整版本化位置包含源/normalized身份、叶子章节ID、局部字节/文本锚点与视口偏移；验证范围和UTF-8边界，沿用旧异步保存拒绝规则。卷目录序号不直接当小说canonical chapter。

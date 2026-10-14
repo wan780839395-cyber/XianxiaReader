@@ -9,7 +9,10 @@ let package = Package(
         // Apple builds must use the selected SDK's SQLite, not host Homebrew paths.
         // Linux installs the standard system headers/library with the apt provider.
         .systemLibrary(name: "CSQLite", providers: [.apt(["libsqlite3-dev"])]),
-        .target(name: "XianxiaCore", dependencies: ["CSQLite"], resources: [.process("Database/Migrations")]),
+        // Public SDK iconv on Apple; glibc iconv on Linux. No host Homebrew paths.
+        .target(name: "CTextCodec", publicHeadersPath: "include",
+                linkerSettings: [.linkedLibrary("iconv", .when(platforms: [.iOS, .macOS]))]),
+        .target(name: "XianxiaCore", dependencies: ["CSQLite", "CTextCodec"], resources: [.process("Database/Migrations")]),
         .testTarget(name: "XianxiaCoreTests", dependencies: ["XianxiaCore", "CSQLite"])
     ]
 )

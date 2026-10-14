@@ -1,0 +1,19 @@
+{
+  "validationKind": "static_only",
+  "recordedAtUTC": "2026-10-14T09:54:47.462198+00:00",
+  "checks": [
+    "check_documents",
+    "check_project",
+    "check_workflow",
+    "check_schema",
+    "check_fixtures",
+    "check_vendor"
+  ],
+  "swiftGrammarFiles": 372,
+  "swiftCompiled": false,
+  "xcodeBuildPassed": false,
+  "simulatorAccepted": false,
+  "deviceAccepted": false,
+  "trollStoreAccepted": false,
+  "ipaProduced": false
+}

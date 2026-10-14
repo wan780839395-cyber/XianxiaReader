@@ -1,6 +1,6 @@
 import Foundation
 
-public enum StorageError: LocalizedError {
+public enum StorageError: LocalizedError, Equatable {
     case unsafePath, unsupportedFormat, missingSource
     public var errorDescription: String? {
         switch self {

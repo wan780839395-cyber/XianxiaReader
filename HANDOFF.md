@@ -4,6 +4,14 @@
 
 ## 实际断点
 
+### 编码与cache第二切片开始（覆盖下方旧断点）
+
+2026-10-14用户要求继续，已核对main/原空index、M2 ref e779b82与真实38538141364 attempt2 success，当前没有自己启动的挂起任务。下一步实现有界编码正规化（UTF-8/UTF16 LE/BE/GB18030）、流式SHA256、版本化cache与完整TXTIndexing facade；先独立Core验证，再接产品导入/Readium阅读。遇到不确定编码明确选择，不做猜测替换原件；GB18030复用Apple/Linux公开iconv系统实现，不引入第三方编码表或全书String。
+
+当前尚未写入/编译第二切片；准备内部C系统codec桥（Apple SDK libiconv/Linux glibc）与独立增量摘要，以跨平台真实向量测试验证。cache路径全部经BookFileStore逐节点校验，manifest只存相对路径，损坏/版本失配重建，提交前保持旧cache与原书。构建前更新本文件，保留Build4包与全部原未提交改动。
+
+测试前检查点：编码/摘要/cache源码已写入，尚未Swift/C编译。UTF-8/UTF16 LE/BE严格有界转换，GB18030采用公开iconv桥，BOM不一致/损坏/截断/NUL拒绝；新sidecar成功后提交，失败删除本次临时文件并保留原始错误。增量SHA256已配独立已知向量；cache绑定原/normalized/目录摘要、编码与版本，仅相对路径，所有节点校验，生成后原子发布manifest，旧cache保留。新回归覆盖小chunk、GB四字节、源同长度改变、损坏cache/manifest、版本失配、越界/符号链接、取消与facade。现在运行Windows检查，再保存源快照到M2分支/完整CI；编码自动检测仅BOM/严格UTF8，其他要求选择，cache lookup仍流式校验摘要并未承诺快速元数据重开。
+
 **M2 Core UTF-8分章/窗口第一切片完整自动CI通过；下一步编码正规化/cache与TXT导入阅读。**
 
 CI38538141364，运行源码0643093d32fdc9801cba34671d9eba3d1eb35de4，codex/m2-txt-index，bootstrap=false。attempt1：Linux/macOS各33 Core（含19项TXT）通过、iOS编译后40/41/0 skipped，旧EPUB首次打开等位置超时，exit65，Release未执行。完整日志/summary/xcresult/超时后slot诊断保留；不能从clear后的blank推断加载前根因。App/Reading/Vendor/iOS测试与已测d62无变更。
