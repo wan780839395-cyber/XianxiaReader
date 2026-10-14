@@ -281,7 +281,8 @@ import UIKit
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
             let mayRestoreAnchor = index == currentIndex && measuredAnchor != nil
-                && slot.savedAnchor == measuredAnchor && viewportRevision == measuredRevision
+                && slot.savedAnchor == measuredAnchor && slot.anchorRevision == measuredRevision
+                && viewportRevision == measuredRevision
             let desiredLocal: CGFloat? = mayRestoreAnchor ? newAnchorY.map { y in
                 y - CGFloat(measuredAnchor?.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0)
             } : nil

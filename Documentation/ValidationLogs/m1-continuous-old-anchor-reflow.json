@@ -1,0 +1,20 @@
+{
+  "run": 38506979070,
+  "sourceRevision": "8908e98151ff021092721639aed274c660335d87",
+  "iOSPassed": 38,
+  "iOSFailed": 1,
+  "iOSTotal": 39,
+  "failures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 22,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+    }
+  ],
+  "candidateCause": "A resize measurement started after scrolling could restore a saved anchor whose anchorRevision predates the viewport; require anchorRevision equality too.",
+  "releaseBuilt": false,
+  "ipaProduced": false
+}
