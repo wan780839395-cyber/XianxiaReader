@@ -1,0 +1,42 @@
+{
+  "recordedAtUTC": "2026-10-14T10:06:55.554087+00:00",
+  "run": 38545821529,
+  "sourceRevision": "973bae6752658122f5b95a754e4ac325fd0f50ce",
+  "conclusion": "failure",
+  "linuxCorePassed": 60,
+  "macOSCoreEnumerated": 60,
+  "macOSCoreFailedTests": [
+    "testGB18030ChineseTwoAndFourByteCharactersAcrossChunks",
+    "testGB18030SupplementaryCJKScalar"
+  ],
+  "macOSCoreCompiled": true,
+  "failure": "Apple system iconv rejects supplementary GB18030 vectors at raw offsets17/0. Linux vectors pass.",
+  "iOSTestsExecuted": false,
+  "deviceReleaseBuilt": false,
+  "IPACreated": false,
+  "remediation": "Apple public SDK CoreFoundation GB_18030_2000 decoder; preserve all vector assertions; codec identity invalidates previous cache.",
+  "userBuild4Preserved": true,
+  "testAssertionsLowered": false,
+  "artifacts": [
+    {
+      "path": "build/ci/38545821529/full.log",
+      "bytes": 136429,
+      "sha256": "02f4b4f7fac54667a8ac2e8da5e20b1a668b43553c06049439da6320ef31c493"
+    },
+    {
+      "path": "build/ci/38545821529/run.json",
+      "bytes": 5274,
+      "sha256": "faf0a02824aae849c63f4ca86abdef1d76a0840a4e8709d1b5271cb72c451b01"
+    },
+    {
+      "path": "build/ci/38545821529/core/core-tests.log",
+      "bytes": 8593,
+      "sha256": "fbb8d4577beb7a3f543cc3f4d66add6343b270e3c42fe29d367420be6c4b3757"
+    },
+    {
+      "path": "build/ci/38545821529/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 16509,
+      "sha256": "9547b3324671781c86dc25bd41c6c9cf94f7cb2b05507cd5e37048c6d6c751fd"
+    }
+  ]
+}

@@ -94,10 +94,14 @@ final class TXTNormalizationTests: XCTestCase {
         }
     }
     func testGB18030SupplementaryCJKScalar() async throws {
-        let folder=try root(), source=folder.appendingPathComponent("source.txt"), output=folder.appendingPathComponent("utf8.txt")
-        try hex("95328236").write(to: source)
-        _=try await TXTNormalizer(chunkBytes: 1).normalize(source: source,destination: output,encoding: .gb18030)
-        XCTAssertEqual(try String(contentsOf: output,encoding: .utf8),"𠀀")
+        let folder=try root()
+        // Independent GB18030 vectors include both ends of the supplementary range.
+        for (encoded,utf8) in [("90308130","f0908080"),("95328236","f0a08080"),("e3329a35","f48fbfbf")] {
+            let source=folder.appendingPathComponent(encoded+".txt"), output=folder.appendingPathComponent(encoded+"-utf8.txt")
+            try hex(encoded).write(to: source)
+            _=try await TXTNormalizer(chunkBytes: 1).normalize(source: source,destination: output,encoding: .gb18030)
+            XCTAssertEqual(try Data(contentsOf: output),hex(utf8))
+        }
     }
     func testAutomaticNonUTF8RequiresChoiceWithoutOutput() async throws {
         try await normalizationError(hex("d4c6baa3"),encoding: .automatic,expected: .encodingChoiceRequired)
@@ -122,6 +126,12 @@ final class TXTNormalizationTests: XCTestCase {
                                      expected: .invalidEncoding(encoding: .gb18030,byteOffset: 0))
         try await normalizationError(Data([0x95,0x30,0x85]),encoding: .gb18030,
                                      expected: .invalidEncoding(encoding: .gb18030,byteOffset: 0))
+        for malformed in [[UInt8(0x95),0x30,0x20,0x32],[0x95,0x30,0x85,0x40],[0x80],[0xFF]] {
+            try await normalizationError(Data(malformed),encoding: .gb18030,
+                                         expected: .invalidEncoding(encoding: .gb18030,byteOffset: 0))
+        }
+        try await normalizationError(Data([0x61,0x95,0x30,0x85,0x40]),encoding: .gb18030,
+                                     expected: .invalidEncoding(encoding: .gb18030,byteOffset: 1))
     }
     func testNULRejectedAndExistingDestinationPreserved() async throws {
         try await normalizationError(Data([0x61,0,0x62]),encoding: .utf8,expected: .nonTextByte(byteOffset: 1))

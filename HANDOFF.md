@@ -6,6 +6,14 @@
 
 ### 编码与cache第二切片开始（覆盖下方旧断点）
 
+**实际失败断点：CI38545821529 / 973bae6752658122f5b95a754e4ac325fd0f50ce / codex/m2-txt-index 已结束failure。** Linux 60 Core通过，macOS Core编译通过但两项GB18030四字节向量失败（emoji原始byte17/补充汉字byte0），在Core门槛停止，iOS/Release未执行。完整日志及run/artifacts保留在build/ci/38545821529；没有IPA。Windows372 grammar/14 tooling通过不能代替Apple验证。当前无运行中的本项目任务，不重试同一错误源码。
+
+修复前检查点：Apple系统iconv不能通过当前补充平面向量，转为公开CoreFoundation CFStringCreateWithBytes/CFStringGetBytes（kCFStringEncodingGB_18030_2000，lossByte=0），Linux继续glibc iconv。内部只识别完整GB18030字节序列边界，完整块交系统转换，保留最多3尾字节；不自建编码表/容错替换、不降低原断言。实际平台codec ID需更改以使旧cache失效。修复后Windows检查、源快照、完整CI，不覆盖原书/Build4包。参考Apple官方API及WHATWG字节语法，具体取舍记入TXT_INDEX_DESIGN。
+
+构建前检查点：上述Apple桥/SDK框架链接/cache codec ID已修改，原两项测试保留并补充U+10000/U+10FFFF向量及错误第三/四字节/非法单字节/非零错误偏移，仍60项Core（16正规化+11cache），未编译。旧失败报告ValidationLogs/m2-txt-normalization-apple-iconv-failure.json已据完整日志记录；现在先Windows检查再快照与完整CI，结果未取得前不写通过。
+
+可恢复检查点：Linux Core job success，完整artifact已下载到build/ci/38545821529/core，日志真实Swift/C编译并执行60项（33原+27新）成功，没有源码warning/error匹配；末尾Swift Testing“0 tests”不是XCTest实际数。macOS/iOS/Release仍待完成，Apple SDK iconv必须现场验证，不能从Linux成功扩写。445候选Git blob SHA记录到M2_TXT_NORMALIZATION_VALIDATION_REPORT.json；用户Build4包不变。
+
 2026-10-14用户要求继续，已核对main/原空index、M2 ref e779b82与真实38538141364 attempt2 success，当前没有自己启动的挂起任务。下一步实现有界编码正规化（UTF-8/UTF16 LE/BE/GB18030）、流式SHA256、版本化cache与完整TXTIndexing facade；先独立Core验证，再接产品导入/Readium阅读。遇到不确定编码明确选择，不做猜测替换原件；GB18030复用Apple/Linux公开iconv系统实现，不引入第三方编码表或全书String。
 
 当前尚未写入/编译第二切片；准备内部C系统codec桥（Apple SDK libiconv/Linux glibc）与独立增量摘要，以跨平台真实向量测试验证。cache路径全部经BookFileStore逐节点校验，manifest只存相对路径，损坏/版本失配重建，提交前保持旧cache与原书。构建前更新本文件，保留Build4包与全部原未提交改动。

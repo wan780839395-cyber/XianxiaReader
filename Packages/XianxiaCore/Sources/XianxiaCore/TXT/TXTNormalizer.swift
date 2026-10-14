@@ -32,7 +32,7 @@ public actor TXTNormalizer {
     public static let version = 1
     public static var codecIdentifier: String {
         #if canImport(Darwin)
-        return "apple-sdk-iconv-gb18030-v1"
+        return "apple-sdk-corefoundation-gb18030-2000-v1"
         #else
         return "glibc-iconv-gb18030-v1"
         #endif
