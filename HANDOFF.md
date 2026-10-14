@@ -4,7 +4,19 @@
 
 ## 实际断点
 
-**连续候选完整自动CI成功，Build4测试包已核验；下一步是实际阅读/设备验收，完整M1未放行。**
+### 2026-10-14 用户实测与M2开始检查点
+
+用户明确反馈“这个功能可以了，重开位置也是正常的”，并授权按计划继续。结合上一条上下文，记录为Build4连续跨章与重开位置的用户设备功能验收；沿用已知iPhone13/iOS16.6.1/TrollStore背景，不扩写为旋转、普通签名设备、原书图像或峰值内存全部通过。此前CI边界PNG缺第二章仍保留历史，不再把它当用户设备功能未通过的阻塞。
+
+M1自动构建/41项iOS及用户本次核心功能反馈已满足继续开发的依据；M2从独立Core组件切片开始。UI阶段答复：当前基础界面，完整书库布局/编辑在M3；字体、字号、行距、边距、主题和亮度在M4。用户没有要求跳到M4或替换Readium。
+
+下一可恢复步骤：实现UTF-8正规正文的独立标题识别器、跨块/长行/CRLF/BOM流式扫描、卷章分组/序章及64位end-exclusive范围、有界章节窗口读取，并新增真实Swift回归。此切片不冒称完整TXT支持；编码自动检测/UTF16与GB18030转码、版本化内容缓存、导入与阅读接入随后完成。先核对现有协议/Chapter模型，再实现、Windows检查、真实Core/macOS/iOS CI；任何未编译源码都明确标记。main/原index与旧Build4保持不动。
+
+测试前检查点：四个Core TXT实现文件和TXTIndexTests.swift已写入，尚未Swift编译。标题参考Readest中文规则的卷/章差异与中文数字范围，使用独立实现；候选line缓存上限512字节、chunk/正文窗口上限256KiB，严格UTF-8、不覆盖原书，卷不重复正文。新增回归覆盖八类标题/反例、1字节分块、多字节/CRLF/BOM、卷序/重复ID、长行/损坏/取消、窗口边界及>4GiB稀疏偏移。现在运行Windows结构/语法与tooling检查，并只读查询Docker是否可用于锁定Swift容器；不可用则记录实际错误、继续真实CI，不启动/重置用户工具。
+
+**Build4连续/重开位置已由用户确认；当前进入M2 Core切片，准备真实编译。** 上方M2检查点覆盖旧“下一步设备测试”的断点，下方M1证据/待确认的其他设备项目保留。
+
+M2构建前检查点：Windows367文件grammar（pristine54限制/新增0）和14项Python tooling已通过，git diff --check通过；Docker查询exit1，dockerDesktopLinuxEngine管道不存在，命令已退出，未启动/重置用户工具。Core预期33项（14旧+19新），iOS保留原41项。将独立index快照推送codex/m2-txt-index并运行现有完整CI，bootstrap=false；读取实际run/head后记录，不重复启动或把未编译代码标为已验收。已有Build4/旧测试包不覆盖。
 
 - CI [38530334549](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38530334549)，已测运行源码 `d62af3b7576a11a1b7318e029355ef1847710113`，三个job completed/success，bootstrap=false。
 - Linux/macOS各14 Core、iOS41 passed/0 failed/0 skipped，测试/附件导出/summary退出码均0；设备Release `CODE_SIGNING_ALLOWED=NO`与IPA成功。

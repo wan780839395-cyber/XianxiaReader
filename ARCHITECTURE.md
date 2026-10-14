@@ -29,7 +29,7 @@ Packages/
       Models/          Book、Chapter、ReadingPosition、Bookmark
       Database/        repository、连接、版本化 SQL migration
       Import/          文件暂存、提交、回滚、恢复
-      TXT/             M2 索引协议；尚无解析器
+      TXT/             M2 独立标题识别、UTF-8流式扫描与窗口读取；导入/转码/cache待集成
     Tests/
   XianxiaReading/
     Sources/ReadingInterfaces/
@@ -111,9 +111,11 @@ TOC 导入时持久化，打开目录只读取现有数组。EPUB TOC 可能含�
 
 原9+新增11 iOS tests 已过真实 CI，尚未验收页面命中定位。Readium 内部按整个 XHTML 解析，超大单资源内存/取消延迟留 M5 实测；正文全文搜索与未来知识库的章节范围查询分别管理。
 
-## TXT 预定实现（M2）
+## TXT 实现边界（M2）
 
-仅定义 `TXTIndexing` 接口。实现必须独立于 UI，用后台流式转码/分块解析，处理跨块 UTF-8/UTF-16/GB18030 字符与跨块章节行。正文标准化为 UTF-8 旁路文件，章节记录 64 位字节区间，章节末尾为 exclusive end。阅读只加载当前及相邻章节窗口，不能将整本 String 发布到 UI。
+第一切片新增 `TXTChapterHeadingRecognizer`、`TXTUTF8ChapterScanner`与`TXTChapterWindowReader`；在Core actor扫描已规范化UTF-8正文，严格跨块校验、CRLF/BOM/长行处理，返回卷分组与叶子Int64/end-exclusive范围，按不越章的有界窗口读取。源码已过Windows静态，真实Swift编译待执行；已有`TXTIndexing`完整转码/导入/cache facade仍待集成，不能将Core组件写成产品已能导入TXT。
+
+实现独立于UI，后续后台流式转码必须处理UTF-16/GB18030边界，将正文标准化为UTF-8旁路文件并保留原件；阅读只加载当前/相邻窗口，不能将整本String发布到UI。卷不重复正文范围；卷标题与卷序文字保留在叶子范围，不丢失未识别前言。标题ID以同bookID/字节位置稳定生成，内容改变须cache失效，不能跨不同正文复用位置。
 
 索引 cache key 至少包含内容 SHA-256、编码/标准化版本、parser version；实现一次索引、重开复用。支持无章节、序章、卷与章层级、超长单行、误识别正文以及取消/磁盘不足恢复。具体阈值见性能测试计划。
 

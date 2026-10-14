@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-14T08:51:39.326740+00:00",
+  "source": "Direct user message",
+  "quote": "嗯 这个功能可以了 重开位置也是正常的",
+  "contextBuild": "Build4 offered in preceding assistant message; build number not independently read from device",
+  "continuousChapterScrollConfirmed": true,
+  "reopenPositionConfirmed": true,
+  "continueOriginalRoadmapAuthorized": true,
+  "knownDeviceContext": "iPhone13 / iOS16.6.1 / TrollStore from earlier user reports",
+  "allOtherDeviceChecksConfirmed": false,
+  "notConfirmed": [
+    "ordinary signed device",
+    "rotation",
+    "individual reverse/inertia checks",
+    "original-book image",
+    "peak memory"
+  ],
+  "advanceBasis": "M1 full CI build/test success plus user core-function confirmation; begin scoped M2 Core work."
+}

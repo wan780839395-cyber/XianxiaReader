@@ -327,7 +327,9 @@
     "currentBoundarySnapshotReviewed": true,
     "currentBoundaryVisualAccepted": false,
     "characterAndViewportRestoreProgrammaticPassed": true,
-    "originalTwoChapterSnapshotVisuallyReviewedScope": "Historical snapshot only; current run is separately recorded and not visually accepted."
+    "originalTwoChapterSnapshotVisuallyReviewedScope": "Historical snapshot only; current run is separately recorded and not visually accepted.",
+    "continuousUserDeviceConfirmed": true,
+    "reopenPositionUserDeviceConfirmed": true
   },
   "originalInterruptedWorktree": {
     "archive": ".cache/recovery/20261014-092934/interrupted-worktree.zip",
@@ -2074,7 +2076,7 @@
       "sha256": "0e44ed924cef12161f5a90cabcc46324857e5ae1fbeabe93acc64ef08bfe8364"
     }
   ],
-  "nextStep": "Install verified Build4 with data-preserving update; check original book, visible two-chapter boundary, drag/inertia and restore. Continue original milestones; no additional race patches without reproduction.",
+  "nextStep": "User confirmed continuous reading/reopen position; continue original roadmap with M2 Core slice. Unreported device checks stay separate.",
   "repositoryVisibility": {
     "visibility": "PUBLIC",
     "verifiedAtUTC": "2026-10-14T04:36:35.547545+00:00",
@@ -2202,5 +2204,24 @@
     "localRepositoryCheckPassed": true,
     "pythonToolingPassed": 14,
     "newCIStarted": false
+  },
+  "latestUserDeviceFeedback": {
+    "recordedAtUTC": "2026-10-14T08:51:39.326740+00:00",
+    "source": "Direct user message",
+    "quote": "嗯 这个功能可以了 重开位置也是正常的",
+    "contextBuild": "Build4 offered in preceding assistant message; build number not independently read from device",
+    "continuousChapterScrollConfirmed": true,
+    "reopenPositionConfirmed": true,
+    "continueOriginalRoadmapAuthorized": true,
+    "knownDeviceContext": "iPhone13 / iOS16.6.1 / TrollStore from earlier user reports",
+    "allOtherDeviceChecksConfirmed": false,
+    "notConfirmed": [
+      "ordinary signed device",
+      "rotation",
+      "individual reverse/inertia checks",
+      "original-book image",
+      "peak memory"
+    ],
+    "advanceBasis": "M1 full CI build/test success plus user core-function confirmation; begin scoped M2 Core work."
   }
 }

@@ -24,7 +24,7 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
-2026-10-14恢复结果：CI38530334549/d62af3b完整成功，Linux/macOS各14 Core、41/41 iOS、设备Release/Build4 IPA及测试包已核验，433个运行源码hash一致。当前边界PNG未完整显示第二章，DOM断言通过不等于视觉验收；原书、手动拖动/惯性、峰值内存与设备仍待完成。先交付Build4正常更新测试，不重复盲补竞态；卡点参考成熟实现，微信读书作为交互目标，沿现有方案继续M1，不放行M2/M4。最新证据见M1_CONTINUOUS_VALIDATION_REPORT.json/HANDOFF及MATURE_READER_REFERENCES.md。
+2026-10-14恢复结果：CI38530334549/d62af3b完整成功，Linux/macOS各14 Core、41/41 iOS、设备Release/Build4 IPA及测试包已核验，433个运行源码hash一致。用户随后确认连续功能/重开位置正常并授权按计划继续，现开始M2 Core切片。CI边界PNG证据不完整仍保留，未单独确认的其他设备细项/原书图像/性能继续记录，不扩写为完整矩阵。新阶段见下方M2及HANDOFF。
 
 历史Build3：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）各14 Core、31 iOS及设备Release成功，原创封面上下色带完整。它仅支持章内滚动与横向资源切换；连续候选的最新证据以上方Build4为准。完整M1待实际阅读和设备验收，不推进M2；详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 
@@ -37,6 +37,8 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 - 真机体验记录及关键截图/录屏；不能把“构造了 Navigator”当成排版已验证。
 
 ## M2 识别回归
+
+2026-10-14用户确认Build4连续功能与重开位置正常，并授权按计划继续；结合M1完整CI构建/测试通过，开始M2 Core分章与有界读取切片。M1未逐项确认的普通设备/图片/旋转/性能仍单独记录，不扩写为验收。Core新源码Windows检查通过、Swift编译待执行；TXT入口与编码/缓存仍未集成，详见TXT_INDEX_DESIGN.md。M3完整书库、M4排版/主题顺序不变。
 
 必须覆盖 `第一章`、`第一百二十三章`、`第123章`、`第 123 章`、`第一卷`、`卷一`、`正文 第一章`、`Chapter 1`；还需超长章节名、空行/BOM/CRLF、分隔符、跨 chunk、正文中的同样短语、无章节等反例。
 

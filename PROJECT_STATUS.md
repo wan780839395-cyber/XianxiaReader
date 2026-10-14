@@ -5,8 +5,8 @@
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
-| M1 基础 EPUB | 连续候选完整自动CI通过，Build4测试包已核验；完整M1未验收 | 双章实际观感、拖动惯性、原书、设备仍待验收 |
-| M2 TXT | 未开始 | 后台流式分章、窗口加载/缓存、长文件 |
+| M1 基础 EPUB | 完整自动门槛通过，用户确认连续阅读与重开位置可用；可继续既定路线 | 未逐项确认的原书图像、其他设备/旋转/性能继续单独记录 |
+| M2 TXT | Core分章扫描/窗口读取第一切片已写入，Windows检查通过；Swift编译待执行 | 编码转码、内容版本缓存、导入与阅读UI仍待实现 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
@@ -23,12 +23,16 @@
 
 ## 最新证据与设备边界
 
+2026-10-14用户反馈：“这个功能可以了，重开位置也是正常的”，并要求按计划继续。依据上一轮Build4上下文记录连续跨章/重开位置的用户设备确认，沿用iPhone13/iOS16.6.1/TrollStore背景；未报告的普通设备、原书图片、旋转和性能不扩写为通过。M1已有完整CI构建/测试门槛，现推进M2独立Core切片。UI完整书库在M3，排版/主题在M4。
+
+M2新源码：独立标题识别器、UTF-8有界流式扫描/卷章目录/Int64范围、严格跨块UTF-8校验与有界窗口读取，19个新增Swift回归（Core预期33项）。本轮Windows367文件grammar、新诊断0和14项Python tooling通过；尚未Swift编译/接入TXT导入阅读，不冒称TXT可用。Docker查询报dockerDesktopLinuxEngine管道不存在，已保留错误，未启动或重置工具；用真实CI验证。见TXT_INDEX_DESIGN.md及HANDOFF。
+
 [CI 38530334549](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38530334549)，已测源码 `d62af3b7576a11a1b7318e029355ef1847710113`：Linux/macOS各14 Core、iOS41/41、0 failed/0 skipped，测试/附件/summary退出码均0，设备Release `CODE_SIGNING_ALLOWED=NO`与Build4 IPA成功。完整下载日志、原始xcresult、锁文件和433个运行源码Git blob SHA核验一致；没有继续修改运行源码或重复触发CI。源码编译warning/error=0，6条AppIntents metadata提示及WebKit运行诊断原样保留。
 
 - 当前 `build/XianxiaReader.ipa` 是Build4，7,502,213 bytes，SHA256 `7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1`；CRC/iPhoneOS/arm64/0755/最低16.0/系统SQLite/第三方声明核验通过。
 - `build/XianxiaReader-Continuous-Build4-TestKit.zip`：7,429,683 bytes，SHA256 `f37cda047f5bcf7357d0865635cd7d4e0129a88401f9127ac92ad443a5caf9f7`，四本原创样书与UTF-8说明，内部IPA hash一致。旧Build3原件保留在 `build/ci/38434939423/ipa/`，旧测试ZIP保留。
 - 连续模式支持横排LTR重排EPUB：有限窗口最多12资源、章间物理滚动、加载/失败重试、字符与局部视口锚点、目录/搜索/书签和模式往返。双章/逆向、600点长段滑动后charOffset>100及重开误差<3px、图片高度变化、千资源回收、迟到termination、rAF桥受阻初始化均过自动回归。
-- **视觉/设备未放行**：已实际查看当前边界PNG，只显示第一章末尾与空白，未显示第二章标题；原因未判定，DOM/窗口断言通过不能代替真实显示。封面分页/章内滚动上下色带完整。手动模拟器阅读、原生拖动/惯性、峰值内存、普通设备、iPhone13/iOS16.6.1/TrollStore与原书均待实测。
+- 历史CI边界PNG只显示第一章末尾与空白，原因未判定；其截图证据不完整仍保留。最新用户设备反馈已确认连续功能和重开位置可用，不再把旧PNG当设备功能失败；封面分页/章内滚动上下色带完整。未单独报告的逆向/惯性细项、完整手动模拟器阅读、峰值内存、普通设备和原书图像继续记录待确认。
 - 证据见 `Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json` 和 `Documentation/ValidationLogs/m1-continuous-build4-success.json`。用户要求自用、卡点参考成熟方案、微信读书交互、其余按原方案；原则已记入AGENTS及 `Documentation/MATURE_READER_REFERENCES.md`，未替换引擎或扩大阶段。
 
 ## 历史 Build3 证据（不代表当前包）
@@ -52,4 +56,4 @@ Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。GitHub origin/ma
 
 ## 下一步
 
-用Build4在现有TrollStore应用上正常更新并保留数据；重点复测双章实际显示/逆向、拖动惯性、长段恢复、原书图像及目录/搜索/书签。若复现空白或位置问题，先参考成熟窗口/锚点实现并建立最小复现，按真实证据改动。完整M1未放行，不大规模进入M2/M4；TXT、完整书库、字体/主题/音量键、百万字性能及XBook知识库均未实现。
+先验证M2 Core分章与窗口第一切片（真实33项Core/macOS、原41项iOS/Release），通过后推进编码/转码、内容版本cache、TXT导入和阅读接入。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。
