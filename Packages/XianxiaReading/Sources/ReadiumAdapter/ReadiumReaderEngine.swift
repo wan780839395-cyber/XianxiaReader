@@ -17,6 +17,7 @@ import XianxiaCore
 @MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
+    private let additionalUserScripts: [WKUserScript]
     private var navigator: EPUBNavigatorViewController?
     private var bookID: UUID?
     private var openRequestID: UUID?
@@ -32,7 +33,17 @@ import XianxiaCore
     public private(set) var supportsContinuousScrolling = false
     public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
 
-    public override init() { super.init() }
+    public override init() {
+        additionalUserScripts = []
+        super.init()
+    }
+
+    // Integration tests can delay a WebKit bridge without altering production
+    // resource files or disabling the reader's real initialization work.
+    init(additionalUserScripts: [WKUserScript]) {
+        self.additionalUserScripts = additionalUserScripts
+        super.init()
+    }
 
     public func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws {
         close()
@@ -167,6 +178,7 @@ import XianxiaCore
 
     public func navigator(_ navigator: EPUBNavigatorViewController,
                           setupUserScripts userContentController: WKUserContentController) {
+        for script in additionalUserScripts { userContentController.addUserScript(script) }
         guard navigator.publication.metadata.layout != .fixed else { return }
         userContentController.addUserScript(WKUserScript(source: ReadiumViewportScript.mediaBounds,
             injectionTime: .atDocumentEnd, forMainFrameOnly: true))

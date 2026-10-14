@@ -41,3 +41,9 @@ build/XianxiaReader.ipa仍为Build3，7393693 bytes，SHA256 12504757c6900a83acc
 ## 环境
 
 Windows/PowerShell/Git/Python可用，无本机Xcode/Swift。本轮未启动/重置Docker、未启动localhost、未改变其他项目进程。GitHub artifacts保留14天，build/.cache忽略不随clone；过期需在可用macOS按锁重建。
+
+## 当前运行任务
+
+localTop锚点修复已创建候选54ffd91b1f532debf3a43be73d6a051e1c43bbe3并正常推送；完整CI38519173808已触发，bootstrap=false，预期40项iOS。本地HEAD6d76174/index为空继续保留。恢复先查询此run，不重跑ad555ab/39-of-40，也不假定最后修复或IPA成功。
+
+CI38519173808已完成并下载完整日志/xcresult：Linux/macOS各14 Core，iOS38/40、2 failed、0 skipped；失败在首次currentPosition等待334和重试恢复396，长段charOffset断言未执行，不能判定localTop补充的结果。stock Readium脚本window load后通过requestAnimationFrame发spreadLoaded，未ready的屏外资源可能暂停该回调。现补充WK didFinish/真实viewport+Readium脚本探针启动同一个完整初始化管线，单次启动防止native/JS重复完成取消；clear取消bootstrap task。新增抑制确切spreadLoaded rAF桥的真实窗口回归，验证正文跳转仍完成（预期41 tests）。这不是只凭DOM ready标记ready；CSS/原初始定位/decoration仍全部等待。新补充未编译，即将静态核验/来源hash并完整CI。

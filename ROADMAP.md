@@ -24,7 +24,7 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
-2026-10-14 remote compact恢复：公开仓库已获用户授权并经API确认，标准runner正常启动；旧38508277189账单拒绝是历史。公开后38511938460为Linux/macOS各14 Core、37/39 iOS（原31保留），长段navigationFailed与模式恢复未通过。当前ad555ab回收spread迟到回调修复/新增回归已过Windows静态，完整40-test CI38513634971运行中，无新Release/IPA可宣称通过。最新证据见M1_CONTINUOUS_VALIDATION_REPORT.json/HANDOFF；原书与真机/惯性仍独立待验收，继续M1，不放行M2/M4。
+2026-10-14再次中断恢复：公开仓库标准runner正常；最新38513634971/ad555ab为Linux/macOS各14 Core、39/40 iOS、0 skipped，模式往返/迟到termination通过，只剩长段字符缓存。54ffd91实际文档localTop补充已过Windows静态，完整40-test CI38519173808运行中，无新Release/IPA可宣称通过。最新证据见M1_CONTINUOUS_VALIDATION_REPORT.json/HANDOFF；原书与真机/惯性仍独立待验收，继续M1，不放行M2/M4。
 
 2026-10-14：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 用户要求的真正纵向无缝跨章仍须独立M1引擎切片；完整M1待真机验收，不推进M2。详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 

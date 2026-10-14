@@ -5,7 +5,7 @@
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
-| M1 基础 EPUB | 公开后候选已编译、37/39回归通过；迟到回调修复完整40-test CI运行中；完整M1未验收 | 长段导航/模式恢复/完整CI/设备仍待完成 |
+| M1 基础 EPUB | 已编译39/40回归通过；实际视口锚点补充完整CI运行中；完整M1未验收 | 长段字符恢复/完整CI/设备仍待完成 |
 | M2 TXT | 未开始 | 后台流式分章、窗口加载/缓存、长文件 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
@@ -19,7 +19,7 @@
 - ReadiumAdapter隔离引擎；分页、章内上下滚动、横向跨资源、中央菜单、目录/内部链接、书签、搜索/结果跳转、位置保存/恢复。关闭/重开过滤旧异步回调。
 - ReaderSurface独立完整viewport、官方frame/autoresizing容器；横排重排媒体保护按实际innerHeight校准，固定/竖排保留原路径。目录/书签跳转后收起菜单；原创长短章/高封面样书和实际窗口回归。
 - 安全SearchService扩展保留issue876回归；每批40、上下文64、UI最多1000；不跨文本元素/资源匹配，不收集全书结果。
-- project.yml唯一工程源；两个Swift Packages；根真实Package.resolved锁定Readium3.11.0与11 pins；macOS完整CI和无签名IPA。
+- project.yml唯一工程源；两个Swift Packages；连续候选使用Readium3.11.0本地扩展及真实解析的6个远程pins（Build3历史为11 pins）；保留macOS完整CI和无签名IPA门槛。
 
 ## 最新证据与设备边界
 
@@ -31,7 +31,7 @@
 - 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes，包含IPA、三本原创EPUB和TESTING.txt，CRC与内部IPA hash一致。Build2及更早原件保留在对应run目录。
 - 用户iPhone13/iOS16.6.1/TrollStore：安装正常、EPUB可以导入（用户报告，来源未细分）；原书图像窄横条。当前Build3安装/原书图片/完整阅读仍待复测；没有普通设备签名验收。
 - **真正纵向连续跨章候选已写入未提交源码，上一版编译/38项回归通过，最终版本尚未全套验收**：Vendor/ReadiumToolkit 是3.11.0本地扩展，最多12资源窗口、固定WKWebView viewport、加载边界/重试、DOMRange+视口偏移、迟到布局过滤和关闭清理。旧Build3仍为章内滚动/横向切换；候选不能作为完整M1已验收功能；已经查看原创双章同屏截图，原生拖动/惯性与峰值内存未验收。
-- remote compact恢复：本地main/6d76174和原暂存区保留，原370文件ZIP已核验CRC/全部hash；候选codex/m1-continuous-recovery。历史run38506979070/8908e98为38/39。用户授权公开后run38511938460/008e607实际编译89a46ce同一运行源码，Linux/macOS各14 Core、37/39 iOS、0 skipped，长段navigationFailed/模式恢复两项失败，未执行Release/IPA。当前ad555ab补充回收spread断开delegate与迟到termination回归，Windows362grammar/14tooling通过，完整40-test CI38513634971正在运行。旧38508277189的账单启动拒绝保留为历史；公开后已正常启动，不再作为当前阻塞。详情M1_CONTINUOUS_VALIDATION_REPORT.json与HANDOFF。
+- remote compact恢复：本地main/6d76174和原暂存区保留，原370文件ZIP已核验CRC/全部hash；候选codex/m1-continuous-recovery。公开后的37/39失败记录保留；最新CI38513634971/ad555ab为Linux/macOS各14 Core、iOS39/40、0 skipped，模式往返与迟到termination回归通过。只剩长段实际滚动600点但Locator charOffset2。新54ffd91补充实际文档localTop锚点key，Windows362grammar/14tooling通过，完整40-test CI38519173808运行中；没有新Release/IPA。旧38508277189账单拒绝仅是历史；公开后正常运行。详情M1_CONTINUOUS_VALIDATION_REPORT.json与HANDOFF。
 
 ## 失败历史与报告范围
 

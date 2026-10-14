@@ -4,7 +4,7 @@
 
 **M0通过，M1阅读视口/图像切片自动验证通过；不是完整MVP。** [CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 见[阅读修复](Documentation/READER_VIEWPORT_FIX.md)和[项目状态](PROJECT_STATUS.md)。
 
-当前连续跨章恢复点：上一候选已编译，38/39 iOS回归通过，双章同屏截图已查看；最后长段锚点修复等待新完整CI。2026-10-14用户同意公开仓库，API已确认PUBLIC；[公开后CI 38511938460](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460)已正常执行仓库检查/Linux Core，macOS流程正在运行。旧账单拒绝记录保留，无新Release/IPA可宣称通过。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
+当前连续跨章恢复点：已编译候选ad555ab的[CI 38513634971](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38513634971)为Linux/macOS各14 Core、iOS39/40、0 skipped；双章同屏/逆向、模式往返、迟到回调通过，只剩长段字符缓存。54ffd91补充实际文档localTop锚点校验，[完整CI 38519173808](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38519173808)正在运行。仓库已获用户授权公开，标准runner正常执行；旧账单拒绝仅是历史，无新Release/IPA可宣称通过。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
 
 ## 当前已写入
 

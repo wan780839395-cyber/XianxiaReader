@@ -1,4 +1,4 @@
-import ReadiumAdapter
+@testable import ReadiumAdapter
 import SwiftUI
 import UIKit
 import WebKit
@@ -470,6 +470,34 @@ final class ReaderRenderingTests: XCTestCase {
         try await engine.open(book: book, fileURL: url, position: nil)
         try await waitUntil { engine.continuousLoadedResourceCount >= 2 && engine.currentPosition != nil }
         XCTAssertNotNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
+    }
+
+    @MainActor func testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge() async throws {
+        let script = WKUserScript(source: """
+        const nativeFrame = window.requestAnimationFrame.bind(window);
+        window.requestAnimationFrame = callback => {
+          if (String(callback).includes('spreadLoaded')) {
+            window.__xianxiaBlockedSpreadLoaded = true;
+            return 0;
+          }
+          return nativeFrame(callback);
+        };
+        """, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [script]); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        let cover = try resourceWebView(engine, index: 0)
+        let blocked = try await cover.evaluateJavaScript("window.__xianxiaBlockedSpreadLoaded === true") as? Bool
+        XCTAssertEqual(blocked, true, "Regression must suppress the actual spreadLoaded animation-frame callback")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
+        let text = try resourceWebView(engine, index: 1)
+        try await waitUntil {
+            let y = try await text.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs(y ?? 10000) < 5
+        }
+        let textBlocked = try await text.evaluateJavaScript("window.__xianxiaBlockedSpreadLoaded === true") as? Bool
+        XCTAssertEqual(textBlocked, true)
     }
 
     @MainActor func testRetiredContinuousProcessCannotReloadPagedReader() async throws {

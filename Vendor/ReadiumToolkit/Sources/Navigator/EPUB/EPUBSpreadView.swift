@@ -60,6 +60,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     private(set) var isSpreadLoaded = false
     private var spreadLoadTask: Task<Void, Never>?
+    private var continuousBootstrapTask: Task<Void, Never>?
+    private var navigationFinished = false
+    private var initializationStarted = false
     private var initializationFinished = false
     private var wasCleared = false
     private let onContinuousInitializationReady = CompletionList()
@@ -127,6 +130,8 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
         spreadLoadTask?.cancel()
         spreadLoadTask = nil
+        continuousBootstrapTask?.cancel()
+        continuousBootstrapTask = nil
 
         // Disable JS messages to break WKUserContentController reference.
         disableJSMessages()
@@ -174,6 +179,34 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         if superview != nil {
             enableJSMessages()
             scrollView.delegate = self
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        bootstrapContinuousInitialization()
+    }
+
+    // Readium's window-load bridge posts spreadLoaded on requestAnimationFrame.
+    // Offscreen preloads can have that callback suspended by WebKit. Native
+    // navigation completion starts the SAME full initialization pipeline once
+    // the Readium script and a real viewport are available; it does not mark
+    // the spread ready merely because the DOM is complete.
+    private func bootstrapContinuousInitialization() {
+        guard viewModel.infiniteScroll, navigationFinished, !wasCleared, !initializationStarted,
+              continuousBootstrapTask == nil, bounds.width > 0, bounds.height > 0 else { return }
+        continuousBootstrapTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { self.continuousBootstrapTask = nil }
+            self.webView.layoutIfNeeded()
+            let result = await self.evaluateScript("document.readyState === 'complete' && typeof window.readium?.scrollToLocator === 'function' && innerWidth > 0 && innerHeight > 0")
+            guard !Task.isCancelled, !self.wasCleared else { return }
+            switch result {
+            case let .success(value):
+                if value as? Bool == true { self.spreadDidLoad(NSNull()) }
+            case let .failure(error):
+                self.log(.error, error)
+            }
         }
     }
 
@@ -407,9 +440,10 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Called by the javascript code when the spread contents is fully loaded.
     /// The JS message `spreadLoaded` needs to be emitted by a subclass script, EPUBSpreadView's scripts don't.
     private func spreadDidLoad(_ body: Any) {
-        guard !wasCleared else { return }
-        spreadLoadTask?.cancel()
+        guard !wasCleared, !initializationStarted else { return }
+        initializationStarted = true
         spreadLoadTask = Task { @MainActor in
+            guard !Task.isCancelled, !wasCleared else { return }
             isSpreadLoaded = true
             applySettings()
             await spreadDidLoad()
@@ -758,6 +792,8 @@ extension EPUBSpreadView: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         setNeedsStopActivityIndicator()
+        navigationFinished = true
+        bootstrapContinuousInitialization()
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

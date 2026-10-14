@@ -1,6 +1,6 @@
 {
   "validationKind": "static_only",
-  "recordedAtUTC": "2026-10-14T03:57:13.809546+00:00",
+  "recordedAtUTC": "2026-10-14T05:57:49.894805+00:00",
   "checks": [
     "check_documents",
     "check_project",
@@ -15,5 +15,9 @@
   "simulatorAccepted": false,
   "deviceAccepted": false,
   "trollStoreAccepted": false,
-  "ipaProduced": false
+  "ipaProduced": false,
+  "sourceCandidateRevision": "54ffd91b1f532debf3a43be73d6a051e1c43bbe3",
+  "pythonToolingPassed": 14,
+  "pristineParserLimitations": 54,
+  "newGrammarDiagnostics": 0
 }
