@@ -1,0 +1,46 @@
+{
+  "recordedAtUTC": "2026-10-14T17:50:51.338763+00:00",
+  "run": 38608713016,
+  "sourceRevision": "541b7aec871b719643d50fdd0bd5a4c88d3f96b3",
+  "linuxCoreTests": 80,
+  "linuxCorePassed": true,
+  "linuxReleasePerformanceCases": 4,
+  "macOSCoreCompiled": true,
+  "macOSTestsExecuted": 80,
+  "macOSFailures": 1,
+  "failedTest": "TXTLegacyEncodingTests.testWindows936EuroAndGB18030FourBytesStayDifferent",
+  "failure": "encodingChoiceRequired for Windows936 standalone 0x80",
+  "macOSReleasePerformanceExecuted": false,
+  "iOSTestsExecuted": false,
+  "deviceReleaseBuilt": false,
+  "sourceFix": "On Apple only, map documented standalone CP936 0x80 to U+20AC at complete boundaries, keep legal 0x8180 trail intact and all other mappings SDK.",
+  "noAssertionsWeakened": true,
+  "originalGB18030MappingUnchanged": true,
+  "primaryReferences": [
+    "https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP936.TXT",
+    "https://encoding.spec.whatwg.org/#gb18030-decoder",
+    "https://github.com/apple-oss-distributions/CF/blob/main/CFStringEncodingDatabase.c"
+  ],
+  "artifacts": [
+    {
+      "path": "build/ci/38608713016/run.json",
+      "bytes": 5474,
+      "sha256": "db8af70aa761ced0366ca93fe030670de2b39e17abfd94a1f010e2b467d8cbf5"
+    },
+    {
+      "path": "build/ci/38608713016/full.log",
+      "bytes": 151269,
+      "sha256": "60163f8f7dbe00018ce11ad65f65c537fceca0dfd0d65018d96f78125cd527a4"
+    },
+    {
+      "path": "build/ci/38608713016/core/logs/core-tests.log",
+      "bytes": 11486,
+      "sha256": "e9a2d8625920e6101284869c692f5708d64b76865d4e247e327651c0c3b730de"
+    },
+    {
+      "path": "build/ci/38608713016/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 18351,
+      "sha256": "0a38400b268a2592250df75065c058bc1ddc9130dd95d452263ef99821308ab8"
+    }
+  ]
+}

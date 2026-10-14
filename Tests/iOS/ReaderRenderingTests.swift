@@ -425,6 +425,13 @@ final class ReaderRenderingTests: XCTestCase {
             let ready = try await webView.evaluateJavaScript("document.title === '第一章 山门' && document.readyState === 'complete'") as? Bool
             return ready == true
         }
+        // DOM readiness precedes Readium's asynchronous spread positioning.
+        // Observe the actual restored paragraph before issuing a second mode change.
+        try await waitUntil {
+            guard let webView = self.visibleWebView(in: engine.viewController.view) else { return false }
+            let visible = try await webView.evaluateJavaScript("(() => { const r = document.getElementById('line-18')?.getBoundingClientRect(); return !!r && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth; })()") as? Bool
+            return visible == true
+        }
         engine.setContinuousScrolling(true)
         try await waitUntil { engine.continuousLoadedResourceCount > 0 }
         try await waitUntil {

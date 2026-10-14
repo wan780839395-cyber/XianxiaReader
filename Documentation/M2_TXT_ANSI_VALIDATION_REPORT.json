@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-14T17:41:24.600636+00:00",
+  "recordedAtUTC": "2026-10-14T17:50:51.689740+00:00",
   "stage": "Build9 ANSI and reading range cache pending full CI",
-  "sourceRevision": "541b7aec871b719643d50fdd0bd5a4c88d3f96b3",
-  "run": 38608713016,
+  "sourceRevision": "b6f12286d935465e1591b95afb2286037c21091f",
+  "run": 38610052379,
   "branch": "codex/m2-txt-index",
   "build": "9",
   "changedPaths": [
@@ -19,6 +19,9 @@
     "Documentation/TXT_ANSI_COMPATIBILITY.md",
     "Documentation/TXT_READING_DESIGN.md",
     "Documentation/ValidationLogs/m2-txt-ansi-first-candidate.json",
+    "Documentation/ValidationLogs/m2-txt-ansi-nul-offset-failure.json",
+    "Documentation/ValidationLogs/m2-txt-ansi-second-candidate.json",
+    "Documentation/ValidationLogs/m2-txt-build8-device-feedback.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-native-review.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-runtime-diagnostics.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-test-kit.json",
@@ -167,7 +170,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
-      "sha256": "19cc48b3f40b1d9846c4e22905f1604c56f1dc9762bc8868d4640972597d827e"
+      "sha256": "09ab7f8b7256f3bd75084dbc74c035f45259ecf211efff1fa125a3f2023c0d9a"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
@@ -275,7 +278,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
-      "sha256": "d2ed3dc57467fd89c4fa77a579b01ce5e2958e52e40afe319cc261568ce3e099"
+      "sha256": "e0bde8c8a818d0bbf603e808c138802d06b7e625752dee8cceac82bf27f5c0aa"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",

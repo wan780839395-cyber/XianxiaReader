@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T17:49:51.073272+00:00",
+  "recordedAtUTC": "2026-10-14T18:05:28.393146+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 600,
+  "fileCount": 602,
   "files": [
     {
       "path": ".gitattributes",
@@ -261,12 +261,12 @@
     {
       "path": "Documentation/M2_TXT_ANSI_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "462e888d55a5ef0398116bce67f53bb51954c94283af0d45192023d79fc6c91d"
+      "sha256": "0550599b75a601a6ca9802b3c7e5440627146af2cfaa778269c97a9db820d220"
     },
     {
       "path": "Documentation/M2_TXT_ANSI_VALIDATION_REPORT.json",
-      "bytes": 90293,
-      "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
+      "bytes": 90506,
+      "sha256": "a5866a243e169933826aee497699b51987a4a831e312f3978be343d4ed6f8f95"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -599,6 +599,11 @@
       "sha256": "b1c2b7d97493d93473fc69c8e92f8d982e40b71a8bcd55109e8e0f6a4ca35a6e"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-apple-euro-failure.json",
+      "bytes": 1823,
+      "sha256": "869e51408b7948491fb8a3ac9fa9f55bf4c65651f346ceb1fd2f068fed543332"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-txt-ansi-first-candidate.json",
       "bytes": 90168,
       "sha256": "f40312cc0e7749b03015f2226854e99b58bfa4f2ac21f8d1bd8eead990d1da22"
@@ -612,6 +617,11 @@
       "path": "Documentation/ValidationLogs/m2-txt-ansi-second-candidate.json",
       "bytes": 90293,
       "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-third-candidate.json",
+      "bytes": 90506,
+      "sha256": "a5866a243e169933826aee497699b51987a4a831e312f3978be343d4ed6f8f95"
     },
     {
       "path": "Documentation/ValidationLogs/m2-txt-build5-native-visual-review.json",
@@ -740,8 +750,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 12408,
-      "sha256": "d979841b955b381acadfe27d93ecadb894c9449237bb3aacf35f86ca826fb9d9"
+      "bytes": 14692,
+      "sha256": "b6ed2dede54c9a7489b71eaa5735af4cde32545652efdcdfbc253a166baad839"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -785,8 +795,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 16733,
-      "sha256": "478397d4a96a525efb691b517bd30b48d4e56244087e63a8970f3d2e9f71f2cd"
+      "bytes": 16893,
+      "sha256": "327983aa281df740da9867fb9fafb836ba4e4d68e1678add96a928a47054b67e"
     },
     {
       "path": "Package.resolved",
@@ -1095,8 +1105,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 32065,
-      "sha256": "5ca1aedf196ec37704f2ae2465153c8e56a615f3276c4dd01f435c5ff257583f"
+      "bytes": 32658,
+      "sha256": "df61eeb42699bafc1144d7c0172116f5adedd4f221e1bb84d2f74f043d03976f"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",

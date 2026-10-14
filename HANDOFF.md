@@ -28,6 +28,18 @@ ANSI兼容方案先核Microsoft codepage与Apple SDK公开API：中文Windows AN
 
 541b7ae / CI38608713016 completed/failure：Linux80 Core/4Release探针通过，macOS真实编译/80项中新增CP936单字节0x80 euro回归失败encodingChoiceRequired，Apple探针/iOS/Release未执行；完整run/full/Core/Apple artifact保留。先核Unicode托管Microsoft CP936.TXT、WHATWG解码状态与Apple公开CF表，确认0x80单独=U20AC、0x8180=U4E90。仅Apple CP936增加按完整字符边界拆分SDK转换段及单独euro三字节映射，不能把trail80替换；所有其他字符仍SDK，原GB18030不变。扩展同测试的混合euro/trail80及五种chunk回归，原断言保留，先静态检查再新快照完整CI。引用/适用差异见TXT_ANSI_COMPATIBILITY.md。本轮没有成功IPA，旧包未动。
 
+## 2026-10-15 最新候选已调度
+
+b6f12286d935465e1591b95afb2286037c21091f / CI38610052379已调度完整自动流程，repository-checks已通过，后续以实际job结果为准；前两轮失败不能误当当前。当前463源码hash与11旧包报告已录，原HEAD/index不动，Build9尚未生成。Apple euro失败完整证据与官方参考另见ValidationLogs/m2-txt-ansi-apple-euro-failure.json；更新状态已定位此run。后续若遇平台/API问题先核官方或成熟对应实现，不反复盲补。
+
+## 2026-10-15 用户离开与关机指令
+
+用户明确要求“我要睡觉了 你跑完了帮我关机吧”。继续完成当前ANSI/范围cache完整CI及必要修复，最终保存包、全部失败/成功证据、状态/handoff/inventory并推送文档快照，核实无自身残留任务后再安排本机Windows关机。不提前关掉未收尾任务，不强制结束其他应用或删库；关机指令已获直接授权，无需再次询问。当前CI38610052379仍在Apple job，不能根据耗时推断成功。实际关机调度结果需记录，系统应用若阻止退出则保留真实限制，不能宣称机器已断电。
+
+## 2026-10-15 iOS 模式切换实际失败
+
+b6f1228 / CI38610052379 completed/failure：Linux/macOS各80 Core与各4Release探针全通过；所有8项TXT（含新增ANSI/旧位置/巨章窗口）通过，iOS总57/58、failed1/skipped0、test65/export0/summary0，设备Release/IPA未执行。旧EPUB testContinuousSearchJumpAndModeRoundTripKeepTheParagraph在连续→分页→连续后line18不可见，最终诊断是章首h1、offset0；测试此前仅等分页document.readyState/title，不核Readium实际恢复目标段落。参考同文件probe中已注明的spreadLoaded/native定位晚于DOM与锁定3.11 Navigator异步load状态，最小改动只增强测试：分页切回前等待line18实际横纵viewport可见，原30秒每个wait门槛/最终line18/原全部断言保持，生产引擎/Vendor不改。此为就绪竞态推断，根因未完全证明，不宣称修复产品模式切换bug。完整原件先保留，再新源码快照完整CI；如果同条件仍失败继续查对应官方/成熟实现，不无限盲补。用户睡觉后关机指令仍在最终收尾后执行，尚未调度。
+
 ## 实际断点
 
 Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。
