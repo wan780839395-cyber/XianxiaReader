@@ -90,6 +90,7 @@ enum LibrarySheet: String, Identifiable {
         defer { isImporting = false; importingName = "" }
         var messages: [String] = []
         var importedCount = 0
+        var detectedLegacy: Set<String> = []
         // Sequential imports bound memory and preserve the security-scoped URL for the full copy.
         for url in urls {
             if Task.isCancelled { break }
@@ -97,6 +98,10 @@ enum LibrarySheet: String, Identifiable {
             do {
                 let outcome = try await importer.importBook(from: url, txtEncoding: encoding)
                 importedCount += 1
+                if encoding == .automatic {
+                    if outcome.detectedTXTEncoding == .gbk { detectedLegacy.insert("ANSI / GBK") }
+                    if outcome.detectedTXTEncoding == .gb18030 { detectedLegacy.insert("GB18030") }
+                }
                 messages.append(contentsOf: outcome.warnings.map { "\(url.lastPathComponent)：\($0)" })
             } catch is CancellationError { break }
             catch {
@@ -112,6 +117,7 @@ enum LibrarySheet: String, Identifiable {
         }
         await refresh()
         if importedCount > 0 { importStatus = "已导入 \(importedCount) 本书" }
+        if !detectedLegacy.isEmpty { importStatus = (importStatus ?? "")+"（自动识别：\(detectedLegacy.sorted().joined(separator:"、"))）" }
         if Task.isCancelled { importStatus = "导入已取消，已完成的 \(importedCount) 本书已保留" }
         if !messages.isEmpty { errorMessage = messages.joined(separator: "\n") }
     }

@@ -59,7 +59,7 @@ public struct TXTReadingAnchor: Codable, Equatable, Sendable {
         version = TXTReadingPlan.version
         parserVersion = TXTChapterHeadingRecognizer.parserVersion
         normalizerVersion = TXTNormalizer.version
-        codecIdentifier = TXTNormalizer.codecIdentifier
+        codecIdentifier = plan.index.codecIdentifier
         sourceSHA256 = plan.index.sourceSHA256
         normalizedSHA256 = plan.index.normalizedSHA256
         chapterID = resource.chapter.id
@@ -69,7 +69,7 @@ public struct TXTReadingAnchor: Codable, Equatable, Sendable {
     public func isValid(plan: TXTReadingPlan, resource: TXTReadingResource) -> Bool {
         version == TXTReadingPlan.version && sourceSHA256 == plan.index.sourceSHA256
             && parserVersion == TXTChapterHeadingRecognizer.parserVersion && normalizerVersion == TXTNormalizer.version
-            && codecIdentifier == TXTNormalizer.codecIdentifier
+            && codecIdentifier == plan.index.codecIdentifier
             && normalizedSHA256 == plan.index.normalizedSHA256 && chapterID == resource.chapter.id
             && resourceStartByte == resource.startByte && resourceEndByte == resource.endByte
             && paragraphStartByte >= resource.startByte && paragraphStartByte < resource.endByte

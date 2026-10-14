@@ -6,6 +6,7 @@ struct TXTPreparedPublication {
     let publication: Publication
     let plan: TXTReadingPlan
     let renderer: TXTResourceRenderer
+    let reusedReadingPlanCache: Bool
     func locator(_ position: ReadingPosition, bookID: UUID) async throws -> Locator {
         let (locator,anchor,resource) = try TXTPositionCodec.decode(position, bookID: bookID, plan: plan)
         try await renderer.validate(anchor, resource: resource)
@@ -21,8 +22,8 @@ actor TXTReadiumPublicationLoader {
         }
         let cache = try TXTIndexCache(storageRoot: files.root)
         let index = try await cache.prepare(source: fileURL, bookID: book.id, encoding: book.txtEncoding ?? .automatic)
-        let normalized = try await cache.normalizedURL(for: index)
-        let plan = try await TXTReadingPlanner().build(index: index, file: normalized)
+        let reading = try await TXTReadingPlanCache(storageRoot: files.root).prepare(index: index)
+        let plan = reading.plan
         try Task.checkCancellation()
         let renderer = TXTResourceRenderer(files: files, index: index)
         let order = plan.resources.map { Link(href: $0.href, mediaType: .xhtml, title: $0.chapter.title) }
@@ -38,7 +39,7 @@ actor TXTReadiumPublicationLoader {
             search: SafeTextSearchService.makeFactory())
         let publication = Publication(manifest: Manifest(metadata: metadata, readingOrder: order, tableOfContents: toc),
             container: TXTReadiumContainer(plan: plan, renderer: renderer), servicesBuilder: services)
-        return TXTPreparedPublication(publication: publication, plan: plan, renderer: renderer)
+        return TXTPreparedPublication(publication: publication, plan: plan, renderer: renderer, reusedReadingPlanCache: reading.reusedCache)
     }
 }
 

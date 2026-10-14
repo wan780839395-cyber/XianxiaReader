@@ -41,7 +41,7 @@ final class TXTProductTests: XCTestCase {
     }
     func testFailedEncodingImportLeavesNoBookOrPublishedCacheAndAllowsRetry() async throws {
         let (root,files,repository) = try context(), source = root.appendingPathComponent("gb.txt")
-        let bytes = Data([0xD4,0xC6,0xBA,0xA3]); try bytes.write(to: source)
+        let bytes = Data([0x63,0x61,0x66,0xE9]); try bytes.write(to: source)
         let importer = TXTBookImportService(files: files,repository: repository)
         do { _ = try await importer.importBook(from: source); XCTFail("Encoding choice required") }
         catch { XCTAssertEqual(error as? TXTNormalizationError,.encodingChoiceRequired) }
@@ -50,8 +50,8 @@ final class TXTProductTests: XCTestCase {
             let url = try files.resolve(prefix)
             if FileManager.default.fileExists(atPath: url.path) { XCTAssertTrue(try FileManager.default.contentsOfDirectory(atPath: url.path).isEmpty) }
         }
-        let book = try await importer.importBook(from: source,encoding: .gb18030)
-        XCTAssertEqual(book.txtEncoding,.gb18030); XCTAssertEqual(try Data(contentsOf: source),bytes)
+        let book = try await importer.importBook(from: source,encoding: .windows1252)
+        XCTAssertEqual(book.txtEncoding,.windows1252); XCTAssertEqual(try Data(contentsOf: source),bytes)
     }
     func testTXTInterruptedFinalizedOriginalAndCacheRecoveredCommittedBookPreserved() async throws {
         let (root,files,repository) = try context(), source = root.appendingPathComponent("test.txt")

@@ -1,5 +1,10 @@
 import Foundation
 
+public struct TXTBookImportResult: Sendable {
+    public let book: Book
+    public let detectedEncoding: TXTEncoding
+}
+
 /// Coordinates a managed original, rebuildable index cache, then one Book+Chapter DB transaction.
 public actor TXTBookImportService {
     private let files: BookFileStore
@@ -10,6 +15,9 @@ public actor TXTBookImportService {
     }
 
     public func importBook(from source: URL, encoding: TXTEncoding = .automatic) async throws -> Book {
+        try await importBookWithEncoding(from:source,encoding:encoding).book
+    }
+    public func importBookWithEncoding(from source: URL, encoding: TXTEncoding = .automatic) async throws -> TXTBookImportResult {
         let id = UUID()
         do {
             let staged = try await files.stageTXT(from: source, id: id)
@@ -23,7 +31,7 @@ public actor TXTBookImportService {
             try Task.checkCancellation()
             try await repository.insert(book, chapters: index.chapters)
             // Cancellation after the DB transaction must never roll back a committed book.
-            return book
+            return TXTBookImportResult(book:book,detectedEncoding:index.encoding)
         } catch {
             let original = error
             do { try await files.discardImport(id: id) }
@@ -36,7 +44,7 @@ public actor TXTBookImportService {
 extension TXTNormalizationError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .encodingChoiceRequired: return "TXT 编码无法自动确定，请选择 UTF-16 或 GB18030 编码后重试。"
+        case .encodingChoiceRequired: return "TXT 编码无法自动确定，请选择实际编码（ANSI / GBK、Big5、Windows-1252 或 UTF-16）后重试。"
         case .unsupportedBOM: return "暂不支持这个 TXT 的编码标记，请转换为 UTF-8 或 UTF-16 后导入。"
         case .conflictingBOM: return "所选编码与 TXT 编码标记不同，请改用自动识别或正确编码。"
         case .invalidEncoding(_, let offset): return "TXT 编码不正确或文件已损坏（字节 \(offset)），请核对编码后重试。"

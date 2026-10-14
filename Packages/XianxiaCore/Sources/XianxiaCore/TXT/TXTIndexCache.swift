@@ -5,6 +5,7 @@ public struct TXTPreparedIndex: Equatable, Sendable {
     public let sourceSHA256: String
     public let normalizedSHA256: String
     public let encoding: TXTEncoding
+    public let codecIdentifier: String
     public let normalizedRelativePath: String
     public let normalizedBytes: Int64
     public let chapters: [Chapter]
@@ -54,7 +55,9 @@ public actor TXTIndexCache {
         try Task.checkCancellation()
         // This actor owns cache I/O. It never scans the source on MainActor.
         let original = try TXTContentDigest.file(source)
-        let key = original.sha256 + "-" + encoding.rawValue + "-n\(TXTNormalizer.version)-p\(TXTChapterHeadingRecognizer.parserVersion)-" + TXTNormalizer.codecIdentifier
+        let codec = TXTNormalizer.codecIdentifier(for: encoding)
+            + (encoding == .automatic ? "-auto\(TXTNormalizer.automaticDetectionVersion)" : "")
+        let key = original.sha256 + "-" + encoding.rawValue + "-n\(TXTNormalizer.version)-p\(TXTChapterHeadingRecognizer.parserVersion)-" + codec
         let folder = "Cache/TXT/\(bookID.uuidString.lowercased())/\(key)"
         let manifestPath = folder + "/index.json"
         if let cached = try loadManifest(path: manifestPath, folder: folder, sourceDigest: original,
@@ -123,7 +126,7 @@ public actor TXTIndexCache {
               manifest.actualEncoding != .automatic, manifest.sourceSHA256 == sourceDigest.sha256,
               manifest.sourceBytes == sourceDigest.bytes, manifest.normalizerVersion == TXTNormalizer.version,
               manifest.parserVersion == TXTChapterHeadingRecognizer.parserVersion,
-              manifest.codecIdentifier == TXTNormalizer.codecIdentifier, manifest.normalizedBytes > 0,
+              manifest.codecIdentifier == TXTNormalizer.codecIdentifier(for: manifest.actualEncoding), manifest.normalizedBytes > 0,
               manifest.normalizedSHA256.count == 64 else { return nil }
         // Metadata may never redirect to another book, raw file or outside the generation.
         guard manifest.normalizedRelativePath.hasPrefix(folder + "/") else { throw StorageError.unsafePath }
@@ -158,7 +161,7 @@ public actor TXTIndexCache {
     }
     private func prepared(_ manifest: TXTCacheManifest, reused: Bool) -> TXTPreparedIndex {
         TXTPreparedIndex(bookID: manifest.bookID, sourceSHA256: manifest.sourceSHA256,
-            normalizedSHA256: manifest.normalizedSHA256, encoding: manifest.actualEncoding,
+            normalizedSHA256: manifest.normalizedSHA256, encoding: manifest.actualEncoding, codecIdentifier: manifest.codecIdentifier,
             normalizedRelativePath: manifest.normalizedRelativePath, normalizedBytes: manifest.normalizedBytes,
             chapters: manifest.chapters, reusedCache: reused)
     }

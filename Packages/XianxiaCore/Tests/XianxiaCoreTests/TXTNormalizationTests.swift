@@ -103,9 +103,17 @@ final class TXTNormalizationTests: XCTestCase {
             XCTAssertEqual(try Data(contentsOf: output),hex(utf8))
         }
     }
-    func testAutomaticNonUTF8RequiresChoiceWithoutOutput() async throws {
-        try await normalizationError(hex("d4c6baa3"),encoding: .automatic,expected: .encodingChoiceRequired)
-        try await normalizationError(Data([0xE4,0xB8]),encoding: .automatic,expected: .encodingChoiceRequired)
+    func testAutomaticChineseANSIAndUnknownEncodingStillRequiresChoice() async throws {
+        let folder=try root(), source=folder.appendingPathComponent("ansi.txt"), output=folder.appendingPathComponent("utf8.txt")
+        let bytes=hex("d4c6baa3"); try bytes.write(to:source)
+        let result=try await TXTNormalizer(chunkBytes:1).normalize(source:source,destination:output)
+        XCTAssertEqual(result.encoding,.gbk)
+        XCTAssertEqual(try String(contentsOf:output,encoding:.utf8),"云海")
+        XCTAssertEqual(try Data(contentsOf:source),bytes)
+        try await normalizationError(Data([0x81]),encoding:.automatic,expected:.encodingChoiceRequired)
+        // An authoritative UTF-8 BOM must never fall back to legacy encodings.
+        try await normalizationError(Data([0xEF,0xBB,0xBF,0xE4,0xB8]),encoding:.automatic,
+            expected:.invalidEncoding(encoding:.utf8,byteOffset:3))
     }
     func testBOMConflictsAndUTF32AreRejected() async throws {
         try await normalizationError(Data([0xFF,0xFE,0x61,0]),encoding: .utf8,expected: .conflictingBOM)

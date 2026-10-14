@@ -12,9 +12,12 @@ import XianxiaCore
                     Text("UTF-8").tag(TXTEncoding.utf8)
                     Text("UTF-16 小端").tag(TXTEncoding.utf16LittleEndian)
                     Text("UTF-16 大端").tag(TXTEncoding.utf16BigEndian)
-                    Text("GB18030 / GBK").tag(TXTEncoding.gb18030)
+                    Text("ANSI / GBK（中文 Windows）").tag(TXTEncoding.gbk)
+                    Text("GB18030（含扩展汉字）").tag(TXTEncoding.gb18030)
+                    Text("Big5 / ANSI（繁体 Windows）").tag(TXTEncoding.big5)
+                    Text("Windows-1252（西文 ANSI）").tag(TXTEncoding.windows1252)
                 }.pickerStyle(.inline)
-                Text("有编码标记的 TXT 可自动识别。不确定时请按文件实际编码选择；原文件会保留。")
+                Text("自动优先识别编码标记和 UTF-8，其他按中文 Windows 的 GBK / GB18030 尝试。ANSI 随系统语言不同；繁体或西文文件请选对应编码。原文件始终保留。")
                     .font(.footnote).foregroundStyle(.secondary)
                 if !model.retryTXTFiles.isEmpty {
                     Button("按所选编码重试") {

@@ -34,25 +34,64 @@ final class TXTReadingTests: XCTestCase {
         let text = "第一章 山门\r\n云海🙂\n第二章 问道\n原文保留"
         var utf16 = Data([0xFF,0xFE]); utf16.append(try XCTUnwrap(text.data(using: .utf16LittleEndian)))
         let gb: [UInt8] = [0xB5,0xDA,0xD2,0xBB,0xD5,0xC2,0x20,0xC9,0xBD,0xC3,0xC5,0x0D,0x0A,0xD4,0xC6,0xBA,0xA3,0x95,0x30,0x85,0x32,0x0A,0xB5,0xDA,0xB6,0xFE,0xD5,0xC2,0x20,0xCE,0xCA,0xB5,0xC0,0x0A,0xD4,0xAD,0xCE,0xC4,0xB1,0xA3,0xC1,0xF4]
-        let vectors = [("utf8",Data(text.utf8)),("utf16",utf16),("gb",Data(gb))]
+        let vectors = [("utf8",Data(text.utf8)),("utf16",utf16),("gb",Data(gb)),("western",Data([0x63,0x61,0x66,0xE9]))]
         var urls: [URL] = []
         for (name,bytes) in vectors { let url = root.appendingPathComponent(name+".txt"); try bytes.write(to: url); urls.append(url) }
         await model.importBooks(urls)
-        XCTAssertEqual(model.books.count,2); XCTAssertEqual(model.retryTXTFiles,[urls[2]])
+        XCTAssertEqual(model.books.count,3); XCTAssertEqual(model.retryTXTFiles,[urls[3]])
         XCTAssertTrue(model.errorMessage?.contains("编码") == true)
-        model.txtEncoding = .gb18030
+        model.txtEncoding = .windows1252
         await model.importBooks(model.retryTXTFiles)
-        XCTAssertEqual(model.books.count,3); XCTAssertTrue(model.retryTXTFiles.isEmpty); XCTAssertNil(model.errorMessage)
+        XCTAssertEqual(model.books.count,4); XCTAssertTrue(model.retryTXTFiles.isEmpty); XCTAssertNil(model.errorMessage)
         let cache = try TXTIndexCache(storageRoot: services.files.root)
         for summary in model.books {
             let book = summary.book
             let index = try await cache.prepare(source: services.files.resolve(book.filePath),bookID: book.id,encoding: book.txtEncoding ?? .automatic)
             XCTAssertTrue(index.reusedCache)
             let normalized = try await cache.normalizedURL(for: index)
-            XCTAssertEqual(try String(contentsOf: normalized,encoding: .utf8),text)
-            XCTAssertEqual(index.chapters.count,2)
+            let isWestern=book.title=="western"
+            XCTAssertEqual(try String(contentsOf: normalized,encoding: .utf8),isWestern ? "café" : text)
+            XCTAssertEqual(index.chapters.count,isWestern ? 1 : 2)
         }
         for (i,vector) in vectors.enumerated() { XCTAssertEqual(try Data(contentsOf: urls[i]),vector.1) }
+    }
+
+    @MainActor func testDefaultANSIImportReportsDetectedEncodingAndKeepsOriginalAcrossReopen() async throws {
+        let (root,services)=try context(), model=LibraryViewModel(services:services)
+        let source=root.appendingPathComponent("ANSI.txt"), raw=Data([0xB5,0xDA,0xD2,0xBB,0xD5,0xC2,0x20,0xC9,0xBD,0xC3,0xC5,0x0A,0xD4,0xC6,0xBA,0xA3])
+        try raw.write(to:source)
+        await model.importBooks([source])
+        XCTAssertEqual(model.books.count,1); XCTAssertNil(model.errorMessage); XCTAssertTrue(model.retryTXTFiles.isEmpty)
+        XCTAssertTrue(model.importStatus?.contains("ANSI / GBK")==true)
+        let book=try XCTUnwrap(model.books.first?.book), url=try services.files.resolve(book.filePath)
+        XCTAssertEqual(try Data(contentsOf:url),raw)
+        let first=try await TXTReadiumPublicationLoader().open(book:book,fileURL:url,storageRoot:services.files.root)
+        XCTAssertEqual(first.plan.index.encoding,.gbk)
+        let resource=try XCTUnwrap(first.plan.resources.first), href=try XCTUnwrap(AnyURL(string:resource.href))
+        let locator=Locator(href:href,mediaType:.xhtml,locations:.init(otherLocations:["cssSelector":.string("#txt-b\(resource.startByte)")]))
+        let position=try TXTPositionCodec.encode(locator,bookID:book.id,plan:first.plan)
+        try await services.repository.save(position)
+        let second=try await TXTReadiumPublicationLoader().open(book:book,fileURL:url,storageRoot:services.files.root)
+        XCTAssertTrue(second.reusedReadingPlanCache)
+        let saved=try await services.repository.position(for:book.id)
+        let restored=try await second.locator(XCTUnwrap(saved),bookID:book.id)
+        XCTAssertEqual(restored,locator); XCTAssertEqual(try Data(contentsOf:source),raw)
+    }
+
+    @MainActor func testExplicitBig5AndWesternANSIThroughAppImportAndReadiumResources() async throws {
+        let (root,services)=try context(), model=LibraryViewModel(services:services)
+        for (name,encoding,raw,expected) in [("big5",TXTEncoding.big5,Data([0xB6,0xB3,0xAE,0xFC]),"雲海"),
+                                           ("western",.windows1252,Data([0x63,0x61,0x66,0xE9,0x20,0x80]),"café €")] {
+            let source=root.appendingPathComponent(name+".txt"); try raw.write(to:source)
+            model.txtEncoding=encoding; await model.importBooks([source]); XCTAssertNil(model.errorMessage)
+            let book=try XCTUnwrap(model.books.first(where:{$0.book.title==name})?.book)
+            let prepared=try await TXTReadiumPublicationLoader().open(book:book,fileURL:services.files.resolve(book.filePath),storageRoot:services.files.root)
+            let resource=try XCTUnwrap(prepared.publication.get(prepared.publication.readingOrder[0]))
+            let data=try await resource.read().get(), html=try XCTUnwrap(String(data:data,encoding:.utf8))
+            XCTAssertTrue(html.contains(expected)); XCTAssertEqual(prepared.plan.index.encoding,encoding)
+            XCTAssertEqual(try Data(contentsOf:source),raw)
+        }
+        XCTAssertEqual(model.books.count,2)
     }
 
     @MainActor func testTXTReadiumResourcesAreBoundedEscapedAndDoNotReadNextChapter() async throws {
@@ -214,6 +253,7 @@ final class TXTReadingTests: XCTestCase {
         }
         let reopened = try await TXTReadiumPublicationLoader().open(book:book,fileURL:url,storageRoot:services.files.root)
         XCTAssertTrue(reopened.plan.index.reusedCache)
+        XCTAssertTrue(reopened.reusedReadingPlanCache)
         XCTAssertEqual(reopened.plan.resources,prepared.plan.resources)
         for position in positions {
             let actual = try await reopened.locator(position,bookID:book.id)

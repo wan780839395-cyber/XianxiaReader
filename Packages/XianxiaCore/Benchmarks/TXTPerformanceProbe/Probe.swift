@@ -22,6 +22,8 @@ import Glibc
         let cacheValidationMilliseconds: Double
         let readingPlanMilliseconds: Double
         let peakRSSBytes: Int64
+        let reusedReadingPlanCache: Bool
+        let readingPlanBoundaryBytesRead: Int
     }
     struct Report: Codable {
         let sample: Expected
@@ -109,13 +111,16 @@ import Glibc
             try require(index.reusedCache, "Reopen rebuilt a valid cache")
             try check(index, expected: expected)
             try require(index.chapters == chapters, "Cache differs from SQLite directory")
-            let normalized = try await cache.normalizedURL(for: index)
             start = DispatchTime.now().uptimeNanoseconds
-            let plan = try await TXTReadingPlanner().build(index: index, file: normalized)
+            let reading = try await TXTReadingPlanCache(storageRoot: files.root).prepare(index: index)
+            let plan = reading.plan
             let planning = milliseconds(since: start)
+            try require(reading.reusedCache == (iteration > 0), "Plan cache must build once and survive fresh actors")
+            if iteration > 0 { try require(reading.boundaryBytesRead <= plan.resources.count*2, "Unbounded cached plan reads") }
             if let previous = latestPlan { try require(plan.resources == previous.resources, "Resource anchors changed on reopen") }
             latestPlan = plan
-            reopens.append(Reopen(cacheValidationMilliseconds: validation, readingPlanMilliseconds: planning, peakRSSBytes: try peakRSS()))
+            reopens.append(Reopen(cacheValidationMilliseconds: validation, readingPlanMilliseconds: planning, peakRSSBytes: try peakRSS(),
+                reusedReadingPlanCache: reading.reusedCache, readingPlanBoundaryBytesRead: reading.boundaryBytesRead))
             print("Reopen \(iteration+1): validate \(validation) ms, plan \(planning) ms")
         }
         guard let plan = latestPlan else { throw Failure.expectation("No reading plan") }

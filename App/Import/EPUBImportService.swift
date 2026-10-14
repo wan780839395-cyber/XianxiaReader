@@ -5,6 +5,10 @@ import XianxiaCore
 struct ImportOutcome {
     let book: Book
     let warnings: [String]
+    let detectedTXTEncoding: TXTEncoding?
+    init(book:Book,warnings:[String],detectedTXTEncoding:TXTEncoding?=nil) {
+        self.book=book; self.warnings=warnings; self.detectedTXTEncoding=detectedTXTEncoding
+    }
 }
 
 enum ImportError: LocalizedError {
@@ -46,7 +50,8 @@ enum ImportError: LocalizedError {
         let scoped = source.startAccessingSecurityScopedResource()
         defer { if scoped { source.stopAccessingSecurityScopedResource() } }
         if source.pathExtension.lowercased() == "txt" {
-            return ImportOutcome(book: try await txtImporter.importBook(from: source, encoding: txtEncoding), warnings: [])
+            let result=try await txtImporter.importBookWithEncoding(from:source,encoding:txtEncoding)
+            return ImportOutcome(book:result.book,warnings:[],detectedTXTEncoding:result.detectedEncoding)
         }
         let id = UUID()
         do {

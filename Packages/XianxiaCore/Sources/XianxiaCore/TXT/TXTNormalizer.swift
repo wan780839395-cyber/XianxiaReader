@@ -2,7 +2,7 @@ import CTextCodec
 import Foundation
 
 public enum TXTEncoding: String, Codable, Sendable {
-    case automatic, utf8, utf16LittleEndian, utf16BigEndian, gb18030
+    case automatic, utf8, utf16LittleEndian, utf16BigEndian, gb18030, gbk, big5, windows1252
 }
 
 public struct TXTNormalizationResult: Equatable, Sendable {
@@ -27,15 +27,27 @@ public enum TXTNormalizationError: Error, Equatable, Sendable {
     case cleanupFailed(original: String, cleanup: String)
 }
 
-/// Writes a new UTF-8 sidecar, never the original. Automatic mode trusts BOM or strict UTF-8 only.
+/// Writes a new UTF-8 sidecar, never the original. BOM/UTF-8 first, then strict Chinese legacy codecs.
 public actor TXTNormalizer {
     public static let version = 1
+    public static let automaticDetectionVersion = 2
     public static var codecIdentifier: String {
         #if canImport(Darwin)
         return "apple-sdk-corefoundation-gb18030-2000-v1"
         #else
         return "glibc-iconv-gb18030-v1"
         #endif
+    }
+    public static func codecIdentifier(for encoding: TXTEncoding) -> String {
+        switch encoding {
+        case .gbk, .big5, .windows1252:
+            #if canImport(Darwin)
+            return "apple-sdk-corefoundation-\(encoding.rawValue)-v1"
+            #else
+            return "glibc-iconv-\(encoding.rawValue)-v1"
+            #endif
+        default: return codecIdentifier // Preserve existing UTF/GB18030 Locator identities.
+        }
     }
     private let chunkBytes: Int
     public init(chunkBytes: Int = 64 * 1024) throws {
@@ -44,6 +56,22 @@ public actor TXTNormalizer {
     }
 
     public func normalize(source: URL, destination: URL, encoding requested: TXTEncoding = .automatic) throws -> TXTNormalizationResult {
+        do { return try normalizeSelected(source: source, destination: destination, encoding: requested) }
+        catch let error as TXTNormalizationError where requested == .automatic && error == .encodingChoiceRequired {
+            // Only unmarked invalid UTF-8 reaches this branch. Each failed attempt has
+            // removed its own sidecar; cancellation/I/O/cleanup failures never retry.
+            for candidate in [TXTEncoding.gbk, .gb18030] {
+                do { return try normalizeSelected(source: source, destination: destination, encoding: candidate) }
+                catch let failure as TXTNormalizationError {
+                    if case .invalidEncoding = failure { continue }
+                    throw failure
+                }
+            }
+            throw TXTNormalizationError.encodingChoiceRequired
+        }
+    }
+
+    private func normalizeSelected(source: URL, destination: URL, encoding requested: TXTEncoding) throws -> TXTNormalizationResult {
         try Task.checkCancellation()
         guard destination.isFileURL, source.standardizedFileURL != destination.standardizedFileURL else {
             throw TXTProcessingError.invalidConfiguration
@@ -89,7 +117,7 @@ public actor TXTNormalizer {
                     try output.synchronize()
                     return TXTNormalizationResult(encoding: choice.encoding, sourceSHA256: sourceDigest.hexDigest(),
                         normalizedSHA256: normalizedDigest.hexDigest(), sourceBytes: sourceBytes,
-                        normalizedBytes: normalizedBytes, normalizerVersion: Self.version, codecIdentifier: Self.codecIdentifier)
+                        normalizedBytes: normalizedBytes, normalizerVersion: Self.version, codecIdentifier: Self.codecIdentifier(for: choice.encoding))
                 }
             }
             try Task.checkCancellation()
@@ -179,15 +207,22 @@ private struct TXTStreamDecoder {
             }
             if index < bytes.count { pending.append(bytes[index]) }
             return output
-        case .gb18030:
+        case .gb18030, .gbk, .big5, .windows1252:
             let bytes = pending + Array(data)
             pending.removeAll(keepingCapacity: true)
             guard !bytes.isEmpty else { return Data() }
             var output = [UInt8](repeating: 0, count: bytes.count*4+4)
             var consumed=0, produced=0
+            let identifier: Int32
+            switch encoding {
+            case .gbk: identifier = XR_TEXT_WINDOWS936
+            case .big5: identifier = XR_TEXT_BIG5
+            case .windows1252: identifier = XR_TEXT_WINDOWS1252
+            default: identifier = XR_TEXT_GB18030
+            }
             let status = bytes.withUnsafeBufferPointer { input in
                 output.withUnsafeMutableBufferPointer { target in
-                    xr_gb18030_to_utf8(input.baseAddress, input.count, target.baseAddress, target.count, &consumed, &produced)
+                    xr_legacy_to_utf8(identifier, input.baseAddress, input.count, target.baseAddress, target.count, &consumed, &produced)
                 }
             }
             guard status == 0 || status == 1 else {
