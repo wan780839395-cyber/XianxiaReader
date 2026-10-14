@@ -1,5 +1,5 @@
 {
-  "originHash" : "dc5282946813c690a20cc9c51f66a21beea7a0e025dbad26200e98e4c7fd6f1f",
+  "originHash" : "985f5470e2b31ad740ea5e45f6a6857a35763f143ea18c46bcef7c19d968a813",
   "pins" : [
     {
       "identity" : "cryptoswift",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "f2a627b84c1ff96f21ac2fcb623ab36142dd5512",
         "version" : "1.10.0"
-      }
-    },
-    {
-      "identity" : "csqlite",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/CSQLite",
-      "state" : {
-        "revision" : "8ad83035460a3d1029a2c5a0cca4f980297a9ca2",
-        "version" : "3.53.3"
       }
     },
     {
@@ -35,42 +26,6 @@
       "state" : {
         "revision" : "173ec944ca6f2e8024ceb7324bcb8a3cc95a0661",
         "version" : "4.0.1"
-      }
-    },
-    {
-      "identity" : "gcdwebserver",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/readium/GCDWebServer.git",
-      "state" : {
-        "revision" : "584db89a4c3c3be27206cce6afde037b2b6e38d8",
-        "version" : "4.0.1"
-      }
-    },
-    {
-      "identity" : "sqlcipher.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sqlcipher/SQLCipher.swift",
-      "state" : {
-        "revision" : "39f212458aeb88e33bdac2200a793a3f0d55d32b",
-        "version" : "4.19.0"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift.git",
-      "state" : {
-        "revision" : "964c300fb0736699ce945c9edb56ecd62eba27a3",
-        "version" : "0.16.0"
-      }
-    },
-    {
-      "identity" : "swift-toolkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/readium/swift-toolkit.git",
-      "state" : {
-        "revision" : "d82f44f4f05d87add9e22a8b75abbd61dce745dd",
-        "version" : "3.11.0"
       }
     },
     {

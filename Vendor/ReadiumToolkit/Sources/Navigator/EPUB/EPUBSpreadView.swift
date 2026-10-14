@@ -504,6 +504,29 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     // Continuous mode clips a fixed-size WebView viewport inside its chapter
     // wrapper. Build a DOM anchor for the visible slice, not its hidden top.
+    static let continuousAnchorRectFunction = """
+    (locator) => {
+      const locations = locator.locations || {}, point = locations.domRange?.start;
+      const element = document.querySelector(point?.cssSelector || locations.cssSelector || 'body');
+      if (!element) return null;
+      if (point && Number.isInteger(point.charOffset)) {
+        const node = element.childNodes[point.textNodeIndex];
+        if (!node || node.nodeType !== Node.TEXT_NODE || point.charOffset > node.length) return null;
+        const range = document.createRange();
+        range.setStart(node, point.charOffset);
+        range.setEnd(node, Math.min(node.length, point.charOffset + 1));
+        return range.getClientRects()[0] || range.getBoundingClientRect();
+      }
+      return element.getBoundingClientRect();
+    }
+    """
+
+    func continuousAnchorDocumentY(_ locator: Locator) async throws -> CGFloat? {
+        let json = try locator.jsonString()
+        let result = await evaluateScript("(() => { const rect = (\(Self.continuousAnchorRectFunction))(\(json)); return rect ? rect.top + scrollY : null; })()")
+        return (try result.get() as? NSNumber).map { CGFloat($0.doubleValue) }
+    }
+
     func findFirstVisibleElementLocator(visibleTop: CGFloat, visibleBottom: CGFloat) async -> Locator? {
         let script = """
         (() => {
@@ -516,16 +539,47 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             }
             return root;
           }
-          const element = find(document.body);
-          const parts = [];
-          for (let node = element; node && node.nodeType === 1; node = node.parentElement) {
-            const tag = node.localName;
-            const siblings = node.parentElement ? Array.from(node.parentElement.children).filter(x => x.localName === tag) : [];
-            parts.unshift(tag + (siblings.length > 1 ? ':nth-of-type(' + (siblings.indexOf(node) + 1) + ')' : ''));
+          function selector(element) {
+            const parts = [];
+            for (let node = element; node && node.nodeType === 1; node = node.parentElement) {
+              const tag = node.localName;
+              const siblings = node.parentElement ? Array.from(node.parentElement.children).filter(x => x.localName === tag) : [];
+              parts.unshift(tag + (siblings.length > 1 ? ':nth-of-type(' + (siblings.indexOf(node) + 1) + ')' : ''));
+            }
+            return parts.join(' > ');
           }
-          const text = Array.from(element.textContent || '').slice(0, 512).join('');
-          return {href:'#',type:'application/xhtml+xml',locations:{cssSelector:parts.join(' > ')},
-                  text:text ? {highlight:text} : {}};
+          let element = find(document.body), caret = null;
+          // Public DOM caret API finds a character on the visible line even
+          // inside a paragraph taller than the viewport. Only bounded context
+          // is copied; a whole paragraph/resource is never returned to Swift.
+          for (const y of [top + 2, top + 12, top + 24]) {
+            if (y >= bottom) break;
+            for (const x of [innerWidth * 0.2, innerWidth * 0.5, innerWidth * 0.8]) {
+              const range = document.caretRangeFromPoint(x, y);
+              if (range?.startContainer.nodeType !== Node.TEXT_NODE) continue;
+              const node = range.startContainer, offset = range.startOffset;
+              const test = document.createRange();
+              test.setStart(node, offset); test.setEnd(node, Math.min(node.length, offset + 1));
+              const rect = test.getClientRects()[0];
+              if (rect && rect.bottom > top && rect.top < bottom && node.data.trim()) { caret = range; break; }
+            }
+            if (caret) break;
+          }
+          const locations = {cssSelector:selector(element), xianxiaContinuousAnchorVersion:1};
+          let text = {};
+          if (caret) {
+            const node = caret.startContainer, offset = caret.startOffset;
+            element = node.parentElement;
+            locations.cssSelector = selector(element);
+            locations.domRange = {start:{cssSelector:locations.cssSelector,
+              textNodeIndex:Array.from(element.childNodes).indexOf(node), charOffset:offset}};
+            text = {before:node.data.slice(Math.max(0, offset - 64), offset),
+                    highlight:node.data.slice(offset, offset + 64), after:node.data.slice(offset + 64, offset + 128)};
+          }
+          const locator = {href:'#',type:'application/xhtml+xml',locations,text};
+          const rect = (\(Self.continuousAnchorRectFunction))(locator);
+          if (rect) locations.xianxiaViewportOffset = rect.top - top;
+          return locator;
         })()
         """
         let result = await evaluateScript(script)

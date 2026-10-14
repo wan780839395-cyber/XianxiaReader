@@ -135,6 +135,10 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     public var continuousScrollLoadedResourceCount: Int { infiniteScrollView?.loadedViews.count ?? 0 }
 
+    /// Cancel pending chapter loads and break WebKit message-handler cycles
+    /// before the owning reader discards this controller.
+    public func closeContinuousScrolling() { infiniteScrollView?.shutdown() }
+
     public weak var delegate: EPUBNavigatorDelegate?
 
     /// Information about the visible portion of the publication, when rendered.
@@ -730,6 +734,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         }
 
         if let isv = infiniteScrollView {
+            guard isv.isCurrentResourceReady else { return (nil, nil) }
+            let request = isv.viewportIdentity
             let index = isv.currentIndex
             guard index < readingOrder.count else { return (nil, nil) }
             let (locator, viewport) = await EPUBViewportAndLocationCalculator.compute(
@@ -740,7 +746,9 @@ open class EPUBNavigatorViewController: InputObservableViewController,
                 tableOfContentsTitleByHref: tableOfContentsTitleByHref,
                 fallbackLocator: { [publication] in await publication.locate($0) }
             )
-            if let anchor = await isv.firstVisibleElementLocator(), let locator {
+            let anchor = await isv.firstVisibleElementLocator()
+            guard infiniteScrollView === isv, request == isv.viewportIdentity else { return (nil, nil) }
+            if let anchor, let locator, anchor.href.isEquivalentTo(locator.href) {
                 return (anchor.copy(title: locator.title, locations: {
                     $0.progression = locator.locations.progression
                     $0.totalProgression = locator.locations.totalProgression

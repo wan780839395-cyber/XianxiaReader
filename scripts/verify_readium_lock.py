@@ -13,8 +13,12 @@ def verify_lock(path: Path, *, allow_upstream=False):
     if allow_upstream:
         # During the first real local-package resolution only, retain the old
         # genuine lockfile. It is never described as a resolved local graph.
-        actual = [pin for pin in actual if pin["identity"] != "swift-toolkit" or
-                  pin["state"] != {"version": metadata["version"], "revision": metadata["revision"]}]
+        upstream = {"identity": "swift-toolkit", "kind": "remoteSourceControl",
+                    "location": "https://github.com/readium/swift-toolkit.git",
+                    "state": {"version": metadata["version"], "revision": metadata["revision"]}}
+        original = expected + metadata["removedUnusedRemoteDependencyPins"] + [upstream]
+        if len(actual) == len(original) and sorted(actual, key=lambda p: p["identity"]) == sorted(original, key=lambda p: p["identity"]):
+            actual = expected
     by_id = lambda pins: {p["identity"]: p for p in pins}
     if len(actual) != len(expected) or by_id(actual) != by_id(expected):
         raise ValueError("Resolved remote pins differ from the reviewed Readium 3.11 baseline; review the actual output")

@@ -16,7 +16,6 @@ import UIKit
         var height: CGFloat = 0
         var ready = false
         var failure: String?
-        var anchorSelector: String?
         var anchorDocumentY: CGFloat?
         var anchorRevision: UInt64?
         var savedAnchor: Locator?
@@ -46,6 +45,8 @@ import UIKit
     static let maximumLoadedResourceCount = 12
     var loadedViews: [Int: EPUBSpreadView] { slots.mapValues { $0.view } }
     var currentView: EPUBSpreadView? { slots[currentIndex]?.view }
+    var isCurrentResourceReady: Bool { slots[currentIndex]?.ready == true }
+    var viewportIdentity: String { "\(epoch):\(currentIndex):\(viewportRevision)" }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
     private var readyIndices: [Int] {
@@ -106,6 +107,11 @@ import UIKit
         epoch = UUID()
         for index in Array(slots.keys) { evict(index) }
     }
+    func shutdown() {
+        chapterCount = 0
+        clear()
+        infiniteDelegate = nil
+    }
     private func evict(_ index: Int) {
         guard let slot = slots.removeValue(forKey: index) else { return }
         slot.loadTask?.cancel()
@@ -138,7 +144,9 @@ import UIKit
         layoutSlots(preserveAnchor: false)
         await slot.view.go(to: location, animated: false)
         guard epoch == activeEpoch, slots[index] === slot else { return false }
-        let y = slot.wrapper.frame.minY + slot.view.webView.scrollView.contentOffset.y
+        let local = await navigationOffset(in: slot, location: location)
+        guard epoch == activeEpoch, slots[index] === slot else { return false }
+        let y = slot.wrapper.frame.minY + local
         setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: options.animated)
         preload()
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
@@ -178,7 +186,9 @@ import UIKit
             slot.timeoutTask?.cancel()
             self.layoutSlots(preserveAnchor: true)
             if index == self.currentIndex, location != .start {
-                let y = slot.wrapper.frame.minY + slot.view.webView.scrollView.contentOffset.y
+                let local = await self.navigationOffset(in: slot, location: location)
+                guard self.epoch == request, self.slots[index] === slot else { return }
+                let y = slot.wrapper.frame.minY + local
                 self.contentOffset.y = y - self.contentInset.top
             }
             self.preload()
@@ -186,12 +196,23 @@ import UIKit
         }
         layoutSlots(preserveAnchor: true)
     }
+    private func navigationOffset(in slot: Slot, location: PageLocation) async -> CGFloat {
+        if case let .locator(locator) = location, locator.locations.cssSelector != nil {
+            do {
+                let documentY = try await slot.view.continuousAnchorDocumentY(locator)
+                if let y = documentY {
+                    let offset = locator.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0
+                    return max(0, y - CGFloat(offset))
+                }
+            } catch { boundaryLabel.text = "位置锚点恢复失败：\(error.localizedDescription)" }
+        }
+        return slot.view.webView.scrollView.contentOffset.y
+    }
     private func measure(_ index: Int, slot: Slot, request: UUID) async {
-        let selectorJSON: String
+        let anchorJSON: String
+        let measuredRevision = viewportRevision
         do {
-            let data = try JSONSerialization.data(withJSONObject: [slot.anchorSelector ?? ""])
-            guard let text = String(data: data, encoding: .utf8) else { return }
-            selectorJSON = text
+            anchorJSON = try slot.savedAnchor?.jsonString() ?? "{}"
         } catch {
             slot.failure = error.localizedDescription
             layoutSlots(preserveAnchor: true)
@@ -199,7 +220,6 @@ import UIKit
         }
         let script = """
         (() => {
-          const selector = \(selectorJSON)[0];
           const body = document.body;
           if (!body) return null;
           if (!window.__xianxiaBodyObserver) {
@@ -214,9 +234,9 @@ import UIKit
             const range = document.createRange(); range.selectNodeContents(body);
             bottom = range.getBoundingClientRect().bottom + scrollY;
           }
-          const anchor = selector ? document.querySelector(selector) : null;
+          const anchor = (\(EPUBSpreadView.continuousAnchorRectFunction))(\(anchorJSON));
           return {height: Math.ceil(bottom + (parseFloat(style.marginBottom) || 0)),
-                  anchorY: anchor ? anchor.getBoundingClientRect().top + scrollY : null};
+                  anchorY: anchor ? anchor.top + scrollY : null};
         })()
         """
         let result = await slot.view.evaluateScript(script)
@@ -229,7 +249,7 @@ import UIKit
             let height = max(96, CGFloat(number.doubleValue) + 24)
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
-            let anchorDelta: CGFloat = index == currentIndex
+            let anchorDelta: CGFloat = index == currentIndex && viewportRevision == measuredRevision
                 ? (newAnchorY.flatMap { new in slot.anchorDocumentY.map { new - $0 } } ?? 0) : 0
             if let newAnchorY { slot.anchorDocumentY = newAnchorY }
             slot.height = height
@@ -345,23 +365,13 @@ import UIKit
         if slot.anchorRevision == revision, let anchor = slot.savedAnchor { return anchor }
         let anchor = await slot.view.findFirstVisibleElementLocator(visibleTop: clipTop, visibleBottom: clipBottom)
         guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
-        if let selector = anchor?.locations.cssSelector {
+        if let anchor, anchor.locations.cssSelector != nil {
             do {
-                let data = try JSONSerialization.data(withJSONObject: [selector])
-                if let json = String(data: data, encoding: .utf8) {
-                    let result = await slot.view.evaluateScript("(() => { const e = document.querySelector(\(json)[0]); return e ? e.getBoundingClientRect().top + scrollY : null; })()")
-                    guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
-                    switch result {
-                    case let .success(value):
-                        guard viewportRevision == revision else { return nil }
-                        slot.anchorRevision = revision
-                        slot.savedAnchor = anchor
-                        slot.anchorSelector = selector
-                        slot.anchorDocumentY = (value as? NSNumber).map { CGFloat($0.doubleValue) }
-                    case let .failure(error):
-                        boundaryLabel.text = error.localizedDescription
-                    }
-                }
+                let documentY = try await slot.view.continuousAnchorDocumentY(anchor)
+                guard epoch == request, currentIndex == index, slots[index] === slot, viewportRevision == revision else { return nil }
+                slot.anchorRevision = revision
+                slot.savedAnchor = anchor
+                slot.anchorDocumentY = documentY
             } catch { boundaryLabel.text = error.localizedDescription }
         }
         return anchor

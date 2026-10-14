@@ -28,14 +28,14 @@ class ReadiumProvenanceTests(unittest.TestCase):
                 self.lock(pins)
 
     def test_old_genuine_lock_only_allowed_before_first_real_resolution(self):
-        old = json.loads((ROOT / "Package.resolved").read_text())["pins"]
+        metadata = json.loads((ROOT / "Vendor/ReadiumToolkit/UPSTREAM.json").read_text())
         # Reconstruct the explicitly reviewed remote pin for this regression,
         # without modifying any real lockfile.
         upstream = {"identity": "swift-toolkit", "kind": "remoteSourceControl",
                     "location": "https://github.com/readium/swift-toolkit.git",
                     "state": {"version": "3.11.0", "revision": "d82f44f4f05d87add9e22a8b75abbd61dce745dd"}}
-        old = [p for p in old if p["identity"] != "swift-toolkit"] + [upstream]
-        self.assertEqual(self.lock(old, allow_upstream=True), 10)
+        old = self.pins + metadata["removedUnusedRemoteDependencyPins"] + [upstream]
+        self.assertEqual(self.lock(old, allow_upstream=True), len(self.pins))
         with self.assertRaises(ValueError):
             self.lock(old)
         upstream["state"]["revision"] = "different"
@@ -43,7 +43,7 @@ class ReadiumProvenanceTests(unittest.TestCase):
             self.lock(old, allow_upstream=True)
 
     def test_reviewed_transitive_pins_are_accepted(self):
-        self.assertEqual(self.lock(self.pins), 10)
+        self.assertEqual(self.lock(self.pins), len(self.pins))
 
     def test_vendor_tampering_and_undeclared_sources_fail(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "23b6d6f09d9631d36ec04c46544cd29e9beb35e4fb1915ffd8615b05525b94b8"
+      "sha256": "1ddfff219cf48470da8321d0bbc9a1bed4fa7b9ab88ec34b250a437bd7171a61"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "908712fc0ba85f4f962a325165875e066d97d97a2fbd18a0fe7c9a44cd4e859c"
+      "sha256": "148edf0818c27a3f0a9d94118b0a4b6b9f79f4839eff0ad72f6d71739a2c5a34"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "9a3cfc02f7ea77961ae6c9147223e8df26df944e34cc0942f8e30a2106447f13"
+      "sha256": "0fd231d785a76aef3ef58e5861174abe9cd957d3dbf5dc3c9ea18400dda17f8e"
     }
   ],
   "remoteDependencyPins": [
@@ -1458,15 +1458,6 @@
       "state": {
         "revision": "f2a627b84c1ff96f21ac2fcb623ab36142dd5512",
         "version": "1.10.0"
-      }
-    },
-    {
-      "identity": "csqlite",
-      "kind": "remoteSourceControl",
-      "location": "https://github.com/stephencelis/CSQLite",
-      "state": {
-        "revision": "8ad83035460a3d1029a2c5a0cca4f980297a9ca2",
-        "version": "3.53.3"
       }
     },
     {
@@ -1485,33 +1476,6 @@
       "state": {
         "revision": "173ec944ca6f2e8024ceb7324bcb8a3cc95a0661",
         "version": "4.0.1"
-      }
-    },
-    {
-      "identity": "gcdwebserver",
-      "kind": "remoteSourceControl",
-      "location": "https://github.com/readium/GCDWebServer.git",
-      "state": {
-        "revision": "584db89a4c3c3be27206cce6afde037b2b6e38d8",
-        "version": "4.0.1"
-      }
-    },
-    {
-      "identity": "sqlcipher.swift",
-      "kind": "remoteSourceControl",
-      "location": "https://github.com/sqlcipher/SQLCipher.swift",
-      "state": {
-        "revision": "39f212458aeb88e33bdac2200a793a3f0d55d32b",
-        "version": "4.19.0"
-      }
-    },
-    {
-      "identity": "sqlite.swift",
-      "kind": "remoteSourceControl",
-      "location": "https://github.com/stephencelis/SQLite.swift.git",
-      "state": {
-        "revision": "964c300fb0736699ce945c9edb56ecd62eba27a3",
-        "version": "0.16.0"
       }
     },
     {
@@ -1648,5 +1612,49 @@
       "ERROR:0fc07bb330bf2cde6fb947e3b8e1066b475e70c21d15b78aa0800398a90ae50e"
     ]
   },
-  "grammarScope": "All local/vendor Swift; exact tree-sitter limitations from pristine verified 3.11 sources retained, added diagnostics fail; not compilation."
+  "grammarScope": "All local/vendor Swift; exact tree-sitter limitations from pristine verified 3.11 sources retained, added diagnostics fail; not compilation.",
+  "removedUnusedRemoteDependencyPins": [
+    {
+      "identity": "csqlite",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/stephencelis/CSQLite",
+      "state": {
+        "revision": "8ad83035460a3d1029a2c5a0cca4f980297a9ca2",
+        "version": "3.53.3"
+      }
+    },
+    {
+      "identity": "gcdwebserver",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/readium/GCDWebServer.git",
+      "state": {
+        "revision": "584db89a4c3c3be27206cce6afde037b2b6e38d8",
+        "version": "4.0.1"
+      }
+    },
+    {
+      "identity": "sqlcipher.swift",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/sqlcipher/SQLCipher.swift",
+      "state": {
+        "revision": "39f212458aeb88e33bdac2200a793a3f0d55d32b",
+        "version": "4.19.0"
+      }
+    },
+    {
+      "identity": "sqlite.swift",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/stephencelis/SQLite.swift.git",
+      "state": {
+        "revision": "964c300fb0736699ce945c9edb56ecd62eba27a3",
+        "version": "0.16.0"
+      }
+    }
+  ],
+  "resolutionEvidence": {
+    "run": 38496501326,
+    "sourceRevision": "4c78f7766a6f9952e0b221b12a100bf49568c0f6",
+    "resolvedLockSha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537",
+    "reason": "Only Internal/Shared/Streamer/Navigator products retained. SwiftPM pruned unused server/SQLite/LCP dependency graph. Retained remote pins unchanged."
+  }
 }

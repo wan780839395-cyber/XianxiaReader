@@ -10,6 +10,10 @@
 
 恢复子步骤2（首轮CI前）：Windows结构/SQL/四本EPUB、362 Swift语法delta通过，9原tooling通过。新增Vendor来源/锁漂移回归待运行。tree-sitter在原始3.11源码有54条已知语法限制，已逐文件与真实3.11 Git blob/hash核对并记录精确诊断签名；没有新增诊断，这不是Swift编译通过。连续候选已有双章同屏/逆向、fragment+DOM恢复、高度变化、千章窗口与关闭回归，但均尚待实际执行。候选分支拟为 `codex/m1-continuous-recovery`，以独立Git index生成快照，不暂存/清理本地main改动；首次真实解析run需保留完整diagnostics和锁文件。
 
+恢复子步骤3（样书生成/再测试前）：首轮真实解析/CI `38496501326` 在候选 `4c78f77` 已启动，repository-checks和Linux Core job成功，macOS job进行中，尚未取得resolver锁/编译结果；本地仍main/6d76174且原暂存区未改动。13 Python/tooling通过。继续源码审查后补字符级DOMRange+局部视口偏移（原生Readium Locator的扩展字段）、异步视口identity过滤、未ready禁止发出假位置、显式关闭连续资源/JS handler；新增超长单段恢复/搜索与模式切换/释放WebView回归。以下生成更新原创reader-layout并核验来源hash/静态检查，新增代码不属于已启动run，必须再跑完整CI。
+
+恢复子步骤4（实际解析后、下一完整CI前）：38496501326已结束，repository-checks成功、Linux14 Core成功；macOS真实依赖解析成功，随后依赖核验拒绝了意外精简，Swift/iOS tests/Release/IPA未执行。完整下载日志与diagnostics在 `build/ci/38496501326/`。逐pin对比实际resolver输出：保留的6 pins版本/revision/location与Build3全部一致；因裁剪未使用target/product移除GCDWebServer、SQLite.swift、CSQLite、SQLCipher.swift和远程swift-toolkit，没有升级。已明确登记四个未使用传递pin的移除范围，原样采用该run生成的6-pin `Package.resolved`；不得手写pin/originHash。新增修复/回归现在走关闭bootstrap的严格锁文件完整CI。首轮失败是校验器要求保留未使用依赖，不是编译/测试失败。旧Build3 IPA仍为唯一已通过完整CI的产物。
+
 2026-10-14继续开发检查点：已核对Git clean、最新Build3报告和无遗留任务。当前开始真正纵向连续跨章独立M1切片。方案为保留Readium3.11上游来源与BSD许可的本地Navigator扩展（非官方已合并功能），使用有界章节窗口及固定尺寸WKWebView viewport，复用Readium解析/资源/CSS/DOM定位。正式源码/依赖/锁文件变更均须真实解析与完整CI，当前尚未实现/编译。旧Build3产物与原分页/章内滚动/搜索回归保留。
 
 M0自动门槛通过；M1搜索、导入、阅读视口/图片切片已通过完整CI，**完整M1尚未验收，真正纵向无缝跨章未实现**。本轮构建/下载/产物核验/原创样书快照复查已完成；无运行中的项目构建/测试或未完成登录/UAC。下一步是现有iPhone13上复测原书图片，并继续独立M1连续滚动引擎切片，不进入M2/M4。

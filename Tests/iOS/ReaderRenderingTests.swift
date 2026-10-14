@@ -298,6 +298,67 @@ final class ReaderRenderingTests: XCTestCase {
         }
     }
 
+    @MainActor func testContinuousLongParagraphRestoresCharacterAndViewportOffset() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let scroll = try continuousScroll(engine)
+        scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
+        try await waitUntil {
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
+                  let locations = json["locations"] as? [String: Any],
+                  let range = locations["domRange"] as? [String: Any],
+                  let start = range["start"] as? [String: Any] else { return false }
+            return (start["charOffset"] as? Int ?? 0) > 100
+        }
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let webView = try resourceWebView(engine, index: 1)
+        let y = try await webView.evaluateJavaScript("document.getElementById('long-paragraph').getBoundingClientRect().top") as? Double
+        let before = try XCTUnwrap(y)
+        XCTAssertLessThan(before, -400)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close()
+        try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil { engine.continuousLoadedResourceCount > 0 }
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let reopened = self.webViews(in: wrapper).first else { return false }
+            let value = try await reopened.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs((value ?? 10000) - before) < 3
+        }
+    }
+
+    @MainActor func testContinuousSearchJumpAndModeRoundTripKeepTheParagraph() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        _ = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        let provider = try XCTUnwrap(engine.searchProvider)
+        let session = try await provider.search(query: "第18段原创")
+        let batch = try await session.next()
+        await session.cancel()
+        let hit = try XCTUnwrap(batch?.first)
+        try await engine.go(to: hit.position)
+        try await waitUntil {
+            let webView = try self.resourceWebView(engine, index: 1)
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-18').getBoundingClientRect().top") as? Double
+            return abs(y ?? 10000) < 50
+        }
+        engine.setContinuousScrolling(false)
+        try await waitUntil { self.view(identifier: "readium.continuous-scroll", in: engine.viewController.view) == nil }
+        engine.setContinuousScrolling(true)
+        try await waitUntil { engine.continuousLoadedResourceCount > 0 }
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let webView = self.webViews(in: wrapper).first else { return false }
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-18')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs(y ?? 10000) < 50
+        }
+    }
+
     @MainActor func testThousandResourcesUseBoundedWindowAndCloseClearsViews() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (_, state) = try mount(engine); state.visible = false
@@ -314,9 +375,11 @@ final class ReaderRenderingTests: XCTestCase {
             }
             XCTAssertLessThanOrEqual(webViews(in: engine.viewController.view).count, 12)
         }
+        weak var releasedWebView = try resourceWebView(engine, index: 0)
         engine.close()
         XCTAssertTrue(engine.viewController.children.isEmpty)
         XCTAssertTrue(webViews(in: engine.viewController.view).isEmpty)
+        try await waitUntil { releasedWebView == nil }
     }
 
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
