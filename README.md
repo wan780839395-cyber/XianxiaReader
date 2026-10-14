@@ -23,7 +23,7 @@ M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/
 | 最低系统 | iOS / iPadOS 16.0 |
 | UI / 并发 | SwiftUI、UIKit Navigator 桥接、Swift Concurrency |
 | 数据 | 系统 SQLite3，经 actor 串行访问；不依赖 iOS 17 的 SwiftData |
-| EPUB | Readium Swift Toolkit **exact 3.11.0**，不自行实现排版引擎 |
+| EPUB | Readium **3.11.0 本地维护扩展候选**，基线/许可/差异hash见Vendor/ReadiumToolkit；不自行实现排版引擎 |
 | 工程 | `project.yml` 是唯一工程定义，XcodeGen **2.46.0** 生成 `.xcodeproj` |
 | CI | `macos-15`、Xcode **16.4**、Swift 5 语言模式；Core 使用 tools 5.10 |
 

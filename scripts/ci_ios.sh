@@ -47,6 +47,15 @@ else
   test_status=$?
 fi
 
+# Structured xcresult totals include crashed tests from previous launches,
+# unlike the final restarted suite's visible log tail.
+summary_status=0
+if xcrun xcresulttool get test-results summary --path build/SimulatorTests.xcresult > build/test-results-summary.json; then
+  summary_status=0
+else
+  summary_status=$?
+fi
+
 # Keep real WKWebView image snapshots from the rendering regressions for visual review.
 export_status=0
 if xcrun xcresulttool export attachments --path build/SimulatorTests.xcresult --output-path build/ReaderSnapshots; then
@@ -56,9 +65,10 @@ else
 fi
 # Export failed-test screenshots too, then propagate the ORIGINAL test exit.
 # A successful test with a failed export also fails, never producing an IPA.
-echo "Simulator test exit: $test_status; attachment export exit: $export_status"
+echo "Simulator test exit: $test_status; attachment export exit: $export_status; summary exit: $summary_status"
 if (( test_status != 0 )); then exit "$test_status"; fi
 if (( export_status != 0 )); then exit "$export_status"; fi
+if (( summary_status != 0 )); then exit "$summary_status"; fi
 
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \

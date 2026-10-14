@@ -10,6 +10,10 @@
 
 ## 下一 M1 切片
 
+2026-10-14恢复状态：上一聊天在本地已写入Vendor/ReadiumToolkit、接口/UI和渲染回归，未提交且未编译；remote compact后已保存370文件原样快照。现在候选只显示已ready的连续窗口（最多12资源、前后按距离回收），短章包裹层按实际DOM高度排列，WKWebView始终固定viewport，外部滚动时同步内部局部offset。加载失败/超时显示边界重试，不设置全书估计空白。新增字符级DOMRange、64字符上下文、局部视口偏移；只覆盖标记过的连续锚点，搜索Locator复用上游文本定位。布局/位置await结果过滤旧epoch/revision，关闭主动清理pending任务/JS handlers。固定/RTL/竖排不启用连续能力。
+
+官方3.11来源与BSD许可逐文件登记；PR811只作为Navigator集成参考，不直接采用整本placeholder。首轮macOS真实解析38496501326保留6个旧版本pins，裁剪四个未使用server/SQLite/LCP传递依赖及远程Readium，原始锁artifact已纳入；源代码/新回归仍待严格锁完整CI。Windows362文件grammar delta、完整来源hash与13tooling通过，不代表编译/页面/惯性/设备验收。当前候选开发分支codex/m1-continuous-recovery，本地main及未提交原改动保留。
+
 候选技术审查：PR811 原始补丁已下载到忽略的 .cache/continuous-scroll，`git apply --check` 在未修改的3.11.0标签上 exit0。这只验证补丁上下文能匹配，不是编译/运行通过。初查其 `layoutSubviews` 对所有 reading-order 项累加约1400点的估算高度；未加载资源没有阻止快速滑越空白的边界，定位也需要核对 fragment/CSS/text，而非只换算 progression。尚未修改正式依赖或执行候选代码；接入前须解决并回归这些问题。上游维护者也表示新功能因v4准备暂缓审查，不能把候选标为稳定发行。
 
 优先评估 Readium 层的可维护扩展，而非重新实现 EPUB 排版：原 PaginationView 增加垂直连续布局，重用 resource serving、ReadiumCSS、DOM locator、内部链接、搜索及状态机。适配保持在引擎侧，UI/数据库继续只操作 ReadingInterfaces/ReadingPosition。

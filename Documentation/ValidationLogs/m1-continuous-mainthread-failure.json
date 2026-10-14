@@ -1,0 +1,16 @@
+{
+  "run": 38497134015,
+  "sourceRevision": "1a5620587ff8144a33dee356c345eba15fd6cc92",
+  "actualFailure": "Main Thread Checker aborted async progression closure reading UIScrollView.contentOffset from generic executor",
+  "swiftCompilationPassed": true,
+  "linuxCorePassed": 14,
+  "macOSCorePassed": 14,
+  "iOSPassed": 31,
+  "iOSCrashed": 6,
+  "testExitCode": 65,
+  "attachmentExportExitCode": 0,
+  "releaseBuilt": false,
+  "ipaProduced": false,
+  "failureEvidence": "build/ci/38497134015/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/*.ips",
+  "fullLogSha256": "a8efb8e8d46a6cf03166e8aaba0a8b0100655af78a4023559db3a47b655ef226"
+}

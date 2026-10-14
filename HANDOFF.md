@@ -14,6 +14,10 @@
 
 恢复子步骤4（实际解析后、下一完整CI前）：38496501326已结束，repository-checks成功、Linux14 Core成功；macOS真实依赖解析成功，随后依赖核验拒绝了意外精简，Swift/iOS tests/Release/IPA未执行。完整下载日志与diagnostics在 `build/ci/38496501326/`。逐pin对比实际resolver输出：保留的6 pins版本/revision/location与Build3全部一致；因裁剪未使用target/product移除GCDWebServer、SQLite.swift、CSQLite、SQLCipher.swift和远程swift-toolkit，没有升级。已明确登记四个未使用传递pin的移除范围，原样采用该run生成的6-pin `Package.resolved`；不得手写pin/originHash。新增修复/回归现在走关闭bootstrap的严格锁文件完整CI。首轮失败是校验器要求保留未使用依赖，不是编译/测试失败。旧Build3 IPA仍为唯一已通过完整CI的产物。
 
+恢复子步骤5（后续可恢复点）：严格锁CI38497134015在候选1a56205运行，static/Linux Core jobs成功，macOS job进行中；不得根据UI旧尾部推断未运行阶段。后续本地修正已限制精确锚点恢复只作用于标记的连续保存Locator，防止覆盖搜索命中的文本定位；新增布局失败可见重试+原锚点恢复，模式往返等待真实页面就绪，长段测试先等待导航动画完成。现在共7项连续渲染回归（预期31+7=38 iOS tests），尚未执行最终版本；须候选更新后完整CI。阶段状态/架构/设计文档已同步“候选未验收”，不进入M2/M4。第一轮实际解析失败范围已写入ValidationLogs/m1-continuous-resolution-guard.json。
+
+恢复子步骤6（修复/再次构建前）：38497134015完整结束，已下载全日志/xcresult/Crash .ips/快照到build/ci/38497134015。strict resolve与Swift/iOS编译通过；Linux/macOS各14 Core、原31 iOS通过，6个连续tests崩溃，test exit65/attachment export0，Release/IPA未执行。Crash堆栈证实EPUBViewportAndLocationCalculator的非隔离async路径调用progression闭包，后台读取UIScrollView.contentOffset被Main Thread Checker终止；不是CI取消或工具挂起。修复为在MainActor先快照可见范围/progression数值，再传纯数值闭包，两条阅读路径都处理；不禁用checker/测试。另补等待未加载DOM的探针和保留原搜索Locator语义、布局失败重试/长段等待/释放回归。CI新增完整xcresult汇总artifact，保留原test/export/summary失败退出码。接下来刷新已审阅来源hash，Windows验证和38 tests完整CI；旧Build3产物不覆盖。
+
 2026-10-14继续开发检查点：已核对Git clean、最新Build3报告和无遗留任务。当前开始真正纵向连续跨章独立M1切片。方案为保留Readium3.11上游来源与BSD许可的本地Navigator扩展（非官方已合并功能），使用有界章节窗口及固定尺寸WKWebView viewport，复用Readium解析/资源/CSS/DOM定位。正式源码/依赖/锁文件变更均须真实解析与完整CI，当前尚未实现/编译。旧Build3产物与原分页/章内滚动/搜索回归保留。
 
 M0自动门槛通过；M1搜索、导入、阅读视口/图片切片已通过完整CI，**完整M1尚未验收，真正纵向无缝跨章未实现**。本轮构建/下载/产物核验/原创样书快照复查已完成；无运行中的项目构建/测试或未完成登录/UAC。下一步是现有iPhone13上复测原书图片，并继续独立M1连续滚动引擎切片，不进入M2/M4。

@@ -255,7 +255,7 @@ final class ReaderRenderingTests: XCTestCase {
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
         let webView = try resourceWebView(engine, index: 1)
         try await waitUntil {
-            let y = try await webView.evaluateJavaScript("document.getElementById('line-12').getBoundingClientRect().top") as? Double
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
             return abs(y ?? 10000) < 5
         }
         try await waitUntil {
@@ -273,7 +273,7 @@ final class ReaderRenderingTests: XCTestCase {
         }
         let reopened = try resourceWebView(engine, index: 1)
         try await waitUntil {
-            let y = try await reopened.evaluateJavaScript("document.getElementById('line-12').getBoundingClientRect().top") as? Double
+            let y = try await reopened.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
             return abs(y ?? 10000) < 5
         }
     }
@@ -286,7 +286,7 @@ final class ReaderRenderingTests: XCTestCase {
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
         let webView = try resourceWebView(engine, index: 1)
         try await Task.sleep(nanoseconds: 500_000_000)
-        let script = "document.getElementById('line-12').getBoundingClientRect().top"
+        let script = "document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000"
         let beforeValue = try await webView.evaluateJavaScript(script) as? Double
         let before = try XCTUnwrap(beforeValue)
         // Models an image above the current paragraph acquiring its final height.
@@ -304,6 +304,11 @@ final class ReaderRenderingTests: XCTestCase {
         let (book, _) = try await open(engine)
         try await waitUntil { engine.currentPosition != nil }
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let target = try resourceWebView(engine, index: 1)
+        try await waitUntil {
+            let y = try await target.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs(y ?? 10000) < 5
+        }
         let scroll = try continuousScroll(engine)
         scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
         try await waitUntil {
@@ -316,7 +321,7 @@ final class ReaderRenderingTests: XCTestCase {
         }
         let saved = try XCTUnwrap(engine.currentPosition)
         let webView = try resourceWebView(engine, index: 1)
-        let y = try await webView.evaluateJavaScript("document.getElementById('long-paragraph').getBoundingClientRect().top") as? Double
+        let y = try await webView.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double
         let before = try XCTUnwrap(y)
         XCTAssertLessThan(before, -400)
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
@@ -328,6 +333,40 @@ final class ReaderRenderingTests: XCTestCase {
                   let reopened = self.webViews(in: wrapper).first else { return false }
             let value = try await reopened.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double
             return abs((value ?? 10000) - before) < 3
+        }
+    }
+
+    @MainActor func testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
+        let webView = try resourceWebView(engine, index: 1)
+        try await waitUntil {
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs(y ?? 10000) < 5
+        }
+        try await waitUntil {
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
+                  let text = json["text"] as? [String: Any] else { return false }
+            return ((text["before"] as? String ?? "") + (text["highlight"] as? String ?? "")).contains("第12段")
+        }
+        // Trigger an invalid late measurement. The reader must expose a
+        // retry, release the failed DOM, and reload from the original EPUB.
+        _ = try await webView.evaluateJavaScript("document.body.remove()")
+        try await waitUntil {
+            guard let retry = self.view(identifier: "readium.continuous-retry", in: engine.viewController.view) as? UIButton else { return false }
+            return !retry.isHidden && retry.superview?.isHidden == false
+        }
+        let retry = try XCTUnwrap(view(identifier: "readium.continuous-retry", in: engine.viewController.view) as? UIButton)
+        retry.sendActions(for: .touchUpInside)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let restored = self.webViews(in: wrapper).first else { return false }
+            let y = try await restored.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
+            return abs(y ?? 10000) < 5
         }
     }
 
@@ -344,18 +383,23 @@ final class ReaderRenderingTests: XCTestCase {
         try await engine.go(to: hit.position)
         try await waitUntil {
             let webView = try self.resourceWebView(engine, index: 1)
-            let y = try await webView.evaluateJavaScript("document.getElementById('line-18').getBoundingClientRect().top") as? Double
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-18')?.getBoundingClientRect().top ?? 10000") as? Double
             return abs(y ?? 10000) < 50
         }
         engine.setContinuousScrolling(false)
         try await waitUntil { self.view(identifier: "readium.continuous-scroll", in: engine.viewController.view) == nil }
+        try await waitUntil {
+            guard let webView = self.visibleWebView(in: engine.viewController.view) else { return false }
+            let ready = try await webView.evaluateJavaScript("document.title === '第一章 山门' && document.readyState === 'complete'") as? Bool
+            return ready == true
+        }
         engine.setContinuousScrolling(true)
         try await waitUntil { engine.continuousLoadedResourceCount > 0 }
         try await waitUntil {
             guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
                   let webView = self.webViews(in: wrapper).first else { return false }
-            let y = try await webView.evaluateJavaScript("document.getElementById('line-18')?.getBoundingClientRect().top ?? 10000") as? Double
-            return abs(y ?? 10000) < 50
+            let visible = try await webView.evaluateJavaScript("(() => { const r = document.getElementById('line-18')?.getBoundingClientRect(); return !!r && r.bottom > 0 && r.top < innerHeight; })()") as? Bool
+            return visible == true
         }
     }
 
@@ -375,7 +419,7 @@ final class ReaderRenderingTests: XCTestCase {
             }
             XCTAssertLessThanOrEqual(webViews(in: engine.viewController.view).count, 12)
         }
-        weak var releasedWebView = try resourceWebView(engine, index: 0)
+        weak var releasedWebView: WKWebView? = try resourceWebView(engine, index: 0)
         engine.close()
         XCTAssertTrue(engine.viewController.children.isEmpty)
         XCTAssertTrue(webViews(in: engine.viewController.view).isEmpty)

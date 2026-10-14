@@ -5,7 +5,7 @@
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
-| M1 基础 EPUB | 搜索、导入、阅读视口/图像切片自动验证通过；完整M1未验收 | Build3 /31 iOS；原书真机及真正纵向无缝跨章待完成 |
+| M1 基础 EPUB | Build3切片已测；连续跨章候选源码已恢复、完整CI进行中；完整M1未验收 | 原书真机及连续模式构建/页面/设备验收待完成 |
 | M2 TXT | 未开始 | 后台流式分章、窗口加载/缓存、长文件 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
@@ -30,7 +30,8 @@
 - 最新 `build/XianxiaReader.ipa`：7,393,693 bytes；SHA-256 `12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2`，Build3/iPhoneOS/arm64/系统SQLite/0755/最低iOS16/ZIP核验通过，CODE_SIGNING_ALLOWED=NO。
 - 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes，包含IPA、三本原创EPUB和TESTING.txt，CRC与内部IPA hash一致。Build2及更早原件保留在对应run目录。
 - 用户iPhone13/iOS16.6.1/TrollStore：安装正常、EPUB可以导入（用户报告，来源未细分）；原书图像窄横条。当前Build3安装/原书图片/完整阅读仍待复测；没有普通设备签名验收。
-- **真正纵向连续跨章尚未实现**，不是下一章按钮。当前为章内滚动/横向资源切换；独立M1引擎适配见CONTINUOUS_SCROLL_DESIGN.md，不宣称已完成微信读书式滚动。
+- **真正纵向连续跨章候选已写入未提交源码，尚未通过编译/运行验收**：Vendor/ReadiumToolkit 是3.11.0本地扩展，最多12资源窗口、固定WKWebView viewport、加载边界/重试、DOMRange+视口偏移、迟到布局过滤和关闭清理。旧Build3仍为章内滚动/横向切换；候选不能作为已验收功能。
+- remote compact恢复：HEAD仍main/6d76174，原未提交改动完整保留；370文件快照 `.cache/recovery/20261014-092934/`。独立候选分支 `codex/m1-continuous-recovery`。首次真实解析run38496501326获得6-pin原始锁（保留pins不变、裁剪4个未使用依赖）；该run在依赖核验停止，未编译。严格锁CI38497134015进行中，新增源码仍须后续完整验证。
 
 ## 失败历史与报告范围
 

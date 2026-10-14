@@ -93,6 +93,7 @@ jobs:
             build/ReaderSnapshots/
             build/build-environment.txt
             build/Package*.resolved
+            build/test-results-summary.json
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA
         uses: actions/upload-artifact@v4

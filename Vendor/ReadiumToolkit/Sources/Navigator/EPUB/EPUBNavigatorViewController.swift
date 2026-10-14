@@ -738,9 +738,13 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             let request = isv.viewportIdentity
             let index = isv.currentIndex
             guard index < readingOrder.count else { return (nil, nil) }
+            // The pure async calculator executes on a generic executor.
+            // Snapshot UIKit values on MainActor before passing its closure.
+            let visibleIndices = isv.visibleIndices
+            let progressions = Dictionary(uniqueKeysWithValues: visibleIndices.map { ($0, isv.progression(in: $0)) })
             let (locator, viewport) = await EPUBViewportAndLocationCalculator.compute(
-                readingOrderIndices: isv.visibleIndices,
-                progression: { isv.progression(in: $0) },
+                readingOrderIndices: visibleIndices,
+                progression: { progressions[$0] ?? 0...0 },
                 readingOrder: readingOrder,
                 positionsByReadingOrder: positionsByReadingOrder,
                 tableOfContentsTitleByHref: tableOfContentsTitleByHref,
@@ -762,9 +766,11 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             return (nil, nil)
         }
 
+        let indices = spreadView.spread.readingOrderIndices
+        let progressions = Dictionary(uniqueKeysWithValues: indices.map { ($0, spreadView.progression(in: $0)) })
         let (locator, viewport) = await EPUBViewportAndLocationCalculator.compute(
-            readingOrderIndices: spreadView.spread.readingOrderIndices,
-            progression: { spreadView.progression(in: $0) },
+            readingOrderIndices: indices,
+            progression: { progressions[$0] ?? 0...0 },
             readingOrder: readingOrder,
             positionsByReadingOrder: positionsByReadingOrder,
             tableOfContentsTitleByHref: tableOfContentsTitleByHref,

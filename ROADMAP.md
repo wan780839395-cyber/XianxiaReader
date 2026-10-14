@@ -24,6 +24,8 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M1 验收清单
 
+2026-10-14 remote compact恢复：有限窗口连续跨章候选源码/回归已恢复，新增字符级长段恢复、迟到布局过滤、关闭清理；真实解析6-pin锁已采用，正在严格锁CI。候选尚未通过编译/页面/设备验收，以下Build3证据仅覆盖旧切片。继续M1，不放行M2/M4。
+
 2026-10-14：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 用户要求的真正纵向无缝跨章仍须独立M1引擎切片；完整M1待真机验收，不推进M2。详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 
 - EPUB 2 NCX / EPUB 3 nav、nested TOC、图片、CSS、fragment 链接与脚注；损坏文件和 DRM 错误可解释。

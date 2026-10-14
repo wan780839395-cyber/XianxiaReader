@@ -88,6 +88,7 @@ import UIKit
         boundaryLabel.numberOfLines = 2
         boundaryLabel.font = .preferredFont(forTextStyle: .footnote)
         retry.setTitle("重试加载", for: .normal)
+        retry.accessibilityIdentifier = "readium.continuous-retry"
         retry.addTarget(self, action: #selector(retryBoundary), for: .touchUpInside)
         boundary.addSubview(boundaryLabel)
         boundary.addSubview(retry)
@@ -197,7 +198,8 @@ import UIKit
         layoutSlots(preserveAnchor: true)
     }
     private func navigationOffset(in slot: Slot, location: PageLocation) async -> CGFloat {
-        if case let .locator(locator) = location, locator.locations.cssSelector != nil {
+        if case let .locator(locator) = location, locator.locations.cssSelector != nil,
+           locator.locations.otherLocations["xianxiaContinuousAnchorVersion"]?.double == 1 {
             do {
                 let documentY = try await slot.view.continuousAnchorDocumentY(locator)
                 if let y = documentY {
@@ -228,7 +230,7 @@ import UIKit
             for (const child of body.children) window.__xianxiaBodyObserver.observe(child);
           }
           const style = getComputedStyle(body);
-          let bottom = 0;
+          let bottom = Math.max(0, body.getBoundingClientRect().bottom + scrollY);
           for (const child of body.children) bottom = Math.max(bottom, child.getBoundingClientRect().bottom + scrollY);
           if (!body.children.length) {
             const range = document.createRange(); range.selectNodeContents(body);
@@ -244,14 +246,15 @@ import UIKit
         switch result {
         case let .success(value):
             guard let data = value as? [String: Any], let number = data["height"] as? NSNumber, number.doubleValue.isFinite else {
-                slot.failure = "章节布局尺寸无效"; layoutSlots(preserveAnchor: true); return
+                slot.failure = "章节布局尺寸无效"; slot.ready = false
+                slot.view.clear(); layoutSlots(preserveAnchor: true); return
             }
             let height = max(96, CGFloat(number.doubleValue) + 24)
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
             let anchorDelta: CGFloat = index == currentIndex && viewportRevision == measuredRevision
                 ? (newAnchorY.flatMap { new in slot.anchorDocumentY.map { new - $0 } } ?? 0) : 0
-            if let newAnchorY { slot.anchorDocumentY = newAnchorY }
+            if let newAnchorY, viewportRevision == measuredRevision { slot.anchorDocumentY = newAnchorY }
             slot.height = height
             slot.ready = true
             if changed {
@@ -260,6 +263,7 @@ import UIKit
             }
         case let .failure(error):
             slot.failure = "章节布局失败：\(error.localizedDescription)"
+            slot.ready = false
             slot.view.clear()
             layoutSlots(preserveAnchor: true)
         }
@@ -338,7 +342,8 @@ import UIKit
     }
     @objc private func retryBoundary() {
         let index = readyIndices.last.map { $0 + 1 } ?? currentIndex
-        evict(index); load(index)
+        let location = slots[index]?.savedAnchor.map { PageLocation.locator($0) } ?? .start
+        evict(index); load(index, location: location)
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !layingOut else { return }

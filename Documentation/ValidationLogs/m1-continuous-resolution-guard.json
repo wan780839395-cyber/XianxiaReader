@@ -1,0 +1,24 @@
+{
+  "recordedAtUTC": "2026-10-14T01:49:10.572071+00:00",
+  "run": 38496501326,
+  "sourceRevision": "4c78f7766a6f9952e0b221b12a100bf49568c0f6",
+  "conclusion": "failure",
+  "actualFailure": "verify_readium_lock rejected genuine resolver pruning of unused targets",
+  "linuxCoreTestsPassed": 14,
+  "macOSCoreTestsExecuted": false,
+  "iOSTestsExecuted": false,
+  "deviceReleaseBuilt": false,
+  "ipaProduced": false,
+  "realDependencyResolutionPassed": true,
+  "retainedPinsUnchanged": true,
+  "resolvedRemotePins": 6,
+  "removedUnusedRemotePins": [
+    "gcdwebserver",
+    "sqlite.swift",
+    "csqlite",
+    "sqlcipher.swift"
+  ],
+  "resolvedLockSha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537",
+  "fullLogSha256": "22b881aa005cea557890ef7836fe99a4446ef2fd2d983478c5427f3361498dc2",
+  "evidenceDirectory": "build/ci/38496501326/"
+}

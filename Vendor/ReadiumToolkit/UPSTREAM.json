@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "1ddfff219cf48470da8321d0bbc9a1bed4fa7b9ab88ec34b250a437bd7171a61"
+      "sha256": "8a624524e757102b2eb8db56bc594b695a4ab92c66841b19d9f6f8554d97a55f"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "0fd231d785a76aef3ef58e5861174abe9cd957d3dbf5dc3c9ea18400dda17f8e"
+      "sha256": "fe5b642168badd32bb1f0b4badee267e90059feacad1a471794285363cf54f8c"
     }
   ],
   "remoteDependencyPins": [
