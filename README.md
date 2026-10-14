@@ -4,7 +4,7 @@
 
 **M0通过，M1阅读视口/图像切片自动验证通过；不是完整MVP。** [CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 见[阅读修复](Documentation/READER_VIEWPORT_FIX.md)和[项目状态](PROJECT_STATUS.md)。
 
-当前连续跨章恢复点：上一候选已编译，38/39 iOS回归通过，双章同屏截图已查看；最后长段锚点修复仅静态验证。GitHub账户付款/支出限额使最后CI未启动，无新Release/IPA。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
+当前连续跨章恢复点：上一候选已编译，38/39 iOS回归通过，双章同屏截图已查看；最后长段锚点修复等待新完整CI。2026-10-14用户同意公开仓库，API已确认PUBLIC；[公开后CI 38511938460](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460)已正常执行仓库检查/Linux Core，macOS流程正在运行。旧账单拒绝记录保留，无新Release/IPA可宣称通过。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
 
 ## 当前已写入
 
@@ -71,7 +71,7 @@ bash scripts/ci_ios.sh 2>&1 | tee build/logs/build.log
 
 ## GitHub Actions / IPA
 
-项目私有仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。第三次 CI 已全通过，完整结论见 PROJECT_STATUS 和 GitHub Actions；阅读/设备验收与自动构建结果分开记录。
+项目公开仓库为 [wan780839395-cyber/XianxiaReader](https://github.com/wan780839395-cyber/XianxiaReader)，origin/main 已建立并推送。用户已明确同意公开源码；使用公开仓库标准GitHub-hosted runner的免费构建，不启用大型runner或付费超额，说明见[GitHub接续](Documentation/GITHUB_SETUP.md)。`main` push、PR 和手动 `workflow_dispatch` 执行 [.github/workflows/ios-build.yml](.github/workflows/ios-build.yml)。构建结论以 PROJECT_STATUS 和 GitHub Actions 的具体run为准；阅读/设备验收与自动构建结果分开记录。
 
 最新成功产物已下载至 `build/XianxiaReader.ipa`，完整日志 `build/logs/ios-build.log`。来源提交、SHA-256 与独立验证范围见 [M1_READER_VALIDATION_REPORT.json](Documentation/M1_READER_VALIDATION_REPORT.json)；M1_SEARCH_VALIDATION_REPORT.json 和 IOS_VALIDATION_REPORT.json 保留之前的搜索/M0 范围。GitHub artifacts 保留 14 天，忽略的本机构建目录不会随 clone；过期后重新运行锁定版本的 workflow。
 

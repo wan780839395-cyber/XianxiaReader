@@ -4,10 +4,10 @@
   "localHead": "6d761749911233122bcd031fcf718d22a19f9e77",
   "candidateBranch": "codex/m1-continuous-recovery",
   "candidateRevision": "89a46cee6ec96f665ae8b7b8d39047214fb11459",
-  "candidateCompiled": false,
+  "candidateCompiled": true,
   "candidateFullCIPassed": false,
-  "lastExecutedRun": 38506979070,
-  "lastExecutedSource": "8908e98151ff021092721639aed274c660335d87",
+  "lastExecutedRun": 38511938460,
+  "lastExecutedSource": "008e6075bb9acd4418d539608cebde19f4ef1dfc",
   "linuxCorePassed": 14,
   "macOSCorePassed": 14,
   "iOS": {
@@ -23,8 +23,8 @@
           "platform": "iOS Simulator"
         },
         "expectedFailures": 0,
-        "failedTests": 1,
-        "passedTests": 38,
+        "failedTests": 2,
+        "passedTests": 37,
         "skippedTests": 0,
         "testPlanConfiguration": {
           "configurationId": "1",
@@ -32,100 +32,288 @@
         }
       }
     ],
-    "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
     "expectedFailures": 0,
-    "failedTests": 1,
-    "finishTime": 1791949498.484,
-    "passedTests": 38,
+    "failedTests": 2,
+    "finishTime": 1791953070.458,
+    "passedTests": 37,
     "result": "Failed",
     "skippedTests": 0,
-    "startTime": 1791949169.458,
+    "startTime": 1791952694.171,
     "statistics": [],
     "testFailures": [
       {
-        "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+        "failureText": "failed: caught error: \"navigationFailed\"",
         "targetName": "XianxiaReaderTests",
         "testIdentifier": 22,
         "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
         "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
         "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+      },
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testContinuousSearchJumpAndModeRoundTripKeepTheParagraph():429",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 23,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph",
+        "testName": "testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()"
       }
     ],
     "title": "Test - XianxiaReader",
     "topInsights": [
       {
         "category": "Longest Test Runs",
-        "impact": "33% of duration",
-        "text": "1 longest test run with outlier durations exceeding 21.00s (three standard deviations)"
+        "impact": "31% of duration",
+        "text": "1 longest test run with outlier durations exceeding 26.45s (three standard deviations)"
       }
     ],
     "totalTestCount": 39
   },
   "latestRun": {
     "conclusion": "failure",
-    "headSha": "89a46cee6ec96f665ae8b7b8d39047214fb11459",
+    "databaseId": 38511938460,
+    "headBranch": "codex/m1-continuous-recovery",
+    "headSha": "008e6075bb9acd4418d539608cebde19f4ef1dfc",
     "jobs": [
       {
-        "completedAt": "2026-10-14T03:50:04Z",
-        "conclusion": "failure",
-        "databaseId": 115670689293,
+        "completedAt": "2026-10-14T04:32:56Z",
+        "conclusion": "success",
+        "databaseId": 115682180458,
         "name": "repository-checks",
-        "startedAt": "2026-10-14T03:50:01Z",
+        "startedAt": "2026-10-14T04:32:47Z",
         "status": "completed",
-        "steps": [],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38508277189/job/115670689293"
+        "steps": [
+          {
+            "completedAt": "2026-10-14T04:32:49Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T04:32:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:50Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-14T04:32:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:50Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-14T04:32:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:54Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-14T04:32:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:54Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-14T04:32:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:55Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-14T04:32:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:55Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-14T04:32:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:55Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-14T04:32:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:32:55Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-14T04:32:55Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460/job/115682180458"
       },
       {
-        "completedAt": "2026-10-14T03:50:04Z",
-        "conclusion": "skipped",
-        "databaseId": 115670703329,
+        "completedAt": "2026-10-14T04:33:44Z",
+        "conclusion": "success",
+        "databaseId": 115682236037,
         "name": "core-tests",
-        "startedAt": "2026-10-14T03:50:04Z",
+        "startedAt": "2026-10-14T04:32:59Z",
         "status": "completed",
-        "steps": [],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38508277189/job/115670703329"
+        "steps": [
+          {
+            "completedAt": "2026-10-14T04:33:00Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T04:33:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:30Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-14T04:33:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:31Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-14T04:33:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:36Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-14T04:33:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:40Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-14T04:33:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:41Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 6,
+            "startedAt": "2026-10-14T04:33:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 11,
+            "startedAt": "2026-10-14T04:33:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:42Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 12,
+            "startedAt": "2026-10-14T04:33:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:42Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-14T04:33:42Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460/job/115682236037"
       },
       {
-        "completedAt": "2026-10-14T03:50:04Z",
-        "conclusion": "skipped",
-        "databaseId": 115670703999,
+        "completedAt": "2026-10-14T04:44:52Z",
+        "conclusion": "failure",
+        "databaseId": 115682448340,
         "name": "ios",
-        "startedAt": "2026-10-14T03:50:04Z",
+        "startedAt": "2026-10-14T04:33:52Z",
         "status": "completed",
-        "steps": [],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38508277189/job/115670703999"
+        "steps": [
+          {
+            "completedAt": "2026-10-14T04:33:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T04:33:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:33:59Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-14T04:33:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:44:41Z",
+            "conclusion": "failure",
+            "name": "Build, test, and package unsigned IPA",
+            "number": 3,
+            "startedAt": "2026-10-14T04:33:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:44:47Z",
+            "conclusion": "success",
+            "name": "Upload build logs, test results, project, and resolved packages",
+            "number": 4,
+            "startedAt": "2026-10-14T04:44:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:44:47Z",
+            "conclusion": "skipped",
+            "name": "Upload unsigned device IPA",
+            "number": 5,
+            "startedAt": "2026-10-14T04:44:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:44:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-14T04:44:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T04:44:50Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-14T04:44:47Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460/job/115682448340"
       }
     ],
-    "status": "completed"
+    "status": "completed",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38511938460"
   },
-  "latestRunNotStarted": true,
-  "latestRunFailureKind": "GitHub account billing/spending limit, not source compilation/test failure",
-  "annotations": [
-    {
-      "path": ".github",
-      "blob_href": "https://github.com/wan780839395-cyber/XianxiaReader/blob/89a46cee6ec96f665ae8b7b8d39047214fb11459/.github",
-      "start_line": 1,
-      "start_column": null,
-      "end_line": 1,
-      "end_column": null,
-      "annotation_level": "failure",
-      "title": "",
-      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
-      "raw_details": ""
-    },
-    {
-      "path": ".github",
-      "blob_href": "https://github.com/wan780839395-cyber/XianxiaReader/blob/89a46cee6ec96f665ae8b7b8d39047214fb11459/.github",
-      "start_line": 1,
-      "start_column": null,
-      "end_line": 1,
-      "end_column": null,
-      "annotation_level": "notice",
-      "title": "",
-      "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"",
-      "raw_details": ""
-    }
-  ],
+  "latestRunNotStarted": false,
+  "latestRunFailureKind": "Actual iOS test failure: long-paragraph navigationFailed and mode roundtrip returned chapter start",
   "windows": {
     "grammarFiles": 362,
     "retainedPristineParserLimitations": 54,
@@ -1898,5 +2086,48 @@
       "sha256": "0e44ed924cef12161f5a90cabcc46324857e5ae1fbeabe93acc64ef08bfe8364"
     }
   ],
-  "nextStep": "Resolve GitHub billing/spending-limit refusal, rerun whole workflow on candidate with resolve_local_readium=false; fix any remaining long-paragraph failure without lowering assertions."
+  "nextStep": "Static-check the lifecycle fix and new late-termination regression, then run complete40-test CI; do not create IPA on failure.",
+  "repositoryVisibility": {
+    "visibility": "PUBLIC",
+    "verifiedAtUTC": "2026-10-14T04:36:35.547545+00:00",
+    "userAuthorized": true,
+    "billingModified": false,
+    "audit": "Documentation/ValidationLogs/publication-audit-2026-10-14.json"
+  },
+  "historicalBillingRefusal": {
+    "run": 38508277189,
+    "sourceRevision": "89a46cee6ec96f665ae8b7b8d39047214fb11459",
+    "notStarted": true,
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/wan780839395-cyber/XianxiaReader/blob/89a46cee6ec96f665ae8b7b8d39047214fb11459/.github",
+        "start_line": 1,
+        "start_column": null,
+        "end_line": 1,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "",
+        "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/wan780839395-cyber/XianxiaReader/blob/89a46cee6ec96f665ae8b7b8d39047214fb11459/.github",
+        "start_line": 1,
+        "start_column": null,
+        "end_line": 1,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "",
+        "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"",
+        "raw_details": ""
+      }
+    ]
+  },
+  "currentWorktreeFix": {
+    "compiled": false,
+    "scope": "Clear retired spread delegates and reject late load/termination callbacks",
+    "expectedIOSTests": 40
+  }
 }

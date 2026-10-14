@@ -472,6 +472,31 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertNotNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
     }
 
+    @MainActor func testRetiredContinuousProcessCannotReloadPagedReader() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        _ = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        let retiredWebView = try resourceWebView(engine, index: 0)
+        let retiredDelegate = try XCTUnwrap(retiredWebView.navigationDelegate)
+        let retiredSpread = try XCTUnwrap(retiredWebView.superview)
+        defer { withExtendedLifetime(retiredSpread) {} }
+
+        engine.setContinuousScrolling(false)
+        try await waitUntil {
+            guard self.view(identifier: "readium.continuous-scroll", in: engine.viewController.view) == nil,
+                  let webView = self.visibleWebView(in: engine.viewController.view) else { return false }
+            return try await webView.evaluateJavaScript("document.readyState === 'complete' && document.title.length > 0") as? Bool == true
+        }
+        let activeWebView = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        // Deliver the public WKNavigationDelegate callback after the old
+        // chapter has been removed. It must not reload the new paged layout.
+        retiredDelegate.webViewWebContentProcessDidTerminate?(retiredWebView)
+        try await Task.sleep(nanoseconds: 300_000_000)
+        XCTAssertTrue(visibleWebView(in: engine.viewController.view) === activeWebView)
+        XCTAssertNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
+    }
+
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
         let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)

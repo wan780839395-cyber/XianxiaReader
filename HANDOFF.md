@@ -2,6 +2,22 @@
 
 更新时间：2026-10-14（Asia/Shanghai）
 
+## 当前进行中的恢复步骤
+
+2026-10-14：用户明确同意将GitHub仓库公开，采用公开仓库标准runner的免费构建方案；没有授权付款或增加支出限额。正在核对远程main与codex/m1-continuous-recovery的所有可达历史，检查凭据、个人小说及构建包。检查完成后修改可见性并通过API确认，再对最后候选重跑完整CI（resolve_local_readium=false）。本地HEAD/main与暂存区仍保留，候选分支当前文档快照008e6075bb9acd4418d539608cebde19f4ef1dfc包含89a46ce的同一运行源码；尚未重新编译。
+
+公开前核验：远程仅main与上述候选两个分支，无tag/release；27个可达commit、718个历史blob和64份已下载CI日志未发现匹配的凭据。历史书籍仅四本原创样书（六个版本），无证书、个人小说、数据库、IPA或大构建缓存；两份requirements TXT误报已核对为依赖清单。模式扫描不能保证检测所有秘密，但本轮检查没有待处理发现。原始审计结果保存在.cache/recovery/publication-audit.json。即将修改仓库可见性；尚未执行新CI。
+
+可见性步骤已完成：gh repo edit成功，GitHub API返回visibility=PUBLIC/isPrivate=false。没有修改账单、支付方式或付费限额。下一步对候选分支008e607（与89a46ce相同运行源码）手动执行完整workflow，bootstrap=false；仍使用标准ubuntu/macOS runner，原先账单拒绝记录保留为历史，不能提前把新候选写成通过。
+
+公开后完整CI已触发：run38511938460 / head008e6075bb9acd4418d539608cebde19f4ef1dfc / resolve_local_readium=false。repository-checks已有真实步骤并成功，Core正在执行；iOS与Release尚未产生结果。恢复时先查询该run，禁止重复触发同一验证或从旧账单错误推断仍被阻止。最新候选未编译/38-of-39结论在本run完成前继续有效。
+
+run38511938460现已完成：Linux/macOS各14 Core、iOS37/39通过、2 failed/0 skipped。长段测试在跳转阶段返回navigationFailed，未到字符断言；模式往返回到h1/scrollY=0。测试真实exit65、附件导出与summary各exit0，设备Release/IPA未执行。完整日志/xcresult与37/39 summary已下载到build/ci/38511938460。新候选已编译，但完整M1仍未验收。
+
+继续定位发现已clear的EPUBSpreadView仍保留delegate，WebKit迟到termination可通过无资源身份参数的回调触发Navigator reload；取消的加载任务也在检查取消前调用delegate。该路径是可验证代码缺口，是否解释以上两项失败仍待回归。当前补充clear断开全部UI/WebKit delegate、加载完成前检查clear/cancel、termination拒绝已clear回调，并增加真实窗口的旧WKNavigationDelegate迟到事件回归。即将核对来源hash、Windows静态/tooling并重跑完整40项iOS CI，不能提前宣称修复通过。
+
+生命周期修复与新增回归已通过Windows362文件grammar（原始54限制/新增0），14 Python tooling通过，来源hash/真实6-pin锁核验通过。即将使用独立临时Git index创建候选快照并推送原codex分支，再手动完整CI；本地main/HEAD6d76174和原暂存区继续保持不动。
+
 ## 最新可验证断点
 
 remote compact恢复与本轮开发已完成到可恢复检查点。工作区仍在main，HEAD `6d76174`，原暂存区保持为空，所有原未提交改动保留；没有reset/stash/清理个人数据。原370文件恢复ZIP在`.cache/recovery/20261014-092934/`，CRC及每个SHA-256全部匹配。完整阶段检查点和原Build3证据保存在HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md。

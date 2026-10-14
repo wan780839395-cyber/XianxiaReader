@@ -116,6 +116,12 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// clear pending operations and retain cycles.
     func clear() {
         wasCleared = true
+        // A retired resource must not reload the current layout when WebKit
+        // delivers a late process-termination or scroll callback.
+        delegate = nil
+        webView.navigationDelegate = nil
+        webView.uiDelegate = nil
+        scrollView.delegate = nil
         onContinuousInitializationReady.complete()
         webView.stopLoading()
 
@@ -401,11 +407,13 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Called by the javascript code when the spread contents is fully loaded.
     /// The JS message `spreadLoaded` needs to be emitted by a subclass script, EPUBSpreadView's scripts don't.
     private func spreadDidLoad(_ body: Any) {
+        guard !wasCleared else { return }
         spreadLoadTask?.cancel()
         spreadLoadTask = Task { @MainActor in
             isSpreadLoaded = true
             applySettings()
             await spreadDidLoad()
+            guard !Task.isCancelled, !wasCleared else { return }
             await delegate?.spreadViewDidLoad(self)
             guard !Task.isCancelled, !wasCleared else { return }
             initializationFinished = true
@@ -772,6 +780,7 @@ extension EPUBSpreadView: WKNavigationDelegate {
     }
 
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        guard !wasCleared else { return }
         delegate?.spreadViewDidTerminate()
     }
 }

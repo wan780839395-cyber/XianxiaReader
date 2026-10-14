@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "026882940dbaeabbc262aef32be8924e93a1891fa8bf4d835d89bf2106266842"
+      "sha256": "9839b0cd39f720833ef5f57efd3e7c9d4066b425f694b1994c7a5704bff78d7b"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",

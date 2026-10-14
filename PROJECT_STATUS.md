@@ -39,7 +39,7 @@ Build3首轮38424689048 test bundle链接失败，第二轮38426725252导航探�
 
 M1_IMPORT_VALIDATION_REPORT.json属于Build2的26 tests；M1_SEARCH_VALIDATION_REPORT.json属于此前搜索；IOS_VALIDATION_REPORT.json属于M0；CORE_VALIDATION_REPORT.json是本机Linux；VALIDATION_REPORT.json仅静态。历史导入run38409222759由Agent提前取消，实际26iOS已通过、Release中断，不能写成源码失败。M0的SDK SQLite与缺AppIcon失败已在run38390862584修复验证。
 
-Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。私有GitHub origin/main已建立且CLI已授权。Docker已恢复并升级4.95.0，原容器/备份保留。GitHub artifacts保留14天，忽略的build/.cache不随clone；过期后按锁文件重新CI。
+Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。GitHub origin/main已建立且CLI已授权；2026-10-14用户同意公开，API已确认PUBLIC，采用公开仓库标准runner免费构建，没有修改账单/支付/支出限额。正在重跑连续候选完整CI，尚未产生新结果。Docker曾恢复并升级4.95.0，原容器/备份保留；本轮未启动Docker。GitHub artifacts保留14天，忽略的build/.cache不随clone；过期后按锁文件重新CI。
 
 ## 下一步
 

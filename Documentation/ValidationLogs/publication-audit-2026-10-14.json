@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-14T04:31:59.156616+00:00",
+  "purpose": "Pre-publication check of both remote branch histories and locally downloaded CI logs.",
+  "refs": {
+    "refs/heads/main": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "refs/heads/codex/m1-continuous-recovery": "008e6075bb9acd4418d539608cebde19f4ef1dfc"
+  },
+  "commitCount": 27,
+  "historicalBlobCount": 718,
+  "historicalFixtureVersions": 6,
+  "downloadedCILogsScanned": 64,
+  "allowedOriginalFixturePaths": [
+    "Tests/Fixtures/chinese-epub2.epub",
+    "Tests/Fixtures/chinese-epub3.epub",
+    "Tests/Fixtures/reader-layout.epub",
+    "Tests/Fixtures/window-long.epub"
+  ],
+  "largeHistoricalBlobs": [],
+  "findings": [],
+  "scopeLimit": "Pattern-based audit and fixture allowlist; not a guarantee against every possible secret."
+}
