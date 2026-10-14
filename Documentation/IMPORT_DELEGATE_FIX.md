@@ -26,4 +26,6 @@ Build6把结果从页面State移到LibraryViewModel，但仍要等sheet.onDismis
 
 ## 完整验证结果
 
-CI38572197917/0afe45ef6764f3954b41c7f383fe98ff9f662181全成功：各68Core/iOS55/55/Build7设备Release，0 failed/skipped，test/附件/summary全0，457运行Git blob SHA及三份锁匹配。381语法/14 tooling通过，源码compiler warnings/errors0；metadata/WebKit/tmp SQLite清理诊断原样保留并单列，测试清理生命周期待维护。两个真实书架PNG已核对首次错误/关闭按钮及书籍/成功状态，成功PNG不覆盖完整导航栏/整页布局。新IPA与ZIP已核验（m2-import-build7-test-kit.json），Build4/5/6旧六包不变。初轮5020bca/38570937418为52/53系统DocumentManager崩溃，原件保留，最新含生命周期回归全部通过，不宣称系统bug已修复或用户设备唯一根因已确认。设备Build7首次选择待用户实测。
+CI38572197917/0afe45ef6764f3954b41c7f383fe98ff9f662181全成功：各68Core/iOS55/55/Build7设备Release，0 failed/skipped，test/附件/summary全0，457运行Git blob SHA及三份锁匹配。381语法/14 tooling通过，源码compiler warnings/errors0；metadata/WebKit/tmp SQLite清理诊断原样保留并单列，测试清理生命周期待维护。两个真实书架PNG已核对首次错误/关闭按钮及书籍/成功状态，成功PNG不覆盖完整导航栏/整页布局。新IPA与ZIP已核验（m2-import-build7-test-kit.json），Build4/5/6旧六包不变。初轮5020bca/38570937418为52/53系统DocumentManager崩溃，原件保留，最新含生命周期回归全部通过，不宣称系统bug已修复或用户设备唯一根因已确认。设备Build7首次选择随后获用户“正常导入、没问题”确认；详见最新反馈记录。
+
+2026-10-14用户验收补充：Build7交付后回复“ok 能正常导入了 没问题”，首次导入问题已确认解决，deviceFirstImportAccepted=true；源码/安装包未变。格式/文件来源未逐项报告，完整M2长书/设备及M3/M4门槛不变；证据Documentation/ValidationLogs/m2-import-build7-device-feedback.json。

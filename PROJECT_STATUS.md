@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
 | M1 基础 EPUB | 完整自动门槛通过，用户确认连续阅读与重开位置可用；可继续既定路线 | 未逐项确认的原书图像、其他设备/旋转/性能继续单独记录 |
-| M2 TXT | 产品导入/Readium阅读/完整位置及首次选择交接自动门槛通过：各68 Core、55 iOS、Build7 Release | 数十MB冷导入/cache重开与设备/中文排版仍待验收 |
+| M2 TXT | 产品导入/Readium阅读/完整位置及首次选择交接自动门槛通过：各68 Core、55 iOS、Build7 Release | 用户确认首次导入正常；数十MB冷导入/cache重开与其余设备/中文排版仍待验收 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
@@ -23,7 +23,9 @@
 
 ## 最新证据与设备边界
 
-2026-10-14最新用户设备反馈：Build6首次导入仍无反应/提示，第二次正常，已记录为首次设备验收失败。随后Build7直接delegate→Task、书架持有弱delegate至终止、单item sheet及持续错误反馈已通过[CI38572197917](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38572197917) / 0afe45ef6764f3954b41c7f383fe98ff9f662181：各68Core、55/55iOS、设备Release、0 failed/skipped，457运行hash和三份锁一致。新增6项，完整LibraryView/无dismiss/关闭后弱回调/旧回调拒绝与终止释放均通过；初轮53项候选52/53系统DocumentManager异常原件保留，未降低断言。真实错误/成功书架PNG已核对反馈，完整页面布局/用户Files/iCloud未验收；tmp数据库清理SQLite诊断单列，不隐藏。新包build/XianxiaReader-Import-Build7-TestKit.zip / SHA5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172，菜单可确认实际(7)，六个Build4/5/6旧包不变。用户设备首次仍待Build7实测；M2长书/设备未完成，M3/M4未开始。最新报告M2_IMPORT_DELEGATE_VALIDATION_REPORT.json，设计IMPORT_DELEGATE_FIX.md。
+2026-10-14最新确认：用户回复“ok 能正常导入了 没问题”，Build7交付上下文的首次导入问题已验收通过，报告deviceFirstImportAccepted=true。来源为用户实测，格式/本地或iCloud/实际Build与OS未逐项核读；不扩写为完整TXT/普通签名设备/长书通过，M2Accepted=false。未改运行源码/包，55iOS/各68Core/Release自动证据不变。接续M2长篇与剩余设备验证，再按门槛M3/M4。证据Documentation/ValidationLogs/m2-import-build7-device-feedback.json。
+
+2026-10-14最新用户设备反馈：Build6首次导入仍无反应/提示，第二次正常，已记录为首次设备验收失败。随后Build7直接delegate→Task、书架持有弱delegate至终止、单item sheet及持续错误反馈已通过[CI38572197917](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38572197917) / 0afe45ef6764f3954b41c7f383fe98ff9f662181：各68Core、55/55iOS、设备Release、0 failed/skipped，457运行hash和三份锁一致。新增6项，完整LibraryView/无dismiss/关闭后弱回调/旧回调拒绝与终止释放均通过；初轮53项候选52/53系统DocumentManager异常原件保留，未降低断言。真实错误/成功书架PNG已核对反馈，完整页面布局/用户Files/iCloud未验收；tmp数据库清理SQLite诊断单列，不隐藏。新包build/XianxiaReader-Import-Build7-TestKit.zip / SHA5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172，菜单可确认实际(7)，六个Build4/5/6旧包不变。用户设备首次导入随后已确认正常（最新反馈见上方）；M2长书/设备未完成，M3/M4未开始。最新报告M2_IMPORT_DELEGATE_VALIDATION_REPORT.json，设计IMPORT_DELEGATE_FIX.md。
 
 2026-10-14首次文件导入修复已通过[CI38566503849](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849) / 5522489906224a089c91e92180bdcebbe9be2095 / Build6：结果由LibraryViewModel持有并在sheet关闭后消费一次，EPUB/TXT共用；各68Core/iOS49/49/Release通过，456运行hash与三份锁一致，源码compiler warnings/errors0。新增首次TXT、首次EPUB及取消/空选择/重试/迟到文件原生回归通过；两个先前48/49系统DocumentManager崩溃完整原件保留，最新仅修测试过渡/生命周期等待，不降低断言/增加timeout。iOS18.5旧交接未复现用户iOS16.6.1首次关闭无书无提示，设备唯一根因不宣称已证实，Build6设备首次选择仍待确认。新包build/XianxiaReader-Import-Build6-TestKit.zip，SHA256 112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c；Build4/5原件不变。报告M2_IMPORT_HANDOFF_VALIDATION_REPORT.json，设计IMPORT_HANDOFF_FIX.md。M2长书/设备未完成，M3/M4未开始，恢复点见HANDOFF。
 

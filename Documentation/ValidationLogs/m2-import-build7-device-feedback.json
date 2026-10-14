@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-14T14:24:35.106242+00:00",
+  "source": "direct user feedback after Build7 test kit delivery",
+  "quote": "ok 能正常导入了 没问题",
+  "firstImportProblemAccepted": true,
+  "scope": "User confirms normal import in reply to the first-import bug fix; record that issue resolved in this device workflow.",
+  "buildContext": "Build7 delivered in the preceding turn; installed build/OS/hardware were not independently read.",
+  "formatsIndividuallyReported": false,
+  "localAndICloudProvidersIndividuallyReported": false,
+  "ordinarySignedDeviceAccepted": false,
+  "fullTXTDeviceMatrixAccepted": false,
+  "longBookPerformanceAccepted": false,
+  "M2Accepted": false,
+  "runtimeSourceRevision": "0afe45ef6764f3954b41c7f383fe98ff9f662181",
+  "run": 38572197917,
+  "packageSHA256": "5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172",
+  "previousBuild6FailurePreserved": true,
+  "runtimeSourceChanged": false
+}
