@@ -1,0 +1,48 @@
+{
+  "run": 38500755762,
+  "sourceRevision": "18f528d07d6fe75a6e07bc2e1ad742549299fdc7",
+  "swiftCompiled": true,
+  "linuxCorePassed": 14,
+  "macOSCorePassed": 14,
+  "iOSPassed": 36,
+  "iOSFailed": 3,
+  "iOSTotal": 39,
+  "failures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousHeightChangeKeepsVisibleDOMAnchor():324",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 20,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "testName": "testContinuousHeightChangeKeepsVisibleDOMAnchor()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 22,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousSearchJumpAndModeRoundTripKeepTheParagraph():429",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 23,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph",
+      "testName": "testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()"
+    }
+  ],
+  "observedHeightChange": {
+    "innerY": 446,
+    "line12ViewportY": 857.875
+  },
+  "observedLongParagraphAfter600Scroll": {
+    "innerY": 600,
+    "longParagraphViewportY": 1167.875
+  },
+  "observedModeReturn": "h1 at chapter start",
+  "candidateCause": "Inner viewport synchronization during native go and early isSpreadLoaded before initial-location completion; full fix still awaiting validation",
+  "releaseBuilt": false,
+  "ipaProduced": false
+}

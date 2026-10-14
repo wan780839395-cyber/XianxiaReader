@@ -22,6 +22,10 @@
 
 恢复子步骤8（进一步修复/构建前）：38498560012已完成并下载到build/ci/38498560012；xcresult summary实际34 passed/4 failed/0 skipped/38 total，test65、export0、summary0；无Main Thread Checker违规/重启。原31保留，双章同屏+逆向、失败重试、千章窗口/释放三项新回归通过；已人工查看真实跨章PNG，前章尾与第二章标题/正文同屏。fragment恢复、高度变化、长段恢复、搜索/模式往返四项超时，没有Release/IPA。现补timeout的实际Locator/DOM/物理viewport诊断和等待最后位置回调（保留原几何断言）；模式重建前异步采集当前实际DOM锚点，request ID/Task取消防止旧切换作用于重开session，并加迟到模式切换回归。加载失败将无效旧offset重置到可见重试区，加强重试按钮实际在屏内断言。预期31+8=39 tests，下一完整CI；未把部分通过写成完整验收。
 
+恢复子步骤9：Window362grammar/hash/四本EPUB和14tooling再次通过。完整严格锁CI38500755762已在候选18f528d07d6fe75a6e07bc2e1ad742549299fdc7启动，repository/Core jobs成功，macOS执行中。本地main/index/未提交改动保留；仅HANDOFF/状态后续记录不同于候选，其余待验证源码保持同一快照。最新自动门槛仍是前轮34/38部分通过；下一可恢复点是取本轮完整summary/log/timeout附件，按具体坐标修复剩余锚点或核验39tests与Release产物。不要用旧Build3/前轮截图代替本轮结果。
+
+恢复子步骤10（实际坐标诊断/下一构建前）：38500755762完整下载到build/ci/38500755762，summary为36/39 passed、3 failed、0 skipped；fragment恢复、迟到模式切换/重开新增回归通过。高度变化/长段/模式往返仍超时；height实测inner offset446，line12 top857.875（对应documentY1303.875），long手动+600后inner offset仅600而long top1167.875，mode往返落到h1。源码审查发现容器layout可在原生go期间重写inner offset，且Readium isSpreadLoaded在0.2s延迟初始定位前置true；这两处是本轮候选原因，未假定唯一根因。已增加slot.positioning暂停同步，完整初始定位/decoration就绪await，clear/超时必恢复continuation；分页转连续也等待该初始化完成再取真实DOM。保留39个tests/原断言/Main Thread Checker，接下来刷新hash/grammar并完整CI。旧Build3仍唯一成功Release IPA，本轮没有新IPA或本地挂起任务。
+
 2026-10-14继续开发检查点：已核对Git clean、最新Build3报告和无遗留任务。当前开始真正纵向连续跨章独立M1切片。方案为保留Readium3.11上游来源与BSD许可的本地Navigator扩展（非官方已合并功能），使用有界章节窗口及固定尺寸WKWebView viewport，复用Readium解析/资源/CSS/DOM定位。正式源码/依赖/锁文件变更均须真实解析与完整CI，当前尚未实现/编译。旧Build3产物与原分页/章内滚动/搜索回归保留。
 
 M0自动门槛通过；M1搜索、导入、阅读视口/图片切片已通过完整CI，**完整M1尚未验收，真正纵向无缝跨章未实现**。本轮构建/下载/产物核验/原创样书快照复查已完成；无运行中的项目构建/测试或未完成登录/UAC。下一步是现有iPhone13上复测原书图片，并继续独立M1连续滚动引擎切片，不进入M2/M4。

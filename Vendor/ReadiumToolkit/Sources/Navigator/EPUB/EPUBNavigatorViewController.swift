@@ -148,6 +148,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             anchor = await isv.firstVisibleElementLocator()
             guard infiniteScrollView === isv, isv.viewportIdentity == request else { return }
         } else if let spread = paginationView?.currentView as? EPUBSpreadView {
+            await spread.continuousInitializationReady()
+            guard paginationView?.currentView === spread else { return }
             let offset = spread.webView.scrollView.contentOffset
             anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)
             guard paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else { return }

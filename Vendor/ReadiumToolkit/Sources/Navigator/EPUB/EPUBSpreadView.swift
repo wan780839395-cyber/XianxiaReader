@@ -60,6 +60,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     private(set) var isSpreadLoaded = false
     private var spreadLoadTask: Task<Void, Never>?
+    private var initializationFinished = false
+    private var wasCleared = false
+    private let onContinuousInitializationReady = CompletionList()
 
     required init(
         viewModel: EPUBNavigatorViewModel,
@@ -112,6 +115,8 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Called when the spread view is removed from the view hierarchy, to
     /// clear pending operations and retain cycles.
     func clear() {
+        wasCleared = true
+        onContinuousInitializationReady.complete()
         webView.stopLoading()
 
         spreadLoadTask?.cancel()
@@ -402,6 +407,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             applySettings()
             await spreadDidLoad()
             await delegate?.spreadViewDidLoad(self)
+            guard !Task.isCancelled, !wasCleared else { return }
+            initializationFinished = true
+            onContinuousInitializationReady.complete()
             onSpreadLoadedCallbacks.complete()
             showSpread()
         }
@@ -411,6 +419,15 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     func spreadDidLoad() async {}
 
     private let onSpreadLoadedCallbacks = CompletionList()
+
+    /// `isSpreadLoaded` is set before Readium's delayed initial location and
+    /// decoration work finish. Continuous navigation must wait for all of it.
+    func continuousInitializationReady() async {
+        if initializationFinished || wasCleared { return }
+        await withCheckedContinuation { continuation in
+            onContinuousInitializationReady.add { continuation.resume() }
+        }
+    }
 
     /// Awaits for the spread to be fully loaded.
     func spreadLoaded() async {

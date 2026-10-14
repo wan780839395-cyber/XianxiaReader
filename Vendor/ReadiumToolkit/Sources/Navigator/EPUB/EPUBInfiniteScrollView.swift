@@ -15,6 +15,7 @@ import UIKit
         let wrapper = UIView()
         var height: CGFloat = 0
         var ready = false
+        var positioning = false
         var failure: String?
         var anchorDocumentY: CGFloat?
         var anchorRevision: UInt64?
@@ -143,10 +144,14 @@ import UIKit
         guard epoch == activeEpoch, let slot = slots[index], slot.ready else { return false }
         currentIndex = index
         layoutSlots(preserveAnchor: false)
+        slot.positioning = true
+        defer { slot.positioning = false }
+        slot.anchorRevision = nil
         await slot.view.go(to: location, animated: false)
         guard epoch == activeEpoch, slots[index] === slot else { return false }
         let local = await navigationOffset(in: slot, location: location)
         guard epoch == activeEpoch, slots[index] === slot else { return false }
+        slot.positioning = false
         let y = slot.wrapper.frame.minY + local
         setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: options.animated)
         preload()
@@ -180,6 +185,10 @@ import UIKit
         }
         slot.loadTask = Task { @MainActor [weak self, weak slot] in
             guard let self, let slot else { return }
+            slot.positioning = true
+            defer { slot.positioning = false }
+            await slot.view.continuousInitializationReady()
+            guard !Task.isCancelled, self.epoch == request, self.slots[index] === slot, slot.failure == nil else { return }
             await slot.view.go(to: location, animated: false)
             guard !Task.isCancelled, self.epoch == request, self.slots[index] === slot, slot.failure == nil else { return }
             await self.measure(index, slot: slot, request: request)
@@ -190,8 +199,11 @@ import UIKit
                 let local = await self.navigationOffset(in: slot, location: location)
                 guard self.epoch == request, self.slots[index] === slot else { return }
                 let y = slot.wrapper.frame.minY + local
+                slot.positioning = false
                 self.contentOffset.y = y - self.contentInset.top
             }
+            slot.positioning = false
+            self.updateViewports()
             self.preload()
             self.infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
         }
@@ -322,7 +334,7 @@ import UIKit
     }
     private func updateViewports() {
         for index in readyIndices {
-            guard let slot = slots[index] else { continue }
+            guard let slot = slots[index], !slot.positioning else { continue }
             let local = min(max(viewportTop - slot.wrapper.frame.minY, 0), max(slot.height - 24 - viewportHeight, 0))
             slot.view.frame = CGRect(x: 0, y: local, width: bounds.width, height: viewportHeight)
             if abs(slot.view.webView.scrollView.contentOffset.y - local) > 0.5 {
