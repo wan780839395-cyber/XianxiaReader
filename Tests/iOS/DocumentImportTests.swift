@@ -7,6 +7,7 @@ import XianxiaCore
 final class DocumentImportTests: XCTestCase {
     @MainActor private final class Presentation: ObservableObject {
         @Published var visible = false
+        var pickers: [UIDocumentPickerViewController] = []
     }
 
     @MainActor private struct PickerHarness: View {
@@ -41,9 +42,14 @@ final class DocumentImportTests: XCTestCase {
         window.layoutIfNeeded()
         addTeardownBlock {
             await MainActor.run {
-                window.isHidden = true
-                window.rootViewController = nil
-                previous?.makeKey()
+                // Retain the actual controllers through host teardown. The
+                // remote document browser can still finish XPC layout messages
+                // after a synthetic delegate callback dismisses its sheet.
+                withExtendedLifetime(presentation.pickers) {
+                    window.isHidden = true
+                    window.rootViewController = nil
+                    previous?.makeKey()
+                }
             }
         }
         return (window, presentation)
@@ -62,10 +68,24 @@ final class DocumentImportTests: XCTestCase {
     @MainActor private func presentPicker(window: UIWindow, presentation: Presentation) async throws -> UIDocumentPickerViewController {
         presentation.visible = true
         try await waitFor("document picker presentation") {
-            self.findPicker(in: window.rootViewController)?.view.window != nil
-                && window.rootViewController?.presentedViewController?.isBeingPresented == false
+            guard let picker = self.findPicker(in: window.rootViewController),
+                  let presented = window.rootViewController?.presentedViewController else { return false }
+            return picker.view.window != nil && !picker.isBeingPresented && !presented.isBeingPresented
+                && picker.transitionCoordinator == nil && presented.transitionCoordinator == nil
         }
-        return try XCTUnwrap(findPicker(in: window.rootViewController))
+        let picker = try XCTUnwrap(findPicker(in: window.rootViewController))
+        presentation.pickers.append(picker)
+        return picker
+    }
+
+    @MainActor private func waitForDismissal(window: UIWindow, picker: UIDocumentPickerViewController) async throws {
+        // presentedViewController can be cleared before its disappearing view
+        // and transition have finished. Do not tear down or re-present yet.
+        try await waitFor("document picker fully dismissed") {
+            window.rootViewController?.presentedViewController == nil
+                && window.rootViewController?.transitionCoordinator == nil
+                && picker.transitionCoordinator == nil && picker.viewIfLoaded?.window == nil
+        }
     }
 
     // Use the production SwiftUI sheet and real UIKit delegate, rather than
@@ -84,7 +104,7 @@ final class DocumentImportTests: XCTestCase {
         let picker = try await presentPicker(window: window, presentation: presentation)
         let delegate = try XCTUnwrap(picker.delegate)
         delegate.documentPicker?(picker, didPickDocumentsAt: [url])
-        try await waitFor("first picker dismissal") { window.rootViewController?.presentedViewController == nil }
+        try await waitForDismissal(window: window, picker: picker)
         try await waitFor("first selection committed and displayed") { model.books.count == 1 && !model.isImporting }
         XCTAssertFalse(presentation.visible)
         XCTAssertNil(model.errorMessage)
@@ -111,12 +131,13 @@ final class DocumentImportTests: XCTestCase {
         let cancelled = try await presentPicker(window: window, presentation: presentation)
         let cancelledDelegate = try XCTUnwrap(cancelled.delegate)
         cancelledDelegate.documentPickerWasCancelled?(cancelled)
-        try await waitFor("cancelled picker dismissal") { window.rootViewController?.presentedViewController == nil }
+        try await waitForDismissal(window: window, picker: cancelled)
         XCTAssertTrue(model.books.isEmpty)
         XCTAssertNil(model.importStatus)
         let empty = try await presentPicker(window: window, presentation: presentation)
         let emptyDelegate = try XCTUnwrap(empty.delegate)
         emptyDelegate.documentPicker?(empty, didPickDocumentsAt: [])
+        try await waitForDismissal(window: window, picker: empty)
         try await waitFor("empty picker error after dismissal") {
             window.rootViewController?.presentedViewController == nil && model.errorMessage != nil
         }
@@ -127,6 +148,7 @@ final class DocumentImportTests: XCTestCase {
         cancelledDelegate.documentPicker?(cancelled, didPickDocumentsAt: [sample])
         XCTAssertTrue(model.books.isEmpty)
         retryDelegate.documentPicker?(retry, didPickDocumentsAt: [sample])
+        try await waitForDismissal(window: window, picker: retry)
         try await waitFor("retry imports exactly once") { model.books.count == 1 && !model.isImporting }
         XCTAssertNil(model.errorMessage)
         XCTAssertEqual(model.importStatus, "已导入 1 本书")

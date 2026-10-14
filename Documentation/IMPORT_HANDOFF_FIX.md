@@ -14,4 +14,6 @@
 
 模拟器向 delegate 提供项目原创文件 URL，没有操作系统文件浏览器/实际 iCloud 下载的自动化，也没有代替用户 iPhone/TrollStore 实测。旧 EPUB 冷打开回归的历史超时是另一个未确认问题，不合并为首次文件导入故障。
 
-旧交接候选80e503d / CI38563181206等待结果；工作区参考模型修复 Build6 尚未完整编译。Windows380语法新增0/pristine54限制保留、14 tooling通过，仅代表自动静态检查。完整 Core68/iOS49/设备Release结果与源码/锁/IPA核验另记 M2_IMPORT_HANDOFF_VALIDATION_REPORT.json。Build4/Build5 IPA与测试ZIP均保留，新的验证不能覆盖它们的历史证据。
+旧交接候选80e503d / CI38563181206已结束：各68 Core、iOS48/49。首次TXT/EPUB成功，提取后的旧交接在iOS18.5未复现用户设备现象；新增取消/空选择/重试测试启动时，系统DocumentManager向deallocated host proxy发消息，NSInternalInconsistencyException致进程退出。test65/附件0/summary0，Release/IPA未执行。完整日志/xcresult和ValidationLogs/m2-import-native-sheet-baseline-failure.json保留，不把系统崩溃或首次成功写成已确定设备根因。
+
+参考模型修复 e858ee6 / Build6 / 独立分支codex/import-first-selection / CI38564595658运行中，尚未完整编译验收。Windows380语法新增0/pristine54限制保留、14 tooling通过，仅代表自动静态检查。完整 Core68/iOS49/设备Release结果与源码/锁/IPA核验另记 M2_IMPORT_HANDOFF_VALIDATION_REPORT.json。Build4/Build5 IPA与测试ZIP均保留，新的验证不能覆盖它们的历史证据。

@@ -6,7 +6,11 @@
 
 2026-10-14 新反馈：用户报告 TXT 可正常导入，但首次选择文件后不生效，EPUB 也曾同样发生。本轮先修共同的 Document Picker → sheet 关闭 → 导入任务交接，不进入 M3。已核实 main/原空 index 与旧未提交改动保留、无既有运行任务。现将生产弹窗交接原样提取到 DocumentImportSheet（仍旧 @State pendingImport，尚未修复），增加 3 个真实 SwiftUI sheet / UIKit delegate / 数据库回归：冷首次 TXT、冷首次 EPUB、取消/空选择/重试和迟到文件。旧交接复现候选80e503dd810e74b56cb4b431c443d78b37c6afeb，CI38563181206已真实启动，bootstrap=false；期望 Core68/iOS49，Build仍5且不会把失败打包交付。Windows380语法新增0/pristine54保留、14 Python tooling通过；不是编译结果。CI编译/回归仍待完成。Build4/Build5及全部历史失败仍保留。
 
-工作区随后已准备参考模型交接修复：移除 pendingImport @State，LibraryViewModel 持有结果并在 onDismiss 消费一次，DocumentImportSheet 由生产 LibraryView 与原生测试共用；project.yml Build6。用户已明确“选择器关闭了，但书架没有新书，也没有提示”，已记设备文档。Windows380语法新增0通过。运行中的38563181206仍是不可变旧交接80e503d，只用于复现，不能把它的结论写成Build6结果。当前即将快照/构建Build6，使用独立codex/import-first-selection ref dispatch，避免同branch concurrency取消旧验证；预计Core68/iOS49/Release，所有结果尚未通过。
+工作区随后已准备参考模型交接修复：移除 pendingImport @State，LibraryViewModel 持有结果并在 onDismiss 消费一次，DocumentImportSheet 由生产 LibraryView 与原生测试共用；project.yml Build6。用户已明确“选择器关闭了，但书架没有新书，也没有提示”，已记设备文档。Windows380语法新增0通过。运行中的38563181206仍是不可变旧交接80e503d，只用于复现，不能把它的结论写成Build6结果。Build6源码e858ee6070dcb95bec1ff0f5809c4d7585ba1755已隔离快照/正常push（main/原index未动），CI38564595658已启动，独立codex/import-first-selection ref / bootstrap=false，避免取消旧验证；预计Core68/iOS49/Release，所有结果尚未通过。M2_IMPORT_HANDOFF_VALIDATION_REPORT.json记录精确来源及旧包hash，完整下载日志/xcresult/IPA须在结束后核验，不能根据网页尾部判断阶段。
+
+旧交接CI38563181206已结束：各68 Core、iOS48/49、0 skipped；新首次TXT/EPUB均成功，提取后的旧交接在iOS18.5没有复现用户iOS16.6.1故障。取消/空选择/重试测试启动时系统DocumentManager向deallocated host proxy发消息，NSInternalInconsistencyException导致测试进程崩溃（xcresult计1失败，保留两条异常），其余既有阅读测试通过；test65/附件0/summary0，Release/IPA未执行。原始run/full/Core/Apple日志/xcresult已下载到build/ci/38563181206，ValidationLogs/m2-import-native-sheet-baseline-failure.json完整记录。不把它归类为产品pendingImport丢失、编译失败或成功；Build6自动CI38564595658仍待结束，首次交接参考模型修改为防止页面状态快照问题，设备根因尚未证实。
+
+Build6初轮38564595658/e858ee6已结束，完整原件下载：各68 Core、iOS48/49、0 skipped；首次TXT/EPUB成功，新增取消/重试再次同一DocumentManager deallocated host proxy崩溃，test65/附件0/summary0，Release/IPA未执行。记录m2-import-build6-native-sheet-lifetime-failure.json，不重试相同挂断时序碰运气。工作区仅修测试等待：首呈现需真实picker及父呈现controller均完成transition，关闭需view已脱离window/transition结束，而非仅presentedViewController变nil；实际picker在host teardown内保留。保留全部首次/取消/空选择/迟到/数据库/原件断言和15秒deadline，没有吞系统异常或增加timeout。生产参考模型修复不变，当前即将Windows检查与新完整CI，Build6仍待通过。
 
 **TXT导入/Readium阅读/完整位置已接入Build5，完整自动CI通过；下一步设备TXT与数十MB冷导入/cache重开验收，完整M2尚未完成。** 不提前大规模进入M3/M4。
 
