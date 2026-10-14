@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-14T13:54:39.831085+00:00",
+  "run": 38572197917,
+  "sourceRevision": "0afe45ef6764f3954b41c7f383fe98ff9f662181",
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "metadataWarningCount": 6,
+  "sqliteTemporaryTestCleanupDiagnosticCount": 18,
+  "sqliteScope": "Messages identify tmp UUID/library.sqlite or WAL test roots. DocumentImportTests.context teardown removes these roots while repository objects can still be held by XCTest teardown closures. No production database deletion was added.",
+  "sqliteTestCleanupLifetimeFollowupPending": true,
+  "rawDiagnosticsPreserved": true,
+  "WebKitDiagnosticsPreserved": true,
+  "logs": [
+    {
+      "path": "build/ci/38572197917/full.log",
+      "sha256": "775eee039aa076cac78067131aa9c33156e521b4733465c71c2823b76cf3f5e4"
+    },
+    {
+      "path": "build/ci/38572197917/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "sha256": "861a79537a0bece6927c6d504f7e6f970531bcf7e7e38f653c4ae8915e3dcb6b"
+    }
+  ]
+}

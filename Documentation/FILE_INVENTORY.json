@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T13:28:36.159649+00:00",
+  "recordedAtUTC": "2026-10-14T13:55:25.186520+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 570,
+  "fileCount": 576,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 17617,
-      "sha256": "0344d618a899a674b21b8e6dfbb6eab23379cb00e4e28523f21ad3edad8f6174"
+      "bytes": 17797,
+      "sha256": "c4558a26d762abdfbbbc5d70cdfe8f4c9ba820150147c5e03eef3ae8796b434c"
     },
     {
       "path": "App/AppRootView.swift",
@@ -155,8 +155,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 7769,
-      "sha256": "c8b353feaaca7cebd7081f054abf0e9e2cc09b398e01b872b84ab38a7d531025"
+      "bytes": 8449,
+      "sha256": "c41a06c0137d787283faa1586241430ae378158e7cde6bc11f143bc8af7cc8aa"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -165,8 +165,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 4055,
-      "sha256": "391eec18cef98e356482185551670c087c79bd8512e32220ce9451b251acea77"
+      "bytes": 4619,
+      "sha256": "60249648eb4bf44ec56745dd7606a3f3090f0ebbd7929f801782006db7ea7452"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -185,8 +185,8 @@
     },
     {
       "path": "Documentation/IMPORT_DELEGATE_FIX.md",
-      "bytes": 4241,
-      "sha256": "180ebd973ee1fac461d270e7a237d1924364e425ad7f5008de4de016e37da90d"
+      "bytes": 5066,
+      "sha256": "eed72dcb58e786f7ceee5e91748d10beb09cf50d5d367153a8d88fabbbce5e1c"
     },
     {
       "path": "Documentation/IMPORT_FIX.md",
@@ -195,8 +195,8 @@
     },
     {
       "path": "Documentation/IMPORT_HANDOFF_FIX.md",
-      "bytes": 5219,
-      "sha256": "e48171265e4b9e77026612b8344ace79fcb135b9fec052880fe1134873fb2fa1"
+      "bytes": 5535,
+      "sha256": "33daebed09aa11c3ece4b718456d62d2babcedcbef4503bc48c29df3d72a128b"
     },
     {
       "path": "Documentation/IOS_VALIDATION_REPORT.json",
@@ -241,12 +241,12 @@
     {
       "path": "Documentation/M2_IMPORT_DELEGATE_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "2557d1a6bcdc188a5eb5ac1b70f613e215a54e01449aa296fa9f09984243840b"
+      "sha256": "af0b922f4482421fd4d3564c31484a683156849d2e21c14a37f1a7710243c4b2"
     },
     {
       "path": "Documentation/M2_IMPORT_DELEGATE_VALIDATION_REPORT.json",
-      "bytes": 86136,
-      "sha256": "ad5bb5ec3111e8f177553f683c55dc7e204da613bc42ae36ab0d3609bd55e26d"
+      "bytes": 98641,
+      "sha256": "b038524d713fc2e5fd2b3c39387de7a9097b80e65ea7a8b48b4da5e08b5e7a0a"
     },
     {
       "path": "Documentation/M2_IMPORT_HANDOFF_STATIC_REPORT.json",
@@ -529,6 +529,31 @@
       "sha256": "94096f76e370d95534fc0f1ecaa1d8f1e6fc49a58fa67f83cc57ff94c33d9ce9"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-import-build7-first-candidate-failure.json",
+      "bytes": 3442,
+      "sha256": "00b345aa00658580e03c34c2e0317b7cf3092556d05d9941aa2ed49c0ca71a84"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-import-build7-native-visual-review.json",
+      "bytes": 1492,
+      "sha256": "6a682748c7dc16c5a26589998eb146f2185a23235ac6cbed88006cad23a76f13"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-import-build7-runtime-diagnostics.json",
+      "bytes": 1018,
+      "sha256": "feefa0b57f43118099471c231293862f2ffabe636648bb9056b96e429fa427b0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-import-build7-test-kit.json",
+      "bytes": 593,
+      "sha256": "6f2b2fb0c1462942b81194d38fee8f7ef15efc9d6856f462b512dca670d6ceee"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-import-delegate-build7-success.json",
+      "bytes": 5699,
+      "sha256": "03f87139fae0fc6774c1a37d5a5114c0ff862644894e76e33f0a4dcd8a20b242"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-import-handoff-build6-success.json",
       "bytes": 5673,
       "sha256": "459680ac9d4fbaffd096f81b270edff26cae9705cfa2f9b52a32dc8ed126c3c6"
@@ -630,8 +655,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 10148,
-      "sha256": "d0c489965fd3d3bf6218a21b984854c3cbcd07f14a208dbe1c72e50041105c22"
+      "bytes": 7312,
+      "sha256": "eb27db825dd843d163dfe2e09f34d08af53211684faa5f78bb467f68922f9b88"
+    },
+    {
+      "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
+      "bytes": 12244,
+      "sha256": "a11ce543146ba15afbc47796892eb5cc473d7d264d3e4edfe1af7ad1ef5d692e"
     },
     {
       "path": "HANDOFF_IMPORT_HISTORY_2026-10-14.md",
@@ -665,8 +695,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 12804,
-      "sha256": "39bf9d214da5fa13f475b81ffcfeacf6456f6ce879be35c7a2865b92443ca62a"
+      "bytes": 13477,
+      "sha256": "020404b2cc3df5e795449e0fe9d314c1d33ab6cc83734ce756c564f7893a72da"
     },
     {
       "path": "Package.resolved",
@@ -890,13 +920,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 12270,
-      "sha256": "55f6be74603a3549b010931a67f5ee88f540c86a0ed806a0e186340d2cbcc13a"
+      "bytes": 12834,
+      "sha256": "5e3b6f384582f9bc76a58bf82d6683d4b22de4fb9b0bf4240a00fd41c5e56b41"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 7354,
-      "sha256": "28bcafc15c1069ddf8c1b50ef528f3672eb9b9d0a73cf012877be2c276821f6d"
+      "bytes": 7918,
+      "sha256": "d17542326d438a880de5c8064edf949d52d4cbe4499068d5ed373e559d41713f"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

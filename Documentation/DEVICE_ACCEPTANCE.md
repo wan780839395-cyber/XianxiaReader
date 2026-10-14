@@ -2,6 +2,8 @@
 
 ## 当前设备与状态
 
+2026-10-14最新：用户报告Build6上下文首次导入仍无反应/提示，第二次可成功/报错，设备首次验收失败；实际安装Build/OS尚未独立读取。Build7随后通过CI38572197917（各68Core/55iOS/Release），新包build/XianxiaReader-Import-Build7-TestKit.zip / SHA5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172。正常更新保留书库，+菜单确认0.0.1 (7)，完全退出重开后第一次选TXT，再重开第一次选EPUB，分别本地/已下载iCloud、取消/错误、旧书库。引用生命周期/无关闭事件/完整书架回归通过不代替真实Files/用户设备确认；M2完整设备/长书仍待验收。
+
 2026-10-14 后续反馈：用户报告TXT可导入，但第一次选择后系统选择器关闭、书架无新增且无提示，之前EPUB也相同。Build6引用模型交接已通过CI38566503849（各68Core/49iOS/Release），新包build/XianxiaReader-Import-Build6-TestKit.zip / SHA 112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c。正常更新并保留书库，完全退出重开后首次选TXT，再重开首次选EPUB，分别测本地/已下载iCloud及取消后再选择。自动原生sheet回归提供fixture URL到delegate，不代替真实File Provider/iCloud/用户设备；首次设备故障的唯一根因仍未证实，待Build6实测。部分导入可用不等于完整TXT阅读/性能通过。
 
 ### TXT Build5准备（尚未设备验收）

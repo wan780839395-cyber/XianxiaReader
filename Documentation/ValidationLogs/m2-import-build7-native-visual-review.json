@@ -1,0 +1,26 @@
+{
+  "run": 38572197917,
+  "sourceRevision": "0afe45ef6764f3954b41c7f383fe98ff9f662181",
+  "images": [
+    {
+      "path": "build/ci/38572197917/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/48414D83-D8B2-4902-958C-84F1E3D21BC2.png",
+      "name": "library-first-import-error_0_8DC2D570-E8DF-4F4B-A28A-06D580D29075.png",
+      "sha256": "a1a8410b83d071ad53d8ae95d92e94f50f0256ddef2048d3cc75b3c4a11f01f9",
+      "bytes": 362738,
+      "test": "DocumentImportTests/testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry()",
+      "reviewed": true,
+      "observation": "Error text and close control visible on empty shelf."
+    },
+    {
+      "path": "build/ci/38572197917/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/78D3FFAD-FF5C-4807-83FD-EE847B5D25E0.png",
+      "name": "library-first-txt-success_0_A13F0D9D-5BCE-4A16-917A-9562A6C1E199.png",
+      "sha256": "fa375e57ec246534f2136f3725dc7e2798f168ee1082a2f5893b58880d7af9ab",
+      "bytes": 639025,
+      "test": "DocumentImportTests/testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry()",
+      "reviewed": true,
+      "observation": "Imported book card and success status visible; screenshot does not include complete navigation bar, so full page transition/layout is not accepted."
+    }
+  ],
+  "scope": "Actual iOS18.5 UIHostingController LibraryView screenshots for import feedback; no user device/File Provider automation or full M3 layout acceptance.",
+  "deviceAccepted": false
+}

@@ -25,3 +25,5 @@
 参考模型修复 e858ee6 / Build6 / CI38564595658同样各68Core/iOS48/49，首次TXT/EPUB通过，取消/重试再次发生上述系统异常；未执行Release/IPA，完整失败原件保留。生产修复没有改动，后续仅修测试的呈现/关闭时序：真实picker和父controller的transition结束、关闭后view脱离window，picker保留到host teardown，而非仅等待presentedViewController为nil。全部行为/数据库/原件断言与15秒deadline保留；未吞异常或增加timeout。
 
 最新5522489 / codex/import-first-selection / CI38566503849已全部成功：各68Core/iOS49/49/Build6设备Release，0 failed/skipped，test/附件/summary退出码0；456运行Git blob SHA及根/下载/workspace锁匹配。Windows380语法新增0/pristine54限制保留、14 tooling通过，语法不是编译。新IPA/测试ZIP已核验，报告M2_IMPORT_HANDOFF_VALIDATION_REPORT.json / ValidationLogs/m2-import-handoff-build6-success.json / m2-import-build6-test-kit.json。用户iOS16.6.1首次导入仍待实测，旧交接未在iOS18.5复现，不能把本轮自动通过写成设备根因已证实。Build4/Build5 IPA与ZIP均保留。
+
+后续设备反馈否定Build6首次验收：用户报告软件首次导入仍无反应/提示，第二次正常。Build6自动证据保持历史范围，最新Build7去除onDismiss依赖并处理弱delegate生命周期，详见IMPORT_DELEGATE_FIX.md与HANDOFF；不再把本页方案写成设备修复已通过。

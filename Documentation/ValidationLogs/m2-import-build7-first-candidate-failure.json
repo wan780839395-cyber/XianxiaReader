@@ -1,0 +1,91 @@
+{
+  "recordedAtUTC": "2026-10-14T13:36:03.490485+00:00",
+  "run": 38570937418,
+  "sourceRevision": "5020bca0406fa9823db6e270563f283df74739c9",
+  "runConclusion": "failure",
+  "CoreEach": 68,
+  "iOSSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 52,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1791984729.959,
+    "passedTests": 52,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1791984351.804,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "DocumentManager service tried to send a message to a deallocated host proxy (NSInternalInconsistencyException)",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 10,
+        "testIdentifierString": "DocumentImportTests/testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/DocumentImportTests/testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles",
+        "testName": "testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "16% of duration",
+        "text": "1 longest test run with outlier durations exceeding 8.59s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 53
+  },
+  "firstSelectionTestsPassed": {
+    "testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry": true,
+    "testFirstEPUBSelectionThroughNativeSheetImportsWithoutRetry": true
+  },
+  "scope": "Full production LibraryView on iOS18.5; first TXT/EPUB, first error/retry, existing shelf/encoding and independent-of-dismissal import passed. Cancellation/retry hit system DocumentManager exception; not a verified device first-import cause.",
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "ReleaseExecuted": false,
+  "IPAPublished": false,
+  "artifacts": [
+    {
+      "path": "build/ci/38570937418/full.log",
+      "bytes": 1897673,
+      "sha256": "d24c1d1d0c10b38f8b2b03c48b89354a2772c97cc00f7f32134ac7581de2d86c"
+    },
+    {
+      "path": "build/ci/38570937418/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1314519,
+      "sha256": "18712904ef7fca8e4be5635f2d964246a3ed13fab95e277a2070f97aee54e82f"
+    },
+    {
+      "path": "build/ci/38570937418/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1786,
+      "sha256": "819664d8021debeb1912a278013fc92f0f54b65bd59b69afd8e1b37bc0042c35"
+    }
+  ],
+  "latestWorkspaceNotCovered": {
+    "sourceRevision": "0afe45ef6764f3954b41c7f383fe98ff9f662181",
+    "run": 38572197917,
+    "iOSTestsExpected": 55,
+    "delegateLifetimeRegressions": 2
+  }
+}

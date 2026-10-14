@@ -23,3 +23,7 @@ Build6把结果从页面State移到LibraryViewModel，但仍要等sheet.onDismis
 再新增2项生命周期回归：wrapper/context销毁后仅shelf持有delegate，旧Coordinator替换/迟到事件过滤且终止后释放；完整LibraryView先关闭picker，再只通过弱delegate送达第一次选择仍导入。后一项不强持有delegate来掩盖ARC生命周期。
 
 模拟器仍向实际delegate提供原创fixture URL，尚未自动点击系统Files选中云端文件，不能宣布已证明用户设备唯一根因。Windows381 grammar新增0/pristine54限制保留、14 tooling通过，非Swift编译。当前期望各68Core/iOS55/Build7设备Release，本轮尚未完成；前一5020bca/38570937418为53项候选，不覆盖新增生命周期。确切源码/CI/完整结果另记M2_IMPORT_DELEGATE_VALIDATION_REPORT.json。M2设备/数十MB长书及M3/M4门槛不变。
+
+## 完整验证结果
+
+CI38572197917/0afe45ef6764f3954b41c7f383fe98ff9f662181全成功：各68Core/iOS55/55/Build7设备Release，0 failed/skipped，test/附件/summary全0，457运行Git blob SHA及三份锁匹配。381语法/14 tooling通过，源码compiler warnings/errors0；metadata/WebKit/tmp SQLite清理诊断原样保留并单列，测试清理生命周期待维护。两个真实书架PNG已核对首次错误/关闭按钮及书籍/成功状态，成功PNG不覆盖完整导航栏/整页布局。新IPA与ZIP已核验（m2-import-build7-test-kit.json），Build4/5/6旧六包不变。初轮5020bca/38570937418为52/53系统DocumentManager崩溃，原件保留，最新含生命周期回归全部通过，不宣称系统bug已修复或用户设备唯一根因已确认。设备Build7首次选择待用户实测。
