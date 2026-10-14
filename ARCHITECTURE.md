@@ -85,6 +85,8 @@ Build3的官方Readium3.11 `scroll` 仅章内滚动。连续跨章候选通过 `
 
 连续候选位置保持标准Locator href/CSS/text/progression，并附加DOMRange字符位置及版本化局部视口偏移；只取64字符上下文。超长单段不退回段首。原搜索Locator继续走Readium文本定位；仅标记过的连续保存锚点使用精确字符恢复。异步位置/测量结果核对资源epoch和视口revision，未加载资源不发出假位置。close显式取消窗口任务、恢复待定位continuation并移除JS handlers。以上行为尚须iOS回归通过。
 
+模式转换先异步取得实际DOM锚点，request ID/Task取消与Navigator identity防止迟到切换作用于新session。Readium的isSpreadLoaded早于延迟初始定位/decoration完成，因此增加显式完整初始化等待，clear也恢复等待者；原生go期间暂缓容器覆盖inner offset。go后读取DOM scrollY作为实际坐标，显式目录/搜索/书签定位原子提交外层offset，普通拖动/惯性与按屏滚动保留原路径。所有修复以完整CI为准，不能仅凭可见DOM就把位置恢复写成验收通过。
+
 实际窗口测试通过公开 UIKit/WebKit API 检查 DOM、完整原生 Locator 和可视区域。DOM `readyState` 与 Readium 原生位置就绪分别等待；预加载 WebView 必须在两个轴上与 viewport 重叠才算当前页。快照保存在 xcresult，几何断言与视觉复查分别记录；原创样书通过不代表用户书籍完成设备验收。
 
 `ReaderEngine` 提供渲染控制器、分页、章节/位置跳转、滚动模式、事件回调；业务层只持有 `ReadingPosition`。持久化完整 Locator JSON，包括 href、fragment、资源/全书 progression 与文本上下文，并带 `engineID`/版本。不能用一个浮点百分比代替可靠位置恢复。

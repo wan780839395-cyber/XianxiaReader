@@ -1,0 +1,45 @@
+{
+  "run": 38505001863,
+  "sourceRevision": "b68ac63deed11d009992b6d8d861e81eb862d2dc",
+  "iOSPassed": 36,
+  "iOSFailed": 3,
+  "iOSTotal": 39,
+  "failures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousBoundaryShowsTwoResourcesAndScrollsBack():248",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 18,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousBoundaryShowsTwoResourcesAndScrollsBack()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+      "testName": "testContinuousBoundaryShowsTwoResourcesAndScrollsBack()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousHeightChangeKeepsVisibleDOMAnchor():324",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 20,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "testName": "testContinuousHeightChangeKeepsVisibleDOMAnchor()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 22,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+    }
+  ],
+  "actualLongParagraph": {
+    "innerY": 2367,
+    "longViewportY": -599.125,
+    "persistedCharOffset": 2
+  },
+  "actualHeightChange": {
+    "innerY": 446,
+    "line12ViewportY": 857.875
+  },
+  "actualFirstBoundary": "about:blank, position nil; timed out",
+  "releaseBuilt": false,
+  "ipaProduced": false
+}

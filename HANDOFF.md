@@ -30,6 +30,10 @@
 
 恢复子步骤12（又一完整结果后/下一CI前）：38503347131结果/全日志/summary已下载，模式往返通过，但height/long及retry坐标仍失败，Release/IPA未执行；准确数量见ValidationLogs/m1-continuous-native-offset-lag.json。暂停layout同步/完整初始化等待没有解决全部重置，不把前轮猜测当已证实单一原因。继续修正为从JS window.scrollY读取go后的实际文档坐标（原生UIScrollView值可滞后）；显式目录/搜索/书签go用原子外层定位，避免旧动画覆盖高度补偿，正常用户drag/deceleration及上一屏/下一屏不改。caret额外验证横轴可见性。以下仅刷新hash/grammar后全套39 tests CI；保留失败日志和原断言，没有新IPA。
 
+恢复子步骤13：严格锁CI38505001863正在测试候选b68ac63deed11d009992b6d8d861e81eb862d2dc，静态/Core jobs成功；Windows362grammar/hash通过，14tooling无源码变更。仅文档更新不同于候选源码。已检查本地gh进程，无旧下载/挂起任务（只有本轮状态查询瞬时进程），Git暂存区仍为空，所有原改动保留。下一步必须读取本轮实际summary、39条test结果/完整日志与Release产物；当前最新已完成结果仍36/39部分通过，没有新IPA，不放行完整M1或设备。
+
+恢复子步骤14（新诊断后/再次CI前）：38505001863失败，完整日志/附件已下载；长段实际innerY2367、long top-599.125已正确，但Locator仍charOffset2，说明旧缓存未失效；height仍inner446，另首个boundary cold load停about:blank/position nil。源码发现layoutSlots无条件覆盖lastTrackedOffset可掩盖didScroll增量，已只在主动锚点补偿/空窗口重置时更新；measure锁定同一savedAnchor/revision后采用绝对DOM锚点目标，拒绝旧异步测量覆盖新锚点。未ready WebView提供非hidden/有效frame启动Readium rAF，不扩展contentSize或展示未加载邻章，loading/retry控件置前。Windows362grammar/hash通过，保留39 tests和20s watchdog/原断言；下一全套CI，未生成Release/IPA。准确summary稍后核对，不将新修复写成已通过。
+
 2026-10-14继续开发检查点：已核对Git clean、最新Build3报告和无遗留任务。当前开始真正纵向连续跨章独立M1切片。方案为保留Readium3.11上游来源与BSD许可的本地Navigator扩展（非官方已合并功能），使用有界章节窗口及固定尺寸WKWebView viewport，复用Readium解析/资源/CSS/DOM定位。正式源码/依赖/锁文件变更均须真实解析与完整CI，当前尚未实现/编译。旧Build3产物与原分页/章内滚动/搜索回归保留。
 
 M0自动门槛通过；M1搜索、导入、阅读视口/图片切片已通过完整CI，**完整M1尚未验收，真正纵向无缝跨章未实现**。本轮构建/下载/产物核验/原创样书快照复查已完成；无运行中的项目构建/测试或未完成登录/UAC。下一步是现有iPhone13上复测原书图片，并继续独立M1连续滚动引擎切片，不进入M2/M4。

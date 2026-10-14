@@ -240,6 +240,7 @@ import UIKit
     private func measure(_ index: Int, slot: Slot, request: UUID) async {
         let anchorJSON: String
         let measuredRevision = viewportRevision
+        let measuredAnchor = slot.savedAnchor
         do {
             anchorJSON = try slot.savedAnchor?.jsonString() ?? "{}"
         } catch {
@@ -279,14 +280,20 @@ import UIKit
             let height = max(96, CGFloat(number.doubleValue) + 24)
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
-            let anchorDelta: CGFloat = index == currentIndex && viewportRevision == measuredRevision
-                ? (newAnchorY.flatMap { new in slot.anchorDocumentY.map { new - $0 } } ?? 0) : 0
-            if let newAnchorY, viewportRevision == measuredRevision { slot.anchorDocumentY = newAnchorY }
+            let mayRestoreAnchor = index == currentIndex && measuredAnchor != nil
+                && slot.savedAnchor == measuredAnchor && viewportRevision == measuredRevision
+            let desiredLocal: CGFloat? = mayRestoreAnchor ? newAnchorY.map { y in
+                y - CGFloat(measuredAnchor?.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0)
+            } : nil
+            if let newAnchorY, mayRestoreAnchor { slot.anchorDocumentY = newAnchorY }
             slot.height = height
             slot.ready = true
             if changed {
                 layoutSlots(preserveAnchor: true)
-                if abs(anchorDelta) > 0.5 { contentOffset.y += anchorDelta }
+            }
+            if let desiredLocal, let currentSlot = slots[currentIndex] {
+                let desired = currentSlot.wrapper.frame.minY + desiredLocal - contentInset.top
+                if abs(contentOffset.y - desired) > 0.5 { contentOffset.y = desired }
             }
         case let .failure(error):
             slot.failure = "章节布局失败：\(error.localizedDescription)"
@@ -320,8 +327,15 @@ import UIKit
         previousBoundary.text = slots[(indices.first ?? currentIndex) - 1]?.failure ?? "正在加载上一章…"
         for index in slots.keys.sorted() {
             guard let slot = slots[index] else { continue }
-            slot.wrapper.isHidden = !indices.contains(index)
-            guard indices.contains(index) else { continue }
+            slot.wrapper.isHidden = slot.failure != nil
+            guard indices.contains(index) else {
+                // WKWebView needs a real, non-hidden viewport to run Readium's
+                // load/requestAnimationFrame handshake. Unready neighbours
+                // stay outside the finite content range, never as blank pages.
+                let pendingY: CGFloat = index == currentIndex && indices.isEmpty ? 0 : contentSize.height + viewportHeight
+                slot.wrapper.frame = CGRect(x: 0, y: pendingY, width: bounds.width, height: viewportHeight)
+                continue
+            }
             slot.wrapper.frame = CGRect(x: 0, y: y, width: bounds.width, height: slot.height)
             y += slot.height
         }
@@ -338,14 +352,19 @@ import UIKit
         contentSize = CGSize(width: bounds.width, height: max(viewportHeight, y))
         if preserveAnchor, let origin = slots[currentIndex]?.wrapper.frame.minY, !indices.isEmpty {
             let desired = origin + local - contentInset.top
-            if abs(contentOffset.y - desired) > 0.5 { contentOffset.y = desired }
+            if abs(contentOffset.y - desired) > 0.5 {
+                contentOffset.y = desired
+                lastTrackedOffset = contentOffset.y
+            }
         } else if indices.isEmpty {
             // The current DOM was released or failed. Keep its loading/retry
             // controls on screen instead of retaining a now-invalid offset.
             contentOffset.y = -contentInset.top
+            lastTrackedOffset = contentOffset.y
         }
         updateViewports()
-        lastTrackedOffset = contentOffset.y
+        bringSubviewToFront(previousBoundary)
+        bringSubviewToFront(boundary)
     }
     private func updateViewports() {
         for index in readyIndices {
