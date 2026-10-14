@@ -156,6 +156,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         } else { return }
         guard let anchor else { return }
         let previous = currentLocation?.href.isEquivalentTo(anchor.href) == true ? currentLocation : nil
+        locationUpdateRevision &+= 1
         currentLocation = anchor.copy(title: previous?.title, locations: {
             $0.progression = previous?.locations.progression
             $0.totalProgression = previous?.locations.totalProgression
@@ -597,6 +598,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private var paginationView: PaginationView?
     private var infiniteScrollView: EPUBInfiniteScrollView?
+    private var locationUpdateRevision: UInt64 = 0
 
     private func makePaginationView(hasPositions: Bool) -> PaginationView {
         let view = PaginationView(
@@ -671,6 +673,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         let locator = currentLocation
 
         guard on(.load(locator)) else { return }
+        locationUpdateRevision &+= 1
 
         // In infinite scroll mode each chapter is always single-page (no double spreads).
         spreads = EPUBSpread.makeSpreads(
@@ -776,7 +779,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             )
             let anchor = await isv.firstVisibleElementLocator()
             guard infiniteScrollView === isv, request == isv.viewportIdentity else { return (nil, nil) }
-            if let anchor, let locator, anchor.href.isEquivalentTo(locator.href) {
+            guard let anchor else { return (nil, nil) }
+            if let locator, anchor.href.isEquivalentTo(locator.href) {
                 return (anchor.copy(title: locator.title, locations: {
                     $0.progression = locator.locations.progression
                     $0.totalProgression = locator.locations.totalProgression
@@ -826,7 +830,14 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             return
         }
 
-        (currentLocation, viewport) = await computeCurrentLocationAndViewport()
+        let revision = locationUpdateRevision
+        let activeInfiniteView = infiniteScrollView
+        let activePaginationView = paginationView
+        let (location, computedViewport) = await computeCurrentLocationAndViewport()
+        guard locationUpdateRevision == revision, infiniteScrollView === activeInfiniteView,
+              paginationView === activePaginationView, let location else { return }
+        currentLocation = location
+        viewport = computedViewport
 
         if
             let delegate = delegate,

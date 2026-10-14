@@ -47,7 +47,10 @@ import UIKit
     static let maximumLoadedResourceCount = 12
     var loadedViews: [Int: EPUBSpreadView] { slots.mapValues { $0.view } }
     var currentView: EPUBSpreadView? { slots[currentIndex]?.view }
-    var isCurrentResourceReady: Bool { slots[currentIndex]?.ready == true }
+    var isCurrentResourceReady: Bool {
+        guard let slot = slots[currentIndex] else { return false }
+        return slot.ready && !slot.positioning && slot.failure == nil
+    }
     var viewportIdentity: String { "\(epoch):\(currentIndex):\(viewportRevision)" }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
@@ -284,7 +287,7 @@ import UIKit
             let height = max(96, CGFloat(number.doubleValue) + 24)
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
-            let mayRestoreAnchor = index == currentIndex && measuredAnchor != nil && measuredAnchorIsCurrent
+            let mayRestoreAnchor = index == currentIndex && !slot.positioning && measuredAnchor != nil && measuredAnchorIsCurrent
                 && slot.savedAnchor == measuredAnchor && savedAnchorMatchesViewport(slot, revision: measuredRevision)
                 && viewportRevision == measuredRevision
                 && abs(viewportTop - slot.wrapper.frame.minY - measuredLocalTop) < 0.5
@@ -422,7 +425,7 @@ import UIKit
         return abs(viewportTop - slot.wrapper.frame.minY - savedTop) < 0.5
     }
     func firstVisibleElementLocator() async -> Locator? {
-        guard let slot = slots[currentIndex], slot.ready else { return nil }
+        guard let slot = slots[currentIndex], slot.ready, !slot.positioning else { return nil }
         let clipTop = max(0, viewportTop - slot.wrapper.frame.minY - slot.view.frame.minY)
         let clipBottom = min(viewportHeight, slot.height - slot.view.frame.minY)
         let request = epoch
@@ -438,7 +441,13 @@ import UIKit
             do {
                 let documentY = try await slot.view.continuousAnchorDocumentY(anchor)
                 guard epoch == request, currentIndex == index, slots[index] === slot, viewportRevision == revision,
-                      abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
+                      !slot.positioning, abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
+                // The DOM caret and its document coordinate are obtained in
+                // separate WebKit callbacks. Reject a snapshot from before
+                // the inner document caught up with the outer viewport.
+                guard let documentY,
+                      let offset = anchor.locations.otherLocations["xianxiaViewportOffset"]?.double,
+                      abs(documentY - CGFloat(offset) - max(0, localTop)) < 1 else { return nil }
                 slot.anchorRevision = revision
                 slot.anchorViewportTop = localTop
                 slot.savedAnchor = anchor

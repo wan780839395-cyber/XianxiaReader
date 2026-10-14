@@ -126,6 +126,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         webView.uiDelegate = nil
         scrollView.delegate = nil
         onContinuousInitializationReady.complete()
+        onSpreadLoadedCallbacks.complete()
         webView.stopLoading()
 
         spreadLoadTask?.cancel()
@@ -199,12 +200,14 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             guard let self else { return }
             defer { self.continuousBootstrapTask = nil }
             self.webView.layoutIfNeeded()
-            let result = await self.evaluateScript("document.readyState === 'complete' && typeof window.readium?.scrollToLocator === 'function' && innerWidth > 0 && innerHeight > 0")
-            guard !Task.isCancelled, !self.wasCleared else { return }
-            switch result {
-            case let .success(value):
+            do {
+                // The normal Readium evaluator waits for spreadLoaded. This
+                // bootstrap probe must run directly, before that signal.
+                let value = try await self.webView.evaluateJavaScript("document.readyState === 'complete' && typeof window.readium?.scrollToLocator === 'function' && innerWidth > 0 && innerHeight > 0")
+                guard !Task.isCancelled, !self.wasCleared else { return }
                 if value as? Bool == true { self.spreadDidLoad(NSNull()) }
-            case let .failure(error):
+            } catch {
+                guard !Task.isCancelled, !self.wasCleared else { return }
                 self.log(.error, error)
             }
         }
@@ -218,6 +221,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     @discardableResult
     func evaluateScript(_ script: String, inHREF href: AnyURL? = nil) async -> Result<Any, Error> {
         await spreadLoaded()
+        guard !wasCleared, !Task.isCancelled else { return .failure(CancellationError()) }
 
         log(.trace, "Evaluate script: \(script)")
         return await withCheckedContinuation { continuation in

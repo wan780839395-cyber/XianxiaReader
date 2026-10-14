@@ -47,3 +47,7 @@ Windows/PowerShell/Git/Python可用，无本机Xcode/Swift。本轮未启动/重
 localTop锚点修复已创建候选54ffd91b1f532debf3a43be73d6a051e1c43bbe3并正常推送；完整CI38519173808已触发，bootstrap=false，预期40项iOS。本地HEAD6d76174/index为空继续保留。恢复先查询此run，不重跑ad555ab/39-of-40，也不假定最后修复或IPA成功。
 
 CI38519173808已完成并下载完整日志/xcresult：Linux/macOS各14 Core，iOS38/40、2 failed、0 skipped；失败在首次currentPosition等待334和重试恢复396，长段charOffset断言未执行，不能判定localTop补充的结果。stock Readium脚本window load后通过requestAnimationFrame发spreadLoaded，未ready的屏外资源可能暂停该回调。现补充WK didFinish/真实viewport+Readium脚本探针启动同一个完整初始化管线，单次启动防止native/JS重复完成取消；clear取消bootstrap task。新增抑制确切spreadLoaded rAF桥的真实窗口回归，验证正文跳转仍完成（预期41 tests）。这不是只凭DOM ready标记ready；CSS/原初始定位/decoration仍全部等待。新补充未编译，即将静态核验/来源hash并完整CI。
+
+native bootstrap补充已过Windows362 grammar/14 tooling，源码候选2a43ccdd42c3333d379bf2a442cfd936e7509424已正常推送。完整CI38521310543已触发，bootstrap=false，预期41 tests；恢复先查该run，不重跑已完成的38519173808。原HEAD6d76174/index为空、Build3和所有旧日志仍保留。
+
+CI38521310543已完成，原始日志/xcresult下载保留：native bootstrap回归失败在首次位置489；长段失败343时已退回章节local600，长段top+1167，Locator仍charOffset2，活跃caretOffsets是2/9/17（不是长段字符）。源码检查确认bootstrap错误地调用了会await spreadLoaded的Readium evaluateScript，构成循环等待；现改用原生WK evaluateJavaScript启动探针，并在clear释放该等待链/过滤清理后脚本。另阻止positioning时缓存/测量恢复，校验documentY减viewportOffset与实际localTop一致，拒绝UI/DOM不同步快照；模式/reload revision及view identity过滤旧异步位置，nil结果不清空可靠位置。41条回归保持，未降低任何字符/像素断言。新改动尚未编译，即将静态/来源hash与完整CI。
