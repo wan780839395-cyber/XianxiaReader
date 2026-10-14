@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-14T17:41:59.417637+00:00",
+  "source": "direct user reply to the Build8 phone test question",
+  "question": "Build8 在手机上导入长 TXT、目录跳转和重开位置是否正常？这会帮助确定何时进入 M3 书库界面阶段。",
+  "quote": "已测试，功能正常",
+  "acceptedWorkflows": [
+    "phone long TXT import",
+    "TOC navigation",
+    "reopen reading position"
+  ],
+  "sourceRevision": "1d4ee302daf32534fb367ccc1c4f4b5af8489fcd",
+  "run": 38587015887,
+  "deliveredIPASHA256": "db344d2b7da478639b79d7e7cf64554ef59e003dd8dd9fd1266cd21dd9ed15f4",
+  "deviceBuildOSHardwareIndependentlyRead": false,
+  "formatsAndProvidersIndividuallyReported": false,
+  "searchAndBookmarksIndividuallyReported": false,
+  "measuredDevicePerformance": false,
+  "ordinarySignedDeviceAccepted": false,
+  "fullTypographyAccepted": false,
+  "Build9DeviceAccepted": false,
+  "M2SelfUseBaselineAccepted": true,
+  "nextStage": "After current ANSI increment passes full automated gates, M3 library remains next; broader device matrix is tracked separately."
+}

@@ -4,8 +4,8 @@
 #include <limits.h>
 #include <stdbool.h>
 
-/* Keep complete GB18030 sequences together. This recognizes byte boundaries only;
-   the public SDK converter supplies all character mappings. */
+/* Keep complete legacy sequences together. The SDK supplies mappings except
+   Windows-936's documented standalone 0x80 euro extension on Apple. */
 static int complete_prefix(int encoding, const uint8_t *input, size_t count, size_t *prefix) {
     size_t index = 0;
     while (index < count) {
@@ -37,6 +37,22 @@ static int complete_prefix(int encoding, const uint8_t *input, size_t count, siz
     return 0;
 }
 
+static int convert_cf(CFStringEncoding encoding, const uint8_t *input, size_t count,
+                      uint8_t *output, size_t capacity, size_t *produced) {
+    *produced = 0;
+    if (count == 0) return 0;
+    CFStringRef text = CFStringCreateWithBytes(kCFAllocatorDefault, input, (CFIndex)count, encoding, false);
+    if (text == NULL) return 3;
+    CFIndex length = CFStringGetLength(text), used = 0;
+    /* lossByte=0 forbids replacement. Only complete output is published. */
+    CFIndex converted = CFStringGetBytes(text, CFRangeMake(0, length), kCFStringEncodingUTF8,
+                                        0, false, output, (CFIndex)capacity, &used);
+    CFRelease(text);
+    if (converted != length) return 2;
+    *produced = (size_t)used;
+    return 0;
+}
+
 int xr_legacy_to_utf8(int encoding, const uint8_t *input, size_t input_count,
                      uint8_t *output, size_t output_capacity,
                      size_t *consumed, size_t *produced) {
@@ -56,17 +72,29 @@ int xr_legacy_to_utf8(int encoding, const uint8_t *input, size_t input_count,
     if (status == 3) { *consumed = prefix; return status; }
     if (prefix == 0) return status;
     if (!CFStringIsEncodingAvailable(cf_encoding)) return 4;
-    CFStringRef text = CFStringCreateWithBytes(kCFAllocatorDefault, input, (CFIndex)prefix,
-                                             cf_encoding, false);
-    if (text == NULL) return 3;
-    CFIndex length = CFStringGetLength(text), used = 0;
-    /* lossByte=0 forbids replacement. Only complete output is published. */
-    CFIndex converted = CFStringGetBytes(text, CFRangeMake(0, length), kCFStringEncodingUTF8,
-                                        0, false, output, (CFIndex)output_capacity, &used);
-    CFRelease(text);
-    if (converted != length) return 2;
+    size_t total = 0, span = 0;
+    if (encoding == XR_TEXT_WINDOWS936) {
+        /* Microsoft CP936.TXT: standalone 0x80 -> U+20AC. Walk complete
+           character boundaries so a legal 0x80 trail (e.g. 0x8180) stays intact. */
+        size_t cursor = 0;
+        while (cursor < prefix) {
+            if (input[cursor] == 0x80) {
+                size_t used = 0;
+                int failure = convert_cf(cf_encoding, input+span, cursor-span, output+total, output_capacity-total, &used);
+                if (failure != 0) { *consumed = span; return failure; }
+                total += used;
+                if (output_capacity-total < 3) return 2;
+                output[total++] = 0xE2; output[total++] = 0x82; output[total++] = 0xAC;
+                cursor++; span = cursor;
+            } else { cursor += input[cursor] <= 0x7F ? 1 : 2; }
+        }
+    }
+    size_t used = 0;
+    int failure = convert_cf(cf_encoding, input+span, prefix-span, output+total, output_capacity-total, &used);
+    if (failure != 0) { *consumed = span; return failure; }
+    total += used;
     *consumed = prefix;
-    *produced = (size_t)used;
+    *produced = total;
     return status;
 }
 #else

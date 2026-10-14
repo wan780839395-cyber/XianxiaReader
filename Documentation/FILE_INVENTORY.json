@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T17:40:37.634398+00:00",
+  "recordedAtUTC": "2026-10-14T17:49:51.073272+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 597,
+  "fileCount": 600,
   "files": [
     {
       "path": ".gitattributes",
@@ -261,12 +261,12 @@
     {
       "path": "Documentation/M2_TXT_ANSI_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "905e7888ba217024df3fc27a5c5b87062a4e05c8a1e5e512a9ddb7b22548b291"
+      "sha256": "462e888d55a5ef0398116bce67f53bb51954c94283af0d45192023d79fc6c91d"
     },
     {
       "path": "Documentation/M2_TXT_ANSI_VALIDATION_REPORT.json",
-      "bytes": 90168,
-      "sha256": "f40312cc0e7749b03015f2226854e99b58bfa4f2ac21f8d1bd8eead990d1da22"
+      "bytes": 90293,
+      "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -285,8 +285,8 @@
     },
     {
       "path": "Documentation/M2_TXT_LONGBOOK_VALIDATION_REPORT.json",
-      "bytes": 121739,
-      "sha256": "9c4fe846ba7c3871739756264eeaa2bd1fa38563d3b63ec850671bbcc820cc4b"
+      "bytes": 119295,
+      "sha256": "b0d50cde093df6fd156c5a551eff8e2ff0ded92911585d0cdec35df848c43124"
     },
     {
       "path": "Documentation/M2_TXT_NORMALIZATION_STATIC_REPORT.json",
@@ -335,8 +335,8 @@
     },
     {
       "path": "Documentation/TXT_ANSI_COMPATIBILITY.md",
-      "bytes": 4583,
-      "sha256": "4a0a6c5a804d48988ab37fc2fc5d608c5243455673a983113f09ea916a750860"
+      "bytes": 5796,
+      "sha256": "1e12594cec1dd326349413cfbe98a5a68bb0af6d4a824c3317fa540e9d0deb16"
     },
     {
       "path": "Documentation/TXT_INDEX_DESIGN.md",
@@ -604,6 +604,16 @@
       "sha256": "f40312cc0e7749b03015f2226854e99b58bfa4f2ac21f8d1bd8eead990d1da22"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-nul-offset-failure.json",
+      "bytes": 1261,
+      "sha256": "ae4b70eff8eedbb28a5dfa56b7257c211f1cdfb3a7eb78d6560296553da672bc"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-second-candidate.json",
+      "bytes": 90293,
+      "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-txt-build5-native-visual-review.json",
       "bytes": 1140,
       "sha256": "2883cffb5a1ed2584bcb2b75e6d7afea02048e887d810214d194538b2b760a05"
@@ -612,6 +622,11 @@
       "path": "Documentation/ValidationLogs/m2-txt-build5-test-kit.json",
       "bytes": 568,
       "sha256": "e139c7af61830b44a23c62babe6b668a688faf7998b68a250e01f17b35d26e8c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-build8-device-feedback.json",
+      "bytes": 1087,
+      "sha256": "e0e491e801fe1fec948b6616344b9b24984aa924869cd8660253b1ac2b73af18"
     },
     {
       "path": "Documentation/ValidationLogs/m2-txt-index-attempt1-ios-load-timeout.json",
@@ -725,8 +740,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 10599,
-      "sha256": "1f9654439752da5f88ee44d3a24418e725262b60c49615db02f1ab9dc10953bb"
+      "bytes": 12408,
+      "sha256": "d979841b955b381acadfe27d93ecadb894c9449237bb3aacf35f86ca826fb9d9"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -770,8 +785,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 15926,
-      "sha256": "bd16768473eaf81aeb4b1fe05d21cf256f757e4f71cf98f627272d1040c80811"
+      "bytes": 16733,
+      "sha256": "478397d4a96a525efb691b517bd30b48d4e56244087e63a8970f3d2e9f71f2cd"
     },
     {
       "path": "Package.resolved",
@@ -800,8 +815,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
-      "bytes": 5086,
-      "sha256": "19cc48b3f40b1d9846c4e22905f1604c56f1dc9762bc8868d4640972597d827e"
+      "bytes": 6354,
+      "sha256": "09ab7f8b7256f3bd75084dbc74c035f45259ecf211efff1fa125a3f2023c0d9a"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
@@ -935,8 +950,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
-      "bytes": 7730,
-      "sha256": "d2ed3dc57467fd89c4fa77a579b01ce5e2958e52e40afe319cc261568ce3e099"
+      "bytes": 8263,
+      "sha256": "e0bde8c8a818d0bbf603e808c138802d06b7e625752dee8cceac82bf27f5c0aa"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",

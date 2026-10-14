@@ -20,6 +20,14 @@ ANSI兼容方案先核Microsoft codepage与Apple SDK公开API：中文Windows AN
 
 候选94b10c6 / CI38608225245 completed/failure：repository checks通过，Linux真实编译成功并执行80项，新增NUL精确位置断言失败（实际0/期望1）；Release探针及Apple/iOS/IPA未执行，不写成已通过。完整日志、run.json、Core artifact在build/ci/38608225245保留。原因是legacy分支只在转换后检测NUL并报告整个源块起点，拒绝文件但诊断偏移不精确；源码在转换前按这些无状态codepage的ASCII NUL原字节检查，补GBK多字节前缀、Big5跨块与1252跨块同类回归，原断言不放宽。语法检查后新快照完整CI，不同源重跑而非碰运气。首次快照命令曾路径空格笔误退出1且未执行，纠正后94b10c6成功；原main/index均保留。
 
+## 2026-10-15 最新运行：541b7ae / CI38608713016
+
+新快照541b7aec871b719643d50fdd0bd5a4c88d3f96b3已正常推送，main/HEAD6d76174与原空index不变。CI38608713016 repository-checks、Linux80 Core及4个Release长书样本已通过，Apple job进行中；完整Core artifact已下载至build/ci/38608713016/core。当前报告记录463源码Git blob hash和11个旧包（Build4–8 IPA/ZIP及长书样本ZIP），不把未完成Apple/iOS/Release写成通过。Build8手机三项直接回复已写ValidationLogs/m2-txt-build8-device-feedback.json，状态文档已同步范围；其他设备细项保持待测。build/.cache的包与报告工具不提交，最终包尚未生成。全套Apple完成后核对真实run/head、80Core/58iOS/锁/源hash/IPA及桌面cache边界，再单独打包Build9、更新handoff/inventory和文档快照；不得覆盖旧包。注意原main index不跟踪Vendor/TXT新增文件，普通git diff候选→工作目录会误显删文件，需独立index纳入现有文件核对。
+
+## 2026-10-15 Apple CP936 实际断点与修正
+
+541b7ae / CI38608713016 completed/failure：Linux80 Core/4Release探针通过，macOS真实编译/80项中新增CP936单字节0x80 euro回归失败encodingChoiceRequired，Apple探针/iOS/Release未执行；完整run/full/Core/Apple artifact保留。先核Unicode托管Microsoft CP936.TXT、WHATWG解码状态与Apple公开CF表，确认0x80单独=U20AC、0x8180=U4E90。仅Apple CP936增加按完整字符边界拆分SDK转换段及单独euro三字节映射，不能把trail80替换；所有其他字符仍SDK，原GB18030不变。扩展同测试的混合euro/trail80及五种chunk回归，原断言保留，先静态检查再新快照完整CI。引用/适用差异见TXT_ANSI_COMPATIBILITY.md。本轮没有成功IPA，旧包未动。
+
 ## 实际断点
 
 Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。

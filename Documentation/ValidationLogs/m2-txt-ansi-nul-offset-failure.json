@@ -1,0 +1,35 @@
+{
+  "recordedAtUTC": "2026-10-14T17:41:59.422266+00:00",
+  "run": 38608225245,
+  "sourceRevision": "94b10c63098304d73ad7bd71fc53955a6b720aa3",
+  "repositoryChecksPassed": true,
+  "linuxCoreCompiled": true,
+  "linuxTestsExecuted": 80,
+  "linuxFailures": 1,
+  "failedTest": "TXTLegacyEncodingTests.testUndefinedTruncatedLegacyAndNULNeverReplaceOrPublish",
+  "actualSourceOffset": 0,
+  "expectedSourceOffset": 1,
+  "desktopReleaseProbesExecuted": false,
+  "appleCoreExecuted": false,
+  "iOSTestsExecuted": false,
+  "deviceReleaseBuilt": false,
+  "sourceFix": "Locate ASCII NUL in stateless legacy source bytes before conversion; preserve exact offset assertion and add multibyte/cross-block cases.",
+  "noAssertionsWeakened": true,
+  "artifacts": [
+    {
+      "path": "build/ci/38608225245/full.log",
+      "sha256": "ce0000ba54bc0fc4626f952dde2c7b21c082ff02b6a58171cb0cc92244627c5e",
+      "bytes": 91776
+    },
+    {
+      "path": "build/ci/38608225245/run.json",
+      "sha256": "06c3cf065e19bb0c953e25382cb5e2ca9ddbc24c0ca9039958b97deb8d2cd114",
+      "bytes": 4301
+    },
+    {
+      "path": "build/ci/38608225245/core/logs/core-tests.log",
+      "sha256": "f267ca7ef09a454a514e5d7a644379f88d67607fe11da675f644b6ac9f235d56",
+      "bytes": 12444
+    }
+  ]
+}

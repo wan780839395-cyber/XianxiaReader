@@ -37,6 +37,14 @@ final class TXTLegacyEncodingTests: XCTestCase {
         try Data([0x80]).write(to:source)
         let result=try await TXTNormalizer(chunkBytes:1).normalize(source:source,destination:output)
         XCTAssertEqual(result.encoding,.gbk); XCTAssertEqual(try String(contentsOf:output,encoding:.utf8),"€")
+        // CP936.TXT distinguishes standalone 0x80 from the 0x8180 double byte.
+        let mixed=root.appendingPathComponent("mixed-euro.txt")
+        try bytes("418081808044").write(to:mixed)
+        for chunk in [1,2,3,7,64] {
+            let destination=root.appendingPathComponent("mixed-\(chunk).txt")
+            _=try await TXTNormalizer(chunkBytes:chunk).normalize(source:mixed,destination:destination,encoding:.gbk)
+            XCTAssertEqual(try String(contentsOf:destination,encoding:.utf8),"A€\u{4E90}€D")
+        }
         let supplementary=root.appendingPathComponent("supplementary.txt"), normalized=root.appendingPathComponent("supplementary-utf8.txt")
         try bytes("95328236").write(to:supplementary)
         let automatic=try await TXTNormalizer(chunkBytes:1).normalize(source:supplementary,destination:normalized)

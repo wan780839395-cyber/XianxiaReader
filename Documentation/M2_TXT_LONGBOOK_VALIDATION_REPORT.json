@@ -1919,7 +1919,9 @@
     "deviceReleaseBuilt": true,
     "desktopLongTXTValidated": true,
     "deviceLongTXTPerformanceAccepted": false,
-    "M2Accepted": false
+    "M2Accepted": false,
+    "Build8BasicDeviceWorkflowAccepted": true,
+    "M2SelfUseBaselineAccepted": true
   },
   "baselineReport": "Documentation/M2_TXT_LONGBOOK_BASELINE_REPORT.json",
   "baselineRun": 38583014146,
@@ -2787,5 +2789,14 @@
     "M2Accepted": false
   },
   "nativeReviewEvidence": "Documentation/ValidationLogs/m2-txt-longbook-build8-native-review.json",
-  "runtimeDiagnosticEvidence": "Documentation/ValidationLogs/m2-txt-longbook-build8-runtime-diagnostics.json"
+  "runtimeDiagnosticEvidence": "Documentation/ValidationLogs/m2-txt-longbook-build8-runtime-diagnostics.json",
+  "userFeedback": {
+    "evidencePath": "Documentation/ValidationLogs/m2-txt-build8-device-feedback.json",
+    "quote": "已测试，功能正常",
+    "scope": [
+      "phone long TXT import",
+      "TOC navigation",
+      "reopen reading position"
+    ]
+  }
 }

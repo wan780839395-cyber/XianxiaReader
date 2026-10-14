@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-14T17:39:12.152038+00:00",
+  "recordedAtUTC": "2026-10-14T17:41:24.600636+00:00",
   "stage": "Build9 ANSI and reading range cache pending full CI",
-  "sourceRevision": "94b10c63098304d73ad7bd71fc53955a6b720aa3",
-  "run": 38608225245,
+  "sourceRevision": "541b7aec871b719643d50fdd0bd5a4c88d3f96b3",
+  "run": 38608713016,
   "branch": "codex/m2-txt-index",
   "build": "9",
   "changedPaths": [
@@ -13,10 +13,12 @@
     "Documentation/FEATURE_MATRIX.md",
     "Documentation/FILE_INVENTORY.json",
     "Documentation/M2_TXT_ANSI_STATIC_REPORT.json",
+    "Documentation/M2_TXT_ANSI_VALIDATION_REPORT.json",
     "Documentation/M2_TXT_LONGBOOK_VALIDATION_REPORT.json",
     "Documentation/PERFORMANCE_TEST_PLAN.md",
     "Documentation/TXT_ANSI_COMPATIBILITY.md",
     "Documentation/TXT_READING_DESIGN.md",
+    "Documentation/ValidationLogs/m2-txt-ansi-first-candidate.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-native-review.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-runtime-diagnostics.json",
     "Documentation/ValidationLogs/m2-txt-longbook-build8-test-kit.json",
@@ -241,7 +243,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
-      "sha256": "780bba4ef224986b025b565f0e9b54543bb749c4590db9654fbac202d781b5a7"
+      "sha256": "ce2d53d8a7e89393b51f30238ede4e47010398fac3d23882ebaa6b455aa5910d"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
@@ -273,7 +275,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
-      "sha256": "23838d0a7f00283a38ac163d4e3f6da00c138202f485e911127578c9954b919f"
+      "sha256": "d2ed3dc57467fd89c4fa77a579b01ce5e2958e52e40afe319cc261568ce3e099"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
