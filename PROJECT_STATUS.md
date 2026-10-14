@@ -23,7 +23,7 @@
 
 ## 最新证据与设备边界
 
-TXT产品接入验证中：最新CI38555669042/5b8cc6a8cdfe9db1899f81daa6f15757634eb93b，bootstrap=false，Linux68 Core已成功，Apple/iOS46/Build5设备Release尚未取得最终结果。上一轮38553767324：各68 Core/应用与test bundle编译通过，iOS45/46，仅TXT长段非零字符采样超时、Release未执行；参照既有EPUB测试增加明确段落/DOM就绪导航后再600点滚动及诊断，保留char>100/3px断言、未改引擎/增加超时，根因尚未确认。更早的合法标题夹具和Locator.Text参数顺序失败原件分别留档，未跳过失败。支持受管理原件/cache/事务导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator与TXT搜索目录的源码已写入；旧60 Core/41 iOS不等于产品TXT验收。原Build4包不覆盖，三本原创编码TXT纳入资源；数十MB/cache重开/中文页面/设备未验收，完整M2未完成。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。
+TXT产品接入验证中：最新CI38558425326/1bb8f6cb660821160724643fb3646c52ba417463验证中，Linux68已通过，Apple/iOS46/Build5 Release待最终结果。前轮38555669042为44/46：TXT非零字符与截图通过但重开invalidPosition，核实连续路径selector丢字节ID，导致正文char误配短标题；已仅对显式TXT保留唯一CSS.escape字节ID并更新UPSTREAM hash、增真实paragraph byte断言，严格恢复校验保留。旧EPUB冷首开超时同轮重现，未宣称解决。四次真实失败与完整原件分别留档；原Build4不覆盖，新TXT产品源码/样书已接入，数十MB/缓存重开/设备仍未验收，完整M2未完成。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json/设计TXT_READING_DESIGN.md。
 
 M2编码/cache第二切片完整自动CI通过：[CI 38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)，运行源码 `65c1b8d6dbebf311c1e6b4b9534cda59373940b6`，Linux/macOS各60 Core（原33+新增27）、41/41既有iOS集成及设备Release CODE_SIGNING_ALLOWED=NO/IPA通过；445运行文件hash与当前源码匹配、三份锁一致。Windows372 grammar新增诊断0/14 tooling通过。支持严格UTF8/UTF16 LE/BE/GB18030分块转换、原/正规正文/目录SHA与编码/版本绑定cache。首轮Apple iconv两项四字节真实失败保留，现改用公开SDK CoreFoundation并通过同样及扩展向量；Linux保持glibc iconv，无新远程依赖。自动编码仅BOM/严格UTF8，其他要求选择；cache复用仍流式核验摘要，TXT导入/阅读/位置未接入，iOS真实TXT codec/导入/页面与设备未验收，完整M2尚未完成。当前Build4用户包保持不动，报告M2_TXT_NORMALIZATION_VALIDATION_REPORT.json。
 

@@ -1,0 +1,87 @@
+{
+  "recordedAtUTC": "2026-10-14T11:54:26.458014+00:00",
+  "run": 38558425326,
+  "sourceRevision": "1bb8f6cb660821160724643fb3646c52ba417463",
+  "conclusion": "failure",
+  "linuxCorePassed": 68,
+  "macOSCorePassed": 68,
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 45,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1791978709.369,
+    "passedTests": 45,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1791978369.324,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"17\") - Native byte ID must survive locator capture",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 43,
+        "testIdentifierString": "TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC",
+        "testName": "testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "27% of duration",
+        "text": "1 longest test run with outlier durations exceeding 12.35s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 46
+  },
+  "testExit": 65,
+  "releaseBuilt": false,
+  "IPACreated": false,
+  "TXTNonzeroCharacterAnd3pxReopenCompleted": true,
+  "failure": "New byte equality assert ran while polling stale heading byte0 before the requested nonzero-char sample arrived.",
+  "remediation": "Apply same byte equality assertion to returned saved sample after nonzero-char readiness; also assert sample char>100. Runtime code and3px checks unchanged.",
+  "artifacts": [
+    {
+      "path": "build/ci/38558425326/full.log",
+      "sha256": "064e8128c15bae54a51249289ee438bbe0622fb6e82394af9057c23539ccdc21"
+    },
+    {
+      "path": "build/ci/38558425326/run.json",
+      "sha256": "69c674bbba951041864cd7577d71231c84f6ebc5d784358937abb80c7c3104ca"
+    },
+    {
+      "path": "build/ci/38558425326/core/core-tests.log",
+      "sha256": "3024197277f31a75997acff5a9f0f1f5cb1be8e2a7cbd3df8442d8b116ec8012"
+    },
+    {
+      "path": "build/ci/38558425326/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "sha256": "ceb9219dbb9c3d7d5f48aaccfafc66476f104900e9bc15332d16888ddc16df5d"
+    },
+    {
+      "path": "build/ci/38558425326/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "sha256": "d3a8bd3e924c9effc9c2746b8bcde59458d2f7e3cc3b44f009dcb97484b8a799"
+    }
+  ]
+}

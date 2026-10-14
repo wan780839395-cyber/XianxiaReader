@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-14T11:20:01.348041+00:00",
+  "recordedAtUTC": "2026-10-14T11:43:41.002950+00:00",
   "stage": "M2 TXT product source integration - full compilation/test pending",
-  "sourceRevision": "5b8cc6a8cdfe9db1899f81daa6f15757634eb93b",
+  "sourceRevision": "1bb8f6cb660821160724643fb3646c52ba417463",
   "branch": "codex/m2-txt-index",
-  "run": 38555669042,
+  "run": 38558425326,
   "build": "5",
   "expectedCoreTests": 68,
   "expectedIOSTests": 46,
@@ -265,7 +265,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTResourceRenderer.swift",
-      "sha256": "f78e690b8f889030eacbbb540414019eb4a4a9ba995be19fd09b61ae78203a9e"
+      "sha256": "432033e86857713039c87ef222f41bf4ae522e3e6469ef9d828120bd455d79a5"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -325,7 +325,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "22f22439832886e7f770257bff1f24003a00348cc0cae8c99f8a4ead6d5e65f8"
+      "sha256": "13603cba667a6c893e595523ded164a2ea867cfe0ae8b8848914187f0dfd71b6"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -613,7 +613,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "0824d1b366de6209f72b31601b02a61f127d176c90f509c62fc0e65b1657a551"
+      "sha256": "55b279f4f7a55a273f8808e7a79610c4caeac913023419d88ccdc22ecf2a54fd"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -1753,7 +1753,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "cab843fe49865124b86c4455ed3456925490226b93c7b2e2d7447b4ea7fdf4fb"
+      "sha256": "d661445d596a37ab2a76eca5d8e28ff72a36473993a63808f38c536a109dfb77"
     },
     {
       "path": "project.yml",
@@ -1849,8 +1849,8 @@
     "M2Accepted": false
   },
   "inProgressRun": {
-    "databaseId": 38555669042,
-    "source": "5b8cc6a8cdfe9db1899f81daa6f15757634eb93b",
+    "databaseId": 38558425326,
+    "source": "1bb8f6cb660821160724643fb3646c52ba417463",
     "bootstrap": false
   },
   "scope": "Managed original copy/cache/DB import, explicit encoding choice+retry+cancel, <=64KiB lazy Readium resources, source-bound byte/text/full Locator, search/TOC/continuous restore.",
@@ -1859,19 +1859,21 @@
     "Resources split giant paragraphs; typography/seam/long-book performance needs device measurement.",
     "Ordinary-device and TrollStore TXT acceptance and tens-of-MB cold import/reopen not yet measured."
   ],
-  "remoteDependenciesAndVendorUnchanged": true,
+  "remoteDependenciesAndVendorVersionUnchanged": true,
+  "vendorExtensionChange": "EPUBSpreadView continuous selector preserves unique byte IDs only on explicitly marked TXT documents; provenance hash updated.",
   "preservedUserBuild4": {
     "path": "build/XianxiaReader.ipa",
     "sha256": "7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1"
   },
   "linuxEvidence": {
     "passedTests": 68,
-    "path": "build/ci/38555669042/core/core-tests.log",
-    "sha256": "389196e73787fd80b351b6e8a6a82ff16972fa4605092828971a9aa52cde024f"
+    "path": "build/ci/38558425326/core/core-tests.log",
+    "sha256": "3024197277f31a75997acff5a9f0f1f5cb1be8e2a7cbd3df8442d8b116ec8012"
   },
   "priorFailures": [
     "Documentation/ValidationLogs/m2-txt-product-fixture-heading-failure.json",
     "Documentation/ValidationLogs/m2-txt-product-test-api-order-failure.json",
-    "Documentation/ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json"
+    "Documentation/ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json",
+    "Documentation/ValidationLogs/m2-txt-product-byte-selector-failure.json"
   ]
 }

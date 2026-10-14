@@ -6,11 +6,13 @@
 
 ### TXT产品接入开始（覆盖下方上一切片的完成点）
 
+38558425326/1bb8f6c真实45/46：byte selector修复后长段非零char、重开3px与目录本身已执行成功，只有新增byte断言在轮询期间检查旧标题byte0（尚未采样新位置）误报0!=17；其他45项和各68 Core通过，Release未执行。将完全相同byte断言移到取得char>100的实际saved sample之后，并额外assert该样本char>100；不修改产品源码/范围/3px门槛或增大等待。失败原文保留ValidationLogs/m2-txt-product-polling-assertion-failure.json；此修正待新完整CI。
+
 最新实际断点38555669042/5b8cc6a：各68 Core通过、iOS44/46（新TXT长段非零字符采样和截图已过，重开时invalidPosition；既有EPUB首开超时也重现），test65，Release未执行。根因已据源码+实际断点核实：连续桥固定生成html/body/p路径selector，未保留TXT的txt-b<offset> ID；codec把无byte ID的路径回退资源byte0，却保留正文char>100，重开真实段落校验落到短标题而拒绝。修复仅对显式data-xianxia-txt=1文档保留唯一CSS.escape字节ID；普通EPUB仍旧路径，完整范围/字符校验保留，新回归额外要求paragraph byte相同。保持锁定3.11版本/远程pins，仅本地扩展单文件与renderer属性改动，更新UPSTREAM localModifiedFiles准确hash；不能把旧EPUB冷启动超时说成已修复。完整CI前检查点已写，原Build4不变。
 
 38553767324/ed5ae3f真实failure：各68 Core/应用+test bundle编译通过，iOS45/46/0 skipped。新三编码导入/有界资源/位置拒绝/搜索通过，只有TXT长段“滚动600点后非零char anchor”采样超时；Release/IPA未执行，根因此刻未确认。完整summary/xcresult/full/log保留build/ci/38553767324与ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json。依据既有EPUB长段测试先完成明确段落Locator跳转并确认DOM top，再合成600点滚动，仍要求char>100/重开3px，增加原生PNG/DOM/outer offset/完整位置诊断；不改引擎或增大等待、降低断言。此改动待完整CI，不把它写成已修复产品问题。
 
-**最新真实验证：CI38555669042 / 5b8cc6a8cdfe9db1899f81daa6f15757634eb93b / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 已参照既有EPUB测试补明确段落导航/DOM ready/诊断，仍原char>100/3px门槛，正常push并dispatch；main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch；455候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。前三轮真实失败原件保留，未假定采样超时根因已解决。
+**最新真实验证：CI38558425326 / 1bb8f6cb660821160724643fb3646c52ba417463 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 显式TXT唯一byte selector修复/UPSTREAM准确hash与paragraph byte新增断言已正常push并dispatch，仍原char>100/3px门槛；main/原index不变。恢复先查此run/head/完整artifact，不重复dispatch；455候选hash记录到M2_TXT_PRODUCT_VALIDATION_REPORT.json。四次真实失败原件保留，旧EPUB冷打开超时未宣称解决，当前修复待完整验证。
 
 已核实新Linux Core success及完整artifact build/ci/38552463402/core/core-tests.log：真实Swift/C编译、68项（原60+新8）全部通过，无源码warning/error匹配；Apple/iOS真实页面/Release尚未完成。新样书由项目原创文本生成UTF8/带BOM UTF16LE/GB18030三个小文件，纳入资源与候选hash；没有用户小说。
 

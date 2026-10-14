@@ -28,6 +28,8 @@ Adapter的TXTResourceRenderer actor按窗口转换XHTML，CR/LF段落有绝对�
 
 TXT与EPUB分别使用readium.txt/readium.epub命名空间；TXT version1 envelope包括原/normalized SHA、parser/normalizer/codec/资源版本、稳定叶子ID、resource start/end、段落byte start、段内UTF16字符偏移，以及完整原生Locator（href/CSS/DOMRange/文本上下文/连续视口偏移等）。摘要/范围/章ID/版本不符拒绝恢复，绝不静默归零。不是只存百分比；progress仅用于书架显示。
 
+实际断点38555669042证明：完成段落导航后的char>100与原生截图通过，但重开invalidPosition。源码核实连续扩展原selector只生成html/body/p路径，丢失txt-b字节ID；codec回退资源byte0而仍有长段char，真实恢复校验误落短标题。最小修复为renderer显式data-xianxia-txt=1标记；本地EPUBSpreadView的连续selector只对该标记的唯一txt-b ID使用公开[CSS.escape](https://drafts.csswg.org/cssom/#the-css.escape()-method)，保留真实byte+character，普通EPUB仍原路径。更新UPSTREAM声明准确hash，不升级3.11/远程pins、不放宽校验，不建立额外全书段落表。新回归同时要求采样paragraph byte等于实际正文段落；此修复在CI38558425326/1bb8f6c待完整验证。旧EPUB首开超时同轮重现，单列，不宣称此修复解决了它。
+
 恢复/书签/搜索定位先在后台有界读取校验真实段落起始与UTF16代理对边界，再交Readium原生定位。Native Locator与独立anchor必须一致；context最多64字符、highlight256；内容变化不复用旧位置。正常原件不会改写，cache损坏重建同内容可重开。位置保存仍通过原SQLite时间戳拒绝迟到写入。
 
 TXT打开与定位的await之后核对open request ID和Navigator identity；close使未完成请求失效、拒绝旧回调，清理search provider/context。搜索仍通过ReadingInterfaces可选capability，保留issue876修复、每批40/UI1000/上下文64与取消会话，结果使用TXT完整位置；不会先汇总全书结果。

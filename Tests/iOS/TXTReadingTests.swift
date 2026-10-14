@@ -154,7 +154,6 @@ final class TXTReadingTests: XCTestCase {
             try await wait("TXT nonzero character anchor") {
                 guard let saved = engine.currentPosition else { return false }
                 let (_,anchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
-                XCTAssertEqual(anchor.paragraphStartByte,Int64(paragraphByte),"Native byte ID must survive locator capture")
                 return anchor.characterUTF16Offset > 100
             }
         } catch {
@@ -167,6 +166,9 @@ final class TXTReadingTests: XCTestCase {
             throw error
         }
         let saved = try XCTUnwrap(engine.currentPosition)
+        let (_,stableAnchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
+        XCTAssertGreaterThan(stableAnchor.characterUTF16Offset,100)
+        XCTAssertEqual(stableAnchor.paragraphStartByte,Int64(paragraphByte),"Native byte ID must survive locator capture")
         let beforeValue = try await target.evaluateJavaScript(selector) as? Double
         let before = try XCTUnwrap(beforeValue); XCTAssertLessThan(before,-300)
         let image = try await target.takeSnapshot(configuration: nil)
