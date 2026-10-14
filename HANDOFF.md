@@ -36,3 +36,9 @@
 ## 尚未实现
 
 全部Windows ANSI代码页、已导入书原地换编码界面；只读元数据秒开、手机耗时/p95/耗电/旋转/普通签名设备完整矩阵；M3完整书库与M4排版/主题。读者查询与知识库仍只有协议草案，不能提前实现世界观CRUD或抓取小说。
+
+## 本轮收尾与关机安排（2026-10-15）
+
+完整CI/包/源hash/锁/旧包/原生正文观察/运行诊断及608文件inventory已保存，收尾文档快照620fdaeea97827ccab0854552b310775300fc651已推送；运行源仍c2a037a，不把文档tip当编译源。最终实核无自身gh/python/swift/docker遗留任务，所有四轮CI均completed，最新success。运行诊断：SQLite unlink0、DocumentManager dead-host0、AppIntents metadata6/WebKit assertions38原样保留，不宣称runtime全零。
+
+用户明确要求“我要睡觉了 你跑完了帮我关机吧”。已启动隐藏关机helper，PID 23728，从UTC 10/14/2026 18:28:09 起等待90秒后执行shutdown.exe /s /t 0，不强制关闭其他应用。真实收据在build/shutdown-build9-receipt.json，公开摘要在ValidationLogs/m2-txt-ansi-shutdown.json；只记录已安排，不宣称实际已断电，系统应用可能阻止正常关机。本段/摘要写入后再刷新inventory和独立文档快照，保留main/index和已测源码。恢复时核实际收据/branch tip与最新文件，不因已安排关机而假定命令已成功执行。

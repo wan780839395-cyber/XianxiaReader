@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T18:25:46.928225+00:00",
+  "recordedAtUTC": "2026-10-14T18:28:10.593670+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 608,
+  "fileCount": 609,
   "files": [
     {
       "path": ".gitattributes",
@@ -639,6 +639,11 @@
       "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-shutdown.json",
+      "bytes": 855,
+      "sha256": "81af7178c139b97e841c3cf5c91a73634c1d594c908c699890aa8801efa3b41f"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-txt-ansi-success.json",
       "bytes": 20787,
       "sha256": "7918be54ccb88f48fdf263f5a7ef1a0c3b0f69922edb60ee8527af2d8564b23d"
@@ -775,8 +780,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 5789,
-      "sha256": "a76b9f8128f0265b402ae09cdc54be086ff54ae2babb5ea72e6316a2400ef3ae"
+      "bytes": 6921,
+      "sha256": "0ab24bd0f9045c83fb769e16d7a8893659ec9d22b0803c47b51b6af783dcf977"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",

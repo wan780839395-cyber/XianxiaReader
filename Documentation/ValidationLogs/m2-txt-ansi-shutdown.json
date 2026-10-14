@@ -1,0 +1,18 @@
+{
+  "recordedAtUTC": "2026-10-14T18:28:10.4341776Z",
+  "userQuote": "我要睡觉了 你跑完了帮我关机吧",
+  "projectRun": 38612220954,
+  "compiledSourceRevision": "c2a037aa6765cd56319cf8a61e8ca1c34f047e22",
+  "projectWorkFinished": true,
+  "allArtifactsSavedAndVerified": true,
+  "originalHEADAndIndexPreserved": true,
+  "otherVerificationToolsRunning": false,
+  "helperStarted": true,
+  "helperProcessID": 23728,
+  "helperStartedAtUTC": "2026-10-14T18:28:09.6839012Z",
+  "delaySeconds": 90,
+  "method": "Hidden PowerShell helper then shutdown.exe /s /t 0; no forced application termination",
+  "receiptPath": "build/shutdown-build9-receipt.json",
+  "physicalShutdownConfirmed": false,
+  "limitation": "Windows may allow applications to block normal shutdown; receipt records issued command/result, not physical power state."
+}
