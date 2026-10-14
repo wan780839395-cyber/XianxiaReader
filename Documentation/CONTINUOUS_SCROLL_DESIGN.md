@@ -2,6 +2,8 @@
 
 ## 用户需求与当前差距
 
+恢复收尾事实：最新执行38506979070/8908e98为38/39通过，原31保持；双章同屏/逆向、fragment、高度变化锚点、可见重试、搜索/模式往返、千章窗口与释放通过。仅长段字符缓存未过；89a46ce进一步要求anchorRevision匹配当前viewport，静态通过但未编译。38508277189因GitHub账户付款/支出限额未启动任何步骤，没有新IPA。以下较早候选审查保留为历史，不替代最新报告；完整M1/惯性/峰值内存/设备均不放行。
+
 2026-10-13 用户明确要求上下滚动时本章末尾和下一章开头连在同一滚动流中，参考微信读书的交互。不是增加“下一章”按钮，不是到章末瞬间跳页。
 
 当前 Readium exact3.11.0：EPUBReflowableSpreadView 内部垂直滚动，PaginationView 外部横向且 paging；框架的 scroll 偏好不会堆叠多个章节。项目原 disablePageTurnsWhileScrolling=true 还屏蔽了默认的跨资源手势，Build 3 恢复该通路并标注章内模式，但 **seamlessChapterScrollImplemented=false**。

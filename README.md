@@ -4,6 +4,8 @@
 
 **M0通过，M1阅读视口/图像切片自动验证通过；不是完整MVP。** [CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）全部成功：Linux/macOS各14 Core、31 iOS tests、设备Release与Build3 IPA。源码compiler warnings=0；metadata提示另列。原创封面分页/滚动快照已人工查看，上下色带完整；用户原书与iOS16.6.1真机仍待复测。 见[阅读修复](Documentation/READER_VIEWPORT_FIX.md)和[项目状态](PROJECT_STATUS.md)。
 
+当前连续跨章恢复点：上一候选已编译，38/39 iOS回归通过，双章同屏截图已查看；最后长段锚点修复仅静态验证。GitHub账户付款/支出限额使最后CI未启动，无新Release/IPA。完整M1/真机仍待验收；见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
+
 ## 当前已写入
 
 - SwiftUI 应用入口、基础网格书库、封面/书名/作者/阅读进度/最近阅读时间。
