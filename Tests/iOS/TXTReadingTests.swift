@@ -154,6 +154,7 @@ final class TXTReadingTests: XCTestCase {
             try await wait("TXT nonzero character anchor") {
                 guard let saved = engine.currentPosition else { return false }
                 let (_,anchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
+                XCTAssertEqual(anchor.paragraphStartByte,Int64(paragraphByte),"Native byte ID must survive locator capture")
                 return anchor.characterUTF16Offset > 100
             }
         } catch {

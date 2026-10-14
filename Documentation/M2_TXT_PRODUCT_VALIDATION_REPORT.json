@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-14T11:03:13.946735+00:00",
+  "recordedAtUTC": "2026-10-14T11:20:01.348041+00:00",
   "stage": "M2 TXT product source integration - full compilation/test pending",
-  "sourceRevision": "ed5ae3f8c8088751a4b7e8cf645e006539767fcd",
+  "sourceRevision": "5b8cc6a8cdfe9db1899f81daa6f15757634eb93b",
   "branch": "codex/m2-txt-index",
-  "run": 38553767324,
+  "run": 38555669042,
   "build": "5",
   "expectedCoreTests": 68,
   "expectedIOSTests": 46,
@@ -325,7 +325,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "89a01eb8c9c9575f8b204f6f176df9b22fded2931d6d97adc2ff58fee07f21d6"
+      "sha256": "22f22439832886e7f770257bff1f24003a00348cc0cae8c99f8a4ead6d5e65f8"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -1840,7 +1840,7 @@
     "swiftCompilation": false
   },
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -1849,8 +1849,8 @@
     "M2Accepted": false
   },
   "inProgressRun": {
-    "databaseId": 38553767324,
-    "source": "ed5ae3f8c8088751a4b7e8cf645e006539767fcd",
+    "databaseId": 38555669042,
+    "source": "5b8cc6a8cdfe9db1899f81daa6f15757634eb93b",
     "bootstrap": false
   },
   "scope": "Managed original copy/cache/DB import, explicit encoding choice+retry+cancel, <=64KiB lazy Readium resources, source-bound byte/text/full Locator, search/TOC/continuous restore.",
@@ -1863,5 +1863,15 @@
   "preservedUserBuild4": {
     "path": "build/XianxiaReader.ipa",
     "sha256": "7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1"
-  }
+  },
+  "linuxEvidence": {
+    "passedTests": 68,
+    "path": "build/ci/38555669042/core/core-tests.log",
+    "sha256": "389196e73787fd80b351b6e8a6a82ff16972fa4605092828971a9aa52cde024f"
+  },
+  "priorFailures": [
+    "Documentation/ValidationLogs/m2-txt-product-fixture-heading-failure.json",
+    "Documentation/ValidationLogs/m2-txt-product-test-api-order-failure.json",
+    "Documentation/ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json"
+  ]
 }

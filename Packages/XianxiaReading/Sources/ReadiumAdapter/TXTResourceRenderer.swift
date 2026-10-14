@@ -19,7 +19,7 @@ actor TXTResourceRenderer {
         let window = try await window(resource)
         let paragraphs = Self.paragraphs(window)
         let recognizer = TXTChapterHeadingRecognizer()
-        var html = "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"zh-Hans\"><head><meta charset=\"utf-8\"/><title>\(Self.escape(resource.chapter.title))</title><style>p{white-space:pre-wrap;text-indent:2em;margin:0 0 .8em;line-height:1.75}h2{white-space:pre-wrap;text-indent:0;margin:1.2em 0 .9em;font-size:1.3em;line-height:1.5}</style></head><body>"
+        var html = "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"zh-Hans\" data-xianxia-txt=\"1\"><head><meta charset=\"utf-8\"/><title>\(Self.escape(resource.chapter.title))</title><style>p{white-space:pre-wrap;text-indent:2em;margin:0 0 .8em;line-height:1.75}h2{white-space:pre-wrap;text-indent:0;margin:1.2em 0 .9em;font-size:1.3em;line-height:1.5}</style></head><body>"
         for (offset,text) in paragraphs {
             try Task.checkCancellation()
             let tag = recognizer.recognize(text) == nil ? "p" : "h2"

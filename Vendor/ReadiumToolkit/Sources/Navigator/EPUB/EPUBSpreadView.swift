@@ -605,6 +605,12 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             return root;
           }
           function selector(element) {
+            // TXT windows assign unique byte IDs. Keep that source anchor in
+            // the native Locator; ordinary EPUBs retain the existing path selectors.
+            if (document.documentElement.getAttribute('data-xianxia-txt') === '1' && /^txt-b[0-9]+$/.test(element.id)) {
+              const idSelector = '#' + CSS.escape(element.id);
+              if (document.querySelectorAll(idSelector).length === 1) return idSelector;
+            }
             const parts = [];
             for (let node = element; node && node.nodeType === 1; node = node.parentElement) {
               const tag = node.localName;

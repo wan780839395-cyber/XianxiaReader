@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "0824d1b366de6209f72b31601b02a61f127d176c90f509c62fc0e65b1657a551"
+      "sha256": "55b279f4f7a55a273f8808e7a79610c4caeac913023419d88ccdc22ecf2a54fd"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1656,5 +1656,9 @@
     "sourceRevision": "4c78f7766a6f9952e0b221b12a100bf49568c0f6",
     "resolvedLockSha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537",
     "reason": "Only Internal/Shared/Streamer/Navigator products retained. SwiftPM pruned unused server/SQLite/LCP dependency graph. Retained remote pins unchanged."
+  },
+  "txtByteSelectorExtension": {
+    "scope": "Explicit data-xianxia-txt=1 documents only; unique escaped txt-b IDs in continuous native Locator; ordinary EPUB path selectors unchanged.",
+    "reason": "Preserve exact byte paragraph identity for strict TXT UTF16/byte position validation."
   }
 }
