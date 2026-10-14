@@ -80,8 +80,12 @@ import XianxiaCore
     }
 
     func setScrolling(_ value: Bool) {
+        guard !value || engine?.supportsContinuousScrolling == true else {
+            errorMessage = "这本书暂不支持上下连续滚动。"
+            return
+        }
         scrolling = value
-        engine?.setScrolling(value)
+        engine?.setContinuousScrolling(value)
     }
 
     func go(to chapter: Chapter) async {

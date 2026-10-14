@@ -161,6 +161,164 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertGreaterThan(try XCTUnwrap(target["height"] as? Double), 300)
     }
 
+    @MainActor private func waitUntil(_ condition: @MainActor () async throws -> Bool) async throws {
+        let deadline = Date().addingTimeInterval(30)
+        while Date() < deadline {
+            let ready = try await condition()
+            if ready { return }
+            try await Task.sleep(nanoseconds: 100_000_000)
+        }
+        XCTFail("Continuous reader did not reach the expected rendered state")
+        throw RenderFailure.timedOut("continuous", "see expected state")
+    }
+
+    @MainActor private func view(identifier: String, in root: UIView) -> UIView? {
+        if root.accessibilityIdentifier == identifier { return root }
+        for child in root.subviews {
+            if let found = view(identifier: identifier, in: child) { return found }
+        }
+        return nil
+    }
+
+    @MainActor private func continuousScroll(_ engine: ReadiumReaderEngine) throws -> UIScrollView {
+        try XCTUnwrap(view(identifier: "readium.continuous-scroll", in: engine.viewController.view) as? UIScrollView)
+    }
+
+    @MainActor private func clippedVisibleRect(_ webView: WKWebView, root: UIView) -> CGRect {
+        var visible = webView.convert(webView.bounds, to: root).intersection(root.bounds)
+        var ancestor: UIView? = webView
+        while let current = ancestor, current !== root {
+            if current.isHidden || current.alpha < 0.1 { return .null }
+            if current.clipsToBounds { visible = visible.intersection(current.convert(current.bounds, to: root)) }
+            ancestor = current.superview
+        }
+        return visible
+    }
+
+    @MainActor private func visibleTitles(_ engine: ReadiumReaderEngine) async throws -> [String] {
+        let root = engine.viewController.view!
+        var titles: [String] = []
+        for webView in webViews(in: root) where clippedVisibleRect(webView, root: root).height > 30 {
+            let value = try await webView.evaluateJavaScript("document.title")
+            if let title = value as? String { titles.append(title) }
+        }
+        return titles
+    }
+
+    @MainActor private func resourceWebView(_ engine: ReadiumReaderEngine, index: Int) throws -> WKWebView {
+        let wrapper = try XCTUnwrap(view(identifier: "readium.chapter.\(index)", in: engine.viewController.view))
+        return try XCTUnwrap(webViews(in: wrapper).first)
+    }
+
+    @MainActor private func jump(_ engine: ReadiumReaderEngine, book: Book, href: String) async throws {
+        try await engine.go(to: Chapter(id: "fixture:\(href)", bookID: book.id, ordinal: 1, title: "测试目标", href: href))
+        try await waitUntil {
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any] else { return false }
+            return (json["href"] as? String)?.hasSuffix(String(href.split(separator: "#")[0])) == true
+        }
+    }
+
+    @MainActor func testContinuousBoundaryShowsTwoResourcesAndScrollsBack() async throws {
+        let engine = ReadiumReaderEngine()
+        engine.setContinuousScrolling(true)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.continuousLoadedResourceCount >= 1 && engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#start")
+        let scroll = try continuousScroll(engine)
+        let first = try XCTUnwrap(view(identifier: "readium.chapter.1", in: scroll))
+        scroll.setContentOffset(CGPoint(x: 0, y: first.frame.maxY - 180 - scroll.contentInset.top), animated: false)
+        try await waitUntil {
+            let titles = try await self.visibleTitles(engine)
+            return titles.contains("第一章 山门") && titles.contains("第二章 云海")
+        }
+        let image = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }
+        let attachment = XCTAttachment(image: image)
+        attachment.name = "continuous-two-chapter-boundary"; attachment.lifetime = .keepAlways; add(attachment)
+        // A reverse drag crosses the SAME physical boundary without chapter go().
+        scroll.setContentOffset(CGPoint(x: 0, y: first.frame.minY - 150 - scroll.contentInset.top), animated: false)
+        try await waitUntil {
+            let titles = try await self.visibleTitles(engine)
+            return titles.contains("封面完整性") && titles.contains("第一章 山门")
+        }
+        XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+    }
+
+    @MainActor func testContinuousFragmentAndDOMBookmarkRestore() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
+        let webView = try resourceWebView(engine, index: 1)
+        try await waitUntil {
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-12').getBoundingClientRect().top") as? Double
+            return abs(y ?? 10000) < 5
+        }
+        try await waitUntil {
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
+                  let locations = json["locations"] as? [String: Any] else { return false }
+            return (json["href"] as? String)?.hasSuffix("one.xhtml") == true && locations["cssSelector"] != nil
+        }
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close()
+        try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil {
+            self.view(identifier: "readium.chapter.1", in: engine.viewController.view) != nil
+        }
+        let reopened = try resourceWebView(engine, index: 1)
+        try await waitUntil {
+            let y = try await reopened.evaluateJavaScript("document.getElementById('line-12').getBoundingClientRect().top") as? Double
+            return abs(y ?? 10000) < 5
+        }
+    }
+
+    @MainActor func testContinuousHeightChangeKeepsVisibleDOMAnchor() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
+        let webView = try resourceWebView(engine, index: 1)
+        try await Task.sleep(nanoseconds: 500_000_000)
+        let script = "document.getElementById('line-12').getBoundingClientRect().top"
+        let beforeValue = try await webView.evaluateJavaScript(script) as? Double
+        let before = try XCTUnwrap(beforeValue)
+        // Models an image above the current paragraph acquiring its final height.
+        _ = try await webView.evaluateJavaScript("document.getElementById('line-2').style.minHeight='500px'")
+        try await Task.sleep(nanoseconds: 500_000_000)
+        try await waitUntil {
+            let y = try await webView.evaluateJavaScript(script) as? Double
+            return abs((y ?? 10000) - before) < 3
+        }
+    }
+
+    @MainActor func testThousandResourcesUseBoundedWindowAndCloseClearsViews() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "window-long", withExtension: "epub", subdirectory: "Fixtures"))
+        let book = Book(title: "千章窗口测试", format: .epub, filePath: "window-long.epub")
+        try await engine.open(book: book, fileURL: url, position: nil)
+        try await waitUntil { engine.currentPosition != nil }
+        for index in [500, 999, 100, 0] {
+            try await jump(engine, book: book, href: "OEBPS/chapter-\(index).xhtml#line-2")
+            try await waitUntil {
+                guard let position = engine.currentPosition,
+                      let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any] else { return false }
+                return (json["href"] as? String)?.hasSuffix("chapter-\(index).xhtml") == true
+            }
+            XCTAssertLessThanOrEqual(webViews(in: engine.viewController.view).count, 12)
+        }
+        engine.close()
+        XCTAssertTrue(engine.viewController.children.isEmpty)
+        XCTAssertTrue(webViews(in: engine.viewController.view).isEmpty)
+    }
+
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
         let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)

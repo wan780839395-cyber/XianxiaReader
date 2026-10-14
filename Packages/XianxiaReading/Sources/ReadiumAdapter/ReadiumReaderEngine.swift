@@ -27,6 +27,8 @@ import XianxiaCore
     public var viewController: UIViewController { host }
     public private(set) var currentPosition: ReadingPosition?
     public private(set) var searchProvider: (any ReaderSearchProviding)?
+    public private(set) var supportsContinuousScrolling = false
+    public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
 
     public override init() { super.init() }
 
@@ -41,6 +43,11 @@ import XianxiaCore
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
             config: .init(preferences: preferences, disablePageTurnsWhileScrolling: false,
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
+        supportsContinuousScrolling = publication.metadata.layout != .fixed
+            && !navigator.settings.verticalText && navigator.settings.readingProgression == .ltr
+        if preferences.infiniteScroll == true, !supportsContinuousScrolling {
+            throw EPUBError.unsupported
+        }
         self.bookID = book.id
         self.navigator = navigator
         searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id) : nil
@@ -91,7 +98,18 @@ import XianxiaCore
     }
 
     public func setScrolling(_ enabled: Bool) {
+        preferences.infiniteScroll = false
         preferences.scroll = enabled
+        navigator?.submitPreferences(preferences)
+    }
+
+    public func setContinuousScrolling(_ enabled: Bool) {
+        guard navigator == nil || !enabled || supportsContinuousScrolling else {
+            onError?("这本书的固定布局、竖排或从右向左方向暂不支持连续滚动，请使用分页模式。")
+            return
+        }
+        preferences.scroll = enabled
+        preferences.infiniteScroll = enabled
         navigator?.submitPreferences(preferences)
     }
 
@@ -109,6 +127,7 @@ import XianxiaCore
         bookID = nil
         currentPosition = nil
         searchProvider = nil
+        supportsContinuousScrolling = false
     }
 
     public func navigator(_ navigator: Navigator, locationDidChange locator: Locator) {

@@ -1,5 +1,6 @@
 """Windows-capable repository validation. This is deliberately NOT a Swift compiler."""
 import argparse
+from collections import Counter
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -55,11 +56,9 @@ def check_project() -> None:
             and struct.unpack(">II", png[16:24]) == (1024, 1024) and png[25] == 2,
             "AppIcon must contain an opaque RGB 1024x1024 PNG")
     manifest = (ROOT / "Packages/XianxiaReading/Package.swift").read_text(encoding="utf-8")
-    require('exact: "3.11.0"' in manifest, "Readium exact version pin missing")
-    lock = json.loads((ROOT / "Package.resolved").read_text(encoding="utf-8"))
-    readium = next(pin for pin in lock["pins"] if pin["identity"] == "swift-toolkit")
-    require(readium["state"] == {"version": "3.11.0", "revision": "d82f44f4f05d87add9e22a8b75abbd61dce745dd"},
-            "Resolved Readium pin differs from reviewed release")
+    require('.package(path: "../../Vendor/ReadiumToolkit")' in manifest, "Maintained Readium package missing")
+    from verify_readium_lock import verify_lock
+    verify_lock(ROOT / "Package.resolved", allow_upstream=True)
     require('ReadiumAdapterGCDWebServer' not in manifest, "Do not add an EPUB HTTP server dependency")
     for source in (ROOT / "Packages/XianxiaCore/Sources/XianxiaCore").rglob("*.swift"):
         for line in source.read_text(encoding="utf-8").splitlines():
@@ -143,28 +142,56 @@ def check_fixtures() -> None:
         require(len(opf.findall("opf:spine/opf:itemref", ns)) == 3, "Reader fixture needs cover, long and short chapters")
         for item in opf.findall("opf:manifest/opf:item", ns):
             require("OEBPS/" + item.attrib["href"] in archive.namelist(), "Reader fixture resource missing")
+    with ZipFile(ROOT / "Tests/Fixtures/window-long.epub") as archive:
+        require(archive.testzip() is None, "Window fixture ZIP CRC failure")
+        opf = ET.fromstring(archive.read("OEBPS/book.opf"))
+        require(len(opf.findall("opf:spine/opf:itemref", ns)) == 1000, "Window fixture must have 1000 resources")
+        for item in opf.findall("opf:manifest/opf:item", ns):
+            path = "OEBPS/" + item.attrib["href"]
+            require(path in archive.namelist(), "Window fixture resource missing")
+            ET.fromstring(archive.read(path))
 
 
 def check_swift_syntax() -> int:
     from tree_sitter import Language, Parser
     import tree_sitter_swift
     parser = Parser(Language(tree_sitter_swift.language()))
-    files = [path for prefix in ["App", "Packages", "Tests/iOS"] for path in (ROOT / prefix).rglob("*.swift")
+    files = [path for prefix in ["App", "Packages", "Tests/iOS", "Vendor"] for path in (ROOT / prefix).rglob("*.swift")
              if ".build" not in path.parts and ".swiftpm" not in path.parts]
     errors = []
+    baseline = json.loads((ROOT / "Vendor/ReadiumToolkit/UPSTREAM.json").read_text(encoding="utf-8"))["upstreamGrammarDiagnostics"]
+    retained = 0
     for source in files:
         tree = parser.parse(source.read_bytes())
         if not tree.root_node.has_error:
             continue
         stack = [tree.root_node]
+        known = Counter(baseline.get(source.relative_to(ROOT / "Vendor/ReadiumToolkit").as_posix(), [])
+                        if source.is_relative_to(ROOT / "Vendor/ReadiumToolkit") else [])
         while stack:
             node = stack.pop()
             if node.is_error or node.is_missing:
+                # Compare exact parser limitations against the pristine 3.11
+                # source, which was already compiled in Build3. New diagnostics
+                # still fail. This is a grammar delta check, never a compiler.
+                import hashlib
+                signature = node.type + ":" + hashlib.sha256(node.parent.text).hexdigest()
+                if known[signature]:
+                    known[signature] -= 1
+                    retained += 1
+                    stack.extend(reversed(node.children))
+                    continue
                 row, column = node.start_point
                 errors.append(f"{source.relative_to(ROOT)}:{row + 1}:{column + 1}: {node.type}")
             stack.extend(reversed(node.children))
     require(not errors, "Swift grammar errors (not compiler diagnostics):\n" + "\n".join(errors))
+    print(f"Readium pristine grammar limitations retained: {retained}; added diagnostics: 0")
     return len(files)
+
+
+def check_vendor() -> None:
+    from verify_vendor import verify_vendor
+    verify_vendor()
 
 
 def main() -> None:
@@ -172,7 +199,7 @@ def main() -> None:
     argument_parser.add_argument("--swift-syntax", action="store_true")
     argument_parser.add_argument("--report", type=Path)
     args = argument_parser.parse_args()
-    checks = [check_documents, check_project, check_workflow, check_schema, check_fixtures]
+    checks = [check_documents, check_project, check_workflow, check_schema, check_fixtures, check_vendor]
     completed = []
     for check in checks:
         check()

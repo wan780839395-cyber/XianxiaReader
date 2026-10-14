@@ -54,16 +54,17 @@ import XianxiaCore
                         HStack {
                             Button("目录") { showContents = true }
                             Spacer()
-                            Button(model.scrolling ? "上一节" : "上一页") { Task { await model.engine?.turnPage(forward: false) } }
+                            Button(model.scrolling ? "上一屏" : "上一页") { Task { await model.engine?.turnPage(forward: false) } }
                             Spacer()
-                            Button(model.scrolling ? "下一节" : "下一页") { Task { await model.engine?.turnPage(forward: true) } }
+                            Button(model.scrolling ? "下一屏" : "下一页") { Task { await model.engine?.turnPage(forward: true) } }
                             Spacer()
                             Button("书签") { showBookmarks = true }
                         }
-                        Toggle("章内上下滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
+                        Toggle("上下连续滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
                             .font(.footnote)
+                            .disabled(model.engine?.supportsContinuousScrolling != true)
                         if model.scrolling {
-                            Text("章末可左右划动，或使用上一节 / 下一节接着阅读。")
+                            Text("向上滑动可接着阅读下一章。")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }

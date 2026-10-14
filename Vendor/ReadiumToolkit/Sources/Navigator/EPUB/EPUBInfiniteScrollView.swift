@@ -1,0 +1,369 @@
+// XianxiaReader extension of Readium 3.11 (BSD-3-Clause).
+// Navigator integration follows Eugene Martinson's PR811; this bounded,
+// fixed-viewport implementation replaces its whole-book placeholders.
+import ReadiumShared
+import UIKit
+
+@MainActor protocol EPUBInfiniteScrollViewDelegate: AnyObject {
+    func infiniteScrollView(_ view: EPUBInfiniteScrollView, spreadViewAtIndex index: Int) -> EPUBSpreadView?
+    func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView)
+}
+
+@MainActor final class EPUBInfiniteScrollView: UIScrollView, UIScrollViewDelegate {
+    @MainActor private final class Slot {
+        let view: EPUBSpreadView
+        let wrapper = UIView()
+        var height: CGFloat = 0
+        var ready = false
+        var failure: String?
+        var anchorSelector: String?
+        var anchorDocumentY: CGFloat?
+        var anchorRevision: UInt64?
+        var savedAnchor: Locator?
+        var loadTask: Task<Void, Never>?
+        var timeoutTask: Task<Void, Never>?
+        init(_ view: EPUBSpreadView) {
+            self.view = view
+            wrapper.clipsToBounds = true
+            wrapper.addSubview(view)
+        }
+    }
+    weak var infiniteDelegate: EPUBInfiniteScrollViewDelegate?
+    private(set) var chapterCount = 0
+    private(set) var currentIndex = 0
+    private var slots: [Int: Slot] = [:]
+    private var epoch = UUID()
+    private var layingOut = false
+    private var navigation = false
+    private var lastSize = CGSize.zero
+    private var viewportRevision: UInt64 = 0
+    private var lastTrackedOffset: CGFloat = 0
+    private let previousBoundary = UILabel()
+    private let boundary = UIView()
+    private let boundaryLabel = UILabel()
+    private let retry = UIButton(type: .system)
+    // At most 12 very short resources; typical long chapters use 3-5.
+    static let maximumLoadedResourceCount = 12
+    var loadedViews: [Int: EPUBSpreadView] { slots.mapValues { $0.view } }
+    var currentView: EPUBSpreadView? { slots[currentIndex]?.view }
+    private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
+    private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
+    private var readyIndices: [Int] {
+        guard slots[currentIndex]?.ready == true else { return [] }
+        var low = currentIndex, high = currentIndex
+        while low > 0, slots[low - 1]?.ready == true { low -= 1 }
+        while high + 1 < chapterCount, slots[high + 1]?.ready == true { high += 1 }
+        return Array(low...high)
+    }
+    var visibleIndices: ClosedRange<Int> {
+        let visible = readyIndices.filter {
+            guard let frame = slots[$0]?.wrapper.frame else { return false }
+            return frame.maxY > viewportTop && frame.minY < viewportTop + viewportHeight
+        }
+        return (visible.first ?? currentIndex)...(visible.last ?? currentIndex)
+    }
+    var progressionInCurrentChapter: Double { progression(in: currentIndex).lowerBound }
+    func progression(in index: Int) -> ClosedRange<Double> {
+        guard let slot = slots[index], slot.ready, slot.height > 0 else { return 0...0 }
+        let start = min(max((viewportTop - slot.wrapper.frame.minY) / slot.height, 0), 1)
+        let end = min(max((viewportTop + viewportHeight - slot.wrapper.frame.minY) / slot.height, start), 1)
+        return Double(start)...Double(end)
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        delegate = self
+        contentInsetAdjustmentBehavior = .never
+        showsHorizontalScrollIndicator = false
+        alwaysBounceVertical = true
+        accessibilityIdentifier = "readium.continuous-scroll"
+        previousBoundary.text = "正在加载上一章…"
+        previousBoundary.textAlignment = .center
+        previousBoundary.font = .preferredFont(forTextStyle: .footnote)
+        previousBoundary.isUserInteractionEnabled = true
+        previousBoundary.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(retryPreviousBoundary)))
+        addSubview(previousBoundary)
+        boundaryLabel.textAlignment = .center
+        boundaryLabel.numberOfLines = 2
+        boundaryLabel.font = .preferredFont(forTextStyle: .footnote)
+        retry.setTitle("重试加载", for: .normal)
+        retry.addTarget(self, action: #selector(retryBoundary), for: .touchUpInside)
+        boundary.addSubview(boundaryLabel)
+        boundary.addSubview(retry)
+        addSubview(boundary)
+    }
+    @available(*, unavailable) required init?(coder: NSCoder) { fatalError("Use init(frame:)") }
+    override func safeAreaInsetsDidChange() {
+        super.safeAreaInsetsDidChange()
+        contentInset = UIEdgeInsets(top: safeAreaInsets.top, left: 0, bottom: safeAreaInsets.bottom, right: 0)
+        setNeedsLayout()
+    }
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        if newSuperview == nil { clear() }
+    }
+    private func clear() {
+        epoch = UUID()
+        for index in Array(slots.keys) { evict(index) }
+    }
+    private func evict(_ index: Int) {
+        guard let slot = slots.removeValue(forKey: index) else { return }
+        slot.loadTask?.cancel()
+        slot.timeoutTask?.cancel()
+        slot.view.clear()
+        slot.wrapper.removeFromSuperview()
+        setNeedsLayout()
+    }
+    func reload(at index: Int, location: PageLocation, count: Int) {
+        clear()
+        chapterCount = count
+        guard count > 0 else { return }
+        currentIndex = min(max(index, 0), count - 1)
+        load(currentIndex, location: location)
+    }
+    func goToIndex(_ index: Int, location: PageLocation, options: NavigatorGoOptions) async -> Bool {
+        guard 0..<chapterCount ~= index else { return false }
+        navigation = true
+        defer { navigation = false }
+        if slots[index]?.ready != true {
+            clear()
+            currentIndex = index
+            load(index, location: .start)
+        }
+        let activeEpoch = epoch
+        // Loading has a 20s watchdog that clears Readium's continuations.
+        await slots[index]?.loadTask?.value
+        guard epoch == activeEpoch, let slot = slots[index], slot.ready else { return false }
+        currentIndex = index
+        layoutSlots(preserveAnchor: false)
+        await slot.view.go(to: location, animated: false)
+        guard epoch == activeEpoch, slots[index] === slot else { return false }
+        let y = slot.wrapper.frame.minY + slot.view.webView.scrollView.contentOffset.y
+        setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: options.animated)
+        preload()
+        infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
+        return true
+    }
+    private func load(_ index: Int, location: PageLocation = .start) {
+        guard 0..<chapterCount ~= index, slots[index] == nil,
+              slots.count < Self.maximumLoadedResourceCount,
+              let view = infiniteDelegate?.infiniteScrollView(self, spreadViewAtIndex: index) else { return }
+        let slot = Slot(view)
+        slot.wrapper.accessibilityIdentifier = "readium.chapter.\(index)"
+        slots[index] = slot
+        addSubview(slot.wrapper)
+        view.frame = CGRect(x: 0, y: 0, width: bounds.width, height: viewportHeight)
+        view.webView.scrollView.isScrollEnabled = false
+        view.webView.scrollView.contentInset = .zero
+        let request = epoch
+        view.registerJSMessage(named: "xianxiaBodyResized") { [weak self, weak slot] _ in
+            guard let self, let slot, self.slots[index] === slot, slot.ready else { return }
+            Task { @MainActor in await self.measure(index, slot: slot, request: request) }
+        }
+        slot.timeoutTask = Task { @MainActor [weak self, weak slot] in
+            do { try await Task.sleep(nanoseconds: 20_000_000_000) }
+            catch is CancellationError { return }
+            catch { self?.boundaryLabel.text = error.localizedDescription; return }
+            guard let self, let slot, self.epoch == request, self.slots[index] === slot, !slot.ready else { return }
+            slot.failure = "章节加载超时"
+            slot.view.clear()
+            self.layoutSlots(preserveAnchor: true)
+        }
+        slot.loadTask = Task { @MainActor [weak self, weak slot] in
+            guard let self, let slot else { return }
+            await slot.view.go(to: location, animated: false)
+            guard !Task.isCancelled, self.epoch == request, self.slots[index] === slot, slot.failure == nil else { return }
+            await self.measure(index, slot: slot, request: request)
+            guard self.epoch == request, self.slots[index] === slot, slot.ready else { return }
+            slot.timeoutTask?.cancel()
+            self.layoutSlots(preserveAnchor: true)
+            if index == self.currentIndex, location != .start {
+                let y = slot.wrapper.frame.minY + slot.view.webView.scrollView.contentOffset.y
+                self.contentOffset.y = y - self.contentInset.top
+            }
+            self.preload()
+            self.infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
+        }
+        layoutSlots(preserveAnchor: true)
+    }
+    private func measure(_ index: Int, slot: Slot, request: UUID) async {
+        let selectorJSON: String
+        do {
+            let data = try JSONSerialization.data(withJSONObject: [slot.anchorSelector ?? ""])
+            guard let text = String(data: data, encoding: .utf8) else { return }
+            selectorJSON = text
+        } catch {
+            slot.failure = error.localizedDescription
+            layoutSlots(preserveAnchor: true)
+            return
+        }
+        let script = """
+        (() => {
+          const selector = \(selectorJSON)[0];
+          const body = document.body;
+          if (!body) return null;
+          if (!window.__xianxiaBodyObserver) {
+            window.__xianxiaBodyObserver = new ResizeObserver(() => webkit.messageHandlers.xianxiaBodyResized.postMessage(1));
+            window.__xianxiaBodyObserver.observe(body);
+            for (const child of body.children) window.__xianxiaBodyObserver.observe(child);
+          }
+          const style = getComputedStyle(body);
+          let bottom = 0;
+          for (const child of body.children) bottom = Math.max(bottom, child.getBoundingClientRect().bottom + scrollY);
+          if (!body.children.length) {
+            const range = document.createRange(); range.selectNodeContents(body);
+            bottom = range.getBoundingClientRect().bottom + scrollY;
+          }
+          const anchor = selector ? document.querySelector(selector) : null;
+          return {height: Math.ceil(bottom + (parseFloat(style.marginBottom) || 0)),
+                  anchorY: anchor ? anchor.getBoundingClientRect().top + scrollY : null};
+        })()
+        """
+        let result = await slot.view.evaluateScript(script)
+        guard epoch == request, slots[index] === slot else { return }
+        switch result {
+        case let .success(value):
+            guard let data = value as? [String: Any], let number = data["height"] as? NSNumber, number.doubleValue.isFinite else {
+                slot.failure = "章节布局尺寸无效"; layoutSlots(preserveAnchor: true); return
+            }
+            let height = max(96, CGFloat(number.doubleValue) + 24)
+            let changed = abs(slot.height - height) > 0.5
+            let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
+            let anchorDelta: CGFloat = index == currentIndex
+                ? (newAnchorY.flatMap { new in slot.anchorDocumentY.map { new - $0 } } ?? 0) : 0
+            if let newAnchorY { slot.anchorDocumentY = newAnchorY }
+            slot.height = height
+            slot.ready = true
+            if changed {
+                layoutSlots(preserveAnchor: true)
+                if abs(anchorDelta) > 0.5 { contentOffset.y += anchorDelta }
+            }
+        case let .failure(error):
+            slot.failure = "章节布局失败：\(error.localizedDescription)"
+            slot.view.clear()
+            layoutSlots(preserveAnchor: true)
+        }
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard !layingOut else { return }
+        if lastSize != bounds.size {
+            lastSize = bounds.size
+            for (index, slot) in slots {
+                slot.view.frame.size = CGSize(width: bounds.width, height: viewportHeight)
+                if slot.ready { Task { @MainActor in await self.measure(index, slot: slot, request: self.epoch) } }
+            }
+        }
+        layoutSlots(preserveAnchor: true)
+    }
+    private func layoutSlots(preserveAnchor: Bool) {
+        guard !layingOut else { return }
+        layingOut = true
+        defer { layingOut = false }
+        let oldOrigin = slots[currentIndex]?.wrapper.frame.minY ?? 0
+        let local = viewportTop - oldOrigin
+        let indices = readyIndices
+        var y: CGFloat = (indices.first ?? currentIndex) > 0 ? 64 : 0
+        previousBoundary.isHidden = y == 0
+        previousBoundary.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 64)
+        previousBoundary.text = slots[(indices.first ?? currentIndex) - 1]?.failure ?? "正在加载上一章…"
+        for index in slots.keys.sorted() {
+            guard let slot = slots[index] else { continue }
+            slot.wrapper.isHidden = !indices.contains(index)
+            guard indices.contains(index) else { continue }
+            slot.wrapper.frame = CGRect(x: 0, y: y, width: bounds.width, height: slot.height)
+            y += slot.height
+        }
+        let last = indices.last ?? currentIndex
+        let hasNext = last + 1 < chapterCount
+        boundary.isHidden = !hasNext && !indices.isEmpty
+        boundary.frame = CGRect(x: 0, y: y, width: bounds.width, height: 64)
+        boundaryLabel.frame = CGRect(x: 8, y: 0, width: max(0, bounds.width - 16), height: 30)
+        retry.frame = CGRect(x: 0, y: 30, width: bounds.width, height: 30)
+        let failure = slots[indices.isEmpty ? currentIndex : last + 1]?.failure
+        boundaryLabel.text = failure ?? "正在加载下一章…"
+        retry.isHidden = failure == nil
+        if hasNext || indices.isEmpty { y += 64 }
+        contentSize = CGSize(width: bounds.width, height: max(viewportHeight, y))
+        if preserveAnchor, let origin = slots[currentIndex]?.wrapper.frame.minY, !indices.isEmpty {
+            let desired = origin + local - contentInset.top
+            if abs(contentOffset.y - desired) > 0.5 { contentOffset.y = desired }
+        }
+        updateViewports()
+        lastTrackedOffset = contentOffset.y
+    }
+    private func updateViewports() {
+        for index in readyIndices {
+            guard let slot = slots[index] else { continue }
+            let local = min(max(viewportTop - slot.wrapper.frame.minY, 0), max(slot.height - 24 - viewportHeight, 0))
+            slot.view.frame = CGRect(x: 0, y: local, width: bounds.width, height: viewportHeight)
+            if abs(slot.view.webView.scrollView.contentOffset.y - local) > 0.5 {
+                slot.view.webView.scrollView.contentOffset.y = local
+            }
+        }
+    }
+    private func preload() {
+        let visible = visibleIndices
+        for index in Array(slots.keys) where index < visible.lowerBound - 3 || index > visible.upperBound + 3 { evict(index) }
+        let indices = readyIndices
+        guard !indices.isEmpty else { return }
+        if let first = indices.first, first > max(0, visible.lowerBound - 3), slots[first - 1] == nil { load(first - 1) }
+        if let last = indices.last, last + 1 < chapterCount, last + 1 <= visible.upperBound + 3, slots[last + 1] == nil,
+           (slots[last]?.wrapper.frame.maxY ?? 0) - viewportTop < viewportHeight * 2.5 { load(last + 1) }
+    }
+    @objc private func retryPreviousBoundary() {
+        let index = (readyIndices.first ?? currentIndex) - 1
+        guard index >= 0 else { return }
+        evict(index); load(index)
+    }
+    @objc private func retryBoundary() {
+        let index = readyIndices.last.map { $0 + 1 } ?? currentIndex
+        evict(index); load(index)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !layingOut else { return }
+        if abs(contentOffset.y - lastTrackedOffset) > 0.5 {
+            viewportRevision &+= 1
+            lastTrackedOffset = contentOffset.y
+        }
+        updateViewports()
+        if !navigation, let focused = readyIndices.first(where: { (slots[$0]?.wrapper.frame.maxY ?? 0) > viewportTop }) {
+            currentIndex = focused
+        }
+        preload()
+        infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
+    }
+    func firstVisibleElementLocator() async -> Locator? {
+        guard let slot = slots[currentIndex], slot.ready else { return nil }
+        let clipTop = max(0, viewportTop - slot.wrapper.frame.minY - slot.view.frame.minY)
+        let clipBottom = min(viewportHeight, slot.height - slot.view.frame.minY)
+        let request = epoch
+        let index = currentIndex
+        let revision = viewportRevision
+        // Keep the old DOM anchor across reflow until measure() compensates;
+        // a resize notification is not a user scroll.
+        if slot.anchorRevision == revision, let anchor = slot.savedAnchor { return anchor }
+        let anchor = await slot.view.findFirstVisibleElementLocator(visibleTop: clipTop, visibleBottom: clipBottom)
+        guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
+        if let selector = anchor?.locations.cssSelector {
+            do {
+                let data = try JSONSerialization.data(withJSONObject: [selector])
+                if let json = String(data: data, encoding: .utf8) {
+                    let result = await slot.view.evaluateScript("(() => { const e = document.querySelector(\(json)[0]); return e ? e.getBoundingClientRect().top + scrollY : null; })()")
+                    guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
+                    switch result {
+                    case let .success(value):
+                        guard viewportRevision == revision else { return nil }
+                        slot.anchorRevision = revision
+                        slot.savedAnchor = anchor
+                        slot.anchorSelector = selector
+                        slot.anchorDocumentY = (value as? NSNumber).map { CGFloat($0.doubleValue) }
+                    case let .failure(error):
+                        boundaryLabel.text = error.localizedDescription
+                    }
+                }
+            } catch { boundaryLabel.text = error.localizedDescription }
+        }
+        return anchor
+    }
+}

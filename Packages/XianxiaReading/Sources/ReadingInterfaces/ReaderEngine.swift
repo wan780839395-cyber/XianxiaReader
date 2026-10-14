@@ -30,16 +30,23 @@ public protocol EPUBMetadataReading: Sendable {
     var onCenterTap: (() -> Void)? { get set }
     var onError: ((String) -> Void)? { get set }
     var searchProvider: (any ReaderSearchProviding)? { get }
+    var supportsContinuousScrolling: Bool { get }
     func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws
     func turnPage(forward: Bool) async
     func go(to chapter: Chapter) async throws
     func go(to position: ReadingPosition) async throws
     func setScrolling(_ enabled: Bool)
+    func setContinuousScrolling(_ enabled: Bool)
     func close()
 }
 
 public extension ReaderEngine {
     var searchProvider: (any ReaderSearchProviding)? { nil }
+    var supportsContinuousScrolling: Bool { false }
+    func setContinuousScrolling(_ enabled: Bool) {
+        if enabled { onError?("当前阅读引擎不支持连续滚动。") }
+        else { setScrolling(false) }
+    }
 }
 
 @MainActor public protocol ReaderEngineFactory {

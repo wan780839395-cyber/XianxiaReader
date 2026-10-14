@@ -10,16 +10,16 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../XianxiaCore"),
-        .package(url: "https://github.com/readium/swift-toolkit.git", exact: "3.11.0")
+        .package(path: "../../Vendor/ReadiumToolkit")
     ],
     targets: [
         .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore")]),
         .target(name: "ReadiumAdapter", dependencies: [
             "ReadingInterfaces",
             .product(name: "XianxiaCore", package: "XianxiaCore"),
-            .product(name: "ReadiumShared", package: "swift-toolkit"),
-            .product(name: "ReadiumStreamer", package: "swift-toolkit"),
-            .product(name: "ReadiumNavigator", package: "swift-toolkit")
+            .product(name: "ReadiumShared", package: "ReadiumToolkit"),
+            .product(name: "ReadiumStreamer", package: "ReadiumToolkit"),
+            .product(name: "ReadiumNavigator", package: "ReadiumToolkit")
         ])
     ]
 )

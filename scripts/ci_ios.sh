@@ -19,6 +19,14 @@ swift run --package-path .cache/XcodeGen --configuration release xcodegen genera
 mkdir -p XianxiaReader.xcodeproj/project.xcworkspace/xcshareddata/swiftpm
 cp Package.resolved XianxiaReader.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
+# A deliberate bootstrap run publishes the resolver-produced lock as an
+# artifact. Adopt that exact file and rerun the whole workflow with this off.
+if [[ "${READIUM_RESOLVE_BOOTSTRAP:-0}" == 1 ]]; then
+  bash scripts/resolve_local_readium.sh
+fi
+python3 scripts/verify_readium_lock.py Package.resolved
+cp Package.resolved build/Package.resolved
+
 swift test --package-path Packages/XianxiaCore --parallel
 xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \

@@ -22,7 +22,7 @@ def main() -> None:
         if name == "cover":
             body = '<div class="cover" id="start"><img id="cover-image" src="tall.svg" alt="青山长卷，上下各有完整色条"/></div>'
         else:
-            paragraphs = ''.join(f'<p>青山之下，少年缓步前行。这是第{i + 1}段原创排版测试文字，山风从远处吹来。</p>' for i in range(24 if name == "one" else 3))
+            paragraphs = ''.join(f'<p id="line-{i + 1}">青山之下，少年缓步前行。这是第{i + 1}段原创排版测试文字，山风从远处吹来。</p>' for i in range(24 if name == "one" else 3))
             body = f'<h1 id="start">{title}</h1>{paragraphs}'
         if index < len(chapters) - 1:
             body += f'<p><a id="next-section" href="{chapters[index + 1][0]}.xhtml#start">继续下一节</a></p>'

@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      resolve_local_readium:
+        description: First real local Readium resolution; adopt artifact then rerun with this off
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -64,6 +69,7 @@ jobs:
     timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      READIUM_RESOLVE_BOOTSTRAP: ${{ inputs.resolve_local_readium && '1' || '0' }}
     defaults:
       run:
         shell: bash
@@ -86,6 +92,7 @@ jobs:
             build/*.xcresult/
             build/ReaderSnapshots/
             build/build-environment.txt
+            build/Package*.resolved
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA
         uses: actions/upload-artifact@v4
