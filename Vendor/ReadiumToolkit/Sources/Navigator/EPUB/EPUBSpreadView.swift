@@ -535,7 +535,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             for (const child of root.children) {
               const style = getComputedStyle(child), rect = child.getBoundingClientRect();
               if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0'
-                  && rect.bottom > top && rect.top < bottom) return find(child);
+                  && rect.bottom > top && rect.top < bottom && rect.right > 0 && rect.left < innerWidth) return find(child);
             }
             return root;
           }

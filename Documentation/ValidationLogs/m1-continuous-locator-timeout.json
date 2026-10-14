@@ -1,0 +1,54 @@
+{
+  "run": 38498560012,
+  "sourceRevision": "871518c917b5f44c48595105253b6cb4cfb054b7",
+  "swiftCompiled": true,
+  "linuxCorePassed": 14,
+  "macOSCorePassed": 14,
+  "iOSPassed": 34,
+  "iOSFailed": 4,
+  "iOSTotal": 38,
+  "skippedTests": 0,
+  "actualFailures": [
+    {
+      "failureText": "failed - Continuous reader did not reach the expected rendered state",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 19,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousFragmentAndDOMBookmarkRestore()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousFragmentAndDOMBookmarkRestore",
+      "testName": "testContinuousFragmentAndDOMBookmarkRestore()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach the expected rendered state",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 20,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "testName": "testContinuousHeightChangeKeepsVisibleDOMAnchor()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach the expected rendered state",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 22,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach the expected rendered state",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 23,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousSearchJumpAndModeRoundTripKeepTheParagraph",
+      "testName": "testContinuousSearchJumpAndModeRoundTripKeepTheParagraph()"
+    }
+  ],
+  "mainThreadCheckerViolationObserved": false,
+  "nativeTwoChapterSnapshotReviewed": true,
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": false,
+  "ipaProduced": false,
+  "logSha256": "70f22c934d038c516ce5ab26f493f14bb4ddff9b81688cdcc5a56c03217e87af",
+  "summarySha256": "9f73fdef122f57f4c7046670334af0a47ce92452a2b77567e12196330155b31e"
+}

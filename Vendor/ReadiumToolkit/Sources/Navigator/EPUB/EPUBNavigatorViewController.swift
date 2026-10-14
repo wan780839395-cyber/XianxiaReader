@@ -139,6 +139,28 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     /// before the owning reader discards this controller.
     public func closeContinuousScrolling() { infiniteScrollView?.shutdown() }
 
+    /// Preserve a fresh, bounded DOM anchor before rebuilding the layout.
+    /// Delegate notifications can still be catching up to a visible jump.
+    public func preserveCurrentDOMLocationForModeChange() async {
+        let anchor: Locator?
+        if let isv = infiniteScrollView {
+            let request = isv.viewportIdentity
+            anchor = await isv.firstVisibleElementLocator()
+            guard infiniteScrollView === isv, isv.viewportIdentity == request else { return }
+        } else if let spread = paginationView?.currentView as? EPUBSpreadView {
+            let offset = spread.webView.scrollView.contentOffset
+            anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)
+            guard paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else { return }
+        } else { return }
+        guard let anchor else { return }
+        let previous = currentLocation?.href.isEquivalentTo(anchor.href) == true ? currentLocation : nil
+        currentLocation = anchor.copy(title: previous?.title, locations: {
+            $0.progression = previous?.locations.progression
+            $0.totalProgression = previous?.locations.totalProgression
+            $0.position = previous?.locations.position
+        })
+    }
+
     public weak var delegate: EPUBNavigatorDelegate?
 
     /// Information about the visible portion of the publication, when rendered.

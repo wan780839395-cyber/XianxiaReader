@@ -312,6 +312,10 @@ import UIKit
         if preserveAnchor, let origin = slots[currentIndex]?.wrapper.frame.minY, !indices.isEmpty {
             let desired = origin + local - contentInset.top
             if abs(contentOffset.y - desired) > 0.5 { contentOffset.y = desired }
+        } else if indices.isEmpty {
+            // The current DOM was released or failed. Keep its loading/retry
+            // controls on screen instead of retaining a now-invalid offset.
+            contentOffset.y = -contentInset.top
         }
         updateViewports()
         lastTrackedOffset = contentOffset.y

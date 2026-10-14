@@ -6,11 +6,13 @@
   "linuxCorePassed": 14,
   "macOSCorePassed": 14,
   "iOSPassed": 31,
-  "iOSCrashed": 6,
   "testExitCode": 65,
   "attachmentExportExitCode": 0,
   "releaseBuilt": false,
   "ipaProduced": false,
   "failureEvidence": "build/ci/38497134015/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/*.ips",
-  "fullLogSha256": "a8efb8e8d46a6cf03166e8aaba0a8b0100655af78a4023559db3a47b655ef226"
+  "fullLogSha256": "a8efb8e8d46a6cf03166e8aaba0a8b0100655af78a4023559db3a47b655ef226",
+  "iOSFailed": 6,
+  "verifiedCrashAttachments": 4,
+  "note": "Six failed/restarted tests; four exported SIGABRT crash attachments prove the Main Thread Checker stack, first two logs also record that violation."
 }

@@ -7,6 +7,7 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor private weak var diagnosticEngine: ReadiumReaderEngine?
     @MainActor private final class OverlayState: ObservableObject {
         @Published var visible = true
     }
@@ -31,6 +32,7 @@ final class ReaderRenderingTests: XCTestCase {
     private enum RenderFailure: Error { case timedOut(String, String), invalidProbe }
 
     @MainActor private func mount(_ engine: ReadiumReaderEngine) throws -> (UIWindow, OverlayState) {
+        diagnosticEngine = engine
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }
         let state = OverlayState()
@@ -161,15 +163,34 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertGreaterThan(try XCTUnwrap(target["height"] as? Double), 300)
     }
 
-    @MainActor private func waitUntil(_ condition: @MainActor () async throws -> Bool) async throws {
+    @MainActor private func waitUntil(caller: String = #function, line: Int = #line,
+                                     _ condition: @MainActor () async throws -> Bool) async throws {
         let deadline = Date().addingTimeInterval(30)
         while Date() < deadline {
             let ready = try await condition()
             if ready { return }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
-        XCTFail("Continuous reader did not reach the expected rendered state")
-        throw RenderFailure.timedOut("continuous", "see expected state")
+        var diagnostic = "\(caller):\(line)"
+        if let engine = diagnosticEngine {
+            let root = engine.viewController.view!
+            diagnostic += "\nposition=\(engine.currentPosition.map { String(decoding: $0.locatorData, as: UTF8.self) } ?? "nil")"
+            if let scroll = view(identifier: "readium.continuous-scroll", in: root) as? UIScrollView {
+                diagnostic += "\nouter offset=\(scroll.contentOffset) inset=\(scroll.contentInset) content=\(scroll.contentSize) bounds=\(scroll.bounds)"
+            }
+            for webView in webViews(in: root) {
+                diagnostic += "\nweb frame=\(webView.frame) visible=\(clippedVisibleRect(webView, root: root)) offset=\(webView.scrollView.contentOffset)"
+                do {
+                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top})")
+                    diagnostic += " DOM=\(String(describing: value))"
+                } catch { diagnostic += " DOM error=\(error.localizedDescription)" }
+            }
+        }
+        let attachment = XCTAttachment(string: diagnostic)
+        attachment.name = "continuous-failure-\(caller)-\(line)"; attachment.lifetime = .keepAlways; add(attachment)
+        print("CONTINUOUS_DIAGNOSTIC \(diagnostic)")
+        XCTFail("Continuous reader did not reach expected state at \(caller):\(line)")
+        throw RenderFailure.timedOut("continuous", diagnostic)
     }
 
     @MainActor private func view(identifier: String, in root: UIView) -> UIView? {
@@ -261,8 +282,10 @@ final class ReaderRenderingTests: XCTestCase {
         try await waitUntil {
             guard let position = engine.currentPosition,
                   let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
-                  let locations = json["locations"] as? [String: Any] else { return false }
+                  let locations = json["locations"] as? [String: Any],
+                  let text = json["text"] as? [String: Any] else { return false }
             return (json["href"] as? String)?.hasSuffix("one.xhtml") == true && locations["cssSelector"] != nil
+                && ((text["before"] as? String ?? "") + (text["highlight"] as? String ?? "")).contains("第12段")
         }
         let saved = try XCTUnwrap(engine.currentPosition)
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
@@ -285,7 +308,13 @@ final class ReaderRenderingTests: XCTestCase {
         try await waitUntil { engine.currentPosition != nil }
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
         let webView = try resourceWebView(engine, index: 1)
-        try await Task.sleep(nanoseconds: 500_000_000)
+        try await waitUntil {
+            let y = try await webView.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
+                  let text = json["text"] as? [String: Any] else { return false }
+            return abs(y ?? 10000) < 5 && ((text["before"] as? String ?? "") + (text["highlight"] as? String ?? "")).contains("第12段")
+        }
         let script = "document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000"
         let beforeValue = try await webView.evaluateJavaScript(script) as? Double
         let before = try XCTUnwrap(beforeValue)
@@ -358,7 +387,9 @@ final class ReaderRenderingTests: XCTestCase {
         _ = try await webView.evaluateJavaScript("document.body.remove()")
         try await waitUntil {
             guard let retry = self.view(identifier: "readium.continuous-retry", in: engine.viewController.view) as? UIButton else { return false }
+            let root = engine.viewController.view!
             return !retry.isHidden && retry.superview?.isHidden == false
+                && retry.convert(retry.bounds, to: root).intersection(root.bounds).height > 20
         }
         let retry = try XCTUnwrap(view(identifier: "readium.continuous-retry", in: engine.viewController.view) as? UIButton)
         retry.sendActions(for: .touchUpInside)
@@ -424,6 +455,21 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertTrue(engine.viewController.children.isEmpty)
         XCTAssertTrue(webViews(in: engine.viewController.view).isEmpty)
         try await waitUntil { releasedWebView == nil }
+    }
+
+    @MainActor func testLateModeChangeCannotRebuildReopenedContinuousReader() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        engine.setContinuousScrolling(false)
+        await Task.yield()
+        engine.close()
+        engine.setContinuousScrolling(true)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        try await engine.open(book: book, fileURL: url, position: nil)
+        try await waitUntil { engine.continuousLoadedResourceCount >= 2 && engine.currentPosition != nil }
+        XCTAssertNotNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
     }
 
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {

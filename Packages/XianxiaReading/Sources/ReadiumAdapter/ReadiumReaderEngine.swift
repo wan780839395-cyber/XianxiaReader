@@ -20,6 +20,8 @@ import XianxiaCore
     private var navigator: EPUBNavigatorViewController?
     private var bookID: UUID?
     private var openRequestID: UUID?
+    private var modeChangeRequestID: UUID?
+    private var modeChangeTask: Task<Void, Never>?
     private var preferences = EPUBPreferences(scroll: false)
     public var onPositionChanged: ((ReadingPosition) -> Void)?
     public var onCenterTap: (() -> Void)?
@@ -98,6 +100,7 @@ import XianxiaCore
     }
 
     public func setScrolling(_ enabled: Bool) {
+        cancelModeChange()
         preferences.infiniteScroll = false
         preferences.scroll = enabled
         navigator?.submitPreferences(preferences)
@@ -110,12 +113,30 @@ import XianxiaCore
         }
         preferences.scroll = enabled
         preferences.infiniteScroll = enabled
-        navigator?.submitPreferences(preferences)
+        cancelModeChange()
+        guard let navigator else { return }
+        let requestID = UUID()
+        modeChangeRequestID = requestID
+        let requestedPreferences = preferences
+        modeChangeTask = Task { @MainActor [weak self, weak navigator] in
+            guard let self, let navigator else { return }
+            await navigator.preserveCurrentDOMLocationForModeChange()
+            guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+            navigator.submitPreferences(requestedPreferences)
+            self.modeChangeTask = nil
+        }
+    }
+
+    private func cancelModeChange() {
+        modeChangeRequestID = nil
+        modeChangeTask?.cancel()
+        modeChangeTask = nil
     }
 
     public func close() {
         // A suspended publication load must not mount a navigator after this reader closes.
         openRequestID = nil
+        cancelModeChange()
         if let navigator {
             if let locator = navigator.currentLocation { capture(locator) }
             navigator.delegate = nil

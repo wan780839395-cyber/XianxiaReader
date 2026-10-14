@@ -31,7 +31,7 @@
 - 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes，包含IPA、三本原创EPUB和TESTING.txt，CRC与内部IPA hash一致。Build2及更早原件保留在对应run目录。
 - 用户iPhone13/iOS16.6.1/TrollStore：安装正常、EPUB可以导入（用户报告，来源未细分）；原书图像窄横条。当前Build3安装/原书图片/完整阅读仍待复测；没有普通设备签名验收。
 - **真正纵向连续跨章候选已写入未提交源码，尚未通过编译/运行验收**：Vendor/ReadiumToolkit 是3.11.0本地扩展，最多12资源窗口、固定WKWebView viewport、加载边界/重试、DOMRange+视口偏移、迟到布局过滤和关闭清理。旧Build3仍为章内滚动/横向切换；候选不能作为已验收功能。
-- remote compact恢复：HEAD仍main/6d76174，原未提交改动完整保留；370文件快照 `.cache/recovery/20261014-092934/`。独立候选分支 `codex/m1-continuous-recovery`。首次真实解析run38496501326获得6-pin原始锁（保留pins不变、裁剪4个未使用依赖）；该run在依赖核验停止，未编译。严格锁CI38497134015进行中，新增源码仍须后续完整验证。
+- remote compact恢复：HEAD仍main/6d76174，原未提交改动完整保留；370文件快照 `.cache/recovery/20261014-092934/`。独立候选分支 `codex/m1-continuous-recovery`。首次真实解析run38496501326获得6-pin原始锁（保留pins不变、裁剪4个未使用依赖）；该run在依赖核验停止，未编译。38497134015已编译，Linux/macOS各14 Core和原31 iOS通过，6连续tests因后台UIKit读取崩溃，未生成IPA。已改MainActor视口数值快照，完整38-test CI38498560012进行中；最终源码未验收。Windows362grammar delta/14tooling通过，不能替代编译。
 
 ## 失败历史与报告范围
 
