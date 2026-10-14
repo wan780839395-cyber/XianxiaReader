@@ -4,6 +4,12 @@
 
 ## 实际断点
 
+### TXT产品接入开始（覆盖下方上一切片的完成点）
+
+2026-10-14用户再次要求继续。已按顺序核对文档、main6d76174/原空index、M2分支2eaa974、CI38547339868/65c1b8d真实success及本机无挂起任务。下一切片接入受管理TXT导入、明确编码选择、Readium公开Publication/Container有界资源及完整TXT位置；原书/现有书库/Build4保留。先阅读锁定3.11本地公开API，再写最小实现与真实导入/窗口/位置/生命周期回归；此刻尚未写入新源码，不把上轮Core60/旧iOS41当产品TXT验收。
+
+构建前检查点：已写入TXTBookImportService（原件/索引cache/Book+TOC事务与失败恢复），可选Book.txtEncoding向后兼容旧EPUB JSON；BookFileStore保留NSFileCoordinator并支持TXT。TXTReadingPlanner将大章拆为最多64KiB轻量范围，Adapter公开Publication/Container/DataResource按窗口转XHTML、转义正文、字节段落ID，复用Readium排版与安全搜索。TXT独立完整位置envelope绑定原/normalized摘要、parser/normalizer/codec与稳定章ID、段落byte/UTF16字符和完整原生Locator，恢复在后台验证段落边界/代理对，不只百分比。UI支持TXT编码选择/失败重试/取消及原创TXT样书；Build号5，原Build4包不覆盖。新增8 Core/5 iOS回归，预期各68 Core/46 iOS；旧生命周期/迟到保存回归均保留，原TXT拒绝混合导入测试改为TXT+EPUB成功并保留不支持文件失败断言。Windows379 grammar新增0/14 tooling通过（不是编译）；此刻所有新源码待真实完整CI，Readium/vendor/远程锁未修改。
+
 **M2 Core编码正规化/内容版本cache第二切片完整自动CI通过；下一步TXT导入与阅读接入。** 当前安装包仍只有EPUB入口，不能把Core完成写成TXT产品已可用或完整M2验收。
 
 CI38547339868 / 运行源码65c1b8d6dbebf311c1e6b4b9534cda59373940b6 / codex/m2-txt-index / bootstrap=false，repository-checks、Linux Core、macOS/iOS/Release job全部success。Linux/macOS各60 Core（33原+27新增：16正规化/11cache）、原41/41 iOS，0 failed/skipped，test/附件/summary退出码0；设备Release CODE_SIGNING_ALLOWED=NO成功。完整日志、原始xcresult、锁、IPA归档在build/ci/38547339868，445个运行文件Git blob SHA与当前源码一致，根/下载/workspace锁逐字节一致。源码Swift/C warning/error=0；AppIntents/WebKit诊断原样保留，不算设备验收。

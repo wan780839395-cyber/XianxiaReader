@@ -47,6 +47,7 @@ import XianxiaCore
             try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: restored)
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
+            if let currentChapters = engine.currentChapters { chapters = currentChapters }
             position = engine.currentPosition
             isReady = true
         } catch is CancellationError {

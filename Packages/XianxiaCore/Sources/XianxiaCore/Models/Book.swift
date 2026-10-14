@@ -13,9 +13,11 @@ public struct Book: Identifiable, Codable, Equatable, Sendable {
     public let filePath: String
     public var coverPath: String?
     public let importedAt: Date
+    /// Optional for backward-compatible decoding of existing EPUB records.
+    public let txtEncoding: TXTEncoding?
 
     public init(id: UUID = UUID(), title: String, author: String = "", format: BookFormat,
-                filePath: String, coverPath: String? = nil, importedAt: Date = Date()) {
+                filePath: String, coverPath: String? = nil, importedAt: Date = Date(), txtEncoding: TXTEncoding? = nil) {
         self.id = id
         self.title = title
         self.author = author
@@ -23,6 +25,7 @@ public struct Book: Identifiable, Codable, Equatable, Sendable {
         self.filePath = filePath
         self.coverPath = coverPath
         self.importedAt = importedAt
+        self.txtEncoding = txtEncoding
     }
 }
 

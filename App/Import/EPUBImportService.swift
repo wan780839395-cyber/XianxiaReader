@@ -15,9 +15,9 @@ enum ImportError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .noFilesSelected:
-            return "文件选择器没有返回文件。请在“文件”中下载 EPUB，再从“我的 iPhone”重新导入。"
+            return "文件选择器没有返回文件。请在“文件”中下载书籍，再从“我的 iPhone”重新导入。"
         case .unsupportedFile:
-            return "请选择 .epub 文件。当前版本尚未支持 TXT 阅读。"
+            return "请选择 .epub 或 .txt 文件。"
         case .missingSample:
             return "安装包中的测试样书缺失，请更新应用后重试。"
         case .cleanupFailed(let original, let cleanup):
@@ -30,19 +30,24 @@ enum ImportError: LocalizedError {
     private let repository: any BookRepository
     private let files: BookFileStore
     private let metadata: any EPUBMetadataReading
+    private let txtImporter: TXTBookImportService
 
     init(repository: any BookRepository, files: BookFileStore, metadata: any EPUBMetadataReading) {
         self.repository = repository
         self.files = files
         self.metadata = metadata
+        txtImporter = TXTBookImportService(files: files, repository: repository)
     }
 
-    func importBook(from source: URL) async throws -> ImportOutcome {
-        guard source.isFileURL, source.pathExtension.lowercased() == "epub" else {
+    func importBook(from source: URL, txtEncoding: TXTEncoding = .automatic) async throws -> ImportOutcome {
+        guard source.isFileURL, ["epub","txt"].contains(source.pathExtension.lowercased()) else {
             throw ImportError.unsupportedFile
         }
         let scoped = source.startAccessingSecurityScopedResource()
         defer { if scoped { source.stopAccessingSecurityScopedResource() } }
+        if source.pathExtension.lowercased() == "txt" {
+            return ImportOutcome(book: try await txtImporter.importBook(from: source, encoding: txtEncoding), warnings: [])
+        }
         let id = UUID()
         do {
             let staged = try await files.stageEPUB(from: source, id: id)

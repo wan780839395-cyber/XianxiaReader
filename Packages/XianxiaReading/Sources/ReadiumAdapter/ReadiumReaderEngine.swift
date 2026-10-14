@@ -7,16 +7,21 @@ import WebKit
 import XianxiaCore
 
 @MainActor public final class ReadiumEngineFactory: ReaderEngineFactory {
-    public init() {}
+    private let storageRoot: URL?
+    public init(storageRoot: URL? = nil) { self.storageRoot = storageRoot }
     public func makeEngine(for format: BookFormat) throws -> any ReaderEngine {
-        guard format == .epub else { throw EPUBError.unsupported }
-        return ReadiumReaderEngine()
+        guard format == .epub || format == .txt else { throw EPUBError.unsupported }
+        if format == .txt, storageRoot == nil { throw EPUBError.invalidURL }
+        return ReadiumReaderEngine(storageRoot: storageRoot)
     }
 }
 
 @MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
+    private let txtLoader = TXTReadiumPublicationLoader()
+    private let storageRoot: URL?
+    private var txtReading: TXTPreparedPublication?
     private let additionalUserScripts: [WKUserScript]
     private var navigator: EPUBNavigatorViewController?
     private var bookID: UUID?
@@ -32,16 +37,25 @@ import XianxiaCore
     public private(set) var searchProvider: (any ReaderSearchProviding)?
     public private(set) var supportsContinuousScrolling = false
     public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
+    public var currentChapters: [Chapter]? { txtReading?.plan.index.chapters }
     var continuousDiagnosticState: String { navigator?.continuousScrollDiagnosticState ?? "no navigator" }
 
     public override init() {
+        storageRoot = nil
         additionalUserScripts = []
         super.init()
     }
 
     // Integration tests can delay a WebKit bridge without altering production
     // resource files or disabling the reader's real initialization work.
-    init(additionalUserScripts: [WKUserScript]) {
+    public init(storageRoot: URL?) {
+        self.storageRoot = storageRoot
+        additionalUserScripts = []
+        super.init()
+    }
+
+    init(additionalUserScripts: [WKUserScript], storageRoot: URL? = nil) {
+        self.storageRoot = storageRoot
         self.additionalUserScripts = additionalUserScripts
         super.init()
     }
@@ -50,10 +64,25 @@ import XianxiaCore
         close()
         let requestID = UUID()
         openRequestID = requestID
-        let publication = try await loader.open(at: fileURL)
+        let publication: Publication
+        let txt: TXTPreparedPublication?
+        if book.format == .txt {
+            guard let storageRoot else { throw EPUBError.invalidURL }
+            let prepared = try await txtLoader.open(book: book, fileURL: fileURL, storageRoot: storageRoot)
+            txt = prepared; publication = prepared.publication
+        } else {
+            guard book.format == .epub else { throw EPUBError.unsupported }
+            txt = nil; publication = try await loader.open(at: fileURL)
+        }
         try Task.checkCancellation()
         guard openRequestID == requestID else { throw CancellationError() }
-        let locator = try position.map { try ReadiumPositionCodec.decode($0, bookID: book.id) }
+        let locator: Locator?
+        if let position {
+            if let txt { locator = try await txt.locator(position, bookID: book.id) }
+            else { locator = try ReadiumPositionCodec.decode(position, bookID: book.id) }
+        } else { locator = nil }
+        try Task.checkCancellation()
+        guard openRequestID == requestID else { throw CancellationError() }
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
             config: .init(preferences: preferences, disablePageTurnsWhileScrolling: false,
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
@@ -63,8 +92,9 @@ import XianxiaCore
             throw EPUBError.unsupported
         }
         self.bookID = book.id
+        txtReading = txt
         self.navigator = navigator
-        searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id) : nil
+        searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id, txtPlan: txt?.plan) : nil
         currentPosition = position
         navigator.delegate = self
         // Readium dispatches only taps not consumed by links, selection, etc.
@@ -100,14 +130,28 @@ import XianxiaCore
     }
 
     public func go(to chapter: Chapter) async throws {
-        guard chapter.bookID == bookID, let href = chapter.href, AnyURL(string: href) != nil,
-              let navigator else { throw EPUBError.navigationFailed }
+        guard chapter.bookID == bookID, let navigator else { throw EPUBError.navigationFailed }
+        let href: String
+        if let txtReading {
+            guard let actual = txtReading.plan.index.chapters.first(where: { $0.id == chapter.id }) else { throw EPUBError.navigationFailed }
+            let leaf = actual.startByte != nil ? actual : txtReading.plan.index.chapters.first { $0.ordinal > actual.ordinal && $0.startByte != nil }
+            guard let leaf, let resource = txtReading.plan.firstResource(chapterID: leaf.id) else { throw EPUBError.navigationFailed }
+            href = resource.href
+        } else {
+            guard let value = chapter.href, AnyURL(string: value) != nil else { throw EPUBError.navigationFailed }
+            href = value
+        }
         guard await navigator.go(to: Link(href: href), options: .animated) else { throw EPUBError.navigationFailed }
     }
 
     public func go(to position: ReadingPosition) async throws {
         guard let bookID, let navigator else { throw EPUBError.navigationFailed }
-        let locator = try ReadiumPositionCodec.decode(position, bookID: bookID)
+        let requestID = openRequestID
+        let locator: Locator
+        if let txtReading { locator = try await txtReading.locator(position, bookID: bookID) }
+        else { locator = try ReadiumPositionCodec.decode(position, bookID: bookID) }
+        try Task.checkCancellation()
+        guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
         guard await navigator.go(to: locator, options: .animated) else { throw EPUBError.navigationFailed }
     }
 
@@ -161,6 +205,7 @@ import XianxiaCore
         bookID = nil
         currentPosition = nil
         searchProvider = nil
+        txtReading = nil
         supportsContinuousScrolling = false
     }
 
@@ -188,7 +233,9 @@ import XianxiaCore
     private func capture(_ locator: Locator) {
         guard let bookID else { return }
         do {
-            let position = try ReadiumPositionCodec.encode(locator, bookID: bookID)
+            let position: ReadingPosition
+            if let txtReading { position = try TXTPositionCodec.encode(locator, bookID: bookID, plan: txtReading.plan) }
+            else { position = try ReadiumPositionCodec.encode(locator, bookID: bookID) }
             currentPosition = position
             onPositionChanged?(position)
         } catch { onError?("阅读位置保存失败：\(error.localizedDescription)") }

@@ -6,10 +6,12 @@ import XianxiaCore
 actor ReadiumSearchProvider: ReaderSearchProviding {
     private let publication: Publication
     private let bookID: UUID
+    private let txtPlan: TXTReadingPlan?
 
-    init(publication: Publication, bookID: UUID) {
+    init(publication: Publication, bookID: UUID, txtPlan: TXTReadingPlan? = nil) {
         self.publication = publication
         self.bookID = bookID
+        self.txtPlan = txtPlan
     }
 
     func search(query: String) async throws -> any ReaderSearchSession {
@@ -22,7 +24,7 @@ actor ReadiumSearchProvider: ReaderSearchProviding {
             options: .init(caseSensitive: false, diacriticSensitive: true, exact: true,
                            regularExpression: false)).get()
         try Task.checkCancellation()
-        return ReadiumSearchSession(publication: publication, iterator: iterator, bookID: bookID)
+        return ReadiumSearchSession(publication: publication, iterator: iterator, bookID: bookID, txtPlan: txtPlan)
     }
 }
 
@@ -31,13 +33,15 @@ actor ReadiumSearchSession: ReaderSearchSession {
     private var publication: Publication?
     private var iterator: (any SearchIterator)?
     private let bookID: UUID
+    private let txtPlan: TXTReadingPlan?
     private var work: Task<LocatorCollection?, Error>?
     private var cancelled = false
 
-    init(publication: Publication?, iterator: any SearchIterator, bookID: UUID) {
+    init(publication: Publication?, iterator: any SearchIterator, bookID: UUID, txtPlan: TXTReadingPlan? = nil) {
         self.publication = publication
         self.iterator = iterator
         self.bookID = bookID
+        self.txtPlan = txtPlan
     }
 
     func next() async throws -> [ReaderSearchHit]? {
@@ -67,9 +71,12 @@ actor ReadiumSearchSession: ReaderSearchSession {
         }
         guard let page else { self.iterator = nil; publication = nil; return nil }
         return try page.locators.map { locator in
-            ReaderSearchHit(title: locator.title ?? "正文", before: locator.text.before ?? "",
+            let position: ReadingPosition
+            if let txtPlan { position = try TXTPositionCodec.encode(locator, bookID: bookID, plan: txtPlan) }
+            else { position = try ReadiumPositionCodec.encode(locator, bookID: bookID) }
+            return ReaderSearchHit(title: locator.title ?? "正文", before: locator.text.before ?? "",
                             highlight: locator.text.highlight ?? "", after: locator.text.after ?? "",
-                            position: try ReadiumPositionCodec.encode(locator, bookID: bookID))
+                            position: position)
         }
     }
 

@@ -2,11 +2,13 @@ import Foundation
 
 public enum StorageError: LocalizedError, Equatable {
     case unsafePath, unsupportedFormat, missingSource
+    case cleanupFailed(original: String, cleanup: String)
     public var errorDescription: String? {
         switch self {
         case .unsafePath: return "书籍路径无效。"
-        case .unsupportedFormat: return "当前验证版本仅支持 EPUB；TXT 将在 M2 加入。"
+        case .unsupportedFormat: return "请选择 EPUB 或 TXT 文件。"
         case .missingSource: return "选中的文件不存在或不是普通文件。"
+        case .cleanupFailed(let original, let cleanup): return "导入失败：\(original)。临时文件清理失败：\(cleanup)。"
         }
     }
 }
@@ -14,6 +16,7 @@ public enum StorageError: LocalizedError, Equatable {
 public struct StagedBook: Sendable {
     public let id: UUID
     public let fileURL: URL
+    public let format: BookFormat
 }
 
 /// Blocking file work stays on this actor, never on the UI executor.
@@ -55,18 +58,29 @@ public actor BookFileStore {
     }
 
     public func stageEPUB(from source: URL, id: UUID = UUID()) throws -> StagedBook {
-        guard source.pathExtension.lowercased() == "epub" else { throw StorageError.unsupportedFormat }
+        try stage(from: source, id: id, format: .epub)
+    }
+
+    public func stageTXT(from source: URL, id: UUID = UUID()) throws -> StagedBook {
+        try stage(from: source, id: id, format: .txt)
+    }
+
+    private func stage(from source: URL, id: UUID, format: BookFormat) throws -> StagedBook {
+        try Task.checkCancellation()
+        guard source.pathExtension.lowercased() == format.rawValue else { throw StorageError.unsupportedFormat }
         guard try source.resourceValues(forKeys: [.isRegularFileKey]).isRegularFile == true else { throw StorageError.missingSource }
         let directory = try resolve("Staging/\(id.uuidString)")
         try manager.createDirectory(at: directory, withIntermediateDirectories: true)
         do {
-            let target = directory.appendingPathComponent("book.epub")
+            let target = try resolve("Staging/\(id.uuidString)/book.\(format.rawValue)")
             // No whole-file Data buffer; Apple builds coordinate File Provider materialization.
             try sourceCopier.copy(from: source, to: target)
-            return StagedBook(id: id, fileURL: target)
+            return StagedBook(id: id, fileURL: target, format: format)
         } catch {
-            try? manager.removeItem(at: directory)
-            throw error
+            let original = error
+            do { try manager.removeItem(at: directory) }
+            catch { throw StorageError.cleanupFailed(original: original.localizedDescription, cleanup: error.localizedDescription) }
+            throw original
         }
     }
 
@@ -80,26 +94,27 @@ public actor BookFileStore {
         let books = try resolve("Books")
         try manager.createDirectory(at: books, withIntermediateDirectories: true)
         try manager.moveItem(at: directory, to: books.appendingPathComponent(staged.id.uuidString))
-        return ("Books/\(staged.id.uuidString)/book.epub", coverPath)
+        return ("Books/\(staged.id.uuidString)/book.\(staged.format.rawValue)", coverPath)
     }
 
     /// Used only to roll back an import whose database transaction never committed.
     public func discardImport(id: UUID) throws {
-        for prefix in ["Staging", "Books"] {
-            let path = try resolve("\(prefix)/\(id.uuidString)")
+        for prefix in ["Staging", "Books", "Cache/TXT"] {
+            let key = prefix == "Cache/TXT" ? id.uuidString.lowercased() : id.uuidString
+            let path = try resolve("\(prefix)/\(key)")
             if manager.fileExists(atPath: path.path) { try manager.removeItem(at: path) }
         }
     }
 
     /// On restart, remove interrupted staging and finalized imports absent from the DB.
     public func recoverImports(knownBookIDs: Set<UUID>) throws {
-        for prefix in ["Staging", "Books"] {
+        for prefix in ["Staging", "Books", "Cache/TXT"] {
             let directory = try resolve(prefix)
             guard manager.fileExists(atPath: directory.path) else { continue }
             for child in try manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) {
                 guard let id = UUID(uuidString: child.lastPathComponent) else { continue }
                 if prefix == "Staging" || !knownBookIDs.contains(id) {
-                    try manager.removeItem(at: resolve("\(prefix)/\(id.uuidString)"))
+                    try manager.removeItem(at: resolve("\(prefix)/\(child.lastPathComponent)"))
                 }
             }
         }

@@ -26,6 +26,7 @@ public protocol EPUBMetadataReading: Sendable {
 @MainActor public protocol ReaderEngine: AnyObject {
     var viewController: UIViewController { get }
     var currentPosition: ReadingPosition? { get }
+    var currentChapters: [Chapter]? { get }
     var onPositionChanged: ((ReadingPosition) -> Void)? { get set }
     var onCenterTap: (() -> Void)? { get set }
     var onError: ((String) -> Void)? { get set }
@@ -41,6 +42,7 @@ public protocol EPUBMetadataReading: Sendable {
 }
 
 public extension ReaderEngine {
+    var currentChapters: [Chapter]? { nil }
     var searchProvider: (any ReaderSearchProviding)? { nil }
     var supportsContinuousScrolling: Bool { false }
     func setContinuousScrolling(_ enabled: Bool) {
