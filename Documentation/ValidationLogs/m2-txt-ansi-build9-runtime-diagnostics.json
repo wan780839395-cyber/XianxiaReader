@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-14T18:25:46.051476+00:00",
+  "run": 38612220954,
+  "sourceRevision": "c2a037aa6765cd56319cf8a61e8ca1c34f047e22",
+  "currentCounts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 6,
+    "webKitProcessAssertions": 38
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Full runtime diagnostics are retained separately from compiled source gates; one passing run does not prove system WebKit/DocumentManager bugs permanently fixed.",
+  "productionPickerChanged": false,
+  "productionDatabaseDeletionAdded": false,
+  "fullLog": {
+    "path": "build/ci/38612220954/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "7b8a9352a2d046b34aae5ede97cc93e4048772ff44bb540c078758300be223f3"
+  }
+}

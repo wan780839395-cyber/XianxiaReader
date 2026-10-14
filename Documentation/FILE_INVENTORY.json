@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T18:05:28.393146+00:00",
+  "recordedAtUTC": "2026-10-14T18:25:46.928225+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 602,
+  "fileCount": 608,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 18407,
-      "sha256": "ff554c593bc39367570832e357373eaef83558a9efac2615a789a2d0707cc976"
+      "bytes": 19632,
+      "sha256": "1b66d1be58217649323db266ab5d9e272096f237bc34e1280e0b53ae33f1905b"
     },
     {
       "path": "App/AppRootView.swift",
@@ -155,8 +155,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 10783,
-      "sha256": "2225330f7e13b6b799312e723b96dde9262861069159358f194119aeb1596168"
+      "bytes": 13497,
+      "sha256": "06df4bd017f091918c6a359a370b5680cf4e714f943839ceb714646dc49c695a"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -261,12 +261,12 @@
     {
       "path": "Documentation/M2_TXT_ANSI_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "0550599b75a601a6ca9802b3c7e5440627146af2cfaa778269c97a9db820d220"
+      "sha256": "55b0bb863bb6ffc191a8ce48a2582914519633daff3ef068da7bcfe6c53ce4b0"
     },
     {
       "path": "Documentation/M2_TXT_ANSI_VALIDATION_REPORT.json",
-      "bytes": 90506,
-      "sha256": "a5866a243e169933826aee497699b51987a4a831e312f3978be343d4ed6f8f95"
+      "bytes": 123056,
+      "sha256": "afb76ac388d5592ba96a195f11773dd4bac463c716bd863de13c6df4a24e26b4"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -320,8 +320,8 @@
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
-      "bytes": 9667,
-      "sha256": "5e6a1fc8faea06f4cc7c990fd23a4ead6a83ad8b5cabdd23328485e010b83975"
+      "bytes": 12644,
+      "sha256": "1d61c1df7e6c8130d1269e8d33de5096447727b473dcc4dc4ec2fe6e6f2a89fd"
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
@@ -335,18 +335,18 @@
     },
     {
       "path": "Documentation/TXT_ANSI_COMPATIBILITY.md",
-      "bytes": 5796,
-      "sha256": "1e12594cec1dd326349413cfbe98a5a68bb0af6d4a824c3317fa540e9d0deb16"
+      "bytes": 6005,
+      "sha256": "20226727ac838945cc6dab651f789d2d20981932d80df4c40c7fecf61ea646ff"
     },
     {
       "path": "Documentation/TXT_INDEX_DESIGN.md",
-      "bytes": 9041,
-      "sha256": "712145f6bb52f238e83e260f6075c31c6dd7454194d5a0b7a9b758a82dd48f11"
+      "bytes": 11190,
+      "sha256": "4227b98a9925113b21a7363b72e775d0358be4e39402b5073960602687840b5f"
     },
     {
       "path": "Documentation/TXT_READING_DESIGN.md",
-      "bytes": 9425,
-      "sha256": "a6a37ac4b458c72337fe41e14ff3972747a5871f8016c138c5afc9b0b434b294"
+      "bytes": 11623,
+      "sha256": "b28bb26e5b0a44e61628ccdf0268d2e73a67f6ac1e6ffa4b6c7acea0a531de03"
     },
     {
       "path": "Documentation/VALIDATION.md",
@@ -604,6 +604,26 @@
       "sha256": "869e51408b7948491fb8a3ac9fa9f55bf4c65651f346ceb1fd2f068fed543332"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-build9-native-review.json",
+      "bytes": 1371,
+      "sha256": "d56f447df0918cdfc42ad4831676df03f0202b61a83b35de269ae41b9be838ff"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-build9-runtime-diagnostics.json",
+      "bytes": 858,
+      "sha256": "232b97b24c35e468de86a6899ee1d7d99a0a7b6fbae11b1a9c2e5499ca88beb1"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-build9-test-kit.json",
+      "bytes": 1775,
+      "sha256": "f2e0ba36f0403b368294aba5213886d3e9a59b3989f323e4d0c5b8376173abbe"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-epub-mode-readiness-failure.json",
+      "bytes": 4488,
+      "sha256": "1dc31a06146e3270667e235d74388afb2090a382ef31c473325b2c23be06d761"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-txt-ansi-first-candidate.json",
       "bytes": 90168,
       "sha256": "f40312cc0e7749b03015f2226854e99b58bfa4f2ac21f8d1bd8eead990d1da22"
@@ -617,6 +637,11 @@
       "path": "Documentation/ValidationLogs/m2-txt-ansi-second-candidate.json",
       "bytes": 90293,
       "sha256": "b0abcc91802805139a93911705613d8b5dd11d95f0670caa35468073d07b2782"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-ansi-success.json",
+      "bytes": 20787,
+      "sha256": "7918be54ccb88f48fdf263f5a7ef1a0c3b0f69922edb60ee8527af2d8564b23d"
     },
     {
       "path": "Documentation/ValidationLogs/m2-txt-ansi-third-candidate.json",
@@ -750,8 +775,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 14692,
-      "sha256": "b6ed2dede54c9a7489b71eaa5735af4cde32545652efdcdfbc253a166baad839"
+      "bytes": 5789,
+      "sha256": "a76b9f8128f0265b402ae09cdc54be086ff54ae2babb5ea72e6316a2400ef3ae"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -779,6 +804,11 @@
       "sha256": "6ae4a56f79126eefffbdcd4c527854aee7cd172e963b2cd1fb34ab868ff0e49f"
     },
     {
+      "path": "HANDOFF_M2_ANSI_HISTORY_2026-10-15.md",
+      "bytes": 16451,
+      "sha256": "a8fc93ba7b21408797580352315f8d2e73d09eea2cc9da982d8c8249bd68f347"
+    },
+    {
       "path": "HANDOFF_M2_CORE_HISTORY_2026-10-14.md",
       "bytes": 11429,
       "sha256": "a775b938be8da0fd794e3bc7760a022ea437e5982cfc49f5752b95ac999915de"
@@ -795,8 +825,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 16893,
-      "sha256": "327983aa281df740da9867fb9fafb836ba4e4d68e1678add96a928a47054b67e"
+      "bytes": 18021,
+      "sha256": "7da4768263480321cea17a18c3bcf14100fe4c31fed456736834ee55bd41535d"
     },
     {
       "path": "Package.resolved",
@@ -1045,8 +1075,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 10148,
-      "sha256": "f446bd3b45d17ca8e495c9c1dfd5d9a6d329758d503a03e4a1b5573e6060722f"
+      "bytes": 12353,
+      "sha256": "31d34064c63b5a93c3e3255134bccb0ab45b402d8fd958a447b90869d7b69f76"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

@@ -1,6 +1,6 @@
-# TXT ANSI 兼容扩展（Build9 候选，待编译）
+# TXT ANSI 兼容扩展（Build9 完整自动门槛通过）
 
-日期：2026-10-15（Asia/Shanghai）。用户已确认 Build8 手机长 TXT 导入、目录跳转和重开位置正常；设备型号、系统和完整性能矩阵未独立读取。本增量优先回应用户的 ANSI 兼容需求，同时完成已开始的阅读窗口范围缓存，尚未通过真实编译或新包设备验收。
+日期：2026-10-15（Asia/Shanghai）。用户已确认 Build8 手机长 TXT 导入、目录跳转和重开位置正常；设备型号、系统和完整性能矩阵未独立读取。本增量优先回应用户的 ANSI 兼容需求，同时完成已开始的阅读窗口范围缓存，已通过真实Linux/macOS/iOS编译与完整自动门槛；新包设备验收待进行。
 
 ## 编码方案
 
@@ -28,6 +28,6 @@ Normalizer、parser、resource、Locator 仍为 v1；已有 UTF/GB18030 codec �
 
 新增 5 项 Core 编码回归：独立 GBK/CP950/1252 字节向量、CP936 euro、GB18030 扩展字、跨块与非法字节/NUL、实际导入及新 codec、模拟 Build8 自动缓存和旧 Locator。7 项范围缓存回归覆盖复用、损坏/伪造摘要、UTF-8 非边界及提前切点、源变化、路径、取消与 IO。原首次导入/错误/重试断言保留，旧需手选的 GBK 向量现自动有效，重试用例改用仍需手选的西文字节。
 
-新增 2 项 iOS App/Readium 编码与位置回归，保留所有 EPUB、首次导入、搜索、生命周期、巨章第二窗口 600 点/非零字符/3px 重开约束。目标 Linux/macOS 各 80 Core、iOS 58；四个同 hash Release 样本比较首次 plan 构建与后两次复用，边界读取上限和完整资源覆盖均校验。三次重开不是 p95，桌面测量不是手机性能。
+新增 2 项 iOS App/Readium 编码与位置回归，保留所有 EPUB、首次导入、搜索、生命周期、巨章第二窗口 600 点/非零字符/3px 重开约束。实际 Linux/macOS 各 80 Core、iOS 58 全部通过；四个同 hash Release 样本比较首次 plan 构建与后两次复用，边界读取上限和完整资源覆盖均校验。三次重开不是 p95，桌面测量不是手机性能。
 
-Windows 385 个 Swift 文件语法新增诊断 0（pristine 54 项限制保留）、16 项 Python tooling tests 通过。语法不是编译；Linux/macOS、iOS、设备 Release 及 Build9 真机结果分别记录。完整 CI 与 Build9 包尚未完成。
+Windows 385 个 Swift 文件语法新增诊断 0（pristine 54 项限制保留）、16 项 Python tooling tests 通过。语法不是编译；Linux/macOS、iOS、设备 Release 及 Build9 真机结果分别记录。完整CI38612220954/c2a037aa6765cd56319cf8a61e8ca1c34f047e22及Build9 IPA/测试包已完成，完整证据见M2_TXT_ANSI_VALIDATION_REPORT.json；Build9手机/普通设备另待测试。

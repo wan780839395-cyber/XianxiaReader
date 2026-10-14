@@ -1,0 +1,51 @@
+{
+  "recordedAtUTC": "2026-10-14T18:24:49.788637+00:00",
+  "run": 38612220954,
+  "sourceRevision": "c2a037aa6765cd56319cf8a61e8ca1c34f047e22",
+  "build": "9",
+  "IPA": {
+    "path": "build/XianxiaReader-ANSI-Build9.ipa",
+    "bytes": 7740766,
+    "sha256": "0b3f0ec86898a27c4d462658e2ed74f3a3974d93834b31c54365f639e76e9d1d"
+  },
+  "kit": {
+    "path": "build/XianxiaReader-ANSI-Build9-TestKit.zip",
+    "bytes": 8172387,
+    "sha256": "c13c2310b62341bf6f1249eda526c26c41bb398f08030c0adb9fb8233172847b"
+  },
+  "originalFixtureCount": 11,
+  "ANSISamples": [
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "encoding": "gbk",
+      "selection": "automatic",
+      "bytes": 20368,
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde",
+      "normalizedSHA256": "4280b282163a5ea2057d467e835282a68b9e0ec2ef35e0da799d52f705a8509e",
+      "original": true
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "encoding": "cp950",
+      "selection": "Big5 / ANSI",
+      "bytes": 88,
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106",
+      "normalizedSHA256": "0686cf4d34eec4f58c4f80a44da632a6d8006d036a9e9de7331334a150a9587e",
+      "original": true
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "encoding": "cp1252",
+      "selection": "Windows-1252",
+      "bytes": 101,
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3",
+      "normalizedSHA256": "d966f4f7453ffc1e2db8409526751d296fef10beac562225b65415c5f95ff087",
+      "original": true
+    }
+  ],
+  "zipCRC": true,
+  "bundleOriginalFixtureBytesMatched": true,
+  "preservedPreviousPackageCount": 11,
+  "Build9DeviceAccepted": false,
+  "ordinarySignedDeviceAccepted": false
+}

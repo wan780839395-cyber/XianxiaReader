@@ -131,3 +131,9 @@ TOC 导入时持久化，打开目录只读取现有数组。EPUB TOC 可能含�
 Highlight / Note 和 Character / Realm / Faction / Item / Technique / Location / Relationship / StoryEvent 目前仅登记设计边界，不建空实体库。引擎 Decoration/Search/TTS 与产品服务分离；用户选择与已揭示知识由应用自己的服务维护。
 
 无剧透原则是数据读取边界：查询接口必须接收已验证的章节范围，只返回此范围内的记录；不能先读未来内容再在 UI 隐藏。XBook 协议和知识草案位于 `Future/`，不进入应用 target。
+
+## 2026-10-15 TXT ANSI 与范围缓存
+
+Build9新增GBK/CP936、Big5/CP950、Windows-1252严格流式转换；App枚举选择、实际检测结果仍通过Core/导入协议，不持有Readium Locator。自动BOM/严格UTF8后按中文GBK/GB18030，其他手选；Apple SDK与Linux系统iconv独立向量验证。Apple CP936单独euro官方映射小桥接仅在完整字符边界，不改GB18030。Normalizer/parser/Locator v1、旧codec身份保持，自动策略独立v2 cache key；新codec由index携带以验证anchor，旧自动UTF8cache重建后旧完整位置回归通过。
+
+TXTReadingPlanCache只持久resource范围与内容/章节/codec/版本身份，8MiB元数据限额、原子写入、重新路径检查；新Loader先获取TXTIndexCache完整摘要已验证index，后读范围cache。仍全量digest，复用边界最多每resource两次单字节读取，与旧planner最大scalar窗口一致；损坏重建、取消/IO/路径错误可见。Core仍无UIKit/SwiftUI/Readium，ReadiumAdapter公开Publication服务/有界正文与Locator边界不变。完整设计与官方/成熟参考见Documentation/TXT_ANSI_COMPATIBILITY.md，真实各80Core/58iOS及Release9证据见最新报告；设备结果独立。
