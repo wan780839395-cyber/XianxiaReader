@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
 | M1 基础 EPUB | 完整自动门槛通过，用户确认连续阅读与重开位置可用；可继续既定路线 | 未逐项确认的原书图像、其他设备/旋转/性能继续单独记录 |
-| M2 TXT | 产品导入/Readium阅读/完整位置自动门槛通过：各68 Core、46 iOS、Build5 Release | 数十MB冷导入/cache重开与设备/中文排版仍待验收 |
+| M2 TXT | 产品导入/Readium阅读/完整位置及首次选择交接自动门槛通过：各68 Core、49 iOS、Build6 Release | 数十MB冷导入/cache重开与设备/中文排版仍待验收 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
@@ -23,7 +23,7 @@
 
 ## 最新证据与设备边界
 
-2026-10-14用户新增反馈：书籍可导入，但首次选择不生效，EPUB也有同样现象。当前优先验证两格式共用的选择器关闭/结果交接；旧实现原生首次弹窗回归CI38563181206/80e503d运行中，工作区已准备参考模型交接的Build6修复，尚未编译验收。现有Build5成功证据属于37eb86a原运行源码，不能代表本轮修改已通过。M2设备/长书门槛继续未完成；M3/M4未开始。恢复点见HANDOFF。
+2026-10-14首次文件导入修复已通过[CI38566503849](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849) / 5522489906224a089c91e92180bdcebbe9be2095 / Build6：结果由LibraryViewModel持有并在sheet关闭后消费一次，EPUB/TXT共用；各68Core/iOS49/49/Release通过，456运行hash与三份锁一致，源码compiler warnings/errors0。新增首次TXT、首次EPUB及取消/空选择/重试/迟到文件原生回归通过；两个先前48/49系统DocumentManager崩溃完整原件保留，最新仅修测试过渡/生命周期等待，不降低断言/增加timeout。iOS18.5旧交接未复现用户iOS16.6.1首次关闭无书无提示，设备唯一根因不宣称已证实，Build6设备首次选择仍待确认。新包build/XianxiaReader-Import-Build6-TestKit.zip，SHA256 112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c；Build4/5原件不变。报告M2_IMPORT_HANDOFF_VALIDATION_REPORT.json，设计IMPORT_HANDOFF_FIX.md。M2长书/设备未完成，M3/M4未开始，恢复点见HANDOFF。
 
 TXT产品接入自动门槛已通过：[CI38559906005](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38559906005)，运行源码 `37eb86a46dc9002af381a44204f9bc36d07e11a4`，Linux/macOS各68 Core、46/46 iOS、test/export/summary全0，Build5设备Release/IPA通过；455运行hash匹配、三份锁一致，Windows379 grammar新增0/14 tooling通过。已接入受管理原件/cache/事务TXT导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator位置、目录/书签/搜索/连续。真实iOS模拟器三编码导入、长段600点滑动/3px重开、错正文/字符边界拒绝回归通过；原41 EPUB/lifecycle回归保留。五次真实失败原件保留，包含字节selector实际修复与测试就绪修正，未降低断言。新包另存 `build/XianxiaReader-TXT-Build5.ipa`、测试ZIP `build/XianxiaReader-TXT-Build5-TestKit.zip`；原Build4不覆盖。数十MB/cache重开耗时/巨段边界与用户设备中文页面未验收，完整M2尚未完成，暂不大规模M3/M4。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。
 
@@ -62,4 +62,4 @@ Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。GitHub origin/ma
 
 ## 下一步
 
-M2 TXT导入/Readium阅读/完整字节文本位置已过自动门槛；接着验证Build5设备阅读、数十MB冷导入/cache重开与巨段边界，落实M2验收后再M3书库。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。
+M2 TXT导入/Readium阅读/完整字节文本位置与Build6首次文件交接已过自动门槛；先确认设备首次TXT/EPUB选择，再验证TXT设备阅读、数十MB冷导入/cache重开与巨段边界，落实M2验收后再M3书库。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。

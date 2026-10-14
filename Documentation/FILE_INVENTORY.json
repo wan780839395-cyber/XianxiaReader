@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T12:46:57.177887+00:00",
+  "recordedAtUTC": "2026-10-14T13:06:17.972451+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 562,
+  "fileCount": 565,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 17619,
-      "sha256": "4b5f4a86363d5855f32f1890fb5b5149193e9f7cbacf844ae4a14b0c580fe5fd"
+      "bytes": 17617,
+      "sha256": "0344d618a899a674b21b8e6dfbb6eab23379cb00e4e28523f21ad3edad8f6174"
     },
     {
       "path": "App/AppRootView.swift",
@@ -150,8 +150,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 7604,
-      "sha256": "59e13db9e88633f09aab3c28c97649482db546724d696ec650ea976d6d33eced"
+      "bytes": 7769,
+      "sha256": "c8b353feaaca7cebd7081f054abf0e9e2cc09b398e01b872b84ab38a7d531025"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -160,8 +160,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 3533,
-      "sha256": "ce8bab5e2c910c4652f5b7639d917497583bdbeadc9f872da55d148bb88b2f27"
+      "bytes": 4055,
+      "sha256": "391eec18cef98e356482185551670c087c79bd8512e32220ce9451b251acea77"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -185,8 +185,8 @@
     },
     {
       "path": "Documentation/IMPORT_HANDOFF_FIX.md",
-      "bytes": 3118,
-      "sha256": "73e076912a315aa7bc6e3b06462532f44e63dac62383a6c899001180b8d0bea0"
+      "bytes": 5219,
+      "sha256": "e48171265e4b9e77026612b8344ace79fcb135b9fec052880fe1134873fb2fa1"
     },
     {
       "path": "Documentation/IOS_VALIDATION_REPORT.json",
@@ -231,12 +231,12 @@
     {
       "path": "Documentation/M2_IMPORT_HANDOFF_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "85032c2fa5c9359bb7eaf588271dbeb121b7c7600b4946644aa73152715f38ee"
+      "sha256": "eb0826526cf8b7f65a1a1ca1e991a6c55ae84a765d6c1c141c712c0e35cc2bf8"
     },
     {
       "path": "Documentation/M2_IMPORT_HANDOFF_VALIDATION_REPORT.json",
-      "bytes": 85623,
-      "sha256": "3a0b2b639f796995e4d69c9f03e56f8214cd79d137c0a6ae6e6c6526d3adb334"
+      "bytes": 98123,
+      "sha256": "beabaf18fdfa66cbc5db444ee4450ea5fcf61afc01c9e61e319e4744e7cf2bfb"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -499,6 +499,16 @@
       "sha256": "0ec410245eddb114f9f10cc25c7fcc57b128d947c700c352e005e4540516cbf9"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-import-build6-test-kit.json",
+      "bytes": 589,
+      "sha256": "94096f76e370d95534fc0f1ecaa1d8f1e6fc49a58fa67f83cc57ff94c33d9ce9"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-import-handoff-build6-success.json",
+      "bytes": 5673,
+      "sha256": "459680ac9d4fbaffd096f81b270edff26cae9705cfa2f9b52a32dc8ed126c3c6"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-import-native-sheet-baseline-failure.json",
       "bytes": 3381,
       "sha256": "b1c2b7d97493d93473fc69c8e92f8d982e40b71a8bcd55109e8e0f6a4ca35a6e"
@@ -595,8 +605,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 12379,
-      "sha256": "ef615e04592bd27a116533bf531608c2ddd96723e4563315667040c6a338491a"
+      "bytes": 6854,
+      "sha256": "34cf818babc31fe7a4baf317b073d1e8c6fe6e3c56b97b9c554050fc2bb7e405"
+    },
+    {
+      "path": "HANDOFF_IMPORT_HISTORY_2026-10-14.md",
+      "bytes": 13476,
+      "sha256": "0c146f53645dc9dec0744acba7921efc360196e615d2b67ef5818c05b949cd73"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
@@ -625,8 +640,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 11718,
-      "sha256": "a33649d5f52d59d860894685d0a77120801d7783495a51f8a768e50c37178cea"
+      "bytes": 12307,
+      "sha256": "612d547c7b3c3a6abfbbabef60a8d1bf667c78607c8a8504f56dc0c5a73cec70"
     },
     {
       "path": "Package.resolved",
@@ -850,13 +865,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 11748,
-      "sha256": "9f71e0244605161a07b063a1a2d30c06a4a75e7e7b75d9b99694417c138cdec7"
+      "bytes": 12270,
+      "sha256": "55f6be74603a3549b010931a67f5ee88f540c86a0ed806a0e186340d2cbcc13a"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 6832,
-      "sha256": "be0f7e4e240307185444098a534b9d0df3f69b16db36c816702a83441904f50b"
+      "bytes": 7354,
+      "sha256": "28bcafc15c1069ddf8c1b50ef528f3672eb9b9d0a73cf012877be2c276821f6d"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

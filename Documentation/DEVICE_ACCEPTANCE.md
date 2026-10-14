@@ -2,7 +2,7 @@
 
 ## 当前设备与状态
 
-2026-10-14 后续反馈：用户报告书籍可正常导入，但第一次选择后，系统选择器关闭，书架无新增且无提示；之前 EPUB 也发生同样情况。该反馈只确认部分导入可用并指出首次交接缺陷，不代表完整 TXT 阅读或 File Provider 矩阵验收。当前优先补真实 SwiftUI/UIDocumentPicker 首次关闭回归和 Build6 结果交接修复；设备复测需要在完全退出重开后分别首次选择 TXT 与 EPUB，不卸载、不清空书库。编译及新包状态见 HANDOFF / IMPORT_HANDOFF_FIX.md。
+2026-10-14 后续反馈：用户报告TXT可导入，但第一次选择后系统选择器关闭、书架无新增且无提示，之前EPUB也相同。Build6引用模型交接已通过CI38566503849（各68Core/49iOS/Release），新包build/XianxiaReader-Import-Build6-TestKit.zip / SHA 112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c。正常更新并保留书库，完全退出重开后首次选TXT，再重开首次选EPUB，分别测本地/已下载iCloud及取消后再选择。自动原生sheet回归提供fixture URL到delegate，不代替真实File Provider/iCloud/用户设备；首次设备故障的唯一根因仍未证实，待Build6实测。部分导入可用不等于完整TXT阅读/性能通过。
 
 ### TXT Build5准备（尚未设备验收）
 

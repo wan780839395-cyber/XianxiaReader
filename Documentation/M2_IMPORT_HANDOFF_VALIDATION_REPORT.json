@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-14T12:33:00.220539+00:00",
-  "stage": "First import handoff fix; compilation pending",
-  "sourceRevision": "e858ee6070dcb95bec1ff0f5809c4d7585ba1755",
+  "recordedAtUTC": "2026-10-14T12:47:45.245847+00:00",
+  "stage": "First import handoff automatic gates passed",
+  "sourceRevision": "5522489906224a089c91e92180bdcebbe9be2095",
   "branch": "codex/import-first-selection",
-  "run": 38564595658,
+  "run": 38566503849,
   "build": "6",
   "expectedCoreTests": 68,
   "expectedIOSTests": 49,
@@ -300,7 +300,7 @@
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
-      "sha256": "d77de84c4d85bff7fd84fb5dcae57439329cc6eb379383cce931ba9877fafdde"
+      "sha256": "d27402c7f9ca0bf83732de76417306f6ef0d3465df9747a2a9a3d835673dd669"
     },
     {
       "path": "Tests/iOS/EPUBIntegrationTests.swift",
@@ -1843,10 +1843,10 @@
     "swiftCompilation": false
   },
   "gates": {
-    "linuxCorePassed": false,
-    "macOSCorePassed": false,
-    "iOSTestsPassed": false,
-    "deviceReleaseBuilt": false,
+    "linuxCorePassed": true,
+    "macOSCorePassed": true,
+    "iOSTestsPassed": true,
+    "deviceReleaseBuilt": true,
     "deviceFirstImportAccepted": false,
     "M2Accepted": false
   },
@@ -1877,5 +1877,355 @@
       "bytes": 7588693,
       "sha256": "7d547c7582230e35860e0b591bb51adcf51f988a20470ff421d8805c6d1ac668"
     }
-  ]
+  ],
+  "latestRun": {
+    "conclusion": "success",
+    "databaseId": 38566503849,
+    "headBranch": "codex/import-first-selection",
+    "headSha": "5522489906224a089c91e92180bdcebbe9be2095",
+    "jobs": [
+      {
+        "completedAt": "2026-10-14T12:47:29Z",
+        "conclusion": "success",
+        "databaseId": 115860417728,
+        "name": "repository-checks",
+        "startedAt": "2026-10-14T12:47:23Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-14T12:47:24Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T12:47:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:25Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-14T12:47:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:25Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-14T12:47:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:26Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-14T12:47:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:27Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-14T12:47:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:27Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-14T12:47:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-14T12:47:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-14T12:47:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:47:27Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-14T12:47:27Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849/job/115860417728"
+      },
+      {
+        "completedAt": "2026-10-14T12:48:29Z",
+        "conclusion": "success",
+        "databaseId": 115860487175,
+        "name": "core-tests",
+        "startedAt": "2026-10-14T12:47:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-14T12:47:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T12:47:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:01Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-14T12:47:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:02Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-14T12:48:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:11Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-14T12:48:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:24Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-14T12:48:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:26Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 6,
+            "startedAt": "2026-10-14T12:48:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:26Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 11,
+            "startedAt": "2026-10-14T12:48:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:26Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 12,
+            "startedAt": "2026-10-14T12:48:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:26Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-14T12:48:26Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849/job/115860487175"
+      },
+      {
+        "completedAt": "2026-10-14T13:03:42Z",
+        "conclusion": "success",
+        "databaseId": 115860917810,
+        "name": "ios",
+        "startedAt": "2026-10-14T12:48:38Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-14T12:48:40Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-14T12:48:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T12:48:42Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-14T12:48:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T13:03:31Z",
+            "conclusion": "success",
+            "name": "Build, test, and package unsigned IPA",
+            "number": 3,
+            "startedAt": "2026-10-14T12:48:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T13:03:34Z",
+            "conclusion": "success",
+            "name": "Upload build logs, test results, project, and resolved packages",
+            "number": 4,
+            "startedAt": "2026-10-14T13:03:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T13:03:36Z",
+            "conclusion": "success",
+            "name": "Upload unsigned device IPA",
+            "number": 5,
+            "startedAt": "2026-10-14T13:03:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T13:03:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-14T13:03:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-14T13:03:40Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-14T13:03:37Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849/job/115860917810"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38566503849"
+  },
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 49,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1791982741.105,
+    "passedTests": 49,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1791982372.06,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "38% of duration",
+        "text": "1 longest test run with outlier durations exceeding 23.67s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 49
+  },
+  "linuxCoreTests": 68,
+  "macOSCoreTests": 68,
+  "sourceHashesMatched": 456,
+  "releaseIPA": {
+    "path": "build\\ci\\38566503849\\artifacts\\XianxiaReader-unsigned-ipa\\XianxiaReader.ipa",
+    "bytes": 7700896,
+    "sha256": "05196a90edca2269c4e9ec3e755808a168d50a4aab50666bef82933b07491e0c",
+    "build": "6",
+    "version": "0.0.1",
+    "bundleIdentifier": "com.xianxiareader.app",
+    "minimumIOS": "16.0",
+    "platform": "iPhoneOS",
+    "architecture": "arm64",
+    "executableMode": "0755",
+    "systemSQLite": true,
+    "noticesIncluded": true,
+    "zipCRC": true,
+    "libraries": [
+      "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+      "/System/Library/Frameworks/UIKit.framework/UIKit",
+      "/usr/lib/libxml2.2.dylib",
+      "/usr/lib/libz.1.dylib",
+      "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+      "/System/Library/Frameworks/Foundation.framework/Foundation",
+      "/usr/lib/libobjc.A.dylib",
+      "/usr/lib/libSystem.B.dylib",
+      "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+      "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+      "/System/Library/Frameworks/Combine.framework/Combine",
+      "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+      "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+      "/System/Library/Frameworks/NaturalLanguage.framework/NaturalLanguage",
+      "/System/Library/Frameworks/PDFKit.framework/PDFKit",
+      "/System/Library/Frameworks/Security.framework/Security",
+      "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+      "/System/Library/Frameworks/WebKit.framework/WebKit",
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libcompression.dylib",
+      "/usr/lib/libsqlite3.dylib",
+      "/usr/lib/swift/libswiftAVFoundation.dylib",
+      "/usr/lib/swift/libswiftCompression.dylib",
+      "/usr/lib/swift/libswiftCore.dylib",
+      "/usr/lib/swift/libswiftCoreAudio.dylib",
+      "/usr/lib/swift/libswiftCoreFoundation.dylib",
+      "/usr/lib/swift/libswiftCoreImage.dylib",
+      "/usr/lib/swift/libswiftCoreMIDI.dylib",
+      "/usr/lib/swift/libswiftCoreMedia.dylib",
+      "/usr/lib/swift/libswiftDarwin.dylib",
+      "/usr/lib/swift/libswiftDataDetection.dylib",
+      "/usr/lib/swift/libswiftDispatch.dylib",
+      "/usr/lib/swift/libswiftMetal.dylib",
+      "/usr/lib/swift/libswiftNaturalLanguage.dylib",
+      "/usr/lib/swift/libswiftOSLog.dylib",
+      "/usr/lib/swift/libswiftObjectiveC.dylib",
+      "/usr/lib/swift/libswiftQuartzCore.dylib",
+      "/usr/lib/swift/libswiftSpatial.dylib",
+      "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+      "/usr/lib/swift/libswiftXPC.dylib",
+      "/usr/lib/swift/libswift_Concurrency.dylib",
+      "/usr/lib/swift/libswiftos.dylib",
+      "/usr/lib/swift/libswiftsimd.dylib",
+      "/usr/lib/swift/libswiftUIKit.dylib"
+    ]
+  },
+  "latestEvidence": "Documentation/ValidationLogs/m2-import-handoff-build6-success.json"
 }

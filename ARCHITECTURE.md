@@ -29,7 +29,7 @@ Packages/
       Models/          Book、Chapter、ReadingPosition、Bookmark
       Database/        repository、连接、版本化 SQL migration
       Import/          文件暂存、提交、回滚、恢复
-      TXT/             M2标题识别/有界窗口/严格正规化/摘要cache；产品导入阅读待集成
+      TXT/             M2标题识别/有界窗口/严格正规化/摘要cache/产品导入与读取范围
     Tests/
   XianxiaReading/
     Sources/ReadingInterfaces/

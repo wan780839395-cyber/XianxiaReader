@@ -1,0 +1,19 @@
+{
+  "run": 38566503849,
+  "sourceRevision": "5522489906224a089c91e92180bdcebbe9be2095",
+  "IPA": {
+    "path": "build/XianxiaReader-Import-Build6.ipa",
+    "bytes": 7700896,
+    "sha256": "05196a90edca2269c4e9ec3e755808a168d50a4aab50666bef82933b07491e0c"
+  },
+  "kit": {
+    "path": "build/XianxiaReader-Import-Build6-TestKit.zip",
+    "bytes": 7590645,
+    "sha256": "112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c"
+  },
+  "fixtureCount": 4,
+  "bundleFixtureBytesMatched": true,
+  "zipCRC": true,
+  "oldBuild4And5Preserved": true,
+  "deviceFirstImportAccepted": false
+}
