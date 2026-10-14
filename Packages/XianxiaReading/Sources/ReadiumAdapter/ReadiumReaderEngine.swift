@@ -32,6 +32,7 @@ import XianxiaCore
     public private(set) var searchProvider: (any ReaderSearchProviding)?
     public private(set) var supportsContinuousScrolling = false
     public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
+    var continuousDiagnosticState: String { navigator?.continuousScrollDiagnosticState ?? "no navigator" }
 
     public override init() {
         additionalUserScripts = []

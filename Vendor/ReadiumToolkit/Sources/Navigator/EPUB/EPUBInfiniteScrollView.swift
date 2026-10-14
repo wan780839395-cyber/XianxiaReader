@@ -21,6 +21,7 @@ import UIKit
         var anchorRevision: UInt64?
         var anchorViewportTop: CGFloat?
         var savedAnchor: Locator?
+        var anchorDiagnostic = "not sampled"
         var loadTask: Task<Void, Never>?
         var timeoutTask: Task<Void, Never>?
         init(_ view: EPUBSpreadView) {
@@ -52,6 +53,13 @@ import UIKit
         return slot.ready && !slot.positioning && slot.failure == nil
     }
     var viewportIdentity: String { "\(epoch):\(currentIndex):\(viewportRevision)" }
+    var diagnosticState: String {
+        "index=\(currentIndex) revision=\(viewportRevision) top=\(viewportTop) navigation=\(navigation) "
+            + slots.keys.sorted().map { index in
+                guard let slot = slots[index] else { return "missing \(index)" }
+                return "slot\(index){ready=\(slot.ready) positioning=\(slot.positioning) failure=\(slot.failure ?? "none") wrapper=\(slot.wrapper.frame) frame=\(slot.view.frame) savedTop=\(String(describing: slot.anchorViewportTop)) anchor=\(slot.anchorDiagnostic)}"
+            }.joined(separator: " ")
+    }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
     private var readyIndices: [Int] {
@@ -432,9 +440,13 @@ import UIKit
         let index = currentIndex
         let revision = viewportRevision
         let localTop = viewportTop - slot.wrapper.frame.minY
+        slot.anchorDiagnostic = "requested local=\(localTop) clip=\(clipTop)...\(clipBottom) revision=\(revision)"
         // Keep the old DOM anchor across reflow until measure() compensates;
         // a resize notification is not a user scroll.
-        if savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor { return anchor }
+        if savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor {
+            slot.anchorDiagnostic = "cached local=\(localTop) revision=\(revision)"
+            return anchor
+        }
         let anchor = await slot.view.findFirstVisibleElementLocator(visibleTop: clipTop, visibleBottom: clipBottom)
         guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
         if let anchor, anchor.locations.cssSelector != nil {
@@ -445,6 +457,7 @@ import UIKit
                 // The DOM caret and its document coordinate are obtained in
                 // separate WebKit callbacks. Reject a snapshot from before
                 // the inner document caught up with the outer viewport.
+                slot.anchorDiagnostic = "candidate documentY=\(String(describing: documentY)) offset=\(String(describing: anchor.locations.otherLocations["xianxiaViewportOffset"]?.double)) local=\(localTop) revision=\(revision)"
                 guard let documentY,
                       let offset = anchor.locations.otherLocations["xianxiaViewportOffset"]?.double,
                       abs(documentY - CGFloat(offset) - max(0, localTop)) < 1 else { return nil }
@@ -452,6 +465,7 @@ import UIKit
                 slot.anchorViewportTop = localTop
                 slot.savedAnchor = anchor
                 slot.anchorDocumentY = documentY
+                slot.anchorDiagnostic += " accepted"
             } catch { boundaryLabel.text = error.localizedDescription }
         }
         return anchor

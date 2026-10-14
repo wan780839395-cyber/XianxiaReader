@@ -134,6 +134,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
 
     public var continuousScrollLoadedResourceCount: Int { infiniteScrollView?.loadedViews.count ?? 0 }
+    public var continuousScrollDiagnosticState: String { infiniteScrollView?.diagnosticState ?? "no continuous view" }
 
     /// Cancel pending chapter loads and break WebKit message-handler cycles
     /// before the owning reader discards this controller.

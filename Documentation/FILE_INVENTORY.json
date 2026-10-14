@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T06:40:45.972798+00:00",
+  "recordedAtUTC": "2026-10-14T07:04:25.254268+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 506,
+  "fileCount": 507,
   "files": [
     {
       "path": ".gitattributes",
@@ -195,8 +195,8 @@
     },
     {
       "path": "Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json",
-      "bytes": 94228,
-      "sha256": "9052e7ade9dd01de356917aece2a06cccf89a91ff7200d8c0c55784bbb7240ea"
+      "bytes": 96178,
+      "sha256": "47e90488514d2f97ab748ac58e26b4df68c86961ca9166601375b274f0143620"
     },
     {
       "path": "Documentation/M1_IMPORT_VALIDATION_REPORT.json",
@@ -364,6 +364,11 @@
       "sha256": "3bcfc0bbbedcb57078a25ba76416da0f8ae19775f33f4a1e74f99f656c40291c"
     },
     {
+      "path": "Documentation/ValidationLogs/m1-continuous-origin-rejection.json",
+      "bytes": 4829,
+      "sha256": "b3ca40e3357667f9c80711571f222f6430a092f179112c1e948ff666b1940116"
+    },
+    {
       "path": "Documentation/ValidationLogs/m1-continuous-physical-anchor-cache.json",
       "bytes": 2266,
       "sha256": "b955424b400863a580821aff18fd66a3d61c2bd3e475029eca83ea42b2047e30"
@@ -435,8 +440,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 7375,
-      "sha256": "7a56801d0434dabacb74aa83fb928b96bbd97a195595910de67f6226be74a859"
+      "bytes": 8332,
+      "sha256": "62b957d0ae0925d66852f52e84a0ca064195f8784182c7e45fb37c62eae04377"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
@@ -570,8 +575,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "bytes": 8929,
-      "sha256": "89a48c72015240d03f96f638449cca718601196ab288a47a55ecba540799f8e3"
+      "bytes": 9036,
+      "sha256": "686e70f7ae9987ef6f65289e2d9cde0d660b07e7670ae4500a494267ea8f0343"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -640,8 +645,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 31982,
-      "sha256": "58d335a02f978d84767379e677ed4632be6a6730bc808ac406c89d1b9e2e6885"
+      "bytes": 32065,
+      "sha256": "5ca1aedf196ec37704f2ae2465153c8e56a615f3276c4dd01f435c5ff257583f"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -985,13 +990,13 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "bytes": 24142,
-      "sha256": "ad20ad360456e7f0e6e977ca5870fecb4be0367b94fa2ea827c50e3b2b5d0073"
+      "bytes": 25268,
+      "sha256": "558270121866189acde96b7642545e96ae546ce2cb4e0342c149b461accef8e1"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "bytes": 55036,
-      "sha256": "35fd6eb22ad6e40b54432e32ef2c703d935e133a2442c04751ff472109337bb1"
+      "bytes": 55155,
+      "sha256": "c11e17a66a3478ba7f9c96d6db0b93f88c2409fe3ddeb883afbad902de06c58f"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1010,8 +1015,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "bytes": 39270,
-      "sha256": "5b9a1f7a1a14a01dd7a6a1efe01553b92ebe87490d517442dc1235648c1be1cb"
+      "bytes": 39298,
+      "sha256": "96925a05d06943175b6b7127d19dd56856eda41ac51e04b676985fad1843d7a6"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -2436,7 +2441,7 @@
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
       "bytes": 70122,
-      "sha256": "f26229e6ffb99d2519077bd61a8720d8f9590e5c742e2ee64ca4aaa253aac986"
+      "sha256": "743be72b3c10b47e5fe6875bd9dfd7970378d47770140d0b88c44dff520a4537"
     },
     {
       "path": "project.yml",

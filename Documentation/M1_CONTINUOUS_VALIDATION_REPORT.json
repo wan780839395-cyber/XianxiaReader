@@ -1,13 +1,13 @@
 {
-  "recordedAtUTC": "2026-10-14T06:40:45.799160+00:00",
+  "recordedAtUTC": "2026-10-14T07:04:25.077957+00:00",
   "stage": "M1 continuous candidate - incomplete",
   "localHead": "6d761749911233122bcd031fcf718d22a19f9e77",
   "candidateBranch": "codex/m1-continuous-recovery",
-  "candidateRevision": "2a43ccdd42c3333d379bf2a442cfd936e7509424",
+  "candidateRevision": "eb07c4ea61de3a57b39c048ebb289177e55a37d5",
   "candidateCompiled": true,
   "candidateFullCIPassed": false,
-  "lastExecutedRun": 38521310543,
-  "lastExecutedSource": "2a43ccdd42c3333d379bf2a442cfd936e7509424",
+  "lastExecutedRun": 38523628789,
+  "lastExecutedSource": "eb07c4ea61de3a57b39c048ebb289177e55a37d5",
   "linuxCorePassed": 14,
   "macOSCorePassed": 14,
   "iOS": {
@@ -23,8 +23,8 @@
           "platform": "iOS Simulator"
         },
         "expectedFailures": 0,
-        "failedTests": 2,
-        "passedTests": 39,
+        "failedTests": 3,
+        "passedTests": 38,
         "skippedTests": 0,
         "testPlanConfiguration": {
           "configurationId": "1",
@@ -34,16 +34,24 @@
     ],
     "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
     "expectedFailures": 0,
-    "failedTests": 2,
-    "finishTime": 1791959212.247,
-    "passedTests": 39,
+    "failedTests": 3,
+    "finishTime": 1791960699.154,
+    "passedTests": 38,
     "result": "Failed",
     "skippedTests": 0,
-    "startTime": 1791958887.053,
+    "startTime": 1791960325.02,
     "statistics": [],
     "testFailures": [
       {
-        "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):236",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 18,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousBoundaryShowsTwoResourcesAndScrollsBack()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+        "testName": "testContinuousBoundaryShowsTwoResourcesAndScrollsBack()"
+      },
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):236",
         "targetName": "XianxiaReaderTests",
         "testIdentifier": 22,
         "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
@@ -51,7 +59,7 @@
         "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
       },
       {
-        "failureText": "failed - Continuous reader did not reach expected state at testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge():489",
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):236",
         "targetName": "XianxiaReaderTests",
         "testIdentifier": 23,
         "testIdentifierString": "ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge()",
@@ -62,258 +70,268 @@
     "title": "Test - XianxiaReader",
     "topInsights": [
       {
+        "category": "Common Failures",
+        "impact": "100% of failures",
+        "text": "3 runs of 3 tests failed with failed: caught error: \"timedOut(\"continuous\", \"jump(_:book:href:):236\\nposition={\\\"href\\\":\\\"OEBPS/cover.xhtml\\\",\\\"locations\\\":{\\\"cssSelector\\\":\\\"html > body > div > img\\\",\\\"position\\\":1,\\\"progression\\\":0,\\\"totalProgression\\\":0,\\\"xianxiaContinuousAnchorVersion\\\":1,\\\"xianxiaViewportOffset\\\":0},\\\"type\\\":\\\"application/xhtml+xml\\\"}\\nouter offset=(0.0, 752.0) inset=UIEdgeInsets(top: 62.0, left: 0.0, bottom: 34.0, right: 0.0) content=(402.0, 9220.0) bounds=(0.0, 752.0, 402.0, 874.0)\\nweb frame=(0.0, 0.0, 402.0, 778.0) visible=(0.0, 62.0, 402.0, 778.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 778;\\n    href = \\\"/OEBPS/one.xhtml\\\";\\n    line12 = \\\"857.875\\\";\\n    line18 = \\\"1277.875\\\";\\n    long = \\\"1767.875\\\";\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 0.0, 402.0, 778.0) visible=(0.0, 0.0, 402.0, 38.0) offset=(0.0, 12.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        1\\n    );\\n    height = 778;\\n    href = \\\"/OEBPS/cover.xhtml\\\";\\n    ready = complete;\\n    y = 12;\\n})\")\""
+      },
+      {
+        "category": "Common Failures",
+        "impact": "100% of failures",
+        "text": "3 runs of 3 tests failed with failed - Continuous reader did not reach expected state at jump(_:book:href:):236"
+      },
+      {
         "category": "Longest Test Runs",
-        "impact": "52% of duration",
-        "text": "2 longest test runs with outlier durations exceeding 25.30s (three standard deviations)"
+        "impact": "32% of duration",
+        "text": "1 longest test run with outlier durations exceeding 34.11s (three standard deviations)"
       }
     ],
     "totalTestCount": 41
   },
   "latestRun": {
     "conclusion": "failure",
-    "databaseId": 38521310543,
+    "databaseId": 38523628789,
     "headBranch": "codex/m1-continuous-recovery",
-    "headSha": "2a43ccdd42c3333d379bf2a442cfd936e7509424",
+    "headSha": "eb07c4ea61de3a57b39c048ebb289177e55a37d5",
     "jobs": [
       {
-        "completedAt": "2026-10-14T06:17:19Z",
+        "completedAt": "2026-10-14T06:41:01Z",
         "conclusion": "success",
-        "databaseId": 115711397603,
+        "databaseId": 115718790446,
         "name": "repository-checks",
-        "startedAt": "2026-10-14T06:17:10Z",
+        "startedAt": "2026-10-14T06:40:53Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-14T06:17:11Z",
+            "completedAt": "2026-10-14T06:40:54Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-14T06:17:10Z",
+            "startedAt": "2026-10-14T06:40:54Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:12Z",
+            "completedAt": "2026-10-14T06:40:55Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 2,
-            "startedAt": "2026-10-14T06:17:11Z",
+            "startedAt": "2026-10-14T06:40:54Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:12Z",
+            "completedAt": "2026-10-14T06:40:55Z",
             "conclusion": "success",
             "name": "Run actions/setup-python@v5",
             "number": 3,
-            "startedAt": "2026-10-14T06:17:12Z",
+            "startedAt": "2026-10-14T06:40:55Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:16Z",
+            "completedAt": "2026-10-14T06:40:58Z",
             "conclusion": "success",
             "name": "Install static validation dependencies",
             "number": 4,
-            "startedAt": "2026-10-14T06:17:12Z",
+            "startedAt": "2026-10-14T06:40:55Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:17Z",
+            "completedAt": "2026-10-14T06:40:58Z",
             "conclusion": "success",
             "name": "Validate repository and Swift syntax",
             "number": 5,
-            "startedAt": "2026-10-14T06:17:16Z",
+            "startedAt": "2026-10-14T06:40:58Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:17Z",
+            "completedAt": "2026-10-14T06:40:59Z",
             "conclusion": "success",
             "name": "Test simulator selection and IPA packaging safeguards",
             "number": 6,
-            "startedAt": "2026-10-14T06:17:17Z",
+            "startedAt": "2026-10-14T06:40:58Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:17Z",
+            "completedAt": "2026-10-14T06:40:59Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-python@v5",
             "number": 11,
-            "startedAt": "2026-10-14T06:17:17Z",
+            "startedAt": "2026-10-14T06:40:59Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:17Z",
+            "completedAt": "2026-10-14T06:40:59Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 12,
-            "startedAt": "2026-10-14T06:17:17Z",
+            "startedAt": "2026-10-14T06:40:59Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:17Z",
+            "completedAt": "2026-10-14T06:40:59Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 13,
-            "startedAt": "2026-10-14T06:17:17Z",
+            "startedAt": "2026-10-14T06:40:59Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38521310543/job/115711397603"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38523628789/job/115718790446"
       },
       {
-        "completedAt": "2026-10-14T06:18:15Z",
+        "completedAt": "2026-10-14T06:41:51Z",
         "conclusion": "success",
-        "databaseId": 115711459532,
+        "databaseId": 115718848784,
         "name": "core-tests",
-        "startedAt": "2026-10-14T06:17:24Z",
+        "startedAt": "2026-10-14T06:41:04Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-14T06:17:25Z",
+            "completedAt": "2026-10-14T06:41:05Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-14T06:17:24Z",
+            "startedAt": "2026-10-14T06:41:04Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:52Z",
+            "completedAt": "2026-10-14T06:41:36Z",
             "conclusion": "success",
             "name": "Initialize containers",
             "number": 2,
-            "startedAt": "2026-10-14T06:17:25Z",
+            "startedAt": "2026-10-14T06:41:05Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:17:53Z",
+            "completedAt": "2026-10-14T06:41:37Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 3,
-            "startedAt": "2026-10-14T06:17:52Z",
+            "startedAt": "2026-10-14T06:41:36Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:00Z",
+            "completedAt": "2026-10-14T06:41:43Z",
             "conclusion": "success",
             "name": "Install SQLite development headers inside test container",
             "number": 4,
-            "startedAt": "2026-10-14T06:17:53Z",
+            "startedAt": "2026-10-14T06:41:37Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:10Z",
+            "completedAt": "2026-10-14T06:41:48Z",
             "conclusion": "success",
             "name": "Compile and test Core with official Swift toolchain",
             "number": 5,
-            "startedAt": "2026-10-14T06:18:00Z",
+            "startedAt": "2026-10-14T06:41:43Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:12Z",
+            "completedAt": "2026-10-14T06:41:48Z",
             "conclusion": "success",
             "name": "Upload Core compilation and test logs",
             "number": 6,
-            "startedAt": "2026-10-14T06:18:10Z",
+            "startedAt": "2026-10-14T06:41:48Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:12Z",
+            "completedAt": "2026-10-14T06:41:49Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 11,
-            "startedAt": "2026-10-14T06:18:12Z",
+            "startedAt": "2026-10-14T06:41:48Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:12Z",
+            "completedAt": "2026-10-14T06:41:49Z",
             "conclusion": "success",
             "name": "Stop containers",
             "number": 12,
-            "startedAt": "2026-10-14T06:18:12Z",
+            "startedAt": "2026-10-14T06:41:49Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:12Z",
+            "completedAt": "2026-10-14T06:41:49Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 13,
-            "startedAt": "2026-10-14T06:18:12Z",
+            "startedAt": "2026-10-14T06:41:49Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38521310543/job/115711459532"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38523628789/job/115718848784"
       },
       {
-        "completedAt": "2026-10-14T06:27:13Z",
+        "completedAt": "2026-10-14T06:51:57Z",
         "conclusion": "failure",
-        "databaseId": 115711741935,
+        "databaseId": 115719100379,
         "name": "ios",
-        "startedAt": "2026-10-14T06:18:24Z",
+        "startedAt": "2026-10-14T06:42:00Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-14T06:18:26Z",
+            "completedAt": "2026-10-14T06:42:02Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-14T06:18:25Z",
+            "startedAt": "2026-10-14T06:42:01Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:18:27Z",
+            "completedAt": "2026-10-14T06:42:05Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 2,
-            "startedAt": "2026-10-14T06:18:26Z",
+            "startedAt": "2026-10-14T06:42:02Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:27:03Z",
+            "completedAt": "2026-10-14T06:51:49Z",
             "conclusion": "failure",
             "name": "Build, test, and package unsigned IPA",
             "number": 3,
-            "startedAt": "2026-10-14T06:18:27Z",
+            "startedAt": "2026-10-14T06:42:05Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:27:08Z",
+            "completedAt": "2026-10-14T06:51:53Z",
             "conclusion": "success",
             "name": "Upload build logs, test results, project, and resolved packages",
             "number": 4,
-            "startedAt": "2026-10-14T06:27:03Z",
+            "startedAt": "2026-10-14T06:51:49Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:27:08Z",
+            "completedAt": "2026-10-14T06:51:53Z",
             "conclusion": "skipped",
             "name": "Upload unsigned device IPA",
             "number": 5,
-            "startedAt": "2026-10-14T06:27:08Z",
+            "startedAt": "2026-10-14T06:51:53Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:27:09Z",
+            "completedAt": "2026-10-14T06:51:54Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 10,
-            "startedAt": "2026-10-14T06:27:08Z",
+            "startedAt": "2026-10-14T06:51:53Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-14T06:27:11Z",
+            "completedAt": "2026-10-14T06:51:55Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 11,
-            "startedAt": "2026-10-14T06:27:09Z",
+            "startedAt": "2026-10-14T06:51:54Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38521310543/job/115711741935"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38523628789/job/115719100379"
       }
     ],
     "status": "completed",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38521310543"
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38523628789"
   },
   "latestRunNotStarted": false,
-  "latestRunFailureKind": "Long scroll changed parent/DOM origin inconsistently; native bootstrap probe waited on its own spreadLoaded prerequisite",
+  "latestRunFailureKind": "Native bootstrap reached first position, but chapter jump stayed at old cover locator",
   "windows": {
     "grammarFiles": 362,
     "retainedPristineParserLimitations": 54,
@@ -847,11 +865,11 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "d5c6a38e14e733235bee6463607c37819c56a3a684c44b86377f225de98d603d"
+      "sha256": "ad20ad360456e7f0e6e977ca5870fecb4be0367b94fa2ea827c50e3b2b5d0073"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "977469b89e5a10d26cca74be6c941f0a968a7e5f121cf05fd3ba5ad7ca559a3d"
+      "sha256": "35fd6eb22ad6e40b54432e32ef2c703d935e133a2442c04751ff472109337bb1"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -867,7 +885,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "4b58854438412819770709b744efe214c12c8686fa1d1bc40ff15cc58da25365"
+      "sha256": "5b9a1f7a1a14a01dd7a6a1efe01553b92ebe87490d517442dc1235648c1be1cb"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -2007,7 +2025,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "b21c79d5277c86bc39e21c7c0846a878b1c77a407fd46faa31f6dca9369fde13"
+      "sha256": "f26229e6ffb99d2519077bd61a8720d8f9590e5c742e2ee64ca4aaa253aac986"
     },
     {
       "path": "project.yml",
@@ -2127,7 +2145,7 @@
   },
   "currentWorktreeFix": {
     "compiled": false,
-    "scope": "Direct WK startup probe; clear waiting callbacks; no positioning snapshots; document-origin attestation and stale-location revision guard",
+    "scope": "Add numeric anchor/window rejection diagnostics and make post-clear load waits return immediately",
     "expectedIOSTests": 41
   }
 }

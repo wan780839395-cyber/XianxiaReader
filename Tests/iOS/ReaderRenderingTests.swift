@@ -175,6 +175,7 @@ final class ReaderRenderingTests: XCTestCase {
         if let engine = diagnosticEngine {
             let root = engine.viewController.view!
             diagnostic += "\nposition=\(engine.currentPosition.map { String(decoding: $0.locatorData, as: UTF8.self) } ?? "nil")"
+            diagnostic += "\ncontinuous state=\(engine.continuousDiagnosticState)"
             if let scroll = view(identifier: "readium.continuous-scroll", in: root) as? UIScrollView {
                 diagnostic += "\nouter offset=\(scroll.contentOffset) inset=\(scroll.contentInset) content=\(scroll.contentSize) bounds=\(scroll.bounds)"
             }

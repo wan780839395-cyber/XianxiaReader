@@ -477,7 +477,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     /// Awaits for the spread to be fully loaded.
     func spreadLoaded() async {
-        if isSpreadLoaded {
+        if isSpreadLoaded || wasCleared {
             return
         }
 
@@ -491,7 +491,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Executes the given `callback` when the spread is fully loaded.
     func whenSpreadLoaded(_ callback: @escaping () -> Void) {
         let callback = onSpreadLoadedCallbacks.add(callback)
-        if isSpreadLoaded {
+        if isSpreadLoaded || wasCleared {
             callback()
         }
     }

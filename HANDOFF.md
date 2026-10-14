@@ -51,3 +51,7 @@ CI38519173808已完成并下载完整日志/xcresult：Linux/macOS各14 Core，i
 native bootstrap补充已过Windows362 grammar/14 tooling，源码候选2a43ccdd42c3333d379bf2a442cfd936e7509424已正常推送。完整CI38521310543已触发，bootstrap=false，预期41 tests；恢复先查该run，不重跑已完成的38519173808。原HEAD6d76174/index为空、Build3和所有旧日志仍保留。
 
 CI38521310543已完成，原始日志/xcresult下载保留：native bootstrap回归失败在首次位置489；长段失败343时已退回章节local600，长段top+1167，Locator仍charOffset2，活跃caretOffsets是2/9/17（不是长段字符）。源码检查确认bootstrap错误地调用了会await spreadLoaded的Readium evaluateScript，构成循环等待；现改用原生WK evaluateJavaScript启动探针，并在clear释放该等待链/过滤清理后脚本。另阻止positioning时缓存/测量恢复，校验documentY减viewportOffset与实际localTop一致，拒绝UI/DOM不同步快照；模式/reload revision及view identity过滤旧异步位置，nil结果不清空可靠位置。41条回归保持，未降低任何字符/像素断言。新改动尚未编译，即将静态/来源hash与完整CI。
+
+该补充已过Windows362 grammar/14 tooling，已正常推送源码eb07c4ea61de3a57b39c048ebb289177e55a37d5。完整CI38523628789已触发，bootstrap=false/预期41 tests。恢复先查此run；2a43ccd的原生探针循环等待是已记录历史，不能重复把它当当前候选。原HEAD/index/Build3/旧日志继续保留。
+
+CI38523628789已完成：原生rAF抑制回归通过首次位置与blocked=true检查，失败转移到jump helper等待目标href；页面实际第一章scrollY0，存储仍封面。边界/长段/rAF回归均在jump helper阻塞，字符断言未执行；其他模式/fragment/高度/重试通过。当前增加失败时的有界窗口/positioning/缓存documentY-offset-localTop诊断（只数字/布局，不输出正文），定位一致性拒绝原因；清理后新spreadLoaded调用立即释放，避免向已complete的CompletionList重新挂等待。预期仍41 tests，不降低断言、不伪造目标位置。
