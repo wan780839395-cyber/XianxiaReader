@@ -5,7 +5,7 @@
 | 阶段 | 状态 | 验收 |
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
-| M1 基础 EPUB | 连续候选已编译并部分验证38/39；最后修复未编译，CI账户账单拒绝启动；完整M1未验收 | 长段字符恢复/完整CI/设备仍待完成 |
+| M1 基础 EPUB | 公开后候选已编译、37/39回归通过；迟到回调修复完整40-test CI运行中；完整M1未验收 | 长段导航/模式恢复/完整CI/设备仍待完成 |
 | M2 TXT | 未开始 | 后台流式分章、窗口加载/缓存、长文件 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
@@ -31,7 +31,7 @@
 - 测试ZIP `build/XianxiaReader-iPhone13-TestKit.zip`：7,296,582 bytes，包含IPA、三本原创EPUB和TESTING.txt，CRC与内部IPA hash一致。Build2及更早原件保留在对应run目录。
 - 用户iPhone13/iOS16.6.1/TrollStore：安装正常、EPUB可以导入（用户报告，来源未细分）；原书图像窄横条。当前Build3安装/原书图片/完整阅读仍待复测；没有普通设备签名验收。
 - **真正纵向连续跨章候选已写入未提交源码，上一版编译/38项回归通过，最终版本尚未全套验收**：Vendor/ReadiumToolkit 是3.11.0本地扩展，最多12资源窗口、固定WKWebView viewport、加载边界/重试、DOMRange+视口偏移、迟到布局过滤和关闭清理。旧Build3仍为章内滚动/横向切换；候选不能作为完整M1已验收功能；已经查看原创双章同屏截图，原生拖动/惯性与峰值内存未验收。
-- remote compact恢复：本地main/6d76174和原暂存区保留，原370文件ZIP已核验CRC/全部hash；候选codex/m1-continuous-recovery。最新已执行run38506979070/8908e98：Linux/macOS各14 Core、38/39 iOS、0 skipped，最后长段字符回归未通过。最新89a46ce只收紧旧anchor revision判定，Windows362grammar/14tooling通过，尚未重新编译。run38508277189因GitHub账户付款/支出限额在job启动前拒绝，步骤为空，不算源码失败。没有新Release/IPA。详情M1_CONTINUOUS_VALIDATION_REPORT.json与HANDOFF。
+- remote compact恢复：本地main/6d76174和原暂存区保留，原370文件ZIP已核验CRC/全部hash；候选codex/m1-continuous-recovery。历史run38506979070/8908e98为38/39。用户授权公开后run38511938460/008e607实际编译89a46ce同一运行源码，Linux/macOS各14 Core、37/39 iOS、0 skipped，长段navigationFailed/模式恢复两项失败，未执行Release/IPA。当前ad555ab补充回收spread断开delegate与迟到termination回归，Windows362grammar/14tooling通过，完整40-test CI38513634971正在运行。旧38508277189的账单启动拒绝保留为历史；公开后已正常启动，不再作为当前阻塞。详情M1_CONTINUOUS_VALIDATION_REPORT.json与HANDOFF。
 
 ## 失败历史与报告范围
 

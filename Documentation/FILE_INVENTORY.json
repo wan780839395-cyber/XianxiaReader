@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T04:52:14.222000+00:00",
+  "recordedAtUTC": "2026-10-14T05:54:27.747776+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 503,
+  "fileCount": 504,
   "files": [
     {
       "path": ".gitattributes",
@@ -155,8 +155,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 2972,
-      "sha256": "8f05904668ac42630e829e9b00dad1ba96e181928c0396f51f28b0402e6ad539"
+      "bytes": 3011,
+      "sha256": "76a23c51557708e8067979381eabb66059dab073a7e1ad2f0e790ffe9c78adbf"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -195,8 +195,8 @@
     },
     {
       "path": "Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json",
-      "bytes": 94083,
-      "sha256": "0c308e9b36feeaef3fd205ceadbf4504d5742ed5f04402ae719f4e8cd9520a91"
+      "bytes": 93498,
+      "sha256": "a1739825eefa3e5249cef7aef21fcd5429f9e14781fa6635a627a07548945fb7"
     },
     {
       "path": "Documentation/M1_IMPORT_VALIDATION_REPORT.json",
@@ -354,6 +354,11 @@
       "sha256": "3bcfc0bbbedcb57078a25ba76416da0f8ae19775f33f4a1e74f99f656c40291c"
     },
     {
+      "path": "Documentation/ValidationLogs/m1-continuous-physical-anchor-cache.json",
+      "bytes": 2266,
+      "sha256": "b955424b400863a580821aff18fd66a3d61c2bd3e475029eca83ea42b2047e30"
+    },
+    {
       "path": "Documentation/ValidationLogs/m1-continuous-public-first-run.json",
       "bytes": 2804,
       "sha256": "58d8db3f9ddbbe9288776e9bca001d968ee2f57cc0944efee35bb209504d69d9"
@@ -420,13 +425,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9523,
-      "sha256": "6531684e9573256e843c5d59b44ce8d336db9b4f715d27feefa65b25a3ad0456"
+      "bytes": 5116,
+      "sha256": "9cd713ac9d1a1aec59350e60ffb69fef1a0637c24521d18758ca297f35508542"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
-      "bytes": 19509,
-      "sha256": "ff0bfaf780b0435dc9662fbdd8bd2bd2da7b5e1fc1da620060edbb0f5249924a"
+      "bytes": 30574,
+      "sha256": "f8257561c446b7acdf43e56c76eefed28dcda78d081cab86530a8b2b948790a4"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -440,8 +445,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 6083,
-      "sha256": "8c32dc181d6228b41f599e1d1a3217faeea363daf1a06d12912d222ed7f3e254"
+      "bytes": 6227,
+      "sha256": "313d5ea153e570c4db69375751a388ecc3ee245a7816a05aa97cf66042b9ba38"
     },
     {
       "path": "Package.resolved",
@@ -580,8 +585,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 6060,
-      "sha256": "d0490a0041c29e29564ab18dff32683262df3f92c87df8395a0900607444d1b3"
+      "bytes": 6141,
+      "sha256": "477a58849cc705eb12a693ca4fb4ee9476caff467452c2a7b890706fbed6499c"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -625,8 +630,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 30251,
-      "sha256": "28e21f44d064c1e20601d8c748d17d8ce8e754431b14d9c21faffab32b886d8b"
+      "bytes": 30344,
+      "sha256": "05a20213464e1233bfaf7d3bbc436ccb1278fc0e080747da5df4eabaf2d17d07"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -970,8 +975,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "bytes": 22431,
-      "sha256": "7f6e67f8b9155c13563f9703335daa12f874594c2a06856ed2e8a4c515d51870"
+      "bytes": 23515,
+      "sha256": "d5c6a38e14e733235bee6463607c37819c56a3a684c44b86377f225de98d603d"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
@@ -2421,7 +2426,7 @@
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
       "bytes": 70122,
-      "sha256": "dd00b193e5c0ee5c17c990ed38ba5559c00eeee5445ae022220ff59596bc3ccd"
+      "sha256": "03a30c98dfcc83fc66e66c8463c20e8e4472530b9e67dcb701e6e3b937021fe8"
     },
     {
       "path": "project.yml",

@@ -181,7 +181,7 @@ final class ReaderRenderingTests: XCTestCase {
             for webView in webViews(in: root) {
                 diagnostic += "\nweb frame=\(webView.frame) visible=\(clippedVisibleRect(webView, root: root)) offset=\(webView.scrollView.contentOffset)"
                 do {
-                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top})")
+                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
                     diagnostic += " DOM=\(String(describing: value))"
                 } catch { diagnostic += " DOM error=\(error.localizedDescription)" }
             }

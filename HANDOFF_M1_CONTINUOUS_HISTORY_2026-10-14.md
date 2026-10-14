@@ -88,3 +88,73 @@ Windows11 /PowerShell7.6.5 /Git2.54 /Python3.11，本机无Xcode/Swift；CI macO
 旧M1_IMPORT_VALIDATION_REPORT.json属于Build2的26 tests/54 hashes，M1_SEARCH属于此前搜索，IOS属于M0，CORE是本机Linux，VALIDATION_REPORT仅静态；不混合覆盖。旧38409222759由Agent提前取消，当时26 tests已过、Release中断，不写成源码失败。各历史handoff/失败记录保留。
 
 GitHub artifacts保留14天；忽略的build/.cache不随clone。当前cache有inspect_ci_ipa/record_reader_ci/make_reader_testkit/finalize_reader_docs辅助脚本；不存在时按README重建CI并核对报告，不能假定cache已保存。恢复先读PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，再核对实际Git/进程/完整日志与hash，不用聊天记忆替代事实。
+
+
+## 公开仓库后恢复检查点归档 2026-10-14T05:54:27.544181+00:00
+
+# 当前交接与恢复点
+
+更新时间：2026-10-14（Asia/Shanghai）
+
+## 当前进行中的恢复步骤
+
+再次中断恢复核验（2026-10-14）：远程公开状态PUBLIC；main/HEAD6d76174、原index为空、候选ad555ab及所有未提交源文件仍在。CI38513634971已完成，不再运行；完整日志/xcresult已下载，Linux/macOS各14 Core、iOS39/40通过/1 failed/0 skipped。模式往返和新增迟到termination回归通过；仅长段字符回归343失败：outer3119/DOMscrollY2367/长段top约-599，Locator仍charOffset2。没有新Release/IPA，没有挂起的本地构建或下载。缓存元数据里89a/008e607是旧记录，最新候选以实际Git ref和CI head ad555ab为准。
+
+本轮继续：给DOM锚点缓存补充实际可见文档localTop作为key，避免UIKit布局先于scroll delegate回调时revision未改变而复用旧字符锚点；measure恢复也核对相同文档窗口，await返回核对localTop。失败诊断增加公开DOM caretOffsets。原charOffset>100/恢复3px断言不降低，40条测试保持；即将静态核验/更新来源hash，再完整CI。新改动尚未编译，39/40属于ad555ab历史候选。
+
+2026-10-14：用户明确同意将GitHub仓库公开，采用公开仓库标准runner的免费构建方案；没有授权付款或增加支出限额。正在核对远程main与codex/m1-continuous-recovery的所有可达历史，检查凭据、个人小说及构建包。检查完成后修改可见性并通过API确认，再对最后候选重跑完整CI（resolve_local_readium=false）。本地HEAD/main与暂存区仍保留，候选分支当前文档快照008e6075bb9acd4418d539608cebde19f4ef1dfc包含89a46ce的同一运行源码；尚未重新编译。
+
+公开前核验：远程仅main与上述候选两个分支，无tag/release；27个可达commit、718个历史blob和64份已下载CI日志未发现匹配的凭据。历史书籍仅四本原创样书（六个版本），无证书、个人小说、数据库、IPA或大构建缓存；两份requirements TXT误报已核对为依赖清单。模式扫描不能保证检测所有秘密，但本轮检查没有待处理发现。原始审计结果保存在.cache/recovery/publication-audit.json。即将修改仓库可见性；尚未执行新CI。
+
+可见性步骤已完成：gh repo edit成功，GitHub API返回visibility=PUBLIC/isPrivate=false。没有修改账单、支付方式或付费限额。下一步对候选分支008e607（与89a46ce相同运行源码）手动执行完整workflow，bootstrap=false；仍使用标准ubuntu/macOS runner，原先账单拒绝记录保留为历史，不能提前把新候选写成通过。
+
+公开后完整CI已触发：run38511938460 / head008e6075bb9acd4418d539608cebde19f4ef1dfc / resolve_local_readium=false。repository-checks已有真实步骤并成功，Core正在执行；iOS与Release尚未产生结果。恢复时先查询该run，禁止重复触发同一验证或从旧账单错误推断仍被阻止。最新候选未编译/38-of-39结论在本run完成前继续有效。
+
+run38511938460现已完成：Linux/macOS各14 Core、iOS37/39通过、2 failed/0 skipped。长段测试在跳转阶段返回navigationFailed，未到字符断言；模式往返回到h1/scrollY=0。测试真实exit65、附件导出与summary各exit0，设备Release/IPA未执行。完整日志/xcresult与37/39 summary已下载到build/ci/38511938460。新候选已编译，但完整M1仍未验收。
+
+继续定位发现已clear的EPUBSpreadView仍保留delegate，WebKit迟到termination可通过无资源身份参数的回调触发Navigator reload；取消的加载任务也在检查取消前调用delegate。该路径是可验证代码缺口，是否解释以上两项失败仍待回归。当前补充clear断开全部UI/WebKit delegate、加载完成前检查clear/cancel、termination拒绝已clear回调，并增加真实窗口的旧WKNavigationDelegate迟到事件回归。即将核对来源hash、Windows静态/tooling并重跑完整40项iOS CI，不能提前宣称修复通过。
+
+生命周期修复与新增回归已通过Windows362文件grammar（原始54限制/新增0），14 Python tooling通过，来源hash/真实6-pin锁核验通过。即将使用独立临时Git index创建候选快照并推送原codex分支，再手动完整CI；本地main/HEAD6d76174和原暂存区继续保持不动。
+
+新源码候选ad555abf11b5362cf457904c49b12d5630aacd41已正常推送，完整CI38513634971实际head匹配，bootstrap=false；repository-checks通过，Core执行中，40项iOS尚无结果。新候选历史与68份日志再次模式扫描无待处理发现；旧Build3 IPA hash仍一致。中断恢复先查这个run，不要重跑旧008e607/37-of-39源码，也不要假定新修复已经编译。
+
+## 最新可验证断点
+
+remote compact恢复与本轮开发已完成到可恢复检查点。工作区仍在main，HEAD `6d76174`，原暂存区保持为空，所有原未提交改动保留；没有reset/stash/清理个人数据。原370文件恢复ZIP在`.cache/recovery/20261014-092934/`，CRC及每个SHA-256全部匹配。完整阶段检查点和原Build3证据保存在HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md。
+
+**最新已执行：CI38506979070 / 源码8908e98151ff021092721639aed274c660335d87，Linux/macOS各14 Core、38/39 iOS通过，0 skipped。完整M1未验收，没有新Release/IPA。** 唯一未通过的是长段字符锚点回归，其余双章同屏/逆向、fragment恢复、图像高度变化锚点、可见失败重试、搜索/模式往返、迟到模式切换、千章窗口与释放均通过。真实双章同屏PNG已人工查看，但不代表拖动惯性、全模拟器阅读或设备验收。
+
+**最新候选：codex/m1-continuous-recovery / 89a46cee6ec96f665ae8b7b8d39047214fb11459。** 在上述已测版本基础上仅进一步要求reflow使用的anchorRevision等于viewportRevision，防止滚动后的resize恢复旧锚点。该行已过Windows grammar，尚未重新编译/运行。
+
+**CI38508277189未启动任何job步骤。** GitHub check annotation原文：The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings。没有Core、Swift编译、iOS test、Release执行；不是源码失败，也不是Agent取消。该run的步骤为空，无build log可下载。原始run/annotations在build/ci/38508277189，拒绝证据在Documentation/ValidationLogs/m1-continuous-billing-not-started.json。不要无意义重试，也不要擅自改账单/付款/支出限额。
+
+## 已实现的候选范围
+
+- Vendor/ReadiumToolkit为官方3.11.0/revision d82f44f4f05d87add9e22a8b75abbd61dce745dd的本地维护扩展；原BSD许可、作者出处、基线/修改SHA及审阅依赖在UPSTREAM.json。不是官方合并功能；不修改SourcePackages缓存。
+- 真正纵向连续资源窗口，最多12个WKWebView；章节wrapper按实际DOM高度排列，WKWebView保持固定viewport。前后资源回收，未ready章节保留加载/重试边界，不为全书分配巨大空白。已测两章物理同屏及逆向，不用章末go冒充无缝。
+- 完整Locator保留href/CSS/text/位置与progression；新增DOMRange字符锚点、版本1局部视口偏移、64字符上下文。搜索Locator继续用Readium文本匹配。长段最后一项仍待新候选验收。
+- MainActor采集UI数值快照，异步纯计算不读UIScrollView；epoch/revision/identity过滤迟到位置与测量。原有31个回归保持。
+- 完整初始化等待（不是只看isSpreadLoaded/DOM readyState），原生go期间暂停同步；读取DOM scrollY，目录/搜索/书签原子定位。模式转换取真实DOM，关闭取消旧切换任务/待加载窗口及JS handlers；普通drag/deceleration和按屏滚动保留。
+- 横排LTR重排支持范围按publication/settings检查；固定/RTL/竖排保留原分页路径。混合布局、真实字体/图片与设备体验继续按M1验证，不进入M2/M4。
+
+## 验证与产物范围
+
+Windows结构/SQL/四本原创EPUB、362 Swift grammar delta、14 Python tooling、bash -n通过。tree-sitter在原始3.11源码有54条精确已知限制，基线内容与真实Git blob核验，新增diagnostic为0；grammar不是编译。完整来源hash检查通过。
+
+首次真实macOS解析**38496501326**，其原始6-pin Package.resolved已原样采用：保留版本/revision/location不变，SwiftPM裁剪未使用server/SQLite/LCP的四个传递pin和远程Readium。以后resolve/test/build严格锁文件，bootstrap保持false。
+
+报告：Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json（最新候选未编译、上轮38/39、外部拒绝与五种验收结果分开）；M1_CONTINUOUS_STATIC_REPORT.json仅静态；每轮失败在ValidationLogs/m1-continuous-*.json。完整下载日志、summary、xcresult/附件在build/ci/38496501326、38497134015、38498560012、38500755762、38503347131、38505001863、38506979070。
+
+现有build/XianxiaReader.ipa仍是Build3：7,393,693 bytes，SHA-256 12504757c6900a83acc107bfee9cc360a737859effd9dda005ad7d18237b66f2。旧测试ZIP/Build2/Build3/报告与日志保留，未覆盖或伪造Build4包。用户iPhone13/iOS16.6.1/TrollStore原书图像、阅读、位置仍待复测；普通设备签名/完整模拟器阅读/原生惯性/峰值内存未验收。
+
+## 下一可恢复步骤
+
+1. 先读AGENTS→PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，核对实际Git/进程/hash/运行CI。所有改动仍未提交到本地main；候选分支用于可审阅快照。
+2. 由用户处理GitHub Billing & plans的付款/支出限额拒绝，或提供获授权的可用macOS环境；不擅自改账单。工具恢复后对候选89a46cee6ec96f665ae8b7b8d39047214fb11459重新执行完整workflow，resolve_local_readium=false。不要只重跑旧38/39源码。
+3. 必须核对39条测试与summary 0 skipped；若长段仍失败，读取timeout附件中的Locator/outer/inner/DOM坐标继续定位，不降charOffset/像素断言。检查全套生命周期/搜索/导入/viewport回归、Core与设备Release CODE_SIGNING_ALLOWED=NO，任一失败禁止IPA。
+4. 全套成功后再核验IPA hash/arm64/系统SQLite/0755/最低iOS16/许可，备份旧Build3再提供Build4测试包。iPhone13正常更新保留数据，不卸载、不删数据库；设备/惯性/原书/字体与图像仍分别验收。
+5. 更新本文件/状态/设计与FILE_INVENTORY；完整M1尚未放行，TXT、完整书库、M4设置与主题、百万字性能、XBook知识库均不提前铺开。
+
+## 环境
+
+Windows/PowerShell/Git/Python可用；本机无Xcode/Swift。Docker先前实际错误为dockerDesktopLinuxEngine pipe不存在，本轮没有启动/重置Docker或任何localhost服务，也没有遗留自己的本地测试/下载任务。其他项目进程保持原状。GitHub artifacts保留14天；忽略build/.cache不随clone，过期时需在真正可用的macOS环境按锁文件重建。

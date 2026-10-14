@@ -19,6 +19,7 @@ import UIKit
         var failure: String?
         var anchorDocumentY: CGFloat?
         var anchorRevision: UInt64?
+        var anchorViewportTop: CGFloat?
         var savedAnchor: Locator?
         var loadTask: Task<Void, Never>?
         var timeoutTask: Task<Void, Never>?
@@ -147,6 +148,7 @@ import UIKit
         slot.positioning = true
         defer { slot.positioning = false }
         slot.anchorRevision = nil
+        slot.anchorViewportTop = nil
         await slot.view.go(to: location, animated: false)
         guard epoch == activeEpoch, slots[index] === slot else { return false }
         let local = await navigationOffset(in: slot, location: location)
@@ -241,6 +243,8 @@ import UIKit
         let anchorJSON: String
         let measuredRevision = viewportRevision
         let measuredAnchor = slot.savedAnchor
+        let measuredLocalTop = viewportTop - slot.wrapper.frame.minY
+        let measuredAnchorIsCurrent = savedAnchorMatchesViewport(slot, revision: measuredRevision)
         do {
             anchorJSON = try slot.savedAnchor?.jsonString() ?? "{}"
         } catch {
@@ -280,9 +284,10 @@ import UIKit
             let height = max(96, CGFloat(number.doubleValue) + 24)
             let changed = abs(slot.height - height) > 0.5
             let newAnchorY = (data["anchorY"] as? NSNumber).map { CGFloat($0.doubleValue) }
-            let mayRestoreAnchor = index == currentIndex && measuredAnchor != nil
-                && slot.savedAnchor == measuredAnchor && slot.anchorRevision == measuredRevision
+            let mayRestoreAnchor = index == currentIndex && measuredAnchor != nil && measuredAnchorIsCurrent
+                && slot.savedAnchor == measuredAnchor && savedAnchorMatchesViewport(slot, revision: measuredRevision)
                 && viewportRevision == measuredRevision
+                && abs(viewportTop - slot.wrapper.frame.minY - measuredLocalTop) < 0.5
             let desiredLocal: CGFloat? = mayRestoreAnchor ? newAnchorY.map { y in
                 y - CGFloat(measuredAnchor?.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0)
             } : nil
@@ -409,6 +414,13 @@ import UIKit
         preload()
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
     }
+    private func savedAnchorMatchesViewport(_ slot: Slot, revision: UInt64) -> Bool {
+        guard slot.anchorRevision == revision, let savedTop = slot.anchorViewportTop else { return false }
+        // UIKit can lay out the content before delivering its scroll delegate
+        // callback. The physical document slice is authoritative even when the
+        // callback-based revision has not changed yet.
+        return abs(viewportTop - slot.wrapper.frame.minY - savedTop) < 0.5
+    }
     func firstVisibleElementLocator() async -> Locator? {
         guard let slot = slots[currentIndex], slot.ready else { return nil }
         let clipTop = max(0, viewportTop - slot.wrapper.frame.minY - slot.view.frame.minY)
@@ -416,16 +428,19 @@ import UIKit
         let request = epoch
         let index = currentIndex
         let revision = viewportRevision
+        let localTop = viewportTop - slot.wrapper.frame.minY
         // Keep the old DOM anchor across reflow until measure() compensates;
         // a resize notification is not a user scroll.
-        if slot.anchorRevision == revision, let anchor = slot.savedAnchor { return anchor }
+        if savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor { return anchor }
         let anchor = await slot.view.findFirstVisibleElementLocator(visibleTop: clipTop, visibleBottom: clipBottom)
         guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
         if let anchor, anchor.locations.cssSelector != nil {
             do {
                 let documentY = try await slot.view.continuousAnchorDocumentY(anchor)
-                guard epoch == request, currentIndex == index, slots[index] === slot, viewportRevision == revision else { return nil }
+                guard epoch == request, currentIndex == index, slots[index] === slot, viewportRevision == revision,
+                      abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
                 slot.anchorRevision = revision
+                slot.anchorViewportTop = localTop
                 slot.savedAnchor = anchor
                 slot.anchorDocumentY = documentY
             } catch { boundaryLabel.text = error.localizedDescription }
