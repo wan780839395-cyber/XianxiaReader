@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | M0 结构与技术验证 | 自动门槛通过 | 编译/Core/iOS/Release/真实IPA |
 | M1 基础 EPUB | 完整自动门槛通过，用户确认连续阅读与重开位置可用；可继续既定路线 | 未逐项确认的原书图像、其他设备/旋转/性能继续单独记录 |
-| M2 TXT | 两Core切片自动门槛通过；TXT产品接入源码已写入，完整CI验证中 | 待各68 Core/46 iOS/Build5 Release、长书与设备 |
+| M2 TXT | 产品导入/Readium阅读/完整位置自动门槛通过：各68 Core、46 iOS、Build5 Release | 数十MB冷导入/cache重开与设备/中文排版仍待验收 |
 | M3 完整书库 | 未开始 | 列表/编辑/封面/删除一致性 |
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
@@ -23,9 +23,9 @@
 
 ## 最新证据与设备边界
 
-TXT产品接入验证中：最新CI38558425326/1bb8f6cb660821160724643fb3646c52ba417463验证中，Linux68已通过，Apple/iOS46/Build5 Release待最终结果。前轮38555669042为44/46：TXT非零字符与截图通过但重开invalidPosition，核实连续路径selector丢字节ID，导致正文char误配短标题；已仅对显式TXT保留唯一CSS.escape字节ID并更新UPSTREAM hash、增真实paragraph byte断言，严格恢复校验保留。旧EPUB冷首开超时同轮重现，未宣称解决。四次真实失败与完整原件分别留档；原Build4不覆盖，新TXT产品源码/样书已接入，数十MB/缓存重开/设备仍未验收，完整M2未完成。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json/设计TXT_READING_DESIGN.md。
+TXT产品接入自动门槛已通过：[CI38559906005](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38559906005)，运行源码 `37eb86a46dc9002af381a44204f9bc36d07e11a4`，Linux/macOS各68 Core、46/46 iOS、test/export/summary全0，Build5设备Release/IPA通过；455运行hash匹配、三份锁一致，Windows379 grammar新增0/14 tooling通过。已接入受管理原件/cache/事务TXT导入、编码选择重试/取消、Readium公开Publication+Container最多64KiB窗口、字节/字符/完整Locator位置、目录/书签/搜索/连续。真实iOS模拟器三编码导入、长段600点滑动/3px重开、错正文/字符边界拒绝回归通过；原41 EPUB/lifecycle回归保留。五次真实失败原件保留，包含字节selector实际修复与测试就绪修正，未降低断言。新包另存 `build/XianxiaReader-TXT-Build5.ipa`、测试ZIP `build/XianxiaReader-TXT-Build5-TestKit.zip`；原Build4不覆盖。数十MB/cache重开耗时/巨段边界与用户设备中文页面未验收，完整M2尚未完成，暂不大规模M3/M4。报告M2_TXT_PRODUCT_VALIDATION_REPORT.json，设计TXT_READING_DESIGN.md。
 
-M2编码/cache第二切片完整自动CI通过：[CI 38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)，运行源码 `65c1b8d6dbebf311c1e6b4b9534cda59373940b6`，Linux/macOS各60 Core（原33+新增27）、41/41既有iOS集成及设备Release CODE_SIGNING_ALLOWED=NO/IPA通过；445运行文件hash与当前源码匹配、三份锁一致。Windows372 grammar新增诊断0/14 tooling通过。支持严格UTF8/UTF16 LE/BE/GB18030分块转换、原/正规正文/目录SHA与编码/版本绑定cache。首轮Apple iconv两项四字节真实失败保留，现改用公开SDK CoreFoundation并通过同样及扩展向量；Linux保持glibc iconv，无新远程依赖。自动编码仅BOM/严格UTF8，其他要求选择；cache复用仍流式核验摘要，TXT导入/阅读/位置未接入，iOS真实TXT codec/导入/页面与设备未验收，完整M2尚未完成。当前Build4用户包保持不动，报告M2_TXT_NORMALIZATION_VALIDATION_REPORT.json。
+M2编码/cache第二切片完整自动CI通过：[CI 38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)，运行源码 `65c1b8d6dbebf311c1e6b4b9534cda59373940b6`，Linux/macOS各60 Core（原33+新增27）、41/41既有iOS集成及设备Release CODE_SIGNING_ALLOWED=NO/IPA通过；445运行文件hash与当次已测快照匹配、三份锁一致。Windows372 grammar新增诊断0/14 tooling通过。支持严格UTF8/UTF16 LE/BE/GB18030分块转换、原/正规正文/目录SHA与编码/版本绑定cache。首轮Apple iconv两项四字节真实失败保留，现改用公开SDK CoreFoundation并通过同样及扩展向量；Linux保持glibc iconv，无新远程依赖。自动编码仅BOM/严格UTF8，其他要求选择；cache复用仍流式核验摘要，TXT导入/阅读/位置未接入，iOS真实TXT codec/导入/页面与设备未验收，完整M2尚未完成。当前Build4用户包保持不动，报告M2_TXT_NORMALIZATION_VALIDATION_REPORT.json。
 
 2026-10-14用户反馈：“这个功能可以了，重开位置也是正常的”，并要求按计划继续。依据上一轮Build4上下文记录连续跨章/重开位置的用户设备确认，沿用iPhone13/iOS16.6.1/TrollStore背景；未报告的普通设备、原书图片、旋转和性能不扩写为通过。M1已有完整CI构建/测试门槛，现推进M2独立Core切片。UI完整书库在M3，排版/主题在M4。
 
@@ -60,4 +60,4 @@ Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。GitHub origin/ma
 
 ## 下一步
 
-M2 Core分章/窗口、编码/转码与内容版本cache已完整自动验证；接着推进受管理TXT导入、Readium阅读与完整字节/文本位置。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。
+M2 TXT导入/Readium阅读/完整字节文本位置已过自动门槛；接着验证Build5设备阅读、数十MB冷导入/cache重开与巨段边界，落实M2验收后再M3书库。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。

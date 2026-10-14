@@ -1,0 +1,154 @@
+{
+  "recordedAtUTC": "2026-10-14T12:07:03.992712+00:00",
+  "run": 38559906005,
+  "sourceRevision": "37eb86a46dc9002af381a44204f9bc36d07e11a4",
+  "conclusion": "success",
+  "linuxCorePassed": 68,
+  "macOSCorePassed": 68,
+  "newCoreTests": 8,
+  "newIOSTests": 5,
+  "iOSSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 46,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1791979311.784,
+    "passedTests": 46,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1791979095.586,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "17% of duration",
+        "text": "1 longest test run with outlier durations exceeding 9.34s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 46
+  },
+  "testExit": 0,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": true,
+  "codeSigningAllowed": "NO",
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "metadataWarnings": 6,
+  "runtimeGitBlobHashesMatched": 455,
+  "rootWorkspaceDownloadedLockMatched": true,
+  "IPAInspection": {
+    "path": "build\\ci\\38559906005\\artifacts\\XianxiaReader-unsigned-ipa\\XianxiaReader.ipa",
+    "bytes": 7699595,
+    "sha256": "e48e6ceb5151ca22d23a5cbb4491f71f0e90d0c87e8cef570ea2bb539ab6e621",
+    "build": "5",
+    "version": "0.0.1",
+    "bundleIdentifier": "com.xianxiareader.app",
+    "minimumIOS": "16.0",
+    "platform": "iPhoneOS",
+    "architecture": "arm64",
+    "executableMode": "0755",
+    "systemSQLite": true,
+    "noticesIncluded": true,
+    "zipCRC": true,
+    "libraries": [
+      "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+      "/System/Library/Frameworks/UIKit.framework/UIKit",
+      "/usr/lib/libxml2.2.dylib",
+      "/usr/lib/libz.1.dylib",
+      "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+      "/System/Library/Frameworks/Foundation.framework/Foundation",
+      "/usr/lib/libobjc.A.dylib",
+      "/usr/lib/libSystem.B.dylib",
+      "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+      "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+      "/System/Library/Frameworks/Combine.framework/Combine",
+      "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+      "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+      "/System/Library/Frameworks/NaturalLanguage.framework/NaturalLanguage",
+      "/System/Library/Frameworks/PDFKit.framework/PDFKit",
+      "/System/Library/Frameworks/Security.framework/Security",
+      "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+      "/System/Library/Frameworks/WebKit.framework/WebKit",
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libcompression.dylib",
+      "/usr/lib/libsqlite3.dylib",
+      "/usr/lib/swift/libswiftAVFoundation.dylib",
+      "/usr/lib/swift/libswiftCompression.dylib",
+      "/usr/lib/swift/libswiftCore.dylib",
+      "/usr/lib/swift/libswiftCoreAudio.dylib",
+      "/usr/lib/swift/libswiftCoreFoundation.dylib",
+      "/usr/lib/swift/libswiftCoreImage.dylib",
+      "/usr/lib/swift/libswiftCoreMIDI.dylib",
+      "/usr/lib/swift/libswiftCoreMedia.dylib",
+      "/usr/lib/swift/libswiftDarwin.dylib",
+      "/usr/lib/swift/libswiftDataDetection.dylib",
+      "/usr/lib/swift/libswiftDispatch.dylib",
+      "/usr/lib/swift/libswiftMetal.dylib",
+      "/usr/lib/swift/libswiftNaturalLanguage.dylib",
+      "/usr/lib/swift/libswiftOSLog.dylib",
+      "/usr/lib/swift/libswiftObjectiveC.dylib",
+      "/usr/lib/swift/libswiftQuartzCore.dylib",
+      "/usr/lib/swift/libswiftSpatial.dylib",
+      "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+      "/usr/lib/swift/libswiftXPC.dylib",
+      "/usr/lib/swift/libswift_Concurrency.dylib",
+      "/usr/lib/swift/libswiftos.dylib",
+      "/usr/lib/swift/libswiftsimd.dylib",
+      "/usr/lib/swift/libswiftUIKit.dylib"
+    ]
+  },
+  "userBuild4Preserved": true,
+  "TXTDeviceAccepted": false,
+  "M2Accepted": false,
+  "scope": "TXT product automatic gates passed; tens-of-MB cold import/reopen and actual device typography/performance not measured.",
+  "artifacts": [
+    {
+      "path": "build/ci/38559906005/full.log",
+      "bytes": 2780975,
+      "sha256": "027fbf1db8fd4b48afeb96341a531f8370a93d1c44c771aa70bfd7a4e24b712f"
+    },
+    {
+      "path": "build/ci/38559906005/core/core-tests.log",
+      "bytes": 9660,
+      "sha256": "e0655c2fd548be5bcd19051d2e7fae45f352221b3a1b7d074137ac8ec67c51ac"
+    },
+    {
+      "path": "build/ci/38559906005/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 2032708,
+      "sha256": "3c1c1b92b94c7d8293d3123ee2b82facdfdeac1b0d05ed4eb3139d9a72fcd466"
+    },
+    {
+      "path": "build/ci/38559906005/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1171,
+      "sha256": "eac6ce56ccfa7da24b4a881caa42ddb5b219baecc332894bdb77b09da690a8f6"
+    },
+    {
+      "path": "build/ci/38559906005/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa",
+      "bytes": 7699595,
+      "sha256": "e48e6ceb5151ca22d23a5cbb4491f71f0e90d0c87e8cef570ea2bb539ab6e621"
+    }
+  ]
+}

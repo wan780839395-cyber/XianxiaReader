@@ -19,7 +19,7 @@
 | 阅读进度/当前章节 | 已写入（未知进度不伪装为 0%） | M1 |
 | 总章节数 | 当前仅报告目录条目；TXT canonical 章数在 M2 | M1/M2 |
 | 书签添加/跳转/删除 | 已写入 | M1 |
-| TXT 导入/正文阅读 | 产品入口尚未接入，当前安装包不能导入TXT | M2 |
+| TXT 导入/正文阅读 | Build5已接入并过CI38559906005：编码选择/重试/取消、有界Readium资源/目录/书签/搜索/完整位置；设备/长书仍待验收 | M2 |
 | TXT UTF8/UTF16/GB18030、摘要与版本cache | 第二Core切片完整CI38547339868通过各60 Core/41 iOS/Release；首轮Apple iconv失败保留，更换公开CoreFoundation后向量通过；cache复用仍流式计算摘要 | M2 |
 | 八种标题识别、streaming、chunk、窗口 | 新增19项在各33 Core内通过，完整CI38538141364 attempt2为41/41 iOS及Release；首轮EPUB超时留档 | M2 |
 | 自定义字体导入/选择、字号/字重 | 计划，经 Readium preferences 实现 | M4 |

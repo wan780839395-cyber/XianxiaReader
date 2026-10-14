@@ -4,7 +4,7 @@
 
 ### TXT Build5准备（尚未设备验收）
 
-2026-10-14 TXT产品源码正在完整CI38552463402验证，Build5包尚未提供。验证通过后保留Build4原件并另行提供TXT测试包；TrollStore正常更新，已有书库/数据库/原书不卸载或删除。只有Core和模拟器通过不能写为TXT设备验收。
+2026-10-14 TXT Build5已过完整CI38559906005：各68 Core、46 iOS与设备Release。新测试包build/XianxiaReader-TXT-Build5-TestKit.zip，SHA256 7d547c7582230e35860e0b591bb51adcf51f988a20470ff421d8805c6d1ac668，含原生设备IPA与三个原创编码TXT/说明；原Build4原件保留。TrollStore正常更新，不卸载/删库；TXT实际设备尚未验收，自动CI不能写成设备通过。
 
 Build5设备复测范围：内置原创TXT、UTF8/带BOM UTF16自动导入；GB18030明确编码选择/失败重试；取消/混合导入保留成功书籍；卷/章目录、长章窗口、搜索/书签与连续跨章；章中段关闭/重开、模式切换/旋转及中文标点/两字缩进/标题节奏。使用自己长篇TXT记录数十MB冷导入、cache重开时间与内存/卡顿。完整字体/主题仍在M4，不把基础样书CSS当全局排版完成。普通设备与TrollStore分别记录，用户Build4连续/重开已确认可用的原记录保持。
 

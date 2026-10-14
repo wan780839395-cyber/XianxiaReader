@@ -113,9 +113,11 @@ TOC 导入时持久化，打开目录只读取现有数组。EPUB TOC 可能含�
 
 ## TXT 实现边界（M2）
 
-第二切片已过完整CI38547339868/65c1b8d：各60 Core、41 iOS与设备Release。业务仍为Foundation/SQLite，与Readium/UI隔离。GB18030内部CTextCodec：Apple使用公开SDK CoreFoundation（GB_18030_2000/lossByte=0），Linux用glibc iconv，无新远程依赖/Homebrew路径。Apple系统iconv首轮实际四字节回归失败原件保留，更换接口后原断言及扩展向量全部通过。UTF8/UTF16严格增量校验/解码，SHA256绑定原/normalized/目录身份；cache generation原子manifest只存校验过的相对路径。平台codec ID用于缓存失效，复用仍流式核验摘要；产品TXT导入/阅读与iOS实际TXT运行尚未接入。细节见TXT_INDEX_DESIGN.md。
+产品接入已过CI38559906005/37eb86a各68 Core/46 iOS/Build5 Release。Core TXTBookImportService复用原件协调复制/cache/文件提交/数据库事务与UUID恢复，Book可选txtEncoding兼容旧payload；Adapter通过公开Publication/Container/惰性DataResource仅按64KiB窗口转XHTML。TXT独立readium.txt完整位置envelope绑定内容/版本、稳定章ID、byte/UTF16与原生Locator，后台边界验证及await后request/Navigator检查。UI经ReadingInterfaces.currentChapters与可选search操作，Readium不进入Core，SQL schema/远程锁/Readium版本未改；本地连续selector仅对显式TXT标记保留唯一字节ID，准确更新UPSTREAM hash，普通EPUB仍原路径。设计TXT_READING_DESIGN.md；设备/长书/排版边界仍待验收。
 
-第一切片新增 `TXTChapterHeadingRecognizer`、`TXTUTF8ChapterScanner`与`TXTChapterWindowReader`；在Core actor扫描已规范化UTF-8正文，严格跨块校验、CRLF/BOM/长行处理，返回卷分组与叶子Int64/end-exclusive范围，按不越章的有界窗口读取。已过CI38538141364/0643093（attempt2各33 Core、41 iOS、设备Release）；`StreamingTXTIndexer`已实现正规化+索引facade，`TXTIndexCache`已实现cache；产品导入/阅读仍待集成，不能将Core组件写成产品已能导入TXT。
+第二切片已过完整CI38547339868/65c1b8d：各60 Core、41 iOS与设备Release。业务仍为Foundation/SQLite，与Readium/UI隔离。GB18030内部CTextCodec：Apple使用公开SDK CoreFoundation（GB_18030_2000/lossByte=0），Linux用glibc iconv，无新远程依赖/Homebrew路径。Apple系统iconv首轮实际四字节回归失败原件保留，更换接口后原断言及扩展向量全部通过。UTF8/UTF16严格增量校验/解码，SHA256绑定原/normalized/目录身份；cache generation原子manifest只存校验过的相对路径。平台codec ID用于缓存失效，复用仍流式核验摘要；当时产品TXT导入/阅读尚未接入；最新接入以上方Build5为准。细节见TXT_INDEX_DESIGN.md。
+
+第一切片新增 `TXTChapterHeadingRecognizer`、`TXTUTF8ChapterScanner`与`TXTChapterWindowReader`；在Core actor扫描已规范化UTF-8正文，严格跨块校验、CRLF/BOM/长行处理，返回卷分组与叶子Int64/end-exclusive范围，按不越章的有界窗口读取。已过CI38538141364/0643093（attempt2各33 Core、41 iOS、设备Release）；`StreamingTXTIndexer`已实现正规化+索引facade，`TXTIndexCache`已实现cache；该历史节点产品导入/阅读未接入；目前已由上方Build5独立集成验证。
 
 实现独立于UI，后续后台流式转码必须处理UTF-16/GB18030边界，将正文标准化为UTF-8旁路文件并保留原件；阅读只加载当前/相邻窗口，不能将整本String发布到UI。卷不重复正文范围；卷标题与卷序文字保留在叶子范围，不丢失未识别前言。标题ID以同bookID/字节位置稳定生成，内容改变须cache失效，不能跨不同正文复用位置。
 

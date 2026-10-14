@@ -1,6 +1,6 @@
 # M2 TXT产品接入
 
-状态：2026-10-14源码已写入，CI38552463402/97307de验证中。Linux68 Core已通过；macOS/iOS46与Build5设备Release尚未取得最终结果。原Build4用户包/小说/数据库保留；不能把源码或上轮60Core/旧41iOS写成TXT设备已验收。
+状态：2026-10-14已过完整CI38559906005/37eb86a：Linux/macOS各68 Core、46 iOS、Build5设备Release，455来源hash和三份锁一致。五次真实失败的原文保留；原Build4/书库/数据库不覆盖。新三编码TXT原生集成/搜索/长段重开自动通过，实际设备/数十MB/巨大单行边界尚未验收，完整M2未完成。
 
 ## 导入与缓存
 
@@ -16,7 +16,7 @@ cache仍绑定原/normalized/目录摘要与parser/normalizer/codec版本，损�
 
 - [Publication与Container](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Shared/Publication/Publication.swift)：Publication(manifest:container:servicesBuilder:)与资源访问。
 - [Container](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Shared/Toolkit/Data/Container/Container.swift)、[DataResource](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Shared/Toolkit/Data/Resource/DataResource.swift)：惰性资源提供与请求范围。DataResource会缓存数据，因此每次仅创建一个有界窗口资源，不让container持有全书资源正文。
-- PositionsService/PerResourcePositionsService、DefaultContentService/HTMLResourceContentIterator.Factory、既有SafeTextSearchService工厂分别提供位置列表/正文/安全搜索；不升级远程pins或Vendor。
+- PositionsService/PerResourcePositionsService、DefaultContentService/HTMLResourceContentIterator.Factory、既有SafeTextSearchService工厂分别提供位置列表/正文/安全搜索；不升级远程pins或Readium版本。
 
 TXTReadingPlanner仅保留轻量范围，把每个叶子章节拆为最多64KiB、完整UTF8标量的窗口，范围精确覆盖原规范正文、不跨下一章。同内容版本/同byte start的资源href稳定，含完整normalized摘要与renderer版本；章节仍使用Core稳定ID，卷分组没有重复正文。
 
@@ -28,7 +28,7 @@ Adapter的TXTResourceRenderer actor按窗口转换XHTML，CR/LF段落有绝对�
 
 TXT与EPUB分别使用readium.txt/readium.epub命名空间；TXT version1 envelope包括原/normalized SHA、parser/normalizer/codec/资源版本、稳定叶子ID、resource start/end、段落byte start、段内UTF16字符偏移，以及完整原生Locator（href/CSS/DOMRange/文本上下文/连续视口偏移等）。摘要/范围/章ID/版本不符拒绝恢复，绝不静默归零。不是只存百分比；progress仅用于书架显示。
 
-实际断点38555669042证明：完成段落导航后的char>100与原生截图通过，但重开invalidPosition。源码核实连续扩展原selector只生成html/body/p路径，丢失txt-b字节ID；codec回退资源byte0而仍有长段char，真实恢复校验误落短标题。最小修复为renderer显式data-xianxia-txt=1标记；本地EPUBSpreadView的连续selector只对该标记的唯一txt-b ID使用公开[CSS.escape](https://drafts.csswg.org/cssom/#the-css.escape()-method)，保留真实byte+character，普通EPUB仍原路径。更新UPSTREAM声明准确hash，不升级3.11/远程pins、不放宽校验，不建立额外全书段落表。新回归同时要求采样paragraph byte等于实际正文段落；此修复在CI38558425326/1bb8f6c待完整验证。旧EPUB首开超时同轮重现，单列，不宣称此修复解决了它。
+实际断点38555669042证明：完成段落导航后的char>100与原生截图通过，但重开invalidPosition。源码核实连续扩展原selector只生成html/body/p路径，丢失txt-b字节ID；codec回退资源byte0而仍有长段char，真实恢复校验误落短标题。最小修复为renderer显式data-xianxia-txt=1标记；本地EPUBSpreadView的连续selector只对该标记的唯一txt-b ID使用公开[CSS.escape](https://drafts.csswg.org/cssom/#the-css.escape()-method)，保留真实byte+character，普通EPUB仍原路径。更新UPSTREAM声明准确hash，不升级3.11/远程pins、不放宽校验，不建立额外全书段落表。新回归同时要求采样paragraph byte等于实际正文段落；此修复及严格byte/char/3px检查已由CI38559906005/37eb86a完整验证。旧EPUB首开超时同轮重现，单列，不宣称此修复解决了它。
 
 恢复/书签/搜索定位先在后台有界读取校验真实段落起始与UTF16代理对边界，再交Readium原生定位。Native Locator与独立anchor必须一致；context最多64字符、highlight256；内容变化不复用旧位置。正常原件不会改写，cache损坏重建同内容可重开。位置保存仍通过原SQLite时间戳拒绝迟到写入。
 
@@ -42,4 +42,6 @@ TXT打开与定位的await之后核对open request ID和Navigator identity；clo
 
 首轮CI38552124765/c454a60在Linux68项的一个新夹具断言失败：正文“尾声”符合合法标题，实际目录4条与错误预期3条不符；Core已编译，iOS/Release未执行。修正夹具普通叙述，原规则和断言不变，完整原文/hash保留ValidationLogs/m2-txt-product-fixture-heading-failure.json。不把工具错误、取消或测试未执行写成成功。
 
-最终自动检查/Swift编译/原生WK页面快照与断言/普通设备/TrollStore五种结果单独记录；本设计此刻待完整CI，真实数十MB导入/cache重开、设备中文页面与巨章边界仍待验收。
+最终自动检查/Swift编译/原生WK页面快照与断言/普通设备/TrollStore五种结果单独记录；本切片已通过完整CI，真实数十MB导入/cache重开、设备中文页面与巨章边界仍待验收。
+
+第二轮38552463402各68 Core/应用编译通过，测试Locator.Text参数顺序错误使test bundle未编译、summary0/result unknown、Release未执行；更正public init(after:before:highlight:)后进入实际测试。第三轮38553767324为45/46，TXT非零字符采样超时；参照既有EPUB测试完成明确段落/DOM就绪后再滚动，原char>100/3px断言保持，本轮完整通过。未改引擎/增大等待/删除断言；超时根因未完全确认。三次失败及原始日志/summary分别保留ValidationLogs，不能将旧失败覆盖成成功。

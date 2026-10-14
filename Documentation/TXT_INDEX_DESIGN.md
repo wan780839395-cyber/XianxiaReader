@@ -1,8 +1,8 @@
 # M2 TXT索引、编码与cache
 
-状态：2026-10-14 两个Core切片已过完整CI，最新38547339868/65c1b8d为Linux/macOS各60 Core、41 iOS、设备Release成功；Windows372 grammar/14项tooling通过。第一切片38538141364/0643093 attempt2的各33 Core/41 iOS/Release证据及首轮超时单独保留。用户已确认Build4连续阅读和重开位置正常，并要求按既定路线继续；其他未逐项确认的设备项目不扩写为完整矩阵。TXT产品入口/位置尚未接入，完整M2未完成。
+状态：2026-10-14 两个Core切片已过完整CI，最新38547339868/65c1b8d为Linux/macOS各60 Core、41 iOS、设备Release成功；Windows372 grammar/14项tooling通过。第一切片38538141364/0643093 attempt2的各33 Core/41 iOS/Release证据及首轮超时单独保留。用户已确认Build4连续阅读和重开位置正常，并要求按既定路线继续；其他未逐项确认的设备项目不扩写为完整矩阵。TXT产品入口/完整位置随后在Build5通过CI38559906005；设备/长书仍待验收，完整M2未完成，最新范围见TXT_READING_DESIGN.md。
 
-本轮完成独立Core能力：识别章节/卷/序章、扫描已规范化UTF-8正文、返回稳定字节范围和分组目录、按有界窗口读取正文。第二切片已实现编码正规化/内容版本cache；后续接事务导入和ReadingInterfaces阅读。原始书籍始终保留；不会把整本String放入ObservableObject，不重写EPUB排版。
+本轮完成独立Core能力：识别章节/卷/序章、扫描已规范化UTF-8正文、返回稳定字节范围和分组目录、按有界窗口读取正文。第二切片已实现编码正规化/内容版本cache；随后已接事务导入和ReadingInterfaces阅读，产品验证见TXT_READING_DESIGN.md。原始书籍始终保留；不会把整本String放入ObservableObject，不重写EPUB排版。
 
 ## 数据边界
 
@@ -33,13 +33,13 @@ attempt1已完成：Linux/macOS各33项Core/新增19项TXT全部通过，iOS编�
 
 ## 编码与cache第二切片（自动门槛通过）
 
-2026-10-14第二切片已过完整CI38547339868/65c1b8d：TXTNormalizer严格UTF8/UTF16/GB18030正规化，TXTContentDigest增量SHA256，TXTIndexCache版本cache与StreamingTXTIndexer facade。新增27项Swift回归，Core共60项；Linux/macOS各60 Core、原41 iOS与设备Release全部成功；445运行文件hash匹配，根/下载/workspace锁一致。Windows372 grammar/14项tooling通过（不是编译）。原书不变，UTF8 sidecar仅成功后发布；自动识别只接受BOM/完整严格UTF8，不确定编码要求选择。cache复用避免转码与分章，但目前仍流式计算原/normalized摘要，尚非仅元数据快开；产品入口/位置与设备验收尚未接入。
+2026-10-14第二切片已过完整CI38547339868/65c1b8d：TXTNormalizer严格UTF8/UTF16/GB18030正规化，TXTContentDigest增量SHA256，TXTIndexCache版本cache与StreamingTXTIndexer facade。新增27项Swift回归，Core共60项；Linux/macOS各60 Core、原41 iOS与设备Release全部成功；445运行文件hash匹配，根/下载/workspace锁一致。Windows372 grammar/14项tooling通过（不是编译）。原书不变，UTF8 sidecar仅成功后发布；自动识别只接受BOM/完整严格UTF8，不确定编码要求选择。cache复用避免转码与分章，但目前仍流式计算原/normalized摘要，尚非仅元数据快开；当时产品入口/位置未接入；最新Build5产品已自动通过，设备仍待验收。
 
 GB18030使用系统编码表。CI38545821529确认Linux iconv通过60项，但Apple系统iconv在emoji/补充汉字两项四字节向量失败；原失败保留，iOS/Release在Core门槛停止。Apple修复改用公开[CFStringCreateWithBytes](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytes(_:_:_:_:_:))和[CFStringGetBytes](https://developer.apple.com/documentation/corefoundation/cfstringgetbytes(_:_:_:_:_:_:_:_:))，kCFStringEncodingGB_18030_2000，lossByte=0、NULL/不完整转换明确失败；只链接目标SDK CoreFoundation。内部桥按[WHATWG GB18030字节语法](https://encoding.spec.whatwg.org/#gb18030-decoder)寻找完整块，字符映射交系统，最多保留3尾字节。Linux继续[POSIX iconv](https://pubs.opengroup.org/onlinepubs/9799919799.2024edition/functions/iconv.html)，禁用IGNORE/TRANSLIT，拒绝非可逆/非法转换。无第三方编码表/Homebrew路径。实际系统标准修订差异不假定相同，codecIdentifier区分Apple/Linux并使旧Apple缓存失效；中文/emoji/补充汉字与补充范围两端、损坏/截断向量通过同样测试才放行，修复后完整CI38547339868通过原断言及扩展向量；macOS执行Core codec向量，iOS41项仍是既有EPUB集成，真实TXT iOS运行/导入/设备随后验证。
 
 摘要按[NIST FIPS180-4](https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.180-4.pdf)独立实现流式SHA256，仅作为cache内容身份，已写入空串/abc/跨block/百万a/中文emoji独立向量；未声称密码学认证。cache绑定bookID、原SHA/编码/normalizer/parser/codec版本及normalized/目录SHA，manifest上限8MiB，只存经过BookFileStore校验的同key/generation相对路径。新generation完整后原子提交manifest，旧generation先保留；损坏/缺失重建，不删除原书/数据库，链接/越界拒绝。cache原件hash不变但标题元数据损坏也须重建。旧generation清理与快速元数据重开属于后续。
 
-## 后续产品接入次序（尚未实现）
+## 产品接入历史次序（现已实现，最新验收见TXT_READING_DESIGN）
 
 1. 编码正规化：先保留并协调复制原件到受管理目录；接入已有BOM/严格UTF-8校验与明确编码选择、UTF16/GB18030跨块转码到UTF-8旁路文件。无法确定时由用户选择，不覆盖原件。取消/截断/磁盘错误须留下明确失败并清理本次暂存，Apple仍使用NSFileCoordinator。
 2. 版本cache：绑定原件SHA256、编码/normalizer版本、parser版本；保存normalized摘要、相对路径和索引。缓存损坏/版本失配可重建，数据库和原书不删除。缓存重开只加载有效元数据/当前窗口；正文改变不得沿用旧索引或位置。摘要实现/跨平台一致性须单独验证，不凭文件大小假装内容hash。

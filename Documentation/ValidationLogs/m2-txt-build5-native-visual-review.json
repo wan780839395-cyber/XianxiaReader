@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-14T12:08:59.415138+00:00",
+  "run": 38559906005,
+  "sourceRevision": "37eb86a46dc9002af381a44204f9bc36d07e11a4",
+  "nativeSnapshotsViewed": true,
+  "observations": [
+    "Chapter heading and first paragraph are visible with initial indentation.",
+    "Chinese and emoji render without replacement boxes in the long paragraph.",
+    "Scrolled viewport shows actual body text; nonzero byte/character and3px restoration separately pass XCTest."
+  ],
+  "scope": "Two native WK snapshots only; broader device typography/rotation and giant window seams not accepted.",
+  "deviceAccepted": false,
+  "images": [
+    {
+      "path": "build/ci/38559906005/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1444A601-E547-4C49-8568-C6FEC7A3C0A8.png",
+      "sha256": "1457ed77aa1312a6f751eae2fe09080e7a3d1b4cbb3f2f5298e260ee1762fec5"
+    },
+    {
+      "path": "build/ci/38559906005/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C1D7766B-2D50-4AAF-8809-36DF6212C1A7.png",
+      "sha256": "28d9e0ed101a1479ee0853666a62fcf867e7934227242c83e49664f1ad0b09e7"
+    }
+  ]
+}

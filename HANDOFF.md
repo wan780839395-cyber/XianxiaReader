@@ -4,60 +4,48 @@
 
 ## 实际断点
 
-### TXT产品接入开始（覆盖下方上一切片的完成点）
+**TXT导入/Readium阅读/完整位置已接入Build5，完整自动CI通过；下一步设备TXT与数十MB冷导入/cache重开验收，完整M2尚未完成。** 不提前大规模进入M3/M4。
 
-38558425326/1bb8f6c真实45/46：byte selector修复后长段非零char、重开3px与目录本身已执行成功，只有新增byte断言在轮询期间检查旧标题byte0（尚未采样新位置）误报0!=17；其他45项和各68 Core通过，Release未执行。将完全相同byte断言移到取得char>100的实际saved sample之后，并额外assert该样本char>100；不修改产品源码/范围/3px门槛或增大等待。失败原文保留ValidationLogs/m2-txt-product-polling-assertion-failure.json；此修正待新完整CI。
+CI38559906005 / 已测运行源码37eb86a46dc9002af381a44204f9bc36d07e11a4 / codex/m2-txt-index / bootstrap=false，所有job success。Linux/macOS各68 Core（原60+新8），iOS46/46（原41+新5）、0 failed/skipped，test/附件/summary退出码0，设备Release CODE_SIGNING_ALLOWED=NO与Build5 IPA通过。完整full/run/Core/Apple日志、原始xcresult及ReaderSnapshots保存在build/ci/38559906005；455个运行文件Git blob SHA与当前源码一致，根/下载/workspace锁逐字节一致。源码Swift/C warning/error=0；AppIntents metadata及WebKit诊断另列并保留。Windows379 grammar新增0/pristine54限制保留、14 Python tooling通过，语法不是编译。五次真实失败分别记录，未跳过失败打包。
 
-最新实际断点38555669042/5b8cc6a：各68 Core通过、iOS44/46（新TXT长段非零字符采样和截图已过，重开时invalidPosition；既有EPUB首开超时也重现），test65，Release未执行。根因已据源码+实际断点核实：连续桥固定生成html/body/p路径selector，未保留TXT的txt-b<offset> ID；codec把无byte ID的路径回退资源byte0，却保留正文char>100，重开真实段落校验落到短标题而拒绝。修复仅对显式data-xianxia-txt=1文档保留唯一CSS.escape字节ID；普通EPUB仍旧路径，完整范围/字符校验保留，新回归额外要求paragraph byte相同。保持锁定3.11版本/远程pins，仅本地扩展单文件与renderer属性改动，更新UPSTREAM localModifiedFiles准确hash；不能把旧EPUB冷启动超时说成已修复。完整CI前检查点已写，原Build4不变。
+报告Documentation/M2_TXT_PRODUCT_VALIDATION_REPORT.json，成功证据ValidationLogs/m2-txt-product-build5-success.json，设计TXT_READING_DESIGN.md。真实iOS18.5模拟器验证了UTF8/带BOM UTF16LE/GB18030导入及重试、有界资源/转义、完整位置/错误字符与正文身份拒绝、长段滚动600点后非零charOffset与3px重开、搜索定位/会话取消。TXT连续快照已导出，自动几何/原生页面复查与实际设备分别记录；普通设备/TrollStore TXT仍未验收。
 
-38553767324/ed5ae3f真实failure：各68 Core/应用+test bundle编译通过，iOS45/46/0 skipped。新三编码导入/有界资源/位置拒绝/搜索通过，只有TXT长段“滚动600点后非零char anchor”采样超时；Release/IPA未执行，根因此刻未确认。完整summary/xcresult/full/log保留build/ci/38553767324与ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json。依据既有EPUB长段测试先完成明确段落Locator跳转并确认DOM top，再合成600点滚动，仍要求char>100/重开3px，增加原生PNG/DOM/outer offset/完整位置诊断；不改引擎或增大等待、降低断言。此改动待完整CI，不把它写成已修复产品问题。
+## 新包与旧包
 
-**最新真实验证：CI38558425326 / 1bb8f6cb660821160724643fb3646c52ba417463 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 显式TXT唯一byte selector修复/UPSTREAM准确hash与paragraph byte新增断言已正常push并dispatch，仍原char>100/3px门槛；main/原index不变。恢复先查此run/head/完整artifact，不重复dispatch；455候选hash记录到M2_TXT_PRODUCT_VALIDATION_REPORT.json。四次真实失败原件保留，旧EPUB冷打开超时未宣称解决，当前修复待完整验证。
+- 新IPA：build/XianxiaReader-TXT-Build5.ipa，7699595 bytes，SHA256 e48e6ceb5151ca22d23a5cbb4491f71f0e90d0c87e8cef570ea2bb539ab6e621。
+- 用户测试ZIP：build/XianxiaReader-TXT-Build5-TestKit.zip，7588693 bytes，SHA256 7d547c7582230e35860e0b591bb51adcf51f988a20470ff421d8805c6d1ac668；含IPA/三个原创UTF8、UTF16、GB18030 TXT样书/UTF8 TESTING.txt，CRC及内部IPA/包内fixture原始bytes一致，Build5/arm64/iPhoneOS/最低16.0/0755/系统SQLite/CoreFoundation/第三方声明核验通过。
+- build/XianxiaReader.ipa仍是用户确认可用Build4，SHA256 7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1；Continuous-Build4-TestKit.zip SHA f37cda047f5bcf7357d0865635cd7d4e0129a88401f9127ac92ad443a5caf9f7。未覆盖。新包仅另存，TrollStore正常更新而不卸载/删库，实际安装由用户执行。
 
-已核实新Linux Core success及完整artifact build/ci/38552463402/core/core-tests.log：真实Swift/C编译、68项（原60+新8）全部通过，无源码warning/error匹配；Apple/iOS真实页面/Release尚未完成。新样书由项目原创文本生成UTF8/带BOM UTF16LE/GB18030三个小文件，纳入资源与候选hash；没有用户小说。
+## 已实现的产品范围
 
-38552463402真实结果已结束failure：Linux/macOS各68 Core通过，应用源码编译通过；iOS测试TXTReadingTests.swift:83的Locator.Text参数顺序错误（after须在before前）导致test bundle编译失败。summary total0/result unknown，不是46项通过；test exit65，Release/IPA未执行。完整full/run/日志/xcresult已下载。按锁定3.11的public init(after:before:highlight:)调整测试调用顺序，不改断言或产品源码；此修复待新完整CI。不要同源重试编译错误或把测试0条当成功。
+1. TXTBookImportService actor：NSFileCoordinator原件副本、严格编码正规化/cache、文件提交、Book+Chapter事务；取消与错误只清理本次未提交UUID，数据库提交后不回滚已完成书籍。重启恢复同时处理Staging/Books/Cache/TXT，保留knownBookIDs。原件永久保留，cache可重建。
+2. Book.txtEncoding可选字段向后兼容旧EPUB payload；SQL schema未改变/不删库。书库支持EPUB/TXT混合导入、明确编码选择、失败文件重试、取消与内置原创TXT样书；自动只信BOM/严格UTF8，GB18030明确选择。
+3. TXTReadingPlanner为大章构建最多64KiB完整UTF8窗口元数据；Adapter公开Publication/Container/DataResource仅按需转一个窗口为XHTML、转义正文/脚本、段落有稳定byte ID；复用Readium3.11排版/CSS/有限连续窗口，不自建EPUB引擎/整本DOM/HTTP预览。
+4. TXT独立readium.txt version1 envelope绑定原/normalized SHA、parser/normalizer/codec/资源版本、稳定章节ID、资源范围与段落byte/UTF16字符、完整原生Locator及视口偏移；不是仅百分比。打开/跳转先后台验证真实段落/代理对边界，错内容/越界/不兼容显式拒绝，SQLite仍过滤迟到异步保存。
+5. ReadingInterfaces.currentChapters提供当前索引目录；卷跳到首叶子、书签/搜索/分页/连续复用现有控制层。TXT搜索保留issue876扩展、每批40/UI1000/上下文64与会话取消；await后检查request ID/Navigator身份、close拒绝旧回调。旧EPUB生命周期/迟到写入/竞态及41项回归保留。
 
-真实首轮已结束failure：Linux新Core成功编译，68项中testTXTImportPersistsOriginalEncodingTOCAndCacheAcrossRestart的标题数组失败。夹具正文独立行“尾声”正属于已有标题识别器的合法章节标题，实际4条与测试错误预期3条不符；iOS未开始、没有IPA。完整Core/full/run已下载build/ci/38552124765。修正夹具为普通叙述“山门的灯火仍在”，同时将真实页面测试“第二章原创终点”（也符合允许无空格的章标题）改为“原创故事终点”；保留识别规则和原3条/章标题/窗口恢复断言，不降低测试。此修复待新完整CI。
+Core仍Foundation/SQLite，无Readium/UIKit/SwiftUI；Readium API仅Adapter及集成测试。project.yml唯一工程源，新增文件按SwiftPM目录目标与XcodeGen App/Tests/Fixtures资源纳入。Readium版本/远程6 pins未改，resolve/test/build严格锁文件；本地EPUBSpreadView连续桥仅对显式TXT标记保留唯一转义字节ID，普通EPUB仍旧路径，UPSTREAM hash准确更新并经全套回归。
 
-2026-10-14用户再次要求继续。已按顺序核对文档、main6d76174/原空index、M2分支2eaa974、CI38547339868/65c1b8d真实success及本机无挂起任务。下一切片接入受管理TXT导入、明确编码选择、Readium公开Publication/Container有界资源及完整TXT位置；原书/现有书库/Build4保留。先阅读锁定3.11本地公开API，再写最小实现与真实导入/窗口/位置/生命周期回归；此刻尚未写入新源码，不把上轮Core60/旧iOS41当产品TXT验收。
+## 尚未验收及接续
 
-构建前检查点：已写入TXTBookImportService（原件/索引cache/Book+TOC事务与失败恢复），可选Book.txtEncoding向后兼容旧EPUB JSON；BookFileStore保留NSFileCoordinator并支持TXT。TXTReadingPlanner将大章拆为最多64KiB轻量范围，Adapter公开Publication/Container/DataResource按窗口转XHTML、转义正文、字节段落ID，复用Readium排版与安全搜索。TXT独立完整位置envelope绑定原/normalized摘要、parser/normalizer/codec与稳定章ID、段落byte/UTF16字符和完整原生Locator，恢复在后台验证段落边界/代理对，不只百分比。UI支持TXT编码选择/失败重试/取消及原创TXT样书；Build号5，原Build4包不覆盖。新增8 Core/5 iOS回归，预期各68 Core/46 iOS；旧生命周期/迟到保存回归均保留，原TXT拒绝混合导入测试改为TXT+EPUB成功并保留不支持文件失败断言。Windows379 grammar新增0/14 tooling通过（不是编译）；此刻所有新源码待真实完整CI，Readium/vendor/远程锁未修改。
+1. 用户设备Build5：内置TXT与三编码导入/编码选择重试、目录卷章、连续/逆向/按屏、书签/搜索、关闭重开与模式/旋转、旧EPUB/旧书库；记录iPhone13/iOS16.6.1/TrollStore实际结果，普通签名设备单列。
+2. 数十MB长篇冷导入/cache重开耗时、峰值内存及超长单行/数千章页面。cache复用仍流式计算原/normalized摘要，阅读范围构建也流式读正文，不宣称仅元数据秒开；旧cache generation尚无清理策略。巨大段落跨窗口的字形组合/段落节奏/资源边距待真实页面与M4/M5测量，不把字节无损覆盖当完整排版验收。
+3. M2设备/长书门槛落实后再M3完整书库布局/列表/编辑/删除；字体/字号/行距/主题/亮度等按M4，性能M5。XBook/知识库仍仅草案，无提前抓取/账号/社交。
 
-**M2 Core编码正规化/内容版本cache第二切片完整自动CI通过；下一步TXT导入与阅读接入。** 当前安装包仍只有EPUB入口，不能把Core完成写成TXT产品已可用或完整M2验收。
+## 失败原件与历史
 
-CI38547339868 / 运行源码65c1b8d6dbebf311c1e6b4b9534cda59373940b6 / codex/m2-txt-index / bootstrap=false，repository-checks、Linux Core、macOS/iOS/Release job全部success。Linux/macOS各60 Core（33原+27新增：16正规化/11cache）、原41/41 iOS，0 failed/skipped，test/附件/summary退出码0；设备Release CODE_SIGNING_ALLOWED=NO成功。完整日志、原始xcresult、锁、IPA归档在build/ci/38547339868，445个运行文件Git blob SHA与当前源码一致，根/下载/workspace锁逐字节一致。源码Swift/C warning/error=0；AppIntents/WebKit诊断原样保留，不算设备验收。
+38552124765/c454a60：Core编译后1个新夹具失败，“尾声”合法标题被测试误当正文，68中67通过；iOS/Release未执行。更正普通叙述，保留标题规则和原断言。38552463402/97307de：各68 Core/应用编译通过，TXTReadingTests Locator.Text参数顺序错误导致test bundle未编译、summary0/result unknown、test65，Release无；按锁定public init(after:before:highlight:)修正。两次失败完整log/xcresult及ValidationLogs/m2-txt-product-fixture-heading-failure.json、m2-txt-product-test-api-order-failure.json保留，不写成工具错误或通过。
 
-Windows372 grammar新增诊断0（Readium pristine54限制原样保留）及14项Python tooling通过；语法检查不是编译。报告Documentation/M2_TXT_NORMALIZATION_VALIDATION_REPORT.json，成功证据ValidationLogs/m2-txt-normalization-cache-success.json。macOS执行了编码向量；iOS41项仍是既有EPUB集成回归，TXT在iOS的真实导入/codec运行/页面/设备还须后续验证。
+上轮编码/cacheCI38547339868/65c1b8d各60 Core/41 iOS/Release成功，Apple iconv四字节失败修复为公开SDK CoreFoundation；更早M2第一切片38538141364首轮EPUB冷打开超时/同源一次重试成功，根因仍未确认。原记录和历史HANDOFF_M2_PRODUCT_HISTORY_2026-10-14.md、HANDOFF_M2_CORE_HISTORY_2026-10-14.md、HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md保留；用户已确认Build4连续/重开正常，不以旧CI边界PNG不足否定实测。
 
-首轮CI38545821529/973bae6真实failure：Linux60成功，macOS Core已编译但Apple系统iconv两项四字节向量（emoji byte17/补充汉字byte0）失败，iOS/Release未执行，没有IPA。完整失败日志/hash与ValidationLogs/m2-txt-normalization-apple-iconv-failure.json保留。修复使用公开SDK CoreFoundation，Linux保留glibc iconv，原断言未降低，并补充补充范围两端、非法第三/四字节/单字节和非零错误偏移。该修复后的新源码通过完整CI；不把首轮失败改写成未执行或工具失败。
+38553767324/ed5ae3f：各68 Core/应用及test bundle编译通过，iOS45/46/0 skipped，只有TXT长段非零字符采样超时，Release未执行。参照既有EPUB长段回归，先完成明确段落跳转并确认DOM top，再合成600点滚动；仍要求char>100/3px，增加PNG/DOM/outer offset/位置诊断。之后当前完整CI通过；未改引擎或增大等待/降低断言，也不宣称旧超时已证实为产品bug或其根因完全确定。原文ValidationLogs/m2-txt-product-nonzero-anchor-timeout.json保留。
 
-此前M2第一切片CI38538141364/0643093：各33 Core通过，attempt1旧EPUB首次打开位置超时40/41，Release未执行；仅同源重试失败job一次，attempt2全套成功41/41及Release。超时原因未确认，原记录与两轮artifact保留；没有降低测试或修改用户已确认可用的阅读源码。历史完整检查点见HANDOFF_M2_CORE_HISTORY_2026-10-14.md及HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md。
+38555669042/5b8cc6a：各68 Core通过、iOS44/46，TXT非零char/正文快照通过，但重开invalidPosition；既有EPUB冷打开也超时。核实连续桥路径selector丢失TXT字节ID，anchor回退资源byte0却有正文char，严格恢复校验误落短标题。显式TXT文档使用唯一CSS.escape字节ID、本地扩展准确hash更新；新增实际段落byte断言，原char>100/3px/错误位置拒绝保持，完整本轮通过。失败原文ValidationLogs/m2-txt-product-byte-selector-failure.json保留，EPUB冷打开根因未宣称修复。
 
-## 已实现与限制
+38558425326/1bb8f6c：各68 Core通过、iOS45/46，TXT修复后的非零char/重开3px/目录全部完成，但新增byte断言在轮询阶段提前对旧标题byte0执行而误报。将完全相同byte断言移到完成非零char采样后的实际saved值，额外assert该样本char>100；不改产品或降低门槛。原文ValidationLogs/m2-txt-product-polling-assertion-failure.json保留，原失败未覆盖成成功。
 
-- Core独立八类标题识别、流式UTF8分章/卷组目录、Int64/end-exclusive范围、最多256KiB章节窗口；19项第一切片回归持续通过。
-- TXTNormalizer actor：UTF8/UTF16 LE/BE/GB18030，默认64KiB/上限256KiB读取；严格跨块/代理对/四字节，BOM冲突/损坏/截断/NUL明确失败，不替换正文。原书不改，UTF8 sidecar成功后才发布，失败/取消清理本次临时文件并保留原始失败。
-- Apple内部CTextCodec仅用公开CoreFoundation GB_18030_2000/lossByte=0与SDK框架；Linux用glibc iconv禁用IGNORE/TRANSLIT。字节边界扫描不自建字符表。平台codec ID使旧Apple cache失效，无远程依赖或Homebrew路径。
-- TXTContentDigest：增量SHA256、独立空串/abc/跨块/百万a/中文emoji向量通过，用于内容cache身份。
-- TXTIndexCache：绑定bookID/原SHA/normalizedSHA/目录SHA/编码/normalizer/parser/codec版本，相对路径逐节点验证，manifest上限8MiB；新generation完整后原子发布。损坏/缺失/版本失配可重建，链接/越界拒绝；失败不删除旧cache/原书/数据库。复用避免转码/分章，但目前仍流式核验全文摘要，不能承诺仅元数据快开；旧generation清理/长篇性能待后续。
-- StreamingTXTIndexer实现完整正规化+分章facade。Core保持Foundation/SQLite业务边界，无Readium/UIKit/SwiftUI。数据库schema未改变。
+## 保留与恢复
 
-## 尚未实现与接续
+本地main/HEAD6d761749911233122bcd031fcf718d22a19f9e77、原空index与所有原未提交改动保留。M2快照通过独立GIT_INDEX_FILE正常push，已测运行源码以37eb86a46dc9002af381a44204f9bc36d07e11a4/455个hash为准，之后仅文档快照不代表另一轮编译。旧370文件备份保留，当前维护文件inventory已更新。无自己启动的挂起进程或运行中的验证；Windows无Xcode，Docker此前管道缺失未启动/重置；公开标准macOS runner，没有账单修改/localhost服务。
 
-1. 受管理TXT导入：复用Apple NSFileCoordinator副本、暂存/文件提交/DB事务/中断恢复；明确编码选择与可见取消/失败。已有EPUB流程与书库保留，不能通过删库修复。
-2. ReadiumAdapter按已索引字节范围提供有界TXT资源，经ReadingInterfaces操作，核对本地锁定Readium3.11公开Publication/Container/Resource API。大章也需窗口切分，不能DataResource缓存整本或全章巨量String；仍复用Readium排版。
-3. TXT完整版本化位置：内容身份/稳定叶子ID/局部字节与文本锚点/视口偏移，拒绝错正文/无效范围与迟到异步保存；目录/重开/模式切换及竞态集成回归。
-4. iOS实际UTF8/UTF16/GB18030导入、数十MB冷导入/cache重开与设备中文页面；自动检查/编译/模拟器/普通设备/TrollStore分别记录。M3完整书库布局/编辑、M4字号/字体/行距/主题、M5性能顺序不变。
-
-每个可恢复步骤/构建测试前更新本文件；阶段结束同步状态/设计/报告/FILE_INVENTORY。继续先读AGENTS→PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，再核实际Git/日志/进程，不依赖聊天压缩是否成功。
-
-## 用户反馈与保留
-
-用户确认连续阅读与重开位置正常，按Build4上下文记录核心功能可用；已知背景iPhone13/iOS16.6.1/TrollStore，未独立读取Build号。未单独报告的原书图像/旋转/其他设备/性能仍待确认，不以历史CI PNG缺第二章否定用户实测。卡点先查官方/成熟方案，可参考微信读书交互，其余按原路线；资料见TXT_INDEX_DESIGN和MATURE_READER_REFERENCES。
-
-本地main/HEAD6d761749911233122bcd031fcf718d22a19f9e77及原空index不动，所有原未提交改动保留；候选通过GIT_INDEX_FILE独立快照正常push，不reset/stash/checkout/删库。M2已测运行源码为上述65c1b8d6dbebf311c1e6b4b9534cda59373940b6，之后仅文档快照不代表另一轮源码编译。旧370文件备份.cache/recovery/20261014-092934核验记录与历史各run原件保留。
-
-build/XianxiaReader.ipa仍为用户已确认可用Build4，7502213 bytes/SHA256 7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1；Continuous-Build4-TestKit.zip SHA f37cda047f5bcf7357d0865635cd7d4e0129a88401f9127ac92ad443a5caf9f7。新同Build号CI IPA只归档各run目录，没有覆盖用户包；TXT UI未接入，不提供相同界面新测试包。新IPA hash/平台/SDK系统库/0755/CRC见成功报告。
-
-当前CI已结束，无自己启动的挂起工具。Windows无Xcode；Docker此前只读查询失败missing dockerDesktopLinuxEngine pipe，未启动/重置Docker。Apple验证用公开仓库标准macOS runner，无账单/付款修改，无localhost服务。根Package.resolved仍6个真实pins，resolve/test/build严格锁定；原始source与资源不升级。GitHub artifacts14天，build/.cache不随clone，过期按锁重跑。
+下一轮先AGENTS→PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，再核Git/文件/完整日志/运行任务，不假定最后步骤成功。长任务/可恢复子步骤/构建测试前写检查点；阶段同步状态/设计/报告/FILE_INVENTORY。build/.cache不随clone，GitHub artifacts14天，过期按锁重跑。自用/实际可用优先，卡点查官方及成熟方案，阅读交互参考微信读书，其余按原路线。
