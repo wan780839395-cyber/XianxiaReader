@@ -78,7 +78,7 @@ public actor TXTNormalizer {
                         normalizedBytes += Int64(converted.count)
                     }
                     try process(header, skip: choice.bomBytes)
-                    while let bytes = try input.read(upToCount: chunkBytes), !bytes.isEmpty { try process(bytes) }
+                    while try TXTFileAccess.consumeChunk(from: input, maximumBytes: chunkBytes, operation: { try process($0) }) {}
                     do { try decoder.finish() }
                     catch let failure as TXTNormalizationError where requested == .automatic && choice.bomBytes == 0 {
                         if case .invalidEncoding = failure { throw TXTNormalizationError.encodingChoiceRequired }

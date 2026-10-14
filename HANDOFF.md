@@ -2,6 +2,14 @@
 
 更新时间：2026-10-14（Asia/Shanghai）
 
+## 最新恢复点：Build8候选，内存修复尚未编译
+
+CI38583014146/908ee29已自然完成failure，各68Core、4样本Linux/macOS Release探针编译/正确性均通过；iOS55/56，新巨章首中末及第二窗口600点/3px均通过，失败为已有DocumentImportTests.testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip的DocumentManager deallocated host proxy异常，test65/附件0/summary0，无设备Release/新IPA。完整run/full/Core/Apple日志、xcresult/PNG/测量均已下载build/ci/38583014146，不取消/不同源盲重试。
+
+测量另暴露Apple真实内存问题：51.23MB/3000章导入后峰值258.67MiB，最终319.89MiB；50MiB无换行导入后257.42MiB。Linux32.49/23.38MiB不代表Apple。按Apple WWDC24及swift-mmio文件摘要成熟做法，已集成Foundation per-chunk同步autoreleasepool用于hash/normalization/scanner，window读取也包同步pool；Linux原操作，错误/取消/内容身份/缓存版本不改，NSFileCoordinator保留。探针参考读单独清临时对象，不混为产品修复。project.yml Build改8，源码尚待编译。
+
+DocumentImportTests仅保留picker到case末不足保护已销毁host tree，异常来自前一case迟到XPC回调。根据Apple公开合同/WebKit同类公开issue，测试固定六个隐藏full-Library host及测试tmp数据库保留到worker结束，避免活repository下unlink；生产picker不改，不吞异常/跳测试/放宽15秒断言。取舍/链接写PERFORMANCE_TEST_PLAN.md。下一步：保存首轮失败JSON→最终Windows检查/清单→新独立index快照/严格锁完整CI→比较同hash样本Apple峰值→真实Build8包，8旧包与样本ZIP保留。
+
 ## 本轮工作检查点：M2 长篇基线（进行中，尚未编译）
 
 用户“继续”后已核实main/HEAD与空index不变、457运行hash匹配0afe45e、六个旧包hash保留；最新CI38572197917 completed/success，没有自己启动的挂起任务。首次导入已获用户确认，不再改动该路径。
@@ -9,6 +17,12 @@
 已集成独立Release Core探针，流式生成原创UTF8约5/50MiB、1000/3000章、50MiB无换行与UTF16样本；各样本分进程记录实际导入/SQLite目录/cache重开三次/reading plan/完整窗口遍历耗时及RSS高水位。Python独立hash与所有章节byte范围验证，正文不上传。已有iOS长段测试扩展到第二窗口+600点非零锚点/3px重开，新增多MB单章首中末Readium资源与完整位置回归（预期各68Core/56iOS）。没有改App/Core业务/Readium/Vendor或包版本，Build7设备包仍适用；新增的SwiftPM executable不被iOS App依赖。
 
 初步Windows382 grammar新增0/pristine54限制、16Python tests通过；修改Readium test的get参数后将重新跑最终Windows检查。语法不是编译，当前首轮探针与扩展测试尚未编译。测量合同与Apple/Linux RSS单位依据已写PERFORMANCE_TEST_PLAN.md；不先改cache算法，不承诺秒开。测试tmp SQLite清理诊断原样保留。下一断点：Windows最终检查/清单→独立index快照→严格锁CI→完整日志/原生截图/测量审阅。
+
+最终Windows检查与独立index快照完成：908ee29096c804bf9aeed4f3ae21539107f72499 / CI38583014146，bootstrap=false，main/index不变。Linux68Core与4个Release探针已通过，完整Core日志/各sample JSON已下载到build/ci/38583014146/core；macOS/iOS完整链仍待完成，不假定成功。新报告M2_TXT_LONGBOOK_VALIDATION_REPORT.json记录460运行/测试工具Git blob hashes、8个旧包及全部待完成门槛；App/Core业务/Adapter/Vendor/lock/project.yml逐树比较不变，仍Build7，无新设备包交付。
+
+Linux实测：51229893bytes/3000章冷导入5416.8ms，cache校验+plan三次2685.9–2687.4ms，生命周期峰值RSS32.49MiB；52427840bytes无换行单章800资源、窗口最大65536bytes、全字节遍历通过，RSS23.38MiB。这些不是iPhone验收。macOS/iOS CI仍运行。准备与已测sample hash一致的原创长TXT样本ZIP（不含新IPA），生成/封装前本checkpoint已保存；大正文只进build，源脚本与小验证JSON才入Git，旧8包均保留。
+
+样本ZIP已完成并逐流式hash/CRC核验：build/XianxiaReader-M2-LongTXT-Samples.zip，539806bytes，SHA6473b0193a99680e7fb46df1a7ec67d72eaf2ba22153b19e3b41ba890a727d92；四样本与LinuxCI字节/所有expected目录范围一致，说明沿用Build7，无新安装包。证据ValidationLogs/m2-txt-longbook-samples.json。460候选hash再次全部匹配，8旧包/main/空index保留。辅助inline Python hash复核曾因PowerShell转义出现SyntaxError（未执行/未改变源码），已改为.cache/recovery/check_longbook_source.py文件并真实通过；不是Swift产品失败。Apple完整job仍运行，未取消/未重复dispatch。
 
 ## 实际断点
 

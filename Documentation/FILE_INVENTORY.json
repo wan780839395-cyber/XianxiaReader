@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T14:42:57.670739+00:00",
+  "recordedAtUTC": "2026-10-14T15:09:32.241956+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 581,
+  "fileCount": 585,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 17797,
-      "sha256": "c4558a26d762abdfbbbc5d70cdfe8f4c9ba820150147c5e03eef3ae8796b434c"
+      "bytes": 18407,
+      "sha256": "ff554c593bc39367570832e357373eaef83558a9efac2615a789a2d0707cc976"
     },
     {
       "path": "App/AppRootView.swift",
@@ -264,9 +264,19 @@
       "sha256": "79080c6ea39d7ab9dba06b185fe548f618b58eb6372532ec51455ae3d9e0b142"
     },
     {
+      "path": "Documentation/M2_TXT_LONGBOOK_BASELINE_REPORT.json",
+      "bytes": 116693,
+      "sha256": "47d50647be9994ac0ef0f1d586cda2b0b2a09a51eacaacea85bf1b3c29cbf886"
+    },
+    {
       "path": "Documentation/M2_TXT_LONGBOOK_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "9960a804a154fa60ec72cb1c779b47d8fc9d83fc2be26f31339947ff3d10afaf"
+      "sha256": "2d4c36b2e203ce5a4bd1303c33ff307759790a6310612c680b221af13aa8f5a9"
+    },
+    {
+      "path": "Documentation/M2_TXT_LONGBOOK_VALIDATION_REPORT.json",
+      "bytes": 89457,
+      "sha256": "fc92529ad20d9578c5ad6c00828ddbd1b55ff465ce5182f0f3b8fe836ab97e5e"
     },
     {
       "path": "Documentation/M2_TXT_NORMALIZATION_STATIC_REPORT.json",
@@ -300,8 +310,8 @@
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
-      "bytes": 4145,
-      "sha256": "4cc7104d95f56501a7b0acefb9c5799eb17ac2decc051b4b672f90190f97f89d"
+      "bytes": 6355,
+      "sha256": "5d1ee8168c79a0e60b3927f0e6bed6279e83be036758fd0b7416025efb3cddf5"
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
@@ -594,6 +604,16 @@
       "sha256": "85b82d193802cf895e9f034b2732b259358107fa8a002e6de12bf03916d6a655"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-longbook-baseline-failure.json",
+      "bytes": 19247,
+      "sha256": "099b09f8a6d90215f0f4fb5125b9d8340b092d650502360051b885baf4ba2ac3"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-longbook-samples.json",
+      "bytes": 1413,
+      "sha256": "14845a1b31dbd054e18ccb94a3bcff160e1a96c5e15c4fc3a509c659114a4fa5"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-txt-normalization-apple-iconv-failure.json",
       "bytes": 1545,
       "sha256": "bf0940ba4411c6e9f668aa88624eea9a67b3a6a1867414be7e43aecfac98cf43"
@@ -665,8 +685,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9163,
-      "sha256": "76cb23124c9a8f1872cc6bd22a00e3c4f3dba9f2abce913f50e8bd0b72c65814"
+      "bytes": 12532,
+      "sha256": "2ea38ed4d43e450a816b9f811067f28365f1cf5a365cfb39a1e181c22be67127"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -715,8 +735,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
-      "bytes": 8510,
-      "sha256": "2103c43cd84d51b53ca85a64e5e77655f27da1b34e571f1280df7034ab4730d4"
+      "bytes": 8968,
+      "sha256": "5655e233d609310e806f7cc3899fbf1b025afe0d725a5a6892abd4012b23dca2"
     },
     {
       "path": "Packages/XianxiaCore/Package.swift",
@@ -805,18 +825,18 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
-      "bytes": 6655,
-      "sha256": "4481e374effc5e5d3d5dc085075459c2d194c9e8f053508f3b032fb46bd7c18a"
+      "bytes": 6639,
+      "sha256": "88944b1484c93c320ed826492805330ca242fc027d8a2315bfc361332c204c4e"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
-      "bytes": 2936,
-      "sha256": "cafe5edae5cd20392cff895df31f7261c619f78141927a748b8ac158560ff95e"
+      "bytes": 2999,
+      "sha256": "65ebd28a0206490482d85f93c34e64a3b6d19e2804495c6a314b1ea5088b6977"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
-      "bytes": 4170,
-      "sha256": "d67c0657c0ae04394eae0b49556ca0d8eec7a8ec53cec691522791f8020699c7"
+      "bytes": 4154,
+      "sha256": "9b54f43b1ca68608ffb90bad54da11612f090662f6626c4a88da26613235ca6d"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
@@ -830,8 +850,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
-      "bytes": 11359,
-      "sha256": "749e617c4283dee493dea0d4dbc8ef37bce7e040fc2919f6f47e88a64de933b1"
+      "bytes": 11375,
+      "sha256": "9abd18deaca7cf3d0e188ca1b23657328d35ab46d917b14b21137665a067ae21"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
@@ -840,8 +860,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
-      "bytes": 2640,
-      "sha256": "b5bfea0c9f72a565f2fe8402cd96829233f64448e12457cc174eb804eaac323e"
+      "bytes": 3474,
+      "sha256": "21909001c065386a0a6535b36dbf3f24a781fcfb1924ca51e20c419b5138a373"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
@@ -980,8 +1000,8 @@
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
-      "bytes": 23142,
-      "sha256": "2476c8d7745b8e8095bb9a99fb70b546ec497e7f47718854f2eaaa9094fd45ad"
+      "bytes": 23626,
+      "sha256": "193053badd7cc39ca605a12a169e3af1c4aef4c2ceecff3a9bb616d30b49fa46"
     },
     {
       "path": "Tests/iOS/EPUBIntegrationTests.swift",
@@ -2806,7 +2826,7 @@
     {
       "path": "project.yml",
       "bytes": 1994,
-      "sha256": "3e735b4cc147404ec15ba1f63f7146a187fc1119733bf3ec26b54569ca0198de"
+      "sha256": "ae1d496423c20a5751834b153f6b186b1f11317cb321298222dee05f622749d0"
     },
     {
       "path": "scripts/check_repository.py",

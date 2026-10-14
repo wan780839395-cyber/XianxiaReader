@@ -47,6 +47,26 @@ struct TXTUTF8Validator {
 }
 
 enum TXTFileAccess {
+    /// ARC alone does not drain Foundation's autoreleased NSData/NSString in a long loop.
+    /// Never span an await with a pool; keep only Swift decoder/index state across chunks.
+    static func withTemporaryObjects<T>(_ operation: () throws -> T) rethrows -> T {
+        #if canImport(ObjectiveC)
+        return try autoreleasepool(invoking: operation)
+        #else
+        return try operation()
+        #endif
+    }
+
+    static func consumeChunk(from handle: FileHandle, maximumBytes: Int,
+                             operation: (Data) throws -> Void) throws -> Bool {
+        try withTemporaryObjects {
+            guard let data = try handle.read(upToCount: maximumBytes), !data.isEmpty else { return false }
+            try Task.checkCancellation()
+            try operation(data)
+            return true
+        }
+    }
+
     /// Preserve a primary read/cancellation error even if closing the handle also fails.
     static func read<T>(url: URL, operation: (FileHandle) throws -> T) throws -> T {
         guard url.isFileURL,

@@ -59,6 +59,13 @@ import Glibc
         guard status == 0 else { throw Failure.resourceUsage(errno) }
         return Int64(usage.ru_maxrss) * multiplier
     }
+    static func withTemporaryObjects<T>(_ operation: () throws -> T) rethrows -> T {
+        #if canImport(ObjectiveC)
+        return try autoreleasepool(invoking: operation)
+        #else
+        return try operation()
+        #endif
+    }
     static func check(_ index: TXTPreparedIndex, expected: Expected) throws {
         try require(index.sourceSHA256 == expected.sourceSHA256, "Original SHA-256 changed")
         try require(index.normalizedSHA256 == expected.normalizedSHA256, "Normalized SHA-256 mismatch")
@@ -124,11 +131,15 @@ import Glibc
                 try require(resource.startByte == next && length > 0 && length <= Int64(TXTReadingPlan.resourceBytes), "Gap, overlap or unbounded window")
                 let window = try await reader.read(file: normalized, chapter: resource.chapter,
                     localByteOffset: resource.startByte-chapterStart, maximumBytes: max(4,Int(length)))
-                let bytes = Data(window.text.utf8)
-                try handle.seek(toOffset: UInt64(next))
-                let reference = try handle.read(upToCount: bytes.count)
-                try require(reference == bytes && window.endByte == resource.endByte, "Window changed source bytes")
-                maximum = max(maximum, bytes.count); next = window.endByte
+                // The probe's independent reference read must also avoid accumulating NSData.
+                let count = try withTemporaryObjects {
+                    let bytes = Data(window.text.utf8)
+                    try handle.seek(toOffset: UInt64(next))
+                    let reference = try handle.read(upToCount: bytes.count)
+                    try require(reference == bytes && window.endByte == resource.endByte, "Window changed source bytes")
+                    return bytes.count
+                }
+                maximum = max(maximum, count); next = window.endByte
             }
             try handle.close()
         } catch {

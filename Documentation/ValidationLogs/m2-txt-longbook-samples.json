@@ -1,0 +1,44 @@
+{
+  "recordedAtUTC": "2026-10-14T14:49:28.099481+00:00",
+  "run": 38583014146,
+  "sourceRevision": "908ee29096c804bf9aeed4f3ae21539107f72499",
+  "package": {
+    "path": "build/XianxiaReader-M2-LongTXT-Samples.zip",
+    "bytes": 539806,
+    "sha256": "6473b0193a99680e7fb46df1a7ec67d72eaf2ba22153b19e3b41ba890a727d92"
+  },
+  "samples": [
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "bytes": 4895893,
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+      "chapters": 1000
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "bytes": 51229893,
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+      "chapters": 3000
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "bytes": 52427840,
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+      "chapters": 1
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "bytes": 5231788,
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+      "chapters": 1000
+    }
+  ],
+  "originalOnly": true,
+  "zipCRC": true,
+  "streamedHashesMatchedLinuxProbe": true,
+  "includesIPA": false,
+  "requiresNewAppInstall": false,
+  "preservedOlderPackages": 8,
+  "deviceLongTXTPerformanceAccepted": false,
+  "M2Accepted": false
+}

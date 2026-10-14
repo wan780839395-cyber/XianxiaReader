@@ -31,6 +31,7 @@ Packages/
       Import/          文件暂存、提交、回滚、恢复
       TXT/             M2标题识别/有界窗口/严格正规化/摘要cache/产品导入与读取范围
     Tests/
+    Benchmarks/TXTPerformanceProbe/  独立桌面Release测量工具，iOS App不链接
   XianxiaReading/
     Sources/ReadingInterfaces/
     Sources/ReadiumAdapter/
@@ -42,6 +43,8 @@ Documentation/         功能矩阵、验证与性能计划
 scripts/               结构验证、样书、CI 与 IPA 打包
 .github/workflows/     macOS 构建及诊断输出
 ```
+
+M2长篇验证使用Core package内独立`TXTPerformanceProbe` executable，依赖公开Core API，不把Darwin/Glibc测量调用放入Core业务target。`scripts/run_txt_performance.py`流式生成原创临时样本并逐样本分进程运行，实际Apple/Linux复制、缓存和数据库路径分别测量；进程退出后再清理临时数据库。iOS App仅依赖library product，测试工具不进安装包。完整测量JSON/log作为CI诊断上传，小摘要进入交接；契约见PERFORMANCE_TEST_PLAN.md。
 
 ## 平台与语言
 

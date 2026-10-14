@@ -25,10 +25,9 @@ public actor TXTUTF8ChapterScanner {
         try Task.checkCancellation()
         return try TXTFileAccess.read(url: file) { handle in
             var state = TXTScanState(bookID: bookID)
-            while let data = try handle.read(upToCount: chunkBytes), !data.isEmpty {
-                try Task.checkCancellation()
+            while try TXTFileAccess.consumeChunk(from: handle, maximumBytes: chunkBytes, operation: { data in
                 for byte in data { try state.accept(byte) }
-            }
+            }) {}
             try Task.checkCancellation()
             return try state.finish()
         }

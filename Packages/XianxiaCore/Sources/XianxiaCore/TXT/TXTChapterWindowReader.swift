@@ -20,7 +20,8 @@ public actor TXTChapterWindowReader {
         guard let start = chapter.startByte, let end = chapter.endByte, start >= 0, end > start,
               localByteOffset >= 0, localByteOffset <= end - start else { throw TXTProcessingError.invalidChapterRange }
         try Task.checkCancellation()
-        return try TXTFileAccess.read(url: file) { handle in
+        return try TXTFileAccess.withTemporaryObjects {
+          try TXTFileAccess.read(url: file) { handle in
             let size = try handle.seekToEnd()
             guard UInt64(end) <= size else { throw TXTProcessingError.sourceTruncated }
             let windowStart = start + localByteOffset // Safe because the offset is bounded by end - start.
@@ -51,6 +52,7 @@ public actor TXTChapterWindowReader {
             try Task.checkCancellation()
             return TXTChapterWindow(chapterID: chapter.id, text: text, startByte: windowStart, endByte: windowEnd,
                                     nextLocalByteOffset: windowEnd - start, isEndOfChapter: windowEnd == end)
+          }
         }
     }
 }

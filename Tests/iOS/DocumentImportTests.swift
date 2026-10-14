@@ -5,6 +5,13 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class DocumentImportTests: XCTestCase {
+    // Native document services can send XPC layout messages after UIKit's public
+    // dismissal completion. Retain the COMPLETE hidden host tree for this test
+    // worker, not only the picker controllers; never access private proxy APIs.
+    // Only six fixed full-Library fixtures are mounted in this suite.
+    @MainActor private static var nativeHosts: [(UIWindow, Presentation)] = []
+    @MainActor private static let sessionRoot = FileManager.default.temporaryDirectory
+        .appendingPathComponent("DocumentImportFixtureSession-\(UUID().uuidString)")
     @MainActor private final class Presentation {
         let model: LibraryViewModel
         var pickers: [UIDocumentPickerViewController] = []
@@ -35,16 +42,11 @@ final class DocumentImportTests: XCTestCase {
         window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model))
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
+        Self.nativeHosts.append((window,presentation))
         addTeardownBlock {
             await MainActor.run {
-                // Retain the actual controllers through host teardown. The
-                // remote document browser can still finish XPC layout messages
-                // after a synthetic delegate callback dismisses its sheet.
-                withExtendedLifetime(presentation.pickers) {
-                    window.isHidden = true
-                    window.rootViewController = nil
-                    previous?.makeKey()
-                }
+                window.isHidden = true
+                previous?.makeKey()
             }
         }
         return (window, presentation)
@@ -361,10 +363,13 @@ final class DocumentImportTests: XCTestCase {
     }
 
     @MainActor private func context() throws -> (URL, AppServices, LibraryViewModel) {
-        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let root = Self.sessionRoot.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at:root,withIntermediateDirectories:true)
         let repository = try SQLiteBookRepository(url: root.appendingPathComponent("library.sqlite"))
         let files = try BookFileStore(root: root.appendingPathComponent("Storage"))
-        addTeardownBlock { try FileManager.default.removeItem(at: root) }
+        // Mounted hosts intentionally keep repositories alive until the worker
+        // exits. Its temporary sandbox is reclaimed with that test process;
+        // unlinking library.sqlite here would violate SQLite's open-file lifetime.
         let services = AppServices(repository: repository, files: files)
         return (root, services, LibraryViewModel(services: services))
     }

@@ -1,6 +1,6 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
-当前设备性能尚未验收；本轮新增Release桌面Core探针，编译和首轮测量待CI。以下目标不是已达成指标。
+当前设备性能尚未验收；本轮新增Release桌面Core探针，首轮Linux/macOS编译和测量已完成，发现Apple长循环临时对象增长，修复候选尚待完整CI。以下目标不是已达成指标。
 
 ## M2 长篇探针（本轮进行中）
 
@@ -9,6 +9,14 @@
 记录冷导入、目录查询、cache全文校验、reading plan和窗口遍历的单调时钟耗时，另列每个阶段进程生命周期RSS高水位。它包含Swift/Foundation/元数据，阶段间高水位差不是阶段瞬时内存，不是iPhone的Allocations/VM Tracker，不能把桌面峰值当设备验收。Linux ru_maxrss为KiB；当前Apple XNU为bytes，采用[Apple XNU getrusage手册源码](https://github.com/apple/darwin-xnu/blob/main/bsd/man/man2/getrusage.2)与[Linux man-pages](https://www.man7.org/linux/man-pages/man2/getrusage.2.html)核对，避免旧Apple归档手册的单位差异。无共享runner硬耗时门槛；正确性失败/timeout保留日志并失败，不生成成功IPA。
 
 Linux/macOS都跑真实Release探针并上传完整JSON/log；iOS原长段回归扩展到超过64KiB巨段的第二个资源，继续要求600点滑动后非零字符锚点和重开误差<3px。新增多MB单章首/中/末Readium资源与位置回归。窗口UTF8 scalar边界不会丢字节，但组合字形/跨窗口段落节奏仍须M4真实页面验收。正文缓存重开仍全文校验和重新构造reading plan，目标“不重新读全文”尚未达成；先以实测决定后续最小优化。
+
+### 首轮发现与最小修复（待验证）
+
+38583014146/908ee29各68Core编译通过，4个Release探针均完成正确性核验，新增iOS巨章与第二窗口600点/3px回归均通过；但已有完整书架测试遭DocumentManager迟到host proxy异常，iOS55/56，test65/export0/summary0，Release未执行。macOS15.7.9数据：51.23MB/3000章导入后RSS高水位258.67MiB，最终319.89MiB；52.43MB无换行单章导入后257.42MiB。Linux同样本峰值32.49/23.38MiB，差异不能被Linux有界窗口结果覆盖。
+
+参照[Apple WWDC24 Analyze heap memory](https://developer.apple.com/videos/play/wwdc2024/10173/)对Swift循环autorelease增长的说明，以及[Apple swift-mmio FileManager+Hashing](https://github.com/apple/swift-mmio/blob/main/Tests/SVDTests/FileManager%2BHashing.swift)的文件hash实践，采用Foundation公开autoreleasepool，将读取及处理放在每chunk的同步作用域内，摘要/decoder/章节等Swift值状态跨chunk保留；窗口完整读取也有同步pool，Linux直接执行原操作。不跨await持有pool、不改文件协调、字节校验/错误/取消合同、不升级parser/cache/Locator版本。探针的独立参考读也包住自己的临时对象，导入后RSS采样早于参考读，不能把探针清理当产品修复。源码变化会交付Build8，必须重新完整CI和设备验证。
+
+已有picker测试只保留picker到case teardown，仍销毁SwiftUI host tree；完整日志异常在前一case结束后通过XPC迟到布局回调送达，不证明当前TXT测试/用户首次导入失败。[WebKit官方问题269615](https://bugs.webkit.org/show_bug.cgi?id=269615)有iOS16/17同类异常；它只证明系统晚回调风险，不能证明本项目唯一根因。测试工具保留六个已隐藏完整native host到worker进程结束，所有原生呈现/关闭/迟到/编码/导入断言和15秒门槛保持；其tmp数据库也保留到worker结束，避免在存活repository下unlink。仅测试fixture生命周期变更，生产App picker路径保持Build7用户已确认方案，未捕获/禁用系统异常或删除失败测试。
 
 ## 数据集
 

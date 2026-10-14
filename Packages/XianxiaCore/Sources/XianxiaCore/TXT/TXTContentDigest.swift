@@ -65,12 +65,11 @@ struct TXTContentDigest {
     static func file(_ url: URL, chunkBytes: Int = 64 * 1024) throws -> (sha256: String, bytes: Int64) {
         try TXTFileAccess.read(url: url) { handle in
             var digest = TXTContentDigest(), count: Int64 = 0
-            while let data = try handle.read(upToCount: chunkBytes), !data.isEmpty {
-                try Task.checkCancellation()
+            while try TXTFileAccess.consumeChunk(from: handle, maximumBytes: chunkBytes, operation: { data in
                 guard Int64(data.count) <= Int64.max - count else { throw TXTProcessingError.byteOffsetOverflow }
                 count += Int64(data.count)
                 try digest.update(data)
-            }
+            }) {}
             return (digest.hexDigest(), count)
         }
     }
