@@ -16,6 +16,10 @@ ANSI兼容方案先核Microsoft codepage与Apple SDK公开API：中文Windows AN
 
 已补严格流式 GBK/CP936、Big5/CP950、Windows-1252 及自动 GBK→GB18030 回退，保留已有 UTF/GB18030 codec 与 Locator v1；自动 cache key 独立 v2。App 显示选择说明和自动识别编码。范围缓存只保存资源范围、严格核对最大 scalar 切点，完整 digest 仍在。新增 5 编码 / 7 cache Core 与 2 iOS 回归，目标各80 Core /58 iOS。Windows 385 Swift 语法新增0（pristine54限制保留）、16tooling通过，尚非编译。方案与来源见 Documentation/TXT_ANSI_COMPATIBILITY.md。下一步先写inventory并保留 main/index 建独立候选快照，完整CI后审阅日志/锁/资源与旧位置结果，未通过前不交付Build9或宣称设备接受。上次文档补丁匹配失败未落盘，已逐项核实并重新分开应用；没有构建/快照成功可假定。
 
+## 2026-10-15 首轮 CI 实际失败与修复
+
+候选94b10c6 / CI38608225245 completed/failure：repository checks通过，Linux真实编译成功并执行80项，新增NUL精确位置断言失败（实际0/期望1）；Release探针及Apple/iOS/IPA未执行，不写成已通过。完整日志、run.json、Core artifact在build/ci/38608225245保留。原因是legacy分支只在转换后检测NUL并报告整个源块起点，拒绝文件但诊断偏移不精确；源码在转换前按这些无状态codepage的ASCII NUL原字节检查，补GBK多字节前缀、Big5跨块与1252跨块同类回归，原断言不放宽。语法检查后新快照完整CI，不同源重跑而非碰运气。首次快照命令曾路径空格笔误退出1且未执行，纠正后94b10c6成功；原main/index均保留。
+
 ## 实际断点
 
 Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。

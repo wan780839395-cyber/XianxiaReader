@@ -47,12 +47,14 @@ final class TXTLegacyEncodingTests: XCTestCase {
         let root=try root()
         for (ordinal,encoding,raw) in [(0,TXTEncoding.gbk,Data([0x81])),(1,.big5,Data([0xA4])),
                                        (2,.big5,Data([0xA4,0x80])),(3,.windows1252,Data([0x81])),
-                                       (4,.gbk,Data([0x61,0,0x62]))] {
+                                       (4,.gbk,Data([0x61,0,0x62])),(5,.gbk,Data([0xD4,0xC6,0,0x62])),
+                                       (6,.big5,Data([0x61,0x62,0x63,0x64,0xB6,0xB3,0])),
+                                       (7,.windows1252,Data([0x61,0x62,0x63,0x64,0xE9,0]))] {
             let source=root.appendingPathComponent("\(ordinal).txt"), output=root.appendingPathComponent("\(ordinal)-out.txt")
             try raw.write(to:source)
             do { _=try await TXTNormalizer(chunkBytes:1).normalize(source:source,destination:output,encoding:encoding); XCTFail("Invalid encoding must reject") }
             catch let failure as TXTNormalizationError {
-                if ordinal==4 { XCTAssertEqual(failure,.nonTextByte(byteOffset:1)) }
+                if ordinal>=4 { XCTAssertEqual(failure,.nonTextByte(byteOffset:Int64(try XCTUnwrap(raw.firstIndex(of:0))))) }
                 else { XCTAssertEqual(failure,.invalidEncoding(encoding:encoding,byteOffset:0)) }
             }
             XCTAssertFalse(FileManager.default.fileExists(atPath:output.path))

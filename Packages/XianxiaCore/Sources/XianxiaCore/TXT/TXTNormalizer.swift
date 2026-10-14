@@ -211,6 +211,11 @@ private struct TXTStreamDecoder {
             let bytes = pending + Array(data)
             pending.removeAll(keepingCapacity: true)
             guard !bytes.isEmpty else { return Data() }
+            // NUL is an ASCII singleton in these stateless code pages, never a
+            // multibyte trail. Report its source byte, not the converted chunk start.
+            if let nul = bytes.firstIndex(of: 0) {
+                throw TXTNormalizationError.nonTextByte(byteOffset: offset+Int64(nul))
+            }
             var output = [UInt8](repeating: 0, count: bytes.count*4+4)
             var consumed=0, produced=0
             let identifier: Int32
