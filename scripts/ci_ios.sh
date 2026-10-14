@@ -28,6 +28,9 @@ python3 scripts/verify_readium_lock.py Package.resolved
 cp Package.resolved build/Package.resolved
 
 swift test --package-path Packages/XianxiaCore --parallel
+swift build --package-path Packages/XianxiaCore --configuration release --product TXTPerformanceProbe
+PROBE_BIN=$(swift build --package-path Packages/XianxiaCore --configuration release --show-bin-path)
+python3 scripts/run_txt_performance.py --binary "$PROBE_BIN/TXTPerformanceProbe" --output build/TXTPerformance
 xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"

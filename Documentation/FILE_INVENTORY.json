@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T14:24:43.060490+00:00",
+  "recordedAtUTC": "2026-10-14T14:42:57.670739+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 577,
+  "fileCount": 581,
   "files": [
     {
       "path": ".gitattributes",
@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/ios-build.yml",
-      "bytes": 3316,
-      "sha256": "f2ce09eee1458f74868e9913a44f587ba371301846b0e3eb9a2320c629d04b44"
+      "bytes": 3944,
+      "sha256": "317147351d9407730c53243df047a3b28ec7c0356595163bdc9e6a2207a60838"
     },
     {
       "path": ".gitignore",
@@ -264,6 +264,11 @@
       "sha256": "79080c6ea39d7ab9dba06b185fe548f618b58eb6372532ec51455ae3d9e0b142"
     },
     {
+      "path": "Documentation/M2_TXT_LONGBOOK_STATIC_REPORT.json",
+      "bytes": 434,
+      "sha256": "9960a804a154fa60ec72cb1c779b47d8fc9d83fc2be26f31339947ff3d10afaf"
+    },
+    {
       "path": "Documentation/M2_TXT_NORMALIZATION_STATIC_REPORT.json",
       "bytes": 434,
       "sha256": "bf995c6eca445dbf9aa9c564ee30f826793846e75b3be01fb1dae9b36da09217"
@@ -295,8 +300,8 @@
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
-      "bytes": 2183,
-      "sha256": "dc1433e39b55786861995fa78494f89b90d0651810299f8f2d0113e4909ecf2a"
+      "bytes": 4145,
+      "sha256": "4cc7104d95f56501a7b0acefb9c5799eb17ac2decc051b4b672f90190f97f89d"
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
@@ -660,8 +665,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 7748,
-      "sha256": "b870e13d3f961fc90e3ba65b4ee5639e503bd098ae8cf4598a507e82fcd842b3"
+      "bytes": 9163,
+      "sha256": "76cb23124c9a8f1872cc6bd22a00e3c4f3dba9f2abce913f50e8bd0b72c65814"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -709,9 +714,14 @@
       "sha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537"
     },
     {
+      "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+      "bytes": 8510,
+      "sha256": "2103c43cd84d51b53ca85a64e5e77655f27da1b34e571f1280df7034ab4730d4"
+    },
+    {
       "path": "Packages/XianxiaCore/Package.swift",
-      "bytes": 970,
-      "sha256": "8a8adff1327dcd05f14303aa9063517f07cf31ea53bcda8a668134ef93b5a76a"
+      "bytes": 1283,
+      "sha256": "601947d583aafbeffe7cfb3ce0ea716e863b092982773b119a086644de423ee1"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
@@ -1005,8 +1015,8 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "bytes": 14737,
-      "sha256": "d88bcfcc51b06cab8bf0e39545e19530f555f5ffef7512a20ab68bc7ba70ceb3"
+      "bytes": 17368,
+      "sha256": "bf9107edf8e2b3147a18c5af5eebced36e6cc2d0c90d1f562f336b9dbe34dc3e"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2805,8 +2815,8 @@
     },
     {
       "path": "scripts/ci_ios.sh",
-      "bytes": 3893,
-      "sha256": "20737df737d6d801acf37bca13b9d191550648cee6f602d472282d7420d36e49"
+      "bytes": 4207,
+      "sha256": "c90727765a64d737e4a14d853fc5a015f60eb5b532307bdb4bd49bf6da8de225"
     },
     {
       "path": "scripts/generate_app_icon.py",
@@ -2849,6 +2859,11 @@
       "sha256": "93a652e54cb199fb728a6f391ef278b574c7fd7ca709bb18557383229d72bead"
     },
     {
+      "path": "scripts/run_txt_performance.py",
+      "bytes": 4515,
+      "sha256": "bd131a7d38913eeffc678b60234c2f9047d95569d0dcb95f4670697288c5aa32"
+    },
+    {
       "path": "scripts/select_simulator.py",
       "bytes": 695,
       "sha256": "8a445855e12e8e0d7e1f8fcc0cba67c62f33a5ae23ce048f85d09bd27978913a"
@@ -2872,6 +2887,11 @@
       "path": "scripts/test_tooling.py",
       "bytes": 4041,
       "sha256": "d6825cf62062b3c0dc8100e574e16379db7b98d4db96079c544e19e9493c4f50"
+    },
+    {
+      "path": "scripts/test_txt_performance.py",
+      "bytes": 2183,
+      "sha256": "ebeb9199e84c4a0d1cef6630670d1f845aae528819f01cc133ebe0ee5f26a2a3"
     },
     {
       "path": "scripts/verify_readium_lock.py",

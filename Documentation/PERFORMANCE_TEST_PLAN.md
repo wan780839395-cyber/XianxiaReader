@@ -1,6 +1,14 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
-当前没有耗时、内存或设备数据。以下是目标与采样方法，不是已达成指标。
+当前设备性能尚未验收；本轮新增Release桌面Core探针，编译和首轮测量待CI。以下目标不是已达成指标。
+
+## M2 长篇探针（本轮进行中）
+
+`scripts/run_txt_performance.py`流式生成原创UTF8约5MiB/1000章、约50MiB/3000章、约50MiB无换行单章、UTF16约5MiB/1000章（实际大小/hash记录在结果）。每个样本启动独立`TXTPerformanceProbe` Release进程，实际走BookFileStore复制、TXTBookImportService、SQLite事务、缓存重开和reading plan；三个重开保持OS文件缓存，不称磁盘冷启动，不计算仅三次的p95。核验Python独立生成的原始/规范化SHA256、所有目录byte范围、SQLite/cache一致、三次稳定资源锚点和全文窗口无缝覆盖。所有正文临时生成，进程退出后再清理，不提交/上传大样书。
+
+记录冷导入、目录查询、cache全文校验、reading plan和窗口遍历的单调时钟耗时，另列每个阶段进程生命周期RSS高水位。它包含Swift/Foundation/元数据，阶段间高水位差不是阶段瞬时内存，不是iPhone的Allocations/VM Tracker，不能把桌面峰值当设备验收。Linux ru_maxrss为KiB；当前Apple XNU为bytes，采用[Apple XNU getrusage手册源码](https://github.com/apple/darwin-xnu/blob/main/bsd/man/man2/getrusage.2)与[Linux man-pages](https://www.man7.org/linux/man-pages/man2/getrusage.2.html)核对，避免旧Apple归档手册的单位差异。无共享runner硬耗时门槛；正确性失败/timeout保留日志并失败，不生成成功IPA。
+
+Linux/macOS都跑真实Release探针并上传完整JSON/log；iOS原长段回归扩展到超过64KiB巨段的第二个资源，继续要求600点滑动后非零字符锚点和重开误差<3px。新增多MB单章首/中/末Readium资源与位置回归。窗口UTF8 scalar边界不会丢字节，但组合字形/跨窗口段落节奏仍须M4真实页面验收。正文缓存重开仍全文校验和重新构造reading plan，目标“不重新读全文”尚未达成；先以实测决定后续最小优化。
 
 ## 数据集
 

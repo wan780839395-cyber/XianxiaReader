@@ -128,23 +128,26 @@ final class TXTReadingTests: XCTestCase {
         throw Failure.timedOut(description)
     }
     @MainActor func testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC() async throws {
-        let text = "第一章 长段\n"+String(repeating:"修行🙂再问道。",count:1000)+"\n第二章 尾声\n原创故事终点"
+        let text = "第一章 长段\n"+String(repeating:"修行🙂再问道。",count:7000)+"\n第二章 尾声\n原创故事终点"
         let (book,url,services) = try await imported(text)
         let context = try await TXTReadiumPublicationLoader().open(book: book,fileURL: url,storageRoot: services.files.root)
         let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
         let window = try mount(engine)
         try await engine.open(book: book,fileURL: url,position: nil)
         try await wait("TXT first real location") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
-        let paragraphByte = "第一章 长段\n".utf8.count
+        XCTAssertGreaterThan(context.plan.resources.count,3)
+        // Navigate inside a giant paragraph's SECOND bounded resource, then exercise
+        // physical scrolling and reopening there rather than only the chapter's first window.
+        let resource = context.plan.resources[1]
+        let paragraphByte = resource.startByte
         let selector = "document.getElementById('txt-b\(paragraphByte)')?.getBoundingClientRect().top ?? 10000"
-        let resource = try XCTUnwrap(context.plan.resources.first)
         let href = try XCTUnwrap(AnyURL(string: resource.href))
         let initial = Locator(href: href,mediaType: .xhtml,locations: .init(fragments: ["txt-b\(paragraphByte)"],
             otherLocations: ["cssSelector":.string("#txt-b\(paragraphByte)")]))
         // Like the existing EPUB long-paragraph regression, finish a known DOM
         // navigation before synthesizing a scroll; first location precedes initialization completion.
         try await engine.go(to: TXTPositionCodec.encode(initial,bookID: book.id,plan: context.plan))
-        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.0",root: engine.viewController.view))).first)
+        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1",root: engine.viewController.view))).first)
         try await wait("TXT known paragraph ready") { abs((try await target.evaluateJavaScript(selector) as? Double ?? 10000)) < 5 }
         let initialImage = try await target.takeSnapshot(configuration: nil)
         let initialAttachment = XCTAttachment(image: initialImage); initialAttachment.name = "txt-paragraph-before-scroll"; initialAttachment.lifetime = .keepAlways; add(initialAttachment)
@@ -154,7 +157,7 @@ final class TXTReadingTests: XCTestCase {
             try await wait("TXT nonzero character anchor") {
                 guard let saved = engine.currentPosition else { return false }
                 let (_,anchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
-                return anchor.characterUTF16Offset > 100
+                return anchor.resourceStartByte == resource.startByte && anchor.characterUTF16Offset > 100
             }
         } catch {
             let dom = try await target.evaluateJavaScript("JSON.stringify({title:document.title,y:scrollY,height:document.documentElement.scrollHeight,p:document.getElementById('txt-b\(paragraphByte)')?.getBoundingClientRect().top})")
@@ -168,6 +171,7 @@ final class TXTReadingTests: XCTestCase {
         let saved = try XCTUnwrap(engine.currentPosition)
         let (_,stableAnchor,_) = try TXTPositionCodec.decode(saved,bookID: book.id,plan: context.plan)
         XCTAssertGreaterThan(stableAnchor.characterUTF16Offset,100)
+        XCTAssertEqual(stableAnchor.resourceStartByte,resource.startByte)
         XCTAssertEqual(stableAnchor.paragraphStartByte,Int64(paragraphByte),"Native byte ID must survive locator capture")
         let beforeValue = try await target.evaluateJavaScript(selector) as? Double
         let before = try XCTUnwrap(beforeValue); XCTAssertLessThan(before,-300)
@@ -176,7 +180,7 @@ final class TXTReadingTests: XCTestCase {
         engine.close()
         try await engine.open(book: book,fileURL: url,position: saved)
         try await wait("TXT restored viewport") {
-            guard let wrapper = self.view("readium.chapter.0",root: engine.viewController.view),let reopened = self.webViews(wrapper).first else { return false }
+            guard let wrapper = self.view("readium.chapter.1",root: engine.viewController.view),let reopened = self.webViews(wrapper).first else { return false }
             let y = try await reopened.evaluateJavaScript(selector) as? Double
             return abs((y ?? 10000)-before) < 3
         }
@@ -184,6 +188,38 @@ final class TXTReadingTests: XCTestCase {
         try await engine.go(to: XCTUnwrap(chapters.last))
         try await wait("TXT second chapter") { engine.currentPosition?.chapterTitle == "第二章 尾声" }
         XCTAssertGreaterThan(window.bounds.height,0)
+    }
+
+    @MainActor func testMultiMegabyteTXTHeadMiddleTailResourcesAndAnchorsRemainBoundedAfterReopen() async throws {
+        let text = "第一章 巨章\n"+String(repeating:"山门🙂e\u{301}问道。",count:120000)+"\n第二章 尾声\n未来章独立标记"
+        let (book,url,services,prepared) = try await prepared(text)
+        let resources = prepared.plan.resources.filter { $0.chapter.title == "第一章 巨章" }
+        XCTAssertGreaterThan(resources.count,20)
+        var positions: [ReadingPosition] = []
+        for ordinal in [0,resources.count/2,resources.count-1] {
+            let resource = resources[ordinal]
+            XCTAssertLessThanOrEqual(resource.endByte-resource.startByte,Int64(TXTReadingPlan.resourceBytes))
+            let nativeResource = try XCTUnwrap(prepared.publication.get(Link(href:resource.href,mediaType:.xhtml)))
+            let data = try await nativeResource.read().get()
+            let html = try XCTUnwrap(String(data: data,encoding: .utf8))
+            XCTAssertLessThan(data.count,TXTReadingPlan.resourceBytes+4096)
+            XCTAssertTrue(html.contains("id=\"txt-b\(resource.startByte)\""))
+            XCTAssertFalse(html.contains("未来章独立标记"))
+            let href = try XCTUnwrap(AnyURL(string: resource.href))
+            let point = DOMRange.Point(cssSelector:"#txt-b\(resource.startByte)",textNodeIndex:0,charOffset:0)
+            let locator = Locator(href:href,mediaType:.xhtml,locations:.init(otherLocations:["domRange":DOMRange(start:point).jsonValue]))
+            let position = try TXTPositionCodec.encode(locator,bookID:book.id,plan:prepared.plan)
+            let validated = try await prepared.locator(position,bookID:book.id)
+            XCTAssertEqual(validated,locator); positions.append(position)
+        }
+        let reopened = try await TXTReadiumPublicationLoader().open(book:book,fileURL:url,storageRoot:services.files.root)
+        XCTAssertTrue(reopened.plan.index.reusedCache)
+        XCTAssertEqual(reopened.plan.resources,prepared.plan.resources)
+        for position in positions {
+            let actual = try await reopened.locator(position,bookID:book.id)
+            let original = try await prepared.locator(position,bookID:book.id)
+            XCTAssertEqual(actual,original)
+        }
     }
 
     @MainActor func testRealTXTSearchPositionsJumpAndCloseCancelSession() async throws {

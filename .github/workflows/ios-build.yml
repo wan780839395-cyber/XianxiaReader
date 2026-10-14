@@ -55,13 +55,21 @@ jobs:
           mkdir -p build/logs
           swift --version 2>&1 | tee build/logs/core-environment.log
           swift test --package-path Packages/XianxiaCore --parallel 2>&1 | tee build/logs/core-tests.log
+      - name: Measure Release TXT cold import and bounded long-book reopen
+        run: |
+          set -euo pipefail
+          swift build --package-path Packages/XianxiaCore --configuration release --product TXTPerformanceProbe 2>&1 | tee build/logs/txt-probe-build.log
+          PROBE_BIN=$(swift build --package-path Packages/XianxiaCore --configuration release --show-bin-path)
+          python3 scripts/run_txt_performance.py --binary "$PROBE_BIN/TXTPerformanceProbe" --output build/TXTPerformance 2>&1 | tee build/logs/txt-performance.log
       - name: Upload Core compilation and test logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: XianxiaReader-core-diagnostics
           if-no-files-found: warn
-          path: build/logs/
+          path: |
+            build/logs/
+            build/TXTPerformance/
 
   ios:
     needs: [repository-checks, core-tests]
@@ -94,6 +102,7 @@ jobs:
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json
+            build/TXTPerformance/
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA
         uses: actions/upload-artifact@v4

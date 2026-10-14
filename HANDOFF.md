@@ -2,6 +2,14 @@
 
 更新时间：2026-10-14（Asia/Shanghai）
 
+## 本轮工作检查点：M2 长篇基线（进行中，尚未编译）
+
+用户“继续”后已核实main/HEAD与空index不变、457运行hash匹配0afe45e、六个旧包hash保留；最新CI38572197917 completed/success，没有自己启动的挂起任务。首次导入已获用户确认，不再改动该路径。
+
+已集成独立Release Core探针，流式生成原创UTF8约5/50MiB、1000/3000章、50MiB无换行与UTF16样本；各样本分进程记录实际导入/SQLite目录/cache重开三次/reading plan/完整窗口遍历耗时及RSS高水位。Python独立hash与所有章节byte范围验证，正文不上传。已有iOS长段测试扩展到第二窗口+600点非零锚点/3px重开，新增多MB单章首中末Readium资源与完整位置回归（预期各68Core/56iOS）。没有改App/Core业务/Readium/Vendor或包版本，Build7设备包仍适用；新增的SwiftPM executable不被iOS App依赖。
+
+初步Windows382 grammar新增0/pristine54限制、16Python tests通过；修改Readium test的get参数后将重新跑最终Windows检查。语法不是编译，当前首轮探针与扩展测试尚未编译。测量合同与Apple/Linux RSS单位依据已写PERFORMANCE_TEST_PLAN.md；不先改cache算法，不承诺秒开。测试tmp SQLite清理诊断原样保留。下一断点：Windows最终检查/清单→独立index快照→严格锁CI→完整日志/原生截图/测量审阅。
+
 ## 实际断点
 
 2026-10-14最新用户反馈：“ok 能正常导入了 没问题”。按Build7交付/首次导入修复的上下文，记录用户设备首次导入问题验收通过；记录m2-import-build7-device-feedback.json，当前报告deviceFirstImportAccepted=true。实际Build/OS/格式/本地或iCloud来源未逐项独立读取，不扩写为全设备/File Provider/TXT矩阵通过，M2Accepted仍false。源码/包/原index均未改变，原55iOS/各68Core/Release证据继续有效，无新CI或新Build。
