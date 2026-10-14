@@ -578,7 +578,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
               const test = document.createRange();
               test.setStart(node, offset); test.setEnd(node, Math.min(node.length, offset + 1));
               const rect = test.getClientRects()[0];
-              if (rect && rect.bottom > top && rect.top < bottom && node.data.trim()) { caret = range; break; }
+              if (rect && rect.bottom > top && rect.top < bottom && rect.right > 0 && rect.left < innerWidth && node.data.trim()) { caret = range; break; }
             }
             if (caret) break;
           }

@@ -1,0 +1,37 @@
+{
+  "run": 38503347131,
+  "sourceRevision": "1182a8fd2f193256950dc18faa974f8881f5e061",
+  "iOSPassed": 36,
+  "iOSFailed": 3,
+  "iOSTotal": 39,
+  "failures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousHeightChangeKeepsVisibleDOMAnchor():324",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 20,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "testName": "testContinuousHeightChangeKeepsVisibleDOMAnchor()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor():379",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 21,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor",
+      "testName": "testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor()"
+    },
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():343",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 22,
+      "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+    }
+  ],
+  "modeRoundTripPassed": true,
+  "remainingCandidateCause": "Native UIScrollView offset lags JS go completion; concurrent outer animation can overwrite reflow compensation. DOM coordinate read and atomic explicit go still awaiting validation.",
+  "releaseBuilt": false,
+  "ipaProduced": false
+}

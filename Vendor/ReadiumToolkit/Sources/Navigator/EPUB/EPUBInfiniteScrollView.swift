@@ -153,7 +153,10 @@ import UIKit
         guard epoch == activeEpoch, slots[index] === slot else { return false }
         slot.positioning = false
         let y = slot.wrapper.frame.minY + local
-        setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: options.animated)
+        // A DOM go has already moved the inner document. Apply the outer
+        // coordinate atomically, so no old animation can overwrite a reflow
+        // correction. User drag/deceleration and one-screen turns are separate.
+        setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: false)
         preload()
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
         return true
@@ -210,6 +213,8 @@ import UIKit
         layoutSlots(preserveAnchor: true)
     }
     private func navigationOffset(in slot: Slot, location: PageLocation) async -> CGFloat {
+        if location == .start { return 0 }
+        if location == .end { return max(0, slot.height - 24 - viewportHeight) }
         if case let .locator(locator) = location, locator.locations.cssSelector != nil,
            locator.locations.otherLocations["xianxiaContinuousAnchorVersion"]?.double == 1 {
             do {
@@ -219,6 +224,16 @@ import UIKit
                     return max(0, y - CGFloat(offset))
                 }
             } catch { boundaryLabel.text = "位置锚点恢复失败：\(error.localizedDescription)" }
+        }
+        // JavaScript scrollTo completes before WebKit publishes the matching
+        // UIScrollView offset. Read the authoritative document coordinate.
+        let result = await slot.view.evaluateScript("window.scrollY")
+        switch result {
+        case let .success(value):
+            if let y = value as? NSNumber, y.doubleValue.isFinite { return CGFloat(y.doubleValue) }
+            boundaryLabel.text = "位置偏移无效"
+        case let .failure(error):
+            boundaryLabel.text = "位置偏移读取失败：\(error.localizedDescription)"
         }
         return slot.view.webView.scrollView.contentOffset.y
     }

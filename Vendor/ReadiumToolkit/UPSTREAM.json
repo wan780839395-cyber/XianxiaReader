@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "d682674e411c8e1a307dd82f9877c23d2399a1f0dfe2464c009d22bf026ebb7d"
+      "sha256": "026882940dbaeabbc262aef32be8924e93a1891fa8bf4d835d89bf2106266842"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "e460dce218ac0ff0fd020e5f3c3850bfda92a6ace544373d60918ca0be8d845f"
+      "sha256": "16d063cfa3399540feff819b90b3da92e841583912a5d56a1e8ad78e24f482f6"
     }
   ],
   "remoteDependencyPins": [
