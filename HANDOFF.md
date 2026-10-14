@@ -4,6 +4,8 @@
 
 ## 实际断点
 
+2026-10-14 新反馈：用户报告 TXT 可正常导入，但首次选择文件后不生效，EPUB 也曾同样发生。本轮先修共同的 Document Picker → sheet 关闭 → 导入任务交接，不进入 M3。已核实 main/原空 index 与旧未提交改动保留、无既有运行任务。现将生产弹窗交接原样提取到 DocumentImportSheet（仍旧 @State pendingImport，尚未修复），增加 3 个真实 SwiftUI sheet / UIKit delegate / 数据库回归：冷首次 TXT、冷首次 EPUB、取消/空选择/重试和迟到文件。即将先验证旧交接是否能在模拟器复现；期望 Core68/iOS49，Build仍5且不会把失败打包交付。Windows 语法检查后生成隔离候选推送，编译/回归尚未执行。Build4/Build5及全部历史失败仍保留。
+
 **TXT导入/Readium阅读/完整位置已接入Build5，完整自动CI通过；下一步设备TXT与数十MB冷导入/cache重开验收，完整M2尚未完成。** 不提前大规模进入M3/M4。
 
 CI38559906005 / 已测运行源码37eb86a46dc9002af381a44204f9bc36d07e11a4 / codex/m2-txt-index / bootstrap=false，所有job success。Linux/macOS各68 Core（原60+新8），iOS46/46（原41+新5）、0 failed/skipped，test/附件/summary退出码0，设备Release CODE_SIGNING_ALLOWED=NO与Build5 IPA通过。完整full/run/Core/Apple日志、原始xcresult及ReaderSnapshots保存在build/ci/38559906005；455个运行文件Git blob SHA与当前源码一致，根/下载/workspace锁逐字节一致。源码Swift/C warning/error=0；AppIntents metadata及WebKit诊断另列并保留。Windows379 grammar新增0/pristine54限制保留、14 Python tooling通过，语法不是编译。五次真实失败分别记录，未跳过失败打包。

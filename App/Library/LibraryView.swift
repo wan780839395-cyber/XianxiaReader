@@ -6,7 +6,6 @@ import XianxiaCore
     let services: AppServices
     @StateObject private var model: LibraryViewModel
     @State private var showImporter = false
-    @State private var pendingImport: Result<[URL], Error>?
     @State private var selectedBook: Book?
     @State private var showTXTEncoding = false
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20)]
@@ -84,12 +83,7 @@ import XianxiaCore
                     Button("选择 TXT 编码并重试") { showTXTEncoding = true }.padding(.bottom, 8)
                 }
             }
-            .sheet(isPresented: $showImporter, onDismiss: finishPicking) {
-                EPUBDocumentPicker { result in
-                    pendingImport = result
-                    showImporter = false
-                }
-            }
+            .modifier(DocumentImportSheet(isPresented: $showImporter, model: model))
             .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { book in
                 ReaderView(book: book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root))
             }
@@ -120,15 +114,4 @@ import XianxiaCore
         }
     }
 
-    private func finishPicking() {
-        // Wait for the picker sheet to dismiss before showing an error or starting
-        // the app's import. A local import-mode copy remains valid after dismissal.
-        let result = pendingImport
-        pendingImport = nil
-        switch result {
-        case .success(let urls): model.startImport(urls)
-        case .failure(let error): model.errorMessage = error.localizedDescription
-        case nil: break
-        }
-    }
 }

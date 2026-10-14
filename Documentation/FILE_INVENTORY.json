@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T12:09:00.238874+00:00",
+  "recordedAtUTC": "2026-10-14T12:21:19.265778+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 556,
+  "fileCount": 558,
   "files": [
     {
       "path": ".gitattributes",
@@ -39,6 +39,11 @@
       "sha256": "33cdc1e5a1cf444680e2989adbf74ca6cb319bcf450b4c0f9be7af8f15ca061a"
     },
     {
+      "path": "App/Import/DocumentImportSheet.swift",
+      "bytes": 867,
+      "sha256": "8ab2baa76fe3e3abca661500434d49cee99e185cbc3348db9fa8aab1e4cd3e8c"
+    },
+    {
       "path": "App/Import/EPUBDocumentPicker.swift",
       "bytes": 1961,
       "sha256": "77e5a91594a3fbee894dffbe5377fbb12a7f9ddebb4c8193dc870bbcc5002a1f"
@@ -55,8 +60,8 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 7601,
-      "sha256": "ff8e51cf02aff6c836d4517ffa0887634f56fa5cba78e3697f13e505a6069f7c"
+      "bytes": 6918,
+      "sha256": "f2691f58edeb0f4d4d83fa50d7c8e35a3163d6e7529e3f9d9028f6304908aea4"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -217,6 +222,11 @@
       "path": "Documentation/M1_SEARCH_VALIDATION_REPORT.json",
       "bytes": 15567,
       "sha256": "ab5ff1f72b7d1a2d73626635f52b63237a6d56d1e5fa3f6023bcc54ef3b8ce30"
+    },
+    {
+      "path": "Documentation/M2_IMPORT_HANDOFF_STATIC_REPORT.json",
+      "bytes": 434,
+      "sha256": "ab96413f97acd7f5a91249e8a042fa449e7b80777322a904a44c4478c3e63c39"
     },
     {
       "path": "Documentation/M2_TXT_INDEX_VALIDATION_REPORT.json",
@@ -565,8 +575,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 8960,
-      "sha256": "85340845be4b410407e9dd166435d0514188928d1ba84cf11a161f20a046ed32"
+      "bytes": 9755,
+      "sha256": "a947b062f0b888c85fd8ba08c7060dab810f702fa9287d2a05c9318127e7438d"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
@@ -865,8 +875,8 @@
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
-      "bytes": 5154,
-      "sha256": "e1582b8503a5e545195e93b7d1def0b8bc4f60271a6cc62754e39a5b1abd71ae"
+      "bytes": 11812,
+      "sha256": "d77de84c4d85bff7fd84fb5dcae57439329cc6eb379383cce931ba9877fafdde"
     },
     {
       "path": "Tests/iOS/EPUBIntegrationTests.swift",
