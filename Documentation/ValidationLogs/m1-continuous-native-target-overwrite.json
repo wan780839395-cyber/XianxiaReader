@@ -1,0 +1,97 @@
+{
+  "run": 38526015806,
+  "sourceRevision": "93ef44fbd12ca85d03ad57acda5db955d6a35c93",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 3,
+        "passedTests": 38,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 3,
+    "finishTime": 1791962135.284,
+    "passedTests": 38,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1791961747.034,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):237",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 19,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousFragmentAndDOMBookmarkRestore()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousFragmentAndDOMBookmarkRestore",
+        "testName": "testContinuousFragmentAndDOMBookmarkRestore()"
+      },
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):237",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 21,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor",
+        "testName": "testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor()"
+      },
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):237",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 23,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+        "testName": "testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Common Failures",
+        "impact": "100% of failures",
+        "text": "3 runs of 3 tests failed with failed: caught error: \"timedOut(\"continuous\", \"jump(_:book:href:):237\\nposition={\\\"href\\\":\\\"OEBPS/cover.xhtml\\\",\\\"locations\\\":{\\\"cssSelector\\\":\\\"html > body > div > img\\\",\\\"position\\\":1,\\\"progression\\\":0,\\\"totalProgression\\\":0,\\\"xianxiaContinuousAnchorVersion\\\":1,\\\"xianxiaViewportOffset\\\":0},\\\"type\\\":\\\"application/xhtml+xml\\\"}\\ncontinuous state=index=1 revision=0 top=814.0 navigation=false slot0{ready=true positioning=false failure=none wrapper=(0.0, 0.0, 402.0, 814.0) frame=(0.0, 12.0, 402.0, 778.0) savedTop=nil anchor=not sampled} slot1{ready=true positioning=false failure=none wrapper=(0.0, 814.0, 402.0, 8342.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=candidate documentY=Optional(859.875) offset=Optional(2.875) local=0.0 revision=0}\\nouter offset=(0.0, 752.0) inset=UIEdgeInsets(top: 62.0, left: 0.0, bottom: 34.0, right: 0.0) content=(402.0, 9220.0) bounds=(0.0, 752.0, 402.0, 874.0)\\nweb frame=(0.0, 0.0, 402.0, 778.0) visible=(0.0, 62.0, 402.0, 778.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 778;\\n    href = \\\"/OEBPS/one.xhtml\\\";\\n    line12 = \\\"857.875\\\";\\n    line18 = \\\"1277.875\\\";\\n    long = \\\"1767.875\\\";\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 0.0, 402.0, 778.0) visible=(0.0, 0.0, 402.0, 38.0) offset=(0.0, 12.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        1\\n    );\\n    height = 778;\\n    href = \\\"/OEBPS/cover.xhtml\\\";\\n    ready = complete;\\n    y = 12;\\n})\")\""
+      },
+      {
+        "category": "Common Failures",
+        "impact": "100% of failures",
+        "text": "3 runs of 3 tests failed with failed - Continuous reader did not reach expected state at jump(_:book:href:):237"
+      },
+      {
+        "category": "Longest Test Runs",
+        "impact": "63% of duration",
+        "text": "3 longest test runs with outlier durations exceeding 31.87s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 41
+  },
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": false,
+  "ipaProduced": false,
+  "longCharacterAndViewportRestorePassed": true,
+  "diagnostic": {
+    "currentIndex": 1,
+    "ready": true,
+    "positioning": false,
+    "documentY": 859.875,
+    "anchorViewportOffset": 2.875,
+    "expectedOrigin": 857,
+    "actualParentOrigin": 0
+  },
+  "pendingFix": "Atomic Readium target command and coordinate sampling"
+}

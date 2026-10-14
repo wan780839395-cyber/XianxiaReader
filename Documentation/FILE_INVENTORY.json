@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T07:04:25.254268+00:00",
+  "recordedAtUTC": "2026-10-14T07:26:52.777356+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 507,
+  "fileCount": 508,
   "files": [
     {
       "path": ".gitattributes",
@@ -155,8 +155,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 2993,
-      "sha256": "67d83567586162dfb192ba2195a182ab62726a7239fe03f33abc9a26d3225fae"
+      "bytes": 3016,
+      "sha256": "4648fc3a0b8cf4d5f06bc330da111f7886aa434ab1cd65ddc8a8ae9e2380df7e"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -195,8 +195,8 @@
     },
     {
       "path": "Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json",
-      "bytes": 96178,
-      "sha256": "47e90488514d2f97ab748ac58e26b4df68c86961ca9166601375b274f0143620"
+      "bytes": 96551,
+      "sha256": "b45f0ce2c4b0f53a8fb6b4bcd08b31a16f279cc21e640d4268dd9bdf7daa0409"
     },
     {
       "path": "Documentation/M1_IMPORT_VALIDATION_REPORT.json",
@@ -354,6 +354,11 @@
       "sha256": "75dc08c10e050ae6880bd319df45f135954f082109d64044481dba13a8edc9ff"
     },
     {
+      "path": "Documentation/ValidationLogs/m1-continuous-native-target-overwrite.json",
+      "bytes": 5408,
+      "sha256": "3f8da185a2e4e19d7690485c2074129e43a10a446fca69e6bc7ab996a44f0ad8"
+    },
+    {
       "path": "Documentation/ValidationLogs/m1-continuous-offset-timeout.json",
       "bytes": 2430,
       "sha256": "e860857a7c0ff15c3eccea20187cb969a9a823387ba01c0c0fa94f30c8cbc80a"
@@ -440,13 +445,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 8332,
-      "sha256": "62b957d0ae0925d66852f52e84a0ca064195f8784182c7e45fb37c62eae04377"
+      "bytes": 6282,
+      "sha256": "1b355f0b6ef9cbe27d216ac560f153895f72cb3c8fb850c2c8f192161c5da1d1"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
-      "bytes": 30574,
-      "sha256": "f8257561c446b7acdf43e56c76eefed28dcda78d081cab86530a8b2b948790a4"
+      "bytes": 38973,
+      "sha256": "5c70b6d008f9c98f346fd758eb6f2699f3ccb7f042c4c0ae450e90c02fbd4abc"
     },
     {
       "path": "HANDOFF_M1_IMPORT_HISTORY_2026-10-13.md",
@@ -460,8 +465,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 6187,
-      "sha256": "663c4ef38cec6f187a5b4faa05885b98ff9a665e246baddbe22a509f46881849"
+      "bytes": 6221,
+      "sha256": "f22764d6afe496a571a1319b9872066f174f82dd55f7d3eb95578d6352eb5d58"
     },
     {
       "path": "Package.resolved",
@@ -600,8 +605,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 6052,
-      "sha256": "8a0a2dcd2cc82b04fa41d5b99349662b7ec5801f09ad85e2f2444adc39c10cc9"
+      "bytes": 6096,
+      "sha256": "bc0adafa35a11050af773c60b8b3d94440bf8dac93ab56847ef46c15b24f61cc"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -990,8 +995,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "bytes": 25268,
-      "sha256": "558270121866189acde96b7642545e96ae546ce2cb4e0342c149b461accef8e1"
+      "bytes": 26453,
+      "sha256": "5402e42439fd45e659ba0f5497cdcfed07b8b2550b1d55d4ef243017dd36efd7"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
@@ -2441,7 +2446,7 @@
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
       "bytes": 70122,
-      "sha256": "743be72b3c10b47e5fe6875bd9dfd7970378d47770140d0b88c44dff520a4537"
+      "sha256": "c4a3eb9bf6e957d44daad94ba28269d30e4a68af693e09dea2e35ed8faeb8115"
     },
     {
       "path": "project.yml",

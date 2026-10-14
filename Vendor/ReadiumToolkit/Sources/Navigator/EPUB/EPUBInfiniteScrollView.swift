@@ -238,9 +238,35 @@ import UIKit
                 }
             } catch { boundaryLabel.text = "位置锚点恢复失败：\(error.localizedDescription)" }
         }
-        // JavaScript scrollTo completes before WebKit publishes the matching
-        // UIScrollView offset. Read the authoritative document coordinate.
-        let result = await slot.view.evaluateScript("window.scrollY")
+        // Keep Readium's text matching/fragment/progression behavior. Execute
+        // the target and read its coordinate in ONE WebKit callback: between
+        // two callbacks a late native viewport synchronization can otherwise
+        // reset scrollY before the outer chapter window receives the target.
+        let script: String
+        if case let .locator(locator) = location {
+            do {
+                let json = try locator.jsonString()
+                script = """
+                ((locator) => {
+                  let moved = true;
+                  if (locator.text?.highlight != null) {
+                    moved = readium.scrollToLocator(locator, false);
+                  } else if (locator.locations?.fragments?.[0]) {
+                    moved = readium.scrollToId(locator.locations.fragments[0], false);
+                  } else {
+                    readium.scrollToPosition(locator.locations?.progression ?? 0, 'ltr', false);
+                  }
+                  return moved ? window.scrollY : null;
+                })(\(json))
+                """
+            } catch {
+                boundaryLabel.text = "位置偏移编码失败：\(error.localizedDescription)"
+                return slot.view.webView.scrollView.contentOffset.y
+            }
+        } else {
+            script = "window.scrollY"
+        }
+        let result = await slot.view.evaluateScript(script)
         switch result {
         case let .success(value):
             if let y = value as? NSNumber, y.doubleValue.isFinite { return CGFloat(y.doubleValue) }
