@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-14T10:50:18.885661+00:00",
+  "recordedAtUTC": "2026-10-14T10:52:40.011027+00:00",
   "stage": "M2 TXT product source integration - full compilation/test pending",
-  "sourceRevision": "c454a6087a89875af5ac43f87dc36b8d8ff57cd9",
+  "sourceRevision": "97307de2292b33cafb1534fa4e3245a48b3296f7",
   "branch": "codex/m2-txt-index",
-  "run": 38552124765,
+  "run": 38552463402,
   "build": "5",
   "expectedCoreTests": 68,
   "expectedIOSTests": 46,
@@ -217,7 +217,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
-      "sha256": "ec9ded1a08d9d1782bfb7f1c08692cb2713fc493907ac021a9db7891b8f15822"
+      "sha256": "5eaab582ebb598fdd7fde5f6f53d761ac5808ade994d96bf60ce3d8f2d676278"
     },
     {
       "path": "Packages/XianxiaReading/Package.swift",
@@ -325,7 +325,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "bea51ed7ecc21ce11b242c905c760291cdd9ace4620d62ecc73f7fae225f25c0"
+      "sha256": "50391eecd66eef82527838becf22f4d90a4f1d2d2fc1efe4ce55b010051b3030"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -1840,7 +1840,7 @@
     "swiftCompilation": false
   },
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -1849,8 +1849,8 @@
     "M2Accepted": false
   },
   "inProgressRun": {
-    "databaseId": 38552124765,
-    "source": "c454a6087a89875af5ac43f87dc36b8d8ff57cd9",
+    "databaseId": 38552463402,
+    "source": "97307de2292b33cafb1534fa4e3245a48b3296f7",
     "bootstrap": false
   },
   "scope": "Managed original copy/cache/DB import, explicit encoding choice+retry+cancel, <=64KiB lazy Readium resources, source-bound byte/text/full Locator, search/TOC/continuous restore.",
@@ -1863,5 +1863,11 @@
   "preservedUserBuild4": {
     "path": "build/XianxiaReader.ipa",
     "sha256": "7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1"
-  }
+  },
+  "linuxEvidence": {
+    "passedTests": 68,
+    "path": "build/ci/38552463402/core/core-tests.log",
+    "sha256": "eceb6545c7a34125d8d2ebec2a5f139b5b41e10001a4e518d38db466d0dcbc4b"
+  },
+  "priorFailure": "Documentation/ValidationLogs/m2-txt-product-fixture-heading-failure.json"
 }

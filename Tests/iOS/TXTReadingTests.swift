@@ -80,7 +80,7 @@ final class TXTReadingTests: XCTestCase {
             return Locator(href: href,mediaType: .xhtml,locations: .init(progression: 0.4,otherLocations: [
                 "domRange":DOMRange(start: point).jsonValue,
                 "xianxiaContinuousAnchor":.integer(1),"xianxiaContinuousViewportOffset":.integer(-17)]),
-                text: .init(before: "修行",highlight: "🙂",after: "再问道"))
+                text: .init(after: "再问道",before: "修行",highlight: "🙂"))
         }
         let original = locator(byte: Int64(title.utf8.count),character: 2)
         let position = try TXTPositionCodec.encode(original,bookID: book.id,plan: prepared.plan)

@@ -1,0 +1,54 @@
+{
+  "recordedAtUTC": "2026-10-14T11:02:18.370788+00:00",
+  "run": 38552463402,
+  "sourceRevision": "97307de2292b33cafb1534fa4e3245a48b3296f7",
+  "conclusion": "failure",
+  "linuxCorePassed": 68,
+  "macOSCorePassed": 68,
+  "applicationCompiled": true,
+  "iOSTestsExecuted": false,
+  "testBundleCompiled": false,
+  "summary": {
+    "devicesAndConfigurations": [],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1791975544.113,
+    "passedTests": 0,
+    "result": "unknown",
+    "skippedTests": 0,
+    "startTime": 1791975448.202,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 0
+  },
+  "testExit": 65,
+  "releaseBuilt": false,
+  "IPACreated": false,
+  "error": "TXTReadingTests.swift:83 Locator.Text after argument must precede before",
+  "remediation": "Use exact locked3.11 public init(after:before:highlight:) order; assertions unchanged.",
+  "artifacts": [
+    {
+      "path": "build/ci/38552463402/full.log",
+      "sha256": "c00e56d6ed45d2d7f6481a315d080333a3193d92455763cd4f4e4bdd74164c1e"
+    },
+    {
+      "path": "build/ci/38552463402/run.json",
+      "sha256": "c2b36517b5b23439c9236870026bbd75bdb8f509dd2fb6c07f19c79a447e18a5"
+    },
+    {
+      "path": "build/ci/38552463402/core/core-tests.log",
+      "sha256": "eceb6545c7a34125d8d2ebec2a5f139b5b41e10001a4e518d38db466d0dcbc4b"
+    },
+    {
+      "path": "build/ci/38552463402/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "sha256": "74336e81553a9110cfa1788c44597354c6ba4cd43eb2d5a8206c891cae7eb20d"
+    },
+    {
+      "path": "build/ci/38552463402/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "sha256": "b78be275a4d579c8efe485ce43bd5eef9e08f1549582e8f23e84abf2b93622e1"
+    }
+  ]
+}

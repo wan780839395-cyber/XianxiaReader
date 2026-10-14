@@ -6,7 +6,11 @@
 
 ### TXT产品接入开始（覆盖下方上一切片的完成点）
 
-**当前真实验证：CI38552124765 / c454a6087a89875af5ac43f87dc36b8d8ff57cd9 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 源快照已正常push并dispatch，main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch或从旧60/41推断TXT通过；候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。
+**最新真实验证：CI38552463402 / 97307de2292b33cafb1534fa4e3245a48b3296f7 / codex/m2-txt-index，bootstrap=false，预期各68 Core/46 iOS/Build5设备Release。** 夹具修正快照已正常push并dispatch，main/原index保持原样。恢复先查此run/head/完整artifact，不重复dispatch或从旧60/41推断TXT通过；455候选来源hash与待验收门槛在M2_TXT_PRODUCT_VALIDATION_REPORT.json。上一轮38552124765/c454a60的真实夹具失败原件保留。
+
+已核实新Linux Core success及完整artifact build/ci/38552463402/core/core-tests.log：真实Swift/C编译、68项（原60+新8）全部通过，无源码warning/error匹配；Apple/iOS真实页面/Release尚未完成。新样书由项目原创文本生成UTF8/带BOM UTF16LE/GB18030三个小文件，纳入资源与候选hash；没有用户小说。
+
+38552463402真实结果已结束failure：Linux/macOS各68 Core通过，应用源码编译通过；iOS测试TXTReadingTests.swift:83的Locator.Text参数顺序错误（after须在before前）导致test bundle编译失败。summary total0/result unknown，不是46项通过；test exit65，Release/IPA未执行。完整full/run/日志/xcresult已下载。按锁定3.11的public init(after:before:highlight:)调整测试调用顺序，不改断言或产品源码；此修复待新完整CI。不要同源重试编译错误或把测试0条当成功。
 
 真实首轮已结束failure：Linux新Core成功编译，68项中testTXTImportPersistsOriginalEncodingTOCAndCacheAcrossRestart的标题数组失败。夹具正文独立行“尾声”正属于已有标题识别器的合法章节标题，实际4条与测试错误预期3条不符；iOS未开始、没有IPA。完整Core/full/run已下载build/ci/38552124765。修正夹具为普通叙述“山门的灯火仍在”，同时将真实页面测试“第二章原创终点”（也符合允许无空格的章标题）改为“原创故事终点”；保留识别规则和原3条/章标题/窗口恢复断言，不降低测试。此修复待新完整CI。
 
