@@ -26,7 +26,7 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 2026-10-14恢复结果：CI38530334549/d62af3b完整成功，Linux/macOS各14 Core、41/41 iOS、设备Release/Build4 IPA及测试包已核验，433个运行源码hash一致。用户随后确认连续功能/重开位置正常并授权按计划继续，现开始M2 Core切片。CI边界PNG证据不完整仍保留，未单独确认的其他设备细项/原书图像/性能继续记录，不扩写为完整矩阵。新阶段见下方M2及HANDOFF。
 
-历史Build3：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）各14 Core、31 iOS及设备Release成功，原创封面上下色带完整。它仅支持章内滚动与横向资源切换；连续候选的最新证据以上方Build4为准。完整M1待实际阅读和设备验收，不推进M2；详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
+历史Build3：[CI 38434939423](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38434939423)（源码0b30d539d7eb6d557d8b5e5e8efad600c4c4435b）各14 Core、31 iOS及设备Release成功，原创封面上下色带完整。它仅支持章内滚动与横向资源切换；连续候选的最新证据以上方Build4为准。该历史节点当时尚未完成设备验收；最新用户连续/重开反馈与当前M2断点以上方记录为准。详情Documentation/READER_VIEWPORT_FIX.md / DEVICE_ACCEPTANCE.md。
 
 - EPUB 2 NCX / EPUB 3 nav、nested TOC、图片、CSS、fragment 链接与脚注；损坏文件和 DRM 错误可解释。
 - Files 本地/iCloud 导入；取消、批次部分失败、后台/退出恢复不丢已提交书籍。
@@ -38,7 +38,7 @@ M0 放行证据必须包括：完整 build log、Core 测试结果、iOS tests `
 
 ## M2 识别回归
 
-2026-10-14用户确认Build4连续功能与重开位置正常，并授权按计划继续；结合M1完整CI构建/测试通过，M2 Core分章/有界读取第一切片现已通过38538141364/0643093的完整验证：attempt2各33 Core、41 iOS及设备Release。首轮旧EPUB冷启动超时原文保留，原因未确认；不把同源重试通过写成已修复。TXT入口与编码/缓存仍未集成，详见TXT_INDEX_DESIGN.md。M1未逐项确认的设备细项保持独立记录；M3完整书库、M4排版/主题顺序不变。
+2026-10-14用户确认Build4连续功能与重开位置正常，并授权按计划继续；结合M1完整CI构建/测试通过，M2 Core分章/有界读取第一切片现已通过38538141364/0643093的完整验证：attempt2各33 Core、41 iOS及设备Release。首轮旧EPUB冷启动超时原文保留，原因未确认；不把同源重试通过写成已修复。随后编码/cache第二Core切片已通过CI38547339868/65c1b8d：各60 Core、41 iOS及设备Release；首轮Apple iconv失败保留，更换公开SDK CoreFoundation后原/扩展向量通过。TXT产品导入/阅读/位置仍未接入，设备TXT尚未验收，详见TXT_INDEX_DESIGN.md。M1未逐项确认的设备细项保持独立记录；M3完整书库、M4排版/主题顺序不变。
 
 必须覆盖 `第一章`、`第一百二十三章`、`第123章`、`第 123 章`、`第一卷`、`卷一`、`正文 第一章`、`Chapter 1`；还需超长章节名、空行/BOM/CRLF、分隔符、跨 chunk、正文中的同样短语、无章节等反例。
 

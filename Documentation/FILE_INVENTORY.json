@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T09:54:47.648835+00:00",
+  "recordedAtUTC": "2026-10-14T10:23:26.174915+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 530,
+  "fileCount": 534,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 16164,
-      "sha256": "5a9435a348fb7e4f7f20029008dec5a3b7d7cf1429f71dfcb25347751c0cea13"
+      "bytes": 16565,
+      "sha256": "ec5f4591637627b6a776fee98cbd78ae0f58ecedf20b7d4aa50c0ade92c69dcf"
     },
     {
       "path": "App/AppRootView.swift",
@@ -155,8 +155,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 3174,
-      "sha256": "3db4548521fac6032f204b6eaa0a8c7800b55d1f5f0b4f632d35671d68260029"
+      "bytes": 3443,
+      "sha256": "80b7b8bea7743cb650c6de0bc24c35cadfb01fe82f7cd3f2eadbf4e17094b461"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -226,7 +226,12 @@
     {
       "path": "Documentation/M2_TXT_NORMALIZATION_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "3d727354d2a84af3e735b5d14d160b2a6bd792cabdaada8149323c1a297bcb34"
+      "sha256": "bf995c6eca445dbf9aa9c564ee30f826793846e75b3be01fb1dae9b36da09217"
+    },
+    {
+      "path": "Documentation/M2_TXT_NORMALIZATION_VALIDATION_REPORT.json",
+      "bytes": 95960,
+      "sha256": "f3f1fb9080c4258992d0e425bcb6fe01a56be36972817535b18e9b1ac815bd94"
     },
     {
       "path": "Documentation/M2_TXT_STATIC_REPORT.json",
@@ -255,8 +260,8 @@
     },
     {
       "path": "Documentation/TXT_INDEX_DESIGN.md",
-      "bytes": 7624,
-      "sha256": "437454f350b3ee539af53c5795174291edf8dbb3a729e6dcfe6372aaf709efd8"
+      "bytes": 8774,
+      "sha256": "772294fccacc1774f2153bf8d3b07742772cce95229a9f16bc5d53c8574c7422"
     },
     {
       "path": "Documentation/VALIDATION.md",
@@ -464,6 +469,16 @@
       "sha256": "85b82d193802cf895e9f034b2732b259358107fa8a002e6de12bf03916d6a655"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-txt-normalization-apple-iconv-failure.json",
+      "bytes": 1545,
+      "sha256": "bf0940ba4411c6e9f668aa88624eea9a67b3a6a1867414be7e43aecfac98cf43"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m2-txt-normalization-cache-success.json",
+      "bytes": 5863,
+      "sha256": "e5c7ecd30a542675aaa171f5114bf7c72b8a003c8d49665b1161a48014b458de"
+    },
+    {
       "path": "Documentation/ValidationLogs/publication-audit-2026-10-14.json",
       "bytes": 831,
       "sha256": "af65c958376cdc5c0d90e2a93417c17717492e2034e8eecf2736a3a3f1bfc202"
@@ -495,8 +510,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 8725,
-      "sha256": "4095270a2651aa0bf8881b9ac83a1e99e0228e6de6b255be6bf28af69889bc8f"
+      "bytes": 6714,
+      "sha256": "c29502199d0d9369db42f4d1c77f9b0173904812704a9b5c4826736c63be0a23"
     },
     {
       "path": "HANDOFF_M1_CONTINUOUS_HISTORY_2026-10-14.md",
@@ -514,9 +529,14 @@
       "sha256": "6ae4a56f79126eefffbdcd4c527854aee7cd172e963b2cd1fb34ab868ff0e49f"
     },
     {
+      "path": "HANDOFF_M2_CORE_HISTORY_2026-10-14.md",
+      "bytes": 11429,
+      "sha256": "a775b938be8da0fd794e3bc7760a022ea437e5982cfc49f5752b95ac999915de"
+    },
+    {
       "path": "PROJECT_STATUS.md",
-      "bytes": 9475,
-      "sha256": "858117bfe9d18aca3f96fbb0c7f1c3dadd0eb34f4207da12a688bfc64b7614e0"
+      "bytes": 9972,
+      "sha256": "0b72681fa4a876ee1cbad22137583e4a16127cf7620cc940817346b2a989223c"
     },
     {
       "path": "Package.resolved",
@@ -525,8 +545,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Package.swift",
-      "bytes": 950,
-      "sha256": "5327bb7881adc378b59bc4c60d63df7d570196ea1136d7e305e485cff78fd030"
+      "bytes": 970,
+      "sha256": "8a8adff1327dcd05f14303aa9063517f07cf31ea53bcda8a668134ef93b5a76a"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
@@ -540,8 +560,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
-      "bytes": 1161,
-      "sha256": "049b5197cc7774651af8970f2cfbb0093c57ec9f9bc029bf82cf20e4768ccbdc"
+      "bytes": 3502,
+      "sha256": "447c438ed7dfca99893c2a3a86e920daf9a79774db8f8e574e224f763b288eb6"
     },
     {
       "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
@@ -630,8 +650,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
-      "bytes": 11345,
-      "sha256": "2d6b8ee57f37e75d89b54701a09d31c2032fedf9891ac55a1d7d9ea8fb966b92"
+      "bytes": 11359,
+      "sha256": "749e617c4283dee493dea0d4dbc8ef37bce7e040fc2919f6f47e88a64de933b1"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
@@ -660,8 +680,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
-      "bytes": 11878,
-      "sha256": "1dba8f25401a1eef080298080d44931a7aa296ad3525887a79f14de5ef629baf"
+      "bytes": 12572,
+      "sha256": "d3519c4e188bb9aa4350133f86c5fcc94237bc7d00e1cc4dda8760e54b9413fd"
     },
     {
       "path": "Packages/XianxiaReading/Package.swift",
@@ -710,13 +730,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 11173,
-      "sha256": "63d91d5b2f29cc621b4c7da895e2b8049a8e5e31b065a81833bdffbdbdb8489f"
+      "bytes": 11505,
+      "sha256": "ace4e48c4b528c80864de2caf459a5eb10eb3461f299cd33ec138fb40cd5d06a"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 6440,
-      "sha256": "4dc404270ce15f295f6461fa9f2fe1a57a46b48b85275072c232c97eeec80566"
+      "bytes": 6728,
+      "sha256": "5426c99e36a515e9aa547deeda9f1211af4e52fab5c6f4ca07ee6fd0002df540"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

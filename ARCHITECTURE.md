@@ -29,7 +29,7 @@ Packages/
       Models/          Book、Chapter、ReadingPosition、Bookmark
       Database/        repository、连接、版本化 SQL migration
       Import/          文件暂存、提交、回滚、恢复
-      TXT/             M2 独立标题识别、UTF-8流式扫描与窗口读取；导入/转码/cache待集成
+      TXT/             M2标题识别/有界窗口/严格正规化/摘要cache；产品导入阅读待集成
     Tests/
   XianxiaReading/
     Sources/ReadingInterfaces/
@@ -87,7 +87,7 @@ Build3的官方Readium3.11 `scroll` 仅章内滚动。Build4连续候选通过 `
 
 模式转换先异步取得实际DOM锚点，request ID/Task取消与Navigator identity防止迟到切换作用于新session。Readium的isSpreadLoaded早于延迟初始定位/decoration完成，因此增加显式完整初始化等待，clear也恢复等待者；原生go期间暂缓容器覆盖inner offset。go后读取DOM scrollY作为实际坐标，显式目录/搜索/书签定位原子提交外层offset，普通拖动/惯性与按屏滚动保留原路径。所有修复以完整CI为准，不能仅凭可见DOM就把位置恢复写成验收通过。
 
-显式跳转通过同一次JS执行原Readium定位并读取scrollY；位置保存则原子读取Locator/documentY/documentTop，发生DOM与原生视口不一致时最多采样3次，每次都核对epoch/revision/当前slot，不无限等待。原生didFinish公开WK探针启动同一完整初始化管线，避免后台rAF加载桥暂停；回收取消任务并解除等待链。已通过41项iOS自动验证，完整M1仍待页面/设备验收。用户要求卡点参考成熟实现，已审阅epub.js/Foliate/Readium连续方案；具体适用范围与保持原架构的取舍见 `Documentation/MATURE_READER_REFERENCES.md`。
+显式跳转通过同一次JS执行原Readium定位并读取scrollY；位置保存则原子读取Locator/documentY/documentTop，发生DOM与原生视口不一致时最多采样3次，每次都核对epoch/revision/当前slot，不无限等待。原生didFinish公开WK探针启动同一完整初始化管线，避免后台rAF加载桥暂停；回收取消任务并解除等待链。已通过41项iOS自动验证，用户确认连续功能/重开位置正常；未单独报告的其他页面/设备项目仍待验收。用户要求卡点参考成熟实现，已审阅epub.js/Foliate/Readium连续方案；具体适用范围与保持原架构的取舍见 `Documentation/MATURE_READER_REFERENCES.md`。
 
 回收章节的clear还必须断开spread、WKNavigationDelegate/WKUIDelegate和内层scroll delegate；已clear的WebKit进程终止以及取消加载完成回调不能要求当前Navigator重载。公开后首次CI38511938460为37/39，历史失败已保留；迟到termination真实窗口回归及全部41项在38530334549通过，不能据此把每一处旧失败都归为同一原因。
 
@@ -113,9 +113,9 @@ TOC 导入时持久化，打开目录只读取现有数组。EPUB TOC 可能含�
 
 ## TXT 实现边界（M2）
 
-第二切片待编译：业务仍为Foundation/SQLite，与Readium/UI隔离。GB18030通过包内CTextCodec的公开系统iconv转换，Apple仅链接SDK libiconv，Linux复用glibc，不新增远程依赖或Homebrew路径。UTF8/UTF16采用严格增量校验/解码，SHA256用于内容cache身份；具体系统codec版本、已知向量和有限缓冲回归见TXT_INDEX_DESIGN.md，不能把未编译代码标成已验收。
+第二切片已过完整CI38547339868/65c1b8d：各60 Core、41 iOS与设备Release。业务仍为Foundation/SQLite，与Readium/UI隔离。GB18030内部CTextCodec：Apple使用公开SDK CoreFoundation（GB_18030_2000/lossByte=0），Linux用glibc iconv，无新远程依赖/Homebrew路径。Apple系统iconv首轮实际四字节回归失败原件保留，更换接口后原断言及扩展向量全部通过。UTF8/UTF16严格增量校验/解码，SHA256绑定原/normalized/目录身份；cache generation原子manifest只存校验过的相对路径。平台codec ID用于缓存失效，复用仍流式核验摘要；产品TXT导入/阅读与iOS实际TXT运行尚未接入。细节见TXT_INDEX_DESIGN.md。
 
-第一切片新增 `TXTChapterHeadingRecognizer`、`TXTUTF8ChapterScanner`与`TXTChapterWindowReader`；在Core actor扫描已规范化UTF-8正文，严格跨块校验、CRLF/BOM/长行处理，返回卷分组与叶子Int64/end-exclusive范围，按不越章的有界窗口读取。已过CI38538141364/0643093（attempt2各33 Core、41 iOS、设备Release）；已有`TXTIndexing`完整转码/导入/cache facade仍待集成，不能将Core组件写成产品已能导入TXT。
+第一切片新增 `TXTChapterHeadingRecognizer`、`TXTUTF8ChapterScanner`与`TXTChapterWindowReader`；在Core actor扫描已规范化UTF-8正文，严格跨块校验、CRLF/BOM/长行处理，返回卷分组与叶子Int64/end-exclusive范围，按不越章的有界窗口读取。已过CI38538141364/0643093（attempt2各33 Core、41 iOS、设备Release）；`StreamingTXTIndexer`已实现正规化+索引facade，`TXTIndexCache`已实现cache；产品导入/阅读仍待集成，不能将Core组件写成产品已能导入TXT。
 
 实现独立于UI，后续后台流式转码必须处理UTF-16/GB18030边界，将正文标准化为UTF-8旁路文件并保留原件；阅读只加载当前/相邻窗口，不能将整本String发布到UI。卷不重复正文范围；卷标题与卷序文字保留在叶子范围，不丢失未识别前言。标题ID以同bookID/字节位置稳定生成，内容改变须cache失效，不能跨不同正文复用位置。
 
