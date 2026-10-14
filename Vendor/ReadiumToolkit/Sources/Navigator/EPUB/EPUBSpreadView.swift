@@ -590,7 +590,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         return (try result.get() as? NSNumber).map { CGFloat($0.doubleValue) }
     }
 
-    func findFirstVisibleElementLocator(visibleTop: CGFloat, visibleBottom: CGFloat) async -> Locator? {
+    func continuousVisibleAnchorSnapshot(visibleTop: CGFloat, visibleBottom: CGFloat) async
+        -> (locator: Locator, documentY: CGFloat, documentTop: CGFloat)?
+    {
         let script = """
         (() => {
           const top = \(visibleTop), bottom = \(visibleBottom);
@@ -642,14 +644,22 @@ class EPUBSpreadView: UIView, Loggable, PageView {
           const locator = {href:'#',type:'application/xhtml+xml',locations,text};
           const rect = (\(Self.continuousAnchorRectFunction))(locator);
           if (rect) locations.xianxiaViewportOffset = rect.top - top;
-          return locator;
+          return rect ? {locator, documentY:rect.top + scrollY, documentTop:scrollY + top} : null;
         })()
         """
         let result = await evaluateScript(script)
         do {
-            guard let json = try JSONValue(result.get()), let locator = try Locator(json: json) else { return nil }
-            return locator.copy(href: spread.first.link.url(), mediaType: spread.first.link.mediaType ?? .xhtml)
+            guard let snapshot = try result.get() as? [String: Any],
+                  let y = snapshot["documentY"] as? NSNumber, y.doubleValue.isFinite,
+                  let top = snapshot["documentTop"] as? NSNumber, top.doubleValue.isFinite,
+                  let json = JSONValue(snapshot["locator"]), let locator = try Locator(json: json) else { return nil }
+            return (locator.copy(href: spread.first.link.url(), mediaType: spread.first.link.mediaType ?? .xhtml),
+                    CGFloat(y.doubleValue), CGFloat(top.doubleValue))
         } catch { log(.error, error); return nil }
+    }
+
+    func findFirstVisibleElementLocator(visibleTop: CGFloat, visibleBottom: CGFloat) async -> Locator? {
+        await continuousVisibleAnchorSnapshot(visibleTop: visibleTop, visibleBottom: visibleBottom)?.locator
     }
 
     func findFirstVisibleElementLocator() async -> Locator? {

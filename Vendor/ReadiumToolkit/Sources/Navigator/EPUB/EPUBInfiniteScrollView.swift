@@ -473,27 +473,31 @@ import UIKit
             slot.anchorDiagnostic = "cached local=\(localTop) revision=\(revision)"
             return anchor
         }
-        let anchor = await slot.view.findFirstVisibleElementLocator(visibleTop: clipTop, visibleBottom: clipBottom)
-        guard epoch == request, currentIndex == index, slots[index] === slot else { return nil }
-        if let anchor, anchor.locations.cssSelector != nil {
-            do {
-                let documentY = try await slot.view.continuousAnchorDocumentY(anchor)
-                guard epoch == request, currentIndex == index, slots[index] === slot, viewportRevision == revision,
-                      !slot.positioning, abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
-                // The DOM caret and its document coordinate are obtained in
-                // separate WebKit callbacks. Reject a snapshot from before
-                // the inner document caught up with the outer viewport.
-                slot.anchorDiagnostic = "candidate documentY=\(String(describing: documentY)) offset=\(String(describing: anchor.locations.otherLocations["xianxiaViewportOffset"]?.double)) local=\(localTop) revision=\(revision)"
-                guard let documentY,
-                      let offset = anchor.locations.otherLocations["xianxiaViewportOffset"]?.double,
-                      abs(documentY - CGFloat(offset) - max(0, localTop)) < 1 else { return nil }
-                slot.anchorRevision = revision
-                slot.anchorViewportTop = localTop
-                slot.savedAnchor = anchor
-                slot.anchorDocumentY = documentY
-                slot.anchorDiagnostic += " accepted"
-            } catch { boundaryLabel.text = error.localizedDescription }
+        // Native UIScrollView can publish its new offset before WebKit has
+        // committed the same document viewport. Collect all DOM values in
+        // one callback and retry only this mismatch, for at most 3 samples.
+        for attempt in 0..<3 {
+            let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom)
+            guard !Task.isCancelled, epoch == request, currentIndex == index, slots[index] === slot,
+                  viewportRevision == revision, !slot.positioning,
+                  abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
+            guard let snapshot else { return nil }
+            slot.anchorDiagnostic = "sample=\(attempt) documentY=\(snapshot.documentY) documentTop=\(snapshot.documentTop) local=\(localTop) revision=\(revision)"
+            if abs(snapshot.documentTop - max(0, localTop)) >= 1 {
+                if attempt < 2 {
+                    do { try await Task.sleep(nanoseconds: 32_000_000) }
+                    catch is CancellationError { return nil }
+                    catch { boundaryLabel.text = error.localizedDescription; return nil }
+                }
+                continue
+            }
+            slot.anchorRevision = revision
+            slot.anchorViewportTop = localTop
+            slot.savedAnchor = snapshot.locator
+            slot.anchorDocumentY = snapshot.documentY
+            slot.anchorDiagnostic += " accepted"
+            return snapshot.locator
         }
-        return anchor
+        return nil
     }
 }

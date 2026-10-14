@@ -1,0 +1,68 @@
+{
+  "run": 38528382505,
+  "sourceRevision": "2590801d2d60314728ab8f9062dc33b5e661a4c1",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 40,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1791963561.528,
+    "passedTests": 40,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1791963109.738,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testContinuousLongParagraphRestoresCharacterAndViewportOffset():344",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 22,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+        "testName": "testContinuousLongParagraphRestoresCharacterAndViewportOffset()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "53% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 23.13s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 41
+  },
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": false,
+  "ipaProduced": false,
+  "currentParentLocal": 2367,
+  "currentCaretOffsets": [
+    499,
+    506,
+    513
+  ],
+  "rejectedOldDocumentOrigin": 1767,
+  "pendingFix": "Atomic DOM snapshot and bounded32ms resample"
+}
