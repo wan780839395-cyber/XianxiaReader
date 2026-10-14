@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-14T13:06:17.972451+00:00",
+  "recordedAtUTC": "2026-10-14T13:28:36.159649+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 565,
+  "fileCount": 570,
   "files": [
     {
       "path": ".gitattributes",
@@ -40,13 +40,13 @@
     },
     {
       "path": "App/Import/DocumentImportSheet.swift",
-      "bytes": 525,
-      "sha256": "0be9c086fffac8f4ceb85ff0629ad405c018d6e71da4eb73715a25c635bb3816"
+      "bytes": 745,
+      "sha256": "08c618e2df964b765d4b27c8e89357622ad82dc9956656bebd8972475d497fde"
     },
     {
       "path": "App/Import/EPUBDocumentPicker.swift",
-      "bytes": 1961,
-      "sha256": "77e5a91594a3fbee894dffbe5377fbb12a7f9ddebb4c8193dc870bbcc5002a1f"
+      "bytes": 2545,
+      "sha256": "db32912ddcfba61828de72e171d621ef52429262be0b20afdf0435d3f68fae33"
     },
     {
       "path": "App/Import/EPUBImportService.swift",
@@ -60,13 +60,18 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 6917,
-      "sha256": "2a24e2c0d39ae8deb2a51db519c780be6a7f32f4da6d7c1228417bb704f975aa"
+      "bytes": 6200,
+      "sha256": "c88f797865c7c4e026cd1cefd542de91c806d153ecaee70498c472a4d43933da"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
-      "bytes": 4881,
-      "sha256": "d31445616335928fbea6a85053c898cfc2fb40baaf1d29dde7730380ed744d19"
+      "bytes": 5299,
+      "sha256": "a39940b22074f4626e776117bab9533b10ed8689fa5f84591e692a3b4f41c56a"
+    },
+    {
+      "path": "App/Library/TXTEncodingSheet.swift",
+      "bytes": 1355,
+      "sha256": "a35508a31f04edaec18a5c30bd9d40facecb59573c47488449bfb30c9173f1f8"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -179,6 +184,11 @@
       "sha256": "4843774b1335cadb3d942541a58d3f15b84d0251bab0df3001c9441192eb23eb"
     },
     {
+      "path": "Documentation/IMPORT_DELEGATE_FIX.md",
+      "bytes": 4241,
+      "sha256": "180ebd973ee1fac461d270e7a237d1924364e425ad7f5008de4de016e37da90d"
+    },
+    {
       "path": "Documentation/IMPORT_FIX.md",
       "bytes": 3669,
       "sha256": "3e1263fda69a873e39ce06f8b897d1387ddd76d6efe6cf60a7a109f110e51a26"
@@ -227,6 +237,16 @@
       "path": "Documentation/M1_SEARCH_VALIDATION_REPORT.json",
       "bytes": 15567,
       "sha256": "ab5ff1f72b7d1a2d73626635f52b63237a6d56d1e5fa3f6023bcc54ef3b8ce30"
+    },
+    {
+      "path": "Documentation/M2_IMPORT_DELEGATE_STATIC_REPORT.json",
+      "bytes": 434,
+      "sha256": "2557d1a6bcdc188a5eb5ac1b70f613e215a54e01449aa296fa9f09984243840b"
+    },
+    {
+      "path": "Documentation/M2_IMPORT_DELEGATE_VALIDATION_REPORT.json",
+      "bytes": 86136,
+      "sha256": "ad5bb5ec3111e8f177553f683c55dc7e204da613bc42ae36ab0d3609bd55e26d"
     },
     {
       "path": "Documentation/M2_IMPORT_HANDOFF_STATIC_REPORT.json",
@@ -494,6 +514,11 @@
       "sha256": "327d8bcac3ff6f5f4bd2853818870ee5c1ca4bc57a7eedef4644a4c9aaa3c03a"
     },
     {
+      "path": "Documentation/ValidationLogs/m2-import-build6-device-feedback.json",
+      "bytes": 904,
+      "sha256": "0aab6dd2c8fdefac5b872b91daaab8f83fe3e1f979e793cae123bf24aaab552a"
+    },
+    {
       "path": "Documentation/ValidationLogs/m2-import-build6-native-sheet-lifetime-failure.json",
       "bytes": 3127,
       "sha256": "0ec410245eddb114f9f10cc25c7fcc57b128d947c700c352e005e4540516cbf9"
@@ -605,8 +630,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6854,
-      "sha256": "34cf818babc31fe7a4baf317b073d1e8c6fe6e3c56b97b9c554050fc2bb7e405"
+      "bytes": 10148,
+      "sha256": "d0c489965fd3d3bf6218a21b984854c3cbcd07f14a208dbe1c72e50041105c22"
     },
     {
       "path": "HANDOFF_IMPORT_HISTORY_2026-10-14.md",
@@ -640,8 +665,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 12307,
-      "sha256": "612d547c7b3c3a6abfbbabef60a8d1bf667c78607c8a8504f56dc0c5a73cec70"
+      "bytes": 12804,
+      "sha256": "39bf9d214da5fa13f475b81ffcfeacf6456f6ce879be35c7a2865b92443ca62a"
     },
     {
       "path": "Package.resolved",
@@ -910,8 +935,8 @@
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
-      "bytes": 13106,
-      "sha256": "d27402c7f9ca0bf83732de76417306f6ef0d3465df9747a2a9a3d835673dd669"
+      "bytes": 23142,
+      "sha256": "2476c8d7745b8e8095bb9a99fb70b546ec497e7f47718854f2eaaa9094fd45ad"
     },
     {
       "path": "Tests/iOS/EPUBIntegrationTests.swift",
@@ -2736,7 +2761,7 @@
     {
       "path": "project.yml",
       "bytes": 1994,
-      "sha256": "0755a143728d6feabf866c6e4f1d26298b9eed916e99b5139ef125299f3656e0"
+      "sha256": "3e735b4cc147404ec15ba1f63f7146a187fc1119733bf3ec26b54569ca0198de"
     },
     {
       "path": "scripts/check_repository.py",

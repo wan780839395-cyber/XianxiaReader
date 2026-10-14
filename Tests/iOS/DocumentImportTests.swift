@@ -220,6 +220,62 @@ final class DocumentImportTests: XCTestCase {
         }
     }
 
+    @MainActor func testShelfOwnsPickerDelegateUntilTerminalEventWithoutRetainCycle() async throws {
+        let (root, _, model) = try context()
+        let url = root.appendingPathComponent("延迟回调.txt")
+        try Data("第一章 起点\n选择器销毁后的交接。".utf8).write(to: url)
+        let picker = EPUBDocumentPicker.makePicker()
+        weak var weakDelegate: EPUBDocumentPicker.Coordinator?
+        do {
+            let wrapper = EPUBDocumentPicker(
+                onCompletion: { [weak model] result in model?.receivePickedDocuments(result) },
+                onCoordinatorCreated: { [weak model] coordinator in model?.retainPickerCoordinator(coordinator) }
+            )
+            let coordinator = wrapper.makeCoordinator()
+            weakDelegate = coordinator
+            picker.delegate = coordinator
+        }
+        // The wrapper/context owner is now gone; UIKit itself keeps only a
+        // weak delegate. The shelf must keep the first callback deliverable.
+        XCTAssertNotNil(weakDelegate)
+        XCTAssertNotNil(picker.delegate)
+        let stale = try XCTUnwrap(weakDelegate)
+        do {
+            let replacement = EPUBDocumentPicker(
+                onCompletion: { [weak model] result in model?.receivePickedDocuments(result) },
+                onCoordinatorCreated: { [weak model] coordinator in model?.retainPickerCoordinator(coordinator) }
+            ).makeCoordinator()
+            weakDelegate = replacement
+            picker.delegate = replacement
+        }
+        stale.documentPicker(picker, didPickDocumentsAt: [url])
+        XCTAssertTrue(model.books.isEmpty)
+        XCTAssertFalse(model.isImporting, "A replaced coordinator must not start a late import")
+        weakDelegate?.documentPicker(picker, didPickDocumentsAt: [url])
+        XCTAssertNil(weakDelegate, "Terminal delivery must release the shelf's delegate owner")
+        try await waitFor("delegate survives context teardown") { model.books.count == 1 && !model.isImporting }
+        XCTAssertNil(model.errorMessage)
+    }
+
+    @MainActor func testFirstPickerCallbackAfterFullLibraryDismissalStillImports() async throws {
+        let (root, services, model) = try context()
+        let url = root.appendingPathComponent("关闭后回调.txt")
+        try Data("第一章 起点\n系统先关闭选择器也不能丢选中的书。".utf8).write(to: url)
+        let (window, presentation) = try mountPicker(services: services, model: model)
+        let picker = try await presentPicker(window: window, presentation: presentation)
+        weak var callback = picker.delegate as? EPUBDocumentPicker.Coordinator
+        model.presentedSheet = nil
+        try await waitForDismissal(window: window, picker: picker)
+        XCTAssertNotNil(callback, "The real coordinator must outlive the dismissed representable")
+        // No strong local delegate and no onDismiss import path.
+        callback?.documentPicker(picker, didPickDocumentsAt: [url])
+        try await waitFor("first selection delivered after dismissal") { model.books.count == 1 && !model.isImporting }
+        XCTAssertNil(model.errorMessage)
+        XCTAssertEqual(model.importStatus, "已导入 1 本书")
+        let stored = try await services.repository.books()
+        XCTAssertEqual(stored.count, 1)
+    }
+
     @MainActor func testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry() async throws {
         let (root, services, model) = try context()
         let bad = root.appendingPathComponent("unsupported.pdf")

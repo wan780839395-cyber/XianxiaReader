@@ -8,7 +8,10 @@ import SwiftUI
         content.sheet(item: $model.presentedSheet) { sheet in
             switch sheet {
             case .importFiles:
-                EPUBDocumentPicker(onCompletion: model.receivePickedDocuments)
+                EPUBDocumentPicker(
+                    onCompletion: { [weak model] result in model?.receivePickedDocuments(result) },
+                    onCoordinatorCreated: { [weak model] coordinator in model?.retainPickerCoordinator(coordinator) }
+                )
             case .txtEncoding:
                 TXTEncodingSheet(model: model)
             }

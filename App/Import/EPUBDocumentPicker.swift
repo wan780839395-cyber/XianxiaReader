@@ -7,8 +7,13 @@ import UniformTypeIdentifiers
 /// publication after selection, rather than excluding them with a narrow UTI filter.
 @MainActor struct EPUBDocumentPicker: UIViewControllerRepresentable {
     let onCompletion: (Result<[URL], Error>?) -> Void
+    var onCoordinatorCreated: ((Coordinator) -> Void)? = nil
 
-    func makeCoordinator() -> Coordinator { Coordinator(onCompletion: onCompletion) }
+    func makeCoordinator() -> Coordinator {
+        let coordinator = Coordinator(onCompletion: onCompletion)
+        onCoordinatorCreated?(coordinator)
+        return coordinator
+    }
 
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         let picker = Self.makePicker()
@@ -32,6 +37,8 @@ import UniformTypeIdentifiers
         init(onCompletion: @escaping (Result<[URL], Error>?) -> Void) {
             self.onCompletion = onCompletion
         }
+
+        func invalidate() { completed = true }
 
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             deliver(urls)

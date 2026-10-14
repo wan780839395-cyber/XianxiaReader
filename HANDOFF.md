@@ -8,6 +8,10 @@
 
 新源码已写入但待编译：LibraryViewModel.receivePickedDocuments直接触发导入/错误，不再排队等onDismiss；LibrarySheet统一文件/编码为单个item sheet，完整LibraryView错误改为持续书架提示（可关闭），避免picker关闭时再争抢alert。TXTEncodingSheet仅提取原编码页面；保留asCopy/NSFileCoordinator/DB/原件/Readium原路径。Coordinator按官方Readium3.11样例补单URL公共delegate，和数组/取消共用终止过滤。Build7。原3个sheet回归现在全部挂载完整生产LibraryView（空/非空书架、reader cover、编码、反馈），新增4项：无任何dismiss事件也要导入、冷首次无效文件与提示/重试、已有书库+编码弹窗往返、单URL/重复数组/取消。保留原断言/15秒deadline/关闭transition；首次成功/错误导出真实书架截图。即将Windows381 grammar/14 tooling及完整CI，各68Core/iOS53/Build7Release均待执行；不是已修复设备根因。
 
+候选5020bca0406fa9823db6e270563f283df74739c9 / CI38570937418 / codex/import-first-selection / bootstrap=false已真实启动。Windows381语法新增0/pristine54、14 tooling通过；非Swift编译。M2_IMPORT_DELEGATE_VALIDATION_REPORT.json记录457运行hash/旧Build4、5、6六个包hash，尚无通过门槛。维护inventory初次写入遇到OSError errno22，原tool输出保留，随后同一脚本重试成功569条；候选中inventory为前一快照，后续文档快照纳入新清单，不假定初次写入成功。忽略缓存验证helper生成也曾字符串替换断言失败（尚未写出/执行），已修正重叠替换并py_compile后成功记录；不是Swift/CI/产品失败。源码/原index/main均保留。
+
+随后核实Apple当前公开声明UIDocumentPicker.delegate为weak；原测试的let delegate强引用会掩盖representable关闭后delegate丢失。工作区进一步将Coordinator由LibraryViewModel强持有至终止回调（completion弱捕获model无环），新presentation替换时invalidate旧Coordinator，结果消费后释放。新增2项：wrapper/context离开作用域后仅shelf持有delegate，替换后的迟到事件被拒绝且终止后释放；完整LibraryView先关闭picker、仅弱delegate后到仍首次导入。新总计各68Core/iOS55/Build7，381语法通过但尚未编译。运行中的38570937418仍是不可变5020bca/53项前一候选，不能当最新工作区结果。新CI将使用独立ref避免取消旧验证；checkpoint后开始。
+
 **首次文件导入交接已改为参考模型保存并通过Build6完整自动CI；用户iOS16.6.1首次选择仍待实测确认。完整M2设备/长书未完成，不提前进入M3/M4。** 用户反馈为“选择器关闭了，但书架没有新书，也没有提示”，TXT正常可导入但首次不生效，EPUB此前同样发生。不是把后端直接导入通过当成整个File Provider流程已验收。
 
 最新CI38566503849 / 已测运行源码5522489906224a089c91e92180bdcebbe9be2095 / codex/import-first-selection / bootstrap=false，所有job success。Linux/macOS各68 Core、iOS49/49、0 failed/skipped，新增3个真实SwiftUI/UIDocumentPicker交接回归全部通过；test/附件/summary退出码0，设备Release CODE_SIGNING_ALLOWED=NO和Build6 IPA通过。完整run/full/Core/Apple日志、原始xcresult及ReaderSnapshots位于build/ci/38566503849，456个运行Git blob SHA与工作区源码一致，根/下载/workspace锁文件逐字节一致。源码Swift/C warning/error=0，AppIntents/WebKit诊断仍原样保留。Windows380 grammar新增0/pristine54限制保留、14 Python tooling通过，语法不是编译。

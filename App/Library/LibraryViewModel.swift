@@ -18,6 +18,7 @@ enum LibrarySheet: String, Identifiable {
     @Published var presentedSheet: LibrarySheet?
     @Published private(set) var retryTXTFiles: [URL] = []
     private var importTask: Task<Void,Never>?
+    private var pickerCoordinator: EPUBDocumentPicker.Coordinator?
     private let services: AppServices
     private let importer: EPUBImportService
 
@@ -36,12 +37,21 @@ enum LibrarySheet: String, Identifiable {
         // UIKit has already delivered the import-mode local copy. Start from
         // that event, as Readium's TestApp does, even if SwiftUI omits onDismiss.
         // Feedback stays in the shelf instead of racing another presentation.
+        pickerCoordinator = nil
         presentedSheet = nil
         switch result {
         case .success(let urls): startImport(urls)
         case .failure(let error): errorMessage = error.localizedDescription
         case nil: break
         }
+    }
+
+    func retainPickerCoordinator(_ coordinator: EPUBDocumentPicker.Coordinator) {
+        // UIDocumentPicker.delegate is weak. Its terminal callback can arrive
+        // after SwiftUI dismantles the sheet, so the shelf owns the delegate
+        // until completion. The completion captures this model weakly.
+        pickerCoordinator?.invalidate()
+        pickerCoordinator = coordinator
     }
 
     func startImport(_ urls: [URL]) {

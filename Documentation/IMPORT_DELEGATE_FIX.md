@@ -12,6 +12,7 @@ Build6把结果从页面State移到LibraryViewModel，但仍要等sheet.onDismis
 - LibrarySheet作为唯一item sheet管理文件与原TXT编码页面，编码Form只提取到TXTEncodingSheet。保留reader cover/原设置值/编码重试路径。
 - 成功/错误/取消仍由原后台导入流程生成；错误持续显示在书架底部，可关闭/重试，避免picker关闭时另一个alert争抢呈现。菜单显示包内实际版本/Build，便于确认是否更新到本轮。
 - 按Readium3.11 TestApp同时支持数组和公共单URL delegate，统一一次终止过滤；取消/重复/迟到选择仍被拒绝。asCopy:true、data选择、security scope、NSFileCoordinator、文件/SQLite/Readium全部不改。
+- Apple公开[delegate声明](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller/delegate)是weak；shelf现在持有Coordinator到终止回调，completion弱捕获model避免环。新presentation替换时失效旧Coordinator，消费结果后释放，不依赖representable关闭后还活着。此前测试的强delegate局部变量不能证明这条生命周期正常。
 
 参考为锁定Readium3.11.0 / d82f44f4f05d87add9e22a8b75abbd61dce745dd的[LibraryViewController](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/TestApp/Sources/Library/LibraryViewController.swift)199-219行：选中文件delegate直接调用导入Task，同时实现两种回调。上轮只取其引用拥有者原则，本轮消除等待SwiftUI关闭的差异。Apple公开[UIDocumentPickerDelegate](https://developer.apple.com/documentation/uikit/uidocumentpickerdelegate)、[item sheet](https://developer.apple.com/documentation/swiftui/view/sheet(item:ondismiss:content:))及UIViewController transition合同支持本轮接口；不调用私有API，不换Readium版本。原始参考缓存已读，不直接照搬原位打开或窄类型过滤。
 
@@ -19,4 +20,6 @@ Build6把结果从页面State移到LibraryViewModel，但仍要等sheet.onDismis
 
 原3项回归现在直接挂载完整生产LibraryView（包括真实NavigationStack、空/非空书架、编码sheet、cover、反馈与refresh），保留原件bytes/SQLite唯一书籍/成功提示/取消/空选择/迟到断言及15秒deadline。新增4项：完全没有sheet/onDismiss事件也能导入TXT/EPUB；首次无效文件在完整书架报告并可再次选择；已有书库首次导入与编码弹窗往返；单URL/重复数组/取消只消费一次。导出真实首次TXT成功/首次错误书架快照。
 
-模拟器仍向实际delegate提供原创fixture URL，尚未自动点击系统Files选中云端文件，不能宣布已证明用户设备唯一根因。Windows381 grammar新增0/pristine54限制保留、14 tooling通过，非Swift编译。期望各68Core/iOS53/Build7设备Release，本轮尚未完成；确切源码/CI/完整结果另记M2_IMPORT_DELEGATE_VALIDATION_REPORT.json。M2设备/数十MB长书及M3/M4门槛不变。
+再新增2项生命周期回归：wrapper/context销毁后仅shelf持有delegate，旧Coordinator替换/迟到事件过滤且终止后释放；完整LibraryView先关闭picker，再只通过弱delegate送达第一次选择仍导入。后一项不强持有delegate来掩盖ARC生命周期。
+
+模拟器仍向实际delegate提供原创fixture URL，尚未自动点击系统Files选中云端文件，不能宣布已证明用户设备唯一根因。Windows381 grammar新增0/pristine54限制保留、14 tooling通过，非Swift编译。当前期望各68Core/iOS55/Build7设备Release，本轮尚未完成；前一5020bca/38570937418为53项候选，不覆盖新增生命周期。确切源码/CI/完整结果另记M2_IMPORT_DELEGATE_VALIDATION_REPORT.json。M2设备/数十MB长书及M3/M4门槛不变。
