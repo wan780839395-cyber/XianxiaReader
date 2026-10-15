@@ -8,11 +8,11 @@ import XianxiaCore
     @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     @State private var section = Section.appearance
     private enum Section: String, CaseIterable {
-        case appearance = "外观", layout = "排版"
+        case appearance = "外观", layout = "排版", interaction = "手感"
     }
     private var palette: ReaderPalette { ReaderPalette(theme: model.appearance.theme) }
     private var supportsText: Bool { model.engine?.appearanceProvider?.supportsTextAppearance == true }
-    private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
+    private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion || model.interaction.reduceMotion }
 
     private func binding<Value>(_ key: WritableKeyPath<ReadingAppearance, Value>) -> Binding<Value> {
         Binding(get: { model.appearance[keyPath: key] }, set: { value in
@@ -32,8 +32,9 @@ import XianxiaCore
                     .pickerStyle(.segmented).accessibilityIdentifier("reader.appearance.section")
                     preview
                     if section == .appearance { appearanceControls }
-                    else { layoutControls }
-                    if !supportsText {
+                    else if section == .layout { layoutControls }
+                    else { interactionControls }
+                    if !supportsText && section != .interaction {
                         Label("固定布局书籍保留原有页面，正文排版不可调整。", systemImage: "info.circle")
                             .font(.footnote).foregroundStyle(palette.secondaryText)
                     }
@@ -44,10 +45,19 @@ import XianxiaCore
                             Button("重试保存") { model.retryAppearanceSave() }.frame(minHeight: 44)
                         }.accessibilityIdentifier("reader.appearance.save-error")
                     }
+                    if let failure = model.interactionSaveFailure {
+                        ReaderSettingsCard(palette: palette) {
+                            Label(failure, systemImage: "exclamationmark.circle").font(.footnote).foregroundStyle(.red)
+                            Button("重试保存阅读手感") { model.retryInteractionSave() }.frame(minHeight: 44)
+                        }.accessibilityIdentifier("reader.interaction.save-error")
+                    }
                     VStack(spacing: 4) {
                         Text("设置自动保存，用于之后打开的书")
                             .font(.caption).foregroundStyle(palette.secondaryText)
-                        Button("恢复默认阅读设置") { model.setAppearance(ReadingAppearance()) }
+                        Button(section == .interaction ? "恢复默认阅读手感" : "恢复默认外观和排版") {
+                            if section == .interaction { model.setScrolling(false); model.setInteraction(ReadingInteraction()) }
+                            else { model.setAppearance(ReadingAppearance()) }
+                        }
                             .font(.footnote).frame(minHeight: 44)
                             .accessibilityIdentifier("reader.appearance.reset")
                     }.frame(maxWidth: .infinity)
@@ -60,7 +70,7 @@ import XianxiaCore
                     Button("完成") {
                         Task {
                             await model.saveNow()
-                            if model.appearanceSaveFailure == nil { dismiss() }
+                            if model.settingsSaveFailure == nil { dismiss() }
                         }
                     }
                     .font(.subheadline.weight(.medium)).frame(minHeight: 44)
@@ -71,6 +81,39 @@ import XianxiaCore
         .tint(palette.accent).foregroundStyle(palette.text)
         .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
         .presentationDetents([.large]).presentationDragIndicator(.visible)
+    }
+
+    private func interactionBinding(_ key: WritableKeyPath<ReadingInteraction, Bool>) -> Binding<Bool> {
+        Binding(get: { model.interaction[keyPath: key] }, set: { value in
+            var updated = model.interaction; updated[keyPath: key] = value
+            model.setInteraction(updated)
+        })
+    }
+
+    private var interactionControls: some View {
+        VStack(spacing: 20) {
+            ReaderSettingsCard(palette: palette) {
+                sectionTitle("阅读方式", symbol: "book")
+                Picker("阅读方式", selection: Binding(get: { model.scrolling }, set: { model.setScrolling($0) })) {
+                    Text("左右翻页").tag(false)
+                    Text("上下连续滚动").tag(true).disabled(model.engine?.supportsContinuousScrolling != true)
+                }.pickerStyle(.menu).accessibilityIdentifier("reader.interaction.mode")
+                Text("记住你的选择，下次打开书籍时沿用。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+            }
+            ReaderSettingsCard(palette: palette) {
+                sectionTitle("沉浸阅读", symbol: "hand.draw")
+                Toggle("滑动时收起菜单", isOn: interactionBinding(\.autoHideMenu))
+                    .accessibilityIdentifier("reader.interaction.auto-hide")
+                Text("轻点页面中央可以再次显示菜单。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+                Divider()
+                Toggle("减少阅读动效", isOn: interactionBinding(\.reduceMotion))
+                    .accessibilityIdentifier("reader.interaction.reduce-motion")
+                Text("减少点按翻页和菜单过渡；手指滑动保持跟手。始终遵循系统的减少动态效果设置。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+            }
+        }.disabled(model.engine?.interactionProvider == nil)
     }
 
     private var preview: some View {

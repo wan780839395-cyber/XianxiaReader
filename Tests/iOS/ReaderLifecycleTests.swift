@@ -6,12 +6,19 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
-    @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding {
+    @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding {
         let viewController = UIViewController()
         var currentPosition: ReadingPosition?
         var onPositionChanged: ((ReadingPosition) -> Void)?
         var onCenterTap: (() -> Void)?
         var onError: ((String) -> Void)?
+        var interactionProvider: (any ReaderInteractionProviding)? { self }
+        var onReadingGesture: (() -> Void)?
+        var interaction: ReadingInteraction?
+        var supportsContinuousScrolling = true
+        var continuous = false
+        func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
+        func setContinuousScrolling(_ enabled: Bool) { continuous = enabled }
         var closeCount = 0
         var appearanceProvider: (any ReaderAppearanceProviding)? { self }
         var supportsTextAppearance: Bool { true }
@@ -106,6 +113,62 @@ final class ReaderLifecycleTests: XCTestCase {
         let restored = try await services.files.readingAppearance()
         XCTAssertEqual(restored.theme, .oled); XCTAssertEqual(restored.fontScale, 1.4)
         XCTAssertNil(model.appearanceSaveFailure)
+        model.close()
+    }
+
+    @MainActor func testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose() async throws {
+        let (_, services, engine, model) = try await context()
+        var saved = ReadingInteraction(); saved.continuousScrolling = true; saved.reduceMotion = true
+        try await services.files.saveReadingInteraction(saved)
+        let started = expectation(description: "open with interaction")
+        engine.onOpenStarted = { XCTAssertEqual(engine.interaction, saved); started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        XCTAssertTrue(model.scrolling); XCTAssertTrue(engine.continuous)
+        engine.onReadingGesture?(); XCTAssertFalse(model.menuVisible)
+        model.menuVisible = true
+        for autoHide in [false, true, false] {
+            var value = model.interaction; value.autoHideMenu = autoHide; model.setInteraction(value)
+        }
+        engine.onReadingGesture?(); XCTAssertTrue(model.menuVisible)
+        model.setScrolling(false); await model.saveNow()
+        let restored = try await services.files.readingInteraction()
+        XCTAssertFalse(restored.autoHideMenu); XCTAssertFalse(restored.continuousScrolling); XCTAssertTrue(restored.reduceMotion)
+        model.close(); engine.onReadingGesture?(); XCTAssertTrue(model.menuVisible)
+    }
+
+    @MainActor func testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist() async throws {
+        let (_, services, engine, model) = try await context()
+        let started = expectation(description: "open")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        model.setAdditionalReduceMotion(true)
+        XCTAssertEqual(engine.interaction?.reduceMotion, true)
+        let directory = try services.files.resolve("Preferences")
+        try Data([1]).write(to: directory)
+        model.setScrolling(true); await model.saveNow()
+        XCTAssertNotNil(model.interactionSaveFailure); XCTAssertTrue(model.isReady)
+        try FileManager.default.removeItem(at: directory)
+        model.retryInteractionSave(); await model.saveNow()
+        XCTAssertNil(model.settingsSaveFailure)
+        let restored = try await services.files.readingInteraction()
+        XCTAssertTrue(restored.continuousScrolling); XCTAssertFalse(restored.reduceMotion)
+        model.setAdditionalReduceMotion(false); XCTAssertEqual(engine.interaction?.reduceMotion, false)
+        model.close()
+    }
+
+    @MainActor func testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks() async throws {
+        let (_, services, engine, model) = try await context()
+        var saved = ReadingInteraction(); saved.continuousScrolling = true
+        try await services.files.saveReadingInteraction(saved)
+        engine.supportsContinuousScrolling = false
+        let started = expectation(description: "open unsupported layout")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        XCTAssertFalse(model.scrolling); XCTAssertTrue(model.interaction.continuousScrolling)
+        let restored = try await services.files.readingInteraction(); XCTAssertEqual(restored, saved)
         model.close()
     }
 

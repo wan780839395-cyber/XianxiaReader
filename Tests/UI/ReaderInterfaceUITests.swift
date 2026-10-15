@@ -99,4 +99,56 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertTrue(app.buttons["reader.appearance.open"].waitForExistence(timeout: 10))
         snapshot("reader-reduced-motion-menu-build16", in: app)
     }
+
+    @MainActor private func centerTap(in app: XCUIApplication) {
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.42)).tap()
+    }
+
+    @MainActor private func readingDrag(in app: XCUIApplication, vertical: Bool) {
+        let from = app.coordinate(withNormalizedOffset: CGVector(dx: vertical ? 0.5 : 0.78, dy: 0.46))
+        let to = app.coordinate(withNormalizedOffset: CGVector(dx: vertical ? 0.5 : 0.22, dy: vertical ? 0.28 : 0.46))
+        from.press(forDuration: 0.05, thenDragTo: to)
+    }
+
+    @MainActor func testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu() {
+        let app = start(); defer { app.terminate() }
+        readingDrag(in: app, vertical: false)
+        let hidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.appearance.open"])
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 10), .completed)
+        snapshot("reader-horizontal-immersive-build17", in: app)
+        centerTap(in: app)
+        XCTAssertTrue(app.buttons["reader.mode"].waitForExistence(timeout: 10))
+        app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()
+        // Exercise a vertical gesture, then check saved mode and controls after relaunch.
+        readingDrag(in: app, vertical: true)
+        let continuousHidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.appearance.open"])
+        XCTAssertEqual(XCTWaiter.wait(for: [continuousHidden], timeout: 10), .completed)
+        snapshot("reader-continuous-immersive-build17", in: app)
+        centerTap(in: app)
+        XCTAssertTrue(app.buttons["reader.appearance.open"].waitForExistence(timeout: 10))
+        app.buttons["reader.appearance.open"].tap(); app.buttons["手感"].tap()
+        let autoHide = app.switches["reader.interaction.auto-hide"]
+        XCTAssertTrue(autoHide.waitForExistence(timeout: 10)); autoHide.tap()
+        app.switches["reader.interaction.reduce-motion"].tap()
+        snapshot("reader-interaction-settings-build17", in: app)
+        app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
+        app.terminate(); app.launch(); openBook(in: app)
+        XCTAssertEqual(app.buttons["reader.mode"].value as? String, "上下连续滚动")
+        readingDrag(in: app, vertical: true)
+        XCTAssertTrue(app.buttons["reader.appearance.open"].isHittable)
+        app.buttons["reader.appearance.open"].tap(); app.buttons["手感"].tap()
+        XCTAssertEqual(app.switches["reader.interaction.auto-hide"].value as? String, "0")
+        XCTAssertEqual(app.switches["reader.interaction.reduce-motion"].value as? String, "1")
+        snapshot("reader-interaction-restored-build17", in: app)
+    }
+
+    @MainActor func testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag() {
+        let app = start(reduceMotion: true); defer { app.terminate() }
+        readingDrag(in: app, vertical: false)
+        let hidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.appearance.open"])
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 10), .completed)
+        centerTap(in: app)
+        XCTAssertTrue(app.buttons["reader.appearance.open"].waitForExistence(timeout: 10))
+        snapshot("reader-motion-reduced-menu-build17", in: app)
+    }
 }

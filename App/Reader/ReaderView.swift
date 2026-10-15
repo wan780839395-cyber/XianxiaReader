@@ -8,6 +8,7 @@ import XianxiaCore
     @StateObject private var model: ReaderViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     @State private var showContents = false
     @State private var showBookmarks = false
     @State private var showSearch = false
@@ -35,7 +36,7 @@ import XianxiaCore
             ReaderMenuView(book: book, model: model, returnToLibrary: {
                 Task {
                     await model.saveNow()
-                    if let failure = model.appearanceSaveFailure { model.errorMessage = failure }
+                    if let failure = model.settingsSaveFailure { model.errorMessage = failure }
                     else { dismiss() }
                 }
             }, showContents: { showContents = true }, showBookmarks: { showBookmarks = true },
@@ -94,7 +95,8 @@ import XianxiaCore
                                               set: { if !$0 { model.errorMessage = nil } })) {
             Button("知道了") { model.errorMessage = nil }
         } message: { Text(model.errorMessage ?? "") }
-        .task { await model.open() }
+        .task { model.setAdditionalReduceMotion(requestedReduceMotion); await model.open() }
+        .onChange(of: requestedReduceMotion) { model.setAdditionalReduceMotion($0) }
         .onDisappear { model.close() }
         .onChange(of: scenePhase) { phase in
             if phase != .active { Task { await model.saveNow() } }

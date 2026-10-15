@@ -16,7 +16,7 @@ import XianxiaCore
     }
 }
 
-@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, EPUBNavigatorDelegate {
+@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
     private let txtLoader = TXTReadiumPublicationLoader()
@@ -30,6 +30,15 @@ import XianxiaCore
     private var modeChangeTask: Task<Void, Never>?
     private var preferences = EPUBPreferences(scroll: false)
     private var appliedPreferences = EPUBPreferences(scroll: false)
+    private var interaction = ReadingInteraction()
+    private var pageTurnRequestID: UUID?
+    public var onReadingGesture: (() -> Void)?
+    public var interactionProvider: (any ReaderInteractionProviding)? { self }
+    var navigationOptions: NavigatorGoOptions {
+        NavigatorGoOptions(animated: !interaction.reduceMotion && !UIAccessibility.isReduceMotionEnabled)
+    }
+
+    public func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
     public var onPositionChanged: ((ReadingPosition) -> Void)?
     public var onCenterTap: (() -> Void)?
     public var onError: ((String) -> Void)?
@@ -95,7 +104,7 @@ import XianxiaCore
         try Task.checkCancellation()
         guard openRequestID == requestID else { throw CancellationError() }
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
-            config: .init(preferences: preferences, disablePageTurnsWhileScrolling: false,
+            config: .init(preferences: preferences, disablePageTurnsWhileScrolling: true,
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
         supportsTextAppearance = publication.metadata.layout != .fixed
         supportsContinuousScrolling = publication.metadata.layout != .fixed
@@ -113,7 +122,7 @@ import XianxiaCore
         // Readium dispatches only taps not consumed by links, selection, etc.
         // Avoid a SwiftUI gesture overlay that would block publication interactions.
         navigator.addObserver(.tap { [weak self, weak navigator] event in
-            guard let self, let navigator else { return false }
+            guard let self, let navigator, self.navigator === navigator, self.openRequestID != nil else { return false }
             let width = navigator.view.bounds.width
             guard width > 0 else { return false }
             if event.location.x < width * 0.3 {
@@ -125,6 +134,12 @@ import XianxiaCore
             }
             return true
         })
+        navigator.addObserver(.drag(onStart: { [weak self, weak navigator] _ in
+            guard let self, let navigator, self.navigator === navigator, self.openRequestID != nil,
+                  !UIAccessibility.isVoiceOverRunning else { return false }
+            self.onReadingGesture?()
+            return false
+        }))
         host.loadViewIfNeeded()
         host.addChild(navigator)
         // Seed a valid viewport before Readium starts its asynchronous layout.
@@ -137,9 +152,12 @@ import XianxiaCore
     }
 
     public func turnPage(forward: Bool) async {
-        guard let navigator else { return }
-        if forward { await navigator.goForward(options: .animated) }
-        else { await navigator.goBackward(options: .animated) }
+        guard let navigator, pageTurnRequestID == nil, !Task.isCancelled else { return }
+        let requestID = UUID()
+        pageTurnRequestID = requestID
+        defer { if pageTurnRequestID == requestID { pageTurnRequestID = nil } }
+        if forward { await navigator.goForward(options: navigationOptions) }
+        else { await navigator.goBackward(options: navigationOptions) }
     }
 
     public func go(to chapter: Chapter) async throws {
@@ -154,7 +172,7 @@ import XianxiaCore
             guard let value = chapter.href, AnyURL(string: value) != nil else { throw EPUBError.navigationFailed }
             href = value
         }
-        guard await navigator.go(to: Link(href: href), options: .animated) else { throw EPUBError.navigationFailed }
+        guard await navigator.go(to: Link(href: href), options: navigationOptions) else { throw EPUBError.navigationFailed }
     }
 
     public func go(to position: ReadingPosition) async throws {
@@ -165,7 +183,7 @@ import XianxiaCore
         else { locator = try ReadiumPositionCodec.decode(position, bookID: bookID) }
         try Task.checkCancellation()
         guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
-        guard await navigator.go(to: locator, options: .animated) else { throw EPUBError.navigationFailed }
+        guard await navigator.go(to: locator, options: navigationOptions) else { throw EPUBError.navigationFailed }
     }
 
     public func setScrolling(_ enabled: Bool) {
@@ -237,6 +255,7 @@ import XianxiaCore
     public func close() {
         // A suspended publication load must not mount a navigator after this reader closes.
         openRequestID = nil
+        pageTurnRequestID = nil
         cancelModeChange()
         if let navigator {
             if let locator = navigator.currentLocation { capture(locator) }

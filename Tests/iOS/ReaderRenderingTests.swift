@@ -256,7 +256,7 @@ final class ReaderRenderingTests: XCTestCase {
             return titles.contains("第一章 山门") && titles.contains("第二章 云海")
         }
         let image = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
-            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+            _ = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
         }
         let attachment = XCTAttachment(image: image)
         attachment.name = "continuous-two-chapter-boundary"; attachment.lifetime = .keepAlways; add(attachment)
@@ -663,6 +663,46 @@ final class ReaderRenderingTests: XCTestCase {
             guard self.visibleWebView(in: engine.viewController.view) === page else { return false }
             return try await page.evaluateJavaScript("getComputedStyle(document.documentElement).backgroundColor === 'rgb(0, 0, 0)' && window.__xianxiaDynamicPreferenceCalls > 0") as? Bool == true
         }
+    }
+
+    @MainActor func testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue() async throws {
+        let engine = ReadiumReaderEngine()
+        var interaction = ReadingInteraction(); interaction.reduceMotion = true
+        try engine.setInteraction(interaction)
+        XCTAssertFalse(engine.navigationOptions.animated)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        _ = try await probe(navigator, engine: engine, resource: "one.xhtml")
+        let web = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        _ = try await web.evaluateJavaScript("""
+            window.__xianxiaMotionCalls = [];
+            const originalScrollBy = window.scrollBy;
+            window.scrollBy = function(options) {
+              window.__xianxiaMotionCalls.push(options.behavior);
+              return originalScrollBy.call(this, options);
+            };
+            """)
+        await engine.turnPage(forward: true)
+        try await waitUntil { try await web.evaluateJavaScript("scrollX > 0") as? Bool == true }
+        let first = try await web.evaluateJavaScript("window.__xianxiaMotionCalls") as? [String]
+        XCTAssertEqual(first, ["instant"])
+        interaction.reduceMotion = false; try engine.setInteraction(interaction)
+        let expected = UIAccessibility.isReduceMotionEnabled ? "instant" : "smooth"
+        async let a: Void = engine.turnPage(forward: true)
+        async let b: Void = engine.turnPage(forward: true)
+        _ = await (a, b)
+        let calls = try await web.evaluateJavaScript("window.__xianxiaMotionCalls") as? [String]
+        XCTAssertEqual(calls, ["instant", expected], "Overlapping requests must not accumulate extra page turns")
+        let saved = try XCTUnwrap(engine.currentPosition)
+        XCTAssertFalse(saved.locatorData.isEmpty)
+        window.layoutIfNeeded()
+        let image = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }
+        let attachment = XCTAttachment(image: image); attachment.name = "epub-motion-whole-window-build17"
+        attachment.lifetime = .keepAlways; add(attachment)
     }
 
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {

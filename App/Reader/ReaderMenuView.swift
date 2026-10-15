@@ -12,21 +12,19 @@ import XianxiaCore
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
     @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     private var palette: ReaderPalette { ReaderPalette(theme: model.appearance.theme) }
+    private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion || model.interaction.reduceMotion }
+    private var visible: Bool { model.menuVisible || !model.isReady }
 
     var body: some View {
-        Group {
-            if model.menuVisible || !model.isReady {
-                VStack(spacing: 0) {
-                    header
-                    Spacer(minLength: 12)
-                    footer
-                }
-                .padding(.horizontal, 14).padding(.vertical, 8)
-                .tint(palette.accent).foregroundStyle(palette.text)
-                .transition(.opacity)
-            }
+        VStack(spacing: 0) {
+            if visible { header.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10))) }
+            Spacer(minLength: 12)
+            if visible { footer.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 10))) }
         }
-        .animation(systemReduceMotion || requestedReduceMotion ? nil : .easeOut(duration: 0.18), value: model.menuVisible)
+        .padding(.horizontal, 14).padding(.vertical, 8)
+        .tint(palette.accent).foregroundStyle(palette.text)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: visible)
+        .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
     }
 
     private var header: some View {

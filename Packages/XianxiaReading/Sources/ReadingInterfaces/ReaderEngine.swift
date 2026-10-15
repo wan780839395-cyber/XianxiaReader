@@ -32,6 +32,7 @@ public protocol EPUBMetadataReading: Sendable {
     var onError: ((String) -> Void)? { get set }
     var searchProvider: (any ReaderSearchProviding)? { get }
     var appearanceProvider: (any ReaderAppearanceProviding)? { get }
+    var interactionProvider: (any ReaderInteractionProviding)? { get }
     var supportsContinuousScrolling: Bool { get }
     func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws
     func turnPage(forward: Bool) async
@@ -46,6 +47,7 @@ public extension ReaderEngine {
     var currentChapters: [Chapter]? { nil }
     var searchProvider: (any ReaderSearchProviding)? { nil }
     var appearanceProvider: (any ReaderAppearanceProviding)? { nil }
+    var interactionProvider: (any ReaderInteractionProviding)? { nil }
     var supportsContinuousScrolling: Bool { false }
     func setContinuousScrolling(_ enabled: Bool) {
         if enabled { onError?("当前阅读引擎不支持连续滚动。") }
@@ -61,4 +63,11 @@ public extension ReaderEngine {
 
 @MainActor public protocol ReaderEngineFactory {
     func makeEngine(for format: BookFormat) throws -> any ReaderEngine
+}
+
+@MainActor public protocol ReaderInteractionProviding: AnyObject {
+    /// A passive observation of reading gestures; it never consumes publication input.
+    var onReadingGesture: (() -> Void)? { get set }
+    /// Applies motion policy only. Mode changes use ReaderEngine's capability check.
+    func setInteraction(_ value: ReadingInteraction) throws
 }

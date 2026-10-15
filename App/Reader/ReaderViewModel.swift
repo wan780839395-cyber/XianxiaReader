@@ -14,12 +14,17 @@ import XianxiaCore
     @Published var errorMessage: String?
     @Published private(set) var appearance = ReadingAppearance()
     @Published private(set) var appearanceSaveFailure: String?
+    @Published private(set) var interaction = ReadingInteraction()
+    @Published private(set) var interactionSaveFailure: String?
+    var settingsSaveFailure: String? { appearanceSaveFailure ?? interactionSaveFailure }
     let engine: (any ReaderEngine)?
     private let book: Book
     private let services: AppServices
     private var started = false
     private var openRequestID: UUID?
     private var appearanceSaveTask: Task<Void, Never>?
+    private var interactionSaveTask: Task<Void, Never>?
+    private var additionalReduceMotionRequested = false
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -27,6 +32,10 @@ import XianxiaCore
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
         engine?.onCenterTap = { [weak self] in self?.menuVisible.toggle() }
+        engine?.interactionProvider?.onReadingGesture = { [weak self] in
+            guard let self, self.openRequestID != nil, self.isReady, self.interaction.autoHideMenu else { return }
+            self.menuVisible = false
+        }
         engine?.onError = { [weak self] message in self?.errorMessage = message }
         engine?.onPositionChanged = { [weak self] position in
             guard let self, self.openRequestID != nil else { return }
@@ -47,6 +56,11 @@ import XianxiaCore
             guard openRequestID == requestID else { throw CancellationError() }
             try engine.appearanceProvider?.setAppearance(restoredAppearance)
             appearance = restoredAppearance
+            let restoredInteraction = try await services.files.readingInteraction()
+            try Task.checkCancellation()
+            guard openRequestID == requestID else { throw CancellationError() }
+            try applyInteraction(restoredInteraction)
+            interaction = restoredInteraction
             let restored = try await services.repository.position(for: book.id)
             chapters = try await services.repository.chapters(for: book.id)
             bookmarks = try await services.repository.bookmarks(for: book.id)
@@ -56,6 +70,8 @@ import XianxiaCore
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
             if let currentChapters = engine.currentChapters { chapters = currentChapters }
+            scrolling = restoredInteraction.continuousScrolling && engine.supportsContinuousScrolling
+            if scrolling { engine.setContinuousScrolling(true) }
             position = engine.currentPosition
             isReady = true
         } catch is CancellationError {
@@ -86,6 +102,7 @@ import XianxiaCore
 
     func saveNow() async {
         await appearanceSaveTask?.value
+        await interactionSaveTask?.value
         if let position = engine?.currentPosition { await persist(position) }
     }
 
@@ -118,6 +135,37 @@ import XianxiaCore
         }
         scrolling = value
         engine?.setContinuousScrolling(value)
+        var updated = interaction; updated.continuousScrolling = value
+        setInteraction(updated)
+    }
+
+    func setInteraction(_ value: ReadingInteraction) {
+        guard isReady, engine?.interactionProvider != nil else { return }
+        do { try applyInteraction(value); interaction = value }
+        catch { errorMessage = error.localizedDescription; return }
+        let previous = interactionSaveTask
+        let files = services.files
+        interactionSaveTask = Task { [weak self] in
+            await previous?.value
+            do {
+                try await files.saveReadingInteraction(value)
+                self?.interactionSaveFailure = nil
+            } catch { self?.interactionSaveFailure = "阅读手感尚未保存：\(error.localizedDescription)" }
+        }
+    }
+
+    func retryInteractionSave() { setInteraction(interaction) }
+
+    func setAdditionalReduceMotion(_ requested: Bool) {
+        additionalReduceMotionRequested = requested
+        do { try applyInteraction(interaction) }
+        catch { errorMessage = error.localizedDescription }
+    }
+
+    private func applyInteraction(_ value: ReadingInteraction) throws {
+        var effective = value
+        effective.reduceMotion = effective.reduceMotion || additionalReduceMotionRequested
+        try engine?.interactionProvider?.setInteraction(effective)
     }
 
     func go(to chapter: Chapter) async {
