@@ -68,7 +68,7 @@ import XianxiaCore
                 }
         }
     }
-    private func row(_ title: String, symbol: String) -> some View {
+    nonisolated private func row(_ title: String, symbol: String) -> some View {
         HStack(spacing: 14) {
             Image(systemName: symbol).foregroundStyle(.tint).frame(width: 22)
             Text(title).foregroundStyle(.primary)

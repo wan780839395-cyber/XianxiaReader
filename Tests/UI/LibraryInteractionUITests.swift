@@ -132,7 +132,9 @@ final class LibraryInteractionUITests: XCTestCase {
         XCTAssertFalse(app.buttons["library.cover.save"].isEnabled)
         snapshot(app, "library-cover-custom-build13")
         app.buttons["library.cover.files"].tap()
-        let browser = app.navigationBars.matching(NSPredicate(format: "identifier CONTAINS '浏览' OR identifier CONTAINS 'Browse' OR identifier CONTAINS '最近' OR identifier CONTAINS 'Recents'")).firstMatch
+        // The system bar has its own stable identity; its displayed title is a child.
+        // Match the real title label from the exported AX tree, not an assumed bar ID.
+        let browser = app.navigationBars.containing(NSPredicate(format: "label IN {'最近项目', '浏览', 'Recents', 'Browse'}")).firstMatch
         XCTAssertTrue(browser.waitForExistence(timeout: 10))
         snapshot(app, "library-cover-native-files-build13")
         let cancel = app.buttons.matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'"))

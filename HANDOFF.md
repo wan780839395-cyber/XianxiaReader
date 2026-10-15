@@ -4,6 +4,12 @@
 
 ## 实际断点
 
+第二轮CI38689366894 / 2ce8a94已completed/failure且完整run/full/Core/Apple/xcresult/导出附件下载完：各100Core、四探针均通过，iOS78/79、skipped0，75集成全通过（新8封面集成也全通过），原3真正UI通过；新cover UI仅136行文件picker导航栏查询错把标题当identifier失败。真实AX树bar标识FullDocumentManagerViewControllerNavigationBar，子StaticText“最近项目”；原生视频已看到Files正常打开。按子label containing谓词修正，原10秒/实际取消/默认预览取消/保存/重开断言均保留。另修PhotosPicker label构造调用纯row的MainActor警告为nonisolated纯View builder，不访问状态。源码首版已编译，Release因test65未执行，不能交包；准备静态检查/第三轮完整CI。失败原件将记录ValidationLogs/m3-library-build13-file-picker-ax-failure.json。
+
+首轮38688984422已实查completed/cancelled，完整run/full.log/Core与Apple artifact下载完成，取消收据ValidationLogs/m3-library-build13-first-cancellation.json：各100Core确已运行，Linux四探针完成；Apple停在长书探针，iOS/Release未运行。此前“Apple未确认”是下载前检查点，以本条完整日志核实为准。修正候选CI38689366894继续运行。
+
+当前修正候选2ce8a940589ece745e99aac6bcf5a3a0419c0a41，完整CI38689366894已派发，独立报告M3_COVER_VALIDATION_REPORT.json记录487运行/验证源Git blob hash和19旧包hash，门槛仍pending。首轮已请求Agent取消，结束状态待实查，不能推断Apple编译/测试通过；完整日志与artifact待实际下载。停止等待时从这条查起，不重复派发或重置源码。
+
 Build13首轮CI38688984422 / 7189669已通过repository及Linux100Core/四长书探针，Apple job正在总构建步骤；本轮复查发现重复save已提交草稿时原catch范围可能回移已提交资产，已将finalize移出DB回滚catch并加实际文件保留回归。准备停止此中间候选，保留真实取消状态/完整可取得日志；不记作源码失败，不把Apple未完成阶段写通过。随后保存修正候选并重新完整CI。所有原文件/19旧包/原HEAD与index保留。
 
 Build13已恢复核对：原main/HEAD6d76174和空index保持，M3 tip096ed6d；无自身运行任务，GitHub最近仍为Build12成功38677706936，未启动Build13。上轮实际最后验证是Windows406 Swift语法新增0/54限制、17tooling，发生在最后小改之前，不是Swift编译。9项Core封面回归已在磁盘但未编译；本轮补8项iOS集成和1项真正XCUITest（预计Core100/iOS79），Windows407 Swift语法新增0/54 pristine限制、17tooling已重新通过；下一步保存私有index候选并派发完整CI，预期Core100/iOS79，图/视频/Release均尚未通过。
