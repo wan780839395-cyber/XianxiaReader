@@ -21,6 +21,13 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertTrue(settings.waitForExistence(timeout: 20))
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
         XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed)
+        // Engine open mounts a navigator before WebKit finishes its initial page.
+        // Exercise reading gestures only once this original fixture is readable.
+        let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
+        let readable = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            text.allElementsBoundByIndex.contains { $0.isHittable }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [readable], timeout: 20), .completed)
     }
 
     @MainActor private func snapshot(_ name: String, in app: XCUIApplication) {

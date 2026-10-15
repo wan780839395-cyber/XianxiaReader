@@ -8,9 +8,9 @@
 
 Readium 3.11 已使用原生UIScrollView分页及WebKit平滑点按翻页，跟手拖动并非本片新造。保留其手势/惯性/松手回位，不叠透明拖动层，不复制正文或给实时文字做变形。
 
-本片通过ReadingInterfaces可选ReaderInteractionProviding配置动效及被动阅读手势回调。首轮Adapter使用官方drag observer，但真实普通拖动未收菜单；修正改为维护Vendor从当前UIScrollViewDelegate.scrollViewWillBeginDragging被动报告，不添加/竞争手势，不消费输入。核已clear spread/当前分页或连续容器/Navigator/session身份，在VoiceOver开启时不自动收菜单。滑动后菜单可自动收起，用户可关闭；中央轻点显示的原路径保留。收起只变叠加菜单，正文视口不重排。上下菜单各10pt+透明度、0.2秒easeInOut；系统/用户/DEBUG额外减少动效请求任一开启都停用自定义菜单过渡。
+本片通过ReadingInterfaces可选ReaderInteractionProviding配置动效及被动阅读手势回调。Adapter注册官方drag observer，始终返回false，不消费输入；核当前Navigator/session身份并在VoiceOver开启时不自动收菜单。滑动后菜单可自动收起，用户可关闭；中央轻点显示的原路径保留。收起只变叠加菜单，正文视口不重排。上下菜单各10pt+透明度、0.2秒easeInOut；系统/用户/DEBUG额外减少动效请求任一开启都停用自定义菜单过渡。
 
-点按上一页/下一页、目录/书签/搜索跳转共用NavigatorGoOptions，系统或用户减少动效时animated=false，进入实际WebKit instant分支；原生手指拖动仍跟手。分页命令使用带身份的防重入，不积压同一尚未完成的导航；close清身份、旧defer不能解锁新session。连续模式Readium go按屏立即返回，本片不宣称它获得完整动画期间的点按节流。配置disablePageTurnsWhileScrolling=true，保持纵向原生滚动，避免横向手势切相邻资源。Vendor只增加被动原生滚动回调管线并更新provenance；不修改JS bundle或升级依赖。
+点按上一页/下一页、目录/书签/搜索跳转共用NavigatorGoOptions，系统或用户减少动效时animated=false，进入实际WebKit instant分支；原生手指拖动仍跟手。分页命令使用带身份的防重入，不积压同一尚未完成的导航；close清身份、旧defer不能解锁新session。连续模式Readium go按屏立即返回，本片不宣称它获得完整动画期间的点按节流。配置disablePageTurnsWhileScrolling=true，保持纵向原生滚动，避免横向手势切相邻资源。未修改Vendor/JS bundle或升级依赖。
 
 新增Foundation领域ReadingInteraction v1和独立Preferences/interaction-v1.json，存阅读方式、减少动效、滑动收菜单；不修改reading-v1.json、schema3或Locator。BookFileStore actor有界16KiB读、逐级安全路径、原子写；坏/未来文件保留且报错。ViewModel按输入顺序串行保存，保存失败可见/重试，离开设置或书架前等待两种设置任务。额外减少动效请求只合并运行时策略，不写用户设置。打开前读偏好，Navigator打开后按能力恢复连续方式并走原锚点保护管线；固定/竖排/RTL书籍用分页且不抹掉用户连续偏好。恢复模式到最终DOM之间仍是异步，原位置/关闭/重试回归必须全跑。
 
@@ -32,3 +32,7 @@ Readium 3.11 已使用原生UIScrollView分页及WebKit平滑点按翻页，跟�
 ## 首轮失败与修正（2026-10-16）
 
 首候选8c548dce/CI38760598889，各119Core与四长TXT探针通过，iOS97/99（89集成中1新测试失败、10UI中1新普通拖动失败），全部旧回归通过，严格test65无IPA。新增测试安装scrollBy计数hook时最终表达式是JS函数，WebKit Code5无法桥接；补显式null，不删除实际instant/smooth/防重入断言。普通拖动收菜单失败而额外减少动效同手势通过；官方DragPointerObserver依赖原始move，UIKit可能先取消触摸观察器，当前证据尚未隔离唯一时序因果。改用已存在的[原生开始拖动回调](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate/scrollviewwillbegindragging(_:))，只被动报告当前spread/分页容器/连续容器；保留现有delegate/selection clear/手势物理，不增加覆盖层或sleep重试、不改旧断言与10秒门槛。四文件hash在UPSTREAM登记。完整失败日志/xcresult/录屏保留，最终仍以完整重跑验证。
+
+## 实际失败录屏纠正与第二候选取消
+
+首轮两段原生录屏全时段1秒总览已复核：普通case在拖动时仍有加载spinner，正文直到约12.5秒视频时间才出现；减少动效case约4.5秒已有正文，随后拖动收菜单。菜单按钮启用只表示Navigator已挂载，早于WebKit可读，不能据此推断原始pointer取消为根因。第二候选c9bae997/CI38765644376因此Agent主动取消，实际未完成阶段记录second-agent-cancel.json，不写源码失败。新增原生回调七文件实验完整保存在该Git候选及本地ZIP，恢复至首候选既有引擎/Vendor，仅保留WebKit null返回修正。UI在原20秒open准备门槛内额外等原创样书可读文字，再执行原拖动和10秒菜单收起断言；不增加重试拖动，不放宽旧断言。新的完整CI验证真实已绘正文拖动。前述原始pointer时序仅为被录像否定的未证假设，不作为交付取舍。

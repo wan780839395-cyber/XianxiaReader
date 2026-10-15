@@ -35,7 +35,6 @@ protocol PageView {
 }
 
 protocol PaginationViewDelegate: AnyObject {
-    func paginationViewWillBeginDragging(_ paginationView: PaginationView)
     /// Creates the page view for the page at given index.
     func paginationView(_ paginationView: PaginationView, pageViewAtIndex index: Int) -> (UIView & PageView)?
 
@@ -441,9 +440,6 @@ final class PaginationView: UIView, Loggable {
 }
 
 extension PaginationView: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        delegate?.paginationViewWillBeginDragging(self)
-    }
     // We disable the scroll once the user releases the drag to prevent scrolling through more than 1 resource at a
     // time. Otherwise, because the pagination view's scroll view would have the focus during the scroll gesture, the
     // scrollable content of the resources would be skipped.

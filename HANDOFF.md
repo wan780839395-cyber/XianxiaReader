@@ -35,3 +35,7 @@ CI38760598889 Linux119/119 Core和4原创长TXT Release探针原完整下载日�
 ## 修正源码及第二轮CI前（2026-10-16）
 
 首候选97/99实际失败/原完整日志已核，严格test65无IPA，失败回执first-failure.json。WebKit test hook最终返回null；不删instant/smooth/重叠翻页断言。普通拖动未收菜单，原始pointer可能被原生scroll取消，唯一时序未隔离；改用当前原生UIScrollViewDelegate willBeginDragging被动回调，覆盖章内/跨章/连续，保留选择清理/原delegate/手势物理。四Vendor文件/README/provenance准确更新，无JS/锁升级。第二次Windows423语法新增0/54限制、17工具测试通过，仍非编译。现在私有index审阅后保存第二候选/完整重跑；第一轮554MB诊断zip下载进行，定向取失败录屏同步进行，下载EOF/慢速仅本地网络问题不写产品失败。
+
+## 失败录屏确认真实准备时序，撤回未必要实验
+
+已复核首轮普通/减少动效两个完整1秒总览：普通拖动时仍是spinner，12.5秒才正文；减少动效4.5秒正文后拖动成功。不能把原始pointer取消假设写成根因。第二候选c9bae997/CI38765644376主动取消，实际阶段与七文件实验ZIP/hash见second-agent-cancel.json。仅撤回自己新增原生回调到首候选，原Vendor/Adapter恢复，WebKit null修正保留。UI准备阶段加真实样本文字可读门槛再执行原手势/10秒断言，不加重试或放宽旧断言。现在Windows重核后第三候选全跑。

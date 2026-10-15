@@ -134,11 +134,12 @@ import XianxiaCore
             }
             return true
         })
-        navigator.onUserScroll = { [weak self, weak navigator] in
+        navigator.addObserver(.drag(onStart: { [weak self, weak navigator] _ in
             guard let self, let navigator, self.navigator === navigator, self.openRequestID != nil,
-                  !UIAccessibility.isVoiceOverRunning else { return }
+                  !UIAccessibility.isVoiceOverRunning else { return false }
             self.onReadingGesture?()
-        }
+            return false
+        }))
         host.loadViewIfNeeded()
         host.addChild(navigator)
         // Seed a valid viewport before Readium starts its asynchronous layout.
@@ -259,7 +260,6 @@ import XianxiaCore
         if let navigator {
             if let locator = navigator.currentLocation { capture(locator) }
             navigator.delegate = nil
-            navigator.onUserScroll = nil
             navigator.closeContinuousScrolling()
             navigator.willMove(toParent: nil)
             navigator.view.removeFromSuperview()

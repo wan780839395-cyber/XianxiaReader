@@ -8,7 +8,6 @@ import ReadiumShared
 @preconcurrency import WebKit
 
 protocol EPUBSpreadViewDelegate: AnyObject {
-    func spreadViewWillBeginDragging(_ spreadView: EPUBSpreadView)
     /// Returns the content inset the spread view should use.
     func spreadViewContentInset(_ spreadView: EPUBSpreadView) -> UIEdgeInsets
 
@@ -861,8 +860,6 @@ extension EPUBSpreadView: UIScrollViewDelegate {
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard !wasCleared else { return }
-        delegate?.spreadViewWillBeginDragging(self)
         webView.clearSelection()
     }
 
