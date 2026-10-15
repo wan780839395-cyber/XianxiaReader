@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-15T17:53:29.183276+00:00",
+  "run": 38775427080,
+  "sourceRevision": "63134f1aa4787e3067453e2fe8b15bf17b449ca2",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 48
+  },
+  "patterns": {
+    "sqliteVnodeUnlink": "vnode unlinked while in use",
+    "documentManagerDeadHost": "host view controller.*(?:dead|deallocated)",
+    "appIntentsMetadata": "appintentsmetadataprocessor.*warning:",
+    "webKitProcessAssertions": "Failed to acquire RBS assertion"
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Compiler/test gates and observed system runtime message counts are distinct; preserved full log remains authoritative."
+}

@@ -1,0 +1,759 @@
+{
+  "recordedAtUTC": "2026-10-15T17:54:42.390801+00:00",
+  "run": 38775427080,
+  "sourceRevision": "63134f1aa4787e3067453e2fe8b15bf17b449ca2",
+  "images": [
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/82200483-685E-4ABE-BA9E-21C1A1E52C2E.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          0,
+          198
+        ],
+        [
+          0,
+          204
+        ],
+        [
+          0,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/07BBC4C7-A3D6-46EE-B3FD-A1D957AC34F9.png",
+      "bytes": 490411,
+      "sha256": "0dd404261878626e1e4a05bdae081e6e2e5f725c1f7a5171c54b89014b728f1c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E5C1C4B-785C-41EB-93E7-3EC6B104B75F.png",
+      "bytes": 367745,
+      "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+      "inspected": true,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/28F3EA4C-6979-4A9B-B441-8F56E50E7912.png",
+      "bytes": 94315,
+      "sha256": "0a3c37bab73dff1b49899ce90d921c52f1080116840762b03b42073425ee5578",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ED19D045-A05B-4414-9277-B09211AB6C56.png",
+      "bytes": 142254,
+      "sha256": "bf423398d7559efd8f7f547e9053fc5ac0e3b6254b808688a0956d84bf972dc5",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CB376637-DCA9-476B-B2C3-F3B52ABAA018.png",
+      "bytes": 222905,
+      "sha256": "2a7cf9952d9131f4a9c2cbfe5e90b87365ca864fd9d98597c32d490ff91ff618",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5EB1059F-05DB-488D-BBC3-5180C85A20E9.png",
+      "bytes": 148653,
+      "sha256": "5d2e6844e2b2fb9b1b66852df9d7251f7bf4cf08cdf49f64296d84d3980ee965",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7DC56DB5-E7E3-4F5D-AF0C-75F02458C68F.png",
+      "bytes": 224542,
+      "sha256": "51b81c71b341950bcee11c3404445d51580bb47a1fd6e70e3c79c40adcf617fd",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/04B2EE54-9F9B-4C45-AEEC-F02C326AE3E9.png",
+      "bytes": 230105,
+      "sha256": "846ba803e10f5dd8d4c1bc4ba76ce5a4b11e2ac0f029b301891b2b08c43773e3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/910CCBC1-F72B-4B5E-A3D7-8AC4EAB1215B.png",
+      "bytes": 226909,
+      "sha256": "fe54303f24b794d1038cc084597645ad5db2936376ccbb5e59766ff6da32ec37",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C46B347E-35A1-4BBD-9C8E-DFD3A6E43E4C.png",
+      "bytes": 315817,
+      "sha256": "688a4be2287bcea0c37cc5b3ac1edd7fe0c35d7b6caa0cac06a4ccf0327149f8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0E48F4EF-3D15-4B80-912D-ED8AF0B4EF73.png",
+      "bytes": 257303,
+      "sha256": "439a7ebebaa7e97d47e49f8280a7873bc9b963fddc95e9fb3a2d20d07c62fe5c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          37,
+          255
+        ],
+        [
+          36,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C6CFCA87-9B72-44FD-AD1C-9BD05EF4C108.png",
+      "bytes": 214714,
+      "sha256": "67039081a5ce55d97444aceb0d9740e77ba16a8091556a541b143fdca21e9daf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          22,
+          255
+        ],
+        [
+          28,
+          255
+        ],
+        [
+          19,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/54C10346-C573-4683-ADF2-7950B83662CB.png",
+      "bytes": 221787,
+      "sha256": "1917af2b19fca18784b6e0ab95e4c9076af44982cb7bfc162d9e52b38833f020",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7CF868EC-FFA2-4089-A55A-E19640915087.png",
+      "bytes": 219376,
+      "sha256": "365194b5f0d63f7f03a56acf575a7bbc8cbb1463119b714b5f6bb843b7745b88",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9AB84162-8141-4D82-9104-DDD9E39C4C5B.png",
+      "bytes": 228018,
+      "sha256": "2a6d86ab4fb6978bee1a98dfe506e987ab02763d0897db74d47a3bf72dd1c0d8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A538AEAA-DE89-40D9-8ED5-F62EEB47E71A.png",
+      "bytes": 324952,
+      "sha256": "dd6771d72e19549cfe76460e86daec981a09c8f29522013d67741622a8ee5330",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1CA05414-A0AA-445E-AD26-C3A61A1A90E1.png",
+      "bytes": 140057,
+      "sha256": "9f9fd4f28e1c5efc562df5f612f25990df6afa463b10b1b331671aaed2e731d8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/51F2195D-AC77-4393-9945-8B615ABC212A.png",
+      "bytes": 274602,
+      "sha256": "44f3b7a147a076fb8b1e3f577bb2717b3c9d357fbeb86ab9207461e38416a68b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D3628336-BA10-4B22-A682-710E3C41B39C.png",
+      "bytes": 274517,
+      "sha256": "c6d777303f7c266aeeadcea1c7ee75a9940e1b82e56f39ef5930d8ac20a18032",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4DCA3702-8070-4050-8EDC-89E43F24F127.png",
+      "bytes": 400291,
+      "sha256": "1da5da3245896f9b44e7f6d73954299e17ba35f26454385c62a803831b3cee3b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0FC1FA0C-7DE9-403D-9F98-66707C72995D.png",
+      "bytes": 334746,
+      "sha256": "d460657c1e9b202637f2573b2b2b61df5303778c4eb4df3ceffc9b5d578015df",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7A87BFE-D93D-487E-A225-2DC2C4031734.png",
+      "bytes": 141524,
+      "sha256": "59e9aae40a1c62a2d26d43897fe57a6dcb176c0d2b86c654c5850304f3cfd71d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CF326AC6-2F37-414F-B55B-71C4807831AB.png",
+      "bytes": 220511,
+      "sha256": "9c004d8b1a617341da35226852a1a0e3d277487cbff005502220349c1b7cf270",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "inspectionMethod": "Actual native image contact sheets; paged EPUB and whole-window EPUB additionally inspected at full image resolution."
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-15 at 05.30.58 PM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/80D6B8DE-88E5-4A85-950A-E22B19B4077E.mp4",
+      "bytes": 10692314,
+      "sha256": "75e2a24e0e61840014f31ce98921acc653016ebc3644b324ecd21d5be98e14fc",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 05.32.16 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8B4E2BA1-BE89-43E7-BABE-81603F6D220D.mp4",
+      "bytes": 4208748,
+      "sha256": "76f0182a188b2b7ccb755e07ddde5bba905212ac3293304806df0f471336243e",
+      "inspected": true,
+      "inspectionMethod": "Complete duration one-second actual-frame overview plus selected 20fps consecutive time samples; no interpolation; not phone FPS."
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 05.32.33 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CF6CF45E-521E-4FE9-AF55-A213DBF5B4B1.mp4",
+      "bytes": 15941178,
+      "sha256": "c4a39a17c37a22e2d1844f4288bb0e0ce9f4462a8d6aeee434f79e466714ae72",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 05.33.31 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/16092B4E-73D7-4C33-9192-0ADBBB612984.mp4",
+      "bytes": 25272034,
+      "sha256": "022678c9dd39cd68c0c0db07d641af613a058003c93935ceaf7f092f9fcd2e51",
+      "inspected": true,
+      "inspectionMethod": "Complete duration one-second actual-frame overview plus selected 20fps consecutive time samples; no interpolation; not phone FPS."
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 05.34.37 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38775427080/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/71876053-D65E-474A-A714-AA79388FDC21.mp4",
+      "bytes": 5717965,
+      "sha256": "946bb1d485a5bbe03841e3907426c9f1fdd200445bbfe8293a154a7a00ee1e33",
+      "inspected": false
+    }
+  ],
+  "consecutiveSamples": [
+    {
+      "path": "build/ci/38775427080/MotionReview/normal/scroll-hide/frames.json",
+      "sha256": "782053419003f69054edbb7b822ce8d01a92730e2f0491f831d1d5abf167452c",
+      "frameCount": 21,
+      "start": 17.65,
+      "duration": 1.05,
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38775427080/MotionReview/normal/menu-return/frames.json",
+      "sha256": "0720f5604c8ca0d17a828396b87d86c3569a4b54882e3399604ebdcbffaae0f1",
+      "frameCount": 20,
+      "start": 21.75,
+      "duration": 1.0,
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38775427080/MotionReview/reduced/reduced-drag/frames.json",
+      "sha256": "cf96bd1e1dc6e35ac8575dddca49ab5b96754d637cb13f941740ab72aa8d3fa3",
+      "frameCount": 17,
+      "start": 9.85,
+      "duration": 0.85,
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38775427080/MotionReview/reduced/reduced-return/frames.json",
+      "sha256": "c50416e40472996f3862bc9c475f78369891350707986c8cedac18c2d0ccf013",
+      "frameCount": 20,
+      "start": 12.55,
+      "duration": 1.0,
+      "inspected": true
+    }
+  ],
+  "totalConsecutiveFrames": 78,
+  "allImagesInspected": true,
+  "selectedVideosInspected": 2,
+  "readerVideosRetained": 5,
+  "totalNativeVideosRetained": 10,
+  "summary": "本轮24张实际原生截图已复核，全部非透明；分页EPUB深灰180%重排快照与新增EPUB整窗文字均已实际可见，旧透明采集不追认。巨段TXT孤立快照仍仅顶部约两行/下方留白，满页成因与手机结果仍未验收；普通TXT实际UI录屏有整页正文。正常65.60秒/额外减少动效16.54秒两段新手势视频全时段1秒总览，以及正常收菜单21帧/中央恢复20帧、减少动效跟手横拖17帧/恢复20帧共78实际20fps时间采样已看，无插帧且允许VFR重复，不当手机FPS。正常约18.00–18.20秒菜单短渐退同时正文原生上滑，约22.10–22.30秒中央恢复，正文视口未因菜单重排；额外减少动效约13.00秒菜单直接出现且保留手指横拖。手感三组/关闭自动收起/减少动效开关/连续模式重开可读；重启间31–46秒系统桌面不作阅读证据。其余3段阅读与5段书架原生视频只保留，未宣称本轮逐段审阅。系统真实Reduce Motion/VoiceOver/旋转/其他设备、普通签名/TrollStore、手机手感/FPS/耗电仍待测。",
+  "deviceAccepted": false,
+  "phoneFPSAccepted": false,
+  "giantTXTFullViewportAccepted": false,
+  "pagedEPUBRasterObserved": true
+}

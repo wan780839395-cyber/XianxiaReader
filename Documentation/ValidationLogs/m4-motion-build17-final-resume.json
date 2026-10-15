@@ -1,0 +1,17 @@
+{
+  "recordedAtUTC": "2026-10-15T17:52:07.487772+00:00",
+  "run": 38775427080,
+  "sourceRevision": "63134f1aa4787e3067453e2fe8b15bf17b449ca2",
+  "apiConclusion": "success",
+  "onlyDocumentationChangesSinceCandidate": true,
+  "originalHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+  "originalIndexUnchanged": true,
+  "changedDocumentation": [
+    "Documentation/M4_MOTION_VALIDATION_REPORT.json",
+    "Documentation/READING_MOTION_DESIGN.md",
+    "Documentation/ValidationLogs/m4-motion-build17-fifth-linux.json",
+    "Documentation/ValidationLogs/m4-motion-build17-fifth-windows-freeze.json",
+    "HANDOFF.md"
+  ],
+  "fullArtifactReviewPending": true
+}
