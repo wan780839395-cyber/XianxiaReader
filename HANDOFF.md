@@ -14,6 +14,20 @@
 
 已写Core BookTitle/最新payload事务改名，事务helper泛型返回提交值，协议与失败mock保留；App已接网格/列表、排序/书名作者搜索、偏好、共享改名sheet、refresh请求ID与封面明确降级警告。新增5 Core/5 iOS及四张真实原生UI截图用例，目标85/63。Windows390 Swift语法新增0/54 pristine限制、16tooling通过，仍未编译。方案与SQLite/Apple参考及网页读取限制见Documentation/LIBRARY_BROWSING_DESIGN.md。下一步记录Build9确认/状态、inventory→独立codex/m3-library快照（保留main/index、旧codex/m2 tip）→完整CI→日志/锁/源hash/原生UI视觉核验→另存Build10包/交接。尚未交付源码不能写成M3完成。上轮关机授权只用于上轮一次性请求，本轮不重新启动helper。
 
+## 2026-10-15 M3 完整 CI 已调度
+
+候选cd76b4d2763631c879400db79e62c415b47dd83f / CI38662816246已在codex/m3-library调度完整流程，repository-checks已通过，其他阶段以实际job/完整日志为准。独立index保留main/HEAD6d76174与原空暂存区，M2分支tip e6f31d8未动。新报告Documentation/M3_LIBRARY_VALIDATION_REPORT.json记录468运行源码Git blob hash与13旧包（Build4–9 IPA/ZIP及长样本ZIP），保护Reader/Vendor/codec/锁/schema/文件协调均无改动；尚无Build10成功编译或包可假定。接下来核85Core/63iOS/原生书库四图/Release，不用Windows语法当编译。已核原关机收据exit0，当前不启动新关机。
+
+## 2026-10-15 M3 Linux 子步骤完成
+
+CI38662816246 repository-checks与Linux85 Core/4个Release长书探针已success，完整Core artifact下载到build/ci/38662816246/core；源码仍cd76b4d，未改动等待苹果验证的源码。Apple job仍进行中，不根据单体step耗时猜测已跑完测试/Release。后续核完整63 iOS、源warning/error/锁/468hash、原生书库四图与IPA，再运行已经准备但尚未执行的package_library_build10.py、finalize_library_docs.py；不能先交付待编译代码。新Windows工具/静态通过记录已在M3文档，全部13旧包保留。
+
+## 2026-10-15 M3 第一轮实际结果与下一断点
+
+cd76b4d / CI38662816246 completed/failure：Linux/macOS各85 Core/4Release探针通过，全部5 Library新回归通过，iOS总62/63、failed1/skipped0、test65/export0/summary0，设备Release/IPA未执行。旧TXT实页first real location等待20秒超时，生产Reader/Vendor/codec与Build9相同，原因未证实。完整run/full/Core/Apple/summary/xcresult/原生图已下载保留，不称已修Reader。已看首轮网格/列表图：布局可读；最近阅读中未读新书挤在已读前，修改展示排序为已读按阅读时间优先/未读按导入置后，最近导入保持独立；补回归未读导入时间400比已读300更新仍应在后。
+
+首轮新Library fixture在UI/SQLite释放前删临时root，有3条vnode unlink日志（不等于生产DB损坏）。参照已验证DocumentImportFixtureSession，把4个小fixture repository及目录留到worker退出，仅清理隔离UserDefaults；原生改名sheet等待真实dismiss完成。给TXT首定位超时仅补同步原生几何/slot诊断，不读未来正文，不调用可能挂起的JS，原20秒/600点/字符与3px断言均保持；不宣称fixture修正与首定位超时有已证实因果。下一步静态检查、新源码快照/完整CI，不同源不是碰运气重试。一次doc长行patch匹配失败已核实未落任何源码，再分开重做，实际成功以文件为准。
+
 ## 实际断点
 
 2026-10-15 Build9 ANSI兼容/范围缓存完整自动门槛通过：[CI38612220954](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38612220954) / c2a037aa6765cd56319cf8a61e8ca1c34f047e22。Linux/macOS各80Core，iOS58/58、failed/skipped0、test/export/summary0，无签名设备Release/IPA。Windows385 Swift语法新增0（pristine54限制保留）、16tooling，语法不是编译；463候选源码Git blob hash、三份真实6pins锁一致。中文Windows ANSI/GBK默认严格自动导入，Big5/CP950与Windows-1252明确手选，GB18030自动回退；Apple CP936单独euro与合法trail80差异经官方映射核实和跨块回归。Normalizer/parser/resource/Locator v1及旧UTF/GB18030 codec身份保持，自动cache策略独立v2。范围cache复用严格核对所有范围/最大scalar切点，仍全文digest验证，不能保证只读元数据秒开。完整方案见TXT_ANSI_COMPATIBILITY.md。

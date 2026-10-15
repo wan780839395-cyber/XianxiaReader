@@ -173,7 +173,17 @@ final class TXTReadingTests: XCTestCase {
         let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
         let window = try mount(engine)
         try await engine.open(book: book,fileURL: url,position: nil)
-        try await wait("TXT first real location") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        do {
+            try await wait("TXT first real location") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        } catch {
+            // Synchronous native geometry only: diagnostics must not hang on an
+            // unresponsive WebKit bridge or reveal preloaded future body text.
+            let description = "window=\(window.bounds) key=\(window.isKeyWindow) hidden=\(window.isHidden) mounted=\(engine.viewController.view.window === window) resources=\(engine.continuousLoadedResourceCount) position=\(engine.currentPosition == nil ? "none" : "emitted") state=\(engine.continuousDiagnosticState)"
+            let diagnostic = XCTAttachment(string: description)
+            diagnostic.name = "txt-first-location-native-diagnostic"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+            print("TXT_FIRST_LOCATION_DIAGNOSTIC \(description)")
+            throw error
+        }
         XCTAssertGreaterThan(context.plan.resources.count,3)
         // Navigate inside a giant paragraph's SECOND bounded resource, then exercise
         // physical scrolling and reopening there rather than only the chapter's first window.

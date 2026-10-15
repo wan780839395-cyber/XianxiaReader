@@ -1,0 +1,116 @@
+{
+  "recordedAtUTC": "2026-10-15T01:13:02.761049+00:00",
+  "run": 38662816246,
+  "sourceRevision": "cd76b4d2763631c879400db79e62c415b47dd83f",
+  "linuxCoreTests": 85,
+  "macOSCoreTests": 85,
+  "releasePerformanceCasesEach": 4,
+  "newLibraryTestsPassed": 5,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 62,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792026493.756,
+    "passedTests": 62,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792026091.191,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed: caught error: \"timedOut(\"TXT first real location\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 60,
+        "testIdentifierString": "TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC",
+        "testName": "testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "31% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 14.37s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 63
+  },
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "deviceReleaseBuilt": false,
+  "sqliteVnodeUnlinkDiagnostics": 3,
+  "failedTest": "TXTReadingTests.testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC",
+  "failure": "20-second first real TXT location wait timed out",
+  "uniqueRootCauseConfirmed": false,
+  "productionReaderVendorCodecChanged": false,
+  "changes": [
+    "Keep small Library fixture repositories and directories alive until worker exit, following existing native import fixture.",
+    "Wait for actual rename sheet dismissal; add synchronous native geometry/slot diagnostic on TXT first-location failure without changing20s/600point/character/3px assertions.",
+    "Native shelf review showed newer unread imports before read book; prioritize actual read history and add newer-unread regression, keep recent import separate."
+  ],
+  "artifacts": [
+    {
+      "path": "build/ci/38662816246/run.json",
+      "bytes": 5472,
+      "sha256": "da75faf39a03ecf2d71c4a371158ed538c5664c75d8115f43bbddc8e70a4b142"
+    },
+    {
+      "path": "build/ci/38662816246/full.log",
+      "bytes": 1924693,
+      "sha256": "ff23a4ca3ee03a8ec00ca0f657af736ae5f89d1b957327780737870410b4ed83"
+    },
+    {
+      "path": "build/ci/38662816246/core/logs/core-tests.log",
+      "bytes": 12163,
+      "sha256": "49b17419fe2e9b9aed9ac9633255f333e4dab6ede03ce47c7c03035f80a6ad17"
+    },
+    {
+      "path": "build/ci/38662816246/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1327701,
+      "sha256": "aa3d56377535ff7f08f30f21eb8e1635c4893dff715c7f4fca18996f23b0930e"
+    },
+    {
+      "path": "build/ci/38662816246/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1733,
+      "sha256": "3e20303d20f4b675b14eaa96caf03e239eac156fd79abf52d856f21b6561768a"
+    },
+    {
+      "path": "build/ci/38662816246/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/manifest.json",
+      "bytes": 6276,
+      "sha256": "c70173cf3d13a18f90bc4ac44f222ab1fef454358b309d1d7685d65f3acbcf15"
+    },
+    {
+      "path": "build/ci/38662816246/core/TXTPerformance/summary.json",
+      "bytes": 697448,
+      "sha256": "b03c41edd7acb7687e4f5eb2a7e68136b47b16eaf0a2e655020bb94971a1621a"
+    },
+    {
+      "path": "build/ci/38662816246/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
+      "bytes": 697472,
+      "sha256": "23c77fc4ff754902d8ce764baf75661068f7a330a8ccd2df4ef76418903c4630"
+    }
+  ]
+}

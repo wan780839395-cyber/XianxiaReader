@@ -27,6 +27,7 @@ enum LibraryPresentation {
         }.sorted { first, second in
             switch order {
             case .recent:
+                if (first.lastReadAt != nil) != (second.lastReadAt != nil) { return first.lastReadAt != nil }
                 let a = first.lastReadAt ?? first.book.importedAt, b = second.lastReadAt ?? second.book.importedAt
                 if a != b { return a > b }
             case .imported:

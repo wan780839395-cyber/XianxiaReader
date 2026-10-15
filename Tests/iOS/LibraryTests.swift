@@ -5,12 +5,17 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class LibraryTests: XCTestCase {
+    @MainActor private static let sessionRoot = FileManager.default.temporaryDirectory.appendingPathComponent("LibraryFixtureSession-\(UUID().uuidString)")
+    // SwiftUI/SQLite cleanup can outlive a case. Keep the small fixture repositories
+    // AND their directories until worker exit, as the native import suite does.
+    @MainActor private static var repositories: [SQLiteBookRepository] = []
     @MainActor private func context() throws -> (URL, AppServices, UserDefaults) {
-        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let root = Self.sessionRoot.appendingPathComponent(UUID().uuidString)
         let files = try BookFileStore(root: root.appendingPathComponent("Storage"))
         let repository = try SQLiteBookRepository(url: root.appendingPathComponent("library.sqlite"))
         let suite = "LibraryTests-\(UUID().uuidString)", defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
-        addTeardownBlock { defaults.removePersistentDomain(forName: suite); try FileManager.default.removeItem(at: root) }
+        Self.repositories.append(repository)
+        addTeardownBlock { UserDefaults.standard.removePersistentDomain(forName: suite) }
         return (root, AppServices(repository: repository, files: files), defaults)
     }
 
@@ -30,7 +35,7 @@ final class LibraryTests: XCTestCase {
         let a = Book(id: try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001")), title: "Book 2", author: "Café", format: .epub,
                      filePath: "original.epub", importedAt: Date(timeIntervalSince1970: 100))
         let b = Book(id: try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000002")), title: "Book 10", author: "山门", format: .txt,
-                     filePath: "original.txt", importedAt: Date(timeIntervalSince1970: 200))
+                     filePath: "original.txt", importedAt: Date(timeIntervalSince1970: 400))
         let summaries = [BookSummary(book: b, progression: nil, lastReadAt: nil), BookSummary(book: a, progression: 0.42, lastReadAt: Date(timeIntervalSince1970: 300))]
         XCTAssertEqual(LibraryPresentation.books(summaries, query: "", order: .recent).map(\.id), [a.id,b.id])
         XCTAssertEqual(LibraryPresentation.books(summaries, query: "", order: .imported).map(\.id), [b.id,a.id])
@@ -113,7 +118,11 @@ final class LibraryTests: XCTestCase {
         try await Task.sleep(nanoseconds: 300_000_000); window.layoutIfNeeded()
         attach(window, name: "library-rename-error-build10")
         model.presentedSheet = nil
-        try await Task.sleep(nanoseconds: 300_000_000)
+        let dismissalDeadline = Date().addingTimeInterval(10)
+        while (window.rootViewController?.presentedViewController != nil || window.rootViewController?.transitionCoordinator != nil), Date() < dismissalDeadline {
+            try await Task.sleep(nanoseconds: 50_000_000)
+        }
+        XCTAssertNil(window.rootViewController?.presentedViewController)
     }
 
     @MainActor private func attach(_ window: UIWindow, name: String) {

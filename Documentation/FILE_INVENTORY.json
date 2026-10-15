@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T00:55:44.801295+00:00",
+  "recordedAtUTC": "2026-10-15T01:13:02.952238+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 617,
+  "fileCount": 620,
   "files": [
     {
       "path": ".gitattributes",
@@ -65,8 +65,8 @@
     },
     {
       "path": "App/Library/LibraryPresentation.swift",
-      "bytes": 2289,
-      "sha256": "59a9232a0f498002b4bc3a89187fa5cc5cff46c2f7a34ceba763b37084a0c508"
+      "bytes": 2399,
+      "sha256": "13b5bf5a0fc1760f88b43cac1e4b1efa1dc95a05d32f8535d8ce4e22f068a6d9"
     },
     {
       "path": "App/Library/LibraryView.swift",
@@ -215,8 +215,8 @@
     },
     {
       "path": "Documentation/LIBRARY_BROWSING_DESIGN.md",
-      "bytes": 4041,
-      "sha256": "de53d18a7b1ba8596dfb0060d8bbfa1e1c883eca0371a8a8c88c662488ad8f66"
+      "bytes": 5272,
+      "sha256": "cf8c9fcaf2444ca6dd6c15b31f4ad532175ee784607e5cad1ccef877834648dc"
     },
     {
       "path": "Documentation/M0_ACCEPTANCE.md",
@@ -331,7 +331,12 @@
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "8b3899581a0778884156b2365e6cc01d625a8ecb026a06bf4321118cf4f7fc94"
+      "sha256": "c1faeeaaaceed2ce564f43dc0c56ba7d549496f20a7569fb3dcfb1162bf7d3e7"
+    },
+    {
+      "path": "Documentation/M3_LIBRARY_VALIDATION_REPORT.json",
+      "bytes": 91053,
+      "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
     },
     {
       "path": "Documentation/MATURE_READER_REFERENCES.md",
@@ -774,6 +779,16 @@
       "sha256": "995930149c44f5549af0f8e4cf091f2081fb24f290fa310db65dcb53db3cb879"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
+      "bytes": 91053,
+      "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-first-location-failure.json",
+      "bytes": 4572,
+      "sha256": "d58221ff79f628e7ed1c9cd590fadeb05a6918597dc79150a098645c6abc89b6"
+    },
+    {
       "path": "Documentation/ValidationLogs/publication-audit-2026-10-14.json",
       "bytes": 831,
       "sha256": "af65c958376cdc5c0d90e2a93417c17717492e2034e8eecf2736a3a3f1bfc202"
@@ -805,8 +820,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9288,
-      "sha256": "700d8e53f8f8b857241d0c67d465671e52cde6f6a990f99190a5e1236b3c999f"
+      "bytes": 12019,
+      "sha256": "b57e8222d598f493cc06ed02aef35af582887765dd4945a2e24072ff727b8453"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1165,8 +1180,8 @@
     },
     {
       "path": "Tests/iOS/LibraryTests.swift",
-      "bytes": 9786,
-      "sha256": "d4976bc7e40b7f65c01f554d4275a87ede5cb7eaca1556b594c6a533062a9608"
+      "bytes": 10486,
+      "sha256": "599aa6e34c0c717186d6c23971d0f732e79b5f1c63ce0a2071095f4380f05de3"
     },
     {
       "path": "Tests/iOS/PositionCodecTests.swift",
@@ -1195,8 +1210,8 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "bytes": 20615,
-      "sha256": "2610351682cea8dbb44e1cd171b256311cafd3d3d052a0fa872ba85cfb23282e"
+      "bytes": 21415,
+      "sha256": "1463e6a06f92cbe5cb4266ad77fcf5fb627a6252ba6e13f9abf013847a259508"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
