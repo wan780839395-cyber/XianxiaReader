@@ -33,3 +33,11 @@ Windows检查完成：417 Swift语法文件，新增diagnostics0/上游pristine�
 恢复后准备第三源码快照（暂不派新CI，等38711610037完整结果）：已保留晚于旧候选的分页reflow/快速连发判断/设置写失败留页和新增真实分页非零锚点回归，TXT初始两字缩进computed比例也明确断言。Windows417/17Python已通过；下一候选预计115Core/90iOS。先用私有index存快照，原HEAD/index和23旧包不动，不将旧CI背书新源码。
 
 CI38711610037已completed/failure，完整full/Core/Apple/xcresult/附件下载helper最终0。各115Core/四长书通过、Swift编译警告错误0；iOS87/89（2个失败case，3个断言/未预期失败），6UI与新EPUB五主题/位置通过。旧连续boundary首cover about:blank→watchdog/原30s超时，根因未确认；新TXT首窗口600点后非零UTF16等待超时，候选未附DOM诊断。严格test65、export/summary/recording0，未进Release，无IPA。证据second-candidate-failure.json。保持旧断言/超时不改；新增TXT使用既有已验证第二资源DOM跳转后滚动流程，同600点/>100UTF16/3px门槛，增加诊断；合并分页草稿再完整重跑。先前snapshot908da保存早期草稿，新候选需覆盖此TXT步骤。
+
+第三轮实际完整CI38714955473已派发，源码773df424fea0f556bcd614fe5a6ca93570c3c9cd；908da为中间保存未派CI。498源码blob/23旧包基线登记，预计115Core/90iOS。正按完整门槛等待，不认旧候选为新草稿成功。
+
+第三轮已下载LinuxCore完整日志：773df424/38714955473各115条实际Core测试条目与四Release长TXT探针通过；Apple仍执行中，未推断完成。上一失败候选的两张原生图与56.57秒真实设置case视频四张1秒总览已查看，只记诊断，不冒充当前候选原生复核；terminate/relaunch黑段保留。
+
+报告已将实际核过的当前候选Linux115Core/四探针单独标通过（partialVerification），其余Apple/Release/原生门槛仍待完成；成功收尾时移除执行中标记。所有运行/验证源码保持773df424，不在等待期间追加功能。
+
+第三轮CI38714955473已completed/failure并完整下载0：各115Core/四探针过，iOS88/90（2新case失败），旧boundary和全部旧回归/6UI/新连续EPUB主题过；编译警告错误0，test65/export-summary-recording0，无Release/IPA。完整third-candidate-failure/candidate与TXT原DOM诊断保留。定位后新增：仅自有version1精确DOM锚点的LTR分页直接选所在页（3.11官方textmatcher无domRange）；TXT64UTF16上下文防拆emoji代理对，原现场577/586/597全部可重现坏切片。保持同emoji+组合字样本/600点/>100/3px和全部旧断言；新增错误捕获与原分页字符附件。Windows417/17Python过，准备第四候选完整CI，尚未称修复成功。

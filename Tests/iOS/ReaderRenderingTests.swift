@@ -596,6 +596,8 @@ final class ReaderRenderingTests: XCTestCase {
             return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null;})()
             """) as? Int
         let character = try XCTUnwrap(pointValue); XCTAssertGreaterThan(character, 100)
+        let initial = XCTAttachment(string: "Expected long-paragraph UTF16 offset \(character) to stay in viewport after 180 percent reflow and reopen.")
+        initial.name = "paged-appearance-original-character"; initial.lifetime = .keepAlways; add(initial)
         let script = """
             (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;const r=document.createRange();
             r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();

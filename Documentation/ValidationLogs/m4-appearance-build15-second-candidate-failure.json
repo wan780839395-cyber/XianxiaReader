@@ -94,5 +94,16 @@
       "bytes": 16565,
       "sha256": "d4b1dca3f8f1fe5e8d31aa413de18be7faf5f086080d28d52664b6beff44365a"
     }
-  ]
+  ],
+  "diagnosticNativeReview": {
+    "run": 38711610037,
+    "scope": "Diagnostic review of failed overall candidate; not validation of latest drafts or permission to package.",
+    "imagesViewed": [
+      "reader-settings-warm-build15",
+      "reader-page-charcoal-build15"
+    ],
+    "actualSettingsVideoSeconds": 56.57,
+    "overviewSheetsViewed": 4,
+    "observations": "Native sheet theme/typography edits, charcoal return, explicit test terminate/relaunch gap, saved130percent/charcoal reopen and OLED return are visible. Black segment during terminate/relaunch is retained; not claimed app smoothness or phone FPS."
+  }
 }

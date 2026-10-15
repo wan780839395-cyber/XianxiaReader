@@ -1,0 +1,26 @@
+{
+  "sourceRun": 38714955473,
+  "diagnostic": "DOM physical scrollY612, accepted caret offsets577/586/597, old saved position still0. Exact repeated fixture has 9 UTF16 units per phrase.",
+  "reproduction": [
+    {
+      "sampledUTF16Offset": 577,
+      "invalidOldContextFields": [
+        2
+      ]
+    },
+    {
+      "sampledUTF16Offset": 586,
+      "invalidOldContextFields": [
+        2
+      ]
+    },
+    {
+      "sampledUTF16Offset": 597,
+      "invalidOldContextFields": [
+        0,
+        1
+      ]
+    }
+  ],
+  "inference": "Every sampled offset produces at least one unpaired surrogate in old fixed64-unit slices. Guard slice boundaries; actual native save/error/reflow/reopen regression must verify fix."
+}

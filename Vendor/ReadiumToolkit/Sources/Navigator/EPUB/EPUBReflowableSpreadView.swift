@@ -309,6 +309,29 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
             }
         }
 
+        // Locators sampled by our viewport extension carry an exact DOM point.
+        // Upstream 3.11's JS text matcher does not consume domRange, so repeated
+        // prose can select a different occurrence after pagination is rebuilt.
+        if !viewModel.scroll, !viewModel.verticalText, viewModel.readingProgression == .ltr,
+           locator.locations.otherLocations["xianxiaContinuousAnchorVersion"]?.double == 1,
+           locator.locations.domRange != nil {
+            do {
+                let json = try locator.jsonString()
+                let result = await evaluateScript("""
+                    (() => {
+                      const rect = (\(Self.continuousAnchorRectFunction))(\(json));
+                      if (!rect || innerWidth <= 0) return false;
+                      const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
+                      window.scrollTo({left:page * innerWidth,behavior:'instant'});
+                      return true;
+                    })()
+                    """)
+                return (try result.get() as? Bool) == true
+            } catch {
+                log(.error, error)
+                return false
+            }
+        }
         if locator.text.highlight != nil {
             return await scroll(toLocator: locator, animated: animated)
             // TODO: find the first fragment matching a tag ID (need a regex)

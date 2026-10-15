@@ -276,6 +276,8 @@ final class TXTReadingTests: XCTestCase {
         let (book, url, services, context) = try await prepared("第一章 山门\n" + String(repeating: "修行🙂e\u{301}问道。", count: 30000))
         let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
         var appearance = ReadingAppearance(); appearance.fontScale = 1
+        var positionErrors: [String] = []
+        engine.onError = { positionErrors.append($0) }
         try engine.setAppearance(appearance)
         _ = try mount(engine)
         try await engine.open(book: book, fileURL: url, position: nil)
@@ -308,10 +310,13 @@ final class TXTReadingTests: XCTestCase {
             let dom = try await target.evaluateJavaScript("({y:scrollY,height:document.documentElement.scrollHeight,top:document.querySelector('p')?.getBoundingClientRect().top,offsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
             let diagnostic = XCTAttachment(string: "DOM=\(dom ?? "nil") outer=\(scroll.contentOffset) state=\(engine.continuousDiagnosticState) position=\(String(describing: engine.currentPosition))")
             diagnostic.name = "txt-appearance-anchor-failure"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+            let errors = XCTAttachment(string: positionErrors.joined(separator: "\n"))
+            errors.name = "txt-appearance-position-errors"; errors.lifetime = .keepAlways; add(errors)
             throw error
         }
         let saved = try XCTUnwrap(engine.currentPosition)
         let (_, anchor, _) = try TXTPositionCodec.decode(saved, bookID: book.id, plan: context.plan)
+        XCTAssertTrue(positionErrors.isEmpty, positionErrors.joined(separator: "\n"))
         let anchorY = """
             (() => { const n=document.getElementById('txt-b\(byte)').firstChild;
             const r=document.createRange();r.setStart(n,\(anchor.characterUTF16Offset));r.setEnd(n,\(anchor.characterUTF16Offset+1));

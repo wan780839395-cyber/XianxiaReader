@@ -35,3 +35,9 @@ Adapter 将模型映射至既有 EPUBPreferences，保留当前分页/连续模�
 分页补充：动态CSS只改样式，原横向页偏移并不代表同一段文字。Adapter仅在字体/字号/行距/段距/留白/缩进/对齐/原书样式变化时，通过新的Navigator重载参数从刚采样的DOM Locator重建当前分页；纯底色不重载，连续仍由已有ResizeObserver补偿，模式改变保留原失效流程。新增分页长段落非零文字锚点可见性/重开回归；设置完成和返回按钮等待保存，失败留在当前页展示错误，不悄悄关闭。
 
 快速连续修改还须比较实际已提交的偏好，而非已被取消的上一次意图；分页回归连发字号+主题，并验证同一段落内非零文字在reflow/reopen后可见。TXT新增检查初始两字缩进的真实computed rem比例，再验证关闭后0px。
+
+第四候选前定位复核：CI38714955473原始88/90失败（各115Core/四探针、旧全部回归/6UI/连续EPUB主题通过）。按官方3.11 ReflowableSpreadView go(to:)和配套JS复查，scrollToLocator只做文本匹配，没有domRange处理；所以自有精确锚点分页重建后可能匹配长段的另一处。仅对version1自标记/横排LTR分页，复用既有DOM范围首clientRect算所在页，普通EPUB/搜索/RTL/竖排路径不改。
+
+TXT现场scrollY612、段落top约-599、offset577/586/597和savedAnchor accepted，保存位置却停0。精确重复样本每句9UTF16单位，原64单位上下文切片在全部三个offset均产生不配对surrogate；repro见surrogate-context-analysis.json。局部修正边界避开高/低代理对中间，保留UTF16文字身份、约64单位上下文上限和byte协议，新增实际错误捕获；是否解决须由同一emoji/组合字样本的实际保存/600点/非零/3px/reflow/reopen证明，不根据Python重现先写成通过。
+
+本轮额外参考同tag官方https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift；现有连续扩展的精确DOM路径是成熟已过回归的基础，不引入新排版引擎。

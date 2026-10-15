@@ -13,9 +13,9 @@
 
 ## M4 第一片当前断点
 
-用户“继续”后进入主题/排版/偏好保存。当前候选587ff09b1e94c2aec6406847802060d01231dad0 / CI38711610037验证中，源码不能提前称验收。Windows417语法（新增0/上游限制54）与17Python通过；新增5Core/4iOS集成/1UI，预期各115Core/89iOS完整回归。设计READING_APPEARANCE_DESIGN.md。初始706维护文件及inventory共707项ZIP、23旧包、原HEAD/index均保留。
+用户“继续”后进入主题/排版/偏好保存。当前候选773df424fea0f556bcd614fe5a6ca93570c3c9cd / CI38714955473验证中，源码不能提前称验收。Windows417语法（新增0/上游限制54）与17Python通过；新增5Core/5iOS集成/1UI，预期各115Core/90iOS完整回归。设计READING_APPEARANCE_DESIGN.md。初始706维护文件及inventory共707项ZIP、23旧包、原HEAD/index均保留。
 
-首候选14444c58/CI38711095224由Agent主动取消：Linux115Core和四长书探针通过，Apple仍在XcodeGen依赖编译；发现连续视图动态CSS派发遗漏后补齐并更新既有Vendor单文件provenance。不是编译/测试失败；完整取消日志与原因单列，尚无Build15包。下方M3为已验收历史。
+首候选14444c58/CI38711095224由Agent主动取消：Linux115Core和四长书探针通过，Apple仍在XcodeGen依赖编译；发现连续视图动态CSS派发遗漏后补齐并更新既有Vendor单文件provenance。不是编译/测试失败；完整取消日志与原因单列，尚无Build15包。第二轮38711610037各115Core/四长书通过、iOS87/89（2case失败，6UI与新EPUB五主题通过），严格test65阻止Release；完整失败日志保留。旧boundary about:blank与新TXT初窗非零锚点超时原因未确认，旧断言/超时保持；TXT改用既有第二窗口流程并增加诊断，连同分页reflow草稿完整重跑。无Build15包。下方M3为已验收历史。
 
 ## 2026-10-15 M3 自用验收收口
 

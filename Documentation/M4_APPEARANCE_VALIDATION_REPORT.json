@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T09:15:35.531550+00:00",
+  "recordedAtUTC": "2026-10-15T09:43:11.838481+00:00",
   "stage": "M4 appearance first slice pending full CI",
-  "sourceRevision": "587ff09b1e94c2aec6406847802060d01231dad0",
-  "run": 38711610037,
+  "sourceRevision": "773df424fea0f556bcd614fe5a6ca93570c3c9cd",
+  "run": 38714955473,
   "branch": "codex/m4-reading-appearance",
   "build": "15",
   "changedPaths": [
@@ -25,7 +25,11 @@
     "Documentation/ValidationLogs/m3-library-build14-success.json",
     "Documentation/ValidationLogs/m3-library-build14-test-kit.json",
     "Documentation/ValidationLogs/m3-library-build14-user-feedback.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-agent-cancel.json",
     "Documentation/ValidationLogs/m4-appearance-build15-first-candidate.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-resume.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-second-candidate-failure.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-second-candidate.json",
     "HANDOFF.md",
     "HANDOFF_M3_DUPLICATES_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -56,9 +60,9 @@
     "swiftCompilation": false
   },
   "expectedCoreTests": 115,
-  "expectedIOSTests": 89,
+  "expectedIOSTests": 90,
   "existingIntegrationTests": 79,
-  "newAppearanceIntegrationTests": 4,
+  "newAppearanceIntegrationTests": 5,
   "nativeUITestsTotal": 6,
   "sourceHashKind": "SHA-256 of candidate Git blobs",
   "sourceHashes": [
@@ -148,7 +152,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "5e45b63787c6d5206adf10f38f90dbfa05341cb48d6e60144600d52165112527"
+      "sha256": "39986acdb96faf5df4c5d3f08326d0ffacbef3d4bcb349aea0a0f98b4fde9072"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -156,7 +160,7 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "614665d17322cce0af9b7138810831fbac5f57143b16a22dca3dd51e0a8095bd"
+      "sha256": "3fde1afe5e014d206a9ea67efc86dae6af196fbfa3c751345d122c64de5a8821"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
@@ -428,7 +432,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "3a6271089937399b83b3456fe1947d0c97ddc1514c772a4c4a737c296e51485c"
+      "sha256": "b3fa39e970e3646f7d0465ca56c7fac8d3656d3713d9d0af136ea04250c9b84c"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -528,7 +532,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "729dafa775040226a55bb9cd760b9ec6325ec32e6bb2d6dfbbcc59fe65877b5b"
+      "sha256": "11213baf0d27acede2e14142351d47ba14b5b457b21e77b3fd2157456be94242"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -540,7 +544,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "d121641399d0610a8b43e15b5a0dc3a288b7bd439dde158060375a8c44821938"
+      "sha256": "b221512e583fb0ec6d56505bc66950d5718520030ea98558639b108212e35415"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -812,7 +816,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "de10fcc7e7ec18fc25e1e262dddb3120ac2b1143d9e8cb153d2aea1540505fe0"
+      "sha256": "a0815233b90951bc10cdabe07e4a14ef424736043d9f2ba2db1655c885ac6942"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1968,7 +1972,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "7c5560e38ddf08f87aef71a9532703e31d134e626c404aa14d13651c41bf0277"
+      "sha256": "385c5e2b0e1266a0e5799517953dc47e5450538650b27c34dcebfc4d7a120d5a"
     },
     {
       "path": "project.yml",
@@ -2175,7 +2179,7 @@
   "schemaVersion": 3,
   "schemaUnchanged": true,
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2190,5 +2194,13 @@
     "No permanent delete/storage reclamation or automatic merging of pre-existing duplicates.",
     "Native frames/video are not a measured phone FPS or full-theme/ordinary-device acceptance.",
     "Reduced Motion environment test does not set or certify a physical-device system preference."
-  ]
+  ],
+  "linuxCoreTests": 115,
+  "partialVerification": {
+    "recordedAtUTC": "2026-10-15T10:02:00.077463+00:00",
+    "LinuxCore": 115,
+    "LinuxReleaseProbeCases": 4,
+    "AppleStillExecuting": true,
+    "evidence": "build/ci/38714955473/core"
+  }
 }

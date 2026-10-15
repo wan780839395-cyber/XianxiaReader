@@ -1427,11 +1427,11 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "d47bede85096f35d8693c1a990a4a0e082c15f0ddae2abc71857c2aee8d85c08"
+      "sha256": "bd2a918ec7501357612abc1edcae8c869b44450fddbba84e73e6040c5b4dc73e"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "55b279f4f7a55a273f8808e7a79610c4caeac913023419d88ccdc22ecf2a54fd"
+      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1664,6 +1664,8 @@
   "appearanceScriptDispatchExtension": {
     "scope": "Route existing script scopes to bounded continuous loaded/current/resource spreads; current first, reject replaced viewport.",
     "reason": "Readium 3.11 official dispatcher only targets paginationView; maintained continuous mode has no paginationView. Preferences otherwise affect reopened resources only.",
-    "pagedReflow": "Adapter requests fresh-DOM-anchor paged reload after typography changes; color-only changes remain dynamic CSS. Mode changes keep original invalidation path."
+    "pagedReflow": "Adapter requests fresh-DOM-anchor paged reload after typography changes; color-only changes remain dynamic CSS. Mode changes keep original invalidation path.",
+    "precisePagedAnchor": "Only self-marked version1 DOMRange anchors, horizontal LTR pagination: choose page from first client rect plus scrollX. Official3.11 text matcher contains no domRange handling. Ordinary search/EPUB/RTL/vertical paths unchanged.",
+    "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen."
   }
 }

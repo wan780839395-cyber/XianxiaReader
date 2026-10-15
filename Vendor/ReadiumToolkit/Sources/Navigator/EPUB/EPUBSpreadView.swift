@@ -639,13 +639,26 @@ class EPUBSpreadView: UIView, Loggable, PageView {
           const locations = {cssSelector:selector(element), xianxiaContinuousAnchorVersion:1};
           let text = {};
           if (caret) {
-            const node = caret.startContainer, offset = caret.startOffset;
+            const node = caret.startContainer;
+            // Context is bounded in UTF16, but no boundary may split an emoji's
+            // surrogate pair: Foundation cannot serialize those invalid strings.
+            const boundary = value => {
+              if (value > 0 && value < node.length) {
+                const before = node.data.charCodeAt(value - 1), after = node.data.charCodeAt(value);
+                if (before >= 0xD800 && before <= 0xDBFF && after >= 0xDC00 && after <= 0xDFFF) return value - 1;
+              }
+              return value;
+            };
+            const offset = boundary(caret.startOffset);
+            const contextStart = boundary(Math.max(0, offset - 64));
+            const highlightEnd = boundary(Math.min(node.length, offset + 64));
+            const contextEnd = boundary(Math.min(node.length, offset + 128));
             element = node.parentElement;
             locations.cssSelector = selector(element);
             locations.domRange = {start:{cssSelector:locations.cssSelector,
               textNodeIndex:Array.from(element.childNodes).indexOf(node), charOffset:offset}};
-            text = {before:node.data.slice(Math.max(0, offset - 64), offset),
-                    highlight:node.data.slice(offset, offset + 64), after:node.data.slice(offset + 64, offset + 128)};
+            text = {before:node.data.slice(contextStart, offset),
+                    highlight:node.data.slice(offset, highlightEnd), after:node.data.slice(highlightEnd, contextEnd)};
           }
           const locator = {href:'#',type:'application/xhtml+xml',locations,text};
           const rect = (\(Self.continuousAnchorRectFunction))(locator);
