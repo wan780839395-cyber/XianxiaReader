@@ -3,6 +3,8 @@ import SwiftUI
 import UIKit
 import XianxiaCore
 
+private enum LibraryFixtureError: Error { case preferencesUnavailable }
+
 /// UI automation only: isolated storage/defaults, normal import and repository APIs.
 /// No fixture root, launch flag or seeded book is included in the Release build.
 @MainActor struct LibraryInteractionFixture {
@@ -17,7 +19,7 @@ import XianxiaCore
         let root = support.appendingPathComponent("LibraryInteractionUITests/\(id.uuidString)")
         let services = try await AppServices.create(storageRoot: root)
         guard let defaults = UserDefaults(suiteName: "LibraryInteractionUITests.\(id.uuidString)") else {
-            throw DatabaseError(message: "无法创建隔离测试偏好。")
+            throw LibraryFixtureError.preferencesUnavailable
         }
         let known = try await services.repository.allBookIDs()
         if known.isEmpty {

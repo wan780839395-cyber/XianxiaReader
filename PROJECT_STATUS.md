@@ -13,7 +13,7 @@
 
 ## 2026-10-15 Build12 当前增量（待编译）
 
-用户确认Build11回收站/恢复正常，并要求列表左滑与网格动画、尽量好看流畅。Build12已写原生List/swipeActions、提交后网格/恢复/布局过渡与Reduce Motion，增加3真实XCUITest与模拟器录屏，目标原67+3=70iOS/各91Core。Windows396语法新增0/54 pristine限制、17tooling/bash检查通过，尚未Swift编译或生成新包。Core/schema2/Reader/codec/Vendor/锁保持；保护所有未提交工作与17旧包。封面替换/重复导入仍M3后续，M4未开始。详见LIBRARY_INTERACTION_DESIGN.md与HANDOFF。
+用户确认Build11回收站/恢复正常，并要求列表左滑与网格动画、尽量好看流畅。Build12已写原生List/swipeActions、提交后网格/恢复/布局过渡与Reduce Motion，增加3真实XCUITest与模拟器录屏，目标原67+3=70iOS/各91Core。Windows397语法新增0/54 pristine限制、17tooling/bash检查通过，尚未Swift编译或生成新包。Core/schema2/Reader/codec/Vendor/锁保持；保护所有未提交工作与17旧包。封面替换/重复导入仍M3后续，M4未开始。详见LIBRARY_INTERACTION_DESIGN.md与HANDOFF。
 
 ## 2026-10-15 Build11 当前切片
 

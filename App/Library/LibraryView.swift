@@ -6,7 +6,9 @@ import XianxiaCore
     let services: AppServices
     @StateObject private var model: LibraryViewModel
     @State private var selectedBook: Book?
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
+    @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
+    private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20, alignment: .topLeading)]
 
     init(services: AppServices, model: LibraryViewModel? = nil) {

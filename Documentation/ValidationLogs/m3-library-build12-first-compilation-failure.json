@@ -1,0 +1,62 @@
+{
+  "recordedAtUTC": "2026-10-15T03:14:15.262922+00:00",
+  "run": 38674188782,
+  "sourceRevision": "083a7d391c0200349a1b7176661ad8483c6418f6",
+  "conclusion": "failure",
+  "linuxCore": 91,
+  "macOSCore": 91,
+  "iOSTests": {
+    "devicesAndConfigurations": [],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792033928.966,
+    "passedTests": 0,
+    "result": "unknown",
+    "skippedTests": 0,
+    "startTime": 1792033806.166,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 0
+  },
+  "iOSActionsExecuted": false,
+  "releaseBuilt": false,
+  "cause": [
+    "App DEBUG fixture attempted to initialize Core DatabaseError whose memberwise initializer is internal.",
+    "App DEBUG fixture attempted to override read-only accessibilityReduceMotion with environment(_:_:), requiring a writable key path."
+  ],
+  "correction": "App-local fixture error; custom writable motion request key ORed with the real system value. Core stays unchanged; do not pretend the system preference was changed.",
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "artifacts": [
+    {
+      "path": "build/ci/38674188782/full.log",
+      "bytes": 1558535,
+      "sha256": "43defc9ddff51373c54eada3dd83ccdfcee06b9663f3b4b5263b628e1c44f5e6"
+    },
+    {
+      "path": "build/ci/38674188782/core/logs/core-tests.log",
+      "bytes": 13039,
+      "sha256": "274bd49b3e0919514bb84e829b106c87d90fcc15ab5b49f234e78fe9a936164f"
+    },
+    {
+      "path": "build/ci/38674188782/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1022088,
+      "sha256": "1205b61d2888cf889841dd4193cf0fdd814f0e9a6a7be0e1441dfecd52479c15"
+    },
+    {
+      "path": "build/ci/38674188782/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 432,
+      "sha256": "7a7fdd2a2ad50c2082dff80f1e79ab2dc6c3ff7397461a44186432a9389dd8a7"
+    },
+    {
+      "path": "build/ci/38674188782/artifacts/XianxiaReader-build-diagnostics/build/InteractionVideo/library-interactions.mp4",
+      "bytes": 168195,
+      "sha256": "c4f51db6b066a6456280673cea980305209ceb1b0523aa1da182f6057553ef16"
+    }
+  ]
+}

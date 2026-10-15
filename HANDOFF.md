@@ -10,6 +10,12 @@
 
 ## 实际断点
 
+Build12首轮083a7d3 / CI38674188782 completed/failure：各91Core/四长书探针通过，App DEBUG编译失败，iOS total0/test65/export0/summary0/recording0，Release未执行。完整run/full/Core/Apple/xcresult/录屏保留；ValidationLogs/m3-library-build12-first-compilation-failure.json、first-candidate.json记录原件hash。两处实际API错误：DatabaseError初始化internal、accessibilityReduceMotion只读。已改App私有FixtureError及新LibraryMotion可写附加请求key，View用系统值OR请求，不能取消系统Reduce Motion；Core不变、Release仍空prepare。当前目标397语法/476源hash、17tooling、91/70/录屏/Release，需静态后新快照/完整CI，不重跑原错误源或放宽测试。全部17旧包/main/index保留。
+
+Build12 run38674188782 repository-checks、Linux91Core/四长书Release探针已success，Core完整artifact已下载build/ci/38674188782/core。Apple仍在进行，当前未再改运行源码。视频审阅工具仅安装在忽略的.cache/recovery/video-deps（imageio-ffmpeg0.6.0/ffmpeg7.1），不进入App/依赖锁；打包/原生图记录脚本已准备未执行。后续六图必须看实际新run文件，动效须看视频连续帧，不能用静态终态或代码存在直接当验收。
+
+Build12完整CI已调度：083a7d391c0200349a1b7176661ad8483c6418f6 / run38674188782，codex/m3-library。475源Git blob hash及17旧包已记录M3_INTERACTION_VALIDATION_REPORT.json，Core/两个migration/Reader/codec/Vendor/六pins锁均未改。目标各91Core、70iOS（原67+3真正XCUITest）/录屏exit0/Release；尚未完成门槛不打包。当前源码保持，下一步核完整run/log/xcresult/6图/录屏连续帧、Release无XR_LIBRARY_UI_*旗标，手机流畅度仍待实测。
+
 Build12源码/验证配置已就绪，尚未Swift编译。原生List/swipeActions/非全滑确认、网格与恢复动画/Reduce Motion已写；新增DEBUG隔离夹具与3项真正XCUITest、6图、完整模拟器录屏，Release空准备实现不接受环境配置。Core/schema/Reader/codec/Vendor/锁不改，目标各91Core/70iOS。Windows396语法新增0/54 pristine限制、17tooling/bash语法已过。初次静态错误与root parent=None已定位：await先赋值再解包，诊断根节点保留失败报告而非崩溃；不新增白名单。原67iOS/16tooling断言不降低。下一步私有index源码快照/475源hash+17旧包报告/完整CI；完整通过再查看6图+录屏/连续帧、核IPA无DEBUG旗标、另存Build12包/交接。设计LIBRARY_INTERACTION_DESIGN.md。
 
 Build11可恢复移出书架切片已通过[完整CI38668921850](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38668921850) / `bd68a48dc0fa41d07d839e4ddf07128d9069fe0f`：Linux/macOS各91Core、iOS67/67、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA；四长书Release探针继续通过。Windows394Swift语法新增0（54 pristine限制）与16tooling通过，语法不是编译。473运行/验证源Git blob hash、三份真实六pins锁、Build4–10共15旧包hash一致。

@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T03:02:35.211481+00:00",
+  "recordedAtUTC": "2026-10-15T03:15:46.664194+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 647,
+  "fileCount": 651,
   "files": [
     {
       "path": ".gitattributes",
@@ -30,8 +30,8 @@
     },
     {
       "path": "App/AppRootView.swift",
-      "bytes": 1588,
-      "sha256": "f96746300dd56dd9469f58f59794a0a8ab37e0884be4d05843d39a999773d53e"
+      "bytes": 1591,
+      "sha256": "e02c3bdb9501c01ae0a7cb9c1231fc65f1378b4b30388932eade58f8f2f03c31"
     },
     {
       "path": "App/AppServices.swift",
@@ -65,8 +65,13 @@
     },
     {
       "path": "App/Library/LibraryInteractionFixture.swift",
-      "bytes": 2821,
-      "sha256": "3dbe0bf8a2d7e6d371d1c27ef6096d9c11e5765421acbfc983fb56e36312e5c5"
+      "bytes": 2877,
+      "sha256": "162134c7333774673fa9d24eeca0210fddef7ccfa6d1527fcfaba3dcdfa1db7c"
+    },
+    {
+      "path": "App/Library/LibraryMotion.swift",
+      "bytes": 422,
+      "sha256": "3ef8be81ac88c9c3dcd554a149715c62f15a5bf3e14f847d9c9ded8e55701192"
     },
     {
       "path": "App/Library/LibraryPresentation.swift",
@@ -75,13 +80,13 @@
     },
     {
       "path": "App/Library/LibraryTrashSheet.swift",
-      "bytes": 3626,
-      "sha256": "62e1fc5b53d9566ec8992bee5667783ac03f485d5351255bca880dd3a413f025"
+      "bytes": 3798,
+      "sha256": "3f5cd22cb7d724a9453abee6d91395f94cf20d3ba05eb93751cb386457fdaeda"
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 12830,
-      "sha256": "10a0af829df37324d48c7872aa8af2b14532e43877691dfa7c94e45624a061c5"
+      "bytes": 13002,
+      "sha256": "eea7f359c2f8e6297cf6f068b3843e74831fe03184e256dd9ead8f7d1d8f4432"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -230,8 +235,8 @@
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
-      "bytes": 4910,
-      "sha256": "f69914cacbb713b087fff0ca5835e11b6598a486d5f1c8340c54bdcaa6aab38f"
+      "bytes": 5693,
+      "sha256": "184815ad824daf0eb48d134b1972c65d8d75fe0c31775c601f0037182752e70a"
     },
     {
       "path": "Documentation/LIBRARY_REMOVAL_DESIGN.md",
@@ -351,7 +356,12 @@
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "70f142c2c5830a30dee07f2e7227ce3e6610d5ee11036e3454cc0df719f60240"
+      "sha256": "25edc570e91eb46e62f0f25dd8ff11bd7eaa5f824207fbdb2d75cff3f3970367"
+    },
+    {
+      "path": "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
+      "bytes": 92462,
+      "sha256": "648e953d825a2ada7d69ef1fbb8d48c8c34b84dac7439d7370dee2ba4610e84e"
     },
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
@@ -864,6 +874,16 @@
       "sha256": "de1223c0260880fa385c908ebd9a7518b22ca26440b099993f9356f346b17542"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build12-first-candidate.json",
+      "bytes": 92462,
+      "sha256": "648e953d825a2ada7d69ef1fbb8d48c8c34b84dac7439d7370dee2ba4610e84e"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json",
+      "bytes": 2305,
+      "sha256": "90d28efb5a0a839af456e3bf866585e1742546462ea19287dd92a518c86f1784"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -920,8 +940,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 8156,
-      "sha256": "59757c747361a08e6c6d611a1179928602dfc5ba71437f8591d0214b9e65c3ee"
+      "bytes": 9926,
+      "sha256": "ebe499178c28a3e5272e450d09be1f09ef604d151f0776f54969e64fb83085c2"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -981,7 +1001,7 @@
     {
       "path": "PROJECT_STATUS.md",
       "bytes": 23853,
-      "sha256": "506a4eba69a8214e3d6881cf816a3f5b33f4ba7d55b79f6ec8a3934345c185f5"
+      "sha256": "f24871c94ff636b8570e6b304d79cab0f6d4bc49fa252a4071fa722976e60b32"
     },
     {
       "path": "Package.resolved",
@@ -1295,8 +1315,8 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "bytes": 5913,
-      "sha256": "44373fd6337f240e8e5241656d1c7cfc85c6bdd543708d9d0a3c1867f5674910"
+      "bytes": 6199,
+      "sha256": "a7a3f7f4c4b8a8b29090c3efe486ce54b8c3a41252517f8dd16bcc79bfc62e3e"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",

@@ -9,7 +9,7 @@ import SwiftUI
         Group {
             if let fixture = interactionFixture {
                 LibraryView(services: fixture.services, model: fixture.model)
-                    .environment(\.accessibilityReduceMotion, fixture.reduceMotion)
+                    .environment(\.libraryReduceMotionRequested, fixture.reduceMotion)
             } else { normalContent }
         }
         .task { if services == nil { await load() } }

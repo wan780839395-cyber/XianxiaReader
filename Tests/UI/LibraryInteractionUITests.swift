@@ -18,7 +18,13 @@ final class LibraryInteractionUITests: XCTestCase {
     }
 
     @MainActor private func action(_ id: String, label: String, in app: XCUIApplication) -> XCUIElement {
-        app.buttons.matching(NSPredicate(format: "identifier == %@ OR label == %@", id, label)).firstMatch
+        let identified = app.buttons[id]
+        if identified.exists { return identified }
+        // A native confirmation may rewrap the SwiftUI button. Prefer its sheet
+        // over a same-named swipe action that could still be closing behind it.
+        let sheetButton = app.sheets.buttons[label]
+        if sheetButton.exists { return sheetButton }
+        return app.buttons[label]
     }
 
     @MainActor private func count(_ expected: Int, in app: XCUIApplication) {

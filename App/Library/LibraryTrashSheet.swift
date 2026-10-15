@@ -2,7 +2,9 @@ import SwiftUI
 
 @MainActor struct LibraryTrashSheet: View {
     @ObservedObject var model: LibraryViewModel
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
+    @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
+    private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
 
     var body: some View {
         NavigationStack {

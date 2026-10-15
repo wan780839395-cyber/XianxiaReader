@@ -12,7 +12,7 @@
 
 按稳定UUID的可见序列变化，网格用0.34秒response、0.88damping的短spring补位，移出/恢复结合0.94缩放与透明度过渡；排序/筛选沿用稳定身份重排，布局切换0.2秒淡入淡出。回收站行恢复0.25秒过渡。数据仍只在真实提交后变化，不通过提前删卡片伪装保存成功。使用LazyVGrid/List虚拟化，封面加载和数据库不搬到主线程。
 
-读取系统accessibilityReduceMotion：关闭自定义缩放/移动动画和继承动画，不强行动效。新增明确书名/作者/进度的VoiceOver标签。不会声称此次已完成全部主题、字体、无障碍或实测60fps；完整主题/排版仍M4，手机长库FPS/p95/耗电仍M5。
+读取只读系统accessibilityReduceMotion，或自定义可写libraryReduceMotionRequested附加请求（逻辑OR，不能反向取消系统减少动态）：关闭自定义缩放/移动动画和继承动画，不强行动效。DEBUG夹具通过自定义key请求减少动效，不覆写只读系统key。新增明确书名/作者/进度的VoiceOver标签。不会声称此次已完成全部主题、字体、无障碍或实测60fps；完整主题/排版仍M4，手机长库FPS/p95/耗电仍M5。
 
 ## 依据与适用版本
 
@@ -29,4 +29,6 @@ UI夹具仅在DEBUG接受随机UUID启动配置，使用隔离ApplicationSupport
 
 CI先公开simctl bootstatus/recordVideo录制屏幕，测试后SIGINT结束并等待真实退出、检查MP4存在；录屏、test、summary、附件导出失败均阻止设备包，并优先保留原test失败码。新增工具回归验证录屏失败不能生成成功IPA，原所有失败路径保持。录屏上传完整诊断artifact，正常/失败都保留。没有localhost预览。
 
-Windows396Swift语法新增0/54 pristine限制、17tooling和bash语法通过，仍不是Swift编译。初版AppRoot恢复语法出现Tree-sitter诊断/根节点parent=None诊断崩溃；已将可选await先赋值再解包、保留Release空准备实现，并让根错误节点正常报告而非崩溃，不添加忽略名单/降低门槛。新增Tests/UI进入语法扫描。真正Swift/iOS/Release、截图、录屏和手机验收需分别记录。
+Windows397Swift语法新增0/54 pristine限制、17tooling和bash语法通过，仍不是Swift编译。初版AppRoot恢复语法出现Tree-sitter诊断/根节点parent=None诊断崩溃；已将可选await先赋值再解包、保留Release空准备实现，并让根错误节点正常报告而非崩溃，不添加忽略名单/降低门槛。新增Tests/UI进入语法扫描。真正Swift/iOS/Release、截图、录屏和手机验收需分别记录。
+
+首轮083a7d3/CI38674188782 Linux/macOS各91Core/四长书探针通过；App DEBUG编译两处真实错误：Core DatabaseError memberwise initializer为internal，系统accessibilityReduceMotion是KeyPath而非WritableKeyPath。iOS total0、test65/export0/summary0/recording0，Release未执行，完整错误/xcresult/录屏另存首轮失败报告。实际修正仅App局部fixture error和自定义EnvironmentKey（公开iOS13起接口）与系统只读值OR；不为夹具扩大Core公开API或改系统偏好。原67回归及3UI手势门槛保持，修正后须重新完整CI。
