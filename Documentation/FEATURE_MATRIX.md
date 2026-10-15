@@ -1,5 +1,7 @@
 # 功能矩阵（2026-10-15）
 
+当前Build16：原生阅读菜单/外观与排版分组、灰绿浅深色面板、触控尺寸与留白打磨；五主题及既有排版/全局保存继续保留。完整CI各115Core/iOS93/Release16与原生图/视频复核完成，手机待测；M4整体仍未完。安装`build/XianxiaReader-ReadingUI-Build16.ipa`，测试ZIP`build/XianxiaReader-ReadingUI-Build16-TestKit.zip`附原创样本和6张本轮原生Preview。设计READING_UI_DESIGN.md，验证M4_POLISH_VALIDATION_REPORT.json。以下旧切片为历史。
+
 当前Build15：M4第一片五主题/基础排版/全局保存完整自动门槛与原生设置图/视频复核完成，巨段TXT截图下方留白原因未确认，满页/手机待测，M4整体未完。M3基本自用已收口；以下旧切片保留历史。
 
 当前Build14：重复导入完整自动门槛及原生图/视频通过，用户基本自用反馈正常，M3按自用门槛收口，M4尚未开始。schema3升级保留全部原书与历史。以下旧切片保留历史。

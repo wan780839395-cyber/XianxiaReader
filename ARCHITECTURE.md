@@ -169,3 +169,7 @@ App新增CoverImagePipeline/CoverImportService actor与BookCoverEditorModel/Shee
 ## M4 外观偏好第一片（验证中）
 
 ReadingAppearance属于Core Foundation领域模型，持久化由现有BookFileStore actor负责Preferences/reading-v1.json，最大16KiB、逐级路径检查与原子写。ReadingInterfaces以ReaderAppearanceProviding可选能力隔离具体Preferences，UI只持领域值。ReaderViewModel在打开前加载，并按输入序列保存；Adapter映射3.11偏好，复用DOM anchor与取消/身份保护。已维护Vendor的Navigator派发增加连续视图分支，仍只作用于有界loaded/current/resource；锁/原始基线不变，UPSTREAM记录hash与取舍。具体范围、原书排版优先级及未做项见READING_APPEARANCE_DESIGN.md。源码不等价编译或手机验收。
+
+## M4 Build16 原生界面
+
+ReaderMenuView承载阅读菜单，ReaderVisualStyle管理App层灰绿浅深色语义表面，ReaderAppearanceView以外观/排版分组调用既有ReaderViewModel。UI不持有Readium类型，版本化偏好模型/Locator/schema/原件和缓存合同保持。必要分页修复在Adapter采样前取消检查与维护Vendor的分页就绪/CSS失效路径中，未升级引擎/锁或修改JS bundle；原非零文字/180%重开回归和新增真实WebKit互斥回归通过。参考及实际原生验证见READING_UI_DESIGN.md。

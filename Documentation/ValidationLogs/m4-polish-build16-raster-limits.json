@@ -1,0 +1,48 @@
+{
+  "recordedAtUTC": "2026-10-15T14:48:15.897409+00:00",
+  "run": 38748113867,
+  "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+  "snapshot": {
+    "name": "epub-paged-reflow-build15",
+    "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+    "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F724E8A9-10FD-4C84-8A56-E17E6430489E.png",
+    "bytes": 47575,
+    "sha256": "23550649f09014131b51d29080b413e2df10b4672b8a696c6c1f700e684557bf",
+    "inspected": true,
+    "observation": "Snapshot is entirely transparent, not evidence of a visible black page: RGBA extrema all(0,0),1206x2250,one pixel value. Native DOM/font/nonzero-point/reopen assertions passed, but raster capture timing/paint readiness versus page presentation is not confirmed. Full-window physical-device pagination still needs verification."
+  },
+  "stats": {
+    "mode": "RGBA",
+    "width": 1206,
+    "height": 2250,
+    "pixelCount": 2713500,
+    "RGBAExtrema": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "allPixelsFullyTransparent": true
+  },
+  "interpretation": "Entirely transparent isolated capture, not visible black-page evidence. Actual DOM/font/nonzero anchor/reopen passed; raster/full-window/device presentation not established.",
+  "giantTXTSnapshot": "Top two lines visible with large blank lower area; capture clipping/timing versus actual fill not resolved.",
+  "nativeUI15ScreenshotsReviewed": true,
+  "rawSnapshotsUnmodified": true,
+  "comparison": {
+    "path": "build/ci/38748113867/NativeReview/appearance-comparison.png",
+    "sha256": "75e7afb510f677dddcb8377eacd171c3be0bf408ffeb4f8adb355db8a906452a",
+    "scope": "Side by side resized copies of two actual native screenshots; all original bytes retained."
+  }
+}

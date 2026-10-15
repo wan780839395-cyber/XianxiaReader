@@ -1,0 +1,485 @@
+{
+  "run": 38748113867,
+  "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+  "images": [
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FC42C013-AE30-4519-9917-20DD79C90F83.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "observation": "Actual continuous EPUB snapshot: soft light text on black, separate paragraphs and first-line rhythm remain readable. Same DOM point/reopen are verified separately by the test."
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F724E8A9-10FD-4C84-8A56-E17E6430489E.png",
+      "bytes": 47575,
+      "sha256": "23550649f09014131b51d29080b413e2df10b4672b8a696c6c1f700e684557bf",
+      "inspected": true,
+      "observation": "Snapshot is entirely transparent, not evidence of a visible black page: RGBA extrema all(0,0),1206x2250,one pixel value. Native DOM/font/nonzero-point/reopen assertions passed, but raster capture timing/paint readiness versus page presentation is not confirmed. Full-window physical-device pagination still needs verification."
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D09F0F37-515B-4BBF-8BF4-72F4C6AC07C4.png",
+      "bytes": 94315,
+      "sha256": "0a3c37bab73dff1b49899ce90d921c52f1080116840762b03b42073425ee5578",
+      "inspected": true,
+      "observation": "Actual giant-TXT WebView snapshot has readable emoji/combining text in two lines at the top, with a large blank lower area. DOM/CSS/nonzero byte+UTF16/3px reflow and reopen passed. This isolated view capture does not certify full-window page fill; capture clipping/timing versus real fill remains unconfirmed."
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/653E113D-4B87-402A-9197-0668FB3F0F66.png",
+      "bytes": 141977,
+      "sha256": "f36b8ca08eebf9fefa34399e981f4db013c0f73b77432583cf97aa5ce75430f5",
+      "inspected": true,
+      "observation": "Actual native TXT reader uses black background, soft text and a distinct gray-green menu. Return and supported bookmark glyph are visible; four footer entries remain separated."
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BB9D03DF-20DD-4ACD-8BF4-4AC8F87EDDAF.png",
+      "bytes": 219689,
+      "sha256": "718e2292738aa108361c615537c583ec67db98adde711c8f8fe95333ea673ca3",
+      "inspected": true,
+      "observation": "Native OLED settings show black preview, selected check/ring, soft labels and130 percent font size. Card/control/sheet surfaces remain distinct."
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CE857415-FC82-4010-8383-DF851F65492C.png",
+      "bytes": 147991,
+      "sha256": "d4cf870652dae28375b4ff84ba5c33da2e233a854980cd33479b94d16e570a56",
+      "inspected": true,
+      "observation": "Actual native charcoal TXT page has soft text, visible bookmark glyph and coordinated header/footer surfaces with chapter/progress/page controls."
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/72C433E7-814B-424C-AC4C-BE4FCA853A6F.png",
+      "bytes": 221902,
+      "sha256": "2f373894c15959ad2b6000a62e17e7bb920991ef8ab55e602695f4ddc1294517",
+      "inspected": true,
+      "observation": "Charcoal settings retain readable preview and separated color/font cards,130percent value and selected dark theme marker."
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/91EBE9D7-6222-46C5-9A02-629211CFCC4A.png",
+      "bytes": 227172,
+      "sha256": "865fcac4b61e365b286ee6654b41a23cfe37997da056f16b45059a9bdd5fcc58",
+      "inspected": true,
+      "observation": "Paper preview wraps naturally at130percent; five theme choices and controls fit within the native sheet without overlap."
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/373CD440-B55F-44F1-BB20-A0F87353E05A.png",
+      "bytes": 223776,
+      "sha256": "1d3d5b41d2793f1c27323c7cf69ed318065088c500aad971769f4f023b686716",
+      "inspected": true,
+      "observation": "Warm default110percent settings use a light green-gray surface, white groups, readable preview and five theme choices with an explicit check/ring."
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/560E1B3D-6A1E-438F-9D86-9A39EBC89395.png",
+      "bytes": 137929,
+      "sha256": "2d75928940d127b1473eb7d146dfc35e5ba4f9c0fd198c7ab373ba7dbd6e64f5",
+      "inspected": true,
+      "observation": "Native dark menu has clear header/bookmark and separate progress, page/mode and four action rows. Text uses soft gray instead of pure white."
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5CAFAD57-00F9-4C99-B0D6-F77B505931FF.png",
+      "bytes": 210815,
+      "sha256": "1ceca56979cbca6b53c5a5b1da11f1e9c8dbfb6a82516d2f22dae23ba602070b",
+      "inspected": true,
+      "observation": "Dark layout page displays retained1.25 margins and1.85 line height after relaunch, plus paragraph spacing, indent switch and alignment control; groups remain readable."
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE6AD0F9-4A5D-4911-B36D-BF55104FFB02.png",
+      "bytes": 216802,
+      "sha256": "51e7b4d7f88c95503f24e11f73e3c39dde149c12eafe06d1190ef13f49370878",
+      "inspected": true,
+      "observation": "Dark appearance page has calm separated preview/theme/font groups and clear charcoal selection. Default font110percent retained in this independent test fixture."
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/50EEB5C4-166B-415A-A43C-FAFA18A1B017.png",
+      "bytes": 217447,
+      "sha256": "3b8fb24c13583db412a52225a74f260a067fcee572e89c118205c6c7d38a39b5",
+      "inspected": true,
+      "observation": "Light layout groups separate publisher-style switch, page whitespace and paragraph rhythm.1.25margin value,1.75lineheight,indent and alignment are visible and not crowded."
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2D94912C-AEAE-46B6-83D6-53B6C9C4AF53.png",
+      "bytes": 224342,
+      "sha256": "be0602b86671748cf6618c3c4dccfc24de14ae8f43573be8bddca70af7d3e6e3",
+      "inspected": true,
+      "observation": "Light appearance groups show default warm110percent choice, green selection ring/check and full-size adjustment buttons with readable labels."
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/94BB4991-3EE4-4497-90F7-7F684F819B83.png",
+      "bytes": 323193,
+      "sha256": "ffb7b29ba94ac48acbdf3f6d7a66fa841e6ef8021d1daed2d9395fd332c0420c",
+      "inspected": true,
+      "observation": "Actual native mode menu anchors to the current mode pill and shows continuous-scroll and horizontal-paging choices with selected paging check; footer entries remain recognizable behind the popup."
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C003D8A8-EC60-485B-BC32-6AA562DA1730.png",
+      "bytes": 138591,
+      "sha256": "7972abe7c065135a8560eeddc0c353de337b0541d714cffa1b0905ed69290703",
+      "inspected": true,
+      "observation": "Native light menu displays book title, return and supported bookmark glyph in the header; footer separates chapter/progress, page/mode controls and four actions. Temporary overlays cover the page while shown."
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6D9B4669-67F5-4C3B-A65F-1DE11556D197.png",
+      "bytes": 140330,
+      "sha256": "9841c416474e75ec59fc0da1370095b1582e1a79f2208a463826ad5841a98ec5",
+      "inspected": true,
+      "observation": "With the app's extra Reduce Motion request, the native paper TXT menu remains usable with readable header, progress and four tools. This is not a physical system preference/FPS acceptance."
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5C048566-09A8-4B52-8181-C862310FE75F.png",
+      "bytes": 216903,
+      "sha256": "60c1da1f16b3f12feedc3e8cca97518d7977dd00c17ba9fbb0472e4816010055",
+      "inspected": true,
+      "observation": "Extra Reduce Motion request retains usable paper preview,1.25margins,paragraph controls and alignment selection. Native group switch is also inspected in consecutive video samples; physical system reduction remains separate."
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-15 at 02.25.50 PM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/02B5FD4D-8679-48D3-86E0-900179C7C9D4.mp4",
+      "bytes": 11507179,
+      "sha256": "02b625079077e320c9dba0bd8f245fb9e50b0c91a217acae24ce9f4f4f4736f7",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 02.26.50 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D5E4199A-AA3C-426D-92F4-49260E73C07B.mp4",
+      "bytes": 17149930,
+      "sha256": "f38320cabc12748097949c1270ecaa8a90d74b825193ebc8b5c0dc3c672a61f4",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-15 at 02.27.41 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/26820CC4-4D57-4641-B432-0B55FD1A8CF1.mp4",
+      "bytes": 4600394,
+      "sha256": "dc0ac082d7a7a6d5b8d0381e552b959bf331f89794bccab9a719e3642aafa1de",
+      "inspected": true
+    }
+  ],
+  "scope": "Native UI states and all three full-video 1-second overviews inspected:59.55s appearance,50.38s normal interface,18.26s extra Reduce Motion request. Appearance video includes home-screen idle25-43s between terminate/relaunch, not reading animation. Normal17.6s sheet presentation23samples and reduced12.45s group selection22samples inspected, no interpolation. Native system picker/sheet animation is not disabled by the app-only extra request. Center-tap menu fade was not independently sampled. Large type/rotation/VoiceOver/phoneFPS/full-window pagedEPUB and giantTXT remain separate.",
+  "recordedAtUTC": "2026-10-15T14:46:54.013424+00:00",
+  "imagesInspected": true,
+  "videosInspected": true,
+  "consecutiveFramesInspected": true,
+  "focused": [
+    {
+      "run": 38748113867,
+      "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "video": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D5E4199A-AA3C-426D-92F4-49260E73C07B.mp4",
+      "videoSha256": "f38320cabc12748097949c1270ecaa8a90d74b825193ebc8b5c0dc3c672a61f4",
+      "startSeconds": 17.6,
+      "durationSeconds": 1.1,
+      "sampleFPS": 20,
+      "command": [
+        "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "D:\\ai项目\\XianxiaReader\\build\\ci\\38748113867\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\D5E4199A-AA3C-426D-92F4-49260E73C07B.mp4",
+        "-vf",
+        "fps=20,select='gte(t,17.6)*lt(t,18.700000000000003)',scale=600:-2",
+        "-fps_mode",
+        "passthrough",
+        "D:\\ai项目\\XianxiaReader\\build\\ci\\38748113867\\VideoReview\\interface\\settings-presentation\\frame-%03d.png"
+      ],
+      "interpolated": false,
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-001.png",
+          "sha256": "4b8c09cecdf3cf79910c13536736ea8a426d74436d957ed7348341ab971d822d",
+          "nominalVideoSeconds": 17.6
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-002.png",
+          "sha256": "98d52b7d607d3c4a4136e2bd21e87420cd064ac3ebac79ac145bbed2d1660193",
+          "nominalVideoSeconds": 17.650000000000002
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-003.png",
+          "sha256": "778a0f10d85e2e1c43ab15bfbfae2a742d87e756f85426c019811ba423588b3d",
+          "nominalVideoSeconds": 17.700000000000003
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-004.png",
+          "sha256": "001118d95fb4f992ffeda4010c4e578f76e96b32f31f0edea738de34fd57b9c6",
+          "nominalVideoSeconds": 17.75
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-005.png",
+          "sha256": "0704a2270675c3e282fd174f1798dabcf614440c47e12b53164dd10ef435b8d0",
+          "nominalVideoSeconds": 17.8
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-006.png",
+          "sha256": "3319e3fd1e0f6fd1e3101dafad0504f4a8d346038b00dd03a4cc533d023d9078",
+          "nominalVideoSeconds": 17.85
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-007.png",
+          "sha256": "de1f948ecc400720f4323949cb86bdcfecbff056e2a6953013be8522e62cb86d",
+          "nominalVideoSeconds": 17.900000000000002
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-008.png",
+          "sha256": "89020c0e8b3514ea5fadc8f310431317324338cf14bfa768a8148e69f47bf6f0",
+          "nominalVideoSeconds": 17.950000000000003
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-009.png",
+          "sha256": "2053032e775364800dcf881bea40ca8e2c3483c2e132f8ffb37579e65f835421",
+          "nominalVideoSeconds": 18.0
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-010.png",
+          "sha256": "8cc3783e9c5efd64a6856c0add4cdcde88c3307b3f0eb1bcc1d2cd9ec0fba87a",
+          "nominalVideoSeconds": 18.05
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-011.png",
+          "sha256": "89a1965d845ea7a88fa0b7bdcfc62dd2428086873dd6e09accffce34ce11ee6c",
+          "nominalVideoSeconds": 18.1
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-012.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.150000000000002
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-013.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.200000000000003
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-014.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.25
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-015.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.3
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-016.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.35
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-017.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.400000000000002
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-018.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.450000000000003
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-019.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.5
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-020.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.55
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-021.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.6
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-022.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.650000000000002
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/interface/settings-presentation/frame-023.png",
+          "sha256": "d4c7fb6e576355946c88874b452b3b45e2b6a047de7dc3281310474af3a299b2",
+          "nominalVideoSeconds": 18.700000000000003
+        }
+      ],
+      "scope": "Actual successful native video timeline samples, no interpolation; VFR/static footage can repeat, not measured phone FPS."
+    },
+    {
+      "run": 38748113867,
+      "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "video": "build/ci/38748113867/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/26820CC4-4D57-4641-B432-0B55FD1A8CF1.mp4",
+      "videoSha256": "dc0ac082d7a7a6d5b8d0381e552b959bf331f89794bccab9a719e3642aafa1de",
+      "startSeconds": 12.45,
+      "durationSeconds": 1.1,
+      "sampleFPS": 20,
+      "command": [
+        "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "D:\\ai项目\\XianxiaReader\\build\\ci\\38748113867\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\26820CC4-4D57-4641-B432-0B55FD1A8CF1.mp4",
+        "-vf",
+        "fps=20,select='gte(t,12.45)*lt(t,13.549999999999999)',scale=600:-2",
+        "-fps_mode",
+        "passthrough",
+        "D:\\ai项目\\XianxiaReader\\build\\ci\\38748113867\\VideoReview\\reduced\\layout-selection\\frame-%03d.png"
+      ],
+      "interpolated": false,
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-001.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.45
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-002.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.5
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-003.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.549999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-004.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.6
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-005.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.649999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-006.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.7
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-007.png",
+          "sha256": "4a7908bce6b7545a281290e68a9b5eec8d9d3500661eca047023c2fba87b1e90",
+          "nominalVideoSeconds": 12.75
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-008.png",
+          "sha256": "fd7ba1085d1b3d0406579f4929dfbc0aa26c6e958822380ef34568e0bf1eb4c2",
+          "nominalVideoSeconds": 12.799999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-009.png",
+          "sha256": "c9935c80082d7c3ac1b2c40ee2baabefecb2b3759167006cb2616ed813b6647d",
+          "nominalVideoSeconds": 12.85
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-010.png",
+          "sha256": "e566fe66f678bdf00b2ae6e995f0269ab755d6577fdb75abdefb5ee9128be611",
+          "nominalVideoSeconds": 12.899999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-011.png",
+          "sha256": "86746cb5a5cefd79adbfedea07de5999fa41c5603bb3e76a7990831a91b314b8",
+          "nominalVideoSeconds": 12.95
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-012.png",
+          "sha256": "2cc11be7d7c5487ab7c290f3bae579353b95f4dbf42d4499bdc15aaf0911bd67",
+          "nominalVideoSeconds": 13.0
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-013.png",
+          "sha256": "fbd66be8b2673b0cfd3a160d52a7505e50e5fce5a2cefed8633b908b2bcb5a88",
+          "nominalVideoSeconds": 13.049999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-014.png",
+          "sha256": "f7da6abedad870e921753d73c5929a0a5d9fbebf14a501e6daf16564f6ecbb47",
+          "nominalVideoSeconds": 13.1
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-015.png",
+          "sha256": "33b21d92eead2395f892b087f50976dfc4f11e03a1f632e8c5406e1cf2cc0ca9",
+          "nominalVideoSeconds": 13.149999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-016.png",
+          "sha256": "bcba0d1c7a9cf054b0727621c0757293a2b56a3e2fcd0895cd9588dfb8514149",
+          "nominalVideoSeconds": 13.2
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-017.png",
+          "sha256": "bcba0d1c7a9cf054b0727621c0757293a2b56a3e2fcd0895cd9588dfb8514149",
+          "nominalVideoSeconds": 13.25
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-018.png",
+          "sha256": "bcba0d1c7a9cf054b0727621c0757293a2b56a3e2fcd0895cd9588dfb8514149",
+          "nominalVideoSeconds": 13.299999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-019.png",
+          "sha256": "433e496fe12be7f15be9eb42aea41357847a5194acb55cd9d3a5ef1a8c6c79fc",
+          "nominalVideoSeconds": 13.35
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-020.png",
+          "sha256": "433e496fe12be7f15be9eb42aea41357847a5194acb55cd9d3a5ef1a8c6c79fc",
+          "nominalVideoSeconds": 13.399999999999999
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-021.png",
+          "sha256": "433e496fe12be7f15be9eb42aea41357847a5194acb55cd9d3a5ef1a8c6c79fc",
+          "nominalVideoSeconds": 13.45
+        },
+        {
+          "path": "build/ci/38748113867/VideoReview/reduced/layout-selection/frame-022.png",
+          "sha256": "433e496fe12be7f15be9eb42aea41357847a5194acb55cd9d3a5ef1a8c6c79fc",
+          "nominalVideoSeconds": 13.5
+        }
+      ],
+      "scope": "Actual successful native video timeline samples, no interpolation; VFR/static footage can repeat, not measured phone FPS."
+    }
+  ],
+  "phoneAccepted": false,
+  "ordinarySignedDeviceAccepted": false,
+  "phoneFPSMeasured": false
+}

@@ -1,0 +1,14 @@
+{
+  "run": 38748113867,
+  "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 41
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Compiler/test gates and system runtime message counts are distinct."
+}

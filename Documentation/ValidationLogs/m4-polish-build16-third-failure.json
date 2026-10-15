@@ -11,9 +11,94 @@
   "nextChange": "Reject superseded Adapter tasks before entering WebKit. Ordinary paged DOM sampling uses official spreadLoaded gate rather than maintained continuous-only full initialization gate; retain post-await request/nav checks. Add bounded Adapter request stage diagnostics.",
   "deviceReleaseExecuted": false,
   "IPACreated": false,
-  "artifactDownload": "Pending complete native artifact; full log downloaded",
+  "artifactDownload": "Completed helper0; full logs/xcresult/native attachments retained; no Release/IPA",
   "log": {
     "path": "build/ci/38743111852/full.log",
     "sha256": "a2b15d21f2ea5638ccf1caef6c6aaaea879e3e53372d67c3bf577a574a2746d9"
-  }
+  },
+  "nativeEvidenceCompletedAtUTC": "2026-10-15T14:05:28.576365+00:00",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 92,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792072646.759,
+    "passedTests": 92,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792071654.607,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset():620",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 59,
+        "testIdentifierString": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+        "testName": "testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "29% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 16.79s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 93
+  },
+  "linuxCoreTests": 115,
+  "macOSCoreTests": 115,
+  "allEightNativeUITestsPassed": true,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "recordingExit": 0,
+  "artifacts": [
+    {
+      "path": "build/ci/38743111852/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1790,
+      "sha256": "9cc7125b777a25175580fa1df42faa26fb826e1eb02f6a01497be9a1870fa3cb"
+    },
+    {
+      "path": "build/ci/38743111852/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1558113,
+      "sha256": "5cc83d1e0a7dd58ab805263b1d139ebe77f02cdbd70bdfe06bdedc6b49b56ea1"
+    },
+    {
+      "path": "build/ci/38743111852/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5EEB4FEF-F139-4EA1-9B12-D8186D678DAB.txt",
+      "bytes": 1069,
+      "sha256": "c1ca9e36be4dc9f235b083b48ecbeae9524114ef51c163fc4f3c044f7be0c600"
+    },
+    {
+      "path": "build/ci/38743111852/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DA93D0DD-512E-48EF-B9FE-607288B21185.txt",
+      "bytes": 98,
+      "sha256": "25321002aaf77d2de0751d97fa38d7cc056a2d78faeab73dd68a7d1c22987333"
+    },
+    {
+      "path": "build/ci/38743111852/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/03D45EA3-7D04-469B-AE0D-38A37D2F9CAB.txt",
+      "bytes": 1181,
+      "sha256": "a8180a52e549765548248df432dc3956c68ac2791e7c29c9c5a4d298b1a22715"
+    }
+  ]
 }

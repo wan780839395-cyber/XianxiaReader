@@ -2195,7 +2195,8 @@
     "Build15DeviceAccepted": false,
     "ordinarySignedDeviceAccepted": false,
     "M3Complete": true,
-    "M4Complete": false
+    "M4Complete": false,
+    "Build15BasicSelfUseAccepted": true
   },
   "limitations": [
     "No permanent delete/storage reclamation or automatic merging of pre-existing duplicates.",
@@ -3128,5 +3129,10 @@
       "bytes": 8700412,
       "sha256": "6967660ad5199a121b49e53fa0055edea47698a4d929da7ea6ffc195039c0fd8"
     }
+  },
+  "userFeedback": {
+    "path": "Documentation/ValidationLogs/m4-appearance-build15-user-feedback.json",
+    "basicSelfUseAccepted": true,
+    "scope": "User accepted basic self-use after Build15. No separately itemized long-TXT full-window recording, device model or FPS verification. Broader device gate remains distinct."
   }
 }

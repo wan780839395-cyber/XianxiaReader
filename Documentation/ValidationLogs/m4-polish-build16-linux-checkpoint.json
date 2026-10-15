@@ -1,17 +1,17 @@
 {
-  "recordedAtUTC": "2026-10-15T13:33:19.777753+00:00",
-  "run": 38743111852,
-  "sourceRevision": "b62c0dd1f76631fb783c5d92618f895b2b4a417d",
+  "recordedAtUTC": "2026-10-15T14:07:28.089025+00:00",
+  "run": 38748113867,
+  "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
   "linuxCoreTests": 115,
   "longTXTReleaseCases": 4,
   "files": [
     {
-      "path": "build/ci/38743111852/core/logs/core-tests.log",
-      "sha256": "2baf0eabfa657c76dde99d54a70517a2f1a4c0d6f27b363f0e86c7f0b1160e13"
+      "path": "build/ci/38748113867/core/logs/core-tests.log",
+      "sha256": "46341ca0f3cd5fb14f9d44e50f325b0ceda1baa84709cb85899f8d9b21a278f4"
     },
     {
-      "path": "build/ci/38743111852/core/TXTPerformance/summary.json",
-      "sha256": "689db94ed946c9533a91237b05e3c47db79990c57bbbfcc1fd7a98d8d3d33e98"
+      "path": "build/ci/38748113867/core/TXTPerformance/summary.json",
+      "sha256": "7d5f075b8ea1c7dd3135dea8c1e2370c8ef465a2bbab5863b8f0492cf27ae37b"
     }
   ],
   "appleCompiled": false,

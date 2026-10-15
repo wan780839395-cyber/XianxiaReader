@@ -1,0 +1,32 @@
+{
+  "recordedAtUTC": "2026-10-15T14:48:21.997368+00:00",
+  "sourceRevision": "ce5bde4d9d73e6979265a7b1f1bdf0f92d318970",
+  "productSourceUnchanged": true,
+  "staticIsNotSwiftCompilation": true,
+  "results": [
+    {
+      "command": [
+        "C:\\Users\\78083\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "scripts/check_repository.py",
+        "--swift-syntax"
+      ],
+      "exitCode": 0,
+      "log": "build/ci/38748113867/final-windows-0.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\78083\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "build/ci/38748113867/final-windows-1.log"
+    }
+  ]
+}
