@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "ac12ba72f8e02bbb97d620a2d193e3f2c8e1525bfd7623b0e92ccc1148e81d74"
+      "sha256": "4ec4c0cbfa56b15c2d29bc7342ff37355080987829b963b05d2f4cc40ea3bee7"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1669,5 +1669,9 @@
     "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen.",
     "pagedReflowAtomicity": "Typography reload goes through the ViewModel needsInvalidation decision, so injected CSS/cache update and pagination rebuild exclude late dynamic CSS. Color-only changes and continuous mode keep dynamic CSS. Added actual WebKit counter regression, old nonzero-anchor180percent/reopen unchanged.",
     "pagedReadiness": "Paged sampling uses the official spreadLoaded readiness gate. Full continuous bootstrap readiness remains limited to continuous loading. Adapter rejects superseded preference tasks before WebKit sampling and still checks request/nav identity afterward; stage diagnostics are bounded and content-free."
+  },
+  "pagedFullAnchorNotifications": {
+    "scope": "Only horizontal LTR reflowable pagination merges a fresh bounded DOM anchor with original calculator metadata; current spread/offset/viewport/revision identity checked after await.",
+    "reason": "Third Build17 run passed visible180percent text but reopening fell back to chapter start. Original paged location calculator can overwrite sampled full DOM locator with a progression-only notification before close; align paged notifications with existing precise-anchor contract, preserve upstream fixed/RTL/vertical behavior."
   }
 }

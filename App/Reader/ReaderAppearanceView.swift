@@ -63,6 +63,7 @@ import XianxiaCore
                     }.frame(maxWidth: .infinity)
                 }.padding(20)
             }
+            .accessibilityIdentifier("reader.appearance.scroll")
             .background(palette.background)
             .navigationTitle("阅读设置").navigationBarTitleDisplayMode(.inline)
             .toolbar {

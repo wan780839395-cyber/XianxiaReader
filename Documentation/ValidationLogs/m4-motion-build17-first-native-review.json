@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-15T16:06:46.066580+00:00",
+  "run": 38760598889,
+  "sourceRevision": "8c548dce119899e6a0be9a17937c86ef34b39df6",
+  "reviewed": [
+    {
+      "path": "build/ci/38760598889/first-native-failure-review/normal/contact-1.png",
+      "sha256": "9043b59a6d5369527c7432ff3aa10dfc73f73f72aa7c9a0e6ce1eb0e681eb3b6",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38760598889/first-native-failure-review/reduced/contact-1.png",
+      "sha256": "68640371f01d3eb0ff4b347e3b20242ec467e41fbc628d0a7a42fbf0bd760bf9",
+      "inspected": true
+    }
+  ],
+  "sampling": "Whole-duration one-second video overview, no interpolation; not physical phone FPS",
+  "observations": {
+    "normal": "Spinner/loading remains during original drag; text first visible around12.5sec video, menu stays. Test only waited for menu enabled, not readable WebKit.",
+    "additionalReduction": "Text visible around4.5sec, drag follows and menu hides. Center tap path available."
+  },
+  "conclusion": "Add readiness assertion for actual fixture text before existing native gesture/10sec hide assertion. Pointer cancellation root cause unproven. Native scroll pipeline experiment withdrawn and candidate preserved."
+}

@@ -36,3 +36,7 @@ Readium 3.11 已使用原生UIScrollView分页及WebKit平滑点按翻页，跟�
 ## 实际失败录屏纠正与第二候选取消
 
 首轮两段原生录屏全时段1秒总览已复核：普通case在拖动时仍有加载spinner，正文直到约12.5秒视频时间才出现；减少动效case约4.5秒已有正文，随后拖动收菜单。菜单按钮启用只表示Navigator已挂载，早于WebKit可读，不能据此推断原始pointer取消为根因。第二候选c9bae997/CI38765644376因此Agent主动取消，实际未完成阶段记录second-agent-cancel.json，不写源码失败。新增原生回调七文件实验完整保存在该Git候选及本地ZIP，恢复至首候选既有引擎/Vendor，仅保留WebKit null返回修正。UI在原20秒open准备门槛内额外等原创样书可读文字，再执行原拖动和10秒菜单收起断言；不增加重试拖动，不放宽旧断言。新的完整CI验证真实已绘正文拖动。前述原始pointer时序仅为被录像否定的未证假设，不作为交付取舍。
+
+## 第三轮旧回归及必要修正
+
+1d1f2763/CI38765962839仍97/99，但所有新增动效/实际手势/重开偏好测试通过。旧设置测试在持久连续模式重开后app.scrollViews.firstMatch实际选中readium.continuous-scroll，滚动读者而非设置页；设置ScrollView提供独立id，原滑动/控件/数值断言范围改为这个真实面板。旧EPUB180%字体原非零字在重排后可见，但保存后重开回章首。核[官方精确3.11 Navigator](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift)普通paged计算只返回progression，当前维护扩展的手工DOM采样能被后续普通位置通知覆盖。于是仅水平LTR重排分页合并既有有界DOM采样和官方metadata，核当前spread/offset/size及外层revision/container身份；固定/RTL/竖排保持原合同。复用64字符局部采样，不引入全文，不改Locator格式。只维护Vendor Controller/provenance，不修改JS/锁或恢复已撤回的原生滚动实验。原非零字/180%/重开断言及超时保持，并补重开前DOM范围断言/原创fixture附件，以实际完整回归为准，当前尚未验收。

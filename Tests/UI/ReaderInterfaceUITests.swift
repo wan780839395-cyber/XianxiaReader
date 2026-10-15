@@ -38,7 +38,7 @@ final class ReaderInterfaceUITests: XCTestCase {
     @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
         for _ in 0..<4 {
             if element.isHittable { return }
-            app.scrollViews.firstMatch.swipeUp()
+            app.scrollViews["reader.appearance.scroll"].swipeUp()
         }
         XCTAssertTrue(element.isHittable)
     }
@@ -73,7 +73,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         reveal(line, in: app); line.tap()
         XCTAssertEqual(app.staticTexts["reader.line-height.value"].label, "1.85")
         // Turning original styles on must disable the same real typography controls.
-        app.scrollViews.firstMatch.swipeDown()
+        app.scrollViews["reader.appearance.scroll"].swipeDown()
         let original = app.switches["reader.publisher-styles"]
         XCTAssertTrue(original.isHittable); original.tap()
         XCTAssertFalse(line.isEnabled)
@@ -85,7 +85,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["reader.margins.value"].label, "1.25")
         reveal(app.buttons["reader.line-height.increase"], in: app)
         XCTAssertEqual(app.staticTexts["reader.line-height.value"].label, "1.85")
-        app.scrollViews.firstMatch.swipeDown(); app.buttons["外观"].tap()
+        app.scrollViews["reader.appearance.scroll"].swipeDown(); app.buttons["外观"].tap()
         app.buttons["reader.theme.charcoal"].tap()
         snapshot("reader-appearance-dark-build16", in: app)
         app.buttons["排版"].tap(); snapshot("reader-layout-dark-build16", in: app)

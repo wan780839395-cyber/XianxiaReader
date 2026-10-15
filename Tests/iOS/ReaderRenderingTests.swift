@@ -615,6 +615,11 @@ final class ReaderRenderingTests: XCTestCase {
             return try await active.evaluateJavaScript(script) as? Bool == true
         }
         let saved = try XCTUnwrap(engine.currentPosition)
+        let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: saved.locatorData) as? [String: Any])
+        let savedLocations = try XCTUnwrap(payload["locations"] as? [String: Any])
+        XCTAssertNotNil(savedLocations["domRange"], "Ordinary paged location callbacks must retain a full text anchor after reflow")
+        let savedEvidence = XCTAttachment(data: saved.locatorData, uniformTypeIdentifier: "public.json")
+        savedEvidence.name = "paged-appearance-full-anchor-before-reopen"; savedEvidence.lifetime = .keepAlways; add(savedEvidence)
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
         engine.close(); try await engine.open(book: book, fileURL: url, position: saved)
         try await waitUntil {

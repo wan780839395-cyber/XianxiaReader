@@ -39,3 +39,21 @@ CI38760598889 Linux119/119 Core和4原创长TXT Release探针原完整下载日�
 ## 失败录屏确认真实准备时序，撤回未必要实验
 
 已复核首轮普通/减少动效两个完整1秒总览：普通拖动时仍是spinner，12.5秒才正文；减少动效4.5秒正文后拖动成功。不能把原始pointer取消假设写成根因。第二候选c9bae997/CI38765644376主动取消，实际阶段与七文件实验ZIP/hash见second-agent-cancel.json。仅撤回自己新增原生回调到首候选，原Vendor/Adapter恢复，WebKit null修正保留。UI准备阶段加真实样本文字可读门槛再执行原手势/10秒断言，不加重试或放宽旧断言。现在Windows重核后第三候选全跑。
+
+## 第三候选已启动
+
+真正待验源码1d1f2763e743657f25d6ba66ca10c3a5ee922f74，CI38765962839。只相对首候选修正测试JS返回和正文可读门槛，产品源码/Vendor与首候选相同；Windows423新增0/17工具再次通过。前两候选/失败/主动取消证据及ZIP保留，原HEAD/index不变。待99iOS/各119Core/Release17完整结果，所有旧断言保留。
+
+## 第三轮Linux119/四探针已核
+
+CI38765962839 Linux完整下载artifact119/119与四组Release探针通过，Apple进行中。第二轮实际取消停在Linux Release TXT probe，Apple无steps且不曾编译，gh组合log因此报告缺Apple job日志；已单独下载真实Core job日志/artifact，不把网络EOF或缺未运行job日志算源码失败。首轮完整554MB诊断下载还在推进，定向失败录屏已全部取得并复核。
+
+## 完整首轮诊断已核、当前源码冻结
+
+首轮554MB ZIP CRC/xcresult/99总97过2失败/Apple119Core/源编译零警告零错误已核，first-failure.json更新。当前候选1d1f2763运行/验证源冻结，私有index核只文档变化；本地仅第三轮gh watcher，无下载遗留。第三轮Apple job116530134518仍build/test step进行，不能根据单一step假定已编译或测试通过，最终待下载完整结果。
+
+## 第三轮97/99，两个旧回归失败（2026-10-16）
+
+CI38765962839 completed/failure：各119Core/四探针，新增实际instant/smooth/重叠翻页、正常/减少动效真实拖动、模式/开关保存重开均通过；旧字号180%后重开回章首及旧设置firstMatch滑错底层连续阅读区失败，严格test65无IPA。完整日志已保存，598MB诊断/xcresult多段下载进行。
+
+必要修正：设置ScrollView加独立AX id并让原测试只滚设置面板，原控件/数值断言不变。官方3.11普通分页calculator只生成progression locator，存在覆盖先前DOManchor路径；水平LTR重排分页定位通知合并既有有界DOM采样+官方metadata，await后核spread/offset/size并保留外层revision/session过滤。固定/RTL/竖排沿原路，Vendor仅Controller/hash/README变动，无JS/锁升级。原字体非零文字/180%/重开/超时保留，另加重开前完整DOM范围断言及仅原创fixture JSON附件。设计和官方依据更新后跑Windows，再完整第四候选，不把修正源码写成验收。

@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-15T16:41:37.231439+00:00",
+  "run": 38765962839,
+  "sourceRevision": "1d1f2763e743657f25d6ba66ca10c3a5ee922f74",
+  "conclusion": "failure",
+  "coreEach": 119,
+  "totalIOS": 99,
+  "passed": 97,
+  "failed": 2,
+  "newMotionRegressionsPassed": true,
+  "testExit": 65,
+  "releaseProduced": false,
+  "errors": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:193: error: -[XianxiaReaderTests.ReaderRenderingTests testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset] : failed - Continuous reader did not reach expected state at testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset():620",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:194: error: -[XianxiaReaderTests.ReaderRenderingTests testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset] : failed: caught error: \"timedOut(\"continuous\", \"testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset():620\\nposition={\\\"href\\\":\\\"OEBPS/one.xhtml\\\",\\\"locations\\\":{\\\"position\\\":2,\\\"progression\\\":0,\\\"totalProgression\\\":0.25},\\\"type\\\":\\\"application/xhtml+xml\\\"}\\ncontinuous state=preferences: superseded before sample; sample requested; sample returned / paged preferences: reload DOM=false\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(0.0, 62.0, 402.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/one.xhtml\\\";\\n    line12 = 0;\\n    line18 = \\\"370.0625\\\";\\n    long = 0;\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(402.0, 62.0, 0.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/two.xhtml\\\";\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(0.0, 62.0, 0.0, 750.0) offset=(402.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        4,\\n        5\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/cover.xhtml\\\";\\n    ready = complete;\\n    y = 0;\\n})\")\"",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReaderInterfaceUITests.swift:88: error: -[XianxiaReaderUITests.ReaderInterfaceUITests testNativeMenuLayoutGroupsPublisherRulesAndRelaunch] : Failed to tap \"外观\" Button: No matches found for Descendants matching type Button from input {("
+  ],
+  "corrections": [
+    "UI scoped to explicitly identified settings ScrollView; old firstMatch selected underlying readium.continuous-scroll after persistent mode relaunch.",
+    "Paged ordinary locator notifications merge bounded fresh DOM anchor plus upstream metadata; original calculator-only path can erase precise anchor before close. Original nonzero/180percent/reopen assertions and timeouts preserved; adds full DOM assertion and fixture-only JSON attachment."
+  ],
+  "artifactDownloadPending": true
+}

@@ -813,6 +813,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             return (nil, nil)
         }
 
+        let sampledOffset = spreadView.webView.scrollView.contentOffset
+        let sampledSize = spreadView.webView.bounds.size
         let indices = spreadView.spread.readingOrderIndices
         let progressions = Dictionary(uniqueKeysWithValues: indices.map { ($0, spreadView.progression(in: $0)) })
         let (locator, viewport) = await EPUBViewportAndLocationCalculator.compute(
@@ -823,6 +825,25 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             tableOfContentsTitleByHref: tableOfContentsTitleByHref,
             fallbackLocator: { [publication] in await publication.locate($0) }
         )
+        // The upstream calculator returns a progression locator. Publishing it
+        // after a sampled typography anchor would otherwise erase the DOM point
+        // again, so a close/reopen can fall back to an old page percentage.
+        // Use the same bounded DOM sampler as mode changes for horizontal LTR
+        // reflowable pages; fixed/RTL/vertical layouts retain the upstream path.
+        if publication.metadata.layout != .fixed, !viewModel.scroll, !viewModel.verticalText,
+           viewModel.readingProgression == .ltr {
+            guard spreadView.isSpreadLoaded,
+                  let anchor = await spreadView.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: sampledSize.height),
+                  paginationView?.currentView === spreadView,
+                  spreadView.webView.scrollView.contentOffset == sampledOffset,
+                  spreadView.webView.bounds.size == sampledSize,
+                  let locator, anchor.href.isEquivalentTo(locator.href) else { return (nil, nil) }
+            return (anchor.copy(title: locator.title, locations: {
+                $0.progression = locator.locations.progression
+                $0.totalProgression = locator.locations.totalProgression
+                $0.position = locator.locations.position
+            }), viewport)
+        }
         return (locator, viewport)
     }
 

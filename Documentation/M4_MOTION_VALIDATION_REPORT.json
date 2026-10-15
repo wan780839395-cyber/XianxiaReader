@@ -1,8 +1,8 @@
 {
   "recordedAtUTC": "2026-10-15T15:29:55.240025+00:00",
-  "stage": "First candidate failed97/99; original runtime regressions passed; corrective work pending native review",
-  "sourceRevision": "8c548dce119899e6a0be9a17937c86ef34b39df6",
-  "run": 38760598889,
+  "stage": "Third candidate full CI pending; original runtime same as first candidate; test JS return and native readable gate corrected",
+  "sourceRevision": "1d1f2763e743657f25d6ba66ca10c3a5ee922f74",
+  "run": 38765962839,
   "branch": "codex/m4-reading-appearance",
   "build": "17",
   "expectedCoreTests": 119,
@@ -464,7 +464,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "9ad9ee9ec230df55678a84c3abc5539bc02ea48f622f427e3fcaecfe2b3d6854"
+      "sha256": "44e31fd451ba42e169d2b76c11b80d0a947264a3312a36a0d754738c79f51832"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -500,7 +500,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "c4129ca2eeab53beeaee190e1186423819ee5a03424fde4de459746953a8ca08"
+      "sha256": "e43b24ec1eca9ffece6e4bc00eceb43c4693c509d9843c4eb95e52ddd879249b"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2195,5 +2195,16 @@
     "allPassed": true,
     "applePending": true
   },
-  "firstFailure": "Documentation/ValidationLogs/m4-motion-build17-first-failure.json"
+  "firstFailure": "Documentation/ValidationLogs/m4-motion-build17-first-failure.json",
+  "firstCandidate": {
+    "sourceRevision": "8c548dce119899e6a0be9a17937c86ef34b39df6",
+    "run": 38760598889,
+    "conclusion": "failure97/99",
+    "evidence": "Documentation/ValidationLogs/m4-motion-build17-first-failure.json"
+  },
+  "secondCandidate": {
+    "sourceRevision": "c9bae9971e9de0449b92da8eb25fd9602790deaa",
+    "run": 38765644376,
+    "conclusion": "Agent cancelled; unnecessary experiment after recorded loading-state evidence"
+  }
 }
