@@ -143,3 +143,9 @@ TXTReadingPlanCache只持久resource范围与内容/章节/codec/版本身份，
 LibraryPresentation仅处理书名/作者元数据筛选、稳定排序和已保存进度；LibraryViewModel注入UserDefaults持久化布局/排序，用refresh请求ID拒绝较旧结果；LibraryView基于原生LazyVGrid/LazyVStack和共享LibrarySheet，长按进入BookRenameSheet。File Provider原delegate生命周期不变；新sheet以book.id区分状态，保存中不能互动关闭，错误留在表单。
 
 Core新增BookTitle验证与BookRepository.renameBook，SQLite事务helper返回泛型提交值，BEGIN IMMEDIATE后读最新payload只改title。无schema变更、不用UI旧Book覆盖author/cover、不变原件路径/目录/位置/书签，真实写失败/回滚/重试与多连接最新元数据有回归。封面读取仍后台执行，取消后拒绝旧结果，失败有可见/无障碍降级警告。Build10各85Core/63iOS/设备Release已通过，但仅M3第一切片；封面替换、可恢复删除、重复导入策略继续单独设计和验证。详见Documentation/LIBRARY_BROWSING_DESIGN.md及最新报告。
+
+## M3 可恢复移出书架（Build11）
+
+数据库通过新增002迁移升级到v2；removed_books仅记录移出时间，Book/原件/cache/章节/位置/书签保持。librarySnapshot一次读取书架/回收站；books只返回书架。AppServices启动恢复必须用allBookIDs包含回收站，不能根据可见书架清理已提交文件。移出/恢复仅在SQLite事务内变更标记，重复操作幂等，失效UUID/取消/写入失败正常抛错；没有新增文件搬移或跨存储提交窗口。001旧迁移原字节保留，新版库由旧App拒绝打开。
+
+LibraryView共享sheet加入回收站，长按移出有原生确认，空书架也能恢复；管理操作串行且提交后才发布。回收站不自动清空、不回收磁盘空间；没有永久删除。91Core/67iOS/Release及真实启动清理/原生三图通过，手机待验收。Readium/Vendor/codec/Locator/真实六pins锁和Apple文件协调复制均不升级。封面替换与重复导入策略仍下一M3切片，详见LIBRARY_REMOVAL_DESIGN.md。

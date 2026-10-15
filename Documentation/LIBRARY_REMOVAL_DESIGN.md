@@ -1,4 +1,4 @@
-# M3 可恢复移出书架（Build11候选，待编译）
+# M3 可恢复移出书架（Build11完整自动门槛通过）
 
 2026-10-15。用户在Build10交付后回复“没问题 继续”，仅记录书库浏览/改名切片的基本自用接受。Build11先完成回收站；封面替换、重复导入处理及M4字体/主题继续后续。
 
@@ -22,4 +22,15 @@
 
 新增6 Core：真实001旧库数据升级及多次重开、未提交002连接关闭回滚/重试、实际迁移失败保留旧版本与数据、真实TXT移出/清理/恢复保留原件cache及关联数据、trigger拒绝移出/恢复与幂等重试、缺失/取消/多连接隔离。原改名schema断言从1更新为2以反映真实新迁移，业务保留断言不变。未来版本拒绝测试保留。
 
-新增4 iOS：真实TXT+EPUB导入移出后调用生产AppServices启动恢复再恢复全部关联；取消/错误/重试；刷新重叠；原生确认/回收站有书/空回收站截图。小fixture repository与目录保持到worker退出，避免SQLite仍打开时删除目录。原85 Core/63 iOS、四个长书Release探针、锁与设备Release全部继续运行，目标91 Core/67 iOS。Windows394 Swift语法新增0、54 pristine限制、16tooling已通过，仍不是编译。源码、编译、模拟器画面与用户设备分别记录，M3完整阶段尚未完成。
+新增4 iOS：真实TXT+EPUB导入移出后调用生产AppServices启动恢复再恢复全部关联；取消/错误/重试；刷新重叠；原生确认/回收站有书/空回收站截图。小fixture repository与目录保持到worker退出，避免SQLite仍打开时删除目录。原85 Core/63 iOS、四个长书Release探针、锁与设备Release全部继续运行，实际Linux/macOS各91 Core、iOS67/67通过。Windows394 Swift语法新增0、54 pristine限制、16tooling已通过，仍不是编译。源码、编译、模拟器画面与用户设备分别记录，M3完整阶段尚未完成。
+
+
+## 最终证据
+
+Build11可恢复移出书架切片已通过[完整CI38668921850](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38668921850) / `bd68a48dc0fa41d07d839e4ddf07128d9069fe0f`：Linux/macOS各91Core、iOS67/67、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA；四长书Release探针继续通过。Windows394Swift语法新增0（54 pristine限制）与16tooling通过，语法不是编译。473运行/验证源Git blob hash、三份真实六pins锁、Build4–10共15旧包hash一致。
+
+长按书籍→移出书架→原生确认，右上显示与排序菜单或空书架入口进入回收站，逐本恢复。002新迁移仅记录移出状态；不删除/移动Book原件或cache，不改章节、完整位置、书签、Book元数据。启动恢复清理使用全部已提交UUID，包含回收站。单SELECT快照与刷新请求ID防旧数据覆盖；真实写入失败/取消显示错误并保留状态。回收站不自动清空、不释放原件空间，不提供永久删除；schema2升级后旧Build10会显式拒绝打开新版库，不以删除数据库恢复降级。
+
+已验证真实001旧库升级/重开、未提交迁移回滚、实际迁移失败保留数据、移出/恢复trigger失败与重试/幂等、多连接/取消，以及App真实TXT+EPUB移出后经生产启动清理再恢复原件与关联。原生确认/有书回收站/空状态三图已实际查看；模拟器不等于手机验收。用户Build10后的“没问题 继续”记录为该切片基本自用接受，未扩写逐项硬件/编码/性能矩阵。Build11手机结果待反馈，M3还剩封面替换和重复导入处理，M4字体/排版/主题尚未开始。
+
+安装包`build/XianxiaReader-Trash-Build11.ipa` / SHA256 `9af1348004e1e150c3e9d9a68b02b754a5915328201287eee7e00d4c6cf8b1e9`；测试包`build/XianxiaReader-Trash-Build11-TestKit.zip` / SHA256 `616810a2fe3e6f031a3e9576f8d670e2081a556129892186017a930db1530700`，含真实Build11 IPA和11原创小/大样本，CRC/内部IPA/样本bytes核验通过。正常更新保留书库，+菜单确认0.0.1 (11)。设计LIBRARY_REMOVAL_DESIGN.md；报告M3_REMOVAL_VALIDATION_REPORT.json。

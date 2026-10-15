@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-15T02:24:39.121440+00:00",
+  "run": 38668921850,
+  "sourceRevision": "bd68a48dc0fa41d07d839e4ddf07128d9069fe0f",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 6,
+    "webKitProcessAssertions": 28
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Runtime diagnostics retained independently; simulator success does not certify all WebKit/system timing issues or device behavior.",
+  "log": {
+    "path": "build/ci/38668921850/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "639a1dfb04ccd86092735582ee2178072db390820761f5ce617582ecd691ecd2"
+  }
+}

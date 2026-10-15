@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T02:02:41.865187+00:00",
+  "recordedAtUTC": "2026-10-15T02:25:28.325105+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 636,
+  "fileCount": 642,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 20704,
-      "sha256": "f77f9b93bd031924a85e812dcfeb9138e000677b9acf1eb9d33f2ad949e58a7a"
+      "bytes": 21746,
+      "sha256": "12ffca2b8b60a0f9450b3036885f93ecbd28118006212b31fc4df0ee4914fa17"
     },
     {
       "path": "App/AppRootView.swift",
@@ -170,8 +170,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 16326,
-      "sha256": "a354f5f5eeffbe6e70d894719dfe1b5f85757acf8ed79cfc2c7726b814e0459d"
+      "bytes": 18621,
+      "sha256": "2c69ded8ed1fc4f7c618c6a8aeaf7e44dd69889a7b9f8be6eac5a9c4afadf9f6"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -180,8 +180,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 5730,
-      "sha256": "e0aa5af074237ad235aeb5452976ee5b3bfcd72d217a8cdb0f3ffb38c256c822"
+      "bytes": 6182,
+      "sha256": "7a946f5c3fb66d3407f4cd4ab19ada83fae0718d3b7d6f3b9c899e2c9229dd21"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -225,8 +225,8 @@
     },
     {
       "path": "Documentation/LIBRARY_REMOVAL_DESIGN.md",
-      "bytes": 3920,
-      "sha256": "5272c35c05faebf993b4964a091ced045ce2f0bcd40bff1a7e351f2d6cbca56b"
+      "bytes": 6144,
+      "sha256": "ea393d15643ebf6f792b8eac87e0e4d3977868cc2ec2afc5f5f0476b96f5b61a"
     },
     {
       "path": "Documentation/M0_ACCEPTANCE.md",
@@ -351,7 +351,12 @@
     {
       "path": "Documentation/M3_REMOVAL_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "e2e894fed517a0640383f1e225ec0c9f5cb206dac2ca59d8a041928b06b27fce"
+      "sha256": "c5c6598b9cdbe1d3325a20ec1ca3e6c974c5d6a6864d4d7a404b9d115c983754"
+    },
+    {
+      "path": "Documentation/M3_REMOVAL_VALIDATION_REPORT.json",
+      "bytes": 123745,
+      "sha256": "6cf9d14cb520e7b5aed512c052e8bdc9eaae56aea16a7c758f006e411e014cdc"
     },
     {
       "path": "Documentation/MATURE_READER_REFERENCES.md",
@@ -819,6 +824,26 @@
       "sha256": "cd64ca516bd57ff7cdc43e3829278efd4fd085fc27d8f786ac977a7252b29eb3"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build11-native-review.json",
+      "bytes": 1753,
+      "sha256": "e5bc1b22e844e1e70b74e5beffd34a9a56d2e53df036181c0973edd40ce7b88f"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build11-runtime-diagnostics.json",
+      "bytes": 736,
+      "sha256": "ef336e0ddd213e49450c6c0b669079bbea4ac3814529e16b441ca15b55f661ac"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build11-success.json",
+      "bytes": 20774,
+      "sha256": "d1dd7b4f31b35d07cd6fbbf0e18f2ca785590a2a6cf888eea491f8e91bec6122"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build11-test-kit.json",
+      "bytes": 708,
+      "sha256": "de1223c0260880fa385c908ebd9a7518b22ca26440b099993f9356f346b17542"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -875,8 +900,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9146,
-      "sha256": "c30f74fa9e08ab182b14808b3a3469f9ae4699dc08dfad188b0af4b131d29093"
+      "bytes": 6230,
+      "sha256": "8c61302147abc4c37f91bd9eb6f9d66e84fe69d80a267b513170459f26ff22b4"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -929,9 +954,14 @@
       "sha256": "cff1fbb92b15e75906f65b697cadc9658991a53806b3fd79922e87a06ada7abb"
     },
     {
+      "path": "HANDOFF_M3_REMOVAL_HISTORY_2026-10-15.md",
+      "bytes": 10750,
+      "sha256": "77750cca9596c8b80f8e1e499b20fac95aa4df77fd518096aab17d6f1c25d0bc"
+    },
+    {
       "path": "PROJECT_STATUS.md",
-      "bytes": 21571,
-      "sha256": "44681fa2ce1020445d7f02049452f257993661579931552daa2ab8ff242be197"
+      "bytes": 23234,
+      "sha256": "c67ac4c4a4fe35285f00d07edcaca8124f48d813d6781886c5cb4c9a2fd56008"
     },
     {
       "path": "Package.resolved",
@@ -1205,8 +1235,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 15182,
-      "sha256": "7cefb753eb860c72efc90e2be932feb6fee79901f1e5b1ded4e0917239773304"
+      "bytes": 17477,
+      "sha256": "b09b078cf22217baf334bab149a0cce6d3819bbc9f4699b3a74dbc3ef5586726"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

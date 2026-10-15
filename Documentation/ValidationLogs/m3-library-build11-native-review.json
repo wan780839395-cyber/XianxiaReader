@@ -1,0 +1,30 @@
+{
+  "recordedAtUTC": "2026-10-15T02:24:39.117274+00:00",
+  "run": 38668921850,
+  "sourceRevision": "bd68a48dc0fa41d07d839e4ddf07128d9069fe0f",
+  "images": [
+    {
+      "name": "library-removal-confirmation-build11",
+      "path": "build/ci/38668921850/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/38CA4A34-25DB-421C-B6A3-9880ACAC9185.png",
+      "sha256": "485d02ef442c4bd68f06f96a8b4b7755ce4466c0b3a5697c5338fb17688b42c2",
+      "observation": "Native confirmation identifies the book, explains recoverability and retained original/position/bookmarks, with separate move and cancel actions.",
+      "inspected": true
+    },
+    {
+      "name": "library-trash-populated-build11",
+      "path": "build/ci/38668921850/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A07961A8-B1E7-49C3-9D42-61B71C3A1773.png",
+      "sha256": "5f836cb5f1acddb89a8895ba89976c1984216c03b2ed3f6797ff5647589f0aa1",
+      "observation": "Native trash list identifies the retained book and saved 42 percent progress, with a restore action and clear no-auto-purge/no-storage-reclamation explanation.",
+      "inspected": true
+    },
+    {
+      "name": "library-trash-empty-build11",
+      "path": "build/ci/38668921850/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/54EB9B58-7AF2-4676-BA94-262608695123.png",
+      "sha256": "fe4f4dbd18430dd30fe2d60ea5e649b294301127753116c2368fe39f2692f583",
+      "observation": "After actual model restore the native sheet shows the empty trash state and retains a Done action.",
+      "inspected": true
+    }
+  ],
+  "scope": "Actual iOS18.5 simulator native confirmation/sheet; automated model actions, not human keyboard or physical-device acceptance",
+  "Build11DeviceAccepted": false
+}
