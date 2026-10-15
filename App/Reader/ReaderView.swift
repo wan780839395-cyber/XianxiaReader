@@ -32,62 +32,18 @@ import XianxiaCore
                     Button("重试") { Task { await model.retryOpen() } }
                 }.padding(32)
             } else if !model.isReady { ProgressView("正在打开书籍…") }
-            if model.menuVisible || !model.isReady {
-                VStack(spacing: 0) {
-                    HStack {
-                        Button {
-                            Task {
-                                await model.saveNow()
-                                if let failure = model.appearanceSaveFailure { model.errorMessage = failure }
-                                else { dismiss() }
-                            }
-                        } label: {
-                            Image(systemName: "chevron.down")
-                        }.accessibilityLabel("返回书库")
-                        Spacer()
-                        Text(book.title).font(.headline).lineLimit(1)
-                        Spacer()
-                        Button { Task { await model.addBookmark() } } label: {
-                            Image(systemName: "bookmark.badge.plus")
-                        }.accessibilityLabel("添加书签").disabled(!model.isReady)
-                    }.padding().background(.regularMaterial)
-                    Spacer()
-                    VStack(spacing: 12) {
-                        HStack {
-                            Text(model.position?.chapterTitle ?? "正文").lineLimit(1)
-                            Spacer()
-                            if let progress = model.position?.progression { Text("\(Int(progress * 100))%") }
-                        }.font(.footnote).foregroundStyle(.secondary)
-                        HStack {
-                            Button("目录") { showContents = true }
-                            Spacer()
-                            Button(model.scrolling ? "上一屏" : "上一页") { Task { await model.engine?.turnPage(forward: false) } }
-                            Spacer()
-                            Button(model.scrolling ? "下一屏" : "下一页") { Task { await model.engine?.turnPage(forward: true) } }
-                            Spacer()
-                            Button("书签") { showBookmarks = true }
-                        }
-                        Toggle("上下连续滚动", isOn: Binding(get: { model.scrolling }, set: { model.setScrolling($0) }))
-                            .font(.footnote)
-                            .disabled(model.engine?.supportsContinuousScrolling != true)
-                        if model.scrolling {
-                            Text("向上滑动可接着阅读下一章。")
-                                .font(.caption).foregroundStyle(.secondary)
-                        }
-                        HStack {
-                            Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }
-                                .disabled(model.engine?.searchProvider == nil)
-                            Spacer()
-                            Button { showAppearance = true } label: { Label("阅读设置", systemImage: "textformat.size") }
-                                .disabled(model.engine?.appearanceProvider == nil)
-                                .accessibilityIdentifier("reader.appearance.open")
-                        }
-                    }.padding().background(.regularMaterial).disabled(!model.isReady)
+            ReaderMenuView(book: book, model: model, returnToLibrary: {
+                Task {
+                    await model.saveNow()
+                    if let failure = model.appearanceSaveFailure { model.errorMessage = failure }
+                    else { dismiss() }
                 }
-            }
+            }, showContents: { showContents = true }, showBookmarks: { showBookmarks = true },
+               showSearch: { showSearch = true }, showAppearance: { showAppearance = true })
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(model.appearance.theme.background)
+        .tint(ReaderPalette(theme: model.appearance.theme).accent)
         .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
         .sheet(isPresented: $showAppearance) { ReaderAppearanceView(model: model) }
         .sheet(isPresented: $showContents) {

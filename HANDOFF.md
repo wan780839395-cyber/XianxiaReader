@@ -1,5 +1,23 @@
 # 当前交接与恢复点
 
+## Build16 当前实际断点（优先于下方历史）
+
+源码子步：已增加ReaderVisualStyle/ReaderMenuView，重整ReaderAppearanceView外观/排版分段和ReaderView组装，版本16。保持原偏好功能/ID/模型/引擎，44pt按钮、ViewThatFits避免窄空间数值挤压，菜单短淡入淡出沿用系统和既有额外Reduce Motion请求；实心面板不依赖透明效果。保留旧90测试，新增2真正XCUITest覆盖菜单触控尺寸/模式/分组/排版保存重开/原书开关disabled规则及Reduce Motion请求。准备Windows检查和完整CI；新增截图/动效尚未实看，不记通过。
+
+构建前：Windows仓库/420Swift grammar新增0、54 pristine限制和17Python tooling通过，报告M4_POLISH_STATIC_REPORT.json；语法不等于编译。现在私有index保存并推同一M4分支候选，随后workflow_dispatch完整CI（115Core各平台、92iOS=84集成+8UI、严格Release16）。新增test用既有XR_LIBRARY_UI_REDUCE_MOTION追加减少动效请求，不宣称改变系统设置。此前运行源a625与本次新候选分别记录，所有旧文件/25包保留。
+
+2026-10-15用户在Build15后回复“没问题 可以继续”，记录基本自用通过，并明确希望UI更好看、可以参考成熟项目。设备型号/逐项巨段TXT整窗/FPS/普通签名设备矩阵未额外报告，不扩写。Build15真正编译源a6251ea23e6e126acd27f16b3fe4886fed74dd77 / 成功CI38722474043，各115Core/iOS90/Release15，纯文档tip a0c677c43ff350da7c9f4a75260c852a2c502e53。完整旧交接已保存Documentation/HANDOFF_M4_APPEARANCE_HISTORY_2026-10-15.md；反馈m4-appearance-build15-user-feedback.json。
+
+现在开始M4第二切片Build16：打磨原生阅读菜单与阅读设置的信息层级/视觉/触控，外观和排版分组，保留全部既有偏好功能及Accessibility ID。参考Readest pinned cc236be4的design规范、Foliate gtk4 pinned67b6676d及Apple原生控件；差异和取舍记录READING_UI_DESIGN.md。不换引擎/加依赖；字体文件导入、亮度/音量键等仍为M4后续。当前未改运行源码、未编译/未生成Build16。
+
+main/HEAD6d761749911233122bcd031fcf718d22a19f9e77和原空index、M2/M3旧tip均保留。按实际inventory核732维护文件+inventory共733项，备份.cache/recovery/20261015-build16/initial-worktree.zip；CRC与25旧包hash通过，详细hash/路径见m4-polish-build16-start.json。只用私有index保留候选，不改正常HEAD/index，不覆盖旧包和日志。
+
+下一步先实现App层UI，复用现有model/provider/设置文件与完整Locator，不改schema/Vendor/原件/六pins。Windows check_repository.py --swift-syntax及17 Python tooling（本机Python3.11匹配cp311绑定）；随后完整CI，各115Core、原90测试全部保留并新增必要原生交互测试、严格Release16。成功后下载完整日志/xcresult/锁/实际IPA；复核本轮实际原生截图/成功case视频及连续帧，完成打包与文档同步。模拟器与手机验收分列。当前无遗留本轮构建/下载/watch进程，Build16尚未启动。
+
+---
+
+## Build15 历史原文
+
 更新时间：2026-10-15（Asia/Shanghai）
 
 ## 实际断点
