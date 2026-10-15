@@ -1,6 +1,6 @@
 # 阅读手感与沉浸动效
 
-2026-10-15，M4 Build17 第一片，当前源码待完整编译/原生核验。
+2026-10-16，M4 Build17 第一片，第四候选验证中；最终结果和各历史失败分列。
 
 用户认可Build16界面并授权动效方案。保留灰绿原生界面；先完善现有翻页、连续阅读、菜单进退和偏好保存。后续按独立可验证切片增加上下整屏、自动慢滚；纸张卷页先做与Readium排版/选字/Locator兼容的小样，不直接替换引擎。上述后续功能尚未实现。
 
@@ -10,7 +10,7 @@ Readium 3.11 已使用原生UIScrollView分页及WebKit平滑点按翻页，跟�
 
 本片通过ReadingInterfaces可选ReaderInteractionProviding配置动效及被动阅读手势回调。Adapter注册官方drag observer，始终返回false，不消费输入；核当前Navigator/session身份并在VoiceOver开启时不自动收菜单。滑动后菜单可自动收起，用户可关闭；中央轻点显示的原路径保留。收起只变叠加菜单，正文视口不重排。上下菜单各10pt+透明度、0.2秒easeInOut；系统/用户/DEBUG额外减少动效请求任一开启都停用自定义菜单过渡。
 
-点按上一页/下一页、目录/书签/搜索跳转共用NavigatorGoOptions，系统或用户减少动效时animated=false，进入实际WebKit instant分支；原生手指拖动仍跟手。分页命令使用带身份的防重入，不积压同一尚未完成的导航；close清身份、旧defer不能解锁新session。连续模式Readium go按屏立即返回，本片不宣称它获得完整动画期间的点按节流。配置disablePageTurnsWhileScrolling=true，保持纵向原生滚动，避免横向手势切相邻资源。未修改Vendor/JS bundle或升级依赖。
+点按上一页/下一页、目录/书签/搜索跳转共用NavigatorGoOptions，系统或用户减少动效时animated=false，进入实际WebKit instant分支；原生手指拖动仍跟手。分页命令使用带身份的防重入，不积压同一尚未完成的导航；close清身份、旧defer不能解锁新session。连续模式Readium go按屏立即返回，本片不宣称它获得完整动画期间的点按节流。配置disablePageTurnsWhileScrolling=true，保持纵向原生滚动，避免横向手势切相邻资源。第四候选为修复旧字号重排后的重开回归，只维护Vendor Controller的普通分页完整锚点通知和provenance；不修改JS bundle或升级依赖。
 
 新增Foundation领域ReadingInteraction v1和独立Preferences/interaction-v1.json，存阅读方式、减少动效、滑动收菜单；不修改reading-v1.json、schema3或Locator。BookFileStore actor有界16KiB读、逐级安全路径、原子写；坏/未来文件保留且报错。ViewModel按输入顺序串行保存，保存失败可见/重试，离开设置或书架前等待两种设置任务。额外减少动效请求只合并运行时策略，不写用户设置。打开前读偏好，Navigator打开后按能力恢复连续方式并走原锚点保护管线；固定/竖排/RTL书籍用分页且不抹掉用户连续偏好。恢复模式到最终DOM之间仍是异步，原位置/关闭/重试回归必须全跑。
 
@@ -40,3 +40,7 @@ Readium 3.11 已使用原生UIScrollView分页及WebKit平滑点按翻页，跟�
 ## 第三轮旧回归及必要修正
 
 1d1f2763/CI38765962839仍97/99，但所有新增动效/实际手势/重开偏好测试通过。旧设置测试在持久连续模式重开后app.scrollViews.firstMatch实际选中readium.continuous-scroll，滚动读者而非设置页；设置ScrollView提供独立id，原滑动/控件/数值断言范围改为这个真实面板。旧EPUB180%字体原非零字在重排后可见，但保存后重开回章首。核[官方精确3.11 Navigator](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift)普通paged计算只返回progression，当前维护扩展的手工DOM采样能被后续普通位置通知覆盖。于是仅水平LTR重排分页合并既有有界DOM采样和官方metadata，核当前spread/offset/size及外层revision/container身份；固定/RTL/竖排保持原合同。复用64字符局部采样，不引入全文，不改Locator格式。只维护Vendor Controller/provenance，不修改JS/锁或恢复已撤回的原生滚动实验。原非零字/180%/重开断言及超时保持，并补重开前DOM范围断言/原创fixture附件，以实际完整回归为准，当前尚未验收。
+
+## 第四轮89集成全部过，剩余UI准备修正
+
+50ecf291/CI38771271584原非零字180%重开及新完整DOM断言6.457秒通过，89集成全部过；仍有2UI失败97/99，严格test65无IPA。日志确认scope后的向下手势作用于reader.appearance.scroll，但随后外观按钮不存在：控件已可点时不该额外向下滑，从顶部滑动可交给系统sheet dismiss。测试改为先核isHittable，仅需要时在该面板查找目标；无删除控件/数值断言。新正常case横拖收菜单通过，模式选择后立即纵拖未收菜单，选择项label早于异步Navigator重建；增加等待实际连续UIScrollView及真实样本文字可读，再用原手势与10秒收菜单断言，不添加重试/放宽准备20秒。下一候选生产实现与第四候选完全一致，只改UI测试准备；实际失败录屏保留并复核后再确认。

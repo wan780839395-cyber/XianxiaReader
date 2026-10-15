@@ -1,8 +1,8 @@
 {
   "recordedAtUTC": "2026-10-15T15:29:55.240025+00:00",
-  "stage": "Third candidate full CI pending; original runtime same as first candidate; test JS return and native readable gate corrected",
-  "sourceRevision": "1d1f2763e743657f25d6ba66ca10c3a5ee922f74",
-  "run": 38765962839,
+  "stage": "Fourth candidate pending full CI: ordinary paged full anchors and scoped settings gestures",
+  "sourceRevision": "50ecf2914a5085716e981adcfbb572a343326083",
+  "run": 38771271584,
   "branch": "codex/m4-reading-appearance",
   "build": "17",
   "expectedCoreTests": 119,
@@ -96,7 +96,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "8b316d83e1fef7a4b7bd8b99c33c256ba593d7dbe1e38bf0b000f32fb1a40daa"
+      "sha256": "ee1da519c94a1ca8f755e3a8463a03d08cb7b172e02f91dd921a20e1130e1d51"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -464,7 +464,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "44e31fd451ba42e169d2b76c11b80d0a947264a3312a36a0d754738c79f51832"
+      "sha256": "632da2e5a30e0fee459a46f1ed58bec41fcae42b40ce55b6ffddd1385a224691"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -500,7 +500,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "e43b24ec1eca9ffece6e4bc00eceb43c4693c509d9843c4eb95e52ddd879249b"
+      "sha256": "b5955354fd33bcb1dd4adb64d552feefb2491d0033a54da58de3ac6d94c613ba"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -524,7 +524,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "662c56cb50e913db4c96c92c7683d11baba1260560503c520a3caca5a9d4ab7f"
+      "sha256": "9749ea0a18e7d9d59f28cb3d18e3fca50bdb9797eb9abf44cb7f838d69f70593"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -784,7 +784,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "ac12ba72f8e02bbb97d620a2d193e3f2c8e1525bfd7623b0e92ccc1148e81d74"
+      "sha256": "4ec4c0cbfa56b15c2d29bc7342ff37355080987829b963b05d2f4cc40ea3bee7"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1940,7 +1940,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "10ad833746c3ee8103550de8c823eb9f4ec228274841765e98cffebceb27f94e"
+      "sha256": "fffd46c527bff414e9c22a934734b9303cb6f52e6b2a187297c104f2b2493541"
     },
     {
       "path": "project.yml",
@@ -2206,5 +2206,11 @@
     "sourceRevision": "c9bae9971e9de0449b92da8eb25fd9602790deaa",
     "run": 38765644376,
     "conclusion": "Agent cancelled; unnecessary experiment after recorded loading-state evidence"
+  },
+  "thirdCandidate": {
+    "sourceRevision": "1d1f2763e743657f25d6ba66ca10c3a5ee922f74",
+    "run": 38765962839,
+    "conclusion": "failure97/99",
+    "evidence": "Documentation/ValidationLogs/m4-motion-build17-third-failure.json"
   }
 }

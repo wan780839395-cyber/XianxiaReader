@@ -21,6 +21,10 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertTrue(settings.waitForExistence(timeout: 20))
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
         XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed)
+        waitForReadableText(in: app)
+    }
+
+    @MainActor private func waitForReadableText(in app: XCUIApplication) {
         // Engine open mounts a navigator before WebKit finishes its initial page.
         // Exercise reading gestures only once this original fixture is readable.
         let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
@@ -39,6 +43,14 @@ final class ReaderInterfaceUITests: XCTestCase {
         for _ in 0..<4 {
             if element.isHittable { return }
             app.scrollViews["reader.appearance.scroll"].swipeUp()
+        }
+        XCTAssertTrue(element.isHittable)
+    }
+
+    @MainActor private func revealAtTop(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<4 {
+            if element.isHittable { return }
+            app.scrollViews["reader.appearance.scroll"].swipeDown()
         }
         XCTAssertTrue(element.isHittable)
     }
@@ -73,8 +85,8 @@ final class ReaderInterfaceUITests: XCTestCase {
         reveal(line, in: app); line.tap()
         XCTAssertEqual(app.staticTexts["reader.line-height.value"].label, "1.85")
         // Turning original styles on must disable the same real typography controls.
-        app.scrollViews["reader.appearance.scroll"].swipeDown()
         let original = app.switches["reader.publisher-styles"]
+        revealAtTop(original, in: app)
         XCTAssertTrue(original.isHittable); original.tap()
         XCTAssertFalse(line.isEnabled)
         original.tap(); XCTAssertTrue(line.isEnabled)
@@ -85,7 +97,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["reader.margins.value"].label, "1.25")
         reveal(app.buttons["reader.line-height.increase"], in: app)
         XCTAssertEqual(app.staticTexts["reader.line-height.value"].label, "1.85")
-        app.scrollViews["reader.appearance.scroll"].swipeDown(); app.buttons["外观"].tap()
+        revealAtTop(app.buttons["外观"], in: app); app.buttons["外观"].tap()
         app.buttons["reader.theme.charcoal"].tap()
         snapshot("reader-appearance-dark-build16", in: app)
         app.buttons["排版"].tap(); snapshot("reader-layout-dark-build16", in: app)
@@ -126,7 +138,11 @@ final class ReaderInterfaceUITests: XCTestCase {
         centerTap(in: app)
         XCTAssertTrue(app.buttons["reader.mode"].waitForExistence(timeout: 10))
         app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()
-        // Exercise a vertical gesture, then check saved mode and controls after relaunch.
+        // The menu selection precedes the asynchronous navigator rebuild.
+        // Wait for the actual continuous container and readable text, not just
+        // the new menu label, before exercising the original vertical gesture.
+        XCTAssertTrue(app.scrollViews["readium.continuous-scroll"].waitForExistence(timeout: 20))
+        waitForReadableText(in: app)
         readingDrag(in: app, vertical: true)
         let continuousHidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.appearance.open"])
         XCTAssertEqual(XCTWaiter.wait(for: [continuousHidden], timeout: 10), .completed)

@@ -1,0 +1,101 @@
+{
+  "recordedAtUTC": "2026-10-15T17:10:25.845602+00:00",
+  "sourceRevision": "50ecf2914a5085716e981adcfbb572a343326083",
+  "run": 38771271584,
+  "conclusion": "failure97/99",
+  "coreEach": 119,
+  "passedIntegration": 89,
+  "integrationFailures": 0,
+  "failedUI": 2,
+  "releaseProduced": false,
+  "testExit": 65,
+  "errors": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReaderInterfaceUITests.swift:88: error: -[XianxiaReaderUITests.ReaderInterfaceUITests testNativeMenuLayoutGroupsPublisherRulesAndRelaunch] : Failed to tap \"外观\" Button: No matches found for Descendants matching type Button from input {(",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReaderInterfaceUITests.swift:132: error: -[XianxiaReaderUITests.ReaderInterfaceUITests testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+  ],
+  "verified": [
+    "Original nonzero-character180percent/reopen passed6.457sec with new full-anchor assertion",
+    "Actual instant/smooth and overlapping page turn regression passed",
+    "New horizontal drag before continuous mode passed; failure is the immediately-following vertical drag"
+  ],
+  "scope": "Test harness corrections only next: avoid downward sheet gesture when requested controls already hittable; wait actual continuous container/readable text after async mode selection. Preserve all original values/gesture/hide10sec and20sec readiness limits.",
+  "artifactDownloadPending": false,
+  "iOSSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 2,
+        "passedTests": 97,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 2,
+    "finishTime": 1792083994.226,
+    "passedTests": 97,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792082999.783,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "Failed to tap \"外观\" Button: No matches found for Descendants matching type Button from input {(\n    Application, pid: 43735, label: '仙侠阅读'\n)}\nPossibly caused by runtime issues:\nAutomation type mismatch: computed Button from legacy attributes vs PopUpButton from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 14;\n    \"XC_kAXXCAttributeElementBaseType\" = UIResponder;\n    \"XC_kAXXCAttributeElementType\" = \"SwiftUI.AccessibilityNode\";\n    \"XC_kAXXCAttributeTraits\" = 1108101562369;\n}\nAutomation type mismatch: computed Button from legacy attributes vs ProgressIndicator from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 35;\n    \"XC_kAXXCAttributeElementBaseType\" = UIResponder;\n    \"XC_kAXXCAttributeElementType\" = \"SwiftUI.AccessibilityNode\";\n    \"XC_kAXXCAttributeTraits\" = 8589935105;\n}\nSee test report attachments for more detail.",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 97,
+        "testIdentifierString": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+        "testName": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()"
+      },
+      {
+        "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 98,
+        "testIdentifierString": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu",
+        "testName": "testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "21% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 9.73s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 99
+  },
+  "xcresultRetained": true,
+  "zipCRC": true,
+  "artifactZipSha256": "e9081059db0010c77657aa7c9e530dfcd5157969a17823e9c0eecb47cf8db33b",
+  "nativeReview": {
+    "normalOverview": [
+      "MotionReview/normal/contact-1.png",
+      "MotionReview/normal/contact-2.png"
+    ],
+    "settingsLateOverview": [
+      "MotionReview/settings-failure/contact-4.png",
+      "MotionReview/settings-failure/contact-5.png"
+    ],
+    "inspected": true,
+    "observations": [
+      "Settings layout and appearance tab are already visible55.5-56.5sec; after downward gesture sheet is gone57.5sec, confirmed native dismiss.",
+      "Normal new case shows actual horizontal drag/menu hide, center restore and mode menu; following vertical drag lacks completed continuous-mode readiness assertion. Next test waits actual container+readable text before original gesture."
+    ],
+    "notPhoneFPS": true
+  }
+}

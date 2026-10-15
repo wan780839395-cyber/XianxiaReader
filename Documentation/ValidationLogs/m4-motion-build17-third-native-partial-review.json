@@ -1,0 +1,56 @@
+{
+  "recordedAtUTC": "2026-10-15T16:45:06.866279+00:00",
+  "run": 38765962839,
+  "sourceRevision": "1d1f2763e743657f25d6ba66ca10c3a5ee922f74",
+  "scope": "Successful new motion UI case in overall failed97/99 run; not final release or phone acceptance",
+  "images": [
+    {
+      "path": "build/ci/38765962839/MotionReview/normal/contact-1.png",
+      "sha256": "a35501c8a28277b6e1367a23ffae18cbf22e6d276da5b04c3ee7624bc4cbed67",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38765962839/MotionReview/normal/contact-2.png",
+      "sha256": "3ca96da6b3df3fe4aa6886ac3a7f940132950fd2bab9c5128e3c0408460904bc",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38765962839/MotionReview/normal/contact-3.png",
+      "sha256": "3ebfbe5d23a3373a2ac3725e80f722ad4cb623a389af625ac7a8975d8cc7cf53",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38765962839/MotionReview/normal/contact-4.png",
+      "sha256": "f15c42cb6ff45806d616b83ed7ad731fd50617a33447894d8d4fb1a32ea122d0",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38765962839/MotionReview/normal/contact-5.png",
+      "sha256": "67ebf173c0566c07e6cdafaa44ccc548025c3bda7adf2faeb09f78e4f4193782",
+      "inspected": true
+    }
+  ],
+  "durationSeconds": 67.62,
+  "wholeDurationOneSecondOverviewInspected": true,
+  "interpolated": false,
+  "observations": [
+    "After readable preface, native horizontal drag hides menu and center tap restores it",
+    "Mode menu switches to bounded continuous reading; actual vertical drag hides menu",
+    "Interaction sheet fits same palette; autoHide off/reduce on persist after relaunch",
+    "Subsequent vertical drag keeps menu while autoHide off",
+    "Video prefix can show preceding test frame; launch/relaunch white/home/loading are not reading-transition failures"
+  ],
+  "notAccepted": [
+    "No independent focus/consecutive-frame motion acceptance for this prior run",
+    "Old paged reopen and settings UI target failed separately",
+    "Not measured phone FPS or device acceptance"
+  ],
+  "focus": {
+    "path": "build/ci/38765962839/MotionReview/normal/menu-and-scroll/frames.json",
+    "frames": 22,
+    "inspected": true,
+    "sampleFPS": 20,
+    "interpolated": false,
+    "scope": "Successful motion case in failed prior run; final candidate still pending"
+  }
+}
