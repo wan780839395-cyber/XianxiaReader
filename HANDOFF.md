@@ -31,3 +31,5 @@ Windows检查完成：417 Swift语法文件，新增diagnostics0/上游pristine�
 恢复后增补可恢复源码步骤：Adapter将分页reflow判断改为对比实际已提交appliedPreferences，防快速字号→主题/模式取消丢失必要重排；新分页测试连发字号+主题后仍要求同一非零文字锚点可见/重开。原CI尚未结束，此为待编译草稿。
 
 恢复后准备第三源码快照（暂不派新CI，等38711610037完整结果）：已保留晚于旧候选的分页reflow/快速连发判断/设置写失败留页和新增真实分页非零锚点回归，TXT初始两字缩进computed比例也明确断言。Windows417/17Python已通过；下一候选预计115Core/90iOS。先用私有index存快照，原HEAD/index和23旧包不动，不将旧CI背书新源码。
+
+CI38711610037已completed/failure，完整full/Core/Apple/xcresult/附件下载helper最终0。各115Core/四长书通过、Swift编译警告错误0；iOS87/89（2个失败case，3个断言/未预期失败），6UI与新EPUB五主题/位置通过。旧连续boundary首cover about:blank→watchdog/原30s超时，根因未确认；新TXT首窗口600点后非零UTF16等待超时，候选未附DOM诊断。严格test65、export/summary/recording0，未进Release，无IPA。证据second-candidate-failure.json。保持旧断言/超时不改；新增TXT使用既有已验证第二资源DOM跳转后滚动流程，同600点/>100UTF16/3px门槛，增加诊断；合并分页草稿再完整重跑。先前snapshot908da保存早期草稿，新候选需覆盖此TXT步骤。

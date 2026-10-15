@@ -273,20 +273,23 @@ final class TXTReadingTests: XCTestCase {
     }
 
     @MainActor func testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen() async throws {
-        let (book, url, services, context) = try await prepared("第一章 山门\n" + String(repeating: "修行🙂e\u{301}问道。", count: 3000))
+        let (book, url, services, context) = try await prepared("第一章 山门\n" + String(repeating: "修行🙂e\u{301}问道。", count: 30000))
         let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
         var appearance = ReadingAppearance(); appearance.fontScale = 1
         try engine.setAppearance(appearance)
         _ = try mount(engine)
         try await engine.open(book: book, fileURL: url, position: nil)
         try await wait("appearance initial position") { engine.currentPosition != nil }
-        let byte = Int64("第一章 山门\n".utf8.count)
-        let resource = context.plan.resources[0], href = try XCTUnwrap(AnyURL(string: resource.href))
+        // Reuse the proven second bounded resource workflow: a completed DOM
+        // jump precedes physical scrolling, separately from initial chapter load.
+        XCTAssertGreaterThan(context.plan.resources.count, 3)
+        let resource = context.plan.resources[1], byte = resource.startByte
+        let href = try XCTUnwrap(AnyURL(string: resource.href))
         let start = Locator(href: href, mediaType: .xhtml,
             locations: .init(fragments: ["txt-b\(byte)"], otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))
         try await engine.go(to: TXTPositionCodec.encode(start, bookID: book.id, plan: context.plan))
         let top = "document.getElementById('txt-b\(byte)')?.getBoundingClientRect().top ?? 10000"
-        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.0", root: engine.viewController.view))).first)
+        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first)
         try await wait("paragraph at top") { abs(try await target.evaluateJavaScript(top) as? Double ?? 10000) < 5 }
         let indentation = try await target.evaluateJavaScript("""
             (() => {const p=getComputedStyle(document.querySelector('p'));
@@ -295,10 +298,17 @@ final class TXTReadingTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(indentation), 2, accuracy: 0.01)
         let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
         scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
-        try await wait("nonzero UTF16 anchor") {
-            guard let position = engine.currentPosition else { return false }
-            let (_, anchor, _) = try TXTPositionCodec.decode(position, bookID: book.id, plan: context.plan)
-            return anchor.characterUTF16Offset > 100
+        do {
+            try await wait("nonzero UTF16 anchor") {
+                guard let position = engine.currentPosition else { return false }
+                let (_, anchor, _) = try TXTPositionCodec.decode(position, bookID: book.id, plan: context.plan)
+                return anchor.resourceStartByte == resource.startByte && anchor.characterUTF16Offset > 100
+            }
+        } catch {
+            let dom = try await target.evaluateJavaScript("({y:scrollY,height:document.documentElement.scrollHeight,top:document.querySelector('p')?.getBoundingClientRect().top,offsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
+            let diagnostic = XCTAttachment(string: "DOM=\(dom ?? "nil") outer=\(scroll.contentOffset) state=\(engine.continuousDiagnosticState) position=\(String(describing: engine.currentPosition))")
+            diagnostic.name = "txt-appearance-anchor-failure"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+            throw error
         }
         let saved = try XCTUnwrap(engine.currentPosition)
         let (_, anchor, _) = try TXTPositionCodec.decode(saved, bookID: book.id, plan: context.plan)
@@ -315,7 +325,7 @@ final class TXTReadingTests: XCTestCase {
         appearance.firstLineIndent = false; appearance.pageMargins = 1.5
         try engine.setAppearance(appearance)
         try await wait("TXT real CSS and anchor after reflow") {
-            guard let wrapper = self.view("readium.chapter.0", root: engine.viewController.view), let web = self.webViews(wrapper).first else { return false }
+            guard let wrapper = self.view("readium.chapter.1", root: engine.viewController.view), let web = self.webViews(wrapper).first else { return false }
             let y = try await web.evaluateJavaScript(anchorY) as? Double ?? 10000
             let indent = try await web.evaluateJavaScript("getComputedStyle(document.querySelector('p')).textIndent") as? String
             let color = try await web.evaluateJavaScript("getComputedStyle(document.documentElement).backgroundColor") as? String
@@ -325,13 +335,13 @@ final class TXTReadingTests: XCTestCase {
         let current = try XCTUnwrap(engine.currentPosition)
         let (_, reflowed, _) = try TXTPositionCodec.decode(current, bookID: book.id, plan: context.plan)
         XCTAssertEqual(reflowed.paragraphStartByte, byte); XCTAssertGreaterThan(reflowed.characterUTF16Offset, 100)
-        let rendered = try XCTUnwrap(self.webViews(try XCTUnwrap(view("readium.chapter.0", root: engine.viewController.view))).first)
+        let rendered = try XCTUnwrap(self.webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first)
         let image = try await rendered.takeSnapshot(configuration: nil)
         let attachment = XCTAttachment(image: image); attachment.name = "txt-charcoal-reflow-build15"
         attachment.lifetime = .keepAlways; add(attachment)
         engine.close(); try await engine.open(book: book, fileURL: url, position: current)
         try await wait("TXT appearance reopen anchor") {
-            guard let wrapper = self.view("readium.chapter.0", root: engine.viewController.view), let web = self.webViews(wrapper).first else { return false }
+            guard let wrapper = self.view("readium.chapter.1", root: engine.viewController.view), let web = self.webViews(wrapper).first else { return false }
             return abs((try await web.evaluateJavaScript(anchorY) as? Double ?? 10000) - before) < 3
         }
     }
