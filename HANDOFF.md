@@ -2,9 +2,21 @@
 
 ## Build16 当前实际断点（优先于下方历史）
 
+本次中断恢复实核：HEAD/index/M4候选仍保持，运行/测试源码与已派发9a16572一致，其后只改文档。又备份实际当前文件到20261015-build16/resumed-worktree.zip，详细项数/hash见m4-polish-build16-resume.json，25旧包保持。远端38734879701仍in_progress，repository-checks/core-tests成功，Apple执行中。旧watch66704会话已不存在，恢复watch49709只读重试网络EOF，不取消远端。后续先取完整远端结果，不能将观察工具EOF写成源码失败。
+
+38734879701现在真实completed/failure，repository/Linux Core成功、Apple失败；观察watch49709正常返回1。开始下载完整full/Core/Apple诊断/xcresult/附件，先核失败阶段与实际断言，不从旧尾部判断、不生成Build16交付包。
+
+首轮下载helper84471已完成0，完整summary实核90/92（两个失败，skipped0）、各115Core/各四长TXT、源码编译警告错误0、严格test65/export0/summary0，Release未执行，无IPA。失败/候选原件m4-polish-build16-first-failure.json/first-candidate.json保留。新上一页AX宽8不是44：产品图标label frame后补contentShape(Rectangle)，原44pt断言不改。实际两张减少动效原生图已看作诊断，顶部旧bookmark.badge.plus字形缺失，换支持的bookmark并加入44pt检查。旧分页重排caret1533后落回one.xhtml progression0，因Adapter/Vendor/该测试与Build15完全相同，单轮根因尚未确认；不盲补/放宽旧断言，本次只修UI后完整重跑。现将运行420语法/17tooling，然后保存新候选、重新dispatch，先前失败不覆盖。
+
 源码子步：已增加ReaderVisualStyle/ReaderMenuView，重整ReaderAppearanceView外观/排版分段和ReaderView组装，版本16。保持原偏好功能/ID/模型/引擎，44pt按钮、ViewThatFits避免窄空间数值挤压，菜单短淡入淡出沿用系统和既有额外Reduce Motion请求；实心面板不依赖透明效果。保留旧90测试，新增2真正XCUITest覆盖菜单触控尺寸/模式/分组/排版保存重开/原书开关disabled规则及Reduce Motion请求。准备Windows检查和完整CI；新增截图/动效尚未实看，不记通过。
 
 构建前：Windows仓库/420Swift grammar新增0、54 pristine限制和17Python tooling通过，报告M4_POLISH_STATIC_REPORT.json；语法不等于编译。现在私有index保存并推同一M4分支候选，随后workflow_dispatch完整CI（115Core各平台、92iOS=84集成+8UI、严格Release16）。新增test用既有XR_LIBRARY_UI_REDUCE_MOTION追加减少动效请求，不宣称改变系统设置。此前运行源a625与本次新候选分别记录，所有旧文件/25包保留。
+
+已保存/推候选9a16572d330d3dbe3040337acb1e8f222e609e85，完整CI38734879701真实headSha一致，repository-checks成功，Linux Core执行中；Apple/iOS/Release尚未通过。M4_POLISH_VALIDATION_REPORT.json已记录501源码blob/25旧包/所有pending门槛。现在等待实际CI，先保留完整失败再判断，不能猜已编译。
+
+已下载完整Linux artifact，实核115/115测试条目、源码编译diagnostics无warning/error、四长TXT Release探针的digest/全窗口覆盖/三次重开cache合同，Linux单独通过。m4-polish-build16-linux-checkpoint.json保存hash；Apple job执行中（统一build/test/package步骤内部阶段尚未取到完整日志），92iOS/Release16仍待。原运行源码未再改；准备最终证据/原生复核工具，不提前生成包。
+
+等待中的本地watch15359曾因GitHub API EOF结束1（watch_cover.ps1状态查询失败），属于本地观察任务网络错误，不能记作CI/源码失败；实际远端任务需重新读状态。无取消/重试远端CI，不改网络/用户工具配置。
 
 2026-10-15用户在Build15后回复“没问题 可以继续”，记录基本自用通过，并明确希望UI更好看、可以参考成熟项目。设备型号/逐项巨段TXT整窗/FPS/普通签名设备矩阵未额外报告，不扩写。Build15真正编译源a6251ea23e6e126acd27f16b3fe4886fed74dd77 / 成功CI38722474043，各115Core/iOS90/Release15，纯文档tip a0c677c43ff350da7c9f4a75260c852a2c502e53。完整旧交接已保存Documentation/HANDOFF_M4_APPEARANCE_HISTORY_2026-10-15.md；反馈m4-appearance-build15-user-feedback.json。
 

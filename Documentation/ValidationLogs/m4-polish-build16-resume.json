@@ -1,0 +1,25 @@
+{
+  "recordedAtUTC": "2026-10-15T12:48:05.427950+00:00",
+  "run": 38734879701,
+  "sourceRevision": "9a16572d330d3dbe3040337acb1e8f222e609e85",
+  "sourceUnchangedSinceDispatched": true,
+  "onlyDocumentationChanged": [
+    "Documentation/M4_POLISH_VALIDATION_REPORT.json",
+    "Documentation/READING_UI_DESIGN.md",
+    "Documentation/ValidationLogs/m4-polish-build16-linux-checkpoint.json",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md"
+  ],
+  "originalHeadPreserved": true,
+  "originalIndexEmpty": true,
+  "preservedPackageCount": 25,
+  "backup": {
+    "path": ".cache/recovery/20261015-build16/resumed-worktree.zip",
+    "entries": 743,
+    "sha256": "cf509c455cd54382d9002ccec6091ae294bbfd77915fdf72da78801dd0e75853",
+    "zipCRC": true
+  },
+  "actualRemoteStatus": "in_progress; repository-checks/core-tests success; Apple job pending completion",
+  "priorLocalWatch": "15359 failed EOF; resumed66704 no longer exists after interruption; remote CI not cancelled",
+  "newLocalWatch": 49709
+}

@@ -34,6 +34,7 @@ import XianxiaCore
             Button(action: returnToLibrary) {
                 Image(systemName: "chevron.down").font(.system(size: 17, weight: .medium))
                     .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }.accessibilityLabel("返回书库")
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title).font(.subheadline.weight(.medium)).lineLimit(1)
@@ -42,8 +43,9 @@ import XianxiaCore
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
             Button { Task { await model.addBookmark() } } label: {
-                Image(systemName: "bookmark.badge.plus").font(.system(size: 18))
+                Image(systemName: "bookmark").font(.system(size: 18))
                     .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }
             .accessibilityLabel("添加书签").disabled(!model.isReady)
             .accessibilityIdentifier("reader.bookmark.add")
@@ -111,6 +113,7 @@ import XianxiaCore
         return Button { Task { await model.engine?.turnPage(forward: forward) } } label: {
             Image(systemName: forward ? "chevron.right" : "chevron.left")
                 .font(.system(size: 16, weight: .medium)).frame(width: 44, height: 44)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain).accessibilityLabel(label)
         .accessibilityIdentifier(forward ? "reader.page.next" : "reader.page.previous")

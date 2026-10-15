@@ -16,8 +16,10 @@
 - [Foliate GTK4](https://github.com/johnfactotum/foliate/tree/67b6676d3f936c5edea91d4d903385ef39dd25c0)，同日核官方gtk4 revision67b6676d3f936c5edea91d4d903385ef39dd25c0。参考专注页面与轻量工具栏，GTK桌面尺寸不能直接搬到iPhone。网页与README引用属于视觉调研，不等价安装运行验证。
 - [Apple Sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)、[Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)。最低iOS16/Xcode16.4，采用已有NavigationStack/large detent/分段/开关；不使用新系统专属玻璃API。官方网页正文依赖JS，可用性以既有SDK/实际CI编译核实。
 
-下载参考原件在.cache/recovery/20261015-build16/，不提交外部源码或图像到产品。
+下载参考文档原件在.cache/recovery/20261015-build16/，不提交外部源码或图像到产品。Foliate README截图的浏览器抓取实际TimeoutError，未据此截图作外观观察结论；主要具体层级选择依据已取得的Readest设计文本和项目既有原生页面。
 
 ## 验证边界
+
+首候选9a16572/CI38734879701：各115Core/四Release探针、Apple源码编译通过，iOS90/92，失败为旧EPUB分页重排等待和新上一页44pt区域断言（实际AX宽8）。显式44pt frame不足以扩展plain图标点击形状，参照[SwiftUI contentShape](https://developer.apple.com/documentation/swiftui/view/contentshape(_:eofill:))在label布局后设置矩形命中区域，保留尺寸断言。实际减少动效截图发现顶部旧bookmark.badge.plus没有可见字形，改用已支持bookmark图标并将添加书签入口纳入原44pt检查。首轮图片仅诊断，不当新修正验收。旧分页原测试/Adapter/Vendor同Build15未变，诊断记录原caret1533、重排后回到progression0，根因尚未确认；本片不盲改引擎或放宽20/30秒/180%/原文字可见断言。严格test65阻止Release，无首轮IPA。
 
 保留原90项iOS测试、各115Core及17工具测试，新增原生菜单/分组切换/保存重开/浅深色截图及录屏回归。完整CI/Release16后交付。原生截图和视频连续帧只说明模拟器具体case，手机触控/FPS、系统减少动态效果、巨段TXT整窗和其他设备单列；Build15基本自用接受不扩写这些矩阵。

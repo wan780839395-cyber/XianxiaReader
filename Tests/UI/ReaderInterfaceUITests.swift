@@ -38,7 +38,7 @@ final class ReaderInterfaceUITests: XCTestCase {
 
     @MainActor func testNativeMenuLayoutGroupsPublisherRulesAndRelaunch() {
         let app = start(); defer { app.terminate() }
-        for id in ["reader.contents.open", "reader.bookmarks.open", "reader.search.open", "reader.appearance.open", "reader.page.previous", "reader.page.next"] {
+        for id in ["reader.contents.open", "reader.bookmarks.open", "reader.search.open", "reader.appearance.open", "reader.page.previous", "reader.page.next", "reader.bookmark.add"] {
             let button = app.buttons[id]
             XCTAssertTrue(button.isHittable, id)
             XCTAssertGreaterThanOrEqual(button.frame.width, 44, id)

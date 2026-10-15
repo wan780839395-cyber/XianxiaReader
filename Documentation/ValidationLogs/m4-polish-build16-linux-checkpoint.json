@@ -1,0 +1,20 @@
+{
+  "recordedAtUTC": "2026-10-15T12:32:41.549080+00:00",
+  "run": 38734879701,
+  "sourceRevision": "9a16572d330d3dbe3040337acb1e8f222e609e85",
+  "linuxCoreTests": 115,
+  "longTXTReleaseCases": 4,
+  "files": [
+    {
+      "path": "build/ci/38734879701/core/logs/core-tests.log",
+      "sha256": "54a919c45f3aa992f400d038d25b085a5a3a5f86c9895e1bcbf947f704048817"
+    },
+    {
+      "path": "build/ci/38734879701/core/TXTPerformance/summary.json",
+      "sha256": "041c98bdf7dcd275c21103df282d4f5b5da7c625a8fdd9a91298a807088fad24"
+    }
+  ],
+  "appleCompiled": false,
+  "iOSTestsPassed": false,
+  "deviceReleaseBuilt": false
+}

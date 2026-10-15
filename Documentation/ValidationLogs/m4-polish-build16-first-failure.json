@@ -1,0 +1,129 @@
+{
+  "recordedAtUTC": "2026-10-15T12:57:04.239556+00:00",
+  "run": 38734879701,
+  "sourceRevision": "9a16572d330d3dbe3040337acb1e8f222e609e85",
+  "linuxCoreTests": 115,
+  "macOSCoreTests": 115,
+  "toolingTests": 17,
+  "swiftGrammarFiles": 420,
+  "iOSCompiled": true,
+  "iOSPassed": false,
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "deviceReleaseExecuted": false,
+  "IPACreated": false,
+  "failures": [
+    {
+      "test": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+      "point": "first reflow wait line620",
+      "observation": "DOM/currentLocation remained at one.xhtml progression0 after rapid typography/theme edits; engine/vendor/test identical to Build15; cause not confirmed"
+    },
+    {
+      "test": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+      "point": "44pt hit area assertion",
+      "observation": "previous page AX button width8 despite frame44; new product UI needs explicit rectangular content shape; assertion retained"
+    }
+  ],
+  "newReducedMotionUITestPassed": true,
+  "allOldLibraryUITestsAndAppearanceUITestPassed": true,
+  "log": {
+    "path": "build/ci/38734879701/full.log",
+    "bytes": 2267790,
+    "sha256": "7a3a25b6733aa6c5e41a9f26d53c1328add4fec1898106da6bc9021fcfd0bb58"
+  },
+  "artifactDownload": "Completed helper0; complete full/Core/Apple logs, xcresult and native attachments retained; Release correctly not executed",
+  "nativeEvidenceCompletedAtUTC": "2026-10-15T12:58:04.243123+00:00",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 2,
+        "passedTests": 90,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 2,
+    "finishTime": 1792068687.78,
+    "passedTests": 90,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792067811.102,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset():620",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 59,
+        "testIdentifierString": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+        "testName": "testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()"
+      },
+      {
+        "failureText": "XCTAssertGreaterThanOrEqual failed: (\"8.0\") is less than (\"44.0\") - reader.page.previous",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 91,
+        "testIdentifierString": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+        "testName": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "33% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 17.62s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 92
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "firstCandidateImagesReviewed": [
+    "reduced-motion menu: calm card hierarchy, old add-bookmark glyph invisible; correction uses supported bookmark symbol",
+    "reduced-motion layout: group separation/44pt adjustments/readable paper preview; not final candidate acceptance"
+  ],
+  "artifacts": [
+    {
+      "path": "build/ci/38734879701/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 2344,
+      "sha256": "6bbd664ca9199e632370b9675d1a2f80dac92767c4685294c71f1c381943533a"
+    },
+    {
+      "path": "build/ci/38734879701/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DDC68A14-FA96-451F-989B-8078F170182F.txt",
+      "bytes": 98,
+      "sha256": "25321002aaf77d2de0751d97fa38d7cc056a2d78faeab73dd68a7d1c22987333"
+    },
+    {
+      "path": "build/ci/38734879701/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE8EAE19-560A-4B01-ACD0-9F5A721D40C7.txt",
+      "bytes": 1052,
+      "sha256": "f90ba6cfeded800c5d93740c2593a49cfece7128819507f9c3e571a4a88034ef"
+    },
+    {
+      "path": "build/ci/38734879701/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F5618F7C-DE89-40E1-BB86-C4E133D3A198.png",
+      "bytes": 142353,
+      "sha256": "25fb230d20af3ff8f4bf70fe1c770c3dcac9e0487b143bf62628ebac01eac112"
+    },
+    {
+      "path": "build/ci/38734879701/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/534DABBD-2578-4A07-BDC7-90AA457AE6A0.png",
+      "bytes": 218456,
+      "sha256": "a247ad0b76a5580355cf76ce480472b1113f5e474bf870ad36f7241afd1adfa0"
+    }
+  ]
+}
