@@ -1,51 +1,29 @@
-# Build14 第三候选：原生反馈布局修正，待完整CI
-
-第二轮38700674784/5278d286各110 Core/四Release长书探针通过、iOS83/84（79集成与旧4UI通过），新UI仅因Done标识被父VStack继承覆盖失败，test65阻止Release。完整AX树/25.5秒实际视频已核，重复功能/3本书/42%正确；视频也发现safeAreaInset多子view相叠、单项ScrollView占136pt空白。已显式VStack竖排、单项按内容高度/多项滚动、移除父容器标识；保留原测试查询/15秒和全部断言。语法411新增0/54限制重新通过。源改动仅App LibraryView，Core业务/旧Reader/Vendor/锁未改；准备第三轮完整CI。失败原件ValidationLogs/m3-library-build14-feedback-layout-ax-failure.json。
-
-# Build14 当前断点：完整CI运行中
-
-已实核Build13初始687维护文件逐hash、21包逐hash、HEAD及空index；初始688项ZIP已保存.cache/recovery/20261015-build14/initial-worktree.zip。无gh/python/Swift/ffmpeg运行进程。用户“没问题 继续”按Build13基本自用接受记录，未扩大设备矩阵。
-
-源码完成、10新Core/4新iOS/1新UI回归已写，Windows411 Swift语法新增0/54 pristine限制、17 Python tooling已通过（不是编译）。首轮CI38700353531/84397ad实际失败于新Core测试读取对照Data缺try；Core运行/Apple/iOS/Release未开始，完整Core日志与失败receipt保留。已修测试try及不同解码的合法café样本（UTF8/1252均有效），准备重新静态检查与完整CI，第二轮CI38700674784/5278d28623a235506c5e00c589782d9afdf25821已通过repository-checks与Linux Core job，Apple进行中；实际Linux日志已核110 Core/四长书Release探针/0源码编译警告错误，Apple仍进行中，iOS预期84；原生图/视频/Release未验证。实现M3精确重复导入：原件SHA256/bytes/格式，TXT另按正规化正文身份区分不同解码；保留已有UUID/位置/封面，回收站显式恢复。计划schema3指纹索引、旧库后台延迟补齐及事务内重复复查；源码/测试/CI/Release尚未完成。
-
-以下为Build13已验证交接，保留作基线。
-
 # 当前交接与恢复点
 
 更新时间：2026-10-15（Asia/Shanghai）
 
 ## 实际断点
 
-Build13更换封面切片通过[完整CI38694877516](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38694877516) / `708d02d0ecadcb3d22d653965aa94203bf4ab227`：Linux/macOS各100Core、iOS79/79（75集成+4真正XCUITest），failed/skipped0，test/export/summary/recording退出0、无签名设备Release13与真实IPA、各四长书Release探针。Windows407Swift语法新增0/54 pristine限制、17tooling通过；语法不是Swift编译。487运行/验证源Git blob hash、三份真实六pins锁与19旧包hash匹配。
+Build14重复导入通过[完整CI38703788390](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38703788390) / `b67a08bc7f6d0db0c97ec152a87e2128a3209c82`：Linux/macOS各110 Core、iOS84/84（79集成+5真正XCUITest），failed/skipped0，test/export/summary/recording退出0，无签名设备Release14及真实IPA、各四长书Release探针。Windows411 Swift语法新增0/54 pristine限制、17 Python tooling通过；语法不是Swift编译。492运行/验证源Git blob hash、三份真实六pins锁和21旧包hash核对一致。
 
-长按书籍→更换封面，从系统相册或文件选图，预览后保存；恢复默认先预览再保存，取消不提交。原书、默认封面、目录、完整位置、书签、书名与UUID保留。后台有界ImageIO下采样和缩略缓存，网格/列表更新有短淡入淡出并尊重Reduce Motion。真实DB失败保留草稿可重试；迟到/关闭/旧回调不能覆盖新选择。重复save已提交草稿不能回移已提交原图。schema2与旧迁移/Reader/codec/Vendor/依赖锁不变。
+相同原件再次导入保留原书UUID/改名/封面/完整Locator/目录/书签/导入时间，底部展示新增与重复数量并可查看。回收站里的重复书由用户显式恢复，恢复后原有进度保留。格式+原件SHA256/64位bytes精确匹配；TXT另比正文正规化身份，自动与手选编码同正文去重、不同有效解码可独立导入。同名不同内容、新BOM/换行或EPUB重新打包不自动合并。
 
-原生错误/待保存预览/书架/默认预览和实际XCUITest的Files取消/默认取消/保存/重开截图及视频已单独复核。测试夹具只在DEBUG隔离目录，Release恒nil且Mach-O无XR_LIBRARY_UI_*旗标。自动测试/录屏不当手机相册/File Provider权限、全部图像格式/旋转、手机FPS/耗电或普通签名设备验收。单图20MiB/8000万像素限制；旧自选原图保留，不自动GC或释放存储；自由裁切未提供。M3还剩重复导入策略，M4完整主题/正文排版和M5设备性能未开始。
+schema3新增003迁移及指纹表/索引，旧payload和已有重复书全部保留。旧原件后台延迟流式补齐，可取消；缺失旧原件警告但不阻止其他书，已登记匹配项原件缺失/损坏则可见错误，不冒充重复成功。最终BEGIN IMMEDIATE事务复查并提交Book/Chapter/指纹，多连接仅一个新UUID获提交；败方清自己暂存/cache。Reader/codec/Vendor/六pins/Locator和NSFileCoordinator合同保持。旧版不支持schema3降级读取，禁止删库修复。
 
-安装包`build/XianxiaReader-Cover-Build13.ipa` / SHA256 `57a6e0c9639af654abd106bcd187ee7b37d721d3cedf315d2a1677aa5e4d6009`；测试ZIP`build/XianxiaReader-Cover-Build13-TestKit.zip` / SHA256 `85e5f5aef4886416d2aed4126b3e142be8749b3dc3bdceae29366e953628ac9c`，内部IPA/11原创样本/封面样本/CRC核验。正常更新保留书库，+菜单确认0.0.1 (13)。设计LIBRARY_COVER_DESIGN.md、报告M3_COVER_VALIDATION_REPORT.json。Build12用户已接受当前观感，具体硬件/实测FPS未独立读出，Build13手机待测。
+原生重复项/回收站/恢复截图与实际XCTest视频及连续帧已复核，网格恢复和原生反馈保持同一灰绿风格、现有Reduce Motion合同。截图/模拟器录屏不当手机FPS、耗电或全部File Provider验收。Build13用户“没问题 继续”记录基本自用接受；Build14手机仍待反馈，M3整阶段尚未关闭，下一步通过后按计划进入M4主题/字体/正文排版。无自动合并旧重复书/替换原件/永久删除/GC；M5设备性能后续。
 
-中间候选CI38688984422由Agent为提交边界保护主动取消，各100Core通过、Linux四探针通过，Apple长书探针未结束/iOS/Release未运行；完整日志与取消原因保留ValidationLogs/m3-library-build13-first-cancellation.json，不写成源码失败。
+安装包`build/XianxiaReader-Duplicates-Build14.ipa` / SHA256 `40779ea86e068666fe3e7af70b3179738ce76cbeb5d2e73ee2e7f06777d68204`；测试ZIP`build/XianxiaReader-Duplicates-Build14-TestKit.zip` / SHA256 `c7feefc8c6a5f45632712e28a38c75d874f553eaa2c05e8b7a36c25a82a15b61`。新旧包共23份逐hash保留，ZIP内部IPA/11原创小大样本/封面样本/CRC核验。正常更新保留书库，+菜单确认0.0.1 (14)。设计LIBRARY_DUPLICATE_DESIGN.md、报告M3_DUPLICATES_VALIDATION_REPORT.json。
 
-第二轮CI38689366894各100Core/四探针通过，iOS78/79（75集成全通过、原3UI通过，新UI标题查询失败），test65使Release未运行；原生AX树/视频确认系统Files已正常打开，修正子label查询并保留10秒/后续全部断言。另修纯row builder的MainActor警告，未禁用诊断。原件ValidationLogs/m3-library-build13-file-picker-ax-failure.json，最终成功不覆盖失败历史。
+首轮CI38700353531/84397ad实际失败于新增Core测试对照Data缺try；Core测试运行、macOS、iOS、Release未开始。修正try与合法双解码样本后完整重跑，未删除/放宽断言。完整首轮Core/full日志与ValidationLogs/m3-library-build14-first-compilation-failure.json保留；Apple artifact当轮不存在，下载helper因此返回1，不冒充产品失败。
 
-第三轮CI38691894649各100Core/四探针通过，iOS77/79：Files取消的全局indexed AX查找失败，以及旧fragment/DOM书签回归navigationFailed；8新封面集成与旧3UI通过。最终用本地AX包装实际frame/public coordinate点取消并断言Files确实消失；布局改为值初始化的独立子View和MainActor body，消除Spacer隔离警告。旧Reader只增阶段打印，原导航/几何/timeout和生产Reader均未改；一次navigationFailed的唯一原因仍未确认，后续全绿不写成已修复全部WebKit时序。原件ValidationLogs/m3-library-build13-cancel-ax-and-reader-failure.json。
+第二轮CI38700674784/5278d286各110 Core与四长书通过、iOS83/84：79集成/旧4UI通过，仅新UI父容器AX标识覆盖Done使查询失败。实际视频发现重复反馈与状态叠放、单项136pt留白，修正产品VStack/内容高度/叶控件标识；保留原查询、15秒和断言。原件ValidationLogs/m3-library-build14-feedback-layout-ax-failure.json保留，最终成功不覆盖失败历史。
 
 ## 下一步
 
-1. 先读PROJECT_STATUS→HANDOFF→ROADMAP→ARCHITECTURE，核对Git/实际文件/完整日志/任务，不假定最后一步完成。
-2. 用户安装Build13后验证相册/文件首次选图、预览/取消/坏图重试、默认恢复与重启、回收站恢复、位置和书签；手机观感/流畅度独立记录。
-3. 按M3继续重复导入策略及中断恢复；按既定方案，不提前进入M4/XBook/知识库。当前同步打磨原生手势/必要动效/间距，M4仍负责完整主题与正文排版，M5设备性能矩阵。
+先按AGENTS指定顺序读文档并实核文件/Git/任务。用户测试Build14重复原件/回收站恢复/混合批次，基本自用通过后关闭M3并按计划进入M4主题、字体与正文排版。手机性能矩阵M5；不提前展开XBook/知识库。
 
-## 保护与验证边界
+## 保护与证据
 
-main/HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，原空index与所有未提交改动保留；M3使用私有index快照并推codex/m3-library，真正编译源708d02d0ecadcb3d22d653965aa94203bf4ab227与最终文档tip区分。M2仍e6f31d857c0d73e25622a941db0b76e11f7bfe39。487候选运行/验证源hash与现工作目录Git blob核对，文档更新不冒充编译。旧19包与新Build13二包分别保留；不覆盖build/XianxiaReader.ipa（Build4）。
+main/HEAD仍6d761749911233122bcd031fcf718d22a19f9e77、原index空，所有未提交改动保留。M3用私有index快照推codex/m3-library；真正编译源b67a08bc7f6d0db0c97ec152a87e2128a3209c82与最终文档tip区分，最终tip实查分支。M2仍e6f31d857c0d73e25622a941db0b76e11f7bfe39。492运行/验证源Git blob hash核过，纯文档收尾不能写成新编译。初始687维护文件/21旧包逐hash核过，.cache/recovery/20261015-build14/initial-worktree.zip保存688项；最早370及Build13原备份/旧失败全部保留。原件永久保存，不自动合并旧重复或GC。schema3不能用旧版降级读取，不删库。
 
-原始661文件inventory/19包在本轮开始逐hash核过，Build13初始工作目录备份.cache/recovery/20261015-build13/initial-worktree.zip（2268113bytes）保留；最早370备份.cache/recovery/20261014-092934/interrupted-worktree.zip和历次失败/成功原件保留。build/.cache不随clone，CI artifacts14天。已提交封面原图保留，恢复默认不释放磁盘，硬中断可能保留未引用Artwork；无永久删除/GC/自由裁切。
-
-Windows407语法/17tooling与Swift编译分开；Linux/macOS100Core、iOS79/79（75集成+4XCUITest）、四长书探针和Release分别有原件。实际XCTest视频与基座simctl视频区分，后者只诊断；图/连续帧不是手机FPS或其他设备接受。Readium3.11/Vendor/codec/Locator/文件协调/根六pins锁保持；三份实际锁一致。Build13普通签名设备/TrollStore手机待测，M3全阶段未完成。
-
-## 日志与收尾
-
-当前成功完整证据build/ci/38694877516：run.json/full.log/Core/Apple日志/xcresult/ReaderSnapshots/每case视频/四长书/真实IPA。报告M3_COVER_VALIDATION_REPORT.json，原生复核与runtime诊断见其链接；源码警告/错误和系统运行诊断分别记录。首轮Agent取消38688984422完整原件单列。检查点历史HANDOFF_M3_COVER_HISTORY_2026-10-15.md。
-
-收尾已实核本轮四个CI均completed（首轮Agent取消、两轮实际失败、最终success），无自身下载/构建/录屏检查进程。Windows407语法新增0/54限制、17tooling与完整Swift门槛分别保留。687维护文件inventory、487源Git blob和21新旧包/原备份/原HEAD及空index/M2分支已核对，现仅保存独立文档快照并再次核验；真正编译源708d02d，最终文档tip实查codex/m3-library，不为纯文档重跑完整CI。旧关机只历史，本轮用户活跃且未新授权关机，未安排关机。
+完整证据build/ci/38703788390含run.json/full.log/Core/Apple日志/xcresult/ReaderSnapshots/每case视频/四长书/实际IPA；报告M3_DUPLICATES_VALIDATION_REPORT.json、原生复核与runtime诊断原件分别记录。历史检查点HANDOFF_M3_DUPLICATES_HISTORY_2026-10-15.md。已实际核对705维护文件inventory、23新旧包、492运行/验证源Git blob、初始688项ZIP CRC/原路径、原HEAD及空index/M2，仅文档与编译源不同。三轮CI实查均completed（两次真实失败、最终success），无自身监视/下载/Swift/视频处理进程。接下来只保存独立文档快照并再次核验inventory与远端tip；真正编译源仍b67a08bc，不为纯文档收尾重跑完整CI。用户未新授权关机，不沿用旧一次性请求。

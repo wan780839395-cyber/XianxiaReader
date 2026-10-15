@@ -1,0 +1,185 @@
+{
+  "recordedAtUTC": "2026-10-15T08:38:43.703250+00:00",
+  "run": 38703788390,
+  "sourceRevision": "b67a08bc7f6d0db0c97ec152a87e2128a3209c82",
+  "images": [
+    {
+      "name": "library-duplicate-restored-build14",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "path": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CEA89A23-2C17-4828-99D4-CC5AD552D223.png",
+      "sha256": "b6ca8d79b6f175e6401ba2ceac59236b4e09391c249156b2714282bf11dea7da",
+      "inspected": true,
+      "observation": "Explicit restore returns the same custom cover and 42 percent progress to the three-book shelf. Feedback changes to active-book View and the restored status is separate, without the former blank single-row scroll region."
+    },
+    {
+      "name": "library-duplicate-trash-build14",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "path": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/93D002B9-8437-4CA4-A169-59F806EBC239.png",
+      "sha256": "287f261dd1a187498831bd0bb1de9116d15456629ab1b2b3ff07854a37cffdf3",
+      "inspected": true,
+      "observation": "Two-book shelf remains unchanged after importing a trashed original. Compact feedback identifies the existing Cloud book in the trash with an explicit Restore action."
+    },
+    {
+      "name": "library-duplicate-existing-build14",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "path": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2F978A9B-E293-4F33-9F87-84CA77BC4822.png",
+      "sha256": "c3707344a891f67569c5e544174de238701702e0c885d1a3bf340d4f85cde796",
+      "inspected": true,
+      "observation": "Three-book shelf retains the custom original icon cover and 42 percent progress. Count status and compact duplicate details are vertically separated and readable; Done and View are distinct native controls."
+    }
+  ],
+  "videos": [
+    {
+      "path": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7507210F-FE4D-4062-9468-2F1D590CDA4D.mp4",
+      "bytes": 19690614,
+      "sha256": "6d6804292bdc98e531808b9f6aecb5abc2c6adc3fe295b673abfed3bbdc78933",
+      "inspected": true
+    }
+  ],
+  "scope": "Native iOS duplicate feedback and real UI test recording. No physical-device FPS claim.",
+  "focus": {
+    "run": 38703788390,
+    "sourceRevision": "b67a08bc7f6d0db0c97ec152a87e2128a3209c82",
+    "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+    "video": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7507210F-FE4D-4062-9468-2F1D590CDA4D.mp4",
+    "videoSha256": "6d6804292bdc98e531808b9f6aecb5abc2c6adc3fe295b673abfed3bbdc78933",
+    "startSeconds": 26.6,
+    "durationSeconds": 1.1,
+    "sampleFPS": 20,
+    "command": [
+      "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38703788390\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\7507210F-FE4D-4062-9468-2F1D590CDA4D.mp4",
+      "-vf",
+      "fps=20,select='gte(t,26.6)*lt(t,27.700000000000003)',scale=600:-2",
+      "-fps_mode",
+      "passthrough",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38703788390\\VideoReview\\duplicates\\restore\\frame-%03d.png"
+    ],
+    "interpolated": false,
+    "inspected": true,
+    "frames": [
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-001.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.6
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-002.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.650000000000002
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-003.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.700000000000003
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-004.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.75
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-005.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.8
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-006.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.85
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-007.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.900000000000002
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-008.png",
+        "sha256": "c1809236f52f589f902f1059d61f71df5e41693bc6b4c2fea9812fcaaf4535e3",
+        "nominalVideoSeconds": 26.950000000000003
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-009.png",
+        "sha256": "985a7d0b20f55aed7aa84375de1e17e8cf0619e158f0e3544688e94988bf0268",
+        "nominalVideoSeconds": 27.0
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-010.png",
+        "sha256": "985a7d0b20f55aed7aa84375de1e17e8cf0619e158f0e3544688e94988bf0268",
+        "nominalVideoSeconds": 27.05
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-011.png",
+        "sha256": "0d71e5cdf5cdb38be01183debf8e2c4a685ee8a1e27bcf2e1affbfcf57f970d3",
+        "nominalVideoSeconds": 27.1
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-012.png",
+        "sha256": "32f0e64a56b3e3e6a2325a8dfd84c384f990d4765bb4ce3877fcb2e7ad4fd891",
+        "nominalVideoSeconds": 27.150000000000002
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-013.png",
+        "sha256": "a0993f406d8c43369fdc2625d5fa84c5f137c89b96534d35120f39ea2db1e82c",
+        "nominalVideoSeconds": 27.200000000000003
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-014.png",
+        "sha256": "270d1925c6db31c160bbff5c93d59d328ceb477a4247b8e059097e1dd2c5a772",
+        "nominalVideoSeconds": 27.25
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-015.png",
+        "sha256": "b78f523e42ba2e5747993901f384ee1887700f849667234a9bbd0e39ec2acfcb",
+        "nominalVideoSeconds": 27.3
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-016.png",
+        "sha256": "bb96b573e2d0b89ce8c21d050b9553dc56a9bf71ecb80f7eb01612ad6dfac7cc",
+        "nominalVideoSeconds": 27.35
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-017.png",
+        "sha256": "a744c72c73b3b425f671548cbfc31076494efe238c1e92304d53f2b2e27a342a",
+        "nominalVideoSeconds": 27.400000000000002
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-018.png",
+        "sha256": "9accb5b5552b4e87f588fb05a37ac4fe68a2e86f0df6d647a38c5ef5b700ea0f",
+        "nominalVideoSeconds": 27.450000000000003
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-019.png",
+        "sha256": "e0f2462fd3604144637dde1aa501d3606fb07e59d1ff7f7c26b8bc1e6a69ffcc",
+        "nominalVideoSeconds": 27.5
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-020.png",
+        "sha256": "f9e3278f37e660a4420d61b818b1ffccd2745ea10b35ab5de8b5094787f1b5fa",
+        "nominalVideoSeconds": 27.55
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-021.png",
+        "sha256": "acd1dc7de389c7a628870551b4316500234ed207e2e2eaf0236b492f33e30edc",
+        "nominalVideoSeconds": 27.6
+      },
+      {
+        "path": "build/ci/38703788390/VideoReview/duplicates/restore/frame-022.png",
+        "sha256": "98b37d4d96f63e5a0e2ffdb6e6782d49cf7eafe7f13f67d0d7ed711dcb4ac588",
+        "nominalVideoSeconds": 27.650000000000002
+      }
+    ],
+    "scope": "Consecutive timeline samples of the real native restore transition. No interpolation or physical-device FPS claim; VFR/static video may repeat decoded frames."
+  },
+  "imagesInspected": true,
+  "videoInspected": true,
+  "phoneAccepted": false,
+  "ordinarySignedDeviceAccepted": false,
+  "phoneFPSMeasured": false,
+  "motionObservation": "Actual successful XCUITest recording and consecutive sampled frames reviewed for duplicate feedback presentation, menu/confirmation, explicit trash restore, shelf replenishment and stable custom-cover/progress state. Not a phone frame-time, battery or File Provider matrix measurement.",
+  "motionLimitations": "Restoring to the first grid position shows short card-path intersections during the native spring, then aligned stable state. Continuous samples include repeated static frames. Not a no-overlap-every-frame or physical-device FPS certification."
+}

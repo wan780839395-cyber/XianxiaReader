@@ -1,5 +1,7 @@
 {
-  "fileCount": 695,
+  "recordedAtUTC": "2026-10-15T08:40:43.265543+00:00",
+  "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
+  "fileCount": 705,
   "files": [
     {
       "path": ".gitattributes",
@@ -23,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 23815,
-      "sha256": "8b7db8823e7360f7562bb421bb47d376b19e52286e584fdd7cfb963a915d5e4e"
+      "bytes": 24551,
+      "sha256": "880da671679887bf83722cc07930f08463607cbdab3cac6df5a2ee0b5314e66e"
     },
     {
       "path": "App/AppRootView.swift",
@@ -113,8 +115,8 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 16085,
-      "sha256": "c4aa3a0fd9ae00e7207981f67955293e87216d4b2378b0091b023556c82b8c71"
+      "bytes": 16198,
+      "sha256": "9e88309d758ecc8f51f0201756186da66600eaacf3371a83e69d3f5f937e0acd"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -208,8 +210,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 25464,
-      "sha256": "da3071db6e29bb5f0fa00c255cc3eec037b9120a74cbfdc4f265994a5b64060e"
+      "bytes": 29247,
+      "sha256": "f1a6acf049b921a3a9e9d9c29b895e2e8dc8f1cfe9812cbc3fd993392f3197ad"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -218,8 +220,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 7051,
-      "sha256": "7eb7b023ac6f19170c92d7e826a0ddce0aa38efa6e1bd5cec115ab39ce830d75"
+      "bytes": 7427,
+      "sha256": "37bbcd83a476ee1c518569f44ad29e9cded0830ce034e83d0c0f757d00c0864e"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -268,8 +270,8 @@
     },
     {
       "path": "Documentation/LIBRARY_DUPLICATE_DESIGN.md",
-      "bytes": 3973,
-      "sha256": "5724579d65cd25f50a380d9a28b5fd757b6ff06b413486baa617503501e419ca"
+      "bytes": 8881,
+      "sha256": "0063796fdd384916672f30fd9a36581d1decd0519577443a114ba185f7f05c46"
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
@@ -404,7 +406,12 @@
     {
       "path": "Documentation/M3_DUPLICATES_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "544890be00deb87ce2d47d5095e13b8ef25d1971585aa3cba07abd2cb6b64138"
+      "sha256": "27c349db1fcc11e9bf75c6ccfff436fbe7e9c593bfcebfd14e4c443ed8f80783"
+    },
+    {
+      "path": "Documentation/M3_DUPLICATES_VALIDATION_REPORT.json",
+      "bytes": 135258,
+      "sha256": "1179c4988c8bec7f562bd61894564a0adae3b09ea548a0be146af9eb545e46be"
     },
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
@@ -1042,6 +1049,46 @@
       "sha256": "fc6e3ad72e09aef843f8ee8516cce197b3f06d30f071dfc87422b9a9ba55eced"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build14-feedback-layout-ax-failure.json",
+      "bytes": 2221,
+      "sha256": "641794114166c3569c96f7cccbc62468f5420b4a34b2a7df347cf4944b6d320e"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-first-candidate.json",
+      "bytes": 99033,
+      "sha256": "6ad8ed616eb0c0aa22a183bcf2db3478f60d5fc3aa8edfeb67d4049c2ac113f8"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-first-compilation-failure.json",
+      "bytes": 1024,
+      "sha256": "8d139861ed2757cb0b7e6517a966a66242a3db45fc93dfb00a6fbe9e7afb80db"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-native-review.json",
+      "bytes": 9933,
+      "sha256": "a7e9fbf3bf23f03d54e9a90b7421fa1385791702f18e0a73c7ed02ef180c6857"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-runtime-diagnostics.json",
+      "bytes": 674,
+      "sha256": "f864da13d274eeb1766923089e8a6273bc8e05ae899ed3427e27d5037f6c7154"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-second-candidate.json",
+      "bytes": 99377,
+      "sha256": "5a55c51622e6a3ba35ea2457da26ce38fbe563ded1b98258b9573ef434de2915"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-success.json",
+      "bytes": 20776,
+      "sha256": "ed244afa81fce682a80c9af40030bd3acd9b0535475db3b6e21f0478dbda1adc"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build14-test-kit.json",
+      "bytes": 1354,
+      "sha256": "19e3d48b54cb125729b5724f6f1115ffc89cde65bb4ebd890609d51a26b3d4ee"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -1098,8 +1145,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 7466,
-      "sha256": "b5facaee8375ada08bbe830a173845b0cacbf5716ce9a0758293777827faace3"
+      "bytes": 5189,
+      "sha256": "4f4c91d68167ee5ee2dc84bef41be250762be6d51333499ca88bd0a2e55a700b"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1152,6 +1199,11 @@
       "sha256": "30d5f4f041fcd72d1f4ef6728a05652b7d9fb85ec04080487a3c644f2f247376"
     },
     {
+      "path": "HANDOFF_M3_DUPLICATES_HISTORY_2026-10-15.md",
+      "bytes": 10450,
+      "sha256": "2399ee80ad62af9d9c6019761a280aabf97642fe3caf4d71ebe7e3812f36da78"
+    },
+    {
       "path": "HANDOFF_M3_INTERACTION_HISTORY_2026-10-15.md",
       "bytes": 14701,
       "sha256": "d778b7e86c1deb4d80c8dd56704fdea16039dbb823f463537be8373966ad3d05"
@@ -1168,8 +1220,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 30323,
-      "sha256": "29e2b339c9d9b25fbf8b870193d726ca22f4bcac1c1313ffa83917898baa26a9"
+      "bytes": 33346,
+      "sha256": "992c63a08e003b754c5335d2c70f08cc0cb790a7773d9220aa92b41aade3e31f"
     },
     {
       "path": "Package.resolved",
@@ -1358,8 +1410,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
-      "bytes": 14302,
-      "sha256": "eef0b331ac183adca446888d8628cdc410dba62efe71bbfd500fc69ad3ec8797"
+      "bytes": 14460,
+      "sha256": "95ea8de2a8873d5dae2ff5e78359e77c8ca70bbafa26c9733ecf3dd0f20888eb"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
@@ -1473,13 +1525,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 15950,
-      "sha256": "22f517d41da9057514219b013a9e1f17a4c5d2a199972887874812af99b27a9e"
+      "bytes": 16083,
+      "sha256": "011f6c762c982e6e6dbf98c0f45fe475681aa4252f46639bb9da74316661c016"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 24561,
-      "sha256": "c06640c027d347cce6c0c0568b2f2f63387895bcbebb454029a0daeffe715509"
+      "bytes": 27580,
+      "sha256": "01555e3b5f9be755a802e74c5e852b1e2f34e883e9fc81ee826a0014b67df57c"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

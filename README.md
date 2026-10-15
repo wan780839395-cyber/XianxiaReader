@@ -1,8 +1,8 @@
 # XianxiaReader · 仙侠阅读
 
-## 当前：Build13 / M3封面替换
+## 当前：Build14 / M3重复导入
 
-长按书籍可选相册/文件图片，预览、保存、恢复默认；后台缩略加载，原书/默认封面/位置/书签保留。书库已有网格/列表、筛选排序、改名、左滑确认移出及回收站恢复。Build13[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38694877516)：Linux/macOS各100Core、79/79iOS及无签名设备Release通过，原生截图/视频复核完成，手机选图和流畅度待测。M3还剩重复导入；完整主题/排版属于M4。实际状态与包路径见[PROJECT_STATUS](PROJECT_STATUS.md)，恢复见[HANDOFF](HANDOFF.md)。
+同一TXT/EPUB原件再次导入保留已有书籍、进度、书签和自选封面，回收站重复项可显式恢复；同名不同内容继续独立保存。书库已具备网格/列表、筛选排序、改名、左滑确认移出、回收站恢复和选图更换封面。[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38703788390)各110 Core、84/84 iOS与无签名设备Release通过，原生截图/视频复核完成。Build13基本自用接受；Build14手机反馈后关闭M3并进入M4主题/字体/正文排版。安装包与恢复见[PROJECT_STATUS](PROJECT_STATUS.md)、[HANDOFF](HANDOFF.md)，取舍见[重复导入设计](Documentation/LIBRARY_DUPLICATE_DESIGN.md)。
 
 以下Build8及更早段落保留历史证据，阶段状态以上述当前记录为准。
 
@@ -28,7 +28,7 @@ Build4连续证据：长段字符/重开、目录/搜索/书签、模式往返�
 - 原创中文 EPUB 2/3 样书、Core 单元测试、iOS 集成测试、Windows 可运行的结构/语法检查。
 - GitHub Actions：macOS 构建、模拟器测试、无签名设备应用、`Payload/` 打包与完整日志 artifact。
 
-M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托；真实命中定位仍待页面验收，详见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 导入/有界Readium阅读/完整位置已接入并过Build5自动CI；书库浏览、改名、回收站和封面编辑已在Build10–13通过自动门槛；重复导入、自定义字体、五种主题、全部排版设置、音量键翻页和完整设备性能验收仍待后续阶段，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
+M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托；真实命中定位仍待页面验收，详见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 导入/有界Readium阅读/完整位置已接入并过Build5自动CI；书库浏览、改名、回收站和封面编辑已在Build10–13通过自动门槛；重复导入已在Build14通过自动门槛；自定义字体、五种主题、全部排版设置、音量键翻页和完整设备性能验收仍待后续阶段，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
 
 ## 技术基线
 

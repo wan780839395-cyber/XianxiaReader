@@ -1,0 +1,18 @@
+{
+  "run": 38703788390,
+  "sourceRevision": "b67a08bc7f6d0db0c97ec152a87e2128a3209c82",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 42
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "System runtime messages kept separate from source compilation, test gates and physical-device acceptance.",
+  "log": {
+    "path": "build/ci/38703788390/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "f893485a1a8836fa40fa7c71bb0ae61f152283cb1d3ca1f3ec453d00d1c78306"
+  }
+}
