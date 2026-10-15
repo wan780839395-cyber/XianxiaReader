@@ -39,7 +39,8 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 
-# Record actual native gestures and layout transitions, including failed tests.
+# Keep the base simulator recording as a diagnostic. XCTest can execute on a
+# clone; its per-test recordings are retained by project.yml and exported below.
 # A recording/export failure must not silently produce a supposedly validated IPA.
 mkdir -p build/InteractionVideo
 xcrun simctl bootstatus "$SIMULATOR_ID" -b

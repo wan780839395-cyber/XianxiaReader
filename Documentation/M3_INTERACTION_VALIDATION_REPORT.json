@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T03:16:06.356667+00:00",
+  "recordedAtUTC": "2026-10-15T03:40:01.212474+00:00",
   "stage": "M3 native swipe/transitions pending full CI",
-  "sourceRevision": "df74aa7ea8b1db4e920d5d689c943cb613182b10",
-  "run": 38675354465,
+  "sourceRevision": "18ac792a65a525c668bf13c90784c972f1eae95c",
+  "run": 38677243466,
   "branch": "codex/m3-library",
   "build": "12",
   "changedPaths": [
@@ -30,6 +30,8 @@
     "Documentation/ValidationLogs/m3-library-build11-test-kit.json",
     "Documentation/ValidationLogs/m3-library-build12-first-candidate.json",
     "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json",
+    "Documentation/ValidationLogs/m3-library-build12-menu-ax-failure.json",
+    "Documentation/ValidationLogs/m3-library-build12-second-candidate.json",
     "HANDOFF.md",
     "HANDOFF_M3_REMOVAL_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -105,7 +107,7 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "sha256": "eea7f359c2f8e6297cf6f068b3843e74831fe03184e256dd9ead8f7d1d8f4432"
+      "sha256": "75d6093d3f5c99234a97093eaad74605fbd644458cac91dc02c9759ed7dc89af"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -405,7 +407,7 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "sha256": "a7a3f7f4c4b8a8b29090c3efe486ce54b8c3a41252517f8dd16bcc79bfc62e3e"
+      "sha256": "c71c47ab4369f8d784ca700444223106c9600b9a5c32c3303026f2f4afaebdd1"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
@@ -2066,6 +2068,7 @@
     "Reduced Motion environment test does not set or certify a physical-device system preference."
   ],
   "historicalFailures": [
-    "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json"
+    "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json",
+    "Documentation/ValidationLogs/m3-library-build12-menu-ax-failure.json"
   ]
 }

@@ -88,6 +88,9 @@ schemes:
         - name: XianxiaReaderUITests
           parallelizable: false
       gatherCoverageData: true
+      captureScreenshotsAutomatically: true
+      deleteScreenshotsWhenEachTestSucceeds: false
+      preferredScreenCaptureFormat: screenRecording
     run:
       config: Debug
     archive:

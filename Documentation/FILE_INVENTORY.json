@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-15T03:37:31.802691+00:00",
+  "recordedAtUTC": "2026-10-15T03:42:44.222695+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
   "fileCount": 653,
   "files": [
@@ -235,8 +235,8 @@
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
-      "bytes": 6849,
-      "sha256": "1bd5b11d8c1735ce598b06752fb57c4f3894e1e22f7c56ae0de543a4ae216492"
+      "bytes": 7682,
+      "sha256": "622b292d80a2d439950c56ec8e79871dd1e68a7e399f2d124674ce84d6c127db"
     },
     {
       "path": "Documentation/LIBRARY_REMOVAL_DESIGN.md",
@@ -356,12 +356,12 @@
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "463f2077cfa53edf31ad47685c1e605464b7c3311da27ad224452f9fd8507444"
+      "sha256": "e36f59daf2395c13becfe4014301ac4c392156a79f1bac2a9a73af6b40c7768f"
     },
     {
       "path": "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
-      "bytes": 92983,
-      "sha256": "4d496449fc784027b8f3a687d038dfeb405923fbcf06cbd829e2d9ba1d449854"
+      "bytes": 93212,
+      "sha256": "57c3bbed31fc4713893bb8f002df35b43170e878aa75db2e28d7c89a45a36a73"
     },
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
@@ -950,8 +950,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 11922,
-      "sha256": "0f3cf99d25240fa747f09ca39b11547f55633b97e799c73d4e6f1d254ce1d69d"
+      "bytes": 13419,
+      "sha256": "2d7e925e5c0bcc812d263ceefde1b3cada88e69237d89e6734003600df5263d2"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -3165,8 +3165,8 @@
     },
     {
       "path": "project.yml",
-      "bytes": 2465,
-      "sha256": "3f2d253ae39b27a8394a0fbbc8178caa29a27306888bbd1a0aa885fc8435507f"
+      "bytes": 2612,
+      "sha256": "e76ff57df173d3572438ee7af083635c4ed227e914bd4da208e74013db0f4c51"
     },
     {
       "path": "scripts/check_repository.py",
@@ -3175,8 +3175,8 @@
     },
     {
       "path": "scripts/ci_ios.sh",
-      "bytes": 5211,
-      "sha256": "cf50d7ac80aa933eb1798cfec4acaff9ff4a3a1161f845aa404a91a2e55402ed"
+      "bytes": 5289,
+      "sha256": "f9dc83bb50cd09335a41df024e887eeb02eba08d7cdd9e327d0c6b77583d3791"
     },
     {
       "path": "scripts/generate_app_icon.py",

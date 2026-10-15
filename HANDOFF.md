@@ -10,6 +10,12 @@
 
 ## 实际断点
 
+第三轮38677243466因已确认成功case默认删除录屏，Agent主动取消并改用显式保留真实case视频的配置重跑，属于取证配置修正，不是源码失败。取消前repository与Linux Core/四探针完成，Apple test/build阶段尚未出最终结果；取消状态/完整可得日志与Core原件另存，不能写成70项成功或源码测试失败。产品灰绿短“移出”不再变化。
+
+录屏取证新发现：第二轮整轮simctl视频contact-3实看为基座模拟器桌面，不能作为手势/动画证明；实际XCTest每case MP4能看到运行App，默认成功后删除。已核锁定XcodeGen2.46.0官方ProjectSpec及Scheme.swift：captureScreenshotsAutomatically=true、deleteScreenshotsWhenEachTestSucceeds默认true、preferredScreenCaptureFormat=screenRecording。下一步显式保留成功录屏，只有最终完整通过run的实际UI test视频/连续帧可作动效证据；基座录屏留诊断并继续保留真实退出码。此为取证配置修正，第三轮继续收完整结果，不把基座录屏误写成已验收。
+
+第三轮18ac792a65a525c668bf13c90784c972f1eae95c / CI38677243466已调度完整验证，397语法新增0、17tooling、476源hash/17旧包保留。用户反馈已落实为短“移出”和灰绿色，UI测试改公开坐标点实际菜单frame中心，所有真实恢复/顺序断言保留。首两轮失败原件留档。当前门槛待实查，不生成用户包；六图和视频须核第三轮结果。
+
 第二轮df74aa7 / CI38675354465 completed/failure，源码编译通过，各91Core/四长书探针及原67iOS通过，3UI均在restoreCloud菜单AXScrollToVisible失败（总67/70，test65/export0/summary0/recording0，Release未执行）。完整原件/视频已下载；下载先返回session85123，首次提前读文件的缺失并非源码问题，session完成后实读/看图。已实际看grid-before4ACFFB8D/grid-after962114D6/list-swipe14F04D0C，左滑取消/确认/重开和网格补位前段执行，AX层级菜单可见frame内嵌双Button且hit{-1,-1}。最小测试修正：公开坐标点实际菜单frame中心，保留屏内/菜单/恢复/进度/原序所有断言。用户新反馈红色长侧滑块不搭，实际产品改短“移出”与灰绿0.31/0.39/0.36，完整回收站语义留a11y/确认，必须看最终新图再交付。第二失败证据m3-library-build12-menu-ax-failure.json/second-candidate.json保留。下一步静态/第三候选完整CI，未生成用户Build12包。
 
 最新df74aa7 / run38675354465 repository-checks与Linux91Core/四长书Release探针success，Core artifact已下载。Apple进行中，未按旧日志推断手势/Release完成；当前运行源码未改。待完成后用validate_interaction.py finish核476hash/锁/70tests/录屏exit0/Release；六图必须看最终run，视频用忽略目录ffmpeg7.1采样实际连续帧再标inspected，不能由静态图冒充动效。首轮失败source083a7d3与完整原件保留。
