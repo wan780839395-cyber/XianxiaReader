@@ -1055,6 +1055,18 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         delegate?.navigator(self, presentationDidChange: presentation)
     }
 
+    /// The caller has sampled a fresh DOM locator. Rebuild ordinary pagination
+    /// after text reflow so an unchanged horizontal page offset cannot select
+    /// different text. Continuous mode has its own ResizeObserver/anchor repair.
+    public func submitPreferences(_ preferences: EPUBPreferences, reloadingPagination: Bool) {
+        let previous = settings
+        submitPreferences(preferences)
+        if reloadingPagination, !settings.infiniteScroll,
+           previous.infiniteScroll == settings.infiniteScroll, previous.scroll == settings.scroll {
+            reloadSpreads()
+        }
+    }
+
     public func editor(of preferences: EPUBPreferences) -> EPUBPreferencesEditor {
         viewModel.editor(of: preferences)
     }

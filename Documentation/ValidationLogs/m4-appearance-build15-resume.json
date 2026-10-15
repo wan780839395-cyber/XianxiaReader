@@ -1,0 +1,30 @@
+{
+  "recordedAtUTC": "2026-10-15T09:32:17.149636+00:00",
+  "headPreserved": true,
+  "indexEmpty": true,
+  "baseline": "587ff09b1e94c2aec6406847802060d01231dad0",
+  "currentFiles": 719,
+  "changedPathsSinceCI": [
+    "ARCHITECTURE.md",
+    "App/Reader/ReaderAppearanceView.swift",
+    "App/Reader/ReaderView.swift",
+    "Documentation/M4_APPEARANCE_STATIC_REPORT.json",
+    "Documentation/M4_APPEARANCE_VALIDATION_REPORT.json",
+    "Documentation/READING_APPEARANCE_DESIGN.md",
+    "Documentation/ValidationLogs/m4-appearance-build15-agent-cancel.json",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "preservedPackageCount": 23,
+  "backup": {
+    "path": ".cache/recovery/20261015-build15/resumed-worktree.zip",
+    "sha256": "7bf0969ed8d71300443dcdc4e0521130b90f2506c57751c641f49d8180ea2619",
+    "entries": 719,
+    "zipCRC": true
+  },
+  "diagnosis": "CI38711610037 still executing source587ff09. New paged reflow/save-failure UI changes and a new integration regression exist as draft; that run cannot validate these drafts. No Build15 delivered."
+}

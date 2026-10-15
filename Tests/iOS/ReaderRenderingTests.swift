@@ -580,6 +580,48 @@ final class ReaderRenderingTests: XCTestCase {
         }
     }
 
+    @MainActor func testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset() async throws {
+        let engine = ReadiumReaderEngine()
+        var appearance = ReadingAppearance(); appearance.fontScale = 1
+        try engine.setAppearance(appearance)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        _ = try await probe(navigator, engine: engine, resource: "one.xhtml")
+        for _ in 0..<3 { await engine.turnPage(forward: true) }
+        let web = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        let pointValue = try await web.evaluateJavaScript("""
+            (() => {const r=document.caretRangeFromPoint(innerWidth*.3,innerHeight*.2);
+            return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null;})()
+            """) as? Int
+        let character = try XCTUnwrap(pointValue); XCTAssertGreaterThan(character, 100)
+        let script = """
+            (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;const r=document.createRange();
+            r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+            return b.left >= -1 && b.left < innerWidth && b.top >= -1 && b.bottom <= innerHeight+1
+              && parseFloat(getComputedStyle(n.parentElement).fontSize) > 25;})()
+            """
+        appearance.fontScale = 1.8; appearance.lineHeight = 1.9; appearance.theme = .paper
+        try engine.setAppearance(appearance)
+        appearance.theme = .charcoal
+        try engine.setAppearance(appearance) // Cancels the pending font edit; its reflow must still happen.
+        try await waitUntil {
+            guard let active = self.visibleWebView(in: engine.viewController.view) else { return false }
+            return try await active.evaluateJavaScript(script) as? Bool == true
+        }
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close(); try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil {
+            guard let active = self.visibleWebView(in: engine.viewController.view) else { return false }
+            return try await active.evaluateJavaScript(script) as? Bool == true
+        }
+        let rendered = try await snapshotVisibleWebView(in: engine.viewController.view)
+        let attachment = XCTAttachment(image: rendered); attachment.name = "epub-paged-reflow-build15"
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
         let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)

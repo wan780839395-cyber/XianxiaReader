@@ -1,0 +1,45 @@
+{
+  "recordedAtUTC": "2026-10-15T09:17:14.088109+00:00",
+  "run": 38711095224,
+  "sourceRevision": "14444c58ccba0ad683850625e54305111e2bd632",
+  "outcome": "Agent cancelled after review found continuous preference script-dispatch gap; not a compiler/test failure.",
+  "LinuxCoreTestsPassed": 115,
+  "linuxReleaseProbesPassed": 4,
+  "macOSCoreExecuted": false,
+  "iOSTestsExecuted": false,
+  "deviceReleaseBuilt": false,
+  "actualLastAppleStage": "XcodeGen 2.46.0 dependency compilation; no app compilation or simulator tests yet.",
+  "reason": "Navigator runScript used paginationView only, nil in maintained continuous mode. Add bounded continuous dispatch and rerun full CI.",
+  "artifacts": [
+    {
+      "path": "build/ci/38711095224/full.log",
+      "bytes": 137724,
+      "sha256": "b0cd624f23905b11a74bac99b7a018daeec62734c2c2e8b7dd335e7b2516c461"
+    },
+    {
+      "path": "build/ci/38711095224/run.json",
+      "bytes": 5489,
+      "sha256": "be9202a9e747388f5c1a1602104b79ee1246aeb75cf117ef31cacce1746489d2"
+    },
+    {
+      "path": "build/ci/38711095224/pre-agent-cancel.json",
+      "bytes": 5289,
+      "sha256": "1b7c5efc312e280b162cadaf10c897d84c5c3cbe98338f59f7f392db7b8e21d8"
+    },
+    {
+      "path": "build/ci/38711095224/core/logs/core-tests.log",
+      "bytes": 16565,
+      "sha256": "817976585c1cf8e28cb323609bd5b6bd485fea8d5cb29f09501faf86c9c9d944"
+    },
+    {
+      "path": "build/ci/38711095224/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 5720,
+      "sha256": "8a6acca4a1847f99ddb48e14252095db2355285e369be8b642e8525a1f708ced"
+    },
+    {
+      "path": "build/ci/38711095224/core/TXTPerformance/summary.json",
+      "bytes": 697450,
+      "sha256": "dbfa64ed3e91807991cd40debed07d0191897eee559e3a8390eefda575468014"
+    }
+  ]
+}

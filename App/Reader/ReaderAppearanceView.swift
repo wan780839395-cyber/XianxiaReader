@@ -113,7 +113,12 @@ private extension Color {
             .navigationTitle("阅读设置").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("完成") { Task { await model.saveNow(); dismiss() } }
+                    Button("完成") {
+                        Task {
+                            await model.saveNow()
+                            if model.appearanceSaveFailure == nil { dismiss() }
+                        }
+                    }
                         .accessibilityIdentifier("reader.appearance.done")
                 }
             }

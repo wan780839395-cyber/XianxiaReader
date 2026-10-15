@@ -288,6 +288,11 @@ final class TXTReadingTests: XCTestCase {
         let top = "document.getElementById('txt-b\(byte)')?.getBoundingClientRect().top ?? 10000"
         let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.0", root: engine.viewController.view))).first)
         try await wait("paragraph at top") { abs(try await target.evaluateJavaScript(top) as? Double ?? 10000) < 5 }
+        let indentation = try await target.evaluateJavaScript("""
+            (() => {const p=getComputedStyle(document.querySelector('p'));
+            return parseFloat(p.textIndent)/parseFloat(getComputedStyle(document.documentElement).fontSize);})()
+            """) as? Double
+        XCTAssertEqual(try XCTUnwrap(indentation), 2, accuracy: 0.01)
         let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
         scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
         try await wait("nonzero UTF16 anchor") {

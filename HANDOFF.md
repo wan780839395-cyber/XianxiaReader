@@ -21,3 +21,13 @@ Windows检查完成：417 Swift语法文件，新增diagnostics0/上游pristine�
 第一候选14444c58ccba0ad683850625e54305111e2bd632已用私有index推送codex/m4-reading-appearance，CI38711095224已真实派发；498运行/验证源码blob hash及23旧包基线另记M4_APPEARANCE_VALIDATION_REPORT.json。CI尚在执行，未假定成功；源码失败保留原日志后最小修复，测试完成前不交付。
 
 复核确定首候选动态CSS仅派发paginationView，而连续模式该对象nil；为避免无效长跑主动取消CI38711095224。取消前repository/Core job成功，iOS刚开始；这是Agent主动取消，不是源码编译/测试失败。已补连续current/loaded/resource脚本派发、当前资源优先/替换viewport终止，更新唯一既有Vendor修改VC的provenance hash，不改锁/原始基线；TXT回归同时断言实际字号至少增大40%。Windows417语法/17Python再过。现在保存第二候选并完整重跑。
+
+第二候选587ff09b1e94c2aec6406847802060d01231dad0 / CI38711610037执行中，498源码hash/23旧包已登记。首轮已completed/cancelled并下载完整Core/Apple/full日志，实际Linux115Core+四探针通过，Apple停在XcodeGen依赖编译，未开始macOSCore/iOS/Release；取消证据m4-appearance-build15-agent-cancel.json，不写成产品失败。
+
+等待第二候选CI期间的源码复核新增草稿：分页CSS变化会保留旧横向页offset，故新增仅排版变化时从fresh DOM Locator重载分页的参数/Adapter比较，纯颜色与模式原路径不变；新增分页长段落非零锚点可见与重开回归。完成/返回等待设置保存，失败留页提示。该草稿晚于正在跑的587ff09，不能用本轮CI替草稿背书，完整重跑后才可交付；预计115Core/90iOS（84集成+6UI）。尚未替换最终候选。
+
+恢复检查点：已重新读文档/核对main HEAD、原空index、719实际维护文件/23旧包，保留快照.cache/recovery/20261015-build15/resumed-worktree.zip（CRC通过）。CI38711610037仍执行587ff09；后续分页reflow/保存失败留页/分页新增回归是晚于CI的草稿，待另次完整编译。旧watch_cover监视任务仅可读继续，未创建新重复CI。准备等待现有结果后读取完整日志/xcresult，再保存下一候选。
+
+恢复后增补可恢复源码步骤：Adapter将分页reflow判断改为对比实际已提交appliedPreferences，防快速字号→主题/模式取消丢失必要重排；新分页测试连发字号+主题后仍要求同一非零文字锚点可见/重开。原CI尚未结束，此为待编译草稿。
+
+恢复后准备第三源码快照（暂不派新CI，等38711610037完整结果）：已保留晚于旧候选的分页reflow/快速连发判断/设置写失败留页和新增真实分页非零锚点回归，TXT初始两字缩进computed比例也明确断言。Windows417/17Python已通过；下一候选预计115Core/90iOS。先用私有index存快照，原HEAD/index和23旧包不动，不将旧CI背书新源码。

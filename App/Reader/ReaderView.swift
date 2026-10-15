@@ -35,7 +35,13 @@ import XianxiaCore
             if model.menuVisible || !model.isReady {
                 VStack(spacing: 0) {
                     HStack {
-                        Button { Task { await model.saveNow(); dismiss() } } label: {
+                        Button {
+                            Task {
+                                await model.saveNow()
+                                if let failure = model.appearanceSaveFailure { model.errorMessage = failure }
+                                else { dismiss() }
+                            }
+                        } label: {
                             Image(systemName: "chevron.down")
                         }.accessibilityLabel("返回书库")
                         Spacer()

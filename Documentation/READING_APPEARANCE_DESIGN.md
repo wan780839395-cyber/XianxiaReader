@@ -31,3 +31,7 @@ Adapter 将模型映射至既有 EPUBPreferences，保留当前分页/连续模�
 每次候选必须完整 Linux/macOS Core、iOS 集成+UI、无签名设备 Release、四长 TXT 探针、三份六 pin 锁及源码 hash。Windows 语法/Python 与 Swift 编译分开；模拟器帧复核与手机流畅度分开。最终结论写入专门报告及交接，不能预先宣称通过。
 
 动态样式派发复核：3.11 Navigator runScript 仅遍历 paginationView，维护的连续模式该属性为空。补齐同一派发接口的 continuous current/loaded/resource 分支，当前页优先，仅至多12个已加载视图；替换viewport后终止旧批次。此为本地连续扩展遗漏，不是上游官方连续功能缺陷。保留其他脚本/分页路径、资源缓存失效合同、pristine基线和锁；仅更新UPSTREAM.json中既有修改文件hash与取舍。新增TXT回归同时检查真实computed字号增大至少40%，防止只验证偏好数值。
+
+分页补充：动态CSS只改样式，原横向页偏移并不代表同一段文字。Adapter仅在字体/字号/行距/段距/留白/缩进/对齐/原书样式变化时，通过新的Navigator重载参数从刚采样的DOM Locator重建当前分页；纯底色不重载，连续仍由已有ResizeObserver补偿，模式改变保留原失效流程。新增分页长段落非零文字锚点可见性/重开回归；设置完成和返回按钮等待保存，失败留在当前页展示错误，不悄悄关闭。
+
+快速连续修改还须比较实际已提交的偏好，而非已被取消的上一次意图；分页回归连发字号+主题，并验证同一段落内非零文字在reflow/reopen后可见。TXT新增检查初始两字缩进的真实computed rem比例，再验证关闭后0px。

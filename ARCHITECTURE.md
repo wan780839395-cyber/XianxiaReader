@@ -165,3 +165,7 @@ App新增CoverImagePipeline/CoverImportService actor与BookCoverEditorModel/Shee
 ## M3 精确重复导入（Build14）
 
 003迁移到schema3新增book_import_identities，不改Book JSON/Locator；非唯一索引保留旧重复书。BookImportDeduplicator在Core actor流式补齐旧原件摘要，匹配TXT时才按其编码恢复正规化身份；BookFileStore继续执行根目录/逐级symlink合同。BookRepository新增指纹记录/查询和事务内复查提交，SQLite BEGIN IMMEDIATE串行化多连接竞争，Book/Chapter/指纹一起提交。已有匹配原件必须再次核实；取消/失败只清理未提交的新UUID。UI结果区分新增与重复、回收站恢复仍显式调用既有repository动作。详细限制和验证见LIBRARY_DUPLICATE_DESIGN.md/M3_DUPLICATES_VALIDATION_REPORT.json。
+
+## M4 外观偏好第一片（验证中）
+
+ReadingAppearance属于Core Foundation领域模型，持久化由现有BookFileStore actor负责Preferences/reading-v1.json，最大16KiB、逐级路径检查与原子写。ReadingInterfaces以ReaderAppearanceProviding可选能力隔离具体Preferences，UI只持领域值。ReaderViewModel在打开前加载，并按输入序列保存；Adapter映射3.11偏好，复用DOM anchor与取消/身份保护。已维护Vendor的Navigator派发增加连续视图分支，仍只作用于有界loaded/current/resource；锁/原始基线不变，UPSTREAM记录hash与取舍。具体范围、原书排版优先级及未做项见READING_APPEARANCE_DESIGN.md。源码不等价编译或手机验收。

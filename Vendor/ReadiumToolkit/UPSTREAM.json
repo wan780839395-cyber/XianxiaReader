@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "de10fcc7e7ec18fc25e1e262dddb3120ac2b1143d9e8cb153d2aea1540505fe0"
+      "sha256": "a0815233b90951bc10cdabe07e4a14ef424736043d9f2ba2db1655c885ac6942"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1663,6 +1663,7 @@
   },
   "appearanceScriptDispatchExtension": {
     "scope": "Route existing script scopes to bounded continuous loaded/current/resource spreads; current first, reject replaced viewport.",
-    "reason": "Readium 3.11 official dispatcher only targets paginationView; maintained continuous mode has no paginationView. Preferences otherwise affect reopened resources only."
+    "reason": "Readium 3.11 official dispatcher only targets paginationView; maintained continuous mode has no paginationView. Preferences otherwise affect reopened resources only.",
+    "pagedReflow": "Adapter requests fresh-DOM-anchor paged reload after typography changes; color-only changes remain dynamic CSS. Mode changes keep original invalidation path."
   }
 }

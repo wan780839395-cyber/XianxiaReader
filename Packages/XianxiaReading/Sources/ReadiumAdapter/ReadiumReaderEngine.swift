@@ -29,6 +29,7 @@ import XianxiaCore
     private var modeChangeRequestID: UUID?
     private var modeChangeTask: Task<Void, Never>?
     private var preferences = EPUBPreferences(scroll: false)
+    private var appliedPreferences = EPUBPreferences(scroll: false)
     public var onPositionChanged: ((ReadingPosition) -> Void)?
     public var onCenterTap: (() -> Void)?
     public var onError: ((String) -> Void)?
@@ -97,6 +98,7 @@ import XianxiaCore
         self.bookID = book.id
         txtReading = txt
         self.navigator = navigator
+        appliedPreferences = preferences
         searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id, txtPlan: txt?.plan) : nil
         currentPosition = position
         navigator.delegate = self
@@ -163,6 +165,7 @@ import XianxiaCore
         preferences.infiniteScroll = false
         preferences.scroll = enabled
         navigator?.submitPreferences(preferences)
+        appliedPreferences = preferences
     }
 
     public func setContinuousScrolling(_ enabled: Bool) {
@@ -193,7 +196,15 @@ import XianxiaCore
             guard let self, let navigator else { return }
             await navigator.preserveCurrentDOMLocationForModeChange()
             guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
-            navigator.submitPreferences(requestedPreferences)
+            // Compare against the preferences actually submitted, not an edit
+            // whose task a later theme/mode change may have just cancelled.
+            let previous = self.appliedPreferences
+            let reflows = previous.fontFamily != requestedPreferences.fontFamily || previous.fontSize != requestedPreferences.fontSize
+                || previous.lineHeight != requestedPreferences.lineHeight || previous.paragraphSpacing != requestedPreferences.paragraphSpacing
+                || previous.pageMargins != requestedPreferences.pageMargins || previous.paragraphIndent != requestedPreferences.paragraphIndent
+                || previous.textAlign != requestedPreferences.textAlign || previous.publisherStyles != requestedPreferences.publisherStyles
+            navigator.submitPreferences(requestedPreferences, reloadingPagination: reflows)
+            self.appliedPreferences = requestedPreferences
             self.modeChangeTask = nil
         }
     }
