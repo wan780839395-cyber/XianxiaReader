@@ -99,6 +99,7 @@ jobs:
             build/logs/
             build/*.xcresult/
             build/ReaderSnapshots/
+            build/InteractionVideo/
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json

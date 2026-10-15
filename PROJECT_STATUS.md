@@ -11,6 +11,10 @@
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
 
+## 2026-10-15 Build12 当前增量（待编译）
+
+用户确认Build11回收站/恢复正常，并要求列表左滑与网格动画、尽量好看流畅。Build12已写原生List/swipeActions、提交后网格/恢复/布局过渡与Reduce Motion，增加3真实XCUITest与模拟器录屏，目标原67+3=70iOS/各91Core。Windows396语法新增0/54 pristine限制、17tooling/bash检查通过，尚未Swift编译或生成新包。Core/schema2/Reader/codec/Vendor/锁保持；保护所有未提交工作与17旧包。封面替换/重复导入仍M3后续，M4未开始。详见LIBRARY_INTERACTION_DESIGN.md与HANDOFF。
+
 ## 2026-10-15 Build11 当前切片
 
 Build11可恢复移出书架切片已通过[完整CI38668921850](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38668921850) / `bd68a48dc0fa41d07d839e4ddf07128d9069fe0f`：Linux/macOS各91Core、iOS67/67、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA；四长书Release探针继续通过。Windows394Swift语法新增0（54 pristine限制）与16tooling通过，语法不是编译。473运行/验证源Git blob hash、三份真实六pins锁、Build4–10共15旧包hash一致。

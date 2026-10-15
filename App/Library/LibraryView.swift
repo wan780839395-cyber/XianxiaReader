@@ -6,6 +6,7 @@ import XianxiaCore
     let services: AppServices
     @StateObject private var model: LibraryViewModel
     @State private var selectedBook: Book?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20, alignment: .topLeading)]
 
     init(services: AppServices, model: LibraryViewModel? = nil) {
@@ -15,26 +16,7 @@ import XianxiaCore
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                if model.books.isEmpty {
-                    VStack(spacing: 18) {
-                        Image(systemName: "books.vertical").font(.system(size: 52)).foregroundStyle(.secondary)
-                        Text("把你的江湖，放进书架").font(.title2)
-                        Text("从“文件”导入 EPUB 或 TXT，在这里继续阅读。")
-                            .foregroundStyle(.secondary).multilineTextAlignment(.center)
-                        Button("导入书籍") { model.presentedSheet = .importFiles }.buttonStyle(.borderedProminent)
-                            .disabled(model.isImporting || model.isManaging || model.isRenaming)
-                        Button("导入内置样书") { model.startSamplesImport() }
-                            .disabled(model.isImporting || model.isManaging || model.isRenaming)
-                        Button("导入 TXT 样书") { model.startTXTSamplesImport() }.disabled(model.isImporting || model.isManaging || model.isRenaming)
-                        Button("打开回收站（\(model.removedBooks.count)）") { model.showTrash() }
-                        Text("支持 EPUB 与 TXT。\n若 iCloud 文件无法打开，请先下载到“我的 iPhone”再导入。")
-                            .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
-                    }.padding(.horizontal, 32).padding(.top, 100)
-                } else {
-                    shelf
-                }
-            }
+            shelfContent
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("藏书阁")
             .searchable(text: $model.query, placement: .navigationBarDrawer(displayMode: .always), prompt: "搜索书名或作者")
@@ -48,6 +30,7 @@ import XianxiaCore
                             ForEach(LibrarySortOrder.allCases) { order in Text(order.title).tag(order) }
                         }
                         Button { model.showTrash() } label: { Label("回收站（\(model.removedBooks.count)）", systemImage: "trash") }
+                            .accessibilityIdentifier("library.open-trash")
                     } label: { Image(systemName: model.layout.symbol) }
                         .accessibilityLabel("书架显示与排序").accessibilityIdentifier("library.display")
                 }
@@ -89,6 +72,7 @@ import XianxiaCore
             .confirmationDialog("移出书架？", isPresented: Binding(get: { model.bookToRemove != nil }, set: { if !$0 { model.bookToRemove = nil } }),
                                 titleVisibility: .visible, presenting: model.bookToRemove) { book in
                 Button("移到回收站", role: .destructive) { Task { await model.moveToTrash(book.id) } }
+                    .accessibilityIdentifier("library.confirm-remove")
                 Button("取消", role: .cancel) { model.bookToRemove = nil }
             } message: { book in
                 Text("“\(book.title)”将移到回收站，原书、阅读位置和书签会保留，可随时恢复。")
@@ -100,32 +84,90 @@ import XianxiaCore
         }
     }
 
-    private var shelf: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack {
-                Text(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                     ? "\(model.books.count) 本藏书" : "\(model.visibleBooks.count) 本匹配").font(.subheadline)
-                Spacer()
-                Text(model.sortOrder.title).font(.caption).foregroundStyle(.secondary)
-            }
-            if model.visibleBooks.isEmpty {
-                VStack(spacing: 12) {
-                    Image(systemName: "magnifyingglass").font(.largeTitle).foregroundStyle(.secondary)
-                    Text("没有找到这本书").font(.headline)
-                    Text("试试其他书名或作者。").foregroundStyle(.secondary)
-                    Button("清除筛选") { model.query = "" }
-                }.frame(maxWidth: .infinity).padding(.vertical, 60)
-                    .accessibilityIdentifier("library.no-results")
-            } else if model.layout == .grid {
-                LazyVGrid(columns: columns, alignment: .leading, spacing: 24) {
-                    ForEach(model.visibleBooks) { bookButton($0, compact: false) }
-                }.accessibilityIdentifier("library.grid")
+    private var shelfContent: some View {
+        Group {
+            if model.books.isEmpty {
+                ScrollView { emptyShelf }.transition(.opacity)
+            } else if model.layout == .list, !model.visibleBooks.isEmpty {
+                listShelf.transition(.opacity)
             } else {
-                LazyVStack(spacing: 12) {
-                    ForEach(model.visibleBooks) { bookButton($0, compact: true) }
-                }.accessibilityIdentifier("library.list")
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 18) {
+                        shelfHeader
+                        if model.visibleBooks.isEmpty { noResults }
+                        else {
+                            LazyVGrid(columns: columns, alignment: .leading, spacing: 24) {
+                                ForEach(model.visibleBooks) { summary in
+                                    bookButton(summary, compact: false)
+                                        .transition(reduceMotion ? .identity : .scale(scale: 0.94).combined(with: .opacity))
+                                }
+                            }.accessibilityIdentifier("library.grid")
+                        }
+                    }.padding(20)
+                }.transition(.opacity)
             }
-        }.padding(20)
+        }
+        .animation(reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.88), value: model.visibleBooks.map(\.id))
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: model.layout)
+        .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
+    }
+
+    private var listShelf: some View {
+        List {
+            shelfHeader
+                .listRowInsets(EdgeInsets(top: 16, leading: 20, bottom: 12, trailing: 20))
+                .listRowSeparator(.hidden).listRowBackground(Color.clear)
+            ForEach(model.visibleBooks) { summary in
+                bookButton(summary, compact: true)
+                    .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 20))
+                    .listRowSeparator(.hidden).listRowBackground(Color.clear)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        // Keep the row until confirmation AND the database commit.
+                        // A plain red action avoids requesting automatic destructive-row removal.
+                        Button { model.requestRemoval(summary.book) } label: { Label("移到回收站", systemImage: "trash") }
+                            .tint(.red).disabled(model.isImporting || model.isRenaming || model.isManaging)
+                            .accessibilityIdentifier("library.swipe-remove")
+                    }
+            }
+        }.listStyle(.plain).scrollContentBackground(.hidden)
+            .accessibilityIdentifier("library.list")
+    }
+
+    private var shelfHeader: some View {
+        HStack {
+            Text(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                 ? "\(model.books.count) 本藏书" : "\(model.visibleBooks.count) 本匹配").font(.subheadline)
+                .accessibilityIdentifier("library.count")
+            Spacer()
+            Text(model.sortOrder.title).font(.caption).foregroundStyle(.secondary)
+        }
+    }
+
+    private var noResults: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "magnifyingglass").font(.largeTitle).foregroundStyle(.secondary)
+            Text("没有找到这本书").font(.headline)
+            Text("试试其他书名或作者。").foregroundStyle(.secondary)
+            Button("清除筛选") { model.query = "" }
+        }.frame(maxWidth: .infinity).padding(.vertical, 60)
+            .accessibilityIdentifier("library.no-results")
+    }
+
+    private var emptyShelf: some View {
+        VStack(spacing: 18) {
+            Image(systemName: "books.vertical").font(.system(size: 52)).foregroundStyle(.secondary)
+            Text("把你的江湖，放进书架").font(.title2)
+            Text("从“文件”导入 EPUB 或 TXT，在这里继续阅读。")
+                .foregroundStyle(.secondary).multilineTextAlignment(.center)
+            Button("导入书籍") { model.presentedSheet = .importFiles }.buttonStyle(.borderedProminent)
+                .disabled(model.isImporting || model.isManaging || model.isRenaming)
+            Button("导入内置样书") { model.startSamplesImport() }
+                .disabled(model.isImporting || model.isManaging || model.isRenaming)
+            Button("导入 TXT 样书") { model.startTXTSamplesImport() }.disabled(model.isImporting || model.isManaging || model.isRenaming)
+            Button("打开回收站（\(model.removedBooks.count)）") { model.showTrash() }.accessibilityIdentifier("library.empty.open-trash")
+            Text("支持 EPUB 与 TXT。\n若 iCloud 文件无法打开，请先下载到“我的 iPhone”再导入。")
+                .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
+        }.padding(.horizontal, 32).padding(.top, 100)
     }
 
     private func bookButton(_ summary: BookSummary, compact: Bool) -> some View {
@@ -145,6 +187,7 @@ import XianxiaCore
                 }
             }.contentShape(Rectangle())
         }.buttonStyle(.plain).disabled(model.isManaging).accessibilityIdentifier("library.book.\(summary.id.uuidString)")
+            .accessibilityLabel("\(summary.book.title)，\(summary.book.author.isEmpty ? "作者未注明" : summary.book.author)，\(LibraryPresentation.readingLabel(summary))")
             .contextMenu {
                 Button { model.beginRename(summary.book) } label: { Label("修改书名", systemImage: "pencil") }
                     .disabled(model.isImporting || model.isRenaming || model.isManaging)

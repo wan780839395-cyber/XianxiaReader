@@ -159,7 +159,7 @@ def check_swift_syntax() -> int:
     from tree_sitter import Language, Parser
     import tree_sitter_swift
     parser = Parser(Language(tree_sitter_swift.language()))
-    files = [path for prefix in ["App", "Packages", "Tests/iOS", "Vendor"] for path in (ROOT / prefix).rglob("*.swift")
+    files = [path for prefix in ["App", "Packages", "Tests/iOS", "Tests/UI", "Vendor"] for path in (ROOT / prefix).rglob("*.swift")
              if ".build" not in path.parts and ".swiftpm" not in path.parts]
     errors = []
     baseline = json.loads((ROOT / "Vendor/ReadiumToolkit/UPSTREAM.json").read_text(encoding="utf-8"))["upstreamGrammarDiagnostics"]
@@ -178,7 +178,7 @@ def check_swift_syntax() -> int:
                 # source, which was already compiled in Build3. New diagnostics
                 # still fail. This is a grammar delta check, never a compiler.
                 import hashlib
-                signature = node.type + ":" + hashlib.sha256(node.parent.text).hexdigest()
+                signature = node.type + ":" + hashlib.sha256(node.parent.text if node.parent is not None else node.text).hexdigest()
                 if known[signature]:
                     known[signature] -= 1
                     retained += 1

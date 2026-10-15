@@ -2,7 +2,15 @@
 
 更新时间：2026-10-15（Asia/Shanghai）
 
+## 新一轮开始：Build12 书架交互与动效
+
+用户确认“都能正常使用”，并明确要求列表左滑移出、网格移出动画，整个项目尽量好看流畅；按Build11回收站/恢复范围记录设备基本验收。已核642文件inventory/17旧包hash，main/HEAD6d76174、空index、M3文档tip7ab2a7f与运行源bd68a48保留，无遗留构建任务。所有旧源码/包不重置，不沿用旧关机请求。
+
+本轮优先完成用户明确反馈：LazyVStack列表改原生List/swipeActions，取消全滑直接执行，红色普通按钮先确认而非乐观删行；提交成功后才动画移出/恢复，网格淡出/补位、布局/排序/筛选过渡，尊重系统Reduce Motion。不把这些推到M4。计划加入真实XCUITest手势/取消/提交/重启回收站/恢复与原生图、模拟器录屏核验；保留原67iOS/91Core/四长书/Release。Core/schema/Reader/codec/Vendor/锁不动。封面替换/重复导入仍后续M3；本轮未编译前不得交付。已核Apple公开swipeActions/ReduceMotion/XCTest及成熟SwipeActions项目最低系统建议，具体取舍另写设计。
+
 ## 实际断点
+
+Build12源码/验证配置已就绪，尚未Swift编译。原生List/swipeActions/非全滑确认、网格与恢复动画/Reduce Motion已写；新增DEBUG隔离夹具与3项真正XCUITest、6图、完整模拟器录屏，Release空准备实现不接受环境配置。Core/schema/Reader/codec/Vendor/锁不改，目标各91Core/70iOS。Windows396语法新增0/54 pristine限制、17tooling/bash语法已过。初次静态错误与root parent=None已定位：await先赋值再解包，诊断根节点保留失败报告而非崩溃；不新增白名单。原67iOS/16tooling断言不降低。下一步私有index源码快照/475源hash+17旧包报告/完整CI；完整通过再查看6图+录屏/连续帧、核IPA无DEBUG旗标、另存Build12包/交接。设计LIBRARY_INTERACTION_DESIGN.md。
 
 Build11可恢复移出书架切片已通过[完整CI38668921850](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38668921850) / `bd68a48dc0fa41d07d839e4ddf07128d9069fe0f`：Linux/macOS各91Core、iOS67/67、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA；四长书Release探针继续通过。Windows394Swift语法新增0（54 pristine限制）与16tooling通过，语法不是编译。473运行/验证源Git blob hash、三份真实六pins锁、Build4–10共15旧包hash一致。
 

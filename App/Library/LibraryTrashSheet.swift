@@ -2,6 +2,7 @@ import SwiftUI
 
 @MainActor struct LibraryTrashSheet: View {
     @ObservedObject var model: LibraryViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         NavigationStack {
@@ -45,10 +46,12 @@ import SwiftUI
                     }
                 }
             }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.removedBooks.map(\.id))
+            .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
             .navigationTitle("回收站").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("完成") { model.presentedSheet = nil }.disabled(model.isManaging)
+                    Button("完成") { model.presentedSheet = nil }.disabled(model.isManaging).accessibilityIdentifier("library.trash.done")
                 }
             }
             .overlay { if model.isManaging { ProgressView("正在保存…").padding().background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12)) } }

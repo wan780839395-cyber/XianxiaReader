@@ -2036,7 +2036,7 @@
     "deviceReleaseBuilt": true,
     "desktopLongTXTValidated": true,
     "Build10BasicSelfUseAccepted": true,
-    "Build11DeviceAccepted": false,
+    "Build11DeviceAccepted": true,
     "ordinarySignedDeviceAccepted": false,
     "M3Complete": false
   },
@@ -2888,5 +2888,6 @@
     "preservedPreviousPackageCount": 15,
     "Build11DeviceAccepted": false,
     "M3Complete": false
-  }
+  },
+  "deviceFeedbackEvidence": "Documentation/ValidationLogs/m3-library-build11-device-feedback.json"
 }

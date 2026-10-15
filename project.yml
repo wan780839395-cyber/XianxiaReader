@@ -15,7 +15,7 @@ settings:
     SWIFT_VERSION: "5.0"
     SWIFT_STRICT_CONCURRENCY: targeted
     MARKETING_VERSION: 0.0.1
-    CURRENT_PROJECT_VERSION: 11
+    CURRENT_PROJECT_VERSION: 12
     TARGETED_DEVICE_FAMILY: "1,2"
 targets:
   XianxiaReader:
@@ -62,14 +62,31 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.tests
         GENERATE_INFOPLIST_FILE: YES
+  XianxiaReaderUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/UI
+    dependencies:
+      - target: XianxiaReader
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: XianxiaReader
 schemes:
   XianxiaReader:
     build:
       targets:
         XianxiaReader: all
         XianxiaReaderTests: [test]
+        XianxiaReaderUITests: [test]
     test:
-      targets: [XianxiaReaderTests]
+      targets:
+        - name: XianxiaReaderTests
+          parallelizable: false
+        - name: XianxiaReaderUITests
+          parallelizable: false
       gatherCoverageData: true
     run:
       config: Debug

@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-15T03:02:34.478577+00:00",
+  "source": "direct user after Build11 delivery",
+  "quote": "没问题 都能正常使用 移出书架啥的也可以左滑删除这种？网格删除时也没动画啥的 我们的项目尽量做的好看流畅一点 没问题就继续吧",
+  "buildContext": "Build11 recoverable removal and restore",
+  "basicSelfUseWorkflowAccepted": true,
+  "removalAndRestoreAccepted": true,
+  "requestedFollowup": "Native list swipe actions and grid transition polish; good appearance and smooth interaction across current stages",
+  "exactBuildOSHardwareIndependentlyRead": false,
+  "ordinarySignedDeviceAccepted": false,
+  "measuredDevicePerformance": false,
+  "sourceRevision": "bd68a48dc0fa41d07d839e4ddf07128d9069fe0f",
+  "run": 38668921850,
+  "deliveredKitSHA256": "616810a2fe3e6f031a3e9576f8d670e2081a556129892186017a930db1530700"
+}

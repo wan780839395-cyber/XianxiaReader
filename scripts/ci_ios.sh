@@ -38,6 +38,21 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 # A simulator is selected by real availability, not a hardcoded device UUID/name.
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
+
+# Record actual native gestures and layout transitions, including failed tests.
+# A recording/export failure must not silently produce a supposedly validated IPA.
+mkdir -p build/InteractionVideo
+xcrun simctl bootstatus "$SIMULATOR_ID" -b
+xcrun simctl io "$SIMULATOR_ID" recordVideo --codec=h264 "$PWD/build/InteractionVideo/library-interactions.mp4" > build/InteractionVideo/recording.log 2>&1 &
+video_pid=$!
+stop_simulator_recording() {
+  if kill -INT "$1"; then
+    wait "$1"
+  else
+    # Collect the real exit of an already-failed recorder before reporting failure.
+    if wait "$1"; then return 1; else return "$?"; fi
+  fi
+}
 test_status=0
 if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
@@ -49,6 +64,11 @@ if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
 else
   test_status=$?
 fi
+
+# SIGINT flushes the simulator recording and preserves its real exit status.
+video_status=0
+if stop_simulator_recording "$video_pid"; then video_status=0; else video_status=$?; fi
+if [[ ! -s build/InteractionVideo/library-interactions.mp4 ]]; then video_status=1; fi
 
 # Structured xcresult totals include crashed tests from previous launches,
 # unlike the final restarted suite's visible log tail.
@@ -69,9 +89,11 @@ fi
 # Export failed-test screenshots too, then propagate the ORIGINAL test exit.
 # A successful test with a failed export also fails, never producing an IPA.
 echo "Simulator test exit: $test_status; attachment export exit: $export_status; summary exit: $summary_status"
+echo "Simulator recording exit: $video_status"
 if (( test_status != 0 )); then exit "$test_status"; fi
 if (( export_status != 0 )); then exit "$export_status"; fi
 if (( summary_status != 0 )); then exit "$summary_status"; fi
+if (( video_status != 0 )); then exit "$video_status"; fi
 
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
