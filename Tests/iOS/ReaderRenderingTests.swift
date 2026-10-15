@@ -626,6 +626,45 @@ final class ReaderRenderingTests: XCTestCase {
         attachment.lifetime = .keepAlways; add(attachment)
     }
 
+    @MainActor func testPagedTypographyRebuildDoesNotQueueDynamicCSSIntoNewPage() async throws {
+        let script = WKUserScript(source: """
+            window.__xianxiaDynamicPreferenceCalls = 0;
+            const originalSetCSSProperties = readium.setCSSProperties;
+            readium.setCSSProperties = function(properties) {
+              window.__xianxiaDynamicPreferenceCalls++;
+              return originalSetCSSProperties.call(this, properties);
+            };
+            """, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [script])
+        var appearance = ReadingAppearance(); appearance.fontScale = 1
+        try engine.setAppearance(appearance)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        _ = try await probe(navigator, engine: engine, resource: "one.xhtml")
+        for _ in 0..<3 { await engine.turnPage(forward: true) }
+        let before = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        let size = try await before.evaluateJavaScript("parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize)") as? Double
+        let originalFont = try XCTUnwrap(size)
+        appearance.fontScale = 1.5; appearance.theme = .charcoal
+        try engine.setAppearance(appearance)
+        try await waitUntil {
+            guard let page = self.visibleWebView(in: engine.viewController.view), page !== before else { return false }
+            let value = try await page.evaluateJavaScript("(() => { const p = document.getElementById('long-paragraph'); return p ? parseFloat(getComputedStyle(p).fontSize) : 0; })()") as? Double
+            return (value ?? 0) > originalFont * 1.4
+        }
+        let page = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        let calls = try await page.evaluateJavaScript("window.__xianxiaDynamicPreferenceCalls") as? Int
+        XCTAssertEqual(calls, 0, "A rebuilt page must get final injected CSS, without a late dynamic typography write")
+        // A color-only edit still updates the same live page instead of rebuilding it.
+        appearance.theme = .oled; try engine.setAppearance(appearance)
+        try await waitUntil {
+            guard self.visibleWebView(in: engine.viewController.view) === page else { return false }
+            return try await page.evaluateJavaScript("getComputedStyle(document.documentElement).backgroundColor === 'rgb(0, 0, 0)' && window.__xianxiaDynamicPreferenceCalls > 0") as? Bool == true
+        }
+    }
+
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
         let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)

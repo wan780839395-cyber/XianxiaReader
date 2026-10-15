@@ -8,6 +8,14 @@
 
 首轮下载helper84471已完成0，完整summary实核90/92（两个失败，skipped0）、各115Core/各四长TXT、源码编译警告错误0、严格test65/export0/summary0，Release未执行，无IPA。失败/候选原件m4-polish-build16-first-failure.json/first-candidate.json保留。新上一页AX宽8不是44：产品图标label frame后补contentShape(Rectangle)，原44pt断言不改。实际两张减少动效原生图已看作诊断，顶部旧bookmark.badge.plus字形缺失，换支持的bookmark并加入44pt检查。旧分页重排caret1533后落回one.xhtml progression0，因Adapter/Vendor/该测试与Build15完全相同，单轮根因尚未确认；不盲补/放宽旧断言，本次只修UI后完整重跑。现将运行420语法/17tooling，然后保存新候选、重新dispatch，先前失败不覆盖。
 
+当前候选fe95dbc99c83089a7929d7cd7b8176e2fd23058e，第二轮完整CI38738818996，420语法/17tooling通过，HEAD/index保留。validation报告已改记新候选501blob/25旧包并链接首轮失败；此时新Core/92iOS/Release全部pending。watch65970只读，后续仍须完整下载并复核成功本轮素材，首轮图片不当最终验收。
+
+第二轮Linux完成且完整artifact已下载/逐项核115Core与四长TXT Release合同，linux-checkpoint与主报告单独标Linux通过。Apple仍统一build/test/package执行中，没有中断或取消远端；当前源码维持fe95不追加改动。首轮旧分页超时和新点击形状/图标修正分开记录。最终收尾脚本还会核四份707/719/733/743项备份hash/CRC/原路径、27新旧包、501运行blob和真实inventory，不能先写Build16验收。
+
+第二轮38738818996现completed/failure，watch65970返回1，未取消。开始下载本轮完整日志/原生诊断，先看实际失败，不能宣称上一轮修正已通过，更不能打包。
+
+第二轮下载54974完成0：summary91/92，全部8原生UI（含尺寸/模式/目录/分组/原书disabled/保存重开/减少动效请求）通过，仅旧分页重排首次wait620失败；各115Core/四探针、编译diagnostics0，test65/export0/summary0/recording0，Release未执行无IPA。second-failure/second-candidate.json保留完整证据。重复失败后核官方精确3.11源码，确认本地分页Typography先动态CSS再独立reload违背官方needsInvalidation互斥决策，可能晚到脚本作用新页。现在已在既有ViewModel/Controller把Typography强制reload并入原失效路径，纯换色/连续保留动态；添实际WebKit计数回归和有界无正文诊断，旧原文字/180%/重开/timeout不放宽。方案/来源READING_UI_DESIGN.md，provenance仅更新两已维护Vendor文件。准备420语法/17tooling后第三轮完整CI，预期93iOS=85集成+8UI，各115Core、严格Release16；当前修正未编译，不能写通过。
+
 源码子步：已增加ReaderVisualStyle/ReaderMenuView，重整ReaderAppearanceView外观/排版分段和ReaderView组装，版本16。保持原偏好功能/ID/模型/引擎，44pt按钮、ViewThatFits避免窄空间数值挤压，菜单短淡入淡出沿用系统和既有额外Reduce Motion请求；实心面板不依赖透明效果。保留旧90测试，新增2真正XCUITest覆盖菜单触控尺寸/模式/分组/排版保存重开/原书开关disabled规则及Reduce Motion请求。准备Windows检查和完整CI；新增截图/动效尚未实看，不记通过。
 
 构建前：Windows仓库/420Swift grammar新增0、54 pristine限制和17Python tooling通过，报告M4_POLISH_STATIC_REPORT.json；语法不等于编译。现在私有index保存并推同一M4分支候选，随后workflow_dispatch完整CI（115Core各平台、92iOS=84集成+8UI、严格Release16）。新增test用既有XR_LIBRARY_UI_REDUCE_MOTION追加减少动效请求，不宣称改变系统设置。此前运行源a625与本次新候选分别记录，所有旧文件/25包保留。

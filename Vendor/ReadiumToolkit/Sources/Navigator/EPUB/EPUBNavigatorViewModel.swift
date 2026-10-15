@@ -204,12 +204,12 @@ enum EPUBScriptScope {
     /// Last submitted preferences.
     private var preferences: EPUBPreferences
 
-    func submitPreferences(_ preferences: EPUBPreferences) {
+    func submitPreferences(_ preferences: EPUBPreferences, reloadingPagination: Bool = false) {
         self.preferences = preferences
-        applyPreferences()
+        applyPreferences(reloadingPagination: reloadingPagination)
     }
 
-    private func applyPreferences() {
+    private func applyPreferences(reloadingPagination: Bool = false) {
         let oldSettings = settings
         let newSettings = EPUBSettings(
             preferences: preferences,
@@ -220,8 +220,12 @@ enum EPUBScriptScope {
         settings = newSettings
         updateSpread()
 
+        // A text reflow reload and a queued dynamic CSS write must be exclusive.
+        // Otherwise the script can reach newly created spreads after their DOM
+        // locator is restored, causing a second layout with an old page offset.
         let needsInvalidation: Bool =
-            oldSettings.readingProgression != newSettings.readingProgression
+            (reloadingPagination && !newSettings.infiniteScroll)
+                || oldSettings.readingProgression != newSettings.readingProgression
                 || oldSettings.language != newSettings.language
                 || oldSettings.verticalText != newSettings.verticalText
                 || oldSettings.scroll != newSettings.scroll

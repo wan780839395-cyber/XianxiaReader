@@ -20,6 +20,8 @@
 
 ## 验证边界
 
+第二轮fe95dbc/CI38738818996为91/92，全部8原生UI通过，旧分页重排第一次等待仍失败，严格test65阻止Release。重复失败后重新查精确[3.11 ViewModel](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift)及Navigator/ReflowableSpread：官方applyPreferences在needsInvalidation时不提交动态CSS。本地扩展此前先普通submit（排队动态CSS），再独立reload，脚本会在await后取得新loadedViews，存在晚到样式重排新页的竞争路径。本片因此增加必要的最小引擎集成修正：将强制分页重排并入ViewModel原失效决策，更新注入CSS/cache后只重建；纯换色和连续模式保持动态路径。新增实际WebKit调用计数回归（重建页0动态写入、纯换色同页实时更新），原1533等非零文字/180%/重开断言与超时不改；诊断仅12条数字/布尔生命周期，无正文/标题/选择器。更新两Vendor源码hash/provenance，不改锁/JS静态bundle/Locator协议/Core/Adapter。竞争路径是已确认源码差异，原两轮失败是否因此修复仍须第三轮实际原生验证。
+
 首候选9a16572/CI38734879701：各115Core/四Release探针、Apple源码编译通过，iOS90/92，失败为旧EPUB分页重排等待和新上一页44pt区域断言（实际AX宽8）。显式44pt frame不足以扩展plain图标点击形状，参照[SwiftUI contentShape](https://developer.apple.com/documentation/swiftui/view/contentshape(_:eofill:))在label布局后设置矩形命中区域，保留尺寸断言。实际减少动效截图发现顶部旧bookmark.badge.plus没有可见字形，改用已支持bookmark图标并将添加书签入口纳入原44pt检查。首轮图片仅诊断，不当新修正验收。旧分页原测试/Adapter/Vendor同Build15未变，诊断记录原caret1533、重排后回到progression0，根因尚未确认；本片不盲改引擎或放宽20/30秒/180%/原文字可见断言。严格test65阻止Release，无首轮IPA。
 
 保留原90项iOS测试、各115Core及17工具测试，新增原生菜单/分组切换/保存重开/浅深色截图及录屏回归。完整CI/Release16后交付。原生截图和视频连续帧只说明模拟器具体case，手机触控/FPS、系统减少动态效果、巨段TXT整窗和其他设备单列；Build15基本自用接受不扩写这些矩阵。

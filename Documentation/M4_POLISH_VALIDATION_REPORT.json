@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T12:28:56.381737+00:00",
+  "recordedAtUTC": "2026-10-15T12:58:40.520766+00:00",
   "stage": "M4 native reading UI slice pending full CI",
-  "sourceRevision": "9a16572d330d3dbe3040337acb1e8f222e609e85",
-  "run": 38734879701,
+  "sourceRevision": "fe95dbc99c83089a7929d7cd7b8176e2fd23058e",
+  "run": 38738818996,
   "branch": "codex/m4-reading-appearance",
   "build": "16",
   "changedPaths": [
@@ -17,6 +17,7 @@
     "Documentation/HANDOFF_M4_FIRST_FOUR_RUNS_2026-10-15.md",
     "Documentation/M4_APPEARANCE_VALIDATION_REPORT.json",
     "Documentation/M4_POLISH_STATIC_REPORT.json",
+    "Documentation/M4_POLISH_VALIDATION_REPORT.json",
     "Documentation/READING_APPEARANCE_DESIGN.md",
     "Documentation/READING_UI_DESIGN.md",
     "Documentation/ValidationLogs/m4-appearance-build15-final-windows.json",
@@ -25,6 +26,10 @@
     "Documentation/ValidationLogs/m4-appearance-build15-success.json",
     "Documentation/ValidationLogs/m4-appearance-build15-test-kit.json",
     "Documentation/ValidationLogs/m4-appearance-build15-user-feedback.json",
+    "Documentation/ValidationLogs/m4-polish-build16-first-candidate.json",
+    "Documentation/ValidationLogs/m4-polish-build16-first-failure.json",
+    "Documentation/ValidationLogs/m4-polish-build16-linux-checkpoint.json",
+    "Documentation/ValidationLogs/m4-polish-build16-resume.json",
     "Documentation/ValidationLogs/m4-polish-build16-start.json",
     "HANDOFF.md",
     "PROJECT_STATUS.md",
@@ -139,7 +144,7 @@
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
-      "sha256": "c18cf6386d962e97a9c0158ae50fe9da638e8533fefa94e80212f575c089c517"
+      "sha256": "89c16e348ce77cb80dc71db0c40095ea421491cff294d3091da8ddeb1dac8d91"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -491,7 +496,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "7a635eabfe2dec35eb4d5f8e8d29176770df2ff790508575e5a3562fd78265de"
+      "sha256": "1ed3b5597a6ca745e2a16ad4560e493d00f93726ba1e53de2d3701ae53557da4"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -2200,20 +2205,27 @@
     "Native frames/video are not a measured phone FPS or full-theme/ordinary-device acceptance.",
     "Reduced Motion environment test does not set or certify a physical-device system preference."
   ],
+  "failureHistory": [
+    "Documentation/ValidationLogs/m4-polish-build16-first-failure.json"
+  ],
+  "priorCandidates": [
+    "Documentation/ValidationLogs/m4-polish-build16-first-candidate.json"
+  ],
+  "firstFailureInterpretation": "CI38734879701:115Core each,90/92iOS; AXprevious width8 corrected with contentShape, invisible old bookmark symbol corrected; identical Build15 paged-reflow wait also failed and cause remains unconfirmed. No old assertion changed; strict test65 blocked Release.",
   "partialVerification": {
-    "recordedAtUTC": "2026-10-15T12:32:41.549080+00:00",
-    "run": 38734879701,
-    "sourceRevision": "9a16572d330d3dbe3040337acb1e8f222e609e85",
+    "recordedAtUTC": "2026-10-15T13:03:01.842694+00:00",
+    "run": 38738818996,
+    "sourceRevision": "fe95dbc99c83089a7929d7cd7b8176e2fd23058e",
     "linuxCoreTests": 115,
     "longTXTReleaseCases": 4,
     "files": [
       {
-        "path": "build/ci/38734879701/core/logs/core-tests.log",
-        "sha256": "54a919c45f3aa992f400d038d25b085a5a3a5f86c9895e1bcbf947f704048817"
+        "path": "build/ci/38738818996/core/logs/core-tests.log",
+        "sha256": "c2286885f27adddb2ef8859ed1b2bcea7b2b20cb0dacbc061c3e511fe6734728"
       },
       {
-        "path": "build/ci/38734879701/core/TXTPerformance/summary.json",
-        "sha256": "041c98bdf7dcd275c21103df282d4f5b5da7c625a8fdd9a91298a807088fad24"
+        "path": "build/ci/38738818996/core/TXTPerformance/summary.json",
+        "sha256": "76f78f39ab76d22ea190b85cfc1d926aeb30f2898679fb0b78cbb9164f1cf9e1"
       }
     ],
     "appleCompiled": false,

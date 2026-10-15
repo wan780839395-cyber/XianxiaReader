@@ -1,0 +1,102 @@
+{
+  "recordedAtUTC": "2026-10-15T13:27:54.493152+00:00",
+  "run": 38738818996,
+  "sourceRevision": "fe95dbc99c83089a7929d7cd7b8176e2fd23058e",
+  "linuxCoreTests": 115,
+  "macOSCoreTests": 115,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 91,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792070197.975,
+    "passedTests": 91,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792069576.075,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset():620",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 59,
+        "testIdentifierString": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+        "testName": "testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "25% of duration",
+        "text": "1 longest test run with outlier durations exceeding 14.45s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 92
+  },
+  "allEightNativeUITestsPassed": true,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "deviceReleaseExecuted": false,
+  "IPACreated": false,
+  "artifactDownloadHelperExit": 0,
+  "observation": "Same old paged typography wait failed after first reflow, DOM/currentLocation at progression0; new hit area/full groups/relaunch and reduce-motion request native tests passed.",
+  "nextChange": "Use official3.11 needsInvalidation path to make injectedCSS cache/reload mutually exclusive with queued dynamic CSS. Add native counting regression and bounded lifecycle diagnostics; preserve old anchor/180percent/reopen assertions.",
+  "artifacts": [
+    {
+      "path": "build/ci/38738818996/full.log",
+      "bytes": 2311017,
+      "sha256": "ebc6fb3a34d2600baa5fa95a02fe1928b4c45ee43e379fe3d0756d75eb4e3ebe"
+    },
+    {
+      "path": "build/ci/38738818996/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1789,
+      "sha256": "3be5728c722cc9b39025e1f93b796c0878614d00e29b35f9ee9e344be52b3ef4"
+    },
+    {
+      "path": "build/ci/38738818996/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1543372,
+      "sha256": "4fbac867463387688e94ce4d1fb941b5253f41f94b4ea1c45045af4fb0026c12"
+    },
+    {
+      "path": "build/ci/38738818996/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C6D0B076-D9F9-46B0-A61D-02AB305A73C0.txt",
+      "bytes": 1052,
+      "sha256": "f90ba6cfeded800c5d93740c2593a49cfece7128819507f9c3e571a4a88034ef"
+    },
+    {
+      "path": "build/ci/38738818996/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B4674A43-E442-4DC5-A8A4-8CC26A5718DC.txt",
+      "bytes": 98,
+      "sha256": "25321002aaf77d2de0751d97fa38d7cc056a2d78faeab73dd68a7d1c22987333"
+    },
+    {
+      "path": "build/ci/38738818996/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4490B28C-7C5D-4985-991E-5E6E71A0C900.txt",
+      "bytes": 1164,
+      "sha256": "580cc77d8336ca7fcf4ab8d7419c3b43ea32a1c19e6674f84166d0049c500f38"
+    }
+  ]
+}

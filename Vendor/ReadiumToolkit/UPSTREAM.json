@@ -1419,11 +1419,11 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "a0815233b90951bc10cdabe07e4a14ef424736043d9f2ba2db1655c885ac6942"
+      "sha256": "2914c082cebb5c9c7d842b0fc9b13dd91a98efcf14e61446f2dba1b2d0e868d6"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "76683bee9f76a4d93195865c4067a252f0cb2a9bcd878ff5c1cc830975fdbda9"
+      "sha256": "dc7e5635a3f68126559b8139473b2d2551030e8855c7d544f753feedcfbe6d44"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
@@ -1666,6 +1666,7 @@
     "reason": "Readium 3.11 official dispatcher only targets paginationView; maintained continuous mode has no paginationView. Preferences otherwise affect reopened resources only.",
     "pagedReflow": "Adapter requests fresh-DOM-anchor paged reload after typography changes; color-only changes remain dynamic CSS. Mode changes keep original invalidation path.",
     "precisePagedAnchor": "Only self-marked version1 DOMRange anchors, horizontal LTR pagination: choose page from first client rect plus scrollX. Official3.11 text matcher contains no domRange handling. Ordinary search/EPUB/RTL/vertical paths unchanged.",
-    "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen."
+    "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen.",
+    "pagedReflowAtomicity": "Typography reload goes through the ViewModel needsInvalidation decision, so injected CSS/cache update and pagination rebuild exclude late dynamic CSS. Color-only changes and continuous mode keep dynamic CSS. Added actual WebKit counter regression, old nonzero-anchor180percent/reopen unchanged."
   }
 }

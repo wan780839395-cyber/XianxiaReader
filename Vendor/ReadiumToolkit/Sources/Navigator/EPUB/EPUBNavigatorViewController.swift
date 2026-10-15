@@ -134,7 +134,15 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
 
     public var continuousScrollLoadedResourceCount: Int { infiniteScrollView?.loadedViews.count ?? 0 }
-    public var continuousScrollDiagnosticState: String { infiniteScrollView?.diagnosticState ?? "no continuous view" }
+    public var continuousScrollDiagnosticState: String {
+        infiniteScrollView?.diagnosticState ?? "paged preferences: " + preferenceReflowTrace.joined(separator: "; ")
+    }
+    // Bounded numeric/boolean lifecycle diagnostics; no book text, selectors or titles.
+    private var preferenceReflowTrace: [String] = []
+    private func tracePreferenceReflow(_ value: String) {
+        preferenceReflowTrace.append(value)
+        if preferenceReflowTrace.count > 12 { preferenceReflowTrace.removeFirst() }
+    }
 
     /// Cancel pending chapter loads and break WebKit message-handler cycles
     /// before the owning reader discards this controller.
@@ -153,9 +161,13 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             guard paginationView?.currentView === spread else { return }
             let offset = spread.webView.scrollView.contentOffset
             anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)
-            guard paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else { return }
+            guard paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else {
+                tracePreferenceReflow("discarded changed page/offset")
+                return
+            }
         } else { return }
-        guard let anchor else { return }
+        guard let anchor else { tracePreferenceReflow("no DOM sample"); return }
+        tracePreferenceReflow("sampled DOM=\(anchor.locations.domRange != nil)")
         let previous = currentLocation?.href.isEquivalentTo(anchor.href) == true ? currentLocation : nil
         locationUpdateRevision &+= 1
         currentLocation = anchor.copy(title: previous?.title, locations: {
@@ -672,6 +684,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private func _reloadSpreads() {
         let locator = currentLocation
+        tracePreferenceReflow("reload DOM=\(locator?.locations.domRange != nil)")
 
         guard on(.load(locator)) else { return }
         locationUpdateRevision &+= 1
@@ -1049,22 +1062,19 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
 
     public func submitPreferences(_ preferences: EPUBPreferences) {
-        viewModel.submitPreferences(preferences)
-        applySettings()
-
-        delegate?.navigator(self, presentationDidChange: presentation)
+        submitPreferences(preferences, reloadingPagination: false)
     }
 
     /// The caller has sampled a fresh DOM locator. Rebuild ordinary pagination
     /// after text reflow so an unchanged horizontal page offset cannot select
     /// different text. Continuous mode has its own ResizeObserver/anchor repair.
     public func submitPreferences(_ preferences: EPUBPreferences, reloadingPagination: Bool) {
-        let previous = settings
-        submitPreferences(preferences)
-        if reloadingPagination, !settings.infiniteScroll,
-           previous.infiniteScroll == settings.infiniteScroll, previous.scroll == settings.scroll {
-            reloadSpreads()
-        }
+        // Use the same invalidation decision as the upstream mode/layout path:
+        // update injected CSS and its cache, then rebuild without dynamic writes.
+        tracePreferenceReflow("submit reload=\(reloadingPagination) DOM=\(currentLocation?.locations.domRange != nil)")
+        viewModel.submitPreferences(preferences, reloadingPagination: reloadingPagination)
+        applySettings()
+        delegate?.navigator(self, presentationDidChange: presentation)
     }
 
     public func editor(of preferences: EPUBPreferences) -> EPUBPreferencesEditor {
