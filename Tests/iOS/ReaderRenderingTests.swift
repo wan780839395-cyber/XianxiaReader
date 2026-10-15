@@ -270,10 +270,15 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor func testContinuousFragmentAndDOMBookmarkRestore() async throws {
+        // Stage-only fixture diagnostics: retain the original navigation/geometry
+        // conditions and timeouts if a future run fails with navigationFailed.
+        var stage = "initial-open"
+        defer { print("[fragment-bookmark-test] last stage: \(stage)") }
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (_, state) = try mount(engine); state.visible = false
         let (book, _) = try await open(engine)
         try await waitUntil { engine.currentPosition != nil }
+        stage = "fragment-jump"
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
         let webView = try resourceWebView(engine, index: 1)
         try await waitUntil {
@@ -291,15 +296,18 @@ final class ReaderRenderingTests: XCTestCase {
         let saved = try XCTUnwrap(engine.currentPosition)
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
         engine.close()
+        stage = "bookmark-reopen"
         try await engine.open(book: book, fileURL: url, position: saved)
         try await waitUntil {
             self.view(identifier: "readium.chapter.1", in: engine.viewController.view) != nil
         }
         let reopened = try resourceWebView(engine, index: 1)
+        stage = "reopened-geometry"
         try await waitUntil {
             let y = try await reopened.evaluateJavaScript("document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000") as? Double
             return abs(y ?? 10000) < 5
         }
+        stage = "complete"
     }
 
     @MainActor func testContinuousHeightChangeKeepsVisibleDOMAnchor() async throws {

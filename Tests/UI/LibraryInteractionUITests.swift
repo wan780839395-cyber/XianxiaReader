@@ -137,9 +137,17 @@ final class LibraryInteractionUITests: XCTestCase {
         let browser = app.navigationBars.containing(NSPredicate(format: "label IN {'最近项目', '浏览', 'Recents', 'Browse'}")).firstMatch
         XCTAssertTrue(browser.waitForExistence(timeout: 10))
         snapshot(app, "library-cover-native-files-build13")
-        let cancel = app.buttons.matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'"))
-            .allElementsBoundByIndex.first { $0.isHittable && $0.identifier != "library.cover.cancel" }
-        XCTAssertNotNil(cancel); cancel?.tap()
+        // DocumentManager exposes a local AX wrapper for Cancel while its remote
+        // button can lose its indexed reference/hit point. Use the visible wrapper's
+        // real frame, as the existing native Menu test does, then require dismissal.
+        let cancel = app.descendants(matching: .any).matching(NSPredicate(format:
+            "(label == '取消' OR label == 'Cancel') AND identifier != 'library.cover.cancel'")).firstMatch
+        XCTAssertTrue(cancel.waitForExistence(timeout: 5))
+        let cancelFrame = cancel.frame, appFrame = app.frame
+        XCTAssertGreaterThan(cancelFrame.width, 0); XCTAssertGreaterThan(cancelFrame.height, 0)
+        XCTAssertTrue(appFrame.contains(cancelFrame))
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: cancelFrame.midX - appFrame.minX, dy: cancelFrame.midY - appFrame.minY)).tap()
+        waitGone(browser)
         XCTAssertTrue(app.buttons["library.cover.default"].waitForExistence(timeout: 5))
         XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "自选封面")
         app.buttons["library.cover.default"].tap()

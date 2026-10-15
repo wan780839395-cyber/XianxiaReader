@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T05:54:58.954077+00:00",
+  "recordedAtUTC": "2026-10-15T06:21:21.427059+00:00",
   "stage": "M3 cover replacement pending full CI",
-  "sourceRevision": "2ce8a940589ece745e99aac6bcf5a3a0419c0a41",
-  "run": 38689366894,
+  "sourceRevision": "64da0f227ecf5c3438d9deac87d73e6dfe0d9034",
+  "run": 38691894649,
   "branch": "codex/m3-library",
   "build": "13",
   "changedPaths": [
@@ -36,7 +36,10 @@
     "Documentation/ValidationLogs/m3-library-build12-third-candidate.json",
     "Documentation/ValidationLogs/m3-library-build12-user-feedback.json",
     "Documentation/ValidationLogs/m3-library-build12-video-review.json",
+    "Documentation/ValidationLogs/m3-library-build13-file-picker-ax-failure.json",
+    "Documentation/ValidationLogs/m3-library-build13-first-cancellation.json",
     "Documentation/ValidationLogs/m3-library-build13-first-candidate.json",
+    "Documentation/ValidationLogs/m3-library-build13-second-candidate.json",
     "HANDOFF.md",
     "HANDOFF_M3_INTERACTION_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -103,7 +106,7 @@
     },
     {
       "path": "App/Library/BookCoverEditorSheet.swift",
-      "sha256": "6ecb5e93e4db0466c5ab4478a5221572b357f81bc222d96039cea799c5b4f81b"
+      "sha256": "75a1cc466592a0bd1e211712afcf837a3b41dd9344a269b50c6a63a0d0d3598a"
     },
     {
       "path": "App/Library/BookCoverView.swift",
@@ -459,7 +462,7 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "sha256": "defd195de0445258bfb9f3b6ae8bef3182a93da75497995e1fcce29cc8ed9a65"
+      "sha256": "3523b197fece80258541a7261febeb8a2a65e5532f4e1b3a092614df4986dadd"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",

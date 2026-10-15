@@ -4,6 +4,12 @@
 
 ## 实际断点
 
+第三轮38691894649 / 64da0f2已completed/failure，完整下载与run/full/Core/Apple/xcresult/附件已落盘：各100Core与四探针通过，iOS77/79/skipped0；8封面集成与旧3UI通过。新coverUI已找到Files栏且实际截图可见取消，但全局按index枚举remote Cancel造成查找/可点性失败；改用实际AX本地主包装元素的可见frame、公有coordinate点击（沿用已验证Menu做法），新增必须等真正Files消失，再保留全部默认取消/保存/重开断言。Spacer仍被SDK标MainActor，所以纯row函数改为值初始化的独立View、MainActor body构造布局，不关闭诊断。旧ReaderRendering/testContinuousFragmentAndDOMBookmarkRestore出现navigationFailed，上一候选通过，唯一原因未确认；仅加原测试阶段打印，原阈值/导航/几何断言和生产Reader/Vendor均不改。准备407语法/第四轮全CI；失败原件ValidationLogs/m3-library-build13-cancel-ax-and-reader-failure.json。
+
+第三轮38691894649的repository/Linux jobs已success，Apple仍运行。已逐张查看第二轮实际封面错误/待保存/已保存书架/默认预览四图及自选封面UI图，布局/裁切/错误/按钮状态可读；失败case视频连续概览确认Files打开，非产品无反应。此为中间候选观察，不当第三轮最终视觉或手机验收；最终仍须新图/成功case视频/Release和487源hash/旧包核对。
+
+第三轮修正候选64da0f227ecf5c3438d9deac87d73e6dfe0d9034 / 完整CI38691894649已派发；407语法新增0/54限制通过，487源hash/19旧包重新记录，门槛pending。第二轮原件及失败收据已保留，未改变测试10秒和后续真实取消/默认保存/重开断言，未跳过旧70项。下次从本run状态与完整下载结果查起，勿再派发同一候选。
+
 第二轮CI38689366894 / 2ce8a94已completed/failure且完整run/full/Core/Apple/xcresult/导出附件下载完：各100Core、四探针均通过，iOS78/79、skipped0，75集成全通过（新8封面集成也全通过），原3真正UI通过；新cover UI仅136行文件picker导航栏查询错把标题当identifier失败。真实AX树bar标识FullDocumentManagerViewControllerNavigationBar，子StaticText“最近项目”；原生视频已看到Files正常打开。按子label containing谓词修正，原10秒/实际取消/默认预览取消/保存/重开断言均保留。另修PhotosPicker label构造调用纯row的MainActor警告为nonisolated纯View builder，不访问状态。源码首版已编译，Release因test65未执行，不能交包；准备静态检查/第三轮完整CI。失败原件将记录ValidationLogs/m3-library-build13-file-picker-ax-failure.json。
 
 首轮38688984422已实查completed/cancelled，完整run/full.log/Core与Apple artifact下载完成，取消收据ValidationLogs/m3-library-build13-first-cancellation.json：各100Core确已运行，Linux四探针完成；Apple停在长书探针，iOS/Release未运行。此前“Apple未确认”是下载前检查点，以本条完整日志核实为准。修正候选CI38689366894继续运行。

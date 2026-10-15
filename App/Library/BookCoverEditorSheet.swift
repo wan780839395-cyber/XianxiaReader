@@ -31,10 +31,10 @@ import XianxiaCore
                     }.padding(.top, 26)
                     VStack(spacing: 0) {
                         PhotosPicker(selection: $photo, matching: .images, preferredItemEncoding: .current) {
-                            row("从相册选择", symbol: "photo.on.rectangle")
+                            CoverSourceRow("从相册选择", symbol: "photo.on.rectangle")
                         }.accessibilityIdentifier("library.cover.photos")
                         Divider().padding(.leading, 48)
-                        Button { model.choosingFile = true } label: { row("从文件选择", symbol: "folder") }
+                        Button { model.choosingFile = true } label: { CoverSourceRow("从文件选择", symbol: "folder") }
                             .accessibilityIdentifier("library.cover.files")
                     }.buttonStyle(.plain).disabled(model.isLoading || model.isSaving)
                         .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
@@ -68,7 +68,15 @@ import XianxiaCore
                 }
         }
     }
-    nonisolated private func row(_ title: String, symbol: String) -> some View {
+}
+
+/// The picker can construct its label outside the UI executor. Store only values
+/// there; SwiftUI renders this view's body (including Spacer) on the main actor.
+@MainActor private struct CoverSourceRow: View {
+    let title: String
+    let symbol: String
+    nonisolated init(_ title: String, symbol: String) { self.title = title; self.symbol = symbol }
+    var body: some View {
         HStack(spacing: 14) {
             Image(systemName: symbol).foregroundStyle(.tint).frame(width: 22)
             Text(title).foregroundStyle(.primary)
