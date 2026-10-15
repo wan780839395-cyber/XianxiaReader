@@ -34,6 +34,7 @@ enum LibrarySheet: String, Identifiable {
     private var refreshRequestID: UUID?
     private var importTask: Task<Void,Never>?
     private var pickerCoordinator: EPUBDocumentPicker.Coordinator?
+    @Published private(set) var duplicateBooks: [DuplicateBook] = []
     private let services: AppServices
     private let importer: EPUBImportService
 
@@ -192,6 +193,7 @@ enum LibrarySheet: String, Identifiable {
         }
     }
     func cancelImport() { importTask?.cancel() }
+    func dismissDuplicates() { duplicateBooks = [] }
     func retryTXTImport() { startImport(retryTXTFiles) }
     func startTXTSamplesImport(bundle: Bundle = .main) {
         guard let url = bundle.url(forResource: "云海问道-UTF8",withExtension: "txt",subdirectory: "Fixtures") else {
@@ -206,11 +208,13 @@ enum LibrarySheet: String, Identifiable {
         errorMessage = nil
         importStatus = nil
         retryTXTFiles = []
+        duplicateBooks = []
         let encoding = txtEncoding
         isImporting = true
         defer { isImporting = false; importingName = "" }
         var messages: [String] = []
         var importedCount = 0
+        var duplicateCount = 0
         var detectedLegacy: Set<String> = []
         // Sequential imports bound memory and preserve the security-scoped URL for the full copy.
         for url in urls {
@@ -218,7 +222,10 @@ enum LibrarySheet: String, Identifiable {
             importingName = url.lastPathComponent
             do {
                 let outcome = try await importer.importBook(from: url, txtEncoding: encoding)
-                importedCount += 1
+                if let duplicate = outcome.duplicate {
+                    duplicateCount += 1
+                    if !duplicateBooks.contains(where: { $0.id == duplicate.id }) { duplicateBooks.append(duplicate) }
+                } else { importedCount += 1 }
                 if encoding == .automatic {
                     if outcome.detectedTXTEncoding == .gbk { detectedLegacy.insert("ANSI / GBK") }
                     if outcome.detectedTXTEncoding == .gb18030 { detectedLegacy.insert("GB18030") }
@@ -238,6 +245,7 @@ enum LibrarySheet: String, Identifiable {
         }
         await refresh()
         if importedCount > 0 { importStatus = "已导入 \(importedCount) 本书" }
+        if duplicateCount > 0 { importStatus = [importStatus, "\(duplicateCount) 个重复文件，已保留原书"].compactMap { $0 }.joined(separator: " · ") }
         if !detectedLegacy.isEmpty { importStatus = (importStatus ?? "")+"（自动识别：\(detectedLegacy.sorted().joined(separator:"、"))）" }
         if Task.isCancelled { importStatus = "导入已取消，已完成的 \(importedCount) 本书已保留" }
         if !messages.isEmpty { errorMessage = messages.joined(separator: "\n") }

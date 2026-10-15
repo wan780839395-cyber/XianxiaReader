@@ -49,7 +49,7 @@ final class BookRemovalTests: XCTestCase {
             XCTAssertEqual(ids, [book.id]); XCTAssertEqual(saved, position); XCTAssertEqual(chapters, [chapter]); XCTAssertEqual(bookmarks, [bookmark])
         }
         let control = try SQLiteConnection(url: url)
-        XCTAssertEqual(try control.query("PRAGMA user_version;") { sqlite3_column_int($0, 0) }, [2])
+        XCTAssertEqual(try control.query("PRAGMA user_version;") { sqlite3_column_int($0, 0) }, [3])
         XCTAssertEqual(try control.query("PRAGMA integrity_check;") { String(cString: sqlite3_column_text($0, 0)) }, ["ok"])
     }
 

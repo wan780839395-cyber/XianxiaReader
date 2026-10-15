@@ -33,7 +33,7 @@ final class BookEditingTests: XCTestCase {
         XCTAssertEqual(summaries.first?.lastReadAt, position.updatedAt); XCTAssertEqual(summaries.first?.progression, 0.42)
         XCTAssertEqual(try Data(contentsOf: source), raw)
         let control = try SQLiteConnection(url: url)
-        XCTAssertEqual(try control.query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first, 2)
+        XCTAssertEqual(try control.query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first, 3)
     }
 
     func testInvalidTitlesRejectAndUnicodeOrQuotedTitlesRemainLiteral() async throws {

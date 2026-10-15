@@ -95,8 +95,10 @@ def check_schema() -> None:
         require(database.execute("PRAGMA user_version").fetchone()[0] == 1, "Missing schema version")
         database.executescript((migration.parent / "002_removed_books.sql").read_text(encoding="utf-8"))
         require(database.execute("PRAGMA user_version").fetchone()[0] == 2, "Missing recoverable removal migration")
+        database.executescript((migration.parent / "003_import_identities.sql").read_text(encoding="utf-8"))
+        require(database.execute("PRAGMA user_version").fetchone()[0] == 3, "Missing import identity migration")
         tables = {row[0] for row in database.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        require(tables == {"books", "chapters", "reading_positions", "bookmarks", "removed_books"}, "Unexpected MVP schema")
+        require(tables == {"books", "chapters", "reading_positions", "bookmarks", "removed_books", "book_import_identities"}, "Unexpected MVP schema")
         require(database.execute("PRAGMA integrity_check").fetchone()[0] == "ok", "Schema integrity failed")
         database.execute("INSERT INTO books VALUES ('book', ?, 0)", (b"{}",))
         database.execute("INSERT INTO chapters VALUES ('c1', 'book', 0, ?)", (b"{}",))

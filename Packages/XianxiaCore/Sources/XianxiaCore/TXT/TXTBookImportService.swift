@@ -3,6 +3,8 @@ import Foundation
 public struct TXTBookImportResult: Sendable {
     public let book: Book
     public let detectedEncoding: TXTEncoding
+    public let duplicate: DuplicateBook?
+    public let warnings: [String]
 }
 
 /// Coordinates a managed original, rebuildable index cache, then one Book+Chapter DB transaction.
@@ -25,13 +27,26 @@ public actor TXTBookImportService {
             let cache = try TXTIndexCache(storageRoot: files.root)
             let index = try await cache.prepare(source: staged.fileURL, bookID: id, encoding: encoding)
             try Task.checkCancellation()
+            let identity = try await files.importIdentity(staged: staged, normalizedSHA256: index.normalizedSHA256)
+            guard identity.sha256 == index.sourceSHA256 else { throw TXTNormalizationError.sourceChanged }
+            let deduplicator = BookImportDeduplicator(files: files, repository: repository)
+            let check = try await deduplicator.check(identity)
+            if let duplicate = check.duplicate {
+                try await files.discardImport(id: id)
+                return TXTBookImportResult(book: duplicate.book, detectedEncoding: index.encoding, duplicate: duplicate, warnings: check.warnings)
+            }
             let paths = try await files.finalize(staged, coverData: nil)
             let book = Book(id: id, title: source.deletingPathExtension().lastPathComponent,
                             format: .txt, filePath: paths.filePath, txtEncoding: encoding)
             try Task.checkCancellation()
-            try await repository.insert(book, chapters: index.chapters)
+            let commit = try await repository.commitImport(book, chapters: index.chapters, identity: identity)
+            if case .duplicate(let duplicate) = commit {
+                try await deduplicator.verify(duplicate, identity: identity)
+                try await files.discardImport(id: id)
+                return TXTBookImportResult(book: duplicate.book, detectedEncoding: index.encoding, duplicate: duplicate, warnings: check.warnings)
+            }
             // Cancellation after the DB transaction must never roll back a committed book.
-            return TXTBookImportResult(book:book,detectedEncoding:index.encoding)
+            return TXTBookImportResult(book:book,detectedEncoding:index.encoding,duplicate:nil,warnings:check.warnings)
         } catch {
             let original = error
             do { try await files.discardImport(id: id) }

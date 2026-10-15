@@ -12,6 +12,10 @@ final class TXTProductTests: XCTestCase {
         func moveToTrash(_ id: UUID) async throws { throw WriteFailure() }
         func restoreBook(_ id: UUID) async throws { throw WriteFailure() }
         func insert(_ book: Book, chapters: [Chapter]) async throws { throw WriteFailure() }
+        func importRecords() async throws -> [BookImportRecord] { try await actual.importRecords() }
+        func recordImportIdentity(_ identity: BookImportIdentity, for id: UUID) async throws { throw WriteFailure() }
+        func duplicate(for identity: BookImportIdentity) async throws -> DuplicateBook? { try await actual.duplicate(for: identity) }
+        func commitImport(_ book: Book, chapters: [Chapter], identity: BookImportIdentity) async throws -> BookImportCommit { throw WriteFailure() }
         func renameBook(_ id: UUID, title: String) async throws -> Book { throw WriteFailure() }
         func setCoverOverride(_ id: UUID, cover: BookCoverOverride?) async throws -> Book { throw WriteFailure() }
         func position(for id: UUID) async throws -> ReadingPosition? { try await actual.position(for: id) }

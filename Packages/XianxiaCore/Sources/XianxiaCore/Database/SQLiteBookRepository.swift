@@ -65,12 +65,80 @@ public actor SQLiteBookRepository: BookRepository {
             throw DatabaseError(message: "章节不属于当前书籍。")
         }
         try database.transaction {
+            try insertRecords(book, chapters: chapters)
+        }
+    }
+
+    private func insertRecords(_ book: Book, chapters: [Chapter]) throws {
             try database.run("INSERT INTO books(id, payload, imported_at) VALUES (?, ?, ?);",
                              [.text(book.id.uuidString), .blob(try encoder.encode(book)), .real(book.importedAt.timeIntervalSince1970)])
             for chapter in chapters {
                 try database.run("INSERT INTO chapters(id, book_id, ordinal, payload) VALUES (?, ?, ?, ?);",
                                  [.text(chapter.id), .text(book.id.uuidString), .integer(chapter.ordinal), .blob(try encoder.encode(chapter))])
             }
+    }
+
+    public func importRecords() throws -> [BookImportRecord] {
+        try database.query("""
+            SELECT b.payload, i.sha256, i.byte_count, i.normalized_sha256 FROM books b
+            LEFT JOIN book_import_identities i ON i.book_id = b.id ORDER BY b.id;
+            """) { row in
+            let book = try decoder.decode(Book.self, from: SQLiteConnection.data(row, column: 0))
+            let identity = sqlite3_column_text(row, 1).map { digest in
+                BookImportIdentity(format: book.format, sha256: String(cString: digest), byteCount: sqlite3_column_int64(row, 2),
+                    normalizedSHA256: sqlite3_column_text(row, 3).map { String(cString: $0) })
+            }
+            return BookImportRecord(book: book, identity: identity)
+        }
+    }
+
+    public func recordImportIdentity(_ identity: BookImportIdentity, for id: UUID) throws {
+        try identity.validate(); try Task.checkCancellation()
+        try database.transaction {
+            guard let format = try database.query("SELECT payload FROM books WHERE id = ?;", [.text(id.uuidString)], map: {
+                try decoder.decode(Book.self, from: SQLiteConnection.data($0, column: 0)).format
+            }).first, format == identity.format else { throw BookEditingError.bookNotFound }
+            try writeImportIdentity(identity, id: id)
+        }
+    }
+
+    private func writeImportIdentity(_ value: BookImportIdentity, id: UUID) throws {
+        // Fill only missing interpretation. A late legacy pass cannot replace a newer identity.
+        try database.run("""
+            INSERT INTO book_import_identities(book_id, format, sha256, byte_count, normalized_sha256) VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(book_id) DO UPDATE SET normalized_sha256 = excluded.normalized_sha256
+            WHERE book_import_identities.normalized_sha256 IS NULL
+              AND book_import_identities.sha256 = excluded.sha256
+              AND book_import_identities.byte_count = excluded.byte_count;
+            """, [.text(id.uuidString), .text(value.format.rawValue), .text(value.sha256), .integer(Int(value.byteCount)),
+                  value.normalizedSHA256.map(SQLValue.text) ?? .null])
+    }
+
+    public func duplicate(for identity: BookImportIdentity) throws -> DuplicateBook? {
+        try identity.validate()
+        guard identity.complete else { throw DatabaseError(message: "TXT 导入指纹缺少正文身份。") }
+        return try database.query("""
+            SELECT b.payload, r.book_id FROM book_import_identities i JOIN books b ON b.id = i.book_id
+            LEFT JOIN removed_books r ON r.book_id = b.id
+            WHERE i.format = ? AND i.sha256 = ? AND i.byte_count = ? AND COALESCE(i.normalized_sha256, '') = ?
+            ORDER BY (r.book_id IS NOT NULL), b.imported_at, b.id LIMIT 1;
+            """, [.text(identity.format.rawValue), .text(identity.sha256), .integer(Int(identity.byteCount)), .text(identity.normalizedSHA256 ?? "")]) {
+            DuplicateBook(book: try decoder.decode(Book.self, from: SQLiteConnection.data($0, column: 0)),
+                          isRemoved: sqlite3_column_type($0, 1) != SQLITE_NULL)
+        }.first
+    }
+
+    public func commitImport(_ book: Book, chapters: [Chapter], identity: BookImportIdentity) throws -> BookImportCommit {
+        try identity.validate(); try Task.checkCancellation()
+        guard identity.complete, identity.format == book.format, chapters.allSatisfy({ $0.bookID == book.id }) else {
+            throw DatabaseError(message: "书籍、章节与导入指纹不一致。")
+        }
+        // Recheck under BEGIN IMMEDIATE across independent connections, not just actors.
+        return try database.transaction {
+            if let existing = try duplicate(for: identity) { return .duplicate(existing) }
+            try insertRecords(book, chapters: chapters)
+            try writeImportIdentity(identity, id: book.id)
+            return .inserted
         }
     }
 

@@ -165,4 +165,38 @@ final class LibraryInteractionUITests: XCTestCase {
         XCTAssertFalse(app.buttons["library.cover.save"].isEnabled)
         app.buttons["library.cover.cancel"].tap(); count(3, in: app)
     }
+    @MainActor private func importTXTSample(in app: XCUIApplication) {
+        let menu = app.buttons["library.import"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 5))
+        let frame = menu.frame, screen = app.frame
+        XCTAssertGreaterThan(frame.width, 0); XCTAssertTrue(screen.contains(frame))
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: frame.midX - screen.minX, dy: frame.midY - screen.minY)).tap()
+        let sample = app.buttons.matching(NSPredicate(format: "identifier == 'library.import-txt-sample' OR label == '导入 TXT 样书'")).firstMatch
+        XCTAssertTrue(sample.waitForExistence(timeout: 5)); sample.tap()
+        XCTAssertTrue(app.buttons["library.duplicates.done"].waitForExistence(timeout: 15))
+    }
+
+    @MainActor func testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback() {
+        let app = start(layout: "grid", customCover: true); defer { app.terminate() }
+        count(3, in: app)
+        importTXTSample(in: app); count(3, in: app)
+        XCTAssertEqual(app.staticTexts["library.import.status"].label, "1 个重复文件，已保留原书")
+        XCTAssertTrue(book("云海问道", in: app).label.contains("42%"))
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.duplicate.open.'")).firstMatch.exists)
+        snapshot(app, "library-duplicate-existing-build14")
+        app.buttons["library.duplicates.done"].tap()
+        removeCloudFromGrid(in: app)
+        importTXTSample(in: app); count(2, in: app)
+        let restore = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.duplicate.restore.'")).firstMatch
+        XCTAssertTrue(restore.waitForExistence(timeout: 5)); snapshot(app, "library-duplicate-trash-build14")
+        restore.tap(); waitGone(restore)
+        XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 5)); count(3, in: app)
+        XCTAssertTrue(book("云海问道", in: app).label.contains("42%"))
+        snapshot(app, "library-duplicate-restored-build14")
+        app.buttons["library.duplicates.done"].tap()
+        app.terminate(); app.launch()
+        XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 20)); count(3, in: app)
+        XCTAssertTrue(book("云海问道", in: app).label.contains("42%"))
+    }
+
 }

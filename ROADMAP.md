@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+## Build14 重复导入候选
+
+源码与Windows检查完成，真实Swift编译/完整CI/原生图和录屏/Release待验证。用户已接受Build13基本自用；范围见ValidationLogs/m3-library-build13-user-feedback.json。设计LIBRARY_DUPLICATE_DESIGN.md；断点以HANDOFF为准。
+
 ## Build13 当前切片
 
 Build13更换封面切片通过[完整CI38694877516](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38694877516) / `708d02d0ecadcb3d22d653965aa94203bf4ab227`：Linux/macOS各100Core、iOS79/79（75集成+4真正XCUITest），failed/skipped0，test/export/summary/recording退出0、无签名设备Release13与真实IPA、各四长书Release探针。Windows407Swift语法新增0/54 pristine限制、17tooling通过；语法不是Swift编译。487运行/验证源Git blob hash、三份真实六pins锁与19旧包hash匹配。

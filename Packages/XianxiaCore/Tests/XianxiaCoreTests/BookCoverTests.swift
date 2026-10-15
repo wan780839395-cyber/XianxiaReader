@@ -48,7 +48,7 @@ final class BookCoverTests: XCTestCase {
         XCTAssertEqual(try Data(contentsOf: files.resolve(book.filePath)), original)
         XCTAssertEqual(try Data(contentsOf: files.resolve(try XCTUnwrap(book.coverPath))), defaultCover)
         let control = try SQLiteConnection(url: root.appendingPathComponent("library.sqlite"))
-        XCTAssertEqual(try control.query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first, 2)
+        XCTAssertEqual(try control.query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first, 3)
     }
     func testCoverCommitReadsLatestPayloadAndRenamePreservesNewOverride() async throws {
         let (root, _, first) = try context(), second = try SQLiteBookRepository(url: root.appendingPathComponent("library.sqlite"))

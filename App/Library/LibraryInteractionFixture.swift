@@ -28,7 +28,11 @@ private enum LibraryFixtureError: Error { case preferencesUnavailable }
             }
             let importer = TXTBookImportService(files: services.files, repository: services.repository)
             for (index, title) in ["云海问道", "山门旧事", "剑过青山"].enumerated() {
-                let book = try await importer.importBook(from: sample)
+                let fixtureSource = root.appendingPathComponent("\(title).txt")
+                // Distinct original texts: production duplicate handling must remain enabled.
+                var bytes = try Data(contentsOf: sample)
+                if index > 0 { bytes.append(Data("\n\(title)\n".utf8)) }; try bytes.write(to: fixtureSource)
+                let book = try await importer.importBook(from: fixtureSource)
                 _ = try await services.repository.renameBook(book.id, title: title)
                 if index == 0 {
                     // Diagnostic fixture progress only; UI gestures never open this fake locator.

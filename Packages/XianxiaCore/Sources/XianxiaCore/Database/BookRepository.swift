@@ -8,6 +8,10 @@ public protocol BookRepository: Sendable {
     func moveToTrash(_ id: UUID) async throws
     func restoreBook(_ id: UUID) async throws
     func insert(_ book: Book, chapters: [Chapter]) async throws
+    func importRecords() async throws -> [BookImportRecord]
+    func recordImportIdentity(_ identity: BookImportIdentity, for id: UUID) async throws
+    func duplicate(for identity: BookImportIdentity) async throws -> DuplicateBook?
+    func commitImport(_ book: Book, chapters: [Chapter], identity: BookImportIdentity) async throws -> BookImportCommit
     func renameBook(_ id: UUID, title: String) async throws -> Book
     func setCoverOverride(_ id: UUID, cover: BookCoverOverride?) async throws -> Book
     func position(for bookID: UUID) async throws -> ReadingPosition?

@@ -24,12 +24,13 @@ final class SQLiteConnection {
             try execute("PRAGMA foreign_keys = ON;")
             let version = try query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first ?? 0
             // Reject a newer schema before changing journal mode or applying any migration.
-            guard version <= 2 else { throw DatabaseError(message: "数据库版本 \(version) 高于此应用支持的版本，请更新应用。") }
+            guard version <= 3 else { throw DatabaseError(message: "数据库版本 \(version) 高于此应用支持的版本，请更新应用。") }
             try execute("PRAGMA journal_mode = WAL;")
             if version == 0 {
                 try execute(Self.migration("001_initial"))
             }
             if version < 2 { try execute(Self.migration("002_removed_books")) }
+            if version < 3 { try execute(Self.migration("003_import_identities")) }
         } catch {
             // A throwing initializer may otherwise retain the SQLite handle on retry.
             sqlite3_close(handle)

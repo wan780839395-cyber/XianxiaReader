@@ -40,11 +40,11 @@ import XianxiaCore
                     Menu {
                         Button("从文件导入 EPUB / TXT") { model.presentedSheet = .importFiles }
                         Button("导入内置样书") { model.startSamplesImport() }
-                        Button("导入 TXT 样书") { model.startTXTSamplesImport() }
+                        Button("导入 TXT 样书") { model.startTXTSamplesImport() }.accessibilityIdentifier("library.import-txt-sample")
                         Button("TXT 编码") { model.presentedSheet = .txtEncoding }
                         Text("版本 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "未知") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "未知"))")
                     } label: { Image(systemName: "plus") }
-                        .accessibilityLabel("导入书籍").disabled(model.isImporting || model.isManaging || model.isRenaming)
+                        .accessibilityLabel("导入书籍").accessibilityIdentifier("library.import").disabled(model.isImporting || model.isManaging || model.isRenaming)
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -56,6 +56,10 @@ import XianxiaCore
                     }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
                 } else if let status = model.importStatus {
                     Text(status).font(.footnote).padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                        .accessibilityIdentifier("library.import.status")
+                }
+                if !model.duplicateBooks.isEmpty, !model.isImporting {
+                    duplicateFeedback
                 }
                 if let error = model.errorMessage, !model.isImporting {
                     HStack(alignment: .top, spacing: 12) {
@@ -84,6 +88,40 @@ import XianxiaCore
             }
             .task { await model.refresh() }
         }
+    }
+
+    private var duplicateFeedback: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Label("已保留已有书籍", systemImage: "checkmark.circle").font(.subheadline.weight(.medium))
+                Spacer()
+                Button("完成") { model.dismissDuplicates() }.font(.subheadline)
+                    .accessibilityIdentifier("library.duplicates.done")
+            }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(model.duplicateBooks) { duplicate in
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(duplicate.book.title).font(.subheadline).lineLimit(2)
+                                Text(model.removedBooks.contains(where: { $0.id == duplicate.id }) ? "在回收站中，恢复后可继续阅读" : "已在书架，阅读位置与封面已保留")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                            Spacer(minLength: 0)
+                            if model.removedBooks.contains(where: { $0.id == duplicate.id }) {
+                                Button("恢复") { Task { await model.restoreBook(duplicate.id) } }.buttonStyle(.bordered)
+                                    .disabled(model.isManaging).accessibilityIdentifier("library.duplicate.restore.\(duplicate.id)")
+                            } else {
+                                Button("查看") { model.query = ""; selectedBook = model.books.first(where: { $0.id == duplicate.id })?.book }
+                                    .buttonStyle(.bordered).disabled(model.isManaging)
+                                    .accessibilityIdentifier("library.duplicate.open.\(duplicate.id)")
+                            }
+                        }
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }.frame(maxHeight: 136)
+        }.padding(16).background(.regularMaterial)
+            .accessibilityIdentifier("library.duplicates")
     }
 
     private var shelfContent: some View {
