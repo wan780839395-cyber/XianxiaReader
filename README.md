@@ -1,5 +1,7 @@
 # XianxiaReader · 仙侠阅读
 
+当前Build15：阅读菜单→阅读设置，提供五主题、内置通用字体/字号、基础中文排版与全局保存；完整自动门槛及原生设置图/视频复核完成，巨段TXT截图下方留白原因未确认，满页/手机待测。安装包`build/XianxiaReader-Appearance-Build15.ipa`，带原创样本测试包`build/XianxiaReader-Appearance-Build15-TestKit.zip`。正常覆盖更新保留书库；M4整体仍未完。详见PROJECT_STATUS.md、HANDOFF.md和Documentation/READING_APPEARANCE_DESIGN.md。以下旧切片保留历史。
+
 ## 当前：Build14 / M3重复导入
 
 同一TXT/EPUB原件再次导入保留已有书籍、进度、书签和自选封面，回收站重复项可显式恢复；同名不同内容继续独立保存。书库已具备网格/列表、筛选排序、改名、左滑确认移出、回收站恢复和选图更换封面。[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38703788390)各110 Core、84/84 iOS与无签名设备Release通过，原生截图/视频复核完成。Build14基本自用已确认，M3按自用门槛收口；下一阶段M4主题/字体/正文排版尚未开始。安装包与恢复见[PROJECT_STATUS](PROJECT_STATUS.md)、[HANDOFF](HANDOFF.md)，取舍见[重复导入设计](Documentation/LIBRARY_DUPLICATE_DESIGN.md)。

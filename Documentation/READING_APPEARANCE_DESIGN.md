@@ -1,6 +1,6 @@
 # M4 阅读外观与排版：第一片
 
-状态：2026-10-15 源码实现中，尚未经 Apple 编译与原生验证。M3 已按 Build14 用户基本自用反馈收口；本片不代表完整 M4 完成。
+状态：2026-10-15 Build15 第一片完整自动门槛及原生设置图/视频复核完成；巨段TXT满页、手机待测。M3 已按 Build14 用户基本自用反馈收口；本片不代表完整 M4 完成。
 
 ## 范围与优先级
 
@@ -43,3 +43,5 @@ TXT现场scrollY612、段落top约-599、offset577/586/597和savedAnchor accepte
 本轮额外参考同tag官方https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift；现有连续扩展的精确DOM路径是成熟已过回归的基础，不引入新排版引擎。
 
 第四轮38718644990：TXT已通过非零UTF16、错误为空、两字缩进、实际CSS放大/关闭缩进、3px reflow，并生成真实截图；仅reopen过程中探针读未加载DOM直接TypeError，补空节点返回not-ready，保留3px。分页原始附件offset1647来自旧视口20%高度，重排后顶行约1402；180%字号可使较靠下文字移出页，旧测试目标不等于顶部阅读锚点。改取首可见行非零字符，并验证实际字号至少原值1.7倍，仍检验该字符reflow/reopen可见，不以百分比代替。精确DOM分页路径仍保留，普通搜索不变。Adapter在采样后、提交reflow前立即发完整Locator，避免关闭/保存恰逢重排时读旧的百分比回调。前失败原件与测试目标纠正明确分开，不追认测试错误为产品根因。
+
+最终门槛与包hash见M4_APPEARANCE_VALIDATION_REPORT.json，真正编译源 a6251ea23e6e126acd27f16b3fe4886fed74dd77 / CI38722474043。不将源码合入、自动检查、模拟器、普通设备、TrollStore验收合为一种结果。

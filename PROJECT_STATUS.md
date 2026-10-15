@@ -8,14 +8,26 @@
 | M1 基础 EPUB | 完整自动门槛通过，用户确认连续阅读与重开位置可用；可继续既定路线 | 未逐项确认的原书图像、其他设备/旋转/性能继续单独记录 |
 | M2 TXT | Build9 ANSI/范围缓存各80Core/58iOS/Release通过；Build8手机基础确认 | Build9自用反馈正常；个别编码/其他设备矩阵单列 |
 | M3 完整书库 | 完整自动门槛及Build14基本自用通过 | 自用阶段收口，其他设备与实测性能单列 |
-| M4 设置与主题 | 第一片实现、完整CI验证中 | 五主题/基础排版/全局保存；字体导入/亮度/音量键后续 |
+| M4 设置与主题 | Build15自动门槛/原生设置复核完成；巨段TXT满页、手机待测 | 五主题/基础排版/全局保存；字体导入等后续，整体未完 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
 
-## M4 第一片当前断点
+## Build15 当前切片
 
-用户“继续”后进入主题/排版/偏好保存。当前候选62f0035eb7c4566bbe3b3419bff3b3db38b29223 / CI38718644990验证中，源码不能提前称验收。Windows417语法（新增0/上游限制54）与17Python通过；新增5Core/5iOS集成/1UI，预期各115Core/90iOS完整回归。设计READING_APPEARANCE_DESIGN.md。初始706维护文件及inventory共707项ZIP、23旧包、原HEAD/index均保留。
+收尾已保存实际Build15 IPA/TestKit、交接和验证证据；498源码blob/25包/两份恢复备份/732维护文件清单与原HEAD/index/M2/M3已核。最终编译源a6251ea2与其后纯文档分支tip分别记录，详见HANDOFF.md及build/ci/38722474043/final-preservation-check.json。当前无遗留本轮构建/下载任务。
 
-首候选14444c58/CI38711095224由Agent主动取消：Linux115Core和四长书探针通过，Apple仍在XcodeGen依赖编译；发现连续视图动态CSS派发遗漏后补齐并更新既有Vendor单文件provenance。不是编译/测试失败；完整取消日志与原因单列，尚无Build15包。第二轮38711610037各115Core/四长书通过、iOS87/89（2case失败，6UI与新EPUB五主题通过），严格test65阻止Release；完整失败日志保留。旧boundary about:blank与新TXT初窗非零锚点超时原因未确认，旧断言/超时保持；TXT改用既有第二窗口流程并增加诊断，连同分页reflow草稿完整重跑。无Build15包。第三轮773df424/38714955473各115Core与四探针、旧回归/6UI/连续EPUB主题过，但2新增位置回归失败（88/90），无Release/IPA。根据官方3.11源码与TXT实际DOM诊断，补自标记精确DOM的分页定位和emoji上下文UTF16边界，仍同样本/原门槛，第四轮待验证。下方M3为已验收历史。
+Build15阅读主题/基础排版通过[完整CI38722474043](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38722474043) / `a6251ea23e6e126acd27f16b3fe4886fed74dd77`：Linux/macOS各115Core、iOS90/90（84集成+6真正XCUITest），failed/skipped0，test/export/summary/recording退出0，无签名iPhoneOS arm64 Release15及真实IPA、各四长TXT Release探针。Windows417Swift语法新增0/54 pristine限制、17Python tooling通过；语法不是Swift编译。498运行/验证源Git blob hash、三份真实六pins锁核过。编译警告/错误与系统runtime消息分开，见专门诊断。
+
+阅读菜单→阅读设置：日间/暖白/纸色/深灰/OLED黑五主题，深色正文#C6CCC5；默认/通用衬线/无衬线字体、80–200%字号、行高、段距、左右留白、两字缩进及对齐。默认暖白110%/1.75行高/0.8rem段距/两字缩进。全局Preferences/reading-v1.json在存储actor上有界读取/原子保存，打开前恢复，连续编辑顺序保存，错误可见/可重试；坏/未来版本设置原件保留。“沿用原书排版”时高级排版停用，固定布局不提供正文重排。
+
+Adapter走3.11 Preferences与现有DOM锚点保护；连续当前/已加载/指定资源脚本派发已补齐（既有Vendor扩展及provenance记录），并以真实字号/颜色/CJK缩进和非零UTF16/byte定位回归。原书/资源ID/schema3/六pins/完整Locator/NSFileCoordinator合同保持。原生设置与实际TXT/EPUB截图、成功XCTest视频及连续帧已复核；不等价手机FPS、耗电、完整书籍/Provider矩阵或普通签名设备验收。
+
+明确未验收：巨段TXT单个WKWebView截图只绘顶部少量文字、下方大片留白。实际DOM/CSS、非零位置及3px重排/重开测试通过；截图时序/层级裁切或真实满页缺陷尚未确认。须优先在手机或原生整窗检查调整字号后的满页正文与重开；确认前不能写成完整TXT排版验收，若复现留白则先修复再扩大M4范围。原生设置弹出22帧、纸色转深灰22帧与62.49秒录屏已看；20fps时间采样可有VFR重复帧，无插帧，不是手机FPS。
+
+安装包`build/XianxiaReader-Appearance-Build15.ipa` / SHA256 `e65e5b349de4943ec05dc5651f7e2668de3141a73e769c3806dc38b66897a553`；测试ZIP`build/XianxiaReader-Appearance-Build15-TestKit.zip` / SHA256 `6967660ad5199a121b49e53fa0055edea47698a4d929da7ea6ffc195039c0fd8`。新旧共25包逐hash保留，ZIP内部IPA/11原创样本/封面样本/CRC核验。正常覆盖更新保留书库，+菜单确认0.0.1 (15)。M4第一片自动门槛通过，手机待测，M4整体未完成；字体文件导入、单书覆盖、独立四边距、字重/字距、亮度和音量键后续，M5真机性能单列。设计READING_APPEARANCE_DESIGN.md，报告M4_APPEARANCE_VALIDATION_REPORT.json。
+
+首候选14444c58/CI38711095224为Agent主动取消：Linux115Core/四探针通过，Apple停在XcodeGen依赖编译，macOSCore/iOS/Release未开始。因复核发现连续动态CSS遗漏而取消，不是源码失败；完整取消/阶段/日志保留于m4-appearance-build15-agent-cancel.json。第二候选587ff09/CI38711610037各115Core/四探针通过、iOS87/89，旧boundary初始about:blank与新增TXT首窗非零UTF16等待失败，根因当轮未确认；6UI与新EPUB五主题通过，严格test65阻止Release，无IPA。完整失败与候选原件second-candidate-failure.json/second-candidate.json保留。新TXT改用既有第二窗口流程并补DOM诊断，仍600点/>100UTF16/3px；旧断言/超时未改。分页与快速连发设置回归随后补齐，新候选完整重跑；最终通过不能追认早期失败或宣称已证明空白页根因。 第三候选773df424/CI38714955473各115Core/四探针与全部旧回归、6UI、连续EPUB主题通过，新增分页和TXT位置失败（88/90），test65阻止Release。分页按官方3.11及配套JS确认无domRange路径，改为仅自标记LTR分页按精确DOM点选页；TXT实际scrollY612/offset577等accepted但未保存，精确byte65536样本复现旧64单位上下文拆emoji代理对，新增有效Unicode边界并保留caret身份。第三轮完整诊断、校正分析与候选原件均保留；最终结论须以最终成功原生回归为准。 第四候选62f0035e/CI38718644990仍88/90，但TXT已通过非零保存、无引擎错误、真实CSS与3px reflow，仅reopen探针提前访问缺失DOM抛TypeError；第五轮等节点就绪，3px保留。分页测试原1647在旧页20%高度，180%字体后不保证仍在当前页，改测顶部可见非零字，并验证实际字号>=原1.7倍。Adapter采样后即发完整Locator，防重排期间保存读旧百分比。完整失败/纠正依据和首四轮交接归档HANDOFF_M4_FIRST_FOUR_RUNS_2026-10-15.md保留；没有放宽旧回归。
+
+下方Build14及更早内容为历史记录，最新状态以上述Build15为准。
 
 ## 2026-10-15 M3 自用验收收口
 

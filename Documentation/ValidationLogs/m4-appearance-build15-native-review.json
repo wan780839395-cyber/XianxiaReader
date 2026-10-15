@@ -1,0 +1,370 @@
+{
+  "run": 38722474043,
+  "sourceRevision": "a6251ea23e6e126acd27f16b3fe4886fed74dd77",
+  "images": [
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9D9C3D2A-536A-49B6-9584-6BBF450774D4.png",
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "observation": "Actual EPUB page after five-theme reflow test: black surface, soft text and independent paragraph/title structure. Test separately verifies same DOM anchor and reopen."
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/148B99CB-5D82-41C9-BFFC-086391D129D4.png",
+      "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+      "inspected": true,
+      "observation": "Actual paged EPUB after rapid typography then theme edits and reopen: soft text on dark surface, reflowed paragraphs remain readable. The same nonzero text point stays in the visible page."
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5033DC4B-B479-448D-84E2-CD3B5269D075.png",
+      "sha256": "0a3c37bab73dff1b49899ce90d921c52f1080116840762b03b42073425ee5578",
+      "inspected": true,
+      "observation": "Actual WKWebView snapshot after larger TXT font/line height, margins and indent-off shows readable emoji/combining text at the top with a large blank lower area. Native DOM/CSS/nonzero-anchor/3px-reflow/reopen tests passed; this isolated snapshot does not establish full-window page fill. Capture timing/hierarchy clipping versus a real fill defect remains unconfirmed and needs device or full-window verification."
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0927F7C4-998C-42F9-9348-41D2F5986988.png",
+      "sha256": "ee4f48aa9fd76da2a617915fdfb086643671dc71bce08d5211a7709fefd9b8d8",
+      "inspected": true,
+      "observation": "Actual TXT page uses black reading background and soft text, retaining usable native reader menu."
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/00F5A875-8E1D-4A4A-8407-3A69C0EE5AD6.png",
+      "sha256": "b7acfe6ee2c385d721b799bbaf5a288700e46f102f23421ceea9246aa69311bb",
+      "inspected": true,
+      "observation": "Black preview and soft light text are distinct from the native dark settings surface. Selected OLED tile remains visible."
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/50FF88F8-BEE2-45BC-8F40-434558A40AD7.png",
+      "sha256": "9215af3fc5bbc4ca4e03b8cc09f7e72590129244ede5a9fb7e0a1ef9a3f8404a",
+      "inspected": true,
+      "observation": "Actual TXT page has charcoal background and soft text, matching dark native reader menu and status area."
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/10666FD2-6D73-4754-8E99-797A76D25EB2.png",
+      "sha256": "ae4f482fe61ff347dd27d8369ab1b65054cd37fd7a751bdf4d1b49c07bf31172",
+      "inspected": true,
+      "observation": "Dark native sheet and soft text retain theme tile selection and readable settings; dark sample is distinct from the controls surface."
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2E2C05E7-8F2F-4333-A6F6-FBC2AFE4E265.png",
+      "sha256": "1dfb396cc5eb1da8ba75fd97171d3b5a1b264e4d841387200e52a56936596e72",
+      "inspected": true,
+      "observation": "Paper preview and 130 percent setting are readable. The sample card wraps naturally and the controls remain separated."
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3D1DC721-3DD8-4C92-848C-30AC9B9C6EBF.png",
+      "sha256": "08f3f3f90329bccc097afcef8ab394213c0a6b4114c54f2f4d4f2d248eaf60b1",
+      "inspected": true,
+      "observation": "Native settings sheet: five theme tiles, green selected outline, warm preview card, compact native font segmented control and aligned adjustments. All are within a scrollable surface."
+    }
+  ],
+  "videos": [
+    {
+      "path": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BA9E58B5-4706-4C91-950E-0C4EC7E4EA8B.mp4",
+      "bytes": 13881554,
+      "sha256": "435f861a20067b8d17d4c226a24dfef5e1ca2a3ec44f395f692f58a95152119f",
+      "inspected": true
+    }
+  ],
+  "scope": "Actual native iOS reader settings and rendered TXT/EPUB; no phone-FPS claim.",
+  "recordedAtUTC": "2026-10-15T11:23:12.760753+00:00",
+  "focus": {
+    "run": 38722474043,
+    "sourceRevision": "a6251ea23e6e126acd27f16b3fe4886fed74dd77",
+    "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+    "video": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BA9E58B5-4706-4C91-950E-0C4EC7E4EA8B.mp4",
+    "videoSha256": "435f861a20067b8d17d4c226a24dfef5e1ca2a3ec44f395f692f58a95152119f",
+    "startSeconds": 38.9,
+    "durationSeconds": 1.1,
+    "sampleFPS": 20,
+    "command": [
+      "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38722474043\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\BA9E58B5-4706-4C91-950E-0C4EC7E4EA8B.mp4",
+      "-vf",
+      "fps=20,select='gte(t,38.9)*lt(t,40.0)',scale=600:-2",
+      "-fps_mode",
+      "passthrough",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38722474043\\VideoReview\\appearance\\theme-transition\\frame-%03d.png"
+    ],
+    "interpolated": false,
+    "inspected": true,
+    "frames": [
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-001.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 38.9
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-002.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 38.949999999999996
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-003.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.0
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-004.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.05
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-005.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.1
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-006.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.15
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-007.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.199999999999996
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-008.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.25
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-009.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.3
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-010.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.35
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-011.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.4
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-012.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.449999999999996
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-013.png",
+        "sha256": "26e3610073f3a6288d84010d38e8d9e9c5fa375acabd1dfb5cb13f4dddeb0580",
+        "nominalVideoSeconds": 39.5
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-014.png",
+        "sha256": "0607687d7c36e3cf8c64ca9b2d364075d33b372ae1735d3fc02774bc163cfc75",
+        "nominalVideoSeconds": 39.55
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-015.png",
+        "sha256": "f3d1d471c28e1a1f554b93264d0aae0d4ca9b19fbc5ac0ec262b7306b0b2137b",
+        "nominalVideoSeconds": 39.6
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-016.png",
+        "sha256": "c849e62f2e75944d5ffa86437459ee0cf15af3b846469a271e875f96b1184757",
+        "nominalVideoSeconds": 39.65
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-017.png",
+        "sha256": "1a8864e9bac2e2c7d5fa4db3143450786ff758dee85169c33e74147ba9cae593",
+        "nominalVideoSeconds": 39.699999999999996
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-018.png",
+        "sha256": "2b76a552fa96a8cc3cfc826f54c6cc7192678f4f9ff40766fc533421af75b5e5",
+        "nominalVideoSeconds": 39.75
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-019.png",
+        "sha256": "602d67b73eba67019f02b7a73477d593fb4be93dfaf9cc9a2a8708871eb3c080",
+        "nominalVideoSeconds": 39.8
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-020.png",
+        "sha256": "4cee610456272f52e53ef86a49020a1b7b8f5d21cb203cba27d8f8dd5863c724",
+        "nominalVideoSeconds": 39.85
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-021.png",
+        "sha256": "66487a5caa4bbedd83e7644a91dba76a9d89302487a7fe95dd088f1e4399ebab",
+        "nominalVideoSeconds": 39.9
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/theme-transition/frame-022.png",
+        "sha256": "66487a5caa4bbedd83e7644a91dba76a9d89302487a7fe95dd088f1e4399ebab",
+        "nominalVideoSeconds": 39.949999999999996
+      }
+    ],
+    "scope": "Consecutive timeline samples from actual successful native XCTest recording. No interpolation or phone-FPS claim; static/VFR recordings may repeat frames."
+  },
+  "sheetPresentation": {
+    "run": 38722474043,
+    "sourceRevision": "a6251ea23e6e126acd27f16b3fe4886fed74dd77",
+    "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+    "video": "build/ci/38722474043/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BA9E58B5-4706-4C91-950E-0C4EC7E4EA8B.mp4",
+    "videoSha256": "435f861a20067b8d17d4c226a24dfef5e1ca2a3ec44f395f692f58a95152119f",
+    "startSeconds": 23.4,
+    "durationSeconds": 1.1,
+    "sampleFPS": 20,
+    "command": [
+      "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38722474043\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\BA9E58B5-4706-4C91-950E-0C4EC7E4EA8B.mp4",
+      "-vf",
+      "fps=20,select='gte(t,23.4)*lt(t,24.5)',scale=600:-2",
+      "-fps_mode",
+      "passthrough",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38722474043\\VideoReview\\appearance\\sheet-presentation\\frame-%03d.png"
+    ],
+    "interpolated": false,
+    "inspected": true,
+    "frames": [
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-001.png",
+        "sha256": "2dc83a3f49e87170ac2cf5bd7cac2a628995db46e1781db6b05d651aec11b137",
+        "nominalVideoSeconds": 23.4
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-002.png",
+        "sha256": "41fd615df8ae0d698188e65dbb77f604118742860e805dcba761d20a9cc78009",
+        "nominalVideoSeconds": 23.45
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-003.png",
+        "sha256": "32b98ae3fa95db7d59dddf45a908eb49a7dd94242faa1ed5dddb9a252e150cfe",
+        "nominalVideoSeconds": 23.5
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-004.png",
+        "sha256": "bdfd92076dbb9976cc13cdd60f5f752484f34f04b399c1ed39a2a3099dcbe20a",
+        "nominalVideoSeconds": 23.549999999999997
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-005.png",
+        "sha256": "d74b9f10425a6b7490099433ffa7ea6389f77ad4891c098836c9f16210e51e48",
+        "nominalVideoSeconds": 23.599999999999998
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-006.png",
+        "sha256": "65d966e6d6543cf7854fb2b6dccaa3a958033d84e36fa365824fdbc104c3aa85",
+        "nominalVideoSeconds": 23.65
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-007.png",
+        "sha256": "3050c8179f7c429de2299570c4790b9fa30516f498c40fb7a96ed92b22b7d112",
+        "nominalVideoSeconds": 23.7
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-008.png",
+        "sha256": "3050c8179f7c429de2299570c4790b9fa30516f498c40fb7a96ed92b22b7d112",
+        "nominalVideoSeconds": 23.75
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-009.png",
+        "sha256": "08106d6926688b5474984878e1f459d1db0d9fa5371feb39f5ee0769253b3b70",
+        "nominalVideoSeconds": 23.799999999999997
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-010.png",
+        "sha256": "5b92c0668ae6ac9e10c558b8979080d9fc3c39b2cb5305b77261df777271fb80",
+        "nominalVideoSeconds": 23.849999999999998
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-011.png",
+        "sha256": "9ce241b1b744ca8f944982c62cc6550e4739bce230b11ea0148751fc9815f51e",
+        "nominalVideoSeconds": 23.9
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-012.png",
+        "sha256": "9ce241b1b744ca8f944982c62cc6550e4739bce230b11ea0148751fc9815f51e",
+        "nominalVideoSeconds": 23.95
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-013.png",
+        "sha256": "ffc78281b5fd272be0ae5b0efe6452a34ccc247bcff20c23ae4dd4f6211944e8",
+        "nominalVideoSeconds": 24.0
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-014.png",
+        "sha256": "ffc78281b5fd272be0ae5b0efe6452a34ccc247bcff20c23ae4dd4f6211944e8",
+        "nominalVideoSeconds": 24.049999999999997
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-015.png",
+        "sha256": "49ff05726a7b6f18071be553d4a4f67abc48fc55c644659b7436c757df1f9ac8",
+        "nominalVideoSeconds": 24.099999999999998
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-016.png",
+        "sha256": "b8b3effdc6c73aecfc2aa489d6874976f508ae7256120c457b279adedf063737",
+        "nominalVideoSeconds": 24.15
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-017.png",
+        "sha256": "f8bfb0a2790d9e6bdcaf91ba4348f086dac5f0605428ab705b4ef0a70768a34e",
+        "nominalVideoSeconds": 24.2
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-018.png",
+        "sha256": "5ed5c07e293067f30f7dea67822b619ab619c40821c3d378903b67632fb34015",
+        "nominalVideoSeconds": 24.25
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-019.png",
+        "sha256": "5ed5c07e293067f30f7dea67822b619ab619c40821c3d378903b67632fb34015",
+        "nominalVideoSeconds": 24.299999999999997
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-020.png",
+        "sha256": "5ed5c07e293067f30f7dea67822b619ab619c40821c3d378903b67632fb34015",
+        "nominalVideoSeconds": 24.349999999999998
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-021.png",
+        "sha256": "5ed5c07e293067f30f7dea67822b619ab619c40821c3d378903b67632fb34015",
+        "nominalVideoSeconds": 24.4
+      },
+      {
+        "path": "build/ci/38722474043/VideoReview/appearance/sheet-presentation/frame-022.png",
+        "sha256": "5ed5c07e293067f30f7dea67822b619ab619c40821c3d378903b67632fb34015",
+        "nominalVideoSeconds": 24.45
+      }
+    ],
+    "scope": "All22 consecutive timeline samples reviewed as a contact sheet: native settings presentation rises from reader to large sheet and settles. Not phone FPS."
+  },
+  "imagesInspected": true,
+  "videoInspected": true,
+  "phoneAccepted": false,
+  "ordinarySignedDeviceAccepted": false,
+  "phoneFPSMeasured": false,
+  "motionObservation": "Successful native settings recording and all 22 consecutive samples reviewed for sheet presentation, plus all 22 paper-to-charcoal samples including the change around 39.55 seconds. Full recording overview checks typography edits, relaunch persistence and return to actual reader. The separate 39.7-second theme-change selection is already steady charcoal, so it is not used as evidence of a moving transition. No interpolation or physical-device FPS, energy or Provider acceptance."
+}

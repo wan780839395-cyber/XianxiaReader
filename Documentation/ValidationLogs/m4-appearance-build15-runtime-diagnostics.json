@@ -1,0 +1,14 @@
+{
+  "run": 38722474043,
+  "sourceRevision": "a6251ea23e6e126acd27f16b3fe4886fed74dd77",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 46
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "System runtime message counts are reported separately from source compilation/test gates. Passing tests do not imply an entirely clean runtime log."
+}
