@@ -1,0 +1,232 @@
+{
+  "recordedAtUTC": "2026-10-15T07:19:48.487762+00:00",
+  "run": 38694877516,
+  "sourceRevision": "708d02d0ecadcb3d22d653965aa94203bf4ab227",
+  "images": [
+    {
+      "name": "library-cover-default-preview-build13",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8E8F252A-4FA1-46D5-A576-5C5BDB6D2246.png",
+      "sha256": "9c89f7dfcaaa39eaf38131ba1d07394cdbb5a55e1c995d9e47860e0c233ed100",
+      "inspected": true,
+      "observation": "Restoring default previews the existing green title cover; default status and active Save remain readable."
+    },
+    {
+      "name": "library-cover-saved-build13",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/133F36E5-835F-4860-995C-042648B4AA05.png",
+      "sha256": "55f2fc0a51e59e184c5494156c6da2fa000b713f7e564a1afeeace832add262a",
+      "inspected": true,
+      "observation": "Saved shelf crop matches the prepared preview; title/metadata remain aligned and cover-updated status is visible."
+    },
+    {
+      "name": "library-cover-preview-build13",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/313EFC95-3E37-437A-A144-67CBBA81DA4C.png",
+      "sha256": "147cb47569b13c306f420658959016f6717ebb86d9f2d69cbedd34bd2940d935",
+      "inspected": true,
+      "observation": "Prepared two-colour decoder fixture is centre-cropped to 2:3; pending-save status and enabled Save are clear."
+    },
+    {
+      "name": "library-cover-error-build13",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5C313EBD-755C-4FFC-ABBB-BE55E8647E22.png",
+      "sha256": "ff0150a55f4f5c590d20a8ef70c513998e96fff420d0d0d82a4292c8e6953f41",
+      "inspected": true,
+      "observation": "Native error stays in the editor, readable below the actions; default cover remains and Save is disabled."
+    },
+    {
+      "name": "library-cover-reset-shelf-build13",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/98168826-D34C-4EE7-A9C3-7CE8145F3A74.png",
+      "sha256": "ed9468ed851de6a2b4a83faf76d6f7e0201e1ed8b497433fb2c2296b9ba86bea",
+      "inspected": true,
+      "observation": "Real default save returns to a three-book grid with Cloud book first and original 42-percent progress."
+    },
+    {
+      "name": "library-cover-reset-preview-build13",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/06C4086D-F2DB-48C2-9EF6-207704D943F6.png",
+      "sha256": "561b41a97f32c95967832e86eaac6f92fb3742727ca8bcc995d3d0f6681ef435",
+      "inspected": true,
+      "observation": "Real tap previews the default title cover before saving, preserving the same editor spacing and controls."
+    },
+    {
+      "name": "library-cover-native-files-build13",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E742C203-4DBA-49E8-91C4-9A7D98016DAB.png",
+      "sha256": "2501e584b9bdc4d161ce224912827f832d372e500412f87ceeb473227f527679",
+      "inspected": true,
+      "observation": "Real system Files picker is open with a visible recent-documents title and Cancel action."
+    },
+    {
+      "name": "library-cover-custom-build13",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2450930E-EA5B-4333-BD01-644BD9239702.png",
+      "sha256": "ef1e3de62dde668da7806e66dee9dcf94ef7d6879eec0f4ace77c70bbc32b207",
+      "inspected": true,
+      "observation": "Real UI case displays the original project-icon cover in the green/neutral native editor; unchanged Save is disabled."
+    }
+  ],
+  "videos": [
+    {
+      "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D9C7CDA-27E0-44E9-BC26-CB24F1E60532.mp4",
+      "bytes": 29634498,
+      "sha256": "cdd458ecd72f30f000f193947bf8ec540f3077e7fa3f4e79679041c3a6ee8957",
+      "inspected": true
+    }
+  ],
+  "scope": "Native iOS cover views and real UI test recording. No physical-device FPS claim.",
+  "focus": {
+    "run": 38694877516,
+    "sourceRevision": "708d02d0ecadcb3d22d653965aa94203bf4ab227",
+    "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+    "video": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D9C7CDA-27E0-44E9-BC26-CB24F1E60532.mp4",
+    "videoSha256": "cdd458ecd72f30f000f193947bf8ec540f3077e7fa3f4e79679041c3a6ee8957",
+    "startSeconds": 27.7,
+    "durationSeconds": 0.5,
+    "sampleFPS": 20,
+    "command": [
+      "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38694877516\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\8D9C7CDA-27E0-44E9-BC26-CB24F1E60532.mp4",
+      "-vf",
+      "fps=20,select='gte(t,27.7)*lt(t,28.2)',scale=600:-2",
+      "-fps_mode",
+      "passthrough",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38694877516\\VideoReview\\cover\\editor-dismiss\\frame-%03d.png"
+    ],
+    "interpolated": false,
+    "inspected": true,
+    "frames": [
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-001.png",
+        "sha256": "048a9459ed010e73ae08464c5478c08b5e20b7d21ec591ced34d777925e8312f",
+        "nominalVideoSeconds": 27.7
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-002.png",
+        "sha256": "048a9459ed010e73ae08464c5478c08b5e20b7d21ec591ced34d777925e8312f",
+        "nominalVideoSeconds": 27.75
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-003.png",
+        "sha256": "c4ff8f80211c29bff29242a4eebd7dcd64ac976ce849e992d72e2e1166e43877",
+        "nominalVideoSeconds": 27.8
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-004.png",
+        "sha256": "c4ff8f80211c29bff29242a4eebd7dcd64ac976ce849e992d72e2e1166e43877",
+        "nominalVideoSeconds": 27.849999999999998
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-005.png",
+        "sha256": "d9cf5103442e4b3272c171b49f4a5b970f39cc7621b136a87e392e735843fa97",
+        "nominalVideoSeconds": 27.9
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-006.png",
+        "sha256": "d9cf5103442e4b3272c171b49f4a5b970f39cc7621b136a87e392e735843fa97",
+        "nominalVideoSeconds": 27.95
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-007.png",
+        "sha256": "07d30406f9d71aee710d0e28e1ffec6418c5276c1d1455d1f7cc433cc3d8a66d",
+        "nominalVideoSeconds": 28.0
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-008.png",
+        "sha256": "0c03f08ffb782a12d66d29a58f8a7a3c11637addf4f18529ebb09588b8c4cce1",
+        "nominalVideoSeconds": 28.05
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-009.png",
+        "sha256": "c89f32691720753ef6cacf8e059268224de4ed14a136108d83ca82140f2aa958",
+        "nominalVideoSeconds": 28.099999999999998
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss/frame-010.png",
+        "sha256": "8f1bc7799c287da3fa827edbe08ba0afdac41260bda5d273718ea88777b36949",
+        "nominalVideoSeconds": 28.15
+      }
+    ],
+    "scope": "Decoded continuous samples of actual native editor dismissal/return. No interpolation, phone FPS or isolated cover-fade timing claim."
+  },
+  "focusTail": {
+    "run": 38694877516,
+    "sourceRevision": "708d02d0ecadcb3d22d653965aa94203bf4ab227",
+    "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+    "video": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D9C7CDA-27E0-44E9-BC26-CB24F1E60532.mp4",
+    "videoSha256": "cdd458ecd72f30f000f193947bf8ec540f3077e7fa3f4e79679041c3a6ee8957",
+    "startSeconds": 28.2,
+    "durationSeconds": 0.4,
+    "sampleFPS": 20,
+    "command": [
+      "D:\\ai项目\\XianxiaReader\\.cache\\recovery\\video-deps\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38694877516\\artifacts\\XianxiaReader-build-diagnostics\\build\\ReaderSnapshots\\8D9C7CDA-27E0-44E9-BC26-CB24F1E60532.mp4",
+      "-vf",
+      "fps=20,select='gte(t,28.2)*lt(t,28.599999999999998)',scale=600:-2",
+      "-fps_mode",
+      "passthrough",
+      "D:\\ai项目\\XianxiaReader\\build\\ci\\38694877516\\VideoReview\\cover\\editor-dismiss-tail\\frame-%03d.png"
+    ],
+    "interpolated": false,
+    "inspected": true,
+    "frames": [
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-001.png",
+        "sha256": "8a6bdffdc5d52185a84437b41eac515d5250992670f17f816d2c042d6f8d8921",
+        "nominalVideoSeconds": 28.2
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-002.png",
+        "sha256": "b2967835bc6a0eb10a8e34a24d919e6e7eb081f1fce39af1182f7833b2cf170e",
+        "nominalVideoSeconds": 28.25
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-003.png",
+        "sha256": "841ad0f783be110d5fd84a23473ad1fafbdeffa3680a76b8d06fc67b0198678d",
+        "nominalVideoSeconds": 28.3
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-004.png",
+        "sha256": "7d4bd4d6176c5a5faf3e9f13ce55fef0f684ab3dfdfe00dc4079166ac1398739",
+        "nominalVideoSeconds": 28.349999999999998
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-005.png",
+        "sha256": "f1e215197a9b43f38cc991679eeda95a7cb3a58fc07794654043f6e174ae9a3e",
+        "nominalVideoSeconds": 28.4
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-006.png",
+        "sha256": "cda150ed6fb684b679afa6e89c8baacf4ad6549b20aecec80434235e44dbfa5b",
+        "nominalVideoSeconds": 28.45
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-007.png",
+        "sha256": "adc807ec22865d55877c532dd3a7643c693d7b47ba87f86284e4ec2a87b6f229",
+        "nominalVideoSeconds": 28.5
+      },
+      {
+        "path": "build/ci/38694877516/VideoReview/cover/editor-dismiss-tail/frame-008.png",
+        "sha256": "703774302bc05e7675e29670470b92d338e37ba3d7b4e94c0411725de2d3f328",
+        "nominalVideoSeconds": 28.55
+      }
+    ],
+    "scope": "Immediately consecutive tail of native sheet dismissal and cover crossfade through the settled shelf."
+  },
+  "imagesInspected": true,
+  "videoInspected": true,
+  "phoneAccepted": false,
+  "ordinarySignedDeviceAccepted": false,
+  "phoneFPSMeasured": false,
+  "motionObservation": "Actual successful XCUITest video and consecutive decoded frames show the system picker/editor presentations, cancellation, default preview, save and return to the shelf. Cover replacement can occur beneath the dismissing sheet; this is not an isolated opacity-duration or phone-frame-rate measurement."
+}

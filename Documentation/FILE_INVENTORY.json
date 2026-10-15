@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T05:50:18.518496+00:00",
+  "recordedAtUTC": "2026-10-15T07:23:14.546175+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 675,
+  "fileCount": 687,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 22841,
-      "sha256": "7ff0cbd068c958d9abea7a0021de69d7f132bda154c7ee21d5f3e87770972a08"
+      "bytes": 23815,
+      "sha256": "8b7db8823e7360f7562bb421bb47d376b19e52286e584fdd7cfb963a915d5e4e"
     },
     {
       "path": "App/AppRootView.swift",
@@ -65,8 +65,8 @@
     },
     {
       "path": "App/Library/BookCoverEditorSheet.swift",
-      "bytes": 5008,
-      "sha256": "6ecb5e93e4db0466c5ab4478a5221572b357f81bc222d96039cea799c5b4f81b"
+      "bytes": 5347,
+      "sha256": "fb09fc3c11536423b4941cbd3291977589185bf8efa980b8c559843eecf206f5"
     },
     {
       "path": "App/Library/BookCoverView.swift",
@@ -85,8 +85,8 @@
     },
     {
       "path": "App/Library/CoverImportService.swift",
-      "bytes": 2061,
-      "sha256": "3fa82bfa451c436a99ba67198ce04da6f8172f6c3484adb500a24bd5be0e0fc7"
+      "bytes": 2216,
+      "sha256": "e3b48f57c302cfa03e4d5cba3c24aa0d61a84cab8ce35b4add8969308db6216b"
     },
     {
       "path": "App/Library/CoverPhotoFile.swift",
@@ -210,8 +210,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 21665,
-      "sha256": "cd482e463f433cfcd8807f4103dc7d5b18f2fcf9ed1e3de981e7b4817c0d37ba"
+      "bytes": 25464,
+      "sha256": "da3071db6e29bb5f0fa00c255cc3eec037b9120a74cbfdc4f265994a5b64060e"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -220,8 +220,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 6634,
-      "sha256": "0f97e6b5c9604e9d3c06c4d9a12b81ec955d07225c910a31b7564216e9335d78"
+      "bytes": 7051,
+      "sha256": "7eb7b023ac6f19170c92d7e826a0ddce0aa38efa6e1bd5cec115ab39ce830d75"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -265,8 +265,8 @@
     },
     {
       "path": "Documentation/LIBRARY_COVER_DESIGN.md",
-      "bytes": 5563,
-      "sha256": "0dbd724b9b06ab57b8e3b8cf71950c9c24d46d7e369aa0b6896c219dee5183ae"
+      "bytes": 9215,
+      "sha256": "2be5cd47809af27803dce994ad5b4189d427342fa84749b3fc3a9bcfd551be90"
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
@@ -391,7 +391,12 @@
     {
       "path": "Documentation/M3_COVER_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "c085a71b30eaf31893b5f969f2e32b19f6e8eaa93163acb6a83105cac12ac01c"
+      "sha256": "e814734a8b305fd628a4af4cf2ba57c6e73a490ec877ab13b91197fde8040909"
+    },
+    {
+      "path": "Documentation/M3_COVER_VALIDATION_REPORT.json",
+      "bytes": 130775,
+      "sha256": "3021f35de3babda03bb2514adc047a1006f294be2cd1840ef1deeb7f1295dc18"
     },
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
@@ -974,6 +979,56 @@
       "sha256": "70f2a61fc69fb6cedea42556c287662bc500145a008d627d959062e8356f68a5"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build13-cancel-ax-and-reader-failure.json",
+      "bytes": 5111,
+      "sha256": "eadf642f64607a00cf13e2f7245aa7098486a79a0130353fd01f47eff4fd4804"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-file-picker-ax-failure.json",
+      "bytes": 4438,
+      "sha256": "1d4d7e872872577ef4e50894eb0dc5e325dd64316e5fa9c12dd92c83e7bcce06"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-first-cancellation.json",
+      "bytes": 9595,
+      "sha256": "70d5f8121bfcb9085d74308851d2deb138b8b27d2787de67e1067b651f3150a9"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-first-candidate.json",
+      "bytes": 95783,
+      "sha256": "e2702d6c27bc402d16b3fbef2366610f98dcaa097e65481c4934a12f894bc431"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-native-review.json",
+      "bytes": 12303,
+      "sha256": "b103f147fb2ac68a7cebda02ddb7d1f5de8752476c5d15dea9b67672d0fa37e3"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-runtime-diagnostics.json",
+      "bytes": 712,
+      "sha256": "30911bdd7d5ceba3344b824328a064d0549d9a8d116d5bbdf779f8498c120e54"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-second-candidate.json",
+      "bytes": 95912,
+      "sha256": "c5f8ccb7c93b9759b90b0b60522b9374c6dc9b8563659a4254f93439d7a46b70"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-success.json",
+      "bytes": 20774,
+      "sha256": "bbdfbf33344e1d6a5a8d51b8aa753f6009925093817c280539546c2a4cd0e2c4"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-test-kit.json",
+      "bytes": 1307,
+      "sha256": "6903f41b4501f7c755a66084e8f42677c4483e343e5f283dc18943a232954bc3"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build13-third-candidate.json",
+      "bytes": 96151,
+      "sha256": "9997e4bd35614391f201f38e5980774dca32a41bd01bae9231c68a2a9b021486"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -1030,8 +1085,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9172,
-      "sha256": "87c19be2c11f20fa6114dd41918e93ea3dbe67d9dac5d05850a5828cf5c137b9"
+      "bytes": 6504,
+      "sha256": "48d60ef446279d96c92ff2c4cc3d68b96f0a11742835f8137f344afdc7009f45"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1079,6 +1134,11 @@
       "sha256": "417e9940119eacb646f09197e12e224582ae18033619ddcaa94f234a8dfe6cfa"
     },
     {
+      "path": "HANDOFF_M3_COVER_HISTORY_2026-10-15.md",
+      "bytes": 15157,
+      "sha256": "30d5f4f041fcd72d1f4ef6728a05652b7d9fb85ec04080487a3c644f2f247376"
+    },
+    {
       "path": "HANDOFF_M3_INTERACTION_HISTORY_2026-10-15.md",
       "bytes": 14701,
       "sha256": "d778b7e86c1deb4d80c8dd56704fdea16039dbb823f463537be8373966ad3d05"
@@ -1095,8 +1155,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 26752,
-      "sha256": "868e10521c8e9a154e9a9f1070179d931dcbe6ae26023a0c21a45391396b0b0a"
+      "bytes": 29891,
+      "sha256": "223d7e6ce3c7586fbb644f7248c36e1ae55c08d43c654dd9e77af5c20b8aaefe"
     },
     {
       "path": "Package.resolved",
@@ -1380,13 +1440,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 15116,
-      "sha256": "243ed55ca939308709ef99d986a75eee9bc942c1bc4af4a3f608207b7d93e780"
+      "bytes": 15950,
+      "sha256": "22f517d41da9057514219b013a9e1f17a4c5d2a199972887874812af99b27a9e"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 20940,
-      "sha256": "1e35bd1cbfa45b6ce031ca8dc3ce6506a2cbaade429ed65a6953a8324a8ad590"
+      "bytes": 24128,
+      "sha256": "9f5cd2fba6fd6dd7784f04e70d4d9e2d9e5bdc53267be327f83691ead4714e0d"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -1430,13 +1490,13 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "bytes": 9564,
-      "sha256": "defd195de0445258bfb9f3b6ae8bef3182a93da75497995e1fcce29cc8ed9a65"
+      "bytes": 10312,
+      "sha256": "529c7129086f7900d9712d436bf00aec0a055b783bc8a92d8fedcc3940ac6413"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
-      "bytes": 20809,
-      "sha256": "8ac1c2b172d9705e1b330770f6c4543bf70c7905bd0fb01b1a2f779a2b64d984"
+      "bytes": 21283,
+      "sha256": "64ac6616c2c8ac04edb6a3f77bd646b3834f337c2381ac162e7cc33cd4eabb58"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
@@ -1470,8 +1530,8 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 32658,
-      "sha256": "df61eeb42699bafc1144d7c0172116f5adedd4f221e1bb84d2f74f043d03976f"
+      "bytes": 33058,
+      "sha256": "0e86b475d260dd2667311ae923d9ed03a244a8f8bc44cafa77c1c10a6d3f7394"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",

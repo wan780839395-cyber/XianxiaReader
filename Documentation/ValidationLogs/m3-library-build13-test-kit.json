@@ -1,0 +1,38 @@
+{
+  "recordedAtUTC": "2026-10-15T07:19:50.431283+00:00",
+  "run": 38694877516,
+  "sourceRevision": "708d02d0ecadcb3d22d653965aa94203bf4ab227",
+  "delivered": {
+    "IPA": {
+      "path": "build/XianxiaReader-Cover-Build13.ipa",
+      "bytes": 8065097,
+      "sha256": "57a6e0c9639af654abd106bcd187ee7b37d721d3cedf315d2a1677aa5e4d6009"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-Cover-Build13-TestKit.zip",
+      "bytes": 8534156,
+      "sha256": "85e5f5aef4886416d2aed4126b3e142be8749b3dc3bdceae29366e953628ac9c"
+    }
+  },
+  "oldSampleEntriesPreserved": [
+    "Samples/chinese-epub3.epub",
+    "Samples/云海问道-UTF8.txt",
+    "Samples/云海问道-UTF16.txt",
+    "Samples/云海问道-GB18030.txt",
+    "Samples/utf8-5MiB-1000chapters.txt",
+    "Evidence/utf8-5MiB-1000chapters.json",
+    "Samples/utf8-50MiB-3000chapters.txt",
+    "Evidence/utf8-50MiB-3000chapters.json",
+    "Samples/utf8-50MiB-no-newline.txt",
+    "Evidence/utf8-50MiB-no-newline.json",
+    "Samples/utf16-5MiB-1000chapters.txt",
+    "Evidence/utf16-5MiB-1000chapters.json",
+    "Samples/ANSI-GBK-云海问道.txt",
+    "Samples/ANSI-Big5-雲海問道.txt",
+    "Samples/ANSI-Windows1252-Cafe.txt",
+    "Evidence/ANSI-ENCODINGS.json"
+  ],
+  "coverSampleVerified": true,
+  "zipCRC": true,
+  "oldPackagesVerified": 19
+}

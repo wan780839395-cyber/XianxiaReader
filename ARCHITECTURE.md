@@ -155,3 +155,9 @@ LibraryView共享sheet加入回收站，长按移出有原生确认，空书架�
 LibraryView按布局选择原生List或ScrollView/LazyVGrid；List行接尾侧swipeActions，禁全滑直接执行，灰绿色普通按钮进入既有确认，数据提交后才移出。固定UUID身份驱动短spring补位/scale+opacity过渡，布局切换短淡入淡出；LibraryTrashSheet恢复行有短过渡，系统Reduce Motion关闭自定义移动/缩放和继承动画。未新增Core/DB/schema/Reader依赖变化。
 
 新增独立bundle.ui-testing target与三个XCUITest，旧67iOS不跳过。AppRoot通过可选LibraryInteractionFixture接入隔离小样；只有DEBUG分支读启动配置/建立fixture，Release prepare恒nil且Mach-O无XR_LIBRARY_UI_*旗标。CI显式保留每项XCTest的成功录屏，基座simctl录屏只用于诊断并收集真实退出；录屏或原test/导出/summary失败都不能生成IPA；完整视频/六图用于独立视觉核验，不当手机帧率或完整主题验收。详见LIBRARY_INTERACTION_DESIGN.md与最新报告。
+
+## M3 封面替换（Build13）
+
+Core Book可选coverOverride与UUID派生Artwork路径，最新payload事务只改此字段，schema2/迁移不变。BookFileStore独立StagingCovers与不可变Artwork，Apple协调复制；文件先finalize再DB，DB失败回移草稿，只有本次finalize成功才回滚。启动清临时stage，回收站UUID也保留；已提交/旧自选原图不GC。原书/默认EPUB封面/正文缓存和完整位置/书签分离。
+
+App新增CoverImagePipeline/CoverImportService actor与BookCoverEditorModel/Sheet，公开PhotosPicker FileRepresentation/共享UIDocumentPicker，20MiB/8000万像素限制，后台1080px JPEG和600/252px显示缩略缓存，CGImage方向只转换一次。requestID/closed/Task/Coordinator防旧结果覆盖，提交后仅当前editor可关闭；缩略图坏时有界原图恢复有警告。Release不带DEBUG种书入口。完整门槛和具体风险见LIBRARY_COVER_DESIGN.md/M3_COVER_VALIDATION_REPORT.json。

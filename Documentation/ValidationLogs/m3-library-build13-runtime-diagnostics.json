@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-15T07:19:48.494672+00:00",
+  "run": 38694877516,
+  "sourceRevision": "708d02d0ecadcb3d22d653965aa94203bf4ab227",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 28
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "System runtime diagnostics stay separate from compiler results, test gates and physical-device smoothness.",
+  "log": {
+    "path": "build/ci/38694877516/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "901e20e34be6c7ff051dc857c139bf2dbfb2883054d7637ecce173b362611796"
+  }
+}

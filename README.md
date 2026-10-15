@@ -1,5 +1,11 @@
 # XianxiaReader · 仙侠阅读
 
+## 当前：Build13 / M3封面替换
+
+长按书籍可选相册/文件图片，预览、保存、恢复默认；后台缩略加载，原书/默认封面/位置/书签保留。书库已有网格/列表、筛选排序、改名、左滑确认移出及回收站恢复。Build13[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38694877516)：Linux/macOS各100Core、79/79iOS及无签名设备Release通过，原生截图/视频复核完成，手机选图和流畅度待测。M3还剩重复导入；完整主题/排版属于M4。实际状态与包路径见[PROJECT_STATUS](PROJECT_STATUS.md)，恢复见[HANDOFF](HANDOFF.md)。
+
+以下Build8及更早段落保留历史证据，阶段状态以上述当前记录为准。
+
 Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38587015887) / 1d4ee302daf32534fb367ccc1c4f4b5af8489fcd，Linux/macOS各68Core、iOS56/56、test/export/summary0、无签名设备Release/IPA。Windows382语法新增0/54 pristine限制、16tooling；460候选Git blob hash及三份锁核对一致。四个桌面Release样本分别验证约5/50MiB、1000/3000章、50MiB无换行巨章及UTF16，hash/目录/完整窗口覆盖通过。Apple逐chunk同步autoreleasepool修复后51.23MB/3000章最终RSS高水位从319.89降到25.83MiB，导入后从258.67降到14.08MiB；数字为桌面完整进程，不能当iPhone峰值。原生巨章第二窗口600点滑动/非零字符/3px重开，以及多MB首中末资源/位置回归通过。
 
 新包`build/XianxiaReader-TXT-Memory-Build8-TestKit.zip` / SHA256 `7ed19e6a595b8bd14624298689efbd68a81b39be0021e7335dbe211e7c875533`，含Build8 IPA与8个原创大小样本；正常更新保留书库，+菜单确认0.0.1 (8)。8个旧Build4/5/6/7包及基线长样本ZIP逐hash保留。App导入/UI、Readium3.11/Vendor/6 pins/文件协调/Locator和cache版本不改。首轮38583014146/908ee29各68Core/探针通过、iOS55/56系统DocumentManager迟到host异常且Apple内存增长，完整失败/测量原件保留；修复测试仅保留六个隐藏完整host与tmp repository到worker结束，原所有断言/15秒门槛保留，未宣布修复Apple系统bug。缓存重开仍全文流式校验/构造plan；只读元数据秒开尚未实现。Build7首次导入已获用户确认，Build8及长书/普通设备/完整中文排版仍待设备验证，M2Accepted=false；M3/M4未开始。报告[M2_TXT_LONGBOOK_VALIDATION_REPORT.json](Documentation/M2_TXT_LONGBOOK_VALIDATION_REPORT.json)，性能合同[PERFORMANCE_TEST_PLAN.md](Documentation/PERFORMANCE_TEST_PLAN.md)。
@@ -10,7 +16,7 @@ Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839
 
 Build4连续证据：长段字符/重开、目录/搜索/书签、模式往返、窗口回收、迟到回调及加载桥回归通过；用户随后确认连续功能与重开位置正常。旧CI边界PNG缺第二章的截图限制仍保留，不否定用户实测；未单独报告的原书图片、普通设备、旋转及性能继续记录。原 `build/XianxiaReader-Continuous-Build4-TestKit.zip` 保留。自用优先、卡点参考成熟方案、微信读书交互与现有路线原则见[参考记录](Documentation/MATURE_READER_REFERENCES.md)；恢复见[当前交接](HANDOFF.md)和[连续验证报告](Documentation/M1_CONTINUOUS_VALIDATION_REPORT.json)。
 
-最新用户实测：连续阅读功能与重开位置已确认正常，现按计划进入M2 TXT。[分章第一切片](Documentation/TXT_INDEX_DESIGN.md)新增独立Core标题识别、UTF-8流式索引及有界章节窗口，[完整CI38538141364](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38538141364)的同源码attempt2为Linux/macOS各33 Core、41/41 iOS与设备Release成功；初轮EPUB冷启动超时原文保留，原因未确认；随后编码/版本cache第二Core切片通过[CI38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)：Linux/macOS各60 Core、41 iOS及设备Release；支持严格UTF8/UTF16/GB18030旁路转换与内容/目录摘要cache，首轮Apple iconv失败及修复证据保留。TXT产品随后接入Build5并通过[CI38559906005](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38559906005)：各68 Core、46 iOS及设备Release。提供编码选择/重试/取消、有界Readium阅读、目录/书签/搜索与完整byte/text位置；设备/长书仍待验收。UI完整书库布局在M3，字体/行距/主题在M4。未逐项报告的原书图片、普通设备/旋转/性能仍单独记录。
+历史用户实测：连续阅读功能与重开位置已确认正常，现按计划进入M2 TXT。[分章第一切片](Documentation/TXT_INDEX_DESIGN.md)新增独立Core标题识别、UTF-8流式索引及有界章节窗口，[完整CI38538141364](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38538141364)的同源码attempt2为Linux/macOS各33 Core、41/41 iOS与设备Release成功；初轮EPUB冷启动超时原文保留，原因未确认；随后编码/版本cache第二Core切片通过[CI38547339868](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38547339868)：Linux/macOS各60 Core、41 iOS及设备Release；支持严格UTF8/UTF16/GB18030旁路转换与内容/目录摘要cache，首轮Apple iconv失败及修复证据保留。TXT产品随后接入Build5并通过[CI38559906005](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38559906005)：各68 Core、46 iOS及设备Release。提供编码选择/重试/取消、有界Readium阅读、目录/书签/搜索与完整byte/text位置；设备/长书仍待验收。UI完整书库布局在M3，字体/行距/主题在M4。未逐项报告的原书图片、普通设备/旋转/性能仍单独记录。
 
 ## 当前已写入
 
@@ -22,7 +28,7 @@ Build4连续证据：长段字符/重开、目录/搜索/书签、模式往返�
 - 原创中文 EPUB 2/3 样书、Core 单元测试、iOS 集成测试、Windows 可运行的结构/语法检查。
 - GitHub Actions：macOS 构建、模拟器测试、无签名设备应用、`Payload/` 打包与完整日志 artifact。
 
-M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托；真实命中定位仍待页面验收，详见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 导入/有界Readium阅读/完整位置已接入并过Build5自动CI；完整书库编辑、自定义字体、五种主题、全部排版设置、音量键翻页和长篇性能验收尚未实现，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
+M1 搜索切片已过 CI：Readium SearchService 扩展、分批结果、取消/迟到回调过滤和跳转委托；真实命中定位仍待页面验收，详见 [搜索设计](Documentation/SEARCH_DESIGN.md)。TXT 导入/有界Readium阅读/完整位置已接入并过Build5自动CI；书库浏览、改名、回收站和封面编辑已在Build10–13通过自动门槛；重复导入、自定义字体、五种主题、全部排版设置、音量键翻页和完整设备性能验收仍待后续阶段，详见 [功能矩阵](Documentation/FEATURE_MATRIX.md)。XBook 与知识库仅有协议草案。
 
 ## 技术基线
 
