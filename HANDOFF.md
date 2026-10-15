@@ -41,3 +41,11 @@ CI38711610037已completed/failure，完整full/Core/Apple/xcresult/附件下载h
 报告已将实际核过的当前候选Linux115Core/四探针单独标通过（partialVerification），其余Apple/Release/原生门槛仍待完成；成功收尾时移除执行中标记。所有运行/验证源码保持773df424，不在等待期间追加功能。
 
 第三轮CI38714955473已completed/failure并完整下载0：各115Core/四探针过，iOS88/90（2新case失败），旧boundary和全部旧回归/6UI/新连续EPUB主题过；编译警告错误0，test65/export-summary-recording0，无Release/IPA。完整third-candidate-failure/candidate与TXT原DOM诊断保留。定位后新增：仅自有version1精确DOM锚点的LTR分页直接选所在页（3.11官方textmatcher无domRange）；TXT64UTF16上下文防拆emoji代理对，原现场577/586/597全部可重现坏切片。保持同emoji+组合字样本/600点/>100/3px和全部旧断言；新增错误捕获与原分页字符附件。Windows417/17Python过，准备第四候选完整CI，尚未称修复成功。
+
+第四轮实际CI38718644990/源码62f0035eb7c4566bbe3b3419bff3b3db38b29223已派发并登记498源码blob/23旧包。需从此轮真实结果继续；尚无Build15包、手机未验。第四轮前的所有失败、原始两份ZIP、main/空index/M2/M3保持。
+
+第四轮等待期间仅补分析记录：按实际第二资源UTF8 byte65536对齐重复样本，旧offset577/586/597上下文均有不成对surrogate；新边界全部有效且caret数值不变、每字段最多65UTF16单位（为不拆emoji允许多1）。先前短语对齐分析的字段序号已纠正并显式保留说明，不改变缺陷结论。当前运行源码62f0035e保持，需真实原生回归证明。
+
+第四轮62f0035e/38718644990 Linux115 Core及四Release探针已下载逐项核过，报告单独标Linux通过；Apple/模拟器/Release尚在等待，原生门槛和手机仍不称通过。生成/打包前必须再写本交接。
+
+第四轮38718644990 completed/failure已完整下载0。仍2case失败，TXT通过非零保存/错误空/真实CSS/3px reflow并有截图，仅reopen探针未等DOM直接TypeError；改探针空节点not-ready，3px不变。分页原附件1647为旧视口20%高度，不应要求字号180%后该下方文字还在当前页；改测顶部可见行非零字并按>=1.7倍实际字号验证，保留reflow/reopen同字可见。Adapter采样后立即发fresh完整Locator，关闭/保存不等旧百分比回调追上。准备第五轮完整CI，不提前称通过；旧所有断言及门槛保留，新测试纠正原因记设计/失败原件。

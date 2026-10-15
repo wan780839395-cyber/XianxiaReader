@@ -41,3 +41,5 @@ Adapter 将模型映射至既有 EPUBPreferences，保留当前分页/连续模�
 TXT现场scrollY612、段落top约-599、offset577/586/597和savedAnchor accepted，保存位置却停0。精确重复样本每句9UTF16单位，原64单位上下文切片在全部三个offset均产生不配对surrogate；repro见surrogate-context-analysis.json。局部修正边界避开高/低代理对中间，保留UTF16文字身份、约64单位上下文上限和byte协议，新增实际错误捕获；是否解决须由同一emoji/组合字样本的实际保存/600点/非零/3px/reflow/reopen证明，不根据Python重现先写成通过。
 
 本轮额外参考同tag官方https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift；现有连续扩展的精确DOM路径是成熟已过回归的基础，不引入新排版引擎。
+
+第四轮38718644990：TXT已通过非零UTF16、错误为空、两字缩进、实际CSS放大/关闭缩进、3px reflow，并生成真实截图；仅reopen过程中探针读未加载DOM直接TypeError，补空节点返回not-ready，保留3px。分页原始附件offset1647来自旧视口20%高度，重排后顶行约1402；180%字号可使较靠下文字移出页，旧测试目标不等于顶部阅读锚点。改取首可见行非零字符，并验证实际字号至少原值1.7倍，仍检验该字符reflow/reopen可见，不以百分比代替。精确DOM分页路径仍保留，普通搜索不变。Adapter在采样后、提交reflow前立即发完整Locator，避免关闭/保存恰逢重排时读旧的百分比回调。前失败原件与测试目标纠正明确分开，不追认测试错误为产品根因。

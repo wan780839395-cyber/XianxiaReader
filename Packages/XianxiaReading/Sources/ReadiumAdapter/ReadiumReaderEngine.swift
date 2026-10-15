@@ -196,6 +196,9 @@ import XianxiaCore
             guard let self, let navigator else { return }
             await navigator.preserveCurrentDOMLocationForModeChange()
             guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+            // Expose the fresh full anchor immediately. A close/save while the
+            // reflow is settling must not use an older percentage-only callback.
+            if let locator = navigator.currentLocation { self.capture(locator) }
             // Compare against the preferences actually submitted, not an edit
             // whose task a later theme/mode change may have just cancelled.
             let previous = self.appliedPreferences

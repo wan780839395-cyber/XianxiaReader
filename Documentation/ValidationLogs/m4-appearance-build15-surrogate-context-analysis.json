@@ -1,26 +1,39 @@
 {
   "sourceRun": 38714955473,
-  "diagnostic": "DOM physical scrollY612, accepted caret offsets577/586/597, old saved position still0. Exact repeated fixture has 9 UTF16 units per phrase.",
+  "diagnostic": "Actual second resource: scalar-aligned byte65536, physical scrollY612, accepted caret577/586/597, old saved position0.",
+  "repeatedPhraseUTF16Units": 9,
+  "resourceStartByte": 65536,
   "reproduction": [
     {
       "sampledUTF16Offset": 577,
       "invalidOldContextFields": [
+        1,
         2
-      ]
+      ],
+      "invalidNewContextFields": [],
+      "caretIdentityPreserved": true,
+      "maximumNewFieldUTF16Units": 65
     },
     {
       "sampledUTF16Offset": 586,
       "invalidOldContextFields": [
+        1,
         2
-      ]
+      ],
+      "invalidNewContextFields": [],
+      "caretIdentityPreserved": true,
+      "maximumNewFieldUTF16Units": 65
     },
     {
       "sampledUTF16Offset": 597,
       "invalidOldContextFields": [
-        0,
-        1
-      ]
+        0
+      ],
+      "invalidNewContextFields": [],
+      "caretIdentityPreserved": true,
+      "maximumNewFieldUTF16Units": 65
     }
   ],
-  "inference": "Every sampled offset produces at least one unpaired surrogate in old fixed64-unit slices. Guard slice boundaries; actual native save/error/reflow/reopen regression must verify fix."
+  "correction": "Earlier analysis used a phrase-aligned excerpt. This repeats the exact scalar-aligned second-resource start; the same failure conclusion holds, but individual invalid field indexes differ.",
+  "inference": "Every actual sampled caret produces invalid old context. New boundary algorithm produces valid bounded Unicode strings and preserves caret identity. Native Foundation save/reflow/reopen proof remains required."
 }

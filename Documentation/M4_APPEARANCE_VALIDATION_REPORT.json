@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T09:43:11.838481+00:00",
+  "recordedAtUTC": "2026-10-15T10:13:06.402932+00:00",
   "stage": "M4 appearance first slice pending full CI",
-  "sourceRevision": "773df424fea0f556bcd614fe5a6ca93570c3c9cd",
-  "run": 38714955473,
+  "sourceRevision": "62f0035eb7c4566bbe3b3419bff3b3db38b29223",
+  "run": 38718644990,
   "branch": "codex/m4-reading-appearance",
   "build": "15",
   "changedPaths": [
@@ -30,6 +30,9 @@
     "Documentation/ValidationLogs/m4-appearance-build15-resume.json",
     "Documentation/ValidationLogs/m4-appearance-build15-second-candidate-failure.json",
     "Documentation/ValidationLogs/m4-appearance-build15-second-candidate.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-surrogate-context-analysis.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-third-candidate-failure.json",
+    "Documentation/ValidationLogs/m4-appearance-build15-third-candidate.json",
     "HANDOFF.md",
     "HANDOFF_M3_DUPLICATES_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -47,6 +50,8 @@
     "Tests/iOS/TXTReadingTests.swift",
     "Vendor/ReadiumToolkit/README.md",
     "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
     "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml"
   ],
@@ -532,7 +537,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "11213baf0d27acede2e14142351d47ba14b5b457b21e77b3fd2157456be94242"
+      "sha256": "ceab9d9732f0c19c5486bb595200393233d52051d2aa6d8560057341efa8b3f8"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -544,7 +549,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "b221512e583fb0ec6d56505bc66950d5718520030ea98558639b108212e35415"
+      "sha256": "af49673eec4ccbd62d934cadcbc92af356d967aec6380b2199a3a581274963ec"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -824,7 +829,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "d47bede85096f35d8693c1a990a4a0e082c15f0ddae2abc71857c2aee8d85c08"
+      "sha256": "bd2a918ec7501357612abc1edcae8c869b44450fddbba84e73e6040c5b4dc73e"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpread.swift",
@@ -832,7 +837,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "55b279f4f7a55a273f8808e7a79610c4caeac913023419d88ccdc22ecf2a54fd"
+      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -1972,7 +1977,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "385c5e2b0e1266a0e5799517953dc47e5450538650b27c34dcebfc4d7a120d5a"
+      "sha256": "c7ba6ee734a48004f0d14f852b49c27fae9c439962f9ff08a2b2eb1b15b91048"
     },
     {
       "path": "project.yml",
@@ -2197,10 +2202,10 @@
   ],
   "linuxCoreTests": 115,
   "partialVerification": {
-    "recordedAtUTC": "2026-10-15T10:02:00.077463+00:00",
+    "recordedAtUTC": "2026-10-15T10:17:21.116271+00:00",
     "LinuxCore": 115,
     "LinuxReleaseProbeCases": 4,
     "AppleStillExecuting": true,
-    "evidence": "build/ci/38714955473/core"
+    "evidence": "build/ci/38718644990/core"
   }
 }

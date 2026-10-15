@@ -318,7 +318,8 @@ final class TXTReadingTests: XCTestCase {
         let (_, anchor, _) = try TXTPositionCodec.decode(saved, bookID: book.id, plan: context.plan)
         XCTAssertTrue(positionErrors.isEmpty, positionErrors.joined(separator: "\n"))
         let anchorY = """
-            (() => { const n=document.getElementById('txt-b\(byte)').firstChild;
+            (() => { const n=document.getElementById('txt-b\(byte)')?.firstChild;
+            if (!n) return null;
             const r=document.createRange();r.setStart(n,\(anchor.characterUTF16Offset));r.setEnd(n,\(anchor.characterUTF16Offset+1));
             return r.getBoundingClientRect().top; })()
             """

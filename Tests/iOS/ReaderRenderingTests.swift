@@ -592,17 +592,19 @@ final class ReaderRenderingTests: XCTestCase {
         for _ in 0..<3 { await engine.turnPage(forward: true) }
         let web = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
         let pointValue = try await web.evaluateJavaScript("""
-            (() => {const r=document.caretRangeFromPoint(innerWidth*.3,innerHeight*.2);
+            (() => {const r=document.caretRangeFromPoint(innerWidth*.2,2);
             return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null;})()
             """) as? Int
         let character = try XCTUnwrap(pointValue); XCTAssertGreaterThan(character, 100)
+        let originalFont = try await web.evaluateJavaScript("parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize)") as? Double
+        let fontBefore = try XCTUnwrap(originalFont)
         let initial = XCTAttachment(string: "Expected long-paragraph UTF16 offset \(character) to stay in viewport after 180 percent reflow and reopen.")
         initial.name = "paged-appearance-original-character"; initial.lifetime = .keepAlways; add(initial)
         let script = """
             (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;const r=document.createRange();
             r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
             return b.left >= -1 && b.left < innerWidth && b.top >= -1 && b.bottom <= innerHeight+1
-              && parseFloat(getComputedStyle(n.parentElement).fontSize) > 25;})()
+              && parseFloat(getComputedStyle(n.parentElement).fontSize) > \(fontBefore * 1.7);})()
             """
         appearance.fontScale = 1.8; appearance.lineHeight = 1.9; appearance.theme = .paper
         try engine.setAppearance(appearance)
