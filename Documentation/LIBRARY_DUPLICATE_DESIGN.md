@@ -25,3 +25,11 @@ BookFileStore actor流式64KiB摘要受管理原件，所有路径继续逐级�
 新增10 Core回归：改名副本+完整关联、回收站、同名不同内容/不同解码、多连接并发、旧重复补齐及活跃优先、旧原件缺失警告、已登记原件损坏/缺失、指纹写错整体回滚/重试、真实v2升级与中断DDL恢复、真实迁移失败保留v2。旧schema最终版本断言随新增迁移升为3，旧payload断言保留。
 
 新增4 iOS集成覆盖真实Readium EPUB/TXT副本、混合新增/重复/坏书计数、显式恢复重开进度、取消保留提交；新增1真正XCUITest从生产+菜单重复导入样书、保留42%与自选封面、移出后再次导入/恢复/重启，并保留原生图/视频。旧UI夹具的三本原件现在各自不同，生产去重始终启用。DEBUG隔离/Release无入口合同保持。Windows语法不等价Swift编译，模拟器不等价手机流畅度或文件供应商验收。
+
+## 当前实核检查点
+
+第二轮CI38700674784的Linux原件已下载：110 Core（包含10新去重回归）、四个真实Release长TXT探针通过，无源码编译警告/错误。Apple正在执行，不能以Linux结果替代文件协调/iOS编译或设备Release。首轮38700353531仅新测试缺try的编译失败，未运行阶段单列，原件未覆盖。
+
+## 原生反馈布局与AX修正
+
+第二轮真实iOS83/84：79集成和旧4UI通过，仅新UI完成按钮查询失败。实际AX树中完成按钮被父VStack的library.duplicates覆盖，重复状态和3本/42%已存在；实际视频也显示safeAreaInset兄弟反馈叠放、单项列表空白。产品修为显式VStack统一竖排，单项按内容高度、多项再有界滚动，删除父容器测试标识保留叶控件标识；测试等待/断言不放宽。此继承结论来自实际AX树，不宣称Apple文档承诺继承规则。参考[Apple safeAreaInset](https://developer.apple.com/documentation/swiftui/view/safeareainset(edge:alignment:spacing:content:)-6gwby)、[VStack](https://developer.apple.com/documentation/swiftui/vstack)、[accessibilityIdentifier](https://developer.apple.com/documentation/swiftui/view/accessibilityidentifier(_:))的公开组件合同，未用私有API。

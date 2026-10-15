@@ -1,0 +1,51 @@
+{
+  "run": 38700674784,
+  "sourceRevision": "5278d28623a235506c5e00c589782d9afdf25821",
+  "conclusion": "failure",
+  "coreEach": 110,
+  "longTXTReleaseCasesEach": 4,
+  "iOS": {
+    "total": 84,
+    "passed": 83,
+    "failed": 1,
+    "skipped": 0
+  },
+  "newDuplicateIntegrationPassed": 4,
+  "oldNativeUIPassed": 4,
+  "newDuplicateNativeUIPassed": false,
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": false,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "actualCause": "AX tree shows production duplicate feedback and 3 books/42 percent; parent library.duplicates identifier propagates to Done button, overriding its leaf identifier. Video also shows sibling safeAreaInset children overlapping and single-row ScrollView reserving 136 points.",
+  "correction": "Explicit VStack for safe-area feedback, content-height single result and capped scrolling multi-result, remove parent AX identifier; preserve all original test queries, 15-second wait and assertions.",
+  "artifacts": [
+    {
+      "path": "build/ci/38700674784/full.log",
+      "bytes": 2180781,
+      "sha256": "5c515997ed1cff8bca64789cabed4bd4d5c1dc9183ab5ebbd114ac1bb370a269"
+    },
+    {
+      "path": "build/ci/38700674784/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1469716,
+      "sha256": "4a8a458c7e4e6087b52ca00c81087bb58a07c4e2158bc50815f79dfc3232774b"
+    },
+    {
+      "path": "build/ci/38700674784/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1710,
+      "sha256": "dc8961b01203bb1316c1baa99ddfdf3b06c6b9c9ad97783b260642046d5512bc"
+    },
+    {
+      "path": "build/ci/38700674784/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DFE2F7E4-F045-43A8-9FD9-84E7243E1DE5.txt",
+      "bytes": 12780,
+      "sha256": "a1f00a45728e32b66cb66b6213575a8f3a44098635f30227df17ea746409b307"
+    },
+    {
+      "path": "build/ci/38700674784/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/926BB777-1CB6-41EA-9F63-11965E2DE8B7.mp4",
+      "bytes": 2740798,
+      "sha256": "d1c3b8cac4d68b1da9bef201702bab2872ab7fbffc20c05d5d94b7829971c53a"
+    }
+  ]
+}

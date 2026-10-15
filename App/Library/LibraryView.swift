@@ -48,30 +48,32 @@ import XianxiaCore
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                if model.isImporting {
-                    HStack(spacing: 12) {
-                        ProgressView()
-                        Text("正在导入 \(model.importingName)").font(.footnote).lineLimit(1)
-                        Button("取消") { model.cancelImport() }
-                    }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
-                } else if let status = model.importStatus {
-                    Text(status).font(.footnote).padding().frame(maxWidth: .infinity).background(.regularMaterial)
-                        .accessibilityIdentifier("library.import.status")
-                }
-                if !model.duplicateBooks.isEmpty, !model.isImporting {
-                    duplicateFeedback
-                }
-                if let error = model.errorMessage, !model.isImporting {
-                    HStack(alignment: .top, spacing: 12) {
-                        Image(systemName: "exclamationmark.circle").foregroundStyle(.red)
-                        ScrollView { Text(error).font(.footnote).frame(maxWidth: .infinity, alignment: .leading) }
-                            .frame(maxHeight: 120)
-                        Button("关闭") { model.errorMessage = nil }
-                    }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
-                        .accessibilityIdentifier("library.import.error")
-                }
-                if !model.retryTXTFiles.isEmpty, !model.isImporting {
-                    Button("选择 TXT 编码并重试") { model.presentedSheet = .txtEncoding }.padding(.bottom, 8)
+                VStack(spacing: 0) {
+                    if model.isImporting {
+                        HStack(spacing: 12) {
+                            ProgressView()
+                            Text("正在导入 \(model.importingName)").font(.footnote).lineLimit(1)
+                            Button("取消") { model.cancelImport() }
+                        }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                    } else if let status = model.importStatus {
+                        Text(status).font(.footnote).padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                            .accessibilityIdentifier("library.import.status")
+                    }
+                    if !model.duplicateBooks.isEmpty, !model.isImporting {
+                        duplicateFeedback
+                    }
+                    if let error = model.errorMessage, !model.isImporting {
+                        HStack(alignment: .top, spacing: 12) {
+                            Image(systemName: "exclamationmark.circle").foregroundStyle(.red)
+                            ScrollView { Text(error).font(.footnote).frame(maxWidth: .infinity, alignment: .leading) }
+                                .frame(maxHeight: 120)
+                            Button("关闭") { model.errorMessage = nil }
+                        }.padding().frame(maxWidth: .infinity).background(.regularMaterial)
+                            .accessibilityIdentifier("library.import.error")
+                    }
+                    if !model.retryTXTFiles.isEmpty, !model.isImporting {
+                        Button("选择 TXT 编码并重试") { model.presentedSheet = .txtEncoding }.padding(.bottom, 8)
+                    }
                 }
             }
             .modifier(DocumentImportSheet(model: model))
@@ -98,30 +100,35 @@ import XianxiaCore
                 Button("完成") { model.dismissDuplicates() }.font(.subheadline)
                     .accessibilityIdentifier("library.duplicates.done")
             }
-            ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(model.duplicateBooks) { duplicate in
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(duplicate.book.title).font(.subheadline).lineLimit(2)
-                                Text(model.removedBooks.contains(where: { $0.id == duplicate.id }) ? "在回收站中，恢复后可继续阅读" : "已在书架，阅读位置与封面已保留")
-                                    .font(.caption).foregroundStyle(.secondary)
-                            }
-                            Spacer(minLength: 0)
-                            if model.removedBooks.contains(where: { $0.id == duplicate.id }) {
-                                Button("恢复") { Task { await model.restoreBook(duplicate.id) } }.buttonStyle(.bordered)
-                                    .disabled(model.isManaging).accessibilityIdentifier("library.duplicate.restore.\(duplicate.id)")
-                            } else {
-                                Button("查看") { model.query = ""; selectedBook = model.books.first(where: { $0.id == duplicate.id })?.book }
-                                    .buttonStyle(.bordered).disabled(model.isManaging)
-                                    .accessibilityIdentifier("library.duplicate.open.\(duplicate.id)")
-                            }
-                        }
-                    }
-                }.frame(maxWidth: .infinity, alignment: .leading)
-            }.frame(maxHeight: 136)
+            if model.duplicateBooks.count == 1 {
+                duplicateRows
+            } else {
+                ScrollView { duplicateRows }.frame(maxHeight: 136)
+            }
         }.padding(16).background(.regularMaterial)
-            .accessibilityIdentifier("library.duplicates")
+    }
+
+    private var duplicateRows: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(model.duplicateBooks) { duplicate in
+                HStack(spacing: 12) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(duplicate.book.title).font(.subheadline).lineLimit(2)
+                        Text(model.removedBooks.contains(where: { $0.id == duplicate.id }) ? "在回收站中，恢复后可继续阅读" : "已在书架，阅读位置与封面已保留")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
+                    Spacer(minLength: 0)
+                    if model.removedBooks.contains(where: { $0.id == duplicate.id }) {
+                        Button("恢复") { Task { await model.restoreBook(duplicate.id) } }.buttonStyle(.bordered)
+                            .disabled(model.isManaging).accessibilityIdentifier("library.duplicate.restore.\(duplicate.id)")
+                    } else {
+                        Button("查看") { model.query = ""; selectedBook = model.books.first(where: { $0.id == duplicate.id })?.book }
+                            .buttonStyle(.bordered).disabled(model.isManaging)
+                            .accessibilityIdentifier("library.duplicate.open.\(duplicate.id)")
+                    }
+                }
+            }
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var shelfContent: some View {

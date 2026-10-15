@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T07:41:24.137482+00:00",
-  "stage": "M3 duplicate import pending full CI",
-  "sourceRevision": "84397ad73db90562b889c19e000743024c2927c8",
-  "run": 38700353531,
+  "recordedAtUTC": "2026-10-15T07:43:39.759989+00:00",
+  "stage": "Linux110/four Release TXT cases verified; Apple job in progress",
+  "sourceRevision": "5278d28623a235506c5e00c589782d9afdf25821",
+  "run": 38700674784,
   "branch": "codex/m3-library",
   "build": "14",
   "changedPaths": [
@@ -19,11 +19,14 @@
     "Documentation/M3_COVER_STATIC_REPORT.json",
     "Documentation/M3_COVER_VALIDATION_REPORT.json",
     "Documentation/M3_DUPLICATES_STATIC_REPORT.json",
+    "Documentation/M3_DUPLICATES_VALIDATION_REPORT.json",
     "Documentation/ValidationLogs/m3-library-build13-native-review.json",
     "Documentation/ValidationLogs/m3-library-build13-runtime-diagnostics.json",
     "Documentation/ValidationLogs/m3-library-build13-success.json",
     "Documentation/ValidationLogs/m3-library-build13-test-kit.json",
     "Documentation/ValidationLogs/m3-library-build13-user-feedback.json",
+    "Documentation/ValidationLogs/m3-library-build14-first-candidate.json",
+    "Documentation/ValidationLogs/m3-library-build14-first-compilation-failure.json",
     "HANDOFF.md",
     "HANDOFF_M3_COVER_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -344,7 +347,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
-      "sha256": "e1620316dc15fd6511705f7838e6f9a0f59a3d94db18f897257b0716a4907548"
+      "sha256": "92695a13e5ab57a2de794229de74795320c962bb35543b36637d2148db90d9bd"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
@@ -2141,7 +2144,7 @@
   "schemaVersion": 3,
   "schemaUnchanged": false,
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2155,5 +2158,7 @@
     "No permanent delete/storage reclamation or automatic merging of pre-existing duplicates.",
     "Native frames/video are not a measured phone FPS or full-theme/ordinary-device acceptance.",
     "Reduced Motion environment test does not set or certify a physical-device system preference."
-  ]
+  ],
+  "linuxCoreTests": 110,
+  "linuxCheckpoint": "build/ci/38700674784/linux-checkpoint.json"
 }
