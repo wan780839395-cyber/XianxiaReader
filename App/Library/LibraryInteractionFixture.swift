@@ -33,6 +33,14 @@ private enum LibraryFixtureError: Error { case preferencesUnavailable }
                 if index == 0 {
                     // Diagnostic fixture progress only; UI gestures never open this fake locator.
                     try await services.repository.save(ReadingPosition(bookID: book.id, engineID: "ui-test.fixture", locatorData: Data([4,2]), progression: 0.42))
+                    if environment["XR_LIBRARY_UI_COVER"] == "1" {
+                        guard let image = Bundle.main.url(forResource: "cover-original", withExtension: "png", subdirectory: "Fixtures") else {
+                            throw ImportError.missingSample
+                        }
+                        let coverService = CoverImportService(files: services.files, repository: services.repository)
+                        let draft = try await coverService.prepare(from: image, bookID: book.id)
+                        _ = try await coverService.save(draft)
+                    }
                 }
             }
             defaults.set(environment["XR_LIBRARY_UI_LAYOUT"] == "list" ? "list" : "grid", forKey: "library.layout.v1")

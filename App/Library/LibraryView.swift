@@ -195,6 +195,8 @@ import XianxiaCore
             .contextMenu {
                 Button { model.beginRename(summary.book) } label: { Label("修改书名", systemImage: "pencil") }
                     .disabled(model.isImporting || model.isRenaming || model.isManaging)
+                Button { model.beginCoverEditing(summary.book) } label: { Label("更换封面", systemImage: "photo") }
+                    .disabled(model.isImporting || model.isRenaming || model.isManaging || model.isEditingCover)
                 Button(role: .destructive) { model.requestRemoval(summary.book) } label: { Label("移出书架", systemImage: "trash") }
                     .disabled(model.isImporting || model.isRenaming || model.isManaging)
             }

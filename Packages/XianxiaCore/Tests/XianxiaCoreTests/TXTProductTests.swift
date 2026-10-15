@@ -13,6 +13,7 @@ final class TXTProductTests: XCTestCase {
         func restoreBook(_ id: UUID) async throws { throw WriteFailure() }
         func insert(_ book: Book, chapters: [Chapter]) async throws { throw WriteFailure() }
         func renameBook(_ id: UUID, title: String) async throws -> Book { throw WriteFailure() }
+        func setCoverOverride(_ id: UUID, cover: BookCoverOverride?) async throws -> Book { throw WriteFailure() }
         func position(for id: UUID) async throws -> ReadingPosition? { try await actual.position(for: id) }
         func save(_ value: ReadingPosition) async throws { try await actual.save(value) }
         func chapters(for id: UUID) async throws -> [Chapter] { try await actual.chapters(for: id) }

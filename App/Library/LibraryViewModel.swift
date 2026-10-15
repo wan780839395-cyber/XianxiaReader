@@ -4,7 +4,7 @@ import SwiftUI
 import XianxiaCore
 
 enum LibrarySheet: String, Identifiable {
-    case importFiles, txtEncoding, renameBook, trash
+    case importFiles, txtEncoding, renameBook, trash, cover
     var id: String { rawValue }
 }
 
@@ -27,6 +27,8 @@ enum LibrarySheet: String, Identifiable {
     @Published private(set) var bookToRename: Book?
     @Published private(set) var isRenaming = false
     @Published private(set) var renameError: String?
+    @Published private(set) var coverEditor: BookCoverEditorModel?
+    var isEditingCover: Bool { coverEditor != nil }
     var visibleBooks: [BookSummary] { LibraryPresentation.books(books, query: query, order: sortOrder) }
     private let defaults: UserDefaults
     private var refreshRequestID: UUID?
@@ -57,13 +59,41 @@ enum LibrarySheet: String, Identifiable {
         }
     }
 
+    func beginCoverEditing(_ book: Book) {
+        guard !isImporting, !isRenaming, !isManaging, !isEditingCover, presentedSheet == nil else { return }
+        coverEditor = BookCoverEditorModel(book: book, services: services, library: self)
+        presentedSheet = .cover
+    }
+
+    func dismissCoverEditor(editor: BookCoverEditorModel) {
+        guard coverEditor === editor, !editor.isSaving else { return }
+        finishCoverEditing(); presentedSheet = nil
+    }
+
+    func finishCoverEditing() {
+        guard coverEditor?.isSaving != true else { return }
+        coverEditor?.close(); coverEditor = nil
+    }
+
+    func reportCoverError(_ message: String) { errorMessage = message }
+
+    func didSaveCover(_ book: Book, editor: BookCoverEditorModel) async {
+        refreshRequestID = nil
+        if let index = books.firstIndex(where: { $0.id == book.id }) {
+            let previous = books[index]
+            books[index] = BookSummary(book: book, progression: previous.progression, lastReadAt: previous.lastReadAt)
+        }
+        importStatus = "封面已更新"
+        await refresh()
+    }
+
     func beginRename(_ book: Book) {
-        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
+        guard !isImporting, !isRenaming, !isManaging, !isEditingCover, presentedSheet == nil else { return }
         bookToRename = book; renameError = nil; presentedSheet = .renameBook
     }
 
     func renameBook(_ id: UUID, title: String) async -> Bool {
-        guard !isRenaming, !isImporting, !isManaging else { return false }
+        guard !isRenaming, !isImporting, !isManaging, !isEditingCover else { return false }
         isRenaming = true; renameError = nil
         defer { isRenaming = false }
         do {
@@ -83,12 +113,12 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func requestRemoval(_ book: Book) {
-        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
+        guard !isImporting, !isRenaming, !isManaging, !isEditingCover, presentedSheet == nil else { return }
         bookToRemove = book
     }
 
     func showTrash() {
-        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
+        guard !isImporting, !isRenaming, !isManaging, !isEditingCover, presentedSheet == nil else { return }
         managementError = nil; presentedSheet = .trash
     }
 
@@ -101,7 +131,7 @@ enum LibrarySheet: String, Identifiable {
     }
 
     private func changeRemoval(_ id: UUID, restoring: Bool) async -> Bool {
-        guard !isManaging, !isImporting, !isRenaming else { return false }
+        guard !isManaging, !isImporting, !isRenaming, !isEditingCover else { return false }
         isManaging = true; managementError = nil; errorMessage = nil
         defer { isManaging = false }
         do {
@@ -146,7 +176,7 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func startImport(_ urls: [URL]) {
-        guard importTask == nil, !isImporting, !isRenaming, !isManaging else { return }
+        guard importTask == nil, !isImporting, !isRenaming, !isManaging, !isEditingCover else { return }
         importTask = Task { [weak self] in
             guard let self else { return }
             await self.importBooks(urls)
@@ -154,7 +184,7 @@ enum LibrarySheet: String, Identifiable {
         }
     }
     func startSamplesImport() {
-        guard importTask == nil, !isImporting, !isRenaming, !isManaging else { return }
+        guard importTask == nil, !isImporting, !isRenaming, !isManaging, !isEditingCover else { return }
         importTask = Task { [weak self] in
             guard let self else { return }
             await self.importSamples()
@@ -171,7 +201,7 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func importBooks(_ urls: [URL]) async {
-        guard !isImporting, !isRenaming, !isManaging else { return }
+        guard !isImporting, !isRenaming, !isManaging, !isEditingCover else { return }
         guard !urls.isEmpty else { errorMessage = ImportError.noFilesSelected.localizedDescription; return }
         errorMessage = nil
         importStatus = nil

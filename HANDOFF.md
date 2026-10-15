@@ -4,6 +4,14 @@
 
 ## 实际断点
 
+Build13已恢复核对：原main/HEAD6d76174和空index保持，M3 tip096ed6d；无自身运行任务，GitHub最近仍为Build12成功38677706936，未启动Build13。上轮实际最后验证是Windows406 Swift语法新增0/54限制、17tooling，发生在最后小改之前，不是Swift编译。9项Core封面回归已在磁盘但未编译；本轮补8项iOS集成和1项真正XCUITest（预计Core100/iOS79），Windows407 Swift语法新增0/54 pristine限制、17tooling已重新通过；下一步保存私有index候选并派发完整CI，预期Core100/iOS79，图/视频/Release均尚未通过。
+
+Core可选coverOverride、UUID派生路径与最新payload单字段事务（schema2不动）；StagingCovers→不可变Artwork/asset，DB失败回移草稿供重试、取消清理、启动清理临时stage。旧已提交封面原图保留，不自动回收。App ImageIO后台下采样/12MiB缓存、照片FileRepresentation与共享文件选择器、预览/默认/保存/错误/请求ID；补显式原图恢复警告、真实淡入淡出、保存完成后身份核对关闭editor与迟到旧editor保护。设计见LIBRARY_COVER_DESIGN.md。所有新源码仍待Swift编译/原生图及录屏复核/Release，不写成已验收。
+
+### 新一轮：Build13 更换封面切片（源码与回归已写，未编译）
+
+用户接受当前观感并继续，强调流畅、好看；按用户原话只记录当前观感接受，不扩写安装Build/硬件/FPS。已核661文件inventory和19旧包hash、原main/index与M3 tip096ed6d，无自身运行任务；当前源码与旧包全保留，原始工作目录另备份.cache/recovery/20261015-build13/initial-worktree.zip。先做封面预览/选择/保存/恢复默认完整切片，重复导入紧接后续M3，不进入M4。采用不可变自定义封面资产与独立缩略图，后台复制/下采样，最新DB payload只改override，不动原书/默认EPUB封面/位置/书签。图片选择、取消、失败/重开/回收站恢复与原70iOS/91Core/四长书/Release都须验证；任何新源码尚未当验收。参考Apple ImageIO/公开系统选图API，详细取舍写设计。下一步实现Core存储/元数据事务、App后台处理/预览与原生入口，再完整CI和看最终图/录屏。
+
 Build12书架左滑与动效已通过[完整CI38677706936](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677706936) / `786c154402075e4885905db554ba7179e9c6d085`：Linux/macOS各91Core，iOS70/70（原67集成+3真正XCUITest），failed/skipped0、test/export/summary/recording退出0、无签名设备Release/真实IPA、四长书Release探针。Windows397Swift语法新增0/54 pristine限制、17tooling/bash语法通过，语法不是编译。476运行/验证源Git blob hash、三份真实六pins锁及Build4–11共17旧包hash匹配。
 
 列表采用原生List/swipeActions，左滑露出灰绿色短按钮“移出”，不全滑直接执行；点后确认、取消不移出、数据库提交后才改变显示。保留长按入口。网格移出淡出/轻缩放、相邻书籍短spring补位，恢复/排序/筛选与布局切换过渡，回收站恢复行也有过渡；系统Reduce Motion关闭自定义移动/缩放及继承动画。VoiceOver标签明确书名/作者/进度。Core/schema2/Reader/codec/Vendor/文件协调/位置和依赖锁均不改。

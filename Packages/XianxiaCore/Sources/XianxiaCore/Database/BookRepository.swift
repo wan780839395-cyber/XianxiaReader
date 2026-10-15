@@ -9,6 +9,7 @@ public protocol BookRepository: Sendable {
     func restoreBook(_ id: UUID) async throws
     func insert(_ book: Book, chapters: [Chapter]) async throws
     func renameBook(_ id: UUID, title: String) async throws -> Book
+    func setCoverOverride(_ id: UUID, cover: BookCoverOverride?) async throws -> Book
     func position(for bookID: UUID) async throws -> ReadingPosition?
     func save(_ position: ReadingPosition) async throws
     func chapters(for bookID: UUID) async throws -> [Chapter]

@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T04:14:34.326481+00:00",
+  "recordedAtUTC": "2026-10-15T05:50:18.518496+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 661,
+  "fileCount": 675,
   "files": [
     {
       "path": ".gitattributes",
@@ -40,13 +40,13 @@
     },
     {
       "path": "App/Import/DocumentImportSheet.swift",
-      "bytes": 955,
-      "sha256": "b34d6c7aef55b850743682b4d74df3caa246b28cb72a56e180252d22e6540ee2"
+      "bytes": 1190,
+      "sha256": "8da1543fea93d56638316fe6129d9c3f0705ecd5bf6a4b8132148e2b972d3847"
     },
     {
       "path": "App/Import/EPUBDocumentPicker.swift",
-      "bytes": 2545,
-      "sha256": "db32912ddcfba61828de72e171d621ef52429262be0b20afdf0435d3f68fae33"
+      "bytes": 2795,
+      "sha256": "7f2455a6bfcc0919b83db9fa59069c31a0510d31743cee7436b676ef1f4e66e1"
     },
     {
       "path": "App/Import/EPUBImportService.swift",
@@ -54,9 +54,24 @@
       "sha256": "b62f16c0532adf51fa7a543d4574b6688d141f33c3a0196ed33b4ad98976334c"
     },
     {
+      "path": "App/Library/BookCoverArtwork.swift",
+      "bytes": 1386,
+      "sha256": "34d7f46fc75fa4a8da1d638fff788d6227d8e49e623bce331d6d360008f923ff"
+    },
+    {
+      "path": "App/Library/BookCoverEditorModel.swift",
+      "bytes": 6006,
+      "sha256": "0a57ce9fc80c2a57f47a745aa52d90494124f00e5144792da317e15d8d3d0cf4"
+    },
+    {
+      "path": "App/Library/BookCoverEditorSheet.swift",
+      "bytes": 5008,
+      "sha256": "6ecb5e93e4db0466c5ab4478a5221572b357f81bc222d96039cea799c5b4f81b"
+    },
+    {
       "path": "App/Library/BookCoverView.swift",
-      "bytes": 2345,
-      "sha256": "c5adace7d2e137153ace0aba40a692dcbf850c5988630a42eb833dea161a2082"
+      "bytes": 2358,
+      "sha256": "735552a4d9f7f71e21d17ff7dcb407db44c1e16302801468652fbe0674ca4b9f"
     },
     {
       "path": "App/Library/BookRenameSheet.swift",
@@ -64,9 +79,24 @@
       "sha256": "57c4f9d00968dc093f82c9fa9707bd5cac04b65f71ff77ea57dde9cc41395870"
     },
     {
+      "path": "App/Library/CoverImagePipeline.swift",
+      "bytes": 4865,
+      "sha256": "63d202142529dda8c77087009e59973975ca40f86b8e9056705291b13e2b2e73"
+    },
+    {
+      "path": "App/Library/CoverImportService.swift",
+      "bytes": 2061,
+      "sha256": "3fa82bfa451c436a99ba67198ce04da6f8172f6c3484adb500a24bd5be0e0fc7"
+    },
+    {
+      "path": "App/Library/CoverPhotoFile.swift",
+      "bytes": 1205,
+      "sha256": "8de1c70b6c8d474cff2af622d4f96474a394a33ffeecc6d9eb18ad152770fd62"
+    },
+    {
       "path": "App/Library/LibraryInteractionFixture.swift",
-      "bytes": 2877,
-      "sha256": "162134c7333774673fa9d24eeca0210fddef7ccfa6d1527fcfaba3dcdfa1db7c"
+      "bytes": 3474,
+      "sha256": "ebb7af2bb620b445729ed4b759f594451f06065b431c80acd30f8cda345c83ff"
     },
     {
       "path": "App/Library/LibraryMotion.swift",
@@ -85,13 +115,13 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 13142,
-      "sha256": "75d6093d3f5c99234a97093eaad74605fbd644458cac91dc02c9759ed7dc89af"
+      "bytes": 13375,
+      "sha256": "8660ce92e9ec202b590878ef88785a4c9ee6ce914fabb793847a573c004cf9ef"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
-      "bytes": 10198,
-      "sha256": "472ceac789132ddcf9954adeb15b2081ff7779be21e814f3d749d70d41f28229"
+      "bytes": 11567,
+      "sha256": "abcf30b7a8f939d520cd135a61b73203bca94503d3cdec86da6f97a18aa2faa7"
     },
     {
       "path": "App/Library/TXTEncodingSheet.swift",
@@ -234,6 +264,11 @@
       "sha256": "3824e341e85c675fc3562b8267b0d608a7c5de0f71899fa7383c4f7d7d6282e9"
     },
     {
+      "path": "Documentation/LIBRARY_COVER_DESIGN.md",
+      "bytes": 5563,
+      "sha256": "0dbd724b9b06ab57b8e3b8cf71950c9c24d46d7e369aa0b6896c219dee5183ae"
+    },
+    {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
       "bytes": 10640,
       "sha256": "9ccc2023665a4167f7efa13d76aa0973273914b14182330f2618b11a223db327"
@@ -354,14 +389,19 @@
       "sha256": "f5dfa7c373e4c1d7aa40cc8b887d1f887a6d5cfab48af9cf80ca40c2ad15d3f5"
     },
     {
+      "path": "Documentation/M3_COVER_STATIC_REPORT.json",
+      "bytes": 434,
+      "sha256": "c085a71b30eaf31893b5f969f2e32b19f6e8eaa93163acb6a83105cac12ac01c"
+    },
+    {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
       "bytes": 434,
       "sha256": "ac7b0523ff8aeb2d51c45a43dc3d69bc669e91049eebbb444b222d6d46604307"
     },
     {
       "path": "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
-      "bytes": 126907,
-      "sha256": "6c42490bded8b1f02abc4e6fbcbc94dffa7e93c3bc51c5ee3a083570432b7a71"
+      "bytes": 127035,
+      "sha256": "91c52fe3acb124aed10531ffabde8b657c7348d0cea9edcf1896c07133a46b91"
     },
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
@@ -924,6 +964,11 @@
       "sha256": "57c3bbed31fc4713893bb8f002df35b43170e878aa75db2e28d7c89a45a36a73"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build12-user-feedback.json",
+      "bytes": 411,
+      "sha256": "f4ae84ca70703511d397b3ac5443466cee44db7f8801b5ec0a42a206ae51d752"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-build12-video-review.json",
       "bytes": 15478,
       "sha256": "70f2a61fc69fb6cedea42556c287662bc500145a008d627d959062e8356f68a5"
@@ -985,8 +1030,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6906,
-      "sha256": "fa264db45b4f2c223501dcc6acd79933d60c4d37f800fe7156e8bf49a20f5d4f"
+      "bytes": 9172,
+      "sha256": "87c19be2c11f20fa6114dd41918e93ea3dbe67d9dac5d05850a5828cf5c137b9"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1050,8 +1095,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 26333,
-      "sha256": "09cdf54ea8fc59b59289e0d1712e8687438dce08d6efba545ff8176736d878cb"
+      "bytes": 26752,
+      "sha256": "868e10521c8e9a154e9a9f1070179d931dcbe6ae26023a0c21a45391396b0b0a"
     },
     {
       "path": "Package.resolved",
@@ -1090,8 +1135,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
-      "bytes": 874,
-      "sha256": "fdee7de4bfeebc68dab9e4df538a9524a4411cdc653a6685ab04b08c1aae3831"
+      "bytes": 960,
+      "sha256": "f5462f0589716b348499440068324d2bce2dfcc4bd0ec170d463a79abe57b1d5"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
@@ -1105,8 +1150,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
-      "bytes": 6389,
-      "sha256": "7223c489c3934245dd9e3f191b01c21ec4e13098b00dd9a054508ab609657bb5"
+      "bytes": 7159,
+      "sha256": "c41836f44052248652728dc7496211910d3a51d078313a95f57ef3d8b4921f2f"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
@@ -1114,9 +1159,14 @@
       "sha256": "250de15efc5c4e279894195ba87899f8ea115e4598c1c30e55342ba677232139"
     },
     {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+      "bytes": 4045,
+      "sha256": "f76c85d73df7a97c2e4f1998f35bb0496afa83245319b633db9358b1561dff5d"
+    },
+    {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
-      "bytes": 6341,
-      "sha256": "b23c1a2890213fdab9bb238c0abcbef1aa4e20caf0ad273275a53fc0ba186df4"
+      "bytes": 6371,
+      "sha256": "b5d7da2ddf5c4955d6d9d98356f6b1bb3724a8a5bb1cdb5058762e9bac31e3e1"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
@@ -1125,8 +1175,13 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
-      "bytes": 1441,
-      "sha256": "21e5a72081f3e03f086fdcae270465a1bef32030d851ad60e144d0cc22ef01c6"
+      "bytes": 1778,
+      "sha256": "11fac52df8fcaf3ab13bf89ede6b54ee944eb943bd47df2cd608cf72b1e877da"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+      "bytes": 1384,
+      "sha256": "fe6e07c55eab7bb42624eae07950149e8e46633e35b1faed19ad360ae0dbf305"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
@@ -1209,6 +1264,11 @@
       "sha256": "21909001c065386a0a6535b36dbf3f24a781fcfb1924ca51e20c419b5138a373"
     },
     {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+      "bytes": 13765,
+      "sha256": "7582aa182d0794f754a4d4f6c5eaa4417ff2a1572f1c742c066982a3e811c75d"
+    },
+    {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
       "bytes": 6783,
       "sha256": "a5edab02d5758fe053c2ec6d28b99635b98bde518fccfc40caf658038421f92d"
@@ -1250,8 +1310,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
-      "bytes": 10801,
-      "sha256": "08af021cac01df93f151ffeae9aba270df4e49d5fb9d97270b2e175ce20565cc"
+      "bytes": 10916,
+      "sha256": "e6172480baabc4a8c136cf62a127d44b529293bb66435bc0c448c2a0d0c0371d"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
@@ -1325,8 +1385,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 20521,
-      "sha256": "7adcb988f22b4c2412e5fb5d929a4b3094bfdf30e8647daa55d45877cab3eb0a"
+      "bytes": 20940,
+      "sha256": "1e35bd1cbfa45b6ce031ca8dc3ce6506a2cbaade429ed65a6953a8324a8ad590"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -1337,6 +1397,11 @@
       "path": "Tests/Fixtures/chinese-epub3.epub",
       "bytes": 3524,
       "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Tests/Fixtures/cover-original.png",
+      "bytes": 45152,
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
     },
     {
       "path": "Tests/Fixtures/reader-layout.epub",
@@ -1365,8 +1430,13 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "bytes": 6846,
-      "sha256": "c71c47ab4369f8d784ca700444223106c9600b9a5c32c3303026f2f4afaebdd1"
+      "bytes": 9564,
+      "sha256": "defd195de0445258bfb9f3b6ae8bef3182a93da75497995e1fcce29cc8ed9a65"
+    },
+    {
+      "path": "Tests/iOS/BookCoverTests.swift",
+      "bytes": 20809,
+      "sha256": "8ac1c2b172d9705e1b330770f6c4543bf70c7905bd0fb01b1a2f779a2b64d984"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
@@ -3206,7 +3276,7 @@
     {
       "path": "project.yml",
       "bytes": 2612,
-      "sha256": "e76ff57df173d3572438ee7af083635c4ed227e914bd4da208e74013db0f4c51"
+      "sha256": "1c2c8bd6580112db7281ccfa1abf8dd3c89a404a1ccf7e7c05b0954558d0af98"
     },
     {
       "path": "scripts/check_repository.py",

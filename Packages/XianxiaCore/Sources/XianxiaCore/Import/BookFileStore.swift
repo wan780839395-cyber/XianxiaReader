@@ -22,8 +22,8 @@ public struct StagedBook: Sendable {
 /// Blocking file work stays on this actor, never on the UI executor.
 public actor BookFileStore {
     public nonisolated let root: URL
-    private let manager = FileManager.default
-    private let sourceCopier: any SourceFileCopying
+    let manager = FileManager.default
+    let sourceCopier: any SourceFileCopying
 
     public init(root: URL, sourceCopier: any SourceFileCopying = PlatformSourceFileCopier()) throws {
         // Resolve the root only after it exists. Some Foundation implementations
@@ -109,12 +109,12 @@ public actor BookFileStore {
     /// On restart, remove interrupted staging and finalized imports absent from the DB.
     /// knownBookIDs must include recoverably removed books, not just the visible shelf.
     public func recoverImports(knownBookIDs: Set<UUID>) throws {
-        for prefix in ["Staging", "Books", "Cache/TXT"] {
+        for prefix in ["Staging", "StagingCovers", "Books", "Cache/TXT"] {
             let directory = try resolve(prefix)
             guard manager.fileExists(atPath: directory.path) else { continue }
             for child in try manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) {
                 guard let id = UUID(uuidString: child.lastPathComponent) else { continue }
-                if prefix == "Staging" || !knownBookIDs.contains(id) {
+                if prefix == "Staging" || prefix == "StagingCovers" || !knownBookIDs.contains(id) {
                     try manager.removeItem(at: resolve("\(prefix)/\(child.lastPathComponent)"))
                 }
             }

@@ -1,13 +1,14 @@
 import XCTest
 
 final class LibraryInteractionUITests: XCTestCase {
-    @MainActor private func start(layout: String, reduceMotion: Bool = false) -> XCUIApplication {
+    @MainActor private func start(layout: String, reduceMotion: Bool = false, customCover: Bool = false) -> XCUIApplication {
         continueAfterFailure = false
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
         app.launchEnvironment["XR_LIBRARY_UI_TEST_ID"] = UUID().uuidString
         app.launchEnvironment["XR_LIBRARY_UI_LAYOUT"] = layout
         if reduceMotion { app.launchEnvironment["XR_LIBRARY_UI_REDUCE_MOTION"] = "1" }
+        if customCover { app.launchEnvironment["XR_LIBRARY_UI_COVER"] = "1" }
         app.launch()
         XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 20))
         return app
@@ -116,5 +117,42 @@ final class LibraryInteractionUITests: XCTestCase {
         snapshot(app, "library-reduced-motion-build12")
         restoreCloud(in: app)
         XCTAssertEqual(book("剑过青山", in: app).frame.minX, before.minX, accuracy: 3)
+    }
+
+    @MainActor func testCoverEditorNativeFilesCancelDefaultSaveAndReopen() {
+        let app = start(layout: "grid", customCover: true); defer { app.terminate() }
+        func openEditor() {
+            book("云海问道", in: app).press(forDuration: 1)
+            let change = app.buttons["更换封面"]
+            XCTAssertTrue(change.waitForExistence(timeout: 5)); change.tap()
+            XCTAssertTrue(app.buttons["library.cover.files"].waitForExistence(timeout: 5))
+        }
+        openEditor()
+        XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "自选封面")
+        XCTAssertFalse(app.buttons["library.cover.save"].isEnabled)
+        snapshot(app, "library-cover-custom-build13")
+        app.buttons["library.cover.files"].tap()
+        let browser = app.navigationBars.matching(NSPredicate(format: "identifier CONTAINS '浏览' OR identifier CONTAINS 'Browse' OR identifier CONTAINS '最近' OR identifier CONTAINS 'Recents'")).firstMatch
+        XCTAssertTrue(browser.waitForExistence(timeout: 10))
+        snapshot(app, "library-cover-native-files-build13")
+        let cancel = app.buttons.matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'"))
+            .allElementsBoundByIndex.first { $0.isHittable && $0.identifier != "library.cover.cancel" }
+        XCTAssertNotNil(cancel); cancel?.tap()
+        XCTAssertTrue(app.buttons["library.cover.default"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "自选封面")
+        app.buttons["library.cover.default"].tap()
+        XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "默认封面")
+        snapshot(app, "library-cover-reset-preview-build13")
+        app.buttons["library.cover.cancel"].tap()
+        XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 5))
+        openEditor(); XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "自选封面")
+        app.buttons["library.cover.default"].tap(); app.buttons["library.cover.save"].tap()
+        XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 5)); XCTAssertTrue(book("云海问道", in: app).label.contains("42%"))
+        snapshot(app, "library-cover-reset-shelf-build13")
+        app.terminate(); app.launch()
+        XCTAssertTrue(book("云海问道", in: app).waitForExistence(timeout: 20))
+        openEditor(); XCTAssertEqual(app.staticTexts["library.cover.kind"].label, "默认封面")
+        XCTAssertFalse(app.buttons["library.cover.save"].isEnabled)
+        app.buttons["library.cover.cancel"].tap(); count(3, in: app)
     }
 }

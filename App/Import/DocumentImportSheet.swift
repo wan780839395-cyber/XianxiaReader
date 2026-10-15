@@ -5,7 +5,9 @@ import SwiftUI
     @ObservedObject var model: LibraryViewModel
 
     func body(content: Content) -> some View {
-        content.sheet(item: $model.presentedSheet) { sheet in
+        content.sheet(item: $model.presentedSheet, onDismiss: {
+            if model.presentedSheet != .cover { model.finishCoverEditing() }
+        }) { sheet in
             switch sheet {
             case .importFiles:
                 EPUBDocumentPicker(
@@ -18,6 +20,8 @@ import SwiftUI
                 if let book = model.bookToRename { BookRenameSheet(book: book, model: model).id(book.id) }
             case .trash:
                 LibraryTrashSheet(model: model)
+            case .cover:
+                if let editor = model.coverEditor { BookCoverEditorSheet(model: editor).id(editor.book.id) }
             }
         }
     }

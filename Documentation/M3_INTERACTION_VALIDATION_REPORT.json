@@ -2955,5 +2955,7 @@
     "preservedPreviousPackageCount": 17,
     "Build12DeviceAccepted": false,
     "M3Complete": false
-  }
+  },
+  "userVisualAcceptance": true,
+  "userFeedbackEvidence": "Documentation/ValidationLogs/m3-library-build12-user-feedback.json"
 }

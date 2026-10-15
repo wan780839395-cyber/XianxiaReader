@@ -1,5 +1,9 @@
 # 项目状态
 
+## Build13 当前候选
+
+封面替换源码和9Core/8iOS集成/1XCUITest已写，待真实Swift编译/完整CI/原生图与录屏/Release，不以Windows语法代替。用户已接受Build12当前观感（ValidationLogs/m3-library-build12-user-feedback.json），未扩大到手机FPS或全部设备。重复导入仍下一M3切片。设计Documentation/LIBRARY_COVER_DESIGN.md；本轮实际断点以HANDOFF为准。
+
 更新时间：2026-10-15（Asia/Shanghai）
 
 | 阶段 | 状态 | 验收 |

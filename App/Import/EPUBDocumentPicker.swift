@@ -8,6 +8,8 @@ import UniformTypeIdentifiers
 @MainActor struct EPUBDocumentPicker: UIViewControllerRepresentable {
     let onCompletion: (Result<[URL], Error>?) -> Void
     var onCoordinatorCreated: ((Coordinator) -> Void)? = nil
+    var contentTypes: [UTType] = [.data]
+    var allowsMultipleSelection = true
 
     func makeCoordinator() -> Coordinator {
         let coordinator = Coordinator(onCompletion: onCompletion)
@@ -16,16 +18,16 @@ import UniformTypeIdentifiers
     }
 
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = Self.makePicker()
+        let picker = Self.makePicker(contentTypes: contentTypes, allowsMultipleSelection: allowsMultipleSelection)
         picker.delegate = context.coordinator
         return picker
     }
 
     func updateUIViewController(_ controller: UIDocumentPickerViewController, context: Context) {}
 
-    static func makePicker() -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.data], asCopy: true)
-        picker.allowsMultipleSelection = true
+    static func makePicker(contentTypes: [UTType] = [.data], allowsMultipleSelection: Bool = true) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: contentTypes, asCopy: true)
+        picker.allowsMultipleSelection = allowsMultipleSelection
         picker.shouldShowFileExtensions = true
         return picker
     }

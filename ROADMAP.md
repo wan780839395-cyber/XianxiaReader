@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+## Build13 当前候选
+
+封面替换源码和9Core/8iOS集成/1XCUITest已写，待真实Swift编译/完整CI/原生图与录屏/Release，不以Windows语法代替。用户已接受Build12当前观感（ValidationLogs/m3-library-build12-user-feedback.json），未扩大到手机FPS或全部设备。重复导入仍下一M3切片。设计Documentation/LIBRARY_COVER_DESIGN.md；本轮实际断点以HANDOFF为准。
+
 ## 2026-10-15 Build12当前切片
 
 Build12书架左滑与动效已通过[完整CI38677706936](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677706936) / `786c154402075e4885905db554ba7179e9c6d085`：Linux/macOS各91Core，iOS70/70（原67集成+3真正XCUITest），failed/skipped0、test/export/summary/recording退出0、无签名设备Release/真实IPA、四长书Release探针。Windows397Swift语法新增0/54 pristine限制、17tooling/bash语法通过，语法不是编译。476运行/验证源Git blob hash、三份真实六pins锁及Build4–11共17旧包hash匹配。
