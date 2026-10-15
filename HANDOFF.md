@@ -4,6 +4,8 @@
 
 ## 实际断点
 
+Build13首轮CI38688984422 / 7189669已通过repository及Linux100Core/四长书探针，Apple job正在总构建步骤；本轮复查发现重复save已提交草稿时原catch范围可能回移已提交资产，已将finalize移出DB回滚catch并加实际文件保留回归。准备停止此中间候选，保留真实取消状态/完整可取得日志；不记作源码失败，不把Apple未完成阶段写通过。随后保存修正候选并重新完整CI。所有原文件/19旧包/原HEAD与index保留。
+
 Build13已恢复核对：原main/HEAD6d76174和空index保持，M3 tip096ed6d；无自身运行任务，GitHub最近仍为Build12成功38677706936，未启动Build13。上轮实际最后验证是Windows406 Swift语法新增0/54限制、17tooling，发生在最后小改之前，不是Swift编译。9项Core封面回归已在磁盘但未编译；本轮补8项iOS集成和1项真正XCUITest（预计Core100/iOS79），Windows407 Swift语法新增0/54 pristine限制、17tooling已重新通过；下一步保存私有index候选并派发完整CI，预期Core100/iOS79，图/视频/Release均尚未通过。
 
 Core可选coverOverride、UUID派生路径与最新payload单字段事务（schema2不动）；StagingCovers→不可变Artwork/asset，DB失败回移草稿供重试、取消清理、启动清理临时stage。旧已提交封面原图保留，不自动回收。App ImageIO后台下采样/12MiB缓存、照片FileRepresentation与共享文件选择器、预览/默认/保存/错误/请求ID；补显式原图恢复警告、真实淡入淡出、保存完成后身份核对关闭editor与迟到旧editor保护。设计见LIBRARY_COVER_DESIGN.md。所有新源码仍待Swift编译/原生图及录屏复核/Release，不写成已验收。

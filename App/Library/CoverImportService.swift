@@ -30,8 +30,10 @@ actor CoverImportService {
     }
 
     func save(_ prepared: PreparedCover) async throws -> Book {
+        // Only a successful fresh finalization belongs to this transaction.
+        // Repeating a committed save must never move that asset back to staging.
+        let cover = try await files.finalizeCover(prepared.staged, thumbnailJPEG: prepared.thumbnailJPEG)
         do {
-            let cover = try await files.finalizeCover(prepared.staged, thumbnailJPEG: prepared.thumbnailJPEG)
             return try await repository.setCoverOverride(prepared.staged.bookID, cover: cover)
         } catch {
             let original = error

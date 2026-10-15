@@ -67,6 +67,12 @@ final class BookCoverTests: XCTestCase {
         let service = CoverImportService(files: services.files, repository: services.repository)
         let draft = try await service.prepare(from: image(root), bookID: book.id), saved = try await service.save(draft)
         let cover = try XCTUnwrap(saved.coverOverride), thumbnail = try services.files.resolve(cover.thumbnailPath(bookID: book.id))
+        do { _ = try await service.save(draft); XCTFail("An already committed draft cannot be saved twice") }
+        catch {
+            let stored = try await services.repository.books(); XCTAssertEqual(stored.first?.book.coverOverride, cover)
+            XCTAssertTrue(FileManager.default.fileExists(atPath: thumbnail.path))
+            XCTAssertTrue(FileManager.default.fileExists(atPath: try services.files.resolve(cover.originalPath(bookID: book.id)).path))
+        }
         try FileManager.default.removeItem(at: thumbnail)
         let pipeline = CoverImagePipeline()
         for _ in 0..<2 {
