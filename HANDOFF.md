@@ -2,6 +2,18 @@
 
 更新时间：2026-10-15（Asia/Shanghai）
 
+## 2026-10-15 新一轮开始：M3 书库浏览与改名
+
+用户在Build9交付上下文直接回复“ok没问题 可以继续了”。先按顺序恢复并实核：main/HEAD6d76174、原空index保留，候选tip e6f31d8，463运行源码hash与已编译c2a037a一致，CI38612220954仍completed/success，各80Core/58iOS/Release日志与旧11包通过核验；当前无上轮未完成CI。新确认记录Build9自用工作流接受，不扩写单独Big5/1252/普通设备/手机性能矩阵。
+
+本轮M3第一切片：网格/列表与排序偏好持久化，书名/作者筛选、最近阅读/进度，改名保存到同UUID的book payload；保留原件、cover路径、目录、完整位置、书签及importedAt。仅改books元数据，不换路径/删DB/升schema/Reader/Vendor依赖。读最新DB记录再在BEGIN IMMEDIATE事务更新，限制空白/控制字符与200字超长书名，错误可见。增Core持久化/多连接/真实SQLite写失败/原关联数据不变回归；iOS书库操作/布局快照与既有导入/Reader全跑。Build10源码尚未写/编译；M3封面替换、可恢复删除、重复导入策略留后续切片，M4仍后续。
+
+上次关机收据state=request_accepted、exit0（UTC18:29:39），原一次性helper已结束；查询字符串曾匹配当前查询自身而非遗留helper。没有新的关机请求，本轮不重新调度上次关机。所有未提交工作与原包保留。实现/检查/快照/完整CI/打包前按步骤更新本记录。
+
+## 2026-10-15 M3 源码就绪，完整构建前检查点
+
+已写Core BookTitle/最新payload事务改名，事务helper泛型返回提交值，协议与失败mock保留；App已接网格/列表、排序/书名作者搜索、偏好、共享改名sheet、refresh请求ID与封面明确降级警告。新增5 Core/5 iOS及四张真实原生UI截图用例，目标85/63。Windows390 Swift语法新增0/54 pristine限制、16tooling通过，仍未编译。方案与SQLite/Apple参考及网页读取限制见Documentation/LIBRARY_BROWSING_DESIGN.md。下一步记录Build9确认/状态、inventory→独立codex/m3-library快照（保留main/index、旧codex/m2 tip）→完整CI→日志/锁/源hash/原生UI视觉核验→另存Build10包/交接。尚未交付源码不能写成M3完成。上轮关机授权只用于上轮一次性请求，本轮不重新启动helper。
+
 ## 实际断点
 
 2026-10-15 Build9 ANSI兼容/范围缓存完整自动门槛通过：[CI38612220954](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38612220954) / c2a037aa6765cd56319cf8a61e8ca1c34f047e22。Linux/macOS各80Core，iOS58/58、failed/skipped0、test/export/summary0，无签名设备Release/IPA。Windows385 Swift语法新增0（pristine54限制保留）、16tooling，语法不是编译；463候选源码Git blob hash、三份真实6pins锁一致。中文Windows ANSI/GBK默认严格自动导入，Big5/CP950与Windows-1252明确手选，GB18030自动回退；Apple CP936单独euro与合法trail80差异经官方映射核实和跨块回归。Normalizer/parser/resource/Locator v1及旧UTF/GB18030 codec身份保持，自动cache策略独立v2。范围cache复用严格核对所有范围/最大scalar切点，仍全文digest验证，不能保证只读元数据秒开。完整方案见TXT_ANSI_COMPATIBILITY.md。

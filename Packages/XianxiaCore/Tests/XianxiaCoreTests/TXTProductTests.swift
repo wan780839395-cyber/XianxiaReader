@@ -8,6 +8,7 @@ final class TXTProductTests: XCTestCase {
         let actual: SQLiteBookRepository
         func books() async throws -> [BookSummary] { try await actual.books() }
         func insert(_ book: Book, chapters: [Chapter]) async throws { throw WriteFailure() }
+        func renameBook(_ id: UUID, title: String) async throws -> Book { throw WriteFailure() }
         func position(for id: UUID) async throws -> ReadingPosition? { try await actual.position(for: id) }
         func save(_ value: ReadingPosition) async throws { try await actual.save(value) }
         func chapters(for id: UUID) async throws -> [Chapter] { try await actual.chapters(for: id) }

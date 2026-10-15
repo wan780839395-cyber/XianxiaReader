@@ -36,6 +36,21 @@ public actor SQLiteBookRepository: BookRepository {
         }
     }
 
+    public func renameBook(_ id: UUID, title: String) throws -> Book {
+        let title = try BookTitle.validated(title)
+        try Task.checkCancellation()
+        // Read the latest payload under a write transaction, never overwrite it
+        // with the UI's potentially stale Book snapshot. Identity/files are unchanged.
+        return try database.transaction {
+            guard var book = try database.query("SELECT payload FROM books WHERE id = ?;", [.text(id.uuidString)], map: {
+                try decoder.decode(Book.self, from: SQLiteConnection.data($0, column: 0))
+            }).first else { throw BookEditingError.bookNotFound }
+            book.title = title
+            try database.run("UPDATE books SET payload = ? WHERE id = ?;", [.blob(try encoder.encode(book)), .text(id.uuidString)])
+            return book
+        }
+    }
+
     public func position(for bookID: UUID) throws -> ReadingPosition? {
         try database.query("SELECT payload FROM reading_positions WHERE book_id = ?;", [.text(bookID.uuidString)]) {
             try decoder.decode(ReadingPosition.self, from: SQLiteConnection.data($0, column: 0))

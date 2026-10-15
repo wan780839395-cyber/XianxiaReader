@@ -31,32 +31,24 @@ import XianxiaCore
                             .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     }.padding(.horizontal, 32).padding(.top, 100)
                 } else {
-                    LazyVGrid(columns: columns, alignment: .leading, spacing: 28) {
-                        ForEach(model.books) { summary in
-                            Button { selectedBook = summary.book } label: {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    BookCoverView(book: summary.book, files: services.files)
-                                    Text(summary.book.title).font(.headline).lineLimit(2).foregroundStyle(.primary)
-                                    Text(summary.book.author.isEmpty ? "作者未注明" : summary.book.author)
-                                        .font(.caption).foregroundStyle(.secondary).lineLimit(1)
-                                    if let progress = summary.progression {
-                                        ProgressView(value: progress)
-                                        Text("已读 \(Int(progress * 100))%").font(.caption).foregroundStyle(.secondary)
-                                    } else {
-                                        Text(summary.lastReadAt == nil ? "尚未阅读" : "已开始阅读")
-                                            .font(.caption).foregroundStyle(.secondary)
-                                    }
-                                    if let date = summary.lastReadAt {
-                                        Text(date, style: .relative).font(.caption2).foregroundStyle(.secondary)
-                                    }
-                                }
-                            }.buttonStyle(.plain)
-                        }
-                    }.padding(20)
+                    shelf
                 }
             }
+            .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("藏书阁")
+            .searchable(text: $model.query, placement: .navigationBarDrawer(displayMode: .always), prompt: "搜索书名或作者")
             .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Picker("显示方式", selection: $model.layout) {
+                            ForEach(LibraryLayout.allCases) { layout in Label(layout.title, systemImage: layout.symbol).tag(layout) }
+                        }
+                        Picker("排序", selection: $model.sortOrder) {
+                            ForEach(LibrarySortOrder.allCases) { order in Text(order.title).tag(order) }
+                        }
+                    } label: { Image(systemName: model.layout.symbol) }
+                        .accessibilityLabel("书架显示与排序").accessibilityIdentifier("library.display")
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button("从文件导入 EPUB / TXT") { model.presentedSheet = .importFiles }
@@ -97,5 +89,69 @@ import XianxiaCore
             }
             .task { await model.refresh() }
         }
+    }
+
+    private var shelf: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            HStack {
+                Text("\(model.visibleBooks.count) 本藏书").font(.subheadline)
+                Spacer()
+                Text(model.sortOrder.title).font(.caption).foregroundStyle(.secondary)
+            }
+            if model.visibleBooks.isEmpty {
+                VStack(spacing: 12) {
+                    Image(systemName: "magnifyingglass").font(.largeTitle).foregroundStyle(.secondary)
+                    Text("没有找到这本书").font(.headline)
+                    Text("试试其他书名或作者。").foregroundStyle(.secondary)
+                    Button("清除筛选") { model.query = "" }
+                }.frame(maxWidth: .infinity).padding(.vertical, 60)
+                    .accessibilityIdentifier("library.no-results")
+            } else if model.layout == .grid {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: 24) {
+                    ForEach(model.visibleBooks) { bookButton($0, compact: false) }
+                }.accessibilityIdentifier("library.grid")
+            } else {
+                LazyVStack(spacing: 12) {
+                    ForEach(model.visibleBooks) { bookButton($0, compact: true) }
+                }.accessibilityIdentifier("library.list")
+            }
+        }.padding(20)
+    }
+
+    private func bookButton(_ summary: BookSummary, compact: Bool) -> some View {
+        Button { selectedBook = summary.book } label: {
+            Group {
+                if compact {
+                    HStack(spacing: 16) {
+                        BookCoverView(book: summary.book, files: services.files, compact: true).frame(width: 56, height: 84)
+                        details(summary)
+                        Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary).accessibilityHidden(true)
+                    }.padding(14).background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
+                } else {
+                    VStack(alignment: .leading, spacing: 10) {
+                        BookCoverView(book: summary.book, files: services.files)
+                        details(summary)
+                    }
+                }
+            }.contentShape(Rectangle())
+        }.buttonStyle(.plain).accessibilityIdentifier("library.book.\(summary.id.uuidString)")
+            .contextMenu {
+                Button { model.beginRename(summary.book) } label: { Label("修改书名", systemImage: "pencil") }
+                    .disabled(model.isImporting || model.isRenaming)
+            }
+    }
+
+    private func details(_ summary: BookSummary) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(summary.book.title).font(.headline).lineLimit(2).foregroundStyle(.primary)
+            Text(summary.book.author.isEmpty ? "作者未注明" : summary.book.author)
+                .font(.caption).foregroundStyle(.secondary).lineLimit(1)
+            if let progress = LibraryPresentation.progress(summary) { ProgressView(value: progress).tint(.accentColor) }
+            HStack(spacing: 8) {
+                Text(LibraryPresentation.readingLabel(summary))
+                Text(summary.book.format.rawValue.uppercased()).font(.caption2)
+            }.font(.caption).foregroundStyle(.secondary)
+            if let date = summary.lastReadAt { Text(date, style: .relative).font(.caption2).foregroundStyle(.secondary) }
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }

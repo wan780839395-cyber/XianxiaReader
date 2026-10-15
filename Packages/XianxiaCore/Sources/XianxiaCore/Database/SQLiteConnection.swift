@@ -65,11 +65,12 @@ final class SQLiteConnection {
         }
     }
 
-    func transaction(_ body: () throws -> Void) throws {
+    func transaction<T>(_ body: () throws -> T) throws -> T {
         try execute("BEGIN IMMEDIATE;")
         do {
-            try body()
+            let result = try body()
             try execute("COMMIT;")
+            return result
         } catch {
             // Preserve the original failure; rollback is a best-effort database cleanup.
             try? execute("ROLLBACK;")

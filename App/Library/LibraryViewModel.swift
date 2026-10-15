@@ -4,7 +4,7 @@ import SwiftUI
 import XianxiaCore
 
 enum LibrarySheet: String, Identifiable {
-    case importFiles, txtEncoding
+    case importFiles, txtEncoding, renameBook
     var id: String { rawValue }
 }
 
@@ -17,20 +17,64 @@ enum LibrarySheet: String, Identifiable {
     @Published var txtEncoding: TXTEncoding = .automatic
     @Published var presentedSheet: LibrarySheet?
     @Published private(set) var retryTXTFiles: [URL] = []
+    @Published var query = ""
+    @Published var layout: LibraryLayout { didSet { defaults.set(layout.rawValue, forKey: "library.layout.v1") } }
+    @Published var sortOrder: LibrarySortOrder { didSet { defaults.set(sortOrder.rawValue, forKey: "library.sort.v1") } }
+    @Published private(set) var bookToRename: Book?
+    @Published private(set) var isRenaming = false
+    @Published private(set) var renameError: String?
+    var visibleBooks: [BookSummary] { LibraryPresentation.books(books, query: query, order: sortOrder) }
+    private let defaults: UserDefaults
+    private var refreshRequestID: UUID?
     private var importTask: Task<Void,Never>?
     private var pickerCoordinator: EPUBDocumentPicker.Coordinator?
     private let services: AppServices
     private let importer: EPUBImportService
 
-    init(services: AppServices) {
+    init(services: AppServices, defaults: UserDefaults = .standard) {
         self.services = services
+        self.defaults = defaults
+        layout = defaults.string(forKey: "library.layout.v1").flatMap(LibraryLayout.init(rawValue:)) ?? .grid
+        sortOrder = defaults.string(forKey: "library.sort.v1").flatMap(LibrarySortOrder.init(rawValue:)) ?? .recent
         importer = EPUBImportService(repository: services.repository, files: services.files,
                                      metadata: ReadiumPublicationLoader())
     }
 
     func refresh() async {
-        do { books = try await services.repository.books() }
-        catch { errorMessage = error.localizedDescription }
+        let requestID = UUID(); refreshRequestID = requestID
+        do {
+            let result = try await services.repository.books()
+            guard refreshRequestID == requestID else { return }
+            books = result
+        } catch {
+            guard refreshRequestID == requestID else { return }
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func beginRename(_ book: Book) {
+        guard !isImporting, !isRenaming, presentedSheet == nil else { return }
+        bookToRename = book; renameError = nil; presentedSheet = .renameBook
+    }
+
+    func renameBook(_ id: UUID, title: String) async -> Bool {
+        guard !isRenaming, !isImporting else { return false }
+        isRenaming = true; renameError = nil
+        defer { isRenaming = false }
+        do {
+            let updated = try await services.repository.renameBook(id, title: title)
+            // A refresh started before this commit must not publish an old title.
+            refreshRequestID = nil
+            if let index = books.firstIndex(where: { $0.id == id }) {
+                let previous = books[index]
+                books[index] = BookSummary(book: updated, progression: previous.progression, lastReadAt: previous.lastReadAt)
+            }
+            await refresh()
+            return true
+        } catch {
+            renameError = error.localizedDescription
+            return false
+        }
     }
 
     func receivePickedDocuments(_ result: Result<[URL], Error>?) {
