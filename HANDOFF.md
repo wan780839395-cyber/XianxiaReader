@@ -2,7 +2,15 @@
 
 更新时间：2026-10-15（Asia/Shanghai）
 
+## 新一轮开始：M3 可恢复移出书架
+
+用户在Build10交付后回复“没问题 继续”，记录该切片基本自用接受，不扩写逐项设备矩阵。已按顺序恢复并实核main/HEAD6d76174、原空index、M3文档tip93bf8c2与编译源4ba69e5，628文件inventory、Build4–10共15旧包hash均匹配，CI三轮completed、最终success，无遗留构建任务。原所有未提交源码/包保留，不重新运行上轮关机。
+
+本轮Build11范围收敛为移出书架/回收站/恢复：新增002迁移只记录移出状态，不删Book/原件/cache/关联数据、不搬目录，文件清理必须使用包含回收站的全部已提交UUID；数据库提交前后中断只影响显示状态。加升级/失败回滚/恢复/重开原件及完整位置保留回归，原生确认与回收站UI、旧导入/阅读全跑。封面替换、重复导入策略继续下一M3切片，M4不开始。已核SQLite官方transaction/user_version/foreign key说明，具体取舍记录设计；待源码/编译/设备状态分开，不称M3完成。
+
 ## 实际断点
+
+Build11源码/测试已写，尚未编译：002移出标记迁移与v2打开，单SELECT LibrarySnapshot、含回收站allBookIDs恢复清理，原生确认/回收站/恢复及串行管理与旧刷新过滤。新增6Core/4iOS，目标91/67，001原件保持；未来版本拒绝、所有旧Reader/import/位置/ANSI回归保留。Windows394语法新增0/54 pristine限制、16tooling通过。下一步独立源码快照/记录473源hash及15旧包/完整CI，不能把源码当通过；设计LIBRARY_REMOVAL_DESIGN.md。Build10用户反馈与新门槛将另存报告，不覆盖旧完整日志/包。
 
 2026-10-15 M3书库浏览/改名切片Build10已通过完整自动门槛：[CI38666201246](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246) / 4ba69e58cdaa325cfd08e31ba5c3db42b1595b82。Linux/macOS各85Core、iOS63/63、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA。Windows390 Swift语法新增0（pristine54限制保留）/16tooling，语法不是编译；468源码Git blob hash、根/download/workspace六pins锁与13旧包一致。保护Readium/Vendor/codec/Locator/schema/文件协调不变，原main/HEAD6d76174和空index、所有未提交工作保留。
 

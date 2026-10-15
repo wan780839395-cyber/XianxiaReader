@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-15T02:02:41.260446+00:00",
+  "source": "direct user feedback following Build10 delivery",
+  "quote": "没问题 继续",
+  "buildContext": "Build10 library browsing and rename",
+  "basicSelfUseWorkflowAccepted": true,
+  "featuresIndividuallyReported": false,
+  "installedBuildOSHardwareIndependentlyRead": false,
+  "ordinarySignedDeviceAccepted": false,
+  "measuredDevicePerformance": false,
+  "sourceRevision": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
+  "run": 38666201246,
+  "deliveredKitSHA256": "3111d7fdfab3fb91f61f659001cbe6e26ba9173a5d27bd7ca7537aff0fe1215e",
+  "nextSlice": "Build11 recoverable removal; cover replacement and duplicate policy remain M3"
+}

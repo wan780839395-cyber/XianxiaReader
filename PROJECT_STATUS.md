@@ -11,6 +11,10 @@
 | M4 设置与主题 | 未开始 | 字体/排版/主题/亮度/音量键 |
 | M5 性能 | 未开始 | 百万字/数千章基线 |
 
+## 2026-10-15 Build11 当前增量（待编译）
+
+用户在Build10交付后回复“没问题 继续”，书库浏览/改名切片基本自用接受，具体设备矩阵不扩写。Build11已写可恢复移出书架、回收站/恢复、002迁移与包含回收站的启动恢复清理；新增6Core/4iOS，目标91/67。Windows394语法新增0/54 pristine限制、16tooling通过，仍未编译。完整门槛和新包待核；设计Documentation/LIBRARY_REMOVAL_DESIGN.md，Build10原包/源码与全部未提交工作保留。封面替换/重复导入继续下一M3切片，M4未开始。
+
 ## 2026-10-15 M3 最新切片
 
 2026-10-15 M3书库浏览/改名切片Build10已通过完整自动门槛：[CI38666201246](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246) / 4ba69e58cdaa325cfd08e31ba5c3db42b1595b82。Linux/macOS各85Core、iOS63/63、failed/skipped0、test/export/summary0、无签名设备Release/真实IPA。Windows390 Swift语法新增0（pristine54限制保留）/16tooling，语法不是编译；468源码Git blob hash、根/download/workspace六pins锁与13旧包一致。保护Readium/Vendor/codec/Locator/schema/文件协调不变，原main/HEAD6d76174和空index、所有未提交工作保留。

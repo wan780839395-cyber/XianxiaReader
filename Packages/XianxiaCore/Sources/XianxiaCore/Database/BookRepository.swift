@@ -2,6 +2,11 @@ import Foundation
 
 public protocol BookRepository: Sendable {
     func books() async throws -> [BookSummary]
+    func librarySnapshot() async throws -> LibrarySnapshot
+    /// Includes removed books: import recovery must never discard their originals.
+    func allBookIDs() async throws -> Set<UUID>
+    func moveToTrash(_ id: UUID) async throws
+    func restoreBook(_ id: UUID) async throws
     func insert(_ book: Book, chapters: [Chapter]) async throws
     func renameBook(_ id: UUID, title: String) async throws -> Book
     func position(for bookID: UUID) async throws -> ReadingPosition?

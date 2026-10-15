@@ -7,6 +7,10 @@ final class TXTProductTests: XCTestCase {
         struct WriteFailure: Error {}
         let actual: SQLiteBookRepository
         func books() async throws -> [BookSummary] { try await actual.books() }
+        func librarySnapshot() async throws -> LibrarySnapshot { try await actual.librarySnapshot() }
+        func allBookIDs() async throws -> Set<UUID> { try await actual.allBookIDs() }
+        func moveToTrash(_ id: UUID) async throws { throw WriteFailure() }
+        func restoreBook(_ id: UUID) async throws { throw WriteFailure() }
         func insert(_ book: Book, chapters: [Chapter]) async throws { throw WriteFailure() }
         func renameBook(_ id: UUID, title: String) async throws -> Book { throw WriteFailure() }
         func position(for id: UUID) async throws -> ReadingPosition? { try await actual.position(for: id) }

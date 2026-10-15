@@ -4,12 +4,16 @@ import SwiftUI
 import XianxiaCore
 
 enum LibrarySheet: String, Identifiable {
-    case importFiles, txtEncoding, renameBook
+    case importFiles, txtEncoding, renameBook, trash
     var id: String { rawValue }
 }
 
 @MainActor final class LibraryViewModel: ObservableObject {
     @Published private(set) var books: [BookSummary] = []
+    @Published private(set) var removedBooks: [BookSummary] = []
+    @Published var bookToRemove: Book?
+    @Published private(set) var isManaging = false
+    @Published private(set) var managementError: String?
     @Published private(set) var isImporting = false
     @Published private(set) var importingName = ""
     @Published private(set) var importStatus: String?
@@ -43,9 +47,10 @@ enum LibrarySheet: String, Identifiable {
     func refresh() async {
         let requestID = UUID(); refreshRequestID = requestID
         do {
-            let result = try await services.repository.books()
+            let result = try await services.repository.librarySnapshot()
             guard refreshRequestID == requestID else { return }
-            books = result
+            books = result.books
+            removedBooks = result.removedBooks
         } catch {
             guard refreshRequestID == requestID else { return }
             errorMessage = error.localizedDescription
@@ -53,12 +58,12 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func beginRename(_ book: Book) {
-        guard !isImporting, !isRenaming, presentedSheet == nil else { return }
+        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
         bookToRename = book; renameError = nil; presentedSheet = .renameBook
     }
 
     func renameBook(_ id: UUID, title: String) async -> Bool {
-        guard !isRenaming, !isImporting else { return false }
+        guard !isRenaming, !isImporting, !isManaging else { return false }
         isRenaming = true; renameError = nil
         defer { isRenaming = false }
         do {
@@ -73,6 +78,48 @@ enum LibrarySheet: String, Identifiable {
             return true
         } catch {
             renameError = error.localizedDescription
+            return false
+        }
+    }
+
+    func requestRemoval(_ book: Book) {
+        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
+        bookToRemove = book
+    }
+
+    func showTrash() {
+        guard !isImporting, !isRenaming, !isManaging, presentedSheet == nil else { return }
+        managementError = nil; presentedSheet = .trash
+    }
+
+    @discardableResult func moveToTrash(_ id: UUID) async -> Bool {
+        await changeRemoval(id, restoring: false)
+    }
+
+    @discardableResult func restoreBook(_ id: UUID) async -> Bool {
+        await changeRemoval(id, restoring: true)
+    }
+
+    private func changeRemoval(_ id: UUID, restoring: Bool) async -> Bool {
+        guard !isManaging, !isImporting, !isRenaming else { return false }
+        isManaging = true; managementError = nil; errorMessage = nil
+        defer { isManaging = false }
+        do {
+            if restoring { try await services.repository.restoreBook(id) }
+            else { try await services.repository.moveToTrash(id) }
+            refreshRequestID = nil
+            if restoring, let summary = removedBooks.first(where: { $0.id == id }) {
+                removedBooks.removeAll { $0.id == id }; books.removeAll { $0.id == id }; books.append(summary)
+            } else if !restoring, let summary = books.first(where: { $0.id == id }) {
+                books.removeAll { $0.id == id }; removedBooks.removeAll { $0.id == id }; removedBooks.insert(summary, at: 0)
+            }
+            bookToRemove = nil
+            importStatus = restoring ? "已恢复到书架，阅读位置和书签已保留" : "已移到回收站，可随时恢复"
+            await refresh()
+            return true
+        } catch {
+            managementError = error.localizedDescription
+            errorMessage = error.localizedDescription
             return false
         }
     }
@@ -99,7 +146,7 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func startImport(_ urls: [URL]) {
-        guard importTask == nil, !isImporting else { return }
+        guard importTask == nil, !isImporting, !isRenaming, !isManaging else { return }
         importTask = Task { [weak self] in
             guard let self else { return }
             await self.importBooks(urls)
@@ -107,7 +154,7 @@ enum LibrarySheet: String, Identifiable {
         }
     }
     func startSamplesImport() {
-        guard importTask == nil, !isImporting else { return }
+        guard importTask == nil, !isImporting, !isRenaming, !isManaging else { return }
         importTask = Task { [weak self] in
             guard let self else { return }
             await self.importSamples()
@@ -124,7 +171,7 @@ enum LibrarySheet: String, Identifiable {
     }
 
     func importBooks(_ urls: [URL]) async {
-        guard !isImporting else { return }
+        guard !isImporting, !isRenaming, !isManaging else { return }
         guard !urls.isEmpty else { errorMessage = ImportError.noFilesSelected.localizedDescription; return }
         errorMessage = nil
         importStatus = nil

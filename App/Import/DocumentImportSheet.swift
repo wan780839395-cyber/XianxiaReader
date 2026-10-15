@@ -16,6 +16,8 @@ import SwiftUI
                 TXTEncodingSheet(model: model)
             case .renameBook:
                 if let book = model.bookToRename { BookRenameSheet(book: book, model: model).id(book.id) }
+            case .trash:
+                LibraryTrashSheet(model: model)
             }
         }
     }

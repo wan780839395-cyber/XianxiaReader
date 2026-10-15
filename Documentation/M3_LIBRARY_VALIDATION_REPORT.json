@@ -2009,7 +2009,7 @@
     "deviceReleaseBuilt": true,
     "desktopLongTXTValidated": true,
     "Build9BasicSelfUseAccepted": true,
-    "Build10DeviceAccepted": false,
+    "Build10DeviceAccepted": true,
     "ordinarySignedDeviceAccepted": false,
     "M3Complete": false
   },
@@ -2864,5 +2864,6 @@
     "preservedPreviousPackageCount": 13,
     "Build10DeviceAccepted": false,
     "M3Complete": false
-  }
+  },
+  "deviceFeedbackEvidence": "Documentation/ValidationLogs/m3-library-build10-device-feedback.json"
 }

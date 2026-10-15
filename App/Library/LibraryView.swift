@@ -23,10 +23,11 @@ import XianxiaCore
                         Text("从“文件”导入 EPUB 或 TXT，在这里继续阅读。")
                             .foregroundStyle(.secondary).multilineTextAlignment(.center)
                         Button("导入书籍") { model.presentedSheet = .importFiles }.buttonStyle(.borderedProminent)
-                            .disabled(model.isImporting)
+                            .disabled(model.isImporting || model.isManaging || model.isRenaming)
                         Button("导入内置样书") { model.startSamplesImport() }
-                            .disabled(model.isImporting)
-                        Button("导入 TXT 样书") { model.startTXTSamplesImport() }.disabled(model.isImporting)
+                            .disabled(model.isImporting || model.isManaging || model.isRenaming)
+                        Button("导入 TXT 样书") { model.startTXTSamplesImport() }.disabled(model.isImporting || model.isManaging || model.isRenaming)
+                        Button("打开回收站（\(model.removedBooks.count)）") { model.showTrash() }
                         Text("支持 EPUB 与 TXT。\n若 iCloud 文件无法打开，请先下载到“我的 iPhone”再导入。")
                             .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     }.padding(.horizontal, 32).padding(.top, 100)
@@ -46,6 +47,7 @@ import XianxiaCore
                         Picker("排序", selection: $model.sortOrder) {
                             ForEach(LibrarySortOrder.allCases) { order in Text(order.title).tag(order) }
                         }
+                        Button { model.showTrash() } label: { Label("回收站（\(model.removedBooks.count)）", systemImage: "trash") }
                     } label: { Image(systemName: model.layout.symbol) }
                         .accessibilityLabel("书架显示与排序").accessibilityIdentifier("library.display")
                 }
@@ -57,7 +59,7 @@ import XianxiaCore
                         Button("TXT 编码") { model.presentedSheet = .txtEncoding }
                         Text("版本 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "未知") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "未知"))")
                     } label: { Image(systemName: "plus") }
-                        .accessibilityLabel("导入书籍").disabled(model.isImporting)
+                        .accessibilityLabel("导入书籍").disabled(model.isImporting || model.isManaging || model.isRenaming)
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -84,6 +86,13 @@ import XianxiaCore
                 }
             }
             .modifier(DocumentImportSheet(model: model))
+            .confirmationDialog("移出书架？", isPresented: Binding(get: { model.bookToRemove != nil }, set: { if !$0 { model.bookToRemove = nil } }),
+                                titleVisibility: .visible, presenting: model.bookToRemove) { book in
+                Button("移到回收站", role: .destructive) { Task { await model.moveToTrash(book.id) } }
+                Button("取消", role: .cancel) { model.bookToRemove = nil }
+            } message: { book in
+                Text("“\(book.title)”将移到回收站，原书、阅读位置和书签会保留，可随时恢复。")
+            }
             .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { book in
                 ReaderView(book: book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root))
             }
@@ -135,10 +144,12 @@ import XianxiaCore
                     }
                 }
             }.contentShape(Rectangle())
-        }.buttonStyle(.plain).accessibilityIdentifier("library.book.\(summary.id.uuidString)")
+        }.buttonStyle(.plain).disabled(model.isManaging).accessibilityIdentifier("library.book.\(summary.id.uuidString)")
             .contextMenu {
                 Button { model.beginRename(summary.book) } label: { Label("修改书名", systemImage: "pencil") }
-                    .disabled(model.isImporting || model.isRenaming)
+                    .disabled(model.isImporting || model.isRenaming || model.isManaging)
+                Button(role: .destructive) { model.requestRemoval(summary.book) } label: { Label("移出书架", systemImage: "trash") }
+                    .disabled(model.isImporting || model.isRenaming || model.isManaging)
             }
     }
 

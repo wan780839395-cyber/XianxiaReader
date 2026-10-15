@@ -24,14 +24,12 @@ final class SQLiteConnection {
             try execute("PRAGMA foreign_keys = ON;")
             let version = try query("PRAGMA user_version;") { Int(sqlite3_column_int($0, 0)) }.first ?? 0
             // Reject a newer schema before changing journal mode or applying any migration.
-            guard version <= 1 else { throw DatabaseError(message: "数据库版本 \(version) 高于此应用支持的版本，请更新应用。") }
+            guard version <= 2 else { throw DatabaseError(message: "数据库版本 \(version) 高于此应用支持的版本，请更新应用。") }
             try execute("PRAGMA journal_mode = WAL;")
             if version == 0 {
-                guard let migration = Bundle.module.url(forResource: "001_initial", withExtension: "sql") else {
-                    throw DatabaseError(message: "缺少数据库迁移资源。")
-                }
-                try execute(String(contentsOf: migration, encoding: .utf8))
+                try execute(Self.migration("001_initial"))
             }
+            if version < 2 { try execute(Self.migration("002_removed_books")) }
         } catch {
             // A throwing initializer may otherwise retain the SQLite handle on retry.
             sqlite3_close(handle)
@@ -41,6 +39,13 @@ final class SQLiteConnection {
     }
 
     deinit { sqlite3_close(handle) }
+
+    static func migration(_ name: String) throws -> String {
+        guard let url = Bundle.module.url(forResource: name, withExtension: "sql") else {
+            throw DatabaseError(message: "缺少数据库迁移资源：\(name)。")
+        }
+        return try String(contentsOf: url, encoding: .utf8)
+    }
 
     func execute(_ sql: String) throws {
         guard sqlite3_exec(handle, sql, nil, nil, nil) == SQLITE_OK else { throw failure() }

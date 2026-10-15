@@ -107,6 +107,7 @@ public actor BookFileStore {
     }
 
     /// On restart, remove interrupted staging and finalized imports absent from the DB.
+    /// knownBookIDs must include recoverably removed books, not just the visible shelf.
     public func recoverImports(knownBookIDs: Set<UUID>) throws {
         for prefix in ["Staging", "Books", "Cache/TXT"] {
             let directory = try resolve(prefix)

@@ -9,16 +9,54 @@ public actor SQLiteBookRepository: BookRepository {
     public init(url: URL) throws { database = try SQLiteConnection(url: url) }
 
     public func books() throws -> [BookSummary] {
-        try database.query("""
-            SELECT b.payload, p.progression, p.updated_at FROM books b
+        try librarySnapshot().books
+    }
+
+    public func librarySnapshot() throws -> LibrarySnapshot {
+        let records = try database.query("""
+            SELECT b.payload, p.progression, p.updated_at, r.book_id FROM books b
             LEFT JOIN reading_positions p ON p.book_id = b.id
-            ORDER BY COALESCE(p.updated_at, b.imported_at) DESC, b.id
+            LEFT JOIN removed_books r ON r.book_id = b.id
+            ORDER BY r.removed_at DESC, COALESCE(p.updated_at, b.imported_at) DESC, b.id
             """) { row in
-            BookSummary(
+            (BookSummary(
                 book: try decoder.decode(Book.self, from: SQLiteConnection.data(row, column: 0)),
                 progression: sqlite3_column_type(row, 1) == SQLITE_NULL ? nil : sqlite3_column_double(row, 1),
                 lastReadAt: sqlite3_column_type(row, 2) == SQLITE_NULL ? nil : Date(timeIntervalSince1970: sqlite3_column_double(row, 2))
-            )
+            ), sqlite3_column_type(row, 3) != SQLITE_NULL)
+        }
+        return LibrarySnapshot(books: records.filter { !$0.1 }.map { $0.0 }, removedBooks: records.filter { $0.1 }.map { $0.0 })
+    }
+
+    public func allBookIDs() throws -> Set<UUID> {
+        Set(try database.query("SELECT id FROM books;") { row in
+            guard let text = sqlite3_column_text(row, 0), let id = UUID(uuidString: String(cString: text)) else {
+                throw DatabaseError(message: "书籍身份损坏，已停止导入恢复。")
+            }
+            return id
+        })
+    }
+
+    public func moveToTrash(_ id: UUID) throws {
+        try Task.checkCancellation()
+        try database.transaction {
+            try requireBook(id)
+            try database.run("INSERT INTO removed_books(book_id, removed_at) VALUES (?, ?) ON CONFLICT(book_id) DO NOTHING;",
+                             [.text(id.uuidString), .real(Date().timeIntervalSince1970)])
+        }
+    }
+
+    public func restoreBook(_ id: UUID) throws {
+        try Task.checkCancellation()
+        try database.transaction {
+            try requireBook(id)
+            try database.run("DELETE FROM removed_books WHERE book_id = ?;", [.text(id.uuidString)])
+        }
+    }
+
+    private func requireBook(_ id: UUID) throws {
+        guard try !database.query("SELECT 1 FROM books WHERE id = ?;", [.text(id.uuidString)], map: { _ in true }).isEmpty else {
+            throw BookEditingError.bookNotFound
         }
     }
 
