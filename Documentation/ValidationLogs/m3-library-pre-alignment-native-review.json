@@ -1,0 +1,42 @@
+{
+  "recordedAtUTC": "2026-10-15T01:32:48.709513+00:00",
+  "run": 38664441495,
+  "sourceRevision": "d7cbc1dd1b935cc104a49ce5edd7a08859428d4b",
+  "images": [
+    {
+      "name": "library-grid-build10",
+      "path": "build/ci/38664441495/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/071282E0-5E72-4F58-83E5-8C8BC02BD25C.png",
+      "sha256": "33c0f6a4401fa4fe1848e6b3d29a6df2e77dda1d4dc5cd5346e1e55e8e114a81",
+      "observation": "Native two-column grid shows green placeholder covers, title/author/status, search and display/import controls; read book progress is visible first.",
+      "inspected": true
+    },
+    {
+      "name": "library-list-build10",
+      "path": "build/ci/38664441495/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E8BCD6FB-0A5E-4F76-B039-6FC0D9771367.png",
+      "sha256": "ae5abf888f49e15ee3b3c54769be43f497e067425ba57339a4bb79a259d3a6f3",
+      "observation": "Native list shows compact covers, title/author/progress/status, read history preceding unread imports and consistent card spacing.",
+      "inspected": true
+    },
+    {
+      "name": "library-filter-empty-build10",
+      "path": "build/ci/38664441495/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C6CA9EF8-F9B3-4425-9C1B-DC448974B0F9.png",
+      "sha256": "dc821551b7eaf19fd368bc134fa2c7ae3dbb2b99d52001fad0b307b7b3351b70",
+      "observation": "No-result screen is distinct from empty library, with search query and clear-filter action.",
+      "inspected": true
+    },
+    {
+      "name": "library-rename-error-build10",
+      "path": "build/ci/38664441495/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/75FAE9D6-8C84-49C1-A108-2F6FF4E3405F.png",
+      "sha256": "e223a2058a5206c3c64905acf3078da97fb96a11452a4d347b520f5e891d4ad3",
+      "observation": "Native rename form shows input and inline validation error, preserving the shelf book.",
+      "inspected": true
+    }
+  ],
+  "scope": "Real iOS18.5 simulator UIKit/SwiftUI views; original fixture metadata, not device/full-theme/cover-customization acceptance",
+  "Build10DeviceAccepted": false,
+  "visualAcceptedForDelivery": false,
+  "issuesFound": [
+    "Grid covers vertically centered within rows with different metadata heights; top alignment needed.",
+    "Filtered result count still called total collection count; use matching count wording."
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T01:14:20.645474+00:00",
+  "recordedAtUTC": "2026-10-15T01:32:49.100870+00:00",
   "stage": "M3 browsing/rename automated gates passed; Build10 device pending",
-  "sourceRevision": "d7cbc1dd1b935cc104a49ce5edd7a08859428d4b",
-  "run": 38664441495,
+  "sourceRevision": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
+  "run": 38666201246,
   "branch": "codex/m3-library",
   "build": "10",
   "changedPaths": [
@@ -31,8 +31,10 @@
     "Documentation/ValidationLogs/m2-txt-ansi-shutdown.json",
     "Documentation/ValidationLogs/m2-txt-ansi-success.json",
     "Documentation/ValidationLogs/m2-txt-build9-device-feedback.json",
+    "Documentation/ValidationLogs/m3-library-build10-success.json",
     "Documentation/ValidationLogs/m3-library-first-candidate.json",
     "Documentation/ValidationLogs/m3-library-first-location-failure.json",
+    "Documentation/ValidationLogs/m3-library-pre-alignment-success.json",
     "HANDOFF.md",
     "HANDOFF_M2_ANSI_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -98,7 +100,7 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "sha256": "6a4cd01052d5e43e66b83ddde36472ba483dbfaf256f3384d801624e0022ed2d"
+      "sha256": "ded544a5aec87c93886d04ef0a4b48d00744dc15761a148930a0f806861b6a36"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -2018,254 +2020,254 @@
   ],
   "latestRun": {
     "conclusion": "success",
-    "databaseId": 38664441495,
+    "databaseId": 38666201246,
     "headBranch": "codex/m3-library",
-    "headSha": "d7cbc1dd1b935cc104a49ce5edd7a08859428d4b",
+    "headSha": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
     "jobs": [
       {
-        "completedAt": "2026-10-15T01:13:27Z",
+        "completedAt": "2026-10-15T01:32:38Z",
         "conclusion": "success",
-        "databaseId": 116192997746,
+        "databaseId": 116198613891,
         "name": "repository-checks",
-        "startedAt": "2026-10-15T01:13:15Z",
+        "startedAt": "2026-10-15T01:32:30Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-15T01:13:17Z",
+            "completedAt": "2026-10-15T01:32:31Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-15T01:13:16Z",
+            "startedAt": "2026-10-15T01:32:31Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:18Z",
+            "completedAt": "2026-10-15T01:32:33Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 2,
-            "startedAt": "2026-10-15T01:13:17Z",
+            "startedAt": "2026-10-15T01:32:31Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:18Z",
+            "completedAt": "2026-10-15T01:32:33Z",
             "conclusion": "success",
             "name": "Run actions/setup-python@v5",
             "number": 3,
-            "startedAt": "2026-10-15T01:13:18Z",
+            "startedAt": "2026-10-15T01:32:33Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:22Z",
+            "completedAt": "2026-10-15T01:32:34Z",
             "conclusion": "success",
             "name": "Install static validation dependencies",
             "number": 4,
-            "startedAt": "2026-10-15T01:13:18Z",
+            "startedAt": "2026-10-15T01:32:33Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:23Z",
+            "completedAt": "2026-10-15T01:32:35Z",
             "conclusion": "success",
             "name": "Validate repository and Swift syntax",
             "number": 5,
-            "startedAt": "2026-10-15T01:13:22Z",
+            "startedAt": "2026-10-15T01:32:34Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:23Z",
+            "completedAt": "2026-10-15T01:32:35Z",
             "conclusion": "success",
             "name": "Test simulator selection and IPA packaging safeguards",
             "number": 6,
-            "startedAt": "2026-10-15T01:13:23Z",
+            "startedAt": "2026-10-15T01:32:35Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:24Z",
+            "completedAt": "2026-10-15T01:32:35Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-python@v5",
             "number": 11,
-            "startedAt": "2026-10-15T01:13:24Z",
+            "startedAt": "2026-10-15T01:32:35Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:24Z",
+            "completedAt": "2026-10-15T01:32:36Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 12,
-            "startedAt": "2026-10-15T01:13:24Z",
+            "startedAt": "2026-10-15T01:32:35Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:13:24Z",
+            "completedAt": "2026-10-15T01:32:36Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 13,
-            "startedAt": "2026-10-15T01:13:24Z",
+            "startedAt": "2026-10-15T01:32:36Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38664441495/job/116192997746"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246/job/116198613891"
       },
       {
-        "completedAt": "2026-10-15T01:15:10Z",
+        "completedAt": "2026-10-15T01:34:21Z",
         "conclusion": "success",
-        "databaseId": 116193069435,
+        "databaseId": 116198667831,
         "name": "core-tests",
-        "startedAt": "2026-10-15T01:13:30Z",
+        "startedAt": "2026-10-15T01:32:41Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-15T01:13:32Z",
+            "completedAt": "2026-10-15T01:32:43Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-15T01:13:31Z",
+            "startedAt": "2026-10-15T01:32:42Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:14:01Z",
+            "completedAt": "2026-10-15T01:33:10Z",
             "conclusion": "success",
             "name": "Initialize containers",
             "number": 2,
-            "startedAt": "2026-10-15T01:13:32Z",
+            "startedAt": "2026-10-15T01:32:43Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:14:02Z",
+            "completedAt": "2026-10-15T01:33:11Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 3,
-            "startedAt": "2026-10-15T01:14:01Z",
+            "startedAt": "2026-10-15T01:33:10Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:14:09Z",
+            "completedAt": "2026-10-15T01:33:19Z",
             "conclusion": "success",
             "name": "Install SQLite development headers inside test container",
             "number": 4,
-            "startedAt": "2026-10-15T01:14:02Z",
+            "startedAt": "2026-10-15T01:33:11Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:14:26Z",
+            "completedAt": "2026-10-15T01:33:35Z",
             "conclusion": "success",
             "name": "Compile and test Core with official Swift toolchain",
             "number": 5,
-            "startedAt": "2026-10-15T01:14:09Z",
+            "startedAt": "2026-10-15T01:33:19Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:06Z",
+            "completedAt": "2026-10-15T01:34:16Z",
             "conclusion": "success",
             "name": "Measure Release TXT cold import and bounded long-book reopen",
             "number": 6,
-            "startedAt": "2026-10-15T01:14:26Z",
+            "startedAt": "2026-10-15T01:33:35Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:08Z",
+            "completedAt": "2026-10-15T01:34:18Z",
             "conclusion": "success",
             "name": "Upload Core compilation and test logs",
             "number": 7,
-            "startedAt": "2026-10-15T01:15:06Z",
+            "startedAt": "2026-10-15T01:34:16Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:08Z",
+            "completedAt": "2026-10-15T01:34:18Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 13,
-            "startedAt": "2026-10-15T01:15:08Z",
+            "startedAt": "2026-10-15T01:34:18Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:08Z",
+            "completedAt": "2026-10-15T01:34:19Z",
             "conclusion": "success",
             "name": "Stop containers",
             "number": 14,
-            "startedAt": "2026-10-15T01:15:08Z",
+            "startedAt": "2026-10-15T01:34:18Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:08Z",
+            "completedAt": "2026-10-15T01:34:19Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 15,
-            "startedAt": "2026-10-15T01:15:08Z",
+            "startedAt": "2026-10-15T01:34:19Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38664441495/job/116193069435"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246/job/116198667831"
       },
       {
-        "completedAt": "2026-10-15T01:29:46Z",
+        "completedAt": "2026-10-15T01:46:59Z",
         "conclusion": "success",
-        "databaseId": 116193570940,
+        "databaseId": 116199161534,
         "name": "ios",
-        "startedAt": "2026-10-15T01:15:16Z",
+        "startedAt": "2026-10-15T01:34:28Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-10-15T01:15:17Z",
+            "completedAt": "2026-10-15T01:34:29Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-10-15T01:15:16Z",
+            "startedAt": "2026-10-15T01:34:28Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:15:18Z",
+            "completedAt": "2026-10-15T01:34:31Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 2,
-            "startedAt": "2026-10-15T01:15:17Z",
+            "startedAt": "2026-10-15T01:34:29Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:29:34Z",
+            "completedAt": "2026-10-15T01:46:51Z",
             "conclusion": "success",
             "name": "Build, test, and package unsigned IPA",
             "number": 3,
-            "startedAt": "2026-10-15T01:15:18Z",
+            "startedAt": "2026-10-15T01:34:31Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:29:38Z",
+            "completedAt": "2026-10-15T01:46:53Z",
             "conclusion": "success",
             "name": "Upload build logs, test results, project, and resolved packages",
             "number": 4,
-            "startedAt": "2026-10-15T01:29:34Z",
+            "startedAt": "2026-10-15T01:46:51Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:29:41Z",
+            "completedAt": "2026-10-15T01:46:55Z",
             "conclusion": "success",
             "name": "Upload unsigned device IPA",
             "number": 5,
-            "startedAt": "2026-10-15T01:29:38Z",
+            "startedAt": "2026-10-15T01:46:53Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:29:41Z",
+            "completedAt": "2026-10-15T01:46:55Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 10,
-            "startedAt": "2026-10-15T01:29:41Z",
+            "startedAt": "2026-10-15T01:46:55Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-10-15T01:29:43Z",
+            "completedAt": "2026-10-15T01:46:57Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 11,
-            "startedAt": "2026-10-15T01:29:41Z",
+            "startedAt": "2026-10-15T01:46:55Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38664441495/job/116193570940"
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246/job/116199161534"
       }
     ],
     "status": "completed",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38664441495"
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38666201246"
   },
   "iOS": {
     "devicesAndConfigurations": [
@@ -2292,19 +2294,19 @@
     "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
     "expectedFailures": 0,
     "failedTests": 0,
-    "finishTime": 1792027508.402,
+    "finishTime": 1792028613.247,
     "passedTests": 63,
     "result": "Passed",
     "skippedTests": 0,
-    "startTime": 1792027128.842,
+    "startTime": 1792028327.672,
     "statistics": [],
     "testFailures": [],
     "title": "Test - XianxiaReader",
     "topInsights": [
       {
         "category": "Longest Test Runs",
-        "impact": "27% of duration",
-        "text": "2 longest test runs with outlier durations exceeding 12.83s (three standard deviations)"
+        "impact": "28% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 12.86s (three standard deviations)"
       }
     ],
     "totalTestCount": 63
@@ -2317,36 +2319,36 @@
       "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
       "cases": [
         {
-          "afterImportPeakRSSBytes": 25268224,
+          "afterImportPeakRSSBytes": 25137152,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21598208,
-          "coldImportMilliseconds": 552.660809,
+          "baselinePeakRSSBytes": 21729280,
+          "coldImportMilliseconds": 549.303822,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 7.501091,
-          "finalPeakRSSBytes": 28037120,
+          "directoryQueryMilliseconds": 7.917173,
+          "finalPeakRSSBytes": 28135424,
           "maximumWindowBytes": 4897,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 172.416199,
-              "peakRSSBytes": 27398144,
+              "cacheValidationMilliseconds": 173.203707,
+              "peakRSSBytes": 27500544,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 232.928148,
+              "readingPlanMilliseconds": 239.548143,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 172.054194,
-              "peakRSSBytes": 28037120,
+              "cacheValidationMilliseconds": 178.273491,
+              "peakRSSBytes": 28073984,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.56467,
+              "readingPlanMilliseconds": 30.997982,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 171.455328,
-              "peakRSSBytes": 28037120,
+              "cacheValidationMilliseconds": 175.858473,
+              "peakRSSBytes": 28135424,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.298814,
+              "readingPlanMilliseconds": 31.335621,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2370,39 +2372,39 @@
             }
           },
           "visitedBytes": 4895893,
-          "windowTraversalMilliseconds": 283.306201
+          "windowTraversalMilliseconds": 285.092289
         },
         {
-          "afterImportPeakRSSBytes": 28872704,
+          "afterImportPeakRSSBytes": 29048832,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21712896,
-          "coldImportMilliseconds": 5416.554863,
+          "baselinePeakRSSBytes": 21970944,
+          "coldImportMilliseconds": 5355.436705,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 21.245685,
-          "finalPeakRSSBytes": 34668544,
+          "directoryQueryMilliseconds": 22.09469,
+          "finalPeakRSSBytes": 34603008,
           "maximumWindowBytes": 17077,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1669.909243,
-              "peakRSSBytes": 32776192,
+              "cacheValidationMilliseconds": 1658.363738,
+              "peakRSSBytes": 32735232,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 1022.55313,
+              "readingPlanMilliseconds": 1020.871885,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1668.262341,
-              "peakRSSBytes": 34525184,
+              "cacheValidationMilliseconds": 1656.594755,
+              "peakRSSBytes": 34422784,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 89.005254,
+              "readingPlanMilliseconds": 89.215949,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1676.076565,
-              "peakRSSBytes": 34668544,
+              "cacheValidationMilliseconds": 1691.361886,
+              "peakRSSBytes": 34603008,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 88.068055,
+              "readingPlanMilliseconds": 89.21132,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2426,39 +2428,39 @@
             }
           },
           "visitedBytes": 51229893,
-          "windowTraversalMilliseconds": 1155.087141
+          "windowTraversalMilliseconds": 1153.009876
         },
         {
-          "afterImportPeakRSSBytes": 23724032,
+          "afterImportPeakRSSBytes": 23330816,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21626880,
-          "coldImportMilliseconds": 5252.870065,
+          "baselinePeakRSSBytes": 21889024,
+          "coldImportMilliseconds": 5247.672676,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 0.179214,
-          "finalPeakRSSBytes": 24772608,
+          "directoryQueryMilliseconds": 0.187549,
+          "finalPeakRSSBytes": 24510464,
           "maximumWindowBytes": 65536,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1662.054916,
-              "peakRSSBytes": 24379392,
+              "cacheValidationMilliseconds": 1656.273402,
+              "peakRSSBytes": 24117248,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 607.079128,
+              "readingPlanMilliseconds": 603.000373,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1660.647975,
-              "peakRSSBytes": 24641536,
+              "cacheValidationMilliseconds": 1657.315735,
+              "peakRSSBytes": 24379392,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 18.36501,
+              "readingPlanMilliseconds": 18.535573,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1672.032914,
-              "peakRSSBytes": 24772608,
+              "cacheValidationMilliseconds": 1661.820811,
+              "peakRSSBytes": 24510464,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 18.031248,
+              "readingPlanMilliseconds": 18.11026,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2482,39 +2484,39 @@
             }
           },
           "visitedBytes": 52427840,
-          "windowTraversalMilliseconds": 673.503163
+          "windowTraversalMilliseconds": 671.251645
         },
         {
-          "afterImportPeakRSSBytes": 25591808,
+          "afterImportPeakRSSBytes": 25006080,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21729280,
-          "coldImportMilliseconds": 1046.107907,
+          "baselinePeakRSSBytes": 21467136,
+          "coldImportMilliseconds": 1024.289574,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 7.736683,
-          "finalPeakRSSBytes": 28184576,
+          "directoryQueryMilliseconds": 7.484946,
+          "finalPeakRSSBytes": 27811840,
           "maximumWindowBytes": 7333,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 216.380555,
-              "peakRSSBytes": 27508736,
+              "cacheValidationMilliseconds": 215.486161,
+              "peakRSSBytes": 27160576,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 255.364331,
+              "readingPlanMilliseconds": 255.159659,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 216.276471,
-              "peakRSSBytes": 28061696,
+              "cacheValidationMilliseconds": 214.436704,
+              "peakRSSBytes": 27754496,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.489759,
+              "readingPlanMilliseconds": 30.674267,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 215.8038,
-              "peakRSSBytes": 28184576,
+              "cacheValidationMilliseconds": 214.657607,
+              "peakRSSBytes": 27811840,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.459133,
+              "readingPlanMilliseconds": 30.475637,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2538,7 +2540,7 @@
             }
           },
           "visitedBytes": 7331893,
-          "windowTraversalMilliseconds": 322.63154
+          "windowTraversalMilliseconds": 288.52189
         }
       ],
       "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
@@ -2547,36 +2549,36 @@
       "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
       "cases": [
         {
-          "afterImportPeakRSSBytes": 10584064,
+          "afterImportPeakRSSBytes": 10534912,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 6045696,
-          "coldImportMilliseconds": 466.353417,
+          "baselinePeakRSSBytes": 5996544,
+          "coldImportMilliseconds": 575.595,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 4.294167,
-          "finalPeakRSSBytes": 15794176,
+          "directoryQueryMilliseconds": 5.898959,
+          "finalPeakRSSBytes": 15630336,
           "maximumWindowBytes": 4897,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 149.094333,
-              "peakRSSBytes": 14188544,
+              "cacheValidationMilliseconds": 156.23375,
+              "peakRSSBytes": 13238272,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 87.077959,
+              "readingPlanMilliseconds": 80.074583,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 139.050292,
-              "peakRSSBytes": 15253504,
+              "cacheValidationMilliseconds": 146.524375,
+              "peakRSSBytes": 14303232,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 16.711958,
+              "readingPlanMilliseconds": 18.356167,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 153.459333,
-              "peakRSSBytes": 15400960,
+              "cacheValidationMilliseconds": 144.910292,
+              "peakRSSBytes": 15220736,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 17.633542,
+              "readingPlanMilliseconds": 22.80575,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2600,39 +2602,39 @@
             }
           },
           "visitedBytes": 4895893,
-          "windowTraversalMilliseconds": 87.898833
+          "windowTraversalMilliseconds": 91.589083
         },
         {
-          "afterImportPeakRSSBytes": 16416768,
+          "afterImportPeakRSSBytes": 14696448,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 6569984,
-          "coldImportMilliseconds": 4407.515333,
+          "baselinePeakRSSBytes": 6782976,
+          "coldImportMilliseconds": 5507.86525,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 12.738042,
-          "finalPeakRSSBytes": 32407552,
+          "directoryQueryMilliseconds": 17.269208,
+          "finalPeakRSSBytes": 30162944,
           "maximumWindowBytes": 17077,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1700.150333,
-              "peakRSSBytes": 25559040,
+              "cacheValidationMilliseconds": 1707.388541,
+              "peakRSSBytes": 22265856,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 755.348083,
+              "readingPlanMilliseconds": 579.54175,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1698.863334,
-              "peakRSSBytes": 29884416,
+              "cacheValidationMilliseconds": 1793.92475,
+              "peakRSSBytes": 26492928,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 55.327708,
+              "readingPlanMilliseconds": 72.33625,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1549.646,
-              "peakRSSBytes": 32014336,
+              "cacheValidationMilliseconds": 1622.190917,
+              "peakRSSBytes": 29802496,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 64.488167,
+              "readingPlanMilliseconds": 52.757875,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2656,39 +2658,39 @@
             }
           },
           "visitedBytes": 51229893,
-          "windowTraversalMilliseconds": 594.35825
+          "windowTraversalMilliseconds": 627.534459
         },
         {
-          "afterImportPeakRSSBytes": 7979008,
+          "afterImportPeakRSSBytes": 8028160,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 5521408,
-          "coldImportMilliseconds": 5104.526083,
+          "baselinePeakRSSBytes": 5505024,
+          "coldImportMilliseconds": 4819.328625,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 0.170334,
-          "finalPeakRSSBytes": 10371072,
+          "directoryQueryMilliseconds": 0.1695,
+          "finalPeakRSSBytes": 10240000,
           "maximumWindowBytes": 65536,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1852.867291,
-              "peakRSSBytes": 9306112,
+              "cacheValidationMilliseconds": 1655.299125,
+              "peakRSSBytes": 9109504,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 590.578875,
+              "readingPlanMilliseconds": 542.121625,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1608.523625,
-              "peakRSSBytes": 9814016,
+              "cacheValidationMilliseconds": 1636.522625,
+              "peakRSSBytes": 9584640,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 9.543666,
+              "readingPlanMilliseconds": 10.620792,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1530.088583,
-              "peakRSSBytes": 9961472,
+              "cacheValidationMilliseconds": 1528.678292,
+              "peakRSSBytes": 9617408,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 12.425416,
+              "readingPlanMilliseconds": 9.730084,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2712,39 +2714,39 @@
             }
           },
           "visitedBytes": 52427840,
-          "windowTraversalMilliseconds": 549.086959
+          "windowTraversalMilliseconds": 481.185208
         },
         {
-          "afterImportPeakRSSBytes": 11943936,
+          "afterImportPeakRSSBytes": 11206656,
           "allChecksPassed": true,
           "baselinePeakRSSBytes": 6029312,
-          "coldImportMilliseconds": 892.463125,
+          "coldImportMilliseconds": 863.931916,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 4.0585,
-          "finalPeakRSSBytes": 15155200,
+          "directoryQueryMilliseconds": 5.450333,
+          "finalPeakRSSBytes": 16269312,
           "maximumWindowBytes": 7333,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 182.927792,
-              "peakRSSBytes": 13500416,
+              "cacheValidationMilliseconds": 195.946833,
+              "peakRSSBytes": 13287424,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 121.825375,
+              "readingPlanMilliseconds": 109.778583,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 213.3665,
-              "peakRSSBytes": 13959168,
+              "cacheValidationMilliseconds": 181.637709,
+              "peakRSSBytes": 15548416,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 16.82425,
+              "readingPlanMilliseconds": 17.445375,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 243.899542,
-              "peakRSSBytes": 14745600,
+              "cacheValidationMilliseconds": 200.666083,
+              "peakRSSBytes": 15876096,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 16.698292,
+              "readingPlanMilliseconds": 17.9495,
               "reusedReadingPlanCache": true
             }
           ],
@@ -2768,16 +2770,16 @@
             }
           },
           "visitedBytes": 7331893,
-          "windowTraversalMilliseconds": 115.681375
+          "windowTraversalMilliseconds": 106.12375
         }
       ],
       "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
     }
   },
   "releaseIPA": {
-    "path": "build\\ci\\38664441495\\artifacts\\XianxiaReader-unsigned-ipa\\XianxiaReader.ipa",
-    "bytes": 7823003,
-    "sha256": "af952b21b60c327882e1886cd12212492cc3ba10ae0241bf1ec7aaf500a974fb",
+    "path": "build\\ci\\38666201246\\artifacts\\XianxiaReader-unsigned-ipa\\XianxiaReader.ipa",
+    "bytes": 7824099,
+    "sha256": "f5b0d26ec2d532b34c63ff8dbcb060007d149346a988f71e818692b93627daef",
     "build": "10",
     "version": "0.0.1",
     "bundleIdentifier": "com.xianxiareader.app",
@@ -2835,5 +2837,32 @@
       "/usr/lib/swift/libswiftUIKit.dylib"
     ]
   },
-  "latestEvidence": "Documentation/ValidationLogs/m3-library-build10-success.json"
+  "latestEvidence": "Documentation/ValidationLogs/m3-library-build10-success.json",
+  "nativeReviewEvidence": "Documentation/ValidationLogs/m3-library-build10-native-review.json",
+  "runtimeDiagnosticEvidence": "Documentation/ValidationLogs/m3-library-build10-runtime-diagnostics.json",
+  "historicalFailures": [
+    "Documentation/ValidationLogs/m3-library-first-location-failure.json"
+  ],
+  "deliveredBuild10": {
+    "recordedAtUTC": "2026-10-15T01:48:57.702581+00:00",
+    "run": 38666201246,
+    "sourceRevision": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
+    "build": "10",
+    "IPA": {
+      "path": "build/XianxiaReader-Library-Build10.ipa",
+      "bytes": 7824099,
+      "sha256": "f5b0d26ec2d532b34c63ff8dbcb060007d149346a988f71e818692b93627daef"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-Library-Build10-TestKit.zip",
+      "bytes": 8254951,
+      "sha256": "3111d7fdfab3fb91f61f659001cbe6e26ba9173a5d27bd7ca7537aff0fe1215e"
+    },
+    "originalFixtureCount": 11,
+    "zipCRC": true,
+    "allOriginalSamplesAndBundleBytesMatched": true,
+    "preservedPreviousPackageCount": 13,
+    "Build10DeviceAccepted": false,
+    "M3Complete": false
+  }
 }

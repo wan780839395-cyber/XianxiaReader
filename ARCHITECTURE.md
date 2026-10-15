@@ -137,3 +137,9 @@ Highlight / Note 和 Character / Realm / Faction / Item / Technique / Location /
 Build9新增GBK/CP936、Big5/CP950、Windows-1252严格流式转换；App枚举选择、实际检测结果仍通过Core/导入协议，不持有Readium Locator。自动BOM/严格UTF8后按中文GBK/GB18030，其他手选；Apple SDK与Linux系统iconv独立向量验证。Apple CP936单独euro官方映射小桥接仅在完整字符边界，不改GB18030。Normalizer/parser/Locator v1、旧codec身份保持，自动策略独立v2 cache key；新codec由index携带以验证anchor，旧自动UTF8cache重建后旧完整位置回归通过。
 
 TXTReadingPlanCache只持久resource范围与内容/章节/codec/版本身份，8MiB元数据限额、原子写入、重新路径检查；新Loader先获取TXTIndexCache完整摘要已验证index，后读范围cache。仍全量digest，复用边界最多每resource两次单字节读取，与旧planner最大scalar窗口一致；损坏重建、取消/IO/路径错误可见。Core仍无UIKit/SwiftUI/Readium，ReadiumAdapter公开Publication服务/有界正文与Locator边界不变。完整设计与官方/成熟参考见Documentation/TXT_ANSI_COMPATIBILITY.md，真实各80Core/58iOS及Release9证据见最新报告；设备结果独立。
+
+## M3 书库浏览与改名
+
+LibraryPresentation仅处理书名/作者元数据筛选、稳定排序和已保存进度；LibraryViewModel注入UserDefaults持久化布局/排序，用refresh请求ID拒绝较旧结果；LibraryView基于原生LazyVGrid/LazyVStack和共享LibrarySheet，长按进入BookRenameSheet。File Provider原delegate生命周期不变；新sheet以book.id区分状态，保存中不能互动关闭，错误留在表单。
+
+Core新增BookTitle验证与BookRepository.renameBook，SQLite事务helper返回泛型提交值，BEGIN IMMEDIATE后读最新payload只改title。无schema变更、不用UI旧Book覆盖author/cover、不变原件路径/目录/位置/书签，真实写失败/回滚/重试与多连接最新元数据有回归。封面读取仍后台执行，取消后拒绝旧结果，失败有可见/无障碍降级警告。Build10各85Core/63iOS/设备Release已通过，但仅M3第一切片；封面替换、可恢复删除、重复导入策略继续单独设计和验证。详见Documentation/LIBRARY_BROWSING_DESIGN.md及最新报告。

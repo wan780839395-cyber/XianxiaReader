@@ -1,0 +1,37 @@
+{
+  "recordedAtUTC": "2026-10-15T01:48:50.677445+00:00",
+  "run": 38666201246,
+  "sourceRevision": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
+  "images": [
+    {
+      "name": "library-grid-build10",
+      "path": "build/ci/38666201246/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B016AF55-89D6-4254-AB26-8880EA816372.png",
+      "sha256": "d866798ac86c89b3b177eb503c54bdf808dfe33e624ebcb20632ca5a090b8e45",
+      "observation": "Native two-column grid has aligned cover top edges, title/author/status, search and display/import controls; read book at 42 percent is visible first.",
+      "inspected": true
+    },
+    {
+      "name": "library-list-build10",
+      "path": "build/ci/38666201246/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C18F8881-EE9C-4598-97AF-F7BEBCA28DFD.png",
+      "sha256": "ae5abf888f49e15ee3b3c54769be43f497e067425ba57339a4bb79a259d3a6f3",
+      "observation": "Native list shows compact covers, title/author/progress/status, read history preceding unread imports and consistent card spacing.",
+      "inspected": true
+    },
+    {
+      "name": "library-filter-empty-build10",
+      "path": "build/ci/38666201246/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7B8504C5-F85D-4C77-A5A5-5476F34F6A6C.png",
+      "sha256": "95e1b0334fd34c8ea0b22089ba46aa5c0589cb05572a61fdc5f707d81c78f430",
+      "observation": "No-result screen is distinct from empty library, with search query, zero matching count and clear-filter action.",
+      "inspected": true
+    },
+    {
+      "name": "library-rename-error-build10",
+      "path": "build/ci/38666201246/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9F8CA59F-3FA5-4CAE-A1CD-3E96649EA639.png",
+      "sha256": "e223a2058a5206c3c64905acf3078da97fb96a11452a4d347b520f5e891d4ad3",
+      "observation": "Native rename form shows input and inline validation error; rendered error state only, with validation exercised separately in model/Core tests.",
+      "inspected": true
+    }
+  ],
+  "scope": "Real iOS18.5 simulator UIKit/SwiftUI views; original fixture metadata, not device/full-theme/cover-customization acceptance",
+  "Build10DeviceAccepted": false
+}

@@ -1,0 +1,20 @@
+{
+  "recordedAtUTC": "2026-10-15T01:32:48.710519+00:00",
+  "run": 38664441495,
+  "sourceRevision": "d7cbc1dd1b935cc104a49ce5edd7a08859428d4b",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 6,
+    "webKitProcessAssertions": 57
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "fixtureDirectoriesRetainedUntilWorkerExit": true,
+  "interpretation": "Runtime diagnostics retained separately; a passing run does not prove all WebKit initial-location timing issues or system bugs permanently fixed.",
+  "log": {
+    "path": "build/ci/38664441495/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "48ba407fe107184d561aac5c606a72461fc350381a4670e7be8121050156df3c"
+  }
+}

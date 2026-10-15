@@ -1,0 +1,22 @@
+{
+  "recordedAtUTC": "2026-10-15T01:48:57.702581+00:00",
+  "run": 38666201246,
+  "sourceRevision": "4ba69e58cdaa325cfd08e31ba5c3db42b1595b82",
+  "build": "10",
+  "IPA": {
+    "path": "build/XianxiaReader-Library-Build10.ipa",
+    "bytes": 7824099,
+    "sha256": "f5b0d26ec2d532b34c63ff8dbcb060007d149346a988f71e818692b93627daef"
+  },
+  "kit": {
+    "path": "build/XianxiaReader-Library-Build10-TestKit.zip",
+    "bytes": 8254951,
+    "sha256": "3111d7fdfab3fb91f61f659001cbe6e26ba9173a5d27bd7ca7537aff0fe1215e"
+  },
+  "originalFixtureCount": 11,
+  "zipCRC": true,
+  "allOriginalSamplesAndBundleBytesMatched": true,
+  "preservedPreviousPackageCount": 13,
+  "Build10DeviceAccepted": false,
+  "M3Complete": false
+}
