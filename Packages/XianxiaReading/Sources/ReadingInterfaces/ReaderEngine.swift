@@ -31,6 +31,7 @@ public protocol EPUBMetadataReading: Sendable {
     var onCenterTap: (() -> Void)? { get set }
     var onError: ((String) -> Void)? { get set }
     var searchProvider: (any ReaderSearchProviding)? { get }
+    var appearanceProvider: (any ReaderAppearanceProviding)? { get }
     var supportsContinuousScrolling: Bool { get }
     func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws
     func turnPage(forward: Bool) async
@@ -44,11 +45,18 @@ public protocol EPUBMetadataReading: Sendable {
 public extension ReaderEngine {
     var currentChapters: [Chapter]? { nil }
     var searchProvider: (any ReaderSearchProviding)? { nil }
+    var appearanceProvider: (any ReaderAppearanceProviding)? { nil }
     var supportsContinuousScrolling: Bool { false }
     func setContinuousScrolling(_ enabled: Bool) {
         if enabled { onError?("当前阅读引擎不支持连续滚动。") }
         else { setScrolling(false) }
     }
+}
+
+@MainActor public protocol ReaderAppearanceProviding: AnyObject {
+    /// False for fixed-layout publications. Initial preferences can be supplied before open.
+    var supportsTextAppearance: Bool { get }
+    func setAppearance(_ appearance: ReadingAppearance) throws
 }
 
 @MainActor public protocol ReaderEngineFactory {

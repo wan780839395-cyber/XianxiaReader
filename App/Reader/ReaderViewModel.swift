@@ -12,11 +12,14 @@ import XianxiaCore
     @Published var menuVisible = true
     @Published var scrolling = false
     @Published var errorMessage: String?
+    @Published private(set) var appearance = ReadingAppearance()
+    @Published private(set) var appearanceSaveFailure: String?
     let engine: (any ReaderEngine)?
     private let book: Book
     private let services: AppServices
     private var started = false
     private var openRequestID: UUID?
+    private var appearanceSaveTask: Task<Void, Never>?
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -39,6 +42,11 @@ import XianxiaCore
         let requestID = UUID()
         openRequestID = requestID
         do {
+            let restoredAppearance = try await services.files.readingAppearance()
+            try Task.checkCancellation()
+            guard openRequestID == requestID else { throw CancellationError() }
+            try engine.appearanceProvider?.setAppearance(restoredAppearance)
+            appearance = restoredAppearance
             let restored = try await services.repository.position(for: book.id)
             chapters = try await services.repository.chapters(for: book.id)
             bookmarks = try await services.repository.bookmarks(for: book.id)
@@ -77,8 +85,31 @@ import XianxiaCore
     }
 
     func saveNow() async {
+        await appearanceSaveTask?.value
         if let position = engine?.currentPosition { await persist(position) }
     }
+
+    func setAppearance(_ value: ReadingAppearance) {
+        guard isReady, let provider = engine?.appearanceProvider else { return }
+        do {
+            try provider.setAppearance(value)
+            appearance = value
+        } catch { errorMessage = error.localizedDescription; return }
+        // Preserve input order even if several edits arrive while disk work is suspended.
+        let previous = appearanceSaveTask
+        let files = services.files
+        appearanceSaveTask = Task { [weak self] in
+            await previous?.value
+            do {
+                try await files.saveReadingAppearance(value)
+                self?.appearanceSaveFailure = nil
+            } catch {
+                self?.appearanceSaveFailure = "设置尚未保存：\(error.localizedDescription)"
+            }
+        }
+    }
+
+    func retryAppearanceSave() { setAppearance(appearance) }
 
     func setScrolling(_ value: Bool) {
         guard !value || engine?.supportsContinuousScrolling == true else {

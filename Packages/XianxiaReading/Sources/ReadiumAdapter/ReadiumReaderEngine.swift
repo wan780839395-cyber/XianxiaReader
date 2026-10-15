@@ -16,7 +16,7 @@ import XianxiaCore
     }
 }
 
-@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, EPUBNavigatorDelegate {
+@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
     private let txtLoader = TXTReadiumPublicationLoader()
@@ -36,6 +36,8 @@ import XianxiaCore
     public private(set) var currentPosition: ReadingPosition?
     public private(set) var searchProvider: (any ReaderSearchProviding)?
     public private(set) var supportsContinuousScrolling = false
+    public var appearanceProvider: (any ReaderAppearanceProviding)? { self }
+    public private(set) var supportsTextAppearance = false
     public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
     public var currentChapters: [Chapter]? { txtReading?.plan.index.chapters }
     var continuousDiagnosticState: String { navigator?.continuousScrollDiagnosticState ?? "no navigator" }
@@ -86,6 +88,7 @@ import XianxiaCore
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
             config: .init(preferences: preferences, disablePageTurnsWhileScrolling: false,
                           preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
+        supportsTextAppearance = publication.metadata.layout != .fixed
         supportsContinuousScrolling = publication.metadata.layout != .fixed
             && !navigator.settings.verticalText && navigator.settings.readingProgression == .ltr
         if preferences.infiniteScroll == true, !supportsContinuousScrolling {
@@ -169,6 +172,18 @@ import XianxiaCore
         }
         preferences.scroll = enabled
         preferences.infiniteScroll = enabled
+        submitPreservingLocation()
+    }
+
+    public func setAppearance(_ appearance: ReadingAppearance) throws {
+        preferences.apply(try appearance.validated())
+        host.view.backgroundColor = UIColor(red: CGFloat((appearance.theme.backgroundRGB >> 16) & 255) / 255,
+            green: CGFloat((appearance.theme.backgroundRGB >> 8) & 255) / 255,
+            blue: CGFloat(appearance.theme.backgroundRGB & 255) / 255, alpha: 1)
+        submitPreservingLocation()
+    }
+
+    private func submitPreservingLocation() {
         cancelModeChange()
         guard let navigator else { return }
         let requestID = UUID()
@@ -207,6 +222,7 @@ import XianxiaCore
         searchProvider = nil
         txtReading = nil
         supportsContinuousScrolling = false
+        supportsTextAppearance = false
     }
 
     public func navigator(_ navigator: Navigator, locationDidChange locator: Locator) {
@@ -228,6 +244,16 @@ import XianxiaCore
         guard navigator.publication.metadata.layout != .fixed else { return }
         userContentController.addUserScript(WKUserScript(source: ReadiumViewportScript.mediaBounds,
             injectionTime: .atDocumentEnd, forMainFrameOnly: true))
+        // Upstream CJK styles omit the paragraph-indent preference. Keep the
+        // horizontal Chinese override local and opt out with publisher styles.
+        userContentController.addUserScript(WKUserScript(source: """
+            (() => {
+              if (getComputedStyle(document.documentElement).writingMode !== 'horizontal-tb') return;
+              const style = document.createElement('style');
+              style.textContent = ':root:lang(zh)[style*="readium-advanced-on"][style*="--USER__paraIndent"] p { text-indent: var(--USER__paraIndent) !important; }';
+              document.head.appendChild(style);
+            })();
+            """, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
     }
 
     private func capture(_ locator: Locator) {

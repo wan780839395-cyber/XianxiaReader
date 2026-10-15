@@ -541,6 +541,45 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
     }
 
+    @MainActor func testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        var appearance = ReadingAppearance(); appearance.fontScale = 1
+        try engine.setAppearance(appearance)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await waitUntil { engine.currentPosition != nil }
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#line-12")
+        let positionScript = "document.getElementById('line-12')?.getBoundingClientRect().top ?? 10000"
+        try await waitUntil {
+            let web = try self.resourceWebView(engine, index: 1)
+            return abs(try await web.evaluateJavaScript(positionScript) as? Double ?? 10000) < 5
+        }
+        for theme in ReadingTheme.allCases {
+            appearance.theme = theme; appearance.fontScale = 1.4; appearance.lineHeight = 1.9
+            try engine.setAppearance(appearance)
+            let rgb = theme.backgroundRGB
+            let expected = "rgb(\((rgb >> 16) & 255), \((rgb >> 8) & 255), \(rgb & 255))"
+            try await waitUntil {
+                let web = try self.resourceWebView(engine, index: 1)
+                let color = try await web.evaluateJavaScript("getComputedStyle(document.documentElement).backgroundColor") as? String
+                let y = try await web.evaluateJavaScript(positionScript) as? Double ?? 10000
+                return color == expected && abs(y) < 3
+            }
+        }
+        let image = try await resourceWebView(engine, index: 1).takeSnapshot(configuration: nil)
+        let attachment = XCTAttachment(image: image); attachment.name = "epub-oled-reflow-build15"
+        attachment.lifetime = .keepAlways; add(attachment)
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close()
+        try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let web = self.webViews(in: wrapper).first else { return false }
+            return abs(try await web.evaluateJavaScript(positionScript) as? Double ?? 10000) < 3
+        }
+    }
+
     @MainActor private func snapshotVisibleWebView(in root: UIView) async throws -> UIImage {
         let webView = try XCTUnwrap(visibleWebView(in: root))
         return try await webView.takeSnapshot(configuration: nil)

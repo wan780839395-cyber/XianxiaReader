@@ -36,7 +36,9 @@ private enum LibraryFixtureError: Error { case preferencesUnavailable }
                 _ = try await services.repository.renameBook(book.id, title: title)
                 if index == 0 {
                     // Diagnostic fixture progress only; UI gestures never open this fake locator.
-                    try await services.repository.save(ReadingPosition(bookID: book.id, engineID: "ui-test.fixture", locatorData: Data([4,2]), progression: 0.42))
+                    if environment["XR_READER_UI_SETTINGS"] != "1" {
+                        try await services.repository.save(ReadingPosition(bookID: book.id, engineID: "ui-test.fixture", locatorData: Data([4,2]), progression: 0.42))
+                    }
                     if environment["XR_LIBRARY_UI_COVER"] == "1" {
                         guard let image = Bundle.main.url(forResource: "cover-original", withExtension: "png", subdirectory: "Fixtures") else {
                             throw ImportError.missingSample

@@ -11,6 +11,7 @@ import XianxiaCore
     @State private var showContents = false
     @State private var showBookmarks = false
     @State private var showSearch = false
+    @State private var showAppearance = false
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -67,13 +68,22 @@ import XianxiaCore
                             Text("向上滑动可接着阅读下一章。")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
-                        Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }
-                            .disabled(model.engine?.searchProvider == nil)
+                        HStack {
+                            Button { showSearch = true } label: { Label("书内搜索", systemImage: "magnifyingglass") }
+                                .disabled(model.engine?.searchProvider == nil)
+                            Spacer()
+                            Button { showAppearance = true } label: { Label("阅读设置", systemImage: "textformat.size") }
+                                .disabled(model.engine?.appearanceProvider == nil)
+                                .accessibilityIdentifier("reader.appearance.open")
+                        }
                     }.padding().background(.regularMaterial).disabled(!model.isReady)
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(model.appearance.theme.background)
+        .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
+        .sheet(isPresented: $showAppearance) { ReaderAppearanceView(model: model) }
         .sheet(isPresented: $showContents) {
             NavigationStack {
                 List(model.chapters) { chapter in

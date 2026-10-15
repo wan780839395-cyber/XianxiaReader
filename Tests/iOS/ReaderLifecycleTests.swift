@@ -6,13 +6,17 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
-    @MainActor private final class SuspendedEngine: ReaderEngine {
+    @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding {
         let viewController = UIViewController()
         var currentPosition: ReadingPosition?
         var onPositionChanged: ((ReadingPosition) -> Void)?
         var onCenterTap: (() -> Void)?
         var onError: ((String) -> Void)?
         var closeCount = 0
+        var appearanceProvider: (any ReaderAppearanceProviding)? { self }
+        var supportsTextAppearance: Bool { true }
+        var appearance: ReadingAppearance?
+        func setAppearance(_ appearance: ReadingAppearance) throws { self.appearance = try appearance.validated() }
         var onOpenStarted: (() -> Void)?
         var onGoStarted: (() -> Void)?
         private var pending: CheckedContinuation<Void, Error>?
@@ -84,6 +88,44 @@ final class ReaderLifecycleTests: XCTestCase {
         XCTAssertFalse(model.isReady)
         XCTAssertNil(model.openFailure)
         XCTAssertEqual(engine.closeCount, 1)
+    }
+
+    @MainActor func testAppearanceRestoresBeforeOpenAndRapidEditsPersistInOrder() async throws {
+        let (_, services, engine, model) = try await context()
+        var saved = ReadingAppearance(); saved.theme = .paper; saved.fontScale = 1.4
+        try await services.files.saveReadingAppearance(saved)
+        let started = expectation(description: "open with saved appearance")
+        engine.onOpenStarted = { XCTAssertEqual(engine.appearance, saved); started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2)
+        engine.finishOpen(); await opening.value
+        for theme in ReadingTheme.allCases {
+            var value = model.appearance; value.theme = theme; model.setAppearance(value)
+        }
+        await model.saveNow()
+        let restored = try await services.files.readingAppearance()
+        XCTAssertEqual(restored.theme, .oled); XCTAssertEqual(restored.fontScale, 1.4)
+        XCTAssertNil(model.appearanceSaveFailure)
+        model.close()
+    }
+
+    @MainActor func testAppearanceWriteFailureShowsRetryAndKeepsCurrentReadingSession() async throws {
+        let (_, services, engine, model) = try await context()
+        let started = expectation(description: "open")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2)
+        engine.finishOpen(); await opening.value
+        let path = try services.files.resolve("Preferences")
+        try Data([1]).write(to: path)
+        var value = model.appearance; value.theme = .charcoal
+        model.setAppearance(value); await model.saveNow()
+        XCTAssertNotNil(model.appearanceSaveFailure); XCTAssertTrue(model.isReady)
+        try FileManager.default.removeItem(at: path)
+        model.retryAppearanceSave(); await model.saveNow()
+        XCTAssertNil(model.appearanceSaveFailure)
+        let restored = try await services.files.readingAppearance()
+        XCTAssertEqual(restored, value); model.close()
     }
 
     @MainActor func testFailedOpenCanRetryAndBecomeReady() async throws {
