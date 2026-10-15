@@ -304,6 +304,8 @@ final class TXTReadingTests: XCTestCase {
             """
         let beforeValue = try await target.evaluateJavaScript(anchorY) as? Double
         let before = try XCTUnwrap(beforeValue)
+        let originalSize = try await target.evaluateJavaScript("parseFloat(getComputedStyle(document.querySelector('p')).fontSize)") as? Double
+        let sizeBefore = try XCTUnwrap(originalSize)
         appearance.theme = .charcoal; appearance.fontScale = 1.5; appearance.lineHeight = 1.9
         appearance.firstLineIndent = false; appearance.pageMargins = 1.5
         try engine.setAppearance(appearance)
@@ -312,7 +314,8 @@ final class TXTReadingTests: XCTestCase {
             let y = try await web.evaluateJavaScript(anchorY) as? Double ?? 10000
             let indent = try await web.evaluateJavaScript("getComputedStyle(document.querySelector('p')).textIndent") as? String
             let color = try await web.evaluateJavaScript("getComputedStyle(document.documentElement).backgroundColor") as? String
-            return abs(y - before) < 3 && indent == "0px" && color == "rgb(36, 40, 38)"
+            let size = try await web.evaluateJavaScript("parseFloat(getComputedStyle(document.querySelector('p')).fontSize)") as? Double ?? 0
+            return abs(y - before) < 3 && indent == "0px" && color == "rgb(36, 40, 38)" && size > sizeBefore * 1.4
         }
         let current = try XCTUnwrap(engine.currentPosition)
         let (_, reflowed, _) = try TXTPositionCodec.decode(current, bookID: book.id, plan: context.plan)

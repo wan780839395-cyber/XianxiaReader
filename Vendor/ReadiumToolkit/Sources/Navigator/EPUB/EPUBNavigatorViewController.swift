@@ -1117,6 +1117,28 @@ extension EPUBNavigatorViewController: EPUBNavigatorViewModelDelegate {
         Task {
             await initialized()
 
+            // Continuous mode owns separate bounded spread views. The original
+            // dispatcher only reaches paginationView, which is nil in this mode.
+            if let continuous = infiniteScrollView {
+                switch scope {
+                case .currentResource:
+                    await continuous.currentView?.evaluateScript(script)
+                case .loadedResources:
+                    let views = continuous.loadedViews.sorted {
+                        abs($0.key - continuous.currentIndex) < abs($1.key - continuous.currentIndex)
+                    }
+                    for (_, spread) in views {
+                        guard infiniteScrollView === continuous else { return }
+                        await spread.evaluateScript(script)
+                    }
+                case let .resource(href):
+                    guard let index = readingOrder.firstIndexWithHREF(href),
+                          let spread = continuous.loadedViews[index] else { return }
+                    await spread.evaluateScript(script, inHREF: href)
+                }
+                return
+            }
+
             guard let paginationView = paginationView else {
                 return
             }

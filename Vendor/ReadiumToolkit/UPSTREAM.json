@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "c11e17a66a3478ba7f9c96d6db0b93f88c2409fe3ddeb883afbad902de06c58f"
+      "sha256": "de10fcc7e7ec18fc25e1e262dddb3120ac2b1143d9e8cb153d2aea1540505fe0"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1660,5 +1660,9 @@
   "txtByteSelectorExtension": {
     "scope": "Explicit data-xianxia-txt=1 documents only; unique escaped txt-b IDs in continuous native Locator; ordinary EPUB path selectors unchanged.",
     "reason": "Preserve exact byte paragraph identity for strict TXT UTF16/byte position validation."
+  },
+  "appearanceScriptDispatchExtension": {
+    "scope": "Route existing script scopes to bounded continuous loaded/current/resource spreads; current first, reject replaced viewport.",
+    "reason": "Readium 3.11 official dispatcher only targets paginationView; maintained continuous mode has no paginationView. Preferences otherwise affect reopened resources only."
   }
 }

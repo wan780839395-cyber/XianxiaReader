@@ -17,3 +17,7 @@ Build14 b67a08bc7f6d0db0c97ec152a87e2128a3209c82 / CI38703788390：Linux/macOS �
 M4源码子步骤已保存：Core版本化外观/受管理原子存储、可选ReadingInterfaces能力、Adapter Preferences映射/取消与DOM保护、原生设置面板、全局加载/串行保存与可见失败、DEBUG真实Reader UI样本；新增Core/iOS/UI回归。设计READING_APPEARANCE_DESIGN.md记录3.11官方资料和CJK缩进局部取舍。现在运行Windows语法与Python tooling，尚未编译，不宣称功能通过。
 
 Windows检查完成：417 Swift语法文件，新增diagnostics0/上游pristine限制54；17 Python tooling通过，非Swift编译。准备通过新codex/m4-reading-appearance私有index候选推送/完整CI；原main/HEAD及index不动。预计115 Core各平台、89 iOS（83集成+6UI）；未完成测试前不打包。
+
+第一候选14444c58ccba0ad683850625e54305111e2bd632已用私有index推送codex/m4-reading-appearance，CI38711095224已真实派发；498运行/验证源码blob hash及23旧包基线另记M4_APPEARANCE_VALIDATION_REPORT.json。CI尚在执行，未假定成功；源码失败保留原日志后最小修复，测试完成前不交付。
+
+复核确定首候选动态CSS仅派发paginationView，而连续模式该对象nil；为避免无效长跑主动取消CI38711095224。取消前repository/Core job成功，iOS刚开始；这是Agent主动取消，不是源码编译/测试失败。已补连续current/loaded/resource脚本派发、当前资源优先/替换viewport终止，更新唯一既有Vendor修改VC的provenance hash，不改锁/原始基线；TXT回归同时断言实际字号至少增大40%。Windows417语法/17Python再过。现在保存第二候选并完整重跑。
