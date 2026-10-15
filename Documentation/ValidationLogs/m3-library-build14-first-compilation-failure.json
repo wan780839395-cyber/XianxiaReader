@@ -1,0 +1,25 @@
+{
+  "run": 38700353531,
+  "sourceRevision": "84397ad73db90562b889c19e000743024c2927c8",
+  "conclusion": "failure",
+  "kind": "Actual Swift test compilation failure",
+  "diagnostic": "BookDuplicateTests.swift:41:77 call can throw but is not marked with try",
+  "coreTestsExecuted": false,
+  "macOSAndIOSTestsExecuted": false,
+  "releaseBuilt": false,
+  "artifactDownloadNote": "Core artifacts and complete log downloaded. Apple diagnostics absent because Apple job skipped; download helper returned 1 on that expected missing artifact.",
+  "logs": [
+    {
+      "path": "build/ci/38700353531/full.log",
+      "sha256": "0add45bb94ce3656b2ecc8b7bcc45e746aea9aabc794606a850c5162253ae987"
+    },
+    {
+      "path": "build/ci/38700353531/core/logs/core-tests.log",
+      "sha256": "f0d266eabd20baa282ac5415409f7dfca8ac1936874f6e3b14863ed20dbeb6cb"
+    },
+    {
+      "path": "build/ci/38700353531/run.json",
+      "sha256": "ecc55819f6b6901be204950afa0c312c358539b46ac79fea0f04e9c4610b1e21"
+    }
+  ]
+}

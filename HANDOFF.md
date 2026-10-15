@@ -2,7 +2,7 @@
 
 已实核Build13初始687维护文件逐hash、21包逐hash、HEAD及空index；初始688项ZIP已保存.cache/recovery/20261015-build14/initial-worktree.zip。无gh/python/Swift/ffmpeg运行进程。用户“没问题 继续”按Build13基本自用接受记录，未扩大设备矩阵。
 
-源码完成、10新Core/4新iOS/1新UI回归已写，Windows411 Swift语法新增0/54 pristine限制、17 Python tooling已通过（不是编译）。即将私有index快照并派发严格完整CI，预期Core110/iOS84；原生图/视频/Release未验证。实现M3精确重复导入：原件SHA256/bytes/格式，TXT另按正规化正文身份区分不同解码；保留已有UUID/位置/封面，回收站显式恢复。计划schema3指纹索引、旧库后台延迟补齐及事务内重复复查；源码/测试/CI/Release尚未完成。
+源码完成、10新Core/4新iOS/1新UI回归已写，Windows411 Swift语法新增0/54 pristine限制、17 Python tooling已通过（不是编译）。首轮CI38700353531/84397ad实际失败于新Core测试读取对照Data缺try；Core运行/Apple/iOS/Release未开始，完整Core日志与失败receipt保留。已修测试try及不同解码的合法café样本（UTF8/1252均有效），准备重新静态检查与完整CI，预期Core110/iOS84；原生图/视频/Release未验证。实现M3精确重复导入：原件SHA256/bytes/格式，TXT另按正规化正文身份区分不同解码；保留已有UUID/位置/封面，回收站显式恢复。计划schema3指纹索引、旧库后台延迟补齐及事务内重复复查；源码/测试/CI/Release尚未完成。
 
 以下为Build13已验证交接，保留作基线。
 

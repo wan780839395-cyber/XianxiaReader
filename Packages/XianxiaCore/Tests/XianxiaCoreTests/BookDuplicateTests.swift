@@ -38,7 +38,7 @@ final class BookDuplicateTests: XCTestCase {
         let books = try await reopened.books(), saved = try await reopened.position(for: first.id)
         let marks = try await reopened.bookmarks(for: first.id), toc = try await reopened.chapters(for: first.id)
         XCTAssertEqual(books.count, 1); XCTAssertEqual(saved, position); XCTAssertEqual(marks, [bookmark]); XCTAssertEqual(toc, chapters)
-        XCTAssertEqual(try Data(contentsOf: files.resolve(first.filePath)), Data(contentsOf: url))
+        XCTAssertEqual(try Data(contentsOf: files.resolve(first.filePath)), try Data(contentsOf: url))
         try emptyStaging(files)
     }
     func testTrashDuplicateRequiresExplicitRestoreAndRecoveryPreservesOriginal() async throws {
@@ -60,11 +60,13 @@ final class BookDuplicateTests: XCTestCase {
         let changed = try await importer.importBookWithEncoding(from: url)
         XCTAssertNil(changed.duplicate); XCTAssertNotEqual(first.id, changed.book.id)
         // UTF-8 and Windows-1252 both decode these original bytes strictly, but yield different text.
-        let variant = try await importer.importBookWithEncoding(from: url, encoding: .windows1252)
-        XCTAssertNil(variant.duplicate); XCTAssertNotEqual(variant.book.id, changed.book.id)
-        let again = try await importer.importBookWithEncoding(from: url, encoding: .windows1252)
+        let ambiguous = try source(root, "ambiguous", "café\n")
+        let utf8 = try await importer.importBookWithEncoding(from: ambiguous)
+        let variant = try await importer.importBookWithEncoding(from: ambiguous, encoding: .windows1252)
+        XCTAssertNil(variant.duplicate); XCTAssertNotEqual(variant.book.id, utf8.book.id)
+        let again = try await importer.importBookWithEncoding(from: ambiguous, encoding: .windows1252)
         XCTAssertEqual(again.book.id, variant.book.id); XCTAssertNotNil(again.duplicate)
-        let books = try await repository.books(); XCTAssertEqual(books.count, 3)
+        let books = try await repository.books(); XCTAssertEqual(books.count, 4)
     }
     func testConcurrentImportersAcrossRealConnectionsCommitOneBookAndCleanLoser() async throws {
         let (root, files, repository) = try context(), url = try source(root)
