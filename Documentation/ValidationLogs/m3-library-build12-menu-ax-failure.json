@@ -1,0 +1,121 @@
+{
+  "recordedAtUTC": "2026-10-15T03:36:05.855919+00:00",
+  "run": 38675354465,
+  "sourceRevision": "df74aa7ea8b1db4e920d5d689c943cb613182b10",
+  "conclusion": "failure",
+  "linuxCore": 91,
+  "macOSCore": 91,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 3,
+        "passedTests": 67,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 3,
+    "finishTime": 1792035130.796,
+    "passedTests": 67,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792034697.967,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "Failed to failed to scroll to visible (by AX action) Button, {{305.7, 62.3}, {41.0, 32.0}}, identifier: 'library.display', label: '书架显示与排序', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 26571, elementOrHash.elementID: 105553169803264.21. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 26571, elementOrHash.elementID: 105553169803264.21)",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 68,
+        "testIdentifierString": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder",
+        "testName": "testGridRemovalReflowsAndRestoreReturnsOriginalOrder()"
+      },
+      {
+        "failureText": "Failed to failed to scroll to visible (by AX action) Button, {{303.7, 64.7}, {43.0, 27.7}}, identifier: 'library.display', label: '书架显示与排序', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 28313, elementOrHash.elementID: 105553169791680.21. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 28313, elementOrHash.elementID: 105553169791680.21)",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 69,
+        "testIdentifierString": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore",
+        "testName": "testNativeListSwipeCancelCommitReopenAndRestore()"
+      },
+      {
+        "failureText": "Failed to failed to scroll to visible (by AX action) Button, {{305.7, 62.3}, {41.0, 32.0}}, identifier: 'library.display', label: '书架显示与排序', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 28545, elementOrHash.elementID: 105553169804224.21. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 28545, elementOrHash.elementID: 105553169804224.21)",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 70,
+        "testIdentifierString": "LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid",
+        "testName": "testReducedMotionRemovalAndRestoreKeepUsableGrid()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "18% of duration",
+        "text": "1 longest test run with outlier durations exceeding 10.47s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 70
+  },
+  "releaseBuilt": false,
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "sourceCompilationPassed": true,
+  "existing67IntegrationTestsPassed": true,
+  "observation": "All three UI cases reached restoreCloud; required swipe/cancel/commit/reopen and grid reflow assertions preceding that point completed. The visible native Menu has nested button AX wrappers and hit point {-1,-1}; XCTest scroll-to-visible fails before opening the menu. Exact unique cause remains limited to the recorded driver path.",
+  "correction": "Test-only public XCUICoordinate tap computed from the actual in-window Menu frame, then require the same menu item, restore, count/progress and frame assertions. No model injection or skipped UI operation.",
+  "inspectedImages": [
+    "4ACFFB8D-9B92-4058-8A70-53AA84DCE2C0.png",
+    "962114D6-AA36-4D77-8025-613C609D527C.png",
+    "14F04D0C-5249-4A59-97BB-80B617D49912.png"
+  ],
+  "artifacts": [
+    {
+      "path": "build/ci/38675354465/full.log",
+      "bytes": 2070643,
+      "sha256": "14fe4602c4233f8ba0e26d54b4a3401004811af193bf78af01db561ff65b87de"
+    },
+    {
+      "path": "build/ci/38675354465/core/logs/core-tests.log",
+      "bytes": 13019,
+      "sha256": "29f23a4a8a4e9b8c82a15c118e5917c71423d26790a1e4b83b1c85d79140c565"
+    },
+    {
+      "path": "build/ci/38675354465/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1412891,
+      "sha256": "b7564eaec30956ae1ac3b67cffa2d03b052690c1d679eadcac55b850a10d324b"
+    },
+    {
+      "path": "build/ci/38675354465/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 4017,
+      "sha256": "98590dbfa88abd1a9bf50c01b8a8a7debd3703807e884ed2a7e0c89a71ff3658"
+    },
+    {
+      "path": "build/ci/38675354465/artifacts/XianxiaReader-build-diagnostics/build/InteractionVideo/library-interactions.mp4",
+      "bytes": 49968705,
+      "sha256": "8b84af00a59b201271a0acb5173628080bdf1c4383b7c17ddad2d2b23aa79baf"
+    },
+    {
+      "path": "build/ci/38675354465/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C2CA83FA-3FEE-407E-BF60-4DD9AAE0371E.txt",
+      "bytes": 9020,
+      "sha256": "b278af4d86cba81eec13cf5ae8303a0dff2064e4f2b144b2b5877d400e616e1e"
+    }
+  ]
+}

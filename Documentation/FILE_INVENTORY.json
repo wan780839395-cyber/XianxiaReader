@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T03:15:46.664194+00:00",
+  "recordedAtUTC": "2026-10-15T03:37:31.802691+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 651,
+  "fileCount": 653,
   "files": [
     {
       "path": ".gitattributes",
@@ -85,8 +85,8 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 13002,
-      "sha256": "eea7f359c2f8e6297cf6f068b3843e74831fe03184e256dd9ead8f7d1d8f4432"
+      "bytes": 13142,
+      "sha256": "75d6093d3f5c99234a97093eaad74605fbd644458cac91dc02c9759ed7dc89af"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -235,8 +235,8 @@
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
-      "bytes": 5693,
-      "sha256": "184815ad824daf0eb48d134b1972c65d8d75fe0c31775c601f0037182752e70a"
+      "bytes": 6849,
+      "sha256": "1bd5b11d8c1735ce598b06752fb57c4f3894e1e22f7c56ae0de543a4ae216492"
     },
     {
       "path": "Documentation/LIBRARY_REMOVAL_DESIGN.md",
@@ -356,12 +356,12 @@
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "25edc570e91eb46e62f0f25dd8ff11bd7eaa5f824207fbdb2d75cff3f3970367"
+      "sha256": "463f2077cfa53edf31ad47685c1e605464b7c3311da27ad224452f9fd8507444"
     },
     {
       "path": "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
-      "bytes": 92462,
-      "sha256": "648e953d825a2ada7d69ef1fbb8d48c8c34b84dac7439d7370dee2ba4610e84e"
+      "bytes": 92983,
+      "sha256": "4d496449fc784027b8f3a687d038dfeb405923fbcf06cbd829e2d9ba1d449854"
     },
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
@@ -884,6 +884,16 @@
       "sha256": "90d28efb5a0a839af456e3bf866585e1742546462ea19287dd92a518c86f1784"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build12-menu-ax-failure.json",
+      "bytes": 6574,
+      "sha256": "6bd093d12a22ff6b793b291cf4653cd72d2669e51cc9896388d79c19a8c117f0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-second-candidate.json",
+      "bytes": 92983,
+      "sha256": "4d496449fc784027b8f3a687d038dfeb405923fbcf06cbd829e2d9ba1d449854"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -940,8 +950,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9926,
-      "sha256": "ebe499178c28a3e5272e450d09be1f09ef604d151f0776f54969e64fb83085c2"
+      "bytes": 11922,
+      "sha256": "0f3cf99d25240fa747f09ca39b11547f55633b97e799c73d4e6f1d254ce1d69d"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1315,8 +1325,8 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "bytes": 6199,
-      "sha256": "a7a3f7f4c4b8a8b29090c3efe486ce54b8c3a41252517f8dd16bcc79bfc62e3e"
+      "bytes": 6846,
+      "sha256": "c71c47ab4369f8d784ca700444223106c9600b9a5c32c3303026f2f4afaebdd1"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",

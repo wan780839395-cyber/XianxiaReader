@@ -4,7 +4,7 @@
 
 ## 左滑与数据真实性
 
-原列表是ScrollView/LazyVStack，SwiftUI原生swipeActions要求List行。本轮列表改原生List，去掉系统背景/分隔线，以行内边距保留现有紧凑卡片。右滑入口在尾侧（中文LTR下左滑），只露出“移到回收站”按钮，allowsFullSwipe=false；继续使用既有确认与Core真实提交，取消/写入失败不移出。红色按钮不设destructive role，避免把尚待确认的操作交给原生破坏性删行反馈；这是状态一致性取舍，实际取消/提交用UI手势回归核实，不凭推断宣布框架bug。
+原列表是ScrollView/LazyVStack，SwiftUI原生swipeActions要求List行。本轮列表改原生List，去掉系统背景/分隔线，以行内边距保留现有紧凑卡片。右滑入口在尾侧（中文LTR下左滑），只露出“移到回收站”按钮，allowsFullSwipe=false；继续使用既有确认与Core真实提交，取消/写入失败不移出。灰绿色普通按钮不设destructive role，避免把尚待确认的操作交给原生破坏性删行反馈；这是状态一致性取舍，实际取消/提交用UI手势回归核实，不凭推断宣布框架bug。
 
 长按菜单入口保留。语义始终是可恢复移到回收站，不永久删除原书或释放原件空间。Core/schema2/数据库/文件清理/Reader/位置/codec均不改，原67集成测试与91Core完整保留。
 
@@ -32,3 +32,7 @@ CI先公开simctl bootstatus/recordVideo录制屏幕，测试后SIGINT结束并�
 Windows397Swift语法新增0/54 pristine限制、17tooling和bash语法通过，仍不是Swift编译。初版AppRoot恢复语法出现Tree-sitter诊断/根节点parent=None诊断崩溃；已将可选await先赋值再解包、保留Release空准备实现，并让根错误节点正常报告而非崩溃，不添加忽略名单/降低门槛。新增Tests/UI进入语法扫描。真正Swift/iOS/Release、截图、录屏和手机验收需分别记录。
 
 首轮083a7d3/CI38674188782 Linux/macOS各91Core/四长书探针通过；App DEBUG编译两处真实错误：Core DatabaseError memberwise initializer为internal，系统accessibilityReduceMotion是KeyPath而非WritableKeyPath。iOS total0、test65/export0/summary0/recording0，Release未执行，完整错误/xcresult/录屏另存首轮失败报告。实际修正仅App局部fixture error和自定义EnvironmentKey（公开iOS13起接口）与系统只读值OR；不为夹具扩大Core公开API或改系统偏好。原67回归及3UI手势门槛保持，修正后须重新完整CI。
+
+第二轮df74aa7/38675354465完成编译，各91Core/四探针与原67iOS通过；3新UI用例均停在打开显示菜单的XCTest AXScrollToVisible，iOS总67/70、test65/export0/summary0/recording0、Release未执行。原生图/AX层级证实菜单位于屏幕内且有嵌套Button包装，日志计算hit point {-1,-1}；实际唯一根因不扩写到所有系统版本。测试改按菜单实际frame中心用公开[XCUICoordinate](https://developer.apple.com/documentation/xcuiautomation/xcuicoordinate)发点击，保留屏内尺寸检查及打开菜单/恢复/进度/原序全部断言，仍是实际手势，不直接调model或跳过恢复。三张首轮手势图已看，左滑/取消/确认/重开及网格补位的前段执行证据保留；最终验收仍需新完整run。
+
+用户看图反馈“移到回收站不好看，和前面不搭”，当前取舍把侧滑大红长按钮改为短文案“移出”与书架灰绿（0.31/0.39/0.36），保留原生手势、完整无障碍名称和回收站确认说明。最终需看实际新图，不把旧红色图当交付视觉。没有因此重写整套主题或更换阅读引擎。

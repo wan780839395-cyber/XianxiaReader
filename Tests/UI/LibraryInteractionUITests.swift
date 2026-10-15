@@ -38,7 +38,16 @@ final class LibraryInteractionUITests: XCTestCase {
     }
 
     @MainActor private func restoreCloud(in app: XCUIApplication) {
-        app.buttons["library.display"].tap()
+        let display = app.buttons["library.display"]
+        XCTAssertTrue(display.waitForExistence(timeout: 5))
+        let frame = display.frame, appFrame = app.frame
+        XCTAssertGreaterThan(frame.width, 0); XCTAssertGreaterThan(frame.height, 0)
+        XCTAssertTrue(appFrame.contains(frame))
+        // The native Menu's nested AX wrappers can return hit point {-1,-1}.
+        // Tap the actual visible frame using public UI coordinates, then still
+        // require the real menu, restore action, saved progress and layout.
+        app.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: frame.midX - appFrame.minX, dy: frame.midY - appFrame.minY)).tap()
         let open = app.buttons.matching(NSPredicate(format: "identifier == 'library.open-trash' OR label BEGINSWITH '回收站（'")).firstMatch
         XCTAssertTrue(open.waitForExistence(timeout: 5)); open.tap()
         let restore = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.restore.' AND label CONTAINS '云海问道'")).firstMatch

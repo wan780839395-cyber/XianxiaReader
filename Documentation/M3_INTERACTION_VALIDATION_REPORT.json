@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T03:02:54.617795+00:00",
+  "recordedAtUTC": "2026-10-15T03:16:06.356667+00:00",
   "stage": "M3 native swipe/transitions pending full CI",
-  "sourceRevision": "083a7d391c0200349a1b7176661ad8483c6418f6",
-  "run": 38674188782,
+  "sourceRevision": "df74aa7ea8b1db4e920d5d689c943cb613182b10",
+  "run": 38675354465,
   "branch": "codex/m3-library",
   "build": "12",
   "changedPaths": [
@@ -11,6 +11,7 @@
     "ARCHITECTURE.md",
     "App/AppRootView.swift",
     "App/Library/LibraryInteractionFixture.swift",
+    "App/Library/LibraryMotion.swift",
     "App/Library/LibraryTrashSheet.swift",
     "App/Library/LibraryView.swift",
     "Documentation/DEVICE_ACCEPTANCE.md",
@@ -19,6 +20,7 @@
     "Documentation/LIBRARY_INTERACTION_DESIGN.md",
     "Documentation/LIBRARY_REMOVAL_DESIGN.md",
     "Documentation/M3_INTERACTION_STATIC_REPORT.json",
+    "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
     "Documentation/M3_REMOVAL_STATIC_REPORT.json",
     "Documentation/M3_REMOVAL_VALIDATION_REPORT.json",
     "Documentation/ValidationLogs/m3-library-build11-device-feedback.json",
@@ -26,6 +28,8 @@
     "Documentation/ValidationLogs/m3-library-build11-runtime-diagnostics.json",
     "Documentation/ValidationLogs/m3-library-build11-success.json",
     "Documentation/ValidationLogs/m3-library-build11-test-kit.json",
+    "Documentation/ValidationLogs/m3-library-build12-first-candidate.json",
+    "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json",
     "HANDOFF.md",
     "HANDOFF_M3_REMOVAL_HISTORY_2026-10-15.md",
     "PROJECT_STATUS.md",
@@ -39,7 +43,7 @@
   "priorRuntimeSource": "bd68a48dc0fa41d07d839e4ddf07128d9069fe0f",
   "priorRun": 38668921850,
   "windows": {
-    "grammarFiles": 396,
+    "grammarFiles": 397,
     "addedDiagnostics": 0,
     "pristineLimitations": 54,
     "toolingTests": 17,
@@ -57,7 +61,7 @@
     },
     {
       "path": "App/AppRootView.swift",
-      "sha256": "f96746300dd56dd9469f58f59794a0a8ab37e0884be4d05843d39a999773d53e"
+      "sha256": "e02c3bdb9501c01ae0a7cb9c1231fc65f1378b4b30388932eade58f8f2f03c31"
     },
     {
       "path": "App/AppServices.swift",
@@ -85,7 +89,11 @@
     },
     {
       "path": "App/Library/LibraryInteractionFixture.swift",
-      "sha256": "3dbe0bf8a2d7e6d371d1c27ef6096d9c11e5765421acbfc983fb56e36312e5c5"
+      "sha256": "162134c7333774673fa9d24eeca0210fddef7ccfa6d1527fcfaba3dcdfa1db7c"
+    },
+    {
+      "path": "App/Library/LibraryMotion.swift",
+      "sha256": "3ef8be81ac88c9c3dcd554a149715c62f15a5bf3e14f847d9c9ded8e55701192"
     },
     {
       "path": "App/Library/LibraryPresentation.swift",
@@ -93,11 +101,11 @@
     },
     {
       "path": "App/Library/LibraryTrashSheet.swift",
-      "sha256": "62e1fc5b53d9566ec8992bee5667783ac03f485d5351255bca880dd3a413f025"
+      "sha256": "3f5cd22cb7d724a9453abee6d91395f94cf20d3ba05eb93751cb386457fdaeda"
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "sha256": "10a0af829df37324d48c7872aa8af2b14532e43877691dfa7c94e45624a061c5"
+      "sha256": "eea7f359c2f8e6297cf6f068b3843e74831fe03184e256dd9ead8f7d1d8f4432"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -397,7 +405,7 @@
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "sha256": "44373fd6337f240e8e5241656d1c7cfc85c6bdd543708d9d0a3c1867f5674910"
+      "sha256": "a7a3f7f4c4b8a8b29090c3efe486ce54b8c3a41252517f8dd16bcc79bfc62e3e"
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
@@ -2056,5 +2064,8 @@
     "No permanent delete/storage reclamation; cover replacement and duplicate policy remain M3.",
     "Native frames/video are not a measured phone FPS or full-theme/ordinary-device acceptance.",
     "Reduced Motion environment test does not set or certify a physical-device system preference."
+  ],
+  "historicalFailures": [
+    "Documentation/ValidationLogs/m3-library-build12-first-compilation-failure.json"
   ]
 }

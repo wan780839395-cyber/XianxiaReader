@@ -10,6 +10,12 @@
 
 ## 实际断点
 
+第二轮df74aa7 / CI38675354465 completed/failure，源码编译通过，各91Core/四长书探针及原67iOS通过，3UI均在restoreCloud菜单AXScrollToVisible失败（总67/70，test65/export0/summary0/recording0，Release未执行）。完整原件/视频已下载；下载先返回session85123，首次提前读文件的缺失并非源码问题，session完成后实读/看图。已实际看grid-before4ACFFB8D/grid-after962114D6/list-swipe14F04D0C，左滑取消/确认/重开和网格补位前段执行，AX层级菜单可见frame内嵌双Button且hit{-1,-1}。最小测试修正：公开坐标点实际菜单frame中心，保留屏内/菜单/恢复/进度/原序所有断言。用户新反馈红色长侧滑块不搭，实际产品改短“移出”与灰绿0.31/0.39/0.36，完整回收站语义留a11y/确认，必须看最终新图再交付。第二失败证据m3-library-build12-menu-ax-failure.json/second-candidate.json保留。下一步静态/第三候选完整CI，未生成用户Build12包。
+
+最新df74aa7 / run38675354465 repository-checks与Linux91Core/四长书Release探针success，Core artifact已下载。Apple进行中，未按旧日志推断手势/Release完成；当前运行源码未改。待完成后用validate_interaction.py finish核476hash/锁/70tests/录屏exit0/Release；六图必须看最终run，视频用忽略目录ffmpeg7.1采样实际连续帧再标inspected，不能由静态图冒充动效。首轮失败source083a7d3与完整原件保留。
+
+最新Build12候选df74aa7ea8b1db4e920d5d689c943cb613182b10 / CI38675354465已调度完整验证，476源hash与17旧包重录。397语法新增0/54 pristine限制、17tooling通过；UI确认查询优先显式ID/原生sheet，避免与关闭中的同名swipe按钮混淆。首轮编译失败原件不覆盖，原Core/schema/Reader/锁保持；新iOS/录屏/Release尚待核，未生成用户Build12包。候选与原main/index均保留，后续六图/视频需来自最终完整通过的实际新run。
+
 Build12首轮083a7d3 / CI38674188782 completed/failure：各91Core/四长书探针通过，App DEBUG编译失败，iOS total0/test65/export0/summary0/recording0，Release未执行。完整run/full/Core/Apple/xcresult/录屏保留；ValidationLogs/m3-library-build12-first-compilation-failure.json、first-candidate.json记录原件hash。两处实际API错误：DatabaseError初始化internal、accessibilityReduceMotion只读。已改App私有FixtureError及新LibraryMotion可写附加请求key，View用系统值OR请求，不能取消系统Reduce Motion；Core不变、Release仍空prepare。当前目标397语法/476源hash、17tooling、91/70/录屏/Release，需静态后新快照/完整CI，不重跑原错误源或放宽测试。全部17旧包/main/index保留。
 
 Build12 run38674188782 repository-checks、Linux91Core/四长书Release探针已success，Core完整artifact已下载build/ci/38674188782/core。Apple仍在进行，当前未再改运行源码。视频审阅工具仅安装在忽略的.cache/recovery/video-deps（imageio-ffmpeg0.6.0/ffmpeg7.1），不进入App/依赖锁；打包/原生图记录脚本已准备未执行。后续六图必须看实际新run文件，动效须看视频连续帧，不能用静态终态或代码存在直接当验收。

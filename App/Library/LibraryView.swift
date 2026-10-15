@@ -125,9 +125,11 @@ import XianxiaCore
                     .listRowSeparator(.hidden).listRowBackground(Color.clear)
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                         // Keep the row until confirmation AND the database commit.
-                        // A plain red action avoids requesting automatic destructive-row removal.
-                        Button { model.requestRemoval(summary.book) } label: { Label("移到回收站", systemImage: "trash") }
-                            .tint(.red).disabled(model.isImporting || model.isRenaming || model.isManaging)
+                        // A short, muted action fits the shelf; full meaning stays in confirmation/accessibility.
+                        Button { model.requestRemoval(summary.book) } label: { Label("移出", systemImage: "trash") }
+                            .tint(Color(red: 0.31, green: 0.39, blue: 0.36))
+                            .accessibilityLabel("移到回收站")
+                            .disabled(model.isImporting || model.isRenaming || model.isManaging)
                             .accessibilityIdentifier("library.swipe-remove")
                     }
             }
