@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-15T04:12:57.989234+00:00",
+  "run": 38677706936,
+  "sourceRevision": "786c154402075e4885905db554ba7179e9c6d085",
+  "counts": {
+    "sqliteVnodeUnlink": 0,
+    "documentManagerDeadHost": 0,
+    "appIntentsMetadata": 7,
+    "webKitProcessAssertions": 39
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "allRuntimeDiagnosticsZero": false,
+  "interpretation": "Runtime diagnostics remain separate; passing gestures do not certify all system timing issues or physical-device smoothness.",
+  "log": {
+    "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "9a29ca7f4fb21cdec3e9a79ce4ffa92e313f5bc4f68c99408ab18950c8689e69"
+  }
+}

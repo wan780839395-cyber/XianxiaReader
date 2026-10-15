@@ -1,0 +1,321 @@
+{
+  "recordedAtUTC": "2026-10-15T04:13:34.981238+00:00",
+  "run": 38677706936,
+  "sourceRevision": "786c154402075e4885905db554ba7179e9c6d085",
+  "nativeTestVideos": [
+    {
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D786744F-D652-4ECA-B0ED-B1342E603E73.mp4",
+      "bytes": 14624788,
+      "sha256": "6dbbd619f15b4fef2bf202837fae92793980698334fc8c47f8c5fe0609c81252",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/45C04571-3B54-4BFE-AF69-1D7D7C621801.mp4",
+      "bytes": 12497887,
+      "sha256": "8431b018361f96d5eae62adbb241779f17b7d6afa1d896419ba43833e2600281",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid()",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7CD19C8-6B09-45B1-8B4E-622D320F5F59.mp4",
+      "bytes": 12923510,
+      "sha256": "82d1cc6ae06936dee60ad97c2eb41791df93b9991a8e09db1e7d40e4b04157c7",
+      "inspected": true
+    }
+  ],
+  "overviewContacts": [
+    {
+      "path": "build/ci/38677706936/VideoReview/grid/contact-1.png",
+      "sha256": "3acc071f96adc100c937b52e108613cb156dc78c3309d0687ec046638534d112",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/grid/contact-2.png",
+      "sha256": "7c64d49cbfc45d155821916c7947e002b31c01d5428edc7cb9e975aa9e9eff86",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/list/contact-1.png",
+      "sha256": "15bacfb47ebf143d152f6ca905b056aa24ed72904fd870e99e0b0936b4d5b9f7",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/list/contact-2.png",
+      "sha256": "1ce88eda04a4c99fc0fec5ea38d1fa11dbbfd8c292efe6510fb332dd304a48cc",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/list/contact-3.png",
+      "sha256": "312f848056b2eb978831eff14ee39fe57e2502aec0584eef3bc9b059e8b6dba2",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/reduced/contact-1.png",
+      "sha256": "c136558a12f8898420a00a38c9fb2ea24f452f20bd310bb6bac01888f4271905",
+      "inspected": true
+    },
+    {
+      "path": "build/ci/38677706936/VideoReview/reduced/contact-2.png",
+      "sha256": "0414ec0c2c19d71339579a36a7b54bb359198cd8c7a6e6649a695b717bff1fb8",
+      "inspected": true
+    }
+  ],
+  "selections": [
+    {
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "video": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D786744F-D652-4ECA-B0ED-B1342E603E73.mp4",
+      "videoSha256": "6dbbd619f15b4fef2bf202837fae92793980698334fc8c47f8c5fe0609c81252",
+      "capture": "build/ci/38677706936/VideoReview/grid/removal-precise/frames.json",
+      "contact": {
+        "path": "build/ci/38677706936/VideoReview/grid/removal-precise/contact.png",
+        "sha256": "e13314c002b2c92c32f2bcd42cc9f44513edfc4cf57d2db661100289692b1015"
+      },
+      "frames": [
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-001.png",
+          "sha256": "0b661ac8bb7d1d14aee99389683e7a69e5e504c4368389ae0f67d7e9a5e24813",
+          "nominalVideoSeconds": 10.6,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-002.png",
+          "sha256": "5355e91efa958020f092651ea4b3e27d2fdd95e438e1e566f02e9f46744f14e2",
+          "nominalVideoSeconds": 10.65,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-003.png",
+          "sha256": "28bbebea789a142a8aadb70bc53f6e141983cb27190228d822d20fbd01214e8d",
+          "nominalVideoSeconds": 10.7,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-004.png",
+          "sha256": "5c4688cec4eae3c8d353b972a6432c1096f163b1407e327a9e8570796ad8baae",
+          "nominalVideoSeconds": 10.75,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-005.png",
+          "sha256": "0bd79bd2a37011956833bdbe49385323a90128aac13e2e039f551c4e516feedc",
+          "nominalVideoSeconds": 10.799999999999999,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-006.png",
+          "sha256": "e7df2c39eb19f9b79addfce3fa5d73e61d4b7e4abf212be08c6ec4a2e70968dd",
+          "nominalVideoSeconds": 10.85,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-007.png",
+          "sha256": "21ed7906d3fbaa553cd68be12b0766fe42bbb3803c00443a74276421c716fed5",
+          "nominalVideoSeconds": 10.9,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/removal-precise/frame-008.png",
+          "sha256": "3eb76fb49370e69400bdc508eb6c86be0e95802d59f8e2b926545e81fcabd13c",
+          "nominalVideoSeconds": 10.95,
+          "inspected": true
+        }
+      ],
+      "observation": "Cloud fades while the retained books move through intermediate positions into the first row and settle; no permanent gap.",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+      "video": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/45C04571-3B54-4BFE-AF69-1D7D7C621801.mp4",
+      "videoSha256": "8431b018361f96d5eae62adbb241779f17b7d6afa1d896419ba43833e2600281",
+      "capture": "build/ci/38677706936/VideoReview/list/removal-precise/frames.json",
+      "contact": {
+        "path": "build/ci/38677706936/VideoReview/list/removal-precise/contact.png",
+        "sha256": "a726624449d9c6bd935df5fdede1600b49e9b54cbf96580d31b0dad7edd43d44"
+      },
+      "frames": [
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-012.png",
+          "sha256": "08563c63398fa3a13751ae38076c04ef412bd99a87ec26d788d94997f3e71704",
+          "nominalVideoSeconds": 18.95,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-013.png",
+          "sha256": "8c023d6e21a61af80daa65a81990615a95cbc4f9befbfc62cdbe7bf176e17f9e",
+          "nominalVideoSeconds": 19.0,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-014.png",
+          "sha256": "9108e9b4d2e35fce442f3a9317e8f52b42ac2d3e9f7ffa6ed56b84a3128ce869",
+          "nominalVideoSeconds": 19.049999999999997,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-015.png",
+          "sha256": "cf3758c244139373294fcbac5146775ce792809f3986f02008e1c50a95e8858e",
+          "nominalVideoSeconds": 19.099999999999998,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-016.png",
+          "sha256": "cf873ea3f458b173a31bd1bae8fbcd91094b994e44a31ab957f0be11da8c979a",
+          "nominalVideoSeconds": 19.15,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-017.png",
+          "sha256": "a7651a10f289e0b0d6b02cab9533b3a30dc7ba4d6f9a52cd06ebeb8eb2b25b89",
+          "nominalVideoSeconds": 19.2,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/list/removal-precise/frame-018.png",
+          "sha256": "ab5aad16a0a05e1dee294934aaf0a249857e0b44927d1b0540e03f1b5d2f1446",
+          "nominalVideoSeconds": 19.25,
+          "inspected": true
+        }
+      ],
+      "observation": "Confirmed row fades, then retained rows move upward and settle; the real gesture test separately confirms that cancel keeps the row.",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "video": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D786744F-D652-4ECA-B0ED-B1342E603E73.mp4",
+      "videoSha256": "6dbbd619f15b4fef2bf202837fae92793980698334fc8c47f8c5fe0609c81252",
+      "capture": "build/ci/38677706936/VideoReview/grid/restore-precise/frames.json",
+      "contact": {
+        "path": "build/ci/38677706936/VideoReview/grid/restore-precise/contact.png",
+        "sha256": "06c0249de423e239c916b0a887f7641ade9c45efd7f66033c0526eecda6dc946"
+      },
+      "frames": [
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-020.png",
+          "sha256": "ca4d0c7e83149755057d58f0af2d16130735b32dd9d431354faa8fce19e89012",
+          "nominalVideoSeconds": 19.05,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-021.png",
+          "sha256": "d2b52d8324425e3a54665fd99f834544a577c40ace1c5c6495ef3d7f25e134f2",
+          "nominalVideoSeconds": 19.1,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-022.png",
+          "sha256": "f22852dfc2654cef3d9edf9b9f6fe98e0d3de04388cb34c8e3bc4276eafeadb7",
+          "nominalVideoSeconds": 19.150000000000002,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-023.png",
+          "sha256": "c48197665c2aee166054958fcf7a2b91ce634018c514c4335ef30744a426addb",
+          "nominalVideoSeconds": 19.200000000000003,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-024.png",
+          "sha256": "b6c8d922db1ec478ca2bf6e10ad97d0c3d9540c0a5085c2ac0476eebec2c9cec",
+          "nominalVideoSeconds": 19.25,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-025.png",
+          "sha256": "5fb3fd11e062645d68d4255e5587450207401df2cd67918128bf12009e97b751",
+          "nominalVideoSeconds": 19.3,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-026.png",
+          "sha256": "bc78f079b8f01b1949d4608f790570fc5b1acbd708a7dc3eac2f8a8ac8e6b7da",
+          "nominalVideoSeconds": 19.35,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/grid/restore-precise/frame-027.png",
+          "sha256": "cb53352a2c6d4bc8338e465d10e187f0e41fd241a124140ccbf21b6bd2899207",
+          "nominalVideoSeconds": 19.400000000000002,
+          "inspected": true
+        }
+      ],
+      "observation": "Restored trash row fades and changes to the empty-trash state; underlying grid restoration is verified separately after closing the sheet.",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid()",
+      "video": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7CD19C8-6B09-45B1-8B4E-622D320F5F59.mp4",
+      "videoSha256": "82d1cc6ae06936dee60ad97c2eb41791df93b9991a8e09db1e7d40e4b04157c7",
+      "capture": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frames.json",
+      "contact": {
+        "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/contact.png",
+        "sha256": "3350ab5ba22affef2aaa32a7489013b494841bfe387fada2004b08c045454d48"
+      },
+      "frames": [
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-008.png",
+          "sha256": "188557680408357a4d80acdead04a2829f0a0c2e71a756e76ea743deab14bca8",
+          "nominalVideoSeconds": 12.15,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-009.png",
+          "sha256": "188557680408357a4d80acdead04a2829f0a0c2e71a756e76ea743deab14bca8",
+          "nominalVideoSeconds": 12.200000000000001,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-010.png",
+          "sha256": "188557680408357a4d80acdead04a2829f0a0c2e71a756e76ea743deab14bca8",
+          "nominalVideoSeconds": 12.25,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-011.png",
+          "sha256": "689292f15af89daac222c47e1a84a9bdaf9b99c5b01ea0e46c92c0d2ba563bf4",
+          "nominalVideoSeconds": 12.3,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-012.png",
+          "sha256": "d6b6d8ff0c3635549c268555c53407f60ad662ee88722489f1e862ada1e54697",
+          "nominalVideoSeconds": 12.350000000000001,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38677706936/VideoReview/reduced/reduced-commit/frame-013.png",
+          "sha256": "c9cb126686342cffb9f94b79d8916ce9b48450bd95f85c30431e690ff33d1447",
+          "nominalVideoSeconds": 12.4,
+          "inspected": true
+        }
+      ],
+      "observation": "Reduced Motion case changes directly from three-book positions to the two-book grid without custom moving/scaling; native menu motion is separate.",
+      "inspected": true
+    }
+  ],
+  "generatedTestAction": {
+    "buildConfiguration": "Debug",
+    "selectedDebuggerIdentifier": "Xcode.DebuggerFoundation.Debugger.LLDB",
+    "selectedLauncherIdentifier": "Xcode.DebuggerFoundation.Launcher.LLDB",
+    "shouldUseLaunchSchemeArgsEnv": "YES",
+    "codeCoverageEnabled": "YES",
+    "onlyGenerateCoverageForSpecifiedTargets": "NO",
+    "systemAttachmentLifetime": "keepAlways"
+  },
+  "configuredPreferredFormat": "screenRecording",
+  "actualFormatEvidence": "Three retained successful XCTest MP4 files; generator omits the default format attribute from XML.",
+  "inspected": true,
+  "scope": "Actual successful native XCTest videos and selected real frames. Full input decoded and sampled before time selection; copies of captured frames, no motion interpolation. Video time is not test wall-clock time or measured physical-device FPS.",
+  "excludedBaseSimulatorVideo": {
+    "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/InteractionVideo/library-interactions.mp4",
+    "bytes": 54672076,
+    "sha256": "eabe18222583f477e895b58807b51090da8392d220fca2ade79f8e4d8088e5a4",
+    "scope": "Base simulator diagnostic; may show the home screen while XCTest uses another simulator. Not motion acceptance."
+  },
+  "limitations": [
+    "Base simctl recording is only diagnostic and not motion acceptance.",
+    "Initial fast-seek extracts were only exploratory and are not the timing evidence used here.",
+    "Phone smoothness, full-theme acceptance, frame-rate and energy remain unverified."
+  ]
+}

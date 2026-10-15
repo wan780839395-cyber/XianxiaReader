@@ -1,0 +1,423 @@
+{
+  "recordedAtUTC": "2026-10-15T03:44:44.234713+00:00",
+  "run": 38677243466,
+  "sourceRevision": "18ac792a65a525c668bf13c90784c972f1eae95c",
+  "conclusion": "cancelled",
+  "initiatedBy": "Agent",
+  "reason": "Successful XCTest recordings were deleted by default; stop incomplete Apple run and rerun with explicit native per-test video retention. Base simctl recording is not accepted as app-motion evidence.",
+  "completedGates": [
+    "repository-checks",
+    "Linux Core91 and four Release TXT probes",
+    "macOS Core91 and four Release TXT probes"
+  ],
+  "unfinished": "Apple iOS compile/test/Release job cancelled without final test summary; no source/test failure inferred.",
+  "runStatus": {
+    "conclusion": "cancelled",
+    "databaseId": 38677243466,
+    "headBranch": "codex/m3-library",
+    "headSha": "18ac792a65a525c668bf13c90784c972f1eae95c",
+    "jobs": [
+      {
+        "completedAt": "2026-10-15T03:37:53Z",
+        "conclusion": "success",
+        "databaseId": 116233542162,
+        "name": "repository-checks",
+        "startedAt": "2026-10-15T03:37:44Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-15T03:37:46Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-15T03:37:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-15T03:37:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:47Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-15T03:37:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:49Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-15T03:37:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:50Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-15T03:37:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:50Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-15T03:37:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-15T03:37:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-15T03:37:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:37:50Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-15T03:37:50Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677243466/job/116233542162"
+      },
+      {
+        "completedAt": "2026-10-15T03:39:34Z",
+        "conclusion": "success",
+        "databaseId": 116233596427,
+        "name": "core-tests",
+        "startedAt": "2026-10-15T03:37:56Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-15T03:37:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-15T03:37:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:38:24Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-15T03:37:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:38:25Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-15T03:38:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:38:33Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-15T03:38:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:38:50Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-15T03:38:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:30Z",
+            "conclusion": "success",
+            "name": "Measure Release TXT cold import and bounded long-book reopen",
+            "number": 6,
+            "startedAt": "2026-10-15T03:38:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:32Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 7,
+            "startedAt": "2026-10-15T03:39:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-10-15T03:39:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:32Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-10-15T03:39:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:32Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-15T03:39:32Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677243466/job/116233596427"
+      },
+      {
+        "completedAt": "2026-10-15T03:43:46Z",
+        "conclusion": "cancelled",
+        "databaseId": 116234046377,
+        "name": "ios",
+        "startedAt": "2026-10-15T03:39:42Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-15T03:39:43Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-15T03:39:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:39:45Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-15T03:39:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:43:40Z",
+            "conclusion": "cancelled",
+            "name": "Build, test, and package unsigned IPA",
+            "number": 3,
+            "startedAt": "2026-10-15T03:39:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:43:41Z",
+            "conclusion": "success",
+            "name": "Upload build logs, test results, project, and resolved packages",
+            "number": 4,
+            "startedAt": "2026-10-15T03:43:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:43:41Z",
+            "conclusion": "skipped",
+            "name": "Upload unsigned device IPA",
+            "number": 5,
+            "startedAt": "2026-10-15T03:43:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:43:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-15T03:43:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-15T03:43:45Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-15T03:43:42Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677243466/job/116234046377"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38677243466"
+  },
+  "artifacts": [
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/build-environment.txt",
+      "bytes": 193,
+      "sha256": "b4ab3a22c15436fbd6ed4a591076dbf2e25379a03a3464d61970cfd54066a5a6"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 21429,
+      "sha256": "7f920884aaa811bf54dfa8ce44987bd9aa0d3051a1892c04c12ce8cdf4526037"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/Package.resolved",
+      "bytes": 1718,
+      "sha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
+      "bytes": 697473,
+      "sha256": "d1241c1034bc39a409640375f02f0578c8c4670a12aeaac5afecfa6e66f7bfee"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf16-5MiB-1000chapters.json",
+      "bytes": 121071,
+      "sha256": "ae0f39dd4a187f78c632ed2370bc81f43d3fddbc38cd6a6b4f2c1a3cc541133e"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf16-5MiB-1000chapters.log",
+      "bytes": 208,
+      "sha256": "211424bc9a718a112aa9556997b2021e1864d4ea463ea3cdd28f9de0eb4fe08b"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-50MiB-3000chapters.json",
+      "bytes": 368083,
+      "sha256": "ffccc6d97aae65ca9a765834ab35033a238117c91389affe7461c0d1bbee91d8"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-50MiB-3000chapters.log",
+      "bytes": 213,
+      "sha256": "6f4171f66c837a93ca118b83d99d66f58b07bcb4a52caa89d6c808125e5af827"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-50MiB-no-newline.json",
+      "bytes": 1582,
+      "sha256": "36fc63c57a7aef9506f9c43e2950b2f9d039984ef85fc0a4d80310828e7ee385"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-50MiB-no-newline.log",
+      "bytes": 210,
+      "sha256": "3007ce06b78081b95d6d8e867237991d7c79787feae6f7dc974c8e592846e6c8"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-5MiB-1000chapters.json",
+      "bytes": 120916,
+      "sha256": "6ad7027f296a72b810ab6c007cf96c1b82557934f7d9ef23f7276bc0ef5f3cd1"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/utf8-5MiB-1000chapters.log",
+      "bytes": 207,
+      "sha256": "3f7e538c97449df977498c251c08754f7e96f316171329f8863c4f82c1fab811"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/XianxiaReader.xcodeproj/project.pbxproj",
+      "bytes": 38106,
+      "sha256": "ec5741a83c616f8d48a8d3c981fe44337e077290309f46b37f813ce70dce38ee"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/XianxiaReader.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "bytes": 135,
+      "sha256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/XianxiaReader.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "bytes": 1718,
+      "sha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537"
+    },
+    {
+      "path": "build/ci/38677243466/artifacts/XianxiaReader-build-diagnostics/XianxiaReader.xcodeproj/xcshareddata/xcschemes/XianxiaReader.xcscheme",
+      "bytes": 5685,
+      "sha256": "726591371beec607e306bfdf746d112c3a46076840312ac25fe0e86f77fe3b56"
+    },
+    {
+      "path": "build/ci/38677243466/core/logs/core-environment.log",
+      "bytes": 75,
+      "sha256": "d374cef3ae00c518787333e4ea4b14c3db742709dca2ff78c4063673b1f587b8"
+    },
+    {
+      "path": "build/ci/38677243466/core/logs/core-tests.log",
+      "bytes": 13040,
+      "sha256": "706579dcbba49b0c636f918e61d330d9751cc2be1ec4b93149e2eed2bd2fa8d1"
+    },
+    {
+      "path": "build/ci/38677243466/core/logs/txt-performance.log",
+      "bytes": 286,
+      "sha256": "a9c6bb747dce1393f93a8d11add56b04d3e2df8d95b36157e65aa61b1b3c3ceb"
+    },
+    {
+      "path": "build/ci/38677243466/core/logs/txt-probe-build.log",
+      "bytes": 444,
+      "sha256": "28e5382fd0f2491ff7c2e8518fb5379a68d2ef7c82743987b0eb2c8171341f37"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/summary.json",
+      "bytes": 697452,
+      "sha256": "e071588784785f56fdf7c19fbdac4c23cc182a11ad40d4f49cbcb97e626d3a05"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf16-5MiB-1000chapters.json",
+      "bytes": 121062,
+      "sha256": "64f4e914f0defa035f2e266fc177cb26398d4c802a646bef4258bfb5fce17b08"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf16-5MiB-1000chapters.log",
+      "bytes": 209,
+      "sha256": "5f1af73851637598a6c182e9ed97734982ddf230181ce1016a7859ba39639a04"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-50MiB-3000chapters.json",
+      "bytes": 368074,
+      "sha256": "c47804580d6e671d12327944d529186a5d906bc632900eed2a316c77e7960d5c"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-50MiB-3000chapters.log",
+      "bytes": 214,
+      "sha256": "bd42c75626a6adac36497d93d3f927489747f01c5a9f4c3b38cf3eb2b77490a8"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-50MiB-no-newline.json",
+      "bytes": 1578,
+      "sha256": "aa5e540fe57d4c26173a0a2031f8e44bd1226b6b44238db18308a91a0c4ce199"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-50MiB-no-newline.log",
+      "bytes": 213,
+      "sha256": "d7a23699ee70809060f39b9a0e27172d053272a1661c0cdfefd0cea3b6f863c8"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-5MiB-1000chapters.json",
+      "bytes": 120908,
+      "sha256": "282d3a38d90155035700507449f69cc5c1a38b3e2f7886f72f154e1d1590fb00"
+    },
+    {
+      "path": "build/ci/38677243466/core/TXTPerformance/utf8-5MiB-1000chapters.log",
+      "bytes": 208,
+      "sha256": "4132d91e0da89307aaf3d4840527d30c81ea5f20e01061f1fbd87064b1d71900"
+    },
+    {
+      "path": "build/ci/38677243466/full.log",
+      "bytes": 163125,
+      "sha256": "c3a415624b961739862a7445ea0742a4ad3eee307274998d96f722b721738b67"
+    },
+    {
+      "path": "build/ci/38677243466/run.json",
+      "bytes": 5478,
+      "sha256": "2a5e33c6cdf48fa0d9d1e7ddb6323ad980c28dc9ea38c53af8a893e13b4bef0a"
+    }
+  ],
+  "lastVerifiedApplePhase": "macOS Core completed with 91 unique test markers; four Release probes passed; strict package resolution completed. Cancellation preceded a final iOS test result and device Release."
+}

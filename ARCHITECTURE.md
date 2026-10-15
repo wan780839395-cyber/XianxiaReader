@@ -148,4 +148,10 @@ Core新增BookTitle验证与BookRepository.renameBook，SQLite事务helper返回
 
 数据库通过新增002迁移升级到v2；removed_books仅记录移出时间，Book/原件/cache/章节/位置/书签保持。librarySnapshot一次读取书架/回收站；books只返回书架。AppServices启动恢复必须用allBookIDs包含回收站，不能根据可见书架清理已提交文件。移出/恢复仅在SQLite事务内变更标记，重复操作幂等，失效UUID/取消/写入失败正常抛错；没有新增文件搬移或跨存储提交窗口。001旧迁移原字节保留，新版库由旧App拒绝打开。
 
-LibraryView共享sheet加入回收站，长按移出有原生确认，空书架也能恢复；管理操作串行且提交后才发布。回收站不自动清空、不回收磁盘空间；没有永久删除。91Core/67iOS/Release及真实启动清理/原生三图通过，手机待验收。Readium/Vendor/codec/Locator/真实六pins锁和Apple文件协调复制均不升级。封面替换与重复导入策略仍下一M3切片，详见LIBRARY_REMOVAL_DESIGN.md。
+LibraryView共享sheet加入回收站，长按移出有原生确认，空书架也能恢复；管理操作串行且提交后才发布。回收站不自动清空、不回收磁盘空间；没有永久删除。Build11的91Core/67iOS/Release及真实启动清理/原生三图通过，用户已确认该切片可用；Build12新增手势/流畅度设备反馈另记。Readium/Vendor/codec/Locator/真实六pins锁和Apple文件协调复制均不升级。封面替换与重复导入策略仍下一M3切片，详见LIBRARY_REMOVAL_DESIGN.md。
+
+## M3 原生左滑与动效（Build12）
+
+LibraryView按布局选择原生List或ScrollView/LazyVGrid；List行接尾侧swipeActions，禁全滑直接执行，灰绿色普通按钮进入既有确认，数据提交后才移出。固定UUID身份驱动短spring补位/scale+opacity过渡，布局切换短淡入淡出；LibraryTrashSheet恢复行有短过渡，系统Reduce Motion关闭自定义移动/缩放和继承动画。未新增Core/DB/schema/Reader依赖变化。
+
+新增独立bundle.ui-testing target与三个XCUITest，旧67iOS不跳过。AppRoot通过可选LibraryInteractionFixture接入隔离小样；只有DEBUG分支读启动配置/建立fixture，Release prepare恒nil且Mach-O无XR_LIBRARY_UI_*旗标。CI显式保留每项XCTest的成功录屏，基座simctl录屏只用于诊断并收集真实退出；录屏或原test/导出/summary失败都不能生成IPA；完整视频/六图用于独立视觉核验，不当手机帧率或完整主题验收。详见LIBRARY_INTERACTION_DESIGN.md与最新报告。

@@ -1,0 +1,51 @@
+{
+  "recordedAtUTC": "2026-10-15T04:12:57.985235+00:00",
+  "run": 38677706936,
+  "sourceRevision": "786c154402075e4885905db554ba7179e9c6d085",
+  "images": [
+    {
+      "name": "library-list-swipe-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F5640DB9-6C95-4508-A7E4-0079845719E1.png",
+      "sha256": "8a0f18c755d155d7303457c2e9b1a7cf25a25467b5097cfc4fe962a77b3e65b3",
+      "observation": "Real XCUITest left swipe exposes the native compact gray-green removal action beside the compact list card; the book remains pending confirmation.",
+      "inspected": true
+    },
+    {
+      "name": "library-list-restored-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BC8BA308-D1AE-4EB3-9430-D5827507FE1A.png",
+      "sha256": "f266a09115a9f086a77c9634b362bcff1f015576b28314b862e7a5876851d85d",
+      "observation": "After a real cancel, commit, relaunch and restore, the native list shows all three books and the original 42 percent progress.",
+      "inspected": true
+    },
+    {
+      "name": "library-grid-before-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A6D2902A-C3FF-4BC1-8BF4-3B9F1004AC34.png",
+      "sha256": "b3a49f80cc3eacebb34c4eae0b77acbe347cb52c3d63fc53a6775fcfc39d280a",
+      "observation": "Three original fixture books in a native two-column grid; read Cloud book first, followed by the neighbor that will reflow.",
+      "inspected": true
+    },
+    {
+      "name": "library-grid-after-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EF2B95B9-A9CD-4BBB-8C2B-E82E716E861C.png",
+      "sha256": "cba87357186a0dee31d18ecb2171ffd6d51c738b74bb4bb0c0f1e78599eaeb4b",
+      "observation": "After a real context-menu confirmation and commit, two retained books fill the first row without a permanent blank slot.",
+      "inspected": true
+    },
+    {
+      "name": "library-grid-restored-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E4C932FE-4440-4C1A-A45A-47AEC7EB097C.png",
+      "sha256": "81ae1a460c50b21bf2461d72245f8b714dd8aab94aad173f67c931aa53463fd0",
+      "observation": "Restored Cloud book returns to the original recent-reading order and neighbor position.",
+      "inspected": true
+    },
+    {
+      "name": "library-reduced-motion-build12",
+      "path": "build/ci/38677706936/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7B3EDCB9-9097-4571-9A33-897D8327F99C.png",
+      "sha256": "79e1f4814c9faa23d443c9277d3c7b9f7aa7d8bccb1390b6997376f344bf26aa",
+      "observation": "Reduced Motion SwiftUI environment retains a readable, correctly reflowed two-book grid.",
+      "inspected": true
+    }
+  ],
+  "scope": "Actual iOS18.5 XCUITest gestures and native final-state images; animation continuity is reviewed separately from video frames; phone and FPS pending.",
+  "Build12DeviceAccepted": false
+}

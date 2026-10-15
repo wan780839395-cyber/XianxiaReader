@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T03:42:44.222695+00:00",
+  "recordedAtUTC": "2026-10-15T04:14:34.326481+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 653,
+  "fileCount": 661,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 21746,
-      "sha256": "12ffca2b8b60a0f9450b3036885f93ecbd28118006212b31fc4df0ee4914fa17"
+      "bytes": 22841,
+      "sha256": "7ff0cbd068c958d9abea7a0021de69d7f132bda154c7ee21d5f3e87770972a08"
     },
     {
       "path": "App/AppRootView.swift",
@@ -180,8 +180,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 18621,
-      "sha256": "2c69ded8ed1fc4f7c618c6a8aeaf7e44dd69889a7b9f8be6eac5a9c4afadf9f6"
+      "bytes": 21665,
+      "sha256": "cd482e463f433cfcd8807f4103dc7d5b18f2fcf9ed1e3de981e7b4817c0d37ba"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -190,8 +190,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 6182,
-      "sha256": "7a946f5c3fb66d3407f4cd4ab19ada83fae0718d3b7d6f3b9c899e2c9229dd21"
+      "bytes": 6634,
+      "sha256": "0f97e6b5c9604e9d3c06c4d9a12b81ec955d07225c910a31b7564216e9335d78"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -235,8 +235,8 @@
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
-      "bytes": 7682,
-      "sha256": "622b292d80a2d439950c56ec8e79871dd1e68a7e399f2d124674ce84d6c127db"
+      "bytes": 10640,
+      "sha256": "9ccc2023665a4167f7efa13d76aa0973273914b14182330f2618b11a223db327"
     },
     {
       "path": "Documentation/LIBRARY_REMOVAL_DESIGN.md",
@@ -356,12 +356,12 @@
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "e36f59daf2395c13becfe4014301ac4c392156a79f1bac2a9a73af6b40c7768f"
+      "sha256": "ac7b0523ff8aeb2d51c45a43dc3d69bc669e91049eebbb444b222d6d46604307"
     },
     {
       "path": "Documentation/M3_INTERACTION_VALIDATION_REPORT.json",
-      "bytes": 93212,
-      "sha256": "57c3bbed31fc4713893bb8f002df35b43170e878aa75db2e28d7c89a45a36a73"
+      "bytes": 126907,
+      "sha256": "6c42490bded8b1f02abc4e6fbcbc94dffa7e93c3bc51c5ee3a083570432b7a71"
     },
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
@@ -889,9 +889,44 @@
       "sha256": "6bd093d12a22ff6b793b291cf4653cd72d2669e51cc9896388d79c19a8c117f0"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build12-native-review.json",
+      "bytes": 3059,
+      "sha256": "614142d7c3e7c29f0f57539eaeb265cfc999ebce85e36a37d13b99b21b3f25b6"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-runtime-diagnostics.json",
+      "bytes": 730,
+      "sha256": "76173a3a3db39002d263d870d19d2acea4caf6f0d95785a4741226d40937b7a0"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-build12-second-candidate.json",
       "bytes": 92983,
       "sha256": "4d496449fc784027b8f3a687d038dfeb405923fbcf06cbd829e2d9ba1d449854"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-success.json",
+      "bytes": 20772,
+      "sha256": "1caec3749ae7f3febcefc719f5ba2397dcbee2baaffc6bf0a7fe499f7f9cec13"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-test-kit.json",
+      "bytes": 708,
+      "sha256": "45f97003ab20b8f464159c56ad93a763133a3102b8595910611df6a37c320c44"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-third-cancellation.json",
+      "bytes": 16316,
+      "sha256": "3e6faaa2334ad532a21149844f5179395ef0ed0aa5ddf640300bd3c37f4d0da1"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-third-candidate.json",
+      "bytes": 93212,
+      "sha256": "57c3bbed31fc4713893bb8f002df35b43170e878aa75db2e28d7c89a45a36a73"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-build12-video-review.json",
+      "bytes": 15478,
+      "sha256": "70f2a61fc69fb6cedea42556c287662bc500145a008d627d959062e8356f68a5"
     },
     {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
@@ -950,8 +985,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 13419,
-      "sha256": "2d7e925e5c0bcc812d263ceefde1b3cada88e69237d89e6734003600df5263d2"
+      "bytes": 6906,
+      "sha256": "fa264db45b4f2c223501dcc6acd79933d60c4d37f800fe7156e8bf49a20f5d4f"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -999,6 +1034,11 @@
       "sha256": "417e9940119eacb646f09197e12e224582ae18033619ddcaa94f234a8dfe6cfa"
     },
     {
+      "path": "HANDOFF_M3_INTERACTION_HISTORY_2026-10-15.md",
+      "bytes": 14701,
+      "sha256": "d778b7e86c1deb4d80c8dd56704fdea16039dbb823f463537be8373966ad3d05"
+    },
+    {
       "path": "HANDOFF_M3_LIBRARY_HISTORY_2026-10-15.md",
       "bytes": 15631,
       "sha256": "cff1fbb92b15e75906f65b697cadc9658991a53806b3fd79922e87a06ada7abb"
@@ -1010,8 +1050,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 23853,
-      "sha256": "f24871c94ff636b8570e6b304d79cab0f6d4bc49fa252a4071fa722976e60b32"
+      "bytes": 26333,
+      "sha256": "09cdf54ea8fc59b59289e0d1712e8687438dce08d6efba545ff8176736d878cb"
     },
     {
       "path": "Package.resolved",
@@ -1285,8 +1325,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 17477,
-      "sha256": "b09b078cf22217baf334bab149a0cce6d3819bbc9f4699b3a74dbc3ef5586726"
+      "bytes": 20521,
+      "sha256": "7adcb988f22b4c2412e5fb5d929a4b3094bfdf30e8647daa55d45877cab3eb0a"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
