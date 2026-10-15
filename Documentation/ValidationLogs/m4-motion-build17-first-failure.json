@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-15T15:57:16.584147+00:00",
+  "sourceRevision": "8c548dce119899e6a0be9a17937c86ef34b39df6",
+  "run": 38760598889,
+  "conclusion": "failure",
+  "coreEach": 119,
+  "iOSTotal": 99,
+  "iOSPassed": 97,
+  "iOSFailed": 2,
+  "oldTestsPassed": true,
+  "releaseProduced": false,
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "errors": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:679: error: -[XianxiaReaderTests.ReaderRenderingTests testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue] : failed: caught error: \"Error Domain=WKErrorDomain Code=5 \"JavaScript execution returned a result of an unsupported type\" UserInfo={NSLocalizedDescription=JavaScript execution returned a result of an unsupported type}\"",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReaderInterfaceUITests.swift:117: error: -[XianxiaReaderUITests.ReaderInterfaceUITests testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+  ],
+  "diagnosis": "WebKit test hook assignment returns JS function, unsupported by evaluateJavaScript; explicit final null fixes test bridge return. Normal native drag did not hide menu whereas additional-reduction drag passed. Await actual video before product correction.",
+  "artifactDownloadPending": true
+}

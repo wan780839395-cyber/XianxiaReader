@@ -7,6 +7,7 @@ import UIKit
 @MainActor protocol EPUBInfiniteScrollViewDelegate: AnyObject {
     func infiniteScrollView(_ view: EPUBInfiniteScrollView, spreadViewAtIndex index: Int) -> EPUBSpreadView?
     func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView)
+    func infiniteScrollViewWillBeginDragging(_ view: EPUBInfiniteScrollView)
 }
 
 @MainActor final class EPUBInfiniteScrollView: UIScrollView, UIScrollViewDelegate {
@@ -438,6 +439,11 @@ import UIKit
         let location = slots[index]?.savedAnchor.map { PageLocation.locator($0) } ?? .start
         evict(index); load(index, location: location)
     }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard chapterCount > 0 else { return }
+        infiniteDelegate?.infiniteScrollViewWillBeginDragging(self)
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !layingOut else { return }
         if abs(contentOffset.y - lastTrackedOffset) > 0.5 {

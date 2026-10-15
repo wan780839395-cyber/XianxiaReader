@@ -1,0 +1,18 @@
+{
+  "recordedAtUTC": "2026-10-15T15:55:20.957365+00:00",
+  "sourceRevision": "8c548dce119899e6a0be9a17937c86ef34b39df6",
+  "run": 38760598889,
+  "actualRunConclusion": "failure",
+  "linuxSucceeded": true,
+  "appleFailed": true,
+  "originalHeadIndexPreserved": true,
+  "onlyDocumentationChanged": [
+    "Documentation/M4_MOTION_VALIDATION_REPORT.json",
+    "HANDOFF.md"
+  ],
+  "backup": {
+    "path": ".cache/recovery/20261015-build17/resumed-worktree.zip",
+    "entries": 766,
+    "sha256": "7bacaae2b06e4d1ca47915caf064f869d03236c7cb0eda3b3500ba3d0c3ca0c6"
+  }
+}

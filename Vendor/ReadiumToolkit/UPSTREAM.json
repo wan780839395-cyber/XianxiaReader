@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "ac12ba72f8e02bbb97d620a2d193e3f2c8e1525bfd7623b0e92ccc1148e81d74"
+      "sha256": "44107b8991973d8a44d3af97f550322f74f81040cadcad7aad30b54508e3e52f"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
+      "sha256": "60bf4d6b097d7d62f21ef54336f9b458668331867144cf106ad27bf80b20e089"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,11 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "6a7430cc0f7bc75773b3d1e1393f6d17f1056f2234573bf8b12155bf2012e3d1"
+      "sha256": "591277a086bd016b67d4dce2d9b3a99e1dc9a0ec10efad9b994f7f0b8dfa4a80"
+    },
+    {
+      "path": "Sources/Navigator/Toolkit/PaginationView.swift",
+      "sha256": "5fe9e1fc51996644a1b3774928c05845db1750dc8a5ce5a54c70daa73ac44e3c"
     }
   ],
   "remoteDependencyPins": [
@@ -1669,5 +1673,9 @@
     "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen.",
     "pagedReflowAtomicity": "Typography reload goes through the ViewModel needsInvalidation decision, so injected CSS/cache update and pagination rebuild exclude late dynamic CSS. Color-only changes and continuous mode keep dynamic CSS. Added actual WebKit counter regression, old nonzero-anchor180percent/reopen unchanged.",
     "pagedReadiness": "Paged sampling uses the official spreadLoaded readiness gate. Full continuous bootstrap readiness remains limited to continuous loading. Adapter rejects superseded preference tasks before WebKit sampling and still checks request/nav identity afterward; stage diagnostics are bounded and content-free."
+  },
+  "nativeReadingGestureExtension": {
+    "scope": "Native UIScrollViewDelegate willBeginDragging from current paginated spread/outer pagination and current bounded continuous viewport; no pointer consumption or added gesture overlay",
+    "reason": "Raw pointer drag observer did not reliably hide menu in first real normal-animation UI drag while additional-reduction case passed; native scroll recognition is authoritative. Current container/cleared spread/session identity checks reject stale callbacks. Root-cause timing is not uniquely isolated."
   }
 }

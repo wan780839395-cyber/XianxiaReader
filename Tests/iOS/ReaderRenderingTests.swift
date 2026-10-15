@@ -683,6 +683,7 @@ final class ReaderRenderingTests: XCTestCase {
               window.__xianxiaMotionCalls.push(options.behavior);
               return originalScrollBy.call(this, options);
             };
+            null;
             """)
         await engine.turnPage(forward: true)
         try await waitUntil { try await web.evaluateJavaScript("scrollX > 0") as? Bool == true }

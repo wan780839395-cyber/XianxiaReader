@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+## Build17 阅读手感第一片（验证中）
+
+Foundation领域ReadingInteraction与独立BookFileStore actor JSON保存交互偏好，不改变appearance-v1/schema3/Locator。ReadingInterfaces可选ReaderInteractionProviding隔离动效与被动手势，Adapter统一导航options/关闭身份与分页防重入，UI只持领域值。首候选97/99，正常拖动未收菜单仍诊断，源码不等价验收；当前精确边界与后续修正见READING_MOTION_DESIGN.md及HANDOFF.md。
+
 ## 依赖方向
 
 ```text

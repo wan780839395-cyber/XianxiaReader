@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+## Build17 阅读手感第一片（当前验证中）
+
+用户已授权阅读动效方案。先保留原生跟手分页/连续滚动，补菜单进退/滑动收起、系统与用户减少动效、模式/偏好持久化和防误操作；后续单独推进上下整屏/自动慢滚，卷页先核兼容小样。首候选8c548dce/CI38760598889各119Core/四探针通过，但iOS97/99，新WebKit测试和正常拖动未收菜单失败，严格test65无IPA。修正后完整重跑，不放宽旧断言。仍为M4，不提前进入M5/XBook。设计READING_MOTION_DESIGN.md，实时断点以HANDOFF为准。
+
 ## Build16 当前切片
 
 Build16原生阅读菜单/设置界面通过[完整CI38748113867](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38748113867)，真正编译源`ce5bde4d9d73e6979265a7b1f1bdf0f92d318970`。Linux/macOS各115Core、iOS93/93（85集成+8真正UI），failed/skipped0；test/export/summary/recording均0，严格无签名iPhoneOS arm64 Release16。原四长TXT Release探针/平台、三份真实六pins锁及501源码blob已核，原90项iOS和全部旧断言保留。Windows420Swift语法新增0/54 pristine限制、17Python tooling通过；语法不是编译。原生图片/成功case视频/连续采样与源码编译、普通设备/TrollStore、手机FPS分别记录。

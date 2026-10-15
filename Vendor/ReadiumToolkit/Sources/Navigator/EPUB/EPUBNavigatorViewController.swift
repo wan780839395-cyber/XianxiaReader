@@ -183,6 +183,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
 
     public weak var delegate: EPUBNavigatorDelegate?
+    /// Native scroll recognition, without consuming taps, links or selection input.
+    public var onUserScroll: (() -> Void)?
 
     /// Information about the visible portion of the publication, when rendered.
     public private(set) var viewport: NavigatorViewport? {
@@ -1211,6 +1213,10 @@ extension EPUBNavigatorViewController: EPUBNavigatorViewModelDelegate {
 }
 
 extension EPUBNavigatorViewController: EPUBSpreadViewDelegate {
+    func spreadViewWillBeginDragging(_ spreadView: EPUBSpreadView) {
+        guard paginationView?.currentView === spreadView else { return }
+        onUserScroll?()
+    }
     func spreadViewContentInset(_ spreadView: EPUBSpreadView) -> UIEdgeInsets {
         if let inset = delegate?.navigatorContentInset(self) {
             return inset
@@ -1445,6 +1451,10 @@ extension EPUBNavigatorViewController: EditingActionsControllerDelegate {
 }
 
 extension EPUBNavigatorViewController: PaginationViewDelegate {
+    func paginationViewWillBeginDragging(_ view: PaginationView) {
+        guard paginationView === view else { return }
+        onUserScroll?()
+    }
     func paginationView(_ paginationView: PaginationView, pageViewAtIndex index: Int) -> (UIView & PageView)? {
         let spread = spreads[index]
         let spreadViewType = (publication.metadata.layout == .fixed) ? EPUBFixedSpreadView.self : EPUBReflowableSpreadView.self
@@ -1475,6 +1485,10 @@ extension EPUBNavigatorViewController: PaginationViewDelegate {
 }
 
 extension EPUBNavigatorViewController: EPUBInfiniteScrollViewDelegate {
+    func infiniteScrollViewWillBeginDragging(_ view: EPUBInfiniteScrollView) {
+        guard infiniteScrollView === view else { return }
+        onUserScroll?()
+    }
     func infiniteScrollView(_ view: EPUBInfiniteScrollView, spreadViewAtIndex index: Int) -> EPUBSpreadView? {
         guard let spreadIndex = spreads.firstIndexWithReadingOrderIndex(index) else { return nil }
         let spread = spreads[spreadIndex]
