@@ -24,4 +24,4 @@ main HEAD6d761749911233122bcd031fcf718d22a19f9e77/原空index/M2 e6f31d857c0d73e
 
 ## 收尾检查点
 
-Build17实物已生成并核hash/ZIP，完整CI日志/xcresult/24图片/10段测试视频均保留，本轮实际审阅范围如上。构建/下载任务现已结束，无遗留gh/python/build进程。仅剩本轮纯文档快照推送、远端同名ref与最终清单再核；此记录在快照前写入，实际完成状态以Git与final-preservation-check.json为准，不根据本段假定推送成功。
+Build17实物已生成并核hash/ZIP，完整CI日志/xcresult/24图片/10段测试视频均保留，本轮实际审阅范围如上。构建/下载任务现已结束，无遗留gh/python/build进程。本轮纯文档快照已实际推送并核远端同名ref，最终清单与504blob/782文件/29包/七备份复核通过；交付收尾完成。当前文档tip与真正编译源分列在Git和final-preservation-check.json，不把文档提交当成新编译。下一步为手机反馈及后续独立切片。
