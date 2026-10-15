@@ -6,7 +6,7 @@ import XianxiaCore
     let services: AppServices
     @StateObject private var model: LibraryViewModel
     @State private var selectedBook: Book?
-    private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20)]
+    private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20, alignment: .topLeading)]
 
     init(services: AppServices, model: LibraryViewModel? = nil) {
         self.services = services
@@ -94,7 +94,8 @@ import XianxiaCore
     private var shelf: some View {
         VStack(alignment: .leading, spacing: 18) {
             HStack {
-                Text("\(model.visibleBooks.count) 本藏书").font(.subheadline)
+                Text(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                     ? "\(model.books.count) 本藏书" : "\(model.visibleBooks.count) 本匹配").font(.subheadline)
                 Spacer()
                 Text(model.sortOrder.title).font(.caption).foregroundStyle(.secondary)
             }

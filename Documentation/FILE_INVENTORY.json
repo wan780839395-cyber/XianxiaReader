@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T01:13:02.952238+00:00",
+  "recordedAtUTC": "2026-10-15T01:32:16.402776+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 620,
+  "fileCount": 622,
   "files": [
     {
       "path": ".gitattributes",
@@ -70,8 +70,8 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 9080,
-      "sha256": "6a4cd01052d5e43e66b83ddde36472ba483dbfaf256f3384d801624e0022ed2d"
+      "bytes": 9230,
+      "sha256": "ded544a5aec87c93886d04ef0a4b48d00744dc15761a148930a0f806861b6a36"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
@@ -331,12 +331,12 @@
     {
       "path": "Documentation/M3_LIBRARY_STATIC_REPORT.json",
       "bytes": 434,
-      "sha256": "c1faeeaaaceed2ce564f43dc0c56ba7d549496f20a7569fb3dcfb1162bf7d3e7"
+      "sha256": "9bff7cd857c15e2d9c223dae40c8485f4a7caff4244a972a524c42be7e686334"
     },
     {
       "path": "Documentation/M3_LIBRARY_VALIDATION_REPORT.json",
-      "bytes": 91053,
-      "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
+      "bytes": 121571,
+      "sha256": "cf80968bbb9d6140e751a3850aaae31ad4ba901dddbb31618adc94c9dacf35e0"
     },
     {
       "path": "Documentation/MATURE_READER_REFERENCES.md",
@@ -779,6 +779,11 @@
       "sha256": "995930149c44f5549af0f8e4cf091f2081fb24f290fa310db65dcb53db3cb879"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build10-success.json",
+      "bytes": 20770,
+      "sha256": "ead6e5192d3097beb7edabff42dbf9f64d41522fd72ce510e55910d85c267d8e"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -787,6 +792,11 @@
       "path": "Documentation/ValidationLogs/m3-library-first-location-failure.json",
       "bytes": 4572,
       "sha256": "d58221ff79f628e7ed1c9cd590fadeb05a6918597dc79150a098645c6abc89b6"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m3-library-pre-alignment-success.json",
+      "bytes": 121571,
+      "sha256": "cf80968bbb9d6140e751a3850aaae31ad4ba901dddbb31618adc94c9dacf35e0"
     },
     {
       "path": "Documentation/ValidationLogs/publication-audit-2026-10-14.json",
@@ -820,8 +830,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 12019,
-      "sha256": "b57e8222d598f493cc06ed02aef35af582887765dd4945a2e24072ff727b8453"
+      "bytes": 13713,
+      "sha256": "3f0fa95a6cadb3ec8ef69c344d4ab4637413bd9b50f73953c0ab5265f4c46b38"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",

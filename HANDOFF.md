@@ -28,6 +28,14 @@ cd76b4d / CI38662816246 completed/failure：Linux/macOS各85 Core/4Release探针
 
 首轮新Library fixture在UI/SQLite释放前删临时root，有3条vnode unlink日志（不等于生产DB损坏）。参照已验证DocumentImportFixtureSession，把4个小fixture repository及目录留到worker退出，仅清理隔离UserDefaults；原生改名sheet等待真实dismiss完成。给TXT首定位超时仅补同步原生几何/slot诊断，不读未来正文，不调用可能挂起的JS，原20秒/600点/字符与3px断言均保持；不宣称fixture修正与首定位超时有已证实因果。下一步静态检查、新源码快照/完整CI，不同源不是碰运气重试。一次doc长行patch匹配失败已核实未落任何源码，再分开重做，实际成功以文件为准。
 
+## 2026-10-15 最新 M3 候选已调度
+
+d7cbc1dd1b935cc104a49ce5edd7a08859428d4b / CI38664441495已调度完整验证，初轮38662816246完整失败原件与两个已看网格/列表图保留，报告m3-library-first-location-failure.json。当前新源码468hash/13旧包，Windows390语法新增0已跑，新Linux/macOS/iOS/Release尚待核，未编译不得交付。已读优先排序/真实sheet关闭等待/4个小fixture留至worker退出与TXT超时诊断是本轮实际变化；没有改Reader/Vendor/codec或放宽20s/600点/3px。当前M3分支、main和原index保留，其他交付步骤以最终完整CI结果为准。
+
+## 2026-10-15 M3 第二轮成功与原生视觉收尾
+
+d7cbc1d / CI38664441495 completed/success：各85Core/四Release探针、iOS63/63、failed/skipped0、test/export/summary0、设备Release/Build10 IPA完成。完整原件已下载核：468源码hash/三份锁/13旧包匹配，IPA7823003bytes / SHA af952b21b60c327882e1886cd12212492cc3ba10ae0241bf1ec7aaf500a974fb，尚未生成用户最终包。已实际看四图（grid071282E0/listE8BCD6FB/emptyC6CA9EF8/rename75FAE9D6），列表/进度/错误清晰；网格由于读过的条目附加进度/时间，比未读条目高而默认居中，导致同排封面上沿错位；筛选0条仍叫“0本藏书”也易误读。最小UI修正GridItem.topLeading、筛选计数“本匹配”，不改任何读者/改名/数据逻辑，不新增镜像测试，沿用四张真实原生图核验。先保留成功候选报告，再Windows检查/新快照/完整CI与新源IPA后交付，不能把d7编译源当修正后的源。旧TXT首定位超时原因仍未证实，不凭本轮通过宣称SDK永久修复。
+
 ## 实际断点
 
 2026-10-15 Build9 ANSI兼容/范围缓存完整自动门槛通过：[CI38612220954](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38612220954) / c2a037aa6765cd56319cf8a61e8ca1c34f047e22。Linux/macOS各80Core，iOS58/58、failed/skipped0、test/export/summary0，无签名设备Release/IPA。Windows385 Swift语法新增0（pristine54限制保留）、16tooling，语法不是编译；463候选源码Git blob hash、三份真实6pins锁一致。中文Windows ANSI/GBK默认严格自动导入，Big5/CP950与Windows-1252明确手选，GB18030自动回退；Apple CP936单独euro与合法trail80差异经官方映射核实和跨块回归。Normalizer/parser/resource/Locator v1及旧UTF/GB18030 codec身份保持，自动cache策略独立v2。范围cache复用严格核对所有范围/最大scalar切点，仍全文digest验证，不能保证只读元数据秒开。完整方案见TXT_ANSI_COMPATIBILITY.md。
