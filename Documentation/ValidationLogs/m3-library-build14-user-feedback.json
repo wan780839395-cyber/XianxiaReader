@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-15T08:59:10.945748+00:00",
+  "clientLocalDate": "2026-10-15",
+  "userMessage": "没问题 正常",
+  "context": "用户回复Build14重复导入交付结果",
+  "basicSelfUseAccepted": true,
+  "M3SelfUseMilestoneAccepted": true,
+  "scope": "按本轮基本自用反馈记录正常；不扩写用户未逐项报告的测试矩阵。",
+  "deviceModelVerified": false,
+  "OSVersionVerified": false,
+  "allImportProvidersAndEncodingsConfirmed": false,
+  "phoneFPSMeasured": false,
+  "ordinarySignedDeviceConfirmed": false,
+  "nextStage": "M4设置与主题；尚未开始实现"
+}

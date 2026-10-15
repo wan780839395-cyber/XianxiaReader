@@ -2,7 +2,7 @@
 
 ## 当前：Build14 / M3重复导入
 
-同一TXT/EPUB原件再次导入保留已有书籍、进度、书签和自选封面，回收站重复项可显式恢复；同名不同内容继续独立保存。书库已具备网格/列表、筛选排序、改名、左滑确认移出、回收站恢复和选图更换封面。[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38703788390)各110 Core、84/84 iOS与无签名设备Release通过，原生截图/视频复核完成。Build13基本自用接受；Build14手机反馈后关闭M3并进入M4主题/字体/正文排版。安装包与恢复见[PROJECT_STATUS](PROJECT_STATUS.md)、[HANDOFF](HANDOFF.md)，取舍见[重复导入设计](Documentation/LIBRARY_DUPLICATE_DESIGN.md)。
+同一TXT/EPUB原件再次导入保留已有书籍、进度、书签和自选封面，回收站重复项可显式恢复；同名不同内容继续独立保存。书库已具备网格/列表、筛选排序、改名、左滑确认移出、回收站恢复和选图更换封面。[完整CI](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38703788390)各110 Core、84/84 iOS与无签名设备Release通过，原生截图/视频复核完成。Build14基本自用已确认，M3按自用门槛收口；下一阶段M4主题/字体/正文排版尚未开始。安装包与恢复见[PROJECT_STATUS](PROJECT_STATUS.md)、[HANDOFF](HANDOFF.md)，取舍见[重复导入设计](Documentation/LIBRARY_DUPLICATE_DESIGN.md)。
 
 以下Build8及更早段落保留历史证据，阶段状态以上述当前记录为准。
 

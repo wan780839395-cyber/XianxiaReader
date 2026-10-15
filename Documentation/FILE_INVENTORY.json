@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T08:40:43.265543+00:00",
+  "recordedAtUTC": "2026-10-15T08:59:43.058954+00:00",
   "purpose": "Maintained file checkpoint; excludes ignored caches, builds, and this inventory itself.",
-  "fileCount": 705,
+  "fileCount": 706,
   "files": [
     {
       "path": ".gitattributes",
@@ -210,8 +210,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 29247,
-      "sha256": "f1a6acf049b921a3a9e9d9c29b895e2e8dc8f1cfe9812cbc3fd993392f3197ad"
+      "bytes": 29573,
+      "sha256": "960a5432775aaa7d9b0cfbdeef6690871f79d411f7720f0e77911df647d23b99"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -220,8 +220,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 7427,
-      "sha256": "37bbcd83a476ee1c518569f44ad29e9cded0830ce034e83d0c0f757d00c0864e"
+      "bytes": 7404,
+      "sha256": "4a4b0631858f82a341405602f3c81efa795224c8808ebdc08d76039a13374ba2"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -270,8 +270,8 @@
     },
     {
       "path": "Documentation/LIBRARY_DUPLICATE_DESIGN.md",
-      "bytes": 8881,
-      "sha256": "0063796fdd384916672f30fd9a36581d1decd0519577443a114ba185f7f05c46"
+      "bytes": 9165,
+      "sha256": "0f5789001a59dbed2e226a54d668d0b2f192a0a4f0c928e083557d688e5438f1"
     },
     {
       "path": "Documentation/LIBRARY_INTERACTION_DESIGN.md",
@@ -410,8 +410,8 @@
     },
     {
       "path": "Documentation/M3_DUPLICATES_VALIDATION_REPORT.json",
-      "bytes": 135258,
-      "sha256": "1179c4988c8bec7f562bd61894564a0adae3b09ea548a0be146af9eb545e46be"
+      "bytes": 132530,
+      "sha256": "c201e7d3b0dc2c6755b5e8b0737469cc9e5a3e5b0851261f1f5b4d8f3a3d7f31"
     },
     {
       "path": "Documentation/M3_INTERACTION_STATIC_REPORT.json",
@@ -1089,6 +1089,11 @@
       "sha256": "19e3d48b54cb125729b5724f6f1115ffc89cde65bb4ebd890609d51a26b3d4ee"
     },
     {
+      "path": "Documentation/ValidationLogs/m3-library-build14-user-feedback.json",
+      "bytes": 607,
+      "sha256": "e85de57420886197a4e2c4d8f5cef8aedabe4f558266b094dd3e9734de4c8b4f"
+    },
+    {
       "path": "Documentation/ValidationLogs/m3-library-first-candidate.json",
       "bytes": 91053,
       "sha256": "3c85fac92f30d259937ecab63ea91d649c76f13fb7a8bc2910ae90ce720d61ea"
@@ -1145,8 +1150,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 5189,
-      "sha256": "4f4c91d68167ee5ee2dc84bef41be250762be6d51333499ca88bd0a2e55a700b"
+      "bytes": 5828,
+      "sha256": "b29106fccfa1e730905a420acf395c26a07135dd30d28542e8b226d69157c456"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1220,8 +1225,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 33346,
-      "sha256": "992c63a08e003b754c5335d2c70f08cc0cb790a7773d9220aa92b41aade3e31f"
+      "bytes": 33811,
+      "sha256": "737cfd5185e7db30caf6c9fc4e7bc11f3d6e5f13a7d9599d10ee87b2cdc04a2c"
     },
     {
       "path": "Package.resolved",
@@ -1525,13 +1530,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 16083,
-      "sha256": "011f6c762c982e6e6dbf98c0f45fe475681aa4252f46639bb9da74316661c016"
+      "bytes": 16097,
+      "sha256": "ef7bcf52b13d6aed64558e2c7a13d14d787f899ecccbe5e3be5c74aafdc45664"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 27580,
-      "sha256": "01555e3b5f9be755a802e74c5e852b1e2f34e883e9fc81ee826a0014b67df57c"
+      "bytes": 28059,
+      "sha256": "098dbba68ba6c82688734f5da8467cdc34887fc1b17f4949838eba6e94011e01"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",

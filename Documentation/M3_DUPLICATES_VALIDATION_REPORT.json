@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-15T08:10:44.055834+00:00",
-  "stage": "M3 duplicate import automated gates passed; Build14 device pending",
+  "stage": "M3 automated gates and Build14 basic self-use accepted; M4 not started",
   "sourceRevision": "b67a08bc7f6d0db0c97ec152a87e2128a3209c82",
   "run": 38703788390,
   "branch": "codex/m3-library",
@@ -2154,7 +2154,8 @@
     "Build13BasicSelfUseAccepted": true,
     "Build14DeviceAccepted": false,
     "ordinarySignedDeviceAccepted": false,
-    "M3Complete": false
+    "M3Complete": true,
+    "Build14BasicSelfUseAccepted": true
   },
   "limitations": [
     "No permanent delete/storage reclamation or automatic merging of pre-existing duplicates.",
@@ -3066,5 +3067,7 @@
       "bytes": 8595096,
       "sha256": "c7feefc8c6a5f45632712e28a38c75d874f553eaa2c05e8b7a36c25a82a15b61"
     }
-  }
+  },
+  "userFeedbackEvidence": "Documentation/ValidationLogs/m3-library-build14-user-feedback.json",
+  "milestoneAcceptanceScope": "M3 complete for agreed basic self-use; full device/provider/encoding/FPS matrices not certified. Build14DeviceAccepted remains false for that broader unverified matrix."
 }

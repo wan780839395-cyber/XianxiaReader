@@ -1,6 +1,6 @@
 # M3 重复导入设计（Build14）
 
-状态：完整Core/iOS/Release及原生图/录屏复核通过；Build14手机自用待反馈，保留各轮失败和Build13基线。
+状态：完整Core/iOS/Release及原生图/录屏复核通过；Build14基本自用反馈正常，M3自用门槛收口，保留各轮失败和Build13基线。
 
 ## 用户行为
 
@@ -51,3 +51,7 @@ schema3新增003迁移及指纹表/索引，旧payload和已有重复书全部�
 首轮CI38700353531/84397ad实际失败于新增Core测试对照Data缺try；Core测试运行、macOS、iOS、Release未开始。修正try与合法双解码样本后完整重跑，未删除/放宽断言。完整首轮Core/full日志与ValidationLogs/m3-library-build14-first-compilation-failure.json保留；Apple artifact当轮不存在，下载helper因此返回1，不冒充产品失败。
 
 第二轮CI38700674784/5278d286各110 Core与四长书通过、iOS83/84：79集成/旧4UI通过，仅新UI父容器AX标识覆盖Done使查询失败。实际视频发现重复反馈与状态叠放、单项136pt留白，修正产品VStack/内容高度/叶控件标识；保留原查询、15秒和断言。原件ValidationLogs/m3-library-build14-feedback-layout-ax-failure.json保留，最终成功不覆盖失败历史。
+
+## 用户反馈
+
+2026-10-15用户回复Build14“没问题 正常”，仅按基本自用范围接受。完整设备型号/系统/供应商/编码/旋转/实测FPS矩阵不推断，见ValidationLogs/m3-library-build14-user-feedback.json。M4尚未开始。
