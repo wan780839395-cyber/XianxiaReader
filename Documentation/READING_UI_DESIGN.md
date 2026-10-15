@@ -8,7 +8,7 @@
 
 全部控件通过现有ReaderViewModel、ReadingInterfaces工作，不改引擎/持久化/全局优先级/Locator/缓存/schema。默认仍暖白110%、1.75行高、0.8rem段距、两字缩进。沿用原书排版/固定布局disabled规则、保存失败和重试保持。动态字体、VoiceOver、44pt最小点按区域与空间不足时的重排一起考虑；仅用短淡入淡出/原生sheet，尊重Reduce Motion/Reduce Transparency。
 
-字体文件资产导入、单书覆盖、独立四边距、字距/字重、亮度/音量键继续按M4切片推进。
+字体文件资产导入、单书覆盖、独立四边距、字距/字重、亮度/音量键和阅读方式跨启动保存继续按M4切片推进。外观/排版全局保存保留，阅读方式仍沿用现有会话状态，未新增跨启动持久化。
 
 ## 成熟方案与取舍
 
@@ -19,6 +19,8 @@
 下载参考文档原件在.cache/recovery/20261015-build16/，不提交外部源码或图像到产品。Foliate README截图的浏览器抓取实际TimeoutError，未据此截图作外观观察结论；主要具体层级选择依据已取得的Readest设计文本和项目既有原生页面。
 
 ## 验证边界
+
+第三轮b62c0dd1/CI38743111852新增WebKit动态调用计数回归通过，但原快速字号→换色测试继续超时。新生命周期诊断只有初始reload DOM=false，没有采样或提交事件，因此前述CSS互斥修正有独立回归支持，却未解释全部快速请求问题。核官方3.11 EPUBSpreadView.evaluateScript只等spreadLoaded，本地普通分页采样却等完整continuousInitializationReady；第四候选将分页回归到原SDK就绪边界，连续模式仍等完整bootstrap。同时Adapter在进入WebKit前检查取消/请求/实例身份，避免尚未开始的旧Task进入额外等待，原await后检查保留；8条有界请求阶段诊断不含正文。只作必要生命周期修复，不放宽任何原测试/超时。第四轮实际结果前仍未验收。
 
 第二轮fe95dbc/CI38738818996为91/92，全部8原生UI通过，旧分页重排第一次等待仍失败，严格test65阻止Release。重复失败后重新查精确[3.11 ViewModel](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift)及Navigator/ReflowableSpread：官方applyPreferences在needsInvalidation时不提交动态CSS。本地扩展此前先普通submit（排队动态CSS），再独立reload，脚本会在await后取得新loadedViews，存在晚到样式重排新页的竞争路径。本片因此增加必要的最小引擎集成修正：将强制分页重排并入ViewModel原失效决策，更新注入CSS/cache后只重建；纯换色和连续模式保持动态路径。新增实际WebKit调用计数回归（重建页0动态写入、纯换色同页实时更新），原1533等非零文字/180%/重开断言与超时不改；诊断仅12条数字/布尔生命周期，无正文/标题/选择器。更新两Vendor源码hash/provenance，不改锁/JS静态bundle/Locator协议/Core/Adapter。竞争路径是已确认源码差异，原两轮失败是否因此修复仍须第三轮实际原生验证。
 

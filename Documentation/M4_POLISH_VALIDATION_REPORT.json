@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-15T12:58:40.520766+00:00",
+  "recordedAtUTC": "2026-10-15T13:29:28.255199+00:00",
   "stage": "M4 native reading UI slice pending full CI",
-  "sourceRevision": "fe95dbc99c83089a7929d7cd7b8176e2fd23058e",
-  "run": 38738818996,
+  "sourceRevision": "b62c0dd1f76631fb783c5d92618f895b2b4a417d",
+  "run": 38743111852,
   "branch": "codex/m4-reading-appearance",
   "build": "16",
   "changedPaths": [
@@ -30,12 +30,19 @@
     "Documentation/ValidationLogs/m4-polish-build16-first-failure.json",
     "Documentation/ValidationLogs/m4-polish-build16-linux-checkpoint.json",
     "Documentation/ValidationLogs/m4-polish-build16-resume.json",
+    "Documentation/ValidationLogs/m4-polish-build16-second-candidate.json",
+    "Documentation/ValidationLogs/m4-polish-build16-second-failure.json",
     "Documentation/ValidationLogs/m4-polish-build16-start.json",
     "HANDOFF.md",
     "PROJECT_STATUS.md",
     "README.md",
     "ROADMAP.md",
     "Tests/UI/ReaderInterfaceUITests.swift",
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/README.md",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml"
   ],
   "priorRuntimeSource": "a6251ea23e6e126acd27f16b3fe4886fed74dd77",
@@ -48,8 +55,9 @@
     "swiftCompilation": false
   },
   "expectedCoreTests": 115,
-  "expectedIOSTests": 92,
+  "expectedIOSTests": 93,
   "existingIntegrationTests": 84,
+  "newReflowIntegrationTests": 1,
   "newInterfaceUITests": 2,
   "nativeUITestsTotal": 8,
   "sourceHashKind": "SHA-256 of candidate Git blobs",
@@ -532,7 +540,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "f2ead6ba3063104dcc0fc18c6f23d6d32d6dd974c94ef92330dd35124381b589"
+      "sha256": "232c09c307b0ebaa358b94d37ab2da31a6cb5b7faa9fa5d43e4cd1a0c49bcdbb"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -556,7 +564,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "49946494a5c8569aeb08406bd26cac31f0ffc35ef5df907a1a4544903f34d853"
+      "sha256": "662c56cb50e913db4c96c92c7683d11baba1260560503c520a3caca5a9d4ab7f"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -816,11 +824,11 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "a0815233b90951bc10cdabe07e4a14ef424736043d9f2ba2db1655c885ac6942"
+      "sha256": "2914c082cebb5c9c7d842b0fc9b13dd91a98efcf14e61446f2dba1b2d0e868d6"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "76683bee9f76a4d93195865c4067a252f0cb2a9bcd878ff5c1cc830975fdbda9"
+      "sha256": "dc7e5635a3f68126559b8139473b2d2551030e8855c7d544f753feedcfbe6d44"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
@@ -1972,7 +1980,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "c7ba6ee734a48004f0d14f852b49c27fae9c439962f9ff08a2b2eb1b15b91048"
+      "sha256": "c3ef50bb9638cf76fec2266d23ad5640739235a798bb8f5347a8d5fe90aee1f4"
     },
     {
       "path": "project.yml",
@@ -2206,26 +2214,29 @@
     "Reduced Motion environment test does not set or certify a physical-device system preference."
   ],
   "failureHistory": [
-    "Documentation/ValidationLogs/m4-polish-build16-first-failure.json"
+    "Documentation/ValidationLogs/m4-polish-build16-first-failure.json",
+    "Documentation/ValidationLogs/m4-polish-build16-second-failure.json"
   ],
   "priorCandidates": [
-    "Documentation/ValidationLogs/m4-polish-build16-first-candidate.json"
+    "Documentation/ValidationLogs/m4-polish-build16-first-candidate.json",
+    "Documentation/ValidationLogs/m4-polish-build16-second-candidate.json"
   ],
+  "pagedReflowCorrection": "After two original paged-reflow failures, exact3.11 ViewModel review found the maintained explicit-reload path also queued dynamic CSS. Route forced typography reload through needsInvalidation, excluding late dynamic CSS; add actual WebKit counter regression and bounded numeric/boolean diagnostics. Full93 tests required; old assertions/timeouts unchanged.",
   "firstFailureInterpretation": "CI38734879701:115Core each,90/92iOS; AXprevious width8 corrected with contentShape, invisible old bookmark symbol corrected; identical Build15 paged-reflow wait also failed and cause remains unconfirmed. No old assertion changed; strict test65 blocked Release.",
   "partialVerification": {
-    "recordedAtUTC": "2026-10-15T13:03:01.842694+00:00",
-    "run": 38738818996,
-    "sourceRevision": "fe95dbc99c83089a7929d7cd7b8176e2fd23058e",
+    "recordedAtUTC": "2026-10-15T13:33:19.777753+00:00",
+    "run": 38743111852,
+    "sourceRevision": "b62c0dd1f76631fb783c5d92618f895b2b4a417d",
     "linuxCoreTests": 115,
     "longTXTReleaseCases": 4,
     "files": [
       {
-        "path": "build/ci/38738818996/core/logs/core-tests.log",
-        "sha256": "c2286885f27adddb2ef8859ed1b2bcea7b2b20cb0dacbc061c3e511fe6734728"
+        "path": "build/ci/38743111852/core/logs/core-tests.log",
+        "sha256": "2baf0eabfa657c76dde99d54a70517a2f1a4c0d6f27b363f0e86c7f0b1160e13"
       },
       {
-        "path": "build/ci/38738818996/core/TXTPerformance/summary.json",
-        "sha256": "76f78f39ab76d22ea190b85cfc1d926aeb30f2898679fb0b78cbb9164f1cf9e1"
+        "path": "build/ci/38743111852/core/TXTPerformance/summary.json",
+        "sha256": "689db94ed946c9533a91237b05e3c47db79990c57bbbfcc1fd7a98d8d3d33e98"
       }
     ],
     "appleCompiled": false,

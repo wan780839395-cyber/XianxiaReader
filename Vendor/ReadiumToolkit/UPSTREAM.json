@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "2914c082cebb5c9c7d842b0fc9b13dd91a98efcf14e61446f2dba1b2d0e868d6"
+      "sha256": "ac12ba72f8e02bbb97d620a2d193e3f2c8e1525bfd7623b0e92ccc1148e81d74"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1667,6 +1667,7 @@
     "pagedReflow": "Adapter requests fresh-DOM-anchor paged reload after typography changes; color-only changes remain dynamic CSS. Mode changes keep original invalidation path.",
     "precisePagedAnchor": "Only self-marked version1 DOMRange anchors, horizontal LTR pagination: choose page from first client rect plus scrollX. Official3.11 text matcher contains no domRange handling. Ordinary search/EPUB/RTL/vertical paths unchanged.",
     "unicodeContext": "Bounded context slices never split UTF16 surrogate pairs; DOM UTF16 offset retained. Native TXT emoji/combining repeat fixture validates save/reflow/reopen.",
-    "pagedReflowAtomicity": "Typography reload goes through the ViewModel needsInvalidation decision, so injected CSS/cache update and pagination rebuild exclude late dynamic CSS. Color-only changes and continuous mode keep dynamic CSS. Added actual WebKit counter regression, old nonzero-anchor180percent/reopen unchanged."
+    "pagedReflowAtomicity": "Typography reload goes through the ViewModel needsInvalidation decision, so injected CSS/cache update and pagination rebuild exclude late dynamic CSS. Color-only changes and continuous mode keep dynamic CSS. Added actual WebKit counter regression, old nonzero-anchor180percent/reopen unchanged.",
+    "pagedReadiness": "Paged sampling uses the official spreadLoaded readiness gate. Full continuous bootstrap readiness remains limited to continuous loading. Adapter rejects superseded preference tasks before WebKit sampling and still checks request/nav identity afterward; stage diagnostics are bounded and content-free."
   }
 }

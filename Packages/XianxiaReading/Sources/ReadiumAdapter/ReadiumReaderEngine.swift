@@ -41,7 +41,15 @@ import XianxiaCore
     public private(set) var supportsTextAppearance = false
     public var continuousLoadedResourceCount: Int { navigator?.continuousScrollLoadedResourceCount ?? 0 }
     public var currentChapters: [Chapter]? { txtReading?.plan.index.chapters }
-    var continuousDiagnosticState: String { navigator?.continuousScrollDiagnosticState ?? "no navigator" }
+    var continuousDiagnosticState: String {
+        "preferences: " + preferenceRequestTrace.joined(separator: "; ") + " / "
+            + (navigator?.continuousScrollDiagnosticState ?? "no navigator")
+    }
+    private var preferenceRequestTrace: [String] = []
+    private func tracePreferenceRequest(_ value: String) {
+        preferenceRequestTrace.append(value)
+        if preferenceRequestTrace.count > 8 { preferenceRequestTrace.removeFirst() }
+    }
 
     public override init() {
         storageRoot = nil
@@ -194,8 +202,16 @@ import XianxiaCore
         let requestedPreferences = preferences
         modeChangeTask = Task { @MainActor [weak self, weak navigator] in
             guard let self, let navigator else { return }
+            // A superseded task may not have started yet. Do not let it enter
+            // WebKit's readiness/anchor work after a newer request replaces it.
+            guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else {
+                self.tracePreferenceRequest("superseded before sample")
+                return
+            }
+            self.tracePreferenceRequest("sample requested")
             await navigator.preserveCurrentDOMLocationForModeChange()
             guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+            self.tracePreferenceRequest("sample returned")
             // Expose the fresh full anchor immediately. A close/save while the
             // reflow is settling must not use an older percentage-only callback.
             if let locator = navigator.currentLocation { self.capture(locator) }

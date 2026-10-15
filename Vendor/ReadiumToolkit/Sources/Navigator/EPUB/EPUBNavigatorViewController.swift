@@ -157,7 +157,12 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             anchor = await isv.firstVisibleElementLocator()
             guard infiniteScrollView === isv, isv.viewportIdentity == request else { return }
         } else if let spread = paginationView?.currentView as? EPUBSpreadView {
-            await spread.continuousInitializationReady()
+            tracePreferenceReflow("paged sample loaded=\(spread.isSpreadLoaded)")
+            // Paged scripts use the upstream spreadLoaded gate. The additional
+            // continuous bootstrap also waits for delayed initial navigation and
+            // decoration work; rapid cancelled preference requests must not
+            // introduce that stronger readiness dependency into a visible page.
+            await spread.spreadLoaded()
             guard paginationView?.currentView === spread else { return }
             let offset = spread.webView.scrollView.contentOffset
             anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)

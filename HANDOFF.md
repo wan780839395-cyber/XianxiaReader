@@ -16,6 +16,14 @@
 
 第二轮下载54974完成0：summary91/92，全部8原生UI（含尺寸/模式/目录/分组/原书disabled/保存重开/减少动效请求）通过，仅旧分页重排首次wait620失败；各115Core/四探针、编译diagnostics0，test65/export0/summary0/recording0，Release未执行无IPA。second-failure/second-candidate.json保留完整证据。重复失败后核官方精确3.11源码，确认本地分页Typography先动态CSS再独立reload违背官方needsInvalidation互斥决策，可能晚到脚本作用新页。现在已在既有ViewModel/Controller把Typography强制reload并入原失效路径，纯换色/连续保留动态；添实际WebKit计数回归和有界无正文诊断，旧原文字/180%/重开/timeout不放宽。方案/来源READING_UI_DESIGN.md，provenance仅更新两已维护Vendor文件。准备420语法/17tooling后第三轮完整CI，预期93iOS=85集成+8UI，各115Core、严格Release16；当前修正未编译，不能写通过。
 
+当前第三候选b62c0dd1f76631fb783c5d92618f895b2b4a417d / CI38743111852已真实dispatch，Windows420grammar新增0/54pristine及17tooling已过；原HEAD/index不变。watch61424只读，501源码hash/25旧包及两轮失败链接均在当前M4_POLISH_VALIDATION_REPORT.json。保留新旧共93测试的全部门槛；该新候选Apple编译/原生93/Release16/18图与3UI视频/连续帧尚待。本轮只增加修复必要的两Vendor源码/provenance、额外1集成回归，Core/ReadingInterfaces/Adapter/锁/JS/Locator/schema不改。
+
+第三轮Linux Core artifact已实际下载，115测试/4长TXT Release合同逐项过，checkpoint/报告单独标Linux通过；Apple执行中，仍不能写93iOS/Release通过。未追加新运行源码，完整CI head应保持b62c0dd1。
+
+第三轮38743111852现completed/failure，watch61424返回1，未取消。开始下载完整诊断，再看是否原分页/新增互斥回归或其他失败，不能假定修正成功或把本轮直接打包。
+
+第三轮完整full日志已到：新增真正WebKit互斥计数回归通过，原快速连续字号/换色wait620仍失败；新Navigator trace只有初始reload DOM=false，没有sample或submit，说明该快速请求在提交前停住，不能把互斥修正写成已解决原失败。third-candidate/third-failure已保留，native artifact56931仍下载中。按官方分页evaluateScript的spreadLoaded边界，现将普通分页采样从额外continuousInitializationReady等待改回spreadLoaded；Adapter在采样前先拒绝已取消/旧request/旧navigator，原await后检查保留，新增8条有界无正文请求阶段诊断。连续bootstrap路径/JS/锁/定位协议不变，原测试/30秒/180%/重开断言不放宽。准备420语法/17tooling和第四轮完整93测试，源码修正未编译。
+
 源码子步：已增加ReaderVisualStyle/ReaderMenuView，重整ReaderAppearanceView外观/排版分段和ReaderView组装，版本16。保持原偏好功能/ID/模型/引擎，44pt按钮、ViewThatFits避免窄空间数值挤压，菜单短淡入淡出沿用系统和既有额外Reduce Motion请求；实心面板不依赖透明效果。保留旧90测试，新增2真正XCUITest覆盖菜单触控尺寸/模式/分组/排版保存重开/原书开关disabled规则及Reduce Motion请求。准备Windows检查和完整CI；新增截图/动效尚未实看，不记通过。
 
 构建前：Windows仓库/420Swift grammar新增0、54 pristine限制和17Python tooling通过，报告M4_POLISH_STATIC_REPORT.json；语法不等于编译。现在私有index保存并推同一M4分支候选，随后workflow_dispatch完整CI（115Core各平台、92iOS=84集成+8UI、严格Release16）。新增test用既有XR_LIBRARY_UI_REDUCE_MOTION追加减少动效请求，不宣称改变系统设置。此前运行源a625与本次新候选分别记录，所有旧文件/25包保留。

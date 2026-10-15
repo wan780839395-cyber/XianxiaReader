@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-15T14:03:27.737814+00:00",
+  "run": 38743111852,
+  "sourceRevision": "b62c0dd1f76631fb783c5d92618f895b2b4a417d",
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "pagedDynamicCSSCounterRegressionPassed": true,
+  "originalRapidTypographyRegressionPassed": false,
+  "observation": "Bounded Navigator trace shows initial reloadDOMfalse only: no sampling/submission event before timeout. The successful single-request counter regression confirms exclusive CSS/reload path but does not resolve the rapid-cancellation readiness failure.",
+  "nextChange": "Reject superseded Adapter tasks before entering WebKit. Ordinary paged DOM sampling uses official spreadLoaded gate rather than maintained continuous-only full initialization gate; retain post-await request/nav checks. Add bounded Adapter request stage diagnostics.",
+  "deviceReleaseExecuted": false,
+  "IPACreated": false,
+  "artifactDownload": "Pending complete native artifact; full log downloaded",
+  "log": {
+    "path": "build/ci/38743111852/full.log",
+    "sha256": "a2b15d21f2ea5638ccf1caef6c6aaaea879e3e53372d67c3bf577a574a2746d9"
+  }
+}
