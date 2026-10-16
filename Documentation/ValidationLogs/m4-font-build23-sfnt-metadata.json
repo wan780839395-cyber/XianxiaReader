@@ -1,0 +1,38 @@
+[
+  {
+    "path": "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+    "bytes": 25928940,
+    "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350",
+    "signature": "00010000",
+    "variable": false,
+    "tableCount": 16,
+    "glyphCount": 47336,
+    "names": {
+      "1:1033": "LXGW WenKai",
+      "2:1033": "Regular",
+      "5:1033": "Version 1.530; October 13, 2026",
+      "6:1033": "LXGWWenKai-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org",
+      "1:2052": "霞鹜文楷",
+      "2:2052": "Regular"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+    "bytes": 24543332,
+    "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117",
+    "signature": "4f54544f",
+    "variable": false,
+    "tableCount": 17,
+    "glyphCount": 65535,
+    "names": {
+      "1:1033": "Source Han Serif SC",
+      "2:1033": "Regular",
+      "5:1033": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "6:1033": "SourceHanSerifSC-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.",
+      "1:2052": "思源宋体",
+      "2:2052": "Regular"
+    }
+  }
+]

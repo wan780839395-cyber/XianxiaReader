@@ -2,13 +2,15 @@
 
 ## 实际最新断点（先看这里）
 
-用户新增明确范围：内置几个字体，已选思源宋体Regular OTF与霞鹜文楷Regular TTF，官方原件/OFL/固定revision/摘要核验中。将作为App只读资源与独立内置字体选择，不占12款用户导入名额；已有可选UUID可表达稳定内置资源身份，保留旧偏好兼容。当前38886008057/e758候选仍正常跑，证据只覆盖扩展前源码；不得把其成功追认为新内置字体已编译。完成内置与中文实际字形/锚点/重开验证后冻结新候选跑完整CI，再交付。保留所有未提交改动与旧运行/失败原件。
+2026-10-16T10:38:04.075370+00:00。用户新增“可以内置几个字体”，本轮已实现内置思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530与本地导入；两原字库50,472,272B，固定官方revision/摘要/原OFL已核，App只读Bundle URL按需加载，不占12用户导入名额（Adapter≤14faces/正文窗口仍≤12）。尚未交付，Build22仍安装基线，禁止把源码候选当验收。
 
-当前唯一CI38886008057，源e7586a8067515a911d09ac4abf31fd4577fb695b，515源/资源blob，Windows432/17、35旧主体保持/13新增已核；本轮Linux133/四Release TXT探针原件已核，Apple/Release23/原生仍pending。watcher工具session91524写build/ci/38886008057/run.json，禁止重复dispatch。普通HEAD6d761749/空index/M2/M3、875原路径/39旧包/13含本轮备份保持，Build22仍可安装基线。尚无Build23 IPA。
+当前主验证：源277dca99bde3eabb9eb657ce4ee50e6adf537baa，ref codex/m4-bundled-fonts，CI38887978313（in_progress/pending），https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38887978313 。Windows433语法新增0/17工具、35原测试主体保持/15新增、522编译源/资源blob；Linux133与四Release TXT探针原件CRC已核。Apple/Core/iOS133=114集成+19UI/严格Release23/原生中文页面尚待完整原件，所有门槛以report实值为准。
 
-首轮38880257296/3bac201为Agent补强而取消，原件留存；第二轮38881623233/149caa08真实129/131，两新渲染测试均在导入前定位准备失败，旧124全过；Core133各/四探针各、编译warning/error0，Release/IPA未执行。1.23GB原件已CRC、record failure/五新UI PNG+50.90s字体视频局部复核均单独留档。当前与149caa08仅两新测试准备+文档不同，运行源码一致：等初始恢复模式完整capture稳定再go、目标页probe、保留非零caret/字体loaded/完整锚点/字号与重开断言。
+扩展前独立CI38886008057/e7586a80目前in_progress/pending，因新需求使用另一ref而未取消，证据只覆盖此前13项字体导入版本。旧首轮Agent取消/第二轮129of131初始定位失败保留原件，不追认为通过。149caa08→e758仅新测试准备，当前277dca增加实际内置App资源/界面与中文测试，二者范围不能混写。
 
-下一步从本轮完整真实结果继续，失败先保留原件后依据诊断修；成功核133各/131 iOS/严格Release23/515blob/三锁/四探针每平台，再审本轮PNG/字体及既有外观UI录屏/原始VFR帧后才执行deliver_font.py package/docs/preserve/verify与最终私有快照。任何此前候选局部素材不替代本轮。TTF真实页面/实际字体加载由新渲染门槛验证；OTF真页面/大中文字体性能/手机/TS矩阵单列。M4未完成，不关机。
+观察工具主74660、旧71340各对应本轮/扩展前；若工具ID失效，先核OS进程/run.json/真实API再恢复唯一watcher，禁止重复dispatch。当前维护主ref codex/m4-reading-appearance私有快照277dca99，普通HEAD6d761749/空index/M2/M3/875开工路径/39旧包/13备份保持。522运行源冻结，后续只补文档与验证/交付助手；源变必须完整新CI。没有Build23 IPA，不关机。
+
+下一步核两CI真实完整结果。主候选成功后下载原件CRC→inspect IPA23/validate_font.py finish→font_runtime_diagnostics.py→review_font.py prepare/overview（含bundled）及review_font_raw.py原VFR帧→人工manual-notes→finalize_font_native.py。原生通过才运行deliver_bundled_fonts.py package/docs/preserve与最终快照/verify。所有helpers已准备但未冒称执行成功。手机/TS/首次大字库加载与内存/FPS/功耗/全部Provider/外部OTF真UI仍单列；M4整体未完。
 
 ## 本轮历史检查点
 

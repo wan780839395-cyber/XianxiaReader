@@ -1,0 +1,11 @@
+{
+  "recordedAtUTC": "2026-10-16T10:37:26.651314+00:00",
+  "run": 38887978313,
+  "sourceRevision": "277dca99bde3eabb9eb657ce4ee50e6adf537baa",
+  "coreTests": 133,
+  "releaseProbeCases": 4,
+  "applePassed": false,
+  "zipCRC": true,
+  "artifact": 12040427116,
+  "artifactSHA256": "9ba7f84d704f9553a36573a3a4e1335a6e00b888601b5f2ca85d031a83aa92b5"
+}
