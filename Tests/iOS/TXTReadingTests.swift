@@ -53,7 +53,8 @@ final class TXTReadingTests: XCTestCase {
         let loaded = "(()=>{const p=document.querySelector('p');return !!p && Array.from(document.fonts).some(f=>f.family.includes('\(font.cssFamily)')&&f.status==='loaded') && getComputedStyle(p).fontFamily.includes('\(font.cssFamily)');})()"
         func active() -> WKWebView? {
             guard let wrapper = view("readium.chapter.1", root: engine.viewController.view) else { return nil }
-            return webViews(wrapper).first
+            guard let web = webViews(wrapper).first, web.window != nil, web.scrollView.alpha > 0.99 else { return nil }
+            return web
         }
         try await wait("actual TXT font loaded and exact anchor") {
             guard let web = active() else { return false }

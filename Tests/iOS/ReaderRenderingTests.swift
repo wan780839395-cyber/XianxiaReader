@@ -114,11 +114,16 @@ final class ReaderRenderingTests: XCTestCase {
                 c.font='30px serif';return Math.abs(actual-c.measureText('iiiiWWWW').width)>1;})()
                 """
             func active() -> WKWebView? {
+                let candidate: WKWebView?
                 if continuous {
                     guard let wrapper = view(identifier: "readium.chapter.1", in: engine.viewController.view) else { return nil }
-                    return webViews(in: wrapper).first
-                }
-                return visibleWebView(in: engine.viewController.view)
+                    candidate = webViews(in: wrapper).first
+                } else { candidate = visibleWebView(in: engine.viewController.view) }
+                // Readium sets isSpreadLoaded before finishing pending-location
+                // navigation and showing scrollView. A ready DOM alone can still
+                // be behind its loading indicator in a native screenshot.
+                guard let candidate, candidate.window != nil, candidate.scrollView.alpha > 0.99 else { return nil }
+                return candidate
             }
             try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(fontScript) as? Bool == true }
             try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(anchorScript) as? Bool == true }

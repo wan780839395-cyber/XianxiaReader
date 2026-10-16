@@ -1,5 +1,7 @@
 # 本地字体导入
 
+原生取图门槛：ff候选的宋体分页截图还在spinner、初始TXT导入截图为空底色，虽DOMFontFace/位置已就绪仍不能当可读页面通过。锁定3.11的EPUBSpreadView先isSpreadLoaded、待pendingLocation及delegate初始化完成后showSpread才设scrollView.alpha=1。新字体测试active()因此再核实际window和scrollView.alpha>0.99；其后核glyph/位置/原生截图，不修改图片像素、不让静态DOM断言替代已显示正文。运行App源码不变，仍须新完整CI及原生复核。
+
 当前新EPUB验证语义修正：ff824/38906278076仅一条新字体用例失败，原canonical char476与DOM caret476相同、viewport offset=-9.84375，原字符实际部分位于视口内。完整位置允许保留负的viewportOffset（第一行部分裁切），不能以range.top>=0要求整字外框在屏内。最新仅测试改为glyph rect与viewport相交，continuous另核该文字Y与切换前/新采canonical offset差<3px；保留首>100、实际字形、字号/重开/同名路由检查。原124全过，不再改App运行源，尚待新完整CI与原生验收。
 
 ## 用户补充：内置中文字体（本轮待完整编译）

@@ -1,0 +1,80 @@
+{
+  "recordedAtUTC": "2026-10-16T14:08:13.108168+00:00",
+  "run": 38906278076,
+  "sourceRevision": "ff82423a9a4092873d9d9f26d513e34064af0fc1",
+  "conclusion": "failure",
+  "testSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 133,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792158587.272,
+    "passedTests": 133,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792156975.466,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():117",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 74,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "15% of duration",
+        "text": "1 longest test run with outlier durations exceeding 142.09s (three standard deviations)"
+      },
+      {
+        "category": "Longest Test Runs",
+        "impact": "35% of duration",
+        "text": "1 longest test run with outlier durations exceeding 38.35s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 134
+  },
+  "old124AllPassed": true,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "releaseExecuted": false,
+  "actualFailure": "New EPUB visibility predicate required full glyph rect inside viewport. Original char476 and DOM caret476 coincide; canonical viewportOffset=-9.84375 preserves partially clipped first line. Only this case fails;133 others pass.",
+  "testOnlyCorrection": "Require original glyph rect to intersect viewport; add exact continuous Y displacement within3px,retain all load/glyph/nonzero/size/reopen/two same-name file assertions. Runtime source unchanged.",
+  "originalZIP": {
+    "path": "C:\\Users\\78083\\.cache\\XianxiaReader-Build23-CI\\archives\\38906278076\\apple-diagnostics.zip",
+    "bytes": 1312836588,
+    "sha256": "6c2ba1b769c6388ba92744b683bc216669a1cdc0f1fbfecd2f5feea498125cc1",
+    "CRCVerified": true
+  },
+  "rawLog": {
+    "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "7cd7db34cba8704e6f8cf5343dcf960d7e5744cb1dfe07072a5169cb60cd72a7"
+  },
+  "downloadInterruptedThenResumed": true,
+  "deviceAccepted": false
+}

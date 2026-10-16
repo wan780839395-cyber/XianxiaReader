@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "57c8273cda436acef1243311a45b9a0f19d81d1de9413e52835d3db924dc0a63"
+      "sha256": "9dda1b98f992087f7e561a73dccca39d7090807771f33db2bea5d29dfe0be687"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -782,7 +782,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "f63fdd8fc9f14f08c6c84ac5d0ec292f9eb48a062dd934ce560348deb3892bca"
+      "sha256": "7300b9246c8e44a08136e500dee6598896d10ed1542ff582233df3ac625d766e"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2329,6 +2329,7 @@
     "Documentation/ValidationLogs/m4-font-build23-overlay-38892156952.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38892611316.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38893802693.json",
+    "Documentation/ValidationLogs/m4-font-build23-partial-glyph-133of134.json",
     "Documentation/ValidationLogs/m4-font-build23-prior-38887978313-result.json",
     "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
@@ -2338,6 +2339,7 @@
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-third-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-viewport-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-viewport-offset-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
     "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
     "HANDOFF.md",
@@ -2368,10 +2370,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "ff82423a9a4092873d9d9f26d513e34064af0fc1",
-  "run": 38906278076,
-  "branch": "codex/m4-font-anchor-tests",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38906278076",
+  "sourceRevision": "92ad36a0f8fd45a40c1e31c73f37a117ccb34200",
+  "run": 38911801177,
+  "branch": "codex/m4-font-viewport-offset",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38911801177",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2429,7 +2431,7 @@
     ],
     "fullLogSHA256": "5c0b784b3f7be617519b36053b5cf9902bb31062e3abdd36ca1e81f96cb51822"
   },
-  "latestFailure": "Documentation/ValidationLogs/m4-font-build23-compatibility-130of134.json",
+  "latestFailure": "Documentation/ValidationLogs/m4-font-build23-partial-glyph-133of134.json",
   "priorFailedSource": "149caa08c600999f5b53b74e0900eb1b405b7e8a",
   "priorImportOnlyRun": {
     "run": 38886008057,
@@ -2497,5 +2499,14 @@
     "runtimeSameAsCurrent": true,
     "reason": "Two old and two new tests failed after real execution; test-only corrections use fresh anchors and guard reload DOM",
     "evidence": "Documentation/ValidationLogs/m4-font-build23-compatibility-130of134.json"
+  },
+  "priorFreshAnchorCandidate": {
+    "run": 38906278076,
+    "source": "ff82423a9a4092873d9d9f26d513e34064af0fc1",
+    "completionPending": false,
+    "conclusion": "failure",
+    "runtimeSameAsCurrent": true,
+    "reason": "Only partial-glyph visibility predicate failed; full original ZIP now CRC verified,133/134,old124 all passed",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-partial-glyph-133of134.json"
   }
 }
