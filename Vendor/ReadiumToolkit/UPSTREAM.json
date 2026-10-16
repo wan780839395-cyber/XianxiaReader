@@ -1427,7 +1427,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "51930ba49677eb6d6cab95f4155daa93a9de61f49942f0d74a38e2313d4e3afd"
+      "sha256": "a0d92863efb9ba724143a127e591450560aec51766a9601508d78268336e785e"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
@@ -1695,10 +1695,13 @@
     "scope": "Resource-font typography uses existing full-anchor invalidation in continuous as well as paged mode; system-font continuous/color-only stay dynamic. Initial pending locator waits for FontFaceSet.ready with15s bound, cancellation and visible resource error.",
     "references": [
       "https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready",
-      "https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:)"
+      "https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:)",
+      "https://bugs.webkit.org/show_bug.cgi?id=293831",
+      "https://github.com/WebKit/WebKit/pull/46146"
     ],
     "dependenciesChanged": false,
     "fullCIPendingAtSourceCheckpoint": true,
-    "sameBasenameFiles": "Each FileURL receives a UUID route segment; memoized across chapter resources. Two same-name imports must retain independent URLs and original glyph metrics."
+    "sameBasenameFiles": "Each FileURL receives a UUID route segment; memoized across chapter resources. Two same-name imports must retain independent URLs and original glyph metrics.",
+    "fontReadyBridge": "Existing unrefined evaluateScript observes document.fonts.ready Promise completion; bounded15s/32ms status probes, cancellation and visible resource error. No callAsyncJavaScript/WebKit Swift overlay dependency."
   }
 }

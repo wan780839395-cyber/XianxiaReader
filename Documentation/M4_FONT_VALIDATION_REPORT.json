@@ -199,7 +199,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -794,7 +794,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "cd7556e107845d5440fec9c27c7aa58d0038f9a39a6188d031b296f6c4607a58"
+      "sha256": "8b6f2a0e86ae89be6093f74bcefbddfa571d6c2f8b48f3484389794fa010d425"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -1062,7 +1062,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "51930ba49677eb6d6cab95f4155daa93a9de61f49942f0d74a38e2313d4e3afd"
+      "sha256": "a0d92863efb9ba724143a127e591450560aec51766a9601508d78268336e785e"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpread.swift",
@@ -2210,7 +2210,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "62a08aecfc0158886e9ff9cce9c6c97c6089d0f13b8b40a7976a1371afe21289"
+      "sha256": "97be12f14d7d2e3b5132c9d96ba35a5095d972cb97bda9cb9d1f1b78e0d9b7db"
     },
     {
       "path": "project.yml",
@@ -2360,10 +2360,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "2b5a156acaee634f820254473f2692e3a298c96b",
-  "run": 38892611316,
-  "branch": "codex/m4-font-viewport",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892611316",
+  "sourceRevision": "255537fe9cda12601c7b414149e8bec7337e93e4",
+  "run": 38893802693,
+  "branch": "codex/m4-font-routes",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38893802693",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2448,14 +2448,23 @@
     "run": 38890891607,
     "source": "43e837bece74bfc930d774e36b3834e96f6f18d5",
     "completionPending": true,
-    "runtimeSameAsCurrent": true,
-    "differences": "Only one new test file and source-checkpoint metadata naming, plus docs"
+    "runtimeSameAsCurrent": false,
+    "differences": "Only one new test file and source-checkpoint metadata naming, plus docs",
+    "runtimeSameBeforeRouteFix": true
   },
   "priorReadyCandidate": {
     "run": 38892156952,
     "source": "bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7",
     "completionPending": true,
-    "runtimeSameAsCurrent": true,
-    "difference": "New TXT test helper now uses one atomic WebKit callback; prior source emitted a no-throw try warning"
+    "runtimeSameAsCurrent": false,
+    "difference": "New TXT test helper now uses one atomic WebKit callback; prior source emitted a no-throw try warning",
+    "runtimeSameBeforeRouteFix": true
+  },
+  "priorViewportCandidate": {
+    "run": 38892611316,
+    "source": "2b5a156acaee634f820254473f2692e3a298c96b",
+    "completionPending": true,
+    "runtimeSameAsCurrent": false,
+    "difference": "Unique per-FileURL served font routes and two same-basename import regression added afterward"
   }
 }

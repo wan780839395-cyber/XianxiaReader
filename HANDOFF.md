@@ -2,6 +2,10 @@
 
 ## 实际最新断点（先看这里）
 
+实际12:29UTC恢复核查：原四轮已结束，无活watcher。43e/38890891607 failure、bc6/38892156952 cancelled（未由本Agent发取消，原因未核，不称源码failure）、2b5/38892611316 failure、255/38893802693 failure。原full.log/artifacts各已保存；共同dyld缺libswiftWebKit导致测试host启动前abort，随后UI缺PID/找不到书，不能冒称134主体执行。255原件artifact12044612730/315957624B下载11541已完成chunks待解压回执。官方WebKit293831证实min<=18.3+18.5sim的refined Swift API缺陷，回调与async两形式都受影响；现移除callAsyncJavaScript，标准document.fonts.ready.then由既有evaluateScript观察完成，32ms有界轮询/15s/取消/可见错误，完整位置/路由保护保留。接下来更新两Vendor摘要、Windows433/17与旧35/16新增/522源后冻结新compatibility候选全CI，不复用旧失败门槛。两原中文字体已在源码，尚无Build23IPA。
+
+最新主候选实际已dispatch：255537fe9cda12601c7b414149e8bec7337e93e4 / codex/m4-font-routes / CI38893802693，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38893802693 。包含两内置/导入、fonts.ready/完整锚点重载、原子测试取样及同名独立资源路由。Windows433/17、35原主体保持/16新增/522blob已重冻；Core133各/iOS134=115集成+19UI/Release23/原生全pending，report切最新源并全部重置。2b5/38892611316（watch18566）、bc6/38892156952（75733）、43e/38890891607（74374）仍独立跑，均未含最新路由修正，不替本候选验收；各自结果/日志应取完保存。当前没有Build23 IPA，不关机，普通HEAD/index及全部原文件/包保持。
+
 源审计再确认一实际问题：3.11 ViewModel按file.lastPathSegment挂载字体、WebViewServer.serve不自动去重；两个用户字体都固定名font.ttf时URL路由相同。现沿原公开server为每个FileURL加独立UUID路由段、原servedFonts仍跨章节复用，不改已持久化目录或字体原件；扩展新EPUB双模式用例真实导入IA与文楷两同名TTF，核路由不同/中文真实字体/切回首款拉丁字宽不变和原锚点，再走原两内置重开。此运行源码新增修正不在2b5/38892611316中，须重冻另ref全跑后才交付。原35主体/16新增数量保持，仍须实际核验。当前未交付，原各CI继续独立取证。
 
 最终待验主候选：源2b5a156acaee634f820254473f2692e3a298c96b，ref codex/m4-font-viewport，实际CI38892611316（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892611316）。Windows433/17、原35主体/16新增/522blob已重冻；Core133各/iOS134=115集成+19UI/Release23/原生全pending，report已切新run并重置。相对bc6只改新TXT取样helper及文档，App/Adapter/Vendor运行Swift与43e一致。旧43e/38890891607（watch74374）、bc6/38892156952（watch75733）正常独立跑；277/38887978313已131/133失败，原件92586与watch74660结束。禁止重复派发或拿旧局部结果替当前门槛。现在只准备验证/交付助手与文档，不再改冻结源码，尚无Build23 IPA。

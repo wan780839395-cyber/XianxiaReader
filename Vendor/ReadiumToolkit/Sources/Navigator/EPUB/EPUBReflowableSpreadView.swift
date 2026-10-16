@@ -169,16 +169,27 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
                 // FontFaceSet.ready includes the layout that follows font loading.
                 // Restore the pending full locator only after that layout, rather
                 // than after the upstream fixed delay alone. Never load unused faces.
-                _ = try await webView.callAsyncJavaScript("""
-                    document.body?.getBoundingClientRect();
-                    let timer;
-                    try {
-                      await Promise.race([document.fonts.ready, new Promise((_, reject) => {
-                        timer = setTimeout(() => reject(new Error('Reading font loading timed out')), 15000);
-                      })]);
-                      return true;
-                    } finally { clearTimeout(timer); }
-                    """, arguments: [:], in: nil, contentWorld: .page)
+                // Use the existing, non-refined evaluator. Both Swift overloads
+                // of callAsyncJavaScript bind the missing overlay on iOS18.5
+                // simulator (WebKit293831). The standard Promise still owns
+                // readiness; bounded native probes only observe its completion.
+                _ = try (await evaluateScript("""
+                    (()=>{document.body?.getBoundingClientRect();
+                      window.__xianxiaReadingFontReady='pending';
+                      document.fonts.ready.then(()=>{window.__xianxiaReadingFontReady='ready';},
+                        ()=>{window.__xianxiaReadingFontReady='failed';});
+                      return true;})()
+                    """)).get()
+                let deadline = Date().addingTimeInterval(15)
+                while true {
+                    try Task.checkCancellation()
+                    let state = try (await evaluateScript("window.__xianxiaReadingFontReady")).get() as? String
+                    if state == "ready" { break }
+                    guard state == "pending", Date() < deadline else {
+                        throw ReadError.decoding("Reading font loading did not settle")
+                    }
+                    try await Task.sleep(nanoseconds: 32_000_000)
+                }
                 try Task.checkCancellation()
             } catch is CancellationError { return }
             catch {

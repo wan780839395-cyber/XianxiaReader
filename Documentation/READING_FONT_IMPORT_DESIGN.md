@@ -2,7 +2,7 @@
 
 ## 用户补充：内置中文字体（本轮待完整编译）
 
-后续实际诊断/修正候选：e758/38886008057真实128/131。TTF FontFace与导入后可见锚点通过，连续模式150%字号阶段落到p16；TXT测试仅selector未构造fragment导致初始定位超时；字体真UI单次滚动未到主题。采用锁定Readium3.11已有完整锚点invalidate/reload路径，Adapter仅对资源字体（旧/新）排版请求完整重载；普通系统字体连续编辑及配色仍原动态CSS。初次pendingLocation在公开WKWebView.callAsyncJavaScript等待FontFaceSet.ready后恢复，15秒超时报可见Readium资源错误并允许系统fallback，clear取消旧Task，旧await结果不得通知新reader；依赖/锁/JS资产保持，两个Vendor Swift修改和摘要明确登记。参考[W3C FontFaceSet.ready规范](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)、[Apple公开API](https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:))及仓内3.11完整锚点重载实现，不继续盲加固定延迟。新增真实延迟FontFaceSet.ready关闭/重开竞态，原非零/字体字形/完整锚点/字号断言保留。修正尚须新完整CI和原生复核，不能写成根因全部证实或已修复。
+后续实际诊断/修正候选：e758/38886008057真实128/131。TTF FontFace与导入后可见锚点通过，连续模式150%字号阶段落到p16；TXT测试仅selector未构造fragment导致初始定位超时；字体真UI单次滚动未到主题。采用锁定Readium3.11已有完整锚点invalidate/reload路径，Adapter仅对资源字体（旧/新）排版请求完整重载；普通系统字体连续编辑及配色仍原动态CSS。初次pendingLocation用原evaluateScript观察FontFaceSet.ready的Promise完成后恢复，15秒超时报可见Readium资源错误并允许系统fallback，clear取消旧Task，旧await结果不得通知新reader；依赖/锁/JS资产保持，两个Vendor Swift修改和摘要明确登记。参考[W3C FontFaceSet.ready规范](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)、[Apple公开API](https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:))及仓内3.11完整锚点重载实现，不继续盲加固定延迟。新增真实延迟FontFaceSet.ready关闭/重开竞态，原非零/字体字形/完整锚点/字号断言保留。修正尚须新完整CI和原生复核，不能写成根因全部证实或已修复。
 
 按用户“可以内置几个字体”加入两款离线原件：思源宋体SC Regular静态OTF（24,543,332B，Adobe Source Han Serif 2.003 release revision 7889f11bf31170b5d092a083b357c8c8130f89e0）与霞鹜文楷Regular静态TTF（25,928,940B，官方revision ff2008376313060b2c3f04a61523aaeac4b0b0bf）。完整原OFL与版权、固定来源URL/摘要放在App/Resources/Fonts。原字形未裁剪/转换/修改，二进制及许可保持原字节，.gitattributes显式-text。来源为[Adobe官方仓库](https://github.com/adobe-fonts/source-han-serif/tree/7889f11bf31170b5d092a083b357c8c8130f89e0)与[霞鹜文楷官方仓库](https://github.com/lxgw/LxgwWenKai/tree/ff2008376313060b2c3f04a61523aaeac4b0b0bf)，各自SIL OFL1.1随App分发。
 
@@ -29,3 +29,7 @@ Windows语法与工具测试、Linux/macOS Core、真实iOS集成/界面、无�
 ## 同名字体路由
 
 3.11原资源闭包取file.lastPathSegment，WebViewServer.serve按给定route精确插入、没有自动区分同名文件。用户目录使用稳定UUID/font.ttf，因此给每个FileURL的route加独立UUID段，原servedFonts仍在同一Navigator跨章节复用。不迁移目录、不复制别名字体、不改原字节或font-face公开配置。新EPUB双模式用例真实导入IA与文楷到两个同名font.ttf路径，断言内联CSS的源URL独立、实际中文字形、切回首款字宽一致与原文字可见，随后核原两内置及重开。此为新运行候选，须完整新CI。
+
+## iOS18.5模拟器的WebKit293831
+
+43e/bc6/2b5/255候选原始日志显示dyld在执行测试前找不到libswiftWebKit.dylib，不能将其后UI缺少PID当各功能回归的源码故障或通过。官方WebKit293831明确两种callAsyncJavaScript Swift入口均受影响（min<=18.3+18.5sim）；不提高iOS16门槛、不改用户/CI模拟器、不注入DYLD。最终候选使用既有非refined evaluateScript注册标准document.fonts.ready.then状态，最多15s/32ms检查Promise是否完成，真正完成而非固定延时决定pendingLocator恢复；失败可见，clear取消Task，原关闭迟到/字体重开回归不减。Swift语法/全CI/原生仍待新门槛，官方资料 https://bugs.webkit.org/show_bug.cgi?id=293831 。
