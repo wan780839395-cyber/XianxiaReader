@@ -1,31 +1,31 @@
 {
-  "recordedAtUTC": "2026-10-16T19:25:27.751269+00:00",
-  "run": 38954435197,
-  "sourceRevision": "872fc755f12f3afa83eb1aa736015d5a50ec4502",
+  "recordedAtUTC": "2026-10-16T19:43:00.865418+00:00",
+  "run": 38956512671,
+  "sourceRevision": "454d95008ed8a6d4ce7517070bfc4a2f2a801ab5",
   "coreTests": 135,
   "desktopReleaseCases": 4,
   "allPassed": true,
   "appleCompilation": false,
   "receipt": {
-    "run": 38954435197,
-    "artifact": 12070201994,
+    "run": 38956512671,
+    "artifact": 12071320371,
     "kind": "core",
-    "archiveBytes": 116199,
-    "archiveSHA256": "304558e0eab07373b4b34fb023b3e5298d418ea2d51cdc16bb49c4fd477e08ba",
+    "archiveBytes": 116252,
+    "archiveSHA256": "445ed48856613b4b5ae3e8c0e356fd2a413694a386267fde01c785a89405528d",
     "githubDigestMatches": true,
     "zipCRC": true,
-    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\38954435197\\core",
-    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\38954435197\\core",
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core",
     "extractionScope": "complete artifact",
     "duplicatePathsRemoved": [
       {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38954435197\\core-download-chunks\\0000.bin",
-        "bytes": 116199
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core-download-chunks\\0000.bin",
+        "bytes": 116252
       },
       {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38954435197\\core-diagnostics.zip",
-        "bytes": 116199,
-        "sha256": "304558e0eab07373b4b34fb023b3e5298d418ea2d51cdc16bb49c4fd477e08ba"
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core-diagnostics.zip",
+        "bytes": 116252,
+        "sha256": "445ed48856613b4b5ae3e8c0e356fd2a413694a386267fde01c785a89405528d"
       }
     ],
     "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
