@@ -8,6 +8,35 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader() async throws {
+        let delay = WKUserScript(source: """
+            Object.defineProperty(document.fonts,'ready',{get(){
+              window.__xrFontReadyStarted=true;
+              return new Promise(resolve=>setTimeout(()=>{window.__xrFontReadySettled=true;resolve(document.fonts);},2000));
+            }});
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
+        let resource = try BundledReadingFont.wenKai.resource()
+        try engine.setReadingFonts([resource])
+        var appearance = ReadingAppearance(); appearance.importedFontID = resource.asset.id
+        try engine.setAppearance(appearance)
+        let (window, state) = try mount(engine); state.visible = false
+        let (oldBook, oldNavigator) = try await open(engine)
+        try await waitUntil {
+            guard let web = self.webViews(in: oldNavigator.view).first else { return false }
+            return try await web.evaluateJavaScript("window.__xrFontReadyStarted === true && window.__xrFontReadySettled !== true") as? Bool == true
+        }
+        engine.close()
+        var delivered: [UUID] = []
+        engine.onPositionChanged = { delivered.append($0.bookID) }
+        let (newBook, newNavigator) = try await open(engine)
+        XCTAssertNotEqual(oldBook.id, newBook.id); XCTAssertFalse(oldNavigator === newNavigator)
+        try await waitUntil { engine.currentPosition?.bookID == newBook.id }
+        XCTAssertTrue(delivered.allSatisfy { $0 == newBook.id })
+        XCTAssertNil(oldNavigator.parent); XCTAssertNil(oldNavigator.view.superview)
+        XCTAssertEqual(engine.viewController.children.count, 1); XCTAssertGreaterThan(window.bounds.width, 0)
+        engine.close()
+    }
     @MainActor func testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes() async throws {
         struct Factory: ReadingInterfaces.ReaderEngineFactory {
             let engine: ReadiumReaderEngine

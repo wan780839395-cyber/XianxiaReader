@@ -164,6 +164,35 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
         // 0.2 seconds seems like a good value for it to work on an iPhone 5s.
         try? await Task.sleep(seconds: 0.2)
 
+        if !viewModel.config.fontFamilyDeclarations.isEmpty {
+            do {
+                // FontFaceSet.ready includes the layout that follows font loading.
+                // Restore the pending full locator only after that layout, rather
+                // than after the upstream fixed delay alone. Never load unused faces.
+                _ = try await webView.callAsyncJavaScript("""
+                    document.body?.getBoundingClientRect();
+                    let timer;
+                    try {
+                      await Promise.race([document.fonts.ready, new Promise((_, reject) => {
+                        timer = setTimeout(() => reject(new Error('Reading font loading timed out')), 15000);
+                      })]);
+                      return true;
+                    } finally { clearTimeout(timer); }
+                    """, arguments: [:], in: nil, contentWorld: .page)
+                try Task.checkCancellation()
+            } catch is CancellationError { return }
+            catch {
+                guard !Task.isCancelled else { return }
+                log(.error, error)
+                if let href = RelativeURL(string: spread.first.link.href) {
+                    viewModel.delegate?.epubNavigatorViewModel(viewModel, didFailToLoadResourceAt: href,
+                        withError: .decoding("Reading font layout failed", cause: error))
+                }
+                // A visible resource error is reported above. Keep the original
+                // locator and allow the browser's readable fallback to appear.
+            }
+        }
+
         let location = pendingLocation
         await go(to: location.location, animated: location.animated)
 

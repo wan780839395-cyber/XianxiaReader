@@ -31,8 +31,8 @@ final class ReadingFontUITests: XCTestCase {
         app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
         app.terminate(); app.launch(); open(); reveal(song)
         XCTAssertEqual(song.value as? String, "已选择")
-        app.scrollViews["reader.appearance.scroll"].swipeDown()
         let dark = app.buttons["reader.theme.charcoal"]
+        for _ in 0..<5 { if dark.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeDown() }
         XCTAssertTrue(dark.isHittable); dark.tap()
         reveal(kai); kai.tap(); XCTAssertEqual(kai.value as? String, "已选择")
         XCTAssertEqual(song.value as? String, "未选择"); snapshot("reader-font-bundled-kai-dark-build23")
@@ -80,11 +80,12 @@ final class ReadingFontUITests: XCTestCase {
         app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
         app.terminate(); app.launch(); open(); revealFonts()
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-reopened-build23")
-        app.scrollViews["reader.appearance.scroll"].swipeDown()
-        app.buttons["reader.theme.charcoal"].tap(); revealFonts(); snapshot("reader-font-selected-dark-build23")
-        app.scrollViews["reader.appearance.scroll"].swipeDown()
+        let dark = app.buttons["reader.theme.charcoal"]
+        for _ in 0..<5 { if dark.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeDown() }
+        XCTAssertTrue(dark.isHittable); dark.tap(); revealFonts(); snapshot("reader-font-selected-dark-build23")
         let builtIn = app.segmentedControls["reader.font"].buttons["衬线"]
-        if !builtIn.isHittable { app.scrollViews["reader.appearance.scroll"].swipeUp() }
+        for _ in 0..<5 { if builtIn.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeDown() }
+        XCTAssertTrue(builtIn.isHittable)
         builtIn.tap(); revealFonts(); XCTAssertEqual(font.value as? String, "未选择")
         snapshot("reader-font-default-restored-build23")
     }

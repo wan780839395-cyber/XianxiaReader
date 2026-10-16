@@ -224,7 +224,7 @@ enum EPUBScriptScope {
         // Otherwise the script can reach newly created spreads after their DOM
         // locator is restored, causing a second layout with an old page offset.
         let needsInvalidation: Bool =
-            (reloadingPagination && !newSettings.infiniteScroll)
+            reloadingPagination
                 || oldSettings.readingProgression != newSettings.readingProgression
                 || oldSettings.language != newSettings.language
                 || oldSettings.verticalText != newSettings.verticalText

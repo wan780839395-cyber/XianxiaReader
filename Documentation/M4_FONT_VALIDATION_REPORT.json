@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 bundled Chinese faces + local import full new CI pending; previous import-only run continues independently",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -650,7 +650,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "df622b577fec3a0d9235b78a3602c3ffd06daefed4a5f015474d2e754664dc08"
+      "sha256": "f10166b7603eecf6d16e9eb85362edc4b9e2166af776b24eb3a4607d597a2aea"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -730,7 +730,7 @@
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "sha256": "d437c0a729501e9ec4da136bca9e5c80a2430167498788335b82345d188666c1"
+      "sha256": "6b15a06c1de66e8ee5ec427bdbf8e6efaf35b5ca3481d3b63517f1a8747c23ca"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "99de65e091ac1ee9733134bceef96e6e398144e26e54b6038775261bfce01156"
+      "sha256": "a9ab599c8dbb52ca0a39441a2aa35c64774fff00e8890b3da198416b2a5fab4e"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -782,7 +782,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "9307525982d06fb57d73d108af72f702c5d49b3e702ad1cb3509afd46d1b1d19"
+      "sha256": "2a0dae503d55260497b180ef542aa06ac459898d2f9e81393d34ba6d549de05b"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -794,7 +794,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "9749ea0a18e7d9d59f28cb3d18e3fca50bdb9797eb9abf44cb7f838d69f70593"
+      "sha256": "325fbbab75b2e6f64c7995ab264d0b0599e3febfe66ba2850a5bdb6b3ac2cfb9"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -1058,11 +1058,11 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "dc7e5635a3f68126559b8139473b2d2551030e8855c7d544f753feedcfbe6d44"
+      "sha256": "eb478267383d7c2a9d16a3b52ce997c921fdcb95ccb582bf94ec23b84100e429"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "bd2a918ec7501357612abc1edcae8c869b44450fddbba84e73e6040c5b4dc73e"
+      "sha256": "51930ba49677eb6d6cab95f4155daa93a9de61f49942f0d74a38e2313d4e3afd"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpread.swift",
@@ -2210,7 +2210,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "119967a86ff67482ea337f04cb99e1bed4d99c62b47341cd5745cef388580343"
+      "sha256": "2ac1456aed7e2fcf873934c2190fdb1bc2106895783ef5dcbadf5f77081e69a7"
     },
     {
       "path": "project.yml",
@@ -2315,11 +2315,15 @@
     "Documentation/M4_FONT_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_IMPORT_DESIGN.md",
     "Documentation/ValidationLogs/m4-font-build23-api-review.json",
+    "Documentation/ValidationLogs/m4-font-build23-bundled-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-bundled-provenance.json",
     "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
+    "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
     "Documentation/ValidationLogs/m4-font-build23-second-native-partial.json",
+    "Documentation/ValidationLogs/m4-font-build23-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-third-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
@@ -2340,13 +2344,17 @@
     "Tests/iOS/ReaderRenderingTests.swift",
     "Tests/iOS/ReadingFontTests.swift",
     "Tests/iOS/TXTReadingTests.swift",
+    "Vendor/ReadiumToolkit/README.md",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml"
   ],
   "oldTestBodiesPreserved": 35,
-  "newTests": 15,
+  "newTests": 16,
   "expectedCore": 133,
-  "expectedIOS": 133,
-  "expectedIntegration": 114,
+  "expectedIOS": 134,
+  "expectedIntegration": 115,
   "expectedUI": 19,
   "sourceRevision": "277dca99bde3eabb9eb657ce4ee50e6adf537baa",
   "run": 38887978313,
@@ -2414,7 +2422,9 @@
   "priorImportOnlyRun": {
     "run": 38886008057,
     "source": "e7586a8067515a911d09ac4abf31fd4577fb695b",
-    "completionPending": true
+    "completionPending": false,
+    "conclusion": "failure",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json"
   },
   "priorTestHarnessOnlyInterval": {
     "from": "149caa08c600999f5b53b74e0900eb1b405b7e8a",

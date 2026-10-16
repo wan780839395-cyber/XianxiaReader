@@ -1423,11 +1423,11 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "dc7e5635a3f68126559b8139473b2d2551030e8855c7d544f753feedcfbe6d44"
+      "sha256": "eb478267383d7c2a9d16a3b52ce997c921fdcb95ccb582bf94ec23b84100e429"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "bd2a918ec7501357612abc1edcae8c869b44450fddbba84e73e6040c5b4dc73e"
+      "sha256": "51930ba49677eb6d6cab95f4155daa93a9de61f49942f0d74a38e2313d4e3afd"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
@@ -1690,5 +1690,14 @@
   "returnPointCapture": {
     "scope": "Existing bounded full-DOM anchor capture now returns a discardable success flag. Adapter refuses explicit navigation when the viewport is unstable or capture is unavailable. No renderer, dependency, JS or cache changes.",
     "identity": "Cancellation plus continuous viewport identity or paged spread/physical offset guards; callers also validate open session and navigation request after awaits."
+  },
+  "fontLayoutExtensionReview": {
+    "scope": "Resource-font typography uses existing full-anchor invalidation in continuous as well as paged mode; system-font continuous/color-only stay dynamic. Initial pending locator waits for FontFaceSet.ready with15s bound, cancellation and visible resource error.",
+    "references": [
+      "https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready",
+      "https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:)"
+    ],
+    "dependenciesChanged": false,
+    "awaitingFullCI": true
   }
 }

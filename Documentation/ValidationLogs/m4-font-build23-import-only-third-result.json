@@ -1,0 +1,89 @@
+{
+  "recordedAtUTC": "2026-10-16T10:55:08.561040+00:00",
+  "run": 38886008057,
+  "sourceRevision": "e7586a8067515a911d09ac4abf31fd4577fb695b",
+  "conclusion": "failure",
+  "testSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 3,
+        "passedTests": 128,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 3,
+    "finishTime": 1792147837.361,
+    "passedTests": 128,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792146226.889,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():85",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 73,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "failed: caught error: \"timedOut(\"font TXT paragraph ready\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 107,
+        "testIdentifierString": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+        "testName": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()"
+      },
+      {
+        "failureText": "Failed to tap \"reader.theme.charcoal\" Button: No matches found for Descendants matching type Button from input {(\n    Application, pid: 70541, label: '仙侠阅读'\n)}\nPossibly caused by runtime issues:\nAutomation type mismatch: computed Button from legacy attributes vs PopUpButton from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 14;\n    \"XC_kAXXCAttributeElementBaseType\" = UIResponder;\n    \"XC_kAXXCAttributeElementType\" = \"SwiftUI.AccessibilityNode\";\n    \"XC_kAXXCAttributeTraits\" = 1108101562369;\n}\nAutomation type mismatch: computed Button from legacy attributes vs ProgressIndicator from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 35;\n    \"XC_kAXXCAttributeElementBaseType\" = UIResponder;\n    \"XC_kAXXCAttributeElementType\" = \"SwiftUI.AccessibilityNode\";\n    \"XC_kAXXCAttributeTraits\" = 8589935105;\n}\nSee test report attachments for more detail.",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 131,
+        "testIdentifierString": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+        "testName": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "23% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 20.31s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 131
+  },
+  "failedCases": [
+    "-[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes]",
+    "-[XianxiaReaderTests.TXTReadingTests testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont]",
+    "-[XianxiaReaderUITests.ReadingFontUITests testNativeFontSelectionPickerCancelDarkResetAndRelaunch]"
+  ],
+  "compilerDiagnostics": [],
+  "exits": [
+    "Simulator test exit: 65; attachment export exit: 0; summary exit: 0",
+    "Simulator recording exit: 0"
+  ],
+  "releaseCommandExecuted": false,
+  "sourceScope": "Import-only source515 blobs,13 new tests. User extended built-in fonts after this dispatch; independent result does not validate newer277 candidate.",
+  "originalLog": {
+    "path": "build/ci/38886008057/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "9c35b6a3f32da97cefa985081adfdc99c18bf3049af91f00d29fcfffff7b340d"
+  }
+}

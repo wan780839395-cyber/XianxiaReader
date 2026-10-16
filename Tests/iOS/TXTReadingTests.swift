@@ -31,7 +31,7 @@ final class TXTReadingTests: XCTestCase {
         }
         let resource = prepared.plan.resources[1], byte = resource.startByte
         let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
-            locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))
+            locations: .init(fragments: ["txt-b\(byte)"], otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))
         try await engine.go(to: TXTPositionCodec.encode(initial, bookID: book.id, plan: prepared.plan))
         let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first)
         try await wait("font TXT paragraph ready") { abs((try await target.evaluateJavaScript("document.getElementById('txt-b\(byte)')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }

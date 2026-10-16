@@ -2,6 +2,8 @@
 
 ## 实际最新断点（先看这里）
 
+新的实际断点：扩展前e758/38886008057真实failure，131中128过3失败/0跳过，旧124全过，Core133各/编译诊断0，Release未执行；1.205GB诊断CRC/structured summary/原log已保留（import-only-third-result.json）。新EPUB已过实际TTF加载与导入后锚点，连续150%重排落到p16；新TXT初始定位超时（构造位置仅selector无fragment，3.11普通导航使用fragment/text/progression），新字体UI单次下滑未到theme。正在按已核Readium3.11完整锚点重载路径+W3C FontFaceSet.ready/Apple公开异步JS补资源字体排版/首次定位，保留系统连续实时路径、15秒上限/取消/可见错误；加真实关闭迟到font-ready回归，TXT用成熟fragment构造，UI滚到真实目标。16新增/预期134 iOS，原35主体仍保持待Windows重核。内置277/38887978313继续跑完取原件，但其源码尚不含此修正，不能作最终门槛。接下来重冻源码另ref完整新CI，不取消已有运行、不交付待编译源码。
+
 2026-10-16T10:38:04.075370+00:00。用户新增“可以内置几个字体”，本轮已实现内置思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530与本地导入；两原字库50,472,272B，固定官方revision/摘要/原OFL已核，App只读Bundle URL按需加载，不占12用户导入名额（Adapter≤14faces/正文窗口仍≤12）。尚未交付，Build22仍安装基线，禁止把源码候选当验收。
 
 当前主验证：源277dca99bde3eabb9eb657ce4ee50e6adf537baa，ref codex/m4-bundled-fonts，CI38887978313（in_progress/pending），https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38887978313 。Windows433语法新增0/17工具、35原测试主体保持/15新增、522编译源/资源blob；Linux133与四Release TXT探针原件CRC已核。Apple/Core/iOS133=114集成+19UI/严格Release23/原生中文页面尚待完整原件，所有门槛以report实值为准。

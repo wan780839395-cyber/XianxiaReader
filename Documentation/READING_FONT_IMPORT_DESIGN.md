@@ -2,6 +2,8 @@
 
 ## 用户补充：内置中文字体（本轮待完整编译）
 
+后续实际诊断/修正候选：e758/38886008057真实128/131。TTF FontFace与导入后可见锚点通过，连续模式150%字号阶段落到p16；TXT测试仅selector未构造fragment导致初始定位超时；字体真UI单次滚动未到主题。采用锁定Readium3.11已有完整锚点invalidate/reload路径，Adapter仅对资源字体（旧/新）排版请求完整重载；普通系统字体连续编辑及配色仍原动态CSS。初次pendingLocation在公开WKWebView.callAsyncJavaScript等待FontFaceSet.ready后恢复，15秒超时报可见Readium资源错误并允许系统fallback，clear取消旧Task，旧await结果不得通知新reader；依赖/锁/JS资产保持，两个Vendor Swift修改和摘要明确登记。参考[W3C FontFaceSet.ready规范](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)、[Apple公开API](https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:))及仓内3.11完整锚点重载实现，不继续盲加固定延迟。新增真实延迟FontFaceSet.ready关闭/重开竞态，原非零/字体字形/完整锚点/字号断言保留。修正尚须新完整CI和原生复核，不能写成根因全部证实或已修复。
+
 按用户“可以内置几个字体”加入两款离线原件：思源宋体SC Regular静态OTF（24,543,332B，Adobe Source Han Serif 2.003 release revision 7889f11bf31170b5d092a083b357c8c8130f89e0）与霞鹜文楷Regular静态TTF（25,928,940B，官方revision ff2008376313060b2c3f04a61523aaeac4b0b0bf）。完整原OFL与版权、固定来源URL/摘要放在App/Resources/Fonts。原字形未裁剪/转换/修改，二进制及许可保持原字节，.gitattributes显式-text。来源为[Adobe官方仓库](https://github.com/adobe-fonts/source-han-serif/tree/7889f11bf31170b5d092a083b357c8c8130f89e0)与[霞鹜文楷官方仓库](https://github.com/lxgw/LxgwWenKai/tree/ff2008376313060b2c3f04a61523aaeac4b0b0bf)，各自SIL OFL1.1随App分发。
 
 App通过BundledReadingFont稳定UUID读取只读Bundle URL，与最多12款用户字体合并后交给ReadingInterfaces；Adapter有界上限14，既有正文资源窗口仍12，两者无关。内置不复制到用户目录、不占用户名额、不在每次打开时摘要50MB；安装包核字体原字节与许可，WebKit沿现有资源通道按实际选择加载。原importedFontID字段兼容承载已导入或内置资源身份，无schema迁移。设置页同卡片提供两款44pt选择，保留原三选项与文件导入；自定义资源仍明确“配色预览”，不假称上方系统字为实际字体。

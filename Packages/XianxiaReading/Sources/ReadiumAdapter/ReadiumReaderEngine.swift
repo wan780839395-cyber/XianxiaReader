@@ -319,7 +319,15 @@ import XianxiaCore
                 || previous.lineHeight != requestedPreferences.lineHeight || previous.paragraphSpacing != requestedPreferences.paragraphSpacing
                 || previous.pageMargins != requestedPreferences.pageMargins || previous.paragraphIndent != requestedPreferences.paragraphIndent
                 || previous.textAlign != requestedPreferences.textAlign || previous.publisherStyles != requestedPreferences.publisherStyles
-            navigator.submitPreferences(requestedPreferences, reloadingPagination: reflows)
+            // A resource face can finish loading after the first DOM layout.
+            // Use Readium's existing full-anchor invalidation for its typography;
+            // system-font continuous edits keep the bounded live-CSS path.
+            let resourceFont = self.readingFonts.contains {
+                $0.asset.cssFamily == requestedPreferences.fontFamily?.rawValue
+                    || $0.asset.cssFamily == previous.fontFamily?.rawValue
+            }
+            let rebuilds = reflows && (requestedPreferences.infiniteScroll != true || resourceFont)
+            navigator.submitPreferences(requestedPreferences, reloadingPagination: rebuilds)
             self.appliedPreferences = requestedPreferences
             self.modeChangeTask = nil
         }
