@@ -1,5 +1,15 @@
 # 当前交接与恢复点
 
+## 实际最新断点（先看这里）
+
+当前唯一CI38886008057，源e7586a8067515a911d09ac4abf31fd4577fb695b，515源/资源blob，Windows432/17、35旧主体保持/13新增已核；本轮Linux133/四Release TXT探针原件已核，Apple/Release23/原生仍pending。watcher工具session91524写build/ci/38886008057/run.json，禁止重复dispatch。普通HEAD6d761749/空index/M2/M3、875原路径/39旧包/13含本轮备份保持，Build22仍可安装基线。尚无Build23 IPA。
+
+首轮38880257296/3bac201为Agent补强而取消，原件留存；第二轮38881623233/149caa08真实129/131，两新渲染测试均在导入前定位准备失败，旧124全过；Core133各/四探针各、编译warning/error0，Release/IPA未执行。1.23GB原件已CRC、record failure/五新UI PNG+50.90s字体视频局部复核均单独留档。当前与149caa08仅两新测试准备+文档不同，运行源码一致：等初始恢复模式完整capture稳定再go、目标页probe、保留非零caret/字体loaded/完整锚点/字号与重开断言。
+
+下一步从本轮完整真实结果继续，失败先保留原件后依据诊断修；成功核133各/131 iOS/严格Release23/515blob/三锁/四探针每平台，再审本轮PNG/字体及既有外观UI录屏/原始VFR帧后才执行deliver_font.py package/docs/preserve/verify与最终私有快照。任何此前候选局部素材不替代本轮。TTF真实页面/实际字体加载由新渲染门槛验证；OTF真页面/大中文字体性能/手机/TS矩阵单列。M4未完成，不关机。
+
+## 本轮历史检查点
+
 2026-10-16，用户反馈Build22功能没问题并继续；只接受基本自用功能，不扩大完整设备/FPS/功耗或M4验收。Build23本地字体导入开工，尚未实现/编译/交付。
 
 已按AGENTS→状态→交接→路线→架构核实际文件/Git/完整CI38871744221成功/任务。私有tip24d311e/源3cb1d2，874维护文件/507源码blob/39旧包/12旧备份已核，新875路径备份见m4-font-build23-start.json。正常HEAD6d761749/空index/M2/M3保持，无运行CI/本轮任务。Build22交付独立归档。
@@ -25,3 +35,7 @@ Windows432语法新增0/54既有语法限制、17工具通过，35受改原测�
 新版149caa08/38881623233实际failure：131测试129过2失败、跳过待summary核；仅新EPUB渲染取非零caret为空、新TXT font paragraph ready超时，均在导入字体之前。新真实CoreText/3生命周期与真UI字体选择取消/持久化/深色/默认均通过，旧测试不放宽。1.23GB原件artifact12039800586已CRC/解压、下载24476结束0，watcher33131结束0；Release/IPA未执行。与既有成熟用例对照补新测试启动模式稳定capture、目标页probe及原非零caret等待，原非零/字体loaded/锚点/字号断言不减。下一步核summary/本轮部分UI画面，再冻仅测试修正跑完整新轮，源码功能仍未交付。
 
 已核第二轮structured summary131/129/2/0跳过，Linux/macOS133各、源warning/error0，旧124全过，新iOS7中5过/2初始准备失败。五新字体UI PNG和完整50.90s原生字体UI录屏4张1秒总览已看，浅深色/选择/取消/重开/衬线恢复符合这些素材；仅局部证据不替代新轮。现在Windows432/17与35旧主体/13新增/515blob重冻后送第三候选；相对149caa08只改两条新测试准备，不改App运行源码/旧断言。未有Release23/IPA。
+
+当前唯一CI38886008057，实际源e7586a8067515a911d09ac4abf31fd4577fb695b；与149caa08仅两新测试准备和文档不同，App运行源码一致已核。所有新门槛重置pending，第二轮129/131失败不追认为通过；从新原件/summary/渲染附件继续。
+
+第三轮Linux原件artifact12039173669已CRC/解压，133与四探针通过（third-linux.json）；Apple排队/运行状态以run.json真实值为准，唯一watcher91524。当前冻结运行源码e7586a80不再更改，尚无Build23 IPA。

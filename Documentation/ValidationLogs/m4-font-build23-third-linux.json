@@ -1,0 +1,24 @@
+{
+  "recordedAtUTC": "2026-10-16T10:18:14.685197+00:00",
+  "run": 38886008057,
+  "sourceRevision": "e7586a8067515a911d09ac4abf31fd4577fb695b",
+  "coreTests": 133,
+  "releaseTXTCases": 4,
+  "artifactID": 12039173669,
+  "zipCRC": true,
+  "applePassed": false,
+  "files": [
+    {
+      "path": "build/ci/38886008057/core/logs/core-tests.log",
+      "sha256": "a38d45c04251b52be12641a6e55051f5eeb91af101f377e938b004397bf73578"
+    },
+    {
+      "path": "build/ci/38886008057/core/TXTPerformance/summary.json",
+      "sha256": "cfb9165ef6a7b6f0bef9aa2f3a0d1c2ec0010d5548d1cffce5eddaf4d6f7eb2c"
+    },
+    {
+      "path": "build/ci/38886008057/core-diagnostics.zip",
+      "sha256": "eec2f9078bb2219e33fe4602dd116f70c551bc4c92c65ee24385ea9e345fd5e4"
+    }
+  ]
+}
