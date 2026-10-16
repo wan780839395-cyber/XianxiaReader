@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-16T08:27:55.161046+00:00",
+  "build": "21",
+  "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+  "question": "开启减少动态效果后进入慢滚，再点右侧×，能正常回到阅读菜单吗？",
+  "userReply": "能正常返回",
+  "acceptedScope": "User reports Build21 exits slow-scroll controls to the reading menu under reduced-motion settings",
+  "deviceModel": null,
+  "iOSVersion": null,
+  "allDevicesAccepted": false,
+  "phoneFPSAccepted": false,
+  "powerAccepted": false,
+  "Build22Accepted": false,
+  "M4Complete": false
+}
