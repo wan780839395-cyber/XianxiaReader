@@ -209,7 +209,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38954435197",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956008602",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -341,7 +341,7 @@
     },
     {
       "path": "App/Reader/ReadingFontPreviewRenderer.swift",
-      "sha256": "85fc8db9676875b22c99a6ca092e63ca065b2f088712d4c2b250be9f063a4020"
+      "sha256": "3d35e9d263190463a8ee592ad3bbac55b61557e7b814cc24fa80721456e3fa0e"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -825,7 +825,7 @@
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "sha256": "3d6db3e15421502ca81152c3afbee272e6f7145760618d42fb1ab5ab4d963016"
+      "sha256": "77acd0922b316120ded82ccb3c1905f1ad5b4b03cb451b4fd0b15a061aac7e55"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -2374,6 +2374,7 @@
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38950061245.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-quality-linux-38951246101.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-ready-linux-38954435197.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-resource-study.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-start.json",
@@ -2395,9 +2396,9 @@
   "expectedIOS": 138,
   "expectedIntegration": 118,
   "expectedUI": 20,
-  "run": 38954435197,
-  "sourceRevision": "872fc755f12f3afa83eb1aa736015d5a50ec4502",
-  "branch": "codex/m4-font-browser-ready",
+  "run": 38956008602,
+  "sourceRevision": "cc7f1525ed953d6b52f59b494cb7b1f54fd257b0",
+  "branch": "codex/m4-font-browser-coordinate",
   "priorCandidates": [
     {
       "run": 38950061245,
@@ -2412,7 +2413,14 @@
       "branch": "codex/m4-font-browser-quality",
       "reason": "Superseded by real readable DOM capture wait and rapid hidden-font-reflow regression; not cancelled",
       "expectedIOS": 137
+    },
+    {
+      "run": 38954435197,
+      "sourceRevision": "872fc755f12f3afa83eb1aa736015d5a50ec4502",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38954435197",
+      "branch": "codex/m4-font-browser-ready",
+      "reason": "New continuous font test inserted a negative Y as double-minus; only new-test operand parentheses corrected; production runtime identical",
+      "expectedIOS": 138
     }
-  ],
-  "linuxCoreTests": 135
+  ]
 }

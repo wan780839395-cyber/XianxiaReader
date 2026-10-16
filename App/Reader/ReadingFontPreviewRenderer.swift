@@ -78,7 +78,9 @@ actor ReadingFontPreviewRenderer {
             bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { throw ReadingFontPreviewError.drawingFailed }
         context.scaleBy(x: scale, y: scale)
-        context.setFillColor(color(request.backgroundRGB)); context.fill(CGRect(x: 0, y: 0, width: width, height: height))
+        if !request.compact {
+            context.setFillColor(color(request.backgroundRGB)); context.fill(CGRect(x: 0, y: 0, width: width, height: height))
+        }
         let path = CGPath(rect: CGRect(x: inset, y: 4, width: width - inset * 2, height: height - 8), transform: nil)
         CTFrameDraw(CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: 0), path, nil), context)
         try Task.checkCancellation()

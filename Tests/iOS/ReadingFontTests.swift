@@ -26,6 +26,16 @@ final class ReadingFontTests: XCTestCase {
             let attachment = XCTAttachment(image: image); attachment.name = "font-settings-sample-\(item.rawValue)-build24"
             attachment.lifetime = .keepAlways; add(attachment)
         }
+        let compactResource = try BundledReadingFont.wenKai.resource()
+        let compactRequest = ReadingFontPreviewRequest(fileURL: compactResource.fileURL, identity: compactResource.asset.sha256,
+            systemFont: "original", textRGB: 0x303832, backgroundRGB: 0xF8F5ED, pointSize: 19, compact: true)
+        let compactPNG = try await renderer.render(compactRequest)
+        let compactCG = try XCTUnwrap(UIImage(data: compactPNG)?.cgImage)
+        let compactPixels = try XCTUnwrap(compactCG.dataProvider?.data) as Data
+        XCTAssertEqual(compactCG.bitsPerPixel, 32)
+        let alphas = stride(from: 3, to: compactPixels.count, by: 4).map { compactPixels[$0] }
+        XCTAssertEqual(alphas.min(), 0, "Font rows blend into their native card instead of an opaque rectangle")
+        XCTAssertEqual(alphas.max(), 255, "Transparent samples must retain visible glyph ink")
         let bad = ReadingFontPreviewRequest(fileURL: URL(fileURLWithPath: "/missing/font.ttf"), identity: "missing",
             systemFont: "original", textRGB: 0, backgroundRGB: 0xFFFFFF, pointSize: 20, compact: false)
         do { _ = try await renderer.render(bad); XCTFail("No system-font masquerade for a missing file") }
