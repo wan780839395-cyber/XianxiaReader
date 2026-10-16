@@ -8,6 +8,61 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord() async throws {
+        let delay = WKUserScript(source: """
+            Object.defineProperty(document.fonts,'ready',{get(){
+              window.__xrPreviewReadyStarted=true;
+              return new Promise(resolve=>setTimeout(()=>{window.__xrPreviewReadySettled=true;resolve(document.fonts);},800));
+            }});
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
+        let initial = try BundledReadingFont.wenKai.resource(), intermediate = try BundledReadingFont.sourceHanSerif.resource()
+        let final = try BundledReadingFont.sourceHanSans.resource()
+        try engine.setReadingFonts([initial, intermediate, final])
+        var appearance = ReadingAppearance(); appearance.fontScale = 1; appearance.importedFontID = initial.asset.id
+        try engine.setAppearance(appearance)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        for _ in 0..<2 { await engine.turnPage(forward: true) }
+        try await waitUntil {
+            guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
+                  web.scrollView.alpha > 0.99 else { return false }
+            return ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > 100
+        }
+        var saved: ReadingPosition?
+        try await waitUntil {
+            do { saved = try await engine.captureCurrentPosition(); return true }
+            catch ReaderPositionCaptureError.unavailable { return false }
+        }
+        let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: XCTUnwrap(saved).locatorData) as? [String: Any])
+        let locations = try XCTUnwrap(payload["locations"] as? [String: Any]), range = try XCTUnwrap(locations["domRange"] as? [String: Any])
+        let point = try XCTUnwrap(range["start"] as? [String: Any])
+        let selector = try XCTUnwrap(point["cssSelector"] as? String), offset = try XCTUnwrap(point["charOffset"] as? Int)
+        XCTAssertGreaterThan(offset, 100)
+        let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
+        appearance.importedFontID = intermediate.asset.id; try engine.setAppearance(appearance)
+        try await waitUntil {
+            for web in self.webViews(in: navigator.view) {
+                if try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)') && window.__xrPreviewReadyStarted===true && window.__xrPreviewReadySettled!==true") as? Bool == true { return true }
+            }
+            return false
+        }
+        appearance.importedFontID = final.asset.id; try engine.setAppearance(appearance)
+        try await waitUntil {
+            guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
+                  web.scrollView.alpha > 0.99 else { return false }
+            return try await web.evaluateJavaScript("""
+                (()=>{if(!getComputedStyle(document.body).fontFamily.includes('\(final.asset.cssFamily)'))return false;
+                const n=document.querySelector(\(quoted))?.firstChild;if(!n||n.length<=\(offset))return false;
+                const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
+                return b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
+                """) as? Bool == true
+        }
+        engine.close()
+    }
+
     @MainActor func testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let resources = try BundledReadingFont.allCases.map { try $0.resource() }

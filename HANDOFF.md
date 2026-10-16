@@ -17,3 +17,9 @@ Windows435语法新增0/54既有限制、17工具通过；受改38原测试主�
 实际已dispatch唯一CI 38950061245 / 3a97ebc1dab142b9b4ed67ec254f95bab3696fef / https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245。接下来只核此源完整新门槛；不重复dispatch、不改冻结运行源码。系统新增AGENTS本地CI清理要求已读：历史大产物已由独立清理操作收敛（local-disk-cleanup-2026-10-17.json），最新Build23完整诊断仍在，源码/安装包/恢复备份未删。以前“所有旧大原件都仍在本地”的描述已被清理回执取代。当前D约53GiB可用；本轮分块合并CRC后清分块、完整解压确认后清重复ZIP，旧版本仅保留日志/summary/metadata/验证记录，交付包与快照保留。
 
 补强新预览的高清/错误状态：3a97ebc/38950061245仍独立完整运行（已Linux135），不把它写源码失败或取消。代码审查发现新预览固定2x会在3x设备放大，且AX在失败时仍报正在准备；新候选改3x短字形和准确不可用/失败朗读状态，真实PNG宽度断言900保留实际墨迹/6不同字库。仅这两运行行+新测试预期更新；需重新Windows冻结/新ref全CI，旧轮跑完保留文字诊断，门槛不继承。
+
+最新主源 c66157d669e047152ea2246a24c674cbe0c6f281 / codex/m4-font-browser-quality / CI38951246101 / https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101。532blob已重冻、Windows435/17/38原主体/5新增保持；所有新门槛重置false，主watcher以本工具回执为准。旧38950061245不取消，最终仅留日志/summary/metadata，不复制历史全量大产物。
+
+用户新增直接指令：本轮全部完成、可做验收无明确失败后帮忙关机。授权仅本轮：先完成字体/预览/排版、完整新Core/iOS/Release、原生关键素材复核、交付/文档/保存/任务核对，再正常Windows关机（不加强制关闭参数）；手机专属项目仍明确待实测，不冒称通过。当前仍开发/测试中，禁止提前关机。
+
+快速切字审查补强：既有submitPreservingLocation忽略采样Bool，在前次字体hidden reflow中仍可能继续使用临时DOM。现在同显式capture一致，最多3s/32ms让步等待真实采样成功，每await核取消/请求/navigator，defer仅清本任务；到期可见提示，不把失败当成功。新增真实分页800ms字体ready期间再选第三字体，原非零文字仍可见的回归。3a97和c661两轮继续独立跑完，仅保留适用历史文字诊断。最新源码须再完整验证；本次6新增、预期Core135各/iOS138=118集成+20UI。

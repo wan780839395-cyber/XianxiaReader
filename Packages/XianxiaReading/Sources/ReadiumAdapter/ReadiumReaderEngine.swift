@@ -318,8 +318,25 @@ import XianxiaCore
                 return
             }
             self.tracePreferenceRequest("sample requested")
-            await navigator.preserveCurrentDOMLocationForModeChange()
-            guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+            defer {
+                if self.modeChangeRequestID == requestID, self.navigator === navigator { self.modeChangeTask = nil }
+            }
+            let deadline = Date().addingTimeInterval(3)
+            while true {
+                let sampled = await navigator.preserveCurrentDOMLocationForModeChange()
+                guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+                if sampled { break }
+                guard Date() < deadline else {
+                    self.onError?("页面仍在排版，请稍后重新选择字体或排版设置。")
+                    return
+                }
+                do { try await Task.sleep(nanoseconds: 32_000_000) }
+                catch {
+                    guard !Task.isCancelled, self.modeChangeRequestID == requestID, self.navigator === navigator else { return }
+                    self.onError?("排版调整未完成：\(error.localizedDescription)")
+                    return
+                }
+            }
             self.tracePreferenceRequest("sample returned")
             // Expose the fresh full anchor immediately. A close/save while the
             // reflow is settling must not use an older percentage-only callback.

@@ -1,10 +1,12 @@
 # 项目状态
 
-当前进行中：Build24六款字体、设置内真实字形预览与字距/字重/缩进等扩展。Windows435语法/17工具通过、38原测试主体保持/5新增/532源码blob已冻结，完整Core135各/iOS137/Release24和原生尚待新CI。当前可安装基线仍Build23。设计READING_FONT_BROWSER_DESIGN.md，断点HANDOFF.md。
+当前进行中：Build24六款字体、设置内真实字形预览与字距/字重/缩进等扩展。Windows435语法/17工具通过、38原测试主体保持/6新增/532源码blob已冻结，完整Core135各/iOS138/Release24和原生尚待新CI。当前可安装基线仍Build23。设计READING_FONT_BROWSER_DESIGN.md，断点HANDOFF.md。
 
 ## 2026-10-17 本地磁盘清理
 
 按用户要求清理历史CI产物：`D:\ai项目` 从55.622 GiB降至4.450 GiB，移除89,928个旧CI文件、51.172 GiB；D盘可用约53.255 GiB。完整保留最近已交付run38918803378的2,260个文件、所有build根目录IPA/TestKit、3,316份旧CI文字日志/摘要、项目素材和恢复快照。旧轮ZIP/分片/录屏/xcresult及审阅图片已清理，以下历史章节中的“原件保留”是当时快照，现不可视为旧大文件仍在本地；历史结果与CI链接保留，远端产物是否仍可下载未经本次核实。详情见 `Documentation/ValidationLogs/local-disk-cleanup-2026-10-17.json`。本次没有执行构建或测试，不改变Build24开发断点与任何设备验收结论。
+
+本地CI保留规则已更新：D盘build/ci历史大文件已按local-disk-cleanup-2026-10-17.json清理，原安装包/源码/恢复备份保留。历史文字日志、summary和元数据继续保留；Build23当前完整诊断留到Build24交付，之后按AGENTS收敛，旧文历史大原件“仍在本地”的说法以清理回执为准。
 
 ## Build23 内置字体与导入（2026-10-17）
 

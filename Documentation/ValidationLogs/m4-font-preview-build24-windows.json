@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-16T18:56:16.409632+00:00",
+  "recordedAtUTC": "2026-10-16T19:19:11.084733+00:00",
   "swiftFiles": 435,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
@@ -8,7 +8,7 @@
   "toolingExit": 0,
   "appleCompilation": false,
   "oldTestBodiesPreserved": 38,
-  "newTests": 5,
+  "newTests": 6,
   "sourceBlobs": 532,
   "logs": [
     {
@@ -17,11 +17,11 @@
     },
     {
       "path": ".cache/recovery/20261017-build24/tooling.log",
-      "sha256": "99d431eb328bdd09e6b3e546d8fcb1d87cf9ee23fa42b639b3b59bc9862b2363"
+      "sha256": "289c0f8e5efada88a588b48c05bca6745daf4da1a78f0da85a62b7d1c695b656"
     },
     {
       "path": ".cache/recovery/20261017-build24/candidate.diff",
-      "sha256": "7dd48b66de42b6c11b7645233e62eb63709af426691e3bfbe8a2aaf2dc32bdc4"
+      "sha256": "a19c79b4e413187272423b891e57df102cc43be40045695e384540076aebe28e"
     }
   ]
 }

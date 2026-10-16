@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -701,7 +701,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "423b0b89b608a59e55fd3950bbb7223415a48435103ad4628a643b4434dee409"
+      "sha256": "4e85690d9ee55494210c75509f953a6d8f31d4425c9a83e51b6b0189f1a205b0"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -817,7 +817,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "d92ec31e4664c7eb156f328b5f96094a981280e1b183f21b288a0169f476f4c1"
+      "sha256": "dfe2eb5b83dab420d4199134cc726c02f9b619b7c37dfc5d3adc7f15988e1157"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2370,7 +2370,10 @@
     "Documentation/M4_FONT_PREVIEW_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_BROWSER_DESIGN.md",
     "Documentation/ValidationLogs/local-disk-cleanup-2026-10-17.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-first-linux-38950061245.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-resource-study.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-start.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-windows.json",
     "HANDOFF.md",
@@ -2385,20 +2388,26 @@
     "project.yml"
   ],
   "oldTestBodiesPreserved": 38,
-  "newTests": 5,
+  "newTests": 6,
   "expectedCore": 135,
-  "expectedIOS": 137,
-  "expectedIntegration": 117,
+  "expectedIOS": 138,
+  "expectedIntegration": 118,
   "expectedUI": 20,
-  "run": 38950061245,
-  "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
-  "branch": "codex/m4-font-browser",
+  "run": 38951246101,
+  "sourceRevision": "c66157d669e047152ea2246a24c674cbe0c6f281",
+  "branch": "codex/m4-font-browser-quality",
   "latestRun": {
     "conclusion": "",
-    "databaseId": 38950061245,
-    "headSha": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+    "databaseId": 38951246101,
+    "headSha": "c66157d669e047152ea2246a24c674cbe0c6f281",
     "status": "queued",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245"
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101"
+  },
+  "priorCandidate": {
+    "run": 38950061245,
+    "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+    "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
+    "reason": "Superseded by 3x sample rendering and accurate preview error accessibility; prior CI remains uncancelled and independent"
   },
   "linuxCoreTests": 135
 }

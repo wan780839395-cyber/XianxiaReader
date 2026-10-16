@@ -1,0 +1,12 @@
+{
+  "recordedAtUTC": "2026-10-16T19:07:04.660383+00:00",
+  "fontCount": 6,
+  "actualOriginalFiles": true,
+  "windowsStudyManuallyViewed": true,
+  "image": {
+    "path": "build/FontResourceStudy-Build24.png",
+    "bytes": 356254,
+    "sha256": "849e1ce3cc5fe8ba74f67c3e6668c30c34a74162ffeec0f1a74dc6ccff5b7c1e"
+  },
+  "scope": "Windows FreeType resource comparison only; not an iOS settings screenshot, CoreText verification or phone acceptance. Current Apple/native gates remain pending."
+}

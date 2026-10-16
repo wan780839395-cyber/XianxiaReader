@@ -1,0 +1,108 @@
+[
+  {
+    "path": "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+    "bytes": 25928940,
+    "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350",
+    "signature": "00010000",
+    "variable": false,
+    "tableCount": 16,
+    "glyphCount": 47336,
+    "names": {
+      "1:1033": "LXGW WenKai",
+      "2:1033": "Regular",
+      "5:1033": "Version 1.530; October 13, 2026",
+      "6:1033": "LXGWWenKai-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org",
+      "1:2052": "霞鹜文楷",
+      "2:2052": "Regular"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/MaShanZheng-Regular.ttf",
+    "bytes": 5857936,
+    "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+    "signature": "00010000",
+    "variable": false,
+    "tableCount": 14,
+    "glyphCount": 7017,
+    "names": {
+      "1:1033": "Ma Shan Zheng",
+      "2:1033": "Regular",
+      "5:1033": "Version 2.003",
+      "6:1033": "MaShanZheng-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/SourceHanSansSC-Regular.otf",
+    "bytes": 16529832,
+    "sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
+    "signature": "4f54544f",
+    "variable": false,
+    "tableCount": 17,
+    "glyphCount": 65535,
+    "names": {
+      "1:1033": "Source Han Sans SC",
+      "2:1033": "Regular",
+      "5:1033": "Version 2.005;addfeatures 5.0.0b21",
+      "6:1033": "SourceHanSansSC-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.",
+      "1:2052": "思源黑体",
+      "2:2052": "Regular"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+    "bytes": 24543332,
+    "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117",
+    "signature": "4f54544f",
+    "variable": false,
+    "tableCount": 17,
+    "glyphCount": 65535,
+    "names": {
+      "1:1033": "Source Han Serif SC",
+      "2:1033": "Regular",
+      "5:1033": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "6:1033": "SourceHanSerifSC-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.",
+      "1:2052": "思源宋体",
+      "2:2052": "Regular"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/ZCOOLXiaoWei-Regular.ttf",
+    "bytes": 6313808,
+    "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+    "signature": "00010000",
+    "variable": false,
+    "tableCount": 18,
+    "glyphCount": 7019,
+    "names": {
+      "1:1033": "ZCOOL XiaoWei",
+      "2:1033": "Regular",
+      "5:1033": "Version 1.000",
+      "6:1033": "ZCOOLXiaoWei-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL",
+      "1:2052": "站酷小薇体 常规",
+      "2:2052": "Regular"
+    }
+  },
+  {
+    "path": "App/Resources/Fonts/ZhuqueFangsong-Regular.ttf",
+    "bytes": 8824084,
+    "sha256": "558c62730844fe54ba220146ed62f859d4e2880188d92d985f8921c6e3743bc4",
+    "signature": "00010000",
+    "variable": false,
+    "tableCount": 14,
+    "glyphCount": 13805,
+    "names": {
+      "1:1033": "Zhuque Fangsong (technical preview)",
+      "2:1033": "Regular",
+      "5:1033": "Version 0.212",
+      "6:1033": "ZhuqueFangsong-Regular",
+      "13:1033": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL",
+      "1:2052": "朱雀仿宋（预览测试版）",
+      "2:2052": "Regular"
+    }
+  }
+]
