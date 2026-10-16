@@ -7,6 +7,46 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes() async throws {
+        for continuous in [false, true] {
+            let engine = ReadiumReaderEngine()
+            var interaction = ReadingInteraction(); interaction.reduceMotion = true
+            try engine.setInteraction(interaction)
+            if continuous { engine.setContinuousScrolling(true) }
+            let (window, state) = try mount(engine); state.visible = false
+            let (book, navigator) = try await open(engine)
+            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+            let web = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            if continuous {
+                let scroll = try continuousScroll(engine)
+                try await waitUntil { abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }
+                scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
+                try await waitUntil { ((try await web.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+            } else {
+                await engine.turnPage(forward: true)
+                try await waitUntil { ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > 100 }
+            }
+            let script = continuous ? "document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000" : "scrollX"
+            let origin = try await engine.captureCurrentPosition()
+            let json = try XCTUnwrap(JSONSerialization.jsonObject(with: origin.locatorData) as? [String: Any])
+            let locations = try XCTUnwrap(json["locations"] as? [String: Any])
+            XCTAssertNotNil(locations["domRange"], "Return points must retain a full text anchor")
+            let beforeValue = try await web.evaluateJavaScript(script) as? Double
+            let before = try XCTUnwrap(beforeValue)
+            try await jump(engine, book: book, href: "OEBPS/two.xhtml")
+            try await engine.go(to: origin)
+            try await waitUntil {
+                let restored = continuous ? try self.resourceWebView(engine, index: 1) : try XCTUnwrap(self.visibleWebView(in: engine.viewController.view))
+                return abs(((try await restored.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
+            }
+            XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+            let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+                window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+            }); image.name = "return-epub-\(continuous ? "continuous" : "paged")-build22"; image.lifetime = .keepAlways; add(image)
+            engine.close()
+        }
+    }
     @MainActor func testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (window, state) = try mount(engine); state.visible = false

@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "5367a0ee14c1b58ede27e6d27063bf131b1573d751d5a1233e4a54c046ea5e49"
+      "sha256": "cf4afd4034c677887fd9af92596f5706e08a7c19aeab1f37fdd168cf4b950c01"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1686,5 +1686,9 @@
     "timing": "Elapsed monotonic targetTimestamp, fractional CGFloat, discard gaps above250ms, weak display target and session UUID. Native 30-60Hz requested while moving,10Hz requested while waiting; actual cadence controlled by system.",
     "position": "No per-frame DOM/SQLite: suppress continuous notifications while active; adapter serializes ~1s full bounded DOM samples. Moving samples check epoch/index/size and never cache against a later viewport; paused sampler retains existing revision/physical-offset checks. Pause invalidates pending moving samples and requests final full locator.",
     "lifecycle": "Passive touch-down observer fails immediately and never delays/cancels publication input. Pause on touch, inactive, accessibility reduction/VoiceOver, explicit navigation/appearance, resize or load failure; close/mode/newbook invalidates link and session. Reopen static; only speed is persisted."
+  },
+  "returnPointCapture": {
+    "scope": "Existing bounded full-DOM anchor capture now returns a discardable success flag. Adapter refuses explicit navigation when the viewport is unstable or capture is unavailable. No renderer, dependency, JS or cache changes.",
+    "identity": "Cancellation plus continuous viewport identity or paged spread/physical offset guards; callers also validate open session and navigation request after awaits."
   }
 }

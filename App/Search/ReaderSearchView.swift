@@ -17,7 +17,9 @@ import SwiftUI
                         TextField("搜索书中关键词", text: Binding(get: { model.query }, set: { model.setQuery($0) }))
                             .submitLabel(.search).onSubmit { model.search() }
                             .autocorrectionDisabled().textInputAutocapitalization(.never)
+                            .accessibilityIdentifier("reader.search.query")
                         Button("搜索") { model.search() }.disabled(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                            .accessibilityIdentifier("reader.search.submit")
                     }
                 }
                 if let error = model.errorMessage {
@@ -32,7 +34,7 @@ import SwiftUI
                                     (Text(result.before) + Text(result.highlight).bold() + Text(result.after))
                                         .font(.body).foregroundStyle(.primary).lineLimit(4)
                                 }.padding(.vertical, 4)
-                            }.disabled(model.isLoading)
+                            }.disabled(model.isLoading).accessibilityIdentifier("reader.search.result")
                         }
                     }
                 } else if model.didSearch && !model.isLoading && model.errorMessage == nil {

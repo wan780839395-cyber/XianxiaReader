@@ -6,6 +6,122 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay() async throws {
+        let (book, services, engine, model) = try await context()
+        let opened = expectation(description: "return reader open")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        let origin = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 7,
+            locatorData: Data([1, 3, 5, 7]), chapterTitle: "原处", progression: 0.42)
+        engine.currentPosition = origin
+        model.showAutomaticScroll(); model.startAutomaticScroll()
+        await model.go(to: Chapter(id: "second", bookID: book.id, ordinal: 1, title: "查看处"))
+        XCTAssertEqual(model.automaticScrollState, .paused)
+        XCTAssertEqual(model.returnPosition, origin); XCTAssertFalse(model.menuVisible)
+        let target = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([8]), progression: 0.8)
+        await model.go(to: Bookmark(position: target, title: "远处"))
+        try await model.go(to: ReaderSearchHit(title: "命中", before: "", highlight: "云海", after: "", position: target))
+        XCTAssertEqual(model.returnPosition, origin); XCTAssertEqual(engine.captureCalls, 1)
+        await model.saveNow()
+        let savedTarget = try await services.repository.position(for: book.id)
+        XCTAssertEqual(savedTarget?.locatorData, target.locatorData, "Progress follows the current page, not the return point")
+        await model.returnToReading()
+        XCTAssertEqual(engine.currentPosition?.locatorData, origin.locatorData)
+        XCTAssertEqual(engine.currentPosition?.locatorVersion, 7)
+        XCTAssertNil(model.returnPosition); XCTAssertFalse(model.navigationInProgress)
+        engine.currentPosition = target
+        await model.go(to: Bookmark(position: origin, title: "再次查看"))
+        XCTAssertEqual(model.returnPosition, target)
+        model.stayAtCurrentPosition(); XCTAssertNil(model.returnPosition)
+        model.close()
+    }
+
+    @MainActor func testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin() async throws {
+        struct Failure: LocalizedError { var errorDescription: String? { "原创跳转失败" } }
+        let (book, services, engine, model) = try await context()
+        let opened = expectation(description: "open return retry")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        let origin = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([1]), progression: 0.2)
+        let target = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([9]), progression: 0.9)
+        engine.currentPosition = origin; engine.navigationFailure = Failure()
+        await model.go(to: Bookmark(position: target, title: "失败"))
+        XCTAssertNil(model.returnPosition); XCTAssertNotNil(model.errorMessage)
+        engine.navigationFailure = nil; model.errorMessage = nil
+        await model.go(to: Bookmark(position: target, title: "成功"))
+        engine.navigationFailure = Failure(); await model.returnToReading()
+        XCTAssertEqual(model.returnPosition, origin); XCTAssertEqual(engine.currentPosition, target)
+        XCTAssertNotNil(model.errorMessage); XCTAssertFalse(model.navigationInProgress)
+        engine.navigationFailure = nil; model.errorMessage = nil
+        await model.saveNow(); model.close()
+        XCTAssertNil(model.returnPosition)
+        let stored = try await services.repository.position(for: book.id)
+        XCTAssertEqual(stored?.locatorData, target.locatorData)
+        let reopened = expectation(description: "reopen at actual current target")
+        engine.onOpenStarted = { reopened.fulfill() }
+        let reopening = Task { await model.open() }
+        await fulfillment(of: [reopened], timeout: 2); engine.finishOpen(); await reopening.value
+        XCTAssertNil(model.returnPosition); XCTAssertEqual(engine.currentPosition?.locatorData, target.locatorData)
+        model.close()
+    }
+
+    @MainActor func testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest() async throws {
+        let (book, _, engine, model) = try await context()
+        let opened = expectation(description: "open before capture")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        let origin = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([3]))
+        let chapter = Chapter(id: "late", bookID: book.id, ordinal: 1, title: "目标")
+        let capturing = expectation(description: "capture suspended")
+        engine.onCaptureStarted = { capturing.fulfill() }
+        let jumping = Task { await model.go(to: chapter) }
+        await fulfillment(of: [capturing], timeout: 2)
+        XCTAssertTrue(model.navigationInProgress)
+        await model.go(to: chapter)
+        XCTAssertEqual(engine.captureCalls, 1); XCTAssertEqual(engine.navigationCalls, 0)
+        model.errorMessage = nil; model.close()
+        let reopened = expectation(description: "new session")
+        engine.onOpenStarted = { reopened.fulfill() }
+        let reopening = Task { await model.open() }
+        await fulfillment(of: [reopened], timeout: 2); engine.finishOpen(); await reopening.value
+        let navigating = expectation(description: "new navigation suspended")
+        engine.onCaptureStarted = nil; engine.currentPosition = origin
+        engine.onGoStarted = { navigating.fulfill() }
+        let next = Task { await model.go(to: chapter) }
+        await fulfillment(of: [navigating], timeout: 2)
+        engine.finishCapture(position: origin); await jumping.value
+        XCTAssertEqual(engine.navigationCalls, 1); XCTAssertTrue(model.navigationInProgress)
+        XCTAssertNil(model.returnPosition); XCTAssertNil(model.errorMessage)
+        engine.finishNavigation(); await next.value
+        XCTAssertEqual(model.returnPosition, origin); XCTAssertFalse(model.navigationInProgress)
+        model.close()
+    }
+
+    @MainActor func testReturnCaptureFailureAndCancellationNeverPublishOrNavigate() async throws {
+        let (book, _, engine, model) = try await context()
+        let opened = expectation(description: "capture rejection")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        engine.captureFailure = ReaderPositionCaptureError.unavailable
+        let chapter = Chapter(id: "fail", bookID: book.id, ordinal: 1, title: "目标")
+        await model.go(to: chapter)
+        XCTAssertEqual(engine.navigationCalls, 0); XCTAssertNil(model.returnPosition)
+        XCTAssertNotNil(model.errorMessage); XCTAssertFalse(model.navigationInProgress)
+        model.errorMessage = nil; engine.captureFailure = nil
+        let capturing = expectation(description: "cancelled capture")
+        engine.onCaptureStarted = { capturing.fulfill() }
+        let jumping = Task { await model.go(to: chapter) }
+        await fulfillment(of: [capturing], timeout: 2); jumping.cancel()
+        engine.finishCapture(position: ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([1])))
+        await jumping.value
+        XCTAssertEqual(engine.navigationCalls, 0); XCTAssertNil(model.returnPosition)
+        XCTAssertNil(model.errorMessage); XCTAssertFalse(model.navigationInProgress)
+        model.close()
+    }
     @MainActor func testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings() async throws {
         let (_, services, engine, model) = try await context()
         let started = expectation(description: "ready to test speed write failure")
@@ -145,10 +261,18 @@ final class ReaderLifecycleTests: XCTestCase {
         func setAppearance(_ appearance: ReadingAppearance) throws { self.appearance = try appearance.validated() }
         var onOpenStarted: (() -> Void)?
         var onGoStarted: (() -> Void)?
+        var onCaptureStarted: (() -> Void)?
+        var captureCalls = 0
+        var navigationCalls = 0
+        var captureFailure: Error?
+        var navigationFailure: Error?
+        private var openedBookID: UUID?
+        private var pendingCapture: CheckedContinuation<ReadingPosition, Error>?
         private var pending: CheckedContinuation<Void, Error>?
         private var pendingGo: CheckedContinuation<Void, Error>?
 
         func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws {
+            openedBookID = book.id
             try await withCheckedThrowingContinuation { continuation in
                 pending = continuation
                 onOpenStarted?()
@@ -168,7 +292,23 @@ final class ReaderLifecycleTests: XCTestCase {
             try await navigation()
             currentPosition = position
         }
+        func captureCurrentPosition() async throws -> ReadingPosition {
+            captureCalls += 1
+            if let captureFailure { throw captureFailure }
+            if onCaptureStarted != nil {
+                return try await withCheckedThrowingContinuation { continuation in
+                    pendingCapture = continuation; onCaptureStarted?()
+                }
+            }
+            if let currentPosition { return currentPosition }
+            return ReadingPosition(bookID: try XCTUnwrap(openedBookID), engineID: "test", locatorData: Data([0]))
+        }
+        func finishCapture(position: ReadingPosition) {
+            let pending = pendingCapture; pendingCapture = nil; pending?.resume(returning: position)
+        }
         private func navigation() async throws {
+            navigationCalls += 1
+            if let navigationFailure { throw navigationFailure }
             if onGoStarted != nil {
                 try await withCheckedThrowingContinuation { continuation in
                     pendingGo = continuation

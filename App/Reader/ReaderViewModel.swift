@@ -21,6 +21,11 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 }
 
+private enum ReaderJumpError: LocalizedError {
+    case busy
+    var errorDescription: String? { "正在跳转，请稍候。" }
+}
+
 @MainActor final class ReaderViewModel: ObservableObject {
     @Published private(set) var isReady = false
     @Published private(set) var chapters: [Chapter] = []
@@ -36,6 +41,8 @@ enum ReaderMode: CaseIterable, Hashable {
     @Published private(set) var interactionSaveFailure: String?
     @Published private(set) var automaticScrollState = ReaderAutomaticScrollState.stopped
     @Published private(set) var automaticScrollPresented = false
+    @Published private(set) var returnPosition: ReadingPosition?
+    @Published private(set) var navigationInProgress = false
     var settingsSaveFailure: String? { appearanceSaveFailure ?? interactionSaveFailure }
     var readingMode: ReaderMode {
         scrolling ? (interaction.verticalScreenPaging ? .verticalScreen : .continuous) : .horizontal
@@ -48,6 +55,7 @@ enum ReaderMode: CaseIterable, Hashable {
     private var appearanceSaveTask: Task<Void, Never>?
     private var interactionSaveTask: Task<Void, Never>?
     private var additionalReduceMotionRequested = false
+    private var navigationRequestID: UUID?
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -127,6 +135,9 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func close() {
+        navigationRequestID = nil
+        navigationInProgress = false
+        returnPosition = nil
         // Allow the engine's final position callback before invalidating this session.
         engine?.close()
         openRequestID = nil
@@ -224,13 +235,11 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to chapter: Chapter) async {
-        pauseAutomaticScroll()
-        guard isReady, let engine else { return }
         let requestID = openRequestID
         do {
-            try await engine.go(to: chapter)
-            guard openRequestID == requestID else { return }
-            menuVisible = false
+            try await navigate { try await $0.go(to: chapter) }
+        } catch is CancellationError {
+            return
         } catch {
             guard openRequestID == requestID else { return }
             errorMessage = error.localizedDescription
@@ -238,13 +247,11 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to bookmark: Bookmark) async {
-        pauseAutomaticScroll()
-        guard isReady, let engine else { return }
         let requestID = openRequestID
         do {
-            try await engine.go(to: bookmark.position)
-            guard openRequestID == requestID else { return }
-            menuVisible = false
+            try await navigate { try await $0.go(to: bookmark.position) }
+        } catch is CancellationError {
+            return
         } catch {
             guard openRequestID == requestID else { return }
             errorMessage = error.localizedDescription
@@ -252,11 +259,52 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to result: ReaderSearchHit) async throws {
-        pauseAutomaticScroll()
-        guard isReady, let engine else { throw ReaderSearchError.unavailable }
+        try await navigate { try await $0.go(to: result.position) }
+    }
+
+    func returnToReading() async {
+        guard let origin = returnPosition else { return }
         let requestID = openRequestID
-        try await engine.go(to: result.position)
-        guard openRequestID == requestID else { throw CancellationError() }
+        do {
+            try await navigate(returning: true) { try await $0.go(to: origin) }
+        } catch is CancellationError {
+            return
+        } catch {
+            guard openRequestID == requestID else { return }
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func stayAtCurrentPosition() {
+        guard !navigationInProgress else { return }
+        returnPosition = nil
+    }
+
+    private func navigate(returning: Bool = false,
+                          operation: @MainActor (any ReaderEngine) async throws -> Void) async throws {
+        guard isReady, let engine, let session = openRequestID else { throw ReaderPositionCaptureError.unavailable }
+        guard navigationRequestID == nil else { throw ReaderJumpError.busy }
+        let request = UUID()
+        navigationRequestID = request
+        navigationInProgress = true
+        defer {
+            if navigationRequestID == request {
+                navigationRequestID = nil
+                navigationInProgress = false
+            }
+        }
+        pauseAutomaticScroll()
+        // One origin per excursion. Ordinary callbacks keep saving the actual
+        // current reading position; closing never silently returns to origin.
+        var origin = returnPosition
+        if origin == nil && !returning { origin = try await engine.captureCurrentPosition() }
+        try Task.checkCancellation()
+        guard openRequestID == session, navigationRequestID == request else { throw CancellationError() }
+        guard returning || origin?.bookID == book.id else { throw ReaderPositionCaptureError.unavailable }
+        try await operation(engine)
+        try Task.checkCancellation()
+        guard openRequestID == session, navigationRequestID == request else { throw CancellationError() }
+        returnPosition = returning ? nil : origin
         menuVisible = false
     }
 
@@ -291,6 +339,7 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func startAutomaticScroll() {
+        guard !navigationInProgress else { return }
         guard isReady, automaticScrollPresented, !additionalReduceMotionRequested, !interaction.reduceMotion else {
             errorMessage = "开启减少动态效果时自动慢滚停用。可在阅读设置中调整。"
             return

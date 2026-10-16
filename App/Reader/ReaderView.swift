@@ -55,7 +55,7 @@ import XianxiaCore
                         Task { await model.go(to: chapter) }
                     } label: {
                         Text(chapter.title).padding(.leading, CGFloat(min(chapter.depth, 6)) * 12)
-                    }
+                    }.accessibilityIdentifier("reader.contents.\(chapter.ordinal)")
                 }
                 .navigationTitle("目录 · \(model.chapters.count) 条目")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showContents = false } } }
@@ -75,6 +75,7 @@ import XianxiaCore
                                 Text(bookmark.createdAt, style: .date).font(.caption).foregroundStyle(.secondary)
                             }
                         }
+                        .accessibilityIdentifier("reader.bookmark.entry")
                         .swipeActions {
                             Button("删除", role: .destructive) { Task { await model.removeBookmark(bookmark) } }
                         }

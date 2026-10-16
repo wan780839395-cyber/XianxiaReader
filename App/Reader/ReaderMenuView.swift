@@ -19,13 +19,40 @@ import XianxiaCore
         VStack(spacing: 0) {
             if visible && !model.automaticScrollPresented { header.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10))) }
             Spacer(minLength: 12)
+            if model.returnPosition != nil { returnControls.padding(.bottom, 8).transition(.opacity) }
             if model.automaticScrollPresented { automaticScrollControls }
             else if visible { footer.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 10))) }
         }
         .padding(.horizontal, 14).padding(.vertical, 8)
         .tint(palette.accent).foregroundStyle(palette.text)
         .animation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.92), value: visible)
+        .animation(reduceMotion ? nil : .easeOut(duration: 0.16), value: model.returnPosition != nil)
         .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
+    }
+
+    private var returnControls: some View {
+        HStack(spacing: 8) {
+            Button { Task { await model.returnToReading() } } label: {
+                HStack(spacing: 9) {
+                    Image(systemName: "arrow.uturn.backward").font(.system(size: 16, weight: .medium))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(model.navigationInProgress ? "正在跳转…" : "回到跳转前").font(.subheadline.weight(.medium))
+                        if let title = model.returnPosition?.chapterTitle {
+                            Text(title).font(.caption2).foregroundStyle(palette.secondaryText).lineLimit(1)
+                        }
+                    }
+                    Spacer(minLength: 0)
+                }.frame(minHeight: 44).contentShape(Rectangle())
+            }.accessibilityIdentifier("reader.return.go")
+                .accessibilityLabel("回到跳转前").accessibilityHint("回到本次目录、书签或搜索跳转的出发位置")
+            Button("留在此处") { model.stayAtCurrentPosition() }
+                .font(.caption).frame(minWidth: 76, minHeight: 44)
+                .accessibilityIdentifier("reader.return.stay")
+        }
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+        .disabled(model.navigationInProgress || !model.isReady)
+        .padding(.horizontal, 14).padding(.vertical, 6)
+        .readerSurface(palette, radius: 20, elevated: true)
     }
 
     private var header: some View {
@@ -50,7 +77,7 @@ import XianxiaCore
             .accessibilityIdentifier("reader.bookmark.add")
         }
         .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion)).padding(7)
-        .readerSurface(palette, elevated: true)
+        .readerSurface(palette, elevated: true).disabled(model.navigationInProgress)
     }
 
     private var footer: some View {
@@ -104,7 +131,7 @@ import XianxiaCore
                     .disabled(model.engine?.appearanceProvider == nil)
             }
         }
-        .padding(18).disabled(!model.isReady)
+        .padding(18).disabled(!model.isReady || model.navigationInProgress)
         .readerSurface(palette, radius: 26, elevated: true)
     }
 

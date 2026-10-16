@@ -9,6 +9,46 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class TXTReadingTests: XCTestCase {
+    @MainActor func testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen() async throws {
+        let text = "第一章 回看\n" + String(repeating: "云海🙂e\u{301}修行问道。", count: 10000) + "\n第二章 尾声\n原创测试终点"
+        let (book, url, services, prepared) = try await self.prepared(text)
+        let original = try Data(contentsOf: url)
+        let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
+        let window = try mount(engine)
+        try await engine.open(book: book, fileURL: url, position: nil)
+        try await wait("return TXT ready") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        let resource = prepared.plan.resources[1], byte = resource.startByte
+        let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
+            locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))
+        try await engine.go(to: TXTPositionCodec.encode(initial, bookID: book.id, plan: prepared.plan))
+        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first)
+        let script = "document.getElementById('txt-b\(byte)')?.getBoundingClientRect().top ?? 10000"
+        try await wait("return paragraph ready") { abs((try await target.evaluateJavaScript(script) as? Double) ?? 10000) < 5 }
+        let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
+        scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
+        try await wait("return nonzero TXT text") { ((try await target.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        let origin = try await engine.captureCurrentPosition()
+        let (_, anchor, _) = try TXTPositionCodec.decode(origin, bookID: book.id, plan: prepared.plan)
+        XCTAssertEqual(anchor.resourceStartByte, byte); XCTAssertGreaterThan(anchor.characterUTF16Offset, 100)
+        let beforeValue = try await target.evaluateJavaScript(script) as? Double
+        let before = try XCTUnwrap(beforeValue)
+        let chapter = try XCTUnwrap(engine.currentChapters?.last)
+        try await engine.go(to: chapter); try await engine.go(to: origin)
+        try await wait("return restores exact TXT viewport") {
+            guard let wrapper = self.view("readium.chapter.1", root: engine.viewController.view), let restored = self.webViews(wrapper).first else { return false }
+            return abs(((try await restored.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
+        }
+        let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }); image.name = "return-txt-byte-anchor-build22"; image.lifetime = .keepAlways; add(image)
+        engine.close(); try await engine.open(book: book, fileURL: url, position: origin)
+        try await wait("return TXT static reopen") {
+            guard let wrapper = self.view("readium.chapter.1", root: engine.viewController.view), let reopened = self.webViews(wrapper).first else { return false }
+            return abs(((try await reopened.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
+        }
+        XCTAssertEqual(engine.automaticScrollState, .stopped)
+        XCTAssertEqual(try Data(contentsOf: url), original); engine.close()
+    }
     @MainActor func testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic() async throws {
         let text = "第一章 慢读\n" + String(repeating: "云海修行🙂渐入山门。", count: 7000) + "\n第二章 尾声\n原创测试终点"
         let (book, url, services, prepared) = try await self.prepared(text)

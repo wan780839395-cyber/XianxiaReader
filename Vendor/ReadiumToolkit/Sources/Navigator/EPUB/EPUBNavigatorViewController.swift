@@ -185,12 +185,12 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     /// Preserve a fresh, bounded DOM anchor before rebuilding the layout.
     /// Delegate notifications can still be catching up to a visible jump.
-    public func preserveCurrentDOMLocationForModeChange() async {
+    @discardableResult public func preserveCurrentDOMLocationForModeChange() async -> Bool {
         let anchor: Locator?
         if let isv = infiniteScrollView {
             let request = isv.viewportIdentity
             anchor = await isv.firstVisibleElementLocator()
-            guard infiniteScrollView === isv, isv.viewportIdentity == request else { return }
+            guard !Task.isCancelled, infiniteScrollView === isv, isv.viewportIdentity == request else { return false }
         } else if let spread = paginationView?.currentView as? EPUBSpreadView {
             tracePreferenceReflow("paged sample loaded=\(spread.isSpreadLoaded)")
             // Paged scripts use the upstream spreadLoaded gate. The additional
@@ -198,15 +198,15 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             // decoration work; rapid cancelled preference requests must not
             // introduce that stronger readiness dependency into a visible page.
             await spread.spreadLoaded()
-            guard paginationView?.currentView === spread else { return }
+            guard !Task.isCancelled, paginationView?.currentView === spread else { return false }
             let offset = spread.webView.scrollView.contentOffset
             anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)
-            guard paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else {
+            guard !Task.isCancelled, paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else {
                 tracePreferenceReflow("discarded changed page/offset")
-                return
+                return false
             }
-        } else { return }
-        guard let anchor else { tracePreferenceReflow("no DOM sample"); return }
+        } else { return false }
+        guard let anchor else { tracePreferenceReflow("no DOM sample"); return false }
         tracePreferenceReflow("sampled DOM=\(anchor.locations.domRange != nil)")
         let previous = currentLocation?.href.isEquivalentTo(anchor.href) == true ? currentLocation : nil
         locationUpdateRevision &+= 1
@@ -215,6 +215,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             $0.totalProgression = previous?.locations.totalProgression
             $0.position = previous?.locations.position
         })
+        return true
     }
 
     public weak var delegate: EPUBNavigatorDelegate?

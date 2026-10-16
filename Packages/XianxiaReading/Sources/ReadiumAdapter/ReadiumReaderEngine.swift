@@ -207,6 +207,25 @@ import XianxiaCore
         guard await navigator.go(to: Link(href: href), options: navigationOptions) else { throw EPUBError.navigationFailed }
     }
 
+    public func captureCurrentPosition() async throws -> ReadingPosition {
+        try Task.checkCancellation()
+        guard let navigator, let bookID, let requestID = openRequestID,
+              modeChangeTask == nil else { throw ReaderPositionCaptureError.unavailable }
+        pauseAutomaticScroll()
+        await flushAutomaticScrollPosition()
+        try Task.checkCancellation()
+        guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
+        guard modeChangeTask == nil else { throw ReaderPositionCaptureError.unavailable }
+        let captured = await navigator.preserveCurrentDOMLocationForModeChange()
+        try Task.checkCancellation()
+        guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
+        guard captured, modeChangeTask == nil, let locator = navigator.currentLocation else {
+            throw ReaderPositionCaptureError.unavailable
+        }
+        if let txtReading { return try TXTPositionCodec.encode(locator, bookID: bookID, plan: txtReading.plan) }
+        return try ReadiumPositionCodec.encode(locator, bookID: bookID)
+    }
+
     public func go(to position: ReadingPosition) async throws {
         pauseAutomaticScroll()
         guard let bookID, let navigator else { throw EPUBError.navigationFailed }

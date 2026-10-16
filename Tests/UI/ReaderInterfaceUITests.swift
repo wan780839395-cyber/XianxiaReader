@@ -1,6 +1,73 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testReturnPointContentsBookmarkAndCurrentPositionRelaunch() {
+        let app = start(); defer { app.terminate() }
+        app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()
+        XCTAssertTrue(app.scrollViews["readium.continuous-scroll"].waitForExistence(timeout: 20)); waitForReadableText(in: app)
+        app.buttons["reader.bookmark.add"].tap()
+        snapshot("reader-return-origin-light-build22", in: app)
+        app.buttons["reader.contents.open"].tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第二章'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        waitForReturnText("灯下第1段", in: app)
+        let back = app.buttons["reader.return.go"]
+        XCTAssertTrue(back.waitForExistence(timeout: 10)); XCTAssertTrue(back.isHittable)
+        XCTAssertGreaterThanOrEqual(back.frame.height, 44)
+        snapshot("reader-return-target-light-build22", in: app)
+        back.tap(); waitForReturnText("本样书用于", in: app)
+        XCTAssertFalse(back.exists); snapshot("reader-return-restored-light-build22", in: app)
+        centerTap(in: app); app.buttons["reader.contents.open"].tap()
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap(); waitForReturnText("灯下第1段", in: app)
+        app.buttons["reader.return.stay"].tap(); XCTAssertFalse(back.exists)
+        centerTap(in: app); app.buttons["reader.bookmarks.open"].tap()
+        let bookmark = app.buttons.matching(identifier: "reader.bookmark.entry").firstMatch
+        XCTAssertTrue(bookmark.waitForExistence(timeout: 10)); bookmark.tap()
+        waitForReturnText("本样书用于", in: app); XCTAssertTrue(back.waitForExistence(timeout: 10))
+        back.tap(); waitForReturnText("灯下第1段", in: app)
+        centerTap(in: app); app.buttons["返回书库"].tap(); app.terminate(); app.launch(); openBookAtReturnTarget(in: app)
+        XCTAssertFalse(back.exists); waitForReturnText("灯下第1段", in: app)
+        snapshot("reader-return-current-reopened-build22", in: app)
+    }
+
+    @MainActor func testReturnPointSearchDarkReducedMotionAndStay() {
+        let app = start(reduceMotion: true); defer { app.terminate() }
+        app.buttons["reader.appearance.open"].tap(); app.buttons["reader.theme.charcoal"].tap(); app.buttons["reader.appearance.done"].tap()
+        app.buttons["reader.search.open"].tap()
+        let query = app.textFields["reader.search.query"]
+        XCTAssertTrue(query.waitForExistence(timeout: 10)); query.tap(); query.typeText("原创样书的终点")
+        app.buttons["reader.search.submit"].tap()
+        let result = app.buttons.matching(identifier: "reader.search.result").firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 20)); result.tap()
+        waitForReturnText("原创样书的终点", in: app)
+        let back = app.buttons["reader.return.go"]
+        XCTAssertTrue(back.waitForExistence(timeout: 10)); snapshot("reader-return-search-dark-reduced-build22", in: app)
+        back.tap(); waitForReturnText("本样书用于", in: app)
+        XCTAssertFalse(back.exists); snapshot("reader-return-restored-dark-reduced-build22", in: app)
+        centerTap(in: app); app.buttons["reader.contents.open"].tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第三章'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        waitForReturnText("原创样书的终点", in: app)
+        app.buttons["reader.return.stay"].tap(); XCTAssertFalse(back.exists)
+        snapshot("reader-return-stay-dark-reduced-build22", in: app)
+    }
+
+    @MainActor private func waitForReturnText(_ value: String, in app: XCUIApplication) {
+        let elements = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", value))
+        let readable = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            elements.allElementsBoundByIndex.contains { $0.isHittable }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [readable], timeout: 20), .completed)
+    }
+
+    @MainActor private func openBookAtReturnTarget(in app: XCUIApplication) {
+        let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 20)); book.tap()
+        let settings = app.buttons["reader.appearance.open"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 20))
+        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
+        XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed)
+    }
     @MainActor func testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch() {
         let app = start(); defer { app.terminate() }
         app.buttons["reader.autoscroll.open"].tap()

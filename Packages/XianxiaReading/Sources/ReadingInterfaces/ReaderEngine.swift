@@ -39,12 +39,18 @@ public protocol EPUBMetadataReading: Sendable {
     func turnPage(forward: Bool) async
     func go(to chapter: Chapter) async throws
     func go(to position: ReadingPosition) async throws
+    /// Capture a fresh, complete text anchor before an explicit navigation.
+    func captureCurrentPosition() async throws -> ReadingPosition
     func setScrolling(_ enabled: Bool)
     func setContinuousScrolling(_ enabled: Bool)
     func close()
 }
 
 public extension ReaderEngine {
+    func captureCurrentPosition() async throws -> ReadingPosition {
+        guard let currentPosition else { throw ReaderPositionCaptureError.unavailable }
+        return currentPosition
+    }
     var currentChapters: [Chapter]? { nil }
     var searchProvider: (any ReaderSearchProviding)? { nil }
     var appearanceProvider: (any ReaderAppearanceProviding)? { nil }
@@ -55,6 +61,11 @@ public extension ReaderEngine {
         if enabled { onError?("当前阅读引擎不支持连续滚动。") }
         else { setScrolling(false) }
     }
+}
+
+public enum ReaderPositionCaptureError: LocalizedError {
+    case unavailable
+    public var errorDescription: String? { "当前位置尚未稳定，请稍后再试。" }
 }
 
 public enum ReaderAutomaticScrollState: Equatable, Sendable {
