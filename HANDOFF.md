@@ -9,3 +9,7 @@
 Build23源码首片：Core相对字体身份与有界存储事务/重复与缺失重导、TTF-OTF签名+CoreText后台验证；ReadingInterfaces目录capability，Adapter使用Readium3.11公开CSSFontFace、目录在open配置、无Vendor/JS新改。VM新增字体时采完整位置并保存后受控重开，选已有字体走原重排；会话/请求/await校验、关闭取消，失败恢复旧目录/外观。设置页沿用原卡片/44pt并保留选择器coordinator，原reading-v1只加可选UUID。正在补真实font-face/锚点和取消失败回归，尚未编译。测试字体复用仓内IA Writer Duospace 81636B与原OFL，不引入个人字体。
 
 Windows432语法新增0/54既有语法限制、17工具通过，35受改原测试主体保持，13新增=6Core+6iOS集成+1真正UI，515编译/资源blob已冻结。预期Core133各、iOS131（113集成+18UI），必须核真实结果。补retryOpen先正常close避免失败Navigator阻止目录安装。现进入完整Linux/macOS/iOS/严格Release23构建前检查点；尚未Apple编译，不能写通过。
+
+首候选3bac2015197df9dab8ea8a40fbc464c0d73459bf，已实际dispatch CI38880257296。唯一watcher负责run/full.log/artifacts；先核真实Core133各/iOS131/Release23，失败保留原件，不猜最后步骤。
+
+本轮Linux原件artifact12037835000已CRC核，133/133 Core与四Release TXT探针通过，linux.json记录；Apple仍aggregate构建测试，不能推断具体测试阶段。唯一watcher工具session55283负责38880257296，勿重复dispatch。下一步核真正Apple结果及新字体原生页面/录屏。

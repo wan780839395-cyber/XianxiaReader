@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 Windows validated candidate, Apple compilation pending",
+  "stage": "Build23 full CI dispatched; awaiting actual compilation and native evidence",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -199,7 +199,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2302,5 +2302,9 @@
   "expectedCore": 133,
   "expectedIOS": 131,
   "expectedIntegration": 113,
-  "expectedUI": 18
+  "expectedUI": 18,
+  "sourceRevision": "3bac2015197df9dab8ea8a40fbc464c0d73459bf",
+  "run": 38880257296,
+  "branch": "codex/m4-reading-appearance",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38880257296"
 }
