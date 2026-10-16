@@ -1,0 +1,123 @@
+{
+  "recordedAtUTC": "2026-10-16T10:13:17.017459+00:00",
+  "run": 38881623233,
+  "sourceRevision": "149caa08c600999f5b53b74e0900eb1b405b7e8a",
+  "conclusion": "failure",
+  "testSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 2,
+        "passedTests": 129,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 2,
+    "finishTime": 1792145212.322,
+    "passedTests": 129,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792143912.937,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTUnwrap failed: expected non-nil value of type \"Int\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 73,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "failed: caught error: \"timedOut(\"font TXT paragraph ready\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 107,
+        "testIdentifierString": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+        "testName": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "25% of duration",
+        "text": "3 longest test runs with outlier durations exceeding 13.43s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 131
+  },
+  "failedCases": [
+    "-[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes]",
+    "-[XianxiaReaderTests.TXTReadingTests testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont]"
+  ],
+  "compilerDiagnostics": [],
+  "exitSummary": [
+    "Simulator test exit: 65; attachment export exit: 0; summary exit: 0",
+    "Simulator recording exit: 0"
+  ],
+  "releaseCommandExecuted": false,
+  "deviceResultExists": false,
+  "artifacts": [
+    {
+      "id": 12039800586,
+      "node_id": "MDg6QXJ0aWZhY3QxMjAzOTgwMDU4Ng==",
+      "name": "XianxiaReader-build-diagnostics",
+      "size_in_bytes": 1233167128,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12039800586",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12039800586/zip",
+      "expired": false,
+      "digest": "sha256:79153be180683783b29b3fbb267807763e9405d2ada40b382c2dbef9bd020071",
+      "created_at": "2026-10-16T10:08:06Z",
+      "updated_at": "2026-10-16T10:08:06Z",
+      "expires_at": "2026-10-30T10:07:09Z",
+      "workflow_run": {
+        "id": 38881623233,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-reading-appearance",
+        "head_sha": "149caa08c600999f5b53b74e0900eb1b405b7e8a"
+      }
+    },
+    {
+      "id": 12037208602,
+      "node_id": "MDg6QXJ0aWZhY3QxMjAzNzIwODYwMg==",
+      "name": "XianxiaReader-core-diagnostics",
+      "size_in_bytes": 116201,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037208602",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037208602/zip",
+      "expired": false,
+      "digest": "sha256:3490e13422692a19d6028b9223b2dcee753abb7904cfa611c67fb9f349e87eeb",
+      "created_at": "2026-10-16T09:38:41Z",
+      "updated_at": "2026-10-16T09:38:41Z",
+      "expires_at": "2027-01-14T09:36:35Z",
+      "workflow_run": {
+        "id": 38881623233,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-reading-appearance",
+        "head_sha": "149caa08c600999f5b53b74e0900eb1b405b7e8a"
+      }
+    }
+  ],
+  "originalLog": {
+    "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "00ab5b3808fd3e9c318a3033ff1b1f2bc4b437ca43e5e8f55991d42728aa0ce7"
+  },
+  "rootCause": "Inspect actual failed case/source/recording before choosing a fix; not established by this receipt"
+}

@@ -25,6 +25,10 @@ final class TXTReadingTests: XCTestCase {
         let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
         await model.open(); XCTAssertTrue(model.isReady)
         try await wait("font TXT ready") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        try await wait("font TXT initial mode is stable before navigation") {
+            do { _ = try await engine.captureCurrentPosition(); return true }
+            catch ReaderPositionCaptureError.unavailable { return false }
+        }
         let resource = prepared.plan.resources[1], byte = resource.startByte
         let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
             locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))

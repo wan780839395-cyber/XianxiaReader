@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 revised candidate full CI dispatched; Apple pending",
+  "stage": "Build23 Windows validated candidate, Apple compilation pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -738,7 +738,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "6c8767f6308522541f615aa5726ee9e3cb054a0237eea82a8661136fb22f9e8e"
+      "sha256": "94375152eb0a85ab94f611a686aa5fb896be1d3714674b612155dc1566c330fb"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -754,7 +754,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "8b5709ec24a989e57eb1fc9a631cbde7eebf6fdcccc6f62f42783c08d6b10495"
+      "sha256": "c4b3c5bf9d21c5e59017f451bcc466f3cac3b065e4abfea8353d2bf4d22fc45b"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2277,11 +2277,17 @@
     "Documentation/HANDOFF_M4_BUILD22_DELIVERY_2026-10-16.md",
     "Documentation/M4_FONT_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_IMPORT_DESIGN.md",
+    "Documentation/ValidationLogs/m4-font-build23-api-review.json",
+    "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
+    "Documentation/ValidationLogs/m4-font-build23-second-native-partial.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
     "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
     "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
     "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
     "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
@@ -2364,5 +2370,6 @@
       }
     ],
     "fullLogSHA256": "5c0b784b3f7be617519b36053b5cf9902bb31062e3abdd36ca1e81f96cb51822"
-  }
+  },
+  "latestFailure": "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json"
 }

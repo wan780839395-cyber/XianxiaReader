@@ -24,13 +24,22 @@ final class ReaderRenderingTests: XCTestCase {
             try await services.repository.insert(book, chapters: [])
             var interaction = ReadingInteraction(); interaction.continuousScrolling = continuous; interaction.reduceMotion = true
             try await services.files.saveReadingInteraction(interaction)
+            var initialAppearance = ReadingAppearance(); initialAppearance.fontScale = 1
+            try await services.files.saveReadingAppearance(initialAppearance)
             let engine = ReadiumReaderEngine(storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
             await model.open(); XCTAssertTrue(model.isReady)
             let navigator = try XCTUnwrap(engine.viewController.children.first)
             _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            // App open can request a restored reading mode asynchronously.
+            // Finish that initial transition before issuing test navigation.
+            try await waitUntil {
+                do { _ = try await engine.captureCurrentPosition(); return true }
+                catch ReaderPositionCaptureError.unavailable { return false }
+            }
             try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+            _ = try await probe(try XCTUnwrap(engine.viewController.children.first), engine: engine, resource: "one.xhtml")
             if continuous {
                 let scroll = try continuousScroll(engine)
                 let web = try resourceWebView(engine, index: 1)
@@ -39,7 +48,9 @@ final class ReaderRenderingTests: XCTestCase {
                 try await waitUntil { ((try await web.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
             } else { for _ in 0..<3 { await engine.turnPage(forward: true) } }
             let original = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
-            let offsetValue = try await original.evaluateJavaScript("(() => { const r=document.caretRangeFromPoint(innerWidth*.2,2); return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null; })()") as? Int
+            let caretScript = "(() => { const r=document.caretRangeFromPoint(innerWidth*.2,2); return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null; })()"
+            try await waitUntil { ((try await original.evaluateJavaScript(caretScript) as? Int) ?? 0) > 100 }
+            let offsetValue = try await original.evaluateJavaScript(caretScript) as? Int
             let character = try XCTUnwrap(offsetValue); XCTAssertGreaterThan(character, 100)
             let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
             await model.importReadingFont(from: fontURL)

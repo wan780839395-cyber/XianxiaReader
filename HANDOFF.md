@@ -21,3 +21,7 @@ Windows432语法新增0/54既有语法限制、17工具通过，35受改原测�
 新轮38881623233真实Linux133/四Release TXT原件artifact12037208602下载CRC/解压已核，revised-linux.json记录。Apple仍aggregate，唯一watcher33131；旧55283结束。当前原HEAD/空index保持，运行源码149caa08冻结，未再修改；后续只准备验证/交付辅助和文档，不能把待编译源码写成通过。
 
 等待检查点：新版149caa08/38881623233尚在Apple aggregate构建测试，原生/Release未写通过；Windows432/17与新Linux133/四探针已核。515源冻结，后续仅准备未执行交付helper（deliver_font.py、validate_font.py、review_font.py等）；所有package/docs动作以实际全门槛+本轮原生人工记录为前置。尚无Build23安装包，不把准备脚本当交付完成。
+
+新版149caa08/38881623233实际failure：131测试129过2失败、跳过待summary核；仅新EPUB渲染取非零caret为空、新TXT font paragraph ready超时，均在导入字体之前。新真实CoreText/3生命周期与真UI字体选择取消/持久化/深色/默认均通过，旧测试不放宽。1.23GB原件artifact12039800586已CRC/解压、下载24476结束0，watcher33131结束0；Release/IPA未执行。与既有成熟用例对照补新测试启动模式稳定capture、目标页probe及原非零caret等待，原非零/字体loaded/锚点/字号断言不减。下一步核summary/本轮部分UI画面，再冻仅测试修正跑完整新轮，源码功能仍未交付。
+
+已核第二轮structured summary131/129/2/0跳过，Linux/macOS133各、源warning/error0，旧124全过，新iOS7中5过/2初始准备失败。五新字体UI PNG和完整50.90s原生字体UI录屏4张1秒总览已看，浅深色/选择/取消/重开/衬线恢复符合这些素材；仅局部证据不替代新轮。现在Windows432/17与35旧主体/13新增/515blob重冻后送第三候选；相对149caa08只改两条新测试准备，不改App运行源码/旧断言。未有Release23/IPA。

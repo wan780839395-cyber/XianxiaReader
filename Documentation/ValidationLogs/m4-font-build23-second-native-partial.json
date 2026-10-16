@@ -1,0 +1,229 @@
+{
+  "run": 38881623233,
+  "sourceRevision": "149caa08c600999f5b53b74e0900eb1b405b7e8a",
+  "coreEach": 133,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 2,
+        "passedTests": 129,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 2,
+    "finishTime": 1792145212.322,
+    "passedTests": 129,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792143912.937,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTUnwrap failed: expected non-nil value of type \"Int\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 73,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "failed: caught error: \"timedOut(\"font TXT paragraph ready\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 107,
+        "testIdentifierString": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+        "testName": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "25% of duration",
+        "text": "3 longest test runs with outlier durations exceeding 13.43s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 131
+  },
+  "old124TestsPassed": true,
+  "newCoreTextAndLifecycle4Passed": true,
+  "newNativeFontUIPassed": true,
+  "images": [
+    {
+      "name": "reader-font-default-restored-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E573B7FA-47E5-4A40-B0AE-D03AB95F3191.png",
+      "bytes": 934465,
+      "sha256": "dee406d46a8e40f5d9711c94de30376d62731a283375d798916537e9ca64bd22",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F3CA6B3A-8172-4690-802F-6CF2737AD269.png",
+      "bytes": 929564,
+      "sha256": "230d75f912241091f912d97c62c66f6a1ccb1ee8bc20ba2fa5dd6948f6e37a36",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CA9F119F-C196-4176-B56D-81262351A9F7.png",
+      "bytes": 718262,
+      "sha256": "6446de4d508dbed358a85631369b30fda5c0719ab59a59b077e0a757b2d8045e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/207E5692-B393-4792-829A-4BFA534E01C5.png",
+      "bytes": 717964,
+      "sha256": "b9f91951a44bfee4cdf631370b942737a9044e0e98f538f1fadb6d851195bf6c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9874562D-AA7B-48FF-A48C-5E88E711922D.png",
+      "bytes": 717964,
+      "sha256": "b9f91951a44bfee4cdf631370b942737a9044e0e98f538f1fadb6d851195bf6c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  ],
+  "video": {
+    "name": "Screen Recording 2026-10-16 at 10.05.23 AM.mp4",
+    "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+    "path": "build/ci/38881623233/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/83E57D32-F07B-4E3F-9F3F-26889EFB9F5C.mp4",
+    "bytes": 17195746,
+    "sha256": "20c5a5ff4481cd935576637c74c313b2e30d1ec750f49d394b67661521eab442",
+    "inspected": true
+  },
+  "overviewContacts": [
+    {
+      "path": "build/ci/38881623233/FontReview/font/contact-1.png",
+      "sha256": "32f16c83278621c78b1203347ac499315c4d7c2af5686089856d557fcaa93f17"
+    },
+    {
+      "path": "build/ci/38881623233/FontReview/font/contact-2.png",
+      "sha256": "87d353f36774842c7f8b891e8b566bab609b5b698dcba036f0b7fe38141d128a"
+    },
+    {
+      "path": "build/ci/38881623233/FontReview/font/contact-3.png",
+      "sha256": "24aa386ef15c995d55a850c20ebfb54941f185940156103834f9bbaca36c160d"
+    },
+    {
+      "path": "build/ci/38881623233/FontReview/font/contact-4.png",
+      "sha256": "d3b39fdb622c049a9591952f862d7c8dc2ff4e7b72823bcdfa81679b3cbea224"
+    }
+  ],
+  "scope": "Only five new font UI PNGs in contact sheets11/12 and full50.90s native font video overview4 sheets reviewed. No raw/consecutive frames or new final candidate acceptance.",
+  "observations": "浅深色卡/单字体选择/配色预览说明/原生Files出现与取消/持久化/衬线恢复均符合这些素材；系统picker启动白页与明确加载spinner保留，不归因产品整窗丢字。两新渲染测试在导入之前的初始定位失败，尚未验证本轮新字体EPUB/TXT实际页面。",
+  "deviceAccepted": false,
+  "M4Complete": false
+}
