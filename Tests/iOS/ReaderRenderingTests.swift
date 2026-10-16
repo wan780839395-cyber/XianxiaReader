@@ -7,6 +7,53 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose() async throws {
+        let engine = try screenEngine(reduced: true)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        try await Task.sleep(nanoseconds: 150_000_000)
+        let scroll = try continuousScroll(engine)
+        let parent = try XCTUnwrap(scroll.superview)
+        let before = scroll.contentOffset.y
+        await engine.turnPage(forward: true)
+        let cover = try XCTUnwrap(view(identifier: "readium.screen-turn-cover", in: parent))
+        XCTAssertTrue(cover.superview === parent)
+        XCTAssertFalse(cover.isUserInteractionEnabled)
+        XCTAssertTrue(cover.accessibilityElementsHidden)
+        XCTAssertEqual(cover.frame.width, scroll.bounds.width, accuracy: 1)
+        XCTAssertEqual(cover.frame.height, scroll.bounds.height, accuracy: 1)
+        XCTAssertGreaterThan(scroll.contentOffset.y, before + 100, "Underlying location still applies immediately")
+        let after = scroll.contentOffset.y
+        await engine.turnPage(forward: false)
+        XCTAssertEqual(scroll.contentOffset.y, after, accuracy: 1, "A rapid second command must not queue behind the retained frame")
+        scroll.delegate?.scrollViewWillBeginDragging?(scroll)
+        XCTAssertNil(cover.superview, "Direct manipulation removes the retained frame immediately")
+        scroll.delegate?.scrollViewDidEndDragging?(scroll, willDecelerate: false)
+        await engine.turnPage(forward: false)
+        let nextCover = try XCTUnwrap(view(identifier: "readium.screen-turn-cover", in: parent))
+        var interaction = ReadingInteraction(); interaction.continuousScrolling = true; interaction.reduceMotion = true
+        try engine.setInteraction(interaction)
+        XCTAssertNil(nextCover.superview)
+        interaction.verticalScreenPaging = true; try engine.setInteraction(interaction)
+        await engine.turnPage(forward: true)
+        XCTAssertNotNil(view(identifier: "readium.screen-turn-cover", in: parent))
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        XCTAssertNil(view(identifier: "readium.screen-turn-cover", in: parent))
+        await engine.turnPage(forward: true)
+        try await waitUntil { self.view(identifier: "readium.screen-turn-cover", in: parent) == nil }
+        let attachment = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }); attachment.name = "screen-instant-whole-window-build20"; attachment.lifetime = .keepAlways; add(attachment)
+        await engine.turnPage(forward: false)
+        let finalCover = try XCTUnwrap(view(identifier: "readium.screen-turn-cover", in: parent))
+        engine.close()
+        XCTAssertNil(finalCover.superview)
+        try await Task.sleep(nanoseconds: 250_000_000)
+        XCTAssertNil(view(identifier: "readium.screen-turn-cover", in: parent), "A late task must not restore a closed session's frame")
+    }
+
     @MainActor private func screenEngine(reduced: Bool) throws -> ReadiumReaderEngine {
         let engine = ReadiumReaderEngine()
         var interaction = ReadingInteraction()

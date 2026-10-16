@@ -1,5 +1,17 @@
 # 当前交接与恢复点
 
+2026-10-16，Build20开工，未修改/编译源码。
+
+用户要求继续并讨论流畅阅读特色。先核Build19短空帧；原MP4不重采样解码发现42.073333秒确有正文空白帧，42.228333秒恢复。Readium基线3.11现有PaginationView已用原生snapshot保护无动画资源切换（issue737/PR763）；拟最小扩展到上下整屏显式无动画按钮/点按，单帧临时保护、短时有限生命周期，取消/新拖/关闭/模式变化清理，不接触直接拖动，不新建排版引擎。只能称候选修正，须完整Core/iOS/Release20和实际原生录屏复核。
+
+已核原HEAD6d761749/空index、私有tip c3307229、823维护文件/33旧包hash和无运行工具。824原路径ZIP与开始回执m4-screen-build20-start.json，Build19交接原样归档HANDOFF_M4_BUILD19_DELIVERY_2026-10-16.md。Build19设备验收未收到，不把“继续”当手机问题已通过；原19的失败/限制/实际成功证据保留。
+
+阅读特色只记候选与优先级，先稳定翻屏，再按独立切片推进自动慢滚；回看/续读提示/克制进度后续，人物境界卡守M5和查询层章节无剧透门槛。所有未提交改动保持；后续只使用私有index。
+
+## 上一交付参考
+
+# 当前交接与恢复点
+
 2026-10-16（Asia/Shanghai）
 
 ## 当前实际结果
@@ -25,3 +37,11 @@ Build19上下整屏通过[完整CI38843884440](https://github.com/wan780839395-c
 原HEAD6d761749/空index/M2 e6f31d85/M3 44af41f0保持，私有index维护codex/m4-reading-appearance；编译源与后续纯文档tip分列。所有802开始路径仍在，504编译源blob、823维护文件清单、31旧包与两新包、原八ZIP及本轮开始ZIP均已逐hash/CRC核过，见build/ci/38843884440/final-preservation-check.json；最终纯文档tip与远端一致的核验也写于同一回执。CI/下载/检查任务均已结束，无本轮挂起工具。Build18交接归档HANDOFF_M4_BUILD18_DELIVERY_2026-10-16.md，本轮发展归档HANDOFF_M4_SCREEN_DEVELOPMENT_2026-10-16.md。
 
 恢复先AGENTS→状态→交接→路线→架构，再核Git/原文件/hash/日志/运行任务，保留未提交改动。手机核上下整屏正反、小拖/快速反向/跨章、上下点按/菜单按钮、减少动效、字号变化/非零位置重开。优先复现/定位反向整屏短空帧，无空帧视觉门槛尚未通过；核实反馈并处理后按独立切片推进自动慢滚，先读仅研究尚未实现的READING_AUTOSCROLL_DRAFT.md；卷页先核Readium/选字/Locator兼容小样；不扩大XBook/M5，不沿用旧关机请求。
+
+## Build20候选源码接入，Windows检查前
+
+仅EPUBInfiniteScrollView增加显式无动画翻屏单视口/200ms保护、重入拒绝、原生触摸接管与模式/resize/跳转/关闭取消，UPSTREAM合同/hash同步，版本20；不动直接手指/连续路径或Core模型/锁/JS。新增1真实容器+1真正UI回归，原测试主体保留待AST核。READING_SCREEN_STABILITY_DESIGN.md记录issue737/PR763及3.11本地已含的成熟方案、不同OS/结构和200ms代价；READING_FEATURE_IDEAS.md仅候选，不在本轮批量实装。接下来423语法/17工具、私有index冻结审阅，再完整122Core各平台/iOS108/Release20；此时尚未编译，不能把保护源码写成空帧已修复。
+
+## Windows/候选审阅通过，完整CI前
+
+423 Swift语法新增0/54 pristine限制、17 Python工具通过；26个受改文件内原测试主体逐函数AST保持，新增2项，504编译源blob冻结。运行实现仅1维护Vendor文件+版本20，UPSTREAM合同/hash同步。原824路径和33包保持，接下来私有index快照并完整CI；预计各122Core/iOS108/Release20，原生保护是否消除闪白仍未知，不以语法当编译。

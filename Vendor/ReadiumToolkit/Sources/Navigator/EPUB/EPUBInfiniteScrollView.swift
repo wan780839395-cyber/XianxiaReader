@@ -9,7 +9,7 @@ import UIKit
     func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView)
 }
 
-@MainActor final class EPUBInfiniteScrollView: UIScrollView, UIScrollViewDelegate {
+@MainActor final class EPUBInfiniteScrollView: UIScrollView, UIScrollViewDelegate, Loggable {
     @MainActor private final class Slot {
         let view: EPUBSpreadView
         let wrapper = UIView()
@@ -42,9 +42,13 @@ import UIKit
     private var lastTrackedOffset: CGFloat = 0
     private var screenDragStart: CGFloat?
     private var screenTurnInFlight = false
+    private var screenTurnCover: UIView?
+    private var screenTurnCoverID: UUID?
+    private var screenTurnCoverTask: Task<Void, Never>?
     var screenPagingEnabled = false {
         didSet {
             guard screenPagingEnabled != oldValue else { return }
+            removeScreenTurnCover()
             screenDragStart = nil
             screenTurnInFlight = false
             setContentOffset(contentOffset, animated: false)
@@ -66,7 +70,7 @@ import UIKit
     }
     var viewportIdentity: String { "\(epoch):\(currentIndex):\(viewportRevision)" }
     var diagnosticState: String {
-        "index=\(currentIndex) revision=\(viewportRevision) top=\(viewportTop) navigation=\(navigation) "
+        "index=\(currentIndex) revision=\(viewportRevision) top=\(viewportTop) navigation=\(navigation) screenCover=\(screenTurnCover != nil) "
             + slots.keys.sorted().map { index in
                 guard let slot = slots[index] else { return "missing \(index)" }
                 return "slot\(index){ready=\(slot.ready) positioning=\(slot.positioning) failure=\(slot.failure ?? "none") wrapper=\(slot.wrapper.frame) frame=\(slot.view.frame) savedTop=\(String(describing: slot.anchorViewportTop)) anchor=\(slot.anchorDiagnostic)}"
@@ -82,12 +86,52 @@ import UIKit
     }
 
     func turnScreen(forward: Bool, animated: Bool) -> Bool {
-        guard isCurrentResourceReady, !isDragging, !isDecelerating, !screenTurnInFlight else { return false }
+        guard isCurrentResourceReady, !isDragging, !isDecelerating,
+              !screenTurnInFlight, screenTurnCover == nil else { return false }
         let target = (contentOffset.y + (forward ? screenStep : -screenStep)).clamped(to: screenOffsetRange)
         guard abs(target - contentOffset.y) > 0.5 else { return false }
         screenTurnInFlight = animated && !UIAccessibility.isReduceMotionEnabled
+        if !screenTurnInFlight { retainScreenTurnFrame() }
         setContentOffset(CGPoint(x: 0, y: target), animated: screenTurnInFlight)
         return true
+    }
+    private func retainScreenTurnFrame() {
+        // Readium 3.11's PaginationView uses the same native snapshot technique
+        // for WKWebView's nonanimated native-scroll flash (issue 737 / PR 763).
+        // Retain one viewport only, outside the moving content; no bitmap cache
+        // or per-frame work. Direct manipulation never enters this path.
+        guard let parent = superview, window != nil,
+              let cover = snapshotView(afterScreenUpdates: false) else {
+            log(.warning, "Could not retain the reading frame for an instant screen turn; transition may flash")
+            return
+        }
+        cover.frame = parent.convert(bounds, from: self)
+        cover.isUserInteractionEnabled = false
+        cover.accessibilityElementsHidden = true
+        cover.accessibilityIdentifier = "readium.screen-turn-cover"
+        parent.insertSubview(cover, aboveSubview: self)
+        screenTurnCover = cover
+        let request = UUID()
+        screenTurnCoverID = request
+        screenTurnCoverTask = Task { @MainActor [weak self] in
+            do { try await Task.sleep(nanoseconds: 200_000_000) }
+            catch is CancellationError { return }
+            catch {
+                guard let self, self.screenTurnCoverID == request else { return }
+                self.log(.warning, "Screen turn frame retention failed: \(error)")
+                self.removeScreenTurnCover()
+                return
+            }
+            guard let self, self.screenTurnCoverID == request else { return }
+            self.removeScreenTurnCover()
+        }
+    }
+    private func removeScreenTurnCover() {
+        screenTurnCoverID = nil
+        screenTurnCoverTask?.cancel()
+        screenTurnCoverTask = nil
+        screenTurnCover?.removeFromSuperview()
+        screenTurnCover = nil
     }
     private var readyIndices: [Int] {
         guard slots[currentIndex]?.ready == true else { return [] }
@@ -146,6 +190,7 @@ import UIKit
         if newSuperview == nil { clear() }
     }
     private func clear() {
+        removeScreenTurnCover()
         screenDragStart = nil
         screenTurnInFlight = false
         setContentOffset(contentOffset, animated: false)
@@ -174,6 +219,7 @@ import UIKit
     }
     func goToIndex(_ index: Int, location: PageLocation, options: NavigatorGoOptions) async -> Bool {
         guard 0..<chapterCount ~= index else { return false }
+        removeScreenTurnCover()
         screenDragStart = nil
         screenTurnInFlight = false
         setContentOffset(contentOffset, animated: false)
@@ -386,6 +432,7 @@ import UIKit
         super.layoutSubviews()
         guard !layingOut else { return }
         if lastSize != bounds.size {
+            removeScreenTurnCover()
             screenDragStart = nil
             if screenTurnInFlight {
                 screenTurnInFlight = false
@@ -498,6 +545,7 @@ import UIKit
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        removeScreenTurnCover()
         screenTurnInFlight = false
         screenDragStart = screenPagingEnabled ? contentOffset.y : nil
     }

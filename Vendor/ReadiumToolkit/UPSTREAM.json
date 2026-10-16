@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "42b550b08aaba367777f6f2734e1a44d8d301850492bbe1d6a33b0315f01e490"
+      "sha256": "e2afe263796041837b8d3e946c86633a2d16d18d9b2065f497a03de4091d7767"
     }
   ],
   "remoteDependencyPins": [
@@ -1678,6 +1678,7 @@
     "scope": "Existing bounded infinite container only. Native UIScrollView release target snapping, 90percent viewport step, overlap, small-drag cancel, native fast deceleration; paged EPUB rendering and JS remain unchanged.",
     "lifecycle": "Move gesture origin with chapter window layout compensation, reset on resize/reload/mode/close. Command guard rejects overlap while native animation or user deceleration is active.",
     "motion": "Respect system/user reduction for explicit screen commands; native direct manipulation and native drag deceleration remain. No custom gesture overlay, CADisplayLink or new resource cache.",
-    "reverseRelease": "Directional adjacent stop from the release viewport; +1.8 screens followed by negative velocity settles at +1, never -2. Explicit layout/resize correction clears interrupted native command guards."
+    "reverseRelease": "Directional adjacent stop from the release viewport; +1.8 screens followed by negative velocity settles at +1, never -2. Explicit layout/resize correction clears interrupted native command guards.",
+    "instantFrameProtection": "Build20: one native viewport snapshot as a sibling during explicit nonanimated screen commands, removed after 200ms; same scope as Readium3.11 PaginationView issue737/PR763 workaround. No per-frame/drag work or image cache. Reject overlapping cover commands. Cancel and remove on new direct drag, mode change, resize, explicit jump, reload or close; identity checked after sleep. Snapshot failure logs a warning and preserves original native turn."
   }
 }

@@ -1,5 +1,11 @@
 # 开发路线与阶段门槛
 
+## Build20 当前切片（2026-10-16，未编译）
+
+先修整屏显式无动画翻屏短空帧，参考Readium3.11现有原生过渡保护；尚未接入/编译，实际断点见HANDOFF.md。Build19候选保留、手机未验收，自动慢滚等仍后续。
+
+以下Build19及更早为历史。
+
 ## Build19 当前切片（2026-10-16）
 
 Build19上下整屏通过[完整CI38843884440](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38843884440)，实际编译源`e1eee79f1dfac3f61b642c1f4e7f9bc1671fb77f`。Linux/macOS各122Core，iOS106/106（94集成+12真正UI）、失败/跳过0；test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release19/min16。每平台四长TXT Release探针、真实三份六pins锁和504源码blob已核。Windows423语法新增0/54 pristine限制、17工具通过；语法不是编译。

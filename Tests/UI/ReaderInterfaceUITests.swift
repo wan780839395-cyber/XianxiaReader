@@ -1,6 +1,32 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText() {
+        let app = start(reduceMotion: true); defer { app.terminate() }
+        app.buttons["reader.mode"].tap()
+        XCTAssertTrue(app.buttons["上下整屏"].waitForExistence(timeout: 10)); app.buttons["上下整屏"].tap()
+        let scroll = app.scrollViews["readium.continuous-scroll"]
+        XCTAssertTrue(scroll.waitForExistence(timeout: 20))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "上下整屏"), object: scroll)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
+        waitForReadableText(in: app)
+        readingDrag(in: app, vertical: true)
+        let hidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.mode"])
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 10), .completed)
+        centerTap(in: app)
+        XCTAssertTrue(app.buttons["reader.page.next"].waitForExistence(timeout: 10))
+        snapshot("reader-screen-instant-before-build20", in: app)
+        for _ in 0..<3 {
+            app.buttons["reader.page.next"].tap()
+            app.buttons["reader.page.previous"].tap()
+        }
+        XCTAssertTrue(app.buttons["reader.page.previous"].isHittable)
+        XCTAssertTrue(app.buttons["reader.page.next"].isHittable)
+        XCTAssertEqual(app.buttons["reader.mode"].value as? String, "上下整屏")
+        waitForReadableText(in: app)
+        snapshot("reader-screen-instant-after-build20", in: app)
+    }
+
     @MainActor func testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous() {
         for reduced in [false, true] {
             let app = start(reduceMotion: reduced); defer { app.terminate() }
