@@ -30,3 +30,7 @@ web工具打开Markdown返回不支持content-type，已用只读HTTPS直接下�
 ## 首轮编译失败与修正
 
 候选f957f465/CI38831994670各119Core/四探针通过，但我新增的private ReaderSurface与App已存在同名正文包装View冲突，Swift报invalid redeclaration；iOS测试未开始（0项，summary unknown），test65严格无IPA。只将自己的新样式modifier命名改为ReaderPanelSurface，不改既有正文包装View。完整日志/xcresult与失败回执保留；Windows语法不具备跨文件Swift类型编译能力，后续以完整Apple重跑为准。
+
+## 第二轮自动通过与原生拒收
+
+750191d0/CI38833282829各119Core/100iOS/Release18全过，实际IPA/三锁/504blob/四探针核过，但32图及三组对照出现文字图标也被容器shadow染出灰晕，不能作为视觉交付。只把两层投影限定在单一背景fill primitive，再叠边光/渐变，避免给正文、标签或完整内容做离屏合成；按钮、菜单动作与全部100测试保持。素材/实物和明确拒收回执保留，第三轮仍须完整重跑。当前分页孤立截图RGBA0，整窗EPUB有完整文字；巨段TXT孤立图仍仅顶部少量，限制不追认。

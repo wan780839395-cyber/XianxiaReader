@@ -2,6 +2,10 @@
 
 更新时间：2026-10-16（Asia/Shanghai）
 
+## 最新断点
+
+第二候选750191d0370fcab4a7889d3a0765c43fa5b470b0，CI38833282829已completed/success；完整日志已核89集成+11UI零失败、test/export/summary/recording均0和Release18构建成功。658588276字节诊断/实际IPA下载中，联合验证与原生复核未完成，未生成交付包。Linux119/四Release探针已下载核过；Apple/iOS100/Release18尚待。首候选f957f465/CI38831994670因为我新增modifier与App已有ReaderSurface同名而Swift编译失败，iOS0执行、test65无IPA；只改自己新modifier名称ReaderPanelSurface后重跑，原正文wrapper/引擎/全部旧断言不动。423语法新增0与17工具过，原HEAD/空index/M2/M3/29包/备份保持。下一步下载完整Apple结果，检查实际100iOS/119各平台/Release18/真实锁/504blob，再用review_depth.py看原生图/视频/连续帧与compare_depth.py对照Build17；完成前不运行package_depth.py/finalize_depth_docs.py，最后preserve_depth.py与私有index快照。以下为发展检查点。
+
 ## Build18 开始检查点
 
 用户认可Build17整体可用/观感，指出部分扁平、生硬并授权继续。本轮先做与反馈直接相关的M4原生面板层次/按压反馈/菜单柔和过渡；不铺开新引擎和卷页/自动滚动。仅记基本自用，未逐项确认巨段TXT满页/FPS/设备矩阵。
@@ -35,3 +39,19 @@ CI38831994670 Linux完整artifact已下载核119/119Core及四组Release长TXT�
 ## 首轮真实编译失败，命名修正后第二轮验证前
 
 CI38831994670各119Core/四Release探针每平台通过；Swift错误为新增private ReaderSurface与既有App/Reader/ReaderSurface.swift同名，iOS0执行、test65，严格无IPA。完整日志/xcresult/472KB ZIP CRC与回执m4-depth-build18-first-failure.json保留。只将自己的装饰modifier改名ReaderPanelSurface，原正文渲染wrapper/引擎/旧断言不动，不追认旧候选成功。现在Windows重核后第二候选完整重跑。
+
+## 第二候选完整CI已启动
+
+实际候选750191d0370fcab4a7889d3a0765c43fa5b470b0/CI38833282829。相对首候选生产/测试差异仅ReaderVisualStyle中新modifier的两个名称位置；其余产品/测试保持，423语法新增0再次通过，17工具仍为同一未变脚本已通过记录。504真实blob已刷新；候选严格等待119各平台/100iOS/Release18，不能把首轮0测试unknown写成通过。
+
+## 第二轮CI成功，实物下载与联合/原生验证前
+
+API三个job成功、完整日志已核，仍需下载真实658MB诊断ZIP/xcresult/原生素材和IPA，验CRC/三锁/119各平台/100iOS/504blob/Release18；再审原生对照与按压采样。不能把API success直接当手机验收，当前无用户交付包。
+
+## 完整诊断已下载CRC通过，联合验证与原生复核前
+
+第二轮659MB ZIP/完整xcresult/日志/原生素材已解出，真实IPA检查Release18/min16/iPhoneOS arm64/0755/系统SQLite/Notices/CRC通过。源码编译警告错误0，系统WebKit40/AppIntents7消息仍保留，不称所有日志零告警。现在validate_depth.py finish联合119Core/100iOS/四探针/三锁/504blob/旧29包，再对照原生画面与按压采样，未核原生前不生成交付包。
+
+## 第二轮自动全过但原生视觉不收，第三轮前
+
+CI38833282829各119Core/100iOS/Release18及真实IPA/三锁/504blob/29旧包联合核过；32原生截图与三组Build17对照已看，底部白菜单有文字/图标投影灰晕，自动通过不等于视觉通过。新按压三录屏只做总览提取未审阅，不写完成。659MBZIP/完整xcresult/实物/视觉拒收回执m4-depth-build18-second-native-rejection.json保留，不交付第二候选。只把新ReaderPanelSurface阴影从内容容器移到单一背景fill，再叠渐变与边线；不改正文/引擎/按钮/测试。分页孤立PNG本轮又全透明，EPUB整窗可见完整文字；巨段TXT仍两行/留白，限制保持。现在Windows重核后第三候选全跑119/100/Release18，再重新原生验收。

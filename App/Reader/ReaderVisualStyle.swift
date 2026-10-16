@@ -41,6 +41,11 @@ private struct ReaderPanelSurface: ViewModifier {
         content
             .background {
                 shape.fill(fill ?? palette.card)
+                    // Cast the panel's silhouette only. A container-level
+                    // shadow would also shade its text, icons and controls.
+                    .shadow(color: palette.shadow.opacity(elevated ? (palette.theme.isDark ? 0.28 : 0.12) : 0.04),
+                            radius: elevated ? 18 : 8, x: 0, y: elevated ? 8 : 3)
+                    .shadow(color: palette.shadow.opacity(elevated ? 0.06 : 0.025), radius: 1, x: 0, y: 1)
                     .overlay {
                         if fill == nil {
                             shape.fill(LinearGradient(
@@ -48,17 +53,13 @@ private struct ReaderPanelSurface: ViewModifier {
                                 startPoint: .topLeading, endPoint: .bottomTrailing))
                         }
                     }
+                    .overlay {
+                        shape.strokeBorder(LinearGradient(
+                            colors: [palette.edgeLight, contrast == .increased ? palette.text.opacity(0.35) : palette.border],
+                            startPoint: .top, endPoint: .bottom), lineWidth: 1)
+                    }
                     .allowsHitTesting(false)
             }
-            .overlay {
-                shape.strokeBorder(LinearGradient(
-                    colors: [palette.edgeLight, contrast == .increased ? palette.text.opacity(0.35) : palette.border],
-                    startPoint: .top, endPoint: .bottom), lineWidth: 1)
-                    .allowsHitTesting(false)
-            }
-            .shadow(color: palette.shadow.opacity(elevated ? (palette.theme.isDark ? 0.28 : 0.12) : 0.04),
-                    radius: elevated ? 18 : 8, x: 0, y: elevated ? 8 : 3)
-            .shadow(color: palette.shadow.opacity(elevated ? 0.06 : 0.025), radius: 1, x: 0, y: 1)
     }
 }
 

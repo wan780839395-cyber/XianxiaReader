@@ -1,8 +1,8 @@
 {
-  "recordedAtUTC": "2026-10-16T00:52:43.293461+00:00",
-  "stage": "Build18 new modifier name collision corrected; full second candidate CI required",
-  "sourceRevision": "f957f46547bfd729e04e3963234626a9bb67c2bb",
-  "run": 38831994670,
+  "recordedAtUTC": "2026-10-16T01:06:57.355581+00:00",
+  "stage": "Second candidate automation passed but native panel shadow review rejected; corrected source requires third complete CI",
+  "sourceRevision": "750191d0370fcab4a7889d3a0765c43fa5b470b0",
+  "run": 38833282829,
   "branch": "codex/m4-reading-appearance",
   "build": "18",
   "expectedCoreTests": 119,
@@ -281,7 +281,7 @@
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
-      "sha256": "921e6a75ba674612f5d48cb3b5cbeedc2d332b712b57582715bd60a2e8b41643"
+      "sha256": "073f1d090088ff1159f38c1d1e99c6e1eb9d7439c5000898031a62a1b0ee49d8"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -2199,5 +2199,12 @@
     "sourceRevision": "f957f46547bfd729e04e3963234626a9bb67c2bb",
     "conclusion": "Simulator compile failure;0 iOS tests; no IPA",
     "evidence": "Documentation/ValidationLogs/m4-depth-build18-first-failure.json"
+  },
+  "releaseDebugFixtureFlagsAbsent": true,
+  "secondCandidate": {
+    "run": 38833282829,
+    "sourceRevision": "750191d0370fcab4a7889d3a0765c43fa5b470b0",
+    "conclusion": "Full automated119Core/100iOS/Release18 success; native visual review rejected shadows on content",
+    "evidence": "Documentation/ValidationLogs/m4-depth-build18-second-native-rejection.json"
   }
 }
