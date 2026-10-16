@@ -29,7 +29,7 @@ struct ReaderPalette {
 }
 
 /// An opaque, quiet surface above the page. Decoration never receives book input.
-private struct ReaderSurface: ViewModifier {
+private struct ReaderPanelSurface: ViewModifier {
     let palette: ReaderPalette
     let cornerRadius: CGFloat
     let elevated: Bool
@@ -65,7 +65,7 @@ private struct ReaderSurface: ViewModifier {
 extension View {
     func readerSurface(_ palette: ReaderPalette, radius: CGFloat = 22,
                        elevated: Bool = false, fill: Color? = nil) -> some View {
-        modifier(ReaderSurface(palette: palette, cornerRadius: radius, elevated: elevated, fill: fill))
+        modifier(ReaderPanelSurface(palette: palette, cornerRadius: radius, elevated: elevated, fill: fill))
     }
 }
 

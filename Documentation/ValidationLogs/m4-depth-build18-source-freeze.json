@@ -1,0 +1,14 @@
+{
+  "recordedAtUTC": "2026-10-16T00:58:02.417360+00:00",
+  "sourceRevision": "f957f46547bfd729e04e3963234626a9bb67c2bb",
+  "run": 38831994670,
+  "currentOnlyDocumentationChanges": [
+    "Documentation/M4_DEPTH_VALIDATION_REPORT.json",
+    "Documentation/ValidationLogs/m4-depth-build18-linux.json",
+    "HANDOFF.md"
+  ],
+  "normalIndexEmpty": true,
+  "runtimeFrozen": true,
+  "previousUITestBodiesUnchanged": true,
+  "coreAdapterVendorLockScriptsWorkflowUnchanged": true
+}

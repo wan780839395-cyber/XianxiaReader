@@ -26,3 +26,7 @@ web工具打开Markdown返回不支持content-type，已用只读HTTPS直接下�
 原99项iOS回归保持；新增一项实际UI回归，在普通/额外减少动效两种请求下长按松手设置和字号按钮，验证110→120→130→120每次只激活一次、暗色切换及44pt控件命中尺寸，并保留实际录屏与八张浅深色原生截图。不是镜像样式常量的单元测试；按压/回弹是否自然以原生视频连续帧和手机分别核验。
 
 预期各119Core/iOS100（89集成+11UI）/严格无签名Release18，Windows423语法/17工具与完整真实锁、四长TXT Release探针仍须核验。当前待执行，不将预期计数写成通过。Build17手机基本自用反馈不扩写为手机FPS、巨段TXT满页或其他设备/系统可访问性验收。
+
+## 首轮编译失败与修正
+
+候选f957f465/CI38831994670各119Core/四探针通过，但我新增的private ReaderSurface与App已存在同名正文包装View冲突，Swift报invalid redeclaration；iOS测试未开始（0项，summary unknown），test65严格无IPA。只将自己的新样式modifier命名改为ReaderPanelSurface，不改既有正文包装View。完整日志/xcresult与失败回执保留；Windows语法不具备跨文件Swift类型编译能力，后续以完整Apple重跑为准。

@@ -23,3 +23,15 @@
 ## Windows通过，候选审阅与完整CI前
 
 423语法新增0/54 pristine限制与17工具测试通过；第一次静态发现我编辑版本号时YAML缩进错误，已在送检前修正，原错误日志保留m4-depth-build18-windows.json。现按实际六文件生产/测试差异审阅，私有index保存候选后完整CI，源文件无编译结论；预期119Core各平台/100iOS/Release18。
+
+## 首候选完整CI已启动
+
+实际候选f957f46547bfd729e04e3963234626a9bb67c2bb，CI38831994670。504运行/验证blob已按真实Git读取，Packages/Vendor/锁/scripts/workflow与已过Build17完全一致；原UI test bodies完整未动。Windows423新增0/54限制与17工具通过，原HEAD/空index/M2/M3/29包保持。等待119Core各平台/100iOS/Release18，之后逐项原生截图/视频连续帧；没有交付包。
+
+## 首轮Linux已核，Apple尚待
+
+CI38831994670 Linux完整artifact已下载核119/119Core及四组Release长TXT探针通过。Apple job进行中，尚无Swift编译/iOS/Release18结论；本地仅本轮watcher，生产/测试源保持候选不动，待完整结果和真实原生素材。
+
+## 首轮真实编译失败，命名修正后第二轮验证前
+
+CI38831994670各119Core/四Release探针每平台通过；Swift错误为新增private ReaderSurface与既有App/Reader/ReaderSurface.swift同名，iOS0执行、test65，严格无IPA。完整日志/xcresult/472KB ZIP CRC与回执m4-depth-build18-first-failure.json保留。只将自己的装饰modifier改名ReaderPanelSurface，原正文渲染wrapper/引擎/旧断言不动，不追认旧候选成功。现在Windows重核后第二候选完整重跑。

@@ -1,0 +1,39 @@
+{
+  "recordedAtUTC": "2026-10-16T01:06:04.485967+00:00",
+  "run": 38831994670,
+  "sourceRevision": "f957f46547bfd729e04e3963234626a9bb67c2bb",
+  "failure": "New private modifier named ReaderSurface collides with existing App/Reader/ReaderSurface.swift rendering wrapper",
+  "swiftCompilerError": "invalid redeclaration of ReaderSurface",
+  "coreEach": 119,
+  "releaseTXTProbesEach": 4,
+  "iosTestsExecuted": 0,
+  "iOSSummary": {
+    "devicesAndConfigurations": [],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792112669.518,
+    "passedTests": 0,
+    "result": "unknown",
+    "skippedTests": 0,
+    "startTime": 1792112521.257,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 0
+  },
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "releaseBuilt": false,
+  "ipaProduced": false,
+  "diagnosticsZIP": {
+    "path": "D:/ai项目/XianxiaReader/build/ci/38831994670/apple-diagnostics.zip",
+    "bytes": 471873,
+    "sha256": "d2fd3beb2edf6c027d632f3cbe839f16084df70d26ec060047ce30098b6f9bf9",
+    "zipCRC": true
+  },
+  "fix": "Rename only new modifier to ReaderPanelSurface; leave original rendering wrapper unchanged",
+  "originalAssertionsUnchanged": true
+}
