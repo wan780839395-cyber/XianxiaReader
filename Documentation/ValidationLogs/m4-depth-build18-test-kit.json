@@ -1,0 +1,69 @@
+{
+  "recordedAtUTC": "2026-10-16T02:20:50.970495+00:00",
+  "run": 38835963502,
+  "sourceRevision": "76ede6b266304749db37029b66d89b0d27eb39e2",
+  "delivered": {
+    "IPA": {
+      "path": "build/XianxiaReader-ReadingDepth-Build18.ipa",
+      "bytes": 8353849,
+      "sha256": "8ada416c25c47fdec80fec0735c9db6c69f7d5584f465589981413c991011656"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingDepth-Build18-TestKit.zip",
+      "bytes": 11969912,
+      "sha256": "7d30ab3e4d34c14bd65ae46b787dc6e612f1273e893f892632ec0a22973aa5ac"
+    }
+  },
+  "preservedEntries": [
+    "Samples/chinese-epub3.epub",
+    "Samples/云海问道-UTF8.txt",
+    "Samples/云海问道-UTF16.txt",
+    "Samples/云海问道-GB18030.txt",
+    "Samples/utf8-5MiB-1000chapters.txt",
+    "Evidence/utf8-5MiB-1000chapters.json",
+    "Samples/utf8-50MiB-3000chapters.txt",
+    "Evidence/utf8-50MiB-3000chapters.json",
+    "Samples/utf8-50MiB-no-newline.txt",
+    "Evidence/utf8-50MiB-no-newline.json",
+    "Samples/utf16-5MiB-1000chapters.txt",
+    "Evidence/utf16-5MiB-1000chapters.json",
+    "Samples/ANSI-GBK-云海问道.txt",
+    "Samples/ANSI-Big5-雲海問道.txt",
+    "Samples/ANSI-Windows1252-Cafe.txt",
+    "Evidence/ANSI-ENCODINGS.json",
+    "Cover/cover-original.png"
+  ],
+  "previews": [
+    {
+      "name": "Preview/reader-depth-menu-light-normal-build18.png",
+      "sha256": "0a9396ee9454808acd7347838ed909a619a782255446eb46c448ff3929a680c0",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ED13182F-3346-40A8-A6CB-D77CD5DF8ADA.png"
+    },
+    {
+      "name": "Preview/reader-depth-settings-light-normal-build18.png",
+      "sha256": "fc9ae22dede6d7f1cf994e40533664c91a3d86bd2e4030aa34adfa8353a25cde",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/39AD3067-5A8B-49B5-A063-D47121E41230.png"
+    },
+    {
+      "name": "Preview/reader-depth-settings-dark-normal-build18.png",
+      "sha256": "297e2def0f072b3cedea604cab5dbf430061793c7fcc0c0eed0d3794eb5bd018",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/951E0581-62E1-45B7-AEEA-96123E15F744.png"
+    },
+    {
+      "name": "Preview/reader-depth-menu-dark-normal-build18.png",
+      "sha256": "a933332ec574c5dd296f856e8d67a6cbfd7c21cce920310ca0f5017d8d0f8784",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0CBE10FD-B884-480D-8FD4-5886A9D4BE47.png"
+    },
+    {
+      "name": "Preview/reader-depth-menu-light-reduced-build18.png",
+      "sha256": "0a9396ee9454808acd7347838ed909a619a782255446eb46c448ff3929a680c0",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1173DB36-5F16-408D-B5DE-F105F14AB43D.png"
+    },
+    {
+      "name": "Preview/reader-depth-settings-light-reduced-build18.png",
+      "sha256": "fc9ae22dede6d7f1cf994e40533664c91a3d86bd2e4030aa34adfa8353a25cde",
+      "source": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/271A8BEA-7B7D-428E-AF52-56D900A63CD7.png"
+    }
+  ],
+  "zipCRC": true
+}

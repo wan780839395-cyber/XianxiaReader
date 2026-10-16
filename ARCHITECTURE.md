@@ -181,3 +181,7 @@ ReaderMenuView承载阅读菜单，ReaderVisualStyle管理App层灰绿浅深色�
 ## Build17 阅读交互偏好
 
 ReadingInteraction属于Core Foundation模型，与ReadingAppearance/完整Locator分离；BookFileStore actor保存独立有界/原子interaction-v1.json，使用逐级路径校验。ReadingInterfaces可选ReaderInteractionProviding隔离被动手势和动效；Adapter复用Readium公开drag observer与NavigatorGoOptions，并核session/Navigator身份。UI的手感组/菜单过渡只持领域值、保持正文视口，系统/用户减少动效与DEBUG额外请求分别合并且不把额外请求落盘。首轮原生加载时序失败按实际录屏修正测试准备条件，Vendor回调实验已撤回，最终保留必要分页完整锚点修正及Vendor provenance，不改JS或依赖版本。完整119Core/99iOS/Release17及原生复核见READING_MOTION_DESIGN.md，手机手感另验。
+
+## Build18 原生表面与按钮反馈
+
+ReaderVisualStyle中的ReaderPanelSurface将有限阴影仅施加到单一背景fill primitive，再叠不拦截触摸的渐变/边线；避免整个内容子树的文字和图标带阴影，复用实色背景；ReaderPressStyle基于标准ButtonStyle保留原生激活/取消，只改变标签视觉层，并在外层保持44pt命中区。减少动效合并系统、用户与运行时额外请求，仍保留即时颜色状态；colorSchemeContrast读取系统增强对比度。无正文、引擎、存储或Locator变动。设计/实际验证见READING_DEPTH_DESIGN.md。

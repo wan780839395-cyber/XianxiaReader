@@ -957,5 +957,34 @@
   "nativeAccepted": false,
   "reason": "Native comparison shows shadows cast by footer text/icons/controls into the opaque panel; source modifier applies shadow to content container instead of only background silhouette",
   "fix": "Move the two shadows onto the single background fill primitive, before gradient/border overlays; no full content compositing or book changes",
-  "rasterLimitations": "Isolated paged EPUB image is fully transparent again despite full-anchor/reflow/reopen regressions passing; separate whole-window EPUB screenshot has full text. Giant TXT isolated snapshot still only top two lines. No claim of raster/device acceptance."
+  "rasterLimitations": "Isolated paged EPUB image is fully transparent again despite full-anchor/reflow/reopen regressions passing; separate whole-window EPUB screenshot has full text. Giant TXT isolated snapshot still only top two lines. No claim of raster/device acceptance.",
+  "followupHistoricalOverviewReview": {
+    "recordedAtUTC": "2026-10-16T01:38:00.308565+00:00",
+    "scope": "Only the second rejected candidate; do not substitute for third-candidate visual acceptance",
+    "selectedVideos": [
+      {
+        "case": "depth",
+        "duration": 44.59,
+        "fullOneSecondOverviewInspected": true
+      },
+      {
+        "case": "normal",
+        "duration": 45.57,
+        "fullOneSecondOverviewInspected": true
+      },
+      {
+        "case": "reduced",
+        "duration": 16.46,
+        "fullOneSecondOverviewInspected": true
+      }
+    ],
+    "observations": "Held presses and normal/reduced settings flow visible; first normal font press around9seconds and second reduced around33seconds video time. Menu text/icon shadow haze remains rejected. Exact new-candidate timing must be located afresh; XCTest time is not video time."
+  },
+  "historicalPressSample": {
+    "path": "build/ci/38833282829/DepthReview/depth/historical-normal-press/frames.json",
+    "sha256": "c88df9f16196b8160d8ec89e3f44e6d0cadec8425946c5e88c04254f34d1ecaf",
+    "frameCount": 22,
+    "inspected": true,
+    "interpretation": "110 to120 single activation, pressed fill and short release response visible; only historical press behavior, not acceptance of rejected shadow scope."
+  }
 }

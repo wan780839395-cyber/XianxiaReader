@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-16T01:33:38.660601+00:00",
-  "run": 38833282829,
-  "sourceRevision": "750191d0370fcab4a7889d3a0765c43fa5b470b0",
+  "recordedAtUTC": "2026-10-16T02:14:26.052796+00:00",
+  "run": 38835963502,
+  "sourceRevision": "76ede6b266304749db37029b66d89b0d27eb39e2",
   "coreEach": 119,
   "iOS": {
     "devicesAndConfigurations": [
@@ -28,19 +28,19 @@
     "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
     "expectedFailures": 0,
     "failedTests": 0,
-    "finishTime": 1792114004.967,
+    "finishTime": 1792116246.212,
     "passedTests": 100,
     "result": "Passed",
     "skippedTests": 0,
-    "startTime": 1792113289.915,
+    "startTime": 1792115130.804,
     "statistics": [],
     "testFailures": [],
     "title": "Test - XianxiaReader",
     "topInsights": [
       {
         "category": "Longest Test Runs",
-        "impact": "20% of duration",
-        "text": "2 longest test runs with outlier durations exceeding 9.58s (three standard deviations)"
+        "impact": "27% of duration",
+        "text": "3 longest test runs with outlier durations exceeding 12.20s (three standard deviations)"
       }
     ],
     "totalTestCount": 100
@@ -55,36 +55,36 @@
       "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
       "cases": [
         {
-          "afterImportPeakRSSBytes": 25403392,
+          "afterImportPeakRSSBytes": 25534464,
           "allChecksPassed": true,
           "baselinePeakRSSBytes": 21995520,
-          "coldImportMilliseconds": 628.483899,
+          "coldImportMilliseconds": 642.406705,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 7.70233,
-          "finalPeakRSSBytes": 28090368,
+          "directoryQueryMilliseconds": 7.573756,
+          "finalPeakRSSBytes": 28225536,
           "maximumWindowBytes": 4897,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 173.880719,
-              "peakRSSBytes": 27381760,
+              "cacheValidationMilliseconds": 177.617028,
+              "peakRSSBytes": 27508736,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 236.604847,
+              "readingPlanMilliseconds": 228.573221,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 173.178846,
-              "peakRSSBytes": 27955200,
+              "cacheValidationMilliseconds": 174.827024,
+              "peakRSSBytes": 28225536,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.763064,
+              "readingPlanMilliseconds": 32.197937,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 172.57618,
-              "peakRSSBytes": 28090368,
+              "cacheValidationMilliseconds": 176.966958,
+              "peakRSSBytes": 28225536,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.467617,
+              "readingPlanMilliseconds": 31.832998,
               "reusedReadingPlanCache": true
             }
           ],
@@ -108,39 +108,39 @@
             }
           },
           "visitedBytes": 4895893,
-          "windowTraversalMilliseconds": 277.919703
+          "windowTraversalMilliseconds": 269.817361
         },
         {
-          "afterImportPeakRSSBytes": 29188096,
+          "afterImportPeakRSSBytes": 29057024,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21979136,
-          "coldImportMilliseconds": 6188.954756,
+          "baselinePeakRSSBytes": 21848064,
+          "coldImportMilliseconds": 6203.468167,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 21.730474,
-          "finalPeakRSSBytes": 34963456,
+          "directoryQueryMilliseconds": 21.5294,
+          "finalPeakRSSBytes": 34816000,
           "maximumWindowBytes": 17077,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1678.806867,
-              "peakRSSBytes": 33103872,
+              "cacheValidationMilliseconds": 1718.601326,
+              "peakRSSBytes": 32833536,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 1023.388496,
+              "readingPlanMilliseconds": 992.665344,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1676.49061,
-              "peakRSSBytes": 34783232,
+              "cacheValidationMilliseconds": 1701.988348,
+              "peakRSSBytes": 34684928,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 89.173159,
+              "readingPlanMilliseconds": 94.227902,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1678.04471,
-              "peakRSSBytes": 34963456,
+              "cacheValidationMilliseconds": 1698.54535,
+              "peakRSSBytes": 34816000,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 90.1869,
+              "readingPlanMilliseconds": 94.000657,
               "reusedReadingPlanCache": true
             }
           ],
@@ -164,39 +164,39 @@
             }
           },
           "visitedBytes": 51229893,
-          "windowTraversalMilliseconds": 1188.470992
+          "windowTraversalMilliseconds": 1131.127779
         },
         {
-          "afterImportPeakRSSBytes": 23461888,
+          "afterImportPeakRSSBytes": 23855104,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21495808,
-          "coldImportMilliseconds": 6126.674821,
+          "baselinePeakRSSBytes": 21889024,
+          "coldImportMilliseconds": 6318.609547,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 0.221698,
-          "finalPeakRSSBytes": 24510464,
+          "directoryQueryMilliseconds": 0.215619,
+          "finalPeakRSSBytes": 24727552,
           "maximumWindowBytes": 65536,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1672.257878,
-              "peakRSSBytes": 24248320,
+              "cacheValidationMilliseconds": 1740.841761,
+              "peakRSSBytes": 24510464,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 663.352399,
+              "readingPlanMilliseconds": 657.567946,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1678.253646,
-              "peakRSSBytes": 24379392,
+              "cacheValidationMilliseconds": 1744.876681,
+              "peakRSSBytes": 24596480,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 18.602251,
+              "readingPlanMilliseconds": 19.707764,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1664.528839,
-              "peakRSSBytes": 24510464,
+              "cacheValidationMilliseconds": 1748.921097,
+              "peakRSSBytes": 24727552,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 18.085416,
+              "readingPlanMilliseconds": 19.356963,
               "reusedReadingPlanCache": true
             }
           ],
@@ -220,39 +220,39 @@
             }
           },
           "visitedBytes": 52427840,
-          "windowTraversalMilliseconds": 674.689946
+          "windowTraversalMilliseconds": 672.301083
         },
         {
-          "afterImportPeakRSSBytes": 25534464,
+          "afterImportPeakRSSBytes": 25268224,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 21864448,
-          "coldImportMilliseconds": 1148.68388,
+          "baselinePeakRSSBytes": 21729280,
+          "coldImportMilliseconds": 1168.155531,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 7.663063,
-          "finalPeakRSSBytes": 28475392,
+          "directoryQueryMilliseconds": 7.390631,
+          "finalPeakRSSBytes": 28028928,
           "maximumWindowBytes": 7333,
           "operatingSystem": "Ubuntu 22.04.5 LTS",
           "processorCount": 4,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 218.711759,
-              "peakRSSBytes": 27836416,
+              "cacheValidationMilliseconds": 224.626309,
+              "peakRSSBytes": 27430912,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 258.677843,
+              "readingPlanMilliseconds": 247.910444,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 216.866881,
-              "peakRSSBytes": 28418048,
+              "cacheValidationMilliseconds": 222.702746,
+              "peakRSSBytes": 27971584,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 31.961608,
+              "readingPlanMilliseconds": 32.070569,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 216.891308,
-              "peakRSSBytes": 28475392,
+              "cacheValidationMilliseconds": 224.785132,
+              "peakRSSBytes": 28028928,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 30.887755,
+              "readingPlanMilliseconds": 31.880138,
               "reusedReadingPlanCache": true
             }
           ],
@@ -276,7 +276,7 @@
             }
           },
           "visitedBytes": 7331893,
-          "windowTraversalMilliseconds": 295.447367
+          "windowTraversalMilliseconds": 291.405158
         }
       ],
       "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
@@ -285,36 +285,36 @@
       "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
       "cases": [
         {
-          "afterImportPeakRSSBytes": 10780672,
+          "afterImportPeakRSSBytes": 11812864,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 6029312,
-          "coldImportMilliseconds": 501.451,
+          "baselinePeakRSSBytes": 6111232,
+          "coldImportMilliseconds": 729.183583,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 5.001084,
-          "finalPeakRSSBytes": 16416768,
+          "directoryQueryMilliseconds": 8.535292,
+          "finalPeakRSSBytes": 16531456,
           "maximumWindowBytes": 4897,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 147.322667,
-              "peakRSSBytes": 14204928,
+              "cacheValidationMilliseconds": 236.087041,
+              "peakRSSBytes": 14172160,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 91.852042,
+              "readingPlanMilliseconds": 127.170959,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 168.744417,
-              "peakRSSBytes": 15597568,
+              "cacheValidationMilliseconds": 245.413041,
+              "peakRSSBytes": 15679488,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 17.191208,
+              "readingPlanMilliseconds": 37.602709,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 175.821375,
-              "peakRSSBytes": 16039936,
+              "cacheValidationMilliseconds": 198.664917,
+              "peakRSSBytes": 16121856,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 26.4955,
+              "readingPlanMilliseconds": 27.338083,
               "reusedReadingPlanCache": true
             }
           ],
@@ -338,39 +338,39 @@
             }
           },
           "visitedBytes": 4895893,
-          "windowTraversalMilliseconds": 93.782583
+          "windowTraversalMilliseconds": 103.57325
         },
         {
-          "afterImportPeakRSSBytes": 14630912,
+          "afterImportPeakRSSBytes": 17334272,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 7028736,
-          "coldImportMilliseconds": 5851.573417,
+          "baselinePeakRSSBytes": 7094272,
+          "coldImportMilliseconds": 7725.159458,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 13.861083,
-          "finalPeakRSSBytes": 31211520,
+          "directoryQueryMilliseconds": 25.628459,
+          "finalPeakRSSBytes": 29327360,
           "maximumWindowBytes": 17077,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1627.438042,
-              "peakRSSBytes": 24444928,
+              "cacheValidationMilliseconds": 2120.933125,
+              "peakRSSBytes": 23642112,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 614.496583,
+              "readingPlanMilliseconds": 762.207959,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1830.394417,
-              "peakRSSBytes": 28753920,
+              "cacheValidationMilliseconds": 2068.420333,
+              "peakRSSBytes": 26984448,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 74.467917,
+              "readingPlanMilliseconds": 72.552541,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1809.2725,
-              "peakRSSBytes": 30834688,
+              "cacheValidationMilliseconds": 2029.989333,
+              "peakRSSBytes": 28852224,
               "readingPlanBoundaryBytesRead": 5999,
-              "readingPlanMilliseconds": 72.7635,
+              "readingPlanMilliseconds": 72.477459,
               "reusedReadingPlanCache": true
             }
           ],
@@ -394,39 +394,39 @@
             }
           },
           "visitedBytes": 51229893,
-          "windowTraversalMilliseconds": 562.964084
+          "windowTraversalMilliseconds": 650.225208
         },
         {
-          "afterImportPeakRSSBytes": 8241152,
+          "afterImportPeakRSSBytes": 8175616,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 5750784,
-          "coldImportMilliseconds": 5837.111833,
+          "baselinePeakRSSBytes": 5783552,
+          "coldImportMilliseconds": 6827.718,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 0.121792,
-          "finalPeakRSSBytes": 11239424,
+          "directoryQueryMilliseconds": 0.132083,
+          "finalPeakRSSBytes": 10682368,
           "maximumWindowBytes": 65536,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 1904.107292,
-              "peakRSSBytes": 9404416,
+              "cacheValidationMilliseconds": 2058.534,
+              "peakRSSBytes": 9338880,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 714.078375,
+              "readingPlanMilliseconds": 642.129792,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 1814.702292,
-              "peakRSSBytes": 10256384,
+              "cacheValidationMilliseconds": 1941.981625,
+              "peakRSSBytes": 10158080,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 17.203333,
+              "readingPlanMilliseconds": 10.165208,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 1905.016917,
-              "peakRSSBytes": 10797056,
+              "cacheValidationMilliseconds": 1981.241916,
+              "peakRSSBytes": 10256384,
               "readingPlanBoundaryBytesRead": 1599,
-              "readingPlanMilliseconds": 9.754666,
+              "readingPlanMilliseconds": 14.427542,
               "reusedReadingPlanCache": true
             }
           ],
@@ -450,39 +450,39 @@
             }
           },
           "visitedBytes": 52427840,
-          "windowTraversalMilliseconds": 689.18825
+          "windowTraversalMilliseconds": 733.572292
         },
         {
-          "afterImportPeakRSSBytes": 12173312,
+          "afterImportPeakRSSBytes": 12156928,
           "allChecksPassed": true,
-          "baselinePeakRSSBytes": 5947392,
-          "coldImportMilliseconds": 1156.267333,
+          "baselinePeakRSSBytes": 6225920,
+          "coldImportMilliseconds": 1580.047666,
           "configuration": "Release",
-          "directoryQueryMilliseconds": 4.658792,
-          "finalPeakRSSBytes": 15482880,
+          "directoryQueryMilliseconds": 9.17825,
+          "finalPeakRSSBytes": 15319040,
           "maximumWindowBytes": 7333,
           "operatingSystem": "Version 15.7.9 (Build 24G830)",
           "processorCount": 3,
           "reopens": [
             {
-              "cacheValidationMilliseconds": 207.068292,
-              "peakRSSBytes": 13467648,
+              "cacheValidationMilliseconds": 208.187334,
+              "peakRSSBytes": 13582336,
               "readingPlanBoundaryBytesRead": 0,
-              "readingPlanMilliseconds": 118.415167,
+              "readingPlanMilliseconds": 141.52975,
               "reusedReadingPlanCache": false
             },
             {
-              "cacheValidationMilliseconds": 208.288959,
-              "peakRSSBytes": 14237696,
+              "cacheValidationMilliseconds": 294.16975,
+              "peakRSSBytes": 14909440,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 16.535083,
+              "readingPlanMilliseconds": 28.6165,
               "reusedReadingPlanCache": true
             },
             {
-              "cacheValidationMilliseconds": 201.37225,
-              "peakRSSBytes": 15122432,
+              "cacheValidationMilliseconds": 259.877083,
+              "peakRSSBytes": 14925824,
               "readingPlanBoundaryBytesRead": 1999,
-              "readingPlanMilliseconds": 23.777792,
+              "readingPlanMilliseconds": 22.703583,
               "reusedReadingPlanCache": true
             }
           ],
@@ -506,7 +506,7 @@
             }
           },
           "visitedBytes": 7331893,
-          "windowTraversalMilliseconds": 115.888333
+          "windowTraversalMilliseconds": 133.973291
         }
       ],
       "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
@@ -527,39 +527,39 @@
   },
   "artifacts": [
     {
-      "path": "build/ci/38833282829/full.log",
-      "bytes": 3317067,
-      "sha256": "5178d6e130590324f43787df3111f1bcf9b65ba2508f34a3f995f24e3e2bedc9"
+      "path": "build/ci/38835963502/full.log",
+      "bytes": 3336555,
+      "sha256": "4189d6f461b950fccb2fa45e160eaa0870badb148498cb233cb80280df4aec12"
     },
     {
-      "path": "build/ci/38833282829/core/logs/core-tests.log",
+      "path": "build/ci/38835963502/core/logs/core-tests.log",
       "bytes": 17275,
-      "sha256": "b61db7bc19aeb59bc78539957502bbcbbfc82f0c4b1631ecee8babc414a1f6d0"
+      "sha256": "20fbba23fc9a69790e0dade941cc9455412e66c6ba79452ae613d1148e378b91"
     },
     {
-      "path": "build/ci/38833282829/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
-      "bytes": 2333605,
-      "sha256": "4267c37c7dcbce5f8b3a6f90fe051057a6fc14530d68eb54b2112ce1fb3b5af2"
+      "path": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 2347450,
+      "sha256": "0ed9f99d5a70ec6f4261078dd0d2b973933a689f14fdc9fe0f23686dcc5900cc"
     },
     {
-      "path": "build/ci/38833282829/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
-      "bytes": 1175,
-      "sha256": "9fc8545b3ca957ff0a4641d16d8c9ab119c4fd440f4df3e5ec73b490e296a8ab"
+      "path": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1176,
+      "sha256": "7bcd0f838683feedeeccc468c2e70d550fe3253f9ef691fcd336d3dcfb19cbea"
     },
     {
-      "path": "build/ci/38833282829/core/TXTPerformance/summary.json",
-      "bytes": 697446,
-      "sha256": "d325fc94e3ebcdef177e1efcd58b1855037cc07c6dc8f21cb1906ca8f672b32f"
+      "path": "build/ci/38835963502/core/TXTPerformance/summary.json",
+      "bytes": 697449,
+      "sha256": "1d14d2786f41a1489e8a45674d96790af580dddd3066debbb9caaee8660d031e"
     },
     {
-      "path": "build/ci/38833282829/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
-      "bytes": 697466,
-      "sha256": "bca162ff5403937cab5a09af2f0e710562aa063d7eaf15df3ce331811de46ed0"
+      "path": "build/ci/38835963502/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
+      "bytes": 697468,
+      "sha256": "cb9f895d3abd9c858798507f77a4d7ee9473d5e1179453eaa9c31cbcfb9452ce"
     },
     {
-      "path": "build/ci/38833282829/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa",
-      "bytes": 8353877,
-      "sha256": "69dd4e3d019b57e075c1a74f33cbe1c7b3cd6dedf1fd2df594f257b558bd5922"
+      "path": "build/ci/38835963502/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa",
+      "bytes": 8353849,
+      "sha256": "8ada416c25c47fdec80fec0735c9db6c69f7d5584f465589981413c991011656"
     }
   ]
 }

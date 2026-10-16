@@ -1,12 +1,12 @@
 {
-  "recordedAtUTC": "2026-10-16T01:33:15.549763+00:00",
-  "run": 38833282829,
-  "sourceRevision": "750191d0370fcab4a7889d3a0765c43fa5b470b0",
+  "recordedAtUTC": "2026-10-16T02:13:02.534162+00:00",
+  "run": 38835963502,
+  "sourceRevision": "76ede6b266304749db37029b66d89b0d27eb39e2",
   "counts": {
     "sqliteVnodeUnlink": 0,
     "documentManagerDeadHost": 0,
     "appIntentsMetadata": 7,
-    "webKitProcessAssertions": 40
+    "webKitProcessAssertions": 37
   },
   "patterns": {
     "sqliteVnodeUnlink": "vnode unlinked while in use",
@@ -17,5 +17,5 @@
   "sourceCompilerWarnings": 0,
   "sourceCompilerErrors": 0,
   "allRuntimeDiagnosticsZero": false,
-  "interpretation": "Compiler/test gates and observed system runtime message counts are distinct; original full logs preserved."
+  "interpretation": "Source compiler and test gates are distinct from observed system runtime diagnostics. Full original log preserved."
 }

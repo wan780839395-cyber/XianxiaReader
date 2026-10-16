@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-16T01:38:25.882945+00:00",
+  "run": 38835963502,
+  "sourceRevision": "76ede6b266304749db37029b66d89b0d27eb39e2",
+  "linuxCoreTests": 119,
+  "linuxReleaseTXTCases": 4,
+  "applePending": true,
+  "currentOnlyDocumentationChanges": [
+    "Documentation/M4_DEPTH_VALIDATION_REPORT.json",
+    "Documentation/READING_DEPTH_DESIGN.md",
+    "Documentation/ValidationLogs/m4-depth-build18-second-native-rejection.json",
+    "HANDOFF.md"
+  ],
+  "normalIndexEmpty": true
+}

@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-15T17:57:09.538643+00:00",
+  "recordedAtUTC": "2026-10-16T02:26:19.201396+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 782,
+  "fileCount": 801,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 27174,
-      "sha256": "44cf3846e6f4c9f6b253b93d83257fb9081ba4ca17ab5c5d5f4cfc0d47d7be6b"
+      "bytes": 27789,
+      "sha256": "6a147cd5c84149df50c71aab94b009a400f2ed7b5022bb2a6b11a1b0ccdee628"
     },
     {
       "path": "App/AppRootView.swift",
@@ -130,13 +130,13 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "bytes": 15716,
-      "sha256": "ee1da519c94a1ca8f755e3a8463a03d08cb7b172e02f91dd921a20e1130e1d51"
+      "bytes": 15957,
+      "sha256": "401fc8d4e09d61be07921afa83a057345708c069f17db31b8be13eaa204c9929"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
-      "bytes": 7028,
-      "sha256": "25fb1587995416ee10ec33911789b99ec8a6c2a36c9b48e7c61ff32e44c11049"
+      "bytes": 6976,
+      "sha256": "31e87d672671056bc1facb05a0d5223bbe4c67c3f97353ab3ff11d7782ad334f"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -155,8 +155,8 @@
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
-      "bytes": 1629,
-      "sha256": "5e66b528e770bd43d819257e7e53bba0e43f5bb05d297be3121b1f0fc663f9b2"
+      "bytes": 5453,
+      "sha256": "eb54d552ccca88cecbab07ef408536b1968ae4b36deaa1042f3f61acc741f2ad"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -225,8 +225,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 41706,
-      "sha256": "7291d486fa0e6392bb19c9cb2ae55f495f20ecfd8daec03184eea6d2b30ef70f"
+      "bytes": 46275,
+      "sha256": "c1f9bcbe0f904ad3adb37b67d98d7d94d03cd46200c91dca38995877d60753a7"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -235,8 +235,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 13170,
-      "sha256": "7856d1062090d82020f38b069530a0e786e3093ac77b736f70d5a3adf0084983"
+      "bytes": 17887,
+      "sha256": "9eed1cc5ed2c09b1aaa8540f35911c035a25a8062d61f4dcd2facd27a6e5f74b"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -262,6 +262,16 @@
       "path": "Documentation/HANDOFF_M4_BUILD16_DELIVERY_2026-10-15.md",
       "bytes": 7007,
       "sha256": "5d014f14d3627db9d4bb3b1eeb662a79823733c369b2365799e1f0acb1568898"
+    },
+    {
+      "path": "Documentation/HANDOFF_M4_BUILD17_DELIVERY_2026-10-16.md",
+      "bytes": 6364,
+      "sha256": "f081868885ca4c68b5120e1cb3844eedeb651a849da5ca35fc6d39a9d22defae"
+    },
+    {
+      "path": "Documentation/HANDOFF_M4_DEPTH_DEVELOPMENT_2026-10-16.md",
+      "bytes": 9852,
+      "sha256": "b414ea8410bbe8100cefd7164ba91b56478a48bf30fa3db2993f9c96041cbba3"
     },
     {
       "path": "Documentation/HANDOFF_M4_FIRST_FOUR_RUNS_2026-10-15.md",
@@ -499,6 +509,16 @@
       "sha256": "9fb8edaa0091d0fff85c4c48ae01bd9455cd69e284734f882fff48cff71d3bee"
     },
     {
+      "path": "Documentation/M4_DEPTH_STATIC_REPORT.json",
+      "bytes": 434,
+      "sha256": "76b71d8a14fed50ba07022a527c003c627cce4c634304d6675f2a50f2b738618"
+    },
+    {
+      "path": "Documentation/M4_DEPTH_VALIDATION_REPORT.json",
+      "bytes": 137612,
+      "sha256": "8357b1fa3ceef84d936d18ecb6c0b703a1d1fc3ccff70f21714db78d0368a154"
+    },
+    {
       "path": "Documentation/M4_MOTION_STATIC_REPORT.json",
       "bytes": 434,
       "sha256": "28dc87ec0071012346f595d1cd2c3b4a845eb9d44f29ba0da435a5c3d5442b54"
@@ -537,6 +557,11 @@
       "path": "Documentation/READING_APPEARANCE_DESIGN.md",
       "bytes": 8298,
       "sha256": "7a100db0834d43ceeec1752518d2afeb6e77457e6fc3acbcaa6e2e1fb281c9b5"
+    },
+    {
+      "path": "Documentation/READING_DEPTH_DESIGN.md",
+      "bytes": 9672,
+      "sha256": "15b175fef41ee01c1bd95cc617587321fcfecb37089be41efa1f422fd38057cb"
     },
     {
       "path": "Documentation/READING_MOTION_DESIGN.md",
@@ -1289,6 +1314,71 @@
       "sha256": "d1b5dd4bd69298e6ad2999dd73ca704f54b6b484b2b5e28a31630f117b243c40"
     },
     {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-first-failure.json",
+      "bytes": 1342,
+      "sha256": "67c5209ac4d49cd838c84414018abf0a9b932b1a41df0309edaf83f4ea84aa45"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-linux.json",
+      "bytes": 222,
+      "sha256": "4a3a205035ce8106107d32a826643b52ed9a524ca993a8b9966e3c6a13b57fa2"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-native-review.json",
+      "bytes": 37487,
+      "sha256": "6c0b0569ad8cadd0181b598e4ccc22f86d6974ec5cbcd26cf97a4943466d25e7"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-runtime-diagnostics.json",
+      "bytes": 810,
+      "sha256": "c4e230cade6e79b47a1a57610a30ae0d8ede6868f54cd70bc437f02bc1eff5e2"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-second-linux.json",
+      "bytes": 222,
+      "sha256": "740b0926f9703b3b53a685bcd0b1ac9601c34cfe8098200c56eb1d8f8edbaa8e"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-second-native-rejection.json",
+      "bytes": 28817,
+      "sha256": "6a8a514d4e7472f0c3cd71f9ae3fdc8f376403fe3485eeed726702d0f3a49816"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-source-freeze.json",
+      "bytes": 473,
+      "sha256": "b611848b2a0e904351ea14d59d8b943913ea6f9d6ee4cd1ca8ad5cb2836127ca"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-start.json",
+      "bytes": 161503,
+      "sha256": "aa3ea1c191f5eebb204a2a6814f0888e76057e0e2f4da4f7a3155c953a75491a"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-success.json",
+      "bytes": 20843,
+      "sha256": "f995384f9909e7c9462e9751e605cfa30bfb22585fa27bcb256f3fb37f4ad299"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-test-kit.json",
+      "bytes": 3171,
+      "sha256": "1183009390841408cadda2bbb061251f1b3249364a583e6954b10940dab5d63a"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-third-linux-freeze.json",
+      "bytes": 491,
+      "sha256": "ee5d0126b967cf75b9a2de682355d7fa7423a5f2abaa569d1e1cab0bebdc63b0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-windows.json",
+      "bytes": 530,
+      "sha256": "ebbdb229ad40e56abb41f1782c662597169cdaca6ea87f02019419b3972aaed8"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-depth-build18-xctest-idle-diagnostics.json",
+      "bytes": 1338,
+      "sha256": "ced196131c1e960ca8eaeea74240abb30b5abf0e6d129fd2b1b5db71844c1607"
+    },
+    {
       "path": "Documentation/ValidationLogs/m4-motion-build17-fifth-linux.json",
       "bytes": 230,
       "sha256": "d8155ba39812884cfe8c14f2da05ceb38bc80f73abacf48bf24f1afe11abd438"
@@ -1372,6 +1462,11 @@
       "path": "Documentation/ValidationLogs/m4-motion-build17-third-native-partial-review.json",
       "bytes": 2378,
       "sha256": "a4f3baead91005a8276162b6e4ebb2071b96f4d9d034412eadf77bb9ee57a6d0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-motion-build17-user-feedback.json",
+      "bytes": 582,
+      "sha256": "f918c75cd0c32dfac0c6701d862277d26c2e07afc783b5e5b02426b90ae91fb1"
     },
     {
       "path": "Documentation/ValidationLogs/m4-motion-build17-windows.json",
@@ -1485,8 +1580,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6364,
-      "sha256": "f081868885ca4c68b5120e1cb3844eedeb651a849da5ca35fc6d39a9d22defae"
+      "bytes": 5649,
+      "sha256": "3de2dab719699ba5863fd289874b7aab988b68e31b1de424ae1f865316074f51"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -1560,8 +1655,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 49473,
-      "sha256": "a8727d8678f8b15a1876b004435341f41eae499b9eb4a0a99dc1f7c6b07fc437"
+      "bytes": 54390,
+      "sha256": "fe65c708247c416d32eb71eb0524f503a2fb6ce9afaad3866769418f71b5d3fc"
     },
     {
       "path": "Package.resolved",
@@ -1900,13 +1995,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 21542,
-      "sha256": "f714f482cfc0193a6763cc9f20f8add5e70db3a808d1f34beddf5848d5d31159"
+      "bytes": 26111,
+      "sha256": "83062d421f52c999d983a616fe18673cda186c2af0f01f1e4576f53510529132"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 40893,
-      "sha256": "6ec7c99b7851eb1fb3c3c921910362c264ad8e61cd65e5dcd80e61b8c137d974"
+      "bytes": 45478,
+      "sha256": "8a4858d4b4ad59b50bcc9fe40e405e60555e253b1af78373f32373dad43d0682"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -1960,8 +2055,8 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "bytes": 10389,
-      "sha256": "9eb76e057150b8d15b78d16310d2ffe11ec3419122c523d646a09e15c3975c0c"
+      "bytes": 12863,
+      "sha256": "df40a4d1d46c751999eca419e6248922efdba782ba6d195df5d94073b61cb835"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -3811,7 +3906,7 @@
     {
       "path": "project.yml",
       "bytes": 2612,
-      "sha256": "8ee5b6b489f8001f416c2100a75cc25fd9560f9ca715dd17bfe8a53c6f57af0d"
+      "sha256": "5730e4c3e033c8bf7e7d8c0775d932d74509b3867fd46c4fba57b3306185166c"
     },
     {
       "path": "scripts/check_repository.py",

@@ -1,0 +1,20 @@
+{
+  "recordedAtUTC": "2026-10-16T02:18:07.795015+00:00",
+  "run": 38835963502,
+  "sourceRevision": "76ede6b266304749db37029b66d89b0d27eb39e2",
+  "xctestAnimationNotificationWaits": 3,
+  "actualLogLines": [
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T01:55:11.3131950Z     t =    74.38s App animations complete notification not received, will attempt to continue.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T01:57:59.6579520Z     t =   112.82s App animations complete notification not received, will attempt to continue.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T02:02:27.3734060Z     t =    79.20s App animations complete notification not received, will attempt to continue."
+  ],
+  "example": {
+    "test": "testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu",
+    "waitStartSeconds": 19.16,
+    "missingNotificationSeconds": 79.2,
+    "tapSentSeconds": 79.22
+  },
+  "interpretation": "In this recorded example XCTest waits for an animation-complete notification before sending the next tap. It is not evidence that the app received a tap and then froze for60 seconds. Root cause and phone responsiveness are not established; do not treat long static intervals or desktop frames as animation/FPS acceptance.",
+  "testAssertionsUnchanged": true,
+  "testsAndReleasePassed": true
+}
