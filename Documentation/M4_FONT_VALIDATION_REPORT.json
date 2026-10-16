@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 actual native-visible text + canonical partial-glyph viewport validation full CI pending",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -650,7 +650,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "f10166b7603eecf6d16e9eb85362edc4b9e2166af776b24eb3a4607d597a2aea"
+      "sha256": "b9c85c277ebe8d21d6e8641819fc1413b9470a7698e1f0ad69b76bd324d8e755"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "9dda1b98f992087f7e561a73dccca39d7090807771f33db2bea5d29dfe0be687"
+      "sha256": "990f68866ed99c64c7905b584de504cca782dacd56cde27127f4c76a40774db9"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -794,7 +794,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "8b6f2a0e86ae89be6093f74bcefbddfa571d6c2f8b48f3484389794fa010d425"
+      "sha256": "78e3ae359722aac93a891e56e0c9ad3bcc7e892605d593206778dcf3bcb0c3a4"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -1054,7 +1054,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "cf4afd4034c677887fd9af92596f5706e08a7c19aeab1f37fdd168cf4b950c01"
+      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -2210,7 +2210,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "97be12f14d7d2e3b5132c9d96ba35a5095d972cb97bda9cb9d1f1b78e0d9b7db"
+      "sha256": "b86149b2176cc4b2884d0988d56789b6ba53a811874131f7d61d3b6d4eea1ded"
     },
     {
       "path": "project.yml",
@@ -2325,6 +2325,7 @@
     "Documentation/ValidationLogs/m4-font-build23-fresh-anchor-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-native-visible-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38890891607.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38892156952.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38892611316.json",
@@ -2359,6 +2360,7 @@
     "Tests/iOS/ReadingFontTests.swift",
     "Tests/iOS/TXTReadingTests.swift",
     "Vendor/ReadiumToolkit/README.md",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
     "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
     "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
     "Vendor/ReadiumToolkit/UPSTREAM.json",

@@ -2,6 +2,8 @@
 
 ## 实际最新断点（先看这里）
 
+最新源正在准备：92ad/38911801177 full.log真实失败仍仅新EPUB一例（summary待下载51159），第二次导入后canonical变h1,char0/章节头；与showSpread前采隐藏初始化DOM吻合。测试19db的alpha等待能避免测试过早操作，但用户连续换字也可触发，所以不是继续只补测试：Vendor分页preserve在采样前后核scrollView.window/alpha1，Adapter采完整位置最多3s/32ms等待，所有await前后核cancel/open/navigator/mode任务，禁止保存隐藏过渡章头；扩展已有真实font-ready关闭测试，启动旧capture task，关闭/新open后必须Cancellation，不能返回瞬态头部或新reader点。App UI/Core不改，运行Adapter与第三个Vendor Swift确有新增改动，必须重冻新完整CI，不再宣称当前运行源与7ab一致。旧19db/38914038336继续跑完留证；92ad大原ZIP走C缓存+最小logs/summary解压，完整xcresult在原ZIP不冒称已全解压。未有Build23IPA，保留所有原文件、旧包、备份。
+
 2026-10-16T14:19:20.448782+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
 
 主源`19db1b74af1be780c80994c84a4a324045b657f9` / `codex/m4-font-native-visible` / CI38914038336，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38914038336。唯一主watcher工具session37095，写build/ci/38914038336/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': True, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。

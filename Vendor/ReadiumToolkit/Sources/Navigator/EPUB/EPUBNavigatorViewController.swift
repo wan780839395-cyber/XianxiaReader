@@ -198,10 +198,13 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             // decoration work; rapid cancelled preference requests must not
             // introduce that stronger readiness dependency into a visible page.
             await spread.spreadLoaded()
-            guard !Task.isCancelled, paginationView?.currentView === spread else { return false }
+            guard !Task.isCancelled, paginationView?.currentView === spread,
+                  spread.scrollView.window != nil, spread.scrollView.alpha > 0.99 else { return false }
             let offset = spread.webView.scrollView.contentOffset
             anchor = await spread.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: spread.webView.bounds.height)
-            guard !Task.isCancelled, paginationView?.currentView === spread, spread.webView.scrollView.contentOffset == offset else {
+            guard !Task.isCancelled, paginationView?.currentView === spread,
+                  spread.scrollView.window != nil, spread.scrollView.alpha > 0.99,
+                  spread.webView.scrollView.contentOffset == offset else {
                 tracePreferenceReflow("discarded changed page/offset")
                 return false
             }

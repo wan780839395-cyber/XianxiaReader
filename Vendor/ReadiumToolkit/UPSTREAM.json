@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "cf4afd4034c677887fd9af92596f5706e08a7c19aeab1f37fdd168cf4b950c01"
+      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1702,6 +1702,7 @@
     "dependenciesChanged": false,
     "fullCIPendingAtSourceCheckpoint": true,
     "sameBasenameFiles": "Each FileURL receives a UUID route segment; memoized across chapter resources. Two same-name imports must retain independent URLs and original glyph metrics.",
-    "fontReadyBridge": "Existing unrefined evaluateScript observes document.fonts.ready Promise completion; bounded15s/32ms status probes, cancellation and visible resource error. No callAsyncJavaScript/WebKit Swift overlay dependency."
+    "fontReadyBridge": "Existing unrefined evaluateScript observes document.fonts.ready Promise completion; bounded15s/32ms status probes, cancellation and visible resource error. No callAsyncJavaScript/WebKit Swift overlay dependency.",
+    "nativeCaptureGuard": "Paged DOM preservation requires an attached window and scrollView.alpha1 before/after sampling. Adapter retries unavailable native samples for up to3s at32ms,checks cancellation/session/navigator and active reflow before and after awaits. Never return hidden initial chapter-head DOM; closed old capture cannot return a new-reader locator."
   }
 }

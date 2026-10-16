@@ -26,10 +26,19 @@ final class ReaderRenderingTests: XCTestCase {
             guard let web = self.webViews(in: oldNavigator.view).first else { return false }
             return try await web.evaluateJavaScript("window.__xrFontReadyStarted === true && window.__xrFontReadySettled !== true") as? Bool == true
         }
+        let captureStarted = expectation(description: "Capture while initial font page is hidden")
+        let oldCapture = Task { @MainActor in
+            captureStarted.fulfill()
+            return try await engine.captureCurrentPosition()
+        }
+        await fulfillment(of: [captureStarted], timeout: 1)
         engine.close()
         var delivered: [UUID] = []
         engine.onPositionChanged = { delivered.append($0.bookID) }
         let (newBook, newNavigator) = try await open(engine)
+        do { _ = try await oldCapture.value; XCTFail("Hidden-page capture must not return a transient or new-reader locator") }
+        catch is CancellationError { XCTAssertNil(oldNavigator.parent) }
+        catch { XCTFail("Closed capture should be cancelled: \(error)") }
         XCTAssertNotEqual(oldBook.id, newBook.id); XCTAssertFalse(oldNavigator === newNavigator)
         try await waitUntil {
             guard let web = self.webViews(in: newNavigator.view).first else { return false }

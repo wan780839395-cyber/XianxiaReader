@@ -39,3 +39,7 @@ Windows语法与工具测试、Linux/macOS Core、真实iOS集成/界面、无�
 ## iOS18.5模拟器的WebKit293831
 
 43e/bc6/2b5/255候选原始日志显示dyld在执行测试前找不到libswiftWebKit.dylib，不能将其后UI缺少PID当各功能回归的源码故障或通过。官方WebKit293831明确两种callAsyncJavaScript Swift入口均受影响（min<=18.3+18.5sim）；不提高iOS16门槛、不改用户/CI模拟器、不注入DYLD。最终候选使用既有非refined evaluateScript注册标准document.fonts.ready.then状态，最多15s/32ms检查Promise是否完成，真正完成而非固定延时决定pendingLocator恢复；失败可见，clear取消Task，原关闭迟到/字体重开回归不减。Swift语法/全CI/原生仍待新门槛，官方资料 https://bugs.webkit.org/show_bug.cgi?id=293831 。
+
+## 隐藏初始化页面的位置采样
+
+92ad/38911801177真实log在第二次导入时变为h1/char0/章节头，上一阅读位置仍在长段；与实际showSpread之前的隐藏DOM读取吻合。用户连续换字也可能在初始化恢复中触发捕获，不能只让测试等待。现在Vendor分页preserve先/后核scrollView.window与alpha1，隐藏初始化页返回不可用；Adapter捕获以32ms让步、最多3s等待可用样本，每次await前后核取消、openRequest、navigator和排版任务，不采过渡章节头，不用百分比替代。上限到期仍显式unavailable，关闭/新会话抛CancellationError。真实font-ready延迟用例新增关闭中的capture task，必须取消，不能给出旧临时头部或新reader位置。依赖/锁/排版JS不变，三个Vendor Swift改动均明示摘要；运行源码已有这次必要修改，之前仅测试变化区间另列，须新全量CI。

@@ -240,14 +240,26 @@ import XianxiaCore
         try Task.checkCancellation()
         guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
         guard modeChangeTask == nil else { throw ReaderPositionCaptureError.unavailable }
-        let captured = await navigator.preserveCurrentDOMLocationForModeChange()
-        try Task.checkCancellation()
-        guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
-        guard captured, modeChangeTask == nil, let locator = navigator.currentLocation else {
-            throw ReaderPositionCaptureError.unavailable
-        }
-        if let txtReading { return try TXTPositionCodec.encode(locator, bookID: bookID, plan: txtReading.plan) }
-        return try ReadiumPositionCodec.encode(locator, bookID: bookID)
+        let deadline = Date().addingTimeInterval(3)
+        repeat {
+            try Task.checkCancellation()
+            guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
+            guard modeChangeTask == nil else { throw ReaderPositionCaptureError.unavailable }
+            let captured = await navigator.preserveCurrentDOMLocationForModeChange()
+            try Task.checkCancellation()
+            guard openRequestID == requestID, self.navigator === navigator else { throw CancellationError() }
+            guard modeChangeTask == nil else { throw ReaderPositionCaptureError.unavailable }
+            if captured, let locator = navigator.currentLocation {
+                if let txtReading { return try TXTPositionCodec.encode(locator, bookID: bookID, plan: txtReading.plan) }
+                return try ReadiumPositionCodec.encode(locator, bookID: bookID)
+            }
+            // A freshly mounted spread may still be restoring its initial full
+            // locator behind the loading indicator. Wait for readable native
+            // content instead of saving its transient chapter-head DOM.
+            guard supportsTextAppearance, Date() < deadline else { break }
+            try await Task.sleep(nanoseconds: 32_000_000)
+        } while true
+        throw ReaderPositionCaptureError.unavailable
     }
 
     public func go(to position: ReadingPosition) async throws {
