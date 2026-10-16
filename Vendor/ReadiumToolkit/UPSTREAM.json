@@ -1423,7 +1423,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "eb478267383d7c2a9d16a3b52ce997c921fdcb95ccb582bf94ec23b84100e429"
+      "sha256": "097da89b1e9aef30050af2ac4a271cc86914b6c3e0e64bd35504f25917d6863a"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
@@ -1698,6 +1698,7 @@
       "https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:)"
     ],
     "dependenciesChanged": false,
-    "fullCIPendingAtSourceCheckpoint": true
+    "fullCIPendingAtSourceCheckpoint": true,
+    "sameBasenameFiles": "Each FileURL receives a UUID route segment; memoized across chapter resources. Two same-name imports must retain independent URLs and original glyph metrics."
   }
 }

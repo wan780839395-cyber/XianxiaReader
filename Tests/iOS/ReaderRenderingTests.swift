@@ -130,6 +130,41 @@ final class ReaderRenderingTests: XCTestCase {
             evidence.name = "font-real-load-anchor-\(continuous)"; evidence.lifetime = .keepAlways; add(evidence)
             let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
             image.name = "font-epub-\(continuous ? "continuous" : "paged")-build23"; image.lifetime = .keepAlways; add(image)
+            let metricScript = "(()=>{const c=document.createElement('canvas').getContext('2d');c.font='30px \(font.cssFamily)';return c.measureText('iiiiWWWW').width;})()"
+            let metricValue = try await XCTUnwrap(active()).evaluateJavaScript(metricScript) as? Double
+            let firstMetric = try XCTUnwrap(metricValue)
+            await model.importReadingFont(from: try BundledReadingFont.wenKai.resource().fileURL)
+            let second = try XCTUnwrap(model.importedFonts.first(where: { $0.id != font.id }))
+            XCTAssertEqual(second.fileExtension, font.fileExtension)
+            let firstURL = try await services.files.readingFontURL(font)
+            let secondURL = try await services.files.readingFontURL(second)
+            XCTAssertEqual(firstURL.lastPathComponent, secondURL.lastPathComponent)
+            XCTAssertNotEqual(firstURL, secondURL)
+            let secondScript = ReadingFontTests.chineseFontScript(second.cssFamily, paragraph: "#long-paragraph")
+            try await waitUntil {
+                guard let web = active() else { return false }
+                return try await web.evaluateJavaScript("(\(secondScript)) && (\(anchorScript))") as? Bool == true
+            }
+            let routesScript = """
+                (()=>{const result={};for(const style of document.querySelectorAll('style')){
+                  for(const r of Array.from(style.sheet?.cssRules||[])){
+                    if(r.type!==CSSRule.FONT_FACE_RULE)continue;
+                    for(const f of ['\(font.cssFamily)','\(second.cssFamily)']){
+                      if(r.style.fontFamily.includes(f))result[f]=r.style.src;
+                    }
+                  }
+                }return result;})()
+                """
+            let routeValue = try await XCTUnwrap(active()).evaluateJavaScript(routesScript) as? [String: String]
+            let routes = try XCTUnwrap(routeValue)
+            XCTAssertEqual(routes.count, 2); XCTAssertEqual(Set(routes.values).count, 2, "Same-basename fonts require independent served URLs")
+            model.selectImportedFont(font.id)
+            try await waitUntil {
+                guard let web = active() else { return false }
+                return try await web.evaluateJavaScript("(\(fontScript)) && (\(anchorScript))") as? Bool == true
+            }
+            let reselectedMetric = try await XCTUnwrap(active()).evaluateJavaScript(metricScript) as? Double
+            XCTAssertEqual(try XCTUnwrap(reselectedMetric), firstMetric, accuracy: 0.01)
             for bundled in BundledReadingFont.allCases {
                 let asset = try bundled.resource().asset
                 model.selectImportedFont(asset.id)

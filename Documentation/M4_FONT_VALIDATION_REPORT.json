@@ -199,7 +199,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "452e47076d32616f59361429024821815346a4eb69fb1c94e24c70fdbf94b1ea"
+      "sha256": "fbc1f5ebeeadd76384deee3556e2f54d549538a8d253f29c459a96d723ea373a"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -794,7 +794,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "sha256": "325fbbab75b2e6f64c7995ab264d0b0599e3febfe66ba2850a5bdb6b3ac2cfb9"
+      "sha256": "cd7556e107845d5440fec9c27c7aa58d0038f9a39a6188d031b296f6c4607a58"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -1058,7 +1058,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "sha256": "eb478267383d7c2a9d16a3b52ce997c921fdcb95ccb582bf94ec23b84100e429"
+      "sha256": "097da89b1e9aef30050af2ac4a271cc86914b6c3e0e64bd35504f25917d6863a"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
@@ -2210,7 +2210,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "276a28f76e6ee01c78b996084e9cb68d98883e22e66065d0ab2f927de391a2d3"
+      "sha256": "62a08aecfc0158886e9ff9cce9c6c97c6089d0f13b8b40a7976a1371afe21289"
     },
     {
       "path": "project.yml",
@@ -2317,6 +2317,7 @@
     "Documentation/ValidationLogs/m4-font-build23-api-review.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-provenance.json",
+    "Documentation/ValidationLogs/m4-font-build23-bundled-ui-partial.json",
     "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
     "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
@@ -2328,6 +2329,7 @@
     "Documentation/ValidationLogs/m4-font-build23-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-third-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-viewport-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
     "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
     "HANDOFF.md",
@@ -2358,10 +2360,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7",
-  "run": 38892156952,
-  "branch": "codex/m4-font-ready",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892156952",
+  "sourceRevision": "2b5a156acaee634f820254473f2692e3a298c96b",
+  "run": 38892611316,
+  "branch": "codex/m4-font-viewport",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892611316",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2448,5 +2450,12 @@
     "completionPending": true,
     "runtimeSameAsCurrent": true,
     "differences": "Only one new test file and source-checkpoint metadata naming, plus docs"
+  },
+  "priorReadyCandidate": {
+    "run": 38892156952,
+    "source": "bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7",
+    "completionPending": true,
+    "runtimeSameAsCurrent": true,
+    "difference": "New TXT test helper now uses one atomic WebKit callback; prior source emitted a no-throw try warning"
   }
 }

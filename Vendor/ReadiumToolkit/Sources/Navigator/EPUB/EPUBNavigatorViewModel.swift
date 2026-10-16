@@ -340,7 +340,10 @@ enum EPUBScriptScope {
                                 return url
                             }
                             let name = file.lastPathSegment ?? UUID().uuidString
-                            let url = server.serve(file: file, at: "assets/fonts/\(name)")
+                            // Imported files can share a basename in different UUID
+                            // directories. Give each FileURL a unique served route;
+                            // servedFonts still reuses it across content resources.
+                            let url = server.serve(file: file, at: "assets/fonts/\(UUID().uuidString)/\(name)")
                             self.servedFonts[file] = url
                             return url
                         }

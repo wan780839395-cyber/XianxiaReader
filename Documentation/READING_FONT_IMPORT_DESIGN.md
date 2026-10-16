@@ -25,3 +25,7 @@ API与成熟实现：重读[Readium官方字体指南](https://github.com/readiu
 测试字体复用仓内Readium随附IA Writer Duospace Regular（81636B TTF），按原bytes复制到Fixtures/Fonts，OFL同行保存。属于验证样本，不内建字体商店；含中文小说测试中的汉字仍可能fallback。生产不下载字体或读取个人样书。测试需要实际FontFace loaded+CSS family+拉丁canvas宽度不同，EPUB两模式非零文字可见/TXT稳定byte+UTF16及视口、150%字号与静止重开、原件bytes、12资源上限、错误和关闭竞态。真UI覆盖字体选择/持久化/深色/恢复默认及原生选择器取消；有效字体输入由真实CoreText服务/ReaderViewModel集成测试覆盖，不能宣称真UI已走通所有File Provider。
 
 Windows语法与工具测试、Linux/macOS Core、真实iOS集成/界面、无签名Release23及PNG/录屏/原始帧复核分别设门槛。普通签名/TrollStore、真系统辅助功能/旋转、大中文字体首次加载/内存/FPS/功耗和全样书矩阵继续单列，M4整体未完成。
+
+## 同名字体路由
+
+3.11原资源闭包取file.lastPathSegment，WebViewServer.serve按给定route精确插入、没有自动区分同名文件。用户目录使用稳定UUID/font.ttf，因此给每个FileURL的route加独立UUID段，原servedFonts仍在同一Navigator跨章节复用。不迁移目录、不复制别名字体、不改原字节或font-face公开配置。新EPUB双模式用例真实导入IA与文楷到两个同名font.ttf路径，断言内联CSS的源URL独立、实际中文字形、切回首款字宽一致与原文字可见，随后核原两内置及重开。此为新运行候选，须完整新CI。

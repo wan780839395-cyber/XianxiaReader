@@ -2,6 +2,10 @@
 
 ## 实际最新断点（先看这里）
 
+源审计再确认一实际问题：3.11 ViewModel按file.lastPathSegment挂载字体、WebViewServer.serve不自动去重；两个用户字体都固定名font.ttf时URL路由相同。现沿原公开server为每个FileURL加独立UUID路由段、原servedFonts仍跨章节复用，不改已持久化目录或字体原件；扩展新EPUB双模式用例真实导入IA与文楷两同名TTF，核路由不同/中文真实字体/切回首款拉丁字宽不变和原锚点，再走原两内置重开。此运行源码新增修正不在2b5/38892611316中，须重冻另ref全跑后才交付。原35主体/16新增数量保持，仍须实际核验。当前未交付，原各CI继续独立取证。
+
+最终待验主候选：源2b5a156acaee634f820254473f2692e3a298c96b，ref codex/m4-font-viewport，实际CI38892611316（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892611316）。Windows433/17、原35主体/16新增/522blob已重冻；Core133各/iOS134=115集成+19UI/Release23/原生全pending，report已切新run并重置。相对bc6只改新TXT取样helper及文档，App/Adapter/Vendor运行Swift与43e一致。旧43e/38890891607（watch74374）、bc6/38892156952（watch75733）正常独立跑；277/38887978313已131/133失败，原件92586与watch74660结束。禁止重复派发或拿旧局部结果替当前门槛。现在只准备验证/交付助手与文档，不再改冻结源码，尚无Build23 IPA。
+
 277原件完整summary已核131/133、2失败/0跳过、旧124全过，两个字体UI与内置原件/许可/中文字形CoreText通过；prior-38887978313-result.json保留。该原件还含新TXT嵌套async helper第91行一次“try无throw”Swift警告（不能称编译warning0），现将字体实际字形和原文字Y合成同一JS快照，在已有wait closure内检查，保留原glyph/loaded/3px锚点/重开门槛，避免嵌套helper与两次await取样。尚待Windows重核并另ref完整新CI；bc6/38892156952与43e/38890891607继续运行，运行源码相同/测试各有差异，不能替新候选宣称全过。
 
 现在主候选已切新源bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7 / codex/m4-font-ready / CI38892156952（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892156952），gates重置pending，预期Core133各/iOS134=115集成+19UI；Windows433/17、35旧主体保持/16新增/522源已重核。与43e的App/Packages/字体/Vendor运行Swift完全一致，实际只改一个新测试文件及UPSTREAM checkpoint字段命名和文档（Git已核）。43e/38890891607独立继续，不取消，最终按新bc6完整门槛交付。277failure原件下载92586仍运行，核完summary/原生局部后再写receipt，不把字体CoreText/真UI通过扩大为正文/Release通过。当前所有运行source冻结，普通HEAD/index保持，尚无Build23 IPA。

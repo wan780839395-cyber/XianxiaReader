@@ -1,0 +1,203 @@
+{
+  "recordedAtUTC": "2026-10-16T11:20:06.248499+00:00",
+  "run": 38887978313,
+  "sourceRevision": "277dca99bde3eabb9eb657ce4ee50e6adf537baa",
+  "images": [
+    {
+      "name": "reader-font-bundled-kai-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/71294AB2-668F-42F1-A0CE-F325CA0636B1.png",
+      "bytes": 873317,
+      "sha256": "aa7d8daa7f3e13600b7496bbf7bf495426203a0845808d2d80a38211a03c9921",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-bundled-song-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/20404796-E2D9-47FA-9C3C-421535FF4B11.png",
+      "bytes": 709504,
+      "sha256": "794a03846c5247e087774cbf218a61a13a35797e9470cfcd93880e9313d0b075",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-default-restored-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/48F12E7F-A8C8-440F-A597-F64BB317F828.png",
+      "bytes": 1089396,
+      "sha256": "a4f4c58c4d7d18e035481936a8da348662e078a876d524a0e301f8266fec0a26",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/65C977B4-5076-4B76-9E28-1D30CB77DBD6.png",
+      "bytes": 1114187,
+      "sha256": "c9555bfd78bdce5f10ce827ff5a1fb88442e94cd3c8ee24ae3ecd0330f41e504",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3B65CCAD-C8DF-4910-A07F-B136C241B17C.png",
+      "bytes": 852537,
+      "sha256": "1bfc52f3cd9d9daa1879680c05e7e36078620dc9b7cf0a403c6ceb0727cf3ad0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/122883DF-0F14-4A18-9BC2-79F80CB9B9F7.png",
+      "bytes": 872172,
+      "sha256": "70097a273a64a12d6406db1be9f773c17c6f1b40fe89917d548acb728a67c515",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38887978313/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5AB5058F-7DD9-4F12-979F-43C8E6622D13.png",
+      "bytes": 871729,
+      "sha256": "9f942dddd13721468b34516a7d0fb5400f18774f2451d8262693ad45d859cced",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "path": "build/ci/38887978313/FontReview/images-11.png",
+      "sha256": "028fca6faf0bdff9e20bfd2778b1d1fcdfdd8745eda6d6d959dfee6e694fb326"
+    },
+    {
+      "path": "build/ci/38887978313/FontReview/images-12.png",
+      "sha256": "76cd6e2357ea53dcf8a0bb916105e15769b0d5b6614b9cb2cdfc89eba7000622"
+    }
+  ],
+  "scope": "Only seven new font UI PNGs manually viewed in contacts11/12. Not all69 prepared images, videos, actual Chinese reading pages or current candidate acceptance.",
+  "observations": "Song/Kai two cards fit existing light/dark surfaces,44pt controls and chosen checkmark; system/imported choices remain distinct. Color-preview label is explicit for resource fonts. Scrolling clips cards at viewport boundary as expected; no overlap in the visible controls.",
+  "currentCandidateAccepted": false,
+  "phonePerformanceAccepted": false
+}
