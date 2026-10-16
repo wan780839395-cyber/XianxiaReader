@@ -4,7 +4,7 @@
 
 ## 最新实际断点
 
-Build19第一候选d4908df6f6414d0e1f23b764e2b5dba68a021c9a/完整CI38842135511正在Apple job；真实Linux122/122与四长TXT Release探针、Windows423语法新增0/17工具已通过。Apple编译/iOS106/Release19及原生复核尚无结果，尚无本轮交付包。504源blob已冻结，31旧包/802开始路径/原HEAD空index/M2M3保持；完整发展记录如下。辅助validate_screen.py、review_screen.py、deliver_screen.py只准备，必须按真实门槛执行，不能提前写通过。
+Build19第二候选c847210deaf2b18ad8a361fc033765bc1f25bdc8/完整CI38843421879已queued。第一轮d4908df6/38842135511由Agent修正反向快甩算法而主动取消，实际API completed/cancelled，Linux122/四探针通过，Apple取消素材212209848字节与完整日志保留中，实际完成子阶段仍须核日志。第二轮504源blob已刷新、Windows423语法新增0/17工具记录保持、原36测试主体保持；本轮Apple/iOS106/Release19及原生复核未通过，尚无用户包。31旧包/802开始路径/原HEAD空index/M2M3保持。
 
 ## 开工历史（以下逐步检查点保留）
 
@@ -37,3 +37,15 @@ CI38842135511实际Linux日志122/122与四长TXT Release探针通过，零源�
 ## 第二候选保存/派发前
 
 第一轮API已completed/cancelled，完整取消日志/最终job状态已落build/ci/38842135511；不是源码失败。第二候选改离手位置相邻屏格和反向快甩回归、动画被布局中断清锁、明确接口注释、显式null严格解码；36旧测试主体仍保持，423语法新增0/17工具（脚本未改）通过。原31包/802路径与源快照保持，接下来第二轮完整122/106/Release19，不沿用第一轮Apple门槛。
+
+## 第二候选CI已派发
+
+实际源c847210deaf2b18ad8a361fc033765bc1f25bdc8/CI38843421879，派发返回成功，未假定编译通过。等真实状态和完整资料；不再修改运行源码，失败则保留证据后最小修正。
+
+## 第一轮完整日志与第二轮主动取消已核
+
+首轮实际Apple122Core/四探针通过，94集成93过/1新跨章导航准备失败，随后3书库UI过，在第4书库UI期间取消；ReaderUI/完整iOS/Release未完成。212209848字节诊断ZIP已下载CRC解包，完整xcresult/日志保留。三个新增渲染测试open后改用既有真实cover DOM+原生位置probe准备；原3px/重入/几何/所有旧断言保持。第二候选生产实现不变，只为此准备修正主动取消并待核最终日志；现在Windows复核并冻结第三候选，先核清第二轮实际阶段后再派发。
+
+## 第三候选完整CI前
+
+第二轮最终completed/cancelled，Linux122/四Release通过；完整日志确定Apple仅到XcodeGen依赖XcodeProj生产构建，macOSCore/iOS/Release未开始，1696字节诊断ZIP已CRC保存。第三候选与第二生产源码完全相同，仅三新渲染case补既有真实cover DOM+原生位置probe/20秒，36旧主体/所有旧断言保持。Windows423语法新增0/54pristine再次过，17工具脚本未变沿用实际通过记录。504blob已刷新；现在私有index保存并完整122/106/Release19重跑，不沿用前两轮未完成门槛。

@@ -31,7 +31,8 @@ final class ReaderRenderingTests: XCTestCase {
     @MainActor func testVerticalScreenNativeTargetsOverlapReverseCancelClampAndLeaveContinuousUnchanged() async throws {
         let engine = try screenEngine(reduced: true)
         let (_, state) = try mount(engine); state.visible = false
-        let (book, _) = try await open(engine)
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
         let scroll = try continuousScroll(engine)
         try await waitUntil { scroll.contentSize.height > scroll.bounds.height * 5 }
@@ -54,7 +55,8 @@ final class ReaderRenderingTests: XCTestCase {
     @MainActor func testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation() async throws {
         let engine = try screenEngine(reduced: false)
         let (window, state) = try mount(engine); state.visible = false
-        let (book, _) = try await open(engine)
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#start")
         let scroll = try continuousScroll(engine)
         let first = try XCTUnwrap(view(identifier: "readium.chapter.1", in: scroll))
@@ -88,7 +90,8 @@ final class ReaderRenderingTests: XCTestCase {
     @MainActor func testVerticalScreenKeepsNonzeroDOMAnchorAcrossPolicyToggleAndReopen() async throws {
         let engine = try screenEngine(reduced: true)
         let (_, state) = try mount(engine); state.visible = false
-        let (book, _) = try await open(engine)
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
         let web = try resourceWebView(engine, index: 1)
         try await waitUntil { abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }

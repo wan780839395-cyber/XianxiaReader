@@ -2531,5 +2531,22 @@
       "id": 12020609661,
       "bytes": 115801
     }
-  ]
+  ],
+  "macOSCoreTests": 122,
+  "integrationTestsActuallyExecuted": 94,
+  "integrationPassed": 93,
+  "integrationFailed": 1,
+  "observedFailure": "testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation: caught navigationFailed at jump helper, before geometry assertions; initial native readiness was not awaited",
+  "failureRootCause": "Missing readiness preparation identified; unique navigationFailed root cause not proven",
+  "cancelledDuring": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore, after 3 UI cases passed; reader UI cases not executed",
+  "strictIOSRunIncomplete": true,
+  "deviceReleaseExecuted": false,
+  "IPACreated": false,
+  "fullLogSha256": "96015e266fb0681380167e040a49a9dfed1a7784f473d10c6b7bebcb677e00bf",
+  "diagnostic": {
+    "path": "build/ci/38842135511/apple-diagnostics.zip",
+    "bytes": 212209848,
+    "sha256": "8ac149ce40baa2eb4b97cbec3873638a90c5757f64dee565061bf32155bd5de8",
+    "zipCRC": true
+  }
 }
