@@ -1,0 +1,31 @@
+{
+  "recordedAtUTC": "2026-10-16T07:29:45.381591+00:00",
+  "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+  "references": [
+    {
+      "url": "https://koreader.rocks/user_guide/",
+      "sections": [
+        "Go back to previous location",
+        "Skim Widget"
+      ],
+      "use": "One explicit excursion origin and a compact return action; no copied code, full history, Lua renderer or e-ink policy"
+    }
+  ],
+  "lockedReadiumVersion": "3.11.0",
+  "minimumIOS": "16.0",
+  "implementation": "Existing bounded DOM anchor sampling with success result; all actual encoding/validation remains through existing codecs",
+  "unchangedFromBuild21": [
+    "Package.resolved",
+    "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTPositionCodec.swift",
+    "App/Search/ReaderSearchViewModel.swift",
+    "scripts/ci_ios.sh",
+    ".github/workflows/ios-build.yml",
+    "Tests/Fixtures/reader-layout.epub"
+  ],
+  "newTests": 8,
+  "existingTestBodiesPreserved": 57,
+  "phoneAccepted": false,
+  "hashMethod": "Compiled-source SHA256 values are over Git-filtered blobs. Windows raw file hashes differ for existing CRLF files; all857 raw inventory files and507 Git blobs matched at start."
+}

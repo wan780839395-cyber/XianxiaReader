@@ -13,3 +13,7 @@
 Build22轻量返回条/三入口统一导航/有界完整位置capture已接入。进度仍按当前位置保存，返回点会话内单个；关闭、重复请求、await迟到和错误重试有身份保护。Vendor既有采样仅加Bool成功/取消，UPSTREAM hash同步，无Core/schema/依赖锁/JS/工作流变化。新增4生命周期+2真实渲染集成+2真UI，预期Core仍各127、iOS124（107集成+17UI）；实际数量需完整日志核。设计READING_RETURN_DESIGN.md。现在执行Windows语法/17工具、旧测试主体保持与私有index差异审阅，尚无Apple通过。
 
 Windows426语法新增0/54既有语法限制、17工具通过；57原测试主体保持，8新增/507源码blob已初次冻结。构建前源码复查补capture在首次await前固定openID/navigator，并在慢滚flush返回后重新核身份，防旧请求采样新会话。接下来重跑语法/冻结后送完整CI，仍未Apple编译/交付。
+
+构建前最终候选3637dac02ec91d972cbcb267284416cc83a5ac58，实际dispatch CI38866913465；Windows426/17、57旧主体/8新增/507源码已核。正在跑完整Linux/macOS/iOS/Release22，尚未通过；从实际run/full.log/xcresult继续，不重复dispatch。
+
+Linux实际原日志/四Release长TXT探针artifact12031169137已下载CRC核：127/127与四探针均通过；Apple正在aggregate构建测试，尚未写通过。现有watcher session77778负责38866913465真实状态/full.log/artifacts，勿重复dispatch。下一步核Apple完整summary/失败诊断或成功原件，原生复核前不打包。

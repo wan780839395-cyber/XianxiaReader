@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-16T07:27:10.713346+00:00",
+  "run": 38866913465,
+  "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+  "linuxCore": 127,
+  "linuxReleaseTXTCases": 4,
+  "applePassed": false,
+  "artifactID": 12031169137,
+  "files": [
+    {
+      "path": "build/ci/38866913465/core/logs/core-tests.log",
+      "sha256": "aa3143a4b89c2c19ddd4948eee48b50ce9763dcbb0943b1fe09db0796987cc5e"
+    },
+    {
+      "path": "build/ci/38866913465/core/TXTPerformance/summary.json",
+      "sha256": "4dd2191ca3b277dacddfb9b305bb43fda749493e0114376d06b45cb93bf915d5"
+    },
+    {
+      "path": "build/ci/38866913465/core-diagnostics.zip",
+      "sha256": "e28ef3c3c0e81b7c410e0dec8d3c1159b647be53f6d49f2a4a8c56fd274290a0"
+    }
+  ]
+}
