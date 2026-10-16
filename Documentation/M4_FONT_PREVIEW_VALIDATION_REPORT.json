@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38954435197",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -2393,21 +2393,24 @@
   "expectedIOS": 138,
   "expectedIntegration": 118,
   "expectedUI": 20,
-  "run": 38951246101,
-  "sourceRevision": "c66157d669e047152ea2246a24c674cbe0c6f281",
-  "branch": "codex/m4-font-browser-quality",
-  "latestRun": {
-    "conclusion": "",
-    "databaseId": 38951246101,
-    "headSha": "c66157d669e047152ea2246a24c674cbe0c6f281",
-    "status": "queued",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101"
-  },
-  "priorCandidate": {
-    "run": 38950061245,
-    "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
-    "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
-    "reason": "Superseded by 3x sample rendering and accurate preview error accessibility; prior CI remains uncancelled and independent"
-  },
+  "run": 38954435197,
+  "sourceRevision": "872fc755f12f3afa83eb1aa736015d5a50ec4502",
+  "branch": "codex/m4-font-browser-ready",
+  "priorCandidates": [
+    {
+      "run": 38950061245,
+      "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
+      "reason": "Superseded by 3x sample rendering and accurate preview error accessibility; prior CI remains uncancelled and independent"
+    },
+    {
+      "run": 38951246101,
+      "sourceRevision": "c66157d669e047152ea2246a24c674cbe0c6f281",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38951246101",
+      "branch": "codex/m4-font-browser-quality",
+      "reason": "Superseded by real readable DOM capture wait and rapid hidden-font-reflow regression; not cancelled",
+      "expectedIOS": 137
+    }
+  ],
   "linuxCoreTests": 135
 }
