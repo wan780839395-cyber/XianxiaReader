@@ -817,7 +817,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "dfe2eb5b83dab420d4199134cc726c02f9b619b7c37dfc5d3adc7f15988e1157"
+      "sha256": "2618bc4135d84a2da02ea2dd7551cbbedd6d6bef6e1894ac5fed82368ac7c470"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2371,7 +2371,9 @@
     "Documentation/READING_FONT_BROWSER_DESIGN.md",
     "Documentation/ValidationLogs/local-disk-cleanup-2026-10-17.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-first-linux-38950061245.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-history-38950061245.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-quality-linux-38951246101.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-resource-study.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-start.json",

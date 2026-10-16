@@ -105,7 +105,7 @@ final class ReaderRenderingTests: XCTestCase {
                     if(!n||n.nodeType!==3||n.length<=\(offset))return false;
                     const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
                     const s=getComputedStyle(p),root=parseFloat(getComputedStyle(document.documentElement).fontSize);
-                    return b.bottom>0&&b.top<innerHeight&&Math.abs(b.top-\(y))<3
+                    return b.bottom>0&&b.top<innerHeight&&Math.abs(b.top-(\(y)))<3
                       &&s.fontFamily.includes('\(resource.asset.cssFamily)')&&s.fontWeight==='600'
                       &&Math.abs(parseFloat(s.letterSpacing)/root-0.125)<0.01
                       &&Math.abs(parseFloat(s.textIndent)/root-3.5)<0.01;})()

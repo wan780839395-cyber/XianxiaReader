@@ -27,3 +27,5 @@ Windows435语法新增0/54既有限制、17工具通过；受改38原测试主�
 快速切字审查补强：既有submitPreservingLocation忽略采样Bool，在前次字体hidden reflow中仍可能继续使用临时DOM。现在同显式capture一致，最多3s/32ms让步等待真实采样成功，每await核取消/请求/navigator，defer仅清本任务；到期可见提示，不把失败当成功。新增真实分页800ms字体ready期间再选第三字体，原非零文字仍可见的回归。3a97和c661两轮继续独立跑完，仅保留适用历史文字诊断。最新源码须再完整验证；本次6新增、预期Core135各/iOS138=118集成+20UI。
 
 主候选38954435197实际Linux135/4长TXT Release已通过，116199B Core artifact12070201994已校验GitHub digest+CRC、完整提取并按AGENTS清除重复ZIP/分片，回执build/ci/38954435197/core-download-receipt.json。Windows与主源门槛保持，Apple/原生/Release仍待核；CI/下载帮手修正135编号集合及历史最小提取回执的范围描述，未改冻结运行源码。
+
+38950061245实际失败：完整文字日志和artifact manifest已留，源compiler warning/error0，20真UI其中2旧失败、新六字体UI通过；原FreshReturn旧瞬时回归失败；新六字体连续位置测试Swift插入负Y形成JS `b.top--9.84375` 语法错误（确定测试构造问题）。现在仅给新测试的Y操作数加括号，保留原fresh非零/原Y±3/CSS/字形/重开断言；不改任何原测试主体。872主候选仍独立跑完不可代替新测试修正源码。下一步重跑Windows/冻结/独立完整CI，前轮实际失败不追认成功，关机继续等待本切片门槛。

@@ -1,0 +1,229 @@
+{
+  "recordedAtUTC": "2026-10-16T19:33:55.055165+00:00",
+  "run": 38950061245,
+  "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+  "branch": "codex/m4-font-browser",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "repository-checks",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install static validation dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate repository and Swift syntax",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test simulator selection and IPA packaging safeguards",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "core-tests",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install SQLite development headers inside test container",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile and test Core with official Swift toolchain",
+          "conclusion": "success"
+        },
+        {
+          "name": "Measure Release TXT cold import and bounded long-book reopen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload Core compilation and test logs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "ios",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build, test, and package unsigned IPA",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Upload build logs, test results, project, and resolved packages",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload unsigned device IPA",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "testSummaryLines": [
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:00.8637770Z \t Executed 8 tests, with 0 failures (0 unexpected) in 6.003 (6.007) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:01.3353290Z \t Executed 4 tests, with 0 failures (0 unexpected) in 0.333 (0.334) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:21.0464600Z \t Executed 15 tests, with 0 failures (0 unexpected) in 17.928 (17.972) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:22.6432720Z \t Executed 4 tests, with 0 failures (0 unexpected) in 0.358 (0.359) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:28.4727510Z \t Executed 4 tests, with 0 failures (0 unexpected) in 4.759 (4.760) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:29.1676630Z \t Executed 5 tests, with 0 failures (0 unexpected) in 3.561 (3.978) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:29.2855730Z \t Executed 2 tests, with 0 failures (0 unexpected) in 0.016 (0.016) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:31.4107880Z \t Executed 19 tests, with 0 failures (0 unexpected) in 0.467 (0.560) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:11:09.6994380Z \t Executed 27 tests, with 3 failures (2 unexpected) in 460.136 (460.146) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:11:09.9614920Z \t Executed 5 tests, with 0 failures (0 unexpected) in 0.149 (0.179) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:11:11.1967810Z \t Executed 6 tests, with 0 failures (0 unexpected) in 1.350 (1.351) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:11:11.6859740Z \t Executed 6 tests, with 0 failures (0 unexpected) in 0.114 (0.115) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:12:54.9330780Z \t Executed 12 tests, with 0 failures (0 unexpected) in 103.604 (103.633) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:12:54.9438060Z \t Executed 117 tests, with 3 failures (2 unexpected) in 598.778 (600.080) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:12:54.9789410Z \t Executed 117 tests, with 3 failures (2 unexpected) in 598.778 (600.091) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:15:48.4281930Z \t Executed 5 tests, with 1 failure (0 unexpected) in 157.827 (157.830) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:16:19.9844530Z \t Executed 1 test, with 0 failures (0 unexpected) in 31.532 (31.533) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:26:08.5869710Z \t Executed 11 tests, with 1 failure (0 unexpected) in 588.612 (588.623) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:13.8559850Z \t Executed 3 tests, with 0 failures (0 unexpected) in 185.261 (185.269) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:13.8566880Z \t Executed 20 tests, with 2 failures (0 unexpected) in 963.233 (963.259) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:13.8568640Z \t Executed 20 tests, with 2 failures (0 unexpected) in 963.233 (963.261) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:52.2291790Z ** TEST FAILED **",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:30:15.1314160Z Simulator test exit: 65; attachment export exit: 0; summary exit: 0",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:30:15.1315260Z Simulator recording exit: 0"
+  ],
+  "compilerDiagnostics": [],
+  "failureLines": [
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:28.9922150Z 2026-10-16 19:03:25.691192+0000 XianxiaReader[23116:70034] fopen failed for data file: errno = 2 (No such file or directory)",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:03:29.0457050Z 2026-10-16 19:03:26.099419+0000 XianxiaReader[23116:70034] fopen failed for data file: errno = 2 (No such file or directory)",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:05:00.7399240Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:782: error: -[XianxiaReaderTests.ReaderRenderingTests testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes] : failed - Continuous reader did not reach expected state at testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes():341",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:05:00.8204070Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:783: error: -[XianxiaReaderTests.ReaderRenderingTests testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes] : failed: caught error: \"timedOut(\"continuous\", \"testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes():341\\nposition={\\\"href\\\":\\\"OEBPS/one.xhtml\\\",\\\"locations\\\":{\\\"cssSelector\\\":\\\"html > body > h1\\\",\\\"domRange\\\":{\\\"start\\\":{\\\"charOffset\\\":0,\\\"cssSelector\\\":\\\"html > body > h1\\\",\\\"textNodeIndex\\\":0}},\\\"position\\\":2,\\\"progression\\\":0,\\\"totalProgression\\\":0.25,\\\"xianxiaContinuousAnchorVersion\\\":1,\\\"xianxiaViewportOffset\\\":21.4375},\\\"text\\\":{\\\"after\\\":\\\"\\\",\\\"before\\\":\\\"\\\",\\\"highlight\\\":\\\"第一章 山门\\\"},\\\"type\\\":\\\"application/xhtml+xml\\\"}\\ncontinuous state=preferences:  / paged preferences: reload DOM=false; paged sample loaded=true; sampled DOM=true\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(0.0, 62.0, 402.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/one.xhtml\\\";\\n    line12 = 140;\\n    line18 = 560;\\n    long = 0;\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(402.0, 62.0, 0.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/two.xhtml\\\";\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(0.0, 62.0, 0.0, 750.0) offset=(402.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        2,\\n        5,\\n        5\\n    );\\n    height = 750;\\n    href = \\\"/OEBPS/cover.xhtml\\\";\\n    ready = complete;\\n    y = 0;\\n})\")\"",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:05:00.8307260Z Test Case '-[XianxiaReaderTests.ReaderRenderingTests testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes]' failed (35.102 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:10:50.9261880Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:48: error: -[XianxiaReaderTests.ReaderRenderingTests testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor] : failed: caught error: \"Error Domain=WKErrorDomain Code=4 \"A JavaScript exception occurred\" UserInfo={WKJavaScriptExceptionLineNumber=5, WKJavaScriptExceptionMessage=SyntaxError: Unexpected number '9.84375'. Expected ')' to end an argument list., WKJavaScriptExceptionColumnNumber=0, WKJavaScriptExceptionSourceURL=readium://35A7B229-86A8-404A-A626-B0EC47F14E9E/OEBPS/one.xhtml, NSLocalizedDescription=A JavaScript exception occurred}\"",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:10:51.1488340Z Test Case '-[XianxiaReaderTests.ReaderRenderingTests testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor]' failed (2.400 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:11:09.6759810Z Test Suite 'ReaderRenderingTests' failed at 2026-10-16 19:11:09.615.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:12:54.9433790Z Test Suite 'XianxiaReaderTests.xctest' failed at 2026-10-16 19:12:54.898.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:12:54.9686880Z Test Suite 'All tests' failed at 2026-10-16 19:12:54.908.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:13:37.8775490Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/LibraryInteractionUITests.swift:38: error: -[XianxiaReaderUITests.LibraryInteractionUITests testCoverEditorNativeFilesCancelDefaultSaveAndReopen] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:13:38.1983500Z Test Case '-[XianxiaReaderUITests.LibraryInteractionUITests testCoverEditorNativeFilesCancelDefaultSaveAndReopen]' failed (27.581 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:15:48.4279620Z Test Suite 'LibraryInteractionUITests' failed at 2026-10-16 19:15:48.424.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:20:49.7998420Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReaderInterfaceUITests.swift:329: error: -[XianxiaReaderUITests.ReaderInterfaceUITests testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu] : XCTAssertTrue failed",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:20:50.0316420Z Test Case '-[XianxiaReaderUITests.ReaderInterfaceUITests testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu]' failed (38.515 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:26:08.5868310Z Test Suite 'ReaderInterfaceUITests' failed at 2026-10-16 19:26:08.582.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:13.8562630Z Test Suite 'XianxiaReaderUITests.xctest' failed at 2026-10-16 19:29:13.852.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-16T19:29:13.8567590Z Test Suite 'All tests' failed at 2026-10-16 19:29:13.854."
+  ],
+  "artifacts": [
+    {
+      "id": 12069943541,
+      "node_id": "MDg6QXJ0aWZhY3QxMjA2OTk0MzU0MQ==",
+      "name": "XianxiaReader-build-diagnostics",
+      "size_in_bytes": 1373489835,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12069943541",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12069943541/zip",
+      "expired": false,
+      "digest": "sha256:f33d3f9c7637f7030aa40a2cfe4b4fe444025caed9576adf29f06416d3c6f3ed",
+      "created_at": "2026-10-16T19:31:44Z",
+      "updated_at": "2026-10-16T19:31:44Z",
+      "expires_at": "2026-10-30T19:30:17Z",
+      "workflow_run": {
+        "id": 38950061245,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-font-browser",
+        "head_sha": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef"
+      }
+    },
+    {
+      "id": 12068316435,
+      "node_id": "MDg6QXJ0aWZhY3QxMjA2ODMxNjQzNQ==",
+      "name": "XianxiaReader-core-diagnostics",
+      "size_in_bytes": 116264,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12068316435",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12068316435/zip",
+      "expired": false,
+      "digest": "sha256:a501da2c6e164542e9ef487038207724e323db4ec761f33f64307ac7557da906",
+      "created_at": "2026-10-16T18:49:50Z",
+      "updated_at": "2026-10-16T18:49:50Z",
+      "expires_at": "2027-01-14T18:47:45Z",
+      "workflow_run": {
+        "id": 38950061245,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-font-browser",
+        "head_sha": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef"
+      }
+    }
+  ],
+  "fullLog": {
+    "path": "build/ci/38950061245/full.log",
+    "bytes": 2987890,
+    "sha256": "b5bf47ea1e3a5470b93d209b91ffe68570e1a9007817db516f6f955ba5e730d6"
+  },
+  "retention": "Historical run only: full text logs, run/artifact metadata and this summary retained. Apple xcresult/media/IPA not downloaded; no native review or full archive verification claimed.",
+  "supersededByRun": 38954435197,
+  "reason": "A previous Build24 source candidate; not cancelled and never used as the latest source validation gate"
+}
