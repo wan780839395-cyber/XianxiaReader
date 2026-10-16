@@ -40,6 +40,8 @@ final class ReaderRenderingTests: XCTestCase {
         let origin = scroll.contentOffset.y + step * 2
         XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: 140, velocity: 5), origin + step, accuracy: 2)
         XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: -140, velocity: -5), origin - step, accuracy: 2)
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: step * 1.8, velocity: -5), origin + step, accuracy: 2)
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: -step * 1.8, velocity: 5), origin - step, accuracy: 2)
         XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: 8, velocity: 0), origin, accuracy: 2)
         let lower = -scroll.contentInset.top
         XCTAssertEqual(proposedScreenTarget(scroll, start: lower, distance: -20, velocity: -2), lower, accuracy: 2)

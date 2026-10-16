@@ -370,7 +370,10 @@ import UIKit
             }
             if let desiredLocal, let currentSlot = slots[currentIndex] {
                 let desired = currentSlot.wrapper.frame.minY + desiredLocal - contentInset.top
-                if abs(contentOffset.y - desired) > 0.5 { contentOffset.y = desired }
+                if abs(contentOffset.y - desired) > 0.5 {
+                    screenTurnInFlight = false
+                    contentOffset.y = desired
+                }
             }
         case let .failure(error):
             slot.failure = "章节布局失败：\(error.localizedDescription)"
@@ -384,6 +387,10 @@ import UIKit
         guard !layingOut else { return }
         if lastSize != bounds.size {
             screenDragStart = nil
+            if screenTurnInFlight {
+                screenTurnInFlight = false
+                setContentOffset(contentOffset, animated: false)
+            }
             lastSize = bounds.size
             for (index, slot) in slots {
                 slot.view.frame.size = CGSize(width: bounds.width, height: viewportHeight)
@@ -434,6 +441,7 @@ import UIKit
                 // Earlier resources can finish loading during the same pan.
                 // Move the gesture origin with that layout compensation.
                 if let start = screenDragStart { screenDragStart = start + desired - contentOffset.y }
+                screenTurnInFlight = false
                 contentOffset.y = desired
                 lastTrackedOffset = contentOffset.y
             }
@@ -497,14 +505,17 @@ import UIKit
                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard screenPagingEnabled, let start = screenDragStart else { return }
         let distance = contentOffset.y - start
-        let direction: CGFloat
-        if abs(velocity.y) > 0.3 { direction = velocity.y > 0 ? 1 : -1 }
-        else if abs(distance) > min(72, screenStep * 0.12) { direction = distance > 0 ? 1 : -1 }
-        else { direction = 0 }
-        // A deliberate long drag can cover several screens. A short flick
-        // cannot fling through many screens just because velocity is high.
-        let screens = max(1, (abs(distance) / screenStep).rounded())
-        targetContentOffset.pointee.y = (start + direction * screens * screenStep).clamped(to: screenOffsetRange)
+        let relative = distance / screenStep
+        var screens: CGFloat = 0
+        // Pick the adjacent stop from the RELEASE viewport. Reversing a
+        // long drag must not jump several screens behind its original start.
+        if velocity.y > 0.3 { screens = relative.rounded(.down) + 1 }
+        else if velocity.y < -0.3 { screens = relative.rounded(.up) - 1 }
+        else if abs(distance) > min(72, screenStep * 0.12) {
+            screens = relative.rounded()
+            if screens == 0 { screens = distance > 0 ? 1 : -1 }
+        }
+        targetContentOffset.pointee.y = (start + screens * screenStep).clamped(to: screenOffsetRange)
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         screenDragStart = nil

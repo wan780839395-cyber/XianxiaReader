@@ -28,10 +28,12 @@ final class ReadingInteractionTests: XCTestCase {
         var bad = ReadingInteraction(); bad.verticalScreenPaging = true
         do { try await files.saveReadingInteraction(bad); XCTFail("Screen policy requires continuous layout") }
         catch { XCTAssertEqual(try Data(contentsOf: url), original) }
-        let malformed = Data(#"{"version":1,"continuousScrolling":true,"reduceMotion":false,"autoHideMenu":true,"verticalScreenPaging":"yes"}"#.utf8)
-        try malformed.write(to: url)
-        do { _ = try await files.readingInteraction(); XCTFail("Wrong field type must be visible") }
-        catch { XCTAssertEqual(try Data(contentsOf: url), malformed) }
+        for field in ["\"yes\"", "null"] {
+            let malformed = Data("{\"version\":1,\"continuousScrolling\":true,\"reduceMotion\":false,\"autoHideMenu\":true,\"verticalScreenPaging\":\(field)}".utf8)
+            try malformed.write(to: url)
+            do { _ = try await files.readingInteraction(); XCTFail("Wrong field type must be visible") }
+            catch { XCTAssertEqual(try Data(contentsOf: url), malformed) }
+        }
     }
 
     private func store() throws -> BookFileStore {

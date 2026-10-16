@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "8a28b51278e47855b8e8b7e25648f2b05177931f1aa677fb703d360f606cb49f"
+      "sha256": "42b550b08aaba367777f6f2734e1a44d8d301850492bbe1d6a33b0315f01e490"
     }
   ],
   "remoteDependencyPins": [
@@ -1677,6 +1677,7 @@
   "verticalScreenInputPolicy": {
     "scope": "Existing bounded infinite container only. Native UIScrollView release target snapping, 90percent viewport step, overlap, small-drag cancel, native fast deceleration; paged EPUB rendering and JS remain unchanged.",
     "lifecycle": "Move gesture origin with chapter window layout compensation, reset on resize/reload/mode/close. Command guard rejects overlap while native animation or user deceleration is active.",
-    "motion": "Respect system/user reduction for explicit screen commands; native direct manipulation and native drag deceleration remain. No custom gesture overlay, CADisplayLink or new resource cache."
+    "motion": "Respect system/user reduction for explicit screen commands; native direct manipulation and native drag deceleration remain. No custom gesture overlay, CADisplayLink or new resource cache.",
+    "reverseRelease": "Directional adjacent stop from the release viewport; +1.8 screens followed by negative velocity settles at +1, never -2. Explicit layout/resize correction clears interrupted native command guards."
   }
 }

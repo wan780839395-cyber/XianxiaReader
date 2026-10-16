@@ -68,6 +68,7 @@ public extension ReaderEngine {
 @MainActor public protocol ReaderInteractionProviding: AnyObject {
     /// A passive observation of reading gestures; it never consumes publication input.
     var onReadingGesture: (() -> Void)? { get set }
-    /// Applies motion policy only. Mode changes use ReaderEngine's capability check.
+    /// Applies motion and continuous screen input policy. Layout mode changes
+    /// still use ReaderEngine's capability check and location protection.
     func setInteraction(_ value: ReadingInteraction) throws
 }

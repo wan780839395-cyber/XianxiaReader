@@ -1,0 +1,32 @@
+{
+  "recordedAtUTC": "2026-10-16T02:53:29.004449+00:00",
+  "sourceRevision": "d4908df6f6414d0e1f23b764e2b5dba68a021c9a",
+  "priorSnapshot": "ca5eb63d051ef10a37f9361195fe28c7049818cd",
+  "changedRuntimeAndTestPaths": [
+    "App/Reader/ReaderAppearanceView.swift",
+    "App/Reader/ReaderMenuView.swift",
+    "App/Reader/ReaderViewModel.swift",
+    "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+    "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+    "Tests/UI/ReaderInterfaceUITests.swift",
+    "Tests/iOS/ReaderLifecycleTests.swift",
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
+    "project.yml"
+  ],
+  "otherSourcePathsUnchanged": true,
+  "explicitlyUnchanged": [
+    "Package.resolved",
+    "Packages/XianxiaReading/Package.swift",
+    "scripts/check_repository.py",
+    "scripts/ci_ios.sh",
+    ".github/workflows/ios-build.yml",
+    "Tests/Fixtures/reader-layout.epub"
+  ],
+  "all802OriginalPathsPresent": true,
+  "preservedPackageHashes": 31,
+  "originalIndexEmpty": true
+}
