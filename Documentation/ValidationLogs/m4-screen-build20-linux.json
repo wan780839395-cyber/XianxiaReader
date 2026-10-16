@@ -1,0 +1,14 @@
+{
+  "recordedAtUTC": "2026-10-16T04:32:12.302363+00:00",
+  "sourceRevision": "0b1fe87704713e668231ad36ab73ceb13bd3b077",
+  "run": 38850709820,
+  "linuxCoreTests": 122,
+  "linuxFourLongTXTReleaseProbesPassed": true,
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "log": {
+    "path": "build/ci/38850709820/core/logs/core-tests.log",
+    "sha256": "62277d730fd499bafaba4d3baa2609b934924243719df99db2537394e5de7e55"
+  },
+  "appleCompilationVerified": false
+}

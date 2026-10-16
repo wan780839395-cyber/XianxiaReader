@@ -1,0 +1,1320 @@
+{
+  "run": 38850709820,
+  "sourceRevision": "0b1fe87704713e668231ad36ab73ceb13bd3b077",
+  "images": [
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3D775076-BA91-431A-AE54-8EC12D13E570.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          0,
+          198
+        ],
+        [
+          0,
+          204
+        ],
+        [
+          0,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "screen-instant-whole-window-build20",
+      "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E4A4C9AB-DD8C-494D-B1B2-E2F209CBD54F.png",
+      "bytes": 616139,
+      "sha256": "410e1b12704732fe140a89e368bd04ab7b70b2df5a106ec6ce2c721b29c7b684",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3BDDCF11-DBD3-436F-A514-CFA36B06455B.png",
+      "bytes": 579276,
+      "sha256": "1344a4ea33b924ba3bd923f5f0b45124f1505200e9547e384a51646b96a91580",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9BAC9328-50D1-44DE-B01A-7E696656BDBD.png",
+      "bytes": 47575,
+      "sha256": "23550649f09014131b51d29080b413e2df10b4672b8a696c6c1f700e684557bf",
+      "inspected": true,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "screen-cross-chapter-whole-window-build19",
+      "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E48F96F2-EF4A-4699-B911-9D44A9065360.png",
+      "bytes": 520942,
+      "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AFB91BBA-DE22-4CED-9D99-4526401FF935.png",
+      "bytes": 432398,
+      "sha256": "b6513e0c01ed6d3d7bd8fdd029fa3b2fe1e6bd867c32b0f9dd1916a05c5be4a6",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B203E709-5388-4FF7-9621-78E971B0DC15.png",
+      "bytes": 545135,
+      "sha256": "e2bb286acf878c70b993002c9dbdda43f9b36a5f0ba68b4a9ccdc2ad672947e8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4D9BA18D-6262-470D-83D5-19E40DB4864E.png",
+      "bytes": 634249,
+      "sha256": "85a2879036e326efc1e15646db8df016a7ff67f0fadcb992d597325074ca0ff1",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3B7D74B7-24B2-471D-8BB4-F085C462CB6C.png",
+      "bytes": 614041,
+      "sha256": "0ae43d4b0e0047f342f1940bbb8300da40c03dcd0ebdc25b2c180859f95c4ad9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2597A8A4-2D05-4F83-A33B-5D28D8547602.png",
+      "bytes": 640788,
+      "sha256": "3ce6d7ac65d2649539a6e27aaec51ac81d38c9040181c80f81f1ae9ac51b570d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/138D0FC5-6511-4AF9-90CD-ACD9F65943E9.png",
+      "bytes": 572214,
+      "sha256": "47a7017d235efe07bde149aff70f27b4a09e5d513c9ff9c069ea1ef65232ce5f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E74CEC30-F600-45D8-8D8A-25500872F23A.png",
+      "bytes": 558410,
+      "sha256": "3e26ce98467124112fadf1e19112d9900622a873fbc466b6f7b74d3d77f7c6ea",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0AB8E7C8-F780-42E1-81F5-10EBF465B07A.png",
+      "bytes": 647347,
+      "sha256": "5b33e99816f58148447cc95759c66330c158581e106444c101f3d10456bc6ef5",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F766BC90-E056-4770-B656-8BC607A3847C.png",
+      "bytes": 683665,
+      "sha256": "5d02d39e6ef3200f9bc05d4bbb436f5edca0e992c5195539fb62678977220bb7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/94B82866-91E2-4C8A-A27F-7E3D49E6C0BD.png",
+      "bytes": 684943,
+      "sha256": "fc8124752cee5e0f0da8ba34e5337aadc738580aa8ab48102e917c39d40ea49d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E0F1DC9E-47E9-426B-BB6E-5B1C638B8C24.png",
+      "bytes": 751985,
+      "sha256": "6af13327e89ac234a72c6424df72cd6804b28405f55efa6b1746f9a686726146",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AC5E3A63-4568-4ED4-87FD-A20757B46CE7.png",
+      "bytes": 902438,
+      "sha256": "d95cc186abe17e4d83252c8a174ffa07336b5cb5d1594c325dd0d768d886da71",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D7C4226C-2821-44EA-BFEB-9BDBE302D35F.png",
+      "bytes": 637974,
+      "sha256": "9d81ad4418eed3cc421d8762d3e18a35e75f2f44169098f50d944c7f0217f1a1",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/404D5156-1184-4E2B-8075-EE81A7929A15.png",
+      "bytes": 673862,
+      "sha256": "0ec255bc7061ca6f2be530036581089b69ced23367abf443b07a84c33519a954",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/85755174-F14F-476F-B477-98D7ADB60EDB.png",
+      "bytes": 559156,
+      "sha256": "24b546a70d52219669fc0f4db023a9a1b990461c3ea77c01ad8bf947f6b58191",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E77F855B-4D6E-442F-85CC-CC0C6FED7CB7.png",
+      "bytes": 736151,
+      "sha256": "1147240d88d15374f0ed6d7554b2d8c666564d445d8e1d98d78b567ba69a3326",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/48800EBB-D352-4899-9D4F-06EEF785009A.png",
+      "bytes": 465388,
+      "sha256": "93eaf8213dd0ff6758ea116f12e1e78265598c6f2bfbb27bacb9c3cdaa81c8c7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9C1BC7DB-6594-4AF8-BF04-CB30EADEC276.png",
+      "bytes": 663370,
+      "sha256": "14b301d44f6c8f304f65e63df6067face6aaa27aeda485c0e1f6e6500493a504",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BF91CC2E-19D4-4F57-AF6D-C60D7D65F570.png",
+      "bytes": 669483,
+      "sha256": "8c80a2289b14faac77717b4edb0dae8e69c97c1206f4940be31d746d30364eaf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2B7C578D-BE1D-43E4-B6FF-612C1455CE5A.png",
+      "bytes": 402052,
+      "sha256": "c52d39233922e28859b840c4ddbcd0a5e8be2ee9d0554c197fb3f261f83f6bb6",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BF277C14-3F17-4D71-92AF-8809263DD5F9.png",
+      "bytes": 334350,
+      "sha256": "659140d035b84197ba930c16067451f39bda554a20b6e5098a77a37a6c0db614",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DABFAA69-892C-408D-B94F-F0B1B1F6BCB8.png",
+      "bytes": 484913,
+      "sha256": "5094cd8f88d47728bfac534019223b08a5949c0d94d6a96788c56e13b9216351",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4856EE6B-0B01-4A79-BB90-C8879A399F83.png",
+      "bytes": 673544,
+      "sha256": "b5108b878b33f374099f84cfe7aae2c18a3f771521af2b4bda3b4f4ebd999149",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/634DCF1D-C977-4125-9FF2-F89985B13B2E.png",
+      "bytes": 606918,
+      "sha256": "af5626d5a854153c3e74759dd1add238d3a02d726ab9452528e85002a1e7f840",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/66835895-77F7-4EF6-A75E-063C9A5A3379.png",
+      "bytes": 638620,
+      "sha256": "24d94460222d8c6c1d24deedb52557b0c5ddddbad303c468892fd75ef2a187fc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F4296897-25AA-4F18-8FA9-C1A587135FFE.png",
+      "bytes": 561367,
+      "sha256": "b903a47d8d66040c60670c3077fa5afa649334acc2e3a26dabf87c46ac634e0f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E271E6F-2384-4572-B6E8-C554902AF2EF.png",
+      "bytes": 465040,
+      "sha256": "bd98274ea5607a18a2d7eda08d1d56a3f14df958f7d6ca272b52288984016fcf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/89669487-2625-48E8-BD3E-6E4F66EF65B2.png",
+      "bytes": 606918,
+      "sha256": "af5626d5a854153c3e74759dd1add238d3a02d726ab9452528e85002a1e7f840",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4C9E72B9-AAC7-478E-BB8F-405B90084FFE.png",
+      "bytes": 638620,
+      "sha256": "24d94460222d8c6c1d24deedb52557b0c5ddddbad303c468892fd75ef2a187fc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F2F5CEDA-C202-4550-AB66-1A59CAAE3C57.png",
+      "bytes": 561367,
+      "sha256": "b903a47d8d66040c60670c3077fa5afa649334acc2e3a26dabf87c46ac634e0f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/507A9CEB-D569-47FD-A201-141174CE121D.png",
+      "bytes": 465040,
+      "sha256": "bd98274ea5607a18a2d7eda08d1d56a3f14df958f7d6ca272b52288984016fcf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2A43FBC0-A03D-4242-88E9-662317C9F2DD.png",
+      "bytes": 685637,
+      "sha256": "2f695a9b6c89dc65435339e9301f763aab57287f8fef2c82c0db1bd5b6956884",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-settings-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1E5BA31F-5B17-4372-9454-B2CD35FFEEDA.png",
+      "bytes": 727857,
+      "sha256": "96403fd2f9aa453e6bf05c59987f7476697f8e969d165fe8685371488f17ac9a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/72185377-498C-4F35-A806-0327AD9AE9DC.png",
+      "bytes": 425032,
+      "sha256": "bc0273bb62d7ed4489edd1fae04bc5c9371ec033734befa6ddf7f3359d31aa0c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-before-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/678E8335-158F-4673-9075-4CC8090F9966.png",
+      "bytes": 589933,
+      "sha256": "7553e2f1dd43f1d563630735a9500ff56c7bcf5146824ec7a2f6c8ea7fe95afe",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-restored-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/57F1477F-BC32-4A9C-ABD5-42E7F596A950.png",
+      "bytes": 682147,
+      "sha256": "5473cc442053000a45bfd495b937c079c8e25e9f76b23329cbeb27140bcace28",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-settings-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BCD588DB-EECD-46DE-92F8-42E107B44814.png",
+      "bytes": 727265,
+      "sha256": "aac77e4118ad7ea2ebe64b3e93d953d514b944304d073880ce8dd9fbc90c8f5c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5347A26E-8B29-4ED0-B1D4-822F0A07C516.png",
+      "bytes": 425240,
+      "sha256": "2209288860d6bfa775f1eb07e4fa42e5fa1f2368df389ac5080ce00ece0c0270",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-before-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBD7EF0B-A925-44E6-BCAE-9193C58AF2D5.png",
+      "bytes": 589933,
+      "sha256": "7553e2f1dd43f1d563630735a9500ff56c7bcf5146824ec7a2f6c8ea7fe95afe",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-16 at 04.47.09 AM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F01AA02A-3830-4814-99FF-670DD3320A18.mp4",
+      "bytes": 12865851,
+      "sha256": "394fbdc7b19738a149abe72ded6aa6c49ffcc372d4b81293c31ed33b78f5695b",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.47.46 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/63372A3D-3526-42AF-AD09-3E5303E827BB.mp4",
+      "bytes": 3930813,
+      "sha256": "73f1f98585796699229fffde6c85faa8ee22c0cccb21f1c327a7a5c8c241681d",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.48.03 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/61F063C9-C2B3-4E98-BC8B-204B23E66A04.mp4",
+      "bytes": 9583942,
+      "sha256": "d2ae8f943edf470d2116a49b9356a6da6ed37214935ce72c2baffeb86b780791",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.48.43 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A609866B-5CEB-42FC-A9C6-2F36B580CAD8.mp4",
+      "bytes": 20369757,
+      "sha256": "12c565a7df72697705e53a24f9033f77478f2d655a56f0346f00c6db176906b2",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.49.38 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/316E12D3-A0BC-43B9-A7E3-FAE652098D24.mp4",
+      "bytes": 28335668,
+      "sha256": "9e94117d1be7bf6201a6310666c59d8020c3b352b5accbbafabb1634950ec602",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.50.45 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CC92FFC6-C698-4A3E-9BF7-8660DE73DAF4.mp4",
+      "bytes": 6730148,
+      "sha256": "4a85afaa6d97fb2d6902f2d9ccbd55c14994172f8bd37bbed80fd5491a339b9f",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.51.02 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4C9F4BFB-39B3-4A69-B258-E06E996BB1FE.mp4",
+      "bytes": 15337116,
+      "sha256": "e0f5782685efd28f997a3b4b9cab42219b119b6d6bd5870fc02098e14df89495",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 04.51.49 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E1529F37-C678-4ED2-96F6-6131A095F81A.mp4",
+      "bytes": 51013628,
+      "sha256": "ffa3649bb99f66d28f73c59e0c17b64354b8fce5fdddf5eaa2e2e85e3afb8261",
+      "inspected": true
+    }
+  ],
+  "recordedAtUTC": "2026-10-16T05:06:15.199752+00:00",
+  "imagesInspected": true,
+  "nonTransparentImages": 43,
+  "transparentImages": [
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9BAC9328-50D1-44DE-B01A-7E696656BDBD.png",
+      "bytes": 47575,
+      "sha256": "23550649f09014131b51d29080b413e2df10b4672b8a696c6c1f700e684557bf",
+      "inspected": true,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    }
+  ],
+  "videosInspected": true,
+  "selectedVideosInspected": 2,
+  "availableReaderVideos": 8,
+  "availableLibraryVideos": 5,
+  "consecutiveFramesInspected": true,
+  "totalOriginalFrames": 150,
+  "readingTurnOriginalFrames": 103,
+  "frameRecords": [
+    {
+      "path": "build/ci/38850709820/ScreenStabilityReview/instant/repeated-turns/frames.json",
+      "sha256": "1c96724263f2f8f70438021ac7f52fcfc073bf12444d1fc5188e424fb6004d97",
+      "originalFrames": 36,
+      "readingTurnFrames": 36,
+      "sourcePTSInversions": [],
+      "interpolated": false
+    },
+    {
+      "path": "build/ci/38850709820/ScreenStabilityReview/screen/normal-turns/frames.json",
+      "sha256": "5ca846bc152507e098d98df4a3e3a0b517a9dbd8adaaba0ba7d3c8d1daab37f1",
+      "originalFrames": 99,
+      "readingTurnFrames": 52,
+      "sourcePTSInversions": [
+        {
+          "afterFrame": 52,
+          "previousPTS": 22.793333,
+          "currentPTS": 20.363333
+        }
+      ],
+      "interpolated": false
+    },
+    {
+      "path": "build/ci/38850709820/ScreenStabilityReview/screen/reduced-turns/frames.json",
+      "sha256": "70af403698746ecd14eb24d367a8b2107f40c1a36314f790d4d8a39123ae434a",
+      "originalFrames": 15,
+      "readingTurnFrames": 15,
+      "sourcePTSInversions": [],
+      "interpolated": false
+    }
+  ],
+  "reviewedTurnWindowsContainBlankFrame": false,
+  "reviewedScreenTurnSequencesAccepted": true,
+  "nativeScreenTransitionFullyAccepted": false,
+  "phoneFPSAccepted": false,
+  "runtimeDiagnostics": "Documentation/ValidationLogs/m4-screen-build20-runtime-diagnostics.json",
+  "summary": "本轮44张原生PNG均已看，43张含非透明像素；整屏即时命令整窗、跨章整窗、普通/额外减少动效拖动后和重开均有正文。当前巨段TXT深色孤立图满屏文字；不追认旧留白成因或全部真机样书。分页孤立WKWebView PNG仍RGBA全0，另有完整EPUB整窗正文；旧Build15–19图片名来自本轮实际CI，不追认历史失败。\n\n两段实际UI视频全时段1秒总览已看：新增即时正反39.76秒、原整屏双模式81.30秒。其余6阅读/5书库视频只保留，未宣称全13段逐段复核。新即时视频31.5–38.8秒保留的36原始VFR帧已看，可见3/4段与6/7段六次交替，最后回到原处，保护画面未一直盖住正文。旧整屏视频所选两个PTS区间另有99和15原帧，99中前52为可见位移正反翻屏、后47为设置弹层；15为另一组即时正反。共150原帧全部看，其中103为阅读翻屏正文，未见全空正文帧；无fps重采样/插帧。墨迹计数只定位人工检查，不单独当验收。\n\n旧整屏视频的所选原始PTS在设置弹层前有回退，已在frames.json记录；不将PTS直接映射XCTest/真实墙钟，也不将这些原帧数量当手机FPS。200ms是源码保留上限意图，实际切换观感/响应需真机。本轮覆盖动作未复现Build19记录中的整段空白，属于上游原生保护思路下的局部改进，不声明WebKit根因修复、所有翻屏无空帧或完整设备通过。2次XCTest idle通知、系统RunningBoard/AppIntents诊断保留，画面保护warning为0，源编译warning/error另核0。\n\n真实系统Reduce Motion、深色整屏过渡、VoiceOver/增强对比度/旋转、普通签名/TrollStore、手机等待感/触摸接管/FPS/耗电仍未验收。M4整体未完成。"
+}

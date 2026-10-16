@@ -189,3 +189,7 @@ ReaderVisualStyle中的ReaderPanelSurface将有限阴影仅施加到单一背景
 ## Build19 上下整屏输入策略
 
 ReadingInteraction v1增加可缺省的verticalScreenPaging，原字段严格解码；领域/Foundation与存储路径保持。ReaderMode仅UI选择，能力和具体应用仍通过ReadingInterfaces的interactionProvider；Readium具体API只在Adapter。Navigator与有界连续容器增加原生目标偏移/90%高度/手势原点补偿及命令防重入，不引入全书正文/新排版/缓存或JS修改。跨模式/字号仍使用既有完整DOM锚点，生命周期/原有竞态与新非零3px重开回归通过。具体合同及实际设备限制见READING_SCREEN_DESIGN.md。
+
+## Build20 即时整屏过渡保护
+
+沿Readium3.11现有PaginationView的公开UIView.snapshotView保护思路，仅在无动画整屏命令保留一帧当前原生视口200ms，作为静止兄弟视图；底层位置立即应用，视图不截触摸/可访问性。一个可取消Task/请求ID管清理和迟到结果，新拖动/模式/resize/跳转/关闭释放。没有新引擎、每帧捕获、PNG缓存或Core/接口变更；性能/真实系统与手机视觉仍单列，详细证据见READING_SCREEN_STABILITY_DESIGN.md。

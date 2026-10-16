@@ -1,0 +1,137 @@
+{
+  "recordedAtUTC": "2026-10-16T04:29:48.975588+00:00",
+  "originalRun": 38843884440,
+  "originalSource": "e1eee79f1dfac3f61b642c1f4e7f9bc1671fb77f",
+  "video": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1EC0E823-3118-4FCE-A599-388B7200FC11.mp4",
+  "method": "Decode source VFR frames with select between40and43/showinfo, no fps filter, no interpolation; scale600 only",
+  "frames": [
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-001.png",
+      "pts": 40.595,
+      "sha256": "203b8af75b86dc68b4106f51ea26b88c2dc401a1dfd4d08911bac667e8fe98a0"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-002.png",
+      "pts": 40.62,
+      "sha256": "282cfd5c875c562a589c829134c569ca813b9c8b50f53a0ef9486730fc06ecb4"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-003.png",
+      "pts": 40.628333,
+      "sha256": "ba9bd7397cd659028d7c8fce9164fbf477f6f9f401c7286534bf281bec8bdb4a"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-004.png",
+      "pts": 40.676667,
+      "sha256": "a8610562bdba403880a553e097bcf39e93109e1ef3c6553fda59a37c1007ae5d"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-005.png",
+      "pts": 40.72,
+      "sha256": "c16b738ecdb3d8498be4d94b29ac0f5dcf4f18a05a257dbe6ccf98a319d44bbb"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-006.png",
+      "pts": 41.25,
+      "sha256": "e05e67bcb2c4b716780a249439f4ea39da80a756a39520176fbccc58098b1f35"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-007.png",
+      "pts": 41.306667,
+      "sha256": "49a65dd23e0194b8d6ad6d0fe5e353aeb36c6581f95f5dfd4967becfcef164c1"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-008.png",
+      "pts": 41.331667,
+      "sha256": "e75b76ee501fe652c81d6967240a779472f5ca518362e1979372a4d1339f68c9"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-009.png",
+      "pts": 41.355,
+      "sha256": "12e0ed0bde6db22793a93579029f9cdf5c4af9c1728e462beef4bc671fbf7e0f"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-010.png",
+      "pts": 42.073333,
+      "sha256": "c73c02a053912f22bdad0dc4834660e3d472032b5148f6fdf263f5d145e83748"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-011.png",
+      "pts": 42.228333,
+      "sha256": "3f450e99e1fdc73327b181a30d7452ecd281ca2553d8725596f947014200362e"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-012.png",
+      "pts": 42.528333,
+      "sha256": "82c100a9f3282a9865211436b641e612a8ca9b1827f423d68f752dcbc0aa83f5"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-013.png",
+      "pts": 42.548333,
+      "sha256": "57574ff1a923c9ff922d5d8569497ab3b1d0015089095225afcb61fe0bb5d31d"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-014.png",
+      "pts": 42.571667,
+      "sha256": "f3c66ee1888d0207fc3e3365e5e8cf353a81bffb6a7f472ad12d088efeab1bd0"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-015.png",
+      "pts": 42.591667,
+      "sha256": "5520b1b5529075c4fd9cedd1dc5f2703af244b3ca66b42051ebd1471f19ab4ad"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-016.png",
+      "pts": 42.605,
+      "sha256": "94a7580e310450cc040dfaaaadb07dae7f93e1673a35409dc5c46ae631645be5"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-017.png",
+      "pts": 42.623333,
+      "sha256": "47a9f4f336da360678813ba57fc8d355731eb1697217748dc0f51f15cd317d09"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-018.png",
+      "pts": 42.655,
+      "sha256": "639ee853511f5a8287ea206ef8277e924d219269ab19578a66482ef01ebf1d0e"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-019.png",
+      "pts": 42.678333,
+      "sha256": "e12db752d10d1ef7d1aff1beaf56dda118a16c156246848d78c491eb0d56bfc7"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-020.png",
+      "pts": 42.72,
+      "sha256": "ac755438783d545396ca0f93dd32482bd7cb1d8feb6718482bfb0ab5288f6ba6"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-021.png",
+      "pts": 42.763333,
+      "sha256": "15fa7a83626b4270e0395c5cb8801f100634b665daab83991e63c44d3e0392c8"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-022.png",
+      "pts": 42.83,
+      "sha256": "a4fc8042a737f2c3901c856387f74608ac7ef0bf22bf637fcb60dcf8fe629cc1"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-023.png",
+      "pts": 42.878333,
+      "sha256": "891be62c1026d36afb543337736f5fb389fcaec558565c08bbf3f0d20dbc6c78"
+    },
+    {
+      "path": ".cache/recovery/20261016-screen-diagnosis/original-024.png",
+      "pts": 42.921667,
+      "sha256": "83baa382a45d9bfa54bc5bd01c05830713c23a76c2422319cf1fcb5bd22be3cd"
+    }
+  ],
+  "visuallyInspected": [
+    ".cache/recovery/20261016-screen-diagnosis/original-009.png",
+    ".cache/recovery/20261016-screen-diagnosis/original-010.png",
+    ".cache/recovery/20261016-screen-diagnosis/original-011.png"
+  ],
+  "observation": "Original frame at42.073333 has blank reading body;42.228333 restored text. Three preceding/following frames visually reviewed. This is a video observation, not a proven WebKit or capture root cause, not phone FPS.",
+  "reference": "Readium3.11 local Toolkit/PaginationView.swift native frame retention for issue737/PR763",
+  "candidateDecision": "Build20 single native viewport cover200ms only for explicit nonanimated screen turns; complete native review and device matrix still required"
+}

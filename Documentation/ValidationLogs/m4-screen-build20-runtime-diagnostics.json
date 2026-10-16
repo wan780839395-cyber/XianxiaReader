@@ -1,0 +1,41 @@
+{
+  "recordedAtUTC": "2026-10-16T05:06:15.195106+00:00",
+  "run": 38850709820,
+  "sourceRevision": "0b1fe87704713e668231ad36ab73ceb13bd3b077",
+  "log": {
+    "path": "build/ci/38850709820/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "79fbe5f6232ee96b72787c0f8dd835c900d0a27335504c445fc1cf2de1f90851"
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "frameProtectionWarnings": 0,
+  "missingAnimationNotifications": [
+    {
+      "line": 7673,
+      "test": "Test Case '-[XianxiaReaderUITests.LibraryInteractionUITests testGridRemovalReflowsAndRestoreReturnsOriginalOrder]' started.",
+      "text": "    t =    73.80s App animations complete notification not received, will attempt to continue.",
+      "nearby": [
+        "    t =    13.43s         Find the Target Application 'com.xianxiareader.app'",
+        "    t =    13.77s     Wait for com.xianxiareader.app to idle",
+        "    t =    73.80s App animations complete notification not received, will attempt to continue.",
+        "    t =    73.80s Waiting 5.0s for Button (First Match) to exist",
+        "    t =    74.85s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`"
+      ]
+    },
+    {
+      "line": 7838,
+      "test": "Test Case '-[XianxiaReaderUITests.LibraryInteractionUITests testNativeListSwipeCancelCommitReopenAndRestore]' started.",
+      "text": "    t =    87.65s App animations complete notification not received, will attempt to continue.",
+      "nearby": [
+        "    t =    27.28s         Find the Target Application 'com.xianxiareader.app'",
+        "    t =    27.60s     Wait for com.xianxiareader.app to idle",
+        "    t =    87.65s App animations complete notification not received, will attempt to continue.",
+        "    t =    87.65s Waiting 5.0s for Button (First Match) to exist",
+        "    t =    88.67s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`"
+      ]
+    }
+  ],
+  "runningBoardDiagnosticCount": 263,
+  "appIntentsMetadataSkipCount": 7,
+  "interpretation": "System process/metadata diagnostics and two XCTest idle notifications are preserved separately from source compiler diagnostics. UI clip durations and source PTS do not prove phone response time or FPS."
+}

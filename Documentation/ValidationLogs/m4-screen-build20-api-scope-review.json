@@ -1,0 +1,30 @@
+{
+  "recordedAtUTC": "2026-10-16T04:35:22.444937+00:00",
+  "url": "https://developer.apple.com/tutorials/data/documentation/uikit/uiview/snapshotview(afterscreenupdates:).json",
+  "title": "snapshotView(afterScreenUpdates:)",
+  "platforms": [
+    {
+      "introducedAt": "7.0",
+      "name": "iOS"
+    },
+    {
+      "introducedAt": "7.0",
+      "name": "iPadOS"
+    },
+    {
+      "introducedAt": "13.1",
+      "name": "Mac Catalyst"
+    },
+    {
+      "name": "tvOS"
+    },
+    {
+      "introducedAt": "1.0",
+      "name": "visionOS"
+    }
+  ],
+  "sha256": "4d97f0116ea0b270bc8c47b75a749d3de696a20e09211f1dc59541c4a419ef2b",
+  "apiScope": "Public UIView native snapshot only; no image encoding/cache. UIKit drawing timing still needs native verification.",
+  "sourceBaseline": "Readium3.11.0 d82f44f4 Toolkit/PaginationView.swift slideToView uses snapshotView(afterScreenUpdates:false) and100ms for nonanimated transition; local bounded reader uses candidate200ms and identity/cancellation lifecycle.",
+  "difference": "Issue737 originally3.7/iOS26.3; current evidence3.11 local bounded container/iOS18.5 simulator. No same-root-cause claim."
+}
