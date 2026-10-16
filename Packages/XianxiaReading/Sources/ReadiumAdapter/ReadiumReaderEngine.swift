@@ -38,7 +38,10 @@ import XianxiaCore
         NavigatorGoOptions(animated: !interaction.reduceMotion && !UIAccessibility.isReduceMotionEnabled)
     }
 
-    public func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
+    public func setInteraction(_ value: ReadingInteraction) throws {
+        interaction = try value.validated()
+        navigator?.verticalScreenPagingEnabled = interaction.verticalScreenPaging
+    }
     public var onPositionChanged: ((ReadingPosition) -> Void)?
     public var onCenterTap: (() -> Void)?
     public var onError: ((String) -> Void)?
@@ -115,6 +118,7 @@ import XianxiaCore
         self.bookID = book.id
         txtReading = txt
         self.navigator = navigator
+        navigator.verticalScreenPagingEnabled = interaction.verticalScreenPaging
         appliedPreferences = preferences
         searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id, txtPlan: txt?.plan) : nil
         currentPosition = position
@@ -125,7 +129,13 @@ import XianxiaCore
             guard let self, let navigator, self.navigator === navigator, self.openRequestID != nil else { return false }
             let width = navigator.view.bounds.width
             guard width > 0 else { return false }
-            if event.location.x < width * 0.3 {
+            if navigator.presentation.scroll && self.interaction.verticalScreenPaging {
+                let height = navigator.view.bounds.height
+                guard height > 0 else { return false }
+                if event.location.y < height * 0.3 { await self.turnPage(forward: false) }
+                else if event.location.y > height * 0.7 { await self.turnPage(forward: true) }
+                else { self.onCenterTap?() }
+            } else if event.location.x < width * 0.3 {
                 if !navigator.presentation.scroll { await self.turnPage(forward: false) }
             } else if event.location.x > width * 0.7 {
                 if !navigator.presentation.scroll { await self.turnPage(forward: true) }

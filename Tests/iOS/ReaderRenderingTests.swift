@@ -7,6 +7,116 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor private func screenEngine(reduced: Bool) throws -> ReadiumReaderEngine {
+        let engine = ReadiumReaderEngine()
+        var interaction = ReadingInteraction()
+        interaction.continuousScrolling = true; interaction.verticalScreenPaging = true; interaction.reduceMotion = reduced
+        try engine.setInteraction(interaction); engine.setContinuousScrolling(true)
+        return engine
+    }
+
+    @MainActor private func proposedScreenTarget(_ scroll: UIScrollView, start: CGFloat,
+                                               distance: CGFloat, velocity: CGFloat) -> CGFloat {
+        scroll.setContentOffset(CGPoint(x: 0, y: start), animated: false)
+        scroll.delegate?.scrollViewWillBeginDragging?(scroll)
+        scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + distance), animated: false)
+        var target = CGPoint(x: 0, y: 9_999_999)
+        withUnsafeMutablePointer(to: &target) { pointer in
+            scroll.delegate?.scrollViewWillEndDragging?(scroll, withVelocity: CGPoint(x: 0, y: velocity), targetContentOffset: pointer)
+        }
+        scroll.delegate?.scrollViewDidEndDragging?(scroll, willDecelerate: false)
+        return target.y
+    }
+
+    @MainActor func testVerticalScreenNativeTargetsOverlapReverseCancelClampAndLeaveContinuousUnchanged() async throws {
+        let engine = try screenEngine(reduced: true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let scroll = try continuousScroll(engine)
+        try await waitUntil { scroll.contentSize.height > scroll.bounds.height * 5 }
+        XCTAssertEqual(scroll.accessibilityValue, "上下整屏"); XCTAssertEqual(scroll.decelerationRate, .fast)
+        let step = (scroll.bounds.height - scroll.contentInset.top - scroll.contentInset.bottom) * 0.9
+        let origin = scroll.contentOffset.y + step * 2
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: 140, velocity: 5), origin + step, accuracy: 2)
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: -140, velocity: -5), origin - step, accuracy: 2)
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: 8, velocity: 0), origin, accuracy: 2)
+        let lower = -scroll.contentInset.top
+        XCTAssertEqual(proposedScreenTarget(scroll, start: lower, distance: -20, velocity: -2), lower, accuracy: 2)
+        var interaction = ReadingInteraction(); interaction.continuousScrolling = true
+        try engine.setInteraction(interaction)
+        XCTAssertEqual(scroll.accessibilityValue, "上下连续滚动"); XCTAssertEqual(scroll.decelerationRate, .normal)
+        XCTAssertEqual(proposedScreenTarget(scroll, start: origin, distance: 140, velocity: 5), 9_999_999)
+    }
+
+    @MainActor func testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation() async throws {
+        let engine = try screenEngine(reduced: false)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#start")
+        let scroll = try continuousScroll(engine)
+        let first = try XCTUnwrap(view(identifier: "readium.chapter.1", in: scroll))
+        let step = (scroll.bounds.height - scroll.contentInset.top - scroll.contentInset.bottom) * 0.9
+        scroll.setContentOffset(CGPoint(x: 0, y: first.frame.maxY - step * 1.75 - scroll.contentInset.top), animated: false)
+        try await waitUntil {
+            guard let second = self.view(identifier: "readium.chapter.2", in: scroll) else { return false }
+            return abs(second.frame.minY - first.frame.maxY) < 2 && second.frame.height >= 96
+        }
+        let before = scroll.contentOffset.y
+        async let a: Void = engine.turnPage(forward: true)
+        async let b: Void = engine.turnPage(forward: true)
+        _ = await (a, b)
+        try await waitUntil { scroll.contentOffset.y > before + 100 }
+        try await Task.sleep(nanoseconds: 600_000_000)
+        if !UIAccessibility.isReduceMotionEnabled {
+            XCTAssertEqual(scroll.contentOffset.y, before + step, accuracy: 3, "Native animation must not queue a second screen")
+        }
+        try await waitUntil { (try await self.visibleTitles(engine)).contains("第二章 云海") }
+        let attachment = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }); attachment.name = "screen-cross-chapter-whole-window-build19"; attachment.lifetime = .keepAlways; add(attachment)
+        var interaction = ReadingInteraction(); interaction.continuousScrolling = true
+        interaction.verticalScreenPaging = true; interaction.reduceMotion = true; try engine.setInteraction(interaction)
+        let reverseFrom = scroll.contentOffset.y
+        await engine.turnPage(forward: false)
+        XCTAssertEqual(scroll.contentOffset.y, reverseFrom - step, accuracy: 3, "Reduced command must apply immediately")
+        XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+    }
+
+    @MainActor func testVerticalScreenKeepsNonzeroDOMAnchorAcrossPolicyToggleAndReopen() async throws {
+        let engine = try screenEngine(reduced: true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, _) = try await open(engine)
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let web = try resourceWebView(engine, index: 1)
+        try await waitUntil { abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }
+        await engine.turnPage(forward: true)
+        try await waitUntil {
+            guard let position = engine.currentPosition,
+                  let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any],
+                  let locations = json["locations"] as? [String: Any], let range = locations["domRange"] as? [String: Any],
+                  let start = range["start"] as? [String: Any] else { return false }
+            return (start["charOffset"] as? Int ?? 0) > 100
+        }
+        let script = "document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000"
+        let beforeValue = try await web.evaluateJavaScript(script) as? Double
+        let before = try XCTUnwrap(beforeValue)
+        XCTAssertLessThan(before, -400)
+        var interaction = ReadingInteraction(); interaction.continuousScrolling = true; interaction.reduceMotion = true
+        try engine.setInteraction(interaction)
+        let afterToggle = try await web.evaluateJavaScript(script) as? Double
+        XCTAssertEqual(try XCTUnwrap(afterToggle), before, accuracy: 3)
+        interaction.verticalScreenPaging = true; try engine.setInteraction(interaction)
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close(); try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view), let reopened = self.webViews(in: wrapper).first else { return false }
+            return abs(((try await reopened.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
+        }
+        XCTAssertEqual(try continuousScroll(engine).accessibilityValue, "上下整屏")
+    }
+
     @MainActor private weak var diagnosticEngine: ReadiumReaderEngine?
     @MainActor private final class OverlayState: ObservableObject {
         @Published var visible = true

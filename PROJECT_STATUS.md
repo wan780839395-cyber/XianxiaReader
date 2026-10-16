@@ -1,5 +1,11 @@
 # 项目状态
 
+## Build19 当前切片（2026-10-16，未编译）
+
+Build18用户反馈“还不错 继续吧”，按基本自用/观感记录。新增上下整屏源码接入既有有界连续容器：原生松手停屏、90%有效高度/少量重叠、上下点按/按钮、三模式记忆/旧v1兼容；Core模型/UI/Adapter及两维护Vendor文件有改，原书/schema3/Locator/六pins/JS bundle保持。Windows423语法新增0/17工具通过，原36个受改文件内旧测试主体保持，新增9回归；尚未Apple编译，预期各122Core/iOS106/Release19。真实断点HANDOFF，设计READING_SCREEN_DESIGN.md。M4未完成，自动慢滚/卷页仍后续。
+
+以下Build18及更早为历史。
+
 ## Build18 当前切片（2026-10-16）
 
 Build18交付包与交接已生成；504编译源blob、801维护文件清单、31新旧包及八份备份核过，全部开始路径与原HEAD/空index/M2/M3保持。CI/下载均结束；真实编译源与其后纯文档快照分列，最终保留/远端核验见build/ci/38835963502/final-preservation-check.json。

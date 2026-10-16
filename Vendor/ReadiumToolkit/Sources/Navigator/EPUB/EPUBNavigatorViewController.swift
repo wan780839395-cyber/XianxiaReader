@@ -572,6 +572,9 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     private func go(to direction: EPUBSpreadView.Direction, options: NavigatorGoOptions) async -> Bool {
         // In infinite scroll mode, forward/backward means scrolling by one viewport height.
         if let isv = infiniteScrollView {
+            if isv.screenPagingEnabled {
+                return isv.turnScreen(forward: direction == .right, animated: options.animated)
+            }
             let delta: CGFloat = direction == .right ? isv.bounds.height : -isv.bounds.height
             let newY = (isv.contentOffset.y + delta)
                 .clamped(to: -isv.contentInset.top ... max(-isv.contentInset.top, isv.contentSize.height - isv.bounds.height + isv.contentInset.bottom))
@@ -615,7 +618,13 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     // MARK: - Pagination and spreads
 
     private var paginationView: PaginationView?
-    private var infiniteScrollView: EPUBInfiniteScrollView?
+    private var infiniteScrollView: EPUBInfiniteScrollView? {
+        didSet { infiniteScrollView?.screenPagingEnabled = verticalScreenPagingEnabled }
+    }
+    /// Local input policy for the bounded continuous container; no EPUB reflow.
+    public var verticalScreenPagingEnabled = false {
+        didSet { infiniteScrollView?.screenPagingEnabled = verticalScreenPagingEnabled }
+    }
     private var locationUpdateRevision: UInt64 = 0
 
     private func makePaginationView(hasPositions: Bool) -> PaginationView {

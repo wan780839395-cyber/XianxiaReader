@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "4ec4c0cbfa56b15c2d29bc7342ff37355080987829b963b05d2f4cc40ea3bee7"
+      "sha256": "aaaa504df34be036b92f86ed01005fdbb7cc92986080cba85a2a2ddeaaffcdaa"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "6a7430cc0f7bc75773b3d1e1393f6d17f1056f2234573bf8b12155bf2012e3d1"
+      "sha256": "8a28b51278e47855b8e8b7e25648f2b05177931f1aa677fb703d360f606cb49f"
     }
   ],
   "remoteDependencyPins": [
@@ -1673,5 +1673,10 @@
   "pagedFullAnchorNotifications": {
     "scope": "Only horizontal LTR reflowable pagination merges a fresh bounded DOM anchor with original calculator metadata; current spread/offset/viewport/revision identity checked after await.",
     "reason": "Third Build17 run passed visible180percent text but reopening fell back to chapter start. Original paged location calculator can overwrite sampled full DOM locator with a progression-only notification before close; align paged notifications with existing precise-anchor contract, preserve upstream fixed/RTL/vertical behavior."
+  },
+  "verticalScreenInputPolicy": {
+    "scope": "Existing bounded infinite container only. Native UIScrollView release target snapping, 90percent viewport step, overlap, small-drag cancel, native fast deceleration; paged EPUB rendering and JS remain unchanged.",
+    "lifecycle": "Move gesture origin with chapter window layout compensation, reset on resize/reload/mode/close. Command guard rejects overlap while native animation or user deceleration is active.",
+    "motion": "Respect system/user reduction for explicit screen commands; native direct manipulation and native drag deceleration remain. No custom gesture overlay, CADisplayLink or new resource cache."
   }
 }

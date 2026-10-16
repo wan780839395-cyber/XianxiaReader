@@ -71,21 +71,22 @@ import XianxiaCore
                 pageButton(forward: false)
                 Spacer(minLength: 0)
                 Menu {
-                    Picker("阅读方式", selection: Binding(get: { model.scrolling }, set: { model.setScrolling($0) })) {
-                        Label("左右翻页", systemImage: "book").tag(false)
-                        Label("上下连续滚动", systemImage: "scroll").tag(true)
-                            .disabled(model.engine?.supportsContinuousScrolling != true)
+                    Picker("阅读方式", selection: Binding(get: { model.readingMode }, set: { model.setReadingMode($0) })) {
+                        ForEach(ReaderMode.allCases, id: \.self) { mode in
+                            Label(mode.title, systemImage: mode.symbol).tag(mode)
+                                .disabled(mode != .horizontal && model.engine?.supportsContinuousScrolling != true)
+                        }
                     }
                 } label: {
                     HStack(spacing: 6) {
-                        Image(systemName: model.scrolling ? "scroll" : "book")
-                        Text(model.scrolling ? "连续滚动" : "左右翻页")
+                        Image(systemName: model.readingMode.symbol)
+                        Text(model.readingMode == .continuous ? "连续滚动" : model.readingMode.title)
                         Image(systemName: "chevron.down").font(.system(size: 9, weight: .semibold))
                     }
                     .font(.caption).padding(.horizontal, 14).frame(minHeight: 44)
                     .background(palette.control, in: Capsule())
                 }
-                .accessibilityLabel("阅读方式").accessibilityValue(model.scrolling ? "上下连续滚动" : "左右翻页")
+                .accessibilityLabel("阅读方式").accessibilityValue(model.readingMode.title)
                 .accessibilityIdentifier("reader.mode")
                 Spacer(minLength: 0)
                 pageButton(forward: true)
@@ -107,7 +108,8 @@ import XianxiaCore
     private func pageButton(forward: Bool) -> some View {
         let label = model.scrolling ? (forward ? "下一屏" : "上一屏") : (forward ? "下一页" : "上一页")
         return Button { Task { await model.engine?.turnPage(forward: forward) } } label: {
-            Image(systemName: forward ? "chevron.right" : "chevron.left")
+            Image(systemName: model.readingMode == .verticalScreen
+                  ? (forward ? "chevron.down" : "chevron.up") : (forward ? "chevron.right" : "chevron.left"))
                 .font(.system(size: 16, weight: .medium)).frame(width: 44, height: 44)
                 .contentShape(Rectangle())
         }

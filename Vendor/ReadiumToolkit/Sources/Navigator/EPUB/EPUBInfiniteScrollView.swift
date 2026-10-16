@@ -40,6 +40,18 @@ import UIKit
     private var lastSize = CGSize.zero
     private var viewportRevision: UInt64 = 0
     private var lastTrackedOffset: CGFloat = 0
+    private var screenDragStart: CGFloat?
+    private var screenTurnInFlight = false
+    var screenPagingEnabled = false {
+        didSet {
+            guard screenPagingEnabled != oldValue else { return }
+            screenDragStart = nil
+            screenTurnInFlight = false
+            setContentOffset(contentOffset, animated: false)
+            decelerationRate = screenPagingEnabled ? .fast : .normal
+            accessibilityValue = screenPagingEnabled ? "上下整屏" : "上下连续滚动"
+        }
+    }
     private let previousBoundary = UILabel()
     private let boundary = UIView()
     private let boundaryLabel = UILabel()
@@ -62,6 +74,21 @@ import UIKit
     }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
+    // Keep the last tenth of the viewport visible so a wrapped line is never
+    // skipped at a screen boundary. This is not a new pagination/DOM engine.
+    private var screenStep: CGFloat { max(1, viewportHeight * 0.9) }
+    private var screenOffsetRange: ClosedRange<CGFloat> {
+        -contentInset.top ... max(-contentInset.top, contentSize.height - bounds.height + contentInset.bottom)
+    }
+
+    func turnScreen(forward: Bool, animated: Bool) -> Bool {
+        guard isCurrentResourceReady, !isDragging, !isDecelerating, !screenTurnInFlight else { return false }
+        let target = (contentOffset.y + (forward ? screenStep : -screenStep)).clamped(to: screenOffsetRange)
+        guard abs(target - contentOffset.y) > 0.5 else { return false }
+        screenTurnInFlight = animated && !UIAccessibility.isReduceMotionEnabled
+        setContentOffset(CGPoint(x: 0, y: target), animated: screenTurnInFlight)
+        return true
+    }
     private var readyIndices: [Int] {
         guard slots[currentIndex]?.ready == true else { return [] }
         var low = currentIndex, high = currentIndex
@@ -91,6 +118,7 @@ import UIKit
         showsHorizontalScrollIndicator = false
         alwaysBounceVertical = true
         accessibilityIdentifier = "readium.continuous-scroll"
+        accessibilityValue = "上下连续滚动"
         previousBoundary.text = "正在加载上一章…"
         previousBoundary.textAlignment = .center
         previousBoundary.font = .preferredFont(forTextStyle: .footnote)
@@ -118,6 +146,9 @@ import UIKit
         if newSuperview == nil { clear() }
     }
     private func clear() {
+        screenDragStart = nil
+        screenTurnInFlight = false
+        setContentOffset(contentOffset, animated: false)
         epoch = UUID()
         for index in Array(slots.keys) { evict(index) }
     }
@@ -143,6 +174,9 @@ import UIKit
     }
     func goToIndex(_ index: Int, location: PageLocation, options: NavigatorGoOptions) async -> Bool {
         guard 0..<chapterCount ~= index else { return false }
+        screenDragStart = nil
+        screenTurnInFlight = false
+        setContentOffset(contentOffset, animated: false)
         navigation = true
         defer { navigation = false }
         if slots[index]?.ready != true {
@@ -349,6 +383,7 @@ import UIKit
         super.layoutSubviews()
         guard !layingOut else { return }
         if lastSize != bounds.size {
+            screenDragStart = nil
             lastSize = bounds.size
             for (index, slot) in slots {
                 slot.view.frame.size = CGSize(width: bounds.width, height: viewportHeight)
@@ -396,6 +431,9 @@ import UIKit
         if preserveAnchor, let origin = slots[currentIndex]?.wrapper.frame.minY, !indices.isEmpty {
             let desired = origin + local - contentInset.top
             if abs(contentOffset.y - desired) > 0.5 {
+                // Earlier resources can finish loading during the same pan.
+                // Move the gesture origin with that layout compensation.
+                if let start = screenDragStart { screenDragStart = start + desired - contentOffset.y }
                 contentOffset.y = desired
                 lastTrackedOffset = contentOffset.y
             }
@@ -450,6 +488,29 @@ import UIKit
         }
         preload()
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        screenTurnInFlight = false
+        screenDragStart = screenPagingEnabled ? contentOffset.y : nil
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint,
+                                  targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard screenPagingEnabled, let start = screenDragStart else { return }
+        let distance = contentOffset.y - start
+        let direction: CGFloat
+        if abs(velocity.y) > 0.3 { direction = velocity.y > 0 ? 1 : -1 }
+        else if abs(distance) > min(72, screenStep * 0.12) { direction = distance > 0 ? 1 : -1 }
+        else { direction = 0 }
+        // A deliberate long drag can cover several screens. A short flick
+        // cannot fling through many screens just because velocity is high.
+        let screens = max(1, (abs(distance) / screenStep).rounded())
+        targetContentOffset.pointee.y = (start + direction * screens * screenStep).clamped(to: screenOffsetRange)
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        screenDragStart = nil
+    }
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        screenTurnInFlight = false
     }
     private func savedAnchorMatchesViewport(_ slot: Slot, revision: UInt64) -> Bool {
         guard slot.anchorRevision == revision, let savedTop = slot.anchorViewportTop else { return false }

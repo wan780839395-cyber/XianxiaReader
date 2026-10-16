@@ -3,6 +3,24 @@ import ReadingInterfaces
 import SwiftUI
 import XianxiaCore
 
+enum ReaderMode: CaseIterable, Hashable {
+    case horizontal, continuous, verticalScreen
+    var title: String {
+        switch self {
+        case .horizontal: return "左右翻页"
+        case .continuous: return "上下连续滚动"
+        case .verticalScreen: return "上下整屏"
+        }
+    }
+    var symbol: String {
+        switch self {
+        case .horizontal: return "book"
+        case .continuous: return "scroll"
+        case .verticalScreen: return "arrow.up.arrow.down.square"
+        }
+    }
+}
+
 @MainActor final class ReaderViewModel: ObservableObject {
     @Published private(set) var isReady = false
     @Published private(set) var chapters: [Chapter] = []
@@ -17,6 +35,9 @@ import XianxiaCore
     @Published private(set) var interaction = ReadingInteraction()
     @Published private(set) var interactionSaveFailure: String?
     var settingsSaveFailure: String? { appearanceSaveFailure ?? interactionSaveFailure }
+    var readingMode: ReaderMode {
+        scrolling ? (interaction.verticalScreenPaging ? .verticalScreen : .continuous) : .horizontal
+    }
     let engine: (any ReaderEngine)?
     private let book: Book
     private let services: AppServices
@@ -129,14 +150,25 @@ import XianxiaCore
     func retryAppearanceSave() { setAppearance(appearance) }
 
     func setScrolling(_ value: Bool) {
-        guard !value || engine?.supportsContinuousScrolling == true else {
+        setReadingMode(value ? .continuous : .horizontal)
+    }
+
+    func setReadingMode(_ mode: ReaderMode) {
+        guard isReady, engine?.interactionProvider != nil else { return }
+        let continuous = mode != .horizontal
+        guard !continuous || engine?.supportsContinuousScrolling == true else {
             errorMessage = "这本书暂不支持上下连续滚动。"
             return
         }
-        scrolling = value
-        engine?.setContinuousScrolling(value)
-        var updated = interaction; updated.continuousScrolling = value
+        var updated = interaction
+        updated.continuousScrolling = continuous
+        updated.verticalScreenPaging = mode == .verticalScreen
         setInteraction(updated)
+        guard interaction == updated else { return }
+        // Snapping is an input policy on the same continuous DOM. Do not
+        // rebuild or resample the publication when only that policy changes.
+        if scrolling != continuous { engine?.setContinuousScrolling(continuous) }
+        scrolling = continuous
     }
 
     func setInteraction(_ value: ReadingInteraction) {

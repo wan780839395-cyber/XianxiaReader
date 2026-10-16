@@ -95,12 +95,17 @@ import XianxiaCore
         VStack(spacing: 20) {
             ReaderSettingsCard(palette: palette) {
                 sectionTitle("阅读方式", symbol: "book")
-                Picker("阅读方式", selection: Binding(get: { model.scrolling }, set: { model.setScrolling($0) })) {
-                    Text("左右翻页").tag(false)
-                    Text("上下连续滚动").tag(true).disabled(model.engine?.supportsContinuousScrolling != true)
+                Picker("阅读方式", selection: Binding(get: { model.readingMode }, set: { model.setReadingMode($0) })) {
+                    ForEach(ReaderMode.allCases, id: \.self) { mode in
+                        Text(mode.title).tag(mode).disabled(mode != .horizontal && model.engine?.supportsContinuousScrolling != true)
+                    }
                 }.pickerStyle(.menu).accessibilityIdentifier("reader.interaction.mode")
                 Text("记住你的选择，下次打开书籍时沿用。")
                     .font(.caption).foregroundStyle(palette.secondaryText)
+                if model.readingMode == .verticalScreen {
+                    Text("上下轻划，松手停稳一屏。保留少量重叠，方便接着读；也可轻点页面上、下方翻屏。")
+                        .font(.caption).foregroundStyle(palette.secondaryText)
+                }
             }
             ReaderSettingsCard(palette: palette) {
                 sectionTitle("沉浸阅读", symbol: "hand.draw")

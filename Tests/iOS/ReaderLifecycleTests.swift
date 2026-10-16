@@ -6,6 +6,38 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testVerticalScreenRestoreAndContinuousSwitchRetainSameSession() async throws {
+        let (_, services, engine, model) = try await context()
+        var saved = ReadingInteraction(); saved.continuousScrolling = true; saved.verticalScreenPaging = true
+        try await services.files.saveReadingInteraction(saved)
+        let started = expectation(description: "vertical mode ready before mount")
+        engine.onOpenStarted = { XCTAssertEqual(engine.interaction, saved); started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        XCTAssertEqual(model.readingMode, .verticalScreen); XCTAssertEqual(engine.continuousChanges, 1)
+        model.setReadingMode(.continuous)
+        XCTAssertEqual(engine.continuousChanges, 1, "Input policy must not rebuild the continuous publication")
+        XCTAssertEqual(model.readingMode, .continuous); XCTAssertFalse(try XCTUnwrap(engine.interaction).verticalScreenPaging)
+        model.setReadingMode(.horizontal); XCTAssertEqual(engine.continuousChanges, 2)
+        model.setReadingMode(.verticalScreen); XCTAssertEqual(engine.continuousChanges, 3)
+        await model.saveNow()
+        let restored = try await services.files.readingInteraction(); XCTAssertEqual(restored, saved)
+        model.close()
+    }
+
+    @MainActor func testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks() async throws {
+        let (_, services, engine, model) = try await context()
+        var saved = ReadingInteraction(); saved.continuousScrolling = true; saved.verticalScreenPaging = true
+        try await services.files.saveReadingInteraction(saved); engine.supportsContinuousScrolling = false
+        let started = expectation(description: "unsupported vertical layout")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        XCTAssertEqual(model.readingMode, .horizontal); XCTAssertFalse(engine.continuous)
+        let restored = try await services.files.readingInteraction(); XCTAssertEqual(restored, saved)
+        model.close()
+    }
+
     @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding {
         let viewController = UIViewController()
         var currentPosition: ReadingPosition?
@@ -17,8 +49,9 @@ final class ReaderLifecycleTests: XCTestCase {
         var interaction: ReadingInteraction?
         var supportsContinuousScrolling = true
         var continuous = false
+        var continuousChanges = 0
         func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
-        func setContinuousScrolling(_ enabled: Bool) { continuous = enabled }
+        func setContinuousScrolling(_ enabled: Bool) { continuous = enabled; continuousChanges += 1 }
         var closeCount = 0
         var appearanceProvider: (any ReaderAppearanceProviding)? { self }
         var supportsTextAppearance: Bool { true }

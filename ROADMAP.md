@@ -1,5 +1,11 @@
 # 开发路线与阶段门槛
 
+## Build19 当前切片（2026-10-16，未编译）
+
+Build18用户反馈“还不错 继续吧”，按基本自用/观感记录。新增上下整屏源码接入既有有界连续容器：原生松手停屏、90%有效高度/少量重叠、上下点按/按钮、三模式记忆/旧v1兼容；Core模型/UI/Adapter及两维护Vendor文件有改，原书/schema3/Locator/六pins/JS bundle保持。Windows423语法新增0/17工具通过，原36个受改文件内旧测试主体保持，新增9回归；尚未Apple编译，预期各122Core/iOS106/Release19。真实断点HANDOFF，设计READING_SCREEN_DESIGN.md。M4未完成，自动慢滚/卷页仍后续。
+
+以下Build18及更早为历史。
+
 ## Build18 当前切片（2026-10-16）
 
 Build18面板层次与按压反馈通过[完整CI38835963502](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38835963502)，实际编译源`76ede6b266304749db37029b66d89b0d27eb39e2`。Linux/macOS各119Core，iOS100/100（89集成+11真正UI），失败/跳过0，test/export/summary/recording退出0；无签名iPhoneOS arm64 Release18/min16、系统SQLite/真实三锁/每平台四长TXT Release探针与504源码blob核过。Windows423语法新增0/54 pristine限制、17工具测试通过；语法不是编译。

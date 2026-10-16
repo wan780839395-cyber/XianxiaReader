@@ -3,6 +3,37 @@ import XCTest
 @testable import XianxiaCore
 
 final class ReadingInteractionTests: XCTestCase {
+    func testBuild17InteractionJSONRetainsEverySettingWithoutScreenFlag() throws {
+        let data = Data(#"{"version":1,"continuousScrolling":true,"reduceMotion":true,"autoHideMenu":false}"#.utf8)
+        let restored = try JSONDecoder().decode(ReadingInteraction.self, from: data).validated()
+        XCTAssertTrue(restored.continuousScrolling); XCTAssertTrue(restored.reduceMotion)
+        XCTAssertFalse(restored.autoHideMenu); XCTAssertFalse(restored.verticalScreenPaging)
+    }
+
+    func testVerticalScreenModePersistsIndependentlyOfAppearance() async throws {
+        let files = try store()
+        var value = ReadingInteraction(); value.continuousScrolling = true; value.verticalScreenPaging = true
+        try await files.saveReadingInteraction(value)
+        let recreated = try BookFileStore(root: files.root)
+        let restored = try await recreated.readingInteraction()
+        XCTAssertEqual(restored, value)
+        let appearance = try await recreated.readingAppearance()
+        XCTAssertEqual(appearance, ReadingAppearance())
+    }
+
+    func testInvalidScreenPolicyAndMalformedNewFieldCannotBeSavedOrSilentlyDefaulted() async throws {
+        let files = try store()
+        try await files.saveReadingInteraction(ReadingInteraction())
+        let url = try files.resolve("Preferences/interaction-v1.json"), original = try Data(contentsOf: url)
+        var bad = ReadingInteraction(); bad.verticalScreenPaging = true
+        do { try await files.saveReadingInteraction(bad); XCTFail("Screen policy requires continuous layout") }
+        catch { XCTAssertEqual(try Data(contentsOf: url), original) }
+        let malformed = Data(#"{"version":1,"continuousScrolling":true,"reduceMotion":false,"autoHideMenu":true,"verticalScreenPaging":"yes"}"#.utf8)
+        try malformed.write(to: url)
+        do { _ = try await files.readingInteraction(); XCTFail("Wrong field type must be visible") }
+        catch { XCTAssertEqual(try Data(contentsOf: url), malformed) }
+    }
+
     private func store() throws -> BookFileStore {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let files = try BookFileStore(root: root)
