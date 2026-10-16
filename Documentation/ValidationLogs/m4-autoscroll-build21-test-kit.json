@@ -1,0 +1,316 @@
+{
+  "recordedAtUTC": "2026-10-16T07:09:18.377541+00:00",
+  "run": 38861273421,
+  "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+  "deliveredBuild21": {
+    "ipa": {
+      "path": "build/XianxiaReader-AutoScroll-Build21.ipa",
+      "bytes": 8418824,
+      "sha256": "be07227e9ce74eb1d4e65095dbe65ffe702ba50523f6bbf36079bebad2953219"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-AutoScroll-Build21-TestKit.zip",
+      "bytes": 12507634,
+      "sha256": "fa90c2d621768020b630b002d11c32006870fbd9f47321080dbd12c0f00d5c9a"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    }
+  ],
+  "previews": [
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/15DFE408-B321-4581-8704-51B4B7791E01.png",
+      "bytes": 411843,
+      "sha256": "dd0758f2b9d6a376abe5561ab1f47dd42ad2b8f706334a9b2a90855701181a6e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D4DB3102-C324-4A34-B8D1-B40CD43FCD86.png",
+      "bytes": 499991,
+      "sha256": "97ad0f5d45e0528e9cdab9401b902aee46d04dd5b4e416e31cf553549fded83f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE0317D1-B00D-479C-A755-60D04600D794.png",
+      "bytes": 469608,
+      "sha256": "adc85ff1b1dd3fecc5b6a1093b88e3a33189e79375cdfd554a3addf71a2986c2",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/03B72399-649C-4A97-A6FA-DC5BCDF5010C.png",
+      "bytes": 544215,
+      "sha256": "558bea2f65642a848bff4b4356097e53051d26c7dfde10857d59bfcc08fe0961",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3110BADE-3326-4BF5-8F6F-CA407ECBBD31.png",
+      "bytes": 547793,
+      "sha256": "d16ed2071b2b5256f3ff8458880b6c0b61819559eca9cad632caa333f13225fc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/70B19D99-CBB0-4705-8D6D-CE30124EE196.png",
+      "bytes": 265058,
+      "sha256": "199a94cf6fd0ee8fd5e1eb57fbaf10591a72f1e2e04e80428612b40fedbba131",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "autoscroll-epub-paused-build21",
+      "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8BF82B36-C89D-464F-BC1F-BB24E567DB02.png",
+      "bytes": 610644,
+      "sha256": "386323f14b89856e7774c6512defefc6a5952b242c9ea2ee7b6ec752bee77c77",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "autoscroll-txt-window-paused-build21",
+      "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/602EBF05-B5EB-4859-B385-4FFA9772E868.png",
+      "bytes": 556731,
+      "sha256": "7fb502b5286794c6853b05d80be7c298d53c13afe2e55e56f163896a62d08743",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "deviceAccepted": false
+}

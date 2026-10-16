@@ -1,56 +1,23 @@
 # 当前交接与恢复点
 
-## 现在从这里继续（覆盖下方历史检查点）
+2026-10-16（Asia/Shanghai）
 
-2026-10-16 14:46 Asia/Shanghai：Build21自动慢滚源码已实现，第三候选891114e252758cf93cb2d0158900badae0f7bb20 / CI38861273421正在Apple完整构建测试aggregate步骤，尚未最终通过/交付。Linux真实127Core与四Release长TXT探针已下载核验；Windows426语法新增0/17工具通过，49原测试主体保持、13新增、507冻结源。
+Build21自动慢滚通过[完整CI38861273421](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38861273421)，实际编译源`891114e252758cf93cb2d0158900badae0f7bb20`。Linux/macOS各127Core、iOS116/116（101集成+15真正UI），失败/跳过0，test/export/summary/recording退出0；严格无签名iPhoneOS arm64 Release21/min16，三份六pins锁、507源码blob及每平台四长TXT Release探针已核。Windows426语法新增0/54 pristine限制、17工具通过；语法不是编译。
 
-用户中断恢复已重新核：工作源码与891114e的507blob一致，原HEAD6d761749/空index、838原路径、35旧包、开工ZIP备份和私有远端保持。唯一运行开发任务为watch_autoscroll.py 38861273421（PID18516，工具session68223）；继续复用，勿重复dispatch/取消。实时run.json位于build/ci/38861273421。第二轮失败诊断已完整下载/CRC/summary核实，不再处于下载中。尚无可交付Build21，Build20仍是已交付基线。
+菜单“慢滚”进入现有连续正文，初始静止，再点开始；0.5—6.0屏/分/0.5步长，默认1.5。小控制条支持开始/暂停/调速/退出，沿用原主题表面。轻触正文即暂停，链接/选择/拖动保持Readium处理；后台/关闭/新书/跳转/排版/模式/旋转停，回来不自动跑；只保存速度。系统/应用/阅读减少动态效果或旁白开启时停用，明确说明。运行/等待临时保持亮屏，暂停等恢复原值。加载边界停住等待，失败沿用原可见重试，书尾结束。
 
-下一步先读真实最终run/full.log/xcresult，失败保留后修；成功下载本轮实际Apple/IPA/core，逐项核127×2/116iOS/严格Release21/锁/507源，再审真实PNG、慢滚/停用UI视频和原始VFR帧，才打包/同步状态路线设计/维护清单/私有最终文档快照。原自动检查/编译/模拟器/手机/TS五门槛仍分列，M4未完，不关机。详细进度、源码取舍和验证回执见下方及READING_AUTOSCROLL_DESIGN.md。
+Core纯时钟按真实时间与小数位移，>250ms间隙直接丢弃；Adapter短时CADisplayLink弱目标/session UUID，ReadingInterfaces可选能力，Vendor只在已有ready窗口内移动，最大12资源/完整DOMRange和TXT字节锚点保持。约每秒串行完整位置采样，暂停/保存补最后位置；每帧不查DOM、不写SQLite、不截屏。受改测试文件中的49个原测试主体保持，新增5Core+6集成+2真正UI。设计与官方/成熟实现取舍READING_AUTOSCROLL_DESIGN.md。
 
-## 本轮历史检查点
+安装`build/XianxiaReader-AutoScroll-Build21.ipa` / SHA256 `be07227e9ce74eb1d4e65095dbe65ffe702ba50523f6bbf36079bebad2953219`；原创样书测试包`build/XianxiaReader-AutoScroll-Build21-TestKit.zip` / SHA256 `fa90c2d621768020b630b002d11c32006870fbd9f47321080dbd12c0f00d5c9a`。正常覆盖更新保留书库，+菜单确认0.0.1 (21)；35旧包、两新包/ZIP内部IPA与原创样书/8原生Preview已核。
 
+原生复核范围：52张实际PNG逐图查看；两条新UI录屏总览（51.21s慢滚/15.76s应用减少动效停用）及418张原始VFR帧（浅色移动122、触摸暂停89、深色暂停207）逐帧联系表已核。选定已就绪正文片段持续可见、逐步上移后停稳，后台返回和非零位置重开静止，控制条沿用浅深色主题。减少动效图/视频尚处章节加载，仅验停用提示；其余8条reader/5条library原视频保留而未本轮逐看。本轮分页孤立WK图已有正文，历史间歇捕获成因仍未确认。所选片段未见整窗正文空白，不推广为全视频/全部机型或手机FPS/功耗结论。
 
-2026-10-16，Build21自动慢滚开工，尚未实现/编译。
+普通签名/TrollStore、真实系统Reduce Motion/VoiceOver/增强对比度/旋转、手机低速/120Hz/亮屏与功耗/实际流畅度仍未验收。自动检查/Swift编译/模拟器阅读/普通设备/TrollStore分列，M4整体未完。旧Build20/19证据与设备限制保留，不追认全矩阵或WebKit根因修复。
 
-用户“没问题 继续吧”记录为Build20基本自用反馈，不扩大设备/FPS验收。已按AGENTS顺序读文档，核实际HEAD6d761749/空index/私有tip02ecc460、837清单hash、35包、十份备份；838原路径ZIP备份/原hash见m4-autoscroll-build21-start.json，Build20交接归档HANDOFF_M4_BUILD20_DELIVERY_2026-10-16.md。最新完整CI38850709820成功，无遗留开发任务/活动CI。保留所有未提交改动，仅私有index快照。
+## 保存与后续
 
-下一片：自动慢滚，阅读菜单主动进入，仅连续模式；可调速、触摸立即暂停、后台/关闭/跳转/布局变化停止，重开静止。减少动态效果或VoiceOver启用时禁用并解释；不自动绕过用户系统偏好。先核设计与有界窗口，按真实时间/小数移动，不后台追赶，不逐帧DOM/写库；旧Readium execute实际不节流，需明确低频位置采样与暂停后最终完整Locator。完整Core/iOS/Release21及真实UI视频/原始帧门槛在前，不能用Windows语法替代编译。
+原HEAD6d761749/空index/M2 e6f31d85/M3 44af41f0保持，仅私有index维护codex/m4-reading-appearance。原838开工路径、507编译blob、35旧包+两新包、11份ZIP备份及最终远端/树核验见build/ci/38861273421/final-preservation-check.json。首候选主动取消阶段与本轮发展检查点保留，未将取消写源码失败；第二候选112/115、3条新增回归失败（旧108全过）的完整诊断及修正也保留，第三候选116/116真实通过。Build20完整交接与本轮发展历史均独立归档。
 
-## 源码子步骤/测试前检查点
+恢复先AGENTS→状态→交接→路线→架构，再核实际Git/文件/hash/完整日志和进程，保留所有未提交改动。优先收集本片手机轻触接管/低速/跨章/静止重开/功耗反馈，再按M4独立切片做“回看不丢位置”及字体导入等；特色候选见READING_FEATURE_IDEAS.md。M4整体未完，不提前铺开M5，不沿用旧关机请求。
 
-Build21基础源码与5 Core/7 iOS回归已接入；设计READING_AUTOSCROLL_DESIGN.md。Core纯时钟、速度偏好旧兼容；可选capability→Adapter短时CADisplayLink→Vendor有界step；约每秒完整位置/暂停flush，触摸/后台/模式/排版/resize/错误停，重开静止。尚未执行Windows检查或Apple编译，不宣称通过。接下来Windows语法/17工具及私有index旧测试主体/差异审阅，再冻结源码送完整CI。
-
-## Build21 Windows通过/Apple构建前
-
-426 Swift语法新增诊断0（54上游语法限制原留）、17 Python tooling tests通过；不是Swift编译。私有review-index相对02ecc460核无删除，49个受改文件内原测试主体逐AST保持，新增12测试（5Core+5集成+2真正UI），507源blob冻结；证据m4-autoscroll-build21-windows.json。当前普通HEAD/index未变，原838路径/35包备份保留。现在创建私有源码候选并显式dispatch完整CI；预期Core127每平台、iOS115（100集成+15UI），实际结果仍待读取日志，不预写通过。暂未交付Build21，Build20仍可安装基线。
-
-首候选源5abe86c3e5a7bf2e4220a62b70e008018295993d，实际dispatch CI38857983539，尚在运行；不可把本地语法通过写成Apple编译成功。下一步核实时job和完整日志/xcresult，成功后审原生视频，失败保留日志再修。
-
-构建早期审阅补全慢滚保持亮屏/恢复原idleTimer状态的生命周期与断言。首CI38857983539当时仅Linux安装依赖/未进入Apple，将主动取消并保留取消阶段，不归为源码失败。重跑Windows检查/源码冻结后用新候选完整CI。
-
-第二候选fc68f13e3bcb68c72d7b35ca492511874c182a2d / CI38858126400已实际dispatch。首轮取消状态另存m4-autoscroll-build21-first-agent-cancel.json。Windows重跑通过，仍49原测试主体保持/12新增/507冻结源。Apple结果仍待完整日志，当前尚无Build21安装包。
-
-Linux完整原日志/性能artifact已实际下载CRC核验：127/127 Core、四Release长TXT探针均通过，日志无源编译warning/error。Apple仍排队/未验证；回执m4-autoscroll-build21-linux.json。运行中的本轮API watcher进程为watch_autoscroll.py，负责记录真实状态/完整日志，非永久自动化。
-
-首轮取消最终实际阶段已核：Core编译/测试通过，取消打断Linux Release TXT性能步骤，Apple未执行（不是源码失败）。gh查看全日志因未启动iOS的log not found失败，已用REST下载真实完整log ZIP/CRC，回执保留错误和成功原件。早先“安装依赖”为当时观察，最终阶段以此为准。第二轮Linux127/四Release探针通过，Apple正在实际构建测试aggregate步骤，不能用网页尾部推断内部阶段。
-
-只读复查发现：新增EPUB/TXT慢滚跨窗口测试在触发2.5屏预取前等待下一资源，可能因测试准备次序超时。现有整屏跨章测试先移动到当前wrapper尾部1.75屏内，再等真实相邻frame。当前507源码仍冻结为fc68f13，未修改/取消本轮，先收完整实际结果再修准备步骤；原所有断言保留，pending-readiness-review.json仅审查发现不当实际失败结果。
-
-进入第二轮后续源码修正子步骤：当前CI38858126400仍编译fc68f13旧候选，尚未取完整结果；允许工作文件继续修正，不能再声称它们与该轮507编译blob一致。先修已代码核实的两条测试预取准备，补前台状态guard及读取/进度/设置写入错误时暂停、条内错误重试；新增真实临时存储失败/重试模型回归。旧候选完整源由Git保留，结果待核，不会据当前文件伪造旧轮测试通过。修正后重新Windows/冻结/完整CI才交付。
-
-修正子步骤已完成，测试前检查点：EPUB/TXT先移动到当前ready尾部1.75屏触发预取，再核真实相邻frame；前台active双guard；读取/进度错误先暂停，速度写入失败条内可见/重试不自动恢复。新增临时存储真实失败/恢复原文件/重试回归，当前共13新增（5Core+6集成+2UI），预期116iOS=101集成+15UI。旧fc68候选完整freeze另存second-candidate-freeze.json，尚未用新结果覆盖；现在Windows检查，待当前CI真实结论后创建修正候选重新全跑。
-修正后Windows426语法新增0/17工具通过（corrected-windows.log/corrected-tooling.log）。当前未Apple编译的修正先做私有WIP快照用于中断恢复，不触发/不取消正在运行的fc68旧源CI；其真实结果仍要完整读取。后续须再冻结最终源、显式dispatch完整CI，不能交付该WIP。
-源码复查另补速度无障碍语义：原Text用label覆盖数值，改为“慢滚速度”label+实际每分钟数值value；新增UI断言改读公开AX value，保留可见速度/持久化含义。旧fc68轮仍未取最终结果，不把此审查当实际失败。上述后续修正仍待重新Windows检查/快照和完整CI。
-
-第二轮CI38858126400/fc68真实完成failure，完整日志已核：115iOS中112通过/3失败，原108全部通过；新增EPUB/TXT预取准备超时和AX label“每分钟屏数”与3.0不一致，恰与前述源码审查吻合。test65/export0/summary0，严格设备Release和IPA未执行/未生成。923689501字节诊断artifact12028779586正下载，原件保留。修正未删除原断言，增加存储失败回归后下一轮116iOS；构建前Windows重跑/最终冻结，再显式完整CI。
-
-修正后第三源码891114e252758cf93cb2d0158900badae0f7bb20，实际dispatch CI38861273421。Windows426/17重跑通过、49原测试主体保持、13新增/507源blob已冻结；所有第三轮门槛重置pending，不把旧源结果当新源已通过。现在新watcher等待实际结果，旧923MB失败诊断另在下载，必须核CRC/摘要后再归档。
-
-旧第二轮923689501字节真实Apple诊断已下载CRC/解压，原xcresult/summary确认112/115、3失败/0跳过；macOS127Core实际也已通过，设备Release仍未执行。旧失败轮EPUB慢滚实际暂停整窗与减少动效禁用两图有原件，后续只作为旧候选局部复查，不追认最终交付。新第三轮正在运行，当前源码891114e冻结。
-
-第三轮891114e/CI38861273421的真实Linux127/127及四Release探针日志已下载/核CRC，通过；回执third-linux.json。Apple尚在执行aggregate构建测试，未写通过；当前不再改507冻结源码，等待该轮完整结果/原生录屏。旧轮失败记录与两张局部图复查保留，均非最终验收。
-
-## 用户中断恢复核对
-
-2026-10-16，按AGENTS顺序重读。当前实际断点仍为第三源891114e/CI38861273421：507Git源码blob和工作文件逐核一致，仅记录文档有新改动；原HEAD/空index、838原路径、35包和开工ZIPhash保持，私有tip/远端均891114e。唯一开发进程为本轮API watcher PID18516，继续等待现有CI，不重复开构建。新Linux127/四Release探针真实通过，Appleaggregate仍in_progress；Build21未交付。第二轮失败诊断下载已完成/CRC/xcresult核过，旧便笺中“仍下载”为过时状态；当前以本条和resume回执为准。
+最终收尾：本轮API watcher、下载、原始帧解码均已退出，进程复查无遗留本轮开发任务；最新三轮CI分别success/failure/cancelled且均completed。安装包与TestKit实际生成、CRC/内部IPA/hash已核。现在只做清单、保全和私有文档快照/远端核对，507编译源不再改动；后续从本Build21手机反馈继续。

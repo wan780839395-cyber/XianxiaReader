@@ -193,3 +193,7 @@ ReadingInteraction v1增加可缺省的verticalScreenPaging，原字段严格解
 ## Build20 即时整屏过渡保护
 
 沿Readium3.11现有PaginationView的公开UIView.snapshotView保护思路，仅在无动画整屏命令保留一帧当前原生视口200ms，作为静止兄弟视图；底层位置立即应用，视图不截触摸/可访问性。一个可取消Task/请求ID管清理和迟到结果，新拖动/模式/resize/跳转/关闭释放。没有新引擎、每帧捕获、PNG缓存或Core/接口变更；性能/真实系统与手机视觉仍单列，详细证据见READING_SCREEN_STABILITY_DESIGN.md。
+
+## Build21 自动慢滚
+
+Core的AutomaticScrollClock只含Foundation时间数学；ReadingInterfaces提供可选ReaderAutomaticScrollProviding，UI不持有Readium类型。Adapter用短时CADisplayLink/弱目标/sessionID驱动Vendor已有连续容器的ready窗口，原12资源上限及完整Locator保持，无新排版或每帧DOM/DB/截图。移动约每秒串行完整锚点采样，暂停/保存补最后位置；await后验证epoch/index/size/request，旧回调不能重启或清新session。ReadingInteraction v1只保存速度，缺字段旧兼容，运行状态不持久化；前后台/触摸/跳转/布局/错误停，减少动效/VoiceOver拒绝开始，idleTimer恢复原值。Build21完整自动门槛与选定原生复核和手机矩阵分列，详见READING_AUTOSCROLL_DESIGN.md和M4_AUTOSCROLL_VALIDATION_REPORT.json。

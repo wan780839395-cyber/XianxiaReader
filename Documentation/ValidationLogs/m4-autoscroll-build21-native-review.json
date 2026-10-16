@@ -1,0 +1,4736 @@
+{
+  "run": 38861273421,
+  "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+  "images": [
+    {
+      "name": "autoscroll-epub-paused-build21",
+      "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8BF82B36-C89D-464F-BC1F-BB24E567DB02.png",
+      "bytes": 610644,
+      "sha256": "386323f14b89856e7774c6512defefc6a5952b242c9ea2ee7b6ec752bee77c77",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/720948B1-0A5A-46B1-B8DC-6F5AF5C7F62A.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          0,
+          198
+        ],
+        [
+          0,
+          204
+        ],
+        [
+          0,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "screen-instant-whole-window-build20",
+      "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AB00C026-90B6-4A8C-952E-756C29634044.png",
+      "bytes": 610005,
+      "sha256": "654d8d0045eee6a5d3e0505fe163e8d47d4654ced62edbb8f6dbe4ad1a7a19d7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C985835C-C51D-486F-8E3B-D2AC70F415CC.png",
+      "bytes": 490411,
+      "sha256": "0dd404261878626e1e4a05bdae081e6e2e5f725c1f7a5171c54b89014b728f1c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6333C79B-9D9E-4F6F-832F-F0224979276D.png",
+      "bytes": 367745,
+      "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+      "inspected": true,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "screen-cross-chapter-whole-window-build19",
+      "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2B9174FA-7E69-42BC-A16F-1385006B38A3.png",
+      "bytes": 520942,
+      "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "autoscroll-txt-window-paused-build21",
+      "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/602EBF05-B5EB-4859-B385-4FFA9772E868.png",
+      "bytes": 556731,
+      "sha256": "7fb502b5286794c6853b05d80be7c298d53c13afe2e55e56f163896a62d08743",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2515C57A-2F3B-4138-A004-352F94A79A6A.png",
+      "bytes": 432398,
+      "sha256": "b6513e0c01ed6d3d7bd8fdd029fa3b2fe1e6bd867c32b0f9dd1916a05c5be4a6",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A17F3AFB-B839-435F-BC2E-59B4E2295CA0.png",
+      "bytes": 551615,
+      "sha256": "4286b19743e51c9c1d0c6478807672e67c6fb5744b0b50d57fa0a2df0f0ad190",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AE4D88C7-74E0-4AF8-A402-D4681444ED7B.png",
+      "bytes": 635562,
+      "sha256": "849b8c31fdad85bb20e6ff5d8d7e8605c4a91efbfa500a35d66a15da3956e56e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FABF22EB-8A04-4FF8-833D-678AA38CE821.png",
+      "bytes": 621394,
+      "sha256": "b85c87a77061010bd57a5c0e097620ee02a4e40ef7252bc24ba4b8203d47e544",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2C95D289-2225-4CD3-ABDB-45921AAD2BF0.png",
+      "bytes": 642442,
+      "sha256": "36dcc14fda0be2b7de1f86f4ef1d6da19b0f77c2d4db18e5856f572f76de9c0e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/80EB4396-071E-4F39-94C0-EC022F04A70A.png",
+      "bytes": 573749,
+      "sha256": "b6648edff817c1fc7ee4c4d765c935df84244d42c9072554f951a0eae5449b2b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A726C08E-B346-4C6B-8694-455A0D5E756C.png",
+      "bytes": 559790,
+      "sha256": "7c3f3cdaf67eceb0278b09b6a6eafbc22884f1d5ae3b56cee4e4c6e3b2a0600c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A43C4463-CF56-435F-960C-195BF11E14E7.png",
+      "bytes": 653715,
+      "sha256": "cc41cdb1998856b3e3f46529c746ee90dad1222a37c0e7c20908b6cb111128a7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/70B19D99-CBB0-4705-8D6D-CE30124EE196.png",
+      "bytes": 265058,
+      "sha256": "199a94cf6fd0ee8fd5e1eb57fbaf10591a72f1e2e04e80428612b40fedbba131",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3110BADE-3326-4BF5-8F6F-CA407ECBBD31.png",
+      "bytes": 547793,
+      "sha256": "d16ed2071b2b5256f3ff8458880b6c0b61819559eca9cad632caa333f13225fc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/03B72399-649C-4A97-A6FA-DC5BCDF5010C.png",
+      "bytes": 544215,
+      "sha256": "558bea2f65642a848bff4b4356097e53051d26c7dfde10857d59bfcc08fe0961",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE0317D1-B00D-479C-A755-60D04600D794.png",
+      "bytes": 469608,
+      "sha256": "adc85ff1b1dd3fecc5b6a1093b88e3a33189e79375cdfd554a3addf71a2986c2",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D4DB3102-C324-4A34-B8D1-B40CD43FCD86.png",
+      "bytes": 499991,
+      "sha256": "97ad0f5d45e0528e9cdab9401b902aee46d04dd5b4e416e31cf553549fded83f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/15DFE408-B321-4581-8704-51B4B7791E01.png",
+      "bytes": 411843,
+      "sha256": "dd0758f2b9d6a376abe5561ab1f47dd42ad2b8f706334a9b2a90855701181a6e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/58914625-358B-4382-BEAB-E8277E0D826B.png",
+      "bytes": 690222,
+      "sha256": "6bf525fdec62d006ba787ac27c4665fa425d54e5beb5ee0bc224c5c13f16c679",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B5BAA558-D32B-4E75-A726-D34FCE111B92.png",
+      "bytes": 691510,
+      "sha256": "e948589a1a5d2539c9c1541d7491ec295b7320f67b92e16ef55b0b183f93d8a0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A9FA8B40-418E-491C-9257-A0DDC2810ED2.png",
+      "bytes": 757985,
+      "sha256": "20515acbbcf7f2e16cc1f8cfc6939ba531104eedf42b442ae9d9c1d50a841529",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8BF8DA23-9EF6-4130-84D6-AD73C45CBB20.png",
+      "bytes": 903837,
+      "sha256": "86667137cbb1c369df90936c1379a881c19f698cf9c68fecda66825ecf58af86",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DF1DC6FD-62C1-42B7-9BB1-C8AA68A5153E.png",
+      "bytes": 639074,
+      "sha256": "0f83cf3f3cb819b5504fa6f5cdb21bd73a0f5ab68459f1d2bac52c4697f9a18a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F13F2DD1-7E32-4F04-8970-F62E3CD3B0D7.png",
+      "bytes": 674065,
+      "sha256": "7dfde16dfc0b48c2d668d0afd8b28fe54308842e9a488bb48a4779169c8f6ec7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5CADA939-A673-4CA8-B983-369AB7C7052E.png",
+      "bytes": 559316,
+      "sha256": "9d6f312f0c4f6f62abb9adba1297aa542534b769552502259619278fedfd3955",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/29C664E2-5FF1-4DF0-B467-D4B44A3E2930.png",
+      "bytes": 742434,
+      "sha256": "b1b15f3e2ac68933ce4975d6411975df0a10123998ce004faab3e4311375caa0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EA94C22D-AD9D-4B2D-A860-28D70FBEDD27.png",
+      "bytes": 471852,
+      "sha256": "67a2892d9819e7eef448bad7ac218da184a014475561d20b01dcf99b2d271288",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0D5FE659-4F97-4D72-B220-E8B5C0CCFB7C.png",
+      "bytes": 668641,
+      "sha256": "edac007f7d1a029a611431e8556caec22f259bfb0664b1eacbe9ad5ecd6d2fad",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2AAB2D62-0A08-4D11-9F03-29C5B9ADF51D.png",
+      "bytes": 669663,
+      "sha256": "e734b2e315f9e4272e068d5412fc6273e0d80375ee6f9130ba22024e7ad02653",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3469292A-27DA-4141-B4E5-A01D8F779A3D.png",
+      "bytes": 400745,
+      "sha256": "fb46210243a462833002457a93a09e20a54a1f24ad0d6ca67bfa04d14c642fcf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E6D81071-867F-4D5A-B675-33895CE26229.png",
+      "bytes": 335782,
+      "sha256": "b4c13cc73c2276f5940c1562bf702290b26c7ae8e6bb8eb3dad6e30406bbc416",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/52AA3EAC-E50F-4BCA-BFFE-8658A7DBEC5F.png",
+      "bytes": 492382,
+      "sha256": "7081a9f63531a2301618bd4363fef0e4097bf40925ad85d435257343d403431d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AA1B76A0-8CD0-4657-A954-EB5EA71921E6.png",
+      "bytes": 674065,
+      "sha256": "7ed306d56a81d7ad3cffa6d343ca75e5cc5f5916bd29c123ed0b4cd7c5568c7e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B6D34999-A463-4FA5-95FF-AA5C5D7D2519.png",
+      "bytes": 612463,
+      "sha256": "43d6bf942f28dd6e6ce5609e990a902e677c7542c1288d2438acdb90cad2d90a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3BE89699-006E-4F36-AEFB-0E6A7A708714.png",
+      "bytes": 639776,
+      "sha256": "ff12c18099da85292fbfb04673c049f3962cd8ef9a4c9deb687063f144481cd6",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D110FB59-0F13-4772-8E1A-56CD90DD8E3D.png",
+      "bytes": 562647,
+      "sha256": "9ebacb3efc08dbed679720b3ef4b128e8ce7e7278b5395a2c9110357fc33e305",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D80CDDA1-F165-4D1A-B8D4-8DDE3875416A.png",
+      "bytes": 473188,
+      "sha256": "b29dc4163ddd639dfc02169ac8ad7668d6c350fc35214f0df2b0723711409873",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7510B86A-186E-45D3-BD9D-BBC3D5F2787D.png",
+      "bytes": 612377,
+      "sha256": "5678b372791c33292f5faa7cc31dd85201b8357fda57ab6298b688f8c470b840",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/17F8B6BC-FABD-4603-AD1D-91AFB4834B86.png",
+      "bytes": 639967,
+      "sha256": "b256a4eb3928225feb42ec4157ad53d5552db1535367414d9502df9d11924908",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/276DF049-560D-42B1-9627-D35B85D5494C.png",
+      "bytes": 562771,
+      "sha256": "f5fed33c8ac50b706a83a411d69f3a6387387f4810e16a0214c215ed6d3f36ec",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E022E16-3738-47CA-A211-3D52F0C8BBB2.png",
+      "bytes": 473408,
+      "sha256": "0c0975f44fc6e2fc1df1ce98e675aaed8741098690a080aa5a9f11cc25bcac21",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/734C0158-35CB-4B93-806B-7425CE065767.png",
+      "bytes": 692655,
+      "sha256": "69de53637d02a2e2279944d97007d748a7499bf514e21c5d78565789b0228b50",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-settings-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/031D5CB3-69EE-4F9F-A90C-B92CE5D784B1.png",
+      "bytes": 728229,
+      "sha256": "be88bd0ab701706f3384a170a24eb3e8b94b18342b2d6afd8536759ba8930e90",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0E00966D-264F-4943-BEC2-B2340238C84E.png",
+      "bytes": 425465,
+      "sha256": "ce4ad7fac44b20c20acade80c4a0519e8ff6346713cb3b3092e462c7cedafa76",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-before-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FF26D00D-78BA-42A5-A018-8F550A838C1C.png",
+      "bytes": 596485,
+      "sha256": "fe3f911eb27f650a49486a73ea17e41edf027c2b11d0e30c4bb87edb0b4d9209",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-restored-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7872037D-D546-44B0-8322-047A2A772678.png",
+      "bytes": 688365,
+      "sha256": "d750f2f31d55520ac1979a85d4bc62b1666b427f02fa927d748d59151407d690",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-settings-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AA8A3B11-778C-4067-B8FA-EEFC075C9850.png",
+      "bytes": 727701,
+      "sha256": "560c39ff0c706c13c0b002033ff719cc20f753484a23ec2b5c50b7036a8be336",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1C881483-A377-4ED4-A245-7D2BEA600297.png",
+      "bytes": 425571,
+      "sha256": "1cd0e90e3b78201d052196935099ccd5d56550ed339d8ff82e192bb76c227b3a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-before-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/42B82A33-4240-4543-905E-A4542961FE4E.png",
+      "bytes": 596717,
+      "sha256": "5199dfc969705c325462018ad4c706af2af8a3a100550d7c94119e9e666ac76c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-16 at 06.45.11 AM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2E5C1ACA-8CC6-4558-AFCA-F064D6E87659.mp4",
+      "bytes": 13521389,
+      "sha256": "4c6e5bd2d5b1f167addac0ce8bd33c24103368f6492e98305b9b4bac899b6222",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.45.45 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8DC8835B-50CE-4C71-9146-EC784B7073AA.mp4",
+      "bytes": 3593521,
+      "sha256": "0c7458d3475462ab72f4bfd71c146b4040bfe47f091fa359c669d574116fcd3e",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.46.02 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3037ECDB-EA7A-4584-9452-974F409093EE.mp4",
+      "bytes": 3117841,
+      "sha256": "66171eb93e8ded3b87061a69df5481934cfc927a35680ab45893212c5e1341e3",
+      "inspected": true,
+      "durationSeconds": 15.76,
+      "inspectionScope": "All 1-second overview samples, plus selected original frames where listed",
+      "observations": [
+        "The 1-second overview shows the additional application Reduce Motion flag disabling the start control with a visible explanation and no automatic start.",
+        "The chapter is still loading before exit; this clip does not validate settled body movement or the actual system Reduce Motion/VoiceOver settings."
+      ],
+      "overviewContacts": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/disabled/contact-1.png",
+          "sha256": "2a32a8ceb81e1e7bc7001f2481c93a187a3b57564d3176133831c9da31379ec3"
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/disabled/contact-2.png",
+          "sha256": "a35e215f3e3af2899134ae577897594f2b527f254e35e7acb64a0fc631e1b9ca"
+        }
+      ]
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.46.18 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CDADA931-6577-4CD5-8CE3-B40DBC14CA78.mp4",
+      "bytes": 36592322,
+      "sha256": "5f56f8f7047f1ba4003aa69a5bb99636afb9252cedca308cbc13246fe1d65599",
+      "inspected": true,
+      "durationSeconds": 51.21,
+      "inspectionScope": "All 1-second overview samples, plus selected original frames where listed",
+      "observations": [
+        "The 1-second overview covers initial loading, static entry, speed 1.5 to 2.5 to 3.0, light movement, touch pause, explicit restart, home/foreground remaining paused, dark-theme movement and pause, return to library and terminate/relaunch.",
+        "Relaunch restores dark nonzero position and speed 3.0 with the bar ready/static. Initial app/chapter loading frames are excluded from ready-body motion acceptance."
+      ],
+      "overviewContacts": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/contact-1.png",
+          "sha256": "287b8bcf7c6adf690d832688537c7a7714c429965b604d7295a3cca67cf0282d"
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/contact-2.png",
+          "sha256": "5226e8a9cfcd069e7664658d55482b609356d84afdb815c7269c575596e42377"
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/contact-3.png",
+          "sha256": "45ae141beae2469cf27845bd0bdcebd9f19459801b871dad28ba2511895f22fa"
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/contact-4.png",
+          "sha256": "830f0e039624c6c92cc5d328c42df2f9f4a6fef4c5e8d466d40380bdc0a5d142"
+        }
+      ]
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.47.10 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EA58FFBB-EAF9-48A7-A73F-829862F3569E.mp4",
+      "bytes": 10664136,
+      "sha256": "29a4f7e6ee470d88a8a96186c392468970b8ec0898159b5a5df12fde06c2fceb",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.47.35 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B60D2E6B-EBA9-41D3-A384-C9D51FC4E573.mp4",
+      "bytes": 22523603,
+      "sha256": "bd9b1e82e24af2c0548f4e733d1aff6edc4fb775f26c8792a1d2dda5285cd8e3",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.48.20 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/696E11C4-B7FE-4121-8696-3AF7B7B6C999.mp4",
+      "bytes": 30077074,
+      "sha256": "24b4bc54df825017182b5096dd9776563e873503db5b95e848421d3183276c83",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.49.17 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/79DFB644-EE90-4E0C-96A0-C45C67228538.mp4",
+      "bytes": 5220031,
+      "sha256": "043cd79dfb85e089dd6509f410281ed58b99aeb55a58bdbc7a023889343dba26",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.49.35 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AE73DECE-AE2E-4C64-86BF-E2ADCFE0614A.mp4",
+      "bytes": 14922273,
+      "sha256": "4c0b0591b03cfd6e5dd07d95274566670f5c07587d346c88fb22accd3840c2a2",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 06.50.27 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/395EA41F-A1C4-42B5-840C-00ED5BB71728.mp4",
+      "bytes": 50350145,
+      "sha256": "69c5ec95dd9b9b9e32cbe18d9826fb9ade3babbc9bac58c498e8f210245c5fa7",
+      "inspected": false,
+      "inspectionScope": "Original retained and hash checked; not manually reviewed this turn"
+    }
+  ],
+  "recordedAtUTC": "2026-10-16T07:09:04.831778+00:00",
+  "method": "Manual inspection of all 9 PNG contact sheets, both new UI-video 1-second overviews, and all 19 contact sheets of the 418 selected original VFR frames. Original artifacts retained; no interpolated frames.",
+  "imageSummary": {
+    "inspected": 52,
+    "opaque": 52,
+    "observations": [
+      "Light/dark theme surfaces, five menu tools, compact automatic-scroll controls and nonzero static reopen are visible in actual Build21 snapshots.",
+      "The EPUB paused whole window and TXT bounded-window/emoji snapshots contain readable body text.",
+      "The current epub-paged-reflow-build15 isolated WK snapshot is opaque and contains text. This does not establish the cause or a runtime fix for historical intermittent captures.",
+      "The reduced-disabled snapshot is taken during the visible next-chapter loading state. It validates the disabled bar and explanation only, not a settled reading body.",
+      "Build15–20 attachment names in this run refer to current Build21 CI captures, not retrospective acceptance of older runs."
+    ]
+  },
+  "videoSummary": {
+    "readerOriginals": 10,
+    "readerOverviewsInspected": 2,
+    "otherReaderOriginalsRetainedNotReviewed": 8,
+    "libraryOriginalsRetainedNotReviewed": 5,
+    "wholeVideoFrameByFrameAccepted": false
+  },
+  "consecutiveFrameSequences": [
+    {
+      "run": 38861273421,
+      "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+      "video": {
+        "name": "Screen Recording 2026-10-16 at 06.46.18 AM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+        "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CDADA931-6577-4CD5-8CE3-B40DBC14CA78.mp4",
+        "bytes": 36592322,
+        "sha256": "5f56f8f7047f1ba4003aa69a5bb99636afb9252cedca308cbc13246fe1d65599",
+        "inspected": true
+      },
+      "start": 14.2,
+      "end": 16.3,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "bodyInkRegion": [
+        16,
+        180,
+        464,
+        730
+      ],
+      "inkCountPurpose": "Find possible blank-body intervals for manual review only; initial loading/short pages may correctly have no ink",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0001.png",
+          "pts": 14.228333,
+          "sha256": "2b341d15c25b712c6c09f913da72d16ec806485dcbac8c74bf43e8c703f7040c",
+          "bodyInkPixels": 11852,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0002.png",
+          "pts": 14.245,
+          "sha256": "a2a71f2049b0e039a0f71d0aa76bd884742640bc1e068ac206884038b156ee0c",
+          "bodyInkPixels": 11822,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0003.png",
+          "pts": 14.265,
+          "sha256": "1db3e3ff517801d3afda9cab359158e2bbc74d1728e7befe5e31030e0d10ab7d",
+          "bodyInkPixels": 11970,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0004.png",
+          "pts": 14.281667,
+          "sha256": "d9c6a66333325b01902b4a0a27ab381aaf5e7503b8631d250cebf12563d61978",
+          "bodyInkPixels": 12044,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0005.png",
+          "pts": 14.291667,
+          "sha256": "3817e91ff79d9426c58edb05a2c838c080bfb60477ee99ade443d3d59e813f48",
+          "bodyInkPixels": 11813,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0006.png",
+          "pts": 14.306667,
+          "sha256": "23fdb29b73e03f679aadebafcc89eef5a4f17e6ad15b5602cb43e7e3dd7add5c",
+          "bodyInkPixels": 11676,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0007.png",
+          "pts": 14.325,
+          "sha256": "25ce79b6c8548bf7cb29125592888aee9dbad56f4ee238b72f679e67815b7bf8",
+          "bodyInkPixels": 11815,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0008.png",
+          "pts": 14.341667,
+          "sha256": "81d7bd2af240fabd360aec3b0b56c09b8d2c5fcbb15850c29a8537f03415408d",
+          "bodyInkPixels": 12000,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0009.png",
+          "pts": 14.358333,
+          "sha256": "310c29758d9b6c235cdd6bb9c66cb24d2350383c92c62e5a7607a5ac39906c81",
+          "bodyInkPixels": 12004,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0010.png",
+          "pts": 14.375,
+          "sha256": "25c562f768a3d1f06705c15ae3b75413741fb1fc472d9e3350a10919141538aa",
+          "bodyInkPixels": 11793,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0011.png",
+          "pts": 14.391667,
+          "sha256": "98b05c437ee6b7240ccd6b463b449617996a965e2eb6e6a9b27ba2a5a097292e",
+          "bodyInkPixels": 11717,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0012.png",
+          "pts": 14.41,
+          "sha256": "3bacb8e430700224bbeb0056b30a0846333f9be4abafc1570f200138d72cf688",
+          "bodyInkPixels": 11850,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0013.png",
+          "pts": 14.425,
+          "sha256": "da0cd94430284e00d14ce0db6a074663303a41a78faf99b74f235c00a265f0a5",
+          "bodyInkPixels": 11975,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0014.png",
+          "pts": 14.443333,
+          "sha256": "75418efe7a69b1defc7a75b798c9e4953350466982aa4a7392f6893f3aff0806",
+          "bodyInkPixels": 11947,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0015.png",
+          "pts": 14.458333,
+          "sha256": "a374cd695bcae08241f3c96b19d61279a950acd499c4e37b8dc58c18014e1d21",
+          "bodyInkPixels": 11776,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0016.png",
+          "pts": 14.475,
+          "sha256": "aa346d8245322d34d7f49dece2412eecc1d75addb430a890adc68dcf7bef7db9",
+          "bodyInkPixels": 11736,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0017.png",
+          "pts": 14.493333,
+          "sha256": "f7acfae2876f3d91e418e6af5c6c46df774ac634d1a5c8f4ca114605ac06543f",
+          "bodyInkPixels": 11888,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0018.png",
+          "pts": 14.508333,
+          "sha256": "58a1d250c44f435873509ecb24ba51af5a5cd6461674aa58b8b99f8be3977faf",
+          "bodyInkPixels": 12006,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0019.png",
+          "pts": 14.526667,
+          "sha256": "d31ae2e083998c145e716456afe34085f90cb334de9f4b6b4bda00640fd321b5",
+          "bodyInkPixels": 11964,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0020.png",
+          "pts": 14.54,
+          "sha256": "17f7a81687065e081593098dddb2138c7a4dff050e4b9dde04e5e8d0dd3267bf",
+          "bodyInkPixels": 11766,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0021.png",
+          "pts": 14.56,
+          "sha256": "2598992a1c03f90384f6a806edd1a4e5047217ee60df5de1990b0340d82d3c53",
+          "bodyInkPixels": 11758,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0022.png",
+          "pts": 14.575,
+          "sha256": "50dfdff642484784007183f4b779b473285e2cb142b21a32cffc0b3337d74afc",
+          "bodyInkPixels": 11836,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0023.png",
+          "pts": 14.59,
+          "sha256": "544aaebdb660edb449e2befed12638502a0944ac0f2ca5352c26db5d25f04daf",
+          "bodyInkPixels": 12008,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0024.png",
+          "pts": 14.608333,
+          "sha256": "2ca35a131e1fa5608b2f5ba527d1b573041000f8edfa247b394d6cbc01893f7e",
+          "bodyInkPixels": 11981,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0025.png",
+          "pts": 14.625,
+          "sha256": "08e60b0656745c6b2e89f7d13fa1fec58a9ffeeab75d11ef70f993459898da38",
+          "bodyInkPixels": 11889,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0026.png",
+          "pts": 14.643333,
+          "sha256": "4108272d1b04ec66252d6ee5dbbaa3e7a2208ef7d3b64bb6659ce2d56dfbccd7",
+          "bodyInkPixels": 12010,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0027.png",
+          "pts": 14.66,
+          "sha256": "ea2374cffed17755ae1080172581f06ea1cb653727eb8e6a6d44efb6aeeb99e3",
+          "bodyInkPixels": 12118,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0028.png",
+          "pts": 14.676667,
+          "sha256": "fd06c03755ee5d1fe63b14972789438a5571cb5661a22820295f8796cf575823",
+          "bodyInkPixels": 12411,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0029.png",
+          "pts": 14.695,
+          "sha256": "81aeac4a4e14ff4e5f9d0a5f25a20a6ea683c2aeed9bcec1b0f30247aa0a5082",
+          "bodyInkPixels": 12414,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0030.png",
+          "pts": 14.71,
+          "sha256": "3d9ce56d899fb3e48698e5b7d4cce6946de7bd0fec7f93682bf16aae377bc387",
+          "bodyInkPixels": 12296,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0031.png",
+          "pts": 14.725,
+          "sha256": "02d92cea2fdc1a606df31841bffd2ad7d73bea569a81f30177a087c4b024e3e9",
+          "bodyInkPixels": 12438,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0032.png",
+          "pts": 14.741667,
+          "sha256": "3cfb6d56b33878464f0de286bececd1ddf2085e5b28b99ca82b49040fc0ea95c",
+          "bodyInkPixels": 12612,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0033.png",
+          "pts": 14.756667,
+          "sha256": "42fea75e65fb67cc63388b2653df5c8cf26f93484ef62e6647a999137837f7e4",
+          "bodyInkPixels": 12784,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0034.png",
+          "pts": 14.773333,
+          "sha256": "c4f20344f57decf7d0251cb3b95a96edd6f408e41c586b8727317ca4fb247bb0",
+          "bodyInkPixels": 12797,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0035.png",
+          "pts": 14.791667,
+          "sha256": "e886a8843aa3cda1eed146a7e466849276f4436425c7274508d38ed789dfc74b",
+          "bodyInkPixels": 12748,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0036.png",
+          "pts": 14.806667,
+          "sha256": "53227ad8dcbbeb48af968f43b6d1e841d66e1f44a22e14c8fa0f4b4bdb76f00b",
+          "bodyInkPixels": 12971,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0037.png",
+          "pts": 14.826667,
+          "sha256": "88cf91842c15331a944c72b5bf6c43642ce4ce834534830bc60edb270d52de37",
+          "bodyInkPixels": 13090,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0038.png",
+          "pts": 14.84,
+          "sha256": "749985ee33f3fa6fb9b59bf903e2591908708b1df95a5a2448146c61b5876b94",
+          "bodyInkPixels": 13199,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0039.png",
+          "pts": 14.858333,
+          "sha256": "a09ca1896278b50a429e8c1127aaa563c194fd7ed2b49652658cca594a4771e4",
+          "bodyInkPixels": 13185,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0040.png",
+          "pts": 14.873333,
+          "sha256": "9ed7bc2915203b618d35ad7cdf0971ea7621b0f7ff4bb9ca86d518199fce41ad",
+          "bodyInkPixels": 13118,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0041.png",
+          "pts": 14.89,
+          "sha256": "23549969185fd3fd66958cfde992216326245c9fa40b1d41616524a10d0c6bea",
+          "bodyInkPixels": 13404,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0042.png",
+          "pts": 14.906667,
+          "sha256": "5e8e5adeb6d0dca5e0a5e30026ff0271ac69938b53aeeb5231e25a5b376fc8ea",
+          "bodyInkPixels": 13492,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0043.png",
+          "pts": 14.925,
+          "sha256": "1031cd096923c6f2d1c29d7cd89fadae76248fdebd4cb01df11e55c9bc8ff221",
+          "bodyInkPixels": 13641,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0044.png",
+          "pts": 14.94,
+          "sha256": "64a908692872492517545daf2a44117abddaf591657d2b55890bb372c703b065",
+          "bodyInkPixels": 13532,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0045.png",
+          "pts": 14.958333,
+          "sha256": "f0c1ce9a2f345b7f2fa55c1fafe3437936136761a2a75810b48ce39124478d01",
+          "bodyInkPixels": 13503,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0046.png",
+          "pts": 14.975,
+          "sha256": "7dc122fa3ee4b96b21d00a6561d478ae9eefc277773584661a0571fafb7baccf",
+          "bodyInkPixels": 13884,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0047.png",
+          "pts": 14.991667,
+          "sha256": "63dbeeca4e12e26378dea3bba6c09cd39f7618cb30e30f66533fcfd8db8c727f",
+          "bodyInkPixels": 13929,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0048.png",
+          "pts": 15.006667,
+          "sha256": "4ba507a12d75dd48ab5e46a4849b466e78fbc31833ace77922f48b91b5a0a033",
+          "bodyInkPixels": 14049,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0049.png",
+          "pts": 15.025,
+          "sha256": "edfc0de63644b5be42f05215d8ebc032f7b3013c31fbf887ee6a2b790c64b769",
+          "bodyInkPixels": 13799,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0050.png",
+          "pts": 15.041667,
+          "sha256": "3d77d9ef6977a044d65d51969a58cafc56dde2580f7642a9dfe7c6eadd77a856",
+          "bodyInkPixels": 13660,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0051.png",
+          "pts": 15.11,
+          "sha256": "28f8394c8a0450a07331201f282d0a2a789c613a0733a62fd3eb713c5ce1eb20",
+          "bodyInkPixels": 13909,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0052.png",
+          "pts": 15.12,
+          "sha256": "e42580e1bd09a687644d0240d213bbe5dbbd258b3ba65c2d9a06c7fb44e9940e",
+          "bodyInkPixels": 13932,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0053.png",
+          "pts": 15.141667,
+          "sha256": "ec056782212f5478310282f7102c967a1d6baecd81d709fefd2474718b311014",
+          "bodyInkPixels": 13944,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0054.png",
+          "pts": 15.158333,
+          "sha256": "b824f4d1486549af4551ce79eaff62a08f13bd8b8a8c6cfcf1c15c44f64e2106",
+          "bodyInkPixels": 13943,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0055.png",
+          "pts": 15.176667,
+          "sha256": "73839b9959093ab124680ca0be1c2304fde07c946a762b926774afde6a527ece",
+          "bodyInkPixels": 14032,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0056.png",
+          "pts": 15.191667,
+          "sha256": "614b3b6464ce2fba6ff992a083423f97e12d03343e9eaf17f58d890b54038ec4",
+          "bodyInkPixels": 13800,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0057.png",
+          "pts": 15.208333,
+          "sha256": "70136435a96475c72f8e9035ff56d88f5a400cdbf49d7f0d21bea3ca28ec310d",
+          "bodyInkPixels": 13659,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0058.png",
+          "pts": 15.223333,
+          "sha256": "f75e2d67e669c85831224116c551a8d0175ea5e8c77321cb8900d281020be7ad",
+          "bodyInkPixels": 13841,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0059.png",
+          "pts": 15.241667,
+          "sha256": "28b72818514791684615fb026d1a173d4984c076bdf8863c1d014684ebe915f9",
+          "bodyInkPixels": 14001,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0060.png",
+          "pts": 15.256667,
+          "sha256": "bcdd2c906d64df3d1c0ef1c094b633aea6d0b25fb7dfb35ff6feba2c8a193bcf",
+          "bodyInkPixels": 14000,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0061.png",
+          "pts": 15.29,
+          "sha256": "5157f4413fd79e7b71c01e1efcb29c37ba7b78f2844976f91590bc05e5269e5e",
+          "bodyInkPixels": 13783,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0062.png",
+          "pts": 15.301667,
+          "sha256": "7adaaead9c7df00cdbc6b2bc5056b5bd5005f9821739aac89da5d25a664527b8",
+          "bodyInkPixels": 13734,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0063.png",
+          "pts": 15.311667,
+          "sha256": "7e8a58d76cafd79a9c34b296bf5dc908d1df48d48e164318efabf4071eb4c436",
+          "bodyInkPixels": 13886,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0064.png",
+          "pts": 15.325,
+          "sha256": "b3e0a8e8ec397de1233002432647a6c1e53ff4adeb56f9b2afd0dba82c117f9b",
+          "bodyInkPixels": 13977,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0065.png",
+          "pts": 15.35,
+          "sha256": "388a170ee4aada08fd539220fddf9d2886d3bed679a9b42798757f7596a33ff3",
+          "bodyInkPixels": 13937,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0066.png",
+          "pts": 15.358333,
+          "sha256": "0025845e56c1265c1718bf456af591c4bc4ceaa0cae3fea070aef5df94b8a122",
+          "bodyInkPixels": 13657,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0067.png",
+          "pts": 15.373333,
+          "sha256": "5bed17c058042e966385c535a873e0eded821f3a22bf6fcbf72665cde1c4cb13",
+          "bodyInkPixels": 13549,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0068.png",
+          "pts": 15.39,
+          "sha256": "d4e2430fae4b0fe9453b3614cfb3c4893a1583d92d70cb26236b5706729b0120",
+          "bodyInkPixels": 13704,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0069.png",
+          "pts": 15.408333,
+          "sha256": "f4194da5ffa7109abed8b94121250765f2416de77b49631ab952e33ccd134f72",
+          "bodyInkPixels": 13734,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0070.png",
+          "pts": 15.423333,
+          "sha256": "b1f082697958db03cb4080e065e63919eee245a34ac98afb878f3d2a9f79c9f0",
+          "bodyInkPixels": 13660,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0071.png",
+          "pts": 15.443333,
+          "sha256": "ae1f7413c7d3a62d943bee3c920b6ea1496fc249d59e5c2acf75d0b701d4237b",
+          "bodyInkPixels": 13379,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0072.png",
+          "pts": 15.458333,
+          "sha256": "8a63bc8a4380bab07dedd3eefaf5d5ffc3d519f0a3b44cd0ea17dd8d5cde500f",
+          "bodyInkPixels": 13312,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0073.png",
+          "pts": 15.475,
+          "sha256": "6d1443bf3a434adb513a1925557f4b87851aeb576d9befed67e977eb7681071e",
+          "bodyInkPixels": 13394,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0074.png",
+          "pts": 15.49,
+          "sha256": "fbd1f366a930aec7daa915845a8e09bb5fdafa9db933c9be8851aa1b4a648bbb",
+          "bodyInkPixels": 13450,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0075.png",
+          "pts": 15.51,
+          "sha256": "4893b87508d6bc23aa36bd4d1bc5ab15c8ace5165523a8dbf9e9d4edff3eb67e",
+          "bodyInkPixels": 13348,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0076.png",
+          "pts": 15.526667,
+          "sha256": "2053a9ddc074c65e35d2cbd2e0c9fd05d3766f1c9940dbf2fa894e1ad608e302",
+          "bodyInkPixels": 13098,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0077.png",
+          "pts": 15.543333,
+          "sha256": "6d744a27ea3841bbdf9e2bae4724bbb5999d8929ab1240f5a84b3056bb403a22",
+          "bodyInkPixels": 13042,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0078.png",
+          "pts": 15.558333,
+          "sha256": "50f99174e29dd621efb936a8fcdb3e106cd9f391be126822c2db1340c5bf7bbd",
+          "bodyInkPixels": 13110,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0079.png",
+          "pts": 15.575,
+          "sha256": "d8a655451061882d259580dbe8bdd09e2e6cf23baf0e897aa63858e45a817c3e",
+          "bodyInkPixels": 13127,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0080.png",
+          "pts": 15.59,
+          "sha256": "58cacff258b9ee4aa4617d469422e68d12e0d1fb84b06577326d8eff4051abf9",
+          "bodyInkPixels": 13006,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0081.png",
+          "pts": 15.61,
+          "sha256": "56190c61e2611dd477d2e44781f1d68ff5cfe2cdbba05668434e626abe772ce0",
+          "bodyInkPixels": 12789,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0082.png",
+          "pts": 15.626667,
+          "sha256": "8348274a98f1cc46453e256fb3f09e5f7036fb7ba4a838a0b3236b843f1a4e87",
+          "bodyInkPixels": 12792,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0083.png",
+          "pts": 15.641667,
+          "sha256": "509d4f0e33ca4f8e80765b30fab4e95a159597f6dbd3f393fa0b64b417837d17",
+          "bodyInkPixels": 12819,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0084.png",
+          "pts": 15.658333,
+          "sha256": "c7959558add70f26fb926319b974715ce68f2c695b1c0e72a8484f1241d529c0",
+          "bodyInkPixels": 12787,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0085.png",
+          "pts": 15.675,
+          "sha256": "770efa2b46b5a159de0bbb31e3649b24290c92f097925667c4a7c6531f01bd48",
+          "bodyInkPixels": 12690,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0086.png",
+          "pts": 15.69,
+          "sha256": "3f1088fd27cefe0d44b1a4ca4bbb65e47aec5a6aad4837470478ef9485469730",
+          "bodyInkPixels": 12505,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0087.png",
+          "pts": 15.706667,
+          "sha256": "c99e75a4e0a06070e9513427210ed4a64175587cb4d73954059e9f08681c97de",
+          "bodyInkPixels": 12616,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0088.png",
+          "pts": 15.73,
+          "sha256": "6540546f55cacec8bc59884eeeccfe1755a37d9755adc5ec639b55bd8b1e568e",
+          "bodyInkPixels": 12572,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0089.png",
+          "pts": 15.743333,
+          "sha256": "875dae319806b3d3b48984b6298fd7198a365e143fd75efd0a9e0653f1c19610",
+          "bodyInkPixels": 12601,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0090.png",
+          "pts": 15.758333,
+          "sha256": "c6ce89c935e927b4a41ad0955c586eab39b9ede5f0b6c63d989a32e5d5383e4d",
+          "bodyInkPixels": 12596,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0091.png",
+          "pts": 15.775,
+          "sha256": "e0c456a11636f31e6499bdf1a82028256a45fc91f3f12ad87c9085c235252f8e",
+          "bodyInkPixels": 12446,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0092.png",
+          "pts": 15.791667,
+          "sha256": "5e5358abff14cbb79819cc3b22ae36f7e6a2b688dca049633486be9ddaf1f91a",
+          "bodyInkPixels": 12651,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0093.png",
+          "pts": 15.806667,
+          "sha256": "fd52320cdb33f7544052e716f671f3572ffdf1d68b3e075b97fca932603dad8d",
+          "bodyInkPixels": 12584,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0094.png",
+          "pts": 15.826667,
+          "sha256": "522bd667a52b10518af7c39a701d1211307349ce776dea5fb5e832e01684c165",
+          "bodyInkPixels": 12640,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0095.png",
+          "pts": 15.84,
+          "sha256": "1878a4db0a80a577ef5050a1f04fc3b15c79854c20f6baba27d8c52c4c1b7cf3",
+          "bodyInkPixels": 12562,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0096.png",
+          "pts": 15.858333,
+          "sha256": "ef2e53d3c513b926fbb4b2bdacbe21106a9abeacee0079f2a5e7353d2462b5d5",
+          "bodyInkPixels": 12435,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0097.png",
+          "pts": 15.873333,
+          "sha256": "690b9f6efa7ef3585113bcac788fa0ae2b638eaa60f007cf2831929d227c363a",
+          "bodyInkPixels": 12681,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0098.png",
+          "pts": 15.891667,
+          "sha256": "d1606b1f6a05a63fb479f0fcaeb5d89abea68783617db9b5acca39e0708d4f1e",
+          "bodyInkPixels": 12580,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0099.png",
+          "pts": 15.908333,
+          "sha256": "122901fd4fbde81647ff878e532e06e0e7520719acfb86bcc74f6f1230e207c6",
+          "bodyInkPixels": 12669,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0100.png",
+          "pts": 15.925,
+          "sha256": "a865ecc1f4d1cfd1945b5e4aeb61f554ac550baee1a8698f97601b2f95acf4b6",
+          "bodyInkPixels": 12571,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0101.png",
+          "pts": 15.946667,
+          "sha256": "1a25eb8c2fb49720c4f8fd0e1cb2d70b712fb383a24f3e5c87dd6281a68d4762",
+          "bodyInkPixels": 12407,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0102.png",
+          "pts": 15.963333,
+          "sha256": "1fc588366b7d4794e8521d69802b73344945070431b388ddf319dac14ae1797b",
+          "bodyInkPixels": 12679,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0103.png",
+          "pts": 15.978333,
+          "sha256": "f16e24073e0482238613f48f56ec28ef7c4ea4ea460025b6c942eb2f00e42a6a",
+          "bodyInkPixels": 12583,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0104.png",
+          "pts": 15.991667,
+          "sha256": "c850365ddf2b15d3c6008b38a78eb0f16260bb87b3a18ec69a42284e03e50c33",
+          "bodyInkPixels": 12657,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0105.png",
+          "pts": 16.006667,
+          "sha256": "8a4ad80973b30af7f146a9f44552ef88eb52f7b44892f5d86338130184100704",
+          "bodyInkPixels": 12578,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0106.png",
+          "pts": 16.061667,
+          "sha256": "11902bfb12c2ded5a0d6ec41044548754f27128a8d18e08b7649a3e002e898da",
+          "bodyInkPixels": 12410,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0107.png",
+          "pts": 16.088333,
+          "sha256": "5abf64a45f1090c66777f222b851cdeddac98ed4b4c5c6fa9de9129245b788a9",
+          "bodyInkPixels": 12646,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0108.png",
+          "pts": 16.096667,
+          "sha256": "9b5d5b087afc8596b27b9a2ddc64f5a445efc73bdd98f06f711a3be53d11e670",
+          "bodyInkPixels": 12550,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0109.png",
+          "pts": 16.106667,
+          "sha256": "ee911ff6e6b31d7fb1aea956693a9eb55d97cc5bc5ac0333736a438deb50e3b8",
+          "bodyInkPixels": 12380,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0110.png",
+          "pts": 16.111667,
+          "sha256": "a72ed5e4657d5a87759d9c0debac6e7c5f59f0f0d04d46788034b839d89eb880",
+          "bodyInkPixels": 12554,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0111.png",
+          "pts": 16.125,
+          "sha256": "13547ae943d8078483a1fb174f0a4a051d03ca699d3c05a12e6635f7f8e77985",
+          "bodyInkPixels": 12554,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0112.png",
+          "pts": 16.136667,
+          "sha256": "12b90b04ec537be657558077e9eaf1c3316965bd2138773b06e0ca5513002440",
+          "bodyInkPixels": 12576,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0113.png",
+          "pts": 16.156667,
+          "sha256": "5ff458b15c517345d376d73f07f67d3ca79d40c353bd96daef74096fca5e50ab",
+          "bodyInkPixels": 12599,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0114.png",
+          "pts": 16.161667,
+          "sha256": "31a489a1f6b05591b21b55bdb5fa462b81f541c83e5f76dd44822dfa71456b7c",
+          "bodyInkPixels": 12599,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0115.png",
+          "pts": 16.176667,
+          "sha256": "ec6426d6f6f69666b9f92de91d90a777fbef5d9f0f22d8c1faa456d6a98aef73",
+          "bodyInkPixels": 12329,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0116.png",
+          "pts": 16.21,
+          "sha256": "098d416f93e64e97d73043c626437d2c098ca5bb229e91461ad0ff3f8b04887b",
+          "bodyInkPixels": 12329,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0117.png",
+          "pts": 16.215,
+          "sha256": "7abd77577653db6d372ac429528f679681d81321bf3da9013f515379369aa05b",
+          "bodyInkPixels": 12461,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0118.png",
+          "pts": 16.228333,
+          "sha256": "79ddff70d1d6733fcaa26b79c4d6534b45067b9cad327e905e5c588388bd9793",
+          "bodyInkPixels": 12414,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0119.png",
+          "pts": 16.248333,
+          "sha256": "604c16fd0a0862293fe40d4cabd5a4976ca53dfa284f31c7d75a66bd92d57c16",
+          "bodyInkPixels": 12414,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0120.png",
+          "pts": 16.261667,
+          "sha256": "a0ac5dd5fe4cdc584db650e434ad7355133c10b8828a7733f80b1fe3bdbd5137",
+          "bodyInkPixels": 12293,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0121.png",
+          "pts": 16.278333,
+          "sha256": "f7d874b60511044faf1825c881bcc341915ec0a6bea2b9fdc266eea686bae790",
+          "bodyInkPixels": 12243,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/original-0122.png",
+          "pts": 16.293333,
+          "sha256": "d91427ceec48b322cdb1c9b86cd4bb4f953d4ea022e75fe15ef726d7ca40e1c9",
+          "bodyInkPixels": 12375,
+          "inspected": true
+        }
+      ],
+      "frameCount": 122,
+      "firstSourcePTS": 14.228333,
+      "lastSourcePTS": 16.293333,
+      "timestampInversions": 0,
+      "observation": "Gradual upward movement of headings/body throughout all 122 selected frames; body remains visible.",
+      "bodyVisibleInAllReviewedFrames": true,
+      "allBlankBodyObserved": false,
+      "interpolation": false,
+      "phoneFPSAccepted": false,
+      "metricCaveat": "bodyInkPixels counts dark pixels and therefore counts charcoal background; it is not used as a blank/readability detector. Readability is based on manual visual review.",
+      "contacts": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-1.png",
+          "sha256": "180518aff3642e3e63f6fce824e20fa87d2f7a907ca6f719fad6dec1f6b17856",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-2.png",
+          "sha256": "b5cdeeca248a5c8ce4ee38f152bb21cc8f853670839b75facf38b449c4a1c082",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-3.png",
+          "sha256": "c0965fd566db68455a56d9f56bd8f55268f69022b8bae214551b441d238da489",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-4.png",
+          "sha256": "bcded28726559fc35235b7b312eb4dcc41f2afd82604effa0b61ad39c902fe46",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-5.png",
+          "sha256": "b64fb9fa28d1766e41fa91ba2dc9ba966d3001119b3b422151160758365b0226",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/light-moving/contact-6.png",
+          "sha256": "29a83cd1337a5324cb8ea1f860107b67278a38c5e4a13e70c5b08d88706161cf",
+          "inspected": true
+        }
+      ]
+    },
+    {
+      "run": 38861273421,
+      "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+      "video": {
+        "name": "Screen Recording 2026-10-16 at 06.46.18 AM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+        "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CDADA931-6577-4CD5-8CE3-B40DBC14CA78.mp4",
+        "bytes": 36592322,
+        "sha256": "5f56f8f7047f1ba4003aa69a5bb99636afb9252cedca308cbc13246fe1d65599",
+        "inspected": true
+      },
+      "start": 17.2,
+      "end": 20.5,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "bodyInkRegion": [
+        16,
+        180,
+        464,
+        730
+      ],
+      "inkCountPurpose": "Find possible blank-body intervals for manual review only; initial loading/short pages may correctly have no ink",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0001.png",
+          "pts": 17.21,
+          "sha256": "34b4fe5ab232b41446a4ded974230de83c111c6ef2209933be62fb1645060003",
+          "bodyInkPixels": 12076,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0002.png",
+          "pts": 17.225,
+          "sha256": "6ee8a44956706ce38f4f791242156f11af5afa70dde2932c14d9e17cabc94c36",
+          "bodyInkPixels": 12098,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0003.png",
+          "pts": 17.248333,
+          "sha256": "3782b84d6561e4dd2a22617ee9b5aa4a7624bfc24445b4e3e8061e122ab4e7ae",
+          "bodyInkPixels": 12021,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0004.png",
+          "pts": 17.258333,
+          "sha256": "d9e5cf171858d53f098dc2bc78c42d00ce90debc93500a203a2923e4a299b6e4",
+          "bodyInkPixels": 11980,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0005.png",
+          "pts": 17.28,
+          "sha256": "ec2592c824e13007e58c0b6f24760dc1a616420885f799afabbb318d781874c7",
+          "bodyInkPixels": 12149,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0006.png",
+          "pts": 17.29,
+          "sha256": "5e6cc3f7cf99a126df60095b99a826599b9b4ba3765a0400130e9f7bce883be9",
+          "bodyInkPixels": 12106,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0007.png",
+          "pts": 17.308333,
+          "sha256": "426d1f68af6b854a2c31ad9bbbd90288e3f563b4357abb1f2addab933887a664",
+          "bodyInkPixels": 12094,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0008.png",
+          "pts": 17.323333,
+          "sha256": "ac1391bbcea0bea29211726b75e947c6aae7ff98064ecd4d867c626033f67203",
+          "bodyInkPixels": 11987,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0009.png",
+          "pts": 17.343333,
+          "sha256": "a179b16acec55e44f0c41aa402c7e0d8ae74237979db6ef9c4eff59f617041be",
+          "bodyInkPixels": 11968,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0010.png",
+          "pts": 17.356667,
+          "sha256": "580d85d570f4a5840cb7f794ffedfc7e6b0d777586b509f85c4da9c5cb5e754c",
+          "bodyInkPixels": 12071,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0011.png",
+          "pts": 17.375,
+          "sha256": "99fe0cdb58047fa18fef60c1dd49945b28ab2ba639bf54a99fac9e3fc22e532b",
+          "bodyInkPixels": 12093,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0012.png",
+          "pts": 17.405,
+          "sha256": "03abc717d92a703b39b8998e805c14cc7195ed2d31b82df5ab9b2b2e3d0799ca",
+          "bodyInkPixels": 12096,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0013.png",
+          "pts": 17.411667,
+          "sha256": "d31d37b15cd114cb66e2ff69cd67e500d82e517fc2e801231a6c17e4c2175307",
+          "bodyInkPixels": 11987,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0014.png",
+          "pts": 17.431667,
+          "sha256": "416c8d6f11fa5535871a6d73d7dadf93910f614ffb0801dee9ba401a5acf97cb",
+          "bodyInkPixels": 11986,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0015.png",
+          "pts": 17.446667,
+          "sha256": "999ddf02f7eea9675e438c65b51a35e7263ae20cc8170c48de25e214dd6d049a",
+          "bodyInkPixels": 12056,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0016.png",
+          "pts": 17.461667,
+          "sha256": "143f3ae46b2018966ec7139478c9839e634bea8ebd9e7f74ad9de2d6cdf24b90",
+          "bodyInkPixels": 12099,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0017.png",
+          "pts": 17.473333,
+          "sha256": "62a4df81fe652a83f4f99692f333da98eb3eb6197c8fced81fd66728301f4e8b",
+          "bodyInkPixels": 12086,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0018.png",
+          "pts": 17.49,
+          "sha256": "82e53352a8481942b91ebb0611788504d0e839c3b6bf72c56b83d39f9f7353b8",
+          "bodyInkPixels": 11966,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0019.png",
+          "pts": 17.511667,
+          "sha256": "7cf6318f5f4270ac65c7df56341f0c872d68162c00ba690da2e6e273cb032160",
+          "bodyInkPixels": 12052,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0020.png",
+          "pts": 17.525,
+          "sha256": "c0433dd6133174f3788f4683d3b38bb33bbbb3c33fc8328663a527c0bf88a868",
+          "bodyInkPixels": 12052,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0021.png",
+          "pts": 17.54,
+          "sha256": "ec7cad494f8b8f10e102e373553f722b8c179e4b3f4e61521d184176c92ba12c",
+          "bodyInkPixels": 12059,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0022.png",
+          "pts": 17.558333,
+          "sha256": "6ab0aaa54a6b91d62de8d4f7ee9c534315750dd4ddcae00aa131504099cfffa9",
+          "bodyInkPixels": 12086,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0023.png",
+          "pts": 17.576667,
+          "sha256": "21f3bf541d6aa09fb3dbcace4745d0abc21f27a00a4807ecc12c52612dc47103",
+          "bodyInkPixels": 11967,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0024.png",
+          "pts": 17.591667,
+          "sha256": "761ffe03f99eba032c707da85de4d4a0a2933278bf382c5b729215603dda3efb",
+          "bodyInkPixels": 12246,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0025.png",
+          "pts": 17.61,
+          "sha256": "91c469605f8d50584f500388b216c3b7414b26444cdd50d19a2d6541912e73b1",
+          "bodyInkPixels": 12332,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0026.png",
+          "pts": 17.626667,
+          "sha256": "5cba3a7893fd62abe8ff1e0c66697e3af85b0ea7a728fcd21f781c6e2e2977bb",
+          "bodyInkPixels": 12404,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0027.png",
+          "pts": 17.643333,
+          "sha256": "696bc891c46619ffd9a26cc7aff5ead239ce1a990415d0fe93161468e7e6e5b9",
+          "bodyInkPixels": 12412,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0028.png",
+          "pts": 17.661667,
+          "sha256": "586303a5d10dd61c37380acf3eed6e3a83762da33ec8e9fa01fbe43929c88228",
+          "bodyInkPixels": 12313,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0029.png",
+          "pts": 17.676667,
+          "sha256": "fa5a6017a417e55334eaef0d226144ed97e5846d210bdf5d34cb14cecd012b07",
+          "bodyInkPixels": 12627,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0030.png",
+          "pts": 17.693333,
+          "sha256": "ee05ef8cfc08bd7c47fcd3c21a3c8c4aca83a4e4e0f6b5cedff8aee2380077c3",
+          "bodyInkPixels": 12667,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0031.png",
+          "pts": 17.708333,
+          "sha256": "a0a7cc20fa11d6b4017646c78ca96c42832efd23b593b0304a3d2d2a5165ad63",
+          "bodyInkPixels": 12817,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0032.png",
+          "pts": 17.725,
+          "sha256": "972148d56fd94d2f13d32b0bcd9a0baf43689f3c283dd509596db58c6da78168",
+          "bodyInkPixels": 12749,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0033.png",
+          "pts": 17.743333,
+          "sha256": "998d8ffd72b6508871dd6f948bc96d4c593bfda2b8eda4f0283a147bef785f44",
+          "bodyInkPixels": 12674,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0034.png",
+          "pts": 17.76,
+          "sha256": "97715ba57b33f2fe6ec696c5bb39c27f871f06e111d00623bb8f7878c7c03783",
+          "bodyInkPixels": 13021,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0035.png",
+          "pts": 17.775,
+          "sha256": "08357c7340160e48d9d17378279f44caad8c8561db21e1d048e81eac1410f790",
+          "bodyInkPixels": 13095,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0036.png",
+          "pts": 17.795,
+          "sha256": "95e3e137aab22f4d403632edbbc75cc24c7e18d5e7ef2c6d82d7b5523050beac",
+          "bodyInkPixels": 13216,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0037.png",
+          "pts": 17.81,
+          "sha256": "0dd5089d0060781022e247068328cbf50c93ad064416d4e80c351b9277fae0d7",
+          "bodyInkPixels": 13162,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0038.png",
+          "pts": 17.826667,
+          "sha256": "4c418b81a24c664a6eb84b50b4bb8ab5c0bc0f65a3383903e0e8c953f7818937",
+          "bodyInkPixels": 13055,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0039.png",
+          "pts": 17.851667,
+          "sha256": "c8baa9fab56796d657ad5feb0477c56acdb738cba1fef068688ca9e4928c7722",
+          "bodyInkPixels": 13370,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0040.png",
+          "pts": 17.86,
+          "sha256": "a3d706281882aa82d6afb38ed09e77ffb592f669de3f2ae1dcaa5371ee817ae2",
+          "bodyInkPixels": 13440,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0041.png",
+          "pts": 17.878333,
+          "sha256": "5b714c04b1c6bf4a47072fec8972f7cc92a8d00aeb656b9483b78596e8d5e9a7",
+          "bodyInkPixels": 13620,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0042.png",
+          "pts": 17.896667,
+          "sha256": "5b3fcf083b8fa76a37c182142befe6ffb37f6cdfdb4a7585cb6db38e23c980ca",
+          "bodyInkPixels": 13546,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0043.png",
+          "pts": 17.913333,
+          "sha256": "b7c7618f684f532f4742a7faae68e687977945096f211726a9203abf630b2c26",
+          "bodyInkPixels": 13483,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0044.png",
+          "pts": 17.928333,
+          "sha256": "584c474b33aa641383f1771892b6e01314c0468c92a54c58fa757166ea210720",
+          "bodyInkPixels": 13776,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0045.png",
+          "pts": 17.95,
+          "sha256": "a833acdb8defd85beedcd00104440c7b0d675288759671a845fe6ac586881411",
+          "bodyInkPixels": 13891,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0046.png",
+          "pts": 17.961667,
+          "sha256": "0f2a55b3bcff3a01895a103d97e6389c9ea95390b4272912d08942697d029327",
+          "bodyInkPixels": 13929,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0047.png",
+          "pts": 17.975,
+          "sha256": "7cc598f0fbafb1e45949df97ae29651b74de3e697ce59957e52788b53b8b8086",
+          "bodyInkPixels": 13802,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0048.png",
+          "pts": 17.991667,
+          "sha256": "24c50892979b954065b1dd58d151091d0e74b31a95ac4c32daec22ec4ec96299",
+          "bodyInkPixels": 13670,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0049.png",
+          "pts": 18.008333,
+          "sha256": "e21eec09349e73ea6a78270c992443bd886c920695fd94f653836f54114f1a49",
+          "bodyInkPixels": 13860,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0050.png",
+          "pts": 18.026667,
+          "sha256": "c2e4538d719f755e71aef8c279d32e51de242445099b77db96c27f10c70ec1ac",
+          "bodyInkPixels": 13860,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0051.png",
+          "pts": 18.041667,
+          "sha256": "da7776ce1157050f2b7702c0937e47b235e338fd3d9839b8a2d8b4b254d06154",
+          "bodyInkPixels": 13895,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0052.png",
+          "pts": 18.061667,
+          "sha256": "cc712f5c99e1f71cf3752d4f2164bb4dc2766d5c8585b6ef9c20460e4823d89b",
+          "bodyInkPixels": 13781,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0053.png",
+          "pts": 18.076667,
+          "sha256": "2f3e28b8695dc02d84a754408fac9037eb2bb49920f76fda0efb1fa377741a77",
+          "bodyInkPixels": 13703,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0054.png",
+          "pts": 18.101667,
+          "sha256": "ac26cd3249c29f599777e46a9820977cfe430d3820cc4286a7b86590bfc3fb2f",
+          "bodyInkPixels": 13902,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0055.png",
+          "pts": 18.11,
+          "sha256": "d65b95342984dd2af8e4a7a8fcc11da607f38a23e7e8e3920b78f3b240a36a0f",
+          "bodyInkPixels": 13872,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0056.png",
+          "pts": 18.126667,
+          "sha256": "b69825f5b905c647708ac882dd6acf54706cdb7d7befe83bd86cd6ea9eba2509",
+          "bodyInkPixels": 13863,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0057.png",
+          "pts": 18.143333,
+          "sha256": "a4791f2c7c5e1910ee5787901d1b75060fee53dd22c120cfddaa7ddf661f86e0",
+          "bodyInkPixels": 13765,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0058.png",
+          "pts": 18.156667,
+          "sha256": "e9a412a4229ac0a819e0fdaf3e997531cacb1c3e3af2b44cda4ccb894bc3c959",
+          "bodyInkPixels": 13706,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0059.png",
+          "pts": 18.175,
+          "sha256": "3dd642388bf3b843b91aaf0b4696705ac58207c1efa38bc4d9b7bf668a35662e",
+          "bodyInkPixels": 13939,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0060.png",
+          "pts": 18.191667,
+          "sha256": "d1a180cdd726e0ea3dd8959f0b88940cc5b1e1b92082706a03e63221ddf1c7e4",
+          "bodyInkPixels": 13875,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0061.png",
+          "pts": 18.208333,
+          "sha256": "f2a1fef979e775c5066ff20e235c45f7107d81ead1bc7874f24dabbe02741993",
+          "bodyInkPixels": 13873,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0062.png",
+          "pts": 18.223333,
+          "sha256": "1908e2195743e1e689766ad7fd3de1f8690f611ed4ad025aa3044fa7f7470825",
+          "bodyInkPixels": 13731,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0063.png",
+          "pts": 18.241667,
+          "sha256": "f4953f74fe88226b0ac19ba2e3efbd53e70f44d205ca4f2b58dd5f8376a380c2",
+          "bodyInkPixels": 13686,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0064.png",
+          "pts": 18.256667,
+          "sha256": "d3845489108cd2ada69e3770576f4f1820f8fbbc08717341085f3bca7e5acfbe",
+          "bodyInkPixels": 13858,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0065.png",
+          "pts": 18.273333,
+          "sha256": "dec216f85c12ec7af8f8d59c42203d89db4026aa843d4fccd031a80984f8d295",
+          "bodyInkPixels": 13883,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0066.png",
+          "pts": 18.303333,
+          "sha256": "75e67fc952739543a9bccc66f676aca0b3119e89845875257a3bcb053d3b3b60",
+          "bodyInkPixels": 13871,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0067.png",
+          "pts": 18.308333,
+          "sha256": "45467d2314a34548f4aeee62c557d23dc03c71a42f834322727312d2b0fa3518",
+          "bodyInkPixels": 13745,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0068.png",
+          "pts": 18.325,
+          "sha256": "4685c2b35f5fa655836c49400f7b4d5c7e79c16ec89ff2fb4a1a8c63cb1a1bd0",
+          "bodyInkPixels": 13765,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0069.png",
+          "pts": 18.34,
+          "sha256": "09fef3a61050aabe39fdf3a3ada34e31ba08828b0b22b60aa6905dca5db2662c",
+          "bodyInkPixels": 14034,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0070.png",
+          "pts": 18.358333,
+          "sha256": "69d14df5472477d62b91c8f9add2f91b4285814c1c29716cb6ae3b6e561398ac",
+          "bodyInkPixels": 14156,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0071.png",
+          "pts": 18.375,
+          "sha256": "27e53c75a50de843b2266e15db9728c6b771d8d249d9d3548ec1e20a16cd808d",
+          "bodyInkPixels": 14242,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0072.png",
+          "pts": 18.39,
+          "sha256": "2365b1b131870836a075b1af682200b139626ca10c302544b12f1f04a2a6a842",
+          "bodyInkPixels": 14134,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0073.png",
+          "pts": 18.43,
+          "sha256": "173a4210d3125fb04e9eab99806bb930f43ba35c324992efa642f97d990ec638",
+          "bodyInkPixels": 14290,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0074.png",
+          "pts": 18.431667,
+          "sha256": "1d74a1ac17b742e03318f297a72ecba7c75c04f99ccfa23c4fa74b7286805b48",
+          "bodyInkPixels": 14463,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0075.png",
+          "pts": 18.475,
+          "sha256": "6b5073c786ac79bdf9ef1178e08d28dedccba5d41af7742923c87d0681cda3e6",
+          "bodyInkPixels": 14772,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0076.png",
+          "pts": 18.49,
+          "sha256": "b102891dd202cdc59ecde86a767def24097df85e4d202e7ddde2900f5ce80b9a",
+          "bodyInkPixels": 14761,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0077.png",
+          "pts": 18.518333,
+          "sha256": "b6df1dc0d1d5112d24e0c9ddca15958b9473c94184b70d026bd202da1a48632a",
+          "bodyInkPixels": 14850,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0078.png",
+          "pts": 18.528333,
+          "sha256": "7db8a2c3f4d3d51219fae0dedfdff811e7dfb07a69ae7fe2a07706c9eab8d2d7",
+          "bodyInkPixels": 15006,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0079.png",
+          "pts": 18.541667,
+          "sha256": "e5a33269cad3d33646feb7dbccb8ea8c095af726e29561a22083bd107b4aca91",
+          "bodyInkPixels": 15079,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0080.png",
+          "pts": 18.556667,
+          "sha256": "c135d159dcc63d550694218190f99e8cfeddeb421009bf01bd12db5af3f25618",
+          "bodyInkPixels": 15016,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0081.png",
+          "pts": 18.59,
+          "sha256": "3f0ac4267fd4feea9c458521c176cd13044a12807da7ae5dc0b8a8f49e1555ef",
+          "bodyInkPixels": 15197,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0082.png",
+          "pts": 18.593333,
+          "sha256": "aa882d3731891f7fc9f18235a53aad1870b210aabfb6c5096ab9b2dd55a398bf",
+          "bodyInkPixels": 15313,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0083.png",
+          "pts": 18.623333,
+          "sha256": "77326fe8afec7fd49a4ef0217f42b59901cd4b2ec5261d3fd218dcf0b31d1d28",
+          "bodyInkPixels": 15383,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0084.png",
+          "pts": 18.641667,
+          "sha256": "b7c05a324ae99a1abc9ebe9d81a0ce3b2e6fa95d9cd5c263f6362c2cf1ec0ded",
+          "bodyInkPixels": 15383,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0085.png",
+          "pts": 18.671667,
+          "sha256": "544bcae126afa71dc3b6aaffa0d2dc0f6c8a1854bec0b5ba78369849368cca21",
+          "bodyInkPixels": 15615,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0086.png",
+          "pts": 18.675,
+          "sha256": "f91ab7ab2a48990c866ffe6b6d7108f53da3d368fed8981b6c8a178997225c0b",
+          "bodyInkPixels": 15761,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0087.png",
+          "pts": 18.706667,
+          "sha256": "5f86216bc6b8fd509481ad6dbea7be269e353bd827f12f967159863bcb8c4f99",
+          "bodyInkPixels": 15758,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0088.png",
+          "pts": 18.74,
+          "sha256": "4f7871bf0ed8116cef0829884b3321485382597760f4f15bb69ef974734035b7",
+          "bodyInkPixels": 15758,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/original-0089.png",
+          "pts": 19.085,
+          "sha256": "3c515505550b28691dbced9e2a94901e315af53313178093d96b60bf92c24e6b",
+          "bodyInkPixels": 15849,
+          "inspected": true
+        }
+      ],
+      "frameCount": 89,
+      "firstSourcePTS": 17.21,
+      "lastSourcePTS": 19.085,
+      "timestampInversions": 0,
+      "observation": "Text moves until about 18.7s and is stationary in the tail after touch (including 18.74s and 19.085s). VFR supplies no later frame in this selection; no missing frames are synthesized.",
+      "bodyVisibleInAllReviewedFrames": true,
+      "allBlankBodyObserved": false,
+      "interpolation": false,
+      "phoneFPSAccepted": false,
+      "metricCaveat": "bodyInkPixels counts dark pixels and therefore counts charcoal background; it is not used as a blank/readability detector. Readability is based on manual visual review.",
+      "contacts": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/contact-1.png",
+          "sha256": "bd24bbe476bb8be7c0bc1999c3804d425435250719aee0226f2758f2a250f5b0",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/contact-2.png",
+          "sha256": "093dad85de37c25cc87cae655b51799572b0da803a19e1f851a8ebb9f5a4b48f",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/contact-3.png",
+          "sha256": "d6a84f2019c240e71574f2508dcba4aec516b9cca2cb98c7f4c7551bdbfc37c1",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/touch-pause/contact-4.png",
+          "sha256": "1cb0342f87f6d5ea52f50de7cd30004096330aad1a501ffe6afec7bcdd13f0ca",
+          "inspected": true
+        }
+      ]
+    },
+    {
+      "run": 38861273421,
+      "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+      "video": {
+        "name": "Screen Recording 2026-10-16 at 06.46.18 AM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+        "path": "build/ci/38861273421/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CDADA931-6577-4CD5-8CE3-B40DBC14CA78.mp4",
+        "bytes": 36592322,
+        "sha256": "5f56f8f7047f1ba4003aa69a5bb99636afb9252cedca308cbc13246fe1d65599",
+        "inspected": true
+      },
+      "start": 30.0,
+      "end": 33.7,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "bodyInkRegion": [
+        16,
+        180,
+        464,
+        730
+      ],
+      "inkCountPurpose": "Find possible blank-body intervals for manual review only; initial loading/short pages may correctly have no ink",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0001.png",
+          "pts": 30.006667,
+          "sha256": "12b7751a5bb53a8c893eba7ff457fb08de62ddcb7c6ddb20afc5953ce793da46",
+          "bodyInkPixels": 229439,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0002.png",
+          "pts": 30.023333,
+          "sha256": "415ce4d879e0c58473b79dfde55cbe1f23819bf7c52075a437e1d2c2133013d5",
+          "bodyInkPixels": 229473,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0003.png",
+          "pts": 30.038333,
+          "sha256": "32ead45c2bb5041fcffdb0b35a4fefa1bb734167535d867e04c685e3fb891b00",
+          "bodyInkPixels": 229434,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0004.png",
+          "pts": 30.055,
+          "sha256": "792cb0ca3b370f728bd492f154fc7a514612a7fda04f75e7630f9e75fca9bc5c",
+          "bodyInkPixels": 229125,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0005.png",
+          "pts": 30.071667,
+          "sha256": "bcfc80c802f8e4bdc0a6e981ba84db67151ac00f9ac57bf1a2d01e64b285e79e",
+          "bodyInkPixels": 229123,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0006.png",
+          "pts": 30.09,
+          "sha256": "d606f1c62c526c8d87937bbdffa33e8b7dc2c1aebf499220b49cc6bdc73ca148",
+          "bodyInkPixels": 229054,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0007.png",
+          "pts": 30.106667,
+          "sha256": "df8548060769e588e7ed7bbaee8130636d6031b3a163151b757758df5336ddd1",
+          "bodyInkPixels": 229086,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0008.png",
+          "pts": 30.121667,
+          "sha256": "0e030bc557fee2b1692d66a55342365a188a083ed7ba6767025d34f380d4dd3f",
+          "bodyInkPixels": 229050,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0009.png",
+          "pts": 30.138333,
+          "sha256": "5e34bb8ad16ca3e6df2e00715043833eab54cc7c1643ef77dcf787adec5c4274",
+          "bodyInkPixels": 228752,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0010.png",
+          "pts": 30.156667,
+          "sha256": "f29eb0e6c342baf12c1e25d6249600d3289fc7385e8661442520853f80802b48",
+          "bodyInkPixels": 228786,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0011.png",
+          "pts": 30.173333,
+          "sha256": "78970a298ba60216aabc5f3c7d39dca088c34d0e0607053c6b876fc117890426",
+          "bodyInkPixels": 228632,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0012.png",
+          "pts": 30.19,
+          "sha256": "a8057ee2ed4d4dca8f0a94ab62b2cdd6954bd1b61f78d932355f207c1ade2c86",
+          "bodyInkPixels": 228675,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0013.png",
+          "pts": 30.205,
+          "sha256": "11ff78088622e91bfdba02d962f225e3986e1ecc302f82eed88908e94eeb28f3",
+          "bodyInkPixels": 228691,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0014.png",
+          "pts": 30.223333,
+          "sha256": "07e412c98c2781ccbd0785f602243c4b2af5ccc353a7334157703ae09f14c446",
+          "bodyInkPixels": 228490,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0015.png",
+          "pts": 30.238333,
+          "sha256": "291128290d0c18f6639c84a9c91eade0e7b172415cf42fdc4039cea49841e9f2",
+          "bodyInkPixels": 228541,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0016.png",
+          "pts": 30.256667,
+          "sha256": "c6e797a4663df5ad63e1ce6323fd015bbe4156461e3f5617c7062b2017436a33",
+          "bodyInkPixels": 228481,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0017.png",
+          "pts": 30.271667,
+          "sha256": "ab9d4ad81f58aee335f3aad521a9320a5aa941df4a8cef0bb129ec0780c53f8c",
+          "bodyInkPixels": 228673,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0018.png",
+          "pts": 30.288333,
+          "sha256": "729a1cb0a2b1c526ba475e9fc1598aac522c60a1a6839a4ad747ea3f4deb66cc",
+          "bodyInkPixels": 228691,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0019.png",
+          "pts": 30.306667,
+          "sha256": "8fd31b00dd011882461ea925955a4c642cbb5869feb08ac0ac318a64cfc936df",
+          "bodyInkPixels": 228456,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0020.png",
+          "pts": 30.323333,
+          "sha256": "940e056f743db33c3f274acc7a359c6ae02e90fd0ccaa1cc71d1050cf9d9cfd0",
+          "bodyInkPixels": 228521,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0021.png",
+          "pts": 30.34,
+          "sha256": "d9c1354ee5325927756cbb3ffdf4e842ad0fb34df2b48f7fcd0ca9973c350f85",
+          "bodyInkPixels": 228468,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0022.png",
+          "pts": 30.356667,
+          "sha256": "8c02db6ae632418af839f68af747a71dff326a4a5f697d83c60058f1aec87a01",
+          "bodyInkPixels": 228694,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0023.png",
+          "pts": 30.373333,
+          "sha256": "42a0691eea15c067848b952703d41b3afc36d5e57a457c28a5ec962fc9290762",
+          "bodyInkPixels": 228668,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0024.png",
+          "pts": 30.39,
+          "sha256": "d4e765ac6d2b840a4150bfda5f2e559ed04971c295c12d763f2f3c855d7c6948",
+          "bodyInkPixels": 228433,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0025.png",
+          "pts": 30.406667,
+          "sha256": "bc6a223b105179586887b4655e97ccef6b76ab7ae445ce654e4996715b787fe6",
+          "bodyInkPixels": 228576,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0026.png",
+          "pts": 30.423333,
+          "sha256": "9b9e6cffb1fa7aedc2cc18b7dde9ad91f25b02c5feb3e5b3e11a7e6c920bd5c8",
+          "bodyInkPixels": 228474,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0027.png",
+          "pts": 30.44,
+          "sha256": "ea4728e5a0c19f990f31370d7ac9e97d1efe76461aad202c219b7aeb821fbcd8",
+          "bodyInkPixels": 228691,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0028.png",
+          "pts": 30.456667,
+          "sha256": "d12a9f5f03604f103dd6852d36e1ac99ef905ec8009c77750b762e0f9f301a6b",
+          "bodyInkPixels": 228656,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0029.png",
+          "pts": 30.473333,
+          "sha256": "fd83a26109200188ab14f423345af956cffa7af7d1f7e2751f9539a02338c1e3",
+          "bodyInkPixels": 228432,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0030.png",
+          "pts": 30.49,
+          "sha256": "52bbebfbb7f0f394dd08bc4fff3bd46596d317b6b9e3e7550ee3198295fb6fe2",
+          "bodyInkPixels": 228530,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0031.png",
+          "pts": 30.508333,
+          "sha256": "ec1547506c2b149c643692ae79430e8824b640109b7483cdd7994806341b42a6",
+          "bodyInkPixels": 228499,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0032.png",
+          "pts": 30.523333,
+          "sha256": "8c31ba5a088d46bc9edab9f0aa7d82c39d39927d1733ca15f85d1681968575e3",
+          "bodyInkPixels": 228737,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0033.png",
+          "pts": 30.54,
+          "sha256": "583370b261d9e13dbf622a299f7b3256735f17ef5639cc7224d376fa78635260",
+          "bodyInkPixels": 228605,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0034.png",
+          "pts": 30.556667,
+          "sha256": "3b2f84ebf6b3c7f7dd766ac1ab4082a06ac7d2d06d4194a65140eeac4c934eec",
+          "bodyInkPixels": 228443,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0035.png",
+          "pts": 30.571667,
+          "sha256": "03df31db611895880781252fbcea77962975a1aecb5d78ceb87e74d287b2e1b0",
+          "bodyInkPixels": 228465,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0036.png",
+          "pts": 30.591667,
+          "sha256": "96566cd18bc3083cb1dd4638b96b3c6de5c9a9d1213bace26373a83602f9e149",
+          "bodyInkPixels": 228463,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0037.png",
+          "pts": 30.605,
+          "sha256": "4c86a586893e07af516fd968692bbeafd23aaa0c0c59bb77c79549dab4aacec5",
+          "bodyInkPixels": 228657,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0038.png",
+          "pts": 30.621667,
+          "sha256": "fb926016dcfd3f1949f0b3c978da848dd2906c30fb8482403719a23075ebcb22",
+          "bodyInkPixels": 228449,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0039.png",
+          "pts": 30.64,
+          "sha256": "6daac3ce74ab5a0e424cb5c9cc37e6c27ee4e74d4154865a9f93e0b51c3563fb",
+          "bodyInkPixels": 228360,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0040.png",
+          "pts": 30.655,
+          "sha256": "a52c303cf589847179bf97f53e8db743579900d4c89a21816cd25a6ab384682e",
+          "bodyInkPixels": 228363,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0041.png",
+          "pts": 30.671667,
+          "sha256": "773927cfe03cbb5c20d26103acc0a46b1d5a464492370a8ef8ade52681530450",
+          "bodyInkPixels": 228320,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0042.png",
+          "pts": 30.69,
+          "sha256": "fab77a4116d43f591cf50bbd91c00bd0cb4ae978d6353e8d841da2ec004d876e",
+          "bodyInkPixels": 228537,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0043.png",
+          "pts": 30.706667,
+          "sha256": "7b6082acf611915c13e89573bdd8f5911d33cca1c521e3ecfc2c4476be369ae7",
+          "bodyInkPixels": 228283,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0044.png",
+          "pts": 30.723333,
+          "sha256": "c9530f3acd58f5797f72a560a971728da3c7d2df47733a6dbee2fbac124ccebe",
+          "bodyInkPixels": 228236,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0045.png",
+          "pts": 30.74,
+          "sha256": "ba0030195554859ebea92404ea1a66cffad6944a645225bb6e81ecaee5f50848",
+          "bodyInkPixels": 228200,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0046.png",
+          "pts": 30.755,
+          "sha256": "8cffce36a52715c106aba6c03ab0612345cf093bc29ecaba30f08f691f8d729c",
+          "bodyInkPixels": 228211,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0047.png",
+          "pts": 30.773333,
+          "sha256": "7c57e374bcf4a6cd4d32dc6acfddd95aa616da0f8b2ba8e1d1c0a9c5bfb2b35b",
+          "bodyInkPixels": 228357,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0048.png",
+          "pts": 30.79,
+          "sha256": "88bdda33e0f729ae387a38652610fb0fa8cc2b54b8152a17825f43d4978475b4",
+          "bodyInkPixels": 228091,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0049.png",
+          "pts": 30.806667,
+          "sha256": "511f41361416365ee9645971f80903f08c36686a2717c212dda2d66a2fb83d0b",
+          "bodyInkPixels": 228104,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0050.png",
+          "pts": 30.823333,
+          "sha256": "5db09911aa60bf453e6e6e81264b7e6a84a328804229650a41d78e0acd3ad046",
+          "bodyInkPixels": 228078,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0051.png",
+          "pts": 30.84,
+          "sha256": "74213ef9098a139b659b1f45d45598083fc4532ac0fa43a6c485eae07c386e57",
+          "bodyInkPixels": 228129,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0052.png",
+          "pts": 30.855,
+          "sha256": "6a1f5290fdcf25d2610928058fa575089ea221fb7b55bcefd44c2fd2d8079b7c",
+          "bodyInkPixels": 228280,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0053.png",
+          "pts": 30.871667,
+          "sha256": "7be87c0a72304911d679c9db3b737d40a131efce66999ca0229f88418177aefd",
+          "bodyInkPixels": 228021,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0054.png",
+          "pts": 30.89,
+          "sha256": "8174d9ab665a6bc25ba54da71e461373d2f5b7abca222b1e3414dc5e9df9084e",
+          "bodyInkPixels": 228037,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0055.png",
+          "pts": 30.905,
+          "sha256": "47b187885c5873b48a9e1be0ee23a27b1a8b7805b511aac4ac72a2765ce13e3c",
+          "bodyInkPixels": 227999,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0056.png",
+          "pts": 30.923333,
+          "sha256": "7ff88f66a913487fe3fe09565a7cf0ab0d535ce7828f42f8126283fcdac77841",
+          "bodyInkPixels": 228051,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0057.png",
+          "pts": 30.938333,
+          "sha256": "81f53ce6ac37b3f0ba2fa0c4b2e8ae1d63df51ab20cbf1d6df018395bfe333ad",
+          "bodyInkPixels": 228098,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0058.png",
+          "pts": 30.955,
+          "sha256": "23c9374985ac8e10dc9b7355639b1adb97480c0dc0c719e7a766c5dba7fef005",
+          "bodyInkPixels": 227903,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0059.png",
+          "pts": 30.971667,
+          "sha256": "5d9880879ccc3123f453728ad4767aa7db5126171cb26b9d5f750c7cf4853a79",
+          "bodyInkPixels": 227969,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0060.png",
+          "pts": 30.99,
+          "sha256": "0922a9ac35d9d2bdb0359b16a0f6893f2ac8f70ac813eeb997d3a6843a8166d2",
+          "bodyInkPixels": 227937,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0061.png",
+          "pts": 31.006667,
+          "sha256": "03f64f1056b35701f898ac71eef8afe000529d8260bac4aee914e69f93d93c41",
+          "bodyInkPixels": 228032,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0062.png",
+          "pts": 31.021667,
+          "sha256": "6c40c3a06c5c34fbe4e2fa4ed3824bb0b8f0018b75deece1f002708af5052dba",
+          "bodyInkPixels": 228108,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0063.png",
+          "pts": 31.04,
+          "sha256": "7f66e1819be14c68ea13ecefa9d536da451a157f4f0f530cee1408616060c2c7",
+          "bodyInkPixels": 227883,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0064.png",
+          "pts": 31.056667,
+          "sha256": "7b30e92567decd643eb67b0b37e899db40b54b176026e834341b4a3f74edd5be",
+          "bodyInkPixels": 227972,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0065.png",
+          "pts": 31.073333,
+          "sha256": "380b294c462b4a32c68c602bb7ae4c4053ddff4ff08e9ea80c4637b982bdb14d",
+          "bodyInkPixels": 227940,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0066.png",
+          "pts": 31.091667,
+          "sha256": "a889e451aadd132231d03283eb334588386fea7bb0cda6e4dbbbf06abaa6e83e",
+          "bodyInkPixels": 228082,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0067.png",
+          "pts": 31.106667,
+          "sha256": "6cb868eaa9a449c91b0dc09731c1ff4a1aa1f63860074c399a7f252d5fa9bd5a",
+          "bodyInkPixels": 228109,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0068.png",
+          "pts": 31.125,
+          "sha256": "d77cf3712e81e59ef8b68c70a1f6128fe3f0c1b106232f1fca518e98d4d56ab4",
+          "bodyInkPixels": 227896,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0069.png",
+          "pts": 31.143333,
+          "sha256": "1e18f5f3fdfd7913800a9af56ca3ee6994054712a58f648c1b985185604a5a79",
+          "bodyInkPixels": 227969,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0070.png",
+          "pts": 31.156667,
+          "sha256": "d48f6edf5138cf6240116bd64ad3f0d53811a524a7ee75dface0d3cbf53f495e",
+          "bodyInkPixels": 227912,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0071.png",
+          "pts": 31.173333,
+          "sha256": "8009231ef71cd248fda85aa0d8860fb389aebc50641f692e8c56a0a47a414a34",
+          "bodyInkPixels": 228091,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0072.png",
+          "pts": 31.188333,
+          "sha256": "0c3123168b230508e20e7e2d4047a54b4b5ef26599f28a3e66f031a45687beca",
+          "bodyInkPixels": 228116,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0073.png",
+          "pts": 31.206667,
+          "sha256": "0dff85be7752471da5d559862867ff09736138829bdcad2ebf316cadeb50e841",
+          "bodyInkPixels": 227889,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0074.png",
+          "pts": 31.225,
+          "sha256": "fe0da29843bc3bcebaa29233407584dd48b57558eb092e25365ac6bea5e39093",
+          "bodyInkPixels": 227937,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0075.png",
+          "pts": 31.243333,
+          "sha256": "635feaa7d4edb92af5d33c2b2b526baef35b7a83d8a014c9d4e03969e2f96089",
+          "bodyInkPixels": 227902,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0076.png",
+          "pts": 31.263333,
+          "sha256": "fcafd0c7c7d5602bc0244506268c9f45687bc05a86337d93590b5619e56a23a4",
+          "bodyInkPixels": 228098,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0077.png",
+          "pts": 31.273333,
+          "sha256": "d45b511b9b2ebf22807881127cc8acbee37370dc3d3ffdee7494f22880b60e09",
+          "bodyInkPixels": 228064,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0078.png",
+          "pts": 31.29,
+          "sha256": "1c4cda3ca4caff385476268cdd6a705778d8cfbb11e8fbae512f2cfe5aba5281",
+          "bodyInkPixels": 227833,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0079.png",
+          "pts": 31.306667,
+          "sha256": "07a0db48bda9b75d3da392e78477b6a16d80a48509cb8b490d52ef216e25b592",
+          "bodyInkPixels": 227988,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0080.png",
+          "pts": 31.323333,
+          "sha256": "69c65fdddb084d14aca95da429cff1413e07ac18ed0f28e19fb7656aa8020c2e",
+          "bodyInkPixels": 227890,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0081.png",
+          "pts": 31.34,
+          "sha256": "ca678dc2bd12a733d9d154366b7efc8dea3808d5367071ce47f5b41974ab737d",
+          "bodyInkPixels": 228083,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0082.png",
+          "pts": 31.356667,
+          "sha256": "9dafb84f5cfce267d900993546d60bc15184c0a77d9ea1fe89f4284f9947f933",
+          "bodyInkPixels": 228066,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0083.png",
+          "pts": 31.375,
+          "sha256": "3f67838e3174d181a168661dbd58465559b63e6601f65e411d0ec5f4354db1fa",
+          "bodyInkPixels": 227843,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0084.png",
+          "pts": 31.39,
+          "sha256": "ebadabc8061adaf585def313ccbe0e494434e9965b4dc05ec58b206e93ca421b",
+          "bodyInkPixels": 227964,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0085.png",
+          "pts": 31.406667,
+          "sha256": "608a7160a3ae8fdfae29069af214e9a3b450241b59d58fe9156667c65111ae12",
+          "bodyInkPixels": 227915,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0086.png",
+          "pts": 31.428333,
+          "sha256": "b1b9c531d6beb70051da774f6e7bc3a725bee3c27c3f5c1a45a76398e057be1b",
+          "bodyInkPixels": 228115,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0087.png",
+          "pts": 31.443333,
+          "sha256": "10763094429d5bd42ebd569b96ec2f5ee4521752a87b60a9c456600b65de6363",
+          "bodyInkPixels": 228009,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0088.png",
+          "pts": 31.456667,
+          "sha256": "5e37eb6ef53251f95cff3e79230b06b66371e9f5198fc509ea3e2d2509eb4940",
+          "bodyInkPixels": 227865,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0089.png",
+          "pts": 31.473333,
+          "sha256": "fe50c6a91801a9d6837abb9c817ce8f486238f378ccb772f9dd4941629f58d13",
+          "bodyInkPixels": 227921,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0090.png",
+          "pts": 31.493333,
+          "sha256": "ca5d610e9dde70c1dc8512007025db1fa7e631a3fe8e3c9147c8cbca01ea9b42",
+          "bodyInkPixels": 227939,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0091.png",
+          "pts": 31.506667,
+          "sha256": "7afc3bbc4833013edceb775970b6b7a1dec879f1b69b9811c02d642025d16082",
+          "bodyInkPixels": 228155,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0092.png",
+          "pts": 31.523333,
+          "sha256": "80f4f5200bf663a923e5236b4dc77944a986961c12ce1b3fcdad55cb4e7b5760",
+          "bodyInkPixels": 227985,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0093.png",
+          "pts": 31.54,
+          "sha256": "5bda09358f42b27ed2da66baa23426d044a24abb1d027274fe5efe9bfe5090fa",
+          "bodyInkPixels": 227935,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0094.png",
+          "pts": 31.556667,
+          "sha256": "919a909aa0c7d9932ef4b9bf264d8c3117e7740c58e2d4600788911f14fd4ec0",
+          "bodyInkPixels": 227917,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0095.png",
+          "pts": 31.575,
+          "sha256": "ef98662775fc2eb8b2ccc0d4146a2d227bec4ac79316241a9f0c63b599678b36",
+          "bodyInkPixels": 227921,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0096.png",
+          "pts": 31.59,
+          "sha256": "d7ad310a78b673aff7217c0179dfb8393a6f77396e6d2f5a2f03ce7269cf5795",
+          "bodyInkPixels": 228161,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0097.png",
+          "pts": 31.606667,
+          "sha256": "fc95e5ed0243fab3091e5463642f01a3258300ff67fe56acd60a0742d348ecae",
+          "bodyInkPixels": 227922,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0098.png",
+          "pts": 31.625,
+          "sha256": "7830b88a26fb49a4a7db59a54f42f526d25943fa89ee0d17ccc9b0438c1d6418",
+          "bodyInkPixels": 227932,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0099.png",
+          "pts": 31.64,
+          "sha256": "ba1d8e77a509e231012f801dc13488af31ee341c97f8465587c60c1484aeb367",
+          "bodyInkPixels": 227925,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0100.png",
+          "pts": 31.656667,
+          "sha256": "7453c40e0eab5aa8af41888c9cdd6a69a066bfa83c5355cb3a008340bb8667ac",
+          "bodyInkPixels": 227943,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0101.png",
+          "pts": 31.673333,
+          "sha256": "6bc9bc2054d7eb8bd13565011f4ba4c63ece379d18d72ddb7592fea79f40ac7c",
+          "bodyInkPixels": 228143,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0102.png",
+          "pts": 31.69,
+          "sha256": "6df604fa5a1ab01ad7de60fe013e7836a0baa3ee081336afdb30d4681fe34093",
+          "bodyInkPixels": 227878,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0103.png",
+          "pts": 31.706667,
+          "sha256": "10d1ba5749680ba9081defb0ef8e1613719d9d2c75f618c7f3dd707e2ad0aaed",
+          "bodyInkPixels": 227932,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0104.png",
+          "pts": 31.721667,
+          "sha256": "3c42d51d1c887248f1bd990aaccd279263900dfb1f7093fdaac4020fff168012",
+          "bodyInkPixels": 227912,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0105.png",
+          "pts": 31.74,
+          "sha256": "c69b3dbdf68b57dc82958ed518b28d4cd864bbd260c612bd2deed12dc564d0ce",
+          "bodyInkPixels": 227980,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0106.png",
+          "pts": 31.756667,
+          "sha256": "7918ec3902604133493260999b3a3d83bfb6f33686a5ed2c3ad5069f786a620c",
+          "bodyInkPixels": 228150,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0107.png",
+          "pts": 31.773333,
+          "sha256": "00e359731b61934532ab595c1ad99aff55cfd3483fd8ace0ca6d9915aac6cb64",
+          "bodyInkPixels": 227925,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0108.png",
+          "pts": 31.79,
+          "sha256": "6985fdd9383e3bfc7fde0b653593d1e5002589b16889e96f77208b604940b145",
+          "bodyInkPixels": 227957,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0109.png",
+          "pts": 31.806667,
+          "sha256": "547b414d9faaa9a619dcefd999556e762136180a752cab1921b36d56bcacb0fe",
+          "bodyInkPixels": 227934,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0110.png",
+          "pts": 31.821667,
+          "sha256": "d34e81755e3c3223ec9858d6047ca491611e4f572bf50eb8b7dd139e31513636",
+          "bodyInkPixels": 228023,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0111.png",
+          "pts": 31.838333,
+          "sha256": "58142307229c02a7f82c51a877da7289b90c6a26962d91efe2a23f82365c8164",
+          "bodyInkPixels": 228102,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0112.png",
+          "pts": 31.855,
+          "sha256": "7cb56c91e609a0731f50ab85aeeaf6fb2fe0b15a2cde56864a90210c007d97df",
+          "bodyInkPixels": 227896,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0113.png",
+          "pts": 31.873333,
+          "sha256": "c5426057a82408880437f936a7511b5760c6dc2b964a5607ec002c905c96374b",
+          "bodyInkPixels": 227957,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0114.png",
+          "pts": 31.89,
+          "sha256": "9b1ec9ee53dcb29db2eae69f3c6696023c88b274446121a75ee3b9c77fb1893c",
+          "bodyInkPixels": 227933,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0115.png",
+          "pts": 31.906667,
+          "sha256": "aa3bacbe3f7ccc92b0dd73a7b7e856fa58bace2f0a13de6ed3813301f2583e91",
+          "bodyInkPixels": 228032,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0116.png",
+          "pts": 31.921667,
+          "sha256": "548f864117c08428f6bedecf4119e05062b39beafccfb97dc0e9b7aa02365c3a",
+          "bodyInkPixels": 228119,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0117.png",
+          "pts": 31.94,
+          "sha256": "ba1f714da3ddf3f38df8fb1c7bf23e7c764957e3d6156ec9c7c255c3bc89be5a",
+          "bodyInkPixels": 227854,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0118.png",
+          "pts": 31.956667,
+          "sha256": "34da352f2618cb21ddc67a6e4327064e4f68a470f1cd312a31bdaffddda82e82",
+          "bodyInkPixels": 227961,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0119.png",
+          "pts": 31.975,
+          "sha256": "2fe05bfdef34df8a2ef619f1c63528f506afafd21b707836b0f387d84b3193d4",
+          "bodyInkPixels": 227937,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0120.png",
+          "pts": 31.99,
+          "sha256": "dc6a81269869d491a24310be024b86fe97145ff077646d6707d52409f7cf31f6",
+          "bodyInkPixels": 228066,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0121.png",
+          "pts": 32.006667,
+          "sha256": "bbf1cc07f62128a4eb4dcc964cb9d6ef1f3b11b27c8b51fc42fdaf4100dacf7b",
+          "bodyInkPixels": 228098,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0122.png",
+          "pts": 32.023333,
+          "sha256": "6e1fb55987d016c9372c7f40983d2b2326135a25f233f156a6546aa200dfd8df",
+          "bodyInkPixels": 227904,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0123.png",
+          "pts": 32.04,
+          "sha256": "5831c2a00e139070c16c72ef16b80323394deb8b60d95282894fe59681c5c420",
+          "bodyInkPixels": 227962,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0124.png",
+          "pts": 32.055,
+          "sha256": "f5465029db516b7eff7c556393cab0b69439aa1215f06b797a6f7d035aaadb2a",
+          "bodyInkPixels": 227906,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0125.png",
+          "pts": 32.073333,
+          "sha256": "7c410a9dc0c294a7c72dbd817270fbc3ede38c79085ef4628a3b069e6239a770",
+          "bodyInkPixels": 228066,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0126.png",
+          "pts": 32.09,
+          "sha256": "ff59b20ce85ba83a65c2a1e55c323b2bdfb50e17983c49886275ac1120d3301c",
+          "bodyInkPixels": 228124,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0127.png",
+          "pts": 32.108333,
+          "sha256": "43882d1044f33e514ffcc9f25d68753537eb614bd39242d73412068892df77cb",
+          "bodyInkPixels": 227890,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0128.png",
+          "pts": 32.123333,
+          "sha256": "af0e0c1b2f7a84791de2090055506be3adbbe93e6fe9afdba1a54d79fe29c0ee",
+          "bodyInkPixels": 227941,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0129.png",
+          "pts": 32.141667,
+          "sha256": "900b04619656cc031eeeb2a5117c63cc0e9e22e64c3fe490960d49dc4b394c77",
+          "bodyInkPixels": 227890,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0130.png",
+          "pts": 32.155,
+          "sha256": "b3b06c3dd8f9650e4501c0d1f143e02e3cb6226ca0bbad9fe51aa613930d82f2",
+          "bodyInkPixels": 228094,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0131.png",
+          "pts": 32.173333,
+          "sha256": "6a82fc185c82c00d7c1aa4b8221229f3fc0ea37e3d9973286403aef270d2d846",
+          "bodyInkPixels": 228091,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0132.png",
+          "pts": 32.19,
+          "sha256": "4edba7ec3f305194b0340df48a40c2443c4dda0a426294d035a72e7e0eddcbbe",
+          "bodyInkPixels": 227852,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0133.png",
+          "pts": 32.206667,
+          "sha256": "32e04f1cbcff4b22f0767207f415d3e5eea888b89155101ff86e006994ba06d3",
+          "bodyInkPixels": 227967,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0134.png",
+          "pts": 32.223333,
+          "sha256": "98788d42e1eb6b3127b2e54c2c8ef8f0ec486777fd22a5433ad83f3246dde898",
+          "bodyInkPixels": 227904,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0135.png",
+          "pts": 32.24,
+          "sha256": "416ab712de66a85b6759eca4d183c00d0f796aa785682aefd85489fc9ced732a",
+          "bodyInkPixels": 228081,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0136.png",
+          "pts": 32.263333,
+          "sha256": "16d502222fa145e1e7315a98f6d67f0c3b92ca2bf4410385a246ce034451ed6b",
+          "bodyInkPixels": 228068,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0137.png",
+          "pts": 32.276667,
+          "sha256": "a77f5a350be552a50644c76972fb6b36c749c660c9e0f376a2981dea2d955524",
+          "bodyInkPixels": 227852,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0138.png",
+          "pts": 32.29,
+          "sha256": "e67e5606fc8502fa8aca2e89b7bdd815118ad815033f08ebe3292c6b356e2b0a",
+          "bodyInkPixels": 227977,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0139.png",
+          "pts": 32.308333,
+          "sha256": "b929b710c43bee93919684fc9ba358b96fe12a983b998c0301196562626e36fd",
+          "bodyInkPixels": 227934,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0140.png",
+          "pts": 32.325,
+          "sha256": "347f19050f1f73c9d7cf7ba815995b0afe633955fc856bea4e048b028dd1c33f",
+          "bodyInkPixels": 228138,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0141.png",
+          "pts": 32.34,
+          "sha256": "f1fd80dec5ea96918fd3f06cac6d7268982d895030a012f0ecb945dad1ee2b51",
+          "bodyInkPixels": 228016,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0142.png",
+          "pts": 32.356667,
+          "sha256": "e7456a5bd748b586f0f85a6e9d39298c5c2cf4a3b3ed98bbcd8d8a1d804975ab",
+          "bodyInkPixels": 227878,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0143.png",
+          "pts": 32.373333,
+          "sha256": "c608f7f1f8549c6f74413e8de0ad898384621cec47c0a96d1a26a146cdaa9a22",
+          "bodyInkPixels": 227957,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0144.png",
+          "pts": 32.39,
+          "sha256": "39bdadaa24ad80d23343a1255f463e11679278d1ccef7b3d7c95113d33cd0b57",
+          "bodyInkPixels": 228006,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0145.png",
+          "pts": 32.435,
+          "sha256": "e685802600941bccace802912036422f31c02b26f1b5029381a0fe5cce0b6519",
+          "bodyInkPixels": 228351,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0146.png",
+          "pts": 32.44,
+          "sha256": "295675af7e3f0e316e51d4d1dcdf35e9e03b202e592eae6f28c2c02c31db3484",
+          "bodyInkPixels": 228295,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0147.png",
+          "pts": 32.473333,
+          "sha256": "2970ed8ef8540589bed4faa03714b5f8ceccd58994c56c9a9dac29f166f081cb",
+          "bodyInkPixels": 228325,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0148.png",
+          "pts": 32.49,
+          "sha256": "b6453b345ccbdfbfa0353a5bbb8d79c7c0306d860ef14b6c76fccac22868ea67",
+          "bodyInkPixels": 228680,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0149.png",
+          "pts": 32.505,
+          "sha256": "927633ad3f0eecfc23a0a1e2a7767afe21f8b09095985d8c506e8307dcab7867",
+          "bodyInkPixels": 228528,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0150.png",
+          "pts": 32.521667,
+          "sha256": "c1e12b01666533d78b3264e63b30a4fda10db50daf2556a678d1c5d8ff614a51",
+          "bodyInkPixels": 228581,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0151.png",
+          "pts": 32.538333,
+          "sha256": "db3656d808b11f1c3717b0947bb1e4933dcc7a285add700362e096c1b22dd10b",
+          "bodyInkPixels": 228666,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0152.png",
+          "pts": 32.555,
+          "sha256": "015caca6d2c0a5dafcf48b1b147b77b6dcbd5191820fe7feaac77cf5a274c7c5",
+          "bodyInkPixels": 228682,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0153.png",
+          "pts": 32.571667,
+          "sha256": "81ccc49ab5026b33addc3570a76b6c5e5dc5f6229a22af3893c0ec7d2c082dc5",
+          "bodyInkPixels": 228969,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0154.png",
+          "pts": 32.6,
+          "sha256": "897e4d56d4dcfec8fc6d45f9631a544101d06503219e612638f6c5a9ec5b3cc3",
+          "bodyInkPixels": 228808,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0155.png",
+          "pts": 32.606667,
+          "sha256": "559786e243f9c97e2e824b22ac99c6a6d0cf42555a7e6336329a089d27247ca7",
+          "bodyInkPixels": 228936,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0156.png",
+          "pts": 32.621667,
+          "sha256": "ef081998e61337ca363e504bbe7c93b5bc55c6f2b20d456abb942b12a33716fe",
+          "bodyInkPixels": 229022,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0157.png",
+          "pts": 32.638333,
+          "sha256": "b911357d4be8848d7ffe90173798ff7d9ccab7187dc6d3e191a4b4646292f1ad",
+          "bodyInkPixels": 229117,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0158.png",
+          "pts": 32.655,
+          "sha256": "a28226c3b76dd4b410e1c4727830ccdfee24d6f5cbd1b832acec8448af4f064c",
+          "bodyInkPixels": 229407,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0159.png",
+          "pts": 32.671667,
+          "sha256": "81fe6fffb9639ff2a83e98d8e2afb47376c7cd21a6c1bfac2f0db63947f74818",
+          "bodyInkPixels": 229243,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0160.png",
+          "pts": 32.69,
+          "sha256": "c63fcb7da251920e705d45ad6b2b748d366232ca87699ea523d99c35d312cdc0",
+          "bodyInkPixels": 229366,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0161.png",
+          "pts": 32.706667,
+          "sha256": "5bf5db2c7bd4123ed570d640a6b6623807294a1f4b7afcfdc84c1e200c60f6a2",
+          "bodyInkPixels": 229379,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0162.png",
+          "pts": 32.721667,
+          "sha256": "8904e3770936a42c17e053d31a1ef3f7cbfe8b114669c17c6c0ef3b5e212ae4a",
+          "bodyInkPixels": 229466,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0163.png",
+          "pts": 32.74,
+          "sha256": "d050522264cc67fd7685a64661beb1daa4f541494fad500586c3b8bd54fd5597",
+          "bodyInkPixels": 229648,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0164.png",
+          "pts": 32.755,
+          "sha256": "0efd299e2b3fb5b28d86dbf12509dea004f3cf9e0c5ee418e12e0230b1f1d794",
+          "bodyInkPixels": 229535,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0165.png",
+          "pts": 32.77,
+          "sha256": "63e0401dbc96365d13238d78daf46a72bf4fac6f2313f6c8b437a047720be26d",
+          "bodyInkPixels": 229631,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0166.png",
+          "pts": 32.775,
+          "sha256": "405de29b4bd413695d7030b21f6800fb07b9a4f9ff8d425a0b696d82c87bc5a2",
+          "bodyInkPixels": 229631,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0167.png",
+          "pts": 32.79,
+          "sha256": "ee759f4b3cbea21ab9183beb974a4c5040aba78da0b6bb213873a49d285fcb4e",
+          "bodyInkPixels": 229629,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0168.png",
+          "pts": 32.803333,
+          "sha256": "a1eb6393920408da4c575414f6d7ee7de8b5c038948a3556889443af272a3b69",
+          "bodyInkPixels": 229631,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0169.png",
+          "pts": 32.821667,
+          "sha256": "a44c9ce637c2eb7ef8c6fc9d06ca35d912bd535aa290ea4a41a7410c599cae05",
+          "bodyInkPixels": 229627,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0170.png",
+          "pts": 32.836667,
+          "sha256": "029c1823753d37ff0a0181531976d3628722d647c3ab172ebdab86ffb565cb60",
+          "bodyInkPixels": 229628,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0171.png",
+          "pts": 32.855,
+          "sha256": "5cdbc8165cc106ea5ad87189abb3609fb151e6efd1a7e3e0d82a258cb89c24bc",
+          "bodyInkPixels": 229627,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0172.png",
+          "pts": 32.871667,
+          "sha256": "f252bdc403b95142d360030e3d1b523652a6734eb3e7ac715739e3755b8730c1",
+          "bodyInkPixels": 229631,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0173.png",
+          "pts": 32.888333,
+          "sha256": "83319840decad64755017c6ca881dce0971b5ab1f3c1f56aea866207fbc7071b",
+          "bodyInkPixels": 229629,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0174.png",
+          "pts": 32.905,
+          "sha256": "6071ba9155cb6d3fb3ba6607996b5e6b1749346b64eda955e93f8f7160af4e8a",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0175.png",
+          "pts": 32.921667,
+          "sha256": "83ede2ca03a284962aad52daeb8a3d32d5890d5ca6b1ca0cf57ff1b5f462d3bb",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0176.png",
+          "pts": 32.938333,
+          "sha256": "4d89151c4bbb7ef67df7753ce3c9aa18153c62df6fbbfaf8dfbcb3ee7b28f9e2",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0177.png",
+          "pts": 32.955,
+          "sha256": "b3fc07cbb49b593000666cdbb0d8ab2a3fa8542eee476f3d2f3abfd4a64c00ad",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0178.png",
+          "pts": 32.988333,
+          "sha256": "74b58bdc8e012aea442c3b235c511e3e4a8d98767efc5b685ee8d438cc739398",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0179.png",
+          "pts": 32.993333,
+          "sha256": "d34c9f9ad269c10c5c6c931feb45e2faaf932a1224e871758a9da3519fd6e50b",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0180.png",
+          "pts": 33.005,
+          "sha256": "724a353305e62d8e4d76b2e92709e5cb45928e2dbea35e65128b0acd5036803e",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0181.png",
+          "pts": 33.023333,
+          "sha256": "9e366260d31e32d0babf0429f4bea1cc0ebaea47a1ab5ad83301f7e5be9e6a65",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0182.png",
+          "pts": 33.025,
+          "sha256": "9aa5ca848a99800bbeb3a3e96787586e4290f70552cab0e83867461cb012e909",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0183.png",
+          "pts": 33.046667,
+          "sha256": "54a02bb63362221d123bb45608c106445cc66b284bcea0a4be1c6647b11cb18f",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0184.png",
+          "pts": 33.068333,
+          "sha256": "65e2f82b61bc140de8f05a51a163297737dbeaacd9424f766c62bdb946bf2a9d",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0185.png",
+          "pts": 33.078333,
+          "sha256": "9cc50232a0c9faaa33e36f8e9788f1061bf47eba801cb2a89e9fae188d80e4f1",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0186.png",
+          "pts": 33.09,
+          "sha256": "7ca7ce664769326ed8c728662ca506dae16f475d2019965a8e04692153e9427c",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0187.png",
+          "pts": 33.106667,
+          "sha256": "7e17e5029890af4e66e86c4b0d946f7076ffd2c2d1097caa8cccb6b08918da2a",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0188.png",
+          "pts": 33.121667,
+          "sha256": "eaace27ce4dedaba76eff020080f66c46f507efd33c2d1612ff0da6e212780e3",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0189.png",
+          "pts": 33.14,
+          "sha256": "f2614459cb18f0185b082786dd62147e0465505decdb468915cadc48be962a36",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0190.png",
+          "pts": 33.141667,
+          "sha256": "bd686babadda85cc17208902d7c66cf86145f588f25e0092aceedb0f18c2fa78",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0191.png",
+          "pts": 33.155,
+          "sha256": "79cede9ec7f922bf7cf5436baa7deb54ba4c08cd7556be90292cb8a1a16787ca",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0192.png",
+          "pts": 33.171667,
+          "sha256": "447246f6c9c46f70b06bdcf827727a48341e05715ad1ac97827ed3aeceae7d9d",
+          "bodyInkPixels": 229630,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0193.png",
+          "pts": 33.241667,
+          "sha256": "805e2d0795edbe3e0b62d80c49d17148c861752ce9dbad617496fcf7e63ada15",
+          "bodyInkPixels": 229633,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0194.png",
+          "pts": 33.256667,
+          "sha256": "beb8918f2c1182113b07c4f5df0dfb4d1ada1d22e909439dd2a62e5d6c22bb31",
+          "bodyInkPixels": 229631,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0195.png",
+          "pts": 33.275,
+          "sha256": "c25db3e1f8144f1d169f3fccfb3ecce8e1544f6a7dcee41c9af173c37e2a9606",
+          "bodyInkPixels": 229636,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0196.png",
+          "pts": 33.49,
+          "sha256": "dca0facc1edddf6e24711aa152960d4db79432c1b3e4ab088d3b6f193d402f33",
+          "bodyInkPixels": 229633,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0197.png",
+          "pts": 33.506667,
+          "sha256": "836df7ca91c912f36e4c5503cb13ba39056199994eaf03c6206a3d7c6a8a8094",
+          "bodyInkPixels": 229635,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0198.png",
+          "pts": 33.546667,
+          "sha256": "5ca7d549791e2082df8e5adef2873ae29bf153873dbfee882c27c2826d6763da",
+          "bodyInkPixels": 229633,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0199.png",
+          "pts": 33.548333,
+          "sha256": "913621d4c6de831dc2411435027ed12b2ff4eb996b2466204c2d263d719c1ba4",
+          "bodyInkPixels": 229637,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0200.png",
+          "pts": 33.596667,
+          "sha256": "16ecc502527399daaf8b7ca850bd6de6465888b506cfc3fe8377006c52d7b8a1",
+          "bodyInkPixels": 229634,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0201.png",
+          "pts": 33.611667,
+          "sha256": "903556d02d4576d49bacec970f5d849a54652d450e852e534cb176708ef5c948",
+          "bodyInkPixels": 229638,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0202.png",
+          "pts": 33.626667,
+          "sha256": "e2f636dcff7c8d1058e1a6c5900b2ac3b0437b76928f86fb30633081c5e504d6",
+          "bodyInkPixels": 229636,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0203.png",
+          "pts": 33.638333,
+          "sha256": "3bd32cd385075d9f1284435ff0b35217ba86f758396bd0744902020700af8a8f",
+          "bodyInkPixels": 229640,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0204.png",
+          "pts": 33.653333,
+          "sha256": "c7e6a152de59ebb98325daa2cdb0a17bba3f49d9ffc406e718d9b57fb2a59eec",
+          "bodyInkPixels": 229643,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0205.png",
+          "pts": 33.666667,
+          "sha256": "fd2195f2372aff7f6dbeb7a4a38c9fad0bc1bccf830348ba36f383590aac9536",
+          "bodyInkPixels": 229645,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0206.png",
+          "pts": 33.681667,
+          "sha256": "babafd55943e3f39e76b99887b452b72575557776a23b50b5bddf18c2cb53b53",
+          "bodyInkPixels": 229643,
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/original-0207.png",
+          "pts": 33.698333,
+          "sha256": "5c5f7ee78ee3c83d28ffbaf23c102779e194578552d35dd7239eeaeb2307c16e",
+          "bodyInkPixels": 229644,
+          "inspected": true
+        }
+      ],
+      "frameCount": 207,
+      "firstSourcePTS": 30.006667,
+      "lastSourcePTS": 33.698333,
+      "timestampInversions": 0,
+      "observation": "Muted dark-theme body moves gradually upward, stops around 32.7s and stays still in the tail through 33.698333s; body remains visible.",
+      "bodyVisibleInAllReviewedFrames": true,
+      "allBlankBodyObserved": false,
+      "interpolation": false,
+      "phoneFPSAccepted": false,
+      "metricCaveat": "bodyInkPixels counts dark pixels and therefore counts charcoal background; it is not used as a blank/readability detector. Readability is based on manual visual review.",
+      "contacts": [
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-1.png",
+          "sha256": "5edf6a8d6c2a5e6ce088c409ba25352b07e4d3df8c57548e0a680412b93b5789",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-2.png",
+          "sha256": "ad9ae1fced8440f83f0123ee453bef20f29f85ed1ead015672d19480203651a9",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-3.png",
+          "sha256": "32824452dc432170cbba30ae7d92df5d7ec8eec8064ce8dd1398bdcad1f3e717",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-4.png",
+          "sha256": "2eec619ee8cbab4e10518c4b4993331a8cf14ca8b11c24deb86a11dbb62b31d7",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-5.png",
+          "sha256": "6ade2d7447982b2079bf1458462f0478704f8000fc970c62c406d3e4c3ff43b0",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-6.png",
+          "sha256": "3b63411a39223572a00b89124586635c8b0c59a59ef8c316127c2e26cd260901",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-7.png",
+          "sha256": "f284952c2c09f9dfd79d669fa23e39740281238e4fbd57dddd807c833a59d7aa",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-8.png",
+          "sha256": "d71a7aacb24d4ca166d65b03ff16d01f61a0eaef902472184031e63c535e2f55",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38861273421/AutomaticScrollReview/auto/dark-pause/contact-9.png",
+          "sha256": "3af0d4cf8a66ebca557557fe47616d33607a0b0ba420016b5067068a1969034d",
+          "inspected": true
+        }
+      ]
+    }
+  ],
+  "reviewedAutomaticScrollSequencesAccepted": true,
+  "reviewSummary": "52张实际PNG逐图查看；两条新UI录屏总览（51.21s慢滚/15.76s应用减少动效停用）及418张原始VFR帧（浅色移动122、触摸暂停89、深色暂停207）逐帧联系表已核。选定已就绪正文片段持续可见、逐步上移后停稳，后台返回和非零位置重开静止，控制条沿用浅深色主题。减少动效图/视频尚处章节加载，仅验停用提示；其余8条reader/5条library原视频保留而未本轮逐看。本轮分页孤立WK图已有正文，历史间歇捕获成因仍未确认。所选片段未见整窗正文空白，不推广为全视频/全部机型或手机FPS/功耗结论。",
+  "remainingDeviceAcceptance": [
+    "Ordinary signed device",
+    "TrollStore device",
+    "Actual system Reduce Motion and VoiceOver",
+    "Increased contrast and rotation",
+    "Phone low-speed/120Hz feel, touch/selection/link interaction and battery/idle behavior"
+  ],
+  "M4Complete": false
+}
