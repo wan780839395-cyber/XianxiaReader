@@ -1,4 +1,4 @@
-当前新增进行中：Build21自动慢滚源码候选，Windows426语法/17工具通过，Apple完整编译/原生视频/交付尚待验证；详见HANDOFF和READING_AUTOSCROLL_DESIGN.md。Build20以下结果仍为已交付基线。
+当前进行中：Build21自动慢滚第三候选891114e / CI38861273421，Linux127/四Release探针已通过；Windows426语法/17工具通过。Apple完整构建测试仍运行，原生复核/交付未完成；原HEAD/空index和507冻结源已重新核对，详见HANDOFF顶部。以下Build20为已交付历史基线。
 
 # 项目状态
 

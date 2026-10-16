@@ -1,0 +1,18 @@
+{
+  "recordedAtUTC": "2026-10-16T06:38:27.239565+00:00",
+  "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+  "run": 38861273421,
+  "sourceHashesMatched": 507,
+  "original838PathsRemain": true,
+  "preservedPackages": 35,
+  "originalHEADAndIndexPreserved": true,
+  "privateTipAndRemoteMatch": true,
+  "onlyDocumentationChanges": [
+    "Documentation/M4_AUTOSCROLL_VALIDATION_REPORT.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-second-failure.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-third-linux.json",
+    "HANDOFF.md"
+  ],
+  "activeOwnedTask": "watch_autoscroll.py 38861273421, PID18516",
+  "actualBreakpoint": "Third candidate Linux127/fourRelease probes verified; Apple aggregate in progress, no Build21 package yet"
+}

@@ -1,5 +1,16 @@
 # 当前交接与恢复点
 
+## 现在从这里继续（覆盖下方历史检查点）
+
+2026-10-16 14:46 Asia/Shanghai：Build21自动慢滚源码已实现，第三候选891114e252758cf93cb2d0158900badae0f7bb20 / CI38861273421正在Apple完整构建测试aggregate步骤，尚未最终通过/交付。Linux真实127Core与四Release长TXT探针已下载核验；Windows426语法新增0/17工具通过，49原测试主体保持、13新增、507冻结源。
+
+用户中断恢复已重新核：工作源码与891114e的507blob一致，原HEAD6d761749/空index、838原路径、35旧包、开工ZIP备份和私有远端保持。唯一运行开发任务为watch_autoscroll.py 38861273421（PID18516，工具session68223）；继续复用，勿重复dispatch/取消。实时run.json位于build/ci/38861273421。第二轮失败诊断已完整下载/CRC/summary核实，不再处于下载中。尚无可交付Build21，Build20仍是已交付基线。
+
+下一步先读真实最终run/full.log/xcresult，失败保留后修；成功下载本轮实际Apple/IPA/core，逐项核127×2/116iOS/严格Release21/锁/507源，再审真实PNG、慢滚/停用UI视频和原始VFR帧，才打包/同步状态路线设计/维护清单/私有最终文档快照。原自动检查/编译/模拟器/手机/TS五门槛仍分列，M4未完，不关机。详细进度、源码取舍和验证回执见下方及READING_AUTOSCROLL_DESIGN.md。
+
+## 本轮历史检查点
+
+
 2026-10-16，Build21自动慢滚开工，尚未实现/编译。
 
 用户“没问题 继续吧”记录为Build20基本自用反馈，不扩大设备/FPS验收。已按AGENTS顺序读文档，核实际HEAD6d761749/空index/私有tip02ecc460、837清单hash、35包、十份备份；838原路径ZIP备份/原hash见m4-autoscroll-build21-start.json，Build20交接归档HANDOFF_M4_BUILD20_DELIVERY_2026-10-16.md。最新完整CI38850709820成功，无遗留开发任务/活动CI。保留所有未提交改动，仅私有index快照。
@@ -33,3 +44,13 @@ Linux完整原日志/性能artifact已实际下载CRC核验：127/127 Core、四
 源码复查另补速度无障碍语义：原Text用label覆盖数值，改为“慢滚速度”label+实际每分钟数值value；新增UI断言改读公开AX value，保留可见速度/持久化含义。旧fc68轮仍未取最终结果，不把此审查当实际失败。上述后续修正仍待重新Windows检查/快照和完整CI。
 
 第二轮CI38858126400/fc68真实完成failure，完整日志已核：115iOS中112通过/3失败，原108全部通过；新增EPUB/TXT预取准备超时和AX label“每分钟屏数”与3.0不一致，恰与前述源码审查吻合。test65/export0/summary0，严格设备Release和IPA未执行/未生成。923689501字节诊断artifact12028779586正下载，原件保留。修正未删除原断言，增加存储失败回归后下一轮116iOS；构建前Windows重跑/最终冻结，再显式完整CI。
+
+修正后第三源码891114e252758cf93cb2d0158900badae0f7bb20，实际dispatch CI38861273421。Windows426/17重跑通过、49原测试主体保持、13新增/507源blob已冻结；所有第三轮门槛重置pending，不把旧源结果当新源已通过。现在新watcher等待实际结果，旧923MB失败诊断另在下载，必须核CRC/摘要后再归档。
+
+旧第二轮923689501字节真实Apple诊断已下载CRC/解压，原xcresult/summary确认112/115、3失败/0跳过；macOS127Core实际也已通过，设备Release仍未执行。旧失败轮EPUB慢滚实际暂停整窗与减少动效禁用两图有原件，后续只作为旧候选局部复查，不追认最终交付。新第三轮正在运行，当前源码891114e冻结。
+
+第三轮891114e/CI38861273421的真实Linux127/127及四Release探针日志已下载/核CRC，通过；回执third-linux.json。Apple尚在执行aggregate构建测试，未写通过；当前不再改507冻结源码，等待该轮完整结果/原生录屏。旧轮失败记录与两张局部图复查保留，均非最终验收。
+
+## 用户中断恢复核对
+
+2026-10-16，按AGENTS顺序重读。当前实际断点仍为第三源891114e/CI38861273421：507Git源码blob和工作文件逐核一致，仅记录文档有新改动；原HEAD/空index、838原路径、35包和开工ZIPhash保持，私有tip/远端均891114e。唯一开发进程为本轮API watcher PID18516，继续等待现有CI，不重复开构建。新Linux127/四Release探针真实通过，Appleaggregate仍in_progress；Build21未交付。第二轮失败诊断下载已完成/CRC/xcresult核过，旧便笺中“仍下载”为过时状态；当前以本条和resume回执为准。

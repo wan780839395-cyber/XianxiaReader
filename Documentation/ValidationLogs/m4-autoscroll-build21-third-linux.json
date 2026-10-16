@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-16T06:30:30.045421+00:00",
+  "run": 38861273421,
+  "sourceRevision": "891114e252758cf93cb2d0158900badae0f7bb20",
+  "linuxCoreTests": 127,
+  "releaseLongTXTCases": 4,
+  "checksPassed": true,
+  "macOSOrIOSNotYetVerified": true,
+  "artifacts": [
+    {
+      "path": "build/ci/38861273421/core/logs/core-tests.log",
+      "sha256": "924e38502e355e7c33af6d1289a19f6d0f4197aae274682a71e81d716d401e37"
+    },
+    {
+      "path": "build/ci/38861273421/core/TXTPerformance/summary.json",
+      "sha256": "eec0996cf3d5ace65102bf3437edf23d1cf9b216c505ff1eafd36bcbcbeb9751"
+    }
+  ]
+}
