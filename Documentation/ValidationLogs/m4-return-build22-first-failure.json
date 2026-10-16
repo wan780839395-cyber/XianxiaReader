@@ -1,0 +1,119 @@
+{
+  "recordedAtUTC": "2026-10-16T08:08:38.754105+00:00",
+  "run": 38866913465,
+  "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 123,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792137580.083,
+    "passedTests": 123,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792135942.696,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTAssertTrue failed",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 115,
+        "testIdentifierString": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion",
+        "testName": "testAutomaticSlowScrollRespectsAdditionalReduceMotion()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "14% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 10.34s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 124
+  },
+  "coreEach": 127,
+  "releaseExecuted": false,
+  "ipaProduced": false,
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "newEightTestsPassed": true,
+  "oldTestsPassed": 115,
+  "oldTestsFailed": 1,
+  "diagnosticArtifact": {
+    "id": 12033596304,
+    "bytes": 1133116092,
+    "zipCRC": true,
+    "extractionCompleted": true
+  },
+  "nativeInspection": {
+    "reducedDisabledPNGInspected": true,
+    "failedTestVideoOverviewInspected": true,
+    "videoSeconds": 11.85,
+    "observation": "The pre-click disabled bar is visible with next-chapter loading text; the one-second overview retains the bar to its last sampled frame. UI event records a 0.05s tap at354,779.6667. The video/event clocks and incomplete end evidence do not establish why the close did not produce a hittable menu.",
+    "rootCauseEstablished": false,
+    "allNativeImagesReviewed": false,
+    "returnFeatureAccepted": false
+  },
+  "retry": "One complete unchanged-runtime retry; do not alter or remove the old assertion, and do not label a retry success as a root-cause fix.",
+  "files": [
+    {
+      "path": "build/ci/38866913465/full.log",
+      "bytes": 2678358,
+      "sha256": "53fad7f73f82d7f0ccda15140f5621b2e218dcd135e87891e8cb993178108cf8"
+    },
+    {
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 1766207,
+      "sha256": "b0a9e638b3c473eeb0c8093f7a23f3940afb68749afcf301fa9a170cf34e605a"
+    },
+    {
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1664,
+      "sha256": "288c5410c0b96311cc0d2879279a0bab1b20b13a43d7cc21d27477154c0069c9"
+    },
+    {
+      "path": "build/ci/38866913465/apple-diagnostics.zip",
+      "bytes": 1133116092,
+      "sha256": "edd1dd16cb36363df48b4925dc34332033d37a2dfb556cd628159de8bd85f403"
+    },
+    {
+      "path": "build/ci/38866913465/ReturnReview/disabled/contact-1.png",
+      "bytes": 127545,
+      "sha256": "ce0aab8e9ee77447a70d5573a08805400c69f24dc5bbf77ee20a7e5d99061c60"
+    },
+    {
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/751F8633-007C-412F-A42F-045D1335F9C3.mp4",
+      "bytes": 1966500,
+      "sha256": "3fbaaaf29cce7527de70086c158404b2c678d92f5351d6e9862140d140004ea1"
+    },
+    {
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6A8B6821-6ACE-44B9-82FD-4094AE8E6A64.png",
+      "bytes": 265746,
+      "sha256": "b38f21d8c673370f2c18ee23a1cfc927bbe5368652c17bd7824cc54d36425b5e"
+    }
+  ]
+}

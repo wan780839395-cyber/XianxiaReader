@@ -1,0 +1,11 @@
+# 本地字体导入后续草案
+
+2026-10-16，M4后续研究，尚未实现/编译/交付；不计入Build22回看返回的验收。Build22构建等待期间只核接口与取舍，不改候选源码。
+
+第一片建议支持用户导入单字体TTF/OTF，并在现有全局阅读字体选择中启用、切回默认；集合字体/可变轴/单书覆盖/字体永久删除后续单独定界。读取描述与验证在App层CoreText/后台actor完成，Core只持Foundation字体身份及相对路径，继续使用受管理存储逐级路径/symlink/协调复制、原子元数据和可见错误。大小与字体数量需要实际样本测量后定值，不能把文件扩展名或可读descriptor当成功渲染。
+
+已核本仓Readium3.11源码：`HTMLFontFamilyDeclaration.swift`公开CSSFontFamilyDeclaration/CSSFontFace/AnyHTMLFontFamilyDeclaration；`EPUBNavigatorViewModel.injectReadiumCSS`通过servingFile将字体映射到既有readium资源通道，避免直接file URL和自建HTTP服务。WebViewServer现有静态资产跨源字体响应已处理CORS（issue802），不先重复修改。资源名字及CSS family使用应用生成的ASCII身份，不把字体显示名或文件名直接拼CSS。目录声明在Navigator初始化配置中，阅读中导入/换新目录需要明确受控重建与完整锚点保护，不能只改Picker文本冒充字体已应用。
+
+Apple [CTFontManagerCreateFontDescriptorsFromURL](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:))官方DocC已实际取JSON，iOS7起可用，min16适用；仅用于读取文件内字体描述。原JSON保留`.cache/recovery/20261016-build22/font-descriptors-api.json`，SHA256 `0dd30da285ed2f3a0483fe7b0df791832cf5d60db3b3d32436446a57a774ec6e`。字体用于WK正文时优先Readium的font-face/资源服务，不先假定必须全局注册CoreText字体。未引入外部字体、依赖或复制外部实现。
+
+后续门槛：旧reading-v1设置缺新字段兼容且坏类型拒绝；文件真实复制/元数据写失败/取消与重试、缺资源可见降级；真正WebKit加载字体（document.fonts与实际字形/尺寸证据），EPUB/TXT非零文字锚点在换字体/字号/重开后保持。使用有明确来源的微小测试字体，不能提交用户个人字体；完整Core/iOS/Release和原生页面/录屏先于交付。系统辅助功能、巨型中文字体内存/首次加载延迟和手机流畅度单列。实际实施前仍须再次核源码与本片门槛。

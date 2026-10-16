@@ -1,5 +1,5 @@
 {
-  "stage": "Build22 first candidate CI dispatched, compilation pending",
+  "stage": "Build22 first candidate failed:123/124 iOS, original reduced-motion UI menu-close assertion failed; new8 passed. Diagnostic download pending; Release not executed",
   "priorSnapshot": "c7593cec4cc758e44019e6fdc72056fa746ced1d",
   "preservedPackages": [
     {
@@ -189,7 +189,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2258,5 +2258,25 @@
   "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
   "run": 38866913465,
   "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38866913465",
-  "branch": "codex/m4-reading-appearance"
+  "branch": "codex/m4-reading-appearance",
+  "linuxCoreTests": 127,
+  "partialVerification": {
+    "linuxCorePassed": true,
+    "linuxReleaseTXTCases": 4,
+    "appleCompilationPending": true,
+    "evidence": "Documentation/ValidationLogs/m4-return-build22-linux.json"
+  },
+  "priorFailedRun": {
+    "run": 38866913465,
+    "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+    "passed": 123,
+    "failed": [
+      "XianxiaReaderUITests.ReaderInterfaceUITests testAutomaticSlowScrollRespectsAdditionalReduceMotion"
+    ],
+    "newEightTestsPassed": true,
+    "deviceReleaseExecuted": false,
+    "diagnosticDownloadPending": false,
+    "evidence": "Documentation/ValidationLogs/m4-return-build22-first-failure.json",
+    "unchangedRuntimeRetryPlanned": true
+  }
 }
