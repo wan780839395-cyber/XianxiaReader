@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 resource-font layout/ready correction full CI pending; prior runs preserved",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "a9ab599c8dbb52ca0a39441a2aa35c64774fff00e8890b3da198416b2a5fab4e"
+      "sha256": "452e47076d32616f59361429024821815346a4eb69fb1c94e24c70fdbf94b1ea"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2210,7 +2210,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "2ac1456aed7e2fcf873934c2190fdb1bc2106895783ef5dcbadf5f77081e69a7"
+      "sha256": "276a28f76e6ee01c78b996084e9cb68d98883e22e66065d0ab2f927de391a2d3"
     },
     {
       "path": "project.yml",
@@ -2323,6 +2323,7 @@
     "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
     "Documentation/ValidationLogs/m4-font-build23-second-native-partial.json",
+    "Documentation/ValidationLogs/m4-font-build23-settling-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-sfnt-metadata.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-third-linux.json",

@@ -2,6 +2,8 @@
 
 ## 实际最新断点（先看这里）
 
+又一实际证据：277/38887978313已failure，完整log显示仅新EPUB初始caret的二次读取为空、新TXT无fragment初始定位失败；内置原件/OFL/CoreText中文字形以及两个字体真UI均通过，Release仍未执行；1.342GB原件下载session92586，结束后核summary原件再记录。相邻两次JS取样之间页面会动，故新EPUB原非零断言改为连续两次同一>100 caret并一次保存样本，取消独立二次读取竞态；新增font-ready关闭用例明确等新页延迟Promise已settled再查旧回调，断言保持。仅这两测试及Vendor元数据checkpoint字段命名更明确，App运行修正仍与43e一致；Windows/旧35/16新增/522blob重核后另ref全跑，43e/38890891607继续取实际结果，不取消/不追认前轮。主待切换，勿重复dispatch。
+
 恢复核实值（更新）：主43e837/38890891607的Linux133与四Release TXT探针原件artifact12042260878已CRC核，settling-linux.json记录；Apple仍pending，唯一主watcher74374。277/38887978313由watcher74660独立取最终原件（不含后续修正）；e758/38886008057已真实128/131失败/Release未执行、原件下载99454和watcher71340均已结束。当前仍522源冻结/16新增/预期134 iOS；最终采用deliver_bundled_fonts.py，不用旧deliver_font.py。验证helper已核134/19视频、16新Preview与两个内置原件/许可逐字节；这些均为预备条件，尚未实际全过/打包。
 
 当前主候选已实际dispatch：43e837bece74bfc930d774e36b3834e96f6f18d5 / codex/m4-font-settling / CI38890891607，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38890891607 。433/17与35旧主体/16新增/522源blob已核，预期Core133各/iOS134=115集成+19UI，gates全部重置pending。两Vendor Swift改动已按实际原字节更新UPSTREAM及README，公开WK API和W3C fonts.ready已核，无依赖/锁/JS资产变更。先前277/38887978313仍独立跑，主结果只按新38890891607原件；不重复dispatch。尚无Build23 IPA。

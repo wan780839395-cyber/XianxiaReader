@@ -31,7 +31,11 @@ final class ReaderRenderingTests: XCTestCase {
         engine.onPositionChanged = { delivered.append($0.bookID) }
         let (newBook, newNavigator) = try await open(engine)
         XCTAssertNotEqual(oldBook.id, newBook.id); XCTAssertFalse(oldNavigator === newNavigator)
-        try await waitUntil { engine.currentPosition?.bookID == newBook.id }
+        try await waitUntil {
+            guard let web = self.webViews(in: newNavigator.view).first else { return false }
+            let settled = try await web.evaluateJavaScript("window.__xrFontReadySettled === true") as? Bool == true
+            return settled && engine.currentPosition?.bookID == newBook.id
+        }
         XCTAssertTrue(delivered.allSatisfy { $0 == newBook.id })
         XCTAssertNil(oldNavigator.parent); XCTAssertNil(oldNavigator.view.superview)
         XCTAssertEqual(engine.viewController.children.count, 1); XCTAssertGreaterThan(window.bounds.width, 0)
@@ -78,9 +82,14 @@ final class ReaderRenderingTests: XCTestCase {
             } else { for _ in 0..<3 { await engine.turnPage(forward: true) } }
             let original = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
             let caretScript = "(() => { const r=document.caretRangeFromPoint(innerWidth*.2,2); return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null; })()"
-            try await waitUntil { ((try await original.evaluateJavaScript(caretScript) as? Int) ?? 0) > 100 }
-            let offsetValue = try await original.evaluateJavaScript(caretScript) as? Int
-            let character = try XCTUnwrap(offsetValue); XCTAssertGreaterThan(character, 100)
+            var stableCharacter: Int?, previousCharacter: Int?
+            try await waitUntil {
+                let value = try await original.evaluateJavaScript(caretScript) as? Int
+                defer { previousCharacter = value }
+                guard let value, value > 100, value == previousCharacter else { return false }
+                stableCharacter = value; return true
+            }
+            let character = try XCTUnwrap(stableCharacter); XCTAssertGreaterThan(character, 100)
             let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
             await model.importReadingFont(from: fontURL)
             let font = try XCTUnwrap(model.importedFonts.first)

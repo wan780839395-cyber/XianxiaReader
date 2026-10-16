@@ -1698,6 +1698,6 @@
       "https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:)"
     ],
     "dependenciesChanged": false,
-    "awaitingFullCI": true
+    "fullCIPendingAtSourceCheckpoint": true
   }
 }
