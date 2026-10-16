@@ -2,9 +2,9 @@
 
 ## 实际最新断点（先看这里）
 
-2026-10-16T12:35:00.374846+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
+2026-10-16T12:38:40.285069+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
 
-主源`7ab2e457c82f1193e707c3c85ca5ffd27b76b110` / `codex/m4-font-compatibility` / CI38901198541，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38901198541。唯一主watcher工具session10152，写build/ci/38901198541/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': False, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。
+主源`7ab2e457c82f1193e707c3c85ca5ffd27b76b110` / `codex/m4-font-compatibility` / CI38901198541，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38901198541。唯一主watcher工具session10152，写build/ci/38901198541/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': True, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。
 
 实现：App两只读Bundle字体不复制/摘要开书，不占12用户导入名额；Adapter最多14faces/正文窗口仍12，旧可选UUID偏好兼容。后台本地TTF/OTF导入/目录/缺失重导/错误可见，完整锚点受控重开；资源字体排版走Readium已有完整锚点invalidate，系统连续排版仍动态。初始pendingLocator等待标准document.fonts.ready Promise完成，通过原evaluateScript轮询观察，15s上限/32ms/取消/可见资源错误；不引入受WebKit293831影响的refined Swift API。每FileURL独立UUID资源路由、章节复用，真实两个同名TTF回归。两Vendor Swift/UPSTREAM明确登记，无依赖/锁/JS资产升级。
 
