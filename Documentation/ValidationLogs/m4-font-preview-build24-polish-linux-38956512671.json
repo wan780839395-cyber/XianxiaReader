@@ -1,0 +1,34 @@
+{
+  "recordedAtUTC": "2026-10-16T19:43:00.865418+00:00",
+  "run": 38956512671,
+  "sourceRevision": "454d95008ed8a6d4ce7517070bfc4a2f2a801ab5",
+  "coreTests": 135,
+  "desktopReleaseCases": 4,
+  "allPassed": true,
+  "appleCompilation": false,
+  "receipt": {
+    "run": 38956512671,
+    "artifact": 12071320371,
+    "kind": "core",
+    "archiveBytes": 116252,
+    "archiveSHA256": "445ed48856613b4b5ae3e8c0e356fd2a413694a386267fde01c785a89405528d",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core-download-chunks\\0000.bin",
+        "bytes": 116252
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\38956512671\\core-diagnostics.zip",
+        "bytes": 116252,
+        "sha256": "445ed48856613b4b5ae3e8c0e356fd2a413694a386267fde01c785a89405528d"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  }
+}

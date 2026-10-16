@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956512671",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -2399,9 +2399,9 @@
   "expectedIOS": 138,
   "expectedIntegration": 118,
   "expectedUI": 20,
-  "run": 38956512671,
-  "sourceRevision": "454d95008ed8a6d4ce7517070bfc4a2f2a801ab5",
-  "branch": "codex/m4-font-browser-polish",
+  "run": 38961037839,
+  "sourceRevision": "63a44eb1f86a3619e7b16fa5ea1028214ece37c0",
+  "branch": "codex/m4-font-browser-initial-ready",
   "priorCandidates": [
     {
       "run": 38950061245,
@@ -2409,7 +2409,9 @@
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
       "reason": "Superseded by 3x sample rendering and accurate preview error accessibility; prior CI remains uncancelled and independent",
       "conclusion": "failure",
-      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38950061245.json"
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38950061245.json",
+      "actualIOSPassed": 133,
+      "actualIOSFailed": 4
     },
     {
       "run": 38951246101,
@@ -2419,7 +2421,9 @@
       "reason": "Superseded by real readable DOM capture wait and rapid hidden-font-reflow regression; not cancelled",
       "expectedIOS": 137,
       "conclusion": "failure",
-      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38951246101.json"
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38951246101.json",
+      "actualIOSPassed": 135,
+      "actualIOSFailed": 2
     },
     {
       "run": 38954435197,
@@ -2427,7 +2431,11 @@
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38954435197",
       "branch": "codex/m4-font-browser-ready",
       "reason": "New continuous font test inserted a negative Y as double-minus; only new-test operand parentheses corrected; production runtime identical",
-      "expectedIOS": 138
+      "expectedIOS": 138,
+      "conclusion": "failure",
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38954435197.json",
+      "actualIOSPassed": 135,
+      "actualIOSFailed": 3
     },
     {
       "run": 38956008602,
@@ -2435,6 +2443,14 @@
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956008602",
       "branch": "codex/m4-font-browser-coordinate",
       "reason": "Superseded by directly observed native sample rectangle polish: transparent compact glyph background and real alpha/ink regression",
+      "expectedIOS": 138
+    },
+    {
+      "run": 38956512671,
+      "sourceRevision": "454d95008ed8a6d4ce7517070bfc4a2f2a801ab5",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956512671",
+      "branch": "codex/m4-font-browser-polish",
+      "reason": "Only new rapid-font test preparation waits for actual initial font/page readiness and accepted page movement; production runtime identical",
       "expectedIOS": 138
     }
   ],

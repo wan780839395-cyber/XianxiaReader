@@ -1,10 +1,10 @@
 # 当前交接与恢复点
 
-当前唯一交付主候选：454d95008ed8a6d4ce7517070bfc4a2f2a801ab5 / codex/m4-font-browser-polish / CI38956512671。已实际dispatch，435语法/17工具/38原主体/6新增/532blob重冻，新Core135各/iOS138（118集成+20UI）/Release24及原生门槛全部待核；旧轮独立跑完不追认。现在冻结运行源码，只处理实际结果、原生复核、交付/保存，然后正常关机。
+当前唯一交付主候选：63a44eb1f86a3619e7b16fa5ea1028214ece37c0 / codex/m4-font-browser-initial-ready / CI38961037839。已实际dispatch，435语法/17工具/38原主体/6新增/532blob重冻；运行源码与454相同，仅新竞态测试先等真正可读页与每次翻页成功。完整新Core135各/iOS138/Release24和原生待核，旧结果不能代替。关机尚未启动。
 
 ## Build24 当前可恢复操作（实际仍在验证）
 
-主源454d950/CI38956512671，实际Linux135+四Release长TXT通过；Apple/138项/Release/原生未通过前不交付、不关机。旧872/38954435197与cc7/38956008602仍独立运行，首两轮实际133/137、135/137失败已写m4-font-preview-build24-history-*.json，未取消。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
+主源63a44eb/CI38961037839，Windows435/17已重核；新Linux/Apple/138项/Release/原生未通过前不交付、不关机。旧872/38954435197与cc7/38956008602仍独立运行，首两轮实际133/137、135/137失败已写m4-font-preview-build24-history-*.json，未取消。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
 
 本机Python3.11与gh在.cache/tools/gh_2.102.0/bin/gh.exe。以下帮手都在.cache/recovery（忽略但已落盘），不要调用旧Build23交付帮手：watch_autoscroll.py RUN；download_font_preview_artifact.py RUN ARTIFACT core|apple|ipa（完整摘要/CRC/提取后清重复分片ZIP）；inspect_continuous_ipa.py IPA 24；validate_font_preview.py finish（135Core/138iOS/Release24/三锁/532blob/真实许可）。full.log/artifacts.json来自实际完成run，不能仅看网页尾部。Python17与435语法是Windows检查，不算编译。
 
@@ -48,3 +48,5 @@ c661/38951246101也已实际失败，0源compiler诊断：同一个新测试负Y
 454d950/38956512671 主源实际Linux135/四长TXT Release通过，artifact12071320371（116252B）完整摘要/CRC核完并清重复分片ZIP。当前仅Apple完整编译/138项/Release与最新原生待核；源码冻结。原生早查发现的硬矩形已用compact透明背景处理，需最新图确认，不能拿首轮画面替代。
 
 872/38954435197实际135/138失败（0源compiler诊断）：负Y已知新测试错误、原返回UI一项等待失败、新800ms字体竞态测试在29行准备非零分页前失败；尚未执行中间/最终换字。完整位置为h1/char0，两个早发turn未移动。核Readium3.11官方Navigator.swift与实际spreadLoaded gate：翻页可因当前不可移动返回false，报告href不等于可读页面已就绪。现仅新测试先等真实one.xhtml/window/alpha1与注入ready已settled，再每次翻页等待scrollX增长，保留两次翻页、char>100、800ms中间隐藏窗口、最终原字可见断言；运行源码自454起不变。需再435/17/38原主体/6新增/532重冻和全CI，旧失败均保留，不关机。
+
+63a44eb/38961037839实际Linux135/四Release长TXT再通过，artifact12073160376/116265B已GitHub摘要+CRC+完整提取、重复ZIP分片已清。核心运行源与454一致、只新测试准备增加等待，仍需当前Apple完整138/Release/原生实际结果。正常关机帮助脚本仍未启动。
