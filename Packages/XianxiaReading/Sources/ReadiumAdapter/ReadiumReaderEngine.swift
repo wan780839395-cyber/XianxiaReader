@@ -16,7 +16,7 @@ import XianxiaCore
     }
 }
 
-@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding, EPUBNavigatorDelegate {
+@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding, ReaderAutomaticScrollProviding, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
     private let txtLoader = TXTReadiumPublicationLoader()
@@ -32,6 +32,17 @@ import XianxiaCore
     private var appliedPreferences = EPUBPreferences(scroll: false)
     private var interaction = ReadingInteraction()
     private var pageTurnRequestID: UUID?
+    public var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { self }
+    public private(set) var automaticScrollState = ReaderAutomaticScrollState.stopped
+    public var onAutomaticScrollStateChanged: ((ReaderAutomaticScrollState) -> Void)?
+    private var automaticScrollLink: CADisplayLink?
+    private var automaticScrollClock = AutomaticScrollClock()
+    private var automaticScrollSpeed = 1.5
+    private var automaticScrollLastSample: TimeInterval?
+    private var automaticScrollSampleTask: Task<Void, Never>?
+    private var automaticScrollSampleID: UUID?
+    private(set) var automaticScrollSessionID: UUID?
+    private var automaticScrollTouch: AutomaticScrollTouchObserver?
     public var onReadingGesture: (() -> Void)?
     public var interactionProvider: (any ReaderInteractionProviding)? { self }
     var navigationOptions: NavigatorGoOptions {
@@ -39,7 +50,9 @@ import XianxiaCore
     }
 
     public func setInteraction(_ value: ReadingInteraction) throws {
-        interaction = try value.validated()
+        let updated = try value.validated()
+        if updated.reduceMotion || updated.verticalScreenPaging != interaction.verticalScreenPaging { pauseAutomaticScroll() }
+        interaction = updated
         navigator?.verticalScreenPagingEnabled = interaction.verticalScreenPaging
     }
     public var onPositionChanged: ((ReadingPosition) -> Void)?
@@ -159,9 +172,16 @@ import XianxiaCore
         navigator.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         host.view.addSubview(navigator.view)
         navigator.didMove(toParent: host)
+        let touch = AutomaticScrollTouchObserver { [weak self, weak navigator] in
+            guard let self, self.navigator === navigator, self.automaticScrollState.isActive else { return }
+            self.pauseAutomaticScroll()
+        }
+        navigator.view.addGestureRecognizer(touch)
+        automaticScrollTouch = touch
     }
 
     public func turnPage(forward: Bool) async {
+        pauseAutomaticScroll()
         guard let navigator, pageTurnRequestID == nil, !Task.isCancelled else { return }
         let requestID = UUID()
         pageTurnRequestID = requestID
@@ -171,6 +191,7 @@ import XianxiaCore
     }
 
     public func go(to chapter: Chapter) async throws {
+        pauseAutomaticScroll()
         guard chapter.bookID == bookID, let navigator else { throw EPUBError.navigationFailed }
         let href: String
         if let txtReading {
@@ -186,6 +207,7 @@ import XianxiaCore
     }
 
     public func go(to position: ReadingPosition) async throws {
+        pauseAutomaticScroll()
         guard let bookID, let navigator else { throw EPUBError.navigationFailed }
         let requestID = openRequestID
         let locator: Locator
@@ -197,6 +219,7 @@ import XianxiaCore
     }
 
     public func setScrolling(_ enabled: Bool) {
+        stopAutomaticScroll()
         cancelModeChange()
         preferences.infiniteScroll = false
         preferences.scroll = enabled
@@ -205,6 +228,7 @@ import XianxiaCore
     }
 
     public func setContinuousScrolling(_ enabled: Bool) {
+        stopAutomaticScroll()
         guard navigator == nil || !enabled || supportsContinuousScrolling else {
             onError?("这本书的固定布局、竖排或从右向左方向暂不支持连续滚动，请使用分页模式。")
             return
@@ -215,6 +239,7 @@ import XianxiaCore
     }
 
     public func setAppearance(_ appearance: ReadingAppearance) throws {
+        pauseAutomaticScroll()
         preferences.apply(try appearance.validated())
         host.view.backgroundColor = UIColor(red: CGFloat((appearance.theme.backgroundRGB >> 16) & 255) / 255,
             green: CGFloat((appearance.theme.backgroundRGB >> 8) & 255) / 255,
@@ -263,6 +288,12 @@ import XianxiaCore
     }
 
     public func close() {
+        stopAutomaticScroll()
+        automaticScrollSampleID = nil
+        automaticScrollSampleTask?.cancel()
+        automaticScrollSampleTask = nil
+        if let automaticScrollTouch { automaticScrollTouch.view?.removeGestureRecognizer(automaticScrollTouch) }
+        automaticScrollTouch = nil
         // A suspended publication load must not mount a navigator after this reader closes.
         openRequestID = nil
         pageTurnRequestID = nil
@@ -290,10 +321,12 @@ import XianxiaCore
     }
     public func navigator(_ navigator: Navigator, presentError error: NavigatorError) {
         guard (navigator as AnyObject) === self.navigator else { return }
+        pauseAutomaticScroll()
         onError?(error.localizedDescription)
     }
     public func navigator(_ navigator: Navigator, didFailToLoadResourceAt href: RelativeURL, withError error: ReadError) {
         guard (navigator as AnyObject) === self.navigator else { return }
+        pauseAutomaticScroll()
         onError?("正文资源读取失败：\(error.localizedDescription)")
     }
 
@@ -324,5 +357,125 @@ import XianxiaCore
             currentPosition = position
             onPositionChanged?(position)
         } catch { onError?("阅读位置保存失败：\(error.localizedDescription)") }
+    }
+}
+
+extension ReadiumReaderEngine {
+    public func startAutomaticScroll(screensPerMinute: Double) throws {
+        guard !interaction.reduceMotion, !UIAccessibility.isReduceMotionEnabled,
+              !UIAccessibility.isVoiceOverRunning else { throw AutomaticScrollFailure.accessibility }
+        guard screensPerMinute.isFinite, (0.5...6).contains(screensPerMinute),
+              let navigator, openRequestID != nil, supportsContinuousScrolling,
+              preferences.infiniteScroll == true, !interaction.verticalScreenPaging,
+              modeChangeTask == nil, navigator.automaticScrollViewportHeight != nil else {
+            throw AutomaticScrollFailure.notReady
+        }
+        endAutomaticScrollClock()
+        automaticScrollSampleID = nil
+        automaticScrollSampleTask?.cancel(); automaticScrollSampleTask = nil
+        automaticScrollSpeed = screensPerMinute
+        let request = UUID()
+        automaticScrollSessionID = request
+        navigator.setAutomaticScrolling(true)
+        let target = AutomaticScrollDisplayTarget(owner: self, request: request)
+        let link = CADisplayLink(target: target, selector: #selector(AutomaticScrollDisplayTarget.tick(_:)))
+        link.preferredFrameRateRange = CAFrameRateRange(minimum: 30, maximum: 60, preferred: 60)
+        automaticScrollLink = link
+        link.add(to: .main, forMode: .common)
+        NotificationCenter.default.addObserver(self, selector: #selector(automaticScrollEnvironmentChanged),
+            name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(automaticScrollAccessibilityChanged),
+            name: UIAccessibility.reduceMotionStatusDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(automaticScrollAccessibilityChanged),
+            name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
+        setAutomaticScrollState(.running)
+    }
+
+    public func pauseAutomaticScroll() {
+        guard automaticScrollState.isActive else { return }
+        endAutomaticScrollClock()
+        setAutomaticScrollState(.paused)
+        requestAutomaticScrollPosition()
+    }
+
+    public func stopAutomaticScroll() {
+        endAutomaticScrollClock()
+        setAutomaticScrollState(.stopped)
+    }
+
+    public func flushAutomaticScrollPosition() async {
+        guard automaticScrollState != .stopped else { return }
+        pauseAutomaticScroll()
+        requestAutomaticScrollPosition()
+        await automaticScrollSampleTask?.value
+    }
+
+    private func setAutomaticScrollState(_ value: ReaderAutomaticScrollState) {
+        guard automaticScrollState != value else { return }
+        automaticScrollState = value
+        onAutomaticScrollStateChanged?(value)
+    }
+
+    private func endAutomaticScrollClock() {
+        automaticScrollSessionID = nil
+        automaticScrollLink?.invalidate(); automaticScrollLink = nil
+        automaticScrollClock.reset(); automaticScrollLastSample = nil
+        if automaticScrollState.isActive { navigator?.setAutomaticScrolling(false) }
+        for name in [UIApplication.willResignActiveNotification, UIAccessibility.reduceMotionStatusDidChangeNotification,
+                     UIAccessibility.voiceOverStatusDidChangeNotification] {
+            NotificationCenter.default.removeObserver(self, name: name, object: nil)
+        }
+    }
+
+    @objc private func automaticScrollEnvironmentChanged() { pauseAutomaticScroll() }
+    @objc private func automaticScrollAccessibilityChanged() {
+        if UIAccessibility.isReduceMotionEnabled || UIAccessibility.isVoiceOverRunning { pauseAutomaticScroll() }
+    }
+
+    // Request identity also protects against an already queued display callback
+    // after pause, close, speed change, a new book or a second explicit start.
+    func advanceAutomaticScroll(at timestamp: TimeInterval, request: UUID) {
+        guard automaticScrollSessionID == request, automaticScrollState.isActive,
+              let navigator, let height = navigator.automaticScrollViewportHeight else {
+            if automaticScrollSessionID == request { pauseAutomaticScroll() }
+            return
+        }
+        let distance = automaticScrollClock.distance(at: timestamp, viewportHeight: height, screensPerMinute: automaticScrollSpeed)
+        guard distance > 0 else { return }
+        switch navigator.advanceAutomaticScroll(by: distance) {
+        case .moved:
+            if automaticScrollState == .waiting {
+                automaticScrollLink?.preferredFrameRateRange = CAFrameRateRange(minimum: 30, maximum: 60, preferred: 60)
+                setAutomaticScrollState(.running)
+            }
+        case .waiting:
+            automaticScrollLink?.preferredFrameRateRange = CAFrameRateRange(minimum: 10, maximum: 10, preferred: 10)
+            setAutomaticScrollState(.waiting)
+        case .finished:
+            endAutomaticScrollClock(); setAutomaticScrollState(.finished); requestAutomaticScrollPosition()
+        case .interrupted: pauseAutomaticScroll()
+        case .failed:
+            pauseAutomaticScroll()
+            onError?("自动慢滚已暂停，章节未能加载。请在正文边界重试加载后再继续。")
+        }
+        if automaticScrollState.isActive, automaticScrollSampleTask == nil,
+           timestamp - (automaticScrollLastSample ?? -Double.greatestFiniteMagnitude) >= 1 {
+            automaticScrollLastSample = timestamp
+            requestAutomaticScrollPosition()
+        }
+    }
+
+    private func requestAutomaticScrollPosition() {
+        guard let navigator, let session = openRequestID else { return }
+        automaticScrollSampleTask?.cancel()
+        let request = UUID(); automaticScrollSampleID = request
+        automaticScrollSampleTask = Task { @MainActor [weak self, weak navigator] in
+            guard let self, let navigator, !Task.isCancelled, self.openRequestID == session,
+                  self.navigator === navigator, self.automaticScrollSampleID == request else { return }
+            await navigator.sampleAutomaticScrollLocation()
+            guard !Task.isCancelled, self.openRequestID == session, self.navigator === navigator,
+                  self.automaticScrollSampleID == request else { return }
+            self.automaticScrollSampleTask = nil
+        }
     }
 }

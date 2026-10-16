@@ -148,6 +148,41 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     /// before the owning reader discards this controller.
     public func closeContinuousScrolling() { infiniteScrollView?.shutdown() }
 
+    public enum AutomaticScrollStep { case moved, waiting, finished, interrupted, failed }
+    public var automaticScrollViewportHeight: Double? {
+        guard let scroll = infiniteScrollView, scroll.window != nil, !scroll.screenPagingEnabled else { return nil }
+        return Double(max(1, scroll.bounds.height - scroll.contentInset.top - scroll.contentInset.bottom))
+    }
+    public func setAutomaticScrolling(_ active: Bool) {
+        locationUpdateRevision &+= 1
+        infiniteScrollView?.automaticScrolling = active
+        if !active { updateCurrentLocation() }
+    }
+    public func advanceAutomaticScroll(by distance: Double) -> AutomaticScrollStep {
+        guard let scroll = infiniteScrollView, scroll.automaticScrolling else { return .interrupted }
+        switch scroll.advanceAutomatically(by: CGFloat(distance)) {
+        case .moved: return .moved
+        case .waiting: return .waiting
+        case .finished: return .finished
+        case .interrupted: return .interrupted
+        case .failed: return .failed
+        }
+    }
+    /// The caller serializes these bounded samples (roughly once a second).
+    public func sampleAutomaticScrollLocation() async {
+        guard !Task.isCancelled else { return }
+        let revision = locationUpdateRevision
+        let scroll = infiniteScrollView
+        let (location, computedViewport) = await computeCurrentLocationAndViewport()
+        guard !Task.isCancelled, locationUpdateRevision == revision, infiniteScrollView === scroll, let location else { return }
+        currentLocation = location
+        viewport = computedViewport
+        if location != notifiedCurrentLocation {
+            notifiedCurrentLocation = location
+            delegate?.navigator(self, locationDidChange: location)
+        }
+    }
+
     /// Preserve a fresh, bounded DOM anchor before rebuilding the layout.
     /// Delegate notifications can still be catching up to a visible jump.
     public func preserveCurrentDOMLocationForModeChange() async {
@@ -790,7 +825,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
         if let isv = infiniteScrollView {
             guard isv.isCurrentResourceReady else { return (nil, nil) }
-            let request = isv.viewportIdentity
+            let request = isv.locationSamplingIdentity
             let index = isv.currentIndex
             guard index < readingOrder.count else { return (nil, nil) }
             // The pure async calculator executes on a generic executor.
@@ -806,7 +841,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
                 fallbackLocator: { [publication] in await publication.locate($0) }
             )
             let anchor = await isv.firstVisibleElementLocator()
-            guard infiniteScrollView === isv, request == isv.viewportIdentity else { return (nil, nil) }
+            guard infiniteScrollView === isv, request == isv.locationSamplingIdentity else { return (nil, nil) }
             guard let anchor else { return (nil, nil) }
             if let locator, anchor.href.isEquivalentTo(locator.href) {
                 return (anchor.copy(title: locator.title, locations: {
@@ -878,6 +913,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         guard let self = self else {
             return
         }
+        guard infiniteScrollView?.automaticScrolling != true else { return }
 
         let revision = locationUpdateRevision
         let activeInfiniteView = infiniteScrollView
@@ -1525,6 +1561,7 @@ extension EPUBNavigatorViewController: EPUBInfiniteScrollViewDelegate {
     }
 
     func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView) {
+        guard !view.automaticScrolling else { return }
         updateCurrentLocation()
     }
 }

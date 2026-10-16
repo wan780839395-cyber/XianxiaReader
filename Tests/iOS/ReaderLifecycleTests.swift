@@ -6,6 +6,47 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen() async throws {
+        let (_, services, engine, model) = try await context()
+        let started = expectation(description: "ready for slow scroll")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        XCTAssertEqual(model.automaticScrollState, .stopped)
+        model.showAutomaticScroll()
+        XCTAssertTrue(model.automaticScrollPresented); XCTAssertEqual(model.readingMode, .continuous)
+        XCTAssertEqual(engine.automaticStarts, 0, "Entering controls must not move text")
+        model.startAutomaticScroll(); XCTAssertEqual(model.automaticScrollState, .running)
+        model.adjustAutomaticScrollSpeed(by: 0.5)
+        XCTAssertEqual(engine.automaticSpeed, 2)
+        model.pauseAutomaticScroll(); XCTAssertEqual(model.automaticScrollState, .paused)
+        await model.saveNow(); XCTAssertGreaterThan(engine.automaticFlushes, 0)
+        let saved = try await services.files.readingInteraction(); XCTAssertEqual(saved.automaticScrollSpeed, 2)
+        model.close(); engine.onAutomaticScrollStateChanged?(.running)
+        XCTAssertEqual(model.automaticScrollState, .stopped, "Late callbacks after close cannot restart controls")
+        let reopenedStarted = expectation(description: "reopen static")
+        engine.onOpenStarted = { reopenedStarted.fulfill() }
+        let reopened = Task { await model.open() }
+        await fulfillment(of: [reopenedStarted], timeout: 2); engine.finishOpen(); await reopened.value
+        XCTAssertEqual(model.interaction.automaticScrollSpeed, 2)
+        XCTAssertFalse(model.automaticScrollPresented); XCTAssertEqual(model.automaticScrollState, .stopped)
+        model.close()
+    }
+
+    @MainActor func testAutomaticScrollAdditionalReduceMotionAndModeExitCannotStartMotion() async throws {
+        let (_, _, engine, model) = try await context()
+        let started = expectation(description: "motion policy ready")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        model.showAutomaticScroll(); model.setAdditionalReduceMotion(true); model.startAutomaticScroll()
+        XCTAssertEqual(engine.automaticStarts, 0); XCTAssertNotNil(model.errorMessage)
+        model.setAdditionalReduceMotion(false); model.startAutomaticScroll()
+        XCTAssertEqual(model.automaticScrollState, .running)
+        model.setReadingMode(.horizontal)
+        XCTAssertEqual(model.automaticScrollState, .stopped); XCTAssertFalse(model.automaticScrollPresented)
+        model.close()
+    }
     @MainActor func testVerticalScreenRestoreAndContinuousSwitchRetainSameSession() async throws {
         let (_, services, engine, model) = try await context()
         var saved = ReadingInteraction(); saved.continuousScrolling = true; saved.verticalScreenPaging = true
@@ -38,7 +79,23 @@ final class ReaderLifecycleTests: XCTestCase {
         model.close()
     }
 
-    @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding {
+    @MainActor private final class SuspendedEngine: ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding, ReaderAutomaticScrollProviding {
+        var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { self }
+        var automaticScrollState = ReaderAutomaticScrollState.stopped
+        var onAutomaticScrollStateChanged: ((ReaderAutomaticScrollState) -> Void)?
+        var automaticStarts = 0
+        var automaticFlushes = 0
+        var automaticSpeed = 0.0
+        func startAutomaticScroll(screensPerMinute: Double) throws {
+            automaticStarts += 1; automaticSpeed = screensPerMinute
+            automaticScrollState = .running; onAutomaticScrollStateChanged?(.running)
+        }
+        func pauseAutomaticScroll() {
+            guard automaticScrollState.isActive else { return }
+            automaticScrollState = .paused; onAutomaticScrollStateChanged?(.paused)
+        }
+        func stopAutomaticScroll() { automaticScrollState = .stopped; onAutomaticScrollStateChanged?(.stopped) }
+        func flushAutomaticScrollPosition() async { automaticFlushes += 1 }
         let viewController = UIViewController()
         var currentPosition: ReadingPosition?
         var onPositionChanged: ((ReadingPosition) -> Void)?

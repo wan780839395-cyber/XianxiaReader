@@ -9,6 +9,51 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class TXTReadingTests: XCTestCase {
+    @MainActor func testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic() async throws {
+        let text = "第一章 慢读\n" + String(repeating: "云海修行🙂渐入山门。", count: 7000) + "\n第二章 尾声\n原创测试终点"
+        let (book, url, services, prepared) = try await self.prepared(text)
+        let original = try Data(contentsOf: url)
+        let engine = ReadiumReaderEngine(storageRoot: services.files.root); engine.setContinuousScrolling(true)
+        let window = try mount(engine)
+        try await engine.open(book: book, fileURL: url, position: nil)
+        try await wait("slow scroll TXT ready") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        let resource = prepared.plan.resources[1]
+        let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
+            locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(resource.startByte)")]))
+        try await engine.go(to: TXTPositionCodec.encode(initial, bookID: book.id, plan: prepared.plan))
+        try await wait("next TXT window ready") {
+            guard let wrapper = self.view("readium.chapter.2", root: engine.viewController.view) else { return false }
+            return wrapper.frame.height > window.bounds.height
+        }
+        let next = try XCTUnwrap(view("readium.chapter.2", root: engine.viewController.view))
+        let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
+        scroll.contentOffset.y = next.frame.minY - scroll.contentInset.top - 30
+        try engine.startAutomaticScroll(screensPerMinute: 6)
+        try await wait("slow scroll crossed bounded TXT resource") {
+            guard let position = engine.currentPosition else { return false }
+            let (_, anchor, _) = try TXTPositionCodec.decode(position, bookID: book.id, plan: prepared.plan)
+            return anchor.resourceStartByte == prepared.plan.resources[2].startByte && anchor.characterUTF16Offset > 0
+        }
+        engine.pauseAutomaticScroll(); await engine.flushAutomaticScrollPosition()
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let (_, anchor, _) = try TXTPositionCodec.decode(saved, bookID: book.id, plan: prepared.plan)
+        XCTAssertEqual(anchor.resourceStartByte, prepared.plan.resources[2].startByte)
+        XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+        let web = try XCTUnwrap(webViews(next).first)
+        let yValue = try await web.evaluateJavaScript("scrollY") as? Double
+        let y = try XCTUnwrap(yValue)
+        let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }); image.name = "autoscroll-txt-window-paused-build21"; image.lifetime = .keepAlways; add(image)
+        engine.close(); try await engine.open(book: book, fileURL: url, position: saved)
+        try await wait("slow scroll TXT reopened at saved viewport") {
+            guard let wrapper = self.view("readium.chapter.2", root: engine.viewController.view),
+                  let reopened = self.webViews(wrapper).first else { return false }
+            return abs(((try await reopened.evaluateJavaScript("scrollY") as? Double) ?? 10000) - y) < 3
+        }
+        XCTAssertEqual(engine.automaticScrollState, .stopped)
+        XCTAssertEqual(try Data(contentsOf: url), original)
+    }
     private enum Failure: Error { case timedOut(String) }
     @MainActor private func context() throws -> (URL, AppServices) {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)

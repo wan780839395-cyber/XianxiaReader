@@ -45,6 +45,28 @@ import UIKit
     private var screenTurnCover: UIView?
     private var screenTurnCoverID: UUID?
     private var screenTurnCoverTask: Task<Void, Never>?
+    var automaticScrolling = false
+    var locationSamplingIdentity: String {
+        automaticScrolling ? "\(epoch):\(currentIndex):\(lastSize)" : viewportIdentity
+    }
+    enum AutomaticStep { case moved, waiting, finished, interrupted, failed }
+    func advanceAutomatically(by distance: CGFloat) -> AutomaticStep {
+        guard window != nil, !screenPagingEnabled, !isDragging, !isDecelerating,
+              !navigation, !screenTurnInFlight else { return .interrupted }
+        guard distance.isFinite, distance > 0 else { return .waiting }
+        guard isCurrentResourceReady, let last = readyIndices.last, let tail = slots[last] else {
+            return slots[currentIndex]?.failure == nil ? .waiting : .failed
+        }
+        // Never scroll into loading placeholders or past the last ready resource.
+        let limit = max(-contentInset.top, tail.wrapper.frame.maxY - viewportHeight - contentInset.top)
+        if contentOffset.y >= limit - 0.01 {
+            preload()
+            if last + 1 == chapterCount { return .finished }
+            return slots[last + 1]?.failure == nil ? .waiting : .failed
+        }
+        setContentOffset(CGPoint(x: 0, y: min(limit, contentOffset.y + distance)), animated: false)
+        return .moved
+    }
     var screenPagingEnabled = false {
         didSet {
             guard screenPagingEnabled != oldValue else { return }
@@ -190,6 +212,7 @@ import UIKit
         if newSuperview == nil { clear() }
     }
     private func clear() {
+        automaticScrolling = false
         removeScreenTurnCover()
         screenDragStart = nil
         screenTurnInFlight = false
@@ -432,6 +455,7 @@ import UIKit
         super.layoutSubviews()
         guard !layingOut else { return }
         if lastSize != bounds.size {
+            automaticScrolling = false
             removeScreenTurnCover()
             screenDragStart = nil
             if screenTurnInFlight {
@@ -586,10 +610,11 @@ import UIKit
         let index = currentIndex
         let revision = viewportRevision
         let localTop = viewportTop - slot.wrapper.frame.minY
+        let moving = automaticScrolling
         slot.anchorDiagnostic = "requested local=\(localTop) clip=\(clipTop)...\(clipBottom) revision=\(revision)"
         // Keep the old DOM anchor across reflow until measure() compensates;
         // a resize notification is not a user scroll.
-        if savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor {
+        if !moving, savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor {
             slot.anchorDiagnostic = "cached local=\(localTop) revision=\(revision)"
             return anchor
         }
@@ -599,9 +624,13 @@ import UIKit
         for attempt in 0..<3 {
             let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom)
             guard !Task.isCancelled, epoch == request, currentIndex == index, slots[index] === slot,
-                  viewportRevision == revision, !slot.positioning,
-                  abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5 else { return nil }
+                  automaticScrolling == moving, !slot.positioning,
+                  moving || (viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5) else { return nil }
             guard let snapshot else { return nil }
+            // One bounded WebKit callback returns a complete DOM range and its
+            // viewport offset. It remains a valid saved point while moving;
+            // never cache it against a later physical viewport revision.
+            if moving { return snapshot.locator }
             slot.anchorDiagnostic = "sample=\(attempt) documentY=\(snapshot.documentY) documentTop=\(snapshot.documentTop) local=\(localTop) revision=\(revision)"
             if abs(snapshot.documentTop - max(0, localTop)) >= 1 {
                 if attempt < 2 {

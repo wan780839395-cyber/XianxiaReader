@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "aaaa504df34be036b92f86ed01005fdbb7cc92986080cba85a2a2ddeaaffcdaa"
+      "sha256": "5367a0ee14c1b58ede27e6d27063bf131b1573d751d5a1233e4a54c046ea5e49"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "e2afe263796041837b8d3e946c86633a2d16d18d9b2065f497a03de4091d7767"
+      "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
     }
   ],
   "remoteDependencyPins": [
@@ -1680,5 +1680,11 @@
     "motion": "Respect system/user reduction for explicit screen commands; native direct manipulation and native drag deceleration remain. No custom gesture overlay, CADisplayLink or new resource cache.",
     "reverseRelease": "Directional adjacent stop from the release viewport; +1.8 screens followed by negative velocity settles at +1, never -2. Explicit layout/resize correction clears interrupted native command guards.",
     "instantFrameProtection": "Build20: one native viewport snapshot as a sibling during explicit nonanimated screen commands, removed after 200ms; same scope as Readium3.11 PaginationView issue737/PR763 workaround. No per-frame/drag work or image cache. Reject overlapping cover commands. Cancel and remove on new direct drag, mode change, resize, explicit jump, reload or close; identity checked after sleep. Snapshot failure logs a warning and preserves original native turn."
+  },
+  "automaticSlowScroll": {
+    "scope": "Bounded continuous container, no new renderer, dependency or content cache. Adapter owns short-lived CADisplayLink; native step only advances inside contiguous ready resources.",
+    "timing": "Elapsed monotonic targetTimestamp, fractional CGFloat, discard gaps above250ms, weak display target and session UUID. Native 30-60Hz requested while moving,10Hz requested while waiting; actual cadence controlled by system.",
+    "position": "No per-frame DOM/SQLite: suppress continuous notifications while active; adapter serializes ~1s full bounded DOM samples. Moving samples check epoch/index/size and never cache against a later viewport; paused sampler retains existing revision/physical-offset checks. Pause invalidates pending moving samples and requests final full locator.",
+    "lifecycle": "Passive touch-down observer fails immediately and never delays/cancels publication input. Pause on touch, inactive, accessibility reduction/VoiceOver, explicit navigation/appearance, resize or load failure; close/mode/newbook invalidates link and session. Reopen static; only speed is persisted."
   }
 }

@@ -7,6 +7,86 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let scroll = try continuousScroll(engine), before = scroll.contentOffset.y
+        var locations = 0
+        engine.onPositionChanged = { _ in locations += 1 }
+        try engine.startAutomaticScroll(screensPerMinute: 6)
+        let oldRequest = try XCTUnwrap(engine.automaticScrollSessionID)
+        try await waitUntil { scroll.contentOffset.y > before + 200 }
+        XCTAssertEqual(engine.automaticScrollState, .running)
+        XCTAssertLessThan(locations, 12, "Position sampling must not follow display frequency")
+        let touch = try XCTUnwrap(navigator.view.gestureRecognizers?.compactMap { $0 as? AutomaticScrollTouchObserver }.first)
+        XCTAssertFalse(touch.cancelsTouchesInView); XCTAssertFalse(touch.delaysTouchesBegan)
+        touch.touchesBegan([], with: UIEvent())
+        XCTAssertEqual(engine.automaticScrollState, .paused)
+        await engine.flushAutomaticScrollPosition()
+        let paused = scroll.contentOffset.y
+        engine.advanceAutomaticScroll(at: 1234, request: oldRequest)
+        try await Task.sleep(nanoseconds: 250_000_000)
+        XCTAssertEqual(scroll.contentOffset.y, paused, accuracy: 0.5)
+        let saved = try XCTUnwrap(engine.currentPosition)
+        let json = try XCTUnwrap(JSONSerialization.jsonObject(with: saved.locatorData) as? [String: Any])
+        let locator = try XCTUnwrap(json["locations"] as? [String: Any])
+        XCTAssertNotNil(locator["domRange"]); XCTAssertNotNil(locator["xianxiaViewportOffset"])
+        let web = try resourceWebView(engine, index: 1)
+        let script = "document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000"
+        let yValue = try await web.evaluateJavaScript(script) as? Double
+        let y = try XCTUnwrap(yValue)
+        let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }); image.name = "autoscroll-epub-paused-build21"; image.lifetime = .keepAlways; add(image)
+        engine.close()
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        try await engine.open(book: book, fileURL: url, position: saved)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let reopened = self.webViews(in: wrapper).first else { return false }
+            return abs(((try await reopened.evaluateJavaScript(script) as? Double) ?? 10000) - y) < 3
+        }
+        XCTAssertEqual(engine.automaticScrollState, .stopped)
+    }
+
+    @MainActor func testAutomaticScrollCrossesChapterStopsAtBookEndAndBackgroundDoesNotResume() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        try await waitUntil { self.view(identifier: "readium.chapter.2", in: engine.viewController.view) != nil }
+        let scroll = try continuousScroll(engine)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.2", in: engine.viewController.view) else { return false }
+            return wrapper.frame.height > 100
+        }
+        let second = try XCTUnwrap(view(identifier: "readium.chapter.2", in: engine.viewController.view))
+        scroll.contentOffset.y = second.frame.minY - scroll.bounds.height - scroll.contentInset.top - 80
+        let before = scroll.contentOffset.y
+        try engine.startAutomaticScroll(screensPerMinute: 6)
+        try await waitUntil {
+            let titles = try await self.visibleTitles(engine)
+            return scroll.contentOffset.y > before + 100 && titles.contains("第二章 云海")
+        }
+        XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+        NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil)
+        XCTAssertEqual(engine.automaticScrollState, .paused)
+        let y = scroll.contentOffset.y
+        NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+        try await Task.sleep(nanoseconds: 250_000_000)
+        XCTAssertEqual(scroll.contentOffset.y, y, accuracy: 0.5)
+        scroll.contentOffset.y = max(-scroll.contentInset.top, scroll.contentSize.height - scroll.bounds.height + scroll.contentInset.bottom)
+        try engine.startAutomaticScroll(screensPerMinute: 6)
+        try await waitUntil { engine.automaticScrollState == .finished }
+        XCTAssertNil(engine.automaticScrollSessionID)
+        var reduced = ReadingInteraction(); reduced.continuousScrolling = true; reduced.reduceMotion = true
+        try engine.setInteraction(reduced)
+        XCTAssertThrowsError(try engine.startAutomaticScroll(screensPerMinute: 1.5))
+    }
     @MainActor func testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose() async throws {
         let engine = try screenEngine(reduced: true)
         let (window, state) = try mount(engine); state.visible = false

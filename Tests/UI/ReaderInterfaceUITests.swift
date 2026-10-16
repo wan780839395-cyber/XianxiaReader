@@ -1,6 +1,60 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch() {
+        let app = start(); defer { app.terminate() }
+        app.buttons["reader.autoscroll.open"].tap()
+        let toggle = app.buttons["reader.autoscroll.toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["readium.continuous-scroll"].waitForExistence(timeout: 20))
+        waitForReadableText(in: app)
+        XCTAssertEqual(toggle.value as? String, "准备慢滚")
+        for _ in 0..<3 { app.buttons["reader.autoscroll.faster"].tap() }
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        snapshot("reader-autoscroll-light-ready-build21", in: app)
+        toggle.tap()
+        let running = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "正在慢滚"), object: toggle)
+        XCTAssertEqual(XCTWaiter.wait(for: [running], timeout: 10), .completed)
+        // Keep a real original screen recording of sustained movement, not a
+        // synthetic frame animation. The app remains free to update its display.
+        let elapsed = XCTNSPredicateExpectation(predicate: NSPredicate(value: false), object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [elapsed], timeout: 3), .timedOut)
+        centerTap(in: app)
+        let paused = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "已暂停"), object: toggle)
+        XCTAssertEqual(XCTWaiter.wait(for: [paused], timeout: 10), .completed)
+        snapshot("reader-autoscroll-touch-paused-build21", in: app)
+        toggle.tap(); XCUIDevice.shared.press(.home); app.activate()
+        XCTAssertEqual(toggle.value as? String, "已暂停")
+        snapshot("reader-autoscroll-background-paused-build21", in: app)
+        app.buttons["reader.autoscroll.close"].tap()
+        app.buttons["reader.appearance.open"].tap(); app.buttons["reader.theme.charcoal"].tap()
+        app.buttons["reader.appearance.done"].tap()
+        app.buttons["reader.autoscroll.open"].tap()
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        toggle.tap()
+        let darkElapsed = XCTNSPredicateExpectation(predicate: NSPredicate(value: false), object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [darkElapsed], timeout: 3), .timedOut)
+        toggle.tap()
+        snapshot("reader-autoscroll-dark-paused-build21", in: app)
+        app.buttons["reader.autoscroll.close"].tap(); app.buttons["返回书库"].tap()
+        app.terminate(); app.launch(); openBook(in: app)
+        XCTAssertFalse(toggle.exists)
+        app.buttons["reader.autoscroll.open"].tap()
+        XCTAssertEqual(toggle.value as? String, "准备慢滚")
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        snapshot("reader-autoscroll-reopened-static-build21", in: app)
+    }
+
+    @MainActor func testAutomaticSlowScrollRespectsAdditionalReduceMotion() {
+        let app = start(reduceMotion: true); defer { app.terminate() }
+        app.buttons["reader.autoscroll.open"].tap()
+        let toggle = app.buttons["reader.autoscroll.toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10)); XCTAssertFalse(toggle.isEnabled)
+        XCTAssertTrue(app.staticTexts["减少动态效果已开启，慢滚停用"].exists)
+        snapshot("reader-autoscroll-reduced-disabled-build21", in: app)
+        app.buttons["reader.autoscroll.close"].tap()
+        XCTAssertTrue(app.buttons["reader.mode"].isHittable)
+    }
     @MainActor func testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText() {
         let app = start(reduceMotion: true); defer { app.terminate() }
         app.buttons["reader.mode"].tap()

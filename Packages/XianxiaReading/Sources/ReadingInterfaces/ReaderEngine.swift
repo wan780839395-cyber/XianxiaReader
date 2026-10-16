@@ -33,6 +33,7 @@ public protocol EPUBMetadataReading: Sendable {
     var searchProvider: (any ReaderSearchProviding)? { get }
     var appearanceProvider: (any ReaderAppearanceProviding)? { get }
     var interactionProvider: (any ReaderInteractionProviding)? { get }
+    var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { get }
     var supportsContinuousScrolling: Bool { get }
     func open(book: Book, fileURL: URL, position: ReadingPosition?) async throws
     func turnPage(forward: Bool) async
@@ -48,11 +49,28 @@ public extension ReaderEngine {
     var searchProvider: (any ReaderSearchProviding)? { nil }
     var appearanceProvider: (any ReaderAppearanceProviding)? { nil }
     var interactionProvider: (any ReaderInteractionProviding)? { nil }
+    var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { nil }
     var supportsContinuousScrolling: Bool { false }
     func setContinuousScrolling(_ enabled: Bool) {
         if enabled { onError?("当前阅读引擎不支持连续滚动。") }
         else { setScrolling(false) }
     }
+}
+
+public enum ReaderAutomaticScrollState: Equatable, Sendable {
+    case stopped, running, waiting, paused, finished
+    public var isActive: Bool { self == .running || self == .waiting }
+}
+
+@MainActor public protocol ReaderAutomaticScrollProviding: AnyObject {
+    var automaticScrollState: ReaderAutomaticScrollState { get }
+    var onAutomaticScrollStateChanged: ((ReaderAutomaticScrollState) -> Void)? { get set }
+    /// Explicit start only; reading mode and accessibility policy remain authoritative.
+    func startAutomaticScroll(screensPerMinute: Double) throws
+    func pauseAutomaticScroll()
+    func stopAutomaticScroll()
+    /// Sample the final full locator after pausing, before persisting/dismissing.
+    func flushAutomaticScrollPosition() async
 }
 
 @MainActor public protocol ReaderAppearanceProviding: AnyObject {

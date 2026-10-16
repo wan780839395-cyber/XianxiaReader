@@ -99,7 +99,7 @@ import XianxiaCore
         .onChange(of: requestedReduceMotion) { model.setAdditionalReduceMotion($0) }
         .onDisappear { model.close() }
         .onChange(of: scenePhase) { phase in
-            if phase != .active { Task { await model.saveNow() } }
+            if phase != .active { model.pauseAutomaticScroll(); Task { await model.saveNow() } }
         }
     }
 }

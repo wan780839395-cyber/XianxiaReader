@@ -34,6 +34,8 @@ enum ReaderMode: CaseIterable, Hashable {
     @Published private(set) var appearanceSaveFailure: String?
     @Published private(set) var interaction = ReadingInteraction()
     @Published private(set) var interactionSaveFailure: String?
+    @Published private(set) var automaticScrollState = ReaderAutomaticScrollState.stopped
+    @Published private(set) var automaticScrollPresented = false
     var settingsSaveFailure: String? { appearanceSaveFailure ?? interactionSaveFailure }
     var readingMode: ReaderMode {
         scrolling ? (interaction.verticalScreenPaging ? .verticalScreen : .continuous) : .horizontal
@@ -52,7 +54,15 @@ enum ReaderMode: CaseIterable, Hashable {
         self.services = services
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
-        engine?.onCenterTap = { [weak self] in self?.menuVisible.toggle() }
+        engine?.onCenterTap = { [weak self] in
+            guard let self else { return }
+            if self.automaticScrollPresented { self.pauseAutomaticScroll(); self.menuVisible = false }
+            else { self.menuVisible.toggle() }
+        }
+        engine?.automaticScrollProvider?.onAutomaticScrollStateChanged = { [weak self] value in
+            guard let self, self.openRequestID != nil else { return }
+            self.automaticScrollState = value
+        }
         engine?.interactionProvider?.onReadingGesture = { [weak self] in
             guard let self, self.openRequestID != nil, self.isReady, self.interaction.autoHideMenu else { return }
             self.menuVisible = false
@@ -119,15 +129,20 @@ enum ReaderMode: CaseIterable, Hashable {
         openRequestID = nil
         started = false
         isReady = false
+        automaticScrollState = .stopped
+        automaticScrollPresented = false
     }
 
     func saveNow() async {
+        pauseAutomaticScroll()
+        await engine?.automaticScrollProvider?.flushAutomaticScrollPosition()
         await appearanceSaveTask?.value
         await interactionSaveTask?.value
         if let position = engine?.currentPosition { await persist(position) }
     }
 
     func setAppearance(_ value: ReadingAppearance) {
+        pauseAutomaticScroll()
         guard isReady, let provider = engine?.appearanceProvider else { return }
         do {
             try provider.setAppearance(value)
@@ -154,6 +169,7 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func setReadingMode(_ mode: ReaderMode) {
+        if automaticScrollPresented && mode != .continuous { endAutomaticScroll() }
         guard isReady, engine?.interactionProvider != nil else { return }
         let continuous = mode != .horizontal
         guard !continuous || engine?.supportsContinuousScrolling == true else {
@@ -189,6 +205,7 @@ enum ReaderMode: CaseIterable, Hashable {
     func retryInteractionSave() { setInteraction(interaction) }
 
     func setAdditionalReduceMotion(_ requested: Bool) {
+        if requested { pauseAutomaticScroll() }
         additionalReduceMotionRequested = requested
         do { try applyInteraction(interaction) }
         catch { errorMessage = error.localizedDescription }
@@ -201,6 +218,7 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to chapter: Chapter) async {
+        pauseAutomaticScroll()
         guard isReady, let engine else { return }
         let requestID = openRequestID
         do {
@@ -214,6 +232,7 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to bookmark: Bookmark) async {
+        pauseAutomaticScroll()
         guard isReady, let engine else { return }
         let requestID = openRequestID
         do {
@@ -227,6 +246,7 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 
     func go(to result: ReaderSearchHit) async throws {
+        pauseAutomaticScroll()
         guard isReady, let engine else { throw ReaderSearchError.unavailable }
         let requestID = openRequestID
         try await engine.go(to: result.position)
@@ -255,5 +275,38 @@ enum ReaderMode: CaseIterable, Hashable {
     private func persist(_ position: ReadingPosition) async {
         do { try await services.repository.save(position) }
         catch { errorMessage = "阅读进度未能写入：\(error.localizedDescription)" }
+    }
+
+    func showAutomaticScroll() {
+        guard isReady, engine?.supportsContinuousScrolling == true, engine?.automaticScrollProvider != nil else { return }
+        setReadingMode(.continuous)
+        automaticScrollPresented = true
+        menuVisible = false
+    }
+
+    func startAutomaticScroll() {
+        guard isReady, automaticScrollPresented, !additionalReduceMotionRequested, !interaction.reduceMotion else {
+            errorMessage = "开启减少动态效果时自动慢滚停用。可在阅读设置中调整。"
+            return
+        }
+        do { try engine?.automaticScrollProvider?.startAutomaticScroll(screensPerMinute: interaction.automaticScrollSpeed) }
+        catch { errorMessage = error.localizedDescription }
+    }
+
+    func pauseAutomaticScroll() { engine?.automaticScrollProvider?.pauseAutomaticScroll() }
+
+    func endAutomaticScroll() {
+        pauseAutomaticScroll()
+        engine?.automaticScrollProvider?.stopAutomaticScroll()
+        automaticScrollState = .stopped
+        automaticScrollPresented = false
+        menuVisible = true
+    }
+
+    func adjustAutomaticScrollSpeed(by amount: Double) {
+        var updated = interaction
+        updated.automaticScrollSpeed = min(6, max(0.5, updated.automaticScrollSpeed + amount))
+        setInteraction(updated)
+        if automaticScrollState.isActive { startAutomaticScroll() }
     }
 }

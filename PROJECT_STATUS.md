@@ -1,3 +1,5 @@
+当前新增进行中：Build21自动慢滚源码候选，Windows426语法/17工具通过，Apple完整编译/原生视频/交付尚待验证；详见HANDOFF和READING_AUTOSCROLL_DESIGN.md。Build20以下结果仍为已交付基线。
+
 # 项目状态
 
 ## Build20 当前切片（2026-10-16）
@@ -281,3 +283,4 @@ Windows11/PowerShell7.6.5/Git2.54/Python3.11，本机无Xcode。GitHub origin/ma
 ## 下一步
 
 M2 TXT导入/Readium阅读/完整字节文本位置与Build6首次文件交接已过自动门槛；先确认Build7设备首次TXT/EPUB选择，再验证TXT设备阅读、数十MB冷导入/cache重开与巨段边界，落实M2验收后再M3书库。已有Build4与用户书库保持不动。完整书库布局在M3、字体/主题/行距等在M4，百万字性能在M5；XBook知识库仅草案。其他设备细项继续单独记录，不将用户一句反馈扩大成完整矩阵。
+

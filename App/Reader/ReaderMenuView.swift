@@ -17,9 +17,10 @@ import XianxiaCore
 
     var body: some View {
         VStack(spacing: 0) {
-            if visible { header.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10))) }
+            if visible && !model.automaticScrollPresented { header.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10))) }
             Spacer(minLength: 12)
-            if visible { footer.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 10))) }
+            if model.automaticScrollPresented { automaticScrollControls }
+            else if visible { footer.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 10))) }
         }
         .padding(.horizontal, 14).padding(.vertical, 8)
         .tint(palette.accent).foregroundStyle(palette.text)
@@ -97,12 +98,62 @@ import XianxiaCore
                 tool("书签", symbol: "bookmark", id: "reader.bookmarks.open", action: showBookmarks)
                 tool("搜索", symbol: "magnifyingglass", id: "reader.search.open", action: showSearch)
                     .disabled(model.engine?.searchProvider == nil)
+                tool("慢滚", symbol: "play.circle", id: "reader.autoscroll.open", action: model.showAutomaticScroll)
+                    .disabled(model.engine?.automaticScrollProvider == nil || model.engine?.supportsContinuousScrolling != true)
                 tool("设置", symbol: "textformat.size", id: "reader.appearance.open", action: showAppearance)
                     .disabled(model.engine?.appearanceProvider == nil)
             }
         }
         .padding(18).disabled(!model.isReady)
         .readerSurface(palette, radius: 26, elevated: true)
+    }
+
+    private var automaticScrollControls: some View {
+        VStack(spacing: 6) {
+            HStack(spacing: 6) {
+                Button {
+                    if model.automaticScrollState.isActive { model.pauseAutomaticScroll() }
+                    else { model.startAutomaticScroll() }
+                } label: {
+                    Label(model.automaticScrollState.isActive ? "暂停" : "开始",
+                          systemImage: model.automaticScrollState.isActive ? "pause.fill" : "play.fill")
+                        .font(.subheadline.weight(.medium)).frame(minWidth: 76, minHeight: 44)
+                }.accessibilityIdentifier("reader.autoscroll.toggle")
+                    .accessibilityValue(automaticScrollStatus)
+                    .disabled(reduceMotion || model.automaticScrollState == .finished)
+                Spacer(minLength: 0)
+                Button { model.adjustAutomaticScrollSpeed(by: -0.5) } label: {
+                    Image(systemName: "minus").frame(width: 44, height: 44)
+                }.accessibilityLabel("放慢慢滚").accessibilityIdentifier("reader.autoscroll.slower")
+                    .disabled(model.interaction.automaticScrollSpeed <= 0.5)
+                Text(String(format: "%.1f", model.interaction.automaticScrollSpeed))
+                    .font(.subheadline.monospacedDigit()).frame(minWidth: 28)
+                    .accessibilityLabel("每分钟屏数").accessibilityIdentifier("reader.autoscroll.speed")
+                Button { model.adjustAutomaticScrollSpeed(by: 0.5) } label: {
+                    Image(systemName: "plus").frame(width: 44, height: 44)
+                }.accessibilityLabel("加快慢滚").accessibilityIdentifier("reader.autoscroll.faster")
+                    .disabled(model.interaction.automaticScrollSpeed >= 6)
+                Button { model.endAutomaticScroll() } label: {
+                    Image(systemName: "xmark").frame(width: 44, height: 44)
+                }.accessibilityLabel("退出慢滚").accessibilityIdentifier("reader.autoscroll.close")
+            }
+            Text(reduceMotion ? "减少动态效果已开启，慢滚停用" : "\(automaticScrollStatus) · 屏/分 · 轻触正文暂停")
+                .font(.caption).foregroundStyle(palette.secondaryText)
+                .accessibilityIdentifier("reader.autoscroll.status")
+        }
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+        .padding(.horizontal, 12).padding(.vertical, 10)
+        .readerSurface(palette, radius: 24, elevated: true)
+    }
+
+    private var automaticScrollStatus: String {
+        switch model.automaticScrollState {
+        case .stopped: return "准备慢滚"
+        case .running: return "正在慢滚"
+        case .waiting: return "等待章节"
+        case .paused: return "已暂停"
+        case .finished: return "已到书尾"
+        }
     }
 
     private func pageButton(forward: Bool) -> some View {
