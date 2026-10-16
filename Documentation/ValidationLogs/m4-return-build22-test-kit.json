@@ -1,0 +1,374 @@
+{
+  "recordedAtUTC": "2026-10-16T08:52:41.600070+00:00",
+  "run": 38871744221,
+  "sourceRevision": "3cb1d220f324303a979d6dee5c6803f1c9a1bc38",
+  "deliveredBuild22": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingReturn-Build22.ipa",
+      "bytes": 8446800,
+      "sha256": "97760b91f7d5e15950083b9b2116d8a9d1e1a6e2903542a8cc39b902e56b01c9"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingReturn-Build22-TestKit.zip",
+      "bytes": 12666452,
+      "sha256": "55e7496dc26bf7a7459894a1fc8be93773bce71792323e2e9a709b54c2f618d2"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    }
+  ],
+  "previews": [
+    {
+      "name": "reader-return-origin-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/86E16ECE-85FD-4519-802A-74B843D11BB1.png",
+      "bytes": 599247,
+      "sha256": "3190150b625ee8c8e5a01f11d3ff01af18683226a3e58970d2ef03beb1b63c33",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-target-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2C4EBD6D-6C73-440A-866C-19ADE555F65F.png",
+      "bytes": 517696,
+      "sha256": "30a2b6cef1210ba0532e379914e4bee9a8363dc1ff9e9a83a67c67a0252cd9dd",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-restored-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F53D6CC7-2842-4172-AA0A-22EE7877D56A.png",
+      "bytes": 312684,
+      "sha256": "2ee1d5d4e2f4cd822955998aba43072cbfe0baeff4ced87b6cf4d8bfab5f93c2",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-current-reopened-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2C8C08F1-F812-4BB4-B49F-8F6F274D899D.png",
+      "bytes": 697374,
+      "sha256": "44a16083c94f35f7a1f9f00d1399bab2e613ade538d4351638c35def8e1ae215",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-search-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C3F63A75-45AD-4560-A597-F5193CCC373D.png",
+      "bytes": 240575,
+      "sha256": "4c2ad4a3d66aeab227d79978e405aad546d876f56cfb65cd8641de7f89bf4ef3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-restored-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/443D1A37-D1FD-4FEA-9629-D376F8F8B4B7.png",
+      "bytes": 109765,
+      "sha256": "f8fe3ec91866d6c3e595788800bd28b04d4a9297cd5700dba4548392358a97e3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-stay-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B89502C6-1DE4-42D2-B27D-A19A8CC63486.png",
+      "bytes": 107840,
+      "sha256": "1f134b1a0963a7b306716bc3b9132ba981ba6210419eaf57112e3c5f7fe6d9ab",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-epub-continuous-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/284E02D7-2BD6-462E-AD58-752C50AEE86D.png",
+      "bytes": 617696,
+      "sha256": "c0a8290355d930a81ac10f4155bc0422af7c291c77af6768a65ee052c58929e5",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-epub-paged-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FBFF6A53-6EA6-4366-A948-C39B32137E35.png",
+      "bytes": 389374,
+      "sha256": "782bed77f96dc37377c13d34a08244ed6818d31144ab9d87454a674ef1052110",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-txt-byte-anchor-build22",
+      "testIdentifier": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()",
+      "path": "build/ci/38871744221/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DCC855B5-C840-4508-9376-EB81F6203A4A.png",
+      "bytes": 550895,
+      "sha256": "fb5790289989027e180d42ce7491ddefd682458b4f6608c9a11a2e666eaa9aa3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "deviceAccepted": false
+}

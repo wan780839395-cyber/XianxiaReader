@@ -197,3 +197,7 @@ ReadingInteraction v1增加可缺省的verticalScreenPaging，原字段严格解
 ## Build21 自动慢滚
 
 Core的AutomaticScrollClock只含Foundation时间数学；ReadingInterfaces提供可选ReaderAutomaticScrollProviding，UI不持有Readium类型。Adapter用短时CADisplayLink/弱目标/sessionID驱动Vendor已有连续容器的ready窗口，原12资源上限及完整Locator保持，无新排版或每帧DOM/DB/截图。移动约每秒串行完整锚点采样，暂停/保存补最后位置；await后验证epoch/index/size/request，旧回调不能重启或清新session。ReadingInteraction v1只保存速度，缺字段旧兼容，运行状态不持久化；前后台/触摸/跳转/布局/错误停，减少动效/VoiceOver拒绝开始，idleTimer恢复原值。Build21完整自动门槛与选定原生复核和手机矩阵分列，详见READING_AUTOSCROLL_DESIGN.md和M4_AUTOSCROLL_VALIDATION_REPORT.json。
+
+## Build22 回看返回
+
+ReadingInterfaces提供完整位置capture，Adapter沿用有界DOM采样，Vendor既有preserve方法提供可忽略Bool成功结果及取消检查。ReaderViewModel用单个ReadingPosition和导航UUID保存会话内出发点，三类显式导航共用async身份保护；成功返回/留在此处清除，失败保留，关闭作废且迟到defer不能清新请求。当前位置回调/数据库进度照旧，关闭不自动返回；无新schema/Core/缓存或历史栈。原生小条沿用主题/按压/44pt/减少动效，不重排正文。完整门槛与选定原生证据和手机矩阵分列，见READING_RETURN_DESIGN.md及M4_RETURN_VALIDATION_REPORT.json。
