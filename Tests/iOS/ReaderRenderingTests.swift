@@ -92,6 +92,24 @@ final class ReaderRenderingTests: XCTestCase {
             evidence.name = "font-real-load-anchor-\(continuous)"; evidence.lifetime = .keepAlways; add(evidence)
             let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
             image.name = "font-epub-\(continuous ? "continuous" : "paged")-build23"; image.lifetime = .keepAlways; add(image)
+            for bundled in BundledReadingFont.allCases {
+                let asset = try bundled.resource().asset
+                model.selectImportedFont(asset.id)
+                let chinese = ReadingFontTests.chineseFontScript(asset.cssFamily, paragraph: "#long-paragraph")
+                try await waitUntil {
+                    guard let web = active() else { return false }
+                    return try await web.evaluateJavaScript("(\(chinese)) && (\(anchorScript))") as? Bool == true
+                }
+                await model.saveNow(); model.close(); await model.open()
+                XCTAssertEqual(model.appearance.importedFontID, asset.id)
+                try await waitUntil {
+                    guard let web = active() else { return false }
+                    return try await web.evaluateJavaScript("(\(chinese)) && (\(anchorScript))") as? Bool == true
+                }
+                let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
+                chineseImage.name = "font-epub-\(bundled.rawValue)-\(continuous ? "continuous" : "paged")-build23"
+                chineseImage.lifetime = .keepAlways; add(chineseImage)
+            }
             model.close()
         }
     }

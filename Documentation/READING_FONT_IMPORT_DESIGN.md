@@ -1,5 +1,13 @@
 # 本地字体导入
 
+## 用户补充：内置中文字体（本轮待完整编译）
+
+按用户“可以内置几个字体”加入两款离线原件：思源宋体SC Regular静态OTF（24,543,332B，Adobe Source Han Serif 2.003 release revision 7889f11bf31170b5d092a083b357c8c8130f89e0）与霞鹜文楷Regular静态TTF（25,928,940B，官方revision ff2008376313060b2c3f04a61523aaeac4b0b0bf）。完整原OFL与版权、固定来源URL/摘要放在App/Resources/Fonts。原字形未裁剪/转换/修改，二进制及许可保持原字节，.gitattributes显式-text。来源为[Adobe官方仓库](https://github.com/adobe-fonts/source-han-serif/tree/7889f11bf31170b5d092a083b357c8c8130f89e0)与[霞鹜文楷官方仓库](https://github.com/lxgw/LxgwWenKai/tree/ff2008376313060b2c3f04a61523aaeac4b0b0bf)，各自SIL OFL1.1随App分发。
+
+App通过BundledReadingFont稳定UUID读取只读Bundle URL，与最多12款用户字体合并后交给ReadingInterfaces；Adapter有界上限14，既有正文资源窗口仍12，两者无关。内置不复制到用户目录、不占用户名额、不在每次打开时摘要50MB；安装包核字体原字节与许可，WebKit沿现有资源通道按实际选择加载。原importedFontID字段兼容承载已导入或内置资源身份，无schema迁移。设置页同卡片提供两款44pt选择，保留原三选项与文件导入；自定义资源仍明确“配色预览”，不假称上方系统字为实际字体。
+
+新增回归核Bundle两字体/许可/摘要、CoreText中文真实glyph与用户目录为空；扩展新EPUB双模式/TXT非零文字锚点用例，核实际FontFace loaded/CSS family与中文canvas字形签名不同于系统serif，逐款换字并保存/静止重开；新增真UI内置选择/持久化/深色切换及截图/视频。Windows、编译、原生与手机性能分别记录；在新候选成功前不称内置已验收。扩展前38886008057/e758仍跑完取原件，不能替代本版门槛。
+
 2026-10-16，Build23源码候选，尚未完整编译/原生复核/交付。Build22用户反馈基本功能正常；不扩大完整设备矩阵。
 
 阅读设置的“我的字体”选择单字体TTF/OTF，32MiB/文件、12款。文件复制与流式摘要在BookFileStore actor，App的独立actor使用公开CoreText描述器并创建字体校验字形数；拒绝字体集合/伪扩展名/无效字体。上限用于限制首次解析和目录规模，尚无大型中文字体手机性能结论。默认轴可用的单字体不提供可变轴调节，不额外支持集合/字体删除/单书覆盖。

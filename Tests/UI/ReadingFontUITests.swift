@@ -1,6 +1,45 @@
 import XCTest
 
 final class ReadingFontUITests: XCTestCase {
+    @MainActor func testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchEnvironment["XR_LIBRARY_UI_TEST_ID"] = UUID().uuidString
+        app.launchEnvironment["XR_READER_UI_SETTINGS"] = "1"
+        app.launchEnvironment["XR_LIBRARY_UI_LAYOUT"] = "list"
+        app.launch(); defer { app.terminate() }
+        func open() {
+            let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+            XCTAssertTrue(book.waitForExistence(timeout: 30)); book.tap()
+            let settings = app.buttons["reader.appearance.open"]
+            XCTAssertTrue(settings.waitForExistence(timeout: 20))
+            let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
+            XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed); settings.tap()
+        }
+        func reveal(_ entry: XCUIElement) {
+            for _ in 0..<5 { if entry.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeUp() }
+            XCTAssertTrue(entry.isHittable)
+        }
+        func snapshot(_ name: String) {
+            let image = XCTAttachment(screenshot: app.screenshot()); image.name = name; image.lifetime = .keepAlways; add(image)
+        }
+        open()
+        let song = app.buttons["reader.font.bundled.sourceHanSerif"], kai = app.buttons["reader.font.bundled.wenKai"]
+        reveal(song); song.tap(); XCTAssertEqual(song.value as? String, "已选择")
+        snapshot("reader-font-bundled-song-build23")
+        app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
+        app.terminate(); app.launch(); open(); reveal(song)
+        XCTAssertEqual(song.value as? String, "已选择")
+        app.scrollViews["reader.appearance.scroll"].swipeDown()
+        let dark = app.buttons["reader.theme.charcoal"]
+        XCTAssertTrue(dark.isHittable); dark.tap()
+        reveal(kai); kai.tap(); XCTAssertEqual(kai.value as? String, "已选择")
+        XCTAssertEqual(song.value as? String, "未选择"); snapshot("reader-font-bundled-kai-dark-build23")
+        app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
+        app.terminate(); app.launch(); open(); reveal(kai)
+        XCTAssertEqual(kai.value as? String, "已选择")
+    }
     @MainActor func testNativeFontSelectionPickerCancelDarkResetAndRelaunch() {
         continueAfterFailure = false
         let app = XCUIApplication()

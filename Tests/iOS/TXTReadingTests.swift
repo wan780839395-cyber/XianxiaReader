@@ -82,6 +82,24 @@ final class TXTReadingTests: XCTestCase {
         XCTAssertEqual(try Data(contentsOf: url), original); XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
         let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
         image.name = "font-txt-byte-anchor-build23"; image.lifetime = .keepAlways; add(image)
+        for bundled in BundledReadingFont.allCases {
+            let asset = try bundled.resource().asset
+            model.selectImportedFont(asset.id)
+            let chinese = ReadingFontTests.chineseFontScript(asset.cssFamily, paragraph: "p")
+            func matches() async throws -> Bool {
+                guard let web = active() else { return false }
+                let realGlyphs = try await web.evaluateJavaScript(chinese) as? Bool == true
+                let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
+                return realGlyphs && abs(y - before) < 3
+            }
+            try await wait("bundled TXT Chinese glyphs and byte anchor") { try await matches() }
+            await model.saveNow(); model.close(); await model.open()
+            XCTAssertEqual(model.appearance.importedFontID, asset.id)
+            try await wait("bundled TXT exact anchor and Chinese font reopen") { try await matches() }
+            let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
+            chineseImage.name = "font-txt-\(bundled.rawValue)-build23"; chineseImage.lifetime = .keepAlways; add(chineseImage)
+        }
+        XCTAssertEqual(try Data(contentsOf: url), original)
         model.close()
     }
     @MainActor func testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen() async throws {

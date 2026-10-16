@@ -1,4 +1,6 @@
 import Foundation
+import CoreText
+import CryptoKit
 import ReadingInterfaces
 import UIKit
 import XCTest
@@ -6,6 +8,37 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReadingFontTests: XCTestCase {
+    static func chineseFontScript(_ family: String, paragraph: String) -> String {
+        """
+        (()=>{const f='\(family)',p=document.querySelector('\(paragraph)');
+        if(!p||!getComputedStyle(p).fontFamily.includes(f)||!Array.from(document.fonts).some(x=>x.family.includes(f)&&x.status==='loaded'))return false;
+        function signature(font){const c=document.createElement('canvas');c.width=450;c.height=80;
+          const g=c.getContext('2d');g.font='30px '+font;g.fillText('山风云海问道修仙',4,45);
+          const d=g.getImageData(0,0,c.width,c.height).data;let n=0;for(let i=3;i<d.length;i+=4)n=(n+d[i]*(i%251+1))>>>0;return n;}
+        const actual=signature(f);return actual>0&&actual!==signature('serif');})()
+        """
+    }
+    func testBundledChineseOriginalFontsHaveGlyphsLicensesAndDoNotUseImportSlots() async throws {
+        let services = try await self.services()
+        for item in BundledReadingFont.allCases {
+            let resource = try item.resource(), asset = resource.asset
+            let data = try Data(contentsOf: resource.fileURL)
+            XCTAssertEqual(Int64(data.count), asset.bytes)
+            XCTAssertEqual(SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined(), asset.sha256)
+            let license = try XCTUnwrap(Bundle.main.url(forResource: item.fileName + "-OFL", withExtension: "txt", subdirectory: "Fonts"))
+            XCTAssertTrue(try String(contentsOf: license, encoding: .utf8).contains("SIL OPEN FONT LICENSE"))
+            let descriptors = try XCTUnwrap(CTFontManagerCreateFontDescriptorsFromURL(resource.fileURL as CFURL) as? [CTFontDescriptor])
+            XCTAssertEqual(descriptors.count, 1)
+            let font = CTFontCreateWithFontDescriptor(try XCTUnwrap(descriptors.first), 30, nil)
+            let text = Array("山风云海问道修仙，。".utf16)
+            var glyphs = [CGGlyph](repeating: 0, count: text.count)
+            XCTAssertTrue(CTFontGetGlyphsForCharacters(font, text, &glyphs, text.count))
+            XCTAssertTrue(glyphs.allSatisfy { $0 != 0 })
+            XCTAssertNotNil(CTFontCreatePathForGlyph(font, glyphs[0], nil))
+        }
+        let imported = try await services.files.readingFonts()
+        XCTAssertTrue(imported.isEmpty)
+    }
     private func fixture() throws -> URL {
         try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
     }

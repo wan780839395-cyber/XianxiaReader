@@ -55,7 +55,7 @@ public struct ReadingAppearance: Codable, Equatable, Sendable {
     public let version: Int
     public var theme: ReadingTheme = .warm
     public var font: ReadingFont = .original
-    /// Optional field keeps existing reading-v1 files compatible.
+    /// Optional resource identity (imported or bundled); old reading-v1 files remain compatible.
     public var importedFontID: UUID?
     public var fontScale: Double = 1.1
     public var lineHeight: Double = 1.75

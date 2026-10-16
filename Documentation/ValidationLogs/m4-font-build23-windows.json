@@ -1,6 +1,6 @@
 {
-  "recordedAtUTC": "2026-10-16T10:14:57.393363+00:00",
-  "swiftFiles": 432,
+  "recordedAtUTC": "2026-10-16T10:31:33.022711+00:00",
+  "swiftFiles": 433,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
   "swiftSyntaxExit": 0,
@@ -8,20 +8,20 @@
   "toolingExit": 0,
   "appleCompilation": false,
   "oldTestBodiesPreserved": 35,
-  "newTests": 13,
-  "sourceBlobs": 515,
+  "newTests": 15,
+  "sourceBlobs": 522,
   "logs": [
     {
       "path": ".cache/recovery/20261016-build23/windows.log",
-      "sha256": "d52af8fb01ca389e95ff782fec141bf3a8b3ae7884ff164be7bd507bc3039702"
+      "sha256": "264332c7610303766dd811800642e75edc37ab5e864a2ee9fb2b3fbf4d5752c2"
     },
     {
       "path": ".cache/recovery/20261016-build23/tooling.log",
-      "sha256": "41498ee4b3b539f3adc38ee6f479116ad493ae5742f34e24ca1211b2565d3882"
+      "sha256": "ed0f1907231fb0feef3495532d57808e58a1a364405333414718d0a93bbc66d9"
     },
     {
       "path": ".cache/recovery/20261016-build23/candidate.diff",
-      "sha256": "d2cf3043f23dd23b5c01e57b5ba7b2a72d084bfd02b967d8ff9cd20d55a59964"
+      "sha256": "a7967ddef8887fea9b189af254876e619061c60e2bf97143efc254d1729e9002"
     }
   ]
 }

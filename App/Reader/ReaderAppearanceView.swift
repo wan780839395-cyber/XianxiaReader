@@ -160,6 +160,28 @@ import XianxiaCore
                 Picker("字体", selection: Binding<ReadingFont?>(get: { model.appearance.importedFontID == nil ? model.appearance.font : nil }, set: { if let font = $0 { model.selectBuiltInFont(font) } })) {
                     ForEach(ReadingFont.allCases, id: \.self) { Text($0.title).tag(Optional($0)) }
                 }.pickerStyle(.segmented).accessibilityIdentifier("reader.font")
+                HStack(spacing: 10) {
+                    ForEach(BundledReadingFont.allCases) { font in
+                        Button { model.selectImportedFont(font.id) } label: {
+                            HStack(spacing: 8) {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(font.title).font(.subheadline.weight(.medium))
+                                    Text(font.subtitle).font(.caption2).foregroundStyle(palette.secondaryText)
+                                }
+                                Spacer(minLength: 0)
+                                if model.appearance.importedFontID == font.id {
+                                    Image(systemName: "checkmark.circle.fill").foregroundStyle(palette.accent)
+                                }
+                            }.padding(10).frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+                        }
+                        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true, radius: 13))
+                        .disabled(!model.isFontAvailable(font.id))
+                        .accessibilityIdentifier("reader.font.bundled.\(font.rawValue)")
+                        .accessibilityValue(model.appearance.importedFontID == font.id ? "已选择" : "未选择")
+                    }
+                }
+                Text("内置字体可离线使用，缺字由系统补全。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
                 adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
                            key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
                 if let selected = model.importedFonts.first(where: { $0.id == model.appearance.importedFontID }) {

@@ -205,6 +205,7 @@ private enum ReaderJumpError: LocalizedError {
     func retryAppearanceSave() { setAppearance(appearance) }
 
     func selectBuiltInFont(_ font: ReadingFont) {
+        fontMessage = nil
         var updated = appearance; updated.font = font; updated.importedFontID = nil
         setAppearance(updated)
     }
@@ -213,6 +214,7 @@ private enum ReaderJumpError: LocalizedError {
         guard fontResources.contains(where: { $0.asset.id == id }) else {
             fontMessage = ReadingFontError.missingFont.localizedDescription; return
         }
+        fontMessage = nil
         var updated = appearance; updated.importedFontID = id
         setAppearance(updated)
     }
@@ -244,8 +246,15 @@ private enum ReaderJumpError: LocalizedError {
     }
 
     private func loadFontResources() async throws -> (fonts: [ReadingFontAsset], resources: [ReaderFontResource], warning: String?) {
-        let fonts = try await services.files.readingFonts()
         var resources: [ReaderFontResource] = [], warning: String?
+        for bundled in BundledReadingFont.allCases {
+            do { resources.append(try bundled.resource()) }
+            catch { warning = "\(bundled.title)：\(error.localizedDescription)" }
+        }
+        let fonts: [ReadingFontAsset]
+        do { fonts = try await services.files.readingFonts() }
+        catch is CancellationError { throw CancellationError() }
+        catch { return ([], resources, error.localizedDescription) }
         for font in fonts {
             try Task.checkCancellation()
             do { resources.append(ReaderFontResource(asset: font, fileURL: try await services.files.readingFontURL(font))) }

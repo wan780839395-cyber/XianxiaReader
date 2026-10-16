@@ -32,3 +32,10 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Bundled Chinese reading fonts (unmodified):
+Source Han Serif SC Regular, Adobe, https://github.com/adobe-fonts/source-han-serif
+LXGW WenKai Regular, LXGW / Klee Project Authors, https://github.com/lxgw/LxgwWenKai
+SIL Open Font License 1.1. Full original copyright and licenses are bundled at
+Fonts/SourceHanSerifSC-Regular-OFL.txt and Fonts/LXGWWenKai-Regular-OFL.txt.
+Pinned provenance is bundled at Fonts/PROVENANCE.json.

@@ -7,3 +7,4 @@
 *.epub binary
 *.png binary
 Documentation/ValidationLogs/*.log -text
+App/Resources/Fonts/* -text

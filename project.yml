@@ -23,7 +23,10 @@ targets:
     platform: iOS
     sources:
       - path: App
-        excludes: ["Resources/Info.plist"]
+        excludes: ["Resources/Info.plist", "Resources/Fonts"]
+      - path: App/Resources/Fonts
+        buildPhase: resources
+        type: folder
       - path: Tests/Fixtures
         buildPhase: resources
         type: folder

@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 third candidate; prior 129/131 failure preserved; full new CI pending",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -293,8 +293,12 @@
       "sha256": "33708562463bda223bed3eb753b5b9df177cc913d218e139f2bb00e8710387b5"
     },
     {
+      "path": "App/Reader/BundledReadingFont.swift",
+      "sha256": "f8abe53a60a6df35ebf74d9e4beb7ad88b7f8a4d60276b94e8e6bec4ff2e291a"
+    },
+    {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "4c029454926eb68bad668bb98d9fa54310bdc8af31240b8b59578f3f9a358207"
+      "sha256": "6e68b30cb63515e2e3eaac835abefc238766d1e6c90c8be11c36d559405bef4d"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -310,7 +314,7 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "0661f50a3d9882d4f9c616f55c5a7e2731f8badb115e2c35fd2cb83643620794"
+      "sha256": "fe5ccb758d6cf4f4ecce4a2c4dd85f5e2c238f5b8179deae09fa4a61854f51a7"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -337,12 +341,36 @@
       "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49"
     },
     {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+      "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350"
+    },
+    {
+      "path": "App/Resources/Fonts/PROVENANCE.json",
+      "sha256": "06f49623c322fd10e599ace7bb1edbfa22c782529d57c37d2f26af6717bae904"
+    },
+    {
+      "path": "App/Resources/Fonts/README.txt",
+      "sha256": "42e9e464e9cbf5377c833400a89836453f9e1a38c9970b53d924bee4c7092512"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+      "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117"
+    },
+    {
       "path": "App/Resources/Info.plist",
       "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
     },
     {
       "path": "App/Resources/ThirdPartyNotices.txt",
-      "sha256": "ae9e28a6788f5308e66eb461f38b44e6fd359b78a59b3115c14bf84443ba5ea7"
+      "sha256": "d2b7958593b596f59184b77998b8d219fe1ae4f9e0b2c1adb6a1e2001ee67585"
     },
     {
       "path": "App/Search/ReaderSearchView.swift",
@@ -470,7 +498,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
-      "sha256": "f2ac6e3be136d94718a76e1f6fb8be4f290809c8c4fee44a61708a7a0b96c4bf"
+      "sha256": "beee392a371c84c83efb70a339a5a394367af5d816a9515e146bc342b5729c90"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
@@ -622,7 +650,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "2e3781f80406c5da84c0c971a2f7b6cf30dc61719d5e0bf03093b1e10a24a529"
+      "sha256": "df622b577fec3a0d9235b78a3602c3ffd06daefed4a5f015474d2e754664dc08"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -702,7 +730,7 @@
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "sha256": "7cdeaf6a0d823c18db666bbaec078e5acbcdd879867334769d3157b9c138a3bc"
+      "sha256": "d437c0a729501e9ec4da136bca9e5c80a2430167498788335b82345d188666c1"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -738,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "94375152eb0a85ab94f611a686aa5fb896be1d3714674b612155dc1566c330fb"
+      "sha256": "99de65e091ac1ee9733134bceef96e6e398144e26e54b6038775261bfce01156"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -746,7 +774,7 @@
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "sha256": "98c42d046a89c8a35b1bc21f2e363c8a3f1ce2e33f5f4e7e695209429fa54f01"
+      "sha256": "513b852f186ada97053255149734404d6fa2f47774e112493a09986c24a4999d"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -754,7 +782,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "c4b3c5bf9d21c5e59017f451bcc466f3cac3b065e4abfea8353d2bf4d22fc45b"
+      "sha256": "9307525982d06fb57d73d108af72f702c5d49b3e702ad1cb3509afd46d1b1d19"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2186,7 +2214,7 @@
     },
     {
       "path": "project.yml",
-      "sha256": "870aca876a52e382ca9b181fbc162f445ac76a83109f4e74280bec8b4078346a"
+      "sha256": "ea9bc889ef0caf84521f8bf0ebd6c018717de0e2223fd4b203b012cdd931281b"
     },
     {
       "path": "scripts/check_repository.py",
@@ -2270,10 +2298,19 @@
     }
   ],
   "changedPaths": [
+    ".gitattributes",
     "App/Library/LibraryInteractionFixture.swift",
+    "App/Reader/BundledReadingFont.swift",
     "App/Reader/ReaderAppearanceView.swift",
     "App/Reader/ReaderViewModel.swift",
     "App/Reader/ReadingFontImportService.swift",
+    "App/Resources/Fonts/LXGWWenKai-Regular-OFL.txt",
+    "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+    "App/Resources/Fonts/PROVENANCE.json",
+    "App/Resources/Fonts/README.txt",
+    "App/Resources/Fonts/SourceHanSerifSC-Regular-OFL.txt",
+    "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+    "App/Resources/ThirdPartyNotices.txt",
     "Documentation/HANDOFF_M4_BUILD22_DELIVERY_2026-10-16.md",
     "Documentation/M4_FONT_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_IMPORT_DESIGN.md",
@@ -2284,6 +2321,7 @@
     "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
     "Documentation/ValidationLogs/m4-font-build23-second-native-partial.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
+    "Documentation/ValidationLogs/m4-font-build23-third-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
     "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
     "HANDOFF.md",
@@ -2305,11 +2343,11 @@
     "project.yml"
   ],
   "oldTestBodiesPreserved": 35,
-  "newTests": 13,
+  "newTests": 15,
   "expectedCore": 133,
-  "expectedIOS": 131,
-  "expectedIntegration": 113,
-  "expectedUI": 18,
+  "expectedIOS": 133,
+  "expectedIntegration": 114,
+  "expectedUI": 19,
   "sourceRevision": "e7586a8067515a911d09ac4abf31fd4577fb695b",
   "run": 38886008057,
   "branch": "codex/m4-reading-appearance",

@@ -28,7 +28,8 @@ import XianxiaCore
     public var fontProvider: (any ReaderFontProviding)? { self }
 
     public func setReadingFonts(_ fonts: [ReaderFontResource]) throws {
-        guard navigator == nil, fonts.count <= 12, Set(fonts.map { $0.asset.id }).count == fonts.count else {
+        // At most 12 imported faces plus the App's two bundled Chinese faces.
+        guard navigator == nil, fonts.count <= 14, Set(fonts.map { $0.asset.id }).count == fonts.count else {
             throw ReaderPositionCaptureError.unavailable
         }
         for font in fonts {
