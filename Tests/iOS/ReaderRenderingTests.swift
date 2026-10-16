@@ -25,7 +25,20 @@ final class ReaderRenderingTests: XCTestCase {
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
-        for _ in 0..<2 { await engine.turnPage(forward: true) }
+        try await waitUntil {
+            guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
+                  web.scrollView.alpha > 0.99 else { return false }
+            return try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && window.__xrPreviewReadySettled===true") as? Bool == true
+        }
+        for _ in 0..<2 {
+            let readyWeb = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            let previousX = (try await readyWeb.evaluateJavaScript("scrollX") as? Double) ?? 0
+            await engine.turnPage(forward: true)
+            try await waitUntil {
+                guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.alpha > 0.99 else { return false }
+                return ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > previousX + 100
+            }
+        }
         try await waitUntil {
             guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
                   web.scrollView.alpha > 0.99 else { return false }

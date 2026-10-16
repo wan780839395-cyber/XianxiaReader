@@ -29,3 +29,5 @@ reading-v1只新增可选字段，旧JSON缺字段继续按原字距、原字重
 872fc755f12f3afa83eb1aa736015d5a50ec4502 已实际触发独立完整CI38954435197，新的135 Core/118集成+20 UI/Release24门槛只归该源。此前3a97与c661候选未取消，各自旧137项预期保持，不能把最新新增竞态测试追溯算入旧轮。Linux135及四长TXT已核，Apple/原生/手机仍待相应独立结果。最新快照已推送，正常HEAD和空index不变。
 
 原生早查发现compact样例原底色与选择卡不同，出现硬矩形。现在列表PNG透明背景，直接融入既有灰绿圆角卡；大样例仍填阅读主题底色。同一真实CoreText回归核compact的透明背景与实墨，最终效果须从最新源原生截图核验。早查使用首候选选定ZIP成员CRC，仅诊断、无全ZIP验证，不替代主源。
+
+分页竞态新测试准备修正：872结果表明失败发生在第一次真实换字之前，初始800ms字体ready未结束即发翻页，href已更新但当前页仍隐藏，goForward可返回false。核官方3.11固定revision的Navigator.swift（https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Navigator.swift）和现有spreadLoaded/window/alpha gate；新测试改等待初始真实可见与字体ready，再逐页确认scrollX增长。没有减小char>100、800ms重排中再换字或最终原字可见断言，原测试38主体保持，运行源码未改。

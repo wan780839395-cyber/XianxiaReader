@@ -1,0 +1,145 @@
+{
+  "recordedAtUTC": "2026-10-16T20:07:39.834172+00:00",
+  "run": 38950061245,
+  "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+  "selectedMemberExtraction": {
+    "run": 38950061245,
+    "artifact": 12069943541,
+    "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+    "rangeBytesFetched": 10078891,
+    "totalArchiveBytes": 1373489835,
+    "completeArchiveDigestVerified": false,
+    "completeArchiveCRCVerified": false,
+    "scope": "Early historical source PNG inspection only; selected ZIP members individually CRC checked via HTTP ranges. Not current-source gates and no full raw archive downloaded.",
+    "images": [
+      {
+        "name": "font-settings-sample-xiaoWei-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-xiaoWei-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "ccc755840a25c3ea4232b6da96ca65a5124b793ed6c9de8d8c5ff1f405102963",
+        "memberCRC": true
+      },
+      {
+        "name": "font-settings-sample-maShanZheng-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-maShanZheng-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "36d6c50cca44b68dad5ca4dfc300771a57e07712f29423b8d0d6bb41bdd1a717",
+        "memberCRC": true
+      },
+      {
+        "name": "font-settings-sample-zhuque-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-zhuque-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "d8b6a250100714507f9e83101160472125c37ffed21064df8a0326aa01f51810",
+        "memberCRC": true
+      },
+      {
+        "name": "font-settings-sample-sourceHanSans-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-sourceHanSans-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "449b203d55f2e04f332e3307255e41719fd13b411e141f1dc0025ad0b9eef251",
+        "memberCRC": true
+      },
+      {
+        "name": "font-settings-sample-wenKai-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-wenKai-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "f04dc392dd0d425aa7f49cb0b641b8948c93c11f2ab43af01657e8d58d51b12e",
+        "memberCRC": true
+      },
+      {
+        "name": "font-settings-sample-sourceHanSerif-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-sourceHanSerif-build24.png",
+        "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+        "sha256": "e315ffc4e60defdae067e77b501404831d8401b15d4f79c8be3c7bcd773c1c52",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-extended-layout-reopened-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-extended-layout-reopened-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "1045fa5a424068f951201ac30c8685993893d3dd1fda1ca70f64aaff322d42d5",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-extended-layout-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-extended-layout-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "6dffa71d49dd1f0146d8c7b3dc4c7136e8b32a03f155e909f069f25a27a3e911",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-xiaoWei-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-xiaoWei-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "0a4e8b74adca262463677ca6a08d1d141a085199f329787217724524596ed466",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-maShanZheng-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-maShanZheng-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "fedeea6247f62edb26707f8ec49ad1ff0d83cf89b8dce08b0fa55d71a456637e",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-zhuque-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-zhuque-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "ad0acc4479c714ca99e6dcc35549417594d45ceaab694ebf9f5f036daa88169c",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-sourceHanSans-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-sourceHanSans-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "829fa62a883ed75ccd88fd74288079fccdd2f2e48078fdc8a3fe13c311c6a85a",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-wenKai-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-wenKai-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "9e4559c964265d8089850bf4fe7fc57c66aa437f7aa470503af9404fedaacc60",
+        "memberCRC": true
+      },
+      {
+        "name": "reader-font-sample-row-sourceHanSerif-build24",
+        "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-sourceHanSerif-build24.png",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "sha256": "04e75c591e0788f4b9e9ca60e803f0bb18313473556185df0ac7b7b3fea77830",
+        "memberCRC": true
+      }
+    ]
+  },
+  "imagesActuallyViewed": [
+    {
+      "name": "font-settings-sample-maShanZheng-build24",
+      "path": "build/ci/38950061245/EarlyFontReview/font-settings-sample-maShanZheng-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "36d6c50cca44b68dad5ca4dfc300771a57e07712f29423b8d0d6bb41bdd1a717",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-extended-layout-build24",
+      "path": "build/ci/38950061245/EarlyFontReview/reader-font-extended-layout-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "6dffa71d49dd1f0146d8c7b3dc4c7136e8b32a03f155e909f069f25a27a3e911",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-xiaoWei-build24",
+      "path": "build/ci/38950061245/EarlyFontReview/reader-font-sample-row-xiaoWei-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "0a4e8b74adca262463677ca6a08d1d141a085199f329787217724524596ed466",
+      "memberCRC": true
+    }
+  ],
+  "all14Viewed": false,
+  "observations": [
+    "Native extended layout shows letter spacing0.05,weight125%,indent2.5 and visible usable controls within the existing green/white rounded cards.",
+    "Native font rows show visibly different Sans,Fangsong,brush andXiaoWei glyphs; glyph orientation/readability is correct. Compact sample background appears as a hard warm rectangle against its card; this directly motivated the later transparent compact PNG change.",
+    "Original MaShanZheng CoreText image contains readable Chinese brush glyphs with full sample text."
+  ],
+  "scope": "Early historical diagnostic only; not latest-source acceptance, not animation or phone performance. Selected ZIP members CRC checked, complete archive digest/CRC explicitly unverified. Raw historical selected PNGs may be removed after final delivery per current CI retention record."
+}
