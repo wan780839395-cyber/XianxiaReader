@@ -13,3 +13,5 @@ UI只经ReadingInterfaces可选ReaderAutomaticScrollProviding能力。Adapter负
 来源和差异：[Apple CADisplayLink](https://developer.apple.com/documentation/quartzcore/cadisplaylink)、targetTimestamp和preferredFrameRateRange官方DocC已核iOS3.1/10/15可用，项目min16适用。Readest固定f4078404f4561bf480dda28759af34f7be7b5e77的autoscroller.ts/PacedScroller和useAutoScroll.ts为成熟参考，采用真实时间/小数/生命周期思路；它是Web/rAF，本项目原生UIKit。其长间隙clamp100ms，本片>250ms直接丢弃；不复制源码，不采用桌面中键/右侧调速或重开恢复运行。实际参考hash见m4-autoscroll-draft-research.json。
 
 新增门槛：Core30/60/120Hz一致性、低速小数、长间隙/复位/非法时钟与速度兼容；真实EPUB跨章/书尾、迟到帧、触摸/后台、完整Locator静止重开；真实TXT窗口/字节锚点/重开；真UI持续慢滚、浅深色控制条/调速、触摸和后台暂停、静止重开、减少动效停用。必须完整Core/iOS/严格Release21，再审本轮原生截图、实际UI视频及原始连续帧，最后打包。Windows语法不是编译；普通签名/TrollStore/真系统辅助功能/手机手感、FPS、功耗继续单列，M4整体未完成。
+
+源码复查补充：显式开始及每帧入口均核UIApplication active，避免resign后排队开始；读取/进度/速度设置写入失败先暂停，控制条显示设置错误和44pt重试入口，重试成功保持暂停。真实临时存储失败/保留原设置/重试回归新增，尚待修正候选完整编译。

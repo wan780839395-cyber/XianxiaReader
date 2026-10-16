@@ -1,0 +1,152 @@
+{
+  "references": [
+    {
+      "url": "https://developer.apple.com/tutorials/data/documentation/quartzcore/cadisplaylink.json",
+      "title": "CADisplayLink",
+      "platforms": [
+        {
+          "introducedAt": "3.1",
+          "name": "iOS"
+        },
+        {
+          "introducedAt": "3.1",
+          "name": "iPadOS"
+        },
+        {
+          "introducedAt": "13.1",
+          "name": "Mac Catalyst"
+        },
+        {
+          "introducedAt": "14.0",
+          "name": "macOS"
+        },
+        {
+          "introducedAt": "9.0",
+          "name": "tvOS"
+        },
+        {
+          "introducedAt": "1.0",
+          "name": "visionOS"
+        }
+      ],
+      "path": ".cache/recovery/20261016-build21/api-cadisplaylink.json",
+      "sha256": "6e2836564ac0cbdefae5f0bdeeda16cda220f955bb05dc56c21504e499061f25"
+    },
+    {
+      "url": "https://developer.apple.com/tutorials/data/documentation/quartzcore/cadisplaylink/targettimestamp.json",
+      "title": "targetTimestamp",
+      "platforms": [
+        {
+          "introducedAt": "10.0",
+          "name": "iOS"
+        },
+        {
+          "introducedAt": "10.0",
+          "name": "iPadOS"
+        },
+        {
+          "introducedAt": "13.1",
+          "name": "Mac Catalyst"
+        },
+        {
+          "introducedAt": "14.0",
+          "name": "macOS"
+        },
+        {
+          "introducedAt": "10.0",
+          "name": "tvOS"
+        },
+        {
+          "introducedAt": "1.0",
+          "name": "visionOS"
+        }
+      ],
+      "path": ".cache/recovery/20261016-build21/api-targettimestamp.json",
+      "sha256": "85b945e478ea5d06cceefdf7fa69772a481e6ab8f4e78bded8bc7c5936284bfc"
+    },
+    {
+      "url": "https://developer.apple.com/tutorials/data/documentation/quartzcore/cadisplaylink/preferredframeraterange.json",
+      "title": "preferredFrameRateRange",
+      "platforms": [
+        {
+          "introducedAt": "15.0",
+          "name": "iOS"
+        },
+        {
+          "introducedAt": "15.0",
+          "name": "iPadOS"
+        },
+        {
+          "introducedAt": "15.0",
+          "name": "Mac Catalyst"
+        },
+        {
+          "introducedAt": "14.0",
+          "name": "macOS"
+        },
+        {
+          "introducedAt": "15.0",
+          "name": "tvOS"
+        },
+        {
+          "introducedAt": "1.0",
+          "name": "visionOS"
+        }
+      ],
+      "path": ".cache/recovery/20261016-build21/api-frameraterange.json",
+      "sha256": "25cffc4ca4bec12914d035465887ecd52745eda49752b4d42b5f4481a03dc9e4"
+    },
+    {
+      "url": "https://developer.apple.com/tutorials/data/documentation/uikit/uigesturerecognizer/touchesbegan(_:with:).json",
+      "title": "touchesBegan(_:with:)",
+      "platforms": [
+        {
+          "name": "iOS"
+        },
+        {
+          "name": "iPadOS"
+        },
+        {
+          "name": "Mac Catalyst"
+        },
+        {
+          "name": "tvOS"
+        },
+        {
+          "name": "visionOS"
+        }
+      ],
+      "path": ".cache/recovery/20261016-build21/api-touchesbegan.json",
+      "sha256": "c331265230d841a6626f6633598b3db60c16d2e6d4d1d8c40e378aea13b076d1"
+    },
+    {
+      "url": "https://developer.apple.com/tutorials/data/documentation/uikit/uiapplication/isidletimerdisabled.json",
+      "title": "isIdleTimerDisabled",
+      "platforms": [
+        {
+          "introducedAt": "2.0",
+          "name": "iOS"
+        },
+        {
+          "introducedAt": "2.0",
+          "name": "iPadOS"
+        },
+        {
+          "introducedAt": "13.1",
+          "name": "Mac Catalyst"
+        },
+        {
+          "name": "tvOS"
+        },
+        {
+          "introducedAt": "1.0",
+          "name": "visionOS"
+        }
+      ],
+      "path": ".cache/recovery/20261016-build21/api-idletimer.json",
+      "sha256": "adf02bbbbdbd9f2364190bbfc0c64e78cfcc69a7cafefbdba960eb9a9cc186df"
+    }
+  ],
+  "externalCodeCopied": false,
+  "dependencyChanged": false
+}

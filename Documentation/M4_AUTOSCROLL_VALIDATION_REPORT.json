@@ -1,5 +1,5 @@
 {
-  "stage": "Build21 Windows validated source candidate; Apple compilation pending",
+  "stage": "Build21 working corrections added after read-only review; old fc68 CI still running, corrections not compiled",
   "branch": "codex/m4-reading-appearance",
   "priorSnapshot": "02ecc4601e6578b35a7585fcf898d45d25a89bfc",
   "preservedPackages": [
@@ -180,7 +180,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2247,7 +2247,8 @@
   ],
   "oldTestBodiesPreserved": 49,
   "newTests": 12,
-  "sourceRevision": "5abe86c3e5a7bf2e4220a62b70e008018295993d",
-  "run": 38857983539,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539"
+  "sourceRevision": "fc68f13e3bcb68c72d7b35ca492511874c182a2d",
+  "run": 38858126400,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38858126400",
+  "linuxCoreTests": 127
 }

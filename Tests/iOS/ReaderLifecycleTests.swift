@@ -6,6 +6,35 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings() async throws {
+        let (_, services, engine, model) = try await context()
+        let started = expectation(description: "ready to test speed write failure")
+        engine.onOpenStarted = { started.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [started], timeout: 2); engine.finishOpen(); await opening.value
+        model.showAutomaticScroll(); await model.saveNow()
+        let url = try services.files.resolve("Preferences/interaction-v1.json")
+        let original = try Data(contentsOf: url)
+        try FileManager.default.removeItem(at: url)
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
+        model.startAutomaticScroll(); model.adjustAutomaticScrollSpeed(by: 0.5)
+        let failureDeadline = Date().addingTimeInterval(2)
+        while model.interactionSaveFailure == nil && Date() < failureDeadline { try await Task.sleep(nanoseconds: 10_000_000) }
+        XCTAssertNotNil(model.interactionSaveFailure); XCTAssertEqual(model.automaticScrollState, .paused)
+        XCTAssertTrue(model.automaticScrollPresented)
+        var isDirectory: ObjCBool = false
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory)); XCTAssertTrue(isDirectory.boolValue)
+        try FileManager.default.removeItem(at: url); try original.write(to: url)
+        model.retryInteractionSave()
+        let retryDeadline = Date().addingTimeInterval(2)
+        while model.interactionSaveFailure != nil && Date() < retryDeadline { try await Task.sleep(nanoseconds: 10_000_000) }
+        XCTAssertNil(model.interactionSaveFailure)
+        let restored = try await services.files.readingInteraction(); XCTAssertEqual(restored.automaticScrollSpeed, 2)
+        XCTAssertEqual(model.automaticScrollState, .paused, "A successful retry must not resume movement")
+        model.startAutomaticScroll(); engine.onError?("原创测试读取失败")
+        XCTAssertEqual(model.automaticScrollState, .paused); XCTAssertEqual(model.errorMessage, "原创测试读取失败")
+        model.close()
+    }
     @MainActor func testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen() async throws {
         let (_, services, engine, model) = try await context()
         let started = expectation(description: "ready for slow scroll")

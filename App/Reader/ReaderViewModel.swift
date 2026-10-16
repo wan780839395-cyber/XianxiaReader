@@ -67,7 +67,10 @@ enum ReaderMode: CaseIterable, Hashable {
             guard let self, self.openRequestID != nil, self.isReady, self.interaction.autoHideMenu else { return }
             self.menuVisible = false
         }
-        engine?.onError = { [weak self] message in self?.errorMessage = message }
+        engine?.onError = { [weak self] message in
+            self?.pauseAutomaticScroll()
+            self?.errorMessage = message
+        }
         engine?.onPositionChanged = { [weak self] position in
             guard let self, self.openRequestID != nil else { return }
             self.position = position
@@ -198,7 +201,10 @@ enum ReaderMode: CaseIterable, Hashable {
             do {
                 try await files.saveReadingInteraction(value)
                 self?.interactionSaveFailure = nil
-            } catch { self?.interactionSaveFailure = "阅读手感尚未保存：\(error.localizedDescription)" }
+            } catch {
+                self?.pauseAutomaticScroll()
+                self?.interactionSaveFailure = "阅读手感尚未保存：\(error.localizedDescription)"
+            }
         }
     }
 
@@ -274,7 +280,7 @@ enum ReaderMode: CaseIterable, Hashable {
 
     private func persist(_ position: ReadingPosition) async {
         do { try await services.repository.save(position) }
-        catch { errorMessage = "阅读进度未能写入：\(error.localizedDescription)" }
+        catch { pauseAutomaticScroll(); errorMessage = "阅读进度未能写入：\(error.localizedDescription)" }
     }
 
     func showAutomaticScroll() {

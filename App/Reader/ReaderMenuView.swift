@@ -137,9 +137,13 @@ import XianxiaCore
                     Image(systemName: "xmark").frame(width: 44, height: 44)
                 }.accessibilityLabel("退出慢滚").accessibilityIdentifier("reader.autoscroll.close")
             }
-            Text(reduceMotion ? "减少动态效果已开启，慢滚停用" : "\(automaticScrollStatus) · 屏/分 · 轻触正文暂停")
+            Text(model.interactionSaveFailure ?? (reduceMotion ? "减少动态效果已开启，慢滚停用" : "\(automaticScrollStatus) · 屏/分 · 轻触正文暂停"))
                 .font(.caption).foregroundStyle(palette.secondaryText)
                 .accessibilityIdentifier("reader.autoscroll.status")
+            if model.interactionSaveFailure != nil {
+                Button("重试保存") { model.retryInteractionSave() }.frame(minHeight: 44)
+                    .accessibilityIdentifier("reader.autoscroll.retry-save")
+            }
         }
         .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
         .padding(.horizontal, 12).padding(.vertical, 10)

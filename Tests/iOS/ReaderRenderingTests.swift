@@ -61,11 +61,13 @@ final class ReaderRenderingTests: XCTestCase {
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
-        try await waitUntil { self.view(identifier: "readium.chapter.2", in: engine.viewController.view) != nil }
         let scroll = try continuousScroll(engine)
+        let first = try XCTUnwrap(view(identifier: "readium.chapter.1", in: scroll))
+        let height = scroll.bounds.height - scroll.contentInset.top - scroll.contentInset.bottom
+        scroll.contentOffset.y = first.frame.maxY - height * 1.75 - scroll.contentInset.top
         try await waitUntil {
             guard let wrapper = self.view(identifier: "readium.chapter.2", in: engine.viewController.view) else { return false }
-            return wrapper.frame.height > 100
+            return abs(wrapper.frame.minY - first.frame.maxY) < 2 && wrapper.frame.height > 100
         }
         let second = try XCTUnwrap(view(identifier: "readium.chapter.2", in: engine.viewController.view))
         scroll.contentOffset.y = second.frame.minY - scroll.bounds.height - scroll.contentInset.top - 80

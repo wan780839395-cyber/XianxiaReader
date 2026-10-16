@@ -21,12 +21,15 @@ final class TXTReadingTests: XCTestCase {
         let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
             locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(resource.startByte)")]))
         try await engine.go(to: TXTPositionCodec.encode(initial, bookID: book.id, plan: prepared.plan))
+        let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
+        let current = try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))
+        let height = scroll.bounds.height - scroll.contentInset.top - scroll.contentInset.bottom
+        scroll.contentOffset.y = current.frame.maxY - height * 1.75 - scroll.contentInset.top
         try await wait("next TXT window ready") {
             guard let wrapper = self.view("readium.chapter.2", root: engine.viewController.view) else { return false }
-            return wrapper.frame.height > window.bounds.height
+            return abs(wrapper.frame.minY - current.frame.maxY) < 2 && wrapper.frame.height > window.bounds.height
         }
         let next = try XCTUnwrap(view("readium.chapter.2", root: engine.viewController.view))
-        let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
         scroll.contentOffset.y = next.frame.minY - scroll.contentInset.top - 30
         try engine.startAutomaticScroll(screensPerMinute: 6)
         try await wait("slow scroll crossed bounded TXT resource") {

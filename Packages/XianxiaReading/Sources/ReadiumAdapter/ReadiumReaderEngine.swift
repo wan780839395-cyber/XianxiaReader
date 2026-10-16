@@ -366,6 +366,7 @@ extension ReadiumReaderEngine {
         guard !interaction.reduceMotion, !UIAccessibility.isReduceMotionEnabled,
               !UIAccessibility.isVoiceOverRunning else { throw AutomaticScrollFailure.accessibility }
         guard screensPerMinute.isFinite, (0.5...6).contains(screensPerMinute),
+              UIApplication.shared.applicationState == .active,
               let navigator, openRequestID != nil, supportsContinuousScrolling,
               preferences.infiniteScroll == true, !interaction.verticalScreenPaging,
               modeChangeTask == nil, navigator.automaticScrollViewportHeight != nil else {
@@ -441,6 +442,7 @@ extension ReadiumReaderEngine {
     // after pause, close, speed change, a new book or a second explicit start.
     func advanceAutomaticScroll(at timestamp: TimeInterval, request: UUID) {
         guard automaticScrollSessionID == request, automaticScrollState.isActive,
+              UIApplication.shared.applicationState == .active,
               let navigator, let height = navigator.automaticScrollViewportHeight else {
             if automaticScrollSessionID == request { pauseAutomaticScroll() }
             return

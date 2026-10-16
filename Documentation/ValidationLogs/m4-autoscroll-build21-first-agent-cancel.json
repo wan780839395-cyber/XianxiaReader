@@ -1,0 +1,399 @@
+{
+  "reason": "Agent added screen-awake lifecycle before Apple work; cancellation is not a compilation failure",
+  "actualRun": {
+    "conclusion": "",
+    "headSha": "5abe86c3e5a7bf2e4220a62b70e008018295993d",
+    "jobs": [
+      {
+        "completedAt": "2026-10-16T05:51:50Z",
+        "conclusion": "success",
+        "databaseId": 116833644995,
+        "name": "repository-checks",
+        "startedAt": "2026-10-16T05:51:41Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-16T05:51:42Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-16T05:51:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:44Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-16T05:51:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:44Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-16T05:51:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:46Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-16T05:51:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-16T05:51:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539/job/116833644995"
+      },
+      {
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "databaseId": 116833704374,
+        "name": "core-tests",
+        "startedAt": "2026-10-16T05:51:53Z",
+        "status": "in_progress",
+        "steps": [
+          {
+            "completedAt": "2026-10-16T05:51:55Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-16T05:51:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:22Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-16T05:51:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:23Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-16T05:52:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:32Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-16T05:52:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:52Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-16T05:52:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:09Z",
+            "conclusion": "cancelled",
+            "name": "Measure Release TXT cold import and bounded long-book reopen",
+            "number": 6,
+            "startedAt": "2026-10-16T05:52:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:10Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 7,
+            "startedAt": "2026-10-16T05:53:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-10-16T05:53:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-10-16T05:53:11Z",
+            "status": "in_progress"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539/job/116833704374"
+      }
+    ],
+    "status": "in_progress"
+  },
+  "finalActualRun": {
+    "conclusion": "cancelled",
+    "headSha": "5abe86c3e5a7bf2e4220a62b70e008018295993d",
+    "jobs": [
+      {
+        "completedAt": "2026-10-16T05:51:50Z",
+        "conclusion": "success",
+        "databaseId": 116833644995,
+        "name": "repository-checks",
+        "startedAt": "2026-10-16T05:51:41Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-16T05:51:42Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-16T05:51:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:44Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-16T05:51:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:44Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-16T05:51:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:46Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-16T05:51:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-16T05:51:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:51:47Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-16T05:51:47Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539/job/116833644995"
+      },
+      {
+        "completedAt": "2026-10-16T05:53:14Z",
+        "conclusion": "cancelled",
+        "databaseId": 116833704374,
+        "name": "core-tests",
+        "startedAt": "2026-10-16T05:51:53Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-16T05:51:55Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-16T05:51:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:22Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-16T05:51:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:23Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-16T05:52:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:32Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-16T05:52:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:52:52Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-16T05:52:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:09Z",
+            "conclusion": "cancelled",
+            "name": "Measure Release TXT cold import and bounded long-book reopen",
+            "number": 6,
+            "startedAt": "2026-10-16T05:52:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:10Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 7,
+            "startedAt": "2026-10-16T05:53:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-10-16T05:53:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:11Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-10-16T05:53:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-16T05:53:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-16T05:53:11Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539/job/116833704374"
+      },
+      {
+        "completedAt": "2026-10-16T05:53:14Z",
+        "conclusion": "cancelled",
+        "databaseId": 116834088140,
+        "name": "ios",
+        "startedAt": "2026-10-16T05:53:15Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539/job/116834088140"
+      }
+    ],
+    "status": "completed"
+  },
+  "actualUnfinishedStage": "Agent cancelled Linux Release TXT performance step; Core compilation/tests had passed. Apple job never executed.",
+  "logCLIError": "gh run view --log queried never-started iOS job and returned log not found; actual run log ZIP fetched via REST instead.",
+  "fullLogArchive": {
+    "path": ".cache/recovery/20261016-build21/first-cancel-logs.zip",
+    "sha256": "978444bf73a04e92dad70e1c70a0be0fe9f357db6e0aa459608e883c229a78c4",
+    "zipCRC": true,
+    "entries": [
+      "1_core-tests.txt",
+      "core-tests/system.txt",
+      "core-tests/1_Set up job.txt",
+      "core-tests/2_Initialize containers.txt",
+      "core-tests/3_Run actions_checkout@v4.txt",
+      "core-tests/4_Install SQLite development headers inside test container.txt",
+      "core-tests/5_Compile and test Core with official Swift toolchain.txt",
+      "core-tests/6_Measure Release TXT cold import and bounded long-book reopen.txt",
+      "core-tests/7_Upload Core compilation and test logs.txt",
+      "core-tests/13_Post Run actions_checkout@v4.txt",
+      "core-tests/14_Stop containers.txt",
+      "core-tests/15_Complete job.txt",
+      "2_repository-checks.txt",
+      "repository-checks/system.txt",
+      "repository-checks/1_Set up job.txt",
+      "repository-checks/2_Run actions_checkout@v4.txt",
+      "repository-checks/3_Run actions_setup-python@v5.txt",
+      "repository-checks/4_Install static validation dependencies.txt",
+      "repository-checks/5_Validate repository and Swift syntax.txt",
+      "repository-checks/6_Test simulator selection and IPA packaging safeguards.txt",
+      "repository-checks/11_Post Run actions_setup-python@v5.txt",
+      "repository-checks/12_Post Run actions_checkout@v4.txt",
+      "repository-checks/13_Complete job.txt"
+    ]
+  }
+}
