@@ -13,3 +13,7 @@ Build24第一可恢复子步：六款字体原件及原OFL已按官方固定revi
 Build24构建/测试前检查点：六字体原件/OFL、后台单CGFont+12PNG原字形预览、六行样式选择、字号前置、字距/字重/0–4字缩进与更宽行段距/留白已接入；旧字体UUID/reading-v1兼容。新增2Core、2集成（六字体CoreText PNG/真实Readium全部六字体+CSS+完整位置）、1真UI六款浏览/排版持久化，旧测试主体保持。现在Windows语法/17工具与源码冻结；尚未Apple编译或Build24交付，Build23原件全部保留。
 
 Windows435语法新增0/54既有限制、17工具通过；受改38原测试主体保持、5新增、532编译/资源blob已冻。预期Core135各/iOS137=117集成+20UI，严格Release24；现在创建私有index快照与独立验证ref codex/m4-font-browser，再dispatch唯一完整CI。现有普通HEAD/空index/M2/M3保持。字体来源/API/缓存与后续边界已写READING_FONT_BROWSER_DESIGN.md。
+
+实际已dispatch唯一CI 38950061245 / 3a97ebc1dab142b9b4ed67ec254f95bab3696fef / https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245。接下来只核此源完整新门槛；不重复dispatch、不改冻结运行源码。系统新增AGENTS本地CI清理要求已读：历史大产物已由独立清理操作收敛（local-disk-cleanup-2026-10-17.json），最新Build23完整诊断仍在，源码/安装包/恢复备份未删。以前“所有旧大原件都仍在本地”的描述已被清理回执取代。当前D约53GiB可用；本轮分块合并CRC后清分块、完整解压确认后清重复ZIP，旧版本仅保留日志/summary/metadata/验证记录，交付包与快照保留。
+
+补强新预览的高清/错误状态：3a97ebc/38950061245仍独立完整运行（已Linux135），不把它写源码失败或取消。代码审查发现新预览固定2x会在3x设备放大，且AX在失败时仍报正在准备；新候选改3x短字形和准确不可用/失败朗读状态，真实PNG宽度断言900保留实际墨迹/6不同字库。仅这两运行行+新测试预期更新；需重新Windows冻结/新ref全CI，旧轮跑完保留文字诊断，门槛不继承。

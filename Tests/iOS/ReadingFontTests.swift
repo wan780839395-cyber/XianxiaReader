@@ -19,7 +19,7 @@ final class ReadingFontTests: XCTestCase {
             let png = try await renderer.render(request), cached = try await renderer.render(request)
             XCTAssertEqual(png, cached)
             let image = try XCTUnwrap(UIImage(data: png)), cg = try XCTUnwrap(image.cgImage)
-            XCTAssertEqual(cg.width, 600); XCTAssertGreaterThan(cg.height, 50)
+            XCTAssertEqual(cg.width, 900); XCTAssertGreaterThan(cg.height, 50)
             let pixels = try XCTUnwrap(cg.dataProvider?.data) as Data
             XCTAssertGreaterThan(Set(pixels).count, 20, "Real glyph ink must be present")
             XCTAssertTrue(digests.insert(SHA256.hash(data: png).map { String(format: "%02x", $0) }.joined()).inserted)

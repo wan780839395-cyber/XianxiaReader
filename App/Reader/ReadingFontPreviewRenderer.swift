@@ -70,7 +70,7 @@ actor ReadingFontPreviewRenderer {
             NSAttributedString.Key(kCTForegroundColorAttributeName as String): color(request.textRGB)
         ]
         let framesetter = CTFramesetterCreateWithAttributedString(NSAttributedString(string: text, attributes: attributes) as CFAttributedString)
-        let width: CGFloat = 300, inset: CGFloat = 2, scale: CGFloat = 2
+        let width: CGFloat = 300, inset: CGFloat = 2, scale: CGFloat = 3
         let measured = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0, length: 0), nil,
             CGSize(width: width - inset * 2, height: 1000), nil)
         let height = min(240, max(26, ceil(measured.height) + 8))

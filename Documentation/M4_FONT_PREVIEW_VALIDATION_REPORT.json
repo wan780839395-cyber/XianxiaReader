@@ -209,7 +209,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": null,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -337,11 +337,11 @@
     },
     {
       "path": "App/Reader/ReadingFontPreview.swift",
-      "sha256": "bf7ea754307849fd82f26bf1cb6e8b54cf87d6a8ef92484e570aefd739f2b451"
+      "sha256": "8676659dc624f524dca8c526957898b1ab04006be01411b631b92c83efa44439"
     },
     {
       "path": "App/Reader/ReadingFontPreviewRenderer.swift",
-      "sha256": "020061d0d8e2fea73611ff28a0ab48ce2c646b21771c3e98b14bc3bdd1b8fcf3"
+      "sha256": "85fc8db9676875b22c99a6ca092e63ca065b2f088712d4c2b250be9f063a4020"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -825,7 +825,7 @@
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "sha256": "08f24904b9475da9d9a37b2a088bc02087282838045dd2088a7b406868f78ace"
+      "sha256": "3d6db3e15421502ca81152c3afbee272e6f7145760618d42fb1ab5ab4d963016"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -2368,8 +2368,11 @@
     "App/Resources/ThirdPartyNotices.txt",
     "Documentation/HANDOFF_BUILD23_DELIVERY_2026-10-17.md",
     "Documentation/M4_FONT_PREVIEW_VALIDATION_REPORT.json",
+    "Documentation/READING_FONT_BROWSER_DESIGN.md",
     "Documentation/ValidationLogs/local-disk-cleanup-2026-10-17.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-start.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-windows.json",
     "HANDOFF.md",
     "PROJECT_STATUS.md",
     "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
@@ -2386,5 +2389,16 @@
   "expectedCore": 135,
   "expectedIOS": 137,
   "expectedIntegration": 117,
-  "expectedUI": 20
+  "expectedUI": 20,
+  "run": 38950061245,
+  "sourceRevision": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+  "branch": "codex/m4-font-browser",
+  "latestRun": {
+    "conclusion": "",
+    "databaseId": 38950061245,
+    "headSha": "3a97ebc1dab142b9b4ed67ec254f95bab3696fef",
+    "status": "queued",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38950061245"
+  },
+  "linuxCoreTests": 135
 }

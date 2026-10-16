@@ -31,7 +31,7 @@ struct ReadingFontPreview: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("字体字形样例")
         .accessibilityIdentifier("reader.font.preview." + (resource?.asset.id.uuidString ?? systemFont.rawValue))
-        .accessibilityValue(png == nil ? "正在准备" : "字形已就绪")
+        .accessibilityValue(unavailable ? "字体文件暂不可用" : (failure ?? (png == nil ? "正在准备" : "字形已就绪")))
         .task(id: request) {
             png = nil; failure = nil
             guard !unavailable else { return }
