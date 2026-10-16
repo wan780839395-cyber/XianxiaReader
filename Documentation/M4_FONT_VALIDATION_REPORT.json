@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
+  "stage": "Build23 resource-font layout/ready correction full CI pending; prior runs preserved",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -2356,10 +2356,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "277dca99bde3eabb9eb657ce4ee50e6adf537baa",
-  "run": 38887978313,
-  "branch": "codex/m4-bundled-fonts",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38887978313",
+  "sourceRevision": "43e837bece74bfc930d774e36b3834e96f6f18d5",
+  "run": 38890891607,
+  "branch": "codex/m4-font-settling",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38890891607",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2417,7 +2417,7 @@
     ],
     "fullLogSHA256": "5c0b784b3f7be617519b36053b5cf9902bb31062e3abdd36ca1e81f96cb51822"
   },
-  "latestFailure": "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
+  "latestFailure": "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
   "priorFailedSource": "149caa08c600999f5b53b74e0900eb1b405b7e8a",
   "priorImportOnlyRun": {
     "run": 38886008057,
@@ -2431,5 +2431,11 @@
     "to": "e7586a8067515a911d09ac4abf31fd4577fb695b",
     "runtimeUnchanged": true
   },
-  "userExtendedBuiltinsAfterThirdDispatch": true
+  "userExtendedBuiltinsAfterThirdDispatch": true,
+  "priorBundledCandidate": {
+    "run": 38887978313,
+    "source": "277dca99bde3eabb9eb657ce4ee50e6adf537baa",
+    "completionPending": true,
+    "scope": "Two built-in fonts, without subsequent resource-font typography/ready correction"
+  }
 }

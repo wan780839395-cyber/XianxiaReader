@@ -2,6 +2,10 @@
 
 ## 实际最新断点（先看这里）
 
+恢复核实值（更新）：主43e837/38890891607的Linux133与四Release TXT探针原件artifact12042260878已CRC核，settling-linux.json记录；Apple仍pending，唯一主watcher74374。277/38887978313由watcher74660独立取最终原件（不含后续修正）；e758/38886008057已真实128/131失败/Release未执行、原件下载99454和watcher71340均已结束。当前仍522源冻结/16新增/预期134 iOS；最终采用deliver_bundled_fonts.py，不用旧deliver_font.py。验证helper已核134/19视频、16新Preview与两个内置原件/许可逐字节；这些均为预备条件，尚未实际全过/打包。
+
+当前主候选已实际dispatch：43e837bece74bfc930d774e36b3834e96f6f18d5 / codex/m4-font-settling / CI38890891607，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38890891607 。433/17与35旧主体/16新增/522源blob已核，预期Core133各/iOS134=115集成+19UI，gates全部重置pending。两Vendor Swift改动已按实际原字节更新UPSTREAM及README，公开WK API和W3C fonts.ready已核，无依赖/锁/JS资产变更。先前277/38887978313仍独立跑，主结果只按新38890891607原件；不重复dispatch。尚无Build23 IPA。
+
 新的实际断点：扩展前e758/38886008057真实failure，131中128过3失败/0跳过，旧124全过，Core133各/编译诊断0，Release未执行；1.205GB诊断CRC/structured summary/原log已保留（import-only-third-result.json）。新EPUB已过实际TTF加载与导入后锚点，连续150%重排落到p16；新TXT初始定位超时（构造位置仅selector无fragment，3.11普通导航使用fragment/text/progression），新字体UI单次下滑未到theme。正在按已核Readium3.11完整锚点重载路径+W3C FontFaceSet.ready/Apple公开异步JS补资源字体排版/首次定位，保留系统连续实时路径、15秒上限/取消/可见错误；加真实关闭迟到font-ready回归，TXT用成熟fragment构造，UI滚到真实目标。16新增/预期134 iOS，原35主体仍保持待Windows重核。内置277/38887978313继续跑完取原件，但其源码尚不含此修正，不能作最终门槛。接下来重冻源码另ref完整新CI，不取消已有运行、不交付待编译源码。
 
 2026-10-16T10:38:04.075370+00:00。用户新增“可以内置几个字体”，本轮已实现内置思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530与本地导入；两原字库50,472,272B，固定官方revision/摘要/原OFL已核，App只读Bundle URL按需加载，不占12用户导入名额（Adapter≤14faces/正文窗口仍≤12）。尚未交付，Build22仍安装基线，禁止把源码候选当验收。
