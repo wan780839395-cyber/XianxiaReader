@@ -1,0 +1,45 @@
+{
+  "recordedAtUTC": "2026-10-16T09:38:18.656624+00:00",
+  "sourceRevision": "149caa08c600999f5b53b74e0900eb1b405b7e8a",
+  "run": 38881623233,
+  "lockedReadiumVersion": "3.11.0",
+  "minimumIOS": "16.0",
+  "references": [
+    {
+      "url": "https://github.com/readium/swift-toolkit/blob/develop/docs/Guides/Navigator/EPUB%20Fonts.md",
+      "use": "Official font declarations; exact signatures verified against vendored 3.11 source, not develop assumed compatible"
+    },
+    {
+      "url": "https://readium.org/css/docs/CSS10c-custom_fonts.html",
+      "use": "Per-resource font face and CSS user font family"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:)",
+      "use": "Public file descriptor validation, iOS7 onward"
+    }
+  ],
+  "unchangedFromBuild22": [
+    "Package.resolved",
+    "scripts/ci_ios.sh",
+    ".github/workflows/ios-build.yml",
+    "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTPositionCodec.swift",
+    "App/Search/ReaderSearchViewModel.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "fontFixture": {
+    "path": "Tests/Fixtures/Fonts/iAWriterDuospace-Regular.ttf",
+    "bytes": 81636,
+    "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a",
+    "source": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/fonts/iAWriterDuospace-Regular.ttf",
+    "license": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md"
+  },
+  "newTests": 13,
+  "oldTestBodiesPreserved": 35,
+  "sourceBlobs": 515,
+  "actualOTFRenderingTested": false,
+  "largeChineseFontPerformanceAccepted": false,
+  "sourceHashMethod": "Git-filtered source blobs, raw inventory file bytes separately verified",
+  "UIAcceptanceBoundary": "Seed font through actual service; native selection, cancel, persistence, dark and reset; valid system provider selection is not covered by this UI test"
+}
