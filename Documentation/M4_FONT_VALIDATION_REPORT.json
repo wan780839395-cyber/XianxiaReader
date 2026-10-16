@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
+  "stage": "Build23 font compatibility candidate full CI pending; broken overlay eliminated",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -2360,10 +2360,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "255537fe9cda12601c7b414149e8bec7337e93e4",
-  "run": 38893802693,
-  "branch": "codex/m4-font-routes",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38893802693",
+  "sourceRevision": "7ab2e457c82f1193e707c3c85ca5ffd27b76b110",
+  "run": 38901198541,
+  "branch": "codex/m4-font-compatibility",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38901198541",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2447,24 +2447,38 @@
   "priorSettlingCandidate": {
     "run": 38890891607,
     "source": "43e837bece74bfc930d774e36b3834e96f6f18d5",
-    "completionPending": true,
+    "completionPending": false,
     "runtimeSameAsCurrent": false,
     "differences": "Only one new test file and source-checkpoint metadata naming, plus docs",
-    "runtimeSameBeforeRouteFix": true
+    "runtimeSameBeforeRouteFix": true,
+    "conclusion": "failure",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-overlay-38890891607.json"
   },
   "priorReadyCandidate": {
     "run": 38892156952,
     "source": "bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7",
-    "completionPending": true,
+    "completionPending": false,
     "runtimeSameAsCurrent": false,
     "difference": "New TXT test helper now uses one atomic WebKit callback; prior source emitted a no-throw try warning",
-    "runtimeSameBeforeRouteFix": true
+    "runtimeSameBeforeRouteFix": true,
+    "conclusion": "cancelled",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-overlay-38892156952.json"
   },
   "priorViewportCandidate": {
     "run": 38892611316,
     "source": "2b5a156acaee634f820254473f2692e3a298c96b",
-    "completionPending": true,
+    "completionPending": false,
     "runtimeSameAsCurrent": false,
-    "difference": "Unique per-FileURL served font routes and two same-basename import regression added afterward"
+    "difference": "Unique per-FileURL served font routes and two same-basename import regression added afterward",
+    "conclusion": "failure",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-overlay-38892611316.json"
+  },
+  "priorRoutesCandidate": {
+    "run": 38893802693,
+    "source": "255537fe9cda12601c7b414149e8bec7337e93e4",
+    "completionPending": false,
+    "conclusion": "failure",
+    "reason": "Test host dyld missing libswiftWebKit before test execution",
+    "evidence": "Documentation/ValidationLogs/m4-font-build23-overlay-38893802693.json"
   }
 }

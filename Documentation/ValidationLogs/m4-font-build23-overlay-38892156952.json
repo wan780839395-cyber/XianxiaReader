@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-16T12:33:58.066980+00:00",
+  "run": 38892156952,
+  "sourceRevision": "bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7",
+  "conclusion": "cancelled",
+  "testSummary": null,
+  "compilerDiagnostics": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/TXTReadingTests.swift:91:34: warning: no calls to throwing functions occur within 'try' expression"
+  ],
+  "testBodyExecutionAccepted": false,
+  "reason": "Original dyld abort before integration-test bootstrapping: missing /usr/lib/swift/libswiftWebKit.dylib. UI process/element failures follow app launch abort. WebKit293831 official issue matches runtime18.5,min16,refined API.",
+  "reference": "https://bugs.webkit.org/show_bug.cgi?id=293831",
+  "cancelledByThisAgent": false,
+  "cancellationReason": "Not established; cancelled conclusion retained as such",
+  "releaseCommandExecuted": false,
+  "exits": [],
+  "originalLog": {
+    "path": "build/ci/38892156952/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "764fac44e59155c124ed86583ba18bced2db599a2776d492657310122d98e957"
+  }
+}
