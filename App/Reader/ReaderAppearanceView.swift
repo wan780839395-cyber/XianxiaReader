@@ -61,7 +61,7 @@ import XianxiaCore
                             .font(.footnote).frame(minHeight: 44)
                             .accessibilityIdentifier("reader.appearance.reset")
                     }.frame(maxWidth: .infinity)
-                }.padding(20)
+                }.padding(20).disabled(model.fontBusy)
             }
             .accessibilityIdentifier("reader.appearance.scroll")
             .background(palette.background)
@@ -75,6 +75,7 @@ import XianxiaCore
                         }
                     }
                     .font(.subheadline.weight(.medium)).frame(minHeight: 44)
+                    .disabled(model.fontBusy)
                     .accessibilityIdentifier("reader.appearance.done")
                 }
             }
@@ -82,6 +83,12 @@ import XianxiaCore
         .tint(palette.accent).foregroundStyle(palette.text)
         .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
         .presentationDetents([.large]).presentationDragIndicator(.visible)
+        .interactiveDismissDisabled(model.fontBusy)
+        .sheet(isPresented: $model.choosingFont) {
+            EPUBDocumentPicker(onCompletion: { [weak model] result in model?.receiveFontFiles(result) },
+                onCoordinatorCreated: { [weak model] value in model?.retainFontCoordinator(value) },
+                contentTypes: [.data], allowsMultipleSelection: false)
+        }
     }
 
     private func interactionBinding(_ key: WritableKeyPath<ReadingInteraction, Bool>) -> Binding<Bool> {
@@ -127,7 +134,7 @@ import XianxiaCore
             HStack {
                 Text("云海问道").font(.subheadline.weight(.medium))
                 Spacer()
-                Text("阅读预览").font(.caption2).opacity(0.6)
+                Text(model.appearance.importedFontID == nil ? "阅读预览" : "配色预览").font(.caption2).opacity(0.6)
             }
             Text("山风穿过竹林，云影落在书页间。")
                 .font(.system(size: 18 * model.appearance.fontScale,
@@ -150,12 +157,51 @@ import XianxiaCore
             }
             ReaderSettingsCard(palette: palette) {
                 sectionTitle("字体与字号", symbol: "textformat")
-                Picker("字体", selection: binding(\.font)) {
-                    ForEach(ReadingFont.allCases, id: \.self) { Text($0.title).tag($0) }
+                Picker("字体", selection: Binding<ReadingFont?>(get: { model.appearance.importedFontID == nil ? model.appearance.font : nil }, set: { if let font = $0 { model.selectBuiltInFont(font) } })) {
+                    ForEach(ReadingFont.allCases, id: \.self) { Text($0.title).tag(Optional($0)) }
                 }.pickerStyle(.segmented).accessibilityIdentifier("reader.font")
                 adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
                            key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
+                if let selected = model.importedFonts.first(where: { $0.id == model.appearance.importedFontID }) {
+                    Label("正文使用 \(selected.displayName)", systemImage: "checkmark.circle.fill")
+                        .font(.caption).foregroundStyle(palette.accent)
+                }
             }.disabled(!supportsText)
+            ReaderSettingsCard(palette: palette) {
+                sectionTitle("我的字体", symbol: "textformat.abc")
+                ForEach(model.importedFonts) { font in
+                    Button { model.selectImportedFont(font.id) } label: {
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(font.displayName).font(.subheadline).lineLimit(2)
+                                Text(ByteCountFormatter.string(fromByteCount: font.bytes, countStyle: .file))
+                                    .font(.caption).foregroundStyle(palette.secondaryText)
+                            }
+                            Spacer(minLength: 8)
+                            Image(systemName: model.appearance.importedFontID == font.id ? "checkmark.circle.fill" : "circle")
+                                .foregroundStyle(palette.accent)
+                        }.frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+                    }
+                    .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+                    .accessibilityIdentifier("reader.font.imported.\(font.id.uuidString)")
+                    .accessibilityValue(model.appearance.importedFontID == font.id ? "已选择" : "未选择")
+                }
+                if model.fontBusy { ProgressView("正在导入字体并恢复阅读位置…").font(.footnote) }
+                else {
+                    Button { model.choosingFont = true } label: {
+                        Label("导入字体", systemImage: "plus").font(.subheadline.weight(.medium))
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+                    .accessibilityIdentifier("reader.font.import")
+                }
+                Text("支持 TTF、OTF 单字体，每个不超过 32 MB。缺少的字会使用系统字体补全。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+                if let message = model.fontMessage {
+                    Text(message).font(.footnote).foregroundStyle(palette.secondaryText)
+                        .accessibilityIdentifier("reader.font.message")
+                }
+            }.disabled(!supportsText || model.engine?.fontProvider == nil || model.fontBusy)
         }
     }
 

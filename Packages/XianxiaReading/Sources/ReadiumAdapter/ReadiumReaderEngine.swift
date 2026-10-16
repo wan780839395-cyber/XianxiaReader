@@ -16,7 +16,7 @@ import XianxiaCore
     }
 }
 
-@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, ReaderInteractionProviding, ReaderAutomaticScrollProviding, EPUBNavigatorDelegate {
+@MainActor public final class ReadiumReaderEngine: NSObject, ReaderEngine, ReaderAppearanceProviding, ReaderFontProviding, ReaderInteractionProviding, ReaderAutomaticScrollProviding, EPUBNavigatorDelegate {
     private let host = UIViewController()
     private let loader = ReadiumPublicationLoader()
     private let txtLoader = TXTReadiumPublicationLoader()
@@ -24,6 +24,28 @@ import XianxiaCore
     private var txtReading: TXTPreparedPublication?
     private let additionalUserScripts: [WKUserScript]
     private var navigator: EPUBNavigatorViewController?
+    private var readingFonts: [ReaderFontResource] = []
+    public var fontProvider: (any ReaderFontProviding)? { self }
+
+    public func setReadingFonts(_ fonts: [ReaderFontResource]) throws {
+        guard navigator == nil, fonts.count <= 12, Set(fonts.map { $0.asset.id }).count == fonts.count else {
+            throw ReaderPositionCaptureError.unavailable
+        }
+        for font in fonts {
+            _ = try font.asset.validated()
+            guard font.fileURL.isFileURL, FileURL(url: font.fileURL) != nil else { throw ReadingFontError.invalidFont }
+        }
+        readingFonts = fonts
+    }
+
+    private func fontDeclarations() throws -> [AnyHTMLFontFamilyDeclaration] {
+        try readingFonts.map { resource in
+            guard let file = FileURL(url: resource.fileURL) else { throw ReadingFontError.invalidFont }
+            return CSSFontFamilyDeclaration(fontFamily: FontFamily(rawValue: resource.asset.cssFamily),
+                fontFaces: [CSSFontFace(file: file, style: .normal, weight: .standard(.normal))])
+                .eraseToAnyHTMLFontFamilyDeclaration()
+        }
+    }
     private var bookID: UUID?
     private var openRequestID: UUID?
     private var modeChangeRequestID: UUID?
@@ -122,7 +144,8 @@ import XianxiaCore
         guard openRequestID == requestID else { throw CancellationError() }
         let navigator = try EPUBNavigatorViewController(publication: publication, initialLocation: locator,
             config: .init(preferences: preferences, disablePageTurnsWhileScrolling: true,
-                          preloadPreviousPositionCount: 1, preloadNextPositionCount: 2))
+                          preloadPreviousPositionCount: 1, preloadNextPositionCount: 2,
+                          fontFamilyDeclarations: try fontDeclarations()))
         supportsTextAppearance = publication.metadata.layout != .fixed
         supportsContinuousScrolling = publication.metadata.layout != .fixed
             && !navigator.settings.verticalText && navigator.settings.readingProgression == .ltr

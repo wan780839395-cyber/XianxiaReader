@@ -53,6 +53,12 @@ private enum LibraryFixtureError: Error { case preferencesUnavailable }
             defaults.set("recent", forKey: "library.sort.v1")
         }
         let model = LibraryViewModel(services: services, defaults: defaults)
+        if environment["XR_READER_UI_FONTS"] == "1" {
+            guard let url = Bundle.main.url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts") else {
+                throw ImportError.missingSample
+            }
+            _ = try await ReadingFontImportService(files: services.files).importFont(from: url)
+        }
         return Self(services: services, model: model,
                     reduceMotion: UIAccessibility.isReduceMotionEnabled || environment["XR_LIBRARY_UI_REDUCE_MOTION"] == "1")
     }

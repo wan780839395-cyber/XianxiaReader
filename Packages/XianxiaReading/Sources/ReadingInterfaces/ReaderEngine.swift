@@ -32,6 +32,7 @@ public protocol EPUBMetadataReading: Sendable {
     var onError: ((String) -> Void)? { get set }
     var searchProvider: (any ReaderSearchProviding)? { get }
     var appearanceProvider: (any ReaderAppearanceProviding)? { get }
+    var fontProvider: (any ReaderFontProviding)? { get }
     var interactionProvider: (any ReaderInteractionProviding)? { get }
     var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { get }
     var supportsContinuousScrolling: Bool { get }
@@ -54,6 +55,7 @@ public extension ReaderEngine {
     var currentChapters: [Chapter]? { nil }
     var searchProvider: (any ReaderSearchProviding)? { nil }
     var appearanceProvider: (any ReaderAppearanceProviding)? { nil }
+    var fontProvider: (any ReaderFontProviding)? { nil }
     var interactionProvider: (any ReaderInteractionProviding)? { nil }
     var automaticScrollProvider: (any ReaderAutomaticScrollProviding)? { nil }
     var supportsContinuousScrolling: Bool { false }
@@ -88,6 +90,18 @@ public enum ReaderAutomaticScrollState: Equatable, Sendable {
     /// False for fixed-layout publications. Initial preferences can be supplied before open.
     var supportsTextAppearance: Bool { get }
     func setAppearance(_ appearance: ReadingAppearance) throws
+}
+
+public struct ReaderFontResource: Equatable, Sendable {
+    public let asset: ReadingFontAsset
+    public let fileURL: URL
+    public init(asset: ReadingFontAsset, fileURL: URL) { self.asset = asset; self.fileURL = fileURL }
+}
+
+@MainActor public protocol ReaderFontProviding: AnyObject {
+    /// Supply an immutable catalogue before opening. Adding resources requires
+    /// a controlled reopen at a freshly captured complete text anchor.
+    func setReadingFonts(_ fonts: [ReaderFontResource]) throws
 }
 
 @MainActor public protocol ReaderEngineFactory {

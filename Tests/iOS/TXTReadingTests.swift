@@ -1,4 +1,5 @@
 import Foundation
+import ReadingInterfaces
 @testable import ReadiumAdapter
 import ReadiumShared
 import SwiftUI
@@ -9,6 +10,65 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class TXTReadingTests: XCTestCase {
+    @MainActor func testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont() async throws {
+        struct Factory: ReaderEngineFactory {
+            let engine: ReadiumReaderEngine
+            func makeEngine(for format: BookFormat) throws -> any ReaderEngine { engine }
+        }
+        let text = "第一章 字体\n" + String(repeating: "云海Wi🙂e\u{301}修行问道。", count: 10000) + "\n第二章 终点\n原创终点"
+        let (book, url, services, prepared) = try await self.prepared(text)
+        let original = try Data(contentsOf: url)
+        var interaction = ReadingInteraction(); interaction.continuousScrolling = true; interaction.reduceMotion = true
+        try await services.files.saveReadingInteraction(interaction)
+        let engine = ReadiumReaderEngine(storageRoot: services.files.root)
+        let window = try mount(engine)
+        let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
+        await model.open(); XCTAssertTrue(model.isReady)
+        try await wait("font TXT ready") { engine.currentPosition != nil && engine.continuousLoadedResourceCount > 0 }
+        let resource = prepared.plan.resources[1], byte = resource.startByte
+        let initial = Locator(href: try XCTUnwrap(AnyURL(string: resource.href)), mediaType: .xhtml,
+            locations: .init(otherLocations: ["cssSelector": .string("#txt-b\(byte)")]))
+        try await engine.go(to: TXTPositionCodec.encode(initial, bookID: book.id, plan: prepared.plan))
+        let target = try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first)
+        try await wait("font TXT paragraph ready") { abs((try await target.evaluateJavaScript("document.getElementById('txt-b\(byte)')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }
+        let scroll = try XCTUnwrap(view("readium.continuous-scroll", root: engine.viewController.view) as? UIScrollView)
+        scroll.contentOffset.y += 600
+        try await wait("font TXT nonzero position") { ((try await target.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        let captured = try await engine.captureCurrentPosition()
+        let (_, anchor, _) = try TXTPositionCodec.decode(captured, bookID: book.id, plan: prepared.plan)
+        XCTAssertGreaterThan(anchor.characterUTF16Offset, 100)
+        let script = """
+            (()=>{const n=document.getElementById('txt-b\(anchor.paragraphStartByte)')?.firstChild;if(!n)return 10000;
+            const r=document.createRange();r.setStart(n,\(anchor.characterUTF16Offset));r.setEnd(n,\(anchor.characterUTF16Offset+1));return r.getBoundingClientRect().top;})()
+            """
+        let beforeValue = try await target.evaluateJavaScript(script) as? Double, before = try XCTUnwrap(beforeValue)
+        let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
+        await model.importReadingFont(from: fontURL)
+        let font = try XCTUnwrap(model.importedFonts.first)
+        XCTAssertEqual(model.appearance.importedFontID, font.id)
+        let loaded = "Array.from(document.fonts).some(f=>f.family.includes('\(font.cssFamily)')&&f.status==='loaded') && getComputedStyle(document.querySelector('p')).fontFamily.includes('\(font.cssFamily)')"
+        func active() throws -> WKWebView { try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first) }
+        try await wait("actual TXT font loaded and exact anchor") {
+            let web = try active()
+            let hasFont = try await web.evaluateJavaScript(loaded) as? Bool == true
+            let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
+            return hasFont && abs(y - before) < 3
+        }
+        var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
+        model.setAppearance(updated)
+        try await wait("TXT imported font reflow preserves text") { abs(((try await active().evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3 }
+        await model.saveNow(); model.close(); await model.open()
+        try await wait("TXT imported font static reopen") {
+            let web = try active()
+            let hasFont = try await web.evaluateJavaScript(loaded) as? Bool == true
+            let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
+            return hasFont && abs(y - before) < 3
+        }
+        XCTAssertEqual(try Data(contentsOf: url), original); XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+        let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
+        image.name = "font-txt-byte-anchor-build23"; image.lifetime = .keepAlways; add(image)
+        model.close()
+    }
     @MainActor func testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen() async throws {
         let text = "第一章 回看\n" + String(repeating: "云海🙂e\u{301}修行问道。", count: 10000) + "\n第二章 尾声\n原创测试终点"
         let (book, url, services, prepared) = try await self.prepared(text)

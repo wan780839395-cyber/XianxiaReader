@@ -1,0 +1,27 @@
+{
+  "recordedAtUTC": "2026-10-16T09:24:15.056168+00:00",
+  "swiftFiles": 432,
+  "addedSyntaxDiagnostics": 0,
+  "upstreamGrammarLimitations": 54,
+  "swiftSyntaxExit": 0,
+  "toolingTests": 17,
+  "toolingExit": 0,
+  "appleCompilation": false,
+  "oldTestBodiesPreserved": 35,
+  "newTests": 13,
+  "sourceBlobs": 515,
+  "logs": [
+    {
+      "path": ".cache/recovery/20261016-build23/windows.log",
+      "sha256": "d52af8fb01ca389e95ff782fec141bf3a8b3ae7884ff164be7bd507bc3039702"
+    },
+    {
+      "path": ".cache/recovery/20261016-build23/tooling.log",
+      "sha256": "41498ee4b3b539f3adc38ee6f479116ad493ae5742f34e24ca1211b2565d3882"
+    },
+    {
+      "path": ".cache/recovery/20261016-build23/candidate.diff",
+      "sha256": "66d74d3160b109944382f7470188024a751f3442b5c50fa441a01ac6931a9379"
+    }
+  ]
+}

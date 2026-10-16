@@ -11,6 +11,9 @@ extension EPUBPreferences {
         case .serif: fontFamily = .serif
         case .sansSerif: fontFamily = .sansSerif
         }
+        if let id = appearance.importedFontID {
+            fontFamily = FontFamily(rawValue: "xrfont" + id.uuidString.lowercased().replacingOccurrences(of: "-", with: ""))
+        }
         fontSize = appearance.fontScale
         lineHeight = appearance.lineHeight
         paragraphSpacing = appearance.paragraphSpacing

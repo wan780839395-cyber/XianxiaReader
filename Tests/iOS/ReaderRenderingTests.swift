@@ -1,4 +1,5 @@
 @testable import ReadiumAdapter
+import ReadingInterfaces
 import SwiftUI
 import UIKit
 import WebKit
@@ -7,6 +8,75 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes() async throws {
+        struct Factory: ReadingInterfaces.ReaderEngineFactory {
+            let engine: ReadiumReaderEngine
+            func makeEngine(for format: BookFormat) throws -> any ReadingInterfaces.ReaderEngine { engine }
+        }
+        for continuous in [false, true] {
+            let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+            let services = try await AppServices.create(storageRoot: root)
+            addTeardownBlock { try FileManager.default.removeItem(at: root) }
+            let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+            let staged = try await services.files.stageEPUB(from: url)
+            let paths = try await services.files.finalize(staged, coverData: nil)
+            let book = Book(id: staged.id, title: "字体阅读", format: .epub, filePath: paths.filePath)
+            try await services.repository.insert(book, chapters: [])
+            var interaction = ReadingInteraction(); interaction.continuousScrolling = continuous; interaction.reduceMotion = true
+            try await services.files.saveReadingInteraction(interaction)
+            let engine = ReadiumReaderEngine(storageRoot: root)
+            let (window, state) = try mount(engine); state.visible = false
+            let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
+            await model.open(); XCTAssertTrue(model.isReady)
+            let navigator = try XCTUnwrap(engine.viewController.children.first)
+            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+            if continuous {
+                let scroll = try continuousScroll(engine)
+                let web = try resourceWebView(engine, index: 1)
+                try await waitUntil { abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }
+                scroll.contentOffset.y += 600
+                try await waitUntil { ((try await web.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+            } else { for _ in 0..<3 { await engine.turnPage(forward: true) } }
+            let original = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            let offsetValue = try await original.evaluateJavaScript("(() => { const r=document.caretRangeFromPoint(innerWidth*.2,2); return r?.startContainer.parentElement?.closest('#long-paragraph') ? r.startOffset : null; })()") as? Int
+            let character = try XCTUnwrap(offsetValue); XCTAssertGreaterThan(character, 100)
+            let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
+            await model.importReadingFont(from: fontURL)
+            let font = try XCTUnwrap(model.importedFonts.first)
+            XCTAssertEqual(model.appearance.importedFontID, font.id); XCTAssertFalse(model.fontBusy)
+            let anchorScript = """
+                (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;
+                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+                return b.left>=-1 && b.left<innerWidth && b.top>=-1 && b.bottom<=innerHeight+1;})()
+                """
+            let fontScript = """
+                (() => {const family='\(font.cssFamily)'; const p=document.getElementById('long-paragraph');
+                if(!p || !getComputedStyle(p).fontFamily.includes(family))return false;
+                if(!Array.from(document.fonts).some(f=>f.family.includes(family)&&f.status==='loaded'))return false;
+                const c=document.createElement('canvas').getContext('2d');c.font='30px '+family;const actual=c.measureText('iiiiWWWW').width;
+                c.font='30px serif';return Math.abs(actual-c.measureText('iiiiWWWW').width)>1;})()
+                """
+            func active() throws -> WKWebView {
+                continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            }
+            try await waitUntil { try await active().evaluateJavaScript(fontScript) as? Bool == true }
+            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
+            model.setAppearance(updated)
+            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            await model.saveNow(); model.close(); await model.open()
+            XCTAssertEqual(model.appearance.importedFontID, font.id)
+            try await waitUntil { try await active().evaluateJavaScript(fontScript) as? Bool == true }
+            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+            let evidence = XCTAttachment(string: "Actual served custom family=\(font.cssFamily); loaded FontFace and Latin canvas metric differs from serif; original long paragraph UTF16=\(character) remains visible after imported-font rebuild, 150% reflow and static reopen; continuous=\(continuous)")
+            evidence.name = "font-real-load-anchor-\(continuous)"; evidence.lifetime = .keepAlways; add(evidence)
+            let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
+            image.name = "font-epub-\(continuous ? "continuous" : "paged")-build23"; image.lifetime = .keepAlways; add(image)
+            model.close()
+        }
+    }
     @MainActor func testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes() async throws {
         for continuous in [false, true] {
             let engine = ReadiumReaderEngine()

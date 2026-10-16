@@ -109,12 +109,12 @@ public actor BookFileStore {
     /// On restart, remove interrupted staging and finalized imports absent from the DB.
     /// knownBookIDs must include recoverably removed books, not just the visible shelf.
     public func recoverImports(knownBookIDs: Set<UUID>) throws {
-        for prefix in ["Staging", "StagingCovers", "Books", "Cache/TXT"] {
+        for prefix in ["Staging", "StagingCovers", "StagingFonts", "Books", "Cache/TXT"] {
             let directory = try resolve(prefix)
             guard manager.fileExists(atPath: directory.path) else { continue }
             for child in try manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) {
                 guard let id = UUID(uuidString: child.lastPathComponent) else { continue }
-                if prefix == "Staging" || prefix == "StagingCovers" || !knownBookIDs.contains(id) {
+                if prefix == "Staging" || prefix == "StagingCovers" || prefix == "StagingFonts" || !knownBookIDs.contains(id) {
                     try manager.removeItem(at: resolve("\(prefix)/\(child.lastPathComponent)"))
                 }
             }
