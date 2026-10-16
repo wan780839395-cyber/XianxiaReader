@@ -1,5 +1,5 @@
 {
-  "stage": "Build22 first candidate failed:123/124 iOS, original reduced-motion UI menu-close assertion failed; new8 passed. Diagnostic download pending; Release not executed",
+  "stage": "Build22 unchanged507-runtime retry dispatched; first actual failure retained",
   "priorSnapshot": "c7593cec4cc758e44019e6fdc72056fa746ced1d",
   "preservedPackages": [
     {
@@ -2255,17 +2255,11 @@
   "expectedIOS": 124,
   "expectedIntegration": 107,
   "expectedUI": 17,
-  "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
-  "run": 38866913465,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38866913465",
+  "sourceRevision": "3cb1d220f324303a979d6dee5c6803f1c9a1bc38",
+  "run": 38871744221,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38871744221",
   "branch": "codex/m4-reading-appearance",
   "linuxCoreTests": 127,
-  "partialVerification": {
-    "linuxCorePassed": true,
-    "linuxReleaseTXTCases": 4,
-    "appleCompilationPending": true,
-    "evidence": "Documentation/ValidationLogs/m4-return-build22-linux.json"
-  },
   "priorFailedRun": {
     "run": 38866913465,
     "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
@@ -2278,5 +2272,12 @@
     "diagnosticDownloadPending": false,
     "evidence": "Documentation/ValidationLogs/m4-return-build22-first-failure.json",
     "unchangedRuntimeRetryPlanned": true
+  },
+  "unchangedRuntimeRetryOf": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+  "partialVerification": {
+    "linuxCorePassed": true,
+    "linuxReleaseTXTCases": 4,
+    "appleCompilationPending": true,
+    "evidence": "Documentation/ValidationLogs/m4-return-build22-retry-linux.json"
   }
 }

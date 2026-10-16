@@ -1,0 +1,76 @@
+{
+  "recordedAtUTC": "2026-10-16T08:15:11.086242+00:00",
+  "run": 38866913465,
+  "sourceRevision": "3637dac02ec91d972cbcb267284416cc83a5ac58",
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-16 at 07.53.11 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2ED1B236-9A73-41A6-9D65-E738E9F4A75E.mp4",
+      "bytes": 23084578,
+      "sha256": "c7bdc7903b5bae2b2d10f2343ff1af2d53e0e4b94b8c49c87887ad3f387566fa",
+      "inspected": true,
+      "scope": "Complete one-second overview only, original consecutive frames not yet inspected",
+      "duration": "00:00:59.69",
+      "contacts": [
+        {
+          "path": "build/ci/38866913465/ReturnReview/contents/contact-1.png",
+          "sha256": "83d5bda3179b29012db4f7de135a6614763a8522f649c56efd37419f47430c09",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38866913465/ReturnReview/contents/contact-2.png",
+          "sha256": "a1d994e678c8c3a9151f585cadfeb38e841f57f1dacfcf79e3fb900eda7256e5",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38866913465/ReturnReview/contents/contact-3.png",
+          "sha256": "3dd90ce3ae2eed4efc2d1a84380f5973e6e67414da70c33935ea7ca737c48003",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38866913465/ReturnReview/contents/contact-4.png",
+          "sha256": "2a7765f3b5829e9efb5ae056e6fb2e2ad995f61a8566f53e0fa74f65a8c11534",
+          "inspected": true
+        }
+      ]
+    },
+    {
+      "name": "Screen Recording 2026-10-16 at 07.54.12 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/38866913465/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/121772D1-E3C5-4D63-A24F-CF0187E9968D.mp4",
+      "bytes": 9171440,
+      "sha256": "8b772057cfd71860c0208d5bbdd9451bb763234373ecdb79f6d1fdc5b40d44e6",
+      "inspected": true,
+      "scope": "Complete one-second overview only, original consecutive frames not yet inspected",
+      "duration": "00:00:39.56",
+      "contacts": [
+        {
+          "path": "build/ci/38866913465/ReturnReview/search/contact-1.png",
+          "sha256": "dfb2fd4c45ea74279b2a516e33f38654af8189127dfb0a3061d40f3bc32155f3",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38866913465/ReturnReview/search/contact-2.png",
+          "sha256": "5e6cbad30aeacae47053042ccf8f5a8bdf685c8b30feb69b67522f25b59052b3",
+          "inspected": true
+        },
+        {
+          "path": "build/ci/38866913465/ReturnReview/search/contact-3.png",
+          "sha256": "181720e89dfdfad45ca7acbc925b6f7b95915726082bb7fc9aed4fe3d6ae6f9f",
+          "inspected": true
+        }
+      ]
+    }
+  ],
+  "observations": [
+    "Light bar fits the existing surface; contents jump returns to preface, bookmark excursion returns to second chapter, stay clears the bar, relaunch keeps the second chapter.",
+    "Dark/reduced application motion search jumps to the short final chapter, returns to preface, and stay clears the bar. Visible chapter-loading spinners are loading states, not settled blank-body acceptance.",
+    "The native system search sheet remains light while the reader is dark, an existing style boundary outside this return-bar slice.",
+    "App launch/preparation and final home-screen frames are excluded from reading acceptance."
+  ],
+  "currentRetryNativeAccepted": false,
+  "all62PNGReviewed": false,
+  "consecutiveOriginalFramesReviewed": false,
+  "phoneAccepted": false
+}
