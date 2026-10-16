@@ -18,7 +18,9 @@ extension EPUBPreferences {
         lineHeight = appearance.lineHeight
         paragraphSpacing = appearance.paragraphSpacing
         pageMargins = appearance.pageMargins
-        paragraphIndent = appearance.firstLineIndent ? 2 : 0
+        paragraphIndent = appearance.paragraphIndent
+        letterSpacing = appearance.letterSpacing
+        fontWeight = appearance.fontWeight
         textAlign = appearance.alignment == .justified ? .justify : .start
         publisherStyles = appearance.publisherStyles
     }

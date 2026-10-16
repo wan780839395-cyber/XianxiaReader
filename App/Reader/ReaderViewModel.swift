@@ -48,6 +48,10 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var fontMessage: String?
     @Published var choosingFont = false
     private var fontResources: [ReaderFontResource] = []
+    func fontResourceForPreview(_ id: UUID?) -> ReaderFontResource? {
+        guard let id else { return nil }
+        return fontResources.first { $0.asset.id == id }
+    }
     private var fontRequestID: UUID?
     private var fontImportTask: Task<Void, Never>?
     private var fontPickerCoordinator: EPUBDocumentPicker.Coordinator?

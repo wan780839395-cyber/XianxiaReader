@@ -8,6 +8,77 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let resources = try BundledReadingFont.allCases.map { try $0.resource() }
+        try engine.setReadingFonts(resources)
+        var appearance = ReadingAppearance(); appearance.fontScale = 1
+        appearance.importedFontID = resources[0].asset.id; try engine.setAppearance(appearance)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let web = self.webViews(in: wrapper).first, web.scrollView.window != nil,
+                  web.scrollView.alpha > 0.99 else { return false }
+            return abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5
+        }
+        let scroll = try continuousScroll(engine)
+        scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
+        try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        for (index, resource) in resources.enumerated() {
+            let origin = try await engine.captureCurrentPosition()
+            let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: origin.locatorData) as? [String: Any])
+            let locations = try XCTUnwrap(payload["locations"] as? [String: Any])
+            let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
+            let point = try XCTUnwrap(range["start"] as? [String: Any])
+            let selector = try XCTUnwrap(point["cssSelector"] as? String), offset = try XCTUnwrap(point["charOffset"] as? Int)
+            XCTAssertGreaterThan(offset, 100)
+            let y = try XCTUnwrap(locations["xianxiaViewportOffset"] as? Double)
+            let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
+            appearance.importedFontID = resource.asset.id
+            appearance.characterSpacing = 0.25; appearance.weightMultiplier = 1.5
+            appearance.paragraphIndent = 3.5; appearance.lineHeight = 2.4; appearance.paragraphSpacing = 2
+            try engine.setAppearance(appearance)
+            try await waitUntil {
+                guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                      let web = self.webViews(in: wrapper).first, web.scrollView.window != nil,
+                      web.scrollView.alpha > 0.99 else { return false }
+                return try await web.evaluateJavaScript("""
+                    (()=>{const p=document.querySelector(\(quoted)),n=p?.firstChild;
+                    if(!n||n.nodeType!==3||n.length<=\(offset))return false;
+                    const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
+                    const s=getComputedStyle(p),root=parseFloat(getComputedStyle(document.documentElement).fontSize);
+                    return b.bottom>0&&b.top<innerHeight&&Math.abs(b.top-\(y))<3
+                      &&s.fontFamily.includes('\(resource.asset.cssFamily)')&&s.fontWeight==='600'
+                      &&Math.abs(parseFloat(s.letterSpacing)/root-0.125)<0.01
+                      &&Math.abs(parseFloat(s.textIndent)/root-3.5)<0.01;})()
+                    """) as? Bool == true
+            }
+            let web = try resourceWebView(engine, index: 1)
+            let glyphs = try await web.evaluateJavaScript(ReadingFontTests.chineseFontScript(resource.asset.cssFamily, paragraph: "#long-paragraph")) as? Bool
+            XCTAssertEqual(glyphs, true)
+            let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+                window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+            }); image.name = "font-six-body-\(index)-build24"; image.lifetime = .keepAlways; add(image)
+            XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+        }
+        let saved = try await engine.captureCurrentPosition()
+        let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        engine.close(); try await engine.open(book: book, fileURL: file, position: saved)
+        try await waitUntil {
+            guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
+                  let web = self.webViews(in: wrapper).first, web.scrollView.window != nil,
+                  web.scrollView.alpha > 0.99 else { return false }
+            return try await web.evaluateJavaScript("document.getElementById('long-paragraph')!=null && getComputedStyle(document.getElementById('long-paragraph')).fontWeight==='600'") as? Bool == true
+        }
+        let reopened = try await engine.captureCurrentPosition()
+        let data = try XCTUnwrap(JSONSerialization.jsonObject(with: reopened.locatorData) as? [String: Any])
+        XCTAssertNotNil((data["locations"] as? [String: Any])?["domRange"])
+        engine.close()
+    }
+
     @MainActor func testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader() async throws {
         let delay = WKUserScript(source: """
             Object.defineProperty(document.fonts,'ready',{get(){

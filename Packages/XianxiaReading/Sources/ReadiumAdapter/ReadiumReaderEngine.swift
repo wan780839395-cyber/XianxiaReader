@@ -29,7 +29,7 @@ import XianxiaCore
 
     public func setReadingFonts(_ fonts: [ReaderFontResource]) throws {
         // At most 12 imported faces plus the App's two bundled Chinese faces.
-        guard navigator == nil, fonts.count <= 14, Set(fonts.map { $0.asset.id }).count == fonts.count else {
+        guard navigator == nil, fonts.count <= 18, Set(fonts.map { $0.asset.id }).count == fonts.count else {
             throw ReaderPositionCaptureError.unavailable
         }
         for font in fonts {
@@ -330,6 +330,7 @@ import XianxiaCore
             let reflows = previous.fontFamily != requestedPreferences.fontFamily || previous.fontSize != requestedPreferences.fontSize
                 || previous.lineHeight != requestedPreferences.lineHeight || previous.paragraphSpacing != requestedPreferences.paragraphSpacing
                 || previous.pageMargins != requestedPreferences.pageMargins || previous.paragraphIndent != requestedPreferences.paragraphIndent
+                || previous.letterSpacing != requestedPreferences.letterSpacing || previous.fontWeight != requestedPreferences.fontWeight
                 || previous.textAlign != requestedPreferences.textAlign || previous.publisherStyles != requestedPreferences.publisherStyles
             // A resource face can finish loading after the first DOM layout.
             // Use Readium's existing full-anchor invalidation for its typography;

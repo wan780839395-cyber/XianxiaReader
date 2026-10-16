@@ -8,6 +8,29 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReadingFontTests: XCTestCase {
+    func testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible() async throws {
+        let renderer = ReadingFontPreviewRenderer()
+        var digests = Set<String>()
+        XCTAssertEqual(BundledReadingFont.allCases.count, 6)
+        for item in BundledReadingFont.allCases {
+            let resource = try item.resource()
+            let request = ReadingFontPreviewRequest(fileURL: resource.fileURL, identity: resource.asset.sha256,
+                systemFont: "original", textRGB: 0x303832, backgroundRGB: 0xF8F5ED, pointSize: 22, compact: false)
+            let png = try await renderer.render(request), cached = try await renderer.render(request)
+            XCTAssertEqual(png, cached)
+            let image = try XCTUnwrap(UIImage(data: png)), cg = try XCTUnwrap(image.cgImage)
+            XCTAssertEqual(cg.width, 600); XCTAssertGreaterThan(cg.height, 50)
+            let pixels = try XCTUnwrap(cg.dataProvider?.data) as Data
+            XCTAssertGreaterThan(Set(pixels).count, 20, "Real glyph ink must be present")
+            XCTAssertTrue(digests.insert(SHA256.hash(data: png).map { String(format: "%02x", $0) }.joined()).inserted)
+            let attachment = XCTAttachment(image: image); attachment.name = "font-settings-sample-\(item.rawValue)-build24"
+            attachment.lifetime = .keepAlways; add(attachment)
+        }
+        let bad = ReadingFontPreviewRequest(fileURL: URL(fileURLWithPath: "/missing/font.ttf"), identity: "missing",
+            systemFont: "original", textRGB: 0, backgroundRGB: 0xFFFFFF, pointSize: 20, compact: false)
+        do { _ = try await renderer.render(bad); XCTFail("No system-font masquerade for a missing file") }
+        catch { XCTAssertTrue(error is ReadingFontPreviewError) }
+    }
     static func chineseFontScript(_ family: String, paragraph: String) -> String {
         """
         (()=>{const f='\(family)',p=document.querySelector('\(paragraph)');

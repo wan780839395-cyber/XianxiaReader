@@ -9,6 +9,10 @@ LXGW WenKai Regular / 霞鹜文楷
 Official source: https://github.com/lxgw/LxgwWenKai
 Original license: LXGWWenKai-Regular-OFL.txt
 
-Both font binaries and copyright/license files are unmodified upstream originals.
+All six font binaries and copyright/license files are unmodified upstream originals.
 PROVENANCE.json records pinned source revisions, URLs, byte sizes and SHA256.
 Each font remains under SIL Open Font License 1.1, independently of the app license.
+
+Build24 also bundles unmodified Source Han Sans SC Regular, Zhuque Fangsong Regular,
+Ma Shan Zheng Regular and ZCOOL XiaoWei Regular. Each original license is stored
+as <font file stem>-OFL.txt; pinned source/release provenance is in PROVENANCE.json.

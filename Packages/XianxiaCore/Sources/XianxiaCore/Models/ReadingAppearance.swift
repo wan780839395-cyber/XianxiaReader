@@ -64,14 +64,33 @@ public struct ReadingAppearance: Codable, Equatable, Sendable {
     public var firstLineIndent = true
     public var alignment: ReadingAlignment = .natural
     public var publisherStyles = false
+    /// Optional additions keep existing reading-v1 JSON readable without rewriting it.
+    public var letterSpacing: Double?
+    public var fontWeight: Double?
+    public var indentSize: Double?
+    public var characterSpacing: Double {
+        get { letterSpacing ?? 0 }
+        set { letterSpacing = newValue }
+    }
+    public var weightMultiplier: Double {
+        get { fontWeight ?? 1 }
+        set { fontWeight = newValue }
+    }
+    public var paragraphIndent: Double {
+        get { firstLineIndent ? (indentSize ?? 2) : 0 }
+        set { firstLineIndent = newValue > 0; indentSize = newValue }
+    }
 
     public init() { version = 1 }
 
     public func validated() throws -> Self {
         guard version == 1, fontScale.isFinite, (0.8...2.0).contains(fontScale),
-              lineHeight.isFinite, (1.2...2.0).contains(lineHeight),
-              paragraphSpacing.isFinite, (0...1.5).contains(paragraphSpacing),
-              pageMargins.isFinite, (0.5...2.0).contains(pageMargins) else {
+              lineHeight.isFinite, (1.2...2.8).contains(lineHeight),
+              paragraphSpacing.isFinite, (0...3).contains(paragraphSpacing),
+              pageMargins.isFinite, (0.25...2.5).contains(pageMargins),
+              letterSpacing.map({ $0.isFinite && (0...0.5).contains($0) }) ?? true,
+              fontWeight.map({ $0.isFinite && (0.5...1.75).contains($0) }) ?? true,
+              indentSize.map({ $0.isFinite && (0...4).contains($0) }) ?? true else {
             throw ReadingAppearanceError.invalidSettings
         }
         return self

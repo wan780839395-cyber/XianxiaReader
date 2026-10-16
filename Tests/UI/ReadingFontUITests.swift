@@ -1,6 +1,59 @@
 import XCTest
 
 final class ReadingFontUITests: XCTestCase {
+    @MainActor func testSixNativeFontSamplesAndCustomTypographyPersist() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchEnvironment["XR_LIBRARY_UI_TEST_ID"] = UUID().uuidString
+        app.launchEnvironment["XR_READER_UI_SETTINGS"] = "1"
+        app.launchEnvironment["XR_LIBRARY_UI_LAYOUT"] = "list"
+        app.launch(); defer { app.terminate() }
+        func reveal(_ element: XCUIElement, up: Bool = true) {
+            for _ in 0..<7 {
+                if element.isHittable { break }
+                if up { app.scrollViews["reader.appearance.scroll"].swipeUp() }
+                else { app.scrollViews["reader.appearance.scroll"].swipeDown() }
+            }
+            XCTAssertTrue(element.isHittable)
+        }
+        func open() {
+            let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+            XCTAssertTrue(book.waitForExistence(timeout: 30)); book.tap()
+            let settings = app.buttons["reader.appearance.open"]
+            XCTAssertTrue(settings.waitForExistence(timeout: 20))
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed); settings.tap()
+        }
+        func snapshot(_ name: String) {
+            let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name
+            attachment.lifetime = .keepAlways; add(attachment)
+        }
+        open()
+        for name in ["sourceHanSerif", "wenKai", "sourceHanSans", "zhuque", "maShanZheng", "xiaoWei"] {
+            let row = app.buttons["reader.font.bundled.\(name)"]; reveal(row); row.tap()
+            XCTAssertEqual(row.value as? String, "已选择")
+            snapshot("reader-font-sample-row-\(name)-build24")
+        }
+        let section = app.segmentedControls["reader.appearance.section"]
+        reveal(section, up: false); section.buttons["排版"].tap()
+        for key in ["letter-spacing", "font-weight", "indent-size"] {
+            let button = app.buttons["reader.\(key).increase"]; reveal(button); button.tap()
+        }
+        XCTAssertEqual(app.staticTexts["reader.indent-size.value"].label, "2.5 字")
+        snapshot("reader-font-extended-layout-build24")
+        app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
+        app.terminate(); app.launch(); open()
+        reveal(section, up: false); section.buttons["排版"].tap()
+        reveal(app.staticTexts["reader.letter-spacing.value"])
+        XCTAssertEqual(app.staticTexts["reader.letter-spacing.value"].label, "0.05")
+        reveal(app.staticTexts["reader.font-weight.value"])
+        XCTAssertEqual(app.staticTexts["reader.font-weight.value"].label, "125%")
+        reveal(app.staticTexts["reader.indent-size.value"])
+        XCTAssertEqual(app.staticTexts["reader.indent-size.value"].label, "2.5 字")
+        snapshot("reader-font-extended-layout-reopened-build24")
+    }
+
     @MainActor func testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode() {
         continueAfterFailure = false
         let app = XCUIApplication()

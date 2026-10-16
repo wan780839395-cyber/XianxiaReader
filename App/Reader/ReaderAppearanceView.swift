@@ -134,12 +134,14 @@ import XianxiaCore
             HStack {
                 Text("云海问道").font(.subheadline.weight(.medium))
                 Spacer()
-                Text(model.appearance.importedFontID == nil ? "阅读预览" : "配色预览").font(.caption2).opacity(0.6)
+                Text("字形样例").font(.caption2).opacity(0.6)
             }
-            Text("山风穿过竹林，云影落在书页间。")
-                .font(.system(size: 18 * model.appearance.fontScale,
-                              design: model.appearance.font == .serif ? .serif : .default))
-                .lineSpacing(5).fixedSize(horizontal: false, vertical: true)
+            ReadingFontPreview(resource: model.fontResourceForPreview(model.appearance.importedFontID),
+                systemFont: model.appearance.font, theme: model.appearance.theme,
+                pointSize: 18 * model.appearance.fontScale,
+                unavailable: model.appearance.importedFontID.map { !model.isFontAvailable($0) } ?? false)
+            Text("可在下方比较字体样式，段落排版以正文为准。")
+                .font(.caption2).foregroundStyle(model.appearance.theme.foreground.opacity(0.65))
         }
         .foregroundStyle(model.appearance.theme.foreground)
         .padding(20).frame(maxWidth: .infinity, alignment: .leading)
@@ -160,13 +162,17 @@ import XianxiaCore
                 Picker("字体", selection: Binding<ReadingFont?>(get: { model.appearance.importedFontID == nil ? model.appearance.font : nil }, set: { if let font = $0 { model.selectBuiltInFont(font) } })) {
                     ForEach(ReadingFont.allCases, id: \.self) { Text($0.title).tag(Optional($0)) }
                 }.pickerStyle(.segmented).accessibilityIdentifier("reader.font")
-                HStack(spacing: 10) {
+                adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
+                           key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
+                LazyVStack(spacing: 10) {
                     ForEach(BundledReadingFont.allCases) { font in
                         Button { model.selectImportedFont(font.id) } label: {
                             HStack(spacing: 8) {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(font.title).font(.subheadline.weight(.medium))
                                     Text(font.subtitle).font(.caption2).foregroundStyle(palette.secondaryText)
+                                    ReadingFontPreview(resource: model.fontResourceForPreview(font.id), theme: model.appearance.theme,
+                                        pointSize: 19, compact: true, unavailable: !model.isFontAvailable(font.id))
                                 }
                                 Spacer(minLength: 0)
                                 if model.appearance.importedFontID == font.id {
@@ -182,8 +188,6 @@ import XianxiaCore
                 }
                 Text("内置字体可离线使用，缺字由系统补全。")
                     .font(.caption).foregroundStyle(palette.secondaryText)
-                adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
-                           key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
                 if let selected = model.importedFonts.first(where: { $0.id == model.appearance.importedFontID }) {
                     Label(model.isFontAvailable(selected.id) ? "正文使用 \(selected.displayName)" : "暂用默认字体，原选择已保留", systemImage: model.isFontAvailable(selected.id) ? "checkmark.circle.fill" : "exclamationmark.circle")
                         .font(.caption).foregroundStyle(palette.accent)
@@ -198,6 +202,8 @@ import XianxiaCore
                                 Text(font.displayName).font(.subheadline).lineLimit(2)
                                 Text(ByteCountFormatter.string(fromByteCount: font.bytes, countStyle: .file))
                                     .font(.caption).foregroundStyle(palette.secondaryText)
+                                ReadingFontPreview(resource: model.fontResourceForPreview(font.id), theme: model.appearance.theme,
+                                    pointSize: 19, compact: true, unavailable: !model.isFontAvailable(font.id))
                             }
                             Spacer(minLength: 8)
                             Image(systemName: model.appearance.importedFontID == font.id ? "checkmark.circle.fill" : "circle")
@@ -240,18 +246,28 @@ import XianxiaCore
             }
             ReaderSettingsCard(palette: palette) {
                 sectionTitle("页面留白", symbol: "rectangle.inset.filled")
-                adjustment("左右留白", value: model.appearance.pageMargins, range: 0.5...2, step: 0.25,
+                adjustment("左右留白", value: model.appearance.pageMargins, range: 0.25...2.5, step: 0.25,
                            key: \.pageMargins, id: "margins", display: model.appearance.pageMargins.formatted(.number.precision(.fractionLength(2))))
             }
             ReaderSettingsCard(palette: palette) {
                 sectionTitle("段落节奏", symbol: "text.alignleft")
-                adjustment("行距", value: model.appearance.lineHeight, range: 1.2...2, step: 0.1,
+                adjustment("行距", value: model.appearance.lineHeight, range: 1.2...2.8, step: 0.1,
                            key: \.lineHeight, id: "line-height", display: model.appearance.lineHeight.formatted(.number.precision(.fractionLength(2))))
                 Divider().overlay(palette.border)
-                adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...1.5, step: 0.1,
+                adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...3, step: 0.1,
                            key: \.paragraphSpacing, id: "paragraph-spacing", display: model.appearance.paragraphSpacing.formatted(.number.precision(.fractionLength(1))))
                 Divider().overlay(palette.border)
-                Toggle("首行缩进两字", isOn: binding(\.firstLineIndent))
+                adjustment("字距", value: model.appearance.characterSpacing, range: 0...0.5, step: 0.05,
+                           key: \.characterSpacing, id: "letter-spacing", display: model.appearance.characterSpacing.formatted(.number.precision(.fractionLength(2))))
+                Divider().overlay(palette.border)
+                adjustment("字重", value: model.appearance.weightMultiplier, range: 0.5...1.75, step: 0.25,
+                           key: \.weightMultiplier, id: "font-weight", display: model.appearance.fontWeight == nil ? "原字重" : "\(Int(model.appearance.weightMultiplier * 100))%")
+                Text("单字重字体能呈现的粗细范围取决于字体本身。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+                Divider().overlay(palette.border)
+                adjustment("首行缩进", value: model.appearance.paragraphIndent, range: 0...4, step: 0.5,
+                           key: \.paragraphIndent, id: "indent-size", display: "\(model.appearance.paragraphIndent.formatted(.number.precision(.fractionLength(1)))) 字")
+                Toggle("启用首行缩进", isOn: binding(\.firstLineIndent))
                     .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.indent")
                 Picker("对齐方式", selection: binding(\.alignment)) {
                     Text("自然对齐").tag(ReadingAlignment.natural)

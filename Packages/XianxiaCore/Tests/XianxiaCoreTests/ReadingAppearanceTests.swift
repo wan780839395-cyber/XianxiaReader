@@ -3,6 +3,33 @@ import XCTest
 @testable import XianxiaCore
 
 final class ReadingAppearanceTests: XCTestCase {
+    func testLegacyJSONAndExtendedTypographyRoundTripWithoutMigration() async throws {
+        let legacy = Data("{\"version\":1,\"theme\":\"warm\",\"font\":\"original\",\"fontScale\":1.1,\"lineHeight\":1.75,\"paragraphSpacing\":0.8,\"pageMargins\":1,\"firstLineIndent\":true,\"alignment\":\"natural\",\"publisherStyles\":false}".utf8)
+        let value = try JSONDecoder().decode(ReadingAppearance.self, from: legacy).validated()
+        XCTAssertNil(value.fontWeight); XCTAssertNil(value.letterSpacing); XCTAssertNil(value.indentSize)
+        XCTAssertEqual(value.paragraphIndent, 2)
+        var edited = value
+        edited.characterSpacing = 0.25; edited.weightMultiplier = 1.5; edited.paragraphIndent = 3.5
+        edited.lineHeight = 2.7; edited.paragraphSpacing = 2.8; edited.pageMargins = 0.25
+        let files = try store(); try await files.saveReadingAppearance(edited)
+        let recreated = try BookFileStore(root: files.root)
+        let restored = try await recreated.readingAppearance(); XCTAssertEqual(restored, edited)
+        edited.firstLineIndent = false; XCTAssertEqual(edited.paragraphIndent, 0)
+        edited.firstLineIndent = true; XCTAssertEqual(edited.paragraphIndent, 3.5)
+    }
+
+    func testExtendedTypographyRejectsNonfiniteAndOutOfRangeWithoutOverwriting() async throws {
+        let files = try store(); try await files.saveReadingAppearance(ReadingAppearance())
+        let url = try files.resolve("Preferences/reading-v1.json"), original = try Data(contentsOf: url)
+        for key in [\ReadingAppearance.letterSpacing, \.fontWeight, \.indentSize] {
+            for invalid in [Double.nan, Double.infinity, -1, 99] {
+                var value = ReadingAppearance(); value[keyPath: key] = invalid
+                do { try await files.saveReadingAppearance(value); XCTFail("Invalid new value must be visible") }
+                catch { XCTAssertEqual(try Data(contentsOf: url), original) }
+            }
+        }
+    }
+
     private func store() throws -> BookFileStore {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let files = try BookFileStore(root: root)

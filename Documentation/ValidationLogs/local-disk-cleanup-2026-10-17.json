@@ -1,0 +1,79 @@
+{
+  "before_bytes": 59723630593,
+  "after_bytes": 4777637191,
+  "deleted_bytes": 54946007053,
+  "deleted_files": 89928,
+  "free_before_inventory": 2123800576,
+  "free_after_inventory": 57182113792,
+  "unexpected_deleted": [],
+  "scheduled_remaining": [],
+  "existing_files_changed": [
+    "XianxiaReader\\App\\Reader\\ReaderAppearanceView.swift",
+    "XianxiaReader\\App\\Reader\\ReadingFontPreviewRenderer.swift",
+    "XianxiaReader\\App\\Resources\\Fonts\\README.txt",
+    "XianxiaReader\\App\\Resources\\ThirdPartyNotices.txt",
+    "XianxiaReader\\HANDOFF.md",
+    "XianxiaReader\\Packages\\XianxiaCore\\Tests\\XianxiaCoreTests\\ReadingAppearanceTests.swift",
+    "XianxiaReader\\Tests\\UI\\ReadingFontUITests.swift",
+    "XianxiaReader\\Tests\\iOS\\ReaderRenderingTests.swift",
+    "XianxiaReader\\Tests\\iOS\\ReadingFontTests.swift"
+  ],
+  "added_files": [],
+  "protected_sha256_checked": 1000,
+  "protected_sha256_changed": [
+    "XianxiaReader\\HANDOFF.md",
+    "XianxiaReader\\Tests\\iOS\\ReaderRenderingTests.swift",
+    "XianxiaReader\\Tests\\UI\\ReadingFontUITests.swift"
+  ],
+  "protected_sha256_missing": [],
+  "latest_run": "38918803378",
+  "latest_run_files_before": 2260,
+  "latest_run_files_after": 2260,
+  "latest_run_changed": [],
+  "latest_run_added": [],
+  "scan_errors": [],
+  "retained_text_files": 3316,
+  "reasons": {
+    "historical_xcresult": [
+      11318859142,
+      74644
+    ],
+    "historical_extracted_or_review_artifacts": [
+      1806614299,
+      13008
+    ],
+    "historical_archives": [
+      15391358175,
+      53
+    ],
+    "historical_recordings": [
+      11620860967,
+      425
+    ],
+    "temporary_download_chunks": [
+      14808314470,
+      1798
+    ]
+  },
+  "timestamp_shanghai": "2026-10-17T02:44:15.560640+08:00",
+  "cleanup_scope": "D:\\ai项目\\XianxiaReader\\build\\ci",
+  "execution": {
+    "completed_targets": 13272,
+    "failed_targets": 0,
+    "free_before": 2123591680,
+    "free_after": 57182191616,
+    "elapsed_seconds": 16.4495192
+  },
+  "installation_packages_sha256_unchanged": 42,
+  "source_changes_observed_concurrently": [
+    "XianxiaReader\\Tests\\iOS\\ReaderRenderingTests.swift",
+    "XianxiaReader\\Tests\\UI\\ReadingFontUITests.swift"
+  ],
+  "notes": [
+    "Deletion limited to exact planned historical CI paths; no source, installer, art or recovery file deleted.",
+    "Latest completed delivery run preserved in full. Historical text files retained in original paths.",
+    "Concurrent development source changes observed; no source rollback or overwrite performed.",
+    "Remote artifact availability not checked. Historical claims of local raw evidence retention are superseded.",
+    "This cleanup makes no build, test or device acceptance claim."
+  ]
+}
