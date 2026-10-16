@@ -2261,7 +2261,7 @@
     ],
     "status": "in_progress"
   },
-  "reason": "Agent review found deterministic screen-target defect: +1.8 screens drag followed by negative release velocity chose -2 screens from drag origin instead of nearest reverse stop +1. Add opposing-velocity regression and use directional adjacent grid stop. Not an observed compiler/test failure.",
+  "reason": "Agent requested cancel to correct deterministic reverse-release target defect. Complete cancelled logs then showed one already-executed new integration navigationFailed; final cancellation does not erase that observed failure.",
   "verifiedLinuxCore": 122,
   "verifiedLinuxLongTXTReleaseCases": 4,
   "AppleExactUnfinishedSubphase": "Build, test, and package aggregate still in progress; full cancelled logs must establish actual phase",
@@ -2548,5 +2548,9 @@
     "bytes": 212209848,
     "sha256": "8ac149ce40baa2eb4b97cbec3873638a90c5757f64dee565061bf32155bd5de8",
     "zipCRC": true
-  }
+  },
+  "cancelRequestDecisionBasis": "Agent review found deterministic screen-target defect: +1.8 screens drag followed by negative release velocity chose -2 screens from drag origin instead of nearest reverse stop +1. Add opposing-velocity regression and use directional adjacent grid stop. Not an observed compiler/test failure.",
+  "macOSLongTXTReleaseCases": 4,
+  "iOSSourceCompiled": true,
+  "partialFailureAcknowledged": true
 }

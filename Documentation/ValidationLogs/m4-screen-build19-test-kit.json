@@ -1,0 +1,69 @@
+{
+  "recordedAtUTC": "2026-10-16T04:02:54.341499+00:00",
+  "run": 38843884440,
+  "sourceRevision": "e1eee79f1dfac3f61b642c1f4e7f9bc1671fb77f",
+  "delivered": {
+    "IPA": {
+      "path": "build/XianxiaReader-VerticalScreen-Build19.ipa",
+      "bytes": 8370777,
+      "sha256": "213ec780735bc396f95749a1770fa4558b3d534b9d7077df4fb1bd47ecfa4151"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-VerticalScreen-Build19-TestKit.zip",
+      "bytes": 12115244,
+      "sha256": "c80a3b0372c54452964e259432a0e9e1856ef79c8f021127db439a9b93e87332"
+    }
+  },
+  "preservedEntries": [
+    "Samples/chinese-epub3.epub",
+    "Samples/云海问道-UTF8.txt",
+    "Samples/云海问道-UTF16.txt",
+    "Samples/云海问道-GB18030.txt",
+    "Samples/utf8-5MiB-1000chapters.txt",
+    "Evidence/utf8-5MiB-1000chapters.json",
+    "Samples/utf8-50MiB-3000chapters.txt",
+    "Evidence/utf8-50MiB-3000chapters.json",
+    "Samples/utf8-50MiB-no-newline.txt",
+    "Evidence/utf8-50MiB-no-newline.json",
+    "Samples/utf16-5MiB-1000chapters.txt",
+    "Evidence/utf16-5MiB-1000chapters.json",
+    "Samples/ANSI-GBK-云海问道.txt",
+    "Samples/ANSI-Big5-雲海問道.txt",
+    "Samples/ANSI-Windows1252-Cafe.txt",
+    "Evidence/ANSI-ENCODINGS.json",
+    "Cover/cover-original.png"
+  ],
+  "previews": [
+    {
+      "name": "Preview/reader-screen-before-normal-build19.png",
+      "sha256": "8c75c3715d0e8722904c7da1da97892fd6b497478ea16b022c666ffd327c3425",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/21FEFB51-97A6-4020-B748-FD2262E4160A.png"
+    },
+    {
+      "name": "Preview/reader-screen-after-drag-normal-build19.png",
+      "sha256": "a2dc72f2b738f5292023838cee4128eb1ec2221d5f74a5d7859ef44f84bd89ef",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5F5F84EE-FF31-4585-A53C-8C90F44AB34F.png"
+    },
+    {
+      "name": "Preview/reader-screen-settings-normal-build19.png",
+      "sha256": "b0b4a988409c358ae7b94aef4834015e92f46c90711d3ca4f0379508fecbde41",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DD430AAB-C19F-4D68-B4D9-8CBA3806B3B6.png"
+    },
+    {
+      "name": "Preview/reader-screen-restored-normal-build19.png",
+      "sha256": "5f9fc11e13dc25f13306aa94747e1dd79979eb2998f0ae61edbd88c6c073ae4e",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5E3D3226-07F6-4A05-B4F4-07E8E93DCFE1.png"
+    },
+    {
+      "name": "Preview/reader-screen-before-reduced-build19.png",
+      "sha256": "17cbc3858fe033362d705d6ef9d528880c574e90f73934f32cee5d45a77ad519",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F251B5EB-A20D-4016-80E5-D29260B9760C.png"
+    },
+    {
+      "name": "Preview/reader-screen-after-drag-reduced-build19.png",
+      "sha256": "1a97c901338a18edab7a3aaf0135033ae95845e21c88ffa61383e0e949f63fa1",
+      "source": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C2ACF180-D2F8-4FFF-85EF-3E8C4EC19394.png"
+    }
+  ],
+  "zipCRC": true
+}

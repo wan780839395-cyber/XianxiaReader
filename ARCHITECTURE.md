@@ -185,3 +185,7 @@ ReadingInteraction属于Core Foundation模型，与ReadingAppearance/完整Locat
 ## Build18 原生表面与按钮反馈
 
 ReaderVisualStyle中的ReaderPanelSurface将有限阴影仅施加到单一背景fill primitive，再叠不拦截触摸的渐变/边线；避免整个内容子树的文字和图标带阴影，复用实色背景；ReaderPressStyle基于标准ButtonStyle保留原生激活/取消，只改变标签视觉层，并在外层保持44pt命中区。减少动效合并系统、用户与运行时额外请求，仍保留即时颜色状态；colorSchemeContrast读取系统增强对比度。无正文、引擎、存储或Locator变动。设计/实际验证见READING_DEPTH_DESIGN.md。
+
+## Build19 上下整屏输入策略
+
+ReadingInteraction v1增加可缺省的verticalScreenPaging，原字段严格解码；领域/Foundation与存储路径保持。ReaderMode仅UI选择，能力和具体应用仍通过ReadingInterfaces的interactionProvider；Readium具体API只在Adapter。Navigator与有界连续容器增加原生目标偏移/90%高度/手势原点补偿及命令防重入，不引入全书正文/新排版/缓存或JS修改。跨模式/字号仍使用既有完整DOM锚点，生命周期/原有竞态与新非零3px重开回归通过。具体合同及实际设备限制见READING_SCREEN_DESIGN.md。

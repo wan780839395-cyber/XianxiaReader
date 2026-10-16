@@ -1,0 +1,29 @@
+{
+  "recordedAtUTC": "2026-10-16T03:14:54.946604+00:00",
+  "scope": "Future autoscroll research draft only; not implemented or part of Build19",
+  "readestRevision": "f4078404f4561bf480dda28759af34f7be7b5e77",
+  "references": [
+    {
+      "path": ".cache/recovery/20261016-build19/autoscroller.ts",
+      "sha256": "e57ddefd174814ccf7de486915dbc2e5f7369738f2f53c33e9d7d882a79ce79b"
+    },
+    {
+      "path": ".cache/recovery/20261016-build19/useAutoScroll.ts",
+      "sha256": "ce0a074f769f4575a0464904fd3fd560d30c89961a92bd993b383c2a3858f9e4"
+    },
+    {
+      "path": ".cache/recovery/20261016-build19/auto-cadisplaylink.json",
+      "sha256": "6e2836564ac0cbdefae5f0bdeeda16cda220f955bb05dc56c21504e499061f25"
+    },
+    {
+      "path": ".cache/recovery/20261016-build19/auto-cadisplaylink-targettimestamp.json",
+      "sha256": "85b945e478ea5d06cceefdf7fa69772a481e6ab8f4e78bded8bc7c5936284bfc"
+    },
+    {
+      "path": ".cache/recovery/20261016-build19/auto-cadisplaylink-preferredframeraterange.json",
+      "sha256": "25cffc4ca4bec12914d035465887ecd52745eda49752b4d42b5f4481a03dc9e4"
+    }
+  ],
+  "externalCodeCopied": false,
+  "newDependency": false
+}

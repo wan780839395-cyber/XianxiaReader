@@ -1,0 +1,69 @@
+{
+  "recordedAtUTC": "2026-10-16T04:02:29.328517+00:00",
+  "run": 38843884440,
+  "sourceRevision": "e1eee79f1dfac3f61b642c1f4e7f9bc1671fb77f",
+  "rawLog": {
+    "path": "build/ci/38843884440/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "fccfa9676b0a2f7915992bb46e941ec85e058eb11c62dbfbe44e1e29c5738928"
+  },
+  "missingAnimationCompletionNotifications": [
+    {
+      "line": 7325,
+      "text": "    t =    69.78s App animations complete notification not received, will attempt to continue."
+    },
+    {
+      "line": 9179,
+      "text": "    t =   186.84s App animations complete notification not received, will attempt to continue."
+    }
+  ],
+  "systemDiagnostics": {
+    "extensionKitRunningBoard": {
+      "count": 218,
+      "firstExamples": [
+        {
+          "line": 6914,
+          "text": "2026-10-16 03:22:35.272720+0000 XianxiaReader[22516:71467] [assertion] Error acquiring assertion: <Error Domain=RBSServiceErrorDomain Code=1 \"((target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.rendering AND target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.networking AND target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.webcontent))\" UserInfo={NSLocalizedFailureReason=((target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.rendering AND target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.networking AND target is not running or doesn't have entitlement com.apple.developer.web-browser-engine.webcontent))}>"
+        },
+        {
+          "line": 6997,
+          "text": "2026-10-16 03:23:02.770999+0000 XianxiaReader[22516:66523] [general] Failed to terminate process: Error Domain=com.apple.extensionKit.errorDomain Code=18 \"(null)\" UserInfo={NSUnderlyingError=0x600000e2bb10 {Error Domain=RBSServiceErrorDomain Code=1 \"Client not entitled\" UserInfo={RBSEntitlement=com.apple.runningboard.terminateprocess, NSLocalizedFailureReason=Client not entitled, RBSPermanent=true}}}"
+        },
+        {
+          "line": 7000,
+          "text": "2026-10-16 03:23:03.447048+0000 XianxiaReader[22516:66523] [general] Failed to terminate process: Error Domain=com.apple.extensionKit.errorDomain Code=18 \"(null)\" UserInfo={NSUnderlyingError=0x600000e2bb10 {Error Domain=RBSServiceErrorDomain Code=1 \"Client not entitled\" UserInfo={RBSEntitlement=com.apple.runningboard.terminateprocess, NSLocalizedFailureReason=Client not entitled, RBSPermanent=true}}}"
+        }
+      ]
+    },
+    "appIntentsMetadataSkipped": {
+      "count": 7,
+      "firstExamples": [
+        {
+          "line": 3357,
+          "text": "2026-10-16 03:18:09.459 appintentsmetadataprocessor[14171:46614] warning: Metadata extraction skipped. No AppIntents.framework dependency found."
+        },
+        {
+          "line": 6218,
+          "text": "2026-10-16 03:20:33.413 appintentsmetadataprocessor[20610:61913] warning: Metadata extraction skipped. No AppIntents.framework dependency found."
+        },
+        {
+          "line": 6250,
+          "text": "2026-10-16 03:20:34.079 appintentsmetadataprocessor[20700:62095] warning: Metadata extraction skipped. No AppIntents.framework dependency found."
+        }
+      ]
+    },
+    "documentManager": {
+      "count": 0,
+      "firstExamples": []
+    },
+    "sqliteRuntimeErrors": {
+      "count": 1,
+      "firstExamples": [
+        {
+          "line": 209,
+          "text": "[22/122] Testing XianxiaCoreTests.BookEditingTests/testRealSQLiteWriteFailureRollsBackAndRetryKeepsRepositoryUsable"
+        }
+      ]
+    }
+  },
+  "inference": "UI test at t126.80 waits for idle; t186.84 reports no animations-complete notification, t186.85 only then requests the next continuous-mode tap. This does not establish an App-received tap stalled for 60 seconds. Separate relaunch waits t82.21 to113.45 for automation setup. Neither is a phone FPS measurement or proven product root cause."
+}
