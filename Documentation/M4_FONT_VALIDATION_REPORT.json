@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 full CI dispatched; awaiting actual compilation and native evidence",
+  "stage": "Build23 Windows validated candidate, Apple compilation pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -199,7 +199,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -294,7 +294,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "4b9f1c00730fecce6b9fbfc80782dcfd68bed6a4240d0db3b846150039b8a620"
+      "sha256": "4c029454926eb68bad668bb98d9fa54310bdc8af31240b8b59578f3f9a358207"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -310,7 +310,7 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "5760c4cb3146cb7ee539ecf918d090ad67bd1d63481bb76073fdf7110a3415b8"
+      "sha256": "0661f50a3d9882d4f9c616f55c5a7e2731f8badb115e2c35fd2cb83643620794"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -738,7 +738,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "67a9130ac9e343a34441908d73d46ed9b44df5664e69fe2681dd699a08ea3e18"
+      "sha256": "6c8767f6308522541f615aa5726ee9e3cb054a0237eea82a8661136fb22f9e8e"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -746,7 +746,7 @@
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "sha256": "954557bd9efc35512a30f630594c87499922a47d84737b600776fbed32b2708e"
+      "sha256": "98c42d046a89c8a35b1bc21f2e363c8a3f1ce2e33f5f4e7e695209429fa54f01"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -754,7 +754,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "b2ab2824c368a04aac0eecfce0be3e3d929ab41aae6d88a8808e11a73d951d77"
+      "sha256": "8b5709ec24a989e57eb1fc9a631cbde7eebf6fdcccc6f62f42783c08d6b10495"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2277,6 +2277,7 @@
     "Documentation/HANDOFF_M4_BUILD22_DELIVERY_2026-10-16.md",
     "Documentation/M4_FONT_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_IMPORT_DESIGN.md",
+    "Documentation/ValidationLogs/m4-font-build23-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-start.json",
     "Documentation/ValidationLogs/m4-font-build23-windows.json",
     "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
@@ -2306,5 +2307,62 @@
   "sourceRevision": "3bac2015197df9dab8ea8a40fbc464c0d73459bf",
   "run": 38880257296,
   "branch": "codex/m4-reading-appearance",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38880257296"
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38880257296",
+  "priorCancelledRun": {
+    "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
+    "run": 38880257296,
+    "sourceRevision": "3bac2015197df9dab8ea8a40fbc464c0d73459bf",
+    "conclusion": "cancelled",
+    "cancelledByAgent": true,
+    "reason": "Superseded after source audit: new rendering assertions must wait for actual post-open WebKit creation and size changes; clarify missing-font fallback label; remove throwing fixture lookup from nonthrowing Task closure",
+    "linuxCoreTests": 133,
+    "macOSCoreTestEntries": 133,
+    "iOSTestsAccepted": false,
+    "releaseExecuted": false,
+    "firstBuildNotSourceFailure": true,
+    "actualStoppedPhase": "Apple xcodebuild test invocation had begun; no completed iOS test summary/Release/IPA. Exact compiler subphase not established.",
+    "artifacts": [
+      {
+        "id": 12038260090,
+        "node_id": "MDg6QXJ0aWZhY3QxMjAzODI2MDA5MA==",
+        "name": "XianxiaReader-build-diagnostics",
+        "size_in_bytes": 1033409,
+        "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12038260090",
+        "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12038260090/zip",
+        "expired": false,
+        "digest": "sha256:499fc5327c9acdd4e271e2f2456303960a3532f4d99e26f04cb778536bd69a43",
+        "created_at": "2026-10-16T09:33:39Z",
+        "updated_at": "2026-10-16T09:33:39Z",
+        "expires_at": "2026-10-30T09:33:36Z",
+        "workflow_run": {
+          "id": 38880257296,
+          "repository_id": 1416864001,
+          "head_repository_id": 1416864001,
+          "head_branch": "codex/m4-reading-appearance",
+          "head_sha": "3bac2015197df9dab8ea8a40fbc464c0d73459bf"
+        }
+      },
+      {
+        "id": 12037835000,
+        "node_id": "MDg6QXJ0aWZhY3QxMjAzNzgzNTAwMA==",
+        "name": "XianxiaReader-core-diagnostics",
+        "size_in_bytes": 116199,
+        "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037835000",
+        "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037835000/zip",
+        "expired": false,
+        "digest": "sha256:6b24d17368eae9ddde065ab8bea2156b89ca4f8058986e155b499fc18fb4c294",
+        "created_at": "2026-10-16T09:26:39Z",
+        "updated_at": "2026-10-16T09:26:39Z",
+        "expires_at": "2027-01-14T09:24:39Z",
+        "workflow_run": {
+          "id": 38880257296,
+          "repository_id": 1416864001,
+          "head_repository_id": 1416864001,
+          "head_branch": "codex/m4-reading-appearance",
+          "head_sha": "3bac2015197df9dab8ea8a40fbc464c0d73459bf"
+        }
+      }
+    ],
+    "fullLogSHA256": "5c0b784b3f7be617519b36053b5cf9902bb31062e3abdd36ca1e81f96cb51822"
+  }
 }

@@ -217,6 +217,8 @@ private enum ReaderJumpError: LocalizedError {
         setAppearance(updated)
     }
 
+    func isFontAvailable(_ id: UUID) -> Bool { fontResources.contains(where: { $0.asset.id == id }) }
+
     func retainFontCoordinator(_ coordinator: EPUBDocumentPicker.Coordinator) {
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = coordinator
     }

@@ -47,19 +47,30 @@ final class TXTReadingTests: XCTestCase {
         let font = try XCTUnwrap(model.importedFonts.first)
         XCTAssertEqual(model.appearance.importedFontID, font.id)
         let loaded = "Array.from(document.fonts).some(f=>f.family.includes('\(font.cssFamily)')&&f.status==='loaded') && getComputedStyle(document.querySelector('p')).fontFamily.includes('\(font.cssFamily)')"
-        func active() throws -> WKWebView { try XCTUnwrap(webViews(try XCTUnwrap(view("readium.chapter.1", root: engine.viewController.view))).first) }
+        func active() -> WKWebView? {
+            guard let wrapper = view("readium.chapter.1", root: engine.viewController.view) else { return nil }
+            return webViews(wrapper).first
+        }
         try await wait("actual TXT font loaded and exact anchor") {
-            let web = try active()
+            guard let web = active() else { return false }
             let hasFont = try await web.evaluateJavaScript(loaded) as? Bool == true
             let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
             return hasFont && abs(y - before) < 3
         }
+        let sizeValue = try await XCTUnwrap(active()).evaluateJavaScript("parseFloat(getComputedStyle(document.querySelector('p')).fontSize)") as? Double
+        let originalSize = try XCTUnwrap(sizeValue)
         var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
         model.setAppearance(updated)
-        try await wait("TXT imported font reflow preserves text") { abs(((try await active().evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3 }
+        let sizeScript = "parseFloat(getComputedStyle(document.querySelector('p')).fontSize) > \(originalSize * 1.3)"
+        try await wait("TXT imported font reflow preserves text") {
+            guard let web = active() else { return false }
+            let changed = try await web.evaluateJavaScript(sizeScript) as? Bool == true
+            let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
+            return changed && abs(y - before) < 3
+        }
         await model.saveNow(); model.close(); await model.open()
         try await wait("TXT imported font static reopen") {
-            let web = try active()
+            guard let web = active() else { return false }
             let hasFont = try await web.evaluateJavaScript(loaded) as? Bool == true
             let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
             return hasFont && abs(y - before) < 3

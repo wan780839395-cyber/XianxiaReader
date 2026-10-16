@@ -13,3 +13,5 @@ Windows432语法新增0/54既有语法限制、17工具通过，35受改原测�
 首候选3bac2015197df9dab8ea8a40fbc464c0d73459bf，已实际dispatch CI38880257296。唯一watcher负责run/full.log/artifacts；先核真实Core133各/iOS131/Release23，失败保留原件，不猜最后步骤。
 
 本轮Linux原件artifact12037835000已CRC核，133/133 Core与四Release TXT探针通过，linux.json记录；Apple仍aggregate构建测试，不能推断具体测试阶段。唯一watcher工具session55283负责38880257296，勿重复dispatch。下一步核真正Apple结果及新字体原生页面/录屏。
+
+首候选38880257296由Agent因源码审查补强而取消，已真实completed/cancelled；并非源码失败。Linux133通过，Apple已进入xcodebuild test但未完成iOS summary/Release/IPA，原1.03MB诊断已CRC/解压，first-agent-cancel.json与完整日志保存；watcher55283已退出0。补新页面就绪守卫/实际字号变化/缺字体降级文案，修Task中throwing fixture取值，原35测试保持，仍13新增/515源。重新冻结后跑完整新候选，不继承上一轮门槛。

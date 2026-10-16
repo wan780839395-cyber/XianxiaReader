@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-16T09:24:15.056168+00:00",
+  "recordedAtUTC": "2026-10-16T09:33:26.527079+00:00",
   "swiftFiles": 432,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
@@ -21,7 +21,7 @@
     },
     {
       "path": ".cache/recovery/20261016-build23/candidate.diff",
-      "sha256": "66d74d3160b109944382f7470188024a751f3442b5c50fa441a01ac6931a9379"
+      "sha256": "55ddc9e8ce82268f031edce585b110a5cd715120d8437dea505e5bd109a811a3"
     }
   ]
 }

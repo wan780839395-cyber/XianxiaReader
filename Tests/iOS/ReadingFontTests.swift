@@ -71,7 +71,7 @@ final class ReadingFontTests: XCTestCase {
         engine.failCapture = false
         await model.importReadingFont(from: try fixture())
         XCTAssertEqual(engine.opens, 2); XCTAssertEqual(model.importedFonts.count, 1); XCTAssertNotNil(model.appearance.importedFontID)
-        model.close()
+        await model.saveNow(); model.close()
     }
 
     @MainActor func testFontCaptureCloseReopenLateResultCannotRebuildNewReader() async throws {
@@ -83,7 +83,8 @@ final class ReadingFontTests: XCTestCase {
         engine.currentPosition = origin; engine.suspendCapture = true
         let started = expectation(description: "font capture suspended")
         engine.onCapture = { started.fulfill() }
-        let importTask = Task { await model.importReadingFont(from: try fixture()) }
+        let source = try fixture()
+        let importTask = Task { await model.importReadingFont(from: source) }
         await fulfillment(of: [started], timeout: 10)
         model.close(); engine.suspendCapture = false; engine.onCapture = nil
         await model.open(); let newCloses = engine.closes

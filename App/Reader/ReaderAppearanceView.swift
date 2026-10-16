@@ -163,7 +163,7 @@ import XianxiaCore
                 adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
                            key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
                 if let selected = model.importedFonts.first(where: { $0.id == model.appearance.importedFontID }) {
-                    Label("正文使用 \(selected.displayName)", systemImage: "checkmark.circle.fill")
+                    Label(model.isFontAvailable(selected.id) ? "正文使用 \(selected.displayName)" : "暂用默认字体，原选择已保留", systemImage: model.isFontAvailable(selected.id) ? "checkmark.circle.fill" : "exclamationmark.circle")
                         .font(.caption).foregroundStyle(palette.accent)
                 }
             }.disabled(!supportsText)

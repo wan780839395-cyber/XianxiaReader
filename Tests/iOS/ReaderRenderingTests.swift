@@ -57,18 +57,25 @@ final class ReaderRenderingTests: XCTestCase {
                 const c=document.createElement('canvas').getContext('2d');c.font='30px '+family;const actual=c.measureText('iiiiWWWW').width;
                 c.font='30px serif';return Math.abs(actual-c.measureText('iiiiWWWW').width)>1;})()
                 """
-            func active() throws -> WKWebView {
-                continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            func active() -> WKWebView? {
+                if continuous {
+                    guard let wrapper = view(identifier: "readium.chapter.1", in: engine.viewController.view) else { return nil }
+                    return webViews(in: wrapper).first
+                }
+                return visibleWebView(in: engine.viewController.view)
             }
-            try await waitUntil { try await active().evaluateJavaScript(fontScript) as? Bool == true }
-            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(fontScript) as? Bool == true }
+            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(anchorScript) as? Bool == true }
+            let sizeValue = try await XCTUnwrap(active()).evaluateJavaScript("parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize)") as? Double
+            let originalSize = try XCTUnwrap(sizeValue)
             var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
             model.setAppearance(updated)
-            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            let reflowScript = "(\(anchorScript)) && parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize) > \(originalSize * 1.3)"
+            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(reflowScript) as? Bool == true }
             await model.saveNow(); model.close(); await model.open()
             XCTAssertEqual(model.appearance.importedFontID, font.id)
-            try await waitUntil { try await active().evaluateJavaScript(fontScript) as? Bool == true }
-            try await waitUntil { try await active().evaluateJavaScript(anchorScript) as? Bool == true }
+            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(fontScript) as? Bool == true }
+            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(reflowScript) as? Bool == true }
             XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
             let evidence = XCTAttachment(string: "Actual served custom family=\(font.cssFamily); loaded FontFace and Latin canvas metric differs from serif; original long paragraph UTF16=\(character) remains visible after imported-font rebuild, 150% reflow and static reopen; continuous=\(continuous)")
             evidence.name = "font-real-load-anchor-\(continuous)"; evidence.lifetime = .keepAlways; add(evidence)

@@ -1,0 +1,57 @@
+{
+  "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
+  "run": 38880257296,
+  "sourceRevision": "3bac2015197df9dab8ea8a40fbc464c0d73459bf",
+  "conclusion": "cancelled",
+  "cancelledByAgent": true,
+  "reason": "Superseded after source audit: new rendering assertions must wait for actual post-open WebKit creation and size changes; clarify missing-font fallback label; remove throwing fixture lookup from nonthrowing Task closure",
+  "linuxCoreTests": 133,
+  "macOSCoreTestEntries": 133,
+  "iOSTestsAccepted": false,
+  "releaseExecuted": false,
+  "firstBuildNotSourceFailure": true,
+  "actualStoppedPhase": "Apple xcodebuild test invocation had begun; no completed iOS test summary/Release/IPA. Exact compiler subphase not established.",
+  "artifacts": [
+    {
+      "id": 12038260090,
+      "node_id": "MDg6QXJ0aWZhY3QxMjAzODI2MDA5MA==",
+      "name": "XianxiaReader-build-diagnostics",
+      "size_in_bytes": 1033409,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12038260090",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12038260090/zip",
+      "expired": false,
+      "digest": "sha256:499fc5327c9acdd4e271e2f2456303960a3532f4d99e26f04cb778536bd69a43",
+      "created_at": "2026-10-16T09:33:39Z",
+      "updated_at": "2026-10-16T09:33:39Z",
+      "expires_at": "2026-10-30T09:33:36Z",
+      "workflow_run": {
+        "id": 38880257296,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-reading-appearance",
+        "head_sha": "3bac2015197df9dab8ea8a40fbc464c0d73459bf"
+      }
+    },
+    {
+      "id": 12037835000,
+      "node_id": "MDg6QXJ0aWZhY3QxMjAzNzgzNTAwMA==",
+      "name": "XianxiaReader-core-diagnostics",
+      "size_in_bytes": 116199,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037835000",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12037835000/zip",
+      "expired": false,
+      "digest": "sha256:6b24d17368eae9ddde065ab8bea2156b89ca4f8058986e155b499fc18fb4c294",
+      "created_at": "2026-10-16T09:26:39Z",
+      "updated_at": "2026-10-16T09:26:39Z",
+      "expires_at": "2027-01-14T09:24:39Z",
+      "workflow_run": {
+        "id": 38880257296,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-reading-appearance",
+        "head_sha": "3bac2015197df9dab8ea8a40fbc464c0d73459bf"
+      }
+    }
+  ],
+  "fullLogSHA256": "5c0b784b3f7be617519b36053b5cf9902bb31062e3abdd36ca1e81f96cb51822"
+}
