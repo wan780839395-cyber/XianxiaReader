@@ -587,7 +587,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "c3ffdfe7782a6a39ad15dfe8354808810265c5be9e0c6f1da2d6ee2a4dfdd9e6"
+      "sha256": "6b11feab05f42da96c54029a1e710c137b93ab722b599f01145ba5281b111226"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -691,7 +691,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "5aa6477310d7c1424f6d932e4e8639f7dddb033b7120a9756acbb96526c32d3a"
+      "sha256": "49cb973202d4d0018a5092408257462c7e728691aa0d3a310b6c6565af085a8e"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2226,8 +2226,10 @@
     "Documentation/M4_AUTOSCROLL_VALIDATION_REPORT.json",
     "Documentation/READING_AUTOSCROLL_DESIGN.md",
     "Documentation/ValidationLogs/m4-autoscroll-build21-start.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-windows.json",
     "Documentation/ValidationLogs/m4-screen-build20-user-feedback.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
     "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
     "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
     "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
@@ -2244,5 +2246,8 @@
     "project.yml"
   ],
   "oldTestBodiesPreserved": 49,
-  "newTests": 12
+  "newTests": 12,
+  "sourceRevision": "5abe86c3e5a7bf2e4220a62b70e008018295993d",
+  "run": 38857983539,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38857983539"
 }

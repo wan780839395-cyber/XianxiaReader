@@ -13,3 +13,7 @@ Build21基础源码与5 Core/7 iOS回归已接入；设计READING_AUTOSCROLL_DES
 ## Build21 Windows通过/Apple构建前
 
 426 Swift语法新增诊断0（54上游语法限制原留）、17 Python tooling tests通过；不是Swift编译。私有review-index相对02ecc460核无删除，49个受改文件内原测试主体逐AST保持，新增12测试（5Core+5集成+2真正UI），507源blob冻结；证据m4-autoscroll-build21-windows.json。当前普通HEAD/index未变，原838路径/35包备份保留。现在创建私有源码候选并显式dispatch完整CI；预期Core127每平台、iOS115（100集成+15UI），实际结果仍待读取日志，不预写通过。暂未交付Build21，Build20仍可安装基线。
+
+首候选源5abe86c3e5a7bf2e4220a62b70e008018295993d，实际dispatch CI38857983539，尚在运行；不可把本地语法通过写成Apple编译成功。下一步核实时job和完整日志/xcresult，成功后审原生视频，失败保留日志再修。
+
+构建早期审阅补全慢滚保持亮屏/恢复原idleTimer状态的生命周期与断言。首CI38857983539当时仅Linux安装依赖/未进入Apple，将主动取消并保留取消阶段，不归为源码失败。重跑Windows检查/源码冻结后用新候选完整CI。

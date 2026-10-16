@@ -43,6 +43,7 @@ import XianxiaCore
     private var automaticScrollSampleID: UUID?
     private(set) var automaticScrollSessionID: UUID?
     private var automaticScrollTouch: AutomaticScrollTouchObserver?
+    private var automaticScrollPreviousIdleTimer: Bool?
     public var onReadingGesture: (() -> Void)?
     public var interactionProvider: (any ReaderInteractionProviding)? { self }
     var navigationOptions: NavigatorGoOptions {
@@ -376,6 +377,8 @@ extension ReadiumReaderEngine {
         automaticScrollSpeed = screensPerMinute
         let request = UUID()
         automaticScrollSessionID = request
+        automaticScrollPreviousIdleTimer = UIApplication.shared.isIdleTimerDisabled
+        UIApplication.shared.isIdleTimerDisabled = true
         navigator.setAutomaticScrolling(true)
         let target = AutomaticScrollDisplayTarget(owner: self, request: request)
         let link = CADisplayLink(target: target, selector: #selector(AutomaticScrollDisplayTarget.tick(_:)))
@@ -419,6 +422,8 @@ extension ReadiumReaderEngine {
     private func endAutomaticScrollClock() {
         automaticScrollSessionID = nil
         automaticScrollLink?.invalidate(); automaticScrollLink = nil
+        if let automaticScrollPreviousIdleTimer { UIApplication.shared.isIdleTimerDisabled = automaticScrollPreviousIdleTimer }
+        automaticScrollPreviousIdleTimer = nil
         automaticScrollClock.reset(); automaticScrollLastSample = nil
         if automaticScrollState.isActive { navigator?.setAutomaticScrolling(false) }
         for name in [UIApplication.willResignActiveNotification, UIAccessibility.reduceMotionStatusDidChangeNotification,

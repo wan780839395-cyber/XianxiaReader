@@ -16,7 +16,9 @@ final class ReaderRenderingTests: XCTestCase {
         let scroll = try continuousScroll(engine), before = scroll.contentOffset.y
         var locations = 0
         engine.onPositionChanged = { _ in locations += 1 }
+        let previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
         try engine.startAutomaticScroll(screensPerMinute: 6)
+        XCTAssertTrue(UIApplication.shared.isIdleTimerDisabled)
         let oldRequest = try XCTUnwrap(engine.automaticScrollSessionID)
         try await waitUntil { scroll.contentOffset.y > before + 200 }
         XCTAssertEqual(engine.automaticScrollState, .running)
@@ -25,6 +27,7 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertFalse(touch.cancelsTouchesInView); XCTAssertFalse(touch.delaysTouchesBegan)
         touch.touchesBegan([], with: UIEvent())
         XCTAssertEqual(engine.automaticScrollState, .paused)
+        XCTAssertEqual(UIApplication.shared.isIdleTimerDisabled, previousIdleTimer)
         await engine.flushAutomaticScrollPosition()
         let paused = scroll.contentOffset.y
         engine.advanceAutomaticScroll(at: 1234, request: oldRequest)
