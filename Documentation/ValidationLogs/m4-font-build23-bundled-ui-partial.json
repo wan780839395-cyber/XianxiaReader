@@ -196,8 +196,59 @@
       "sha256": "76cd6e2357ea53dcf8a0bb916105e15769b0d5b6614b9cb2cdfc89eba7000622"
     }
   ],
-  "scope": "Only seven new font UI PNGs manually viewed in contacts11/12. Not all69 prepared images, videos, actual Chinese reading pages or current candidate acceptance.",
+  "scope": "Seven new font UI PNGs plus two full55s recording overviews manually inspected. No original consecutive frames or all69 images. Historical277 source only; no current-candidate,Chinese-page or phone acceptance.",
   "observations": "Song/Kai two cards fit existing light/dark surfaces,44pt controls and chosen checkmark; system/imported choices remain distinct. Color-preview label is explicit for resource fonts. Scrolling clips cards at viewport boundary as expected; no overlap in the visible controls.",
   "currentCandidateAccepted": false,
-  "phonePerformanceAccepted": false
+  "phonePerformanceAccepted": false,
+  "videoOverviewRecordedAtUTC": "2026-10-16T12:51:10.813221+00:00",
+  "videoOverviews": [
+    {
+      "kind": "font",
+      "duration": "00:00:54.91",
+      "method": "Full recording overview,one frame per second,all four contact sheets manually viewed; no motion/FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/38887978313/FontReview/font/contact-1.png",
+          "sha256": "0bdbf3335f857ecfc99f3757d227ef3a74a6253c5a72bb4dd242ccff1dbd96c6"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/font/contact-2.png",
+          "sha256": "83524893271244f6973e02e464a77f43aadbdc430d68bed0069cd5ff92c2a242"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/font/contact-3.png",
+          "sha256": "2f7a930503a146004be55dca71942f289f4461cee8d4618c289430ec59826cee"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/font/contact-4.png",
+          "sha256": "d616db230ab8c96de17386ccf49b90b5f582c9ec90b09fd1da5a588c3216fbf3"
+        }
+      ],
+      "observations": "Cards/select/checkmark/persistence/dark/default and picker cancel remain coherent in this scope. Launch and book opening include explicit loading views; file picker cold launch shows white startup before system controls appear. These are retained facts,not dismissed or declared phone-smooth."
+    },
+    {
+      "kind": "bundled",
+      "duration": "00:00:54.79",
+      "method": "Full recording overview,one frame per second,all four contact sheets manually viewed; no motion/FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/38887978313/FontReview/bundled/contact-1.png",
+          "sha256": "e7629275031d4ab46d38cc31b036644cbd4ace2ce4f07928b87ff76e930180c1"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/bundled/contact-2.png",
+          "sha256": "35c35d788dca6156cf3ac17ad1c622f81a3afdff168004a2b248be7102c225e3"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/bundled/contact-3.png",
+          "sha256": "43b832f5c6998b99742819727db82689d4cf5f28e35b04f70341e91e7359bedf"
+        },
+        {
+          "path": "build/ci/38887978313/FontReview/bundled/contact-4.png",
+          "sha256": "89d19d0c871ffd7e0743ca55c7a9a8d3f299f78ec53ae615ed0c597ba689cd30"
+        }
+      ],
+      "observations": "Cards/select/checkmark/persistence/dark/default and picker cancel remain coherent in this scope. Launch and book opening include explicit loading views; file picker cold launch shows white startup before system controls appear. These are retained facts,not dismissed or declared phone-smooth."
+    }
+  ]
 }

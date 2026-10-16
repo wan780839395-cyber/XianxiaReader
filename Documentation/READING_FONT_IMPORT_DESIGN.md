@@ -28,6 +28,8 @@ Windows语法与工具测试、Linux/macOS Core、真实iOS集成/界面、无�
 
 ## 同名字体路由
 
+后续38901198541实际运行不再启动缺库，关闭字体ready迟到回归与两字体UI/CoreText通过；原件仍完整保存。新EPUB连续多次换字体测试须按每次操作前新采canonical DOMRange判断保留，而不能把第一轮分页中靠后仍可见的文字当作任意后续字体的第一行位置。保留首次>100UTF16/TTF/150%字号/重开条件，后续每次采完整point后核真实字体及该point可见；同名URL独立和切回首字宽断言不变。TXT重载可能暂时没有p，等待谓词先验证元素存在，再读取样式和位置；不是吞掉脚本异常或放宽锚点。两旧回归本轮也有瞬时失败，原主体不改，不宣称其根因已修。测试修正候选与7ab运行源码一致，仍须独立全量验证。
+
 3.11原资源闭包取file.lastPathSegment，WebViewServer.serve按给定route精确插入、没有自动区分同名文件。用户目录使用稳定UUID/font.ttf，因此给每个FileURL的route加独立UUID段，原servedFonts仍在同一Navigator跨章节复用。不迁移目录、不复制别名字体、不改原字节或font-face公开配置。新EPUB双模式用例真实导入IA与文楷到两个同名font.ttf路径，断言内联CSS的源URL独立、实际中文字形、切回首款字宽一致与原文字可见，随后核原两内置及重开。此为新运行候选，须完整新CI。
 
 ## iOS18.5模拟器的WebKit293831

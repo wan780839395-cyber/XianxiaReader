@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 font compatibility candidate full CI pending; broken overlay eliminated",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "14d12191bafa1a3ae5d107aa8fcc3a24cefea59731d6840ef218633e7ca37501"
+      "sha256": "2df828985da08932118a10d7e068629be1b897c4eade5865f8f2252108e78e1c"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -782,7 +782,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "03b587818caa0f185c5a22ef6342a8f532cdf498ff4c4634560af25815809943"
+      "sha256": "f63fdd8fc9f14f08c6c84ac5d0ec292f9eb48a062dd934ce560348deb3892bca"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2312,15 +2312,21 @@
     "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
     "App/Resources/ThirdPartyNotices.txt",
     "Documentation/HANDOFF_M4_BUILD22_DELIVERY_2026-10-16.md",
+    "Documentation/HANDOFF_M4_FONT_ITERATIONS_2026-10-16.md",
     "Documentation/M4_FONT_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_IMPORT_DESIGN.md",
     "Documentation/ValidationLogs/m4-font-build23-api-review.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-provenance.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-ui-partial.json",
+    "Documentation/ValidationLogs/m4-font-build23-compatibility-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
     "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
+    "Documentation/ValidationLogs/m4-font-build23-overlay-38890891607.json",
+    "Documentation/ValidationLogs/m4-font-build23-overlay-38892156952.json",
+    "Documentation/ValidationLogs/m4-font-build23-overlay-38892611316.json",
+    "Documentation/ValidationLogs/m4-font-build23-overlay-38893802693.json",
     "Documentation/ValidationLogs/m4-font-build23-prior-38887978313-result.json",
     "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",

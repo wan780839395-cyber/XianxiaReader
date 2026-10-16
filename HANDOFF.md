@@ -2,7 +2,9 @@
 
 ## 实际最新断点（先看这里）
 
-2026-10-16T12:38:40.285069+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
+本轮38901198541/7ab已真实failure，完整log已下载，Apple原件artifact12048531028/1,358,656,905B正在session43791下载，未CRC不得写已完成。启动缺库已消失，实际执行115集成+19UI，关闭迟到font-ready/内置原件glyph/两字体UI通过，无Swift源warning。失败有两旧（fresh return capture unavailable、减少动效关闭后menu未hit）和两新：EPUB第二字体导入仍以最早字符作跨多次分页的期待，新TXT重载中临时空DOM直接getComputedStyle异常。旧主体不改且根因未扩大断言；新用例保留首非零字符/首次150%/静止重开断言，后续每次独立换字前重新采完整canonical DOMRange并核该文字点可见（按App实际capture语义），TXT用p存在守卫处理真实重载准备期。只改新测试/文档，App/Adapter/Vendor运行源与7ab一致；Windows433/17/35旧/16新增/522blob重核后送全新完整轮，旧失败原件保留，未交付。
+
+2026-10-16T12:56:36.162767+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
 
 主源`7ab2e457c82f1193e707c3c85ca5ffd27b76b110` / `codex/m4-font-compatibility` / CI38901198541，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38901198541。唯一主watcher工具session10152，写build/ci/38901198541/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': True, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。
 

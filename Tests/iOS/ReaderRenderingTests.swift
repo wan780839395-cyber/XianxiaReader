@@ -133,6 +133,32 @@ final class ReaderRenderingTests: XCTestCase {
             let metricScript = "(()=>{const c=document.createElement('canvas').getContext('2d');c.font='30px \(font.cssFamily)';return c.measureText('iiiiWWWW').width;})()"
             let metricValue = try await XCTUnwrap(active()).evaluateJavaScript(metricScript) as? Double
             let firstMetric = try XCTUnwrap(metricValue)
+            var nextAnchorScript = anchorScript
+            func sampleNextAnchor() async throws {
+                var captured: ReadingPosition?
+                try await waitUntil {
+                    do { captured = try await engine.captureCurrentPosition(); return true }
+                    catch ReaderPositionCaptureError.unavailable { return false }
+                }
+                let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: XCTUnwrap(captured).locatorData) as? [String: Any])
+                let locations = try XCTUnwrap(payload["locations"] as? [String: Any])
+                let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
+                let point = try XCTUnwrap(range["start"] as? [String: Any])
+                let selector = try XCTUnwrap(point["cssSelector"] as? String)
+                let offset = try XCTUnwrap(point["charOffset"] as? Int)
+                XCTAssertEqual(point["textNodeIndex"] as? Int, 0, "Fixture paragraphs contain a single text node")
+                let json = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
+                nextAnchorScript = """
+                    (()=>{const n=document.querySelector(\(json))?.firstChild;if(!n||n.nodeType!==3)return false;
+                    const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
+                    return b.left>=-1&&b.left<innerWidth&&b.top>=-1&&b.bottom<=innerHeight+1;})()
+                    """
+            }
+            // A page boundary may expose an earlier word after each reflow.
+            // Preserve the full point visible immediately before each separate
+            // action, rather than demanding the first action's bottom word stay
+            // on screen through an arbitrary chain of different page layouts.
+            try await sampleNextAnchor()
             await model.importReadingFont(from: try BundledReadingFont.wenKai.resource().fileURL)
             let second = try XCTUnwrap(model.importedFonts.first(where: { $0.id != font.id }))
             XCTAssertEqual(second.fileExtension, font.fileExtension)
@@ -143,7 +169,7 @@ final class ReaderRenderingTests: XCTestCase {
             let secondScript = ReadingFontTests.chineseFontScript(second.cssFamily, paragraph: "#long-paragraph")
             try await waitUntil {
                 guard let web = active() else { return false }
-                return try await web.evaluateJavaScript("(\(secondScript)) && (\(anchorScript))") as? Bool == true
+                return try await web.evaluateJavaScript("(\(secondScript)) && (\(nextAnchorScript))") as? Bool == true
             }
             let routesScript = """
                 (()=>{const result={};for(const style of document.querySelectorAll('style')){
@@ -158,26 +184,27 @@ final class ReaderRenderingTests: XCTestCase {
             let routeValue = try await XCTUnwrap(active()).evaluateJavaScript(routesScript) as? [String: String]
             let routes = try XCTUnwrap(routeValue)
             XCTAssertEqual(routes.count, 2); XCTAssertEqual(Set(routes.values).count, 2, "Same-basename fonts require independent served URLs")
-            model.selectImportedFont(font.id)
+            try await sampleNextAnchor(); model.selectImportedFont(font.id)
             try await waitUntil {
                 guard let web = active() else { return false }
-                return try await web.evaluateJavaScript("(\(fontScript)) && (\(anchorScript))") as? Bool == true
+                return try await web.evaluateJavaScript("(\(fontScript)) && (\(nextAnchorScript))") as? Bool == true
             }
             let reselectedMetric = try await XCTUnwrap(active()).evaluateJavaScript(metricScript) as? Double
             XCTAssertEqual(try XCTUnwrap(reselectedMetric), firstMetric, accuracy: 0.01)
             for bundled in BundledReadingFont.allCases {
                 let asset = try bundled.resource().asset
+                try await sampleNextAnchor()
                 model.selectImportedFont(asset.id)
                 let chinese = ReadingFontTests.chineseFontScript(asset.cssFamily, paragraph: "#long-paragraph")
                 try await waitUntil {
                     guard let web = active() else { return false }
-                    return try await web.evaluateJavaScript("(\(chinese)) && (\(anchorScript))") as? Bool == true
+                    return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                 }
                 await model.saveNow(); model.close(); await model.open()
                 XCTAssertEqual(model.appearance.importedFontID, asset.id)
                 try await waitUntil {
                     guard let web = active() else { return false }
-                    return try await web.evaluateJavaScript("(\(chinese)) && (\(anchorScript))") as? Bool == true
+                    return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                 }
                 let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
                 chineseImage.name = "font-epub-\(bundled.rawValue)-\(continuous ? "continuous" : "paged")-build23"

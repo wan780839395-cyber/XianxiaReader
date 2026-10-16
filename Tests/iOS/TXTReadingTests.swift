@@ -50,7 +50,7 @@ final class TXTReadingTests: XCTestCase {
         await model.importReadingFont(from: fontURL)
         let font = try XCTUnwrap(model.importedFonts.first)
         XCTAssertEqual(model.appearance.importedFontID, font.id)
-        let loaded = "Array.from(document.fonts).some(f=>f.family.includes('\(font.cssFamily)')&&f.status==='loaded') && getComputedStyle(document.querySelector('p')).fontFamily.includes('\(font.cssFamily)')"
+        let loaded = "(()=>{const p=document.querySelector('p');return !!p && Array.from(document.fonts).some(f=>f.family.includes('\(font.cssFamily)')&&f.status==='loaded') && getComputedStyle(p).fontFamily.includes('\(font.cssFamily)');})()"
         func active() -> WKWebView? {
             guard let wrapper = view("readium.chapter.1", root: engine.viewController.view) else { return nil }
             return webViews(wrapper).first
@@ -65,7 +65,7 @@ final class TXTReadingTests: XCTestCase {
         let originalSize = try XCTUnwrap(sizeValue)
         var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
         model.setAppearance(updated)
-        let sizeScript = "parseFloat(getComputedStyle(document.querySelector('p')).fontSize) > \(originalSize * 1.3)"
+        let sizeScript = "(()=>{const p=document.querySelector('p');return !!p && parseFloat(getComputedStyle(p).fontSize) > \(originalSize * 1.3);})()"
         try await wait("TXT imported font reflow preserves text") {
             guard let web = active() else { return false }
             let changed = try await web.evaluateJavaScript(sizeScript) as? Bool == true
