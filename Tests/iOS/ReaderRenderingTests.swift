@@ -150,7 +150,7 @@ final class ReaderRenderingTests: XCTestCase {
                   for(const r of Array.from(style.sheet?.cssRules||[])){
                     if(r.type!==CSSRule.FONT_FACE_RULE)continue;
                     for(const f of ['\(font.cssFamily)','\(second.cssFamily)']){
-                      if(r.style.fontFamily.includes(f))result[f]=r.style.src;
+                      if(r.style.getPropertyValue('font-family').includes(f))result[f]=r.style.getPropertyValue('src');
                     }
                   }
                 }return result;})()

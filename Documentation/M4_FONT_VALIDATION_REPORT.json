@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "fbc1f5ebeeadd76384deee3556e2f54d549538a8d253f29c459a96d723ea373a"
+      "sha256": "14d12191bafa1a3ae5d107aa8fcc3a24cefea59731d6840ef218633e7ca37501"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
