@@ -110,7 +110,8 @@
         "sha256": "b311ab7c82af5e2a21a92a8f0651e759832985b727f661d49d183cde9a06b1e7"
       }
     ],
-    "oldUserCloseFeedbackRetained": "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
-    "phoneReacceptanceNotRequested": true
+    "oldUserCloseFeedbackRetained": "Documentation/ValidationLogs/m4-autoscroll-build21-reduced-close-device-feedback.json",
+    "phoneReacceptanceNotRequested": true,
+    "build22BasicFeedbackSeparate": "Documentation/ValidationLogs/m4-return-build22-user-feedback.json"
   }
 }

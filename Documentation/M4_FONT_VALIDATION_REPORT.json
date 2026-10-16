@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 fresh-per-action canonical anchor test correction full CI pending; runtime unchanged",
+  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -766,7 +766,7 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "2df828985da08932118a10d7e068629be1b897c4eade5865f8f2252108e78e1c"
+      "sha256": "57c8273cda436acef1243311a45b9a0f19d81d1de9413e52835d3db924dc0a63"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2319,8 +2319,10 @@
     "Documentation/ValidationLogs/m4-font-build23-bundled-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-provenance.json",
     "Documentation/ValidationLogs/m4-font-build23-bundled-ui-partial.json",
+    "Documentation/ValidationLogs/m4-font-build23-compatibility-130of134.json",
     "Documentation/ValidationLogs/m4-font-build23-compatibility-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
+    "Documentation/ValidationLogs/m4-font-build23-fresh-anchor-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
     "Documentation/ValidationLogs/m4-font-build23-linux.json",
     "Documentation/ValidationLogs/m4-font-build23-overlay-38890891607.json",

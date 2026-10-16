@@ -1,5 +1,7 @@
 # 本地字体导入
 
+当前新EPUB验证语义修正：ff824/38906278076仅一条新字体用例失败，原canonical char476与DOM caret476相同、viewport offset=-9.84375，原字符实际部分位于视口内。完整位置允许保留负的viewportOffset（第一行部分裁切），不能以range.top>=0要求整字外框在屏内。最新仅测试改为glyph rect与viewport相交，continuous另核该文字Y与切换前/新采canonical offset差<3px；保留首>100、实际字形、字号/重开/同名路由检查。原124全过，不再改App运行源，尚待新完整CI与原生验收。
+
 ## 用户补充：内置中文字体（本轮待完整编译）
 
 后续实际诊断/修正候选：e758/38886008057真实128/131。TTF FontFace与导入后可见锚点通过，连续模式150%字号阶段落到p16；TXT测试仅selector未构造fragment导致初始定位超时；字体真UI单次滚动未到主题。采用锁定Readium3.11已有完整锚点invalidate/reload路径，Adapter仅对资源字体（旧/新）排版请求完整重载；普通系统字体连续编辑及配色仍原动态CSS。初次pendingLocation用原evaluateScript观察FontFaceSet.ready的Promise完成后恢复，15秒超时报可见Readium资源错误并允许系统fallback，clear取消旧Task，旧await结果不得通知新reader；依赖/锁/JS资产保持，两个Vendor Swift修改和摘要明确登记。参考[W3C FontFaceSet.ready规范](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)、[Apple公开API](https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:))及仓内3.11完整锚点重载实现，不继续盲加固定延迟。新增真实延迟FontFaceSet.ready关闭/重开竞态，原非零/字体字形/完整锚点/字号断言保留。修正尚须新完整CI和原生复核，不能写成根因全部证实或已修复。

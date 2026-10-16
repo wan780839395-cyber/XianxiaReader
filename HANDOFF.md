@@ -2,6 +2,8 @@
 
 ## 实际最新断点（先看这里）
 
+新实际结果38906278076/ff824已failure，full.log只有新EPUB字体用例一例失败，其余133（含原124与TXT/两字体UI/关闭迟到）通过，summary待原件核。失败位置在continuous首次导入后的anchorScript，canonical仍p25,char476，xianxiaViewportOffset=-9.84375，DOM caret476，正文正常；测试错误要求rect.top>=-1/整块在屏内，把顶部仍部分可见文字误判丢失。现仅新用例按字形rect与视口相交判断，continuous额外加原字符Y与导入前/每次fresh canonical offset差<3px（更精确），paged仍核同一文字可见；首>100、加载字形/150%/静止重开/同名路由等不减。App运行源保持7ab，需Windows再冻/完整新CI。旧1.312GB诊断download43796，临时分块和原ZIP放C:/Users/78083/.cache/XianxiaReader-Build23-CI，实际解压日志/xcresult仍build/ci/38906278076；尚未CRC不能写完成。未交付，普通HEAD/index不动。
+
 2026-10-16T13:21:58.048304+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
 
 主源`ff82423a9a4092873d9d9f26d513e34064af0fc1` / `codex/m4-font-anchor-tests` / CI38906278076，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38906278076。唯一主watcher工具session91856，写build/ci/38906278076/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': True, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。

@@ -90,6 +90,13 @@ final class ReaderRenderingTests: XCTestCase {
                 stableCharacter = value; return true
             }
             let character = try XCTUnwrap(stableCharacter); XCTAssertGreaterThan(character, 100)
+            let initialTopScript = """
+                (()=>{const n=document.getElementById('long-paragraph').firstChild;
+                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));return r.getBoundingClientRect().top;})()
+                """
+            let initialTopValue = try await original.evaluateJavaScript(initialTopScript) as? Double
+            let initialTop = try XCTUnwrap(initialTopValue)
+            let initialVerticalCheck = continuous ? "Math.abs(b.top - \(initialTop)) < 3" : "true"
             let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
             await model.importReadingFont(from: fontURL)
             let font = try XCTUnwrap(model.importedFonts.first)
@@ -97,7 +104,7 @@ final class ReaderRenderingTests: XCTestCase {
             let anchorScript = """
                 (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;
                 const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
-                return b.left>=-1 && b.left<innerWidth && b.top>=-1 && b.bottom<=innerHeight+1;})()
+                return b.right>0 && b.left<innerWidth && b.bottom>0 && b.top<innerHeight && (\(initialVerticalCheck));})()
                 """
             let fontScript = """
                 (() => {const family='\(font.cssFamily)'; const p=document.getElementById('long-paragraph');
@@ -147,11 +154,15 @@ final class ReaderRenderingTests: XCTestCase {
                 let selector = try XCTUnwrap(point["cssSelector"] as? String)
                 let offset = try XCTUnwrap(point["charOffset"] as? Int)
                 XCTAssertEqual(point["textNodeIndex"] as? Int, 0, "Fixture paragraphs contain a single text node")
+                let viewportOffset: Double
+                if continuous { viewportOffset = try XCTUnwrap(locations["xianxiaViewportOffset"] as? Double) }
+                else { viewportOffset = 0 }
+                let verticalCheck = continuous ? "Math.abs(b.top - \(viewportOffset)) < 3" : "true"
                 let json = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
                 nextAnchorScript = """
                     (()=>{const n=document.querySelector(\(json))?.firstChild;if(!n||n.nodeType!==3)return false;
                     const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
-                    return b.left>=-1&&b.left<innerWidth&&b.top>=-1&&b.bottom<=innerHeight+1;})()
+                    return b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight&&(\(verticalCheck));})()
                     """
             }
             // A page boundary may expose an earlier word after each reflow.
