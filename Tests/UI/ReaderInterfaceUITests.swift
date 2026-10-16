@@ -10,7 +10,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         waitForReadableText(in: app)
         XCTAssertEqual(toggle.value as? String, "准备慢滚")
         for _ in 0..<3 { app.buttons["reader.autoscroll.faster"].tap() }
-        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].value as? String, "每分钟 3.0 屏")
         snapshot("reader-autoscroll-light-ready-build21", in: app)
         toggle.tap()
         let running = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "正在慢滚"), object: toggle)
@@ -30,7 +30,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         app.buttons["reader.appearance.open"].tap(); app.buttons["reader.theme.charcoal"].tap()
         app.buttons["reader.appearance.done"].tap()
         app.buttons["reader.autoscroll.open"].tap()
-        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].value as? String, "每分钟 3.0 屏")
         toggle.tap()
         let darkElapsed = XCTNSPredicateExpectation(predicate: NSPredicate(value: false), object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [darkElapsed], timeout: 3), .timedOut)
@@ -41,7 +41,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertFalse(toggle.exists)
         app.buttons["reader.autoscroll.open"].tap()
         XCTAssertEqual(toggle.value as? String, "准备慢滚")
-        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].label, "3.0")
+        XCTAssertEqual(app.staticTexts["reader.autoscroll.speed"].value as? String, "每分钟 3.0 屏")
         snapshot("reader-autoscroll-reopened-static-build21", in: app)
     }
 

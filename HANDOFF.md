@@ -30,3 +30,6 @@ Linux完整原日志/性能artifact已实际下载CRC核验：127/127 Core、四
 
 修正子步骤已完成，测试前检查点：EPUB/TXT先移动到当前ready尾部1.75屏触发预取，再核真实相邻frame；前台active双guard；读取/进度错误先暂停，速度写入失败条内可见/重试不自动恢复。新增临时存储真实失败/恢复原文件/重试回归，当前共13新增（5Core+6集成+2UI），预期116iOS=101集成+15UI。旧fc68候选完整freeze另存second-candidate-freeze.json，尚未用新结果覆盖；现在Windows检查，待当前CI真实结论后创建修正候选重新全跑。
 修正后Windows426语法新增0/17工具通过（corrected-windows.log/corrected-tooling.log）。当前未Apple编译的修正先做私有WIP快照用于中断恢复，不触发/不取消正在运行的fc68旧源CI；其真实结果仍要完整读取。后续须再冻结最终源、显式dispatch完整CI，不能交付该WIP。
+源码复查另补速度无障碍语义：原Text用label覆盖数值，改为“慢滚速度”label+实际每分钟数值value；新增UI断言改读公开AX value，保留可见速度/持久化含义。旧fc68轮仍未取最终结果，不把此审查当实际失败。上述后续修正仍待重新Windows检查/快照和完整CI。
+
+第二轮CI38858126400/fc68真实完成failure，完整日志已核：115iOS中112通过/3失败，原108全部通过；新增EPUB/TXT预取准备超时和AX label“每分钟屏数”与3.0不一致，恰与前述源码审查吻合。test65/export0/summary0，严格设备Release和IPA未执行/未生成。923689501字节诊断artifact12028779586正下载，原件保留。修正未删除原断言，增加存储失败回归后下一轮116iOS；构建前Windows重跑/最终冻结，再显式完整CI。

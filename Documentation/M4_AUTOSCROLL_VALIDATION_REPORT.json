@@ -1,5 +1,5 @@
 {
-  "stage": "Build21 working corrections added after read-only review; old fc68 CI still running, corrections not compiled",
+  "stage": "Build21 Windows validated source candidate; Apple compilation pending",
   "branch": "codex/m4-reading-appearance",
   "priorSnapshot": "02ecc4601e6578b35a7585fcf898d45d25a89bfc",
   "preservedPackages": [
@@ -279,7 +279,7 @@
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
-      "sha256": "f499da19cf98f92a2d6c18e55a97e894e4a7c7e559e110b80a695babcefe4ac3"
+      "sha256": "758ddea739a065d6d252bfaeec7830214a570fd97d6be670fd340bb96583a0a7"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -291,7 +291,7 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "b3350d6beef83bfcde97b9d80cb851bd491a73a286301032d4e1ed4449e3aafe"
+      "sha256": "ae02bf85a1400612e522d107bebe0af3cf98da78e2d14ceae7e956fec9abc472"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -587,7 +587,7 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "6b11feab05f42da96c54029a1e710c137b93ab722b599f01145ba5281b111226"
+      "sha256": "60eae3def9cb77b57c6531c74c4cd15bd11c4a0220e86f5af92a614bebaced9d"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -655,7 +655,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "887d83669403c9f82b11d6f3754fcc9d5031ecc3b9a353e06da7874749c9a965"
+      "sha256": "daeee4bb06005f20d61cd5fbe9ecbb25093b2d9d9f15500388d6447dac67f07a"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -687,11 +687,11 @@
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "sha256": "d3bd066784ce67db0805180e35af830376ef9a71667cdc93a1f9ebb53a97cbfe"
+      "sha256": "dd54111f5baa9761f5c7db5f81613a793f1396dc2be6ba2b950f57ac2dff10df"
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "49cb973202d4d0018a5092408257462c7e728691aa0d3a310b6c6565af085a8e"
+      "sha256": "604709bcef85f3866e59b632f4bfa16643bbbd7ebb368093c8e0e848ee39ffc1"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -703,7 +703,7 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "sha256": "6660447b28e218fe66bc49d07819da691bd332a9fd8ed99305a0b1a31a183541"
+      "sha256": "3d9fa1ea59b044526a86846a2be93dcf4a13e42b38cc7afbfadd1c83b0964048"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2225,6 +2225,10 @@
     "Documentation/HANDOFF_M4_BUILD20_DELIVERY_2026-10-16.md",
     "Documentation/M4_AUTOSCROLL_VALIDATION_REPORT.json",
     "Documentation/READING_AUTOSCROLL_DESIGN.md",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-api-review.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-first-agent-cancel.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-linux.json",
+    "Documentation/ValidationLogs/m4-autoscroll-build21-second-failure.json",
     "Documentation/ValidationLogs/m4-autoscroll-build21-start.json",
     "Documentation/ValidationLogs/m4-autoscroll-build21-windows.json",
     "Documentation/ValidationLogs/m4-screen-build20-user-feedback.json",
@@ -2246,7 +2250,7 @@
     "project.yml"
   ],
   "oldTestBodiesPreserved": 49,
-  "newTests": 12,
+  "newTests": 13,
   "sourceRevision": "fc68f13e3bcb68c72d7b35ca492511874c182a2d",
   "run": 38858126400,
   "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38858126400",

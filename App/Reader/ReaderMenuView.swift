@@ -128,7 +128,9 @@ import XianxiaCore
                     .disabled(model.interaction.automaticScrollSpeed <= 0.5)
                 Text(String(format: "%.1f", model.interaction.automaticScrollSpeed))
                     .font(.subheadline.monospacedDigit()).frame(minWidth: 28)
-                    .accessibilityLabel("每分钟屏数").accessibilityIdentifier("reader.autoscroll.speed")
+                    .accessibilityLabel("慢滚速度")
+                    .accessibilityValue(String(format: "每分钟 %.1f 屏", model.interaction.automaticScrollSpeed))
+                    .accessibilityIdentifier("reader.autoscroll.speed")
                 Button { model.adjustAutomaticScrollSpeed(by: 0.5) } label: {
                     Image(systemName: "plus").frame(width: 44, height: 44)
                 }.accessibilityLabel("加快慢滚").accessibilityIdentifier("reader.autoscroll.faster")
