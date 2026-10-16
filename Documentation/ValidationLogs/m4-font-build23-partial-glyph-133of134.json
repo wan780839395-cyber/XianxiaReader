@@ -76,5 +76,562 @@
     "sha256": "7cd7db34cba8704e6f8cf5343dcf960d7e5744cb1dfe07072a5169cb60cd72a7"
   },
   "downloadInterruptedThenResumed": true,
-  "deviceAccepted": false
+  "deviceAccepted": false,
+  "nativePartialReview": {
+    "scope": "Only contact1~3,18 images manually viewed; not all75 images/videos,not current-candidate acceptance.",
+    "contacts": [
+      {
+        "path": "build/ci/38906278076/FontReview/images-1.png",
+        "sha256": "6932dfa2a8e1cee69ae5112cc7bc1b92e4edcdb930fcc98432c62671ae0a4eae"
+      },
+      {
+        "path": "build/ci/38906278076/FontReview/images-2.png",
+        "sha256": "9f4b780f518e22d13ed784e17eb9b2d40aeb0ac62ae811e1139a6581fb10ea8d"
+      },
+      {
+        "path": "build/ci/38906278076/FontReview/images-3.png",
+        "sha256": "b2b41045e333b1914d0e5789c40be2c9eab1780968fa007c66d605ff274218ad"
+      }
+    ],
+    "images": [
+      {
+        "name": "autoscroll-epub-paused-build21",
+        "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C80C4610-C7F1-4B6F-990A-5AE3B6D0FBB8.png",
+        "bytes": 608031,
+        "sha256": "af6e5ffb487aeda6243393d557aa87430e21aa01ef49e87202c2a2c72a3dcd18",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "epub-oled-reflow-build15",
+        "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/91B5CCA6-318A-43BB-81C3-89D8A8E64230.png",
+        "bytes": 365789,
+        "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+        "inspected": false,
+        "size": [
+          1206,
+          2334
+        ],
+        "extrema": [
+          [
+            0,
+            198
+          ],
+          [
+            0,
+            204
+          ],
+          [
+            0,
+            197
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "return-epub-continuous-build22",
+        "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/410B9DA7-A361-42CC-AE9D-5EF9F79ED795.png",
+        "bytes": 617696,
+        "sha256": "c0a8290355d930a81ac10f4155bc0422af7c291c77af6768a65ee052c58929e5",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "return-epub-paged-build22",
+        "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A6057816-9CDA-4600-AC1C-AFCD5F6F5A4F.png",
+        "bytes": 389374,
+        "sha256": "782bed77f96dc37377c13d34a08244ed6818d31144ab9d87454a674ef1052110",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-epub-wenKai-paged-build23",
+        "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A97B097B-89A9-4235-A51B-D7E8DB79E132.png",
+        "bytes": 617289,
+        "sha256": "8b8665e89a4a37f84702c22230d4686a5c9350789f43a58af50d1726e2750758",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            198
+          ],
+          [
+            40,
+            204
+          ],
+          [
+            38,
+            197
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-epub-sourceHanSerif-paged-build23",
+        "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DCACB463-6B03-4812-A924-C256C73DAE67.png",
+        "bytes": 65192,
+        "sha256": "e3396dab74a2d0534569420cd63186e67720b97b8fb5bdb6b91b37d88a3f27f1",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            206
+          ],
+          [
+            40,
+            207
+          ],
+          [
+            38,
+            206
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-epub-paged-build23",
+        "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A0FC77E-0093-4A5E-8C57-E93F164C1E9C.png",
+        "bytes": 462339,
+        "sha256": "f7396c69f4383a838940899e7d7696337b707293b050f8a1020b87082013e67e",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            198
+          ],
+          [
+            40,
+            204
+          ],
+          [
+            38,
+            197
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "screen-instant-whole-window-build20",
+        "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/180EA195-5684-4782-9F14-198B83A197CA.png",
+        "bytes": 610005,
+        "sha256": "654d8d0045eee6a5d3e0505fe163e8d47d4654ced62edbb8f6dbe4ad1a7a19d7",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "epub-motion-whole-window-build17",
+        "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/240223CE-E69F-48F0-90E6-9933EA861656.png",
+        "bytes": 490411,
+        "sha256": "0dd404261878626e1e4a05bdae081e6e2e5f725c1f7a5171c54b89014b728f1c",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "epub-paged-reflow-build15",
+        "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7F5704D1-85A3-45E9-BCC5-268931E36DF2.png",
+        "bytes": 367745,
+        "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+        "inspected": false,
+        "size": [
+          1206,
+          2250
+        ],
+        "extrema": [
+          [
+            36,
+            198
+          ],
+          [
+            40,
+            204
+          ],
+          [
+            38,
+            197
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "screen-cross-chapter-whole-window-build19",
+        "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E425E2C-8E27-4FC3-B57C-10C85D8ADF68.png",
+        "bytes": 520942,
+        "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "autoscroll-txt-window-paused-build21",
+        "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B6FFDCB3-3FEA-4590-A568-5FE226AAE3A0.png",
+        "bytes": 558493,
+        "sha256": "14d4140e33c077bbe9182bf8fbabe0dad452327e9ddeb4208c03c0e2d3f6f39d",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "return-txt-byte-anchor-build22",
+        "testIdentifier": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B92F98E3-327D-436C-A869-72A1D274924E.png",
+        "bytes": 550895,
+        "sha256": "fb5790289989027e180d42ce7491ddefd682458b4f6608c9a11a2e666eaa9aa3",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            18,
+            255
+          ],
+          [
+            18,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-txt-wenKai-build23",
+        "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BBA5EFF8-B68A-4038-AFB3-E3968AD10D6C.png",
+        "bytes": 691870,
+        "sha256": "4c3b969a38f179041060298f86d7e87bf3f4f87f686f1a5fceb17ab94f85dd8a",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            255
+          ],
+          [
+            39,
+            254
+          ],
+          [
+            0,
+            238
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-txt-sourceHanSerif-build23",
+        "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/129BFF5F-CB7B-43DA-830C-7D1EBE791A47.png",
+        "bytes": 639316,
+        "sha256": "37f1f642799390e72d194346cad49deb7e3a1a64032f2b5343e1c699efdcb30d",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            255
+          ],
+          [
+            39,
+            254
+          ],
+          [
+            0,
+            238
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "font-txt-byte-anchor-build23",
+        "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/974B8C27-7733-4CC6-9539-6A7DC88F3320.png",
+        "bytes": 61303,
+        "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            36,
+            36
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "txt-charcoal-reflow-build15",
+        "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/18102F4C-6B10-4462-A587-8A9C677456D3.png",
+        "bytes": 94315,
+        "sha256": "0a3c37bab73dff1b49899ce90d921c52f1080116840762b03b42073425ee5578",
+        "inspected": false,
+        "size": [
+          1206,
+          2334
+        ],
+        "extrema": [
+          [
+            36,
+            255
+          ],
+          [
+            39,
+            254
+          ],
+          [
+            0,
+            238
+          ],
+          [
+            255,
+            255
+          ]
+        ]
+      },
+      {
+        "name": "reader-page-oled-build15",
+        "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+        "path": "build/ci/38906278076/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/637CB0BF-DB6D-4BCE-9EEB-924B3D4A4117.png",
+        "bytes": 550725,
+        "sha256": "e89b7f745a61fa2ae461e0dd07d9e72caf012ee4ce3be7a82c6e42f7c8ae8ca3",
+        "inspected": false,
+        "size": [
+          1206,
+          2622
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    ],
+    "observations": "WenKai EPUB paged and both Chinese TXT font images show distinct Chinese glyphs with soft charcoal contrast. Source Han Serif paged still shows loading spinner; initial Latin-font TXT image blank. DOM readiness alone is insufficient for native capture. New tests wait for window/scrollView.alpha1 before validation and image capture.",
+    "accepted": false
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "stage": "Build23 bundled Chinese fonts and import Windows validated candidate; new complete Apple CI pending",
+  "stage": "Build23 actual native-visible text + canonical partial-glyph viewport validation full CI pending",
   "priorSnapshot": "24d311e94cd4cb2e1697f7d1adc61c086bcd6668",
   "preservedPackages": [
     {
@@ -2370,10 +2370,10 @@
   "expectedIOS": 134,
   "expectedIntegration": 115,
   "expectedUI": 19,
-  "sourceRevision": "92ad36a0f8fd45a40c1e31c73f37a117ccb34200",
-  "run": 38911801177,
-  "branch": "codex/m4-font-viewport-offset",
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38911801177",
+  "sourceRevision": "19db1b74af1be780c80994c84a4a324045b657f9",
+  "run": 38914038336,
+  "branch": "codex/m4-font-native-visible",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38914038336",
   "priorCancelledRun": {
     "recordedAtUTC": "2026-10-16T09:36:08.078492+00:00",
     "run": 38880257296,
@@ -2508,5 +2508,12 @@
     "runtimeSameAsCurrent": true,
     "reason": "Only partial-glyph visibility predicate failed; full original ZIP now CRC verified,133/134,old124 all passed",
     "evidence": "Documentation/ValidationLogs/m4-font-build23-partial-glyph-133of134.json"
+  },
+  "priorViewportOffsetCandidate": {
+    "run": 38911801177,
+    "source": "92ad36a0f8fd45a40c1e31c73f37a117ccb34200",
+    "completionPending": true,
+    "runtimeSameAsCurrent": true,
+    "reason": "Native test now waits for visible scrollView after pending location finishes; runtime unchanged"
   }
 }

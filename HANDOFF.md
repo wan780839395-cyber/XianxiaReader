@@ -2,6 +2,8 @@
 
 ## 实际最新断点（先看这里）
 
+当前主候选19db1b74af1be780c80994c84a4a324045b657f9 / codex/m4-font-native-visible / 实际CI38914038336，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38914038336 。含新用例部分字形相交+continuous3px原Y、实际native alpha1取图条件；只改新测试/文档，App/Packages/Vendor运行源码仍7ab完全一致。Windows433/17、旧35主体/16新增/522blob重冻，134 iOS=115集成+19UI预期，完整Core/Release23/原生门槛已重置pending。前92ad/38911801177由watch6245继续独立跑（不含native取图条件），本轮主watcher以工具回执为准。原ff只有一用例失败133/134的ZIP已CRC、C缓存绝对路径在partial-glyph-133of134.json；7ab130/134及其余历史原件全保留。禁止再改冻结源码或重复dispatch，尚无Build23IPA。
+
 原ff/38906278076的1.312GB原ZIP已续传CRC/解压，43796曾过期失败、17496恢复结束0，partial-glyph-133of134.json证实133/134且旧124全过，0跳过/0编译warning，原ZIP在C缓存明确绝对路径。只人工看了75张中的contact1~3共18张；其中新font-epub-sourceHanSerif-paged仍spinner、新font-txt-byte-anchor为空底色，另WenKai分页/宋楷TXT显示真实字体正常。Readium3.11 showSpread在DOM/初始化回调之后才把scrollView.alpha置1，原新测试仅DOMready会过早截图；现在仅新字体active()等待实际window且scrollView.alpha>0.99，再核字体/完整点/截图。不是修图或改变产品正文；不能将两空截图当原生通过。当前92ad/38911801177尚不含此取图条件，继续跑完保存，但须Windows再冻后新完整轮才能最终交付。App/Adapter/Vendor运行源仍7ab不变。未有Build23IPA，旧源码/失败原件/正常Git状态全部保留。
 
 当前唯一主已切92ad36a0f8fd45a40c1e31c73f37a117ccb34200 / codex/m4-font-viewport-offset / 实际CI38911801177，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38911801177 。只改一条新EPUB测试的可见语义并加continuous3px原Y核对、文档；App/Packages/Vendor运行源码仍与7ab一致。Windows433/17、35旧主体保持/16新增/522blob重冻，预期Core133各/iOS134=115集成+19UI/严格Release23与本轮原生全pending。前ff/38906278076只有新EPUB一例（原124全过、TXT两CJK字体/字号/重开与同名TTF页通过以原件核准），其1.312GB原件43796仍在C缓存下载；主watcher见当前工具回执。禁止重复dispatch，不用前轮局部代本轮验收，无Build23IPA，所有未提交/旧包/备份保留。
