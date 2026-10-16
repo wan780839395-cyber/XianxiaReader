@@ -1,0 +1,116 @@
+{
+  "recordedAtUTC": "2026-10-16T13:19:40.272252+00:00",
+  "run": 38901198541,
+  "sourceRevision": "7ab2e457c82f1193e707c3c85ca5ffd27b76b110",
+  "conclusion": "failure",
+  "testSummary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 4,
+        "passedTests": 130,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 4,
+    "finishTime": 1792156063.158,
+    "passedTests": 130,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792154524.377,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed: caught error: \"unavailable\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 73,
+        "testIdentifierString": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+        "testName": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()"
+      },
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():144",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 74,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "failed: caught error: \"Error Domain=WKErrorDomain Code=4 \"A JavaScript exception occurred\" UserInfo={WKJavaScriptExceptionLineNumber=1, WKJavaScriptExceptionMessage=TypeError: Argument 1 ('element') to Window.getComputedStyle must be an instance of Element, WKJavaScriptExceptionColumnNumber=28, WKJavaScriptExceptionSourceURL=undefined, NSLocalizedDescription=A JavaScript exception occurred}\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 109,
+        "testIdentifierString": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+        "testName": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()"
+      },
+      {
+        "failureText": "XCTAssertTrue failed",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 123,
+        "testIdentifierString": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion",
+        "testName": "testAutomaticSlowScrollRespectsAdditionalReduceMotion()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "29% of duration",
+        "text": "1 longest test run with outlier durations exceeding 27.81s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 134
+  },
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "missingOverlayStartupFixedInThisCandidate": true,
+  "releaseExecuted": false,
+  "oldFailingTests": [
+    "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+    "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion"
+  ],
+  "newFailingTests": [
+    "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+    "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont"
+  ],
+  "firstTTFLoadReflowAndReopenPassedBeforeSecondImport": true,
+  "delayedFontReadyCloseRegressionPassed": true,
+  "bundledCoreTextAndTwoFontUITestsPassed": true,
+  "rawLog": {
+    "path": "build/ci/38901198541/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "0eaf42b48661e7a6f88520a0c236525e7b7229c94aa21fa339a2c5a1d1db1f10"
+  },
+  "scope": "Four actual failing cases retained. No old assertion changes; unknown old instantaneous failures are not assigned a root cause. New test corrections use fresh full point before each independent reflow and wait for DOM element existence.",
+  "reducedMotionVideoPartialReview": {
+    "scope": "Only full1fps overview in two contacts manually viewed. Recording ends before a verifiable post-close menu state; cannot establish failure root cause from this material.",
+    "contacts": [
+      {
+        "path": "build/ci/38901198541/FontReview/disabled/contact-1.png",
+        "sha256": "5378237897c532b35a838ddb1b1989bf35232f9be276ae68937fd0bc5b81e50a"
+      },
+      {
+        "path": "build/ci/38901198541/FontReview/disabled/contact-2.png",
+        "sha256": "b311ab7c82af5e2a21a92a8f0651e759832985b727f661d49d183cde9a06b1e7"
+      }
+    ],
+    "oldUserCloseFeedbackRetained": "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
+    "phoneReacceptanceNotRequested": true
+  }
+}

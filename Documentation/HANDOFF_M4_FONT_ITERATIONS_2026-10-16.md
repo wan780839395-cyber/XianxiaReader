@@ -34,3 +34,24 @@
 
 下一步核两CI真实完整结果。主候选成功后下载原件CRC→inspect IPA23/validate_font.py finish→font_runtime_diagnostics.py→review_font.py prepare/overview（含bundled）及review_font_raw.py原VFR帧→人工manual-notes→finalize_font_native.py。原生通过才运行deliver_bundled_fonts.py package/docs/preserve与最终快照/verify。所有helpers已准备但未冒称执行成功。手机/TS/首次大字库加载与内存/FPS/功耗/全部Provider/外部OTF真UI仍单列；M4整体未完。
 
+
+## Archived checkpoint 2026-10-16T13:21:58.048304+00:00
+
+## 实际最新断点（先看这里）
+
+实际新主：ff82423a9a4092873d9d9f26d513e34064af0fc1 / codex/m4-font-anchor-tests / CI38906278076，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38906278076 。只改两条新测试与文档，App/Adapter/Vendor运行源与7ab一致；Windows433/17、旧35主体/16新增/522blob已核，预期133Core各/134iOS/Release23+原生全门槛重置。原7ab失败的1.358GB诊断仍download43791，主watcher以当前工具回执为准。保存完整失败后核真实新源结果，不重复派发、不卡UI断言；无Build23 IPA，全部原文件/旧包/备份保持。
+
+本轮38901198541/7ab已真实failure，完整log已下载，Apple原件artifact12048531028/1,358,656,905B正在session43791下载，未CRC不得写已完成。启动缺库已消失，实际执行115集成+19UI，关闭迟到font-ready/内置原件glyph/两字体UI通过，无Swift源warning。失败有两旧（fresh return capture unavailable、减少动效关闭后menu未hit）和两新：EPUB第二字体导入仍以最早字符作跨多次分页的期待，新TXT重载中临时空DOM直接getComputedStyle异常。旧主体不改且根因未扩大断言；新用例保留首非零字符/首次150%/静止重开断言，后续每次独立换字前重新采完整canonical DOMRange并核该文字点可见（按App实际capture语义），TXT用p存在守卫处理真实重载准备期。只改新测试/文档，App/Adapter/Vendor运行源与7ab一致；Windows433/17/35旧/16新增/522blob重核后送全新完整轮，旧失败原件保留，未交付。
+
+2026-10-16T12:56:36.162767+00:00（UTC证据时间，用户时区Asia/Shanghai）。用户授权内置几个字体，已实现思源宋体SC Regular OTF2.003、霞鹜文楷Regular TTF1.530（原字库合计50,472,272B），原OFL/固定官方revision/摘要/实际CoreText中文glyph与独立真UI初步通过；完整新候选尚未交付，Build22仍可安装基线。
+
+主源`7ab2e457c82f1193e707c3c85ca5ffd27b76b110` / `codex/m4-font-compatibility` / CI38901198541，当前in_progress/pending，https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38901198541。唯一主watcher工具session10152，写build/ci/38901198541/run.json/full.log/artifacts.json；先查OS进程再恢复，不重复dispatch。Windows433语法新增0/54既有限制、17工具、35原测试主体保持/16新增、522源码/资源blob冻结。预期Linux/macOS Core133各、iOS134=115集成+19UI、严格无签名Release23/min16、各四长TXT Release探针；实门槛以M4_FONT_VALIDATION_REPORT.json为准，当前{'linuxCorePassed': True, 'macOSCorePassed': False, 'iOSTestsPassed': False, 'deviceReleaseBuilt': False, 'desktopLongTXTValidated': False, 'Build23DeviceAccepted': False, 'M4Complete': False}。
+
+实现：App两只读Bundle字体不复制/摘要开书，不占12用户导入名额；Adapter最多14faces/正文窗口仍12，旧可选UUID偏好兼容。后台本地TTF/OTF导入/目录/缺失重导/错误可见，完整锚点受控重开；资源字体排版走Readium已有完整锚点invalidate，系统连续排版仍动态。初始pendingLocator等待标准document.fonts.ready Promise完成，通过原evaluateScript轮询观察，15s上限/32ms/取消/可见资源错误；不引入受WebKit293831影响的refined Swift API。每FileURL独立UUID资源路由、章节复用，真实两个同名TTF回归。两Vendor Swift/UPSTREAM明确登记，无依赖/锁/JS资产升级。
+
+历史均保留：首轮38880257296为Agent取消；38881623233=129/131，两新初始定位失败；e758/38886008057=128/131（连续字体150%定位/TXT构造/UI目标）；277/38887978313=131/133（两新初始定位，原124全过、两字体UI/CoreText通过，另一次新TXT helper编译warning）。后43e/38890891607、bc6/38892156952、2b5/38892611316、255/38893802693均dyld缺libswiftWebKit、集成host启动前abort，不能写134主体失败或通过；bc6结论cancelled且原因未核，未由本Agent取消。四原AppleZIP均CRC/解压与summary/log证据已留（overlay-*.json），其他fail原件保留。此问题已查官方WebKit293831，当前改回原JS桥，仍待新完整验证。此前详录HANDOFF_M4_FONT_ITERATIONS_2026-10-16.md。
+
+普通HEAD6d761749/空index/M2e6f31d85/M344af41f0保持，原875路径/39旧包/13ZIP备份均核并保留，只使用私有index快照codex/m4-reading-appearance；当前私有tip以git实际为准，主编译ref独立。没有Build23 IPA；源码冻结后只补文档与helper，若运行源再变则新CI。所有旧watcher/download均已结束，主watcher仍跑（恢复时重核）。
+
+下一步：主CI真实结果→原件CRC→inspect_continuous_ipa.py IPA23→validate_font.py finish（134/19视频/字体与许可原字节/522blob/三锁/旧包）→runtime诊断→review_font.py prepare/overview font+bundled+选定旧外观/回看+review_font_raw.py原VFR窗口→人工manual-notes→finalize_font_native.py。本轮原生通过才执行deliver_bundled_fonts.py package/docs/preserve→最终私有快照→verify/远端树/无任务回执。旧deliver_font.py已过期，禁止用其13新增/131版本打包。OTF内置真实页面将由主回归验证；外部OTF真UI/所有Provider、大中文手机首次加载/内存/FPS/功耗/普通签名/TrollStore/旋转辅助功能仍单列。M4未完、不M5、不关机。
+
