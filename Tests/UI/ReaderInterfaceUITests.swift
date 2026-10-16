@@ -174,4 +174,42 @@ final class ReaderInterfaceUITests: XCTestCase {
         XCTAssertTrue(app.buttons["reader.appearance.open"].waitForExistence(timeout: 10))
         snapshot("reader-motion-reduced-menu-build17", in: app)
     }
+
+    @MainActor func testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress() {
+        for reduced in [false, true] {
+            let app = start(reduceMotion: reduced)
+            defer { app.terminate() }
+            let variant = reduced ? "reduced" : "normal"
+            let settings = app.buttons["reader.appearance.open"]
+            XCTAssertGreaterThanOrEqual(settings.frame.width, 44)
+            XCTAssertGreaterThanOrEqual(settings.frame.height, 44)
+            snapshot("reader-depth-menu-light-\(variant)-build18", in: app)
+            // A held native Button must still activate once on release. Its
+            // press response is retained in the actual XCTest video.
+            settings.press(forDuration: 0.35)
+            let increase = app.buttons["reader.font-size.increase"]
+            XCTAssertTrue(increase.waitForExistence(timeout: 10)); reveal(increase, in: app)
+            XCTAssertGreaterThanOrEqual(increase.frame.width, 44)
+            XCTAssertGreaterThanOrEqual(increase.frame.height, 44)
+            XCTAssertEqual(app.staticTexts["reader.font-size.value"].label, "110%")
+            increase.press(forDuration: 0.35)
+            XCTAssertEqual(app.staticTexts["reader.font-size.value"].label, "120%")
+            increase.press(forDuration: 0.35)
+            XCTAssertEqual(app.staticTexts["reader.font-size.value"].label, "130%")
+            app.buttons["reader.font-size.decrease"].press(forDuration: 0.35)
+            XCTAssertEqual(app.staticTexts["reader.font-size.value"].label, "120%")
+            snapshot("reader-depth-settings-light-\(variant)-build18", in: app)
+            revealAtTop(app.buttons["reader.theme.charcoal"], in: app)
+            app.buttons["reader.theme.charcoal"].press(forDuration: 0.35)
+            XCTAssertEqual(app.buttons["reader.theme.charcoal"].value as? String, "已选择")
+            snapshot("reader-depth-settings-dark-\(variant)-build18", in: app)
+            app.buttons["reader.appearance.done"].tap()
+            XCTAssertTrue(app.buttons["reader.contents.open"].waitForExistence(timeout: 10))
+            for id in ["reader.contents.open", "reader.bookmarks.open", "reader.search.open", "reader.appearance.open"] {
+                XCTAssertGreaterThanOrEqual(app.buttons[id].frame.width, 44)
+                XCTAssertGreaterThanOrEqual(app.buttons[id].frame.height, 44)
+            }
+            snapshot("reader-depth-menu-dark-\(variant)-build18", in: app)
+        }
+    }
 }

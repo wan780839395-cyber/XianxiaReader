@@ -23,7 +23,7 @@ import XianxiaCore
         }
         .padding(.horizontal, 14).padding(.vertical, 8)
         .tint(palette.accent).foregroundStyle(palette.text)
-        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: visible)
+        .animation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.92), value: visible)
         .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
     }
 
@@ -48,9 +48,8 @@ import XianxiaCore
             .accessibilityLabel("添加书签").disabled(!model.isReady)
             .accessibilityIdentifier("reader.bookmark.add")
         }
-        .buttonStyle(.plain).padding(7)
-        .background(palette.card, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).stroke(palette.border))
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion)).padding(7)
+        .readerSurface(palette, elevated: true)
     }
 
     private var footer: some View {
@@ -102,8 +101,7 @@ import XianxiaCore
             }
         }
         .padding(18).disabled(!model.isReady)
-        .background(palette.card, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 26, style: .continuous).stroke(palette.border))
+        .readerSurface(palette, radius: 26, elevated: true)
     }
 
     private func pageButton(forward: Bool) -> some View {
@@ -113,7 +111,8 @@ import XianxiaCore
                 .font(.system(size: 16, weight: .medium)).frame(width: 44, height: 44)
                 .contentShape(Rectangle())
         }
-        .buttonStyle(.plain).accessibilityLabel(label)
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true))
+        .accessibilityLabel(label)
         .accessibilityIdentifier(forward ? "reader.page.next" : "reader.page.previous")
     }
 
@@ -125,7 +124,8 @@ import XianxiaCore
             }
             .frame(maxWidth: .infinity, minHeight: 56).contentShape(Rectangle())
         }
-        .buttonStyle(.plain).accessibilityLabel(label == "设置" ? "阅读设置" : label)
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+        .accessibilityLabel(label == "设置" ? "阅读设置" : label)
         .accessibilityIdentifier(id)
     }
 }

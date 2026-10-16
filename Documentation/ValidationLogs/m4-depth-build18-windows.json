@@ -1,0 +1,12 @@
+{
+  "recordedAtUTC": "2026-10-16T00:52:43.294462+00:00",
+  "swiftGrammarFiles": 423,
+  "addedGrammarDiagnostics": 0,
+  "pristineLimitations": 54,
+  "pythonToolingTests": 17,
+  "swiftCompiled": false,
+  "firstStaticFailure": "Initial project.yml version-edit indentation error; corrected before candidate and CI",
+  "failureLog": ".cache/recovery/20261016-build18/windows-first.log",
+  "correctedLog": ".cache/recovery/20261016-build18/windows-corrected.log",
+  "toolingLog": ".cache/recovery/20261016-build18/tooling-first.log"
+}

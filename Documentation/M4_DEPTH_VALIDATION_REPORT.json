@@ -1,0 +1,176 @@
+{
+  "recordedAtUTC": "2026-10-16T00:52:43.293461+00:00",
+  "stage": "Build18 source integrated; Windows checks passed; full Apple/Linux/native review pending",
+  "sourceRevision": null,
+  "run": null,
+  "branch": "codex/m4-reading-appearance",
+  "build": "18",
+  "expectedCoreTests": 119,
+  "expectedIOSTests": 100,
+  "nativeUITestsTotal": 11,
+  "preservedPackages": [
+    {
+      "path": "build/XianxiaReader.ipa",
+      "bytes": 7502213,
+      "sha256": "7983e6bcbb6be5363ccbe5381533c86e696d949665a6c36591d747cc2933f5c1"
+    },
+    {
+      "path": "build/XianxiaReader-TXT-Build5.ipa",
+      "bytes": 7699595,
+      "sha256": "e48e6ceb5151ca22d23a5cbb4491f71f0e90d0c87e8cef570ea2bb539ab6e621"
+    },
+    {
+      "path": "build/XianxiaReader-Continuous-Build4-TestKit.zip",
+      "bytes": 7429683,
+      "sha256": "f37cda047f5bcf7357d0865635cd7d4e0129a88401f9127ac92ad443a5caf9f7"
+    },
+    {
+      "path": "build/XianxiaReader-TXT-Build5-TestKit.zip",
+      "bytes": 7588693,
+      "sha256": "7d547c7582230e35860e0b591bb51adcf51f988a20470ff421d8805c6d1ac668"
+    },
+    {
+      "path": "build/XianxiaReader-Import-Build6.ipa",
+      "bytes": 7700896,
+      "sha256": "05196a90edca2269c4e9ec3e755808a168d50a4aab50666bef82933b07491e0c"
+    },
+    {
+      "path": "build/XianxiaReader-Import-Build6-TestKit.zip",
+      "bytes": 7590645,
+      "sha256": "112113c0e939c5d8aabdc5ad2280c8faf77f3f1d9288145e902d8ec3cc4a815c"
+    },
+    {
+      "path": "build/XianxiaReader-Import-Build7.ipa",
+      "bytes": 7703978,
+      "sha256": "e051bf073aec9ad4ae395a19620a32b7c885ec4e8362c6f2bacf3f1500c43716"
+    },
+    {
+      "path": "build/XianxiaReader-Import-Build7-TestKit.zip",
+      "bytes": 7594904,
+      "sha256": "5f280447e39b106cb096074a21d7d0a3954c8435a2131d4c038a8889309f4172"
+    },
+    {
+      "path": "build/XianxiaReader-TXT-Memory-Build8.ipa",
+      "bytes": 7705388,
+      "sha256": "db344d2b7da478639b79d7e7cf64554ef59e003dd8dd9fd1266cd21dd9ed15f4"
+    },
+    {
+      "path": "build/XianxiaReader-TXT-Memory-Build8-TestKit.zip",
+      "bytes": 8136508,
+      "sha256": "7ed19e6a595b8bd14624298689efbd68a81b39be0021e7335dbe211e7c875533"
+    },
+    {
+      "path": "build/XianxiaReader-M2-LongTXT-Samples.zip",
+      "bytes": 539806,
+      "sha256": "6473b0193a99680e7fb46df1a7ec67d72eaf2ba22153b19e3b41ba890a727d92"
+    },
+    {
+      "path": "build/XianxiaReader-ANSI-Build9.ipa",
+      "bytes": 7740766,
+      "sha256": "0b3f0ec86898a27c4d462658e2ed74f3a3974d93834b31c54365f639e76e9d1d"
+    },
+    {
+      "path": "build/XianxiaReader-ANSI-Build9-TestKit.zip",
+      "bytes": 8172387,
+      "sha256": "c13c2310b62341bf6f1249eda526c26c41bb398f08030c0adb9fb8233172847b"
+    },
+    {
+      "path": "build/XianxiaReader-Library-Build10.ipa",
+      "bytes": 7824099,
+      "sha256": "f5b0d26ec2d532b34c63ff8dbcb060007d149346a988f71e818692b93627daef"
+    },
+    {
+      "path": "build/XianxiaReader-Library-Build10-TestKit.zip",
+      "bytes": 8254951,
+      "sha256": "3111d7fdfab3fb91f61f659001cbe6e26ba9173a5d27bd7ca7537aff0fe1215e"
+    },
+    {
+      "path": "build/XianxiaReader-Trash-Build11.ipa",
+      "bytes": 7878880,
+      "sha256": "9af1348004e1e150c3e9d9a68b02b754a5915328201287eee7e00d4c6cf8b1e9"
+    },
+    {
+      "path": "build/XianxiaReader-Trash-Build11-TestKit.zip",
+      "bytes": 8309414,
+      "sha256": "616810a2fe3e6f031a3e9576f8d670e2081a556129892186017a930db1530700"
+    },
+    {
+      "path": "build/XianxiaReader-Shelf-Build12.ipa",
+      "bytes": 7914930,
+      "sha256": "3aaa0c7813aab3262686738234fc627e6687755abfcaa4499dd6cfa2355fb163"
+    },
+    {
+      "path": "build/XianxiaReader-Shelf-Build12-TestKit.zip",
+      "bytes": 8345636,
+      "sha256": "a71ffe0d7792857ef99da00e03949837074c93f2a2c61e083c05243b748de22c"
+    },
+    {
+      "path": "build/XianxiaReader-Cover-Build13.ipa",
+      "bytes": 8065097,
+      "sha256": "57a6e0c9639af654abd106bcd187ee7b37d721d3cedf315d2a1677aa5e4d6009"
+    },
+    {
+      "path": "build/XianxiaReader-Cover-Build13-TestKit.zip",
+      "bytes": 8534156,
+      "sha256": "85e5f5aef4886416d2aed4126b3e142be8749b3dc3bdceae29366e953628ac9c"
+    },
+    {
+      "path": "build/XianxiaReader-Duplicates-Build14.ipa",
+      "bytes": 8127589,
+      "sha256": "40779ea86e068666fe3e7af70b3179738ce76cbeb5d2e73ee2e7f06777d68204"
+    },
+    {
+      "path": "build/XianxiaReader-Duplicates-Build14-TestKit.zip",
+      "bytes": 8595096,
+      "sha256": "c7feefc8c6a5f45632712e28a38c75d874f553eaa2c05e8b7a36c25a82a15b61"
+    },
+    {
+      "path": "build/XianxiaReader-Appearance-Build15.ipa",
+      "bytes": 8233247,
+      "sha256": "e65e5b349de4943ec05dc5651f7e2668de3141a73e769c3806dc38b66897a553"
+    },
+    {
+      "path": "build/XianxiaReader-Appearance-Build15-TestKit.zip",
+      "bytes": 8700412,
+      "sha256": "6967660ad5199a121b49e53fa0055edea47698a4d929da7ea6ffc195039c0fd8"
+    },
+    {
+      "path": "build/XianxiaReader-ReadingUI-Build16.ipa",
+      "bytes": 8304947,
+      "sha256": "c55b94177e8ee3f7f9ea3ba50dd93cf49f67b784cc02b5994905c04b8bdd2638"
+    },
+    {
+      "path": "build/XianxiaReader-ReadingUI-Build16-TestKit.zip",
+      "bytes": 9716752,
+      "sha256": "182f23473f89cded7c124324af411b30fd18593200c8b580c7f69f402a87821d"
+    },
+    {
+      "path": "build/XianxiaReader-ReadingMotion-Build17.ipa",
+      "bytes": 8337388,
+      "sha256": "9d2af110466c03746e67929da58118ad60b4296f8001e408c4b2fb8ac29fa53e"
+    },
+    {
+      "path": "build/XianxiaReader-ReadingMotion-Build17-TestKit.zip",
+      "bytes": 10665928,
+      "sha256": "5d09ad4d3536c644533e3a7b324561f8ace14cea0ba5a7fb8d119ec95de3e81b"
+    }
+  ],
+  "gates": {
+    "linuxCorePassed": false,
+    "macOSCorePassed": false,
+    "iOSTestsPassed": false,
+    "deviceReleaseBuilt": false,
+    "desktopLongTXTValidated": false,
+    "M3Complete": true,
+    "M4Complete": false,
+    "Build17BasicSelfUseAccepted": true,
+    "Build18DeviceAccepted": false,
+    "ordinarySignedDeviceAccepted": false,
+    "trollStoreDeviceAccepted": false
+  },
+  "limitations": [
+    "Native simulator review is not phone FPS or device acceptance.",
+    "Giant TXT isolated capture full-page fill remains separately unaccepted.",
+    "Curl, vertical screen mode, auto slow scroll, haptics and remaining M4 settings remain later slices."
+  ]
+}

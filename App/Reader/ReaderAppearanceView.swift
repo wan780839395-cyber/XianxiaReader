@@ -131,8 +131,7 @@ import XianxiaCore
         }
         .foregroundStyle(model.appearance.theme.foreground)
         .padding(20).frame(maxWidth: .infinity, alignment: .leading)
-        .background(model.appearance.theme.background, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).stroke(palette.border))
+        .readerSurface(palette, fill: model.appearance.theme.background)
         .accessibilityIdentifier("reader.appearance.preview")
     }
 
@@ -194,8 +193,13 @@ import XianxiaCore
     }
 
     private func sectionTitle(_ title: String, symbol: String) -> some View {
-        Label(title, systemImage: symbol).font(.subheadline.weight(.medium))
-            .foregroundStyle(palette.secondaryText).accessibilityAddTraits(.isHeader)
+        HStack(spacing: 9) {
+            Image(systemName: symbol).font(.system(size: 13, weight: .medium))
+                .foregroundStyle(palette.accent).frame(width: 27, height: 27)
+                .background(palette.accent.opacity(0.09), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .accessibilityHidden(true)
+            Text(title).font(.subheadline.weight(.medium)).foregroundStyle(palette.text)
+        }.accessibilityElement(children: .combine).accessibilityAddTraits(.isHeader)
     }
 
     private func themeButton(_ theme: ReadingTheme) -> some View {
@@ -220,7 +224,8 @@ import XianxiaCore
                 Text(theme.title).font(.caption).foregroundStyle(selected ? palette.accent : palette.secondaryText)
             }.frame(maxWidth: .infinity, minHeight: 78)
         }
-        .buttonStyle(.plain).accessibilityLabel(theme.title)
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+        .accessibilityLabel(theme.title)
         .accessibilityValue(selected ? "已选择" : "未选择")
         .accessibilityIdentifier("reader.theme.\(theme.rawValue)")
     }
@@ -263,9 +268,9 @@ import XianxiaCore
         Button(action: action) {
             Image(systemName: symbol).font(.system(size: 15, weight: .medium))
                 .frame(width: 44, height: 44)
-                .background(palette.control, in: RoundedRectangle(cornerRadius: 13, style: .continuous))
         }
-        .buttonStyle(.plain).disabled(disabled).opacity(disabled ? 0.35 : 1)
+        .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true, radius: 13))
+        .disabled(disabled)
         .accessibilityLabel(label).accessibilityIdentifier(id)
         .animation(reduceMotion ? nil : .easeOut(duration: 0.12), value: disabled)
     }

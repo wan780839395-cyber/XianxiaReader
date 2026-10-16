@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+## Build18 当前切片（2026-10-16，验证中）
+
+用户认可Build17基本可用/整体观感，反馈部分扁平生硬。本轮只精修阅读原生面板层次、标准按钮按压/短回弹、菜单柔和收敛与减少动效反馈；Core/Adapter/Vendor/锁/Locator保持。Windows423语法新增0/17工具测试通过，尚未编译/交付；预期完整各119Core/iOS100/Release18及原生截图视频连续帧，实际断点HANDOFF。卷页/上下整屏/自动慢滚仍后续，M4未完成。设计READING_DEPTH_DESIGN.md。以下Build17及更早为历史。
+
 ## Build17 当前切片（2026-10-16）
 
 Build17阅读手感第一片通过[完整CI38775427080](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38775427080)，实际编译源`63134f1aa4787e3067453e2fe8b15bf17b449ca2`。Linux/macOS各119Core，iOS99/99（89集成+10真正UI），failed/skipped0；test/export/summary/recording均0，严格无签名iPhoneOS arm64 Release17。Windows423Swift语法新增0/54 pristine限制、17工具测试通过；语法不是编译。四长TXT Release探针/平台、三份真实六pins锁和504运行/验证源码blob已核。原生截图/手势录屏/连续帧与手机手感/FPS、普通签名/TrollStore设备结果分列。
