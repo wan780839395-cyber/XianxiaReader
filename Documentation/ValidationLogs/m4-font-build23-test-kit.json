@@ -1,0 +1,584 @@
+{
+  "recordedAtUTC": "2026-10-16T18:07:01.162333+00:00",
+  "run": 38918803378,
+  "sourceRevision": "62700a159cffc72ef256eabdc24184bf6092b0a7",
+  "deliveredBuild23": {
+    "ipa": {
+      "path": "build/XianxiaReader-LocalFonts-Build23.ipa",
+      "bytes": 41562995,
+      "sha256": "116de6e07de131019ea70197f9e36cb07a89fc7c773a1311c2922d8be74958f2"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-LocalFonts-Build23-TestKit.zip",
+      "bytes": 52737137,
+      "sha256": "9be4d45909b6dffff8adc6008cddcf1a25d718c8f258930a5d269875dab52286"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    }
+  ],
+  "fontAndLicenseMatch": true,
+  "bundledLicenses": [
+    {
+      "path": "BuiltInFontLicenses/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "BuiltInFontLicenses/PROVENANCE.json",
+      "sha256": "06f49623c322fd10e599ace7bb1edbfa22c782529d57c37d2f26af6717bae904"
+    },
+    {
+      "path": "BuiltInFontLicenses/README.txt",
+      "sha256": "42e9e464e9cbf5377c833400a89836453f9e1a38c9970b53d924bee4c7092512"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    }
+  ],
+  "previews": [
+    {
+      "name": "font-epub-wenKai-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/02479691-89AB-4C7D-BB94-7FB165583F96.png",
+      "bytes": 682364,
+      "sha256": "01b046793c2592ee724dcf44c16e6b9296e32898d4a1ac9b5c2e2a9ffabc348a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSerif-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7AF78C8C-64DC-42D4-988A-95E8E65292C0.png",
+      "bytes": 599103,
+      "sha256": "3b1556d7790b4bf1762a86d79c6407f9c0475044e1eeaab1cd3725ae3e474f45",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/060338D7-F53D-4385-9030-8378F3E65CB4.png",
+      "bytes": 511033,
+      "sha256": "8fb62a60eb447ed2f795713be2f4699e9b4ceea321226969fbb50f1614fb8bea",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-wenKai-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/869DA098-0553-4D4C-BB5C-7341F0BEF50C.png",
+      "bytes": 617289,
+      "sha256": "8b8665e89a4a37f84702c22230d4686a5c9350789f43a58af50d1726e2750758",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSerif-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EE0BA302-6C9C-48F7-968F-8F10F1470CBE.png",
+      "bytes": 537360,
+      "sha256": "679b780b39b28429b214c6c88c697853ba3b291ffc838fc9d27c8ad925d50ddb",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/51F05665-A214-4BEF-BCF3-948BB77B1FC4.png",
+      "bytes": 462339,
+      "sha256": "f7396c69f4383a838940899e7d7696337b707293b050f8a1020b87082013e67e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-wenKai-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0041242F-9293-4A5C-8B4B-43BB6755C6BC.png",
+      "bytes": 691870,
+      "sha256": "4c3b969a38f179041060298f86d7e87bf3f4f87f686f1a5fceb17ab94f85dd8a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-sourceHanSerif-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/44F8CAA3-1DCA-4949-BC4C-AF14A13C438D.png",
+      "bytes": 639316,
+      "sha256": "37f1f642799390e72d194346cad49deb7e3a1a64032f2b5343e1c699efdcb30d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-bundled-kai-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EDDA31D1-6A40-44DB-9A39-B03179023ACB.png",
+      "bytes": 874033,
+      "sha256": "69686d39a5224f72244aecf9bbb2c4cd3d67d60f5b9d8e506de75fd94339721f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-bundled-song-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2ED605D5-C8E2-4BAF-B52C-E355CA9A341D.png",
+      "bytes": 710577,
+      "sha256": "aabe819ebbc9eb4b266189e0083a4ed556c707c6d54d6bf4ed07c6cd37f4ca87",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-default-restored-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/72684077-CF7B-4B47-A163-F826E299B7FE.png",
+      "bytes": 1089822,
+      "sha256": "b692d0444e7b7b617ba43a5e457f17e1eadf2f454ef578d93c8aa212c03a6c84",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CA03A016-A534-43AB-A557-76C2B0FB6ED5.png",
+      "bytes": 1107638,
+      "sha256": "d5704e38a19d60022fc521f51f6dab2ebc85f45f0df668166710b34bf2137cc1",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CDF949DE-4049-40ED-9BDE-EB3D9A197674.png",
+      "bytes": 853403,
+      "sha256": "cb946a1c47b4fd7816d7ac642a484bf289fea43f8002803f97f37f9f49929f74",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B55F22C0-D16B-4C8B-BC47-FD13387C24E3.png",
+      "bytes": 873140,
+      "sha256": "96597e23fc3f9406acce6f7e74a64359ffdfb6cfb1d87a64b0f8ead75645c7c9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CC4A61AB-8469-4379-B520-A5E0FA006A12.png",
+      "bytes": 873140,
+      "sha256": "96597e23fc3f9406acce6f7e74a64359ffdfb6cfb1d87a64b0f8ead75645c7c9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "unacceptedDiagnosticCaptures": [
+    {
+      "name": "font-txt-byte-anchor-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/38918803378/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8FDF8A8D-90E2-4BF7-950C-79B1D5ED2BC4.png",
+      "bytes": 61303,
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          36
+        ],
+        [
+          40,
+          40
+        ],
+        [
+          38,
+          38
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "隔离WKWebView PNG只有深灰底色，没有可见正文；即便FontFace/完整byte+UTF16/可见DOM断言通过，也不能算这张光栅页面通过。保留原件、从Preview排除，放未验收诊断；本轮两内置TXT页面另有实际可见全文字形。"
+    }
+  ],
+  "motionFullyAccepted": false,
+  "deviceAccepted": false
+}

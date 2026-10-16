@@ -1,5 +1,23 @@
 # XianxiaReader · 仙侠阅读
 
+## Build23 内置字体与导入（2026-10-17）
+
+Build23内置思源宋体、霞鹜文楷与本地字体导入已交付；[完整CI 38918803378](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38918803378)，实际源`62700a159cffc72ef256eabdc24184bf6092b0a7`，验证ref `codex/m4-font-readable-capture`。Linux/macOS Core各133、iOS 134/134（115集成+19真UI）、失败/跳过0；test/export/summary/recording退出0；严格无签名iPhoneOS arm64 Release23/min16。三锁六pins、522源码/资源blob、每平台四长TXT Release探针、内置字库/原OFL在IPA内原字节已核。Windows433语法新增0/54既有语法限制、17工具通过；语法不算编译。
+
+阅读设置→外观→字体与字号可离线直接选两款内置，约48.1MiB原字库，不裁字、不占12款用户导入名额。原默认/衬线/无衬线保留；我的字体可导入TTF/OTF单字体，≤32MiB/款。后台协调复制/流式摘要/CoreText验证，目录与全局选择保存；重复复用、缺失重导修复、取消保持、失败提示。缺文件/损坏暂用默认且保留原选择，自定义资源明确配色预览，正文实际字体/缺字fallback独立生效。44pt/主题/减少动效按压沿用原界面。
+
+App只读Bundle稳定UUID与导入资源合并≤14 faces，原正文窗口仍≤12；内置不在开书时复制或扫描50MB。首次定位在FontFaceSet.ready后恢复，15秒上限/取消与可见错误；位置捕获等待实际native可读（最多3s/32ms），避免连续换字读到隐藏初始化页的章节头；关闭迟到字体回归单列。每个FileURL独立UUID资源路由、章节复用，两个同名导入TTF的URL/中文字形/切回字宽保持有真实回归。Core Foundation相对路径与fonts-v1目录，reading-v1可选UUID兼容资源身份，无schema/小说/缓存/完整Locator变更。ReadingInterfaces→Adapter公开Readium3.11 CSSFontFace/既有资源通道；无全局注册/HTTP/JS资产或依赖升级；Vendor三个Swift文件维护已有重载路径、字体就绪、独立路由及可读位置采样守卫，UPSTREAM明确登记。新增字体暂停慢滚、采完整锚点先保存再受控重开，资源字体排版走完整锚点重载，系统字体连续编辑保留原重排；每await核会话/请求，迟到关闭不改新reader，失败恢复旧目录/位置。原回看返回点保持。受改35原测试主体保持，16新增（6Core+8集成+2真UI）。取舍与固定来源见READING_FONT_IMPORT_DESIGN.md及m4-font-build23-bundled-provenance.json。
+
+下载`build/XianxiaReader-LocalFonts-Build23.ipa`，SHA256 `116de6e07de131019ea70197f9e36cb07a89fc7c773a1311c2922d8be74958f2`；原创样书/15实际Preview/1未验收诊断/许可与拉丁导入样本包`build/XianxiaReader-LocalFonts-Build23-TestKit.zip`，SHA256 `9be4d45909b6dffff8adc6008cddcf1a25d718c8f258930a5d269875dab52286`。覆盖安装，+菜单确认0.0.1 (23)。39旧包与所有未提交文件保留。
+
+原生人工复核范围：当前CI的78张原生PNG/13联系表全部人工查看；含两内置EPUB连续/分页和TXT共6张可见中文正文，文楷与宋体字形有区别，深色柔和。iA EPUB两模式也有实际正文，但iA TXT隔离图只剩底色，旧巨段TXT隔离图仅两行，两图明确不作可读全页通过。19条真UI原视频保留，本轮只复核其中4条、共207.98s的完整1秒总览15表，以及4个窗口235个原始VFR帧/22表；无fps滤镜或插值，原PTS保留。字体选择/取消/重开、返回及减少动效退出的选定最终状态可接受；个别过渡原帧有区域重复/重叠，未验收全动效无瑕疵，原因及手机观感仍待核。
+
+实际CoreText中文glyph、Bundle原件/许可、WebKit FontFace loaded/CSS与中文canvas签名、EPUB双模式/TXT非零byte+UTF16/字号/逐款换字与静止重开有回归。内置OTF真实页面已核；外部有效字体由真实服务/VM集成输入，真UI覆盖选择/持久化/深色/默认及原生文件选择器取消，不假称UI已点击导入所有File Provider。手机首次加载/内存/FPS/功耗、普通签名/TrollStore/辅助功能/旋转/全样书矩阵仍待验收；字体集合/可变轴调节/删除/单书覆盖尚未实现，M4整体未完。
+
+历史分列：38880257296由Agent补强而取消；38881623233=129/131（两新初始定位）；e758/38886008057=128/131（连续字体150%位置/TXT构造/UI滚动）；277/38887978313=131/133（两新初始定位、原124全过、内置CoreText与两字体UI过，另有新TXT helper警告）。43e/38890891607、bc6/38892156952、2b5/38892611316、255/38893802693的集成host均在测试前因libswiftWebKit缺失abort，后续UI进程缺失；bc6最终cancelled且原因未核、未由本Agent取消，其余failure，不冒称134主体实际执行。原ZIP/summary/full.log与各receipt保留；查官方WebKit293831后当前改用原evaluateScript观察fonts.ready Promise，不改模拟器/最低iOS或锁。7ab/38901198541实际130/134、0跳过/0源warning，关闭字体ready迟到及两字体UI/CoreText通过，但两旧瞬时回归和两新测试失败，完整原件保留；当前ff824只修两新测试取样（每次独立换字采fresh完整point、TXT等待p存在），首非零/首次字号/静止重开/同名URL/实际字形/字宽断言及旧35主体均保留。旧回归根因未定，不追认旧失败。后ff824/38906278076实133/134、旧124全过，只新EPUB整字外框可见判定错误；原char476/DOM476/offset-9.84375已保留。新测试改视口相交并加continuous3px原Y，19db再等待实际window和scrollView.alpha1后取原生正文，避免DOMready但showSpread未完成的spinner/空图；这段仅测试变化，此前测试修正区间运行源码保持7ab；后来92ad原始log确认隐藏初始化页采样可能取得h1/char0，现Vendor分页采样核window/alpha1，Adapter最多3s/32ms等待并在每await核会话/取消，新真实关闭capture回归保持。此运行源码变更用新全量门槛，不追认旧结果。当前完整独立结果才用于交付。单独临时ref用于保留各旧轮结果，本版手机门槛不继承Build22基本功能反馈。
+
+以下Build22及更早为历史。
+
 ## Build22 当前切片（2026-10-16）
 
 Build22回看返回通过[完整CI38871744221](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38871744221)，实际编译源`3cb1d220f324303a979d6dee5c6803f1c9a1bc38`。Linux/macOS各127Core、iOS124/124，失败/跳过0；test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release22/min16。三份六pins锁、507源码blob、每平台四长TXT Release探针已核。Windows426语法新增0/54既有语法限制、17工具通过；语法不是编译。

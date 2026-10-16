@@ -9,3 +9,5 @@
 Apple [CTFontManagerCreateFontDescriptorsFromURL](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:))官方DocC已实际取JSON，iOS7起可用，min16适用；仅用于读取文件内字体描述。原JSON保留`.cache/recovery/20261016-build22/font-descriptors-api.json`，SHA256 `0dd30da285ed2f3a0483fe7b0df791832cf5d60db3b3d32436446a57a774ec6e`。字体用于WK正文时优先Readium的font-face/资源服务，不先假定必须全局注册CoreText字体。未引入外部字体、依赖或复制外部实现。
 
 后续门槛：旧reading-v1设置缺新字段兼容且坏类型拒绝；文件真实复制/元数据写失败/取消与重试、缺资源可见降级；真正WebKit加载字体（document.fonts与实际字形/尺寸证据），EPUB/TXT非零文字锚点在换字体/字号/重开后保持。使用有明确来源的微小测试字体，不能提交用户个人字体；完整Core/iOS/Release和原生页面/录屏先于交付。系统辅助功能、巨型中文字体内存/首次加载延迟和手机流畅度单列。实际实施前仍须再次核源码与本片门槛。
+
+Build23已实施内置两中文字体与导入首片；以上为研究历史，当前门槛见READING_FONT_IMPORT_DESIGN.md/HANDOFF。

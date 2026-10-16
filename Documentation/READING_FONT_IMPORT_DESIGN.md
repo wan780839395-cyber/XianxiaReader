@@ -1,45 +1,46 @@
-# 本地字体导入
+# 字体资源与导入（Build23）
 
-原生取图门槛：ff候选的宋体分页截图还在spinner、初始TXT导入截图为空底色，虽DOMFontFace/位置已就绪仍不能当可读页面通过。锁定3.11的EPUBSpreadView先isSpreadLoaded、待pendingLocation及delegate初始化完成后showSpread才设scrollView.alpha=1。新字体测试active()因此再核实际window和scrollView.alpha>0.99；其后核glyph/位置/原生截图，不修改图片像素、不让静态DOM断言替代已显示正文。运行App源码不变，仍须新完整CI及原生复核。
+2026-10-17。完整自动门槛通过、已打包可安装候选；选定原生状态已核，隔离截图和过渡原帧限制保留，手机与M4整体未验收。实际源62700a159cffc72ef256eabdc24184bf6092b0a7 / CI38918803378。
 
-当前新EPUB验证语义修正：ff824/38906278076仅一条新字体用例失败，原canonical char476与DOM caret476相同、viewport offset=-9.84375，原字符实际部分位于视口内。完整位置允许保留负的viewportOffset（第一行部分裁切），不能以range.top>=0要求整字外框在屏内。最新仅测试改为glyph rect与viewport相交，continuous另核该文字Y与切换前/新采canonical offset差<3px；保留首>100、实际字形、字号/重开/同名路由检查。原124全过，不再改App运行源，尚待新完整CI与原生验收。
+## 用户操作与边界
 
-## 用户补充：内置中文字体（本轮待完整编译）
+阅读设置→外观→字体与字号可离线选思源宋体、霞鹜文楷，保留系统默认/衬线/无衬线。我的字体支持TTF/OTF单字体，单款≤32MiB、最多12款；内置不占名额。全局保存选择、重开沿用，重复内容复用原身份，缺失重导可修复。取消保持、写失败可见，缺失/损坏暂用默认而保留原选择。导入不承诺字库含中文，缺字由系统补全。自定义资源的设置卡明确配色预览，正文另用真实字库。
 
-后续实际诊断/修正候选：e758/38886008057真实128/131。TTF FontFace与导入后可见锚点通过，连续模式150%字号阶段落到p16；TXT测试仅selector未构造fragment导致初始定位超时；字体真UI单次滚动未到主题。采用锁定Readium3.11已有完整锚点invalidate/reload路径，Adapter仅对资源字体（旧/新）排版请求完整重载；普通系统字体连续编辑及配色仍原动态CSS。初次pendingLocation用原evaluateScript观察FontFaceSet.ready的Promise完成后恢复，15秒超时报可见Readium资源错误并允许系统fallback，clear取消旧Task，旧await结果不得通知新reader；依赖/锁/JS资产保持，两个Vendor Swift修改和摘要明确登记。参考[W3C FontFaceSet.ready规范](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)、[Apple公开API](https://developer.apple.com/cn/documentation/webkit/wkwebview/callasyncjavascript(_:arguments:in:contentworld:))及仓内3.11完整锚点重载实现，不继续盲加固定延迟。新增真实延迟FontFaceSet.ready关闭/重开竞态，原非零/字体字形/完整锚点/字号断言保留。修正尚须新完整CI和原生复核，不能写成根因全部证实或已修复。
+两内置均是未修改的完整静态原件，原OFL和固定官方revision、路径、大小与SHA在App/Resources/Fonts/PROVENANCE.json，IPA逐字节核对：思源宋体SC Regular OTF2.003（24,543,332B），霞鹜文楷Regular TTF1.530（25,928,940B）。合计50,472,272B，约48.1MiB。不开商店、不运行时下载、不裁字。字体集合、可变轴调节、删除、单书覆盖暂未实现。
 
-按用户“可以内置几个字体”加入两款离线原件：思源宋体SC Regular静态OTF（24,543,332B，Adobe Source Han Serif 2.003 release revision 7889f11bf31170b5d092a083b357c8c8130f89e0）与霞鹜文楷Regular静态TTF（25,928,940B，官方revision ff2008376313060b2c3f04a61523aaeac4b0b0bf）。完整原OFL与版权、固定来源URL/摘要放在App/Resources/Fonts。原字形未裁剪/转换/修改，二进制及许可保持原字节，.gitattributes显式-text。来源为[Adobe官方仓库](https://github.com/adobe-fonts/source-han-serif/tree/7889f11bf31170b5d092a083b357c8c8130f89e0)与[霞鹜文楷官方仓库](https://github.com/lxgw/LxgwWenKai/tree/ff2008376313060b2c3f04a61523aaeac4b0b0bf)，各自SIL OFL1.1随App分发。
+## 存储与并发
 
-App通过BundledReadingFont稳定UUID读取只读Bundle URL，与最多12款用户字体合并后交给ReadingInterfaces；Adapter有界上限14，既有正文资源窗口仍12，两者无关。内置不复制到用户目录、不占用户名额、不在每次打开时摘要50MB；安装包核字体原字节与许可，WebKit沿现有资源通道按实际选择加载。原importedFontID字段兼容承载已导入或内置资源身份，无schema迁移。设置页同卡片提供两款44pt选择，保留原三选项与文件导入；自定义资源仍明确“配色预览”，不假称上方系统字为实际字体。
+XianxiaCore保持Foundation/SQLite边界，新增稳定ReadingFontAsset与独立fonts-v1原子目录，字体路径使用UUID和固定文件名，相对路径/父级/dangling symlink规则继续适用。复制/有界流式摘要在存储actor；App独立actor检查SFNT签名、CoreText单descriptor与glyph，持有security-scope至完成。不全球注册字体、不吞原始错误。
 
-新增回归核Bundle两字体/许可/摘要、CoreText中文真实glyph与用户目录为空；扩展新EPUB双模式/TXT非零文字锚点用例，核实际FontFace loaded/CSS family与中文canvas字形签名不同于系统serif，逐款换字并保存/静止重开；新增真UI内置选择/持久化/深色切换及截图/视频。Windows、编译、原生与手机性能分别记录；在新候选成功前不称内置已验收。扩展前38886008057/e758仍跑完取原件，不能替代本版门槛。
+原小说、schema、正文缓存与Locator协议不变。目录损坏保留报错，不能覆盖空目录“修复”。移动后元数据失败回移，清理失败保留原错；启动只清StagingFonts，可能存在的未列入目录原件保留不猜删。用户字体开书校验摘要和相对路径，内置只读Bundle URL不每次扫描或复制50MB。大量大用户字库开书成本尚须手机测量。
 
-2026-10-16，Build23源码候选，尚未完整编译/原生复核/交付。Build22用户反馈基本功能正常；不扩大完整设备矩阵。
+reading-v1可选importedFontID继续兼容，表示已导入或内置的资源UUID；旧偏好无字段仍合法。两内置资源与最多12用户资源合并后经ReadingInterfaces可选capability送Adapter，最多14faces；正文资源窗口仍≤12，两种上限独立。
 
-阅读设置的“我的字体”选择单字体TTF/OTF，32MiB/文件、12款。文件复制与流式摘要在BookFileStore actor，App的独立actor使用公开CoreText描述器并创建字体校验字形数；拒绝字体集合/伪扩展名/无效字体。上限用于限制首次解析和目录规模，尚无大型中文字体手机性能结论。默认轴可用的单字体不提供可变轴调节，不额外支持集合/字体删除/单书覆盖。
+## Readium3.11集成与实际取舍
 
-字体路径是应用生成UUID/固定文件名，展示名不进CSS/路径。独立fonts-v1小元数据原子写入，Core保持Foundation边界；重复摘要保留原身份，缺失原文件可重导修复。不改SQLite schema/原小说/Locator/正文缓存。复制后复查实际节点和大小，所有管理路径继续逐级拒绝父级与dangling symlink。写失败保留原错和草稿，移动后元数据失败回移，清理失败可见；启动只清StagingFonts，崩溃发生在文件移动与元数据提交间时可能留一个未列入目录的文件，保留不猜删。坏目录保留并提示，不能通过覆盖空目录“修复”。缺文件或摘要改变暂用默认正文、保留用户的原选择并显示说明。
+使用锁定3.11公开CSSFontFamilyDeclaration/CSSFontFace、Navigator配置与现有readium资源通道。已有issue802字体CORS修复继续使用；不加HTTP服务、不改JS资产或六pins依赖锁。字体文件按选择由WebKit加载。上游路径只取lastPathSegment会让两个UUID/font.ttf冲突，因此按每FileURL分配独立UUID路由，servedFonts仍跨章节复用，无原字节或存储迁移。
 
-ReadingAppearance的reading-v1只增加可选importedFontID，旧JSON无字段仍合法，坏UUID/类型失败。设置卡沿用灰绿表面/44pt/减少动效按压，导入进行时阻止关闭和并发编辑，有明确进度及失败文本；取消文件选择保持原字体。自定义选择时预览明确是“配色预览”，不把系统预览字假称实际导入字体。字体应用于正文，缺中文字交由系统fallback，导入不承诺字体含中文。
+目录新增时暂停慢滚、采完整位置并保存，再受控关闭/重开同一本书；已有资源字体排版使用原完整锚点invalidate/reload，普通系统字体连续编辑/纯换色保留原动态路径。每await校验open/request/navigator、取消和排版任务，旧capture/字体ready不能改变新reader。失败恢复旧目录、外观与完整锚点，原返回点保持；已提交字体不因离开页面而删掉。
 
-ReadingInterfaces提供可选字体目录capability；ReadiumAdapter用锁定3.11公开CSSFontFamilyDeclaration/CSSFontFace及既有readium资源通道。与主Navigator初始化配置绑定，不注入临时JS、不注册全局字体、不启HTTP服务、不改Vendor或依赖。已有字体切换走原排版保护；新目录则暂停慢滚、采集新完整位置、先保存，再同一host受控重开。每个await核open/request/cancel，关闭作废，迟到结果不能关新reader或清新状态。旧返回点保持；新字体应用失败尝试按旧目录/外观与同一完整锚点恢复，失败显示重试打开。已经提交的字体不会因为离开页面而删除。字体重排、普通字号和重开沿用完整EPUB DOMRange/TXT byte+UTF16，不使用百分比替代。
+字体加载会改变行宽，pendingLocator因此等标准document.fonts.ready真正完成后再恢复；沿已有非refined evaluateScript观察Promise，32ms让步、15s上限，取消/资源失败可见。官方WebKit293831记录iOS18.5模拟器与较低部署目标下refined callAsyncJavaScript缺libswiftWebKit；查证后回到现有JS桥，不提高iOS16、不改模拟器、不注入DYLD。
 
-API与成熟实现：重读[Readium官方字体指南](https://github.com/readium/swift-toolkit/blob/develop/docs/Guides/Navigator/EPUB%20Fonts.md)、[Readium CSS字体说明](https://readium.org/css/docs/CSS10c-custom_fonts.html)，具体签名/参数顺序以本仓3.11文件为准。现有WebViewServer已包含[issue802](https://github.com/readium/swift-toolkit/issues/802)字体CORS修复，本片不重复补。Apple的[CTFontManagerCreateFontDescriptorsFromURL](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:))用于文件内描述，不把descriptor可读当实际WebKit渲染通过。沿既有文档选择器coordinator保活/单次完成回调，避免曾经首轮无响应的问题；取消UI采用既有封面测试验证过的DocumentManager本地AX框架。
+显式位置捕获不能读取showSpread之前的隐藏初始化DOM。Vendor分页采样前后校验实际window/scrollView.alpha、页/offset身份；Adapter最多3s/32ms等待，所有await前后核取消与会话，到期明确unavailable。完整EPUB DOMRange和TXT byte+UTF16仍为事实，不用百分比替代。三个维护Vendor Swift文件的修改/hash已在UPSTREAM.json登记。
 
-测试字体复用仓内Readium随附IA Writer Duospace Regular（81636B TTF），按原bytes复制到Fixtures/Fonts，OFL同行保存。属于验证样本，不内建字体商店；含中文小说测试中的汉字仍可能fallback。生产不下载字体或读取个人样书。测试需要实际FontFace loaded+CSS family+拉丁canvas宽度不同，EPUB两模式非零文字可见/TXT稳定byte+UTF16及视口、150%字号与静止重开、原件bytes、12资源上限、错误和关闭竞态。真UI覆盖字体选择/持久化/深色/恢复默认及原生选择器取消；有效字体输入由真实CoreText服务/ReaderViewModel集成测试覆盖，不能宣称真UI已走通所有File Provider。
+官方/成熟实现参考及差异：
 
-Windows语法与工具测试、Linux/macOS Core、真实iOS集成/界面、无签名Release23及PNG/录屏/原始帧复核分别设门槛。普通签名/TrollStore、真系统辅助功能/旋转、大中文字体首次加载/内存/FPS/功耗和全样书矩阵继续单列，M4整体未完成。
+- [Readium字体指南](https://github.com/readium/swift-toolkit/blob/develop/docs/Guides/Navigator/EPUB%20Fonts.md)：只借用字体声明/资源通道，实际API以本仓锁定3.11源码为准。
+- [Readium CSS字体说明](https://readium.org/css/docs/CSS10c-custom_fonts.html)、[issue802](https://github.com/readium/swift-toolkit/issues/802)：复用已有字体服务和CORS修复，不另造排版引擎。
+- [W3C FontFaceSet.ready](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)：以加载Promise而非固定延迟决定恢复。
+- [WebKit293831](https://bugs.webkit.org/show_bug.cgi?id=293831)：规避此次已由原始dyld日志验证的Swift overlay入口问题，不改变最低系统或依赖。
+- [Apple CoreText公开文件描述器API](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:))：只用于后台验证，descriptor可读不当WebKit已经显示。
+- 文件选择器复用项目已验证的Coordinator保活/单次消费，避免此前首次导入丢回调问题；原生选择器取消采用既有测试路径。
 
-## 同名字体路由
+## 验证与剩余门槛
 
-后续38901198541实际运行不再启动缺库，关闭字体ready迟到回归与两字体UI/CoreText通过；原件仍完整保存。新EPUB连续多次换字体测试须按每次操作前新采canonical DOMRange判断保留，而不能把第一轮分页中靠后仍可见的文字当作任意后续字体的第一行位置。保留首次>100UTF16/TTF/150%字号/重开条件，后续每次采完整point后核真实字体及该point可见；同名URL独立和切回首字宽断言不变。TXT重载可能暂时没有p，等待谓词先验证元素存在，再读取样式和位置；不是吞掉脚本异常或放宽锚点。两旧回归本轮也有瞬时失败，原主体不改，不宣称其根因已修。测试修正候选与7ab运行源码一致，仍须独立全量验证。
+Windows433语法/17工具；Linux/macOS Core各133；iOS134/134（115集成+19真正UI），失败/跳过0、源warning/error0，严格无签名Release23、522源码blob/三锁/字体原件与许可核对。35原测试主体保留、16新增。真实测试包含CoreText中文字形、同名TTF路由独立、FontFace加载/CSS/canvas字形、EPUB双模式/TXT非零完整锚点/字号/静止重开/关闭取消与旧回归。拉丁TTF样本iA Writer Duospace原bytes和OFL来自仓内Readium，汉字fallback，不当内置中文字体。
 
-3.11原资源闭包取file.lastPathSegment，WebViewServer.serve按给定route精确插入、没有自动区分同名文件。用户目录使用稳定UUID/font.ttf，因此给每个FileURL的route加独立UUID段，原servedFonts仍在同一Navigator跨章节复用。不迁移目录、不复制别名字体、不改原字节或font-face公开配置。新EPUB双模式用例真实导入IA与文楷到两个同名font.ttf路径，断言内联CSS的源URL独立、实际中文字形、切回首款字宽一致与原文字可见，随后核原两内置及重开。此为新运行候选，须完整新CI。
+78张实际PNG、4条视频完整总览与235原始VFR帧人工复核范围见ValidationLogs/m4-font-build23-native-review.json。两内置六张EPUB/TXT实际中文字形及选定状态可接受；一张导入字体TXT隔离图空底色、旧巨段隔离图仅两行，不作可读满页通过。部分过渡原帧区域重叠/重复，原因未明，未验收全动效，原件不修图、PTS不当手机FPS。15可用Preview与1未验收诊断分别打包。
 
-## iOS18.5模拟器的WebKit293831
+普通签名/TrollStore、手机大字体首次加载/内存/FPS/功耗、所有File Provider有效外部字体点击导入、真实辅助功能/旋转与全部样书待核。真UI覆盖选择/取消/持久化/深色/系统恢复，有效文件输入另由真实服务/VM集成覆盖。M4未完成，不提前M5。
 
-43e/bc6/2b5/255候选原始日志显示dyld在执行测试前找不到libswiftWebKit.dylib，不能将其后UI缺少PID当各功能回归的源码故障或通过。官方WebKit293831明确两种callAsyncJavaScript Swift入口均受影响（min<=18.3+18.5sim）；不提高iOS16门槛、不改用户/CI模拟器、不注入DYLD。最终候选使用既有非refined evaluateScript注册标准document.fonts.ready.then状态，最多15s/32ms检查Promise是否完成，真正完成而非固定延时决定pendingLocator恢复；失败可见，clear取消Task，原关闭迟到/字体重开回归不减。Swift语法/全CI/原生仍待新门槛，官方资料 https://bugs.webkit.org/show_bug.cgi?id=293831 。
-
-## 隐藏初始化页面的位置采样
-
-92ad/38911801177真实log在第二次导入时变为h1/char0/章节头，上一阅读位置仍在长段；与实际showSpread之前的隐藏DOM读取吻合。用户连续换字也可能在初始化恢复中触发捕获，不能只让测试等待。现在Vendor分页preserve先/后核scrollView.window与alpha1，隐藏初始化页返回不可用；Adapter捕获以32ms让步、最多3s等待可用样本，每次await前后核取消、openRequest、navigator和排版任务，不采过渡章节头，不用百分比替代。上限到期仍显式unavailable，关闭/新会话抛CancellationError。真实font-ready延迟用例新增关闭中的capture task，必须取消，不能给出旧临时头部或新reader位置。依赖/锁/排版JS不变，三个Vendor Swift改动均明示摘要；运行源码已有这次必要修改，之前仅测试变化区间另列，须新全量CI。
+逐步候选及历史取舍归档READING_FONT_IMPORT_DEVELOPMENT_2026-10-17.md；历史失败/取消不追认，当前门槛见M4_FONT_VALIDATION_REPORT.json和HANDOFF.md。

@@ -201,3 +201,7 @@ Core的AutomaticScrollClock只含Foundation时间数学；ReadingInterfaces提�
 ## Build22 回看返回
 
 ReadingInterfaces提供完整位置capture，Adapter沿用有界DOM采样，Vendor既有preserve方法提供可忽略Bool成功结果及取消检查。ReaderViewModel用单个ReadingPosition和导航UUID保存会话内出发点，三类显式导航共用async身份保护；成功返回/留在此处清除，失败保留，关闭作废且迟到defer不能清新请求。当前位置回调/数据库进度照旧，关闭不自动返回；无新schema/Core/缓存或历史栈。原生小条沿用主题/按压/44pt/减少动效，不重排正文。完整门槛与选定原生证据和手机矩阵分列，见READING_RETURN_DESIGN.md及M4_RETURN_VALIDATION_REPORT.json。
+
+## Build23 字体资源
+
+App只读Bundle两原中文字体/稳定UUID与最多12用户资源合并（≤14 faces），内置不复制/摘要；Core身份/独立目录与App后台CoreText验证、ReadingInterfaces目录capability→Adapter公开CSSFontFace/既有资源通道。新增目录以完整位置保护重开，资源字体排版完整锚点重载；每await校验，关闭取消/迟到隔离，失败恢复旧目录。原schema/正文/Locator/依赖保持，可选UUID旧偏好兼容。原生与手机性能门槛分列，见READING_FONT_IMPORT_DESIGN.md。

@@ -1,12 +1,12 @@
 {
-  "recordedAtUTC": "2026-10-16T08:53:36.003207+00:00",
+  "recordedAtUTC": "2026-10-16T18:09:18.295764+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 874,
+  "fileCount": 929,
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 177,
-      "sha256": "b4573046670d49ecda3d6f599afa2330241a66019836fd69dc447cde40d2e4bd"
+      "bytes": 205,
+      "sha256": "ba46cd41f095c6a1775934b1e890f699557f65298b4324b088d17b94bb82d914"
     },
     {
       "path": ".github/workflows/ios-build.yml",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 30480,
-      "sha256": "fa15b4604281fd193268caecc6a445468e5d4d7e0b4057321bd1a40b314d4365"
+      "bytes": 31048,
+      "sha256": "00841fcc716e279a5d879523cf8b8f3bbd9a4213f00322d9ac346e93a27f676b"
     },
     {
       "path": "App/AppRootView.swift",
@@ -95,8 +95,8 @@
     },
     {
       "path": "App/Library/LibraryInteractionFixture.swift",
-      "bytes": 3987,
-      "sha256": "061a067a51b9a3e4a3eb88815d3b4712ae6fcd650cd047bfe2d84bf9f2d5d98c"
+      "bytes": 4361,
+      "sha256": "ab985d71d949aa9d83d73f249564cd824ba41344fba860ea65db1c87329390e7"
     },
     {
       "path": "App/Library/LibraryMotion.swift",
@@ -129,9 +129,14 @@
       "sha256": "33708562463bda223bed3eb753b5b9df177cc913d218e139f2bb00e8710387b5"
     },
     {
+      "path": "App/Reader/BundledReadingFont.swift",
+      "bytes": 1651,
+      "sha256": "f8abe53a60a6df35ebf74d9e4beb7ad88b7f8a4d60276b94e8e6bec4ff2e291a"
+    },
+    {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "bytes": 16317,
-      "sha256": "81799b2ed88b27486ece98bbfd6bdb32e8a44ac534b06b977afd531eb9f4f39b"
+      "bytes": 21451,
+      "sha256": "6e68b30cb63515e2e3eaac835abefc238766d1e6c90c8be11c36d559405bef4d"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -150,13 +155,18 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "bytes": 15345,
-      "sha256": "3bcccf799cc967b2bfb2f14ec2f2a2eb7b3c8ec37ebb6819a79c6213220ed6d4"
+      "bytes": 23634,
+      "sha256": "fe5ccb758d6cf4f4ecce4a2c4dd85f5e2c238f5b8179deae09fa4a61854f51a7"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
       "bytes": 5453,
       "sha256": "eb54d552ccca88cecbab07ef408536b1968ae4b36deaa1042f3f61acc741f2ad"
+    },
+    {
+      "path": "App/Reader/ReadingFontImportService.swift",
+      "bytes": 2207,
+      "sha256": "319dc11b87e209756cc67f9c8ab3014b3305b13c1c19a7475bb1419a9281b43c"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -179,14 +189,44 @@
       "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49"
     },
     {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular-OFL.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+      "bytes": 25928940,
+      "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350"
+    },
+    {
+      "path": "App/Resources/Fonts/PROVENANCE.json",
+      "bytes": 1803,
+      "sha256": "06f49623c322fd10e599ace7bb1edbfa22c782529d57c37d2f26af6717bae904"
+    },
+    {
+      "path": "App/Resources/Fonts/README.txt",
+      "bytes": 662,
+      "sha256": "42e9e464e9cbf5377c833400a89836453f9e1a38c9970b53d924bee4c7092512"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular-OFL.txt",
+      "bytes": 4463,
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+      "bytes": 24543332,
+      "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117"
+    },
+    {
       "path": "App/Resources/Info.plist",
       "bytes": 1363,
       "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
     },
     {
       "path": "App/Resources/ThirdPartyNotices.txt",
-      "bytes": 1704,
-      "sha256": "ae9e28a6788f5308e66eb461f38b44e6fd359b78a59b3115c14bf84443ba5ea7"
+      "bytes": 2129,
+      "sha256": "d2b7958593b596f59184b77998b8d219fe1ae4f9e0b2c1adb6a1e2001ee67585"
     },
     {
       "path": "App/Search/ReaderSearchView.swift",
@@ -225,8 +265,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 61767,
-      "sha256": "c0abd90d24d6e0338759267fd479c2cb6ed840c4eadcb50e0be06f79f89fe98a"
+      "bytes": 68006,
+      "sha256": "c927fcea1218c61e48419a33e44ad123b01479d231c8288890fcee67dbb1d868"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -235,8 +275,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 33684,
-      "sha256": "1b68a22b4495184e215f7aeb93cd66a8eb5c57ab708fbbc613588bfeb4a7cfbb"
+      "bytes": 39923,
+      "sha256": "f31a25682156e25651f0da54624b41afa2ce258baa011d050b031e9556f04065"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -294,6 +334,11 @@
       "sha256": "f02c132355e1865d2b81a5141c8861612a9005ea53b7d9b32d6089a184edc0da"
     },
     {
+      "path": "Documentation/HANDOFF_M4_BUILD22_DELIVERY_2026-10-16.md",
+      "bytes": 4475,
+      "sha256": "a9533db3c0602de0932ecc87371463274481d3e4e5d6a4c2a3bf73d30d7386d0"
+    },
+    {
       "path": "Documentation/HANDOFF_M4_DEPTH_DEVELOPMENT_2026-10-16.md",
       "bytes": 9852,
       "sha256": "b414ea8410bbe8100cefd7164ba91b56478a48bf30fa3db2993f9c96041cbba3"
@@ -302,6 +347,16 @@
       "path": "Documentation/HANDOFF_M4_FIRST_FOUR_RUNS_2026-10-15.md",
       "bytes": 9518,
       "sha256": "fe034a7d2d1aa1e48082f7871b3058fedddd523ec6593e4ff567fcb037925537"
+    },
+    {
+      "path": "Documentation/HANDOFF_M4_FONT_DEVELOPMENT_2026-10-17.md",
+      "bytes": 15353,
+      "sha256": "79847706069158addc40b8ccbcbd63282c89e89fadf12cf180cd3c30748f77a3"
+    },
+    {
+      "path": "Documentation/HANDOFF_M4_FONT_ITERATIONS_2026-10-16.md",
+      "bytes": 32512,
+      "sha256": "6f2c089bf360971834f78dc107ed1cf1ca203620032a0f3dd4871a5c4aa18830"
     },
     {
       "path": "Documentation/HANDOFF_M4_MOTION_DEVELOPMENT_2026-10-16.md",
@@ -564,6 +619,11 @@
       "sha256": "8357b1fa3ceef84d936d18ecb6c0b703a1d1fc3ccff70f21714db78d0368a154"
     },
     {
+      "path": "Documentation/M4_FONT_VALIDATION_REPORT.json",
+      "bytes": 156782,
+      "sha256": "3d2553287a50960e2f571f68488723a616db757413e26bfc2f9eaa6150f965f4"
+    },
+    {
       "path": "Documentation/M4_MOTION_STATIC_REPORT.json",
       "bytes": 434,
       "sha256": "28dc87ec0071012346f595d1cd2c3b4a845eb9d44f29ba0da435a5c3d5442b54"
@@ -635,13 +695,23 @@
     },
     {
       "path": "Documentation/READING_FEATURE_IDEAS.md",
-      "bytes": 3552,
-      "sha256": "56ca2b191033e633fe16f3b418ef8613bf249d9a753fc19a646e1f0085f525a9"
+      "bytes": 3778,
+      "sha256": "4aefacb17d5a616650bde9e76aa5e2eeeb67d433e5bc69d4b34d8afb942fc8a7"
+    },
+    {
+      "path": "Documentation/READING_FONT_IMPORT_DESIGN.md",
+      "bytes": 6697,
+      "sha256": "be13bdf6084c58547dc5da1cb0df36ad2332a702d9449823d17f743ce47dd778"
+    },
+    {
+      "path": "Documentation/READING_FONT_IMPORT_DEVELOPMENT_2026-10-17.md",
+      "bytes": 18094,
+      "sha256": "cd1eb012e18f75ac6022f63034b757239bb75b2296605a5e9030472bae19310f"
     },
     {
       "path": "Documentation/READING_FONT_IMPORT_DRAFT.md",
-      "bytes": 2523,
-      "sha256": "eea351e919405f7bf65240981b26a8ef4ad1626387aa29e850f1e0279642f47b"
+      "bytes": 2659,
+      "sha256": "db044ed1490c45379a34e3ac58443ecdd20cb895405224ba611132d4644a8805"
     },
     {
       "path": "Documentation/READING_MOTION_DESIGN.md",
@@ -1549,6 +1619,171 @@
       "sha256": "ced196131c1e960ca8eaeea74240abb30b5abf0e6d129fd2b1b5db71844c1607"
     },
     {
+      "path": "Documentation/ValidationLogs/m4-font-build23-api-review.json",
+      "bytes": 2077,
+      "sha256": "2177509ed801a86d3fc1b67c9be7a7d242735a4525591458c9984e45f64fa9b0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-bundled-linux.json",
+      "bytes": 358,
+      "sha256": "7128255bb2b12c8984c43ab9fadb02cdf7e2855166536bf11a83d7f1bf6efc70"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-bundled-provenance.json",
+      "bytes": 2265,
+      "sha256": "ea9871fc4cf357be9e6f622eed4ca43eb553cec29a9bd2b8fa744733c05eb73b"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-bundled-ui-partial.json",
+      "bytes": 8394,
+      "sha256": "a8998f9dc8bbd8f989dca990b9ee0e2cec5595157de72209217d9c5316092a5f"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-compatibility-130of134.json",
+      "bytes": 6098,
+      "sha256": "588a9189be8db7adcc9962425d9bfeaccea6c940d77c0634d545b99c660bbdc7"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-compatibility-linux.json",
+      "bytes": 358,
+      "sha256": "d65e91e94c10ec1a00a4509e99b54de59fca25ee98d07642044a2e703afb4c11"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
+      "bytes": 2669,
+      "sha256": "84b6ea8058302dcbcbe03c18528152c637f006899cc4b59e88f3dd65e126e1d9"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-fresh-anchor-linux.json",
+      "bytes": 358,
+      "sha256": "23003ed4d50180b92aec21fc706002cbe1cfab07cb6cf0fb9da71be0193e4bb6"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-hidden-initial-capture-38911801177.json",
+      "bytes": 2735,
+      "sha256": "64d1bc8a1ba48060c008bca392a9e35fd146499086eb861c24cb7f62c5d20e94"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-import-only-third-result.json",
+      "bytes": 5034,
+      "sha256": "0fc0b731e30bf76ccc6228de91099dd65d46743b5be1ae8b892ab5c3ca2910d3"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-linux.json",
+      "bytes": 757,
+      "sha256": "835eb77c047e5b381ca78324e12fd6f5dc202da8907390044c0e570297086ebc"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-native-review.json",
+      "bytes": 135576,
+      "sha256": "bd009b7843ad4f1e13d8cb0e18b0fa3ab268abbe71ffe25a1db0c25197dacfbd"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-native-visible-linux.json",
+      "bytes": 358,
+      "sha256": "c41ccd8034ed89ebb2e7191005609e117cc86d19a4660177b6718492875f1eb5"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-original-artifacts.json",
+      "bytes": 1253,
+      "sha256": "72c58b9d958bcbe9ee0d53e941ee96451c347929b25f0cb62bd2f5132c9b4856"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-overlay-38890891607.json",
+      "bytes": 12715,
+      "sha256": "c4ea99e6c91bb2c57bed7c34875515711a84ccfca1fabc87171a6dae6c9c9c87"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-overlay-38892156952.json",
+      "bytes": 1101,
+      "sha256": "f9e428c97b3e1e324b9b28f6656bd0c8af6ecc91d63bebbc6c3138a0adc289cc"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-overlay-38892611316.json",
+      "bytes": 12435,
+      "sha256": "a2f3936bb317a1b090e7acec19dea46d155ae2b7b80bbbb41169a5af79d1bb72"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-overlay-38893802693.json",
+      "bytes": 12622,
+      "sha256": "0a9dd998912dc80974a8f3e01200c5781a8bbd13d673a13290ee0e289fa2b6fe"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-partial-glyph-133of134.json",
+      "bytes": 18612,
+      "sha256": "c978f8144145e02660beecac8c4911ef7074fd8856a8d66a23f40d0583eae435"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-prior-38887978313-result.json",
+      "bytes": 3748,
+      "sha256": "fbc34689eaf00b1494b2f68db1f89a72a512f3b1b1bfc28501a1220eb7c2dd99"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-revised-linux.json",
+      "bytes": 757,
+      "sha256": "9e6f7e38a5179982958cacaa7a5f325a0f2809dd035d2d154e88c889f6c7d402"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-run-38881623233-failure.json",
+      "bytes": 5219,
+      "sha256": "27729243113400e66399067ab1a054e073bbbee659fe1cacd4bd39e98c833a6c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-runtime-diagnostics.json",
+      "bytes": 790,
+      "sha256": "20e1279cfc7b19487bba2b71a40e57a82bb923b9676f651d88f0fd45faacb21c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-second-native-partial.json",
+      "bytes": 7645,
+      "sha256": "0c88b320b060b2c3a2aac6b36b46ed4f4008de2ca93a2b262aafebada04ba309"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-settling-linux.json",
+      "bytes": 358,
+      "sha256": "c1e1dd7d701acce2a74e696a1d623ea619b31e44025500d1eceb9df9dd3b9ea2"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-sfnt-metadata.json",
+      "bytes": 1550,
+      "sha256": "1804271f3f718d00f15121bc5d845c58ea415037d16fc2bade154e44c1f1120c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-start.json",
+      "bytes": 165355,
+      "sha256": "4be10cb79845118062ea6c4624d29261045af860c31fa42a9d0f77a0d806d86d"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-success.json",
+      "bytes": 20734,
+      "sha256": "923bb4e086a310c4bca15ad34b15dc0bc37b8295a07fbfa61766feb7f1f93e40"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-test-kit.json",
+      "bytes": 15851,
+      "sha256": "94dc1741249aba9f8a345b2cd9f141cbbd819bbc3b65876162d1e0b902c70109"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-third-linux.json",
+      "bytes": 757,
+      "sha256": "a707e196d1953459f4d9e387d04b802c71e9ad29de4dbc14a449e75502904333"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-viewport-linux.json",
+      "bytes": 358,
+      "sha256": "7e7d231deff13235c9f894ba1f4607cba49c523110c577e1503332b4f4d9ac6c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-viewport-offset-linux.json",
+      "bytes": 358,
+      "sha256": "5add3dc1faf4898657c1866f2cadd15ec0f5e0df0b0ede0a5ad01abc53338f4f"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-font-build23-windows.json",
+      "bytes": 806,
+      "sha256": "39a99ea2c7f8b5352e324445aac2815e6fb7079153f540072a6a43a15610de2d"
+    },
+    {
       "path": "Documentation/ValidationLogs/m4-motion-build17-fifth-linux.json",
       "bytes": 230,
       "sha256": "d8155ba39812884cfe8c14f2da05ceb38bc80f73abacf48bf24f1afe11abd438"
@@ -1769,6 +2004,11 @@
       "sha256": "ebbcb4b793bb6ddfe8eabc2324c252e7379788ae7629b4511effbb888cee0853"
     },
     {
+      "path": "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
+      "bytes": 303,
+      "sha256": "eaaa48f0f0f218082c9ddcb836b858f1a2f1550197f7297c21e52881bdd87d28"
+    },
+    {
       "path": "Documentation/ValidationLogs/m4-return-build22-windows.json",
       "bytes": 805,
       "sha256": "685b04518cf864d0ff85ec33e634c3042818768ea24f894e5e0d2a727674b8be"
@@ -1930,8 +2170,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 4475,
-      "sha256": "a9533db3c0602de0932ecc87371463274481d3e4e5d6a4c2a3bf73d30d7386d0"
+      "bytes": 6245,
+      "sha256": "81db4ce93979a5312cf516c0562f71804769710c5e64a4bcce9f6341da334d27"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -2005,8 +2245,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 70589,
-      "sha256": "551c3d7403af6e9aceb028fcf2b55acf92c177213e4bde33380961ab29087ac0"
+      "bytes": 76828,
+      "sha256": "387c71e72d05553bf385a40682c8f6fc6d566d7adbea47b8192cb8bf08f2b069"
     },
     {
       "path": "Package.resolved",
@@ -2080,8 +2320,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
-      "bytes": 6371,
-      "sha256": "b5d7da2ddf5c4955d6d9d98356f6b1bb3724a8a5bb1cdb5058762e9bac31e3e1"
+      "bytes": 6415,
+      "sha256": "5e66ba59fa4cca9c9f3fac640274daca99d40b5722c94d8bf51871e2bcb1512f"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
@@ -2092,6 +2332,11 @@
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
       "bytes": 1324,
       "sha256": "6a1c53d0d0cdab0b704199a2581e742d761a035e4efff9ca3294e048635653bc"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+      "bytes": 6160,
+      "sha256": "54ff14a83958717d9e8309a3a7d025ee408455e623377b081e2711c564be9d95"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
@@ -2145,8 +2390,13 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
-      "bytes": 2590,
-      "sha256": "e6d35c0eaa75c5da4b8f94ccbb0b3d8b9e7cdecd27882b83e91a0be7f7054192"
+      "bytes": 2725,
+      "sha256": "beee392a371c84c83efb70a339a5a394367af5d816a9515e146bc342b5729c90"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+      "bytes": 2403,
+      "sha256": "90f1956dd2e08a115842c8b39c5791f860f0ff46db10939185ccbdf93bd59447"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
@@ -2249,6 +2499,11 @@
       "sha256": "692f37537e449658adf71e6851bc35120d3695054494ccf8ffd26eaae68fc48c"
     },
     {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+      "bytes": 8162,
+      "sha256": "fe230c340ababb7969b378299d1febc588edadefbcbb19216ad5ae8e65ba8d96"
+    },
+    {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
       "bytes": 6338,
       "sha256": "5d172c08dc5ce685b3f31c514c4e28a80d044855f4f98f682e8eba529135070d"
@@ -2295,8 +2550,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
-      "bytes": 4456,
-      "sha256": "1936488e5d7ee58cbc63d27f24f60c7f16ac568d42966e5f5fcded1d79ed1864"
+      "bytes": 5076,
+      "sha256": "82ac1edc2a09f03fbc2e7077f674b7d4e028cc15fa171de6c597d85e710053dd"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
@@ -2310,8 +2565,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumAppearance.swift",
-      "bytes": 878,
-      "sha256": "521012ab678b1084023b654f0a61c46f3d579e334104c2788cc62044b95e04d1"
+      "bytes": 1061,
+      "sha256": "2b9ce43dd5d5e09566e181b079f5c9e0cfb2e7fc0d485373c65b8ba25c742700"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
@@ -2325,8 +2580,8 @@
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "bytes": 26769,
-      "sha256": "76202c13e8321613d5255c551456166db41bf09b0f6b093019c63832ad80c489"
+      "bytes": 29411,
+      "sha256": "b9c85c277ebe8d21d6e8641819fc1413b9470a7698e1f0ad69b76bd324d8e755"
     },
     {
       "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
@@ -2360,13 +2615,23 @@
     },
     {
       "path": "README.md",
-      "bytes": 41603,
-      "sha256": "b948991e7e0443150961be375c6c8a356df2cf5590109930d9945f80ef2d2665"
+      "bytes": 47842,
+      "sha256": "b5de81ac66b7a2851e0344715c9c0c1643460d0511364b29a82ec5b72445c770"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 61002,
-      "sha256": "4928ce004718cd8d48aea6700b2bfe4ca7d3243612786db6b78db1333dd8b164"
+      "bytes": 67241,
+      "sha256": "5fdd954f7e324f7983d9e67d9d762ebe6c5327b747d2fc2686141d542e3b7f37"
+    },
+    {
+      "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",
+      "bytes": 4943,
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a"
+    },
+    {
+      "path": "Tests/Fixtures/Fonts/iAWriterDuospace-Regular.ttf",
+      "bytes": 81636,
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a"
     },
     {
       "path": "Tests/Fixtures/chinese-epub2.epub",
@@ -2424,6 +2689,11 @@
       "sha256": "dfd04889c1e78a7216dde44f50cc71412f28ee23ddcb78ec9e17136c44590ea8"
     },
     {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "bytes": 6212,
+      "sha256": "6b15a06c1de66e8ee5ec427bdbf8e6efaf35b5ca3481d3b63517f1a8747c23ca"
+    },
+    {
       "path": "Tests/iOS/BookCoverTests.swift",
       "bytes": 21283,
       "sha256": "64ac6616c2c8ac04edb6a3f77bd646b3834f337c2381ac162e7cc33cd4eabb58"
@@ -2465,13 +2735,18 @@
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "bytes": 65256,
-      "sha256": "0c2a5c6b607334e21faa0bbbfa4d4b0f421d604adc1210b1242831daedd74b40"
+      "bytes": 83061,
+      "sha256": "990f68866ed99c64c7905b584de504cca782dacd56cde27127f4c76a40774db9"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
       "bytes": 6920,
       "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75"
+    },
+    {
+      "path": "Tests/iOS/ReadingFontTests.swift",
+      "bytes": 10581,
+      "sha256": "513b852f186ada97053255149734404d6fa2f47774e112493a09986c24a4999d"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -2480,8 +2755,8 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "bytes": 35374,
-      "sha256": "f4599e6505af8cc4dfdf6c9dc06761a85de16773f8c5d55a26a8bf0ca560fe8f"
+      "bytes": 42764,
+      "sha256": "7300b9246c8e44a08136e500dee6598896d10ed1542ff582233df3ac625d766e"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -2495,8 +2770,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/README.md",
-      "bytes": 4013,
-      "sha256": "9749ea0a18e7d9d59f28cb3d18e3fca50bdb9797eb9abf44cb7f838d69f70593"
+      "bytes": 5516,
+      "sha256": "78e3ae359722aac93a891e56e0c9ad3bcc7e892605d593206778dcf3bcb0c3a4"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
@@ -2820,18 +3095,18 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "bytes": 62084,
-      "sha256": "cf4afd4034c677887fd9af92596f5706e08a7c19aeab1f37fdd168cf4b950c01"
+      "bytes": 62268,
+      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
-      "bytes": 15014,
-      "sha256": "dc7e5635a3f68126559b8139473b2d2551030e8855c7d544f753feedcfbe6d44"
+      "bytes": 15257,
+      "sha256": "097da89b1e9aef30050af2ac4a271cc86914b6c3e0e64bd35504f25917d6863a"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "bytes": 17374,
-      "sha256": "bd2a918ec7501357612abc1edcae8c869b44450fddbba84e73e6040c5b4dc73e"
+      "bytes": 19698,
+      "sha256": "a0d92863efb9ba724143a127e591450560aec51766a9601508d78268336e785e"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpread.swift",
@@ -4265,13 +4540,13 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "bytes": 75595,
-      "sha256": "119967a86ff67482ea337f04cb99e1bed4d99c62b47341cd5745cef388580343"
+      "bytes": 77104,
+      "sha256": "b86149b2176cc4b2884d0988d56789b6ba53a811874131f7d61d3b6d4eea1ded"
     },
     {
       "path": "project.yml",
-      "bytes": 2612,
-      "sha256": "7a507ee3e91a055a6fffd5f7e7abbc0805dbd3bbc6d39493fd9c9bdb3ae4e119"
+      "bytes": 2716,
+      "sha256": "ea9bc889ef0caf84521f8bf0ebd6c018717de0e2223fd4b203b012cdd931281b"
     },
     {
       "path": "scripts/check_repository.py",

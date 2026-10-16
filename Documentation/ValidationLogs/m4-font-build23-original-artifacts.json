@@ -1,0 +1,34 @@
+{
+  "recordedAtUTC": "2026-10-16T17:59:47.193654+00:00",
+  "run": 38918803378,
+  "sourceRevision": "62700a159cffc72ef256eabdc24184bf6092b0a7",
+  "archives": [
+    {
+      "kind": "core",
+      "path": "C:\\Users\\78083\\.cache\\XianxiaReader-Build23-CI\\archives\\38918803378\\core-diagnostics.zip",
+      "bytes": 116203,
+      "sha256": "8b8ce4a8a35fd5a140076cbeafbc5065c7bc29088ca94fb5a651d8e0072ad1cf",
+      "githubDigestMatches": true,
+      "zipCRCPassedByDownloader": true,
+      "extraction": "complete"
+    },
+    {
+      "kind": "ipa",
+      "path": "C:\\Users\\78083\\.cache\\XianxiaReader-Build23-CI\\archives\\38918803378\\ipa-diagnostics.zip",
+      "bytes": 41414188,
+      "sha256": "5cf18b1d4647fa0be4fa9c8e4ea93e265d768f665542bb44c21174043aaacb09",
+      "githubDigestMatches": true,
+      "zipCRCPassedByDownloader": true,
+      "extraction": "complete"
+    },
+    {
+      "kind": "apple",
+      "path": "C:\\Users\\78083\\.cache\\XianxiaReader-Build23-CI\\archives\\38918803378\\apple-diagnostics.zip",
+      "bytes": 1230848132,
+      "sha256": "9126ef94b8aaa290c6bee902eb2fd246fb06f5ba94c4660384fece7aada24ad2",
+      "githubDigestMatches": true,
+      "zipCRCPassedByDownloader": true,
+      "extraction": "complete"
+    }
+  ]
+}
