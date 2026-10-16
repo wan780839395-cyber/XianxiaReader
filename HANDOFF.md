@@ -2,6 +2,10 @@
 
 ## 实际最新断点（先看这里）
 
+277原件完整summary已核131/133、2失败/0跳过、旧124全过，两个字体UI与内置原件/许可/中文字形CoreText通过；prior-38887978313-result.json保留。该原件还含新TXT嵌套async helper第91行一次“try无throw”Swift警告（不能称编译warning0），现将字体实际字形和原文字Y合成同一JS快照，在已有wait closure内检查，保留原glyph/loaded/3px锚点/重开门槛，避免嵌套helper与两次await取样。尚待Windows重核并另ref完整新CI；bc6/38892156952与43e/38890891607继续运行，运行源码相同/测试各有差异，不能替新候选宣称全过。
+
+现在主候选已切新源bc6c32c9ed48fe72d2e7c927a558e8d8d0dd06f7 / codex/m4-font-ready / CI38892156952（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38892156952），gates重置pending，预期Core133各/iOS134=115集成+19UI；Windows433/17、35旧主体保持/16新增/522源已重核。与43e的App/Packages/字体/Vendor运行Swift完全一致，实际只改一个新测试文件及UPSTREAM checkpoint字段命名和文档（Git已核）。43e/38890891607独立继续，不取消，最终按新bc6完整门槛交付。277failure原件下载92586仍运行，核完summary/原生局部后再写receipt，不把字体CoreText/真UI通过扩大为正文/Release通过。当前所有运行source冻结，普通HEAD/index保持，尚无Build23 IPA。
+
 又一实际证据：277/38887978313已failure，完整log显示仅新EPUB初始caret的二次读取为空、新TXT无fragment初始定位失败；内置原件/OFL/CoreText中文字形以及两个字体真UI均通过，Release仍未执行；1.342GB原件下载session92586，结束后核summary原件再记录。相邻两次JS取样之间页面会动，故新EPUB原非零断言改为连续两次同一>100 caret并一次保存样本，取消独立二次读取竞态；新增font-ready关闭用例明确等新页延迟Promise已settled再查旧回调，断言保持。仅这两测试及Vendor元数据checkpoint字段命名更明确，App运行修正仍与43e一致；Windows/旧35/16新增/522blob重核后另ref全跑，43e/38890891607继续取实际结果，不取消/不追认前轮。主待切换，勿重复dispatch。
 
 恢复核实值（更新）：主43e837/38890891607的Linux133与四Release TXT探针原件artifact12042260878已CRC核，settling-linux.json记录；Apple仍pending，唯一主watcher74374。277/38887978313由watcher74660独立取最终原件（不含后续修正）；e758/38886008057已真实128/131失败/Release未执行、原件下载99454和watcher71340均已结束。当前仍522源冻结/16新增/预期134 iOS；最终采用deliver_bundled_fonts.py，不用旧deliver_font.py。验证helper已核134/19视频、16新Preview与两个内置原件/许可逐字节；这些均为预备条件，尚未实际全过/打包。

@@ -86,16 +86,17 @@ final class TXTReadingTests: XCTestCase {
             let asset = try bundled.resource().asset
             model.selectImportedFont(asset.id)
             let chinese = ReadingFontTests.chineseFontScript(asset.cssFamily, paragraph: "p")
-            func matches() async throws -> Bool {
+            let exactFontAndAnchor = "(\(chinese)) && Math.abs((\(script)) - \(before)) < 3"
+            try await wait("bundled TXT Chinese glyphs and byte anchor") {
                 guard let web = active() else { return false }
-                let realGlyphs = try await web.evaluateJavaScript(chinese) as? Bool == true
-                let y = (try await web.evaluateJavaScript(script) as? Double) ?? 10000
-                return realGlyphs && abs(y - before) < 3
+                return try await web.evaluateJavaScript(exactFontAndAnchor) as? Bool == true
             }
-            try await wait("bundled TXT Chinese glyphs and byte anchor") { try await matches() }
             await model.saveNow(); model.close(); await model.open()
             XCTAssertEqual(model.appearance.importedFontID, asset.id)
-            try await wait("bundled TXT exact anchor and Chinese font reopen") { try await matches() }
+            try await wait("bundled TXT exact anchor and Chinese font reopen") {
+                guard let web = active() else { return false }
+                return try await web.evaluateJavaScript(exactFontAndAnchor) as? Bool == true
+            }
             let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
             chineseImage.name = "font-txt-\(bundled.rawValue)-build23"; chineseImage.lifetime = .keepAlways; add(chineseImage)
         }

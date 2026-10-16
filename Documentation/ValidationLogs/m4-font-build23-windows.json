@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-16T11:11:08.144194+00:00",
+  "recordedAtUTC": "2026-10-16T11:15:27.812597+00:00",
   "swiftFiles": 433,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
@@ -17,11 +17,11 @@
     },
     {
       "path": ".cache/recovery/20261016-build23/tooling.log",
-      "sha256": "f0cbb4160bdba8c6c78498b987bbb789aec390f082fd6230c65b6494f0e27398"
+      "sha256": "2bdda56d5c98f0c2d8ce558532671ee333d9f7a30c4d48706003d6a9a6fe24cd"
     },
     {
       "path": ".cache/recovery/20261016-build23/candidate.diff",
-      "sha256": "9ef60c165ebb2d5bb37fd10a9cc2a215f4b05e776abfc6ad4f4c9ae8d992f5e5"
+      "sha256": "e0d1ccbf4b2e090e0d974a58566f2d3ffce8a4e9d6142232e1a9f989d72c565f"
     }
   ]
 }
