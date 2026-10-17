@@ -12,6 +12,7 @@ final class ReaderSearchFieldTests: XCTestCase {
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil }
         let field = try await queryField(in: host.view)
+        print("Query diagnostic: mounted \(field.bounds), key=\(window.isKeyWindow)")
         XCTAssertGreaterThanOrEqual(field.bounds.height, 44)
         XCTAssertEqual(field.accessibilityIdentifier, "reader.search.query")
         XCTAssertTrue(field.becomeFirstResponder())
@@ -25,18 +26,18 @@ final class ReaderSearchFieldTests: XCTestCase {
         let markedStart = field.offset(from: field.beginningOfDocument, to: marked.start)
         let caret = field.offset(from: field.beginningOfDocument, to: selection.start)
         state.theme = .charcoal
-        try await waitUntil { field.keyboardAppearance == .dark }
+        try await waitUntil("theme update", diagnostics: { self.describe(field) }) { field.keyboardAppearance == .dark }
         XCTAssertEqual(field.text, originalText)
         XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: try XCTUnwrap(field.markedTextRange).start), markedStart)
         XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: try XCTUnwrap(field.selectedTextRange).start), caret)
 
         state.text = ""
-        try await waitUntil { field.text == "" && field.markedTextRange == nil }
+        try await waitUntil("clear marked text", diagnostics: { self.describe(field) }) { field.text == "" && field.markedTextRange == nil }
         XCTAssertTrue(field.isFirstResponder)
         field.insertText("云海"); field.sendActions(for: .editingChanged)
         XCTAssertEqual(state.text, "云海")
         state.focused = false
-        try await waitUntil { !field.isFirstResponder }
+        try await waitUntil("end editing", diagnostics: { self.describe(field) }) { !field.isFirstResponder }
         XCTAssertEqual(state.text, "云海")
     }
 
@@ -48,16 +49,27 @@ final class ReaderSearchFieldTests: XCTestCase {
             }
             return nil
         }
-        try await waitUntil { (find(view)?.bounds.height ?? 0) >= 44 }
+        try await waitUntil("native field layout", diagnostics: {
+            if let field = find(view) { return self.describe(field) }
+            return "No UITextField; host=\(view.bounds), window=\(String(describing: view.window))"
+        }) { (find(view)?.bounds.height ?? 0) >= 44 }
         return try XCTUnwrap(find(view))
     }
 
-    @MainActor private func waitUntil(_ condition: () -> Bool) async throws {
+    @MainActor private func describe(_ field: UITextField) -> String {
+        "bounds=\(field.bounds), text=\(String(describing: field.text)), marked=\(String(describing: field.markedTextRange)), focused=\(field.isFirstResponder), keyboard=\(field.keyboardAppearance.rawValue)"
+    }
+
+    @MainActor private func waitUntil(_ phase: String, diagnostics: () -> String,
+                                     file: StaticString = #filePath, line: UInt = #line,
+                                     condition: () -> Bool) async throws {
+        print("Query diagnostic waiting: \(phase)")
         for _ in 0..<100 {
-            if condition() { return }
+            if condition() { print("Query diagnostic passed: \(phase)"); return }
             try await Task.sleep(nanoseconds: 20_000_000)
         }
-        XCTFail("Native query field did not reach the expected editing/layout state")
+        print("Query diagnostic failure: \(phase); \(diagnostics())")
+        XCTFail("Native query field did not reach \(phase): \(diagnostics())", file: file, line: line)
         throw QueryFailure.timeout
     }
 }

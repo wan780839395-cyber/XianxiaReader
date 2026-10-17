@@ -10,6 +10,11 @@ on:
         description: First real local Readium resolution; adopt artifact then rerun with this off
         type: boolean
         default: false
+      diagnostic_selection:
+        description: Full delivery gate by default; selected diagnostics never produce an IPA
+        type: choice
+        default: full
+        options: [full, native-input, fonts, panels]
 
 permissions:
   contents: read
@@ -72,6 +77,7 @@ jobs:
             build/TXTPerformance/
 
   ios:
+    if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15
     timeout-minutes: 60
@@ -112,3 +118,34 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           path: build/XianxiaReader.ipa
+
+  reading-diagnostic:
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' }}
+    needs: [repository-checks, core-tests]
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      DIAGNOSTIC_SELECTION: ${{ inputs.diagnostic_selection }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run selected native diagnostics without device packaging
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
+      - name: Preserve diagnostic logs and original test result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-reader-diagnostic-${{ inputs.diagnostic_selection }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            build/logs/
+            build/DiagnosticTests.xcresult/
+            build/ReaderSnapshots/
+            build/test-results-summary.json
+            build/build-environment.txt
+            build/Package.resolved
