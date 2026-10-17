@@ -1,0 +1,36 @@
+{
+  "recordedAtUTC": "2026-10-17T05:24:31.667480+00:00",
+  "run": 39003048184,
+  "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+  "selectedMembers": 18,
+  "memberCRC": true,
+  "fullArchiveDigestOrCRCVerified": false,
+  "observations": [
+    "Actually viewed both full one-second overview sheets of the retained native failed picker video. Font selection and settings are visible; the system-picker area is initially white. Near the end, it paints Recent Documents and a visible Cancel/search/empty-recent state.",
+    "Failure AX hierarchy contains both settings Done and the covering system Cancel/DocumentManager navigation bar; the original test inferred dismissal merely from the underlying import button existing.",
+    "The revised test queries the actual system button and waits for its enabled/hittable state, then disappearance and restored Done hittability. All cancel/persistence/dark/reset/relaunch assertions retained."
+  ],
+  "evidence": [
+    {
+      "path": "build/ci/39003048184/PickerFailure/selected-members.json",
+      "sha256": "c1e0836c27cf20838bd3cc375f645e53d988a79843dcc3590946cc41c8d605c7",
+      "bytes": 7840
+    },
+    {
+      "path": "build/ci/39003048184/PickerFailure/80B05D91-2D15-4DAC-BC5A-75A50B29F640.txt",
+      "sha256": "970e343db71c2b9d604ff8158cb6bf4ab49b3516be6198e4f8d3ebd0307fa7f4",
+      "bytes": 51156
+    },
+    {
+      "path": "build/ci/39003048184/PickerFailure/Overview/contact-1.png",
+      "sha256": "4490f1fba13f36def1cf95b5aac484a3b4d01d296a7702fd3a77c01ab53fa159",
+      "bytes": 411381
+    },
+    {
+      "path": "build/ci/39003048184/PickerFailure/Overview/contact-2.png",
+      "sha256": "08a8cddd500cda6a0a87ff3ad36c21854d193bb7d413ce7a2a38ae2d73c15c47",
+      "bytes": 188586
+    }
+  ],
+  "scope": "Old failed source diagnostic only; no motion, phone, primary-source success or complete archive acceptance."
+}

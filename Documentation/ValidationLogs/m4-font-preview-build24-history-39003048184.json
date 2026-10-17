@@ -220,8 +220,8 @@
     "bytes": 2972557,
     "sha256": "661fbadfbe093d8336fb24ad87dfb361e09f453d0e088b2ce06e0d5834257fb4"
   },
-  "retention": "Historical run only: full text logs, run/artifact metadata and this summary retained. Apple xcresult/media/IPA not downloaded; no native review or full archive verification claimed.",
-  "supersededByRun": null,
+  "retention": "Full text logs/run/artifact metadata plus18 selected picker failure attachments and2 overview sheets retained; selected member CRC only, complete Apple archive not downloaded/verified, no IPA.",
+  "supersededByRun": 39005962891,
   "reason": "A previous Build24 source candidate; not cancelled and never used as the latest source validation gate",
   "actualIOSTestCases": 138,
   "actualIOSPassed": 136,
@@ -917,5 +917,6 @@
       "name": "testSixNativeFontSamplesAndCustomTypographyPersist",
       "outcome": "passed"
     }
-  ]
+  ],
+  "selectedFailureDiagnosis": "Documentation/ValidationLogs/m4-font-preview-build24-picker-dismiss-diagnosis.json"
 }

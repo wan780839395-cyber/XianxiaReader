@@ -2,6 +2,8 @@
 
 用户最新指令：2026-10-17“别触发关机了”。已撤销本轮关机授权，助手从未启动/未调度/未发关机命令。继续开发验收，完成后保持开机；历史关机说明均已被本条取代。实际取消记录：Documentation/ValidationLogs/m4-font-preview-build24-shutdown.json。
 
+当前唯一主候选：76a423fec2b855eb6e429d40741a02145727830e / codex/m4-font-browser-save / CI39005962891，已实际dispatch。新鲜完整位置保存+失败可见重试/每await身份守卫及真实Cancel按钮同步已写；Windows435/新增0/17工具、56原主体保持/1原UI同步有精确双hash审计/11新增/532blob已冻。预期Core135各/iOS143=123集成+20UI/Release24，当前全部新门槛待核；旧字体重开断言保持，无Build24包，不得复用旧门槛。用户已撤销关机，保持开机。
+
 最新断点：39003048184/b943613完整失败136/138（新6全过、旧字体逐次换字重开位置回到h1、旧picker取消后Done不可点），Release未运行，watcher82717已退出，无Build24交付。已查官方Readium固定版与Apple exists/isHittable文档；saveNow仅写cached currentPosition，拟最小改为新鲜完整capture、会话/保存请求每await守卫、失败可见保留原记录；新增4生命周期回归。旧Readium字体测试断言保持，旧picker测试只加强真正dismiss/hittable同步、不跳过取消/持久化。写入源码前检查点，尚未新编译。关机已经明确取消。
 
 当前唯一主验证：CI39003048184 / b9436136a26cad4f62140f0df960e99657c1ff1e / codex/m4-font-browser-cjk，已实际dispatch；与上一轮源码及原测试完全相同，仅独立全CI重试。所有新门槛重置待核，无Build24交付；先前137/138与选择器白页/AX诊断独立保留。关机已撤销。恢复唯一watcher须核OS和本地run；不要重复dispatch。
@@ -78,3 +80,7 @@ b943613/39000103869实际Linux135及四Release长TXT通过，artifact12088563226
 选择器诊断限定补充：原录屏白色远程区域与失败AX完整Cancel层级同时保留，尚不能分辨系统初始化延迟、AX查询时序或跨进程录制限制，不把录屏白色直接当成真机文件选择器渲染故障；原因未定，当前一次同源完整重试无代码放宽。
 
 新鲜保存/选择器同步构建前检查点：App经完整capture再保存，3s/32ms未就绪重试、固定布局完整页fallback、会话/保存UUID/取消每await守卫、失败保留数据库原记录并可见重试/阻止无声离开；新增5生命周期，旧字体重开测试不改。原picker只一主体改为真实Cancel按钮+公开可点击/实际消失/Done恢复，其余旧断言保持，原/新sha固定审计。Windows435新增0/54既有与17工具实过；现在重冻11新增/预期135各+143iOS/Release24，旧源门槛清零，尚未新编译/交付，关机维持取消。
+
+136/138旧失败选择器已实看完整1秒总览2表；片尾才见系统最近项目/取消，失败AX仍包含覆盖Done的Cancel，与旧exists误判dismiss相符。18选定成员CRC/14,392,133 range字节、全ZIP未核；重复range块已清，记录picker-dismiss-diagnosis.json。该原test现公开Button+hittable/消失同步，取消/恢复/持久化断言保持；新143项门槛只归76a423/39005962891。
+
+主候选39005962891/76a423f实际Linux135/四长TXT Release已通过，完整Core artifact摘要/CRC/来源身份核完并清重复ZIP/分片；Apple完整143项/Release24和最新原生仍待核，旧轮结果不继承。关机取消。
