@@ -1,5 +1,7 @@
 # 当前交接与恢复点
 
+原生复核范围更新（等待当前完整CI期间）：完整148条仍全跑，所有原始PNG/录屏保留并摘要核对；人工优先实际查看本片21张新面板PNG、两条对应原录屏总览及选定原始VFR连续窗口。113张未改功能捕获只保留、不声称本轮逐图复核；此前“准备134图”是旧计划，新的review助手明确分列retainedUnreviewedImages。静态/录屏与手机FPS、旧安全区、全动效矩阵继续分开，不能因范围聚焦而扩大验收。
+
 当前1e4ae348/完整39038829961的Linux135与4组Release TXT探针已按本轮Core artifact12102474112/116258B独立核验并清重复ZIP/分片。Apple整轮执行中，无新门槛继承。旧两字体诊断39037690400实际1/2，导入字体test在分页关闭重开后line294的blank失败；两条WebContent启动日志实际47.520322/47.657906秒，超过原30秒等待，属于排障线索而非唯一根因。另一隐藏重排test9.241s通过，原test/引擎不动。78.8MB诊断已SHA/CRC校验并提取，原collector同样summary路径错误后已按receipt复用正确提取补写真实结果；见diagnostic-fonts记录。保留原门槛，不放宽断言或靠系统RBS文本宣布已修复。
 
 完整新候选已实际分发39038829961 / source1e4ae348a39679df8476bda6c74380d4615078b0 / codex/m4-reading-panels，显式diagnostic_selection=full。Windows438/17、Git Bash语法、旧11UI主体和3新tests/536编译资源blob核过，门槛全部重置；实际仅输入测试修scene挂载和诊断基础设施，产品行为仍与517候选相同。watcher session25903、collector session39756只处理本run，不重复分发/下载；成功才校验Release、准备原生材料，尚无Build26根包。旧字体定向39037690400/ref独立不受取消，完成后核实际summary。正常HEAD/index/45旧包/16备份保持，取消关机持续生效。
