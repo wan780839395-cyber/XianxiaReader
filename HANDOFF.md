@@ -9,3 +9,7 @@
 可恢复子步骤：原生目录/书签值视图、统一List/导航栏颜色与空状态、固定搜索框/清空已写源码；两项真UI回归已加，原函数体待freeze核对，未编译。设计READING_PANELS_DESIGN.md含官方参考与iOS16取舍。即将Windows验证/冻结及完整独立CI，Build25仍是交付版。
 
 构建前检查点：Windows仓库检查/436 Swift语法新增0（54既有Vendor限制）及17工具测试通过，语法不等于编译。私有index对照0ce949a保留11个原UI test主体、仅加2个，本候选533编译/资源blob冻结。将独立ref codex/m4-reading-panels触发完整Core135各/iOS147/严格Release26；尚未Apple编译/模拟器复核/交付。
+
+完整CI已实际分发：39023086030 / source3c250618d8814a407588d5d760c717566711893c / codex/m4-reading-panels，当前尚在执行，未继承旧门槛。API watcher轮询并落run.json/完整日志/metadata；当前进程与最后状态以实际文件为准。
+
+可恢复检查点：Core完整artifact12097258932(116204B)已校验GitHub SHA/ZIP CRC/编译源并完整提取，重复ZIP/分片删除。实际Linux135条+4组Release长TXT探针/原内容身份全过，证据m4-panels-build26-linux.json；Apple仍执行中。Watcher unified session13088，build/ci/39023086030/run.json每30秒更新；中断后先核进程，不重复触发CI，不把当前为通过。

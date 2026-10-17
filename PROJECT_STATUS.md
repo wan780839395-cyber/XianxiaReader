@@ -1,5 +1,7 @@
 # 项目状态
 
+当前进行中：Build26目录/书签/搜索原生主题统一，source3c250618/CI39023086030；Windows436语法/17工具与Linux135Core/4组长TXT Release探针已核，Apple正在执行，尚未交付。Build25仍为已交付基线；用户菜单仍卡顿但可继续使用，不记流畅度通过。实际恢复点见HANDOFF。
+
 ## Build25 紧凑设置与透明字形（2026-10-17）
 
 Build25本切片已交付；实际源 f90a33cd476f2ffa468f5577fe4002dd47b690f0 / ref codex/m4-settings-compact-rules / [完整CI 39014160303](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39014160303)。Linux/macOS Core各135，iOS145/145（124集成+21真UI）、失败/跳过0，test/export/summary/recording均退出0，严格无签名iPhoneOS arm64 Release25/min16。三锁六pins、532编译/资源blob、每平台4组长TXT Release探针与IPA六字体/原OFL原字节已核。Windows435语法新增0/54既有Vendor限制、17工具通过，语法不算编译。受改两测试文件9原主体保持、2新增；其他既有测试继续执行。

@@ -229,7 +229,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2390,5 +2390,21 @@
   "expectedCore": 135,
   "expectedIOS": 147,
   "expectedIntegration": 124,
-  "expectedUI": 23
+  "expectedUI": 23,
+  "sourceRevision": "3c250618d8814a407588d5d760c717566711893c",
+  "branch": "codex/m4-reading-panels",
+  "run": 39023086030,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023086030",
+  "partialVerification": {
+    "recordedAtUTC": "2026-10-17T10:01:20.338174+00:00",
+    "run": 39023086030,
+    "sourceRevision": "3c250618d8814a407588d5d760c717566711893c",
+    "coreTests": 135,
+    "releaseTXTProbes": 4,
+    "allProbeChecksPassed": true,
+    "logSHA256": "b0cd1ebbf74022a45771205cd08031227688c8f4a7cdfd053908ea0536c5958d",
+    "performanceSummarySHA256": "d27686120cdc141bafd694e8c86e725147ac7542fd8225c646c8b98621353218",
+    "appleNotVerifiedYet": true,
+    "deviceAccepted": false
+  }
 }
