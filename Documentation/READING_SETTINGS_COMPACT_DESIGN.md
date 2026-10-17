@@ -40,3 +40,9 @@ Build25本切片已交付；实际源 f90a33cd476f2ffa468f5577fe4002dd47b690f0 /
 历史验证边界：56e/39012448991实际142/145，0源码compiler诊断；新增缓存与紧凑UI过，两个原集成及一个原字体UI失败，Release未执行。失败AX确有“当前位置尚未稳定”的保存错误，旧日志WebContent启动最大33.558788s；原因未证实。f90主源只恢复页边距规则/六字样例和对应新UI断言，ReaderEngine未改。当前独立145全过不能称旧加载/系统初始化根因已修复，具体history与first-preflight保留，旧大原件清理以后以retention回执为准。
 
 Build25收尾保留已完成：旧两轮2464项/1649.9MiB已清理，100项文字/元数据留存；本轮完整诊断、45交付包和15恢复ZIP保留，详见m4-settings-build25-ci-retention.json。测试包仅修正TESTING菜单版本为(25)，其他成员原字节不变，最终摘要与回执同步。手机性能/M4仍待验收，保持开机。
+
+## Build26 等待验证期间的性能只读复核
+
+用户仍感觉菜单轻微卡顿、允许继续。核现有源码：字形请求仍在独立actor绘制/缓存，fontResourceForPreview/isFontAvailable只查内存资源数组；ReaderPanelSurface的现有表面包含两层轮廓阴影与渐变描边。设置页用ScrollView和外层VStack，内置字体为LazyVGrid；ReaderAppearanceView/ReaderMenuView观察整个ReaderViewModel，位置回调仍发布position。以上是可核代码路径，不能仅凭存在阴影或ObservableObject认定它们是卡顿根因。
+
+下一性能切片应在实际手机Release的首次字体显示与反复滚动分别记录主线程耗时、渲染开销、预览绘制次数/缓存命中和帧时间；先区分字体准备、SwiftUI重算与合成，再只改证据指向的路径。六字体/最多12导入字体与全局预览缓存的工作集也应一起测量。当前Build26运行源码已冻结，此次只读检查没有修改菜单/字体/引擎或声称解决用户卡顿；既有透明预览与样例布局验收保持，完整设备性能仍待测。
