@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+## Build24 设置内字形与排版
+
+Core保留Foundation可选字距/字重/缩进字段和旧JSON；Adapter映射Readium3.11公开偏好，资源字体重排先等真实DOM采样成功（3s/32ms、请求/nav/取消守卫），避免隐藏初始化页锚点覆盖。中文横排CSS复用同版默认样式的显式字距/缩进规则，仍受advanced标志限制并登记UPSTREAM。App独立CoreText actor保留一个CGFont和12张短样例PNG，真实fileURL不全局注册，Lazy列表取消过期请求。六只读Bundle字体/原OFL不占12用户名额，资源目录18、正文窗口12；无新schema、整本正文、JS或依赖变更。详细来源/范围及实际门槛见READING_FONT_BROWSER_DESIGN.md与M4_FONT_PREVIEW_VALIDATION_REPORT.json。
+
 ## Build17 阅读手感第一片（早期开发记录）
 
 Foundation领域ReadingInteraction与独立BookFileStore actor JSON保存交互偏好，不改变reading-v1/schema3/Locator。ReadingInterfaces可选ReaderInteractionProviding隔离动效与被动手势，Adapter统一导航options/关闭身份与分页防重入，UI只持领域值。首候选97/99，正常拖动未收菜单仍诊断，源码不等价验收；当前精确边界与后续修正见READING_MOTION_DESIGN.md及HANDOFF.md。

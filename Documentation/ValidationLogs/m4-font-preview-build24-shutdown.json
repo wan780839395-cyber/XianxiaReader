@@ -6,5 +6,7 @@
   "shutdownHelperEverStarted": false,
   "shutdownCommandIssued": false,
   "scheduledShutdown": false,
-  "continueDevelopmentAndValidation": true
+  "continueDevelopmentAndValidation": true,
+  "appliesToThisTaskRegardlessOfCIRun": true,
+  "latestPrimaryRunAtCheckpoint": 39005962891
 }

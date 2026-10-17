@@ -1,5 +1,25 @@
 # 真机阅读验收
 
+## Build24 六款字体、真实样式浏览与排版扩展（2026-10-17）
+
+Build24本切片已交付；[完整CI 39005962891](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39005962891)，实际编译源`76a423fec2b855eb6e429d40741a02145727830e`，验证ref `codex/m4-font-browser-save`。Linux/macOS Core各135，iOS143/143（123集成+20真UI）、失败/跳过0；test/export/summary/recording均退出0，严格无签名iPhoneOS arm64 Release24/min16。三锁六pins、532个编译源/资源blob、每平台4个长TXT Release探针和IPA中六字体/原OFL原字节已核。Windows435语法新增0/54既有限制、17工具通过，语法不等于编译。受改56个原测试主体保持、11新增；原1个文件选择器测试只加强真正按钮/消失/可点击同步，取消/选中/深色/恢复/重开断言保持。
+
+阅读设置→外观现在可直接浏览思源宋体、霞鹜文楷、思源黑体、朱雀仿宋、马善政楷书、站酷小薇的真实中文样例；导入字体也显示实际字形。主样例随选中字库/字号/配色变化，明确段落排版以正文为准。字号放在六行列表前。六完整原字体约83.9MiB，官方固定版本/OFL记录在App/Resources/Fonts/PROVENANCE.json，不裁字，缺字系统补全，旧两UUID保持。
+
+排版新增字距0–0.5、字重50–175%和首行缩进0–4字/0.5步长；行距扩至1.2–2.8、段距0–3、左右留白0.25–2.5。原字重缺省和reading-v1旧JSON兼容，原书样式禁用规则保持。中文横排补入同版官方默认CSS中的字距/首行缩进规则，UPSTREAM登记了资源差异；竖排/RTL未扩展此模块。单字重字体的粗细能力由字库/系统决定。字体/排版变更沿用完整锚点；新增连续模式六款逐次换字/CSS/原Y及重开回归，分页在前次字体仍隐藏排版时再次切换也保持原非零文字。取消/关闭/迟到回调和旧位置竞态保持。
+
+保存/退出现在先取得当前完整文字锚点，再写入数据库；不直接用重排后的滞后缓存。暂未就绪时有界等待，失败保留原记录并显示重试，关闭/重开/重叠/取消的迟到结果均过滤。新增5项生命周期回归，旧字体逐次换字重开断言保持；失败样本与取舍另见m4-font-preview-build24-fresh-save-design.json。文件选择器使用真正系统取消按钮并等其消失及完成按钮可点击，不能只凭背后控件存在就继续。
+
+安装`build/XianxiaReader-FontBrowser-Build24.ipa`，SHA256 `55ec9079e00e5e29e83c91acce45712b85e1c0885c07ec75b760e0c5ef4a280a`；原创样书/本轮原生Preview/原许可与拉丁导入样本包`build/XianxiaReader-FontBrowser-Build24-TestKit.zip`，SHA256 `bc0c8b54320e198a90919ce2de5b9db3197746c57c4edc97c64b8ec3b117a099`。覆盖安装保留书库，+菜单确认0.0.1 (24)。41旧包与未提交源码/恢复备份保留。
+
+原生人工复核：110张原生PNG/19表已全部查看，其中4张旧功能孤立图按实际黑屏/加载中/状态栏重叠明确不接受为稳定正文，未放入本轮Preview。新20张Build24六款正文/真实CoreText字形/设置行/排版重开均可读。15条阅读UI原录屏留存，本轮只看3条完整1秒总览11表，以及5个选定窗口301个原始VFR帧/28表；无fps过滤/插值，原PTS顺序核验。六款样式区别、紧凑透明样例、字距/字重/缩进及重开、系统选择器取消保留与衬线重置的所列最终状态接受。样例准备/行高重排/主题过渡与旧暂停安全区仍有限制，不把自动全过或采样视为全动效/手机验收。
+
+手机首次字体加载、内存/实际流畅度/FPS/耗电、全部File Provider、普通签名/TrollStore、系统减少动效/VoiceOver/旋转矩阵仍未验收。所有保留视频不等于逐条复核；具体原图、视频和原PTS窗口及未接受画面见m4-font-preview-build24-native-review.json。字体删除、集合、可变轴、单书覆盖、自定义配色/独立四边距尚未实现。M4整体未完，后续优先按手机字体体验反馈与目录/书签/搜索主题统一推进，不提前M5。
+
+本地CI按AGENTS保留最近交付的完整诊断，历史仅保留文字日志/summary/metadata/验证记录；旧文“大原件仍在本地”均受local-disk-cleanup-2026-10-17.json及m4-font-preview-build24-ci-retention.json清理回执约束，安装包/源码/恢复快照保留。历史候选各自结果独立，不能替代当前主源门槛。
+
+以下Build23及更早为历史记录。
+
 ## Build23 内置字体与导入（2026-10-17）
 
 Build23内置思源宋体、霞鹜文楷与本地字体导入已交付；[完整CI 38918803378](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38918803378)，实际源`62700a159cffc72ef256eabdc24184bf6092b0a7`，验证ref `codex/m4-font-readable-capture`。Linux/macOS Core各133、iOS 134/134（115集成+19真UI）、失败/跳过0；test/export/summary/recording退出0；严格无签名iPhoneOS arm64 Release23/min16。三锁六pins、522源码/资源blob、每平台四长TXT Release探针、内置字库/原OFL在IPA内原字节已核。Windows433语法新增0/54既有语法限制、17工具通过；语法不算编译。

@@ -3561,5 +3561,12 @@
       "sha256": "9be4d45909b6dffff8adc6008cddcf1a25d718c8f258930a5d269875dab52286"
     }
   },
-  "deliveredOnLocalDate": "2026-10-17"
+  "deliveredOnLocalDate": "2026-10-17",
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-17T06:25:03.397126+00:00",
+    "record": "Documentation/ValidationLogs/m4-font-preview-build24-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }
