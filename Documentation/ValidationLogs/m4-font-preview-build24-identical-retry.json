@@ -1,0 +1,23 @@
+{
+  "recordedAtUTC": "2026-10-17T04:34:51.932488+00:00",
+  "run": 39003048184,
+  "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+  "branch": "codex/m4-font-browser-cjk",
+  "previousRun": 39000103869,
+  "fullWorkflowDispatch": true,
+  "sourceAndTestsUnchanged": true,
+  "changedPathsOnlyDocumentation": [
+    "Documentation/M4_FONT_PREVIEW_VALIDATION_REPORT.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-history-39000103869.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-initial-ready-linux-38961037839.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-shutdown.json",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md"
+  ],
+  "originalHeadAndIndexPreserved": true,
+  "failureDiagnosis": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
+  "rootCauseFixedClaimed": false,
+  "shutdownCancelled": true
+}

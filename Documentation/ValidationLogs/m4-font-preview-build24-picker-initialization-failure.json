@@ -1,0 +1,47 @@
+{
+  "recordedAtUTC": "2026-10-17T04:34:02.785081+00:00",
+  "run": 39000103869,
+  "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+  "outcome": "137/138; all118 integration, all six new regressions and19/20 UI passed; Release not executed",
+  "observations": [
+    "Viewed all3 one-second contact overviews covering the complete32-second original failure video, for diagnosis only. Settings actual six glyph samples blend with green cards; imported font selection and import button opening are visible.",
+    "System file picker remains a white initializing sheet from about19.5s through video end; no cancellation interaction occurred before assertion timeout.",
+    "Actual failure AX hierarchy contains remote DocumentManager navigation bar and Cancel button at x304.3,y78,w37,h44; the test query returned no match during its10-second wait.",
+    "Same unmodified original picker test passed in38956512671 and38961037839; root cause of this initialization/query delay is not established."
+  ],
+  "sourceAndTestChangesForRetry": "None. One independent full workflow_dispatch at the exact same b943613 source; no assertions removed, timeout weakened, or system picker bypassed.",
+  "scope": "Selected17 ZIP members individually CRC checked only; original whole1,494,450,823-byte artifact digest/CRC not checked. This is failure diagnosis, not accepted native review or phone performance.",
+  "evidence": [
+    {
+      "path": "build/ci/39000103869/PickerFailure/selected-members.json",
+      "bytes": 7648,
+      "sha256": "f33f0074dede6e07a5b567c9a0f008f5ce2bda370d4150ec6c7f77bfdcd5bc49"
+    },
+    {
+      "path": "build/ci/39000103869/PickerFailure/3DE6EC5F-6689-4D06-8C70-2A61DE269752.txt",
+      "bytes": 50078,
+      "sha256": "d8a6783a4234b1a2ad9b69dc59c2f056d30cdabe7f536ed17fb3b737d0ed2a6a"
+    },
+    {
+      "path": "build/ci/39000103869/PickerFailure/498DAE5C-871D-4471-99EE-C34929BD0F18.mp4",
+      "bytes": 10156214,
+      "sha256": "270df83d747c54a0e54c1f722632b6c2331db1ccd98d1d15450a8f10b8de2293"
+    },
+    {
+      "path": "build/ci/39000103869/PickerFailure/Overview/contact-1.png",
+      "bytes": 429930,
+      "sha256": "cdf6e04ac0e40ce17ba70755289733f020c512ade47a41096170229d84359737"
+    },
+    {
+      "path": "build/ci/39000103869/PickerFailure/Overview/contact-2.png",
+      "bytes": 174901,
+      "sha256": "f280abe74825e44e95504dcbac614433e8d4b90d5c921c90f3cbddcb9bbc398b"
+    },
+    {
+      "path": "build/ci/39000103869/PickerFailure/Overview/contact-3.png",
+      "bytes": 14382,
+      "sha256": "891a156de5666621518f9a7350b88dba00d6bc3417bf651c8c1b4a74ad8168a2"
+    }
+  ],
+  "shutdownCancelled": true
+}
