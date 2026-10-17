@@ -51,6 +51,12 @@ import XianxiaCore
                             Button("重试保存阅读手感") { model.retryInteractionSave() }.frame(minHeight: 44)
                         }.accessibilityIdentifier("reader.interaction.save-error")
                     }
+                    if let failure = model.positionSaveFailure {
+                        ReaderSettingsCard(palette: palette) {
+                            Label(failure, systemImage: "exclamationmark.circle").font(.footnote).foregroundStyle(.red)
+                            Button("重试保存阅读位置") { Task { await model.saveNow() } }.frame(minHeight: 44)
+                        }.accessibilityIdentifier("reader.position.save-error")
+                    }
                     VStack(spacing: 4) {
                         Text("设置自动保存，用于之后打开的书")
                             .font(.caption).foregroundStyle(palette.secondaryText)

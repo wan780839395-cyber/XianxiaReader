@@ -39,3 +39,7 @@ cc7/454完整日志显示六字体连续检查已取得非零完整锚点，但�
 官方固定来源：https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-after.css 与同目录cjk-horizontal/ReadiumCSS-after.css。中文竖排/RTL不在本次资源补丁范围。
 
 分页新测试即便等待初始ready，2次真实移动仍处大段起始char2，属于准备几何与>100要求不符；采用已有字体锚点回归的3页准备方式并减少无关翻页动画，保留800ms加载窗口和最终原非零字可见。后续结果必须独立实际验证，不把准备修正称阅读运行故障修复。
+
+## 换字后立即保存与选择器同步补强
+
+同源重试39003048184实136/138，原换字重开断言在377行回到h1/char0，不改该断言；saveNow此前仅持久化cached currentPosition，现经ReadingInterfaces采样新鲜完整锚点，未就绪3s/32ms有界等待、失败保留原记录/可见重试、每await核会话/保存UUID/取消，旧结果不写新进度。固定布局保持完整页Locator。新增5生命周期回归，预期Core135各/iOS143=123集成+20UI，尚未新Apple编译。原picker测试用系统Button/公开hittable与真正消失同步，所有原操作/持久化断言保持；精确原/新主体hash登记Windows冻结证据，其余原主体保持。来源/失败及取舍见m4-font-preview-build24-fresh-save-design.json。

@@ -123,13 +123,20 @@ final class ReadingFontUITests: XCTestCase {
         XCTAssertTrue(font.waitForExistence(timeout: 10)); font.tap()
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-selected-light-build23")
         app.buttons["reader.font.import"].tap()
-        let cancel = app.descendants(matching: .any).matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'")).firstMatch
-        XCTAssertTrue(cancel.waitForExistence(timeout: 10))
+        let cancel = app.buttons.matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'")).firstMatch
+        XCTAssertTrue(cancel.waitForExistence(timeout: 30))
+        let pickerReady = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: cancel)
+        XCTAssertEqual(XCTWaiter.wait(for: [pickerReady], timeout: 20), .completed)
         let frame = cancel.frame, appFrame = app.frame
         XCTAssertTrue(appFrame.contains(frame)); XCTAssertGreaterThan(frame.width, 0)
-        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: frame.midX - appFrame.minX, dy: frame.midY - appFrame.minY)).tap()
+        cancel.tap()
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cancel)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 20), .completed)
         XCTAssertTrue(app.buttons["reader.font.import"].waitForExistence(timeout: 10))
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-picker-cancel-build23")
+        let done = app.buttons["reader.appearance.done"]
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: done)
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 20), .completed)
         app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
         app.terminate(); app.launch(); open(); revealFonts()
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-reopened-build23")

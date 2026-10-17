@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-17T03:46:52.270851+00:00",
+  "recordedAtUTC": "2026-10-17T05:20:58.981450+00:00",
   "swiftFiles": 435,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
@@ -7,8 +7,17 @@
   "toolingTests": 17,
   "toolingExit": 0,
   "appleCompilation": false,
-  "oldTestBodiesPreserved": 38,
-  "newTests": 6,
+  "oldTestBodiesPreserved": 56,
+  "modifiedOriginalTests": [
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "test": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+      "beforeSHA256": "9bc40128b3469d0088c7fea0efa95192165f294010ab0538a64260b768f5e52b",
+      "afterSHA256": "448b23d58517d4b62fdbd74cf68b80f1df6da5d916169172dba526a65d2b38d2",
+      "reason": "Use the actual system Cancel button, public hittable/enable readiness and actual disappearance before Done; all cancel/selection/dark/reset/relaunch assertions retained."
+    }
+  ],
+  "newTests": 11,
   "sourceBlobs": 532,
   "logs": [
     {
@@ -17,11 +26,11 @@
     },
     {
       "path": ".cache/recovery/20261017-build24/tooling.log",
-      "sha256": "39146c022f1b1951e33502953020140fb82529c8857308e059203fc6fdace623"
+      "sha256": "89959bc98a10145567748de8885dd6c8c9330585672536d3857fa44b77057fdb"
     },
     {
       "path": ".cache/recovery/20261017-build24/candidate.diff",
-      "sha256": "b2e0da14189e2efb5079cc82fb3794ddd784e1ee74def74635ba15b737ec0e0a"
+      "sha256": "5f6c066e0d1df93c694b8a54ed9404c6103cc5c8b84dec668ba7607de69c2b60"
     }
   ]
 }

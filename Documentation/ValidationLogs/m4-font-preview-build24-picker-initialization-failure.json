@@ -5,7 +5,7 @@
   "outcome": "137/138; all118 integration, all six new regressions and19/20 UI passed; Release not executed",
   "observations": [
     "Viewed all3 one-second contact overviews covering the complete32-second original failure video, for diagnosis only. Settings actual six glyph samples blend with green cards; imported font selection and import button opening are visible.",
-    "System file picker remains a white initializing sheet from about19.5s through video end; no cancellation interaction occurred before assertion timeout.",
+    "From about19.5s through the end, the recording shows a white system-picker area with no visible Cancel interaction. This alone cannot distinguish slow remote UI initialization from out-of-process capture limitations; it does not establish a physical-device blank picker.",
     "Actual failure AX hierarchy contains remote DocumentManager navigation bar and Cancel button at x304.3,y78,w37,h44; the test query returned no match during its10-second wait.",
     "Same unmodified original picker test passed in38956512671 and38961037839; root cause of this initialization/query delay is not established."
   ],
@@ -43,5 +43,6 @@
       "sha256": "891a156de5666621518f9a7350b88dba00d6bc3417bf651c8c1b4a74ad8168a2"
     }
   ],
-  "shutdownCancelled": true
+  "shutdownCancelled": true,
+  "rootCauseUncertainty": "System picker AX/query readiness, initialization latency and remote-view capture limitations have not been distinguished. No root cause fix claimed."
 }

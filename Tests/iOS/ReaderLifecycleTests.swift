@@ -6,6 +6,104 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let cached = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([0]), progression: 0)
+        let visible = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 9,
+            locatorData: Data([4, 8, 12]), progression: 0.43)
+        engine.currentPosition = cached; engine.captureResult = visible
+        await model.saveNow()
+        let stored = try await services.repository.position(for: book.id)
+        XCTAssertEqual(stored, visible); XCTAssertEqual(model.position, visible)
+        XCTAssertEqual(engine.captureCalls, 1); XCTAssertNil(model.positionSaveFailure)
+        model.close()
+    }
+
+    @MainActor func testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let visible = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 7,
+            locatorData: Data([2, 5, 8, 13]), progression: 0.61)
+        engine.captureUnavailableCount = 2; engine.captureResult = visible
+        await model.saveNow()
+        let stored = try await services.repository.position(for: book.id)
+        XCTAssertEqual(stored, visible); XCTAssertEqual(engine.captureCalls, 3)
+        XCTAssertNil(model.settingsSaveFailure); model.close()
+    }
+
+    @MainActor func testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let capturing = expectation(description: "old save sampling suspended")
+        engine.onCaptureStarted = { capturing.fulfill() }
+        let oldSave = Task { await model.saveNow() }
+        await fulfillment(of: [capturing], timeout: 2)
+        model.close(); engine.onCaptureStarted = nil
+        let opened = expectation(description: "new session before old save result")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        let current = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 6,
+            locatorData: Data([9, 8, 7]), progression: 0.8)
+        engine.captureResult = current; await model.saveNow()
+        engine.finishCapture(position: ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([1])))
+        await oldSave.value
+        let stored = try await services.repository.position(for: book.id)
+        XCTAssertEqual(stored, current); XCTAssertEqual(model.position, current)
+        XCTAssertTrue(model.isReady); XCTAssertNil(model.settingsSaveFailure); model.close()
+    }
+
+    @MainActor func testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible() async throws {
+        struct Failure: LocalizedError { var errorDescription: String? { "原创采样失败" } }
+        let (book, services, engine, model) = try await openedContext()
+        let saved = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([3]), progression: 0.3)
+        try await services.repository.save(saved)
+        engine.currentPosition = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([0]))
+        engine.captureFailure = Failure(); await model.saveNow()
+        let unchanged = try await services.repository.position(for: book.id)
+        XCTAssertEqual(unchanged, saved); XCTAssertNotNil(model.positionSaveFailure)
+        XCTAssertNotNil(model.settingsSaveFailure)
+        let visible = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 5,
+            locatorData: Data([5, 6, 7]), progression: 0.5)
+        engine.captureFailure = nil; engine.captureResult = visible; await model.saveNow()
+        let retried = try await services.repository.position(for: book.id)
+        XCTAssertEqual(retried, visible); XCTAssertNil(model.positionSaveFailure)
+        XCTAssertNil(model.settingsSaveFailure); model.close()
+    }
+
+    @MainActor func testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let started = expectation(description: "first save suspended")
+        engine.onCaptureStarted = { started.fulfill() }
+        let oldSave = Task { await model.saveNow() }
+        await fulfillment(of: [started], timeout: 2); engine.onCaptureStarted = nil
+        let current = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 8,
+            locatorData: Data([8, 9]), progression: 0.72)
+        engine.captureResult = current; await model.saveNow()
+        engine.finishCapture(position: ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([1])))
+        await oldSave.value
+        let afterOld = try await services.repository.position(for: book.id)
+        XCTAssertEqual(afterOld, current)
+        let cancelling = expectation(description: "cancelled save suspended")
+        engine.onCaptureStarted = { cancelling.fulfill() }
+        let cancelledSave = Task { await model.saveNow() }
+        await fulfillment(of: [cancelling], timeout: 2); cancelledSave.cancel()
+        engine.finishCapture(position: ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([2])))
+        await cancelledSave.value
+        let afterCancellation = try await services.repository.position(for: book.id)
+        XCTAssertEqual(afterCancellation, current); XCTAssertEqual(model.position, current)
+        XCTAssertNil(model.settingsSaveFailure); model.close()
+    }
+
+    @MainActor private func openedContext() async throws -> (Book, AppServices, SuspendedEngine, ReaderViewModel) {
+        let result = try await context()
+        let (_, _, engine, model) = result
+        let opened = expectation(description: "reader ready for explicit save")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2); engine.finishOpen(); await opening.value
+        engine.onOpenStarted = nil
+        return result
+    }
+
     @MainActor func testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay() async throws {
         let (book, services, engine, model) = try await context()
         let opened = expectation(description: "return reader open")
@@ -263,6 +361,8 @@ final class ReaderLifecycleTests: XCTestCase {
         var onGoStarted: (() -> Void)?
         var onCaptureStarted: (() -> Void)?
         var captureCalls = 0
+        var captureResult: ReadingPosition?
+        var captureUnavailableCount = 0
         var navigationCalls = 0
         var captureFailure: Error?
         var navigationFailure: Error?
@@ -295,11 +395,13 @@ final class ReaderLifecycleTests: XCTestCase {
         func captureCurrentPosition() async throws -> ReadingPosition {
             captureCalls += 1
             if let captureFailure { throw captureFailure }
+            if captureUnavailableCount > 0 { captureUnavailableCount -= 1; throw ReaderPositionCaptureError.unavailable }
             if onCaptureStarted != nil {
                 return try await withCheckedThrowingContinuation { continuation in
                     pendingCapture = continuation; onCaptureStarted?()
                 }
             }
+            if let captureResult { return captureResult }
             if let currentPosition { return currentPosition }
             return ReadingPosition(bookID: try XCTUnwrap(openedBookID), engineID: "test", locatorData: Data([0]))
         }

@@ -1,0 +1,47 @@
+{
+  "recordedAtUTC": "2026-10-17T05:20:56.641850+00:00",
+  "trigger": {
+    "run": 39003048184,
+    "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+    "actualPassed": 136,
+    "total": 138,
+    "failedCases": [
+      "ReaderRenderingTests.testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes at377: after a font close/reopen, full point became h1/char0",
+      "ReadingFontUITests.testNativeFontSelectionPickerCancelDarkResetAndRelaunch at133: Done not hittable while system Cancel still present in failure AX hierarchy"
+    ]
+  },
+  "findings": [
+    "saveNow previously persisted engine.currentPosition only; a visible font reflow can precede the navigator location callback. Explicit captureCurrentPosition already samples a fresh bounded full DOM anchor and invalidates older location computations.",
+    "The old UI query selected generic Any Cancel and tapped its coordinates; import.exists behind an open sheet did not prove cancellation. Actual failure AX includes both Done and Cancel."
+  ],
+  "implementation": [
+    "Capture a fresh complete locator before explicit save for reflowable content; retain full fixed-page locator for fixed layout.",
+    "Bound unavailable retry to3seconds/32ms; preserve original database record on failure and show a retry card. settingsSaveFailure now includes positionSaveFailure so Done/return cannot silently dismiss a failed explicit save.",
+    "Validate open session, latest save request and cancellation after each await; matching defer only clears its own request; old/closed/reopened/superseded/cancelled captures do not mutate the new progress or error state.",
+    "Use actual system Cancel button, wait for public enabled/hittable state, disappearance, and restored Done hittable before proceeding. All original cancel/selection/persistence/dark/reset/relaunch assertions remain."
+  ],
+  "newLifecycleTests": 5,
+  "expectedCoreEach": 135,
+  "expectedIntegration": 123,
+  "expectedUI": 20,
+  "expectedIOS": 143,
+  "oldFontAnchorTestUnmodified": true,
+  "oneOriginalUITestSynchronizationChanged": true,
+  "schemaOrDependencyOrLayoutJSExtension": false,
+  "references": [
+    {
+      "url": "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "use": "Pinned3.11 currentLocation/public delegate flow; local reviewed preserve method additionally samples full DOM and increments locationUpdateRevision."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuielement/exists",
+      "use": "exists alone does not imply hittable or absence of covering UI"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuielement/ishittable",
+      "use": "Public actual hit-target state; use existing Xcode16.4 predicate expectations instead of newer wait(for:) overload"
+    }
+  ],
+  "validation": "Windows435 syntax/17 tooling passed; no new Apple compilation or device acceptance yet.",
+  "shutdownCancelled": true
+}

@@ -1,5 +1,5 @@
 {
-  "stage": "Exact b943613 source independent full CI retry after actual old system-picker initialization failure; all new gates pending",
+  "stage": "Build24 six faces/native font previews/extended typography Windows validated candidate; full CI pending",
   "priorSnapshot": "2379ed9b0722c6449f6d26404ce6ec2e9eeea1f3",
   "preservedPackages": [
     {
@@ -209,7 +209,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -309,7 +309,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "a345e436112735bc42590e6b93fe5f56cbc9043a358be717c28690c0daabbcd5"
+      "sha256": "afbc933fbc4a77231483a7264f2b9985202158edfa57a201c52b8f5ba6bda05f"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -325,7 +325,7 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "8eedf32ef1f38d42c7185a1aea44b20cdd48e3540f7ee6ef7a3dc6ed3c0f6e6f"
+      "sha256": "109d0b07e004e4ed38487cc796ec6031190bfa75cd4220c2bed4668732ff4073"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -781,7 +781,7 @@
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "sha256": "1157fb0a22a4cfa3de0ae3ae521a8dcd8eae9f63b3faa381075bd00b2d6e1983"
+      "sha256": "35e7cb9e17fad06084907d3364e7c0f46b5a0a21b7067a2c8fca7c803eab067f"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -813,7 +813,7 @@
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "sha256": "c284768ef877f16188e9ffd33b819ce3199869f66c939e608770aa82c9a1c868"
+      "sha256": "3832ba7fe0ecbab1562ed2ae65d724f8446ff9714eab9c66297c5c900b5645d7"
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
@@ -2370,20 +2370,28 @@
     "Documentation/M4_FONT_PREVIEW_VALIDATION_REPORT.json",
     "Documentation/READING_FONT_BROWSER_DESIGN.md",
     "Documentation/ValidationLogs/local-disk-cleanup-2026-10-17.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-cjk-preflight-native.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-early-native-observations.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-first-linux-38950061245.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-fresh-save-design.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38950061245.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38951246101.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38954435197.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38956008602.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38956512671.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-history-38961037839.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-history-39000103869.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-history-39003048184.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-identical-retry.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-initial-ready-linux-38961037839.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-linux.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-polish-linux-38956512671.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-quality-linux-38951246101.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-ready-linux-38954435197.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-resource-study.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-sfnt-metadata.json",
+    "Documentation/ValidationLogs/m4-font-preview-build24-shutdown.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-start.json",
     "Documentation/ValidationLogs/m4-font-preview-build24-windows.json",
     "HANDOFF.md",
@@ -2393,17 +2401,18 @@
     "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumAppearance.swift",
     "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
     "Tests/UI/ReadingFontUITests.swift",
+    "Tests/iOS/ReaderLifecycleTests.swift",
     "Tests/iOS/ReaderRenderingTests.swift",
     "Tests/iOS/ReadingFontTests.swift",
     "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
     "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml"
   ],
-  "oldTestBodiesPreserved": 38,
-  "newTests": 6,
+  "oldTestBodiesPreserved": 56,
+  "newTests": 11,
   "expectedCore": 135,
-  "expectedIOS": 138,
-  "expectedIntegration": 118,
+  "expectedIOS": 143,
+  "expectedIntegration": 123,
   "expectedUI": 20,
   "run": 39003048184,
   "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
@@ -2502,7 +2511,7 @@
     "helperEverStarted": false
   },
   "latestRun": {
-    "conclusion": "",
+    "conclusion": "failure",
     "createdAt": "2026-10-17T04:34:04Z",
     "databaseId": 39003048184,
     "headBranch": "codex/m4-font-browser-cjk",
@@ -2592,12 +2601,12 @@
         "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39003048184/job/117309811805"
       },
       {
-        "completedAt": "0001-01-01T00:00:00Z",
-        "conclusion": "",
+        "completedAt": "2026-10-17T04:36:06Z",
+        "conclusion": "success",
         "databaseId": 117309853140,
         "name": "core-tests",
         "startedAt": "2026-10-17T04:34:20Z",
-        "status": "in_progress",
+        "status": "completed",
         "steps": [
           {
             "completedAt": "2026-10-17T04:34:22Z",
@@ -2616,81 +2625,160 @@
             "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:34:51Z",
+            "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 3,
             "startedAt": "2026-10-17T04:34:48Z",
-            "status": "in_progress"
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:34:57Z",
+            "conclusion": "success",
             "name": "Install SQLite development headers inside test container",
             "number": 4,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:34:51Z",
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:35:17Z",
+            "conclusion": "success",
             "name": "Compile and test Core with official Swift toolchain",
             "number": 5,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:34:57Z",
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:36:03Z",
+            "conclusion": "success",
             "name": "Measure Release TXT cold import and bounded long-book reopen",
             "number": 6,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:35:17Z",
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:36:04Z",
+            "conclusion": "success",
             "name": "Upload Core compilation and test logs",
             "number": 7,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:36:03Z",
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:36:05Z",
+            "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 13,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:36:04Z",
+            "status": "completed"
           },
           {
-            "completedAt": "0001-01-01T00:00:00Z",
-            "conclusion": "",
+            "completedAt": "2026-10-17T04:36:05Z",
+            "conclusion": "success",
             "name": "Stop containers",
             "number": 14,
-            "startedAt": "0001-01-01T00:00:00Z",
-            "status": "pending"
+            "startedAt": "2026-10-17T04:36:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T04:36:05Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-17T04:36:05Z",
+            "status": "completed"
           }
         ],
         "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39003048184/job/117309853140"
+      },
+      {
+        "completedAt": "2026-10-17T05:10:06Z",
+        "conclusion": "failure",
+        "databaseId": 117310185888,
+        "name": "ios",
+        "startedAt": "2026-10-17T04:36:15Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-17T04:36:16Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-17T04:36:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T04:36:21Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-17T04:36:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T05:09:02Z",
+            "conclusion": "failure",
+            "name": "Build, test, and package unsigned IPA",
+            "number": 3,
+            "startedAt": "2026-10-17T04:36:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T05:09:56Z",
+            "conclusion": "success",
+            "name": "Upload build logs, test results, project, and resolved packages",
+            "number": 4,
+            "startedAt": "2026-10-17T05:09:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T05:09:56Z",
+            "conclusion": "skipped",
+            "name": "Upload unsigned device IPA",
+            "number": 5,
+            "startedAt": "2026-10-17T05:09:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T05:09:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-17T05:09:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-17T05:10:04Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-17T05:09:56Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39003048184/job/117310185888"
       }
     ],
-    "status": "in_progress",
-    "updatedAt": "2026-10-17T04:34:21Z",
+    "status": "completed",
+    "updatedAt": "2026-10-17T05:10:07Z",
     "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39003048184"
   },
   "partialVerification": {
-    "previousRun": 39000103869,
-    "appliesOnlyToPreviousRun": true,
-    "evidence": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
-    "currentLinux": {
-      "run": 39003048184,
-      "coreTests": 135,
-      "longTXTReleaseCases": 4,
-      "artifactReceipt": "build/ci/39003048184/core-download-receipt.json",
-      "validatedAtUTC": "2026-10-17T04:38:41.276849+00:00",
-      "logSHA256": "3184392060eb55829f1a0ef2fa736901b021e4513b929745d3f1cf1d356f5403",
-      "performanceSHA256": "404784ea671612428e43dbb37da3deb9a64df2fe7caca238bf90ef4feed1350e"
+    "run": 39003048184,
+    "actualIOSTestCases": 138,
+    "actualIOSPassed": 136,
+    "actualIOSFailed": 2,
+    "allSixNewTestsPassed": true,
+    "deviceReleaseNotRun": true,
+    "evidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-39003048184.json"
+  },
+  "modifiedOriginalTests": [
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "test": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+      "beforeSHA256": "9bc40128b3469d0088c7fea0efa95192165f294010ab0538a64260b768f5e52b",
+      "afterSHA256": "448b23d58517d4b62fdbd74cf68b80f1df6da5d916169172dba526a65d2b38d2",
+      "reason": "Use the actual system Cancel button, public hittable/enable readiness and actual disappearance before Done; all cancel/selection/dark/reset/relaunch assertions retained."
     }
-  }
+  ]
 }
