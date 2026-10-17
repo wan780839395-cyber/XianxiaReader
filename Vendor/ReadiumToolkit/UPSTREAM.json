@@ -1448,6 +1448,10 @@
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
       "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
+    },
+    {
+      "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
+      "sha256": "033a0f73e4211d5d4eae3e0a59c3190f0e30df5ee1618dd2bc1d1bdf66119ebe"
     }
   ],
   "remoteDependencyPins": [
@@ -1704,5 +1708,19 @@
     "sameBasenameFiles": "Each FileURL receives a UUID route segment; memoized across chapter resources. Two same-name imports must retain independent URLs and original glyph metrics.",
     "fontReadyBridge": "Existing unrefined evaluateScript observes document.fonts.ready Promise completion; bounded15s/32ms status probes, cancellation and visible resource error. No callAsyncJavaScript/WebKit Swift overlay dependency.",
     "nativeCaptureGuard": "Paged DOM preservation requires an attached window and scrollView.alpha1 before/after sampling. Adapter retries unavailable native samples for up to3s at32ms,checks cancellation/session/navigator and active reflow before and after awaits. Never return hidden initial chapter-head DOM; closed old capture cannot return a new-reader locator."
+  },
+  "cjkTypographyOverrides": {
+    "scope": "Chinese horizontal reflowable layout only; explicit advanced paragraph indent and letter spacing preferences use the same reviewed default CSS selectors and declarations.",
+    "reason": "Build24 real WKWebView typography regression found the upstream CJK horizontal after stylesheet lacks both preference modules while EPUBPreferences still exposes the values.",
+    "sourceRevision": "d82f44f4f05d87add9e22a8b75abbd61dce745dd",
+    "copiedFrom": "Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-after.css",
+    "modules": [
+      "paraIndent",
+      "letterSpacing"
+    ],
+    "publisherStylesPreserved": true,
+    "dependenciesChanged": false,
+    "javaScriptAssetsChanged": false,
+    "fullCIPendingAtSourceCheckpoint": true
   }
 }

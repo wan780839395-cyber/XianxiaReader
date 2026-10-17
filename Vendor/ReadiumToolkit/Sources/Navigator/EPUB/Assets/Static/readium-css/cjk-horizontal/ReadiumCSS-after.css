@@ -702,4 +702,33 @@ body {
   color: black !important;
   background-color: yellow !important;
 }
+/* XianxiaReader: explicit Chinese typography preferences.
+   Reuse the unchanged para-indent and letter-spacing rules from the default
+   ReadiumCSS-after.css bundled in the same reviewed Readium3.11 revision.
+   The upstream CJK horizontal bundle omits these modules. Publisher styles
+   remain untouched unless the existing advanced preference flag is enabled. */
+
+:root[style*="readium-advanced-on"][style*="--USER__paraIndent"] p {
+  text-indent: var(--USER__paraIndent) !important;
+}
+
+/* If there are inline-block elements in paragraphs, text-indent will inherit so we must reset it */
+
+:root[style*="readium-advanced-on"][style*="--USER__paraIndent"] p * {
+  text-indent: 0 !important;
+}
+
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h1,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h2,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h3,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h4,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h5,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] h6,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] p,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] li,
+:root[style*="readium-advanced-on"][style*="--USER__letterSpacing"] div {
+  letter-spacing: var(--USER__letterSpacing);
+  font-variant: none;
+}
+
 /*# sourceMappingURL=ReadiumCSS-after.css.map */

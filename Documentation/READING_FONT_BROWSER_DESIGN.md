@@ -31,3 +31,11 @@ reading-v1只新增可选字段，旧JSON缺字段继续按原字距、原字重
 原生早查发现compact样例原底色与选择卡不同，出现硬矩形。现在列表PNG透明背景，直接融入既有灰绿圆角卡；大样例仍填阅读主题底色。同一真实CoreText回归核compact的透明背景与实墨，最终效果须从最新源原生截图核验。早查使用首候选选定ZIP成员CRC，仅诊断、无全ZIP验证，不替代主源。
 
 分页竞态新测试准备修正：872结果表明失败发生在第一次真实换字之前，初始800ms字体ready未结束即发翻页，href已更新但当前页仍隐藏，goForward可返回false。核官方3.11固定revision的Navigator.swift（https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Navigator.swift）和现有spreadLoaded/window/alpha gate；新测试改等待初始真实可见与字体ready，再逐页确认scrollX增长。没有减小char>100、800ms重排中再换字或最终原字可见断言，原测试38主体保持，运行源码未改。
+
+## 中文样式包差异的实际修正
+
+cc7/454完整日志显示六字体连续检查已取得非零完整锚点，但组合排版断言不满足。核官方固定d82f44/3.11资源及本地相同副本，cjk-horizontal/ReadiumCSS-after.css没有--USER__paraIndent/--USER__letterSpacing规则，默认after.css已有模块；Swift公开偏好仅设置变量，不能使缺失的选择器自动生效。现在把同版默认资源中这两组原选择器/声明原样加入中文横排资源，仍须readium-advanced-on且变量存在，沿用原书排版时不强行覆盖。只改一个CSS资源并在UPSTREAM记录本地sha/取舍，无JS/依赖/渲染器重写；真实WKWebView仍核缩进3.5rem、字距0.125rem、字重600和原Y3px，而非只核UI值。
+
+官方固定来源：https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-after.css 与同目录cjk-horizontal/ReadiumCSS-after.css。中文竖排/RTL不在本次资源补丁范围。
+
+分页新测试即便等待初始ready，2次真实移动仍处大段起始char2，属于准备几何与>100要求不符；采用已有字体锚点回归的3页准备方式并减少无关翻页动画，保留800ms加载窗口和最终原非零字可见。后续结果必须独立实际验证，不把准备修正称阅读运行故障修复。

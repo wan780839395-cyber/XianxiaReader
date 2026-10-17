@@ -50,3 +50,9 @@ c661/38951246101也已实际失败，0源compiler诊断：同一个新测试负Y
 872/38954435197实际135/138失败（0源compiler诊断）：负Y已知新测试错误、原返回UI一项等待失败、新800ms字体竞态测试在29行准备非零分页前失败；尚未执行中间/最终换字。完整位置为h1/char0，两个早发turn未移动。核Readium3.11官方Navigator.swift与实际spreadLoaded gate：翻页可因当前不可移动返回false，报告href不等于可读页面已就绪。现仅新测试先等真实one.xhtml/window/alpha1与注入ready已settled，再每次翻页等待scrollX增长，保留两次翻页、char>100、800ms中间隐藏窗口、最终原字可见断言；运行源码自454起不变。需再435/17/38原主体/6新增/532重冻和全CI，旧失败均保留，不关机。
 
 63a44eb/38961037839实际Linux135/四Release长TXT再通过，artifact12073160376/116265B已GitHub摘要+CRC+完整提取、重复ZIP分片已清。核心运行源与454一致、只新测试准备增加等待，仍需当前Apple完整138/Release/原生实际结果。正常关机帮助脚本仍未启动。
+
+恢复检查点（2026-10-17）：normal HEAD6d761749/空index/private tip8fdb0dd、877未提交条目/删除0核过，上一轮无watcher/下载/ffmpeg/关机助手存活；D盘约53.3GiB空闲。旧38961037839本地run.json停在in_progress，现重新读取实际completed/failure并下载完整文字log/artifact manifest；实134/138、0源compiler诊断、20真UI全过。两新增失败（分页准备char2、连续测试cover首次aboutblank）及两旧集成（自动慢滚初次aboutblank、整屏防重入）均留实录，不追认通过。已有六字库/原许可/真实预览/透明卡片/新排版源码保持；尚无Build24 IPA，关机从未启动。
+
+当前正在落实断点：cc7/454两轮实136/138、20真UI全过，连续新测试实际已保留char474与Y约-9.48，但组合CSS断言不满足。核固定Readium3.11官方与本地同版资源，CJK-horizontal缺paraIndent和letterSpacing模块，默认资源包含；现只把默认文件的原规则原样复制到中文横排after.css，沿用advanced标志使原书样式保留规则不变，UPSTREAM登记本地差异与sha，JS/依赖不改。新测试另输出有界无正文的family/weight/spacing/indent/Y诊断，不降低char>100/Y3px/CSS/字形/重开断言。分页新测试按原成熟测试用3次已确认移动，减少无关翻页动画；800ms隐藏重排中再换字及原字可见仍保留。修改后须重新435语法/17工具/38原主体/6新增/532blob冻结及独立完整CI；当前补丁未编译，不算通过。源验证通过和原生/交付/保存后再执行本轮已授权正常关机。
+
+中文CSS补丁构建前检查点：已从同版默认after.css原样补两模块、UPSTREAM原baseline保持并登记本地差异；新分页用3次确认翻页与已有reduceMotion准备，800ms隐藏重排/char>100/最终原字断言保留，连续测试保留3px/CSS/真实字形/重开并输出无正文指标。Windows435/新增0、17工具、38原主体/6新增/532blob通过。现在冻结快照并新ref全量CI，不继承63a旧结果；尚未新Apple编译/原生/Release，Build23仍唯一已交付包。

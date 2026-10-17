@@ -16,6 +16,8 @@ final class ReaderRenderingTests: XCTestCase {
             }});
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
+        var interaction = ReadingInteraction(); interaction.reduceMotion = true
+        try engine.setInteraction(interaction)
         let initial = try BundledReadingFont.wenKai.resource(), intermediate = try BundledReadingFont.sourceHanSerif.resource()
         let final = try BundledReadingFont.sourceHanSans.resource()
         try engine.setReadingFonts([initial, intermediate, final])
@@ -30,7 +32,7 @@ final class ReaderRenderingTests: XCTestCase {
                   web.scrollView.alpha > 0.99 else { return false }
             return try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && window.__xrPreviewReadySettled===true") as? Bool == true
         }
-        for _ in 0..<2 {
+        for _ in 0..<3 {
             let readyWeb = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
             let previousX = (try await readyWeb.evaluateJavaScript("scrollX") as? Double) ?? 0
             await engine.turnPage(forward: true)
@@ -53,7 +55,7 @@ final class ReaderRenderingTests: XCTestCase {
         let locations = try XCTUnwrap(payload["locations"] as? [String: Any]), range = try XCTUnwrap(locations["domRange"] as? [String: Any])
         let point = try XCTUnwrap(range["start"] as? [String: Any])
         let selector = try XCTUnwrap(point["cssSelector"] as? String), offset = try XCTUnwrap(point["charOffset"] as? Int)
-        XCTAssertGreaterThan(offset, 100)
+        XCTAssertGreaterThan(offset, 100, "Prepare a deep original word before font changes: \(selector), char=\(offset)")
         let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
         appearance.importedFontID = intermediate.asset.id; try engine.setAppearance(appearance)
         try await waitUntil {
@@ -109,20 +111,26 @@ final class ReaderRenderingTests: XCTestCase {
             appearance.characterSpacing = 0.25; appearance.weightMultiplier = 1.5
             appearance.paragraphIndent = 3.5; appearance.lineHeight = 2.4; appearance.paragraphSpacing = 2
             try engine.setAppearance(appearance)
+            var lastProbe = ""
             try await waitUntil {
                 guard let wrapper = self.view(identifier: "readium.chapter.1", in: engine.viewController.view),
                       let web = self.webViews(in: wrapper).first, web.scrollView.window != nil,
                       web.scrollView.alpha > 0.99 else { return false }
-                return try await web.evaluateJavaScript("""
+                let result = try await web.evaluateJavaScript("""
                     (()=>{const p=document.querySelector(\(quoted)),n=p?.firstChild;
                     if(!n||n.nodeType!==3||n.length<=\(offset))return false;
                     const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
                     const s=getComputedStyle(p),root=parseFloat(getComputedStyle(document.documentElement).fontSize);
-                    return b.bottom>0&&b.top<innerHeight&&Math.abs(b.top-(\(y)))<3
+                    const ready=b.bottom>0&&b.top<innerHeight&&Math.abs(b.top-(\(y)))<3
                       &&s.fontFamily.includes('\(resource.asset.cssFamily)')&&s.fontWeight==='600'
                       &&Math.abs(parseFloat(s.letterSpacing)/root-0.125)<0.01
-                      &&Math.abs(parseFloat(s.textIndent)/root-3.5)<0.01;})()
-                    """) as? Bool == true
+                      &&Math.abs(parseFloat(s.textIndent)/root-3.5)<0.01;
+                    return {ready,family:s.fontFamily,weight:s.fontWeight,spacingRem:parseFloat(s.letterSpacing)/root,
+                      indentRem:parseFloat(s.textIndent)/root,expectedY:\(y),actualY:b.top,char:\(offset)};})()
+                    """) as? [String: Any]
+                let probe = String(describing: result)
+                if probe != lastProbe { print("Build24 font[\(index)] typography: \(probe)"); lastProbe = probe }
+                return result?["ready"] as? Bool == true
             }
             let web = try resourceWebView(engine, index: 1)
             let glyphs = try await web.evaluateJavaScript(ReadingFontTests.chineseFontScript(resource.asset.cssFamily, paragraph: "#long-paragraph")) as? Bool
