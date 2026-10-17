@@ -5,13 +5,15 @@ import XianxiaCore
 @MainActor struct ReaderSearchView: View {
     @StateObject private var model: ReaderSearchViewModel
     let theme: ReadingTheme
+    let reduceMotion: Bool
     @Environment(\.dismiss) private var dismiss
     @FocusState private var queryFocused: Bool
     private var palette: ReaderPalette { ReaderPalette(theme: theme) }
 
-    init(provider: any ReaderSearchProviding, theme: ReadingTheme,
+    init(provider: any ReaderSearchProviding, theme: ReadingTheme, reduceMotion: Bool,
          onSelect: @escaping (ReaderSearchHit) async throws -> Void) {
         self.theme = theme
+        self.reduceMotion = reduceMotion
         _model = StateObject(wrappedValue: ReaderSearchViewModel(provider: provider, onSelect: onSelect))
     }
 
@@ -119,7 +121,7 @@ import XianxiaCore
             .background(palette.card, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             Button("搜索") { submitSearch() }.font(.subheadline.weight(.medium))
                 .padding(.horizontal, 12).frame(minHeight: 48)
-                .buttonStyle(ReaderPressStyle(palette: palette, filled: true))
+                .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true))
                 .disabled(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 .accessibilityIdentifier("reader.search.submit")
         }

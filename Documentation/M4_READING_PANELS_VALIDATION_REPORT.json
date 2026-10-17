@@ -229,7 +229,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -344,7 +344,7 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "ee9d40558a892ccfb96147dda75d9f6bc38617e980056773a56bd2f2fef87596"
+      "sha256": "3c49ca1a485a00b2076c6b9e91b92f4724bea571e27a44b32f0ec5f093d20378"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
@@ -448,7 +448,7 @@
     },
     {
       "path": "App/Search/ReaderSearchView.swift",
-      "sha256": "ded8d72954c245c5133e47f4b59101d12ca895a867fb58be4341c7b0163561f5"
+      "sha256": "79aabc03ca28886b4cb7244718348a5ba4bf4741544f7fd616d52fc5df0964a4"
     },
     {
       "path": "App/Search/ReaderSearchViewModel.swift",
@@ -800,7 +800,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "7dd11ffa05f674bb2a35c5f827271367f2408507c5a74511b66fda2546ef22c7"
+      "sha256": "dfab2a000bc8060e862e65cc2db65317c576781aaf63822c817b9dab678e5ff3"
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -2378,9 +2378,12 @@
     "Documentation/HANDOFF_BUILD25_DELIVERY_2026-10-17.md",
     "Documentation/M4_READING_PANELS_VALIDATION_REPORT.json",
     "Documentation/READING_PANELS_DESIGN.md",
+    "Documentation/ValidationLogs/m4-panels-build26-linux.json",
     "Documentation/ValidationLogs/m4-panels-build26-start.json",
+    "Documentation/ValidationLogs/m4-panels-build26-windows.json",
     "Documentation/ValidationLogs/m4-settings-build25-device-feedback.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
     "Tests/UI/ReaderInterfaceUITests.swift",
     "project.yml"
   ],
@@ -2395,16 +2398,18 @@
   "branch": "codex/m4-reading-panels",
   "run": 39023086030,
   "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023086030",
-  "partialVerification": {
-    "recordedAtUTC": "2026-10-17T10:01:20.338174+00:00",
-    "run": 39023086030,
-    "sourceRevision": "3c250618d8814a407588d5d760c717566711893c",
-    "coreTests": 135,
-    "releaseTXTProbes": 4,
-    "allProbeChecksPassed": true,
-    "logSHA256": "b0cd1ebbf74022a45771205cd08031227688c8f4a7cdfd053908ea0536c5958d",
-    "performanceSummarySHA256": "d27686120cdc141bafd694e8c86e725147ac7542fd8225c646c8b98621353218",
-    "appleNotVerifiedYet": true,
-    "deviceAccepted": false
-  }
+  "priorCandidates": [
+    {
+      "run": 39023086030,
+      "sourceRevision": "3c250618d8814a407588d5d760c717566711893c",
+      "branch": "codex/m4-reading-panels",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023086030",
+      "reason": "Agent review: new search press style must also receive the persisted application reduceMotion preference. Superseded while Apple step executing; not a claimed source/test failure.",
+      "agentRequestedCancellation": true,
+      "delivered": false,
+      "linuxEvidence": "Documentation/ValidationLogs/m4-panels-build26-linux.json",
+      "appleStageAtCancel": "Build, test, and package unsigned IPA",
+      "appleResultUnverified": true
+    }
+  ]
 }

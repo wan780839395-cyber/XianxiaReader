@@ -13,3 +13,7 @@
 完整CI已实际分发：39023086030 / source3c250618d8814a407588d5d760c717566711893c / codex/m4-reading-panels，当前尚在执行，未继承旧门槛。API watcher轮询并落run.json/完整日志/metadata；当前进程与最后状态以实际文件为准。
 
 可恢复检查点：Core完整artifact12097258932(116204B)已校验GitHub SHA/ZIP CRC/编译源并完整提取，重复ZIP/分片删除。实际Linux135条+4组Release长TXT探针/原内容身份全过，证据m4-panels-build26-linux.json；Apple仍执行中。Watcher unified session13088，build/ci/39023086030/run.json每30秒更新；中断后先核进程，不重复触发CI，不把当前为通过。
+
+审查断点：新增搜索按压样式已尊重系统Reduce Motion，但遗漏传递持久化interaction.reduceMotion。Agent已请求取消首候选39023086030，实际Apple未完成阶段/已执行测试须等完整日志核实，不能称源码失败。将补传偏好后用新源完整验证；首轮Linux135/4探针是旧候选独立证据，不继承为新门槛。
+
+修正后新构建前：搜索按钮显式接interaction.reduceMotion；第二个新增UI测试改用真实设置开关保存并重开核值1，未用强制环境替代该路径。436语法新增0/17工具、11原test主体/533blob再次核过。即将冻结新源并触发独立完整CI；旧轮取消原因与实际执行阶段保留。

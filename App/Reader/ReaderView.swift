@@ -62,7 +62,8 @@ import XianxiaCore
         }
         .sheet(isPresented: $showSearch) {
             if let provider = model.engine?.searchProvider {
-                ReaderSearchView(provider: provider, theme: model.appearance.theme) { result in
+                ReaderSearchView(provider: provider, theme: model.appearance.theme,
+                                 reduceMotion: model.interaction.reduceMotion) { result in
                     try await model.go(to: result)
                     showSearch = false
                 }

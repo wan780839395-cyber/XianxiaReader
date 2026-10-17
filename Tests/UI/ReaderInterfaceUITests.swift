@@ -36,9 +36,13 @@ final class ReaderInterfaceUITests: XCTestCase {
     }
 
     @MainActor func testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults() {
-        let app = start(reduceMotion: true); defer { app.terminate() }
+        let app = start(); defer { app.terminate() }
         app.buttons["reader.appearance.open"].tap()
         app.buttons["reader.theme.charcoal"].tap()
+        app.buttons["手感"].tap()
+        let reduceMotion = app.switches["reader.interaction.reduce-motion"]
+        XCTAssertTrue(reduceMotion.waitForExistence(timeout: 10)); reduceMotion.tap()
+        XCTAssertEqual(reduceMotion.value as? String, "1")
         app.buttons["reader.appearance.done"].tap()
         waitForPanelToClose("reader.appearance.done", in: app)
         app.buttons["reader.bookmark.add"].tap()
@@ -56,6 +60,10 @@ final class ReaderInterfaceUITests: XCTestCase {
         app.buttons["reader.bookmarks.done"].tap()
         waitForPanelToClose("reader.bookmarks.done", in: app)
         app.buttons["返回书库"].tap(); app.terminate(); app.launch(); openBook(in: app)
+        app.buttons["reader.appearance.open"].tap(); app.buttons["手感"].tap()
+        XCTAssertEqual(reduceMotion.value as? String, "1")
+        app.buttons["reader.appearance.done"].tap()
+        waitForPanelToClose("reader.appearance.done", in: app)
         app.buttons["reader.bookmarks.open"].tap()
         XCTAssertTrue(empty.waitForExistence(timeout: 10)); XCTAssertFalse(bookmark.exists)
         snapshot("reader-panels-bookmark-deleted-reopened-build26", in: app)
