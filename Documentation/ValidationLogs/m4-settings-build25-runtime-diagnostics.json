@@ -1,0 +1,20 @@
+{
+  "recordedAtUTC": "2026-10-17T08:38:02.728338+00:00",
+  "run": 39014160303,
+  "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "counts": {
+    "xctestAnimationIdleNotification": 3,
+    "runningBoardOrProcessAssertions": 105,
+    "extensionKitCleanup": 746,
+    "appIntentsMetadataSkip": 7,
+    "screenFrameProtectionWarnings": 0,
+    "automaticScrollVisibleLoadFailure": 0
+  },
+  "scope": "Original full log diagnostic counts, not phone performance, root-cause claims or a replacement for native recording review.",
+  "log": {
+    "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+    "sha256": "22857ea05a09e73952d940f1aa6f9c3636b296ca049b0623678996689d4a39d8"
+  }
+}

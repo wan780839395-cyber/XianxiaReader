@@ -3651,5 +3651,12 @@
       39000103869,
       39003048184
     ]
+  },
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-17T08:49:55.994912+00:00",
+    "record": "Documentation/ValidationLogs/m4-settings-build25-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

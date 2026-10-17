@@ -1,0 +1,4137 @@
+{
+  "run": 39014160303,
+  "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
+  "images": [
+    {
+      "name": "autoscroll-epub-paused-build21",
+      "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7ACB0A94-C86D-4DC9-B1A5-707902EA05ED.png",
+      "bytes": 606948,
+      "sha256": "7eb5701d3f9eeddb584c6c8147f317c900502ec7ebbda21804648620a9d82daf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1367F747-5DA5-43DC-8519-D3262DFC1304.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          0,
+          198
+        ],
+        [
+          0,
+          204
+        ],
+        [
+          0,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-epub-continuous-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A9F05AEF-5787-4CD7-9E77-BADE30698BF8.png",
+      "bytes": 617696,
+      "sha256": "c0a8290355d930a81ac10f4155bc0422af7c291c77af6768a65ee052c58929e5",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-epub-paged-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C6687423-802C-4BAD-A65F-3AA7AF6A4883.png",
+      "bytes": 389374,
+      "sha256": "782bed77f96dc37377c13d34a08244ed6818d31144ab9d87454a674ef1052110",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-xiaoWei-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AB6FF547-50A5-42F4-8EFB-FC9F9174A426.png",
+      "bytes": 483168,
+      "sha256": "8dc83bfc3d61c9a14da4b105b1f15e3af1ccb7c094f5eb086e835a47b70d5e13",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-maShanZheng-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3637AE02-F353-49DF-A986-7A9379759A83.png",
+      "bytes": 666183,
+      "sha256": "0760a8236f254ef12e36526bc9faa0220d987b9b3116fc5d7570c19ee25d051c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-zhuque-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7A077E49-6F5C-44A5-B240-4241F51B4870.png",
+      "bytes": 721076,
+      "sha256": "a9fe336395d0c98e09b8e1d093289f6f6a59005700a24fe24c47770279dc7a09",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSans-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9E93EAD8-A69F-4C8F-AE00-551E4AEEA9A3.png",
+      "bytes": 524881,
+      "sha256": "96932f07e34e96aa97682a4c425a060b8d31917f431e7d19870d21fb97a946e3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-wenKai-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DB7B7752-23B0-4645-964C-DAF677122FCC.png",
+      "bytes": 682364,
+      "sha256": "01b046793c2592ee724dcf44c16e6b9296e32898d4a1ac9b5c2e2a9ffabc348a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSerif-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E1ADE4BB-38A9-455F-A20D-7767CED77CDC.png",
+      "bytes": 599103,
+      "sha256": "3b1556d7790b4bf1762a86d79c6407f9c0475044e1eeaab1cd3725ae3e474f45",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0358F89E-BCFA-4992-B32B-F49EE9401CF5.png",
+      "bytes": 511033,
+      "sha256": "8fb62a60eb447ed2f795713be2f4699e9b4ceea321226969fbb50f1614fb8bea",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-xiaoWei-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F0211E3B-AB33-4910-8CD0-F5E49CE0B2FB.png",
+      "bytes": 445979,
+      "sha256": "4434eb4da8112bd5d9eef838ee3e90992ba6e0810f4e700df7af0fca0ab99172",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-maShanZheng-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3F4F9A61-EAE8-478A-854C-691E12917702.png",
+      "bytes": 605525,
+      "sha256": "1f58a686cd8b13d7b9ba4e7404c1ae944c3717ab3ead0210322df2f18f9bebc8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-zhuque-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A01CEC05-0C83-4641-919C-56A0E592CBC3.png",
+      "bytes": 659702,
+      "sha256": "7cab6c0d8cc11a1ad529440c6dc0d9a13743e23eeb9edb0d59bd2d67ef50c45a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSans-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7B79841F-907D-40F5-8958-8C90F2197B2B.png",
+      "bytes": 482299,
+      "sha256": "143fa842d8b5047184d3d3568bb9d8f6ec52ed59f2e9993e5572b825a37d7d82",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-wenKai-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1AED944C-0200-40A9-A5B8-9AFED668122E.png",
+      "bytes": 630442,
+      "sha256": "d636e3295a9f92a2794660a3bc46415c9ce60f20eca092c534f36073c0318e2d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-sourceHanSerif-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/26AC492D-8765-49D9-A119-5B5FD714F091.png",
+      "bytes": 547182,
+      "sha256": "5916e6f48a81c540515d7418a74a828b7ee9b15b2004baf992757096fc6e75a6",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-epub-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BFB03403-B018-47B8-8615-1F9ECA5B8C68.png",
+      "bytes": 473546,
+      "sha256": "faf37b8a9ed11488fcf9900f6f86e31326daa5190d5bd57c3290e275c8759097",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "screen-instant-whole-window-build20",
+      "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1CCD4C94-D95E-41ED-94B8-51F12BA543F1.png",
+      "bytes": 610005,
+      "sha256": "654d8d0045eee6a5d3e0505fe163e8d47d4654ced62edbb8f6dbe4ad1a7a19d7",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B6133E7A-CA33-4ACC-BD79-7F5DB07647A4.png",
+      "bytes": 490411,
+      "sha256": "0dd404261878626e1e4a05bdae081e6e2e5f725c1f7a5171c54b89014b728f1c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/054CB5E8-5521-4892-A2D6-6D037CC80D65.png",
+      "bytes": 367745,
+      "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+      "inspected": true,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-5-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0F414135-5225-4567-89E5-11758E3D00DB.png",
+      "bytes": 491200,
+      "sha256": "de598d2f9a9d675b6bddefdb0c74ee53137032a2c4d02877178ee0702d25cb73",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-4-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/04DEC432-2769-4B02-AEF9-01EBE7027334.png",
+      "bytes": 613870,
+      "sha256": "32559182dcb73d4001efbc5cd700b7e10d7e07510d01e52ffa71adbebb080f03",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-3-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BF02D41E-C5B0-46DA-B129-CDB30A560DCC.png",
+      "bytes": 675964,
+      "sha256": "6ed01085d1d0326d47bf8b6c78f86b30f39551dcafce69e48115c42bf92d516e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-2-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D02DFE8C-4E8A-4A95-98A6-FFD97E1F7F11.png",
+      "bytes": 535227,
+      "sha256": "5d6c31c85c1647866257298d7f06d5c89de83f149f07eebdb386d1f2fcb81506",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-1-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FE2F0139-9A7F-4E11-BB50-B20F7EBA9825.png",
+      "bytes": 643289,
+      "sha256": "7e011d917a591349040e2c36e5f576d085b60826662e7f9d8e08e0444b79a2e8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-six-body-0-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE82E142-FA0E-4D8E-92C9-15345EAAB6A6.png",
+      "bytes": 592688,
+      "sha256": "539c009f017b3e44d6779250f1d136f1932739de905aa908d381dc36fb3d8d99",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "screen-cross-chapter-whole-window-build19",
+      "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CECF4058-0240-4946-A975-B9F92724ACA8.png",
+      "bytes": 520942,
+      "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-settings-sample-xiaoWei-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F957C167-B33C-4FDF-98C6-67076B9FB3FA.png",
+      "bytes": 38420,
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841",
+      "inspected": true,
+      "size": [
+        900,
+        222
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "font-settings-sample-maShanZheng-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/19FED5F5-1111-4593-B1BA-DCBD29FE5FCE.png",
+      "bytes": 58111,
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33",
+      "inspected": true,
+      "size": [
+        900,
+        222
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "font-settings-sample-zhuque-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE40FA6B-92F3-4AF0-BA5E-CAAE397729AD.png",
+      "bytes": 66972,
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51",
+      "inspected": true,
+      "size": [
+        900,
+        285
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "font-settings-sample-sourceHanSans-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AEDBE9FD-52CC-4FAF-B825-62CB34ABD0FE.png",
+      "bytes": 45868,
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38",
+      "inspected": true,
+      "size": [
+        900,
+        315
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "font-settings-sample-wenKai-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F1DB8D6F-A967-4907-87EC-6D1DF69A8E66.png",
+      "bytes": 64245,
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279",
+      "inspected": true,
+      "size": [
+        900,
+        258
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "font-settings-sample-sourceHanSerif-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CD4803FD-73C5-4881-AB24-DBF823C688A9.png",
+      "bytes": 53006,
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d",
+      "inspected": true,
+      "size": [
+        900,
+        306
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": false
+    },
+    {
+      "name": "autoscroll-txt-window-paused-build21",
+      "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BB71A81A-3584-48CF-AC72-28791E99EF48.png",
+      "bytes": 558493,
+      "sha256": "14d4140e33c077bbe9182bf8fbabe0dad452327e9ddeb4208c03c0e2d3f6f39d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "return-txt-byte-anchor-build22",
+      "testIdentifier": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C2589D35-9710-47CD-8651-F8A788D0359D.png",
+      "bytes": 550895,
+      "sha256": "fb5790289989027e180d42ce7491ddefd682458b4f6608c9a11a2e666eaa9aa3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-xiaoWei-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FE183D3B-71CE-4E5C-BDCB-001D63D1365E.png",
+      "bytes": 558917,
+      "sha256": "f3df16acfa08431811c6093e2593763631ac3626098b791b44e3f04938ab2a67",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-maShanZheng-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C0369A48-8CDF-4B45-A656-09141A452020.png",
+      "bytes": 672981,
+      "sha256": "18ded22ba5cbe637d1cdb5bd1b15e25ec1acf4b5d5ece76575643cc9c0c788b0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-zhuque-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/093F4772-8DF3-4E25-91AB-14A84C5427B7.png",
+      "bytes": 775992,
+      "sha256": "9bec2c48a1333b1b79055e9d904477ea4ba6e8fcdb99371fd88a054db981eeec",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          255
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-sourceHanSans-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/77476E4A-3193-4156-9ABB-83B25641D620.png",
+      "bytes": 61303,
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          36
+        ],
+        [
+          40,
+          40
+        ],
+        [
+          38,
+          38
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "该隔离TXT思源黑体快照只剩底色，自动字体/完整锚点回归通过不代表此图可读；不纳入正文页面验收。"
+    },
+    {
+      "name": "font-txt-wenKai-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/04A2D9BF-31E5-466D-80A1-6739619401E2.png",
+      "bytes": 691870,
+      "sha256": "4c3b969a38f179041060298f86d7e87bf3f4f87f686f1a5fceb17ab94f85dd8a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-sourceHanSerif-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A7B15BF8-CE55-4EC0-9670-C88432FE3C64.png",
+      "bytes": 642112,
+      "sha256": "802a68f0d0804c8ee6df2e3f82035ce9ce9a29e1546441d2ec31d5b99c09e00c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "font-txt-byte-anchor-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/31DCFBE5-C2A5-4565-92B4-55B7321C6012.png",
+      "bytes": 582996,
+      "sha256": "1aaf7bc689186a3d75e7b9d0f3ae6e873e7ef30e7866c467b146b81f61173200",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/31BDB584-C911-4982-9404-75C0F93E02F6.png",
+      "bytes": 432398,
+      "sha256": "b6513e0c01ed6d3d7bd8fdd029fa3b2fe1e6bd867c32b0f9dd1916a05c5be4a6",
+      "inspected": true,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3CBF0BC4-4EE3-436A-84AF-7BA5BFF9A645.png",
+      "bytes": 552213,
+      "sha256": "b3e681f572bca85883caadfe50f1ec3f13a3bf2ee3aa9c12889f3cdfa7e21258",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1B314C92-4DAF-4402-B254-8928AA741B83.png",
+      "bytes": 746543,
+      "sha256": "6cf0a48c68cf0cbc16cb0fecdf1f303744f5d9d0a1fb2d7e7bdf6e19bffd69b3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3EBF41A0-6ACB-405A-9D30-2B8E447BBDDB.png",
+      "bytes": 622383,
+      "sha256": "d4e3e4a63c52da6d789700a5fe86f259e7467b93807588aaf26beccdb43c441e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/505D3362-50A7-499C-B853-DB40B1CB67C5.png",
+      "bytes": 753176,
+      "sha256": "cfbe8b6a9133201a6857044e726f478ccebc6ff740527fc945851d8cd3b1edfa",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7541E41A-FEC8-4D4E-9E54-F337D2892DAB.png",
+      "bytes": 643519,
+      "sha256": "49b772570e454b8b720669c3aec3b99f88d23bba53b50ec9de7af17988995004",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/09F69633-C675-4DA6-8F56-7D6263D7C762.png",
+      "bytes": 652685,
+      "sha256": "4a90ebb56eaf510f9bfd6278b615324da5c8ce4aff5d8870357e032941841f98",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AA3F342F-EB08-4E88-B109-86617DC4FFD4.png",
+      "bytes": 654834,
+      "sha256": "4f0568f9cb337397720c63540cc5f121edd60ae1dd0d0ada154199cbc321b6ca",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0FA172E6-216D-49EC-BDD8-94B177D2C496.png",
+      "bytes": 266539,
+      "sha256": "15a939cf13aeb54ca87bea09c90dd876f7f45e441527989fce96bab85ee49691",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "可见加载中/初始片段或顶栏加载提示，不作为完整稳定正文/安全区通过。"
+    },
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7A99A615-B9BC-4B8F-85CF-B7AF755ED46A.png",
+      "bytes": 505078,
+      "sha256": "433c16bd90e69f94bf360c4ae08b3971149a323423b416bfae0ad31172d34e5d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6B2867F1-9408-4E14-B93A-77874B5CF3D8.png",
+      "bytes": 553329,
+      "sha256": "648612ced9dcbde8c17890f761a55154ffa0939da8641303d7680edde3bb9d53",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DEFB4AE1-2D75-46CA-B0D9-22A0A64F267C.png",
+      "bytes": 478829,
+      "sha256": "4609068466b0b599d89d1b776264fa98cedcbca6e4360a8e06d99fb177e0d5bf",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E21ECF32-1C3C-4824-8DC2-E004BA2B2B9E.png",
+      "bytes": 490077,
+      "sha256": "d6f62f87b3e07cd4f04442f3b64837125c2f9c5521e48cae04bbd0c3ad6531b1",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/73C57767-E813-4636-8C3E-7D8C64C7A345.png",
+      "bytes": 412719,
+      "sha256": "fa97c15145b835c36563024a262ea1203ba642dd7a2eeb860b94d6062a8acb5c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CEB18453-7494-44A8-A46B-71A44FC53605.png",
+      "bytes": 691976,
+      "sha256": "8f637626a6aa4af26fe0fae2a32974ef58025726ab4efd5dd61ea81fb00432be",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BBC14F38-CBBF-4002-9B57-C35A63A43DF9.png",
+      "bytes": 691976,
+      "sha256": "8f637626a6aa4af26fe0fae2a32974ef58025726ab4efd5dd61ea81fb00432be",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E9F9552-DC00-4C26-821E-70A5BEAAA5FB.png",
+      "bytes": 719830,
+      "sha256": "6fd17ca5b6cb7898651f12679d7b1971cfee6da3b54c134b93b07f265b54db30",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0453C66A-2932-4B38-8D95-658DD74F43B2.png",
+      "bytes": 857924,
+      "sha256": "67f72cbd93214af2164190832065f4aa313ca26a9e119e4eb560c49853724b6b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/92F4A7E1-475A-4B3B-BB7B-A261F0363BCE.png",
+      "bytes": 754050,
+      "sha256": "347cbe6e30181bff0a1a1df85ea99850496de355b31a3e1c617e2a277d6281f2",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/556240D1-7A20-4A3D-A990-50C0D6ED0005.png",
+      "bytes": 614407,
+      "sha256": "a9044a333ef9b60ff45205425711fd22a2d9eba1a19e85a73c0bd2cf1dfd8aef",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9DF1BD75-4B54-4B24-B8C1-7BC2945D5F3C.png",
+      "bytes": 652452,
+      "sha256": "840fa98921e5639742371bef4e2a623bd60ffa07517b83085049acfe500119a0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6601B606-E84C-449C-B992-A4B6D78AB250.png",
+      "bytes": 742973,
+      "sha256": "fcd8860475e059b529502253e5c01342285a7203fdb08592c2198323d9e27bff",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5331E913-6660-4E46-8821-E657798EF8F9.png",
+      "bytes": 472539,
+      "sha256": "c225808754b99b733e06bbfb0210067cc07e500444c588d7f3d5aa4b5208fe4a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7FFBBDE4-424E-4461-BD42-6E9EB4085C72.png",
+      "bytes": 548508,
+      "sha256": "34301caccd153fdef8f29cefdb946236d0439008a0f6c20cfd1865b31a9e46de",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C784AC57-309B-4E39-816D-1DA9E543C6D9.png",
+      "bytes": 550478,
+      "sha256": "782814aec64565bfdb979f6827b51296d95dc59179973281283571e974dac536",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E6005579-5FC9-4414-918C-5DF8047441E2.png",
+      "bytes": 399790,
+      "sha256": "a1111229d04df3dd1cf763f05335cd6a403f218f7b926fbb85321d70414ecf8b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AFC2E5E3-8A77-4ED9-8B0F-9270425E8C50.png",
+      "bytes": 334009,
+      "sha256": "56a865954bbc071e96d17b23f4bef62912860904ed794e931034f94dad2e4cb0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/257EAE74-CFDC-4289-9979-32EB52CAA0D2.png",
+      "bytes": 491717,
+      "sha256": "e83bad3f2a3d3edec1aa68969567d0ab50689efeca75314eda4cac43908f374c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/40A0227E-9CEF-455D-86A4-22E792F3CBB5.png",
+      "bytes": 612993,
+      "sha256": "1bfde46e0528296361e1538da99edd0317252e45a08c3d0bb55f5baa16ac448f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-current-reopened-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BB6397EB-2A5D-4BDD-9B23-02E67B87D79F.png",
+      "bytes": 696673,
+      "sha256": "f9ded476cd6f7ee3bbeb502bfaa74615653e41ac6d2ae1c17ebd075a90142c40",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-restored-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8943702B-CFA1-43A5-913E-70E3956CE715.png",
+      "bytes": 312274,
+      "sha256": "0abbaa37235386a7a34b5f5013b4a8b5abbc96189acfc46145c42f9b6af8606f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-target-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E5A9E798-34EF-4F85-9451-D95EA38B91C9.png",
+      "bytes": 517283,
+      "sha256": "719ea5f2d6970930ee5104142bc6e0997cbb55580146449dbe8644ed4f763e53",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-origin-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/631A577F-C3EE-42CA-B3DA-4675925801F9.png",
+      "bytes": 598664,
+      "sha256": "8adccfc123c3f675696e61603e9942f1983c763ffba3de7d4e51b3f1b9c20a66",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-stay-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5F4ED676-2046-4DAA-8F8B-F013183325EB.png",
+      "bytes": 106316,
+      "sha256": "db2b44ab3bacc3b0ef48ae2220466f8c5d8defdcdd53ae5b0346dc671055bb10",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-restored-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/453ED4C3-CEC1-4913-A65C-18622ED9CE35.png",
+      "bytes": 108586,
+      "sha256": "25fe7727414d88530b41605bbe0eb51209a6a885cd86390ec529ed029f92cc37",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-return-search-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/36E08D63-D5D1-4543-B3EF-796B5E81FD26.png",
+      "bytes": 239187,
+      "sha256": "56ae62f954d3a7804074b239932d752d3a1b4c01fcfc19a8481a73eb75b646d0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ABDAAE7C-ACE9-49B1-B63A-933B077E721B.png",
+      "bytes": 612036,
+      "sha256": "7c21fabba9a7d4e9243614e1372c559d30bb60aedb163f5d3ae7c4a4cd747144",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7D6282C-6E41-4EAF-9B92-B87C5A3B6DAB.png",
+      "bytes": 748047,
+      "sha256": "e4c8d08fd5f2de756cb4e9227b66cfbbb560472d7dba1a6df4aafe280d52836a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C501DB6C-61DB-42C5-B5D9-095A1BB62DA0.png",
+      "bytes": 643876,
+      "sha256": "21415608b29c3d551603f6bd16cb6f2e23e2020b527cc8df8a1f82918382e43d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FD256C83-86A2-45A1-AC4B-47915A951821.png",
+      "bytes": 472160,
+      "sha256": "3614a26316ab39f96e3e828d3f01bfc341de74dd39ffef750427951ffe5802ca",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4B3D17D8-CFDB-466D-B04C-9E9C29C1E477.png",
+      "bytes": 611821,
+      "sha256": "5bae7a5094c818cb8f3912652c9cb6a0c00c04b535ba1819fde762fe257dcfa1",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6E74EC80-9754-43BD-830D-5522B09BB99E.png",
+      "bytes": 747814,
+      "sha256": "9977b1cc2bc57e9b9873a7bdd8d32075008724a857347f30bfe3736467deb67f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-settings-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BD7205D1-3A30-4678-9B6F-17956B1A6943.png",
+      "bytes": 643611,
+      "sha256": "29c3843bac7d4df83fb2f2f26126c7994f41984f1bc0f1cce6d2ea0ebcbd6b86",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-depth-menu-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7BCC96DF-3A03-4D69-923D-02EB29354E2A.png",
+      "bytes": 472054,
+      "sha256": "b2c71da9c32a98ecb57abc13aeed0a6300e6fcb7dd47c837994c89ffa1b0a31b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E002A68C-8A2A-4677-A034-301D50653795.png",
+      "bytes": 660517,
+      "sha256": "8dcd14fdbda7a73047c99875d8719424640656da0dac1f1bf15917f6e2ffa1cb",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "可见加载中/初始片段或顶栏加载提示，不作为完整稳定正文/安全区通过。"
+    },
+    {
+      "name": "reader-screen-settings-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4D30C1AF-E42F-4874-82E0-F3B605DE9BF5.png",
+      "bytes": 606712,
+      "sha256": "ccb7ba5817d190bfb357413b014d27523a87e6a0288d2311c28b7a2fb9f32fab",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3D21AC94-46DA-4472-9D0D-B69D103D5ED9.png",
+      "bytes": 425450,
+      "sha256": "fc7b2f6fb28072eebee07e5153e14d0e02006ae24558255194926dd1187ccc1e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-before-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/50243C2F-6CB4-4EFC-8853-78A22A10FF75.png",
+      "bytes": 596518,
+      "sha256": "19c6eecc5348241cd59f27a41569e31fe83d79d14c265a2546c8b5205cf8eab5",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-restored-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D8C17C25-8F57-4F13-AEC1-9F9B5CC17B1F.png",
+      "bytes": 654862,
+      "sha256": "2fb3016c62bc679dba55fcc223fdfc5ab9f56b02b6fbd11181383bf1d11fa00a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-settings-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/54588655-1FE7-44F8-AFF7-7D10E707B8B0.png",
+      "bytes": 605983,
+      "sha256": "c930c3a277cddc68e2a4601f2e65ba8072f2214f4629e924ba6e32d3280cd517",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/445ECBBE-E08B-42DE-8C0B-C7DF1FA23023.png",
+      "bytes": 424996,
+      "sha256": "a4e76e03eee1847777747b5932c6131164e5ae78416c114f30983fec2bb03a55",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "opaque": true,
+      "includeInPreview": false,
+      "visualLimitation": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-before-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CFA5DB10-4047-41F7-8CC2-4DE2BA461FDF.png",
+      "bytes": 595948,
+      "sha256": "f547bf60ec6d252e7bf869e6ab1427038733d9db5249ab879e05325bbb87c959",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-bundled-kai-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/86435EC8-87D1-4D2F-8C1D-5A49E0D16AE6.png",
+      "bytes": 773759,
+      "sha256": "af913ba8c6bdaa97fc369d9166dee7321cd3be7c63e46ff8fb4d027ac6ebfa5f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-bundled-song-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4ACCDC38-E456-4BA6-9C93-FF4E9C34F0AA.png",
+      "bytes": 658737,
+      "sha256": "054c684f566c3def91827f313cc9f9a5e28dc5d3ed0a24347cf33ea9888b6ab3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-compact-layout-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CCC2F183-CA1D-454A-9870-716A998E3D3F.png",
+      "bytes": 856535,
+      "sha256": "57e276a0ac82dc67d882a7dd5e1e915d7d0c7aebd65f5a41c5a0247843de1b3a",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-font-grid-dark-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D5D0A027-4B1B-4629-B689-D3D02FD18313.png",
+      "bytes": 753691,
+      "sha256": "38456f07fba4a3223e3414581cdcb366765f60f75426d3230f092da9f5f7b51c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-settings-font-grid-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/468297A5-0B15-406D-9F06-E5C0FBFAF025.png",
+      "bytes": 660895,
+      "sha256": "5f0161f3bfa250c3a4888a914489d93c7eb546fc92709b4e95e4b898f6305c36",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-default-restored-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9C552AA2-9BC8-47B2-AB9A-9261B429CB52.png",
+      "bytes": 781957,
+      "sha256": "90c4bb316be847e88ff97a14bef53d944f484fffd616c4f83d05b05710f172a3",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6EA19E4A-274A-46D7-87CA-7A9B18EDEB79.png",
+      "bytes": 801121,
+      "sha256": "073b042dc280830d493c0911cfc2223c1278e07454fab692a89a6d77e92d8357",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/46758D4E-72D7-4C2B-B039-6B003D43D918.png",
+      "bytes": 697302,
+      "sha256": "44946cab986001f1837fba4c68d4f415e7d5b71dbdd8d848449d1f5cecae4eb9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A32F7A74-B97E-4CB8-B87B-A60453E6FE52.png",
+      "bytes": 703866,
+      "sha256": "13887b7e91566e14d9d118de5b50fc22af7b1d83ee6fbc64ac1f79b2ec2f0c51",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/943155BE-DC08-42FD-AF0C-BDBD8633DB2C.png",
+      "bytes": 703866,
+      "sha256": "13887b7e91566e14d9d118de5b50fc22af7b1d83ee6fbc64ac1f79b2ec2f0c51",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-extended-layout-reopened-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/50553D62-23AB-4991-920B-34745BF5E69F.png",
+      "bytes": 613264,
+      "sha256": "99e1b1b0a6b3d5f622ba7b90afe13501be725fb17f2e2728bac003166419b862",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-extended-layout-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BFEECDD5-A573-43AE-AA47-AE5308EA9EDA.png",
+      "bytes": 614008,
+      "sha256": "a36455d35bbfeb2a939b345e2af8cb4b4d422122370e092ee05908f684ab59da",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-xiaoWei-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1292AAE4-C10D-4A48-9E14-C6D705D7BED7.png",
+      "bytes": 645595,
+      "sha256": "33aeb27858f51de7f21f83b176939eb50fd40fad8e6d72f70f702a4e371f99bd",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-maShanZheng-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DEB66B82-304A-4807-86DB-4C3F28FFFDAE.png",
+      "bytes": 664281,
+      "sha256": "b6bb551567c87514a74619c37c35067a40853e111b47066eaf121bbec630056c",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-zhuque-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/90654166-5F91-407A-8238-1C028E9CE5F6.png",
+      "bytes": 672866,
+      "sha256": "dab80459657cf07d98e2c4818e89a8e133a0f94dba54c4b1f373ba8305dcfde0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSans-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F3083CBC-A479-4E4D-BE19-E84AC46523EA.png",
+      "bytes": 655304,
+      "sha256": "f49712943e8beb43686aac6c9e822d0f13a33ba6e094b18581fb3d3acb256908",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-wenKai-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7495C4E1-D80A-4AFB-B759-D7FDD001667B.png",
+      "bytes": 669872,
+      "sha256": "9aeef05d26849e02216230e937c4291c4272e5866fd2810b48947da5c3e7f532",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSerif-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/39D4BFF3-FAF6-46E0-8331-33308F361BAB.png",
+      "bytes": 659453,
+      "sha256": "cff2bba74106ecafb86ac87e7da3614028a2ff06f7f5068edc81b848c56334e0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-17 at 08.05.42 AM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9051A4CF-0023-4AF0-934F-6230864EA0C9.mp4",
+      "bytes": 16875081,
+      "sha256": "b2b65d4c63c87a238f5074249ce3052f8fcb63c699ef784317359d00873a3219",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.06.25 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B8FC4BEE-92C8-46FE-8E3A-DFBB552AECD4.mp4",
+      "bytes": 4329189,
+      "sha256": "84eb18285081a07ee14eadf6923618e8f7dea7b5eecb976d7fc1f0ee2a1cdddf",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.06.39 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C64D5188-0770-4446-84E7-C851FD0164ED.mp4",
+      "bytes": 3577753,
+      "sha256": "814feea2ac3ed1b68d92255ac07b96dc39d6c714f6be0de1cb4d9c4342011685",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.07.08 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2A3BCB9A-2842-43B8-9DB9-7CF2326BDF1F.mp4",
+      "bytes": 33058951,
+      "sha256": "220da98f9f0120d506bfaf2957c1cb81588b8947041065b7fe8fb67a32496f6a",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.08.14 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/83632DE6-AE3F-442D-A3B4-5F0D053E53C9.mp4",
+      "bytes": 10243726,
+      "sha256": "741081750be86e256bcb8a7362e8f7d51f64f0efaf1b2f11e07f402ff2081f76",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.09.47 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E7BEC0F-519F-4633-BEE8-B4EB6100B460.mp4",
+      "bytes": 19900525,
+      "sha256": "44f6d6eb98e6e549b8c02bbf65b566192bef24def25c29c2aa1b92d48fcc77b3",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.10.53 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D8344D12-9302-4A6D-A420-BE5F8F6F7D5D.mp4",
+      "bytes": 30129500,
+      "sha256": "48879efb1dcbc748a516ba2a2eda40f574db8f58561945f548c7389ff0293953",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.12.00 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8CCE878D-0818-4CEE-A287-2FB591516B23.mp4",
+      "bytes": 7970977,
+      "sha256": "f4d2e5ace19a0c774ba82427007064b831a9f84b46a47cd4589c56ba5d252f98",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.12.43 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A5D26BA9-B554-4ED7-A3FA-401C5F7C5CE2.mp4",
+      "bytes": 25882968,
+      "sha256": "71931561f127c4fc7c6289c9ac0239f41e2301d63114b27d795329fe34c0e9f9",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.13.47 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/033403AD-23CA-4649-AD5D-6C97C4BE8402.mp4",
+      "bytes": 11409177,
+      "sha256": "9ba799798b9085b4e39884811554e9b2e888e68c66fdf8395dc019836b09d524",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.14.25 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/412CC148-F665-4BE2-9BFB-9EA71D27D1AF.mp4",
+      "bytes": 18038505,
+      "sha256": "34ce96e66a507e039d6f0c0f6bad09fd687fc7b16e28dec95b302a686928c2d4",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.15.13 AM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DB43BFF5-B092-4C7E-BCBF-4B5398096616.mp4",
+      "bytes": 56689225,
+      "sha256": "dcbfbc3f0258c03567a7c5abc12efcfd7079db341c7e5eea6644ba03549c5ab8",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.16.48 AM.mp4",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6E3080D6-D64A-413C-AEBA-4631B83623EA.mp4",
+      "bytes": 24006104,
+      "sha256": "9ddd065db65a7877a248e6dcfb0dbbdf214a74ebf037ca9707ab774dab9cea4a",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.17.28 AM.mp4",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A63DD1C-42A7-4680-87C6-58829FA6B90E.mp4",
+      "bytes": 18786489,
+      "sha256": "a489a88f9a5487a8927886a95be716183205e47ac97431b8e2bad23fbcaa2948",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.18.04 AM.mp4",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/19937D70-4FBF-43E2-AF23-B395225AE237.mp4",
+      "bytes": 28861259,
+      "sha256": "699fd83239027bc9fb212e25737053800496c629e82750ed94fb70b1dbe776ef",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 08.19.47 AM.mp4",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/36A68C38-7BC5-49B7-B7A3-47D8BABF40E3.mp4",
+      "bytes": 16896896,
+      "sha256": "36f7e2c4e6156d048156469dcd8016f566cf25c51cebc98183de5cdefdf8a616",
+      "inspected": true
+    }
+  ],
+  "contactMethod": "Original PNG thumbnails; alpha composited onto neutral white for contact sheets only. Original bytes and hashes unchanged.",
+  "recordedAtUTC": "2026-10-17T08:46:23.040059+00:00",
+  "imageContacts": [
+    {
+      "path": "build/ci/39014160303/FontReview/images-1.png",
+      "sha256": "62f6e3d170397d32d4825c6853dd36d05d7993a5cf161e235ac8ba608f0b1a10"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-10.png",
+      "sha256": "4b86034650a80cc0e39583707bc6a75809db4d4afab90f05f63c88902ed15860"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-11.png",
+      "sha256": "6ee645a29745095e8975aaca7967ab3e03b5832b9faaa3eebce2571ae390f3b4"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-12.png",
+      "sha256": "16fd1ddeed11ee713aa72c30f4da01ffa835df5d83528f9d7b57bf99db0d3685"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-13.png",
+      "sha256": "894fd175402755c246841ca5f020d11bc7a24f6301520d8411cd7c2381e1e333"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-14.png",
+      "sha256": "b45b52abeaa15438dfa576418ca20f3a366ffa06b0f70c4c130c6c32b9af7c57"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-15.png",
+      "sha256": "2ed074f07e4ff8f86fb0858c39a4c32f8122a774da6a7e8e3a157b6780aeba3f"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-16.png",
+      "sha256": "e3769cf818089a4d704a67e4b3c4674ced20e473e7f85eb531c8f4896bdec77b"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-17.png",
+      "sha256": "ec8a4c5dcf99f49d793bf03cd762a7a53b3153e05b7bfb916a3d113781f55711"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-18.png",
+      "sha256": "3b6f436fbbd31e713520f98b026c131289ee80cc01e571ebc38b99cd735fe9db"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-19.png",
+      "sha256": "cf2009398837c1f9bb559b018219d1beae7539cdeb6cf9682589f92b74147d38"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-2.png",
+      "sha256": "a1aaabe5d6076b93fd3aa23e87b76074fc1b16b6e85551f02e0cb014cc65bd56"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-3.png",
+      "sha256": "0ee3362f07e170ee9bfe4bf8745d7ab34fbdd4d8d47ec319b78374ae97ba783e"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-4.png",
+      "sha256": "cf2404b0bf1028deba5f5a9b14f5e0c355140fa1af349e1b50c4b92a052ff096"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-5.png",
+      "sha256": "4799d2e661ae48eb09f867738a1f14289d57f3b2a0ad1dc771ee1f9dd0a938b3"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-6.png",
+      "sha256": "4a25e3279e878d9fb06348a3c90919812c6469aa2f79e4955c1a268172e11651"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-7.png",
+      "sha256": "da96958c4101d494d6bf562908c591acc3cf869fe9cffc298cc686e8882989b8"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-8.png",
+      "sha256": "69c8cb7c9a6d0726eaaa0507e40d9b56acbfe1efd62893fa95a9dbb5dcddb0d2"
+    },
+    {
+      "path": "build/ci/39014160303/FontReview/images-9.png",
+      "sha256": "ada4b9d2971dcf10fd0464fffeeea2a543d017bcc10643e810e0aed5836eedf4"
+    }
+  ],
+  "overviews": [
+    {
+      "kind": "compact",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/compact/contact-1.png",
+          "sha256": "03373c95675e16af8719994a520a673a5f3873904b4a18712a8a8c60ec7ce438"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/contact-2.png",
+          "sha256": "6780fae216a3148b8817fa6a98bd02f28fb58b4b323d01dc76b78584053feab6"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/contact-3.png",
+          "sha256": "991ef2b8dcd1ee0f06ef902277f939ff0191f46664ca4de39fd3c2a4cd2bf9b6"
+        }
+      ],
+      "observations": "完整1秒总览3表已看。两列六字单行样例清楚、固定分组，反复上下滚动回到同样卡片；深色后字形保留，排版六项/缩进/对齐/默认操作可见。原书样式打开后原段落禁用而页边距仍可用有真UI断言，末帧退出应用不作阅读画面或性能证据。",
+      "inspected": true
+    },
+    {
+      "kind": "browser",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-1.png",
+          "sha256": "ba217296c3f2db9c7f97f17a7b61d00ed00e2ecbf481cc646cd5a2554287f6d7"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-2.png",
+          "sha256": "2790016767e7e0efa28cc0f558ec3c69240609d384c2dffe4016438028f0fd50"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-3.png",
+          "sha256": "032f49e0bad7b5f83a5839cd31d445e18b1962bf67d55e8adabf125b14f49938"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-4.png",
+          "sha256": "792f3ceddf780320510045b99f79ff1766c41ee34665f2b7c19265cde0e3fe15"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-5.png",
+          "sha256": "ebb7cc5a010a4c785564aadcc5ae9baf20fa7b6346e94effac5081019459684f"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/contact-6.png",
+          "sha256": "fbd402a197f3663460fbb3f4720f582eb3b9324ef5e126284d1cdfdba56c1170"
+        }
+      ],
+      "observations": "完整1秒总览6表已看。六款选中、主字形样例与勾选变化可辨，无内部不协调矩形；自定义0.05/125%/2.5字及重开持久化可见。初进字体行有短暂spinner但槽位不扩张。中间启动/清理的主屏、白页和UIKit层叠过渡不当稳态或手机性能。",
+      "inspected": true
+    },
+    {
+      "kind": "appearance",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/appearance/contact-1.png",
+          "sha256": "221a083c97394e2c5328ebf644c4a8ecdbc12c6a182cbfb9fab2f837538e8a6b"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/appearance/contact-2.png",
+          "sha256": "30aaf0b726de19a093399b277d5a6aede958cd61e984daf53cf03c8f0caf8fb3"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/appearance/contact-3.png",
+          "sha256": "4d7a286218b6b8b047ec4413703a78ffa7a8f0e6efe0e08e289d67c82f037bde"
+        }
+      ],
+      "observations": "完整1秒总览3表已看。暖白/纸色/深灰/纯黑、字号110→130%及重开保留；大样例依字号自然换行，字形真实、内图底色消失。布局页不重复样例；不声称字形样例替代正文段落排版。",
+      "inspected": true
+    },
+    {
+      "kind": "font",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-1.png",
+          "sha256": "34b10a46cb71b296cb01c2647ec4ebb309adaa31cf0e79c868492b1444c2cb9c"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-2.png",
+          "sha256": "640ff554e40942362299603ae03c291f4de0dced324d49a64bb22562fd1df10e"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-3.png",
+          "sha256": "e4b4770f2fb4a330316447e53d1022462d5206dc58ec7e198e2458e8bc7bee8b"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-4.png",
+          "sha256": "b6ae908d9411cbf14ec8b1c3df1d4226353daaccfa5061167a0b966f657df16d"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-5.png",
+          "sha256": "a5624b6b258f3ac2c2c53d4f0cdb7ae9644c81c9006e33c016c0bd8b108d9dfe"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-6.png",
+          "sha256": "7f0f7cfd17f6a98ab18c07fb046e73c7bd7e031d5f6dd33b0a9b11bd51700403"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/font/contact-7.png",
+          "sha256": "1fcc373f5835ebebfd97f0393d29cd5512fe13a72ac15583d453a5c0e57634f3"
+        }
+      ],
+      "observations": "完整1秒总览7表已看。iA选中、系统最近项目取消后保持、重开/深色与恢复衬线后取消iA选中均可见。约19.5–30.5s系统选择器初始化区域白色，随后正常绘制并取消；原因可能含初始化/跨进程录制限制，未经根因验证，不纳入卡顿改善或全File Provider验收。中文为iA缺字fallback。",
+      "inspected": true
+    }
+  ],
+  "originalFrameWindows": [
+    {
+      "run": 39014160303,
+      "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 08.17.28 AM.mp4",
+        "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+        "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A63DD1C-42A7-4680-87C6-58829FA6B90E.mp4",
+        "bytes": 18786489,
+        "sha256": "a489a88f9a5487a8927886a95be716183205e47ac97431b8e2bad23fbcaa2948",
+        "inspected": false
+      },
+      "start": 13.05,
+      "end": 14.25,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0001.png",
+          "pts": 13.061667,
+          "sha256": "c9c4999787dfea60a80fc3c00ad55d6784777fa030dbe6762eeb10cf9f9590ff"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0002.png",
+          "pts": 13.08,
+          "sha256": "57709c44b2e32ad7c16a0e8920215cf3efc1c6a35c662df889ca7ba045fd7617"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0003.png",
+          "pts": 13.093333,
+          "sha256": "552ee021d1e95895ce3607625b96fd4623e411d6dd9dc5ecf4f5d8264a5dbac9"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0004.png",
+          "pts": 13.11,
+          "sha256": "d7b43bd39f27f4a87c2496ff85eb39f6d3586b111ec2ad10383d0f83b2297ab4"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0005.png",
+          "pts": 13.128333,
+          "sha256": "c15e2f8a83d8c34d6ec92ed85fcbb2cb9920d73ca2894e686ec3548563a2538c"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0006.png",
+          "pts": 13.143333,
+          "sha256": "66465c0cb64f44cbfb01a2167959fff1546d225d498bc3889492730e5257c4e3"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0007.png",
+          "pts": 13.16,
+          "sha256": "7d2f073fa77eb56a61ddd25a7df9179e05b33a637d14125d182ea568de193d79"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0008.png",
+          "pts": 13.193333,
+          "sha256": "828e2ac2fae7e6ef16361e48010d6a0753d16e2c4985cbb3c94c7b5ff91729f6"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0009.png",
+          "pts": 13.21,
+          "sha256": "74c7754f8169229ec8b59355458034197a79bb93f8a534fb5e4a9eaa1a626cc5"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0010.png",
+          "pts": 13.226667,
+          "sha256": "3e68459b21bdfde8a5933d49ca2a58523bd2a103f0d11ecf6a40013c2140f1ba"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0011.png",
+          "pts": 13.248333,
+          "sha256": "1abffc9022916da0d2ded559be1b0a10a03502eda117963ad8e4e2d31e6a2eda"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0012.png",
+          "pts": 13.258333,
+          "sha256": "363b9720d5d2ca23570944f9a227938e8adbe69b3c6b56a696f8e0615beec3ac"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0013.png",
+          "pts": 13.276667,
+          "sha256": "25b2d9df1f5a5d1b204aaa530402f2947cb6083d8e45b4fae75e6918434a25c7"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0014.png",
+          "pts": 13.293333,
+          "sha256": "3acd3d4acaa654d26bc8f923fbf71740ed06c7f6d6f21beee757636e9231ecb1"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0015.png",
+          "pts": 13.31,
+          "sha256": "079f91f3e8bdc72ad9a34ba1fe7f29302da89a04b26678f239d723174ed68ee8"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0016.png",
+          "pts": 13.328333,
+          "sha256": "a0a0505d23227ead88bc79fc9efbb7e624039b6f594bd10ceba997b4c4013681"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0017.png",
+          "pts": 13.343333,
+          "sha256": "3132c16a0b8aa06d64fc905f02e584674cd5083fccad94351b9e405f57ede96f"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0018.png",
+          "pts": 13.361667,
+          "sha256": "801cdf712c966f42c1b097a315a19e00d71598e8bf56af1332fde2319ce6127d"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0019.png",
+          "pts": 13.375,
+          "sha256": "a3ade31bd9b8f587d02899d56f6d006f9320697ff46976369f4d160ba96889d3"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0020.png",
+          "pts": 13.395,
+          "sha256": "f9a203aa11668c859152413f468e63d07d9548308cd2d1430f9ba1030cacc8ae"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0021.png",
+          "pts": 13.411667,
+          "sha256": "a0f36be484c96e78a66097f227ebee02e2c86e1ec40102bbb1323b5b830b466c"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0022.png",
+          "pts": 13.426667,
+          "sha256": "966ea55712a474ffe02d348ccd7022024f7f225c6a2a03955b0963125b23be31"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0023.png",
+          "pts": 13.445,
+          "sha256": "fa57d84114ba2bb6bdb870155216d982a732f35b19d201d2681902664dd3ee58"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0024.png",
+          "pts": 13.461667,
+          "sha256": "ac3c64f56b838890c55778c7c85d5475232305fd71313ae94beb5b9aa23a5b8a"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0025.png",
+          "pts": 13.476667,
+          "sha256": "56f20e523a34d38ca20cf9a967016fb769a44ed4a8b4ac6c527ce2f7a56374e1"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0026.png",
+          "pts": 13.493333,
+          "sha256": "944545ecd68c2582f341f0b50456b8b4a65ca85b865b33bdf944e562534abdc7"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0027.png",
+          "pts": 13.508333,
+          "sha256": "6946c2338dd91a1908050bd21976f4e2b96963ae715dc99f715a2b46ffe7eb6a"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0028.png",
+          "pts": 13.525,
+          "sha256": "49660417673b4f0283f5b8613101419d56ddae6f11ceab0bfbfba828b2a60938"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0029.png",
+          "pts": 13.541667,
+          "sha256": "ad280fac0b84f4bb5306bd66fc9b7b7305b84f6110605d84338c9dfad997803f"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0030.png",
+          "pts": 13.578333,
+          "sha256": "bae1c42ee2a7189364d7b8c1cd0fb5efd75f0136345117f8e10510ef93e5746a"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0031.png",
+          "pts": 13.593333,
+          "sha256": "56acb4f50be83cf353e6c7b6e1d1cf53db98583d10c9d3974cb7a96d4acece5a"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0032.png",
+          "pts": 13.645,
+          "sha256": "3577e2988f9614042d275ba2cd546ea3089e8bb8afb26674acdc8c01e65ef328"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/original-0033.png",
+          "pts": 13.695,
+          "sha256": "40b2dd7c60a619f950812c3c5b9fd60b1c6187e61e23fb8af94d9e81ab4921b0"
+        }
+      ],
+      "observations": "33个原始VFR帧/3表全部查看，实际PTS13.062–13.695s；所选区间尾部有录屏帧间隔，覆盖向下滚动末段与底部回弹，不是完整手势。六行样例同字形/同高度，固定分组持续可见，图未反复变spinner；回弹位移属所见，手机帧率/掉帧仍未验收。",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/contact-1.png",
+          "sha256": "5ab359f2bf8b23c9dbc586d1440ad46c2ba7286e35e250a13903d94ed633528e"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/contact-2.png",
+          "sha256": "e28fb00c1008075db4f8b8ba46952aa23cd8fc1347e1d10d9e57a0d604bc55ed"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/scroll-down/contact-3.png",
+          "sha256": "d5e52e7aa480904689c2f783288d0f8ef294ab5f388b95abae6b11bb6c5986ca"
+        }
+      ],
+      "sourcePTSInversions": 0
+    },
+    {
+      "run": 39014160303,
+      "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 08.17.28 AM.mp4",
+        "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+        "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A63DD1C-42A7-4680-87C6-58829FA6B90E.mp4",
+        "bytes": 18786489,
+        "sha256": "a489a88f9a5487a8927886a95be716183205e47ac97431b8e2bad23fbcaa2948",
+        "inspected": false
+      },
+      "start": 25.3,
+      "end": 26.0,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0001.png",
+          "pts": 25.426667,
+          "sha256": "a04fe62e62c6834e424b79ae4d0a2f3c8e37b597aa49096b0d140703cde07c82"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0002.png",
+          "pts": 25.438333,
+          "sha256": "fb2ff90a9d1cf5ebb34ca9b2bafdfb8c22d015d5d4fcbf647ea748c81c277e8e"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0003.png",
+          "pts": 25.528333,
+          "sha256": "ee4977a2f30ded2e5f7392ae316a6809a9a5ea3488c6772ad001cd3b1803aa54"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0004.png",
+          "pts": 25.541667,
+          "sha256": "963848a70daa3b3b135670d5f766d96a12e064f46bc88666ec47d3f5d0a448c4"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0005.png",
+          "pts": 25.558333,
+          "sha256": "4422125eecbee937fb65620d50eca641cc606c73739f6308fd9b7b95c8007e36"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0006.png",
+          "pts": 25.571667,
+          "sha256": "0bd4c39c2dbfa99724c40bb733afb5d9e367af894a814f90c10341f3f6586f29"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0007.png",
+          "pts": 25.576667,
+          "sha256": "8d7c7e08b6ab09729f83525e3ee5c4c73aa765ceea68b696742b82135adf6262"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0008.png",
+          "pts": 25.593333,
+          "sha256": "bc0fec58c6f2a2c25092ca4cb32398696141cc036deccdabe74adcf47c690248"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0009.png",
+          "pts": 25.611667,
+          "sha256": "03c3f5b9819582723a92ae53072d320778ee020a5c5feda1c2fb53ae92e45871"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0010.png",
+          "pts": 25.628333,
+          "sha256": "4e3b8bdf72f131181424a14649088233abd17c63f7df75ac94918216ae5d5b69"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0011.png",
+          "pts": 25.643333,
+          "sha256": "46d2397bb57a97e8702cfa7b7902ebd800d230756faa3c9331dbeb7a5d80bf9e"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0012.png",
+          "pts": 25.661667,
+          "sha256": "2d8b5f3706b3edcbe080f9b723e3ef6c36794fd4e0f13643842ac2861b4787d8"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0013.png",
+          "pts": 25.68,
+          "sha256": "773e59ff850795f0236b0ee4bc8ec80c3d7fda567fec3b4f227798c6b05425e2"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0014.png",
+          "pts": 25.696667,
+          "sha256": "a7b38463b5c681db24a682f59621d52ef0155cde6d2bce9897a0694a67cbfed3"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0015.png",
+          "pts": 25.71,
+          "sha256": "e897a5c41d697c6b33ce96fad0cd6f01169e3dad573eafb32959f3a122211c5c"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0016.png",
+          "pts": 25.725,
+          "sha256": "1b89e937ffd5fe4d4af0e9267287b85c208c6deabbe82c1f37056fa5485a34bb"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0017.png",
+          "pts": 25.743333,
+          "sha256": "8802d166aa0db522f6dd4462bd3db6d52e716b3ed05391236ff181e8c7ece357"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0018.png",
+          "pts": 25.76,
+          "sha256": "2d092a5b848e2491d087932d61919a22cfc93f8a58105095ba27ef319bc9bb79"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0019.png",
+          "pts": 25.778333,
+          "sha256": "f5d3a3d47ee6cf72c885b9bd12bae22e90355c4a3cdd9a7fd2fb5ca3799c0be0"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0020.png",
+          "pts": 25.795,
+          "sha256": "6c49aae746d35cb5be04b9901ba85a458fc730987eb399c342ab8862d06a5ab0"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0021.png",
+          "pts": 25.81,
+          "sha256": "bc83206ae22c704d37dc5b82eea32e544f9252ef9260b341f9c5d5a56a1c7707"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0022.png",
+          "pts": 25.825,
+          "sha256": "dda640dd0500b72fd5caac86a623b717e42880de7be3cd9d03d7aa570f331538"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/original-0023.png",
+          "pts": 25.856667,
+          "sha256": "c25418615afb3745129f139c51f4efb4d3efca309301f5fdacfe988c52c9d1e5"
+        }
+      ],
+      "observations": "23个原始VFR帧/2表全部查看，实际PTS25.427–25.857s。首帧已切深色，接受深色过渡尾段和稳定字形，未覆盖最初亮→暗边界；期间UIKit顶部/表面有少量布局移动，不称全动效无瑕疵。字形没有白底矩形或重置spinner。",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/contact-1.png",
+          "sha256": "9870cb719199e5a97346054acf8173690072b63c53100d1b6c5e2cc959896408"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/compact/theme-tint/contact-2.png",
+          "sha256": "7f38149cfaf246d8f5f3ca157f35c0aebe93c9dc47cd6527999c8596e0173654"
+        }
+      ],
+      "sourcePTSInversions": 0
+    },
+    {
+      "run": 39014160303,
+      "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 08.19.47 AM.mp4",
+        "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+        "path": "build/ci/39014160303/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/36A68C38-7BC5-49B7-B7A3-47D8BABF40E3.mp4",
+        "bytes": 16896896,
+        "sha256": "36f7e2c4e6156d048156469dcd8016f566cf25c51cebc98183de5cdefdf8a616",
+        "inspected": false
+      },
+      "start": 14.15,
+      "end": 15.35,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0001.png",
+          "pts": 14.201667,
+          "sha256": "fd1577b0e41437a369e5d78f0dc395977dc2224573f4b3117a3e2d82e7eae13c"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0002.png",
+          "pts": 14.226667,
+          "sha256": "9d277cfbc2efe6fff7c83fe3cf94d380dc539beca7ccdec695a3fcc4d94dd806"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0003.png",
+          "pts": 14.245,
+          "sha256": "4906d33a07f92143d454cdd59625c4311c6ff9213288e7b4c6e19798f5f2f3dc"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0004.png",
+          "pts": 14.25,
+          "sha256": "7cfdff27d3b463059d28555871d2029095e87835414f4c24c52f765e4f3621e5"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0005.png",
+          "pts": 14.32,
+          "sha256": "348b009f7a11f3549eda2c395cf12755dd994040a3ad158f8602083d4134aeba"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0006.png",
+          "pts": 14.34,
+          "sha256": "d35c526d2fba266f6c6f80a54c66a10c525cf1d1316e258ae9e319d23fa0120b"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0007.png",
+          "pts": 14.368333,
+          "sha256": "419e5e69314823648466cba03f9e5a7cf7ac2679db1fe44d8d1014956d2602ab"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0008.png",
+          "pts": 14.388333,
+          "sha256": "fbe793c303ccf83e8907d9aa421bca99e3cb990675fcd7daee3aa353cab752b1"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0009.png",
+          "pts": 14.415,
+          "sha256": "a7c53048f78578f5310ee45198ccc76fc07c0d06a03ba33c9022182d7367f9fe"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0010.png",
+          "pts": 14.428333,
+          "sha256": "9e5a5820474de4a61ead504ae7c07a777ee4fe1e385a4a817f517cef85eeb70f"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0011.png",
+          "pts": 14.503333,
+          "sha256": "d8be38e9d0f2893aaabd4029df92c6f87bae3329f92f17f20429f1e17b880ca7"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0012.png",
+          "pts": 14.6,
+          "sha256": "8a82e2b49c8b1613c489dcba31d3e020663d8bc0cab198ff7014ccd0132ba634"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0013.png",
+          "pts": 14.671667,
+          "sha256": "1a989fe62cc6f9bb52c5e7ce4b71fbd8a47f203d5b4ba245ebf8523ef9a3e5b7"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0014.png",
+          "pts": 14.738333,
+          "sha256": "17ef0b96ff3e60903ef28d4996fae7796f5fda00bbe607e22f44c221df872179"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0015.png",
+          "pts": 14.761667,
+          "sha256": "e43daf4dea035135f68ac6ed9b8674f87b4a010bcca05d48cf87522b017cd511"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0016.png",
+          "pts": 14.763333,
+          "sha256": "5fa03918dad37c32c3ac97bb166148e164f54584ef42ede3c2c4933476e8e4db"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0017.png",
+          "pts": 14.766667,
+          "sha256": "393d3c4fd92b253e1aaccf5a13c5019231d8bf3e926f1ee9360fb4fa0b478a7b"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0018.png",
+          "pts": 14.768333,
+          "sha256": "5a45c90cb19e29b0cabdfe71d7cb1871eb6d229f0d19692367c4471e962cb821"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0019.png",
+          "pts": 14.77,
+          "sha256": "a3dabe31d8ab74d819dcfdbfc82c808a3471788bb669a748972e4ae7358557c3"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0020.png",
+          "pts": 14.771667,
+          "sha256": "804e9b51728f9cc052eb514ed1285010e1b92c186e3d4173dafc447d5cead8d4"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0021.png",
+          "pts": 14.78,
+          "sha256": "f121be8ec55bc2ceb9b66276ce80f0591fc259d8bb286162e0f7eab8e8342d82"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0022.png",
+          "pts": 14.788333,
+          "sha256": "cdfbbad1702bb2a1ade544435dfa91dbb7b429a1bd216c4010ee951a2fe03812"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0023.png",
+          "pts": 14.791667,
+          "sha256": "f1def1c1333169348088f95c82b498942e1a401d8f051cec0eca647d161d3e8e"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0024.png",
+          "pts": 14.793333,
+          "sha256": "cd31570dd5692690e7ae9633237d817e911e8406bf5a3b2a0924dd8d17247363"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0025.png",
+          "pts": 14.843333,
+          "sha256": "32688a85392f0bb260ad9ff35af9705ed31d0d6e91d4e76f51d3eb1c301c4415"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0026.png",
+          "pts": 14.851667,
+          "sha256": "5977a411763017eb97aa3347a9c7e92e9b2f40e108e113aeec8f5b417bdb4f76"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/original-0027.png",
+          "pts": 14.918333,
+          "sha256": "6b63e8f1dd067da6db0c48efc8899d71ebe5e17657ba07c9a199228dd6235655"
+        }
+      ],
+      "observations": "27个原始VFR帧/3表全部查看，实际PTS14.202–14.918s。含设置sheet原生上升及字体冷加载，14.852s附近第一行从spinner变真实字形，其他行仍加载；同一52pt槽位/卡片高度保持，未见由图片就绪引起的行高膨胀。sheet运动本身和初始化延迟不作手机流畅度验收。",
+      "contacts": [
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/contact-1.png",
+          "sha256": "4583bbf49dfd0afdd2fc249b10441d2118ab03063e109b2699af4e90e14fbdca"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/contact-2.png",
+          "sha256": "3e5f7f086ded4cc611546be6a30ebef275fe0bf73222d4c74f7cf3c64069d333"
+        },
+        {
+          "path": "build/ci/39014160303/FontReview/browser/initial-font-slots/contact-3.png",
+          "sha256": "1fd96df568e012f718e719b5e4eb611afa290c22d2e25fa4a5f301c0e31e5795"
+        }
+      ],
+      "sourcePTSInversions": 0
+    }
+  ],
+  "unacceptedCaptures": [
+    {
+      "name": "font-txt-sourceHanSans-build23",
+      "reason": "该隔离TXT思源黑体快照只剩底色，自动字体/完整锚点回归通过不代表此图可读；不纳入正文页面验收。"
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "reason": "可见加载中/初始片段或顶栏加载提示，不作为完整稳定正文/安全区通过。"
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "reason": "可见加载中/初始片段或顶栏加载提示，不作为完整稳定正文/安全区通过。"
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "reason": "旧慢滚/整屏/拖动场景正文与状态栏区域重叠或顶栏裁切，安全区观感未验收；保留诊断，不作为稳定完整页面通过。"
+    }
+  ],
+  "reviewSummary": "113张原生PNG/19表均已实际查看；本轮字体两列/六字单行/无内框与紧凑排版、浅深色/持久化等所列状态可接受，21张原生界面/正文Preview与6张透明CoreText字形诊断分开。16条阅读UI原视频保留，本轮只看4条完整1秒总览/19表，以及3个选定原始VFR窗口83帧/8表，保留原PTS、无fps滤镜或插值。滚动末段/回弹、初加载槽位和深色过渡尾段已逐帧看过；未宣称全手势、全部视频、全动效或手机FPS通过。旧TXT字体隔离图空白、加载中及若干安全区/顶栏画面明确未作为可读稳态验收，原生页与透明字形诊断不混同。",
+  "limitations": [
+    "只有所列状态/录屏/原帧窗口被接受；1秒总览不是连续帧或手机FPS。",
+    "系统选择器有初始化白色区间，原因与全File Provider矩阵未核；启动主屏/白页/加载/测试清理退出不作稳态。",
+    "旧TXT SourceHanSans孤立图空白，旧慢滚/整屏/拖动截图有状态栏重叠或加载反馈；不是本轮设置布局范围，M4需独立核安全区/稳定快照。",
+    "预览冷加载仍有spinner，主题切换中UIKit顶部有移动；不称全动效完全无瑕疵。",
+    "手机冷启动、反复快速滑动实际手感/FPS、总RSS/功耗、普通签名/TrollStore、系统大字/VoiceOver/旋转完整矩阵未验收。",
+    "直接图片缓存的8MiB上限不等于整个App或系统字体内存上限。"
+  ],
+  "firstAgentCancellationRetained": "Documentation/ValidationLogs/m4-font-build23-first-agent-cancel.json",
+  "build22ScopedDeviceFeedback": "Documentation/ValidationLogs/m4-return-build22-user-feedback.json",
+  "deviceAccepted": false,
+  "M4Complete": false
+}

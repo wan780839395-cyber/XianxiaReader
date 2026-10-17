@@ -1,29 +1,32 @@
 # 当前交接与恢复点
 
-当前唯一主源f90a33cd476f2ffa468f5577fe4002dd47b690f0 / codex/m4-settings-compact-rules / CI39014160303（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39014160303），实际dispatch。恢复原页边距规则+六字单行样例后，Windows435/17、9原主体保持/2新增/532blob已重冻，本源Linux135/四Release长TXT已实核通过；macOS Core135/iOS145/Release25/原生待核。前56e/39012448991继续独立完整跑完，不取消，其最终结果不得继承。无Build25交付；关机取消。
+2026-10-17（Asia/Shanghai）
 
-2026-10-17，Build25设置页精简/字形去框/滑动性能开工。用户明确滑动字体列表卡顿，要求排版紧凑易读；不改阅读默认值或扩张阶段。Build24仍是已交付基线，不继承新源验收。
+## Build25 紧凑设置与透明字形（2026-10-17）
 
-已读AGENTS→状态→交接→路线→架构并核Git/文件/进程。正常HEAD6d761749/空index、私有tip4dd9c68保持，原974维护文件和清单共975路径已新备份，43旧包/14旧ZIP核验保留，见m4-settings-build25-start.json。无运行开发任务，关机取消且不触发。
+Build25本切片已交付；实际源 f90a33cd476f2ffa468f5577fe4002dd47b690f0 / ref codex/m4-settings-compact-rules / [完整CI 39014160303](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39014160303)。Linux/macOS Core各135，iOS145/145（124集成+21真UI）、失败/跳过0，test/export/summary/recording均退出0，严格无签名iPhoneOS arm64 Release25/min16。三锁六pins、532编译/资源blob、每平台4组长TXT Release探针与IPA六字体/原OFL原字节已核。Windows435语法新增0/54既有Vendor限制、17工具通过，语法不算编译。受改两测试文件9原主体保持、2新增；其他既有测试继续执行。
 
-实际改动前断点：ReadingFontPreview在body重复UIImage(data:)；异步样例由spinner切图会改变行高；样例PNG仍含主预览底色；六长行加重复卡片导致页面过长。拟沿现有CoverImagePipeline成熟CGImage actor边界，直接返回有界已绘制CGImage，透明mask由原生着色、稳定预览尺寸与两列字体，固定分组入口、收紧排版行。不改Core/DB/Readium/Locator/默认偏好。先实际原生与完整新CI，手机FPS/全部设备矩阵单列；此时尚未实现/编译Build25。
+按用户“样例内框不好看、上下滑动字体列表卡顿、设置别拉太长”的实测反馈，字形改为全透明CGImage，由原生着色；后台CoreText直接绘制并缓存，滚动路径不再PNG编解码。一个CGFont、最多12图/8MiB像素；换主题只着色，字库/字号/可用性改变才请求新图。加载/就绪/失败固定同一槽位，切换请求不冒用旧字形、取消后不发布。旧PNG导出仅供诊断，不在UI热路径。
 
-源码可恢复步：透明CGImage直接缓存/原生模板着色、12张/8MiB像素上限、稳定预览槽位已写；六字体两列/辅助功能大字单列，顶部固定分组，排版页去重复样例并合并行，旧范围/默认值/所有旧测试主体保持。新增1集成缓存与1真UI布局滚动回归，版本25；尚未新编译。开始Windows435语法/17工具及原主体完整审计，之后冻结源码并唯一完整CI。
+六款字体通常两列，辅助功能大字为单列，保留实际字形、选中语义和44pt控件。名称前置，风格说明转无障碍标签；分组入口固定顶部。主样例只留柔和纸色，去掉内图底色/边框/阴影；排版和手感页去重复样例，留白与段落调整合成紧凑连续行。字体/字号/字距/字重/缩进/行段距/对齐和原书样式范围、默认值、全部reading-v1旧偏好保持。无Core/DB/Readium/Vendor/Locator/依赖变动，资源目录18/正文窗口12保持。
 
-构建/测试前冻结：Windows435语法新增0/54既有、17工具通过；受改两测试文件9原主体逐字保持、2新增，532源码blob已冻。唯一源56e63f7a708a3a07f7726f64a253106415d86e80，验证ref codex/m4-settings-compact；现在dispatch完整Core135各/iOS145=124集成+21UI/Release25，所有新门槛待核，不复用Build24成功。关机保持取消。
+新增真实iOS透明像素/六字体24次重复浏览复用同一CGImage/12图及8MiB上限回归，真UI核两列、反复滚动行高不变、换色、固定分组及当前模拟器排版页一屏可操作。代码中的重复解码/行高变动已移除；没有手机Instruments证据，不把这些检查写成全部卡顿根因或手机FPS验收。
 
-实际已dispatch唯一CI 39012448991 / https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991。源码冻结，只检查这一新源完整门槛；watcher/日志/下载/后续原生核验均以实际回执为准，不重复dispatch。
+安装 build/XianxiaReader-SettingsCompact-Build25.ipa（SHA256 7a73f85220864770717def140409a429e83852017229399cb82c55b68f735284），原创样书/21张本轮原生Preview与6张透明字形诊断/原许可与导入字体样本包 build/XianxiaReader-SettingsCompact-Build25-TestKit.zip（SHA256 4982895832fa29582967d53767e9d0ee62b9ad26e6410fc31003e56e9fbb5fc8）。覆盖更新保留书库，+菜单确认0.0.1 (25)。43旧包与未提交源码/恢复备份保留。
 
-主候选39012448991/56e63f7实际Linux135/四长TXT Release已通过，完整Core artifact摘要/CRC/来源身份核完并清重复ZIP/分片；Apple完整145项/Release25和最新原生仍待核，旧轮结果不继承。关机取消。
+原生复核：113张原生PNG/19表均已实际查看；本轮字体两列/六字单行/无内框与紧凑排版、浅深色/持久化等所列状态可接受，21张原生界面/正文Preview与6张透明CoreText字形诊断分开。16条阅读UI原视频保留，本轮只看4条完整1秒总览/19表，以及3个选定原始VFR窗口83帧/8表，保留原PTS、无fps滤镜或插值。滚动末段/回弹、初加载槽位和深色过渡尾段已逐帧看过；未宣称全手势、全部视频、全动效或手机FPS通过。旧TXT字体隔离图空白、加载中及若干安全区/顶栏画面明确未作为可读稳态验收，原生页与透明字形诊断不混同。
 
-可恢复收尾工具已备于.cache/recovery：validate_settings_compact.py finish（145项/Release25/完整日志/三锁/532blob），record_settings_compact_linux.py（已实核），review_settings_compact.py prepare/overview compact|browser|appearance|font（预计113PNG/16阅读视频，具体以manifest为准），review_settings_compact_raw.py（原PTS/不插帧），finalize_settings_compact_native.py（只填实际手看notes），deliver_settings_compact.py package/preserve/verify，finish_settings_compact_docs.py，retain_settings_compact_ci.py plan/apply。后者均有实际门槛，尚未执行，不得用模板当结果。唯一watcher exec session96653/主CI39012448991；先核进程/实际run再恢复，不重复触发CI。完成后仍不开关机助手。
+手机首次进入/快速反复滚动的实际流畅度、内存/功耗、普通签名/TrollStore、系统大字/VoiceOver/减少动效与旋转完整矩阵仍待验收；不把自动检查或原生素材当手机性能。旧暂停安全区与分页快照问题仍按独立范围记录。字体删除、集合/可变轴、单书覆盖、自定义配色/独立四边距尚未实现。M4未完，下一步先收本片手机滚动/易读反馈并核旧安全区，再按计划统一目录/书签/搜索主题，不提前M5。
 
-候选复查修正（尚未新编译）：合并卡片误使publisherStyles也禁用页边距，现只对原段落/对齐控件禁用，页边距仍可调，新增用例补实际enabled断言；紧凑样例改六字单行以免9字在156pt栏宽末字折行。56e/39012448991继续独立跑完，尚无最终结果，不取消/不当源码失败；其自动门槛不继承到新源。现在重新Windows/冻源/新ref全CI，本轮后续只以新源门槛为准。
+本地CI保留本轮39014160303完整诊断，历史大原件按AGENTS收敛，旧文字日志/summary/metadata/验证记录保留；精确边界见m4-settings-build25-ci-retention.json。历史“大原件仍在本地”描述只代表当时快照，不能越过清理回执；交付包/素材/源码/恢复ZIP不清理。历史结果不继承为本源门槛。
 
-当前实际主watcher exec session61579 / CI39014160303；旧watcher96653 / CI39012448991只待其独立结束取日志/历史记录，不用于交付。后续脚本均读取M4_SETTINGS_COMPACT_VALIDATION_REPORT.json主run，勿用旧Build24帮手改旧报告。冻结后不再推测性修改，待当前完整实际结果与原生材料。无关机助手。
+以下Build24及更早为历史。
 
-主候选39014160303/f90a33c实际Linux135/四长TXT Release已通过，完整Core artifact摘要/CRC/来源身份核完并清重复ZIP/分片；Apple完整145项/Release25和最新原生仍待核，旧轮结果不继承。关机取消。
 
-旧56e/39012448991已实际结束failure142/145、0源compiler诊断，新增缓存及紧凑UI均过；失败为原字体重开377行blank加载、原TXT慢滚navigationFailed、原两字体UI完成后返回书库AX不可见同步。Release未执行，原watcher96653已退出。完整日志2,949,760B及metadata/history已保存，不追认为新源错误修复或成功；f90/39014160303继续独立验证，唯一主watcher61579。
+## 保全与任务
 
-旧候选原生限定预检：16选定附件CRC真，仅range13,757,635B，未下载/核完整1.45GB归档；重复range块已清。已实看浅/深两列及一屏排版3PNG，内图矩形消失；9字末字折行实见，新f90已六字单行。失败AX明确有reader.position.save-error“当前位置尚未稳定”，设置页因保存失败保持，返回AX失败不能仅称点击同步。错误位于当前视口下方；根因及主源是否复现待新完整结果，不修改旧断言、不把旧预检当新门槛。见m4-settings-build25-first-preflight.json。
+正常HEAD6d761749/空index/M2 e6f31d85/M3 44af41f0保持，私有index维护codex/m4-reading-appearance。开工975原路径、532编译blob、43旧包+2新包和15恢复ZIP的最终核验见build/ci/39014160303/final-preservation-check.json；最后快照/远端/任务以实际最终回执为准。恢复先AGENTS→状态→交接→路线→架构，核实际Git/文件/完整日志/任务，不假定最后一步已成功。
+
+用户已明确取消关机。本轮未启动任何关机助手、未发关机命令或调度；保持开机，历史授权不适用。全设备/性能仍未验收，M4未完。
+
+收尾清理实际完成：旧39005962891/39012448991的2464项大文件、1730009709字节（1649.9MiB）已移除，100项文字日志/元数据保留；当前39014160303完整诊断、45根包及15恢复ZIP/源码保护。测试包说明中的菜单版本已核正为(25)，其他成员原字节及内部IPA保持，最终SHA见上方及package-instruction-correction回执。最终已核988维护文件、532编译blob、全部975开工原路径、45根包与15恢复ZIP，正常HEAD/空index/M2/M3保持；实际最终tip/远端/任务另见build/ci/39014160303/final-preservation-check.json及final-delivery-receipt.json。保持开机。

@@ -1,0 +1,11 @@
+{
+  "recordedAtUTC": "2026-10-17T08:54:18.906027+00:00",
+  "reason": "TESTING.txt menu version corrected from 24 to actual Build25; no app binary or other ZIP member bytes changed",
+  "oldSHA256": "e06d30c646d8656615d7e20c953272ab93cf7a3c1cd3b002439d7bbc35bcfb3a",
+  "finalSHA256": "4982895832fa29582967d53767e9d0ee62b9ad26e6410fc31003e56e9fbb5fc8",
+  "bytes": 82665399,
+  "zipCRC": true,
+  "allOtherMemberHashesUnchanged": true,
+  "members": 57,
+  "ipaUnchanged": true
+}

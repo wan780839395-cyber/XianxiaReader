@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-17T06:27:43.546749+00:00",
+  "recordedAtUTC": "2026-10-17T08:54:50.861722+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 974,
+  "fileCount": 988,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 31805,
-      "sha256": "cdf2ed4f4ab68346b9ae28f7ee84ef4046cae9f972e043406712ec4ed124776a"
+      "bytes": 32425,
+      "sha256": "c13b3b203b6f041fb78b6bf4574a298c1574fb141b59f59842958304069e0538"
     },
     {
       "path": "App/AppRootView.swift",
@@ -135,8 +135,8 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "bytes": 23703,
-      "sha256": "afbc933fbc4a77231483a7264f2b9985202158edfa57a201c52b8f5ba6bda05f"
+      "bytes": 24552,
+      "sha256": "e737f4145f32fa77ed7104894a50db048c7efdba012eec34895a7336b6686840"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -170,13 +170,13 @@
     },
     {
       "path": "App/Reader/ReadingFontPreview.swift",
-      "bytes": 1988,
-      "sha256": "8676659dc624f524dca8c526957898b1ab04006be01411b631b92c83efa44439"
+      "bytes": 2528,
+      "sha256": "a96a8565e68db411f067cf54da28a86a158d4b18d5de3617c90399de593119aa"
     },
     {
       "path": "App/Reader/ReadingFontPreviewRenderer.swift",
-      "bytes": 5127,
-      "sha256": "5a9d625b03d25b6d7dc90ca71b3b228300b5c23e4d8d05bfd7fb674865018b81"
+      "bytes": 5959,
+      "sha256": "86e410a4b5b99b299f36188a9b5cfd5fadbba20e6b0192d0615bc9932f2b77fe"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -315,8 +315,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 72548,
-      "sha256": "1538f50a430dac96e14b35f6d973c7ff22ee7772f9f1a9653a99e622025117d5"
+      "bytes": 76725,
+      "sha256": "b6a93d68023b5cf4e4bf776b49ac3fc08531092e49a4e96fc861542b100a82b0"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -325,8 +325,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 44465,
-      "sha256": "9f20ad5a08c2ed73ab7472c7664fe1a30cb9c0a74b7634f163b1f809ad76d274"
+      "bytes": 48642,
+      "sha256": "42890fb18e55a86efec6033079baaed422052ba8f3600bcd11b3608851fe4a59"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -339,9 +339,19 @@
       "sha256": "81db4ce93979a5312cf516c0562f71804769710c5e64a4bcce9f6341da334d27"
     },
     {
+      "path": "Documentation/HANDOFF_BUILD24_DELIVERY_2026-10-17.md",
+      "bytes": 6365,
+      "sha256": "ad4dd9ac1f50b9e7aacd6a56612aff6313f01d85563a9acfde368c8ef13ad8ae"
+    },
+    {
       "path": "Documentation/HANDOFF_BUILD24_DEVELOPMENT_2026-10-17.md",
       "bytes": 22841,
       "sha256": "7dc45f7bed4ca35e7d9f76b7d4ee951fb035fd678a8c9af8fe76dca5783f9b3a"
+    },
+    {
+      "path": "Documentation/HANDOFF_BUILD25_DEVELOPMENT_2026-10-17.md",
+      "bytes": 7460,
+      "sha256": "520d20ff3a210166d98686c8ee511c4983c1f424b686a0404af35eed1890e4ea"
     },
     {
       "path": "Documentation/HANDOFF_HISTORY_2026-10-13.md",
@@ -680,8 +690,8 @@
     },
     {
       "path": "Documentation/M4_FONT_PREVIEW_VALIDATION_REPORT.json",
-      "bytes": 162110,
-      "sha256": "c43c8da245c2a8a3b8c6791615a8e53f3a5eb9ce4879aae6abca44b4a9f68555"
+      "bytes": 166081,
+      "sha256": "e08d6af53a2676f3d1f166896f39b854ca7bda02569dc17506702db35a1765b9"
     },
     {
       "path": "Documentation/M4_FONT_VALIDATION_REPORT.json",
@@ -722,6 +732,11 @@
       "path": "Documentation/M4_SCREEN_VALIDATION_REPORT.json",
       "bytes": 332501,
       "sha256": "d1b319db524726fdceca25a44179e549d2452fde274e9a03a442232a98d6e8ed"
+    },
+    {
+      "path": "Documentation/M4_SETTINGS_COMPACT_VALIDATION_REPORT.json",
+      "bytes": 153252,
+      "sha256": "a7d71aa7562e40262ee8b026c2734c5dc379f4a16463ce5cc59fb0105c67145d"
     },
     {
       "path": "Documentation/MATURE_READER_REFERENCES.md",
@@ -765,8 +780,8 @@
     },
     {
       "path": "Documentation/READING_FONT_BROWSER_DESIGN.md",
-      "bytes": 13219,
-      "sha256": "0fc080299ccedba650b9545f1936a875c9bfbfb9e6bf4c50c1702b986f59259f"
+      "bytes": 13479,
+      "sha256": "debc756ab4d1c44430b3a2ba6ac4c45b5ead1061ecd0f3e75cf14a02d1726bda"
     },
     {
       "path": "Documentation/READING_FONT_IMPORT_DESIGN.md",
@@ -802,6 +817,11 @@
       "path": "Documentation/READING_SCREEN_STABILITY_DESIGN.md",
       "bytes": 7414,
       "sha256": "1d88baad3574d69e1c423394386908fef214c05264015e8b92c20886b62cf44a"
+    },
+    {
+      "path": "Documentation/READING_SETTINGS_COMPACT_DESIGN.md",
+      "bytes": 8272,
+      "sha256": "dd674bb5d39c45575762a9ed915aedd2af76f59d3c55de881bd7ec427da19e28"
     },
     {
       "path": "Documentation/READING_UI_DESIGN.md",
@@ -2364,6 +2384,56 @@
       "sha256": "04b993eda8dacc4cffdf0d7237e6708bcc3e235a97022a440333d1cea62bf241"
     },
     {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-ci-retention.json",
+      "bytes": 815218,
+      "sha256": "0a96603993d906b7bfcc02be656359b9997326a0593ef73756b344d7d3d06b04"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-first-preflight.json",
+      "bytes": 2008,
+      "sha256": "07491c827e7be9e8f041b8d1f9a97e6188943a75464702ea84901e3d5071b6de"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-history-39012448991.json",
+      "bytes": 41627,
+      "sha256": "9684c4c327b9b0c2bea9537c99e0b0cd3a38ec37494c57cc540199e61e493302"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-native-review.json",
+      "bytes": 127322,
+      "sha256": "c88ddff6079724912ba8d8300735c2f3a2c8426cabcb726219b511978777c4c2"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-package-instruction-correction.json",
+      "bytes": 472,
+      "sha256": "aed58df7878fac8d31a7d0e2f2a83ddc6622753974f1aa89e38cd9e081b4eb27"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-runtime-diagnostics.json",
+      "bytes": 791,
+      "sha256": "1c6d3316c825a2644fa31b7354c2b08309068d49634160a6821559992af66798"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-start.json",
+      "bytes": 184174,
+      "sha256": "1d618f435ba7f995e55e141cdf32736d9ab1b0c39cf87f803579ccf5311a7385"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-success.json",
+      "bytes": 20744,
+      "sha256": "213b4be2ac7badadbc05670e7a320f026e527ba308030072b9a35f2f9163f926"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-test-kit.json",
+      "bytes": 22879,
+      "sha256": "0484d3351c4db65411509425e0cbc1e393d56189a8ff85921d9ccbfda0826636"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-settings-build25-windows.json",
+      "bytes": 760,
+      "sha256": "b05b245c73ea4a60febc1faf3686ce44688e815c4a617c19565419e9ea6c98e0"
+    },
+    {
       "path": "Documentation/ValidationLogs/publication-audit-2026-10-14.json",
       "bytes": 831,
       "sha256": "af65c958376cdc5c0d90e2a93417c17717492e2034e8eecf2736a3a3f1bfc202"
@@ -2395,8 +2465,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 6365,
-      "sha256": "ad4dd9ac1f50b9e7aacd6a56612aff6313f01d85563a9acfde368c8ef13ad8ae"
+      "bytes": 5513,
+      "sha256": "93cb268aed71b082560b653c266cb05e97bbee5e88efad8b313fdddaa9e599c6"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -2470,8 +2540,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 81751,
-      "sha256": "b9a2d214a5e0e025ded2b87aefa177a1f10e1032879dbb5360b9fea4923568a7"
+      "bytes": 86283,
+      "sha256": "1276f612fdf69a3fbac1b29fc0ed99f86d155eedaf0b8f87d72d8170d35984f0"
     },
     {
       "path": "Package.resolved",
@@ -2840,13 +2910,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 52384,
-      "sha256": "37c3496430d3a98db65ac8500d060a09af222e3da71b1072a259a85ea07ac0a3"
+      "bytes": 56561,
+      "sha256": "bf876fe19ddee0729ee58900304441a8c21ba7595f90fb78c12241c660473a43"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 71783,
-      "sha256": "cf959ba55bab4df3367f1e375a3c18718957caded582eacde201dc19cca9735e"
+      "bytes": 75960,
+      "sha256": "f205e6028cedd8ca00eaef7b5677054ea23afa226f955cd3dd65a1c66e4816b5"
     },
     {
       "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",
@@ -2915,8 +2985,8 @@
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "bytes": 9941,
-      "sha256": "35e7cb9e17fad06084907d3364e7c0f46b5a0a21b7067a2c8fca7c803eab067f"
+      "bytes": 13645,
+      "sha256": "985cdd3a43e53a093ca17ab1fd0a0167d81a9be3154630aeef2b182c4d539830"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -2970,8 +3040,8 @@
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "bytes": 13426,
-      "sha256": "19aa4e9f9a62d15db50413bcb9b8fa32e50ccd775ffae8e34b557393c6b33229"
+      "bytes": 15706,
+      "sha256": "426cf32b7b3352936061bf27cd46738b17164d55329135e7c4d0a757dc346564"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -4771,7 +4841,7 @@
     {
       "path": "project.yml",
       "bytes": 2716,
-      "sha256": "70fc328b5256faf4cf1cfd8a8f357a36f0b8779fb5e0fc981c96e09154431912"
+      "sha256": "602514400264c42b9df92bd884617e2904eb4ce0079974c4516cd51385d67cc3"
     },
     {
       "path": "scripts/check_repository.py",

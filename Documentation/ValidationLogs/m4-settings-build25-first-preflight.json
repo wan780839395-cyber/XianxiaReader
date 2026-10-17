@@ -18,5 +18,21 @@
     "Failure AX contains reader.position.save-error: reading position not stable; settings sheet remained because saveNow correctly rejected stale/unavailable capture. Back-button AX failure is not merely tap timing. Error is below current viewport. Underlying reading stability root cause and current source result remain unproven."
   ],
   "currentSourceGate": false,
-  "deviceAccepted": false
+  "deviceAccepted": false,
+  "observedWebContentLaunchSeconds": {
+    "count": 13,
+    "maximum": 33.558788,
+    "over10Seconds": [
+      33.463284,
+      33.558788,
+      12.774149
+    ],
+    "scope": "Actual log timing, not a proven host/root cause or an excuse to pass failed tests."
+  },
+  "logSHA256": "c7067c934724df40a35b28bda8ac9861e989be1cd79bcd8cecca72e5e154678f",
+  "localRawEvidenceRetention": {
+    "rawMediaRemain": false,
+    "retentionRecord": "Documentation/ValidationLogs/m4-settings-build25-ci-retention.json",
+    "scope": "Selected first-candidate PNG/MP4/range blocks removed after current delivery; inspection facts and complete old text log/summary/metadata remain."
+  }
 }

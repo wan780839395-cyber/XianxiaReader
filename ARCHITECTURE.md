@@ -1,5 +1,10 @@
 # 架构与技术决策
 
+## Build25 原生字形与紧凑设置
+
+ReadingFontPreviewRenderer actor直接给SwiftUI传递已绘制CGImage，透明alpha由原生template着色，UI不PNG编解码；保留一个CGFont与12图/8MiB像素上限。State保留请求身份和图，取消/过期结果不发布；加载/失败/图使用稳定尺寸，主题不触发字体I/O。固定分组、两列字体/辅助功能大字单列、紧凑排版行只调整App界面，不改Core/Readium/DB/完整位置/资源窗口/默认偏好。全部实现/验证与手机限制见READING_SETTINGS_COMPACT_DESIGN.md及M4_SETTINGS_COMPACT_VALIDATION_REPORT.json。
+
+
 ## Build24 设置内字形与排版
 
 Core保留Foundation可选字距/字重/缩进字段和旧JSON；Adapter映射Readium3.11公开偏好，资源字体重排先等真实DOM采样成功（3s/32ms、请求/nav/取消守卫），避免隐藏初始化页锚点覆盖。中文横排CSS复用同版默认样式的显式字距/缩进规则，仍受advanced标志限制并登记UPSTREAM。App独立CoreText actor保留一个CGFont和12张短样例PNG，真实fileURL不全局注册，Lazy列表取消过期请求。六只读Bundle字体/原OFL不占12用户名额，资源目录18、正文窗口12；无新schema、整本正文、JS或依赖变更。详细来源/范围及实际门槛见READING_FONT_BROWSER_DESIGN.md与M4_FONT_PREVIEW_VALIDATION_REPORT.json。
