@@ -1,6 +1,6 @@
 # 项目状态
 
-当前进行中：Build24六款字体、设置内真实字形预览与字距/字重/缩进等扩展。Windows435语法/17工具通过、38原测试主体保持/6新增/532源码blob已冻结，完整Core135各/iOS138/Release24和原生尚待新CI。当前可安装基线仍Build23。设计READING_FONT_BROWSER_DESIGN.md，断点HANDOFF.md。
+当前进行中：Build24六款字体、真实字形预览与更多排版。最新b943613/CI39000103869已实际启动，补同版官方中文横排字距/缩进规则；Windows435语法/17工具、38原测试主体保持/6新增/532源码blob已核。新Core135各/iOS138/Release24/原生仍待实际结果。前63a旧轮实际134/138且20真UI全过，失败和完整日志留档，不继承为新源成功；当前已交付仍Build23。详见HANDOFF.md与READING_FONT_BROWSER_DESIGN.md。
 
 ## 2026-10-17 本地磁盘清理
 

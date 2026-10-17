@@ -1,10 +1,10 @@
 # 当前交接与恢复点
 
-当前唯一交付主候选：63a44eb1f86a3619e7b16fa5ea1028214ece37c0 / codex/m4-font-browser-initial-ready / CI38961037839。已实际dispatch，435语法/17工具/38原主体/6新增/532blob重冻；运行源码与454相同，仅新竞态测试先等真正可读页与每次翻页成功。完整新Core135各/iOS138/Release24和原生待核，旧结果不能代替。关机尚未启动。
+当前唯一交付主候选：b9436136a26cad4f62140f0df960e99657c1ff1e / codex/m4-font-browser-cjk / CI39000103869。已实际dispatch，435语法/17工具/38原主体/6新增/532blob已冻，中文横排加入同版官方字距/缩进规则。新Core135各/iOS138/Release24/原生全部待核；旧轮失败完整留档，尚无Build24交付，关机未启动。
 
 ## Build24 当前可恢复操作（实际仍在验证）
 
-主源63a44eb/CI38961037839，Windows435/17已重核；新Linux/Apple/138项/Release/原生未通过前不交付、不关机。旧872/38954435197与cc7/38956008602仍独立运行，首两轮实际133/137、135/137失败已写m4-font-preview-build24-history-*.json，未取消。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
+主源b943613/CI39000103869，Windows435/17已重核；新Linux/Apple/138项/Release/原生未通过前不交付、不关机。旧872/38954435197与cc7/38956008602仍独立运行，首两轮实际133/137、135/137失败已写m4-font-preview-build24-history-*.json，未取消。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
 
 本机Python3.11与gh在.cache/tools/gh_2.102.0/bin/gh.exe。以下帮手都在.cache/recovery（忽略但已落盘），不要调用旧Build23交付帮手：watch_autoscroll.py RUN；download_font_preview_artifact.py RUN ARTIFACT core|apple|ipa（完整摘要/CRC/提取后清重复分片ZIP）；inspect_continuous_ipa.py IPA 24；validate_font_preview.py finish（135Core/138iOS/Release24/三锁/532blob/真实许可）。full.log/artifacts.json来自实际完成run，不能仅看网页尾部。Python17与435语法是Windows检查，不算编译。
 
@@ -56,3 +56,5 @@ c661/38951246101也已实际失败，0源compiler诊断：同一个新测试负Y
 当前正在落实断点：cc7/454两轮实136/138、20真UI全过，连续新测试实际已保留char474与Y约-9.48，但组合CSS断言不满足。核固定Readium3.11官方与本地同版资源，CJK-horizontal缺paraIndent和letterSpacing模块，默认资源包含；现只把默认文件的原规则原样复制到中文横排after.css，沿用advanced标志使原书样式保留规则不变，UPSTREAM登记本地差异与sha，JS/依赖不改。新测试另输出有界无正文的family/weight/spacing/indent/Y诊断，不降低char>100/Y3px/CSS/字形/重开断言。分页新测试按原成熟测试用3次已确认移动，减少无关翻页动画；800ms隐藏重排中再换字及原字可见仍保留。修改后须重新435语法/17工具/38原主体/6新增/532blob冻结及独立完整CI；当前补丁未编译，不算通过。源验证通过和原生/交付/保存后再执行本轮已授权正常关机。
 
 中文CSS补丁构建前检查点：已从同版默认after.css原样补两模块、UPSTREAM原baseline保持并登记本地差异；新分页用3次确认翻页与已有reduceMotion准备，800ms隐藏重排/char>100/最终原字断言保留，连续测试保留3px/CSS/真实字形/重开并输出无正文指标。Windows435/新增0、17工具、38原主体/6新增/532blob通过。现在冻结快照并新ref全量CI，不继承63a旧结果；尚未新Apple编译/原生/Release，Build23仍唯一已交付包。
+
+b943613/39000103869实际Linux135及四Release长TXT通过，artifact12088563226/116230B已摘要/CRC/完整提取并清重复ZIP/分片；新Apple/138/Release与原生尚待。未启动关机，旧安装包/恢复备份仍保留。

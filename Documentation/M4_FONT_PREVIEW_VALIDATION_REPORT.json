@@ -209,7 +209,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -217,7 +217,7 @@
     "Build24DeviceAccepted": false,
     "M4Complete": false
   },
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839",
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39000103869",
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
@@ -2405,9 +2405,9 @@
   "expectedIOS": 138,
   "expectedIntegration": 118,
   "expectedUI": 20,
-  "run": 38961037839,
-  "sourceRevision": "63a44eb1f86a3619e7b16fa5ea1028214ece37c0",
-  "branch": "codex/m4-font-browser-initial-ready",
+  "run": 39000103869,
+  "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+  "branch": "codex/m4-font-browser-cjk",
   "priorCandidates": [
     {
       "run": 38950061245,
@@ -2449,7 +2449,11 @@
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956008602",
       "branch": "codex/m4-font-browser-coordinate",
       "reason": "Superseded by directly observed native sample rectangle polish: transparent compact glyph background and real alpha/ink regression",
-      "expectedIOS": 138
+      "expectedIOS": 138,
+      "conclusion": "failure",
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38956008602.json",
+      "actualIOSPassed": 136,
+      "actualIOSFailed": 2
     },
     {
       "run": 38956512671,
@@ -2457,262 +2461,25 @@
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38956512671",
       "branch": "codex/m4-font-browser-polish",
       "reason": "Only new rapid-font test preparation waits for actual initial font/page readiness and accepted page movement; production runtime identical",
-      "expectedIOS": 138
+      "expectedIOS": 138,
+      "conclusion": "failure",
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38956512671.json",
+      "actualIOSPassed": 136,
+      "actualIOSFailed": 2
+    },
+    {
+      "run": 38961037839,
+      "sourceRevision": "63a44eb1f86a3619e7b16fa5ea1028214ece37c0",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839",
+      "branch": "codex/m4-font-browser-initial-ready",
+      "reason": "Superseded after official same-version CJK CSS rules were found absent; new test preparation uses mature three-page setup and detailed typography diagnostics",
+      "expectedIOS": 138,
+      "conclusion": "failure",
+      "historicalTextEvidence": "Documentation/ValidationLogs/m4-font-preview-build24-history-38961037839.json",
+      "actualIOSPassed": 134,
+      "actualIOSFailed": 4
     }
   ],
-  "linuxCoreTests": 135,
-  "latestRun": {
-    "conclusion": "failure",
-    "createdAt": "2026-10-16T20:16:25Z",
-    "databaseId": 38961037839,
-    "headBranch": "codex/m4-font-browser-initial-ready",
-    "headSha": "63a44eb1f86a3619e7b16fa5ea1028214ece37c0",
-    "jobs": [
-      {
-        "completedAt": "2026-10-16T20:16:37Z",
-        "conclusion": "success",
-        "databaseId": 117175852836,
-        "name": "repository-checks",
-        "startedAt": "2026-10-16T20:16:29Z",
-        "status": "completed",
-        "steps": [
-          {
-            "completedAt": "2026-10-16T20:16:30Z",
-            "conclusion": "success",
-            "name": "Set up job",
-            "number": 1,
-            "startedAt": "2026-10-16T20:16:30Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:32Z",
-            "conclusion": "success",
-            "name": "Run actions/checkout@v4",
-            "number": 2,
-            "startedAt": "2026-10-16T20:16:30Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:33Z",
-            "conclusion": "success",
-            "name": "Run actions/setup-python@v5",
-            "number": 3,
-            "startedAt": "2026-10-16T20:16:32Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:34Z",
-            "conclusion": "success",
-            "name": "Install static validation dependencies",
-            "number": 4,
-            "startedAt": "2026-10-16T20:16:33Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:35Z",
-            "conclusion": "success",
-            "name": "Validate repository and Swift syntax",
-            "number": 5,
-            "startedAt": "2026-10-16T20:16:34Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:35Z",
-            "conclusion": "success",
-            "name": "Test simulator selection and IPA packaging safeguards",
-            "number": 6,
-            "startedAt": "2026-10-16T20:16:35Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:35Z",
-            "conclusion": "success",
-            "name": "Post Run actions/setup-python@v5",
-            "number": 11,
-            "startedAt": "2026-10-16T20:16:35Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:36Z",
-            "conclusion": "success",
-            "name": "Post Run actions/checkout@v4",
-            "number": 12,
-            "startedAt": "2026-10-16T20:16:35Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:16:36Z",
-            "conclusion": "success",
-            "name": "Complete job",
-            "number": 13,
-            "startedAt": "2026-10-16T20:16:36Z",
-            "status": "completed"
-          }
-        ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839/job/117175852836"
-      },
-      {
-        "completedAt": "2026-10-16T20:18:23Z",
-        "conclusion": "success",
-        "databaseId": 117175928012,
-        "name": "core-tests",
-        "startedAt": "2026-10-16T20:16:40Z",
-        "status": "completed",
-        "steps": [
-          {
-            "completedAt": "2026-10-16T20:16:42Z",
-            "conclusion": "success",
-            "name": "Set up job",
-            "number": 1,
-            "startedAt": "2026-10-16T20:16:41Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:17:15Z",
-            "conclusion": "success",
-            "name": "Initialize containers",
-            "number": 2,
-            "startedAt": "2026-10-16T20:16:42Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:17:18Z",
-            "conclusion": "success",
-            "name": "Run actions/checkout@v4",
-            "number": 3,
-            "startedAt": "2026-10-16T20:17:15Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:17:26Z",
-            "conclusion": "success",
-            "name": "Install SQLite development headers inside test container",
-            "number": 4,
-            "startedAt": "2026-10-16T20:17:18Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:17:42Z",
-            "conclusion": "success",
-            "name": "Compile and test Core with official Swift toolchain",
-            "number": 5,
-            "startedAt": "2026-10-16T20:17:26Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:18Z",
-            "conclusion": "success",
-            "name": "Measure Release TXT cold import and bounded long-book reopen",
-            "number": 6,
-            "startedAt": "2026-10-16T20:17:42Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:20Z",
-            "conclusion": "success",
-            "name": "Upload Core compilation and test logs",
-            "number": 7,
-            "startedAt": "2026-10-16T20:18:18Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:20Z",
-            "conclusion": "success",
-            "name": "Post Run actions/checkout@v4",
-            "number": 13,
-            "startedAt": "2026-10-16T20:18:20Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:21Z",
-            "conclusion": "success",
-            "name": "Stop containers",
-            "number": 14,
-            "startedAt": "2026-10-16T20:18:20Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:21Z",
-            "conclusion": "success",
-            "name": "Complete job",
-            "number": 15,
-            "startedAt": "2026-10-16T20:18:21Z",
-            "status": "completed"
-          }
-        ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839/job/117175928012"
-      },
-      {
-        "completedAt": "2026-10-16T21:09:07Z",
-        "conclusion": "failure",
-        "databaseId": 117176650455,
-        "name": "ios",
-        "startedAt": "2026-10-16T20:18:32Z",
-        "status": "completed",
-        "steps": [
-          {
-            "completedAt": "2026-10-16T20:18:34Z",
-            "conclusion": "success",
-            "name": "Set up job",
-            "number": 1,
-            "startedAt": "2026-10-16T20:18:33Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T20:18:39Z",
-            "conclusion": "success",
-            "name": "Run actions/checkout@v4",
-            "number": 2,
-            "startedAt": "2026-10-16T20:18:34Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T21:07:24Z",
-            "conclusion": "failure",
-            "name": "Build, test, and package unsigned IPA",
-            "number": 3,
-            "startedAt": "2026-10-16T20:18:39Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T21:08:49Z",
-            "conclusion": "success",
-            "name": "Upload build logs, test results, project, and resolved packages",
-            "number": 4,
-            "startedAt": "2026-10-16T21:07:24Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T21:08:49Z",
-            "conclusion": "skipped",
-            "name": "Upload unsigned device IPA",
-            "number": 5,
-            "startedAt": "2026-10-16T21:08:49Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T21:08:50Z",
-            "conclusion": "success",
-            "name": "Post Run actions/checkout@v4",
-            "number": 10,
-            "startedAt": "2026-10-16T21:08:49Z",
-            "status": "completed"
-          },
-          {
-            "completedAt": "2026-10-16T21:09:05Z",
-            "conclusion": "success",
-            "name": "Complete job",
-            "number": 11,
-            "startedAt": "2026-10-16T21:08:50Z",
-            "status": "completed"
-          }
-        ],
-        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839/job/117176650455"
-      }
-    ],
-    "status": "completed",
-    "updatedAt": "2026-10-16T21:09:07Z",
-    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38961037839"
-  },
-  "latestActualFailure": "Documentation/ValidationLogs/m4-font-preview-build24-history-38961037839.json"
+  "latestActualFailure": "Documentation/ValidationLogs/m4-font-preview-build24-history-38961037839.json",
+  "linuxCoreTests": 135
 }
