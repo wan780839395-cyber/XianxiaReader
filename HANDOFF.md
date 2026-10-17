@@ -17,3 +17,9 @@
 审查断点：新增搜索按压样式已尊重系统Reduce Motion，但遗漏传递持久化interaction.reduceMotion。Agent已请求取消首候选39023086030，实际Apple未完成阶段/已执行测试须等完整日志核实，不能称源码失败。将补传偏好后用新源完整验证；首轮Linux135/4探针是旧候选独立证据，不继承为新门槛。
 
 修正后新构建前：搜索按钮显式接interaction.reduceMotion；第二个新增UI测试改用真实设置开关保存并重开核值1，未用强制环境替代该路径。436语法新增0/17工具、11原test主体/533blob再次核过。即将冻结新源并触发独立完整CI；旧轮取消原因与实际执行阶段保留。
+
+修正后完整CI实际分发39023478476/sourceac8b387ee0dd023d3053da7463d50d70a9be7dcf/codex/m4-reading-panels；所有门槛重新验证，不使用3c250618旧轮结果。旧watcher仍负责39023086030最终日志，新的负责39023478476。目录与书签仍无逐行装饰动画；搜索按压样式兼顾系统/持久化额外减少动效。
+
+旧39023086030已实际completed/cancelled，watcher正常退出，完整日志204586B与完整metadata保留。Apple已观察135 Core条目、iOS完成0，无TEST/设备BUILD成功标记；日志内源码compiler诊断0条。5MB诊断artifact已整包SHA/CRC校验，仅保留文字日志/summary/metadata，原ZIP/分片删除；不是iOS或设备构建通过，见first-agent-cancel证据。新39023478476独立验证中。
+
+新源ac8b387e的Core135/4组Release探针已独立核实，artifact12097543187/116234B完整SHA/CRC/编译源校验提取，重复分片/ZIP删除；Apple仍待完成。generic linux证据现对应新源，旧3c250618证据已按run保存为m4-panels-build26-linux-39023086030.json，各轮不混同。

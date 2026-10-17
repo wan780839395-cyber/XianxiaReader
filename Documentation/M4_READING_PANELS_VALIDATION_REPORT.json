@@ -229,13 +229,16 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
     "desktopLongTXTValidated": false,
     "Build26DeviceAccepted": false,
-    "M4Complete": false
+    "M4Complete": false,
+    "ordinarySignedDeviceAccepted": false,
+    "TrollStoreDeviceAccepted": false,
+    "devicePerformanceAccepted": false
   },
   "sourceHashes": [
     {
@@ -2394,10 +2397,8 @@
   "expectedIOS": 147,
   "expectedIntegration": 124,
   "expectedUI": 23,
-  "sourceRevision": "3c250618d8814a407588d5d760c717566711893c",
+  "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
   "branch": "codex/m4-reading-panels",
-  "run": 39023086030,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023086030",
   "priorCandidates": [
     {
       "run": 39023086030,
@@ -2407,9 +2408,28 @@
       "reason": "Agent review: new search press style must also receive the persisted application reduceMotion preference. Superseded while Apple step executing; not a claimed source/test failure.",
       "agentRequestedCancellation": true,
       "delivered": false,
-      "linuxEvidence": "Documentation/ValidationLogs/m4-panels-build26-linux.json",
+      "linuxEvidence": "Documentation/ValidationLogs/m4-panels-build26-linux-39023086030.json",
       "appleStageAtCancel": "Build, test, and package unsigned IPA",
-      "appleResultUnverified": true
+      "appleResultUnverified": true,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "actualEvidence": "Documentation/ValidationLogs/m4-panels-build26-first-agent-cancel.json",
+      "iOSCompletedCasesObserved": 0,
+      "releaseSucceeded": false
     }
-  ]
+  ],
+  "run": 39023478476,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023478476",
+  "partialVerification": {
+    "recordedAtUTC": "2026-10-17T10:07:12.414811+00:00",
+    "run": 39023478476,
+    "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
+    "coreTests": 135,
+    "releaseTXTProbes": 4,
+    "allProbeChecksPassed": true,
+    "logSHA256": "8944e26d279f01e0095724a8fd406749b20a677976db603a17b784b99c72cc5c",
+    "performanceSummarySHA256": "9390f5b7e2d87b8c10d6a1a3a7bcf7032af6a3f5482048cadf5c48cf79ccaf04",
+    "appleNotVerifiedYet": true,
+    "deviceAccepted": false
+  }
 }
