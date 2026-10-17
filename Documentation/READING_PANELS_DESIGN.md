@@ -34,3 +34,5 @@ Windows运行仓库/Swift语法与工具tests；独立CI Core各135+iOS预计147
 ac8b387e/39023478476实际145/147。SwiftUI TextField外层frame44并未使原生编辑AX元素超过22，因此保留44断言，采用Apple公开[UIViewRepresentable sizeThatFits](https://developer.apple.com/documentation/swiftui/uiviewrepresentable/sizethatfits(_:uiview:context:))（官方availability iOS16起）直接布局UITextField，最低44且随系统正文字号增高。原生[UITextFieldDelegate](https://developer.apple.com/documentation/uikit/uitextfielddelegate)同步焦点/键盘Return、editingChanged仍走setQuery，dismantle解除代理；更新不覆盖[markedTextRange](https://developer.apple.com/documentation/uikit/uitextinput/markedtextrange)的活动中文组合及光标，用户明确清空可丢弃组合。新增真实UIWindow中文组合→切深色→保持marked range/光标→清空→新词/收键盘集成检查；两原新增UI保持44与原定位断言。手工查看当前4图发现删除继承浅绿/白字对比不足，显式柔和砖红删除tint，普通匹配/搜索保持灰绿。
 
 另一失败为未修改的旧字体隐藏重排字定位超时，ReaderEngine/原test均与Build25相同；本片不盲补引擎或放宽断言。新源将完整重跑；即使通过也不宣称旧字体时序根因已修复。详细历史与实际4图见m4-panels-build26-history-39023478476.json，失败轮无设备包。
+
+本轮旧字体失败只做源码核对：ReaderEngine的偏好请求身份/3s采样与Vendor分页spreadLoaded/alpha/offset守卫均与Build25一致，UI sheet的改动不进入该集成路径。未证实定位超时根因，不因系统RBS/WebKit日志推断唯一原因；新轮仍执行原完整字体测试，若重复需独立定位而非放宽。当前焦点是公开UIKit输入尺寸/中文组合与面板外观，详见对应冻结源。

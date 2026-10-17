@@ -1,0 +1,12 @@
+{
+  "recordedAtUTC": "2026-10-17T10:07:12.414811+00:00",
+  "run": 39023478476,
+  "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
+  "coreTests": 135,
+  "releaseTXTProbes": 4,
+  "allProbeChecksPassed": true,
+  "logSHA256": "8944e26d279f01e0095724a8fd406749b20a677976db603a17b784b99c72cc5c",
+  "performanceSummarySHA256": "9390f5b7e2d87b8c10d6a1a3a7bcf7032af6a3f5482048cadf5c48cf79ccaf04",
+  "appleNotVerifiedYet": true,
+  "deviceAccepted": false
+}

@@ -229,7 +229,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2410,7 +2410,7 @@
   "expectedIOS": 148,
   "expectedIntegration": 125,
   "expectedUI": 23,
-  "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
+  "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
   "branch": "codex/m4-reading-panels",
   "priorCandidates": [
     {
@@ -2447,6 +2447,18 @@
       "reason": "Native editable field remains22pt though SwiftUI wrapper44; old untouched font-reflow position regression timed out independently; root cause not proven. Four current native states manually inspected; explicit destructive swipe tint also required."
     }
   ],
-  "run": 39023478476,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023478476"
+  "run": 39027324303,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39027324303",
+  "partialVerification": {
+    "recordedAtUTC": "2026-10-17T11:08:19.195287+00:00",
+    "run": 39027324303,
+    "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
+    "coreTests": 135,
+    "releaseTXTProbes": 4,
+    "allProbeChecksPassed": true,
+    "logSHA256": "ee7cea913cf5b4df10fb1b2527aaa7a0b00ee58d072f3603fc58cf655a51975b",
+    "performanceSummarySHA256": "26838c27eb61d4f1e9b1cdbfd74d1a194f4f42f3d160c6fc04f34132b715d466",
+    "appleNotVerifiedYet": true,
+    "deviceAccepted": false
+  }
 }

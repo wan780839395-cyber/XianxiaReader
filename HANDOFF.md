@@ -33,3 +33,7 @@
 完整诊断核实：ac8b387e/39023478476实际145/147(2失败0跳过)，两平台Core各135/test65/export0/summary0/recording0，未执行严格设备Release。完整artifact1541210264B已SHA/CRC/编译源核验提取并删除重复分片/ZIP。实际查看4张原生PNG：日间目录/空书签/深色搜索可读；深色左滑删除继承全局浅绿+白字对比不足，下一源明确柔和砖红色删除。旧字体重排非零字定位超时根因未证实，Engine/原test未动。新增UI的搜索输入AX22pt不放宽断言；改用公开UITextField+UIViewRepresentable sizeThatFits保证真实44pt，并新增真实中文marked-text/光标/换色/清空回归，原2个UI断言保留且首次搜索改原生Return。此时修正源码未Apple编译。
 
 修正后Windows/完整CI前检查点：新增原生输入文件和真实中文组合测试，本源预计438语法、535编译blob、148iOS(125集成+23真UI)。保留旧11个UI test主体和原44pt/定位断言，额外1个真实输入集成测试，不替换旧位置回归。先Windows/源码diff/主体检查后冻结新源。
+
+新修正候选已冻结/完整CI实际分发39027324303 / source5176821d94769f05792ec5cf94048c48057d85c8 / codex/m4-reading-panels，所有门槛重置。438语法/17工具、11原UI主体+3新test、535编译blob核过，原Engine/ReaderRenderingTests未动。旧39023478476 watcher已正常退出，保留完整失败diagnostic和summary；新轮从头验证Core135各/148iOS/严格Release26。此时未Apple验证/交付。
+
+新源5176821d独立Linux135/4组Release探针全过，artifact12098338731/116241B完整SHA/CRC/源身份已核，重复分片/ZIP删除。m4-panels-build26-linux.json现为新源证据；旧ac8b387e Linux副本按39023478476归档。Apple开始整轮，当前所有未通过门槛继续false。

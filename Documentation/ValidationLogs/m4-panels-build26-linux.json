@@ -1,12 +1,12 @@
 {
-  "recordedAtUTC": "2026-10-17T10:07:12.414811+00:00",
-  "run": 39023478476,
-  "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
+  "recordedAtUTC": "2026-10-17T11:08:19.195287+00:00",
+  "run": 39027324303,
+  "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
   "coreTests": 135,
   "releaseTXTProbes": 4,
   "allProbeChecksPassed": true,
-  "logSHA256": "8944e26d279f01e0095724a8fd406749b20a677976db603a17b784b99c72cc5c",
-  "performanceSummarySHA256": "9390f5b7e2d87b8c10d6a1a3a7bcf7032af6a3f5482048cadf5c48cf79ccaf04",
+  "logSHA256": "ee7cea913cf5b4df10fb1b2527aaa7a0b00ee58d072f3603fc58cf655a51975b",
+  "performanceSummarySHA256": "26838c27eb61d4f1e9b1cdbfd74d1a194f4f42f3d160c6fc04f34132b715d466",
   "appleNotVerifiedYet": true,
   "deviceAccepted": false
 }
