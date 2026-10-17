@@ -37,3 +37,7 @@
 新修正候选已冻结/完整CI实际分发39027324303 / source5176821d94769f05792ec5cf94048c48057d85c8 / codex/m4-reading-panels，所有门槛重置。438语法/17工具、11原UI主体+3新test、535编译blob核过，原Engine/ReaderRenderingTests未动。旧39023478476 watcher已正常退出，保留完整失败diagnostic和summary；新轮从头验证Core135各/148iOS/严格Release26。此时未Apple验证/交付。
 
 新源5176821d独立Linux135/4组Release探针全过，artifact12098338731/116241B完整SHA/CRC/源身份已核，重复分片/ZIP删除。m4-panels-build26-linux.json现为新源证据；旧ac8b387e Linux副本按39023478476归档。Apple开始整轮，当前所有未通过门槛继续false。
+
+可恢复步骤：已启动本地collect_panels_result.py等待当前39027324303 watcher的最终run/full.log/artifacts.json；仅在身份匹配且磁盘预算充分时下载该轮完整Apple/IPA，SHA/CRC后删重复ZIP/分片。成功才inspectIPA/独立validate_panels finish/准备134图接触表，失败仅保存真实summary并停止，不交付/不标原生通过。中断后先核该进程/回执，不重复下载或分发。原生人工复核/打包/最终保全仍须后续实际完成。
+
+运行任务核实：当前新轮watcher PID31356（session98912），结果收集器PID39612（session66880），均仅等待/处理39027324303；无关机任务。私有文档tip a5c12e5已push，运行源码仍5176821d不变。collect成功后会写完整download receipt、IPA inspection、m4-panels-build26-success.json并生成PanelsReview/review-pending.json；这些不存在时不得假定完成。尚无Build26根安装包，Build25继续为交付版。
