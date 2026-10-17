@@ -7,3 +7,9 @@
 实际改动前断点：ReadingFontPreview在body重复UIImage(data:)；异步样例由spinner切图会改变行高；样例PNG仍含主预览底色；六长行加重复卡片导致页面过长。拟沿现有CoverImagePipeline成熟CGImage actor边界，直接返回有界已绘制CGImage，透明mask由原生着色、稳定预览尺寸与两列字体，固定分组入口、收紧排版行。不改Core/DB/Readium/Locator/默认偏好。先实际原生与完整新CI，手机FPS/全部设备矩阵单列；此时尚未实现/编译Build25。
 
 源码可恢复步：透明CGImage直接缓存/原生模板着色、12张/8MiB像素上限、稳定预览槽位已写；六字体两列/辅助功能大字单列，顶部固定分组，排版页去重复样例并合并行，旧范围/默认值/所有旧测试主体保持。新增1集成缓存与1真UI布局滚动回归，版本25；尚未新编译。开始Windows435语法/17工具及原主体完整审计，之后冻结源码并唯一完整CI。
+
+构建/测试前冻结：Windows435语法新增0/54既有、17工具通过；受改两测试文件9原主体逐字保持、2新增，532源码blob已冻。唯一源56e63f7a708a3a07f7726f64a253106415d86e80，验证ref codex/m4-settings-compact；现在dispatch完整Core135各/iOS145=124集成+21UI/Release25，所有新门槛待核，不复用Build24成功。关机保持取消。
+
+实际已dispatch唯一CI 39012448991 / https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991。源码冻结，只检查这一新源完整门槛；watcher/日志/下载/后续原生核验均以实际回执为准，不重复dispatch。
+
+主候选39012448991/56e63f7实际Linux135/四长TXT Release已通过，完整Core artifact摘要/CRC/来源身份核完并清重复ZIP/分片；Apple完整145项/Release25和最新原生仍待核，旧轮结果不继承。关机取消。

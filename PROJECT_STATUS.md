@@ -1,5 +1,7 @@
 # 项目状态
 
+当前开发Build25：用户反馈字体样例内框/设置列表滑动卡顿/页面过长；已写透明CGImage缓存、稳定尺寸、两列字体及紧凑分组排版。Windows435/17通过，旧9原测试主体保持/2新增/532blob冻结，唯一主CI39012448991/56e63f7正在完整验证（135Core各/145iOS/Release25），尚未新Apple或设备验收/交付。Build24仍为已交付基线，关机保持取消；恢复断点以HANDOFF为准。
+
 ## Build24 六款字体、真实样式浏览与排版扩展（2026-10-17）
 
 Build24本切片已交付；[完整CI 39005962891](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39005962891)，实际编译源`76a423fec2b855eb6e429d40741a02145727830e`，验证ref `codex/m4-font-browser-save`。Linux/macOS Core各135，iOS143/143（123集成+20真UI）、失败/跳过0；test/export/summary/recording均退出0，严格无签名iPhoneOS arm64 Release24/min16。三锁六pins、532个编译源/资源blob、每平台4个长TXT Release探针和IPA中六字体/原OFL原字节已核。Windows435语法新增0/54既有限制、17工具通过，语法不等于编译。受改56个原测试主体保持、11新增；原1个文件选择器测试只加强真正按钮/消失/可点击同步，取消/选中/深色/恢复/重开断言保持。

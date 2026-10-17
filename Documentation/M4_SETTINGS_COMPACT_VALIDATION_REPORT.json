@@ -219,7 +219,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2377,5 +2377,22 @@
   "expectedIOS": 145,
   "expectedIntegration": 124,
   "expectedUI": 21,
-  "priorCandidates": []
+  "priorCandidates": [],
+  "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
+  "branch": "codex/m4-settings-compact",
+  "run": 39012448991,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991",
+  "expectedNativeReaderPNG": 113,
+  "expectedNativeReaderVideos": 16,
+  "partialVerification": {
+    "currentLinux": {
+      "run": 39012448991,
+      "coreTests": 135,
+      "longTXTReleaseCases": 4,
+      "artifactReceipt": "build/ci/39012448991/core-download-receipt.json",
+      "validatedAtUTC": "2026-10-17T07:10:46.385679+00:00",
+      "logSHA256": "3bbea4c4c29f5c5594041f4eda2d3e7505e2307ac9f4b3d25078048c9855d928",
+      "performanceSHA256": "306cf7e0ce101c49a45e1333c4a9492ed516a99dbff112ca4ad03b6b6f5bde36"
+    }
+  }
 }
