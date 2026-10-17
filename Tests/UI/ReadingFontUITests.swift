@@ -55,6 +55,13 @@ final class ReadingFontUITests: XCTestCase {
         XCTAssertTrue(alignment.isHittable)
         XCTAssertLessThan(alignment.frame.maxY, app.frame.maxY - 20)
         snapshot("reader-settings-compact-layout-build25")
+        let original = app.switches["reader.publisher-styles"]
+        original.tap()
+        XCTAssertTrue(app.buttons["reader.margins.increase"].isEnabled, "Original styles must still allow page margins")
+        XCTAssertFalse(app.buttons["reader.line-height.increase"].isEnabled)
+        XCTAssertFalse(app.buttons["reader.indent-size.increase"].isEnabled)
+        original.tap()
+        XCTAssertTrue(app.buttons["reader.line-height.increase"].isEnabled)
     }
 
     @MainActor func testSixNativeFontSamplesAndCustomTypographyPersist() {

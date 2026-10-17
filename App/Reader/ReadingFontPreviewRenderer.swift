@@ -62,7 +62,7 @@ actor ReadingFontPreviewRenderer {
             font = system
         }
         try Task.checkCancellation()
-        let text = request.compact ? "山风拂卷，云海问道" : "山风穿过竹林，云海漫过书页。\n清茶半盏，闲书一卷。"
+        let text = request.compact ? "山风拂过书页" : "山风穿过竹林，云海漫过书页。\n清茶半盏，闲书一卷。"
         func color(_ rgb: Int) -> CGColor {
             CGColor(red: CGFloat((rgb >> 16) & 255) / 255,
                     green: CGFloat((rgb >> 8) & 255) / 255,

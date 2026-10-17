@@ -11,3 +11,5 @@
 参考Apple官方Creating performant scrollable stacks与Understanding and improving SwiftUI performance（https://developer.apple.com/documentation/swiftui/creating-performant-scrollable-stacks 、https://developer.apple.com/documentation/Xcode/understanding-and-improving-swiftui-performance），采用稳定尺寸/身份、减少body同步工作。Apple UIImage.preparingForDisplay文档明确不应在主线程直接预解码（https://developer.apple.com/documentation/uikit/uiimage/preparingfordisplay()）；本轮选择已有的直接CGImage路径，不新增UIKit解码调度层或依赖。最低iOS16与现有SwiftUI网格/API保持，未套用新系统专有滚动接口。
 
 新增真实iOS缓存/透明/有界像素回归和真UI两列/重复滚动行高/换色/排版一屏回归。旧字体/CoreText/重开/选择器与完整正文位置断言保持；Windows语法不算编译，完整Core135各/iOS145（124集成+21UI）与Release25/原生录屏逐帧核验后再交付。手机冷加载/实际帧率/内存功耗、系统大字/VoiceOver全矩阵另验，不能宣称模拟器截图等于卡顿根因及手机性能解决。
+
+复查修正：紧凑列采用六字单行样例，避免原9字在156pt源宽下末字折行；原书排版只禁用段落/对齐调整，左右留白维持可调整，真UI新增相应断言。前56e候选因该布局禁用范围复查被替代，独立CI继续完成，未取消、不作为新源门槛。

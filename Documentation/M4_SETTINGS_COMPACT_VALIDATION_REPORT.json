@@ -219,7 +219,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -318,7 +318,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "7ef6dc1ffd8f4f9645906904b2800ce57b5ee3dea01ee9e8fa52588f5fee655b"
+      "sha256": "e737f4145f32fa77ed7104894a50db048c7efdba012eec34895a7336b6686840"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -350,7 +350,7 @@
     },
     {
       "path": "App/Reader/ReadingFontPreviewRenderer.swift",
-      "sha256": "838ddd1b49b70bbe7961accd9970c0ee6d3245e5040325de07c57983831a1fae"
+      "sha256": "24425c40c525f8c065087d68a99beaaf14bf36fbca2ed3e762568d8b60acbd1b"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -790,7 +790,7 @@
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "sha256": "ace7a8b600006a756856466fbaf8a60ee2e2239fe88cba955abfb594faab9dff"
+      "sha256": "985cdd3a43e53a093ca17ab1fd0a0167d81a9be3154630aeef2b182c4d539830"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
@@ -2365,7 +2365,9 @@
     "Documentation/M4_SETTINGS_COMPACT_VALIDATION_REPORT.json",
     "Documentation/READING_SETTINGS_COMPACT_DESIGN.md",
     "Documentation/ValidationLogs/m4-settings-build25-start.json",
+    "Documentation/ValidationLogs/m4-settings-build25-windows.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
     "Tests/UI/ReadingFontUITests.swift",
     "Tests/iOS/ReadingFontTests.swift",
     "project.yml"
@@ -2377,22 +2379,21 @@
   "expectedIOS": 145,
   "expectedIntegration": 124,
   "expectedUI": 21,
-  "priorCandidates": [],
+  "priorCandidates": [
+    {
+      "run": 39012448991,
+      "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
+      "branch": "codex/m4-settings-compact",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991",
+      "status": "independent run continues; final result pending",
+      "delivered": false,
+      "reason": "Code review found grouped publisher-style disabling included page margins. Candidate superseded by restored original margins rule plus compact six-character single-line sample and UI regression; do not inherit gates."
+    }
+  ],
   "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
   "branch": "codex/m4-settings-compact",
   "run": 39012448991,
   "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991",
   "expectedNativeReaderPNG": 113,
-  "expectedNativeReaderVideos": 16,
-  "partialVerification": {
-    "currentLinux": {
-      "run": 39012448991,
-      "coreTests": 135,
-      "longTXTReleaseCases": 4,
-      "artifactReceipt": "build/ci/39012448991/core-download-receipt.json",
-      "validatedAtUTC": "2026-10-17T07:10:46.385679+00:00",
-      "logSHA256": "3bbea4c4c29f5c5594041f4eda2d3e7505e2307ac9f4b3d25078048c9855d928",
-      "performanceSHA256": "306cf7e0ce101c49a45e1333c4a9492ed516a99dbff112ca4ad03b6b6f5bde36"
-    }
-  }
+  "expectedNativeReaderVideos": 16
 }

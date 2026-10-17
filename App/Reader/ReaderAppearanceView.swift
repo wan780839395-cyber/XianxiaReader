@@ -267,28 +267,35 @@ import XianxiaCore
                     Divider().overlay(palette.border)
                     adjustment("行距", value: model.appearance.lineHeight, range: 1.2...2.8, step: 0.1,
                                key: \.lineHeight, id: "line-height", display: model.appearance.lineHeight.formatted(.number.precision(.fractionLength(2))))
+                        .disabled(model.appearance.publisherStyles)
                     Divider().overlay(palette.border)
                     adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...3, step: 0.1,
                                key: \.paragraphSpacing, id: "paragraph-spacing", display: model.appearance.paragraphSpacing.formatted(.number.precision(.fractionLength(1))))
+                        .disabled(model.appearance.publisherStyles)
                     Divider().overlay(palette.border)
                     adjustment("字距", value: model.appearance.characterSpacing, range: 0...0.5, step: 0.05,
                                key: \.characterSpacing, id: "letter-spacing", display: model.appearance.characterSpacing.formatted(.number.precision(.fractionLength(2))))
+                        .disabled(model.appearance.publisherStyles)
                     Divider().overlay(palette.border)
                     adjustment("字重", value: model.appearance.weightMultiplier, range: 0.5...1.75, step: 0.25,
                                key: \.weightMultiplier, id: "font-weight", display: model.appearance.fontWeight == nil ? "原字重" : "\(Int(model.appearance.weightMultiplier * 100))%")
+                        .disabled(model.appearance.publisherStyles)
                     Divider().overlay(palette.border)
                     adjustment("首行缩进", value: model.appearance.paragraphIndent, range: 0...4, step: 0.5,
                                key: \.paragraphIndent, id: "indent-size", display: "\(model.appearance.paragraphIndent.formatted(.number.precision(.fractionLength(1)))) 字")
+                        .disabled(model.appearance.publisherStyles)
                 }
                 Toggle("启用首行缩进", isOn: binding(\.firstLineIndent))
                     .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.indent")
+                    .disabled(model.appearance.publisherStyles)
                 Picker("对齐方式", selection: binding(\.alignment)) {
                     Text("自然对齐").tag(ReadingAlignment.natural)
                     Text("两端对齐").tag(ReadingAlignment.justified)
                 }.pickerStyle(.segmented).accessibilityIdentifier("reader.alignment")
+                    .disabled(model.appearance.publisherStyles)
                 Text("字重效果取决于字体本身。")
                     .font(.caption2).foregroundStyle(palette.secondaryText)
-            }.disabled(model.appearance.publisherStyles)
+            }
             if model.appearance.publisherStyles {
                 Text("关闭“沿用原书排版”后，可调整段落设置。")
                     .font(.footnote).foregroundStyle(palette.secondaryText)
