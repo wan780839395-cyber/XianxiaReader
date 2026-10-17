@@ -1,5 +1,5 @@
 {
-  "stage": "Build26 full source517 failed146/148; isolated diagnostics pending, no device Release or delivery",
+  "stage": "Build26 native-input scene harness corrected; full148/strictRelease26 pending, no gate inherited",
   "priorSnapshot": "0ce949ac591943204f30d3873d9af3da3f6303d8",
   "preservedPackages": [
     {
@@ -229,7 +229,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -243,7 +243,7 @@
   "sourceHashes": [
     {
       "path": ".github/workflows/ios-build.yml",
-      "sha256": "d8d8906cf879d188b7cf8fc08433ed69624bbc1e217b3b62e30df970238d04f2"
+      "sha256": "420d4a69e8144c5d24fde0adfb005ce445bc1ebb151855a3835ce9d6c9780f9d"
     },
     {
       "path": "App/AppRootView.swift",
@@ -851,7 +851,7 @@
     },
     {
       "path": "Tests/iOS/ReaderSearchFieldTests.swift",
-      "sha256": "f9f9889302d7579772480e0a564ed4e4ced50ebf1d8f35d480c69d42fd2752fc"
+      "sha256": "49d437c757a429c4ae8c1973ac0ebd04e1d888626fdeb1d4b67c958750ea849a"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2310,6 +2310,10 @@
       "sha256": "f9dc83bb50cd09335a41df024e887eeb02eba08d7cdd9e327d0c6b77583d3791"
     },
     {
+      "path": "scripts/ci_reader_diagnostic.sh",
+      "sha256": "092dd27a81ae604c5fc496c5141f1414776749f5eaabfea25d89b05d3b6f7ff9"
+    },
+    {
       "path": "scripts/generate_app_icon.py",
       "sha256": "294217ccd489d77ed45ed7a979d9f64229c582d258255cc3aeb86ed97f467494"
     },
@@ -2383,6 +2387,7 @@
     }
   ],
   "changedPaths": [
+    ".github/workflows/ios-build.yml",
     "App/Reader/ReaderCollectionViews.swift",
     "App/Reader/ReaderView.swift",
     "App/Search/ReaderSearchField.swift",
@@ -2390,9 +2395,12 @@
     "Documentation/HANDOFF_BUILD25_DELIVERY_2026-10-17.md",
     "Documentation/M4_READING_PANELS_VALIDATION_REPORT.json",
     "Documentation/READING_PANELS_DESIGN.md",
+    "Documentation/ValidationLogs/m4-panels-build26-diagnostic-native-input-39037628899.json",
     "Documentation/ValidationLogs/m4-panels-build26-first-agent-cancel.json",
     "Documentation/ValidationLogs/m4-panels-build26-history-39023478476.json",
+    "Documentation/ValidationLogs/m4-panels-build26-history-39027324303.json",
     "Documentation/ValidationLogs/m4-panels-build26-linux-39023086030.json",
+    "Documentation/ValidationLogs/m4-panels-build26-linux-39023478476.json",
     "Documentation/ValidationLogs/m4-panels-build26-linux.json",
     "Documentation/ValidationLogs/m4-panels-build26-start.json",
     "Documentation/ValidationLogs/m4-panels-build26-windows.json",
@@ -2401,7 +2409,8 @@
     "PROJECT_STATUS.md",
     "Tests/UI/ReaderInterfaceUITests.swift",
     "Tests/iOS/ReaderSearchFieldTests.swift",
-    "project.yml"
+    "project.yml",
+    "scripts/ci_reader_diagnostic.sh"
   ],
   "oldTestBodiesPreserved": 11,
   "modifiedOriginalTests": [],
@@ -2410,7 +2419,6 @@
   "expectedIOS": 148,
   "expectedIntegration": 125,
   "expectedUI": 23,
-  "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
   "branch": "codex/m4-reading-panels",
   "priorCandidates": [
     {
@@ -2445,21 +2453,39 @@
       "delivered": false,
       "history": "Documentation/ValidationLogs/m4-panels-build26-history-39023478476.json",
       "reason": "Native editable field remains22pt though SwiftUI wrapper44; old untouched font-reflow position regression timed out independently; root cause not proven. Four current native states manually inspected; explicit destructive swipe tint also required."
+    },
+    {
+      "run": 39027324303,
+      "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
+      "branch": "codex/m4-reading-panels",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39027324303",
+      "status": "completed",
+      "conclusion": "failure",
+      "actualIOS": 148,
+      "passed": 146,
+      "failed": 2,
+      "skipped": 0,
+      "releaseExecuted": false,
+      "delivered": false,
+      "history": "Documentation/ValidationLogs/m4-panels-build26-history-39027324303.json",
+      "reason": "Both new real panel UI tests passed; new input integration failed before UITextField creation due test-only scene-less window, confirmed by isolated diagnostic39037628899. Another unchanged old imported-font reopen timed out, root cause unproven; keep all assertions."
     }
   ],
-  "run": 39027324303,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39027324303",
-  "partialVerification": {
-    "recordedAtUTC": "2026-10-17T11:08:19.195287+00:00",
-    "run": 39027324303,
-    "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
-    "coreTests": 135,
-    "releaseTXTProbes": 4,
-    "allProbeChecksPassed": true,
-    "logSHA256": "ee7cea913cf5b4df10fb1b2527aaa7a0b00ee58d072f3603fc58cf655a51975b",
-    "performanceSummarySHA256": "26838c27eb61d4f1e9b1cdbfd74d1a194f4f42f3d160c6fc04f34132b715d466",
-    "appleNotVerifiedYet": true,
-    "deviceAccepted": false
-  },
-  "actualFullFailure": "Documentation/ValidationLogs/m4-panels-build26-history-39027324303.json"
+  "diagnosticRuns": [
+    {
+      "run": 39037628899,
+      "sourceRevision": "36068e4788c66b4cc392ed841450aad3b902031a",
+      "selection": "native-input",
+      "fullGate": false,
+      "conclusion": "failure",
+      "record": "Documentation/ValidationLogs/m4-panels-build26-diagnostic-native-input-39037628899.json"
+    },
+    {
+      "run": 39037690400,
+      "sourceRevision": "36068e4788c66b4cc392ed841450aad3b902031a",
+      "selection": "fonts",
+      "fullGate": false,
+      "conclusion": "pending"
+    }
+  ]
 }

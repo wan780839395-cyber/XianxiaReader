@@ -8,9 +8,15 @@ final class ReaderSearchFieldTests: XCTestCase {
     @MainActor func testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears() async throws {
         let state = QueryState()
         let host = UIHostingController(rootView: QueryHarness(state: state))
-        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene)
+        window.frame = scene.coordinateSpace.bounds
         window.rootViewController = host; window.makeKeyAndVisible()
-        defer { window.isHidden = true; window.rootViewController = nil }
+        window.layoutIfNeeded()
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey() }
+        XCTAssertTrue(window.isKeyWindow)
+        XCTAssertTrue(window.windowScene === scene)
         let field = try await queryField(in: host.view)
         print("Query diagnostic: mounted \(field.bounds), key=\(window.isKeyWindow)")
         XCTAssertGreaterThanOrEqual(field.bounds.height, 44)
