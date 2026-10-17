@@ -1,0 +1,10 @@
+{
+  "recordedAtUTC": "2026-10-17T04:24:08.005119+00:00",
+  "run": 39000103869,
+  "state": "cancelled_by_user_before_scheduling",
+  "userInstruction": "别触发关机了",
+  "shutdownHelperEverStarted": false,
+  "shutdownCommandIssued": false,
+  "scheduledShutdown": false,
+  "continueDevelopmentAndValidation": true
+}

@@ -2481,5 +2481,11 @@
     }
   ],
   "latestActualFailure": "Documentation/ValidationLogs/m4-font-preview-build24-history-38961037839.json",
-  "linuxCoreTests": 135
+  "linuxCoreTests": 135,
+  "shutdown": {
+    "state": "cancelled_by_user_before_scheduling",
+    "record": "Documentation/ValidationLogs/m4-font-preview-build24-shutdown.json",
+    "authorized": false,
+    "helperEverStarted": false
+  }
 }

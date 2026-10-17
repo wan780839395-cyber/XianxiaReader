@@ -1,16 +1,18 @@
 # 当前交接与恢复点
 
-当前唯一交付主候选：b9436136a26cad4f62140f0df960e99657c1ff1e / codex/m4-font-browser-cjk / CI39000103869。已实际dispatch，435语法/17工具/38原主体/6新增/532blob已冻，中文横排加入同版官方字距/缩进规则。新Core135各/iOS138/Release24/原生全部待核；旧轮失败完整留档，尚无Build24交付，关机未启动。
+用户最新指令：2026-10-17“别触发关机了”。已撤销本轮关机授权，助手从未启动/未调度/未发关机命令。继续开发验收，完成后保持开机；历史关机说明均已被本条取代。实际取消记录：Documentation/ValidationLogs/m4-font-preview-build24-shutdown.json。
+
+当前唯一交付主候选：b9436136a26cad4f62140f0df960e99657c1ff1e / codex/m4-font-browser-cjk / CI39000103869。已实际dispatch，435语法/17工具/38原主体/6新增/532blob已冻，中文横排加入同版官方字距/缩进规则。新Linux Core135及四长TXT Release已实核通过；macOS Core135/iOS138/Release24/原生待核。旧六轮均已完成且失败完整留档，尚无Build24交付，关机未启动。
 
 ## Build24 当前可恢复操作（实际仍在验证）
 
-主源b943613/CI39000103869，Windows435/17已重核；新Linux/Apple/138项/Release/原生未通过前不交付、不关机。旧872/38954435197与cc7/38956008602仍独立运行，首两轮实际133/137、135/137失败已写m4-font-preview-build24-history-*.json，未取消。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
+主源b943613/CI39000103869，Windows435/17已重核；新Linux/Apple/138项/Release/原生未通过前不交付、不关机。旧六轮已各自完成，实际失败分别已写m4-font-preview-build24-history-*.json；没有取消或追认成功。当前只有39000103869尚在运行。源码保持冻结，当前私有tip仅纯文档更新，normal HEAD/index仍原样。
 
 本机Python3.11与gh在.cache/tools/gh_2.102.0/bin/gh.exe。以下帮手都在.cache/recovery（忽略但已落盘），不要调用旧Build23交付帮手：watch_autoscroll.py RUN；download_font_preview_artifact.py RUN ARTIFACT core|apple|ipa（完整摘要/CRC/提取后清重复分片ZIP）；inspect_continuous_ipa.py IPA 24；validate_font_preview.py finish（135Core/138iOS/Release24/三锁/532blob/真实许可）。full.log/artifacts.json来自实际完成run，不能仅看网页尾部。Python17与435语法是Windows检查，不算编译。
 
 实际全门槛后：review_font_preview.py prepare，再overview browser/bundled/font；以原始PNG及原录屏联系表人工逐看，review_font_preview_raw.py取所选原始VFR区间（禁止focus的fps采样当原帧）；manual-notes.json只填实际看到的事实，再finalize_font_preview_native.py。PNG预期98，本轮20新附件，15阅读UI原视频/共20UI原视频；未接受的孤立图明确排除Preview，手机FPS/普通签名/TrollStore仍待测。
 
-随后deliver_font_preview.py package；finish_font_preview_docs.py（有实际门槛、独占archive保护）；retain_font_preview_ci.py plan/apply（最新交付全量保留，旧CI仅文本/summary/metadata，43根包/源码/14恢复备份保护，明确历史raw被删）；deliver_font_preview.py preserve；snapshot_m4.ps1以[skip ci]保存；deliver_font_preview.py verify并核远端/当前树一致。所有原930路径保持、532编译blob一致、43包/14备份核验及本人watcher/下载/ffmpeg均结束后，才执行当前用户已授权的普通关机。shutdown_font_preview.ps1有90s延迟与交付保存门槛，未启动，禁止提前触发或添加强制关闭参数。关机实际调度必须先写ValidationLogs回执并保存。
+随后deliver_font_preview.py package；finish_font_preview_docs.py（有实际门槛、独占archive保护）；retain_font_preview_ci.py plan/apply（最新交付全量保留，旧CI仅文本/summary/metadata，43根包/源码/14恢复备份保护，明确历史raw被删）；deliver_font_preview.py preserve；snapshot_m4.ps1以[skip ci]保存；deliver_font_preview.py verify并核远端/当前树一致。所有原930路径保持、532编译blob一致、43包/14备份核验及本人watcher/下载/ffmpeg均结束后完成交付。用户已撤销关机，禁止触发。shutdown_font_preview.ps1有90s延迟与交付保存门槛，未启动，禁止提前触发或添加强制关闭参数。关机计划必须先写ValidationLogs并完成最终保存；随后才启动隐藏助手，实际PID与命令回执写对应build/ci/RUN本地忽略诊断。
 
 
 2026-10-17，Build24字体浏览与排版扩展开工。用户明确要求更多内置字体、设置内真实字体样式预览及更多自定义；已保留所有未提交改动，开工930路径备份/41旧包/正常HEAD及空index核对。原Build23完整交接归档HANDOFF_BUILD23_DELIVERY_2026-10-17.md，尚无Build24源码或构建验收。
