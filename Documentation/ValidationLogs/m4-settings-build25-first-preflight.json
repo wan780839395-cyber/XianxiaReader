@@ -1,0 +1,22 @@
+{
+  "recordedAtUTC": "2026-10-17T07:57:35.821192+00:00",
+  "run": 39012448991,
+  "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
+  "selectedMembersRecord": "build/ci/39012448991/SettingsPreflight/selected-members.json",
+  "selectedMembersCRC": true,
+  "completeArchiveDigestVerified": false,
+  "completeArchiveCRCVerified": false,
+  "actualPNGViewed": [
+    "reader-settings-font-grid-build25",
+    "reader-settings-font-grid-dark-build25",
+    "reader-settings-compact-layout-build25"
+  ],
+  "observations": [
+    "Old candidate main sample inner opaque rectangle is gone, light/dark native text visible.",
+    "Two-column grid is visible and stable-size slots, but nine-character sample wraps its final character alone. Current f90 source already uses a six-character single-line sample, still awaiting own native review.",
+    "Compact layout with all six adjustments/indent/alignment fits current native simulator screen.",
+    "Failure AX contains reader.position.save-error: reading position not stable; settings sheet remained because saveNow correctly rejected stale/unavailable capture. Back-button AX failure is not merely tap timing. Error is below current viewport. Underlying reading stability root cause and current source result remain unproven."
+  ],
+  "currentSourceGate": false,
+  "deviceAccepted": false
+}

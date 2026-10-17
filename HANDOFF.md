@@ -23,3 +23,7 @@
 当前实际主watcher exec session61579 / CI39014160303；旧watcher96653 / CI39012448991只待其独立结束取日志/历史记录，不用于交付。后续脚本均读取M4_SETTINGS_COMPACT_VALIDATION_REPORT.json主run，勿用旧Build24帮手改旧报告。冻结后不再推测性修改，待当前完整实际结果与原生材料。无关机助手。
 
 主候选39014160303/f90a33c实际Linux135/四长TXT Release已通过，完整Core artifact摘要/CRC/来源身份核完并清重复ZIP/分片；Apple完整145项/Release25和最新原生仍待核，旧轮结果不继承。关机取消。
+
+旧56e/39012448991已实际结束failure142/145、0源compiler诊断，新增缓存及紧凑UI均过；失败为原字体重开377行blank加载、原TXT慢滚navigationFailed、原两字体UI完成后返回书库AX不可见同步。Release未执行，原watcher96653已退出。完整日志2,949,760B及metadata/history已保存，不追认为新源错误修复或成功；f90/39014160303继续独立验证，唯一主watcher61579。
+
+旧候选原生限定预检：16选定附件CRC真，仅range13,757,635B，未下载/核完整1.45GB归档；重复range块已清。已实看浅/深两列及一屏排版3PNG，内图矩形消失；9字末字折行实见，新f90已六字单行。失败AX明确有reader.position.save-error“当前位置尚未稳定”，设置页因保存失败保持，返回AX失败不能仅称点击同步。错误位于当前视口下方；根因及主源是否复现待新完整结果，不修改旧断言、不把旧预检当新门槛。见m4-settings-build25-first-preflight.json。

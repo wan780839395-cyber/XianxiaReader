@@ -1,0 +1,957 @@
+{
+  "recordedAtUTC": "2026-10-17T07:51:48.122894+00:00",
+  "run": 39012448991,
+  "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
+  "branch": "codex/m4-settings-compact",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "repository-checks",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install static validation dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate repository and Swift syntax",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test simulator selection and IPA packaging safeguards",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "core-tests",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install SQLite development headers inside test container",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile and test Core with official Swift toolchain",
+          "conclusion": "success"
+        },
+        {
+          "name": "Measure Release TXT cold import and bounded long-book reopen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload Core compilation and test logs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "ios",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build, test, and package unsigned IPA",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Upload build logs, test results, project, and resolved packages",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload unsigned device IPA",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "testSummaryLines": [
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:14.6184670Z \t Executed 8 tests, with 0 failures (0 unexpected) in 5.218 (5.220) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:14.8200970Z \t Executed 4 tests, with 0 failures (0 unexpected) in 0.181 (0.181) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:33.3394490Z \t Executed 15 tests, with 0 failures (0 unexpected) in 16.650 (16.653) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:33.6672720Z \t Executed 4 tests, with 0 failures (0 unexpected) in 0.937 (0.938) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:36.6675660Z \t Executed 4 tests, with 0 failures (0 unexpected) in 4.255 (4.284) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:39.8045580Z \t Executed 5 tests, with 0 failures (0 unexpected) in 3.141 (3.142) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:39.8798850Z \t Executed 2 tests, with 0 failures (0 unexpected) in 0.017 (0.017) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:41.0403030Z \t Executed 24 tests, with 0 failures (0 unexpected) in 0.476 (0.481) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:33.6106520Z \t Executed 28 tests, with 2 failures (1 unexpected) in 293.052 (293.093) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:33.7259140Z \t Executed 5 tests, with 0 failures (0 unexpected) in 0.184 (0.190) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:36.0404890Z \t Executed 7 tests, with 0 failures (0 unexpected) in 2.019 (2.021) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:36.3046810Z \t Executed 6 tests, with 0 failures (0 unexpected) in 0.164 (0.167) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9204170Z \t Executed 12 tests, with 1 failure (1 unexpected) in 137.100 (137.153) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9221750Z \t Executed 124 tests, with 3 failures (2 unexpected) in 463.394 (463.546) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9223060Z \t Executed 124 tests, with 3 failures (2 unexpected) in 463.394 (463.551) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:32:26.9283690Z \t Executed 5 tests, with 0 failures (0 unexpected) in 257.054 (257.057) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:33:18.7872800Z \t Executed 1 test, with 0 failures (0 unexpected) in 51.834 (51.836) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:44:46.7084350Z \t Executed 11 tests, with 0 failures (0 unexpected) in 687.936 (687.945) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6654020Z \t Executed 4 tests, with 1 failure (0 unexpected) in 207.930 (207.936) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6690650Z \t Executed 21 tests, with 1 failure (0 unexpected) in 1204.755 (1204.778) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6733770Z \t Executed 21 tests, with 1 failure (0 unexpected) in 1204.755 (1204.781) seconds",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:55.7532640Z ** TEST FAILED **",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:49:16.8370790Z Simulator test exit: 65; attachment export exit: 0; summary exit: 0",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:49:16.8372690Z Simulator recording exit: 0"
+  ],
+  "compilerDiagnostics": [],
+  "failureLines": [
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:37.7689230Z 2026-10-17 07:20:37.763881+0000 XianxiaReader[21709:67894] fopen failed for data file: errno = 2 (No such file or directory)",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:20:38.1372710Z 2026-10-17 07:20:38.133450+0000 XianxiaReader[21709:67894] fopen failed for data file: errno = 2 (No such file or directory)",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:24:18.4491160Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:858: error: -[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes] : failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():377",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:24:18.9208150Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:859: error: -[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes] : failed: caught error: \"timedOut(\"continuous\", \"testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():377\\nposition={\\\"href\\\":\\\"OEBPS/one.xhtml\\\",\\\"locations\\\":{\\\"cssSelector\\\":\\\"html > body > p:nth-of-type(25)\\\",\\\"domRange\\\":{\\\"start\\\":{\\\"charOffset\\\":0,\\\"cssSelector\\\":\\\"html > body > p:nth-of-type(25)\\\",\\\"textNodeIndex\\\":0}},\\\"position\\\":2,\\\"progression\\\":0,\\\"totalProgression\\\":0.25,\\\"xianxiaContinuousAnchorVersion\\\":1,\\\"xianxiaViewportOffset\\\":3},\\\"text\\\":{\\\"after\\\":\\\"沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从\\\",\\\"before\\\":\\\"\\\",\\\"highlight\\\":\\\"长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年\\\"},\\\"type\\\":\\\"application/xhtml+xml\\\"}\\ncontinuous state=preferences: sample requested; sample returned; sample requested; sample returned; sample requested; sample returned; sample requested; sample returned / paged preferences: reload DOM=true\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(0.0, 62.0, 402.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 1828;\\n    href = blank;\\n    ready = complete;\\n    y = 0;\\n})\\nweb frame=(0.0, 62.0, 402.0, 750.0) visible=(402.0, 62.0, 0.0, 750.0) offset=(0.0, 0.0) DOM=Optional({\\n    caretOffsets =     (\\n        0,\\n        0,\\n        0\\n    );\\n    height = 750;\\n    href = blank;\\n    ready = complete;\\n    y = 0;\\n})\")\"",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:24:18.9737420Z Test Case '-[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes]' failed (160.588 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:33.5390070Z Test Suite 'ReaderRenderingTests' failed at 2026-10-17 07:25:33.351.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:59.3632300Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/TXTReadingTests.swift:158: error: -[XianxiaReaderTests.TXTReadingTests testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic] : failed: caught error: \"navigationFailed\"",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:25:59.3769670Z Test Case '-[XianxiaReaderTests.TXTReadingTests testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic]' failed (23.333 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9200020Z Test Suite 'TXTReadingTests' failed at 2026-10-17 07:27:52.883.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9204940Z Test Suite 'XianxiaReaderTests.xctest' failed at 2026-10-17 07:27:52.886.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:27:52.9222410Z Test Suite 'All tests' failed at 2026-10-17 07:27:52.890.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:45:15.8516050Z /Users/runner/work/XianxiaReader/XianxiaReader/Tests/UI/ReadingFontUITests.swift:140: error: -[XianxiaReaderUITests.ReadingFontUITests testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode] : Failed to failed to scroll to visible (by AX action) Button, {{21.0, 77.0}, {44.0, 44.0}}, identifier: 'chevron.down', label: '返回书库', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 77725, elementOrHash.elementID: 105553169849376.101. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 77725, elementOrHash.elementID: 105553169849376.101)",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:45:16.2430210Z Test Case '-[XianxiaReaderUITests.ReadingFontUITests testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode]' failed (29.423 seconds).",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6648880Z Test Suite 'ReadingFontUITests' failed at 2026-10-17 07:48:14.638.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6656830Z Test Suite 'XianxiaReaderUITests.xctest' failed at 2026-10-17 07:48:14.639.",
+    "ios\tBuild, test, and package unsigned IPA\t2026-10-17T07:48:14.6691180Z Test Suite 'All tests' failed at 2026-10-17 07:48:14.641."
+  ],
+  "artifacts": [
+    {
+      "id": 12094561956,
+      "node_id": "MDg6QXJ0aWZhY3QxMjA5NDU2MTk1Ng==",
+      "name": "XianxiaReader-build-diagnostics",
+      "size_in_bytes": 1456073923,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12094561956",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12094561956/zip",
+      "expired": false,
+      "digest": "sha256:ab05db4a6f64073bf43c6c004ef68e9080cc148b794b11cfb1e4f99e02e6b3ba",
+      "created_at": "2026-10-17T07:50:53Z",
+      "updated_at": "2026-10-17T07:50:53Z",
+      "expires_at": "2026-10-31T07:49:18Z",
+      "workflow_run": {
+        "id": 39012448991,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-settings-compact",
+        "head_sha": "56e63f7a708a3a07f7726f64a253106415d86e80"
+      }
+    },
+    {
+      "id": 12093531981,
+      "node_id": "MDg6QXJ0aWZhY3QxMjA5MzUzMTk4MQ==",
+      "name": "XianxiaReader-core-diagnostics",
+      "size_in_bytes": 116201,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12093531981",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12093531981/zip",
+      "expired": false,
+      "digest": "sha256:37bcd4bb7847b3c565622e336bdd80f737a0075683141d85a2ed5d71795a6dbc",
+      "created_at": "2026-10-17T07:09:18Z",
+      "updated_at": "2026-10-17T07:09:18Z",
+      "expires_at": "2027-01-15T07:07:21Z",
+      "workflow_run": {
+        "id": 39012448991,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/m4-settings-compact",
+        "head_sha": "56e63f7a708a3a07f7726f64a253106415d86e80"
+      }
+    }
+  ],
+  "fullLog": {
+    "path": "build/ci/39012448991/full.log",
+    "bytes": 2949760,
+    "sha256": "c7067c934724df40a35b28bda8ac9861e989be1cd79bcd8cecca72e5e154678f"
+  },
+  "retention": "Historical run only: full text logs, run/artifact metadata and this summary retained. Apple xcresult/media/IPA not downloaded; no native review or full archive verification claimed.",
+  "supersededByRun": 39014160303,
+  "reason": "Prior compact-layout candidate superseded after review found page margins disabled with publisher styles; current source restores the rule and uses a six-character one-line compact sample. No cancellation or gate inheritance.",
+  "actualIOSTestCases": 145,
+  "actualIOSPassed": 142,
+  "actualIOSFailed": 3,
+  "iOSTestCases": [
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testBackgroundDownsamplingAppliesEXIFOnceAndRetainsOriginalBytes",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testFirstFileDelegateCallbackSurvivesWrapperAndInvalidSelectionCanRetry",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testLateCancelledLoadAndClosedEditorCannotReplaceNewDraftOrSession",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testMissingThumbnailUsesOriginalWithWarningAndBothFailuresRemainVisible",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testPhotoFileTransferCopiesBeforeProviderDisappearsAndCancellationPreservesBook",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testRealDatabaseFailureKeepsDraftForRetryAndRefreshKeepsLatestMetadata",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookCoverTests",
+      "name": "testRealTXTAndEPUBCoverSaveStartupTrashRestoreAndDefaultPreserveRelatedData",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookDuplicateTests",
+      "name": "testCancelledDuplicateImportDoesNotRemoveAlreadyCommittedBook",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookDuplicateTests",
+      "name": "testDuplicateTrashFeedbackRestoresExplicitlyAndKeepsSavedProgressAfterRestart",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookDuplicateTests",
+      "name": "testMixedBatchCountsDuplicatesNewBooksAndBadFilesTruthfully",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.BookDuplicateTests",
+      "name": "testRealEPUBAndTXTRenamedCopiesKeepUUIDCoverAndFullReadingHistory",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testBroadPickerImportsTXTAndUppercaseEPUBRejectsUnsupportedFileInSameBatch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testBundledSamplesImportWithoutFileProvider",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testCancelledPickerCannotStartImportWithLateFiles",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testEmptyBatchReportsErrorAndCanRetryWithSamples",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testEmptyPickerCallbackExplainsMissingFile",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testFirstEPUBSelectionThroughNativeSheetImportsWithoutRetry",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testFirstPickerCallbackAfterFullLibraryDismissalStillImports",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testPickerDeliversSelectedFilesOnceAndIgnoresLateCancellation",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testSelectionStartsImportWithoutAnySheetDismissalCallback",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testShelfOwnsPickerDelegateUntilTerminalEventWithoutRetainCycle",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.DocumentImportTests",
+      "name": "testSingleURLDelegateDeliversOnceAndIgnoresDuplicateArrayAndCancel",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.EPUBIntegrationTests",
+      "name": "testCorruptEPUBImportRollsBackFilesAndDatabase",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.EPUBIntegrationTests",
+      "name": "testEPUB2AndEPUB3MetadataAndNavigationIndex",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.EPUBIntegrationTests",
+      "name": "testNavigatorCanBeCreatedWithoutAnHTTPServer",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.EPUBIntegrationTests",
+      "name": "testRealImportPersistsBookAndCachedTOC",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryRemovalTests",
+      "name": "testConfirmationCancelMissingBookErrorAndRecoveryRetryKeepShelfTruthful",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryRemovalTests",
+      "name": "testNativeRemovalConfirmationTrashAndEmptySnapshots",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryRemovalTests",
+      "name": "testOverlappingRefreshDoesNotBringBackRemovedBookOrHideRestoredBook",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryRemovalTests",
+      "name": "testTXTAndEPUBRemovalSurvivesRealAppStartupRecoveryAndRestoresRelatedData",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryTests",
+      "name": "testLayoutSortPreferencesPersistAndInvalidValuesFallBack",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryTests",
+      "name": "testMetadataOnlyFilteringNumericSortAndReadingProgress",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryTests",
+      "name": "testNativeShelfGridListFilterAndRenameErrorSnapshots",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryTests",
+      "name": "testRefreshOverlappingCommittedRenameKeepsLatestTitle",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.LibraryTests",
+      "name": "testRenameThroughShelfPersistsOriginalAndCompleteReadingPosition",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.PositionCodecTests",
+      "name": "testLocatorRoundTripPreservesFragmentsAndTextContext",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.PositionCodecTests",
+      "name": "testWrongBookEngineVersionAndCorruptDataAreRejected",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testAppearanceRestoresBeforeOpenAndRapidEditsPersistInOrder",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testAppearanceWriteFailureShowsRetryAndKeepsCurrentReadingSession",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testAutomaticScrollAdditionalReduceMotionAndModeExitCannotStartMotion",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testCloseDuringOpenCannotReturnReaderToReadyState",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testFailedOpenCanRetryAndBecomeReady",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testLateBookmarkFailureAfterCloseCannotShowError",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testLatePositionAfterCloseIsNotPersisted",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderLifecycleTests",
+      "name": "testVerticalScreenRestoreAndContinuousSwitchRetainSameSession",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testAutomaticScrollCrossesChapterStopsAtBookEndAndBackgroundDoesNotResume",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousFragmentAndDOMBookmarkRestore",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testContinuousSearchJumpAndModeRoundTripKeepTheParagraph",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "outcome": "failed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testLateModeChangeCannotRebuildReopenedContinuousReader",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testPagedTypographyRebuildDoesNotQueueDynamicCSSIntoNewPage",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testRetiredContinuousProcessCannotReloadPagedReader",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testScrollingCanMoveToNextResourceAndTOCFragment",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testTallCoverUsesWholeViewportInPaginatedAndScrollingModes",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testThousandResourcesUseBoundedWindowAndCloseClearsViews",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testVerticalScreenKeepsNonzeroDOMAnchorAcrossPolicyToggleAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testVerticalScreenNativeTargetsOverlapReverseCancelClampAndLeaveContinuousUnchanged",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testViewportKeepsScreenHeightWhenMenuHidesAndReturns",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "name": "testEmptyAndOversizedQueryNeverStartEngineSearch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "name": "testLatePageCannotReplaceNewQueryResults",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "name": "testLateStartedSessionIsCancelledAfterQueryChanges",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "name": "testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "name": "testSelectionDelegatesOpaquePositionAndReportsNavigationFailure",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testBundledChineseOriginalFontsHaveGlyphsLicensesAndDoNotUseImportSlots",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testFontCaptureCloseReopenLateResultCannotRebuildNewReader",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testFontCaptureFailureDoesNotCloseReaderAndReimportRetries",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testFontImportRebuildFullAnchorSaveResetAndMissingAssetFallback",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testRealCoreTextFileValidationDuplicateAndOriginalBytesPreserved",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadingFontTests",
+      "name": "testTransparentDecodedPreviewCacheReusesSixFacesAndBoundsPixelMemory",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testBatchSizeSnippetBoundsAndEndPreserveCSSLocator",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testCombiningCharactersEmojiAndInlineSegmentBoundaries",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testConcurrentNextRejectedAndCancelledSessionRejectsLatePage",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testContentReadFailureIsNotReportedAsNoMatches",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.ReadiumSearchTests",
+      "name": "testRealEPUB2AndEPUB3ChineseSearchPositions",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testActualTXTImportUTF8UTF16AndGB18030ChoiceRetryPreservesFiles",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic",
+      "outcome": "failed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testDefaultANSIImportReportsDetectedEncodingAndKeepsOriginalAcrossReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testExplicitBig5AndWesternANSIThroughAppImportAndReadiumResources",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testMultiMegabyteTXTHeadMiddleTailResourcesAndAnchorsRemainBoundedAfterReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testRealTXTSearchPositionsJumpAndCloseCancelSession",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testTXTLocatorByteTextAndViewportRoundTripRejectsContentAndInvalidAnchors",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderTests.TXTReadingTests",
+      "name": "testTXTReadiumResourcesAreBoundedEscapedAndDoNotReadNextChapter",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "name": "testCoverEditorNativeFilesCancelDefaultSaveAndReopen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "name": "testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "name": "testGridRemovalReflowsAndRestoreReturnsOriginalOrder",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "name": "testNativeListSwipeCancelCommitReopenAndRestore",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "name": "testReducedMotionRemovalAndRestoreKeepUsableGrid",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderAppearanceUITests",
+      "name": "testNativeThemesTypographyAndPersistenceAfterRelaunch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testAutomaticSlowScrollRespectsAdditionalReduceMotion",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testReducedMotionNativeGroupedSettingsRemainUsable",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testReturnPointContentsBookmarkAndCurrentPositionRelaunch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testReturnPointSearchDarkReducedMotionAndStay",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReadingFontUITests",
+      "name": "testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode",
+      "outcome": "failed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReadingFontUITests",
+      "name": "testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReadingFontUITests",
+      "name": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+      "outcome": "passed"
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReadingFontUITests",
+      "name": "testSixNativeFontSamplesAndCustomTypographyPersist",
+      "outcome": "passed"
+    }
+  ]
+}

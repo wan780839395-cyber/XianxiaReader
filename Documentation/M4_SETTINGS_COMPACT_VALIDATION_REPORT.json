@@ -2385,9 +2385,16 @@
       "sourceRevision": "56e63f7a708a3a07f7726f64a253106415d86e80",
       "branch": "codex/m4-settings-compact",
       "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39012448991",
-      "status": "independent run continues; final result pending",
+      "status": "completed",
       "delivered": false,
-      "reason": "Code review found grouped publisher-style disabling included page margins. Candidate superseded by restored original margins rule plus compact six-character single-line sample and UI regression; do not inherit gates."
+      "reason": "Code review found grouped publisher-style disabling included page margins. Candidate superseded by restored original margins rule plus compact six-character single-line sample and UI regression; do not inherit gates.",
+      "conclusion": "failure",
+      "actualIOSTestCases": 145,
+      "actualIOSPassed": 142,
+      "actualIOSFailed": 3,
+      "history": "Documentation/ValidationLogs/m4-settings-build25-history-39012448991.json",
+      "newCacheAndCompactUITestsPassed": true,
+      "releaseExecuted": false
     }
   ],
   "sourceRevision": "f90a33cd476f2ffa468f5577fe4002dd47b690f0",
