@@ -1,6 +1,101 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions() {
+        let app = start(); defer { app.terminate() }
+        for theme in ["day", "warm", "paper", "charcoal", "oled"] {
+            app.buttons["reader.appearance.open"].tap()
+            app.buttons["reader.theme.\(theme)"].tap()
+            app.buttons["reader.appearance.done"].tap()
+            waitForPanelToClose("reader.appearance.done", in: app)
+
+            app.buttons["reader.contents.open"].tap()
+            let chapter = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第二章'")).firstMatch
+            XCTAssertTrue(chapter.waitForExistence(timeout: 10)); XCTAssertTrue(chapter.isHittable)
+            XCTAssertGreaterThanOrEqual(chapter.frame.height, 44)
+            snapshot("reader-panels-contents-\(theme)-build26", in: app)
+            app.buttons["reader.contents.done"].tap()
+            waitForPanelToClose("reader.contents.done", in: app)
+
+            app.buttons["reader.bookmarks.open"].tap()
+            let empty = app.descendants(matching: .any).matching(identifier: "reader.bookmarks.empty").firstMatch
+            XCTAssertTrue(empty.waitForExistence(timeout: 10)); XCTAssertTrue(empty.isHittable)
+            snapshot("reader-panels-bookmarks-empty-\(theme)-build26", in: app)
+            app.buttons["reader.bookmarks.done"].tap()
+            waitForPanelToClose("reader.bookmarks.done", in: app)
+
+            app.buttons["reader.search.open"].tap()
+            let query = app.textFields["reader.search.query"]
+            XCTAssertTrue(query.waitForExistence(timeout: 10)); XCTAssertTrue(query.isHittable)
+            XCTAssertGreaterThanOrEqual(query.frame.height, 44)
+            XCTAssertFalse(app.buttons["reader.search.submit"].isEnabled)
+            snapshot("reader-panels-search-intro-\(theme)-build26", in: app)
+            app.buttons["reader.search.done"].tap()
+            waitForPanelToClose("reader.search.done", in: app)
+        }
+    }
+
+    @MainActor func testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults() {
+        let app = start(reduceMotion: true); defer { app.terminate() }
+        app.buttons["reader.appearance.open"].tap()
+        app.buttons["reader.theme.charcoal"].tap()
+        app.buttons["reader.appearance.done"].tap()
+        waitForPanelToClose("reader.appearance.done", in: app)
+        app.buttons["reader.bookmark.add"].tap()
+        app.buttons["reader.bookmarks.open"].tap()
+        let bookmark = app.buttons.matching(identifier: "reader.bookmark.entry").firstMatch
+        XCTAssertTrue(bookmark.waitForExistence(timeout: 10)); XCTAssertGreaterThanOrEqual(bookmark.frame.height, 44)
+        snapshot("reader-panels-bookmark-dark-build26", in: app)
+        bookmark.swipeLeft()
+        let delete = app.buttons["删除"].firstMatch
+        XCTAssertTrue(delete.waitForExistence(timeout: 10))
+        snapshot("reader-panels-bookmark-swipe-dark-build26", in: app)
+        delete.tap()
+        let empty = app.descendants(matching: .any).matching(identifier: "reader.bookmarks.empty").firstMatch
+        XCTAssertTrue(empty.waitForExistence(timeout: 10)); XCTAssertFalse(bookmark.exists)
+        app.buttons["reader.bookmarks.done"].tap()
+        waitForPanelToClose("reader.bookmarks.done", in: app)
+        app.buttons["返回书库"].tap(); app.terminate(); app.launch(); openBook(in: app)
+        app.buttons["reader.bookmarks.open"].tap()
+        XCTAssertTrue(empty.waitForExistence(timeout: 10)); XCTAssertFalse(bookmark.exists)
+        snapshot("reader-panels-bookmark-deleted-reopened-build26", in: app)
+        app.buttons["reader.bookmarks.done"].tap()
+        waitForPanelToClose("reader.bookmarks.done", in: app)
+
+        app.buttons["reader.search.open"].tap()
+        let query = app.textFields["reader.search.query"]
+        XCTAssertTrue(query.waitForExistence(timeout: 10)); query.tap(); query.typeText("原创样书的终点")
+        app.buttons["reader.search.submit"].tap()
+        let result = app.buttons.matching(identifier: "reader.search.result").firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 20)); XCTAssertTrue(result.isHittable)
+        XCTAssertGreaterThanOrEqual(result.frame.height, 44)
+        let fieldY = query.frame.minY
+        snapshot("reader-panels-search-results-dark-build26", in: app)
+        app.buttons["reader.search.clear"].tap()
+        XCTAssertFalse(result.exists)
+        XCTAssertFalse(app.buttons["reader.search.submit"].isEnabled)
+        let intro = app.descendants(matching: .any).matching(identifier: "reader.search.intro").firstMatch
+        XCTAssertTrue(intro.waitForExistence(timeout: 10))
+        query.typeText("不存在的云海词条甲乙")
+        app.buttons["reader.search.submit"].tap()
+        let missing = app.descendants(matching: .any).matching(identifier: "reader.search.empty").firstMatch
+        XCTAssertTrue(missing.waitForExistence(timeout: 20)); XCTAssertFalse(result.exists)
+        XCTAssertEqual(query.frame.minY, fieldY, accuracy: 1)
+        snapshot("reader-panels-search-empty-dark-build26", in: app)
+        app.buttons["reader.search.clear"].tap()
+        query.typeText("原创样书的终点")
+        app.buttons["reader.search.submit"].tap()
+        XCTAssertTrue(result.waitForExistence(timeout: 20)); result.tap()
+        waitForReturnText("原创样书的终点", in: app)
+        XCTAssertTrue(app.buttons["reader.return.go"].waitForExistence(timeout: 10))
+        snapshot("reader-panels-search-jump-dark-build26", in: app)
+    }
+
+    @MainActor private func waitForPanelToClose(_ identifier: String, in app: XCUIApplication) {
+        let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons[identifier])
+        XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 10), .completed)
+    }
+
     @MainActor func testReturnPointContentsBookmarkAndCurrentPositionRelaunch() {
         let app = start(); defer { app.terminate() }
         app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()

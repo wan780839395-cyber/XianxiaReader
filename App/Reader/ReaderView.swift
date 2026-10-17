@@ -48,45 +48,21 @@ import XianxiaCore
         .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
         .sheet(isPresented: $showAppearance) { ReaderAppearanceView(model: model) }
         .sheet(isPresented: $showContents) {
-            NavigationStack {
-                List(model.chapters) { chapter in
-                    Button {
-                        showContents = false
-                        Task { await model.go(to: chapter) }
-                    } label: {
-                        Text(chapter.title).padding(.leading, CGFloat(min(chapter.depth, 6)) * 12)
-                    }.accessibilityIdentifier("reader.contents.\(chapter.ordinal)")
-                }
-                .navigationTitle("目录 · \(model.chapters.count) 条目")
-                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showContents = false } } }
+            ReaderContentsView(chapters: model.chapters, bookTitle: book.title, theme: model.appearance.theme) { chapter in
+                showContents = false
+                Task { await model.go(to: chapter) }
             }
         }
         .sheet(isPresented: $showBookmarks) {
-            NavigationStack {
-                List {
-                    if model.bookmarks.isEmpty { Text("尚未添加书签").foregroundStyle(.secondary) }
-                    ForEach(model.bookmarks) { bookmark in
-                        Button {
-                            showBookmarks = false
-                            Task { await model.go(to: bookmark) }
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(bookmark.title)
-                                Text(bookmark.createdAt, style: .date).font(.caption).foregroundStyle(.secondary)
-                            }
-                        }
-                        .accessibilityIdentifier("reader.bookmark.entry")
-                        .swipeActions {
-                            Button("删除", role: .destructive) { Task { await model.removeBookmark(bookmark) } }
-                        }
-                    }
-                }.navigationTitle("书签")
-                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showBookmarks = false } } }
-            }
+            ReaderBookmarksView(bookmarks: model.bookmarks, theme: model.appearance.theme,
+                                onSelect: { bookmark in
+                showBookmarks = false
+                Task { await model.go(to: bookmark) }
+            }, onDelete: { bookmark in Task { await model.removeBookmark(bookmark) } })
         }
         .sheet(isPresented: $showSearch) {
             if let provider = model.engine?.searchProvider {
-                ReaderSearchView(provider: provider) { result in
+                ReaderSearchView(provider: provider, theme: model.appearance.theme) { result in
                     try await model.go(to: result)
                     showSearch = false
                 }
