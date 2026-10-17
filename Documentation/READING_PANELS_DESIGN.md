@@ -36,3 +36,13 @@ ac8b387e/39023478476实际145/147。SwiftUI TextField外层frame44并未使原�
 另一失败为未修改的旧字体隐藏重排字定位超时，ReaderEngine/原test均与Build25相同；本片不盲补引擎或放宽断言。新源将完整重跑；即使通过也不宣称旧字体时序根因已修复。详细历史与实际4图见m4-panels-build26-history-39023478476.json，失败轮无设备包。
 
 本轮旧字体失败只做源码核对：ReaderEngine的偏好请求身份/3s采样与Vendor分页spreadLoaded/alpha/offset守卫均与Build25一致，UI sheet的改动不进入该集成路径。未证实定位超时根因，不因系统RBS/WebKit日志推断唯一原因；新轮仍执行原完整字体测试，若重复需独立定位而非放宽。当前焦点是公开UIKit输入尺寸/中文组合与面板外观，详见对应冻结源。
+
+## 517候选失败后的定向诊断
+
+source5176821d/39027324303原xcresult实际146/148（2失败0跳过），test65/export0/summary0/recording0，设备Release未执行。两项新真UI通过：五主题原生编辑区域44pt、深色书签删除重开及搜索清空/换词/原生Return；前轮失败的旧隐藏重排test本轮7.493s通过。另一个原字体导入/重开test在连续章节ready=false、加载超时、WebView href=blank时失败，完整保存位置仍在；新中文组合集成test的旧通用超时不能证明是哪一步失败。均保留原断言，未称根因已修。
+
+新增选项诊断仅重跑原生输入、两项旧字体或两项新面板；主workflow默认full仍走原完整Core/iOS/严格设备Release，显式diagnostic不产IPA、不替代交付门槛。GitHub[官方手动运行规则](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)要求注册的workflow位于默认分支，因此复用已注册文件与分支ref，不推主分支注册新文件。输入test只补分阶段状态输出，先核原生挂载/主题/清空/焦点中的实际失败点。
+
+核Apple公开[UIWindow(windowScene:)](https://developer.apple.com/documentation/uikit/uiwindow/init(windowscene:))用于真实scene挂载；项目既有真实UIKit测试都沿此路径，而新增test当前仅frame窗口，需由原诊断确认。另[unmarkText](https://developer.apple.com/documentation/uikit/uitextinput/unmarktext())保证markedTextRange为nil，若清空阶段确认为组合未结束，采用此公开方法，不在普通主题更新时打断中文组合。
+
+失败源21张新原生状态已实际查看4张接触表：五主题目录层级/空书签/搜索首屏可读，深色灰绿关键字与柔和砖红左滑删除对比可接受，删除后重开为空/无匹配/实际跳转状态一致。此为失败源的局部视觉诊断，不是新修正源或设备流畅度验收。完整原件SHA/CRC与实际summary见m4-panels-build26-history-39027324303.json；历史大文件后续只按交付后的保留回执收敛。

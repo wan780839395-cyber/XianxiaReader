@@ -1,5 +1,7 @@
 # 当前交接与恢复点
 
+新诊断已实际分发：36068e4788c66b4cc392ed841450aad3b902031a；中文输入39037628899/ref codex/m4-reading-panels（watcher session36594），旧两字体39037690400/ref codex/m4-reading-font-diagnostic（watcher session2651）。不同ref避免互相取消，均为显式诊断、不产Release/IPA；不要把该run当完整交付。失败517的完整artifact已SHA/CRC提取、重复ZIP/分片已删除，真实146/148记录m4-panels-build26-history-39027324303.json；21新PNG/4接触表已实际查看，仅失败源局部视觉复核。保留正常HEAD/空index，当前私有tip36068e4，此后改动仅文档与.cache助手。
+
 2026-10-17 再次恢复：39027324303已实际completed/failure，watcher/旧collector均退出；后者下载TLS断连，207个已有分片保留，新的单一续传任务PID32792正完成同一artifact12099699259（208块），不重复分发整轮。完整日志确认两个新真UI测试均通过（五主题/44pt、删除重开/清空搜索/原生Return），旧另一字体重排测试本轮通过；失败是新增中文组合输入与另一旧字体重开（连续章节超时、blank），不能统称字体问题已修或新功能全过。148条精确统计以即将完成的原xcresult summary为准。无Release/Build26交付，Build25仍有效；45旧包/16备份/正常HEAD及空index保留，无关机任务。
 
 下一可恢复步骤：保留失败原件，中文输入test新增分阶段诊断输出，断言和2秒预算保持；新增scripts/ci_reader_diagnostic.sh选择原生输入/两项旧字体/两项新UI，严格传播原test/summary/export退出，仅定向诊断，不产IPA。GitHub现只注册原ios-build workflow，官方要求手动工作流存在默认分支；因此复用既有workflow的显式diagnostic_selection入口及独立reading-diagnostic job，默认full仍完整Core/iOS/严格设备Release门槛，未改ci_ios.sh或缩减交付测试。未使用独立新workflow草案已保存在.cache备份，未推主分支。Windows438语法新增0/54旧限制、17工具与Git Bash语法通过，尚未Apple验证本诊断源。先定向核实中文输入失败阶段，再做最小修正；所有原字体断言保持。

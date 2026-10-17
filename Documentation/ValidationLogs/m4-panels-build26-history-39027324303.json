@@ -1,0 +1,100 @@
+{
+  "run": 39027324303,
+  "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
+  "conclusion": "failure",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 2,
+        "passedTests": 146,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 2,
+    "finishTime": 1792237760.071,
+    "passedTests": 146,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792235595.422,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():342",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 79,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "failed - Native query field did not reach the expected editing/layout state",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 95,
+        "testIdentifierString": "ReaderSearchFieldTests/testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderSearchFieldTests/testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears",
+        "testName": "testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "46% of duration",
+        "text": "1 longest test run with outlier durations exceeding 72.40s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 148
+  },
+  "coreEach": 135,
+  "testExit": 65,
+  "exportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "releaseExecuted": false,
+  "newBothNativeUITestsPassed": true,
+  "oldFontReflowTestFromPriorFailurePassed": true,
+  "oldFontRootCauseUnproven": true,
+  "completeArtifactReceipt": "build\\ci\\39027324303\\apple-download-receipt.json",
+  "automaticCollectorFailedTLSAndResumed": true,
+  "delivered": false,
+  "failedSourceNativeDiagnosticReview": {
+    "actuallyViewed": true,
+    "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
+    "images": 21,
+    "sheets": [
+      {
+        "path": "build/ci/39027324303/new-panels-diagnostic-review/sheet-1.png",
+        "sha256": "f5d0a8773264f07ebfcf1d381aa4cafba743b2a735f70cd31240772b938ff84b"
+      },
+      {
+        "path": "build/ci/39027324303/new-panels-diagnostic-review/sheet-2.png",
+        "sha256": "e9ca99031f33b0a87416adfe72bd03c25b9ad5ab2c8af00d7f0a7c9e8c289148"
+      },
+      {
+        "path": "build/ci/39027324303/new-panels-diagnostic-review/sheet-3.png",
+        "sha256": "fc6d4ee7f39510a66d7ad36524d809e08f58b3ab7d2fabddcd473138a674af8a"
+      },
+      {
+        "path": "build/ci/39027324303/new-panels-diagnostic-review/sheet-4.png",
+        "sha256": "ee8d52f0c4242bbce293823ba1edd01f6325edbbae90faaafa1c9c4c15fafede"
+      }
+    ],
+    "scope": "Five themes, readable contents and empty bookmarks/search, dark native swipe brick-red tint and clear/no-match/jump states only; no current source delivery or phone-performance acceptance"
+  }
+}

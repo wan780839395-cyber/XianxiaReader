@@ -1,5 +1,5 @@
 {
-  "stage": "Build26 themed native reading panels Windows checked; full CI pending",
+  "stage": "Build26 full source517 failed146/148; isolated diagnostics pending, no device Release or delivery",
   "priorSnapshot": "0ce949ac591943204f30d3873d9af3da3f6303d8",
   "preservedPackages": [
     {
@@ -2460,5 +2460,6 @@
     "performanceSummarySHA256": "26838c27eb61d4f1e9b1cdbfd74d1a194f4f42f3d160c6fc04f34132b715d466",
     "appleNotVerifiedYet": true,
     "deviceAccepted": false
-  }
+  },
+  "actualFullFailure": "Documentation/ValidationLogs/m4-panels-build26-history-39027324303.json"
 }
