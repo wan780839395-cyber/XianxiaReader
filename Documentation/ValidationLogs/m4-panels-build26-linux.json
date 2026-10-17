@@ -1,12 +1,13 @@
 {
-  "recordedAtUTC": "2026-10-17T11:08:19.195287+00:00",
-  "run": 39027324303,
-  "sourceRevision": "5176821d94769f05792ec5cf94048c48057d85c8",
+  "recordedAtUTC": "2026-10-17T14:03:00.611084+00:00",
+  "run": 39038829961,
+  "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
   "coreTests": 135,
   "releaseTXTProbes": 4,
   "allProbeChecksPassed": true,
-  "logSHA256": "ee7cea913cf5b4df10fb1b2527aaa7a0b00ee58d072f3603fc58cf655a51975b",
-  "performanceSummarySHA256": "26838c27eb61d4f1e9b1cdbfd74d1a194f4f42f3d160c6fc04f34132b715d466",
+  "artifactReceipt": "build/ci/39038829961/core-download-receipt.json",
+  "logSHA256": "c7f9787475f9f6cff36462197fe0218573895ecd9a02725be76099afff6ffe0b",
+  "performanceSummarySHA256": "ffc3212801396229081c1e912d077b3cd569c71298bff4883d9a5fa8c244d382",
   "appleNotVerifiedYet": true,
   "deviceAccepted": false
 }

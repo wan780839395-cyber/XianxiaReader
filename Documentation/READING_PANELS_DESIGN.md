@@ -48,3 +48,5 @@ source5176821d/39027324303原xcresult实际146/148（2失败0跳过），test65/
 失败源21张新原生状态已实际查看4张接触表：五主题目录层级/空书签/搜索首屏可读，深色灰绿关键字与柔和砖红左滑删除对比可接受，删除后重开为空/无匹配/实际跳转状态一致。此为失败源的局部视觉诊断，不是新修正源或设备流畅度验收。完整原件SHA/CRC与实际summary见m4-panels-build26-history-39027324303.json；历史大文件后续只按交付后的保留回执收敛。
 
 定向39037628899的原日志已证实No UITextField，失败发生在native field layout，未执行中文组合/换色/清空。新增test修为真实connected UIWindowScene挂载、layoutIfNeeded、结束恢复旧key window，并额外断言窗口为key且scene身份一致；原2秒预算、44pt/中文/光标断言不变，产品代码未因该诊断修改。新源1e4ae348/完整39038829961独立重跑148（125集成+23真UI）、Core各135及严格Release26，定向结果不替代完整门槛；旧字体来源及根因仍单列。
+
+旧字体定向39037690400实际1/2：导入字体的分页关闭重开后line294仍blank；WebContent启动日志两条47.520322/47.657906秒，超过原30秒等待，这是环境/加载时序排障线索，不能单独证明唯一根因。另一隐藏重排test9.241s通过。核同版Readium页面初始化、分页回收、spread clear与显式连续shutdown、现有engine身份守卫，仍未证实应改哪处业务代码，保持测试与引擎。查官方[Readium变更记录](https://github.com/readium/swift-toolkit/blob/3.11.0/CHANGELOG.md)与当前固定3.11源码；不引入4.x/Swift6升级或把旧字体问题归咎于本轮UI。完整新源仍须从头通过原门槛，重跑成功也不称根因修复。

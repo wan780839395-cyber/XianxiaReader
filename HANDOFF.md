@@ -1,5 +1,7 @@
 # 当前交接与恢复点
 
+当前1e4ae348/完整39038829961的Linux135与4组Release TXT探针已按本轮Core artifact12102474112/116258B独立核验并清重复ZIP/分片。Apple整轮执行中，无新门槛继承。旧两字体诊断39037690400实际1/2，导入字体test在分页关闭重开后line294的blank失败；两条WebContent启动日志实际47.520322/47.657906秒，超过原30秒等待，属于排障线索而非唯一根因。另一隐藏重排test9.241s通过，原test/引擎不动。78.8MB诊断已SHA/CRC校验并提取，原collector同样summary路径错误后已按receipt复用正确提取补写真实结果；见diagnostic-fonts记录。保留原门槛，不放宽断言或靠系统RBS文本宣布已修复。
+
 完整新候选已实际分发39038829961 / source1e4ae348a39679df8476bda6c74380d4615078b0 / codex/m4-reading-panels，显式diagnostic_selection=full。Windows438/17、Git Bash语法、旧11UI主体和3新tests/536编译资源blob核过，门槛全部重置；实际仅输入测试修scene挂载和诊断基础设施，产品行为仍与517候选相同。watcher session25903、collector session39756只处理本run，不重复分发/下载；成功才校验Release、准备原生材料，尚无Build26根包。旧字体定向39037690400/ref独立不受取消，完成后核实际summary。正常HEAD/index/45旧包/16备份保持，取消关机持续生效。
 
 原生输入定向39037628899实际failure，完整日志明确失败于native field layout：No UITextField，尚未执行中文组合/主题/清空，原测试仅frame创建的窗口未接scene。按Apple公开UIWindow(windowScene:)与项目所有既有UIKit挂载方式，新增test修成真实connected scene、layoutIfNeeded，并在退出恢复旧key window；2秒预算及中文/光标/44pt断言保持，无产品补丁或超时放宽。60.7MB原诊断已SHA/CRC提取；collector首次因artifact根目录是build内容而非build/多一级，summary查找失败，已修助手为唯一实际summary路径，原件和receipt保持。下一步Windows/freeze后完整148条/严格Release26，诊断本身不产IPA；旧字体独立39037690400仍待实际结果。
