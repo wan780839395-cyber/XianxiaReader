@@ -3511,5 +3511,12 @@
     "removedBytes": 1730009709,
     "retainedTextMetadataCount": 100
   },
-  "packageInstructionCorrection": "Documentation/ValidationLogs/m4-settings-build25-package-instruction-correction.json"
+  "packageInstructionCorrection": "Documentation/ValidationLogs/m4-settings-build25-package-instruction-correction.json",
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-17T15:01:55.416029+00:00",
+    "record": "Documentation/ValidationLogs/m4-panels-build26-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

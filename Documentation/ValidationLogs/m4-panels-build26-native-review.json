@@ -1,0 +1,4344 @@
+{
+  "run": 39038829961,
+  "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
+  "images": [
+    {
+      "name": "reader-panels-search-intro-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AEC103E9-685C-4316-AE7A-6A95EF1A583D.png",
+      "bytes": 120051,
+      "sha256": "44091efc6c6c516b10a8374acc0fa92d9d74142dc7c3dfcac746c21bc30722de",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5AD7AED0-44CB-4A0D-9C69-96A4EC9B9CE4.png",
+      "bytes": 102230,
+      "sha256": "b15518a4a477c571f2421ff0f008c294edf7b904a3c0fd3df096c65b149f13a0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/08F1F3F7-ABB1-4A77-8A2B-2D61AD3991D2.png",
+      "bytes": 112058,
+      "sha256": "42483c950f66dd3fc50555522c7172380f77de8b673f8c2c9b315741e91eae51",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2723E45D-3E1B-455D-841D-00AB1A26F7B1.png",
+      "bytes": 127422,
+      "sha256": "7ab91360c34b4f2bd9a4d0a1d2636f9ef1035b54880725256d0d48d44559c47e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/34CE15A5-047E-4333-8840-A615125173A6.png",
+      "bytes": 108814,
+      "sha256": "8c09d924e3676d61f68ae5638f9f31a50648911b26b161c239d951b76fff6c9f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9D9F6552-CA89-4FED-BF38-754355F59E1D.png",
+      "bytes": 119031,
+      "sha256": "bca9d09d19241741f4a6dcfdbea638eebde32ee05adf6eaebe5a33c887976925",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4AFDAF85-2B37-4139-9583-33EE929B2C3E.png",
+      "bytes": 152679,
+      "sha256": "4edd5c6a2b58379a73b16c3cdcb380ae99d443b383836af4125c494a650e13df",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AA1F9D65-6626-44E8-BB03-2248A7C0DA91.png",
+      "bytes": 133781,
+      "sha256": "7d7cbd4d5bddb2ef8ace3d8c8c61abd402d7511f8ffadb8fb921c0d6ffa114bc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/058CE32C-2D6C-45D8-BCEE-76425699E27B.png",
+      "bytes": 144437,
+      "sha256": "0d6bfa3ed44885644fb2090420f9c496abb1ed0cb0479726ee679ba0ae06b4d0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/402D5315-221B-4E99-A8FB-CFDDF5D1EA8B.png",
+      "bytes": 153880,
+      "sha256": "dd02188698e8ad496f33b90829067f3591f858aa30b3bea009da42a04b8f3f29",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D44520B8-54B9-40EC-B7C9-10EF2E125DF2.png",
+      "bytes": 134962,
+      "sha256": "edfd3870f3b90c1ca1d00f2ce24033de435cd30870113907c89f894a3056ed1d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A2C38271-0C34-4976-9C45-32C3A6541D55.png",
+      "bytes": 145623,
+      "sha256": "f272b7aa1b0f1494b660ec3ed50df0d68c6ce61479a361b20bae07154c071046",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7ACEA430-C009-4EF8-8234-B31D3B9E7064.png",
+      "bytes": 150163,
+      "sha256": "4b048472b0bc32caf084d136e2cdea80bc6c001dcced98fdac3f696419842699",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D10EEBF-B1BB-4320-AF86-1AF2A5DC8EF9.png",
+      "bytes": 131784,
+      "sha256": "2df2e6a30fe8c46f506470fe80324c5493ae494d6f943ed36f6a2e39b8276853",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2356E3AE-43FB-454E-B215-D1044CF68615.png",
+      "bytes": 141903,
+      "sha256": "163ad6555ff52f77938cd9dbc997c8f6cc18f8013d8737ef367a2a64488f0375",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-jump-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A7E4C6E4-C451-4B1A-ABA5-E6D50F74FA74.png",
+      "bytes": 239346,
+      "sha256": "2ad9bbf8316b6e4e690ef4db5e4fd3ce008a44e86deb1a97df866a4b73a62ce9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-empty-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A49E0D72-4C0F-4588-930F-F78FF8C8A924.png",
+      "bytes": 130198,
+      "sha256": "e54bca43a9131d00a48f3f95d10da31b037dd8e70a43b08334b24dd8782e195e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-results-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FDA0880D-6939-4411-BD5D-3B372F074195.png",
+      "bytes": 160810,
+      "sha256": "e708d9ce8ac36469420cf92c95ad928b48e58de76e982f0cbf21028608bac66b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-deleted-reopened-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C55E21B8-4A90-438B-8746-D956A98B4F31.png",
+      "bytes": 109883,
+      "sha256": "62d0ce2b2d59bb7be6759d912a16f07f47f75e3e58394d345d1e2937161a1fa8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-swipe-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1C6288B5-EE56-486A-8E41-3BC56D9C4285.png",
+      "bytes": 88614,
+      "sha256": "d074b8aed98eea14daaeea3a7b7c38da0ad839cfa4f899c13b1473df91387080",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F4BB2E7D-E686-4854-BBFD-9D09D0CD3B37.png",
+      "bytes": 88359,
+      "sha256": "3c1678821cdc221294b5b734244db7320c7e25e92fba52fb340d664a10e45808",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "retainedUnreviewedImages": [
+    {
+      "name": "autoscroll-epub-paused-build21",
+      "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/62922754-7FD9-4F80-91B8-0337620F3DE4.png",
+      "bytes": 605679,
+      "sha256": "c5d70b004a7e1337d9b0c2d3e6d1d3db6a5cee40c4af195aa354328a2e9a9818",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "epub-oled-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/17AAB3C3-D84E-4B6A-B580-E36ED940DDB4.png",
+      "bytes": 365789,
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          0,
+          198
+        ],
+        [
+          0,
+          204
+        ],
+        [
+          0,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "return-epub-continuous-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/90330673-13CA-4D97-A264-53CD1BFCAC18.png",
+      "bytes": 617696,
+      "sha256": "c0a8290355d930a81ac10f4155bc0422af7c291c77af6768a65ee052c58929e5",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "return-epub-paged-build22",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0E019534-FB94-493D-8E7E-12D286408EE6.png",
+      "bytes": 389374,
+      "sha256": "782bed77f96dc37377c13d34a08244ed6818d31144ab9d87454a674ef1052110",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-xiaoWei-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0864B145-17C7-495C-BDF0-3424CC067430.png",
+      "bytes": 483168,
+      "sha256": "8dc83bfc3d61c9a14da4b105b1f15e3af1ccb7c094f5eb086e835a47b70d5e13",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-maShanZheng-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A75B4AEB-01C6-48FD-AAB8-C4461BE6295A.png",
+      "bytes": 666183,
+      "sha256": "0760a8236f254ef12e36526bc9faa0220d987b9b3116fc5d7570c19ee25d051c",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-zhuque-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FB121CD2-16F7-41B1-8E1C-5904C9BBCE2E.png",
+      "bytes": 721076,
+      "sha256": "a9fe336395d0c98e09b8e1d093289f6f6a59005700a24fe24c47770279dc7a09",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSans-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CB68958D-6BBC-42CB-8F9B-BC7D1BA8ADFA.png",
+      "bytes": 524881,
+      "sha256": "96932f07e34e96aa97682a4c425a060b8d31917f431e7d19870d21fb97a946e3",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-wenKai-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/318C4AC6-AD0F-4C23-BED3-2158711A8182.png",
+      "bytes": 682364,
+      "sha256": "01b046793c2592ee724dcf44c16e6b9296e32898d4a1ac9b5c2e2a9ffabc348a",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSerif-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E9C2AE5-89E3-45A1-B3E1-5792E12C10B2.png",
+      "bytes": 599103,
+      "sha256": "3b1556d7790b4bf1762a86d79c6407f9c0475044e1eeaab1cd3725ae3e474f45",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-continuous-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/68CAADA3-9742-4A36-9524-0DB530B2B62B.png",
+      "bytes": 511033,
+      "sha256": "8fb62a60eb447ed2f795713be2f4699e9b4ceea321226969fbb50f1614fb8bea",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-xiaoWei-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1D345E17-49A4-497B-8A8B-7D260556AEFE.png",
+      "bytes": 441388,
+      "sha256": "4d879c088cdff8c9a50a3148dc66fc14bb91bd6491d13d1bde2c0180103f2501",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-maShanZheng-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3BF2E6B9-D509-403B-82D9-03DA5E7C2194.png",
+      "bytes": 605834,
+      "sha256": "808862cde2917b467d42ba51eb34e1e9bcfce3a4aebee7a0a12ea60457a7320b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-zhuque-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/80FAE1FA-2A77-4CEF-A46E-61FBFEE129D1.png",
+      "bytes": 648044,
+      "sha256": "0253620ae64183276d6925aa757eaa6e2b891fffb65062359e26eab3af7c2bc0",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSans-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3239BF98-48DB-400A-B57F-9545515388DD.png",
+      "bytes": 472268,
+      "sha256": "09d5ee831ad0012e209c86e61e96d02bdce4c24f6a6267bc3fad51ec2b621bbb",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-wenKai-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D2A6C42C-3C4C-499D-A952-9A9E832CB072.png",
+      "bytes": 617289,
+      "sha256": "8b8665e89a4a37f84702c22230d4686a5c9350789f43a58af50d1726e2750758",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSerif-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/84B6A9FD-6F30-4280-85FF-789582DF39B4.png",
+      "bytes": 537360,
+      "sha256": "679b780b39b28429b214c6c88c697853ba3b291ffc838fc9d27c8ad925d50ddb",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-epub-paged-build23",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A62F9216-B221-4539-9FF9-1BFD831C198A.png",
+      "bytes": 462339,
+      "sha256": "f7396c69f4383a838940899e7d7696337b707293b050f8a1020b87082013e67e",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "screen-instant-whole-window-build20",
+      "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3C6DFFE2-3EE3-4524-91EC-7FBAE2EE37D4.png",
+      "bytes": 610005,
+      "sha256": "654d8d0045eee6a5d3e0505fe163e8d47d4654ced62edbb8f6dbe4ad1a7a19d7",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E57E4885-EAB6-4396-9BDD-2143CF93C646.png",
+      "bytes": 490411,
+      "sha256": "0dd404261878626e1e4a05bdae081e6e2e5f725c1f7a5171c54b89014b728f1c",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/46ADDCD8-ABCD-46F3-AE94-4FBA2ACBFF75.png",
+      "bytes": 367745,
+      "sha256": "3c730f9cfd172587b3d143fc13cd0601233fa81d8f78451f60279c034863776f",
+      "inspected": false,
+      "size": [
+        1206,
+        2250
+      ],
+      "extrema": [
+        [
+          36,
+          198
+        ],
+        [
+          40,
+          204
+        ],
+        [
+          38,
+          197
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-5-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A4F9D841-E33D-4E1E-AA91-717CBFE24D53.png",
+      "bytes": 491200,
+      "sha256": "de598d2f9a9d675b6bddefdb0c74ee53137032a2c4d02877178ee0702d25cb73",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-4-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9D475AD1-4B7C-4C89-B6C5-C26006C90D7B.png",
+      "bytes": 613870,
+      "sha256": "32559182dcb73d4001efbc5cd700b7e10d7e07510d01e52ffa71adbebb080f03",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-3-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/758DE355-148A-4453-87F3-AC51F3B2ACBE.png",
+      "bytes": 675964,
+      "sha256": "6ed01085d1d0326d47bf8b6c78f86b30f39551dcafce69e48115c42bf92d516e",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-2-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/17C08659-CB59-48A9-B689-44EB6F407F55.png",
+      "bytes": 535227,
+      "sha256": "5d6c31c85c1647866257298d7f06d5c89de83f149f07eebdb386d1f2fcb81506",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-1-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0EF9C605-E03F-4FBA-AD70-20189B747A5D.png",
+      "bytes": 643289,
+      "sha256": "7e011d917a591349040e2c36e5f576d085b60826662e7f9d8e08e0444b79a2e8",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-six-body-0-build24",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CBEFC925-CE26-4A0F-A897-F8E84309F840.png",
+      "bytes": 592688,
+      "sha256": "539c009f017b3e44d6779250f1d136f1932739de905aa908d381dc36fb3d8d99",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          48,
+          248
+        ],
+        [
+          56,
+          245
+        ],
+        [
+          50,
+          237
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "screen-cross-chapter-whole-window-build19",
+      "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B743DBB7-15C0-46E1-BCE2-6B3D700F0C3B.png",
+      "bytes": 520942,
+      "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-xiaoWei-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/49A94405-EB71-4E30-AE94-BFAC6F4351E2.png",
+      "bytes": 38420,
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841",
+      "inspected": false,
+      "size": [
+        900,
+        222
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-maShanZheng-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DDCABFEB-E3CB-4F53-9605-A95E3C22B76E.png",
+      "bytes": 58111,
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33",
+      "inspected": false,
+      "size": [
+        900,
+        222
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-zhuque-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4858A885-12D4-419A-8E37-1C4D4C97FF04.png",
+      "bytes": 66972,
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51",
+      "inspected": false,
+      "size": [
+        900,
+        285
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-sourceHanSans-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/111E9E05-17BA-47FF-B12A-676FC05F947B.png",
+      "bytes": 45868,
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38",
+      "inspected": false,
+      "size": [
+        900,
+        315
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-wenKai-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/59A7C2E6-5074-49BB-88B3-C4C42BCAE583.png",
+      "bytes": 64245,
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279",
+      "inspected": false,
+      "size": [
+        900,
+        258
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-settings-sample-sourceHanSerif-build24",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/10552131-8E31-487C-93E7-0F03DF3D164B.png",
+      "bytes": 53006,
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d",
+      "inspected": false,
+      "size": [
+        900,
+        306
+      ],
+      "extrema": [
+        [
+          0,
+          63
+        ],
+        [
+          0,
+          72
+        ],
+        [
+          0,
+          65
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "autoscroll-txt-window-paused-build21",
+      "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CF486CDA-8EE2-423B-A5AF-F0FD08813DAD.png",
+      "bytes": 558493,
+      "sha256": "14d4140e33c077bbe9182bf8fbabe0dad452327e9ddeb4208c03c0e2d3f6f39d",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "return-txt-byte-anchor-build22",
+      "testIdentifier": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/996DD371-EF99-4E1B-8B49-E7230321A654.png",
+      "bytes": 550895,
+      "sha256": "fb5790289989027e180d42ce7491ddefd682458b4f6608c9a11a2e666eaa9aa3",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          18,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-xiaoWei-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/05E3CC20-1062-4D20-A84E-8A12452D8B63.png",
+      "bytes": 556381,
+      "sha256": "72f0cf0da4144515e5ee2f47c125922d821b1c2614581244183a25be758b315a",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-maShanZheng-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E105E266-C434-42FF-8E54-B7863DC0D157.png",
+      "bytes": 672981,
+      "sha256": "18ded22ba5cbe637d1cdb5bd1b15e25ec1acf4b5d5ece76575643cc9c0c788b0",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-zhuque-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/461F1E9C-1EA5-4A4F-981E-D1230B465C4E.png",
+      "bytes": 775992,
+      "sha256": "9bec2c48a1333b1b79055e9d904477ea4ba6e8fcdb99371fd88a054db981eeec",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          255
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-sourceHanSans-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/79F52065-7CB6-4083-9B38-33F686711932.png",
+      "bytes": 578988,
+      "sha256": "0c7c42ad362f91b880f904bffc0aa6499a26af4aaa1c95ae67f35c38ebfcf1f0",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-wenKai-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BA44B761-54BF-4C31-8636-5BEA0DBBB66E.png",
+      "bytes": 691870,
+      "sha256": "4c3b969a38f179041060298f86d7e87bf3f4f87f686f1a5fceb17ab94f85dd8a",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-sourceHanSerif-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/400C8BA6-2608-46BE-8FB3-C516A39BDCE8.png",
+      "bytes": 639316,
+      "sha256": "37f1f642799390e72d194346cad49deb7e3a1a64032f2b5343e1c699efdcb30d",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "font-txt-byte-anchor-build23",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8027F192-FFF3-41F7-A264-18CC4768C115.png",
+      "bytes": 580181,
+      "sha256": "d1980ffa8057439c7376eea970f2be1e07f481a4624a7a51f478ffc74292e27f",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/70656BD0-B596-45BE-A78A-CB9088DE932E.png",
+      "bytes": 432398,
+      "sha256": "b6513e0c01ed6d3d7bd8fdd029fa3b2fe1e6bd867c32b0f9dd1916a05c5be4a6",
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          39,
+          254
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2D5E92AD-8999-49F2-92E2-8D6A08155991.png",
+      "bytes": 550976,
+      "sha256": "c8ceaab71aa866bf4ff8dfade225de10db8ebfa6fc8a5b91548c95c88fdbc115",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B5BFE16C-73B9-4ADB-A5AB-88003C8859F1.png",
+      "bytes": 745348,
+      "sha256": "06ec4e31e0fbef6df97b9f8426c241958d43479a787bda3daf8a576b75e96fa7",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D476A8CF-40BC-4297-A50A-DAE1474798ED.png",
+      "bytes": 620903,
+      "sha256": "0a71c4329d0fcda629c68f1f016e84b15e7553997dcea2aa75fcd67ee6e44a8c",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EE0909D9-636D-42AC-A7CF-746428D08A0E.png",
+      "bytes": 751462,
+      "sha256": "58b40ee4ab1144204fdb036621b1358b0c1ba62a4b22a79fcf3c3c668ece55b0",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/95895F50-9DA7-4B82-B4B4-E2C2A27C86A1.png",
+      "bytes": 643353,
+      "sha256": "c257a24398d4a11b8921a6e87ed25e02b70f9fe1f02084481907c013c9139c41",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E40405BA-3897-4A2F-A5E4-FDE2CD54EEA3.png",
+      "bytes": 652116,
+      "sha256": "786848ba6de5a70d37635aa1c1fcc9bf5d2e4eefb2555d65f97b44449e757b44",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/26A06445-B5CB-47DC-86DC-F9DFEC07664C.png",
+      "bytes": 653988,
+      "sha256": "6ca7c9ccc7e3be5cb568050fd189b16210ec5d850676f4a8978a5764a5f86735",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DA9859FF-4A87-49AD-939D-81DAAE8B9FD8.png",
+      "bytes": 265640,
+      "sha256": "1b47035fab5a72663bb3c5c2b05ad3022893cf4cfead0329aa8f53a0bb1d0b91",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7B957AB1-7E28-40C3-A6D5-8259FC6C4EE8.png",
+      "bytes": 504763,
+      "sha256": "6b3dd4f37a80702174cd9bf003f82510641dcd40f1b13f48311234fbdc9a2e24",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/35C35533-957F-4435-BE7A-27DEDFBF9E1C.png",
+      "bytes": 553365,
+      "sha256": "731e5f1ab9a7829fe4139b3091afa9178a0efe97529763781e9bd61589903c3b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2EE52706-135D-400B-BA05-0264D5232CF3.png",
+      "bytes": 483737,
+      "sha256": "ba6937bd285be044c7a834a978ed3c8108e250ec9e873be9aa037e3d509818a7",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D9E68030-A9C8-4363-9536-8DAF6A2CC234.png",
+      "bytes": 486123,
+      "sha256": "6d866d96cff2d95ab729e2b209718f25c287e452b1dfa704f542ff54af05714e",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AB94DD5A-E601-492C-9D95-AFC6D610A11C.png",
+      "bytes": 412138,
+      "sha256": "553e4e8f1fb01c105532ae79d1c898d2ee7d40ac6c35b4df9a79e10ce504d5ab",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7024A7A5-AFFB-4F4E-80FF-B53E68433395.png",
+      "bytes": 690580,
+      "sha256": "ae10de474d165ede0b6abaf6e292b4a25bde887dd173e66996296eeaa7d356ca",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A1B526F6-6C0A-48EE-8BE3-9D1F6B0D3314.png",
+      "bytes": 691868,
+      "sha256": "2f93ee5935564efff3af81833fe879e0892eda18b20e2fc7722560d598163b23",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CC5B612F-EB37-4F0B-BBAE-AAD001E15780.png",
+      "bytes": 719202,
+      "sha256": "e8b1ee022372850e06348344a24615048995730296aed68e8e14c7141d028f48",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F9027ED8-9B98-44AD-8D40-A1F6DB29EE61.png",
+      "bytes": 857460,
+      "sha256": "e66e2c494883afbadac5f0e31f3ab0eef9a53abed9d7419024254aac12cea65d",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E7A73A64-3555-40AD-9F41-D902F1FC83ED.png",
+      "bytes": 753672,
+      "sha256": "49f4b8d14fa314566138893bb13c5aa0fecd7cf3228b9c1e3b360ebbd2b713aa",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D126AAB0-6BB5-4E6D-9CBF-F0BAAE9E246F.png",
+      "bytes": 613784,
+      "sha256": "2637ac58ea2ac0f4c3a66df7d6ddbac79a42a8aeb5aae7575c7ce322d95208e1",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6DA16398-D697-40E4-857D-E0C9737DD464.png",
+      "bytes": 651780,
+      "sha256": "30b5be7e1fefeb85885e7d287ab5da7db7937153611a88c3d689e5365bb6e117",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/356C5A6F-D23B-43BF-8410-EF5C7B303499.png",
+      "bytes": 742729,
+      "sha256": "6e5d4534e7b3122aa9adc77752f8892b9814ea70d06ff66de1e9a34550e8587b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4DD26D22-C567-4045-A706-5393351373A5.png",
+      "bytes": 472258,
+      "sha256": "8704cade17067ae00178cec3bb45f4f2f31653128cd39819f7f437a88a7aa76a",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6A2ED820-BB96-438B-A72A-77828D058E3C.png",
+      "bytes": 545646,
+      "sha256": "d218f83a3038328e41c3618f03ce0ee55082d14b065cd6b420de927f563ac428",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E0E2AA53-2BCF-4F32-93AE-2FB84A38131E.png",
+      "bytes": 550383,
+      "sha256": "c08bc0efb26f1460592ae62ad38b221a2095b73d16b16a335562079d23814350",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7C071F2-DBE0-4A09-A1A3-E94D962621AA.png",
+      "bytes": 399246,
+      "sha256": "b8bd1d5241cafd69f575780dccbab21b33b9d0c1348d68d3cecd223c51ed7ad7",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/880CC0D8-04DA-4B8A-9183-911E9E66160E.png",
+      "bytes": 333486,
+      "sha256": "f29b777cdd17154316efe5f19be422a30717df49d05b5cb2061929032ae949c3",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C754DEDE-6FAC-454E-A288-B59BCEEA4DE6.png",
+      "bytes": 491704,
+      "sha256": "a5a9416553e5efc0b2659f1b2a0ce380e71c2ee4d2089c313e208b8171a347a0",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/27F2055F-D030-42C0-9C06-2A3EA1BD21B7.png",
+      "bytes": 612719,
+      "sha256": "be1af1580e22b259d58e35397c7a8834548dc64e6b8731ee1a88cdf8eefa4df8",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-current-reopened-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8082BD22-F089-4701-BD46-353AEAE36328.png",
+      "bytes": 696172,
+      "sha256": "29ad1dd60330e18235e2f2b898cf46970c956ab35e82f3e5282dc5238d824afc",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-restored-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F89886DC-D4DA-4759-BFB7-6BE8DF4DC1C9.png",
+      "bytes": 311625,
+      "sha256": "439e3e00789506f07c70fb53f97649b5ec077d29988e36e26c7690727a89f1f1",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-target-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BC4A92B5-DC9E-4240-B4C3-C5D2FF8694C5.png",
+      "bytes": 516647,
+      "sha256": "2dfb061a83c55299d7397150727c4e6632e83214322c44a51f8720d3dbabbbac",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-origin-light-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A40AC350-398C-47FA-B22A-9A937D5E210D.png",
+      "bytes": 598459,
+      "sha256": "3578cf3c5db4f12bbeb9bf2042b6a0ea2b47733836ae5170b81eea401140aa78",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-stay-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1A536D73-5DBE-4E4D-BB81-033567B45D5D.png",
+      "bytes": 105521,
+      "sha256": "ff0304248c1fe77cb6c83c8121dbb69610be02f212827143073cc4286a9cf772",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-restored-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EFDB622C-8B22-4616-9F03-B2E6067DE2E6.png",
+      "bytes": 108060,
+      "sha256": "d5d104cd50cfa402ff81a23dde3f0bc1d9aef487aa973a55d4ab56434e2cfd13",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          36,
+          255
+        ],
+        [
+          40,
+          255
+        ],
+        [
+          38,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-return-search-dark-reduced-build22",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/305B010B-FEB2-4953-B3C5-4012DFB180AB.png",
+      "bytes": 238436,
+      "sha256": "5b0a460b0b6bd96f765160bb59a4e25ae4df0b2f87c88c0eee3275e7e1013939",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2D6FE0CD-7610-4604-BAC8-73F4BFAA0DCC.png",
+      "bytes": 611815,
+      "sha256": "a0264dfcee2e4aa8976a876deac1ffafd30ae2ffed8a500043ac19eb474b816f",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F63DA246-AF29-4A46-86B4-68428597D306.png",
+      "bytes": 747576,
+      "sha256": "e0d75c607e178bfb03bc4af608a159e04dc651fc3eda13d7160aa4ee7a20da0b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/81F60E0B-4D24-4D29-8C12-FC7EBE6FAAB0.png",
+      "bytes": 643588,
+      "sha256": "e73edc884d73516a3d26562cffa037fb0a2e9d1d825d7569cf9e6edb18ea951b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-reduced-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C27DDE1A-AC44-47FF-8E18-7EB0A7F431A7.png",
+      "bytes": 471755,
+      "sha256": "d89890c36afbfbeb1b2d73e24f3225f31093929e65f3978bead04ba332b4b239",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/26AE9F44-265F-4EF9-B275-88E69E020C9D.png",
+      "bytes": 611815,
+      "sha256": "a0264dfcee2e4aa8976a876deac1ffafd30ae2ffed8a500043ac19eb474b816f",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B1FAF02D-27DF-4A4B-9151-55D3F5EF4533.png",
+      "bytes": 747250,
+      "sha256": "e36479c904c79c1f44e92c11d2b5328b69177ec49f2c2999a2cf12170978b4a5",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1B35B217-76E2-4D09-B205-339E4557250F.png",
+      "bytes": 644197,
+      "sha256": "785ecad1f73433c0fdf669fbe6df91f5842a856d4561865eb9e97639bff65060",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-normal-build18",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E6320519-4435-417B-9151-B0FCA1CDC93B.png",
+      "bytes": 471566,
+      "sha256": "9223e5fe19d4c425675ccf265bd3260142d2143d5a414157ea4d5f13e693576b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/49EDF449-2194-4C14-A523-A8BE3D42A3EB.png",
+      "bytes": 654187,
+      "sha256": "c191297a26380b6fdbbda4084e4d0bb97f106cca4190d4a067d079c173fdcf6e",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-settings-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/75336DE4-4E1E-4632-B2E3-B2F4CC2DFC2E.png",
+      "bytes": 605917,
+      "sha256": "e87b3a660497328fd579ed961b0d88c3f24bf1bd75190a622380b37c6ed402ae",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AB2A3E5E-A33C-4B9A-BF10-FD70693121AA.png",
+      "bytes": 424361,
+      "sha256": "230450fa6f7598069fa3a063fb1c9135f2f301ec94e724539fd1a12a9ec67ba3",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-before-reduced-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/13DAB485-285F-47B1-8919-028EF8A9A297.png",
+      "bytes": 595188,
+      "sha256": "4deb3d972cd7d9ab8de581070f02ed587cd835e946f41d3f654901f161276cb6",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-restored-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/278873E3-872F-428B-9523-6EACB4069808.png",
+      "bytes": 654187,
+      "sha256": "c191297a26380b6fdbbda4084e4d0bb97f106cca4190d4a067d079c173fdcf6e",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-settings-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BCBADCBE-2977-4FE2-8306-E4399E9BF3BB.png",
+      "bytes": 605960,
+      "sha256": "7c555e7072561b0be5cbb795d6a641ba9c4891570cbdc6de10005a9b641d18f4",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F5B94943-627C-43BC-9450-818C98C5BF07.png",
+      "bytes": 424565,
+      "sha256": "56064a52ee38064a6490a1c4b72dfd444c88b6e909c9fea8d1238d31875b9123",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          248
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ]
+    },
+    {
+      "name": "reader-screen-before-normal-build19",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E12B9402-ED3B-4AED-99B6-EE7C0FDCDFB4.png",
+      "bytes": 596070,
+      "sha256": "a5d3cf48ee9f7325cd5d9b1b2fe1dd290e4e7df3c8f082057af1bcb4b15a5d72",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-bundled-kai-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/57761558-C4F0-41FA-AB3A-A39EF12F5C7F.png",
+      "bytes": 773912,
+      "sha256": "a1aa4cb4f4585dd03fae83519b8814b1dd0fb2a1a5cb7b5696d730fb75e0b07c",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-bundled-song-build23",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/98C63518-A811-4703-889F-9AF16AAD80BE.png",
+      "bytes": 658436,
+      "sha256": "5d67a15fc6fc6d783f6e361cae1de98d71e5a6dfdfb480b83d73b17be7844b9b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-compact-layout-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1B38DB4D-58BC-4F40-9BF3-74389EF2C2CC.png",
+      "bytes": 856682,
+      "sha256": "9ab5368c081582476b081a8295250795fc956f3c5f0ca0b4418e4060e3d5b46d",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-font-grid-dark-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/18B4C9C1-FB58-4223-9714-04EEE42E7ADC.png",
+      "bytes": 753801,
+      "sha256": "5f12a0a94cbb327e577dce9d9d7482e60a032752e91ec41ff1846b7c651a128b",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-settings-font-grid-build25",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/17972011-3088-4CCD-BA5A-75AB9BC6E517.png",
+      "bytes": 661112,
+      "sha256": "0408f4838c413e19f1bfe5d675c993a24b64cd0a9514a1cd720a23c9aa3dd778",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-default-restored-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BA9D3D41-FE58-4A2A-8953-370C79E86042.png",
+      "bytes": 786558,
+      "sha256": "28568650577f902c1f6b1e240f535d6ecf2809b51f4976e21a9e27797e8f29f8",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBB88B8A-EFD3-4D89-BA34-2F69B04C6E64.png",
+      "bytes": 800585,
+      "sha256": "ebf8ac63a215f1ded99116add48e878e86395d62a511ea6b94a2f9af9749c177",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AE3B1EA3-3C0A-483D-8582-61BF78CB0EF1.png",
+      "bytes": 700774,
+      "sha256": "5802383fbf6eb5526e52efbe27ca4c1de613fc5b6e3a12a1c97e9dbc310ef721",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A63717F3-4AD8-4CC2-8BF2-CE50F868BF2F.png",
+      "bytes": 704208,
+      "sha256": "b1ea71432087b92919e4039a0e102778b6d0bee33673b95d0a26c98f9607320f",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D0B2BAE2-DF0E-44BE-AA8C-0A1CF8DEC02B.png",
+      "bytes": 704258,
+      "sha256": "dac6039df074e8aac542c5c2678c02d0b78592941cea558cbb2aa356500751f3",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-extended-layout-reopened-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0ABE9C1E-6D64-40E0-AB8C-7A24505153F0.png",
+      "bytes": 613797,
+      "sha256": "61a6204f0de0773f4888dd925ab9a42bbaeb2e84b52dce0ec2f8c20747e93e25",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-extended-layout-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BC4556C4-3AF3-4B6F-B023-4829577D6223.png",
+      "bytes": 613041,
+      "sha256": "d263783bdc33831f5fea15896681a7385db3843e9666a798bcb4de5776632cd5",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-xiaoWei-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1849C88C-E0B4-44A8-B89C-9ED0694F60EB.png",
+      "bytes": 644564,
+      "sha256": "a843854de3b4a1c21d0d2906e1bf248edca3592a81c4cb6f7f74d47a39c8f617",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-maShanZheng-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E5D0C2C1-DCC3-4F1F-AD8B-2E06F94EFDC7.png",
+      "bytes": 663412,
+      "sha256": "c012881d694e8cc73b8e758aab16845ff95e7dab44a89d3001db695f0d578845",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-zhuque-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5E6122BA-2B63-4125-A4A5-EEBCD16D868B.png",
+      "bytes": 671807,
+      "sha256": "984534dd3d84fb10c46b33b2a65814e379aac7a50026844b364e0c5f83603af9",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSans-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D1E21AB-B3A8-4207-8612-CCD6A69D1D98.png",
+      "bytes": 654382,
+      "sha256": "b24904828e6d862e1755cef9852c2c74496509eb1c5e305638b9dde394f6ffcf",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-wenKai-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/23370E39-BC4D-4825-8AE1-27143989B173.png",
+      "bytes": 668768,
+      "sha256": "aaeba20f650e86caaa2122c00bdbde92f90321034b2730a227447c7dc668ce88",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSerif-build24",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9BE5851B-1317-44E9-9AB6-1D574B093E46.png",
+      "bytes": 658919,
+      "sha256": "9ce2c9232fa91a09481ec659c954cf3ee3afd229e4bc40898458a20f32229cf8",
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-17 at 02.18.07 PM.mp4",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F68C811E-76A2-4FAC-80BF-78D134180D16.mp4",
+      "bytes": 18322961,
+      "sha256": "9fb07eee70dc7329a55ee195df9e7e41b2d5e762a168c93620d070e44e52178b",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.18.37 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E8FCB631-89A1-4277-8728-2488A771C117.mp4",
+      "bytes": 4525493,
+      "sha256": "6cbc920d29d6622054e06fe42b1470c19427c8b39504305d7c9179d7703b8441",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.18.51 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9CE795D3-BE14-4D4F-A428-2FAD7C44FD87.mp4",
+      "bytes": 3613680,
+      "sha256": "bcc7e90f43bf5a432aca17ecf25ff0415a4b5964e6252a8c70bc526b3d897509",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.19.03 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CFCB12D5-3A9C-4AFC-833E-176E8A5AC62B.mp4",
+      "bytes": 45925939,
+      "sha256": "8b771127c471de387fd77eb78b7b6661cfd1ba6b7cb75651902470d483ce267a",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.19.49 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ED71E666-20F6-48C4-93D1-371FA445F35F.mp4",
+      "bytes": 11461481,
+      "sha256": "7c0b95b6bb4b1378c0a88e780e0962894f21fe519cf2f1b015a5b811d129db0d",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.20.14 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E254628A-2024-4E56-9EA7-24459C267E53.mp4",
+      "bytes": 26170273,
+      "sha256": "a5cc2f9e8b5eac0384798641790d88bfed7e67bc6ba327a7e2bc53298b11404a",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.20.56 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/44DA0F63-A4A8-421E-8A23-AD7FC201A99B.mp4",
+      "bytes": 37046491,
+      "sha256": "d3805e0ed2ffbbcc98e247792ed30c457320d699ff3ff30b2c434296f0cad71d",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.21.41 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/42FA5C9A-10DE-4BA5-9C3F-92A702B7EAC5.mp4",
+      "bytes": 55284576,
+      "sha256": "337cdbf65138fcee38b749f88cb300ad7ccc2525ab103bfdc5aae15724f5d180",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.23.11 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B64D890F-428F-4964-94B6-8CD618FCD229.mp4",
+      "bytes": 8158706,
+      "sha256": "d59adce13ff33d3eb0bcc442a63a73676ad1174b23ee0adf2a18dd7d53b9c26c",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.23.27 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/053DCD0E-E83F-44B0-A484-36969ADBA298.mp4",
+      "bytes": 31027907,
+      "sha256": "d7b60a458bb1ff34a84571550fba0e8a511f88ad2c260fa573d9314ba3e0fb37",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.24.14 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F80EE43B-C26D-428B-A45D-791DCAB1DC5F.mp4",
+      "bytes": 12291312,
+      "sha256": "09f7130629377093c7ab9c7254992a08739840ef03885b6c50ae42a6a6977437",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.24.42 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C0B9C18B-9BB4-4A09-A3A7-20667BAF76A2.mp4",
+      "bytes": 20245451,
+      "sha256": "c4b14d72798e73d9dfb3d68d04685cfc05cb82784f5f81e1f2ef043a67a2ce17",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.25.22 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBE1DF23-F548-4CFF-A5DC-A51E2FC25AE9.mp4",
+      "bytes": 26250516,
+      "sha256": "b18292555ec8c87c3c10b0a5b34e440dd8a3959bd929258469d6f52f21b7a25c",
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.26.26 PM.mp4",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0C0C9B3F-9D4F-4005-B68F-5F82AC7A4142.mp4",
+      "bytes": 59697187,
+      "sha256": "3aff2327e5ef7126771a6808a753946d29ec52ba9f9d723f8faa4cdc602230ab",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.27.47 PM.mp4",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0706F5EB-6F0C-43D4-8C63-9CD4E7CEEA4B.mp4",
+      "bytes": 26019138,
+      "sha256": "86974263160e0834f1fe44cf8f8dc4c31ce54fcb7aa302d7a57135d02bff1997",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.28.21 PM.mp4",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/55A6018D-6728-4668-87C4-9E20C08686C3.mp4",
+      "bytes": 20605220,
+      "sha256": "1b15819a50f66d6d6b42328c59cee51460b1859e0e2f7321e5d19d8a022e222f",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.28.45 PM.mp4",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ECF7E4CE-A991-4A37-AF03-DE01A98F8C93.mp4",
+      "bytes": 36074119,
+      "sha256": "37a1174cd9281907c378399ff4fb1b32d60fe8a0504b8e2b9efd32aa90e47d14",
+      "inspected": false
+    },
+    {
+      "name": "Screen Recording 2026-10-17 at 02.29.34 PM.mp4",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/24CD40C8-56DA-4BE0-8C87-2F94BA038ECF.mp4",
+      "bytes": 20615746,
+      "sha256": "805b0aed9266e9337ad9970f499b8bb0c469f26131032625d9b1af2891b6392d",
+      "inspected": false
+    }
+  ],
+  "contactMethod": "Only21 current Build26 panel-state PNGs prepared for actual visual review.113 unchanged-feature captures retained with hashes, not claimed manually reviewed this run. Original PNG thumbnails; alpha composited onto neutral white for contact sheets only. Original bytes and hashes unchanged.",
+  "recordedAtUTC": "2026-10-17T14:56:14.161820+00:00",
+  "imageContacts": [
+    {
+      "path": "build/ci/39038829961/PanelsReview/images-1.png",
+      "sha256": "2c393f50564e567b6a224d38b3c2f186c6f97931b6333ceeab1343ce7fc7000a"
+    },
+    {
+      "path": "build/ci/39038829961/PanelsReview/images-2.png",
+      "sha256": "3f2240015b82e14b1ff77061c371e042ba3cc1c238e1ffb7cfab5971e4977f47"
+    },
+    {
+      "path": "build/ci/39038829961/PanelsReview/images-3.png",
+      "sha256": "d898e96330ec988773fd58f7dbd097049939bd695e27c87d35244d8d9680a355"
+    },
+    {
+      "path": "build/ci/39038829961/PanelsReview/images-4.png",
+      "sha256": "09cd5e3a0d80a1c16be1801fbbb99776bac1f6637372fe5cb23c34a94196e283"
+    }
+  ],
+  "overviews": [
+    {
+      "kind": "panels",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-1.png",
+          "sha256": "be60788df8cbaa34c200967c08a1c5b643c75697a1ad3b5d9ca028beea850dbd"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-2.png",
+          "sha256": "900b8c027c595515541a72a8ffeea851c4bb1967a36f42ce34b6dc0cbbc5d6c5"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-3.png",
+          "sha256": "ec1fd735e93d51f5da9b16fa8f2c6eaebb319beefc8dc0a859da7611bf5c7af3"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-4.png",
+          "sha256": "778f34e39597241ede867820304b9a6cdafba0935d5adad6f5e8c1bd7758d5da"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-5.png",
+          "sha256": "2217fba4dccfdd81e16047bf98e03c8050fc26ef5db3d14ec760fc66aefd23fc"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/contact-6.png",
+          "sha256": "e33752b10eea6bc0a5c8d64c6ab4ff7ea26fbc05fe36e1bfc3a69515921e1939"
+        }
+      ],
+      "observations": "Actual89.80s recording, all six1fps overview sheets viewed. Five page themes retain cohesive light/dark native contents, empty bookmarks and search surfaces; directory volume depth and readable title/body spacing are visible. Native sheet presentation/dismissal keeps the underlying ready page in reviewed states. Initial startup includes loading; the existing underlying reader header can partially overlap a chapter heading and is not accepted as fixed by this panel work.",
+      "inspected": true
+    },
+    {
+      "kind": "actions",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/contact-1.png",
+          "sha256": "b4c8c32a6ddb393c8c4d20d38373447a58a8c29253d12877378e1a377fe7c8db"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/contact-2.png",
+          "sha256": "b156771a4960418a82b9a19e061c9bc8da1e62f7920dfb2323ea95acb65e1fc0"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/contact-3.png",
+          "sha256": "4784810569a54a0dca96a96a224c1be98891c50674149ff9c8feef68244cc7df"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/contact-4.png",
+          "sha256": "a8d1bf2e17cb85a703597c3ffc3b36082e78d436119ea840e1ca340ef97b022c"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/contact-5.png",
+          "sha256": "c8938757a3e9e96c458751b689bd9d3f46dad5d6a2a631919e9c535fd2aa2059"
+        }
+      ],
+      "observations": "Actual63.64s recording, all five1fps overview sheets viewed. Additional reduce-motion preference is enabled, dark bookmark is swiped to muted brick-red delete, removal survives app relaunch. Search uses native Return, results clear to intro with keyboard, a new term shows no match, a subsequent search jumps and exposes the return point. Startup/reopen and final57-59s search jump include spinner/fade; these are loading transitions, not accepted as steady readable pages. The separate final jump PNG is readable.",
+      "inspected": true
+    }
+  ],
+  "originalFrameWindows": [
+    {
+      "run": 39038829961,
+      "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 02.21.41 PM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+        "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/42FA5C9A-10DE-4BA5-9C3F-92A702B7EAC5.mp4",
+        "bytes": 55284576,
+        "sha256": "337cdbf65138fcee38b749f88cb300ad7ccc2525ab103bfdc5aae15724f5d180",
+        "inspected": false
+      },
+      "start": 9.65,
+      "end": 10.45,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0001.png",
+          "pts": 9.811667,
+          "sha256": "b96193589b45afd18e7f21eaf3a21dbda47ae0ca0093d198e58ff80c5cf22346"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0002.png",
+          "pts": 9.833333,
+          "sha256": "f065fa2fc43c6082eeab6d40598f8193e06a6d0ef6d16c1a3b36aa855f3b9456"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0003.png",
+          "pts": 10.001667,
+          "sha256": "1d7486d9cb0793a33a3bfd0e9cd99f2a47734d1eb38976a490d39ea25da37d0c"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0004.png",
+          "pts": 10.021667,
+          "sha256": "bbe68d34a4c7268b50b59896da642e5485bb412a9c04ee34c84d9aa586cf2e4d"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0005.png",
+          "pts": 10.028333,
+          "sha256": "68c17900aa92b941d1ad108bbb880a5ca6f00be2f160746cd675aaca44b6d48c"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0006.png",
+          "pts": 10.04,
+          "sha256": "d19d987bebb4271e798578aea259a114c4ed98ad3dc87da0e95c28d30b63f095"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0007.png",
+          "pts": 10.046667,
+          "sha256": "36df9475943fdbd30ccf6d0de0b0a9f3744a2c082fe0d1153fedd0837a066419"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0008.png",
+          "pts": 10.056667,
+          "sha256": "fb4573aeaead5d7639ff6c0be943ffa319e428847e85a13b870a1327b9f20ee2"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0009.png",
+          "pts": 10.063333,
+          "sha256": "a679fabbdd90cc97b868c9378a7dcb8f4c388ea58fd3fe155b3b2ea42cba431f"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0010.png",
+          "pts": 10.071667,
+          "sha256": "e52e744360538298de6aad2383737ffbb7ce2800990966b13ec77da4d3e42e11"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0011.png",
+          "pts": 10.078333,
+          "sha256": "2837f9d0e0ea108c3d05faccab19d3d2eeda2397c93a5162fc53157dca8605b2"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0012.png",
+          "pts": 10.088333,
+          "sha256": "88cfb3e340368fd6e68c570cf438711cf45bcabbc9cbfde116baa5b5210090a6"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0013.png",
+          "pts": 10.105,
+          "sha256": "1886302f74191c640f53fa12d3e70063fc938e13d723a9f132f1933acbe1117b"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0014.png",
+          "pts": 10.123333,
+          "sha256": "cd52c674882a2d03e62080de03d223717bceeee07ab94e6119b4d79455eff94a"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0015.png",
+          "pts": 10.138333,
+          "sha256": "a2d30ad762a503c3c35853d8b5fa43a1d0b9f27abcf54c68361544af615b241c"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0016.png",
+          "pts": 10.155,
+          "sha256": "eb5b3ba18fb7eed35d2fc73a3eedb5b78c6a3216917c57761cd7d6ae27fdadcb"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0017.png",
+          "pts": 10.171667,
+          "sha256": "d1eee6759874e535ca53e872de94b92c6017450321621ee178f93c93272e5d06"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0018.png",
+          "pts": 10.188333,
+          "sha256": "b3219e9d2c4ea3763342dc147732ab533f31baf58772ba455f78a74d58547a32"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0019.png",
+          "pts": 10.205,
+          "sha256": "611b28ef94626a1bc7d47cd078198a008dcb68f547e8446c2ab37b731af40328"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0020.png",
+          "pts": 10.223333,
+          "sha256": "78e0c78422d8ef114757624c88aaa9b57ed1f1411a769e59a3ac5f5f760bdf04"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0021.png",
+          "pts": 10.24,
+          "sha256": "93f34865a5a760ab2c6e41779ba9d408cbf62610dbf382a15b0e80d062bfaf44"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0022.png",
+          "pts": 10.256667,
+          "sha256": "2b302b25d1728c01c812bc53bf2d512dd34b2ea66b55d596ab625eed100d67fa"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0023.png",
+          "pts": 10.273333,
+          "sha256": "273a9deec290680a64b83cdb59c2c923afe81952fe34eb3eab1fc395412aa5be"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0024.png",
+          "pts": 10.288333,
+          "sha256": "aae946570a5f04aba748ac657e8993b9c8e8ae71d1897500d4549d8cca408762"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0025.png",
+          "pts": 10.306667,
+          "sha256": "91c61940232175d362a330abccd78263dd39524f42f7981bc943a814de73cfa7"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0026.png",
+          "pts": 10.323333,
+          "sha256": "263ab1f1ec9cf699120ff93a414dee28f9280a5d0e45cb87e1393c48a496b52e"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0027.png",
+          "pts": 10.34,
+          "sha256": "0d2e6cbe6b945d0cb7fb213fce26ec9314b9f8e6dc95067b1fdaf1137c1e97f7"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0028.png",
+          "pts": 10.356667,
+          "sha256": "257e61658336f38ba2b1464934092b4be82a9f39a6ae30256adfcc23b44c05f4"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0029.png",
+          "pts": 10.373333,
+          "sha256": "99119cd5ff81edbae07ac68967e39fc3c4e4527001afb366a541c4601f2d5abd"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0030.png",
+          "pts": 10.39,
+          "sha256": "0a4f3bd3693fcc886ce377b9029e903b7dac35ce049129d90b743f52826233eb"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0031.png",
+          "pts": 10.406667,
+          "sha256": "5ab0dc204258f60c5198811374325160d96a059594abac745a22878b976099e8"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0032.png",
+          "pts": 10.421667,
+          "sha256": "7cc5acd926a017cb288a2882475e331ec3e7745f52272ca2bfb0989ef2750c73"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/original-0033.png",
+          "pts": 10.44,
+          "sha256": "ce168eb582aea4aca4124d074f82959079f76836466f28f49a0e7c637e1bbba5"
+        }
+      ],
+      "observations": "All33 original VFR frames in9.65-10.45s reviewed across three sheets. The native contents sheet rises progressively over the same ready light reader; entries and navigation bar remain composed and legible as the panel settles. No synthetic frames/fps filter. Existing obscured underlying chapter-title fragments remain outside accepted scope.",
+      "contacts": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/contact-1.png",
+          "sha256": "aa35d6627f0059be3d5b4bf54b4bf16cf6990c6e307801a70a07c06b732d260a"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/contact-2.png",
+          "sha256": "585669ec71b0e44bf1ecd580b2537824feffd3fdb83eef4ce98c9f496703b896"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/panels/native-sheet-entry/contact-3.png",
+          "sha256": "466fbafa92bb03c04f94d6826899f14dfa443f602e03b6db5160276f2a20c7d8"
+        }
+      ],
+      "sourcePTSInversions": 0
+    },
+    {
+      "run": 39038829961,
+      "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 02.25.22 PM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+        "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBE1DF23-F548-4CFF-A5DC-A51E2FC25AE9.mp4",
+        "bytes": 26250516,
+        "sha256": "b18292555ec8c87c3c10b0a5b34e440dd8a3959bd929258469d6f52f21b7a25c",
+        "inspected": false
+      },
+      "start": 16.4,
+      "end": 17.4,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0001.png",
+          "pts": 16.605,
+          "sha256": "a8e7e248bda6d3b49cad34da1633ab8c3480f036cce0e1671fdcb7efedb38fa3"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0002.png",
+          "pts": 17.216667,
+          "sha256": "87a49dc30098c2a7ea0fce1d18285dcdf277e107b586b5626ef56f94aec819fb"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0003.png",
+          "pts": 17.243333,
+          "sha256": "37f83de31da291cf8be19ff0e5a26447375f6a74aeaf0f33ba8c7cded6ce5312"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0004.png",
+          "pts": 17.248333,
+          "sha256": "f3e009c61284e6f29ed3bc1e7f64d2e2398f64be0cf981df238ffee3809f99e7"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0005.png",
+          "pts": 17.265,
+          "sha256": "fe077a918e7054f853d69e7b5bff5114ec87914c30edb23f00d96462a499a8c8"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0006.png",
+          "pts": 17.281667,
+          "sha256": "6c2ada4f1c00cea52a30906332ce8a5011f56ed7ccfb5bfe8a638a0548deaa1f"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0007.png",
+          "pts": 17.298333,
+          "sha256": "2035535a63bd9756c2713a2337c7d00da5161bc4149d0b539dded04c065c4179"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0008.png",
+          "pts": 17.315,
+          "sha256": "be8e8bad012718f455e61e11887c58afea886519234b8f107ac14ba78c642d7a"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0009.png",
+          "pts": 17.331667,
+          "sha256": "401e938c6fcd734df57aaf61d109388089580597660f04df407e3703adb59bc9"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0010.png",
+          "pts": 17.348333,
+          "sha256": "e7453d7ebbf9c2ebacf8f0c1a1d12a613731804dab0b24f754f8634b56efcffc"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0011.png",
+          "pts": 17.365,
+          "sha256": "0e6aa298b9374d9281db5fcbf2a3b2906b297d257f4705a4495e7a897bd9e428"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0012.png",
+          "pts": 17.381667,
+          "sha256": "3622396483db6fdc58da6f2c3e2cb0606ae7dfca84217c225cedbad7501fc340"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/original-0013.png",
+          "pts": 17.398333,
+          "sha256": "d6d3fb87e20389a6beac4c0eaaf3f4a3a1ad29804601ec37411758b62a99d499"
+        }
+      ],
+      "observations": "All13 original VFR frames in16.4-17.4s reviewed across two sheets. Native row moves left and exposes the muted brick-red action with readable white delete text. Row text is naturally clipped as it exits; sheet has slight native gesture movement. This accepts the listed swipe interval, not all animations or phone frame rate.",
+      "contacts": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/contact-1.png",
+          "sha256": "4cd35886b6eb9ad9b3c1b5036ca98e4637fd970b5b6d07d993d5d0287222e6d5"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-bookmark-swipe/contact-2.png",
+          "sha256": "2196139cb0a827e67ae8857ef8314805e59ab60070b0c22673dc1aa1f2b12f97"
+        }
+      ],
+      "sourcePTSInversions": 0
+    },
+    {
+      "run": 39038829961,
+      "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
+      "video": {
+        "name": "Screen Recording 2026-10-17 at 02.25.22 PM.mp4",
+        "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+        "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBE1DF23-F548-4CFF-A5DC-A51E2FC25AE9.mp4",
+        "bytes": 26250516,
+        "sha256": "b18292555ec8c87c3c10b0a5b34e440dd8a3959bd929258469d6f52f21b7a25c",
+        "inspected": false
+      },
+      "start": 46.4,
+      "end": 47.4,
+      "method": "Every original VFR frame in the selected interval; source PTS preserved, scale480 only, no fps filter, no interpolation",
+      "inspected": true,
+      "frames": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0001.png",
+          "pts": 46.875,
+          "sha256": "1c3a9cf5768b336dbfdae6ddbc343d34828f6077a591c65c1e1cdad99e7e1bcc"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0002.png",
+          "pts": 47.11,
+          "sha256": "aea781e74194180f7efd7928b9f351f1a3208b54c2dbd573930e85e0005e7580"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0003.png",
+          "pts": 47.196667,
+          "sha256": "700ba8521b5d3078bf34e5733f6fdb83afece6bbf4de58293abdb0d94efa4417"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0004.png",
+          "pts": 47.24,
+          "sha256": "85d6e9174b5df69d17820b6da9b7f4e3da82c72f3204edf87a9ab1c6497d4c38"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0005.png",
+          "pts": 47.258333,
+          "sha256": "b6656fec29698b3c25a1b358b8055d7afe3ae8b88b91266fbdb463c09d362a6b"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0006.png",
+          "pts": 47.268333,
+          "sha256": "b9001d37c39212d1da32c0789edd7f6e69bd34729dc9ca391b193495ce04c0c9"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0007.png",
+          "pts": 47.286667,
+          "sha256": "fbb7f12fbd12e62dc551c3f4ecfbe8c4de6b416a10f6202a51e0e637501f1a98"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0008.png",
+          "pts": 47.296667,
+          "sha256": "2207f84c8badb4c81e6ff02c5fc519ba71ce1f2bf4a940976f96c5c71a9989c5"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0009.png",
+          "pts": 47.313333,
+          "sha256": "59b37f68fe63804e7dbe86608e91212330a689fe15236d945de4493030122104"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0010.png",
+          "pts": 47.331667,
+          "sha256": "1901a8a8446d4932033988f5a31bb44de4288bd64a329ebd536b58959f5544c7"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0011.png",
+          "pts": 47.341667,
+          "sha256": "8804b8f8a94ea7485dc91c2e2ee8f0e887b9b54d843fbfae4adb3ffa1b30f357"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0012.png",
+          "pts": 47.35,
+          "sha256": "dd5307dff196ffc78f28f705f9a42a9d12eb3ad3d005f7e15259ab4d168c55c0"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0013.png",
+          "pts": 47.358333,
+          "sha256": "b30dc2c5f5a02a4be29cce57fb62bae4e46769539f3771f101f937e453f1935f"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0014.png",
+          "pts": 47.368333,
+          "sha256": "97d4e8685e53d34c574b592dda4c82fa903e0b5c61286575870300a012a2acd1"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0015.png",
+          "pts": 47.375,
+          "sha256": "e7db7e49153868bb7368b8f040129b02a6d6cc1dab96b96a57c75c0e91da2961"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0016.png",
+          "pts": 47.385,
+          "sha256": "01e9ba0df76fd801be9544da38d413b16326c538f56de5c12279a6e806b9c4b1"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/original-0017.png",
+          "pts": 47.391667,
+          "sha256": "45e17b130dfd2f3529e2148fc66eb242119a83e240264c47cf2d29adaed4006c"
+        }
+      ],
+      "observations": "All17 original VFR frames in46.4-47.4s reviewed across two sheets. Old result disappears once clear is consumed, intro replaces it, empty query disables submit and native keyboard rises for a new term. Search input stays above results and follows native sheet/keyboard geometry; no per-frame pixel-fixed header or phone-FPS claim.",
+      "contacts": [
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/contact-1.png",
+          "sha256": "481278a1340f17076e592d22bca0a996e0327e6a8d592c794e60dc37b307c4d3"
+        },
+        {
+          "path": "build/ci/39038829961/PanelsReview/actions/native-query-clear/contact-2.png",
+          "sha256": "dff54abbbb0317b8260830a88740111af4f147dc461c1d65232250bd3afeee07"
+        }
+      ],
+      "sourcePTSInversions": 0
+    }
+  ],
+  "unacceptedCaptures": [],
+  "reviewSummary": "本源21张新面板PNG/4表已实际查看；五主题目录层级/空书签/搜索首屏、深色砖红左滑删除/删除后重开为空、搜索结果/无匹配及稳定跳转PNG可读。两条原录屏89.80s/63.64s全部1fps总览11表，以及目录入场33帧、左滑13帧、清空键盘17帧共63原始VFR帧/7表已查看，保留源PTS、无fps滤镜或插值。113张旧功能PNG及其余16阅读/5书库录屏保留而未逐看。本片加载/重开/搜索跳转片尾spinner与渐显不作为稳态正文验收；旧正文标题/菜单安全区、全动效及手机FPS不追认。",
+  "limitations": [
+    "Only21 changed panel PNGs were manually reviewed;113 other reader captures retain hashes and remain unreviewed this run.",
+    "Two of18 reader recordings reviewed; other16 reader and five library recordings retained, not claimed manually inspected.",
+    "One-frame-per-second overviews are navigation summaries; only the listed63 original VFR frames received consecutive-frame review, without interpolation.",
+    "Startup/reopen and final search jump show spinner/fade, not a claim of always-present steady text. Separate stable jump screenshot is readable.",
+    "Existing underlying reader header/chapter-title overlap and prior pause/safe-area/capture limits remain independent open issues.",
+    "System keyboard and sheet movement is native; no phone FPS, energy, memory or all-gesture performance measurement was performed.",
+    "Ordinary signed/TrollStore device acceptance, physical keyboard/IME providers, Dynamic Type/VoiceOver/reduced-motion/contrast/rotation matrix remain pending.",
+    "Old independent font reopen failures and long WebContent launch timings are retained; this full pass does not prove their root cause fixed."
+  ],
+  "firstAgentCancellationRetained": "Documentation/ValidationLogs/m4-panels-build26-first-agent-cancel.json",
+  "build25ScopedDeviceFeedback": "Documentation/ValidationLogs/m4-settings-build25-device-feedback.json",
+  "deviceAccepted": false,
+  "M4Complete": false
+}

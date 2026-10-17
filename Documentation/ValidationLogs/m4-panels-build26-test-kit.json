@@ -1,0 +1,727 @@
+{
+  "recordedAtUTC": "2026-10-17T14:56:19.069131+00:00",
+  "run": 39038829961,
+  "sourceRevision": "1e4ae348a39679df8476bda6c74380d4615078b0",
+  "deliveredBuild26": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingPanels-Build26.ipa",
+      "bytes": 68721503,
+      "sha256": "5a5483916f7b22e527ad938094b5eece897e5cd6a35214512ff22eb74c37d61e"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingPanels-Build26-TestKit.zip",
+      "bytes": 71410420,
+      "sha256": "913275a151771470a2c61e1251394af1d403721acfd12ce6cd02a95b00bb497f"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    },
+    {
+      "path": "Evidence/UnacceptedNativeCaptures/font-txt-byte-anchor-build23.png",
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3"
+    },
+    {
+      "path": "Fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a"
+    },
+    {
+      "path": "Fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "BuiltInFontLicenses/MaShanZheng-Regular-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "BuiltInFontLicenses/PROVENANCE.json",
+      "sha256": "02ff8d5fc3a03c388312f6ad1b5ece510373aeaea98276028e09d0b83f7a3605"
+    },
+    {
+      "path": "BuiltInFontLicenses/README.txt",
+      "sha256": "f5c2c83d3072883178ad73f7bb739faaa1d40fce2a9f5a67d7d5f19dea25933f"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSansSC-Regular-OFL.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZCOOLXiaoWei-Regular-OFL.txt",
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZhuqueFangsong-Regular-OFL.txt",
+      "sha256": "66cc01ad4df62fca6936431a426104cb32a52ce8da49de9a7d643e02d7659043"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-xiaoWei-build24.png",
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-maShanZheng-build24.png",
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-zhuque-build24.png",
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSans-build24.png",
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-wenKai-build24.png",
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSerif-build24.png",
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d"
+    }
+  ],
+  "previews": [
+    {
+      "name": "reader-panels-search-intro-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AEC103E9-685C-4316-AE7A-6A95EF1A583D.png",
+      "bytes": 120051,
+      "sha256": "44091efc6c6c516b10a8374acc0fa92d9d74142dc7c3dfcac746c21bc30722de",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5AD7AED0-44CB-4A0D-9C69-96A4EC9B9CE4.png",
+      "bytes": 102230,
+      "sha256": "b15518a4a477c571f2421ff0f008c294edf7b904a3c0fd3df096c65b149f13a0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-oled-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/08F1F3F7-ABB1-4A77-8A2B-2D61AD3991D2.png",
+      "bytes": 112058,
+      "sha256": "42483c950f66dd3fc50555522c7172380f77de8b673f8c2c9b315741e91eae51",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          1,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2723E45D-3E1B-455D-841D-00AB1A26F7B1.png",
+      "bytes": 127422,
+      "sha256": "7ab91360c34b4f2bd9a4d0a1d2636f9ef1035b54880725256d0d48d44559c47e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/34CE15A5-047E-4333-8840-A615125173A6.png",
+      "bytes": 108814,
+      "sha256": "8c09d924e3676d61f68ae5638f9f31a50648911b26b161c239d951b76fff6c9f",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-charcoal-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9D9F6552-CA89-4FED-BF38-754355F59E1D.png",
+      "bytes": 119031,
+      "sha256": "bca9d09d19241741f4a6dcfdbea638eebde32ee05adf6eaebe5a33c887976925",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4AFDAF85-2B37-4139-9583-33EE929B2C3E.png",
+      "bytes": 152679,
+      "sha256": "4edd5c6a2b58379a73b16c3cdcb380ae99d443b383836af4125c494a650e13df",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AA1F9D65-6626-44E8-BB03-2248A7C0DA91.png",
+      "bytes": 133781,
+      "sha256": "7d7cbd4d5bddb2ef8ace3d8c8c61abd402d7511f8ffadb8fb921c0d6ffa114bc",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-paper-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/058CE32C-2D6C-45D8-BCEE-76425699E27B.png",
+      "bytes": 144437,
+      "sha256": "0d6bfa3ed44885644fb2090420f9c496abb1ed0cb0479726ee679ba0ae06b4d0",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/402D5315-221B-4E99-A8FB-CFDDF5D1EA8B.png",
+      "bytes": 153880,
+      "sha256": "dd02188698e8ad496f33b90829067f3591f858aa30b3bea009da42a04b8f3f29",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D44520B8-54B9-40EC-B7C9-10EF2E125DF2.png",
+      "bytes": 134962,
+      "sha256": "edfd3870f3b90c1ca1d00f2ce24033de435cd30870113907c89f894a3056ed1d",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-warm-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A2C38271-0C34-4976-9C45-32C3A6541D55.png",
+      "bytes": 145623,
+      "sha256": "f272b7aa1b0f1494b660ec3ed50df0d68c6ce61479a361b20bae07154c071046",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-intro-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7ACEA430-C009-4EF8-8234-B31D3B9E7064.png",
+      "bytes": 150163,
+      "sha256": "4b048472b0bc32caf084d136e2cdea80bc6c001dcced98fdac3f696419842699",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8D10EEBF-B1BB-4320-AF86-1AF2A5DC8EF9.png",
+      "bytes": 131784,
+      "sha256": "2df2e6a30fe8c46f506470fe80324c5493ae494d6f943ed36f6a2e39b8276853",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-contents-day-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2356E3AE-43FB-454E-B215-D1044CF68615.png",
+      "bytes": 141903,
+      "sha256": "163ad6555ff52f77938cd9dbc997c8f6cc18f8013d8737ef367a2a64488f0375",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-jump-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A7E4C6E4-C451-4B1A-ABA5-E6D50F74FA74.png",
+      "bytes": 239346,
+      "sha256": "2ad9bbf8316b6e4e690ef4db5e4fd3ce008a44e86deb1a97df866a4b73a62ce9",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          38,
+          255
+        ],
+        [
+          34,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-empty-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A49E0D72-4C0F-4588-930F-F78FF8C8A924.png",
+      "bytes": 130198,
+      "sha256": "e54bca43a9131d00a48f3f95d10da31b037dd8e70a43b08334b24dd8782e195e",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-search-results-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FDA0880D-6939-4411-BD5D-3B372F074195.png",
+      "bytes": 160810,
+      "sha256": "e708d9ce8ac36469420cf92c95ad928b48e58de76e982f0cbf21028608bac66b",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-deleted-reopened-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C55E21B8-4A90-438B-8746-D956A98B4F31.png",
+      "bytes": 109883,
+      "sha256": "62d0ce2b2d59bb7be6759d912a16f07f47f75e3e58394d345d1e2937161a1fa8",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-swipe-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1C6288B5-EE56-486A-8E41-3BC56D9C4285.png",
+      "bytes": 88614,
+      "sha256": "d074b8aed98eea14daaeea3a7b7c38da0ad839cfa4f899c13b1473df91387080",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    },
+    {
+      "name": "reader-panels-bookmark-dark-build26",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39038829961/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F4BB2E7D-E686-4854-BBFD-9D09D0CD3B37.png",
+      "bytes": 88359,
+      "sha256": "3c1678821cdc221294b5b734244db7320c7e25e92fba52fb340d664a10e45808",
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "extrema": [
+        [
+          19,
+          255
+        ],
+        [
+          27,
+          255
+        ],
+        [
+          18,
+          255
+        ]
+      ],
+      "opaque": true
+    }
+  ],
+  "deviceAccepted": false
+}

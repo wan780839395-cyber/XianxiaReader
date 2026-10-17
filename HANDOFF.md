@@ -1,57 +1,33 @@
 # 当前交接与恢复点
 
-原生复核范围更新（等待当前完整CI期间）：完整148条仍全跑，所有原始PNG/录屏保留并摘要核对；人工优先实际查看本片21张新面板PNG、两条对应原录屏总览及选定原始VFR连续窗口。113张未改功能捕获只保留、不声称本轮逐图复核；此前“准备134图”是旧计划，新的review助手明确分列retainedUnreviewedImages。静态/录屏与手机FPS、旧安全区、全动效矩阵继续分开，不能因范围聚焦而扩大验收。
+2026-10-17（Asia/Shanghai）
 
-当前1e4ae348/完整39038829961的Linux135与4组Release TXT探针已按本轮Core artifact12102474112/116258B独立核验并清重复ZIP/分片。Apple整轮执行中，无新门槛继承。旧两字体诊断39037690400实际1/2，导入字体test在分页关闭重开后line294的blank失败；两条WebContent启动日志实际47.520322/47.657906秒，超过原30秒等待，属于排障线索而非唯一根因。另一隐藏重排test9.241s通过，原test/引擎不动。78.8MB诊断已SHA/CRC校验并提取，原collector同样summary路径错误后已按receipt复用正确提取补写真实结果；见diagnostic-fonts记录。保留原门槛，不放宽断言或靠系统RBS文本宣布已修复。
+## Build26 阅读面板
 
-完整新候选已实际分发39038829961 / source1e4ae348a39679df8476bda6c74380d4615078b0 / codex/m4-reading-panels，显式diagnostic_selection=full。Windows438/17、Git Bash语法、旧11UI主体和3新tests/536编译资源blob核过，门槛全部重置；实际仅输入测试修scene挂载和诊断基础设施，产品行为仍与517候选相同。watcher session25903、collector session39756只处理本run，不重复分发/下载；成功才校验Release、准备原生材料，尚无Build26根包。旧字体定向39037690400/ref独立不受取消，完成后核实际summary。正常HEAD/index/45旧包/16备份保持，取消关机持续生效。
+Build26本切片已交付；实际编译源`1e4ae348a39679df8476bda6c74380d4615078b0` / ref `codex/m4-reading-panels` / [完整CI 39038829961](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39038829961)。Linux/macOS Core各135、iOS148/148（125集成+23真UI），失败/跳过0；test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release26/min16。三锁六pins、536源码/资源/配置blob、每平台4组长TXT Release探针及IPA六字体/原OFL原字节已核。Windows438语法新增0/54既有Vendor限制、17工具通过；语法不算编译。11个原UI test主体保持；新增2项真UI与1项原生输入集成回归。
 
-原生输入定向39037628899实际failure，完整日志明确失败于native field layout：No UITextField，尚未执行中文组合/主题/清空，原测试仅frame创建的窗口未接scene。按Apple公开UIWindow(windowScene:)与项目所有既有UIKit挂载方式，新增test修成真实connected scene、layoutIfNeeded，并在退出恢复旧key window；2秒预算及中文/光标/44pt断言保持，无产品补丁或超时放宽。60.7MB原诊断已SHA/CRC提取；collector首次因artifact根目录是build内容而非build/多一级，summary查找失败，已修助手为唯一实际summary路径，原件和receipt保持。下一步Windows/freeze后完整148条/严格Release26，诊断本身不产IPA；旧字体独立39037690400仍待实际结果。
+目录、书签和书内搜索统一使用阅读菜单的灰绿浅深表面、柔和正文色、清晰间距与空状态，系统原生List复用/滚动/安全区和书签左滑删除保留。目录保留原ordinal/深度/所有条目，不把TOC序号当canonical章序或猜当前章。搜索框固定顶部、清空经既有setQuery取消旧会话/结果；提交收键盘、匹配词灰绿加粗。增量批次/1000条上限/加载更多/停止/错误/关闭取消、原生完成/下拉关闭、原导航/完整位置/删除事务保持。新搜索按压显式尊重系统与持久化额外减少动效。书签删除显式柔和砖红色，避免全局浅绿tint/白字对比不足。不增加逐行阴影、自建整表、依赖或正文重排；Core/DB/schema/Reader与Search ViewModel/ReadingInterfaces/Readium/Vendor/字体/资源窗口均未变。
 
-新诊断已实际分发：36068e4788c66b4cc392ed841450aad3b902031a；中文输入39037628899/ref codex/m4-reading-panels（watcher session36594），旧两字体39037690400/ref codex/m4-reading-font-diagnostic（watcher session2651）。不同ref避免互相取消，均为显式诊断、不产Release/IPA；不要把该run当完整交付。失败517的完整artifact已SHA/CRC提取、重复ZIP/分片已删除，真实146/148记录m4-panels-build26-history-39027324303.json；21新PNG/4接触表已实际查看，仅失败源局部视觉复核。保留正常HEAD/空index，当前私有tip36068e4，此后改动仅文档与.cache助手。
+新真UI覆盖五主题目录/空书签/搜索首屏/44pt，以及真实设置开启额外减少动效→删除书签→退出/重开持久化、搜索结果→清空→新词无匹配→重搜跳转与回看入口。新增真实UIWindow内的中文marked-text/光标→换色保持→清空→新词/收键盘回归也通过；原生输入按系统正文字号增高，原UI的44pt断言保留。既有目录/书签/搜索完整定位、取消与字体/三阅读模式回归均重跑。本片未声称解决用户报告的菜单轻微卡顿；Build25基本可继续使用而流畅度仍待优化，证据m4-settings-build25-device-feedback.json。
 
-2026-10-17 再次恢复：39027324303已实际completed/failure，watcher/旧collector均退出；后者下载TLS断连，207个已有分片保留，新的单一续传任务PID32792正完成同一artifact12099699259（208块），不重复分发整轮。完整日志确认两个新真UI测试均通过（五主题/44pt、删除重开/清空搜索/原生Return），旧另一字体重排测试本轮通过；失败是新增中文组合输入与另一旧字体重开（连续章节超时、blank），不能统称字体问题已修或新功能全过。148条精确统计以即将完成的原xcresult summary为准。无Release/Build26交付，Build25仍有效；45旧包/16备份/正常HEAD及空index保留，无关机任务。
+安装[XianxiaReader-ReadingPanels-Build26.ipa](build/XianxiaReader-ReadingPanels-Build26.ipa)，SHA256 `5a5483916f7b22e527ad938094b5eece897e5cd6a35214512ff22eb74c37d61e`；原创样书/21张本源原生Preview/沿用字体样本与原许可包[XianxiaReader-ReadingPanels-Build26-TestKit.zip](build/XianxiaReader-ReadingPanels-Build26-TestKit.zip)，SHA256 `913275a151771470a2c61e1251394af1d403721acfd12ce6cd02a95b00bb497f`。覆盖安装保留书库，+菜单确认0.0.1 (26)。45旧包及未提交源码/恢复备份保留，ZIP CRC/内部IPA/原材料逐摘要核验。
 
-下一可恢复步骤：保留失败原件，中文输入test新增分阶段诊断输出，断言和2秒预算保持；新增scripts/ci_reader_diagnostic.sh选择原生输入/两项旧字体/两项新UI，严格传播原test/summary/export退出，仅定向诊断，不产IPA。GitHub现只注册原ios-build workflow，官方要求手动工作流存在默认分支；因此复用既有workflow的显式diagnostic_selection入口及独立reading-diagnostic job，默认full仍完整Core/iOS/严格设备Release门槛，未改ci_ios.sh或缩减交付测试。未使用独立新workflow草案已保存在.cache备份，未推主分支。Windows438语法新增0/54旧限制、17工具与Git Bash语法通过，尚未Apple验证本诊断源。先定向核实中文输入失败阶段，再做最小修正；所有原字体断言保持。
+原生人工复核范围：本源21张新面板PNG/4表已实际查看；五主题目录层级/空书签/搜索首屏、深色砖红左滑删除/删除后重开为空、搜索结果/无匹配及稳定跳转PNG可读。两条原录屏89.80s/63.64s全部1fps总览11表，以及目录入场33帧、左滑13帧、清空键盘17帧共63原始VFR帧/7表已查看，保留源PTS、无fps滤镜或插值。113张旧功能PNG及其余16阅读/5书库录屏保留而未逐看。本片加载/重开/搜索跳转片尾spinner与渐显不作为稳态正文验收；旧正文标题/菜单安全区、全动效及手机FPS不追认。
 
-2026-10-17 Build26目录/书签/搜索主题统一开工。用户允许继续，实测菜单仍卡顿但不碍事；不称Build25流畅度已通过。Build25/f90a33cd/39014160303仍是交付基线，旧完整诊断和45交付包保留；本片尚未实现、编译、交付。
+手机菜单/字体列表实际卡顿、FPS/内存/耗电、普通签名/TrollStore、系统大字/VoiceOver/减少动效/旋转和全部File Provider矩阵仍待专项验收。旧阅读暂停安全区/分页快照问题按各自证据保留，不因新面板通过而追认；字体删除/集合/可变轴、单书覆盖、自定义配色/独立四边距等尚未实现。M4未完，先收本片手机面板/键盘/左滑反馈并核旧安全区，再按M4设置与主题路线推进，不提前M5。
 
-已读AGENTS→状态→交接→路线→架构并核实际Git/文件/完整验证回执/任务。正常HEAD6d761749/空index/M2/M3保留，私有tip0ce949a；988维护文件+清单共989路径已备份、45包和15旧ZIP逐摘要/CRC核验，新备份是第16份。见m4-panels-build26-start.json。无遗留开发/下载任务，关机持续取消。
+首候选3c250618/39023086030由Agent在审查发现新增搜索遗漏持久化额外减少动效传递后取消。实际completed/cancelled、两平台Core各135、iOS完成0/无设备Release成功标记、源码compiler诊断0；完整日志/metadata/整包校验后的历史文字诊断留存。不是源码失败，旧结果不继承为本源门槛，见m4-panels-build26-first-agent-cancel.json。初始界面和受改原测试保留，无降低断言或删除测试。另ac8b387e/39023478476实际145/147：旧字体隐藏重排非零字定位超时、新TextField原生AX22pt未满足44；无Release。原引擎和该旧test与Build25相同，未证实旧超时根因；修正原生字段尺寸/中文组合与删除tint后本源独立全过，不把重跑通过写成旧字体时序根因已修复。完整失败日志/summary/4张实际查看图及artifact摘要见m4-panels-build26-history-39023478476.json。
 
-实际断点：ReaderView内目录/书签仍默认NavigationStack/List，搜索也未接ReaderPalette；深色虽继承环境仍缺一致表面/工具栏/空状态。拟只修改App原生sheet与列表样式，保留目录ordinal/深度/跳转、书签删除事务、搜索增量/限额/取消/请求ID，搜索框固定顶部并提供清空。无Core/Readium/Vendor/DB/依赖/正文布局修改，仍M4。按iOS16公开scrollContentBackground/toolbarBackground原生API，避免全局appearance与逐行阴影。先新增真UI回归、Windows检查、独立完整CI及实际原生复核；手机FPS与旧阅读安全区单列，未验收。
+另5176821d/39027324303实际146/148，两项新真UI均过，但新输入测试未创建UITextField即超时、另一旧字体重开失败；输入定向39037628899证实新测试缺少真实scene挂载，修测试窗口/恢复key后本源独立全过，原中文/光标/44pt及2秒预算保持。旧两字体定向39037690400实际1/2，分页快速重开blank且两条WebContent启动日志47.520322/47.657906秒，另一隐藏重排9.241s过。未改原字体测试或引擎，未证实旧字体/环境时序唯一根因；本源全过只表本轮门槛，不把重跑写成该根因已修。两条定向诊断均无Release/IPA、不替代完整门槛，完整原summary/日志摘要与来源见ValidationLogs/m4-panels-build26-diagnostic-*及history-39027324303记录。
 
-可恢复子步骤：原生目录/书签值视图、统一List/导航栏颜色与空状态、固定搜索框/清空已写源码；两项真UI回归已加，原函数体待freeze核对，未编译。设计READING_PANELS_DESIGN.md含官方参考与iOS16取舍。即将Windows验证/冻结及完整独立CI，Build25仍是交付版。
+本地CI按AGENTS保留本轮完整诊断；历史原件保留范围服从m4-panels-build26-ci-retention.json实际回执，文字日志/summary/metadata及交付包/源码/恢复ZIP保留。旧文“大原件在本地”只代表当时快照。用户取消关机持续生效，本轮不发关机命令或调度。
 
-构建前检查点：Windows仓库检查/436 Swift语法新增0（54既有Vendor限制）及17工具测试通过，语法不等于编译。私有index对照0ce949a保留11个原UI test主体、仅加2个，本候选533编译/资源blob冻结。将独立ref codex/m4-reading-panels触发完整Core135各/iOS147/严格Release26；尚未Apple编译/模拟器复核/交付。
+## 保全与恢复
 
-完整CI已实际分发：39023086030 / source3c250618d8814a407588d5d760c717566711893c / codex/m4-reading-panels，当前尚在执行，未继承旧门槛。API watcher轮询并落run.json/完整日志/metadata；当前进程与最后状态以实际文件为准。
+实际保全已核：536源码/资源/配置blob与编译源一致，1013维护文件（另有清单本身）、989开工原路径、47根安装包/测试包和16恢复ZIP原摘要/CRC保持。编译后只有文档/验证记录变动；正常HEAD6d761749/空index/M2 e6f31d85/M3 44af41f0保持，未提交工作保留。动态清单为Documentation/FILE_INVENTORY.json，最后核验见build/ci/39038829961/final-preservation-check.json。
 
-可恢复检查点：Core完整artifact12097258932(116204B)已校验GitHub SHA/ZIP CRC/编译源并完整提取，重复ZIP/分片删除。实际Linux135条+4组Release长TXT探针/原内容身份全过，证据m4-panels-build26-linux.json；Apple仍执行中。Watcher unified session13088，build/ci/39023086030/run.json每30秒更新；中断后先核进程，不重复触发CI，不把当前为通过。
+历史6轮CI已按精确计划删除10869项/4939891007B，保留222份完整文字日志/summary/metadata；本轮39038829961完整诊断保留，47根包/源码/素材/恢复ZIP不在删除范围。实际边界见m4-panels-build26-ci-retention.json；历史“大原件在本地”描述不能越过此回执。传输TLS失败和curl续传仅属于本地收集，完整CI成功与整包SHA/CRC独立记录，不能混称源码失败。
 
-审查断点：新增搜索按压样式已尊重系统Reduce Motion，但遗漏传递持久化interaction.reduceMotion。Agent已请求取消首候选39023086030，实际Apple未完成阶段/已执行测试须等完整日志核实，不能称源码失败。将补传偏好后用新源完整验证；首轮Linux135/4探针是旧候选独立证据，不继承为新门槛。
+私有index继续维护codex/m4-reading-appearance；实际编译源1e4ae348与后续纯文档tip分列，最终远端tip/工作树/无遗留助手核验见同目录final-delivery-receipt.json，恢复时核其实际存在与内容，不假定最后步骤成功。
 
-修正后新构建前：搜索按钮显式接interaction.reduceMotion；第二个新增UI测试改用真实设置开关保存并重开核值1，未用强制环境替代该路径。436语法新增0/17工具、11原test主体/533blob再次核过。即将冻结新源并触发独立完整CI；旧轮取消原因与实际执行阶段保留。
-
-修正后完整CI实际分发39023478476/sourceac8b387ee0dd023d3053da7463d50d70a9be7dcf/codex/m4-reading-panels；所有门槛重新验证，不使用3c250618旧轮结果。旧watcher仍负责39023086030最终日志，新的负责39023478476。目录与书签仍无逐行装饰动画；搜索按压样式兼顾系统/持久化额外减少动效。
-
-旧39023086030已实际completed/cancelled，watcher正常退出，完整日志204586B与完整metadata保留。Apple已观察135 Core条目、iOS完成0，无TEST/设备BUILD成功标记；日志内源码compiler诊断0条。5MB诊断artifact已整包SHA/CRC校验，仅保留文字日志/summary/metadata，原ZIP/分片删除；不是iOS或设备构建通过，见first-agent-cancel证据。新39023478476独立验证中。
-
-新源ac8b387e的Core135/4组Release探针已独立核实，artifact12097543187/116234B完整SHA/CRC/编译源校验提取，重复分片/ZIP删除；Apple仍待完成。generic linux证据现对应新源，旧3c250618证据已按run保存为m4-panels-build26-linux-39023086030.json，各轮不混同。
-
-等待中检查点：新39023478476的Apple仍执行，当前API可正常更新，不能从未完成日志或显示尾部判断挂起。前次相同基础套件的ios job实际55.1分钟（主build/test/package步骤53.55分钟），当前job预算60分钟；这只是历史排障信息，不是当前ETA或手机性能。若实际预算终止，须记录未完成阶段，不得改写为源码失败/跳过检查。私有文档tip c1bb19fb第一次push报TLS断连，但随后ls-remote已核实际服务端收到相同tip；不需要重置/覆盖。运行源码仍ac8b387e。
-
-2026-10-17 18:47恢复核验：实际新39023478476仍in_progress，API watcher PID22068仍运行，未重复分发。533个当前编译blob与ac8b387e完全相同、989开工路径全部在、正常HEAD/空index保持，仅文档在冻结后变动，见build/ci/39023478476/resume-audit.json。真正断点是等待本轮Apple完整结果及后续下载/原生复核/打包，尚无Build26交付包；保留全部已完成改动和Build25完整诊断。继续等待同一CI，不从时间或尾部推断挂起。
-
-真实验证失败断点：39023478476已completed/failure，主test65/export0/summary0/recording0，严格流程未构建设备Release。可见两个失败：旧testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord原非零文字/重排定位超时；新增五主题UI在搜索TextField AX高度只22pt而44pt断言失败（不能放宽断言或称触区已通过）。另一新增书签左滑/持久化/清空搜索测试实际结果见完整日志/summary。即将完整下载1541210264B诊断artifact12099105997，预算已核，保留Build25完整原件与45包/16ZIP；先查完整结果与原生图再最小修正。
-
-完整诊断核实：ac8b387e/39023478476实际145/147(2失败0跳过)，两平台Core各135/test65/export0/summary0/recording0，未执行严格设备Release。完整artifact1541210264B已SHA/CRC/编译源核验提取并删除重复分片/ZIP。实际查看4张原生PNG：日间目录/空书签/深色搜索可读；深色左滑删除继承全局浅绿+白字对比不足，下一源明确柔和砖红色删除。旧字体重排非零字定位超时根因未证实，Engine/原test未动。新增UI的搜索输入AX22pt不放宽断言；改用公开UITextField+UIViewRepresentable sizeThatFits保证真实44pt，并新增真实中文marked-text/光标/换色/清空回归，原2个UI断言保留且首次搜索改原生Return。此时修正源码未Apple编译。
-
-修正后Windows/完整CI前检查点：新增原生输入文件和真实中文组合测试，本源预计438语法、535编译blob、148iOS(125集成+23真UI)。保留旧11个UI test主体和原44pt/定位断言，额外1个真实输入集成测试，不替换旧位置回归。先Windows/源码diff/主体检查后冻结新源。
-
-新修正候选已冻结/完整CI实际分发39027324303 / source5176821d94769f05792ec5cf94048c48057d85c8 / codex/m4-reading-panels，所有门槛重置。438语法/17工具、11原UI主体+3新test、535编译blob核过，原Engine/ReaderRenderingTests未动。旧39023478476 watcher已正常退出，保留完整失败diagnostic和summary；新轮从头验证Core135各/148iOS/严格Release26。此时未Apple验证/交付。
-
-新源5176821d独立Linux135/4组Release探针全过，artifact12098338731/116241B完整SHA/CRC/源身份已核，重复分片/ZIP删除。m4-panels-build26-linux.json现为新源证据；旧ac8b387e Linux副本按39023478476归档。Apple开始整轮，当前所有未通过门槛继续false。
-
-可恢复步骤：已启动本地collect_panels_result.py等待当前39027324303 watcher的最终run/full.log/artifacts.json；仅在身份匹配且磁盘预算充分时下载该轮完整Apple/IPA，SHA/CRC后删重复ZIP/分片。成功才inspectIPA/独立validate_panels finish/准备134图接触表，失败仅保存真实summary并停止，不交付/不标原生通过。中断后先核该进程/回执，不重复下载或分发。原生人工复核/打包/最终保全仍须后续实际完成。
-
-运行任务核实：当前新轮watcher PID31356（session98912），结果收集器PID39612（session66880），均仅等待/处理39027324303；无关机任务。私有文档tip a5c12e5已push，运行源码仍5176821d不变。collect成功后会写完整download receipt、IPA inspection、m4-panels-build26-success.json并生成PanelsReview/review-pending.json；这些不存在时不得假定完成。尚无Build26根安装包，Build25继续为交付版。
+恢复先AGENTS→状态→交接→路线→架构，核实际Git/文件/完整日志与任务。下一M4切片先收手机面板/中文键盘/左滑反馈，再测菜单与字体列表主线程、渲染/缓存/帧时间（只读线索在READING_SETTINGS_COMPACT_DESIGN.md），旧阅读安全区单列；M4与普通签名/TrollStore设备矩阵未完，不提前M5。用户取消关机持续生效，本轮未发关机命令或调度。

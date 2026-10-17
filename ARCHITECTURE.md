@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+## Build26 阅读面板
+
+App层独立ReaderContentsView/ReaderBookmarksView按值接收现有条目与回调，统一原生List和本地导航栏表面；ReaderSearchField用公开UIViewRepresentable/UITextField直接布局至少44pt真实编辑区域，保持中文marked text/光标且经既有setQuery取消旧会话；ReaderSearchView接当前theme/持久化reduceMotion，固定搜索框与键盘焦点，沿原SearchViewModel取消/增量/请求身份。无Core/schema/引擎/依赖/完整Locator变更，不解析opaque位置或推测canonical章序。公开iOS16 List/toolbar接口、无全局appearance和逐行阴影。实际自动/原生/手机边界见READING_PANELS_DESIGN.md及M4_READING_PANELS_VALIDATION_REPORT.json。
+
 ## Build25 原生字形与紧凑设置
 
 ReadingFontPreviewRenderer actor直接给SwiftUI传递已绘制CGImage，透明alpha由原生template着色，UI不PNG编解码；保留一个CGFont与12图/8MiB像素上限。State保留请求身份和图，取消/过期结果不发布；加载/失败/图使用稳定尺寸，主题不触发字体I/O。固定分组、两列字体/辅助功能大字单列、紧凑排版行只调整App界面，不改Core/Readium/DB/完整位置/资源窗口/默认偏好。全部实现/验证与手机限制见READING_SETTINGS_COMPACT_DESIGN.md及M4_SETTINGS_COMPACT_VALIDATION_REPORT.json。
