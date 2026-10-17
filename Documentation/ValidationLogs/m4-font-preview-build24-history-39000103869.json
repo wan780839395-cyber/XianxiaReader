@@ -212,8 +212,8 @@
     "bytes": 3040160,
     "sha256": "e5b5ef8616c038c75f5ec367e154eab40923be293aebbc2369e49d0b5394cc29"
   },
-  "retention": "Full text logs/run/artifact metadata retained; only17 selected failure attachments (AX snapshots, one PNG and original picker recording) downloaded by ranges with member CRC; no full Apple archive digest/CRC verification or Release IPA.",
-  "supersededByRun": null,
+  "retention": "Full text logs/run/artifact metadata plus17 selected picker failure attachments and20 new font PNGs retained. All selected members CRC checked by ranges; no complete Apple archive digest/CRC or Release IPA.",
+  "supersededByRun": 39003048184,
   "reason": "A previous Build24 source candidate; not cancelled and never used as the latest source validation gate",
   "actualIOSTestCases": 138,
   "actualIOSPassed": 137,
@@ -910,5 +910,6 @@
       "outcome": "passed"
     }
   ],
-  "selectedFailureDiagnosis": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json"
+  "selectedFailureDiagnosis": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
+  "preflightImages": "Documentation/ValidationLogs/m4-font-preview-build24-cjk-preflight-native.json"
 }

@@ -209,7 +209,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -2682,6 +2682,15 @@
   "partialVerification": {
     "previousRun": 39000103869,
     "appliesOnlyToPreviousRun": true,
-    "evidence": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json"
+    "evidence": "Documentation/ValidationLogs/m4-font-preview-build24-picker-initialization-failure.json",
+    "currentLinux": {
+      "run": 39003048184,
+      "coreTests": 135,
+      "longTXTReleaseCases": 4,
+      "artifactReceipt": "build/ci/39003048184/core-download-receipt.json",
+      "validatedAtUTC": "2026-10-17T04:38:41.276849+00:00",
+      "logSHA256": "3184392060eb55829f1a0ef2fa736901b021e4513b929745d3f1cf1d356f5403",
+      "performanceSHA256": "404784ea671612428e43dbb37da3deb9a64df2fe7caca238bf90ef4feed1350e"
+    }
   }
 }

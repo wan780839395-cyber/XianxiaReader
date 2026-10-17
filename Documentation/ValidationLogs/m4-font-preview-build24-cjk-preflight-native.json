@@ -1,0 +1,160 @@
+{
+  "recordedAtUTC": "2026-10-17T04:38:05.874931+00:00",
+  "run": 39000103869,
+  "sourceRevision": "b9436136a26cad4f62140f0df960e99657c1ff1e",
+  "completeArchiveDigestVerified": false,
+  "completeArchiveCRCVerified": false,
+  "selectedMembersCRC": true,
+  "allTwentySelectedImagesViewed": true,
+  "images": [
+    {
+      "name": "font-six-body-5-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-5-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "de598d2f9a9d675b6bddefdb0c74ee53137032a2c4d02877178ee0702d25cb73",
+      "memberCRC": true
+    },
+    {
+      "name": "font-six-body-4-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-4-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "32559182dcb73d4001efbc5cd700b7e10d7e07510d01e52ffa71adbebb080f03",
+      "memberCRC": true
+    },
+    {
+      "name": "font-six-body-3-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-3-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "73ba33584333b89f77ab3f044de7316604da9ea11c7d150e000aa98656bf96f9",
+      "memberCRC": true
+    },
+    {
+      "name": "font-six-body-2-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-2-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "5d6c31c85c1647866257298d7f06d5c89de83f149f07eebdb386d1f2fcb81506",
+      "memberCRC": true
+    },
+    {
+      "name": "font-six-body-1-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-1-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "7e011d917a591349040e2c36e5f576d085b60826662e7f9d8e08e0444b79a2e8",
+      "memberCRC": true
+    },
+    {
+      "name": "font-six-body-0-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-six-body-0-build24.png",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "sha256": "539c009f017b3e44d6779250f1d136f1932739de905aa908d381dc36fb3d8d99",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-xiaoWei-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-xiaoWei-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "822d0af59adedf380affb502dc4c299c32061e8fc9c4708e7265f923111c3b36",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-maShanZheng-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-maShanZheng-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "7db24c060e68a711cc68dcbebb1496e608c00324a3d8064658134469a7604eca",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-zhuque-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-zhuque-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "072893c09085284ebffab117f0c51d8bb148ab181aa889d9ad201b66da62e30b",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-sourceHanSans-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-sourceHanSans-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "ec5e4bbeb9ae286e0dcf891f71fcd3001a28dd54ecae73e67a6b2655a2cac58b",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-wenKai-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-wenKai-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "a3f0f631077f4916fe269ea3350b7f1970f55281ba21015790224e3ebe285225",
+      "memberCRC": true
+    },
+    {
+      "name": "font-settings-sample-sourceHanSerif-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/font-settings-sample-sourceHanSerif-build24.png",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "sha256": "b5044f61f5b9af28ec1d5d68948862b362392a6dc41d1c15404d373f5a804bcb",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-extended-layout-reopened-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-extended-layout-reopened-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "583e4024f243608255cdded4da66aeae8608af8e54c3b50c9a0bc4778d6550ab",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-extended-layout-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-extended-layout-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "e8362a232b06491e609c72ba7e2bb7198ebc0788b377dfed597116caf8f749fe",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-xiaoWei-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-xiaoWei-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "6af5c4acf67d5fd30a9efb303995e856335172ac4469222fe8a91b5b15bc0183",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-maShanZheng-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-maShanZheng-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "37e7bd4fa18d31f4e72b8c98807c79ad3bcc7dc1ebc9d52724098036ceeb65f9",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-zhuque-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-zhuque-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "65aea8d2ee0869bb2eca2aa18900051f70d30ac06d823529c697ebdef08e8b90",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSans-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-sourceHanSans-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "ff53ddea21180055b7e451ac9f189527d539d3706ebf41909064041796b81e69",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-wenKai-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-wenKai-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "fe8c65511a4fe0fdd29c4d77f839746619e567fd4b575a9fe2d6f473b0c377b5",
+      "memberCRC": true
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSerif-build24",
+      "path": "build/ci/39000103869/EarlyFontReview/reader-font-sample-row-sourceHanSerif-build24.png",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "sha256": "b270d9a69a38b9206314a14813f129ea1aa59f30c6897e87dc5ac43bfdc6b42a",
+      "memberCRC": true
+    }
+  ],
+  "observations": [
+    "Viewed six full native body PNGs individually: all six fonts show readable original Chinese long-paragraph text with distinct forms, warm background and visible spacing/line rhythm. Partial top line is the deliberately retained nonzero scrolling point, not a missing page.",
+    "Viewed six original native CoreText PNGs individually: all same original sample sentences are upright, complete, legible and visibly distinct; no tofu/blank image in these captures.",
+    "Viewed all six settings row captures through two contact sheets: actual row glyphs blend with the pale-green cards; previous hard opaque rectangles absent. Selection checkmarks, names/subtitles and the main sample are visible.",
+    "Viewed both typography settings PNGs individually:0.05spacing,125%weight,2.5-character indent are legible before and after relaunch, with coherent rounded surfaces."
+  ],
+  "scope": "Preflight on the failed CI source candidate, all20 selected original new PNGs only. Not primary retry acceptance, not a complete native recording review, and not phone smoothness/FPS.",
+  "newPrimaryRun": 39003048184,
+  "productChangesAfterReview": "None"
+}
