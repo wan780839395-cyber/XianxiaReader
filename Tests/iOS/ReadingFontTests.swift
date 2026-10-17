@@ -8,6 +8,43 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReadingFontTests: XCTestCase {
+    func testTransparentDecodedPreviewCacheReusesSixFacesAndBoundsPixelMemory() async throws {
+        let renderer = ReadingFontPreviewRenderer()
+        var requests: [ReadingFontPreviewRequest] = []
+        var originals: [CGImage] = []
+        for item in BundledReadingFont.allCases {
+            let resource = try item.resource()
+            let request = ReadingFontPreviewRequest(fileURL: resource.fileURL, identity: resource.asset.sha256,
+                systemFont: "original", textRGB: 0, backgroundRGB: 0, pointSize: 19, compact: true)
+            let image = try await renderer.image(request)
+            let pixels = try XCTUnwrap(image.dataProvider?.data) as Data
+            XCTAssertEqual(image.bitsPerPixel, 32)
+            let alpha = stride(from: 3, to: pixels.count, by: 4).map { pixels[$0] }
+            XCTAssertEqual(alpha.min(), 0); XCTAssertEqual(alpha.max(), 255)
+            XCTAssertEqual(pixels[3], 0, "The corner must blend into its native parent")
+            requests.append(request); originals.append(image)
+        }
+        for _ in 0..<4 {
+            for (request, original) in zip(requests, originals) {
+                let revisited = try await renderer.image(request)
+                XCTAssertTrue(revisited === original, "Returning to a font row must reuse drawn pixels")
+            }
+        }
+        let drawings = await renderer.drawingCount
+        XCTAssertEqual(drawings, 6, "Repeated list browsing must not reparse/redraw the six faces")
+        let resource = try BundledReadingFont.wenKai.resource()
+        for index in 0..<20 {
+            let request = ReadingFontPreviewRequest(fileURL: resource.fileURL, identity: resource.asset.sha256,
+                systemFont: "original", textRGB: index, backgroundRGB: 0, pointSize: 48, compact: false)
+            let image = try await renderer.image(request)
+            let pixels = try XCTUnwrap(image.dataProvider?.data) as Data
+            XCTAssertEqual(pixels[3], 0, "The large sample must also have no rectangular background")
+            let footprint = await renderer.cacheFootprint()
+            XCTAssertLessThanOrEqual(footprint.images, 12)
+            XCTAssertLessThanOrEqual(footprint.bytes, 8 * 1_024 * 1_024)
+        }
+    }
+
     func testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible() async throws {
         let renderer = ReadingFontPreviewRenderer()
         var digests = Set<String>()

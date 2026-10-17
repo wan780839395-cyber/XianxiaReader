@@ -1,6 +1,62 @@
 import XCTest
 
 final class ReadingFontUITests: XCTestCase {
+    @MainActor func testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchEnvironment["XR_LIBRARY_UI_TEST_ID"] = UUID().uuidString
+        app.launchEnvironment["XR_READER_UI_SETTINGS"] = "1"
+        app.launchEnvironment["XR_LIBRARY_UI_LAYOUT"] = "list"
+        app.launch(); defer { app.terminate() }
+        let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 30)); book.tap()
+        let settings = app.buttons["reader.appearance.open"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 20))
+        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
+        XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed); settings.tap()
+        func reveal(_ element: XCUIElement, up: Bool) {
+            for _ in 0..<5 {
+                if element.isHittable { break }
+                if up { app.scrollViews["reader.appearance.scroll"].swipeUp() }
+                else { app.scrollViews["reader.appearance.scroll"].swipeDown() }
+            }
+            XCTAssertTrue(element.isHittable)
+        }
+        func snapshot(_ name: String) {
+            let image = XCTAttachment(screenshot: app.screenshot())
+            image.name = name; image.lifetime = .keepAlways; add(image)
+        }
+        let song = app.buttons["reader.font.bundled.sourceHanSerif"]
+        let kai = app.buttons["reader.font.bundled.wenKai"]
+        reveal(song, up: true); reveal(kai, up: true)
+        XCTAssertLessThan(abs(song.frame.minY - kai.frame.minY), 2)
+        XCTAssertGreaterThan(kai.frame.minX, song.frame.minX)
+        let rowHeight = song.frame.height
+        XCTAssertGreaterThanOrEqual(rowHeight, 86)
+        for _ in 0..<3 {
+            app.scrollViews["reader.appearance.scroll"].swipeUp()
+            app.scrollViews["reader.appearance.scroll"].swipeDown()
+            reveal(song, up: false)
+            XCTAssertEqual(song.frame.height, rowHeight, accuracy: 1)
+        }
+        snapshot("reader-settings-font-grid-build25")
+        let dark = app.buttons["reader.theme.charcoal"]; reveal(dark, up: false); dark.tap()
+        reveal(song, up: true)
+        XCTAssertEqual(song.frame.height, rowHeight, accuracy: 1)
+        snapshot("reader-settings-font-grid-dark-build25")
+        let section = app.segmentedControls["reader.appearance.section"]
+        XCTAssertTrue(section.isHittable, "Groups stay available while browsing fonts")
+        section.buttons["排版"].tap()
+        let alignment = app.segmentedControls["reader.alignment"]
+        XCTAssertTrue(alignment.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["reader.margins.increase"].isHittable)
+        XCTAssertTrue(app.buttons["reader.indent-size.increase"].isHittable)
+        XCTAssertTrue(alignment.isHittable)
+        XCTAssertLessThan(alignment.frame.maxY, app.frame.maxY - 20)
+        snapshot("reader-settings-compact-layout-build25")
+    }
+
     @MainActor func testSixNativeFontSamplesAndCustomTypographyPersist() {
         continueAfterFailure = false
         let app = XCUIApplication()

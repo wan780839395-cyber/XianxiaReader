@@ -25,21 +25,24 @@ enum ReadingFontPreviewError: LocalizedError {
 }
 
 /// Draw a bounded original sample with the actual file, without process-wide
-/// registration or loading every CJK face on the main actor. Only one CGFont and
-/// twelve small PNG results are retained; no book text enters this cache.
+/// registration or loading every CJK face on the main actor. One CGFont and at
+/// most twelve already-drawn images / 8 MiB of pixels are retained. The UI never
+/// encodes or decodes a PNG while scrolling; render() is the diagnostic exporter.
 actor ReadingFontPreviewRenderer {
     static let shared = ReadingFontPreviewRenderer()
     private var lastURL: URL?
     private var lastFont: CGFont?
-    private var images: [ReadingFontPreviewRequest: Data] = [:]
+    private var images: [ReadingFontPreviewRequest: CGImage] = [:]
     private var order: [ReadingFontPreviewRequest] = []
+    private var pixelBytes = 0
+    private(set) var drawingCount = 0
 
-    func render(_ request: ReadingFontPreviewRequest) throws -> Data {
+    func image(_ request: ReadingFontPreviewRequest) throws -> CGImage {
         try Task.checkCancellation()
         guard request.pointSize.isFinite, (8...48).contains(request.pointSize) else {
             throw ReadingFontPreviewError.drawingFailed
         }
-        if let data = images[request] { return data }
+        if let image = images[request] { return image }
         let font: CTFont
         if let url = request.fileURL {
             if lastURL != url || lastFont == nil {
@@ -59,7 +62,7 @@ actor ReadingFontPreviewRenderer {
             font = system
         }
         try Task.checkCancellation()
-        let text = request.compact ? "山风拂卷，云海问道" : "山风穿过竹林，云影落在书页间。\n少年循着石阶，缓缓走入云海。"
+        let text = request.compact ? "山风拂卷，云海问道" : "山风穿过竹林，云海漫过书页。\n清茶半盏，闲书一卷。"
         func color(_ rgb: Int) -> CGColor {
             CGColor(red: CGFloat((rgb >> 16) & 255) / 255,
                     green: CGFloat((rgb >> 8) & 255) / 255,
@@ -70,7 +73,8 @@ actor ReadingFontPreviewRenderer {
             NSAttributedString.Key(kCTForegroundColorAttributeName as String): color(request.textRGB)
         ]
         let framesetter = CTFramesetterCreateWithAttributedString(NSAttributedString(string: text, attributes: attributes) as CFAttributedString)
-        let width: CGFloat = 300, inset: CGFloat = 2, scale: CGFloat = 3
+        let width: CGFloat = request.compact ? 156 : 300
+        let inset: CGFloat = 2, scale: CGFloat = 3
         let measured = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0, length: 0), nil,
             CGSize(width: width - inset * 2, height: 1000), nil)
         let height = min(240, max(26, ceil(measured.height) + 8))
@@ -78,21 +82,35 @@ actor ReadingFontPreviewRenderer {
             bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { throw ReadingFontPreviewError.drawingFailed }
         context.scaleBy(x: scale, y: scale)
-        if !request.compact {
-            context.setFillColor(color(request.backgroundRGB)); context.fill(CGRect(x: 0, y: 0, width: width, height: height))
-        }
+        // All previews are transparent. Their native parent owns the surface;
+        // an opaque PNG must never draw an inner rectangular page on the card.
         let path = CGPath(rect: CGRect(x: inset, y: 4, width: width - inset * 2, height: height - 8), transform: nil)
         CTFrameDraw(CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: 0), path, nil), context)
         try Task.checkCancellation()
+        guard let image = context.makeImage() else { throw ReadingFontPreviewError.drawingFailed }
+        let cost = image.bytesPerRow * image.height
+        while !order.isEmpty && (order.count >= 12 || pixelBytes + cost > 8 * 1_024 * 1_024) {
+            if let old = images.removeValue(forKey: order.removeFirst()) {
+                pixelBytes -= old.bytesPerRow * old.height
+            }
+        }
+        images[request] = image; order.append(request); pixelBytes += cost
+        drawingCount += 1
+        return image
+    }
+
+    func cacheFootprint() -> (images: Int, bytes: Int) { (images.count, pixelBytes) }
+
+    /// Kept for native validation attachments. The scrolling view uses image().
+    func render(_ request: ReadingFontPreviewRequest) throws -> Data {
+        let image = try image(request)
+        try Task.checkCancellation()
         let data = NSMutableData()
-        guard let image = context.makeImage(), let destination = CGImageDestinationCreateWithData(data as CFMutableData, UTType.png.identifier as CFString, 1, nil) else {
+        guard let destination = CGImageDestinationCreateWithData(data as CFMutableData, UTType.png.identifier as CFString, 1, nil) else {
             throw ReadingFontPreviewError.drawingFailed
         }
         CGImageDestinationAddImage(destination, image, nil)
         guard CGImageDestinationFinalize(destination) else { throw ReadingFontPreviewError.drawingFailed }
-        let result = data as Data
-        while order.count >= 12 { images.removeValue(forKey: order.removeFirst()) }
-        images[request] = result; order.append(request)
-        return result
+        return data as Data
     }
 }
