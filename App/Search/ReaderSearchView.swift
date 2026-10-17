@@ -7,7 +7,7 @@ import XianxiaCore
     let theme: ReadingTheme
     let reduceMotion: Bool
     @Environment(\.dismiss) private var dismiss
-    @FocusState private var queryFocused: Bool
+    @State private var queryFocused = false
     private var palette: ReaderPalette { ReaderPalette(theme: theme) }
 
     init(provider: any ReaderSearchProviding, theme: ReadingTheme, reduceMotion: Bool,
@@ -102,12 +102,8 @@ import XianxiaCore
         HStack(spacing: 8) {
             HStack(spacing: 8) {
                 Image(systemName: "magnifyingglass").foregroundStyle(palette.secondaryText).accessibilityHidden(true)
-                TextField("搜索书中关键词", text: Binding(get: { model.query }, set: { model.setQuery($0) }))
-                    .foregroundStyle(palette.text).tint(palette.accent)
-                    .frame(minHeight: 44)
-                    .submitLabel(.search).onSubmit { submitSearch() }.focused($queryFocused)
-                    .autocorrectionDisabled().textInputAutocapitalization(.never)
-                    .accessibilityIdentifier("reader.search.query")
+                ReaderSearchField(text: Binding(get: { model.query }, set: { model.setQuery($0) }),
+                                  focused: $queryFocused, palette: palette, onSubmit: submitSearch)
                 if !model.query.isEmpty {
                     Button { model.setQuery(""); queryFocused = true } label: {
                         Image(systemName: "xmark.circle.fill").foregroundStyle(palette.secondaryText)
@@ -120,6 +116,7 @@ import XianxiaCore
             .frame(minHeight: 48).padding(.leading, 12).padding(.trailing, model.query.isEmpty ? 12 : 0)
             .background(palette.card, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             Button("搜索") { submitSearch() }.font(.subheadline.weight(.medium))
+                .foregroundStyle(palette.accent)
                 .padding(.horizontal, 12).frame(minHeight: 48)
                 .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true))
                 .disabled(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)

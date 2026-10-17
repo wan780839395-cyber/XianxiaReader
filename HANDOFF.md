@@ -23,3 +23,13 @@
 旧39023086030已实际completed/cancelled，watcher正常退出，完整日志204586B与完整metadata保留。Apple已观察135 Core条目、iOS完成0，无TEST/设备BUILD成功标记；日志内源码compiler诊断0条。5MB诊断artifact已整包SHA/CRC校验，仅保留文字日志/summary/metadata，原ZIP/分片删除；不是iOS或设备构建通过，见first-agent-cancel证据。新39023478476独立验证中。
 
 新源ac8b387e的Core135/4组Release探针已独立核实，artifact12097543187/116234B完整SHA/CRC/编译源校验提取，重复分片/ZIP删除；Apple仍待完成。generic linux证据现对应新源，旧3c250618证据已按run保存为m4-panels-build26-linux-39023086030.json，各轮不混同。
+
+等待中检查点：新39023478476的Apple仍执行，当前API可正常更新，不能从未完成日志或显示尾部判断挂起。前次相同基础套件的ios job实际55.1分钟（主build/test/package步骤53.55分钟），当前job预算60分钟；这只是历史排障信息，不是当前ETA或手机性能。若实际预算终止，须记录未完成阶段，不得改写为源码失败/跳过检查。私有文档tip c1bb19fb第一次push报TLS断连，但随后ls-remote已核实际服务端收到相同tip；不需要重置/覆盖。运行源码仍ac8b387e。
+
+2026-10-17 18:47恢复核验：实际新39023478476仍in_progress，API watcher PID22068仍运行，未重复分发。533个当前编译blob与ac8b387e完全相同、989开工路径全部在、正常HEAD/空index保持，仅文档在冻结后变动，见build/ci/39023478476/resume-audit.json。真正断点是等待本轮Apple完整结果及后续下载/原生复核/打包，尚无Build26交付包；保留全部已完成改动和Build25完整诊断。继续等待同一CI，不从时间或尾部推断挂起。
+
+真实验证失败断点：39023478476已completed/failure，主test65/export0/summary0/recording0，严格流程未构建设备Release。可见两个失败：旧testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord原非零文字/重排定位超时；新增五主题UI在搜索TextField AX高度只22pt而44pt断言失败（不能放宽断言或称触区已通过）。另一新增书签左滑/持久化/清空搜索测试实际结果见完整日志/summary。即将完整下载1541210264B诊断artifact12099105997，预算已核，保留Build25完整原件与45包/16ZIP；先查完整结果与原生图再最小修正。
+
+完整诊断核实：ac8b387e/39023478476实际145/147(2失败0跳过)，两平台Core各135/test65/export0/summary0/recording0，未执行严格设备Release。完整artifact1541210264B已SHA/CRC/编译源核验提取并删除重复分片/ZIP。实际查看4张原生PNG：日间目录/空书签/深色搜索可读；深色左滑删除继承全局浅绿+白字对比不足，下一源明确柔和砖红色删除。旧字体重排非零字定位超时根因未证实，Engine/原test未动。新增UI的搜索输入AX22pt不放宽断言；改用公开UITextField+UIViewRepresentable sizeThatFits保证真实44pt，并新增真实中文marked-text/光标/换色/清空回归，原2个UI断言保留且首次搜索改原生Return。此时修正源码未Apple编译。
+
+修正后Windows/完整CI前检查点：新增原生输入文件和真实中文组合测试，本源预计438语法、535编译blob、148iOS(125集成+23真UI)。保留旧11个UI test主体和原44pt/定位断言，额外1个真实输入集成测试，不替换旧位置回归。先Windows/源码diff/主体检查后冻结新源。

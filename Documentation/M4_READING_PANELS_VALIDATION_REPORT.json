@@ -229,7 +229,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": true,
+    "linuxCorePassed": false,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -335,7 +335,7 @@
     },
     {
       "path": "App/Reader/ReaderCollectionViews.swift",
-      "sha256": "a38aa496341d10ffd477f8e76cc3b941fb258ee153677f00fc0a5a387e94ddc9"
+      "sha256": "b2494574a5729cf7282d9f8fe43b452a1096bb23ce70d5eb9ac05138ac5ea2b8"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
@@ -450,8 +450,12 @@
       "sha256": "533ba133944e2d4b20d963b5aa0bd9413f8a07638e57ae0fcdc95809fc619ac8"
     },
     {
+      "path": "App/Search/ReaderSearchField.swift",
+      "sha256": "cda19185e415aea4d2d2fa7893968bf782598e0d3a06014ea7899f1b7c2a4483"
+    },
+    {
       "path": "App/Search/ReaderSearchView.swift",
-      "sha256": "79aabc03ca28886b4cb7244718348a5ba4bf4741544f7fd616d52fc5df0964a4"
+      "sha256": "5b8a702145cbe02f86a878fe78ab93fb74f145d153b36b3420f74f7fe7d3d9ea"
     },
     {
       "path": "App/Search/ReaderSearchViewModel.swift",
@@ -803,7 +807,7 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "dfab2a000bc8060e862e65cc2db65317c576781aaf63822c817b9dab678e5ff3"
+      "sha256": "3089f91ffca67833bb2cbd6ff2ace7087528fc37ebf9d6f81c0e8f5cd85422e4"
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -844,6 +848,10 @@
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
       "sha256": "fa13b470df38fb7028ab227edaf7e50655aa154b010ffd5d328ee05473f77028"
+    },
+    {
+      "path": "Tests/iOS/ReaderSearchFieldTests.swift",
+      "sha256": "f9f9889302d7579772480e0a564ed4e4ced50ebf1d8f35d480c69d42fd2752fc"
     },
     {
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
@@ -2377,10 +2385,14 @@
   "changedPaths": [
     "App/Reader/ReaderCollectionViews.swift",
     "App/Reader/ReaderView.swift",
+    "App/Search/ReaderSearchField.swift",
     "App/Search/ReaderSearchView.swift",
     "Documentation/HANDOFF_BUILD25_DELIVERY_2026-10-17.md",
     "Documentation/M4_READING_PANELS_VALIDATION_REPORT.json",
     "Documentation/READING_PANELS_DESIGN.md",
+    "Documentation/ValidationLogs/m4-panels-build26-first-agent-cancel.json",
+    "Documentation/ValidationLogs/m4-panels-build26-history-39023478476.json",
+    "Documentation/ValidationLogs/m4-panels-build26-linux-39023086030.json",
     "Documentation/ValidationLogs/m4-panels-build26-linux.json",
     "Documentation/ValidationLogs/m4-panels-build26-start.json",
     "Documentation/ValidationLogs/m4-panels-build26-windows.json",
@@ -2388,14 +2400,15 @@
     "HANDOFF.md",
     "PROJECT_STATUS.md",
     "Tests/UI/ReaderInterfaceUITests.swift",
+    "Tests/iOS/ReaderSearchFieldTests.swift",
     "project.yml"
   ],
   "oldTestBodiesPreserved": 11,
   "modifiedOriginalTests": [],
-  "newTests": 2,
+  "newTests": 3,
   "expectedCore": 135,
-  "expectedIOS": 147,
-  "expectedIntegration": 124,
+  "expectedIOS": 148,
+  "expectedIntegration": 125,
   "expectedUI": 23,
   "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
   "branch": "codex/m4-reading-panels",
@@ -2416,20 +2429,24 @@
       "actualEvidence": "Documentation/ValidationLogs/m4-panels-build26-first-agent-cancel.json",
       "iOSCompletedCasesObserved": 0,
       "releaseSucceeded": false
+    },
+    {
+      "run": 39023478476,
+      "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
+      "branch": "codex/m4-reading-panels",
+      "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023478476",
+      "status": "completed",
+      "conclusion": "failure",
+      "actualIOS": 147,
+      "passed": 145,
+      "failed": 2,
+      "skipped": 0,
+      "releaseExecuted": false,
+      "delivered": false,
+      "history": "Documentation/ValidationLogs/m4-panels-build26-history-39023478476.json",
+      "reason": "Native editable field remains22pt though SwiftUI wrapper44; old untouched font-reflow position regression timed out independently; root cause not proven. Four current native states manually inspected; explicit destructive swipe tint also required."
     }
   ],
   "run": 39023478476,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023478476",
-  "partialVerification": {
-    "recordedAtUTC": "2026-10-17T10:07:12.414811+00:00",
-    "run": 39023478476,
-    "sourceRevision": "ac8b387ee0dd023d3053da7463d50d70a9be7dcf",
-    "coreTests": 135,
-    "releaseTXTProbes": 4,
-    "allProbeChecksPassed": true,
-    "logSHA256": "8944e26d279f01e0095724a8fd406749b20a677976db603a17b784b99c72cc5c",
-    "performanceSummarySHA256": "9390f5b7e2d87b8c10d6a1a3a7bcf7032af6a3f5482048cadf5c48cf79ccaf04",
-    "appleNotVerifiedYet": true,
-    "deviceAccepted": false
-  }
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39023478476"
 }

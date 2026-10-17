@@ -73,7 +73,7 @@ final class ReaderInterfaceUITests: XCTestCase {
         app.buttons["reader.search.open"].tap()
         let query = app.textFields["reader.search.query"]
         XCTAssertTrue(query.waitForExistence(timeout: 10)); query.tap(); query.typeText("原创样书的终点")
-        app.buttons["reader.search.submit"].tap()
+        query.typeText("\n")
         let result = app.buttons.matching(identifier: "reader.search.result").firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 20)); XCTAssertTrue(result.isHittable)
         XCTAssertGreaterThanOrEqual(result.frame.height, 44)

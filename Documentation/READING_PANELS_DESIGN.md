@@ -28,3 +28,9 @@
 Windows运行仓库/Swift语法与工具tests；独立CI Core各135+iOS预计147(124集成+23真UI)+严格无签名设备Release26。真实原生截图、对应录屏和选定原始连续帧复核后才交付，手机FPS/内存/耗电、所有设备/辅助功能/旋转矩阵单列。尚未执行不标通过，M4未完成。
 
 构建前审查补充：首候选新增搜索按钮仅接系统/测试环境减少动效，遗漏持久化interaction.reduceMotion；已在View参数和既有按压样式之间显式传递。新增真实UI从设置开关开启并退出/重开核值，原11个test主体不变。旧CI39023086030由Agent取消（iOS完成0，无Release成功），新源ac8b387e/39023478476独立重跑，不能把取消写成源码失败或复用旧门槛。
+
+## 原生输入尺寸修正（尚待新源验证）
+
+ac8b387e/39023478476实际145/147。SwiftUI TextField外层frame44并未使原生编辑AX元素超过22，因此保留44断言，采用Apple公开[UIViewRepresentable sizeThatFits](https://developer.apple.com/documentation/swiftui/uiviewrepresentable/sizethatfits(_:uiview:context:))（官方availability iOS16起）直接布局UITextField，最低44且随系统正文字号增高。原生[UITextFieldDelegate](https://developer.apple.com/documentation/uikit/uitextfielddelegate)同步焦点/键盘Return、editingChanged仍走setQuery，dismantle解除代理；更新不覆盖[markedTextRange](https://developer.apple.com/documentation/uikit/uitextinput/markedtextrange)的活动中文组合及光标，用户明确清空可丢弃组合。新增真实UIWindow中文组合→切深色→保持marked range/光标→清空→新词/收键盘集成检查；两原新增UI保持44与原定位断言。手工查看当前4图发现删除继承浅绿/白字对比不足，显式柔和砖红删除tint，普通匹配/搜索保持灰绿。
+
+另一失败为未修改的旧字体隐藏重排字定位超时，ReaderEngine/原test均与Build25相同；本片不盲补引擎或放宽断言。新源将完整重跑；即使通过也不宣称旧字体时序根因已修复。详细历史与实际4图见m4-panels-build26-history-39023478476.json，失败轮无设备包。

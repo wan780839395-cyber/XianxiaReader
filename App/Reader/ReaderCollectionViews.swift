@@ -123,6 +123,7 @@ extension View {
                         .buttonStyle(.plain).accessibilityIdentifier("reader.bookmark.entry")
                         .swipeActions {
                             Button("删除", role: .destructive) { onDelete(bookmark) }
+                                .tint(Color(readerRGB: 0xA64F48))
                         }
                     }
                 }
