@@ -1,5 +1,19 @@
 # 开发路线与阶段门槛
 
+## Build28 阅读进度依赖与菜单顶部（2026-10-18）
+
+实际源`8acc3f2f7980b3d291155936184f36ddc42d4c84` / `codex/m4-reader-chrome` / [完整CI 39113019568](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39113019568)。Linux/macOS Core各137，iOS161/161（135集成+26真UI）失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release28/min16。三锁六pins、546编译资源blob、六原字体/OFL与每平台4组长TXT Release探针已核。Windows448语法新增0/54既有Vendor限制、17工具通过，语法不是编译；受改测试文件38个原test主体不变，3新增，其他旧回归完整重跑。Core/Adapter/Vendor/CI/schema/依赖均保持Build27。
+
+进度从ReaderViewModel广泛发布改为独立稳定对象，只有章名/进度条小视图观察摘要；相同显示摘要不发布，但每个完整Locator及原异步SQLite写入都保留。真实ViewModel/SQLite的65事件回归：root通知0、摘要通知2，最后完整字节/版本保存且关闭后迟到事件拒绝。该计数不是手机FPS、全部卡顿根因或数据库写入减少。顶部浮动菜单补页面色底与24pt渐隐，无blur、不接收触摸，不改引擎viewport、安全区/排版/位置；原44pt和系统/额外减少动效保持。
+
+安装[XianxiaReader-ReadingChrome-Build28.ipa](build/XianxiaReader-ReadingChrome-Build28.ipa) SHA256 `700551af9cecd5b98fd22b7043eba690657392064dc5091de8f45c2925dd3958`；[原创样书/字体许可/原生Preview测试包](build/XianxiaReader-ReadingChrome-Build28-TestKit.zip) SHA256 `7a57affea60a83fb6c6519edecf7709ac07266c2f57da412441396dc4f36636d`。覆盖安装保留书库，+菜单确认0.0.1 (28)，49旧交付包和全部未提交工作/1047原路径/18恢复ZIP保留。
+
+实际原生复核：本源22张选定PNG/4表已实际查看，另直接查看浅深色正常菜单两原图；4条完整原录屏一秒总览15表已查看；3个原始窗口120帧/12表已查看。浅深色正常/减少动效静态菜单、第二章67%进度、目录跳转及所列手势可接受。正常显隐窗口各有一次源PTS回退，减少动效窗口仅1帧，仅接受列明画面，不推断全时序/FPS。
+
+用户对Build27总体认可并要求继续，不推定全部手机矩阵通过。iPhone13/iOS16.6.1/TrollStore的阅读/设置帧时间、内存/功耗仍待专项；Build27标准字体打开/导入已由用户确认成功（实际来源/样例），微信QQ/Alook与TTF/OTF逐项组合、普通签名/全部File Provider/VoiceOver/系统大字/旋转/减少动效完整矩阵仍单列待核。旧章首留白/分页快照不由此追认；慢滚隐藏菜单时状态栏透字仍可见，全页安全区未验收；无Share Extension、字体删除/无限字体、可变轴、单书覆盖或M5功能。先收本片菜单/跨章进度/设置手感反馈，再按PERFORMANCE_TEST_PLAN测正文DOM采样、主线程与渲染；本片不盲改定位管线。取舍及Apple官方来源READING_CHROME_DESIGN.md。M4整体未完，取消关机继续生效。
+
+以下Build27及更早为历史，本地大原件范围服从最新CI保留回执。
+
 ## Build27 字体收藏与排版、书架阅读边界（2026-10-18）
 
 Build27本切片已交付，实际源`bc611bc2acb886d0d8a4e15798633ac29979c24a` / `codex/m4-reading-experience` / [完整CI 39107016454](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454)。Linux/macOS Core各137，iOS158/158（133集成+25真UI），失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release27/min16。三锁六pins、544源码/资源/config blob、各平台4组长TXT Release探针及六完整字体/原OFL原字节已核。Windows446语法新增0/54既有Vendor限制、17工具通过，语法不算编译。受改测试文件中73个原测试主体保持，6原主体仅依赖/新导航与折叠预期适配、12新增，无删除旧test；旧异步打开/关闭/重试/迟到位置/字体回归全部重跑。

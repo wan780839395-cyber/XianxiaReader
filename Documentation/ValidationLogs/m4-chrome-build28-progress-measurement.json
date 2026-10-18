@@ -1,0 +1,21 @@
+{
+  "recordedAtUTC": "2026-10-18T09:32:34.459141+00:00",
+  "run": 39113019568,
+  "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+  "environment": "Current iOS Simulator XCTest / Xcode16.4; real ReaderViewModel and SQLite, fake position emitter",
+  "positionEvents": 65,
+  "rootObjectWillChangeNotifications": 0,
+  "summaryObjectWillChangeNotifications": 2,
+  "identicalSummaryStillKeepsLatestFullLocator": true,
+  "latestSQLiteOpaqueBytesAndVersionVerified": true,
+  "closedSessionLateEventRejected": true,
+  "testPassed": true,
+  "testSeconds": 0.017,
+  "log": {
+    "path": "build/ci/39113019568/full.log",
+    "sha256": "e6defd46a3e23276a089caba45b087b55da4094e6a8c57c7c0a222b7503dbadb"
+  },
+  "notActualSwiftUIBodyCount": true,
+  "notPhoneFrameTimeOrFPS": true,
+  "noOldBinaryCounterBaseline": true
+}

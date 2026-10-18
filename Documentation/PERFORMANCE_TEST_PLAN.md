@@ -1,5 +1,11 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
+## Build28 进度展示通知范围（已获模拟器计数，手机仍待测）
+
+本片只缩小App的ObservableObject依赖：完整位置留在稳定的ReaderProgressState，ReaderViewModel保持position接口而不转发其通知；ReaderProgressView单独订阅去重的章名/进度摘要。相同显示摘要仍保留最新Locator并执行原SQLite保存，不节流引擎或数据库。新增65事件真实ViewModel/SQLite测试预期root通知0、摘要通知2，同时核完整字节/版本落盘和关闭后的迟到事件；这只是通知范围/持久化验证，不是SwiftUI body实际执行次数或手机帧时间。
+
+原Build27二进制尚无同机相同场景通知/帧时间基线，不能报性能提升百分比。完整CI39113019568/source8acc3f2已给出该65事件测试root0/summary2，真实ViewModel/SQLite回归0.017秒通过，见m4-chrome-build28-progress-measurement.json；未执行旧二进制同场景计数。手机仍按下方冷/热设置、连续阅读、分页与减少动效分组，用同样书/字体/位置和温度条件对照。菜单顶部实色/渐隐需单列检查视觉与触摸，不把装饰变化归为性能根因修复。Readium DOM单飞/SQLite频率仍先测后改。
+
 ## Build27 正文与设置流畅度专项（待真机测量）
 
 用户确认正文和设置都感到不顺畅；不能归因60Hz。当前Windows/模拟器及字体散列计时不替代真机帧时间，尚未取得手机trace。2026-10-18用户再次确认设备仍为iPhone13/iOS16.6.1/TrollStore；这只确认测试环境，不代表Build27验收。每轮测量仍需记录实际设备、系统、安装方式、IPA SHA、低电量/温度与刷新率条件。

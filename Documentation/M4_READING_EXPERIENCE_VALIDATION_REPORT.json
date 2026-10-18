@@ -250,7 +250,8 @@
     "qqOpenInAccepted": false,
     "alookOpenInAccepted": false,
     "devicePerformanceAccepted": false,
-    "externalSourceAppsAccepted": false
+    "externalSourceAppsAccepted": false,
+    "standardFontOpenInDeviceAccepted": true
   },
   "sourceHashes": [
     {
@@ -3932,5 +3933,18 @@
       39102171529,
       39103144069
     ]
+  },
+  "standardFontOpenInDeviceFeedback": {
+    "evidence": "Documentation/ValidationLogs/m4-experience-build27-device-feedback.json",
+    "buildActuallyTested": 27,
+    "sourceAppsIndividuallySpecified": false,
+    "allProviderAndFormatMatrixAccepted": false
+  },
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-18T09:44:35.492012+00:00",
+    "record": "Documentation/ValidationLogs/m4-chrome-build28-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

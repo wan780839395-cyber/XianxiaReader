@@ -1,0 +1,3104 @@
+{
+  "recordedAtUTC": "2026-10-18T09:42:45.545327+00:00",
+  "run": 39113019568,
+  "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+  "images": [
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C08DAE3B-53F8-4A77-BBEB-4F07DDA9EE98.png",
+      "sha256": "7914d3bf08936fd3c0f302dc1a85a4ab4a52610fcbff66a9ca283a4765be6717",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314477.949,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/60CE0307-9297-4666-9C36-1C304CB88051.png",
+      "sha256": "f7a2b787468b07721c29c4772bc50c075299b3c2d57d09c64ebb31d4719281eb",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314466.166,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F563B0A8-C8A4-482A-8459-5F5A452058EA.png",
+      "sha256": "55dc08330a044b944a8ae3e1c856679e502d1d86a25ec28e2db05f0389f92d6e",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314457.56,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "includeInPreview": false,
+      "visualLimitation": "header隐藏后正文进入状态栏区域，完整安全区几何未验收。"
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8F6C6C05-E67A-4F72-ABFB-E8917A3D6E3E.png",
+      "sha256": "4c9827e2db58a96286fdc07a827e159deb9529f5b29d0dd0657d4a1091f07d44",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314454.997,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "includeInPreview": false,
+      "visualLimitation": "暂停且菜单隐藏时状态栏正文透入，未作为安全区修复证据。"
+    },
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/952226E0-6231-4BF4-B9D7-A4C0860B1C2C.png",
+      "sha256": "773ce4333d95fcb8aebb167f345ff03dd38ec1ffd550fc67077009c3906658ce",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314447.932,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8509AE20-5BCA-4525-974B-0BD82F825501.png",
+      "sha256": "aff7b01bba697876759866518d06928ce2d63efc53627e6b8a82a27a437e72db",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314544.305,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0F274C66-3EF0-4256-96D0-21D12BB24FF9.png",
+      "sha256": "d4aad7a1e2d42966d2844da5b6eed54f6d3605c9487caac7a18e1b474407b293",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314543.238,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/82DC83D3-4284-4DDB-A1F9-3A25E80F56AE.png",
+      "sha256": "b5adf396dbce326135d06fd6df7651b5202c381e673189274316f1a29e71e325",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314542.331,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D293E928-B3BD-472C-A7E9-4965A0782821.png",
+      "sha256": "8b409d872f7739603a5b438b1ba3e091b44c8ed6e70a9f99016af816b9d464ec",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314523.874,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/81E3BE8B-57A6-4CB6-830C-70B018A32B63.png",
+      "sha256": "5b50a29c58d76eee22f1662513bc90208a2586b4b9e2fd02e3563091a5639a98",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314521.034,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F6D22427-5E14-4D22-9AA6-A1AB8881A7FC.png",
+      "sha256": "a1da203b0d4504ebe1e68729c9d3f510f9bc3bbf78a1ce2679a167cb59e46d1c",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314515.33,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B6B7C818-DDC7-4327-A695-DA120D1EF29C.png",
+      "sha256": "1149cdd9420d11b253b843a9595bd4533e2c68e13ff3dd5642780ecccb72eec8",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314513.641,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-dark-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/283AD1A1-3B56-4D75-AF6E-62C7CBAD34B4.png",
+      "sha256": "51fbab792de92a08f386f8b0d507f64e8ca87c46a3a8d9258d471d84a5843f99",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314594.935,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-immersive-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E27F1D8E-12ED-481D-93D9-BB8FC445CADA.png",
+      "sha256": "ebada1531725337b2dc3d48acd33d7d0e5efdecff2f35ea61d3bf0464b4a35bb",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314588.979,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-light-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/123547BA-FA30-4892-AD90-D660C9222AFF.png",
+      "sha256": "da2df7bcd8de793431ed54e441e685ae22b06f53370a197b7ae2d3e3dc239a73",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314587.271,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-dark-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3EFCCD39-9776-4BBD-B0D2-15151971D316.png",
+      "sha256": "51fbab792de92a08f386f8b0d507f64e8ca87c46a3a8d9258d471d84a5843f99",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314569.018,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-immersive-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B408A025-EB5A-4A7B-9DAD-731B821A6B35.png",
+      "sha256": "ebada1531725337b2dc3d48acd33d7d0e5efdecff2f35ea61d3bf0464b4a35bb",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314563.114,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-light-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C9E2C1FD-3B59-496B-A910-0F0C7E2033BA.png",
+      "sha256": "da2df7bcd8de793431ed54e441e685ae22b06f53370a197b7ae2d3e3dc239a73",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314561.358,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C55650FE-CC2E-43D4-8999-F526360C708B.png",
+      "sha256": "0399109c5e810ba797c7a84aa4d7efca9679876b72d384d9c51940add8f19fe5",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792314653.231,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/24C3062B-10FB-41DF-AA1C-8EB7FD14990B.png",
+      "sha256": "eacc9e98a4a036a91226bb96734bcf61512b6dca7346eabb75cd604db9446899",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792314636.32,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F7625923-D0E6-4294-915E-94CED8032A9B.png",
+      "sha256": "bad3f1561c5d48d707a77098050e4f3c7814dcc2ab86ebe48d73fbd99ab10632",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792314630.257,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/94080E55-76D7-4D48-A2E1-7C06EF6E6DBE.png",
+      "sha256": "93d2899f511baf4b2a5a18f31fc596b3427da13fdbb92a11f2d085ccbf644fab",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792314620.69,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    }
+  ],
+  "retainedUnreviewedImages": [
+    {
+      "name": "library-cover-default-preview-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3002F2FB-2EB2-4BE6-9B92-F63E49EB3B12.png",
+      "sha256": "59c9fe1f1baa4443565efd001a82b80a97ec30405569b01dbff7e92a0a1ada7c",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "timestamp": 1792313954.363,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-saved-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/128C3E99-C7B6-4A89-A5E8-6678F28BA7E1.png",
+      "sha256": "47cdb785494c70e2d40938213ecd2c701c5546867bdb37aba4ed3843d44c9baa",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "timestamp": 1792313953.398,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-preview-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B575C23C-008E-4937-9C4C-93534DD8D832.png",
+      "sha256": "8630b49326d6f8169ba600a2b9e142b89b4c23e3f919d284995a59cd347b0896",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "timestamp": 1792313952.425,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-error-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/68FE2B81-AF62-45DF-9D1D-3F3349B63178.png",
+      "sha256": "63ae911b4e2b17a92036581f5578695f6ca4bf5150a1249e848bc91520f2f7db",
+      "testIdentifier": "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots()",
+      "timestamp": 1792313952.012,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-first-import-error",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E9A5C0FE-F77E-4A92-8301-3AC6FF715209.png",
+      "sha256": "578775312e235e31971c9f996fbbc03c0790a3ab5a268594830e9aa387cec918",
+      "testIdentifier": "DocumentImportTests/testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry()",
+      "timestamp": 1792313962.82,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-first-txt-success",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D2C2FED2-6668-4B85-BEDC-9C2DA69E5F9D.png",
+      "sha256": "92cfae313d281968e97a1f849fdb9af472b66f0699c01848c05b2c0b0947d72f",
+      "testIdentifier": "DocumentImportTests/testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry()",
+      "timestamp": 1792313967.462,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-trash-empty-build11",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4C9018EF-D567-4F88-A24B-4813ED6114F4.png",
+      "sha256": "5553cbaace989129fc548ca4a48c987820d05d9a361174a295e1257d5c31c2c4",
+      "testIdentifier": "LibraryRemovalTests/testNativeRemovalConfirmationTrashAndEmptySnapshots()",
+      "timestamp": 1792313975.296,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-trash-populated-build11",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F888C0CB-66A8-4CF1-9FD6-DFCDE48344A1.png",
+      "sha256": "0f6934b7a99e1722c399d93179be7bba04dc38c33f47cbb43c24313fcf3282c0",
+      "testIdentifier": "LibraryRemovalTests/testNativeRemovalConfirmationTrashAndEmptySnapshots()",
+      "timestamp": 1792313974.859,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-removal-confirmation-build11",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A0CFD7BD-883F-47D8-9F8C-AE4BC0480994.png",
+      "sha256": "6cccf584a7c0a21c8594f21f194f1344c7b145c1af5b38f5857c6b21cef2979c",
+      "testIdentifier": "LibraryRemovalTests/testNativeRemovalConfirmationTrashAndEmptySnapshots()",
+      "timestamp": 1792313973.373,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-rename-error-build10",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/106DBD2C-2505-4B0F-949E-D882D4B1595F.png",
+      "sha256": "d0dca33319a8648243deb0816bee788df72ccf8204f9f3740484594dd040d143",
+      "testIdentifier": "LibraryTests/testNativeShelfGridListFilterAndRenameErrorSnapshots()",
+      "timestamp": 1792313977.859,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-filter-empty-build10",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/360F1B31-3CC0-41A9-B3E6-8CA33E74D813.png",
+      "sha256": "e058a6cdedd93f723bf74ac15dcd8620e64729646475175ea72faf0b17d1a3c3",
+      "testIdentifier": "LibraryTests/testNativeShelfGridListFilterAndRenameErrorSnapshots()",
+      "timestamp": 1792313977.222,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-list-build10",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8C332239-B726-475C-9313-8572FA1D24DB.png",
+      "sha256": "b39b74b7ab5530105de37646cd2a2e03ccf93fa780badb69e5410d5d11ed1631",
+      "testIdentifier": "LibraryTests/testNativeShelfGridListFilterAndRenameErrorSnapshots()",
+      "timestamp": 1792313976.844,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-grid-build10",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/57D3FE96-DAB6-4651-BADE-BC2BB0F74FCB.png",
+      "sha256": "c4e3d634771537dc5ce283db60dec0c53273cb9b7fddc04adff030b75c4fd2f2",
+      "testIdentifier": "LibraryTests/testNativeShelfGridListFilterAndRenameErrorSnapshots()",
+      "timestamp": 1792313976.464,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "autoscroll-epub-paused-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DF6C3561-6931-4D99-93D1-97C69CBB8819.png",
+      "sha256": "e91590f913267141e2682f4d401b6809036ae6035cef321d1fd0f5a640c442cd",
+      "testIdentifier": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "timestamp": 1792313989.613,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "epub-oled-reflow-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/13CEFC44-210E-4E11-97BE-CE0C5F93DC0B.png",
+      "sha256": "ceecee3956a5ade004f3d2504cc536ce5a429b435c13a1ca9219ecd8cc715ffb",
+      "testIdentifier": "ReaderRenderingTests/testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen()",
+      "timestamp": 1792314016.497,
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ]
+    },
+    {
+      "name": "return-epub-continuous-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E67D0695-1C1E-46FC-8141-37DA7CBE567F.png",
+      "sha256": "c0a8290355d930a81ac10f4155bc0422af7c291c77af6768a65ee052c58929e5",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "timestamp": 1792314023.375,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "return-epub-paged-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8DD43E66-CA61-4313-8A14-D7B6D88A8BBA.png",
+      "sha256": "ae7ea2450535b4c373bc2097d3e4a993ae3e210f71ee379d490041c40b2f993c",
+      "testIdentifier": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "timestamp": 1792314019.525,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-xiaoWei-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/076F2888-2E63-4BBD-92C5-A04C20E34743.png",
+      "sha256": "8dc83bfc3d61c9a14da4b105b1f15e3af1ccb7c094f5eb086e835a47b70d5e13",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314068.079,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-maShanZheng-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/90312D76-4543-4773-9179-F1CEDF349EA3.png",
+      "sha256": "0760a8236f254ef12e36526bc9faa0220d987b9b3116fc5d7570c19ee25d051c",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314065.581,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-zhuque-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B0CC4E6E-3B6A-4E48-A444-596AF8D9397D.png",
+      "sha256": "a9fe336395d0c98e09b8e1d093289f6f6a59005700a24fe24c47770279dc7a09",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314063.638,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSans-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/34DC3AD4-0FFC-47D3-9B79-D70EA4401D2E.png",
+      "sha256": "96932f07e34e96aa97682a4c425a060b8d31917f431e7d19870d21fb97a946e3",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314061.732,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-wenKai-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/68003B1E-3C46-4FEE-B440-AA2234BA8C5A.png",
+      "sha256": "01b046793c2592ee724dcf44c16e6b9296e32898d4a1ac9b5c2e2a9ffabc348a",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314059.903,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSerif-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/25E6F866-A559-465E-BDA4-C4F8DA9D0ED7.png",
+      "sha256": "3b1556d7790b4bf1762a86d79c6407f9c0475044e1eeaab1cd3725ae3e474f45",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314057.286,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-continuous-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9EB02592-0EE6-43CC-9A32-75E6758E1961.png",
+      "sha256": "8fb62a60eb447ed2f795713be2f4699e9b4ceea321226969fbb50f1614fb8bea",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314052.985,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-xiaoWei-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/87A56127-3CE7-460F-B7D4-032F0CC89DC9.png",
+      "sha256": "4434eb4da8112bd5d9eef838ee3e90992ba6e0810f4e700df7af0fca0ab99172",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314047.404,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-maShanZheng-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/720BAA73-8351-4A3F-B2F8-06E2760063CC.png",
+      "sha256": "1f58a686cd8b13d7b9ba4e7404c1ae944c3717ab3ead0210322df2f18f9bebc8",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314044.614,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-zhuque-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C7EA1041-F271-4FD9-9075-0C0F195CEBAE.png",
+      "sha256": "7cab6c0d8cc11a1ad529440c6dc0d9a13743e23eeb9edb0d59bd2d67ef50c45a",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314041.458,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSans-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/519B3BF7-5DFF-4C43-AB2C-3C61921D4721.png",
+      "sha256": "143fa842d8b5047184d3d3568bb9d8f6ec52ed59f2e9993e5572b825a37d7d82",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314038.841,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-wenKai-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/74CA1DB8-2915-4E60-AE20-50BCEBEEBD0B.png",
+      "sha256": "d636e3295a9f92a2794660a3bc46415c9ce60f20eca092c534f36073c0318e2d",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314036.279,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-sourceHanSerif-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1DA3833B-DAB9-4FCF-A2DE-C24A4C341272.png",
+      "sha256": "5916e6f48a81c540515d7418a74a828b7ee9b15b2004baf992757096fc6e75a6",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314033.677,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-epub-paged-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6193DCD8-9C30-46BB-AE18-382941CCB7CE.png",
+      "sha256": "faf37b8a9ed11488fcf9900f6f86e31326daa5190d5bd57c3290e275c8759097",
+      "testIdentifier": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+      "timestamp": 1792314028.749,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "screen-instant-whole-window-build20",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A10D421A-5350-45E4-9F8C-C53CFE598AD5.png",
+      "sha256": "654d8d0045eee6a5d3e0505fe163e8d47d4654ced62edbb8f6dbe4ad1a7a19d7",
+      "testIdentifier": "ReaderRenderingTests/testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose()",
+      "timestamp": 1792314070.608,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "epub-motion-whole-window-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/04819756-4F05-426B-AC69-D78968071BED.png",
+      "sha256": "1344a4ea33b924ba3bd923f5f0b45124f1505200e9547e384a51646b96a91580",
+      "testIdentifier": "ReaderRenderingTests/testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue()",
+      "timestamp": 1792314074.866,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "epub-paged-reflow-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/18FE9D5E-B132-4859-946A-79E054683894.png",
+      "sha256": "23550649f09014131b51d29080b413e2df10b4672b8a696c6c1f700e684557bf",
+      "testIdentifier": "ReaderRenderingTests/testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset()",
+      "timestamp": 1792314080.12,
+      "inspected": false,
+      "size": [
+        1206,
+        2250
+      ]
+    },
+    {
+      "name": "font-six-body-5-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C56059D1-03F6-4ECC-A3C7-CBAD963691DF.png",
+      "sha256": "de598d2f9a9d675b6bddefdb0c74ee53137032a2c4d02877178ee0702d25cb73",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314103.18,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-six-body-4-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4ED5CA95-43C1-4AD9-9F60-BCD3EE294F8F.png",
+      "sha256": "32559182dcb73d4001efbc5cd700b7e10d7e07510d01e52ffa71adbebb080f03",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314102.247,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-six-body-3-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BD6FECAB-E94C-480C-9A7D-964CABAB3EE3.png",
+      "sha256": "6ed01085d1d0326d47bf8b6c78f86b30f39551dcafce69e48115c42bf92d516e",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314101.326,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-six-body-2-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E33B636-5BE5-4B21-8F67-E3F3F77CF491.png",
+      "sha256": "5d6c31c85c1647866257298d7f06d5c89de83f149f07eebdb386d1f2fcb81506",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314100.372,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-six-body-1-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/55DD658F-1F18-493C-9ED9-9B2BE5DED9E5.png",
+      "sha256": "7e011d917a591349040e2c36e5f576d085b60826662e7f9d8e08e0444b79a2e8",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314099.452,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-six-body-0-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A8D2AEE9-1732-4D47-A221-0A0B53EA8EC7.png",
+      "sha256": "539c009f017b3e44d6779250f1d136f1932739de905aa908d381dc36fb3d8d99",
+      "testIdentifier": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "timestamp": 1792314098.518,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "screen-cross-chapter-whole-window-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5B54D48C-B95C-4774-B65C-A821FDBF1C48.png",
+      "sha256": "ed662bad423ab6af12b882a4ae701569454e799cde1c521ba6d17bba25e00abb",
+      "testIdentifier": "ReaderRenderingTests/testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation()",
+      "timestamp": 1792314115.565,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-settings-sample-xiaoWei-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0D352995-5EEE-4EE1-9E9A-AD6A8E931D9E.png",
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.236,
+      "inspected": false,
+      "size": [
+        900,
+        222
+      ]
+    },
+    {
+      "name": "font-settings-sample-maShanZheng-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F53B5D04-29EB-4547-896C-C8CE94F5B180.png",
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.236,
+      "inspected": false,
+      "size": [
+        900,
+        222
+      ]
+    },
+    {
+      "name": "font-settings-sample-zhuque-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0388B8F5-79A4-4B32-A211-452A4797726A.png",
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.235,
+      "inspected": false,
+      "size": [
+        900,
+        285
+      ]
+    },
+    {
+      "name": "font-settings-sample-sourceHanSans-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6D56B5A3-D1A4-4721-9A2D-403A4FB1D77B.png",
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.235,
+      "inspected": false,
+      "size": [
+        900,
+        315
+      ]
+    },
+    {
+      "name": "font-settings-sample-wenKai-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DD97E2D0-EED9-4153-A883-BBBF0562C5BC.png",
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.235,
+      "inspected": false,
+      "size": [
+        900,
+        258
+      ]
+    },
+    {
+      "name": "font-settings-sample-sourceHanSerif-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/447F2C3D-E94C-4928-94EC-6C21FDC930BA.png",
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d",
+      "testIdentifier": "ReadingFontTests/testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible()",
+      "timestamp": 1792314126.234,
+      "inspected": false,
+      "size": [
+        900,
+        306
+      ]
+    },
+    {
+      "name": "autoscroll-txt-window-paused-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E35A87E-D12C-4143-BDF5-95F2822954F0.png",
+      "sha256": "e2b76e0bc4c258126b8ff5869404df6ce844854d880b753c7e0d5ae43229b3a5",
+      "testIdentifier": "TXTReadingTests/testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic()",
+      "timestamp": 1792314131.263,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "return-txt-byte-anchor-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/97445489-CFF6-4596-A710-51A3C91EC583.png",
+      "sha256": "fb5790289989027e180d42ce7491ddefd682458b4f6608c9a11a2e666eaa9aa3",
+      "testIdentifier": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()",
+      "timestamp": 1792314137.592,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-xiaoWei-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FBAF5DC0-1312-406E-99D5-51C26BFC3E34.png",
+      "sha256": "72f0cf0da4144515e5ee2f47c125922d821b1c2614581244183a25be758b315a",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314162.054,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-maShanZheng-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/14987A80-EBAA-47B2-A1C0-99AB0A85B88C.png",
+      "sha256": "18ded22ba5cbe637d1cdb5bd1b15e25ec1acf4b5d5ece76575643cc9c0c788b0",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314158.768,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-zhuque-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E002B81D-D8B6-457E-AD0D-BCAA60BC51B5.png",
+      "sha256": "9bec2c48a1333b1b79055e9d904477ea4ba6e8fcdb99371fd88a054db981eeec",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314156.577,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-sourceHanSans-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4B874E77-B507-49A7-83D8-B02154A984FB.png",
+      "sha256": "0c7c42ad362f91b880f904bffc0aa6499a26af4aaa1c95ae67f35c38ebfcf1f0",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314154.34,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-wenKai-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7047B923-B40F-42C7-8421-04422A72FC6B.png",
+      "sha256": "4c3b969a38f179041060298f86d7e87bf3f4f87f686f1a5fceb17ab94f85dd8a",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314152.125,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-sourceHanSerif-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/33F47179-49B0-425B-885E-313E7D001AEF.png",
+      "sha256": "37f1f642799390e72d194346cad49deb7e3a1a64032f2b5343e1c699efdcb30d",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314149.856,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "font-txt-byte-anchor-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3AE9CD0C-7D4B-46D4-B747-BEFA87CB7D1E.png",
+      "sha256": "d1980ffa8057439c7376eea970f2be1e07f481a4624a7a51f478ffc74292e27f",
+      "testIdentifier": "TXTReadingTests/testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont()",
+      "timestamp": 1792314147.64,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "txt-continuous-long-paragraph",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/01CD0530-401B-47D4-9A16-863FEB70BD46.png",
+      "sha256": "1f6db3a41d862cb6a8a1737129ff0f5c09f774132ff3f7482abfb201ecf933b6",
+      "testIdentifier": "TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()",
+      "timestamp": 1792314168.38,
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ]
+    },
+    {
+      "name": "txt-paragraph-before-scroll",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7F50260A-267A-46F2-B11A-242546B644F2.png",
+      "sha256": "bb18e25b7850805c8095b841c4fdbbe592d4c857e3ba1f8341e7b8f047cc939e",
+      "testIdentifier": "TXTReadingTests/testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC()",
+      "timestamp": 1792314168.214,
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ]
+    },
+    {
+      "name": "txt-charcoal-reflow-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A9140CE6-F87A-4285-B3F3-EADCDC28902A.png",
+      "sha256": "b6513e0c01ed6d3d7bd8fdd029fa3b2fe1e6bd867c32b0f9dd1916a05c5be4a6",
+      "testIdentifier": "TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen()",
+      "timestamp": 1792314175.778,
+      "inspected": false,
+      "size": [
+        1206,
+        2334
+      ]
+    },
+    {
+      "name": "library-cover-reset-shelf-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9A47222A-AD88-41B7-B583-C530A74F1895.png",
+      "sha256": "b99649a8e98e548224abee8d70c702b46f5816820d0078d92bd48dbefd7979bd",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "timestamp": 1792314212.382,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-reset-preview-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4209FE0C-4125-4FA3-991C-3C3E028AA94A.png",
+      "sha256": "a34fda8835970a132cacf2a47e8d8925cc31d020be8ec0b9798415380d0e4749",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "timestamp": 1792314204.11,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-native-files-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/80A1EA82-1D11-41B1-A315-79639FB830CC.png",
+      "sha256": "1528fecc6c622bdca3ba8913f70b19550777af28975f7467541960758f75d24b",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "timestamp": 1792314199.047,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-cover-custom-build13",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6B1E28AD-F0EE-4FE1-B482-C4F3FF898208.png",
+      "sha256": "8627c8c0b5ca7f1229e85ad42e38ec855c8259b288d1722ea4471f4aa9e7cf75",
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "timestamp": 1792314194.885,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-duplicate-restored-build14",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/40988DA1-D4D0-41F0-BC08-7735354C85DA.png",
+      "sha256": "cc1da7498f57eef603866a5c14d0a6f7e8b89c593514712118cf3412bd22686f",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "timestamp": 1792314250.954,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-duplicate-trash-build14",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0F493541-10D8-474C-B793-79E0701C0E98.png",
+      "sha256": "802b2c8bb404d186e091b7606c63aa47e5b424bebd3a4374bb9ffd204e7de074",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "timestamp": 1792314247.113,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-duplicate-existing-build14",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E3782076-4CD9-450F-8D88-B80B33C0EB68.png",
+      "sha256": "17e0291f186f524592b3f9ffd35bad7e7bbe6fc0c92bd0ce0dd1dbb12e60225f",
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "timestamp": 1792314233.782,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-grid-restored-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6528816A-7569-492B-8F2F-7E98028A112F.png",
+      "sha256": "4fa80c10496b1a60e825ebe4e6888f20c8029c4cd99b35fcd23783d1f6a06c70",
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "timestamp": 1792314281.891,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-grid-after-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1C3D1E61-FE09-4D66-A648-3E7375344E62.png",
+      "sha256": "29a9bc0fc9da9db440cb4cd3cbedef39c47dfaa400eecef395627f0cdeb22372",
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "timestamp": 1792314268.823,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-grid-before-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DC6B8A10-AB28-4535-982C-F9B17590DF8C.png",
+      "sha256": "98bd9e71bb178210bbb82150471e52e948aea66facee2cb4cab10e005da0f080",
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "timestamp": 1792314261.714,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-list-restored-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F66D215C-0978-4AF2-A7F4-755DBF2ADD60.png",
+      "sha256": "d5de45f4554edfa45adbfbcc14fa55c64b616de2df34f9c8c4e1085e7c0d1c71",
+      "testIdentifier": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+      "timestamp": 1792314321.032,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-list-swipe-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CCFA1F29-636D-4400-9C15-F8B2C511DA6F.png",
+      "sha256": "bb9c7ee646836c912e5abb489857671b79df7dfe1dd972718b2f0c4a594dcc03",
+      "testIdentifier": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+      "timestamp": 1792314290.325,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "library-reduced-motion-build12",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7E4B8A31-3185-4168-9B3A-CEFF3592F250.png",
+      "sha256": "517bbc8261131b41b96da0601a163d9146bd22649b52d46c2cb0b7ea7df5fbd5",
+      "testIdentifier": "LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid()",
+      "timestamp": 1792314332.873,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-page-oled-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B527D19F-E2ED-4655-B5B7-EDC58B39F4A3.png",
+      "sha256": "7447ba2ac8874dd17bca7b7dfbd0f15eecd500a6b4a56ee47744fff03e5f52cd",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314374.106,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-oled-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/915FA2BB-8387-499C-A69D-6502F3EC238B.png",
+      "sha256": "3182b50dd0a7e9c29e910f5f57021f571b2f98a05cc68c2029b15ff74de8b044",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314373.134,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-page-charcoal-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DB7D13B4-8512-4980-9E58-671C36E8CDB1.png",
+      "sha256": "fc9eb166e881c368463134a0bbb7c1cd0603ec95bede1352d220277e0d979714",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314362.051,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-charcoal-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A3999ED9-A1DA-443B-B240-0BC3B23761F0.png",
+      "sha256": "4d1f055f38b8bcccf1835e840d985bf4d3e83be41164020e6157aaa56343cadc",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314359.879,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-paper-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BDE77E40-97AD-4874-8BA9-16D83AF72107.png",
+      "sha256": "d0947d559bd9112c4702a73806e925bc052c2e9dd165941d6617864a295cb3de",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314356.763,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-warm-build15",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4794B656-E6FD-4033-B62C-62F06D9C11B3.png",
+      "sha256": "73db3aab6924894d067c60b8837615183eec334227ecea5aee3abb1a72a6143e",
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "timestamp": 1792314355.155,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-motion-reduced-menu-build17",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E273013A-E13E-47BF-882E-F132D473D248.png",
+      "sha256": "af809a789e14915bc007c9c58335bb4a501e298c20eb0f4a2e786b14342436e2",
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "timestamp": 1792314421.447,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-autoscroll-reduced-disabled-build21",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BE3546F7-87B4-424B-A41B-269F70D8D405.png",
+      "sha256": "99ef2f1ab4df6a0aaf380b0eb5a6e0ba2c4328dcf2eaf248febdac239cf6cbd9",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "timestamp": 1792314432.517,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-instant-after-build20",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/711AF785-ECE4-4F4B-A356-8DA63CAF1477.png",
+      "sha256": "a087d4baea5aa5a23ca81609767e4ca16c89fcf0d6843d4d5600b95b4571c8f6",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "timestamp": 1792314502.728,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-instant-before-build20",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2966B4E1-2B12-4BBE-8F60-71AD2864B27C.png",
+      "sha256": "d15dc4ee65b15efdf1f83396c2acd926c56e44ecd3839d5387c4157d24227c70",
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "timestamp": 1792314497.935,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-intro-oled-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/72C2DD35-0D1D-4238-82FC-CE20375FB916.png",
+      "sha256": "e08a4b7d18487faa23ef247ba71fba95c5ed36aa32a61d147299a2122756b510",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314748.121,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-oled-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A1533E5F-22D1-4A8F-A740-7215987F5472.png",
+      "sha256": "aba0342949d9ce7961b689c91dbaea94a18451d8bcb1658a7d91660b9f82f572",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314744.119,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-contents-oled-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F30A20DD-09C5-462C-9035-4AF07144D4EE.png",
+      "sha256": "425088c5fde3a4a8697300c9250260018168f3851a888ff4b0af9770afebb5e1",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314739.541,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-intro-charcoal-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/073A4855-8457-4F54-BCE5-36B05C7FACBA.png",
+      "sha256": "f8680fd0842688c64552725273c24346adc0378640665c2da94c353d90a71425",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314731.987,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-charcoal-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1AE35F85-E88E-403C-8260-04A043381A7A.png",
+      "sha256": "0c5fcf65c7044c68fb7e43aefcfcbbcf4f2c4e51910755d854a9a8274b85969f",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314728.004,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-contents-charcoal-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/65F56054-4DF8-476A-A8F6-9FFF9A0D1705.png",
+      "sha256": "420991908c6767652372070d2bd8bfb83c1fe0c81e684a113f609687a2f522e6",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314723.573,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-intro-paper-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6B2A87BB-F3A8-42A2-B05F-FD7AD3ABE770.png",
+      "sha256": "84f5abb98a3d1903a017aa06b1cf7c64d422b46065146489d60ab04cc19bd071",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314715.573,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-paper-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BBFAD539-559F-488D-9D3E-089EE6127007.png",
+      "sha256": "e5628927d2ae7e020ce8c89879ebe23ae927020661e8968910cca2682afc3983",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314711.563,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-contents-paper-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9F7A26B9-5137-4283-9BF7-E01209FA3E3D.png",
+      "sha256": "f461ffccc98dce46c0bb97baf28e4bcd30102eeea40170357b6df8e1dbd7e62c",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314707.148,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-intro-warm-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/21F09E95-33D0-40D6-930A-A286B26AEE0F.png",
+      "sha256": "39255f3a4d35035d82911d5c463827e3e4ced9bca67c7aedf9c46698373c7aff",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314699.446,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-warm-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/996ABA57-6E4B-4A1F-A760-A7198433311B.png",
+      "sha256": "d3cc3c0bd2140951d40531b3d2235f53d11e613e9f92ed2e168511947a59eb52",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314695.401,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-contents-warm-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3025A7BE-983A-4137-A8B7-20D5F23E929C.png",
+      "sha256": "c43a84d3d41c502dc1ad1b809af5c43bc63cb143a1eb16235c52b2d6904fba48",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314690.731,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-intro-day-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F4AC9A42-58D1-424A-817D-3AD27383C16D.png",
+      "sha256": "63db610ac06b1a2b9fe95728d37d291826eeaefc2a1a453a87c34caa1e5fca70",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314680.793,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmarks-empty-day-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B96AC1BE-307D-42CA-8ABA-2943D64E9D0E.png",
+      "sha256": "9a39b0be5779dfe39bbf6be995d850de4e8128fcc1169a119f21dfb2c49ca8a1",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314676.739,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-contents-day-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/06A8D066-B8DD-40D6-9AB7-276C343D1A37.png",
+      "sha256": "320468f7e4c76e7b44b574ae00bf5f4c396605825a3c31e74d7a34fe0f03d329",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "timestamp": 1792314672.113,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-menu-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4258C15C-C97F-4747-A1E3-B09CB9A7BF16.png",
+      "sha256": "07bb310e42e13dfa819fb8b1156f59437d09fb6801899e5bf26f8d9a848ff30b",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "timestamp": 1792314766.159,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-reduced-motion-layout-build16",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3A1486A4-1DD2-4540-815D-12F27862CFD3.png",
+      "sha256": "49a838b6f54997f1f5b9252c94f0e88de7d458ded00b2f8718350e4ee6aeb729",
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "timestamp": 1792314763.885,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-current-reopened-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/796A2160-8F57-4242-806A-83D0064DDCBC.png",
+      "sha256": "0524049f07239677322df7f555b19001a9a70f1e1fd6253fff7fb97e034faee5",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "timestamp": 1792314813.984,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-restored-light-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E403157-A96B-4707-900E-97F8F75D257D.png",
+      "sha256": "a3519321eab0e897149ecbecc4a996cd1a1598aaea944a4bab847b8fe523e60c",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "timestamp": 1792314787.593,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-target-light-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/20307736-6812-48B9-B823-54C992526FB0.png",
+      "sha256": "5ff60c1e4d09a723263ca761f2651d41cc512f17a8b8431168e551ede980ec94",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "timestamp": 1792314785.561,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-origin-light-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/52D379C3-1391-458D-A8F8-300D5579DC53.png",
+      "sha256": "8a89897f897227c8f13444ba953b70fb01a82356eb826fae3ebcc0ded52ae43e",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "timestamp": 1792314779.535,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-stay-dark-reduced-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2AE34387-8693-411F-8737-17B1ECB618BC.png",
+      "sha256": "d23e1c05f8e90b8a3defb9000ef1b04e23062fe82580a8f36c3fabcad6cf6b45",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "timestamp": 1792314843.234,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-restored-dark-reduced-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C76B4A4D-C78C-49FE-9506-CE6F6A6411C0.png",
+      "sha256": "231953e7357985ef8dac7485771c53aa8d976f8e4ffc6b12b77e9eccbc7d2595",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "timestamp": 1792314838.088,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-return-search-dark-reduced-build22",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D62C2F3B-6214-452B-BD74-384EF5721B57.png",
+      "sha256": "1c7def760907d4017c24e48715cf85ba9fcba0482804feb7af91556eba882848",
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "timestamp": 1792314836.38,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-reduced-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D0F06DDD-D7AC-4D8F-989C-1B3B167CE532.png",
+      "sha256": "23b14e0c31d7a5a4cde65431c9921d897da0422144a3695b97b3af864d45bebe",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314885.614,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-reduced-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4B36BA1F-5E2E-4849-92C7-876992CB9EA2.png",
+      "sha256": "ac84dd6bf7c88b2e3b94c83663e35889d676e36f6a87588b4ece5695de956086",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314883.167,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-reduced-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FEABBBB1-A9B1-47D9-89AA-8A770EFECC44.png",
+      "sha256": "5c3291a9a4d7f88f154c3f5db9286979eb4c13d4c4f9d9845692e2425d47e4ad",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314881.557,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-reduced-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A53E41D-0C50-43E7-BF28-3E54235F8FF3.png",
+      "sha256": "e3ea51c5eb41988c598258b1a0c607e31a8030b9f666b5fb6f87a8d12c370f10",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314874.573,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-menu-dark-normal-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/40BD24B0-22C0-4604-A400-71A18698A364.png",
+      "sha256": "23b14e0c31d7a5a4cde65431c9921d897da0422144a3695b97b3af864d45bebe",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314864.818,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-settings-dark-normal-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B6EAAB01-3638-43B0-B5C8-C44A46EE3927.png",
+      "sha256": "ac84dd6bf7c88b2e3b94c83663e35889d676e36f6a87588b4ece5695de956086",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314861.816,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-settings-light-normal-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/216F29E0-45D9-4895-92C3-250DB56AB239.png",
+      "sha256": "3b3d0b29f0d5f1254dc08579137249ab161c0c76c453d8a0d802b38ccdbd687a",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314860.381,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-depth-menu-light-normal-build18",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DBE46D6B-B5DF-47C3-BA0B-D9C54D399B25.png",
+      "sha256": "e3ea51c5eb41988c598258b1a0c607e31a8030b9f666b5fb6f87a8d12c370f10",
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "timestamp": 1792314853.741,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-jump-dark-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/79A0D82C-A580-4C5D-9A61-1F03145D0751.png",
+      "sha256": "9e279d6ba834a0cb7566f29d603d44528f6dd14bfb7d4b8f4475260023dd5af4",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314952.712,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-empty-dark-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F49A73FA-9391-4EE1-903A-CCBDD551E736.png",
+      "sha256": "6b074900551d45f87b122639681bece9378622ff35589c4a3319f513abd188ea",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314944.735,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-search-results-dark-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D305871A-AC2E-4B1E-871B-7A3282B194BB.png",
+      "sha256": "82aa0757baf7e139cf0d065f3539fd575c8ddcb7e6f3f903de31b7ff2c405263",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314938.11,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmark-deleted-reopened-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8C32AE5F-726A-4EFD-8677-3AA8B9DCF1E4.png",
+      "sha256": "6ca98b40bc1367ae915303c85441c85bf27376fa226b1ca2feaf6084cbcee399",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314929.365,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmark-swipe-dark-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6E5658A6-1CFD-49A7-AF2C-12D7644045F0.png",
+      "sha256": "695a7c63201a656f0beb0457e39172d9dc73a3ae540739fbcf8c51e4960fe2dd",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314907.184,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-panels-bookmark-dark-build26",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FC24EF66-54C9-4FF6-AB2B-6AA9C0637FFB.png",
+      "sha256": "e6fd2d1ce1155f517144dcede9605eae6044fd526dc5bdedcdf8dd3e024c0e9b",
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "timestamp": 1792314904.017,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-restored-reduced-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D5863E6E-9F1C-447C-9957-AD856F09A4BD.png",
+      "sha256": "d7f012984ceb6020b293e92398466fd9ce41ee16f07fcee96433167200266310",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792315029.62,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-settings-reduced-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2E9EB060-91F6-491B-96DD-33D713FB68CA.png",
+      "sha256": "78121264cc38c312ce0e2ad0a0771fa144b275cc1ed263a476f99f1057760be7",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792315018.19,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-reduced-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DACD6727-6FA8-43EA-86CB-9BC26972E036.png",
+      "sha256": "1f28d70469a3ce0824354d97ad81cebd2c74954481e99e6618301ee515cab740",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792315011.517,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-before-reduced-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/35C18F4F-6B57-4589-AD0A-0E9A3937B54A.png",
+      "sha256": "f5c45633621ebc742cfab6c3984d87764b003aaee55af8a62f98621a21c27429",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792315008.467,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-restored-normal-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/661ED487-875E-4B30-B793-5A79F4ACCD1C.png",
+      "sha256": "192df83941753443fce09914c2248a99731d77e77730d1f1b08d4bede583317d",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792314990.862,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-settings-normal-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BE1954FF-C31E-46BA-9867-8D8E56FB41DE.png",
+      "sha256": "78121264cc38c312ce0e2ad0a0771fa144b275cc1ed263a476f99f1057760be7",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792314978.883,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-after-drag-normal-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/51B3BD4A-9746-48F1-BF80-99631E133059.png",
+      "sha256": "d389c5c5da1e802c5cb39d031ba1a0b48f7ecf602b8ac00d2a9bc1a07b8055ea",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792314972.213,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-screen-before-normal-build19",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/7A82B666-62A0-4148-85F2-51670F8BF451.png",
+      "sha256": "f5c45633621ebc742cfab6c3984d87764b003aaee55af8a62f98621a21c27429",
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "timestamp": 1792314969.161,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-custom-reopened-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F9C3F951-C4BC-4ACE-B6CC-5345195D8B5A.png",
+      "sha256": "66c367e23d3fb2a15c94848612b090df23a8bd0da353a0973703610c448516fe",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315070.854,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-advanced-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0202DC4D-220D-42C7-98F5-6978A0DDAC70.png",
+      "sha256": "66c367e23d3fb2a15c94848612b090df23a8bd0da353a0973703610c448516fe",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315060.57,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-comfortable-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6B22D8DC-AABE-4438-823A-446DBB87C516.png",
+      "sha256": "a026e432e894e10d1d3738adb334ebac85a8e48a82d3151c53b141052f979796",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315058.321,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-compact-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9F25E053-2613-40EE-A06F-50D7BE9632F8.png",
+      "sha256": "b4c048eb6bf1bd00c926183bfe27c501cc052a00848806f9920aa1ab8b67bbc9",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315057.011,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-spacious-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4490F90D-6663-4B50-B540-40A62EE16948.png",
+      "sha256": "c528d958b43bbe99aff3d4185247650471c43006d3b31d1f0beec73eb3f50dd3",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315055.471,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-imported-font-search-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/94EA49CC-4BED-473C-A0E5-C49462FC57FF.png",
+      "sha256": "c71163cb4140c9fbe99c061cae4323055d25c18e91fc656af0b85f09c8823649",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315050.407,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-imported-font-grid-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/92102DC7-209D-4307-9A7F-AD0327C7AD20.png",
+      "sha256": "922df84383733f7e7f27335976548e256949b98bd6b6fa60221e1b277d81d50d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315047.459,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-font-collection-entry-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A7E8D168-DEBA-442C-8660-172C382B07FA.png",
+      "sha256": "ca5d2ca680fc677e0991eef2b3148c1919573a2b76d19a51a4e5b119303e1b95",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792315045.07,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-fourth-reopen-readable-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A179DDAC-8825-4C72-94D2-4457FA7FE067.png",
+      "sha256": "8f7488eba579965ee797af67729acef3e7118a870faabe70bfc9ce488a972d19",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315152.309,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-warm-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F6E410C9-084E-431F-AF4A-4C72B0C6077C.png",
+      "sha256": "c01a452105fa0006d25b30107746dbd2093931397868b4dec7fcd64fed1a193e",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315144.975,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-warm-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A915BC8E-8773-45EE-844E-27ABA619A424.png",
+      "sha256": "7baf5ad43734c4872f2b9ec53a3953c1b5ae1b968c762eec23ede725e6c1295f",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315128.684,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-charcoal-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/56162913-6C0A-4045-92F7-206A415181B8.png",
+      "sha256": "0253021c31fbc1c0d16a906cf5c3dcdf326c2561d5d3ddcc7b019c78ddc7898a",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315124.224,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-charcoal-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DD5AFD8E-3820-4181-995A-7F476151B709.png",
+      "sha256": "cd229b51c81b334857a2cf32526168769c5fa89406d22122ef4f68005a02591e",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315107.246,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-warm-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2A750EFE-1C60-41BC-A4FE-255839FF5393.png",
+      "sha256": "54cd2cb6b97e834cd6affe9cdcb41089edb54235f34f1a184376aaa1f36d1078",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315102.242,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-warm-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DDD580FC-A1EF-42E4-BD2B-721DA826E4A1.png",
+      "sha256": "a4bb0ba7c3c398f96a03387e61797175e8b48115b18d274f46ec479ad05e3978",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315080.155,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-system-dark-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/86459AE7-4B43-4C61-9CCF-E6FD278744DC.png",
+      "sha256": "c1ff01feeba9053b44257b9366a38c4b9c3229a5956b183831e5414f05bd3ded",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792315076.142,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-bundled-kai-dark-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C4BFA5A6-7A98-4A51-8076-75A0E5B604A8.png",
+      "sha256": "10f60f45456e64f3e25c30cc33bb3cb3e10ec83f73ed616edd78f7ef549909f1",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "timestamp": 1792315186.761,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-bundled-song-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1A4CC71F-C7E0-49B4-8643-809E2BB8E754.png",
+      "sha256": "2adad2af95a11999afe4b8e007ff80e570f2c136fe624fedaae2568824505fd4",
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "timestamp": 1792315170.931,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-compact-layout-build27",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6C4EF816-8F1F-4C17-8484-F133FF8884BC.png",
+      "sha256": "4322eb7936437bfc2be283a43dbdf755de420d9c08d398390f8db969b5b10712",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "timestamp": 1792315244.292,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-font-grid-dark-build25",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FCE457EF-63E8-4BBE-918C-E50F6796DEF7.png",
+      "sha256": "7a5c24287706c5b0d7df19b4dceabd53cf8bedc38873aaa69556b619f5ccce6a",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "timestamp": 1792315242.622,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-font-grid-build25",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A47AAA09-D4C6-4A8E-B4DD-A42084E0AA27.png",
+      "sha256": "b7fc0618173d10fa2faa2481a2f1d3bd086616be7620559163792cec21b88e4b",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "timestamp": 1792315240.434,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-default-restored-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BF82CCB4-66D4-4337-88FD-8369E26C9B92.png",
+      "sha256": "9f0b1eef35063a768fe03787cf6fb13a52ebd1988a74469511fea89d06906350",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "timestamp": 1792315318.538,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-selected-dark-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FE8279C1-8DF8-4B4E-A3BF-719C29D42A3C.png",
+      "sha256": "b68efd5f1e5b82df8548c37d6f08cc4e0afd333ed709333000878f09fd021cbf",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "timestamp": 1792315312.993,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-reopened-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/626A417A-5158-483F-AC5D-EA49E2E3622F.png",
+      "sha256": "b0f012d81ff6c2e2679eec69e924e82cff4465be0790de1456cbff0ef3bf9ba7",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "timestamp": 1792315303.72,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-picker-cancel-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/68FF7849-231D-4722-88A5-D9BF7218A3DF.png",
+      "sha256": "f734d1d516f73cbaa9b62b65c595ae557e2ffce1ba7a3fd59a7845d630af28b2",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "timestamp": 1792315285.354,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-selected-light-build23",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/849D9428-C431-4610-B04C-93F8B6DA30AE.png",
+      "sha256": "b0f012d81ff6c2e2679eec69e924e82cff4465be0790de1456cbff0ef3bf9ba7",
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "timestamp": 1792315273.464,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-extended-layout-reopened-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3AEA7D05-B318-4689-9925-6AAC5D10A6DC.png",
+      "sha256": "afb979a8d550a958c5b79f4ac834c586d3e3628d91a366c9366d7d478dbe2162",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315371.032,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-extended-layout-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EDEDD27E-64B0-40AC-AB09-4F16F8084F21.png",
+      "sha256": "afb979a8d550a958c5b79f4ac834c586d3e3628d91a366c9366d7d478dbe2162",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315355.055,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-xiaoWei-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/43DB98C4-79C6-4C1C-A1E3-77E5744F46D2.png",
+      "sha256": "d7cc24547b632a953e73916e3ebbeee04cc731e54bca8dc4ae60061361226ecf",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315347.569,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-maShanZheng-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2600D054-E752-4FB6-9364-E1CECA4D083C.png",
+      "sha256": "12471bc1551b4c74d7c5a05e8cea8e24886be358aed7271eddfcbb70c2d66d3c",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315344.679,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-zhuque-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/59B6F63E-F76B-4F7B-A162-52AC528A27B6.png",
+      "sha256": "63ee95b12c6595200ccb993a64dae06a406e6899d009568692e001236195d3be",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315341.06,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSans-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1ECDBDD7-65E5-4470-972F-667836C807EF.png",
+      "sha256": "000b5040a3c7eae4989c6b72777eb2826a6d84cd29fbd2e305b749ef59b8c93e",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315339.762,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-wenKai-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B70B82A7-59CA-41E2-8807-64261643252F.png",
+      "sha256": "59eb0c375385577a0369235bfddea7d6efda093a867771ced3fa0715c3ec9b42",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315338.086,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-font-sample-row-sourceHanSerif-build24",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C6E6E276-50D5-4226-9832-20133FCB18F7.png",
+      "sha256": "376ab83007981bc76654bfce67855a2701d5736e4f883a04bb220ba0e9b8cf23",
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "timestamp": 1792315332.047,
+      "inspected": false,
+      "size": [
+        1206,
+        2622
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "name": "Screen Recording 2026-10-18 at 09.07.14 AM.mp4",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/F5431354-2D12-4B12-9AB1-D870BBDFD9DF.mp4",
+      "sha256": "36713b806c6dbaa819609a088df1acd815459fd60550abb3ab47c499ead599cb",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792314434.236,
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-18 at 09.08.23 AM.mp4",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D32D021A-AFAF-48A2-B061-D96B46EB69AF.mp4",
+      "sha256": "7b0eae6810987605d42ab2f8ad66347833d978dddd59b008ee93dcd76e9465ba",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792314503.821,
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-18 at 09.09.05 AM.mp4",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4591946D-570E-45B0-A47D-2446FE71DA3A.mp4",
+      "sha256": "5dc5b2f7dcc68e445c92c36d2a086b42f96b8b7c97bacf5b1316546a22fcb62f",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314545.394,
+      "inspected": true
+    },
+    {
+      "name": "Screen Recording 2026-10-18 at 09.10.09 AM.mp4",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EE007238-7376-470B-BBFB-3A0E03111AA6.mp4",
+      "sha256": "d4a76227eb9896c40d0e9872e79b569b9e84ac5aab1f27aafcf380c4d3347109",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792314609.841,
+      "inspected": true
+    }
+  ],
+  "contactMethod": "Selected changed native interfaces and inherited five-theme panel regressions; original PNGs unchanged; no inference of phone FPS from tests or thumbnails",
+  "imageContacts": [
+    {
+      "path": "build/ci/39113019568/ChromeReview/images-1.png",
+      "sha256": "78d3dfeeefbd222f8204bc9f597017066842393de442eb4ff8f167ffaf7a170e"
+    },
+    {
+      "path": "build/ci/39113019568/ChromeReview/images-2.png",
+      "sha256": "89551be60aa21a896fa46fcc8a83efe6ba360c5e28c6d189cda8ef737ebd3d7c"
+    },
+    {
+      "path": "build/ci/39113019568/ChromeReview/images-3.png",
+      "sha256": "e6037168f322b77d94924a83a7f2e6b5e9496d780dc663a3c9db392df07904da"
+    },
+    {
+      "path": "build/ci/39113019568/ChromeReview/images-4.png",
+      "sha256": "289f26e36ab796fbc23a2fb7c1c00c476f51ee6e2b0cb1afe5d6a558567b206b"
+    }
+  ],
+  "overviews": [
+    {
+      "kind": "chrome",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/contact-1.png",
+          "sha256": "cfb2fedd1c0e0e02c16999c7675b8b5762945382f4ad150d59c13e45c522eafb"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/contact-2.png",
+          "sha256": "170bd021c71ccbdbb434d175d8393a5be5f63ecbdb550981dc7133120abf0d95"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/contact-3.png",
+          "sha256": "61ab0b7c3528704ab0d75e1e1601097b5eda3dd3db6954a39be084385d349603"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/contact-4.png",
+          "sha256": "01fc534fd3aeb0a2340a2b03deff786b331d592be35d534437e38488fbb78772"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/contact-5.png",
+          "sha256": "e12e29c3d05e9c14ea58f7f9eebf60d66d8dfeaefdd88a867969e7aaec1327b6"
+        }
+      ],
+      "observations": "完整63.81秒一秒总览5表：正常及减少动效循环中的菜单/目录/浅深色状态可见；包括启动/设置/返回及片尾黑屏，未据此推断启动根因或完整时序。",
+      "inspected": true
+    },
+    {
+      "kind": "menu",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/menu/contact-1.png",
+          "sha256": "6a66e3f491ae4f74235efc49c13d2f18c7a2a1e115bd801d756c7c45d1aee4a3"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/menu/contact-2.png",
+          "sha256": "07b573343cdf40e47cf3ecb82131a7d989ca5377770f2ad854a94cb42c9e8468"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/menu/contact-3.png",
+          "sha256": "ce263b6c57da06d47e4da5deadd737f901e4d0a2c614a7eaed5d4db70b1e0645"
+        }
+      ],
+      "observations": "完整40.96秒一秒总览3表：原生菜单、字体/排版设置和退出重开仍可操作；旧章首留白/分页快照不追认。",
+      "inspected": true
+    },
+    {
+      "kind": "gestures",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/gestures/contact-1.png",
+          "sha256": "a0f4162100cc591cb21f9e30ce55a1cae974b3a7e30315d37152b7ce9301d97c"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/gestures/contact-2.png",
+          "sha256": "76586e0f18c5753fa775dfc39ae28fb02a54688b76d8fe3793af00374569cd58"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/gestures/contact-3.png",
+          "sha256": "23d8d6fd11e6d7f7d5b260892f08df1037940089f48a8fbf8a69647d654f3d64"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/gestures/contact-4.png",
+          "sha256": "8065d6cc7754befdc9fb86c8ee91f054bf620617272b1e53467f0c89935134d7"
+        }
+      ],
+      "observations": "完整47.44秒一秒总览4表：翻页/连续手势收起菜单、偏好恢复和关闭自动收起后的菜单状态保持。",
+      "inspected": true
+    },
+    {
+      "kind": "autoscroll",
+      "method": "Full recording sampled at one frame per second; overview only, no phone FPS inference",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/autoscroll/contact-1.png",
+          "sha256": "c990e4366f043dce804d082fc6748bc73a412778b85651c0fde4ef09f277370c"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/autoscroll/contact-2.png",
+          "sha256": "ac4dddd297cb51b94f0c7ef32e9bb6d14286245748f957f021461c4801144453"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/autoscroll/contact-3.png",
+          "sha256": "29d2e9a26b84e17cab560a5b5f693f5d37956b581d9275eb54c6c847a8ed221a"
+        }
+      ],
+      "observations": "完整44.16秒一秒总览3表：慢滚、触摸暂停、后台与重开静止/浅深色控件仍可见；菜单隐藏时状态栏区域有正文透入，不能视作完整安全区修复。",
+      "inspected": true
+    }
+  ],
+  "originalFrameWindows": [
+    {
+      "run": 39113019568,
+      "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+      "video": {
+        "name": "Screen Recording 2026-10-18 at 09.09.05 AM.mp4",
+        "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4591946D-570E-45B0-A47D-2446FE71DA3A.mp4",
+        "sha256": "5dc5b2f7dcc68e445c92c36d2a086b42f96b8b7c97bacf5b1316546a22fcb62f",
+        "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+        "timestamp": 1792314545.394,
+        "inspected": false
+      },
+      "start": 15.9,
+      "end": 16.7,
+      "method": "All original VFR frames in range; no fps filter or interpolation; source PTS from showinfo",
+      "frames": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0001.png",
+          "sha256": "5d8a82324efd89d85005bf4c80157ab3edbc5fb78ddbdee3e106d365c39fc535",
+          "sourcePTS": 16.316667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0002.png",
+          "sha256": "3250b6ddca9abad185ca8657c4aa272f61e01cb910f2c08e30cc9041f6034861",
+          "sourcePTS": 16.343333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0003.png",
+          "sha256": "6e832f57e1185c71cd97579c7455eb8148f5cc033d52148140ec84519050f9ac",
+          "sourcePTS": 16.36
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0004.png",
+          "sha256": "07965fd4cc62319dc019b44f7fb9ed3a375dd2e5ccf83d609c2e2c15f0022640",
+          "sourcePTS": 16.375
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0005.png",
+          "sha256": "eb28ffbc3da6a18e249074a7a09757f5e7944b1524ebf91fb43b22cffc7d35bf",
+          "sourcePTS": 16.391667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0006.png",
+          "sha256": "94634339cdec585e1932c3b347384e3d6a8b8116501e4ae0ed09feb9ab79f38f",
+          "sourcePTS": 16.408333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0007.png",
+          "sha256": "5fd35df11d3d0a6e866890b8029b46ea9a50ec7592784d58549914803e8ebdba",
+          "sourcePTS": 16.425
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0008.png",
+          "sha256": "23fc675ef745898e50736bf4c2b00062a9d47bbeaaa4b9b480e7863187a6076b",
+          "sourcePTS": 16.443333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0009.png",
+          "sha256": "1a0b59bf0183972b3163bfc7a95173584671376dddff77b4a9702d1d2553df59",
+          "sourcePTS": 16.46
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0010.png",
+          "sha256": "d3313439a3bc8c25da9401fb03de34061e268c4f6fb8d8576a69dd34b2e45a2d",
+          "sourcePTS": 16.476667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0011.png",
+          "sha256": "fe2818ce9b3dcd691cf904a1bda8d71c092595b56c61bbd489241cdfa16623ed",
+          "sourcePTS": 16.491667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0012.png",
+          "sha256": "4ae679ebea9586646878c5558589f80bcfec1d7f1944e79a9da9322849760a37",
+          "sourcePTS": 16.508333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0013.png",
+          "sha256": "3abf961ec6d3630f515637e1230171ddaaf20c5feeb634c1ba90caa7d8cc2fd4",
+          "sourcePTS": 16.526667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0014.png",
+          "sha256": "bbe4d227ca745f495e9fe72bb86fdedf9d5de8d52d3cf1ee142703a338f3eb6e",
+          "sourcePTS": 16.543333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0015.png",
+          "sha256": "872579c5dcc59f3563eec80761c536f83e1d72623901668a76b58a037a248a6a",
+          "sourcePTS": 16.56
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0016.png",
+          "sha256": "04cd599ed5c7a32e584a2fbf69307b082960f0b93ca24cece61e230e5d5d34c8",
+          "sourcePTS": 16.576667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0017.png",
+          "sha256": "edfe24329809be8adc279c6c500d53fb254f7095c87bd5cbf837a51e986e3175",
+          "sourcePTS": 16.593333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0018.png",
+          "sha256": "3fec86874c744eeda57da6a1dd82410ee0a3eeae9772371ccc0d74176321d63f",
+          "sourcePTS": 16.608333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0019.png",
+          "sha256": "0b0392685d24c2bd289c7f6f426584ad9729d82a93d92581b3c01a5afc3f359b",
+          "sourcePTS": 16.626667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0020.png",
+          "sha256": "b0726c380fe5a3911b086c84e4a498a960fbd83775af2645f75ab8574702cc5f",
+          "sourcePTS": 16.641667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0021.png",
+          "sha256": "3d4c8be50ad1035cb95fc49de323b6906754ee6aee58ae85f040aa9ebce4eac8",
+          "sourcePTS": 16.66
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0022.png",
+          "sha256": "6835d2ec0420c20ee82805791dd64be1dcab5ec6d9e55ef64365443bf67e7570",
+          "sourcePTS": 16.673333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0023.png",
+          "sha256": "b3fef9a3a7b13de4933355733ee5cbc55d11ab37d436726fb4b67b72c42e66e9",
+          "sourcePTS": 16.69
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0024.png",
+          "sha256": "ad5a0e2424719417f6429b110236c8bea68c417f4bf7f2c2abf6b6b7b8b6f093",
+          "sourcePTS": 15.915
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0025.png",
+          "sha256": "6e12aca7d9e6f31ae9b25eae2ca7170958f7ac11dbf290068ad0735a81c723b8",
+          "sourcePTS": 15.93
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0026.png",
+          "sha256": "75b3bba3198801718b4b7298ab1becded9996ea41ec1c3dc039904eb3cd6b9d4",
+          "sourcePTS": 15.935
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0027.png",
+          "sha256": "e4a0960441fea38dd20880f1a6a752f4a5da6b853af8be6f85ce4dabce055f3e",
+          "sourcePTS": 15.961667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0028.png",
+          "sha256": "7e091355e859e7c4a009f27b10e1c016ed1f77ddfbd1ad5e59e3486b888e235a",
+          "sourcePTS": 15.976667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0029.png",
+          "sha256": "76da9bbecd492976000f4b3bdc33df73fc5d1d39583adfde16d3b179fbb6ff55",
+          "sourcePTS": 16.001667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0030.png",
+          "sha256": "b8c4c43ad96099275660da72e1f1f8352dde2a69a64ffcea84fd5b26d1a26b97",
+          "sourcePTS": 16.02
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0031.png",
+          "sha256": "e2e533fa86013fe5d70e6acea39d1bf012bf3acc7733bbc70b0384e70876da24",
+          "sourcePTS": 16.031667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0032.png",
+          "sha256": "a68f18cce8a0f864486af4e3b72584eef47ce419958967c4bb2f274b3d791c6e",
+          "sourcePTS": 16.048333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0033.png",
+          "sha256": "5550f258b167e835de33149d81b8c12e71bf7e6871083af413613837c301145c",
+          "sourcePTS": 16.065
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0034.png",
+          "sha256": "adb5a485e0b2fa875ae0ea7b3d036f839f95247ff9a9edca767ef4f50147ecf9",
+          "sourcePTS": 16.081667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0035.png",
+          "sha256": "bb5b43610a6c17c4d537444fc437d69161ef4a04da0083f1cde6bf3dfd31358f",
+          "sourcePTS": 16.11
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0036.png",
+          "sha256": "b6adf354bc953afa940eb4f788518cebdef2acceef9b44e288b7b23304158ee9",
+          "sourcePTS": 16.16
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0037.png",
+          "sha256": "885ee24eadd3f0c1fc7e2b109b532fa031b8f103f4e886301d56a13cc21a8c3e",
+          "sourcePTS": 16.21
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0038.png",
+          "sha256": "c98f2f6cb6c7edcedfccbdcbe632dcf10b40bd459a996ee0059121a546ff36ef",
+          "sourcePTS": 16.256667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0039.png",
+          "sha256": "5a895906e18696d3f1dd735f6647c46b4b9583288e0fad617d0ec023d0d43d74",
+          "sourcePTS": 16.265
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0040.png",
+          "sha256": "2d66e8124a8031f94e0105720b40349a807bb81568080ff0b96f16807f1488ee",
+          "sourcePTS": 16.281667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0041.png",
+          "sha256": "1aa8a7fea10e2885e1c2c31d7a772807df86c5db95edb793ef51526739021964",
+          "sourcePTS": 16.315
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0042.png",
+          "sha256": "a57b5dce2fe2da7827f95a75bee382f81658e02ec6d3813a45d4828d0f77b705",
+          "sourcePTS": 16.68
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/frame-0043.png",
+          "sha256": "e0fa2ae22bdef21ee5906df2e7bba43fabc1196a98cbe0c5445fb450ca821a5f",
+          "sourcePTS": 16.69
+        }
+      ],
+      "inspected": true,
+      "observations": "43原始解码帧/4表实际查看。前段16.317–16.690显示菜单淡出、下方返回条移动，正文位置保持；随后源PTS回退一次至15.915进入另一启动/加载段。只接受前段显隐画面，不把跨回退片段当连续时间或性能证据。",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/contact-1.png",
+          "sha256": "0e8f74c051e0d339481bc08635289b0088a634258d324d6727d43aa40a9cd496"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/contact-2.png",
+          "sha256": "da76e92f8f29a2bcd90aee05783fa8eeb82115ed378c365b078a72f4d0cb9b07"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/contact-3.png",
+          "sha256": "b385ec973cdc5ea7439bcf7040d0d0076974a24f1dbff9d1a2471b09901bed97"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-hide/contact-4.png",
+          "sha256": "9be2b4ec4330fef3cd89d7e9f3822dd5b57076779b1df0ad95bca71c7674e5ba"
+        }
+      ],
+      "sourcePTSInversions": 1
+    },
+    {
+      "run": 39113019568,
+      "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+      "video": {
+        "name": "Screen Recording 2026-10-18 at 09.09.05 AM.mp4",
+        "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4591946D-570E-45B0-A47D-2446FE71DA3A.mp4",
+        "sha256": "5dc5b2f7dcc68e445c92c36d2a086b42f96b8b7c97bacf5b1316546a22fcb62f",
+        "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+        "timestamp": 1792314545.394,
+        "inspected": false
+      },
+      "start": 17.7,
+      "end": 18.5,
+      "method": "All original VFR frames in range; no fps filter or interpolation; source PTS from showinfo",
+      "frames": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0001.png",
+          "sha256": "635724d1ab2e310b300788e35f29ea557ccac23d5f44785c458dc5f471997372",
+          "sourcePTS": 18.116667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0002.png",
+          "sha256": "1ebac3b90fba3c3062e35aae71a05852578111bd0f3fbbb1d118b6946baae3cc",
+          "sourcePTS": 18.151667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0003.png",
+          "sha256": "49d5decc546647cca365c436bbe1f6d4673487aa0af59fc268eb1a62c529c0e7",
+          "sourcePTS": 18.163333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0004.png",
+          "sha256": "ff6f77fd2f9dc2639ec6cfe889715d09014ff5f00cd636ff403815d7dabb9fc2",
+          "sourcePTS": 18.18
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0005.png",
+          "sha256": "fcecd308fe644d37f7cabd5db7db809abdd77234694c9395c82ddc5cbae878ab",
+          "sourcePTS": 18.198333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0006.png",
+          "sha256": "7a249ada772fb9b060496a5b2c31445423dbbc86916f6b740525315c6b4b210e",
+          "sourcePTS": 18.213333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0007.png",
+          "sha256": "8ca1ed23c01eeffd8b4dadf92d6d26d7e3567e71c55f05d86994912d44898ab1",
+          "sourcePTS": 18.23
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0008.png",
+          "sha256": "2cc517d776588565ec86fdba50aa160ac0fce2ff32d11b51f916f656afefaf66",
+          "sourcePTS": 18.246667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0009.png",
+          "sha256": "9d63261d45287a88f2f0aa38e339d9d72c40480ed88ee2ed8547adde1fc7255e",
+          "sourcePTS": 18.265
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0010.png",
+          "sha256": "9bb3987d400c7fbc069adea76e43518aef92874b01a1de3fe2d7abae05c1065a",
+          "sourcePTS": 18.28
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0011.png",
+          "sha256": "f558582889240a056020e012309cf1daa4015c37971b9958efec5a41aa2e40e5",
+          "sourcePTS": 18.296667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0012.png",
+          "sha256": "b0764b8cefe27796a503c3e544f4eafc850a4e3590dcb2c4d3c50d3ef400d3ae",
+          "sourcePTS": 18.313333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0013.png",
+          "sha256": "80ef63835176fc8f3dd1b06206e29913120f5a654e0b9f3631c85528d0e8e5c2",
+          "sourcePTS": 18.326667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0014.png",
+          "sha256": "5a4bb66e45239b88c3445fe1f9d5de877c9daa5acf34b8e44732d2c01598327c",
+          "sourcePTS": 18.348333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0015.png",
+          "sha256": "8f04b691af644a9de6d8f47b0441b398693a31a6b4de3a57937d0dfa907ea741",
+          "sourcePTS": 18.358333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0016.png",
+          "sha256": "11c90cc2db9036e97af6caca688a72710359cf991cf51a8734dfaf52c6bc4adf",
+          "sourcePTS": 18.376667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0017.png",
+          "sha256": "5e2b26b367a2256ed861ffd38abae8fe8a37c5bad34b778081fe58b73a4e36fa",
+          "sourcePTS": 18.393333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0018.png",
+          "sha256": "79a733ebc14b1a2a775c650ded4986cdd9a84621378ebac721182ccc75d8b907",
+          "sourcePTS": 18.408333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0019.png",
+          "sha256": "58146d8e2f3c581e7283b44a6a0b342ee012a587e402ad2bc9e5e2f1c15712f3",
+          "sourcePTS": 18.43
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0020.png",
+          "sha256": "b5f08e145512d49e05c69ae558f0c17c4de38f27e3e70d4c5e707b3d8dc0458b",
+          "sourcePTS": 18.441667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0021.png",
+          "sha256": "5b5da2e23d50b55abbfb3bdb56306351a75f2210baf923c62e1d0ed946e666a8",
+          "sourcePTS": 18.458333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0022.png",
+          "sha256": "2dfdcd322329cca5aaf4c873f8dd76f8d92fd4ae66d0618f5ec54c265ddf47e8",
+          "sourcePTS": 18.475
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0023.png",
+          "sha256": "8f8f81f74cefb06e206faad97d1568f82960375adb65cb0c8d5628daebc4156c",
+          "sourcePTS": 18.491667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0024.png",
+          "sha256": "9a3703998bad40abd544878466ce2d003dc900083e2f0c587a67db0d2623cecc",
+          "sourcePTS": 17.708333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0025.png",
+          "sha256": "74e0314f20e6203054971dd14af90f10e3f7d88e4633b013af286e6878301930",
+          "sourcePTS": 17.721667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0026.png",
+          "sha256": "b89dfb9e0d37e655e65dcbd0f53afd8b599142a90543f960153c0ed899327ab7",
+          "sourcePTS": 17.725
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0027.png",
+          "sha256": "43add22a548c63635bf5157691ca92ce218bdd0cd1e5d323ca9b2d9156f40571",
+          "sourcePTS": 17.726667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0028.png",
+          "sha256": "cabb02d6f42a1ee115e818651e41b1f5d5d94d5f28f6a09b2b467d0324b22625",
+          "sourcePTS": 17.755
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0029.png",
+          "sha256": "fee743862775897568f96ffa3c4f5048887902840d01f5093702d62c97deba85",
+          "sourcePTS": 17.763333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0030.png",
+          "sha256": "7a0073a4047d7bfced02e472bef6b39a6f5b9d780e412937f5287a9e0fe54c00",
+          "sourcePTS": 17.776667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0031.png",
+          "sha256": "fd9eff1201e0cabca30f63096b970f9c970aa820a11b5e1d3f3afddefb1bf887",
+          "sourcePTS": 17.793333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0032.png",
+          "sha256": "c6d021e29b1ead9e1e706171da2bca3de7b70df5700043e72b28ad2e3a1455a2",
+          "sourcePTS": 17.806667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0033.png",
+          "sha256": "6edee7787dd8ba1750ba7319811084fce606830f9ef3a6239418f7fd6a13d3fe",
+          "sourcePTS": 17.825
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0034.png",
+          "sha256": "1df681ff805608dec9c29f6a5f774042cf0a8a5d28f61c704a2f8d9eeb2a9b9a",
+          "sourcePTS": 17.84
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0035.png",
+          "sha256": "5df018d80bd1597e24b1deec97017c9e9e972e35be1654eb6885736fbe38b23c",
+          "sourcePTS": 17.856667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0036.png",
+          "sha256": "fd26840f08bc3909028413103d635c4405582034ac427c21f9979b12b9b98f45",
+          "sourcePTS": 17.875
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0037.png",
+          "sha256": "c4248bbd68d39e6917b31e43062984dc230f7834d7645057fffcb1b74e4c5d58",
+          "sourcePTS": 17.89
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0038.png",
+          "sha256": "e68d83af04d46da5ea21f8c64219b6087ede8d750e35bd6f64a04ead8e0b6f02",
+          "sourcePTS": 17.908333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0039.png",
+          "sha256": "cc6a9da969f056d7d9221db368dfaa14d9009bde6075f0e1119763a1db307d3c",
+          "sourcePTS": 17.925
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0040.png",
+          "sha256": "641580f2b191c2027687ae1a72c6c064b9d56c589ac84b57310748dc00e2806e",
+          "sourcePTS": 17.94
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0041.png",
+          "sha256": "27b4f7c3985516a82cedea6e8bb00f05879012c6c99ad5859c197df4ee129e49",
+          "sourcePTS": 17.956667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0042.png",
+          "sha256": "282dc9e4abbc78898a6527040fe4974396874f3c3d9e4f15cc0ea9c5f6332088",
+          "sourcePTS": 17.975
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0043.png",
+          "sha256": "853f33d6843b026b41a065a7445a9815fd0625d47b1dfb1ece06842b7eae6547",
+          "sourcePTS": 17.99
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0044.png",
+          "sha256": "a55c0f954d92c1f861a60cc3b463000c30ede1ac7888dcfbc5e39af6c3fd3523",
+          "sourcePTS": 18.006667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0045.png",
+          "sha256": "11528bb5a8ed4a4df77f76962b9e417a152a0f48d77d2825f585f4ea50b1077a",
+          "sourcePTS": 18.023333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0046.png",
+          "sha256": "b4350b603142c1f330f951b8e88061f834003fbcdcd42a14f1a4cf4c48f58d87",
+          "sourcePTS": 18.041667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0047.png",
+          "sha256": "887c275b82b7aca5250721b1ca80dcad599011cca00c57887b39ef2327551ae9",
+          "sourcePTS": 18.056667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0048.png",
+          "sha256": "84125acbb4cb62e7fffb130eda1a50d2a6144720458b4cf0727925ef8e284f53",
+          "sourcePTS": 18.073333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0049.png",
+          "sha256": "7b978f69a7ef6177e14c6ef738dbaa5711b95c0190d72ae42392302ec2348427",
+          "sourcePTS": 18.09
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0050.png",
+          "sha256": "d5e7422ba9608438803d275fff6cf821e25862d5cf1d4be55995f4cded6fabc4",
+          "sourcePTS": 18.105
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0051.png",
+          "sha256": "1ada77f782bab09f4c2098fdf7a6df82e6dab67b0862a88c135cd8c557a9dff2",
+          "sourcePTS": 18.125
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0052.png",
+          "sha256": "f0d08a617ed7384f42acf183d38c3be8acd728cdfce121853e444f114a46eb8a",
+          "sourcePTS": 18.14
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0053.png",
+          "sha256": "5db988d7634896b7f0c356ab11323a6f441243cc7ac13bc9a7739b851cd5fb35",
+          "sourcePTS": 18.156667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0054.png",
+          "sha256": "7d7914bc6186cf1d64f28f1534d1222f6c95037598fdae5975a91599674e784d",
+          "sourcePTS": 18.173333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0055.png",
+          "sha256": "01e95be0883a74fa5b30f9c76e12702bf1ea1f7cf83184e4b333b1d70cb6d3c6",
+          "sourcePTS": 18.19
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0056.png",
+          "sha256": "eb22135fa1596ae5709b6ba47998e6a1f6eec6d7369169c9b045f3dd75da8a5b",
+          "sourcePTS": 18.206667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0057.png",
+          "sha256": "2edc64e7dca8134a17edbc99379069df36a168a42bf559389e886df3acae1d77",
+          "sourcePTS": 18.223333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0058.png",
+          "sha256": "4cec84d79d49484e02858e6cb8101495e1944f3fde9b4cc85c372b8e1ffd0253",
+          "sourcePTS": 18.238333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0059.png",
+          "sha256": "c3eb9dc9b5e085ef512441f60caf4a44730c64a53b9b02f2cba6d6c3742aa425",
+          "sourcePTS": 18.256667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0060.png",
+          "sha256": "32f2a8ea4642279cd516934c443a37154142b73cb25e23e4b4b146b59c1ef4a9",
+          "sourcePTS": 18.271667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0061.png",
+          "sha256": "400603e7269bd276626db453b4d2f55072f25c0c936f71331d5fbca557efe115",
+          "sourcePTS": 18.288333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0062.png",
+          "sha256": "07dca77a03b9dd6cb4980e8c637d8256f8f38629b53fd40bdf79a3690884e34a",
+          "sourcePTS": 18.305
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0063.png",
+          "sha256": "323336e1c62046e0f639b7ae41e16da77aef1512e2046d688c5686fa788578e3",
+          "sourcePTS": 18.323333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0064.png",
+          "sha256": "0fd55d08d626464d7eaf7fe00dfb1ada3b2a0bfb0a7397af17afb52dedddf6aa",
+          "sourcePTS": 18.348333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0065.png",
+          "sha256": "672182af3b267d0e9f309767dab45c6051d2af86bd3af5584a593b7e5017629a",
+          "sourcePTS": 18.36
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0066.png",
+          "sha256": "e2ad9d0a8486e7066c9708b7d68d162129c18383872f24c427c81669c754de70",
+          "sourcePTS": 18.366667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0067.png",
+          "sha256": "f20a2f1adeab7cf28162fb99b9edf48f28829c2a6573b911f23c66151eb3f8f0",
+          "sourcePTS": 18.368333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0068.png",
+          "sha256": "f20a2f1adeab7cf28162fb99b9edf48f28829c2a6573b911f23c66151eb3f8f0",
+          "sourcePTS": 18.37
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0069.png",
+          "sha256": "8b5a86e6509b277e12c48dbdb9f84fc4e4c88b0e45aa2b6916833c0ec358002b",
+          "sourcePTS": 18.381667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0070.png",
+          "sha256": "cf7490780762be1148c39f973a7ebbc678233acfbff1c59bce29f9bac2f1b301",
+          "sourcePTS": 18.4
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0071.png",
+          "sha256": "1c7f560b355993e73133be957aba182e257cf66706541fb010273669f944caa9",
+          "sourcePTS": 18.415
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0072.png",
+          "sha256": "1f7003b59ee41aa5521ae3bffc78a35de5427245e47accc1ff1c7438b97a0b20",
+          "sourcePTS": 18.431667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0073.png",
+          "sha256": "52f50387eb621fbafa3308cb987b8163c22139bc642dc43c139533911c13af41",
+          "sourcePTS": 18.448333
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0074.png",
+          "sha256": "b37e7854b1002f95b4ca333b649a4fdbff5f01757f6682fe83d2cc21f0d82bba",
+          "sourcePTS": 18.465
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0075.png",
+          "sha256": "192482f7fb25c480a1c957a5e80c75bd48c156be882e8deeb43e288a9f4e1e68",
+          "sourcePTS": 18.481667
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/frame-0076.png",
+          "sha256": "97acb419b3fcda6b537d5661f11b11f087ff0e44b7043f32b69d3931f5bf83f1",
+          "sourcePTS": 18.498333
+        }
+      ],
+      "inspected": true,
+      "observations": "76原始解码帧/7表实际查看。前段18.117–18.492显示菜单淡入及顶部页面色底逐渐遮住标题，最后稳定可读；后段PTS回退一次至17.708，含系统主屏/启动/黑屏，不把跨回退片段当连续时序或启动验收。",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-1.png",
+          "sha256": "fdf7e217e0ab91f1a7146295ba2250909dc92513730c361e5ad202ae33517875"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-2.png",
+          "sha256": "67091ce7940014e4c71a85a529be4311fe5e379bc96cc64336645ca288b39c16"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-3.png",
+          "sha256": "fa3cacbe252289ea2552d3d3aed1031e45b9de90f2f1e6f857c644d643477453"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-4.png",
+          "sha256": "0281246349a04fae715f5b9be9c257b9700f291d2eef000bf914707b96849ad0"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-5.png",
+          "sha256": "c3257dfa2526e50398687efdba118f1b1a6a6400af22e8e8f8a078ac19d92b2b"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-6.png",
+          "sha256": "559a6e49826336bd531f736d7d678e1cd96cbd788d9e9ac114dcdef38ca7c18a"
+        },
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/menu-show/contact-7.png",
+          "sha256": "c81c1702da5542d5a8a800f15badf4e40a4435635c41a86d4bfe66a41ffca912"
+        }
+      ],
+      "sourcePTSInversions": 1
+    },
+    {
+      "run": 39113019568,
+      "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+      "video": {
+        "name": "Screen Recording 2026-10-18 at 09.09.05 AM.mp4",
+        "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4591946D-570E-45B0-A47D-2446FE71DA3A.mp4",
+        "sha256": "5dc5b2f7dcc68e445c92c36d2a086b42f96b8b7c97bacf5b1316546a22fcb62f",
+        "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+        "timestamp": 1792314545.394,
+        "inspected": false
+      },
+      "start": 35.0,
+      "end": 36.2,
+      "method": "All original VFR frames in range; no fps filter or interpolation; source PTS from showinfo",
+      "frames": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/reduced-toggle/frame-0001.png",
+          "sha256": "6f577df8d7153bc44fbdf4012373e89e770c07813eaee3b98282a59202bc9691",
+          "sourcePTS": 35.038333
+        }
+      ],
+      "inspected": true,
+      "observations": "35.038秒仅1原始帧/1表，菜单稳定可读；没有足够连续帧，不据此声称减少动效过渡逐帧验收。",
+      "contacts": [
+        {
+          "path": "build/ci/39113019568/ChromeReview/chrome/reduced-toggle/contact-1.png",
+          "sha256": "f8ab4db3a4a6632e0bf8865caa2b3cf9a570c6e721130eb2624d2fc097c9bd00"
+        }
+      ],
+      "sourcePTSInversions": 0
+    }
+  ],
+  "unacceptedCaptures": [
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "reason": "header隐藏后正文进入状态栏区域，完整安全区几何未验收。"
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "reason": "暂停且菜单隐藏时状态栏正文透入，未作为安全区修复证据。"
+    }
+  ],
+  "reviewSummary": "本源22张选定PNG/4表已实际查看，另直接查看浅深色正常菜单两原图；4条完整原录屏一秒总览15表已查看；3个原始窗口120帧/12表已查看。浅深色正常/减少动效静态菜单、第二章67%进度、目录跳转及所列手势可接受。正常显隐窗口各有一次源PTS回退，减弱动效窗口仅1帧，仅接受列明画面，不推断全时序/FPS。",
+  "limitations": [
+    "旧慢滚暂停/后台且header隐藏时的状态栏透字/安全区问题仍可见，本片只改善显示菜单时顶部；底部圆角周围正文/章首留白/分页快照不追认。",
+    "两个正常显隐原始窗口各有一次源PTS回退，后段夹带启动/主屏/黑屏，不能整体视作连续计时；减少动效窗口仅1帧。",
+    "其余162张PNG和其余未标记视频未逐看；静态状态和自动通过不等于全部动效验收。",
+    "iPhone13/iOS16.6.1/TrollStore帧时间、内存/功耗、普通签名/全部来源格式和辅助功能矩阵仍未验收。"
+  ],
+  "build25ScopedDeviceFeedback": "Documentation/ValidationLogs/m4-settings-build25-device-feedback.json",
+  "deviceAccepted": false,
+  "M4Complete": false
+}

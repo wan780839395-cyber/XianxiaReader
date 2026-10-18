@@ -1,0 +1,18 @@
+{
+  "recordedAtUTC": "2026-10-18T09:01:30.119007+00:00",
+  "build": 27,
+  "sourceRevision": "bc611bc2acb886d0d8a4e15798633ac29979c24a",
+  "userFeedback": "好了做的不错 继续吧",
+  "scope": "General positive feedback and authorization to continue M4; no explicit individual FPS/source-app/accessibility or full-device-matrix acceptance",
+  "deviceContext": "iPhone13 / iOS16.6.1 / TrollStore as previously confirmed",
+  "fullDeviceMatrixAccepted": false,
+  "phoneFPSMeasured": false,
+  "standardFontOpenIn": {
+    "confirmedAtUTC": "2026-10-18T09:14:57.327428+00:00",
+    "question": "从微信、QQ或Alook打开TTF/OTF，点用其他应用打开，能看到仙侠阅读并成功导入吗",
+    "answer": "能看到并成功导入",
+    "accepted": true,
+    "scope": "User-tested source/file example; individual source apps and TTF/OTF combinations not specified, not all-provider matrix acceptance",
+    "sourceAppAndFileFormatMatrixAccepted": false
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "recordedAtUTC": "2026-10-18T09:42:56.142903+00:00",
+  "run": 39113019568,
+  "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+  "deliveredBuild28": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingChrome-Build28.ipa",
+      "bytes": 68873391,
+      "sha256": "700551af9cecd5b98fd22b7043eba690657392064dc5091de8f45c2925dd3958"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingChrome-Build28-TestKit.zip",
+      "bytes": 73847958,
+      "sha256": "7a57affea60a83fb6c6519edecf7709ac07266c2f57da412441396dc4f36636d"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    },
+    {
+      "path": "Evidence/UnacceptedNativeCaptures/font-txt-byte-anchor-build23.png",
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3"
+    },
+    {
+      "path": "Fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a"
+    },
+    {
+      "path": "Fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "BuiltInFontLicenses/MaShanZheng-Regular-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "BuiltInFontLicenses/PROVENANCE.json",
+      "sha256": "02ff8d5fc3a03c388312f6ad1b5ece510373aeaea98276028e09d0b83f7a3605"
+    },
+    {
+      "path": "BuiltInFontLicenses/README.txt",
+      "sha256": "f5c2c83d3072883178ad73f7bb739faaa1d40fce2a9f5a67d7d5f19dea25933f"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSansSC-Regular-OFL.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZCOOLXiaoWei-Regular-OFL.txt",
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZhuqueFangsong-Regular-OFL.txt",
+      "sha256": "66cc01ad4df62fca6936431a426104cb32a52ce8da49de9a7d643e02d7659043"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-xiaoWei-build24.png",
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-maShanZheng-build24.png",
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-zhuque-build24.png",
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSans-build24.png",
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-wenKai-build24.png",
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSerif-build24.png",
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d"
+    }
+  ],
+  "previews": [
+    {
+      "name": "reader-chrome-progress-dark-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/283AD1A1-3B56-4D75-AF6E-62C7CBAD34B4.png",
+      "sha256": "51fbab792de92a08f386f8b0d507f64e8ca87c46a3a8d9258d471d84a5843f99",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314594.935,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-immersive-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E27F1D8E-12ED-481D-93D9-BB8FC445CADA.png",
+      "sha256": "ebada1531725337b2dc3d48acd33d7d0e5efdecff2f35ea61d3bf0464b4a35bb",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314588.979,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-light-reduced-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/123547BA-FA30-4892-AD90-D660C9222AFF.png",
+      "sha256": "da2df7bcd8de793431ed54e441e685ae22b06f53370a197b7ae2d3e3dc239a73",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314587.271,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-dark-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3EFCCD39-9776-4BBD-B0D2-15151971D316.png",
+      "sha256": "51fbab792de92a08f386f8b0d507f64e8ca87c46a3a8d9258d471d84a5843f99",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314569.018,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-immersive-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B408A025-EB5A-4A7B-9DAD-731B821A6B35.png",
+      "sha256": "ebada1531725337b2dc3d48acd33d7d0e5efdecff2f35ea61d3bf0464b4a35bb",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314563.114,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-chrome-progress-light-normal-build28",
+      "path": "build/ci/39113019568/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C9E2C1FD-3B59-496B-A910-0F0C7E2033BA.png",
+      "sha256": "da2df7bcd8de793431ed54e441e685ae22b06f53370a197b7ae2d3e3dc239a73",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792314561.358,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    }
+  ],
+  "deviceAccepted": false
+}

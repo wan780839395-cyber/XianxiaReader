@@ -4253,5 +4253,11 @@
   ],
   "build25ScopedDeviceFeedback": "Documentation/ValidationLogs/m4-settings-build25-device-feedback.json",
   "deviceAccepted": false,
-  "M4Complete": false
+  "M4Complete": false,
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-chrome-build28-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }
