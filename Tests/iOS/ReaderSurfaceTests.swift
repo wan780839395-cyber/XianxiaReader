@@ -9,13 +9,16 @@ final class ReaderSurfaceTests: XCTestCase {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 100, y: 200, width: 100, height: 60)
         navigator.view.addSubview(button)
-        let host = UIHostingController(rootView: ReaderSurface(viewController: navigator, pageColor: .white))
+        let host = EdgeTestHost(rootView: ReaderSurface(viewController: navigator, pageColor: .white))
+        let appeared = expectation(description: "edge test host really appeared")
+        host.appearedCallback = { appeared.fulfill() }
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }
         let window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey() }
+        await fulfillment(of: [appeared], timeout: 2)
         for _ in 0..<100 {
             window.layoutIfNeeded()
             if let cover = navigator.view.subviews.compactMap({ $0 as? ReaderSafeAreaCover }).first,
@@ -66,6 +69,10 @@ final class ReaderSurfaceTests: XCTestCase {
         XCTAssertEqual(try pixel(in: cover, at: CGPoint(x: 5, y: cover.bounds.midY)), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: CGPoint(x: cover.bounds.maxX - 5, y: cover.bounds.midY)), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: center), [0, 0, 0, 0])
+        let disappeared = expectation(description: "edge test host really disappeared")
+        host.disappearedCallback = { disappeared.fulfill() }
+        window.isHidden = true; window.rootViewController = nil; previous?.makeKey()
+        await fulfillment(of: [disappeared], timeout: 2)
     }
 
     @MainActor private func onscreenSnapshot(of view: UIView) throws -> CGImage {
@@ -104,5 +111,18 @@ final class ReaderSurfaceTests: XCTestCase {
             view.layer.render(in: context)
         }
         return bytes
+    }
+}
+
+@MainActor private final class EdgeTestHost: UIHostingController<ReaderSurface> {
+    var appearedCallback: (() -> Void)?
+    var disappearedCallback: (() -> Void)?
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let callback = appearedCallback; appearedCallback = nil; callback?()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        let callback = disappearedCallback; disappearedCallback = nil; callback?()
     }
 }

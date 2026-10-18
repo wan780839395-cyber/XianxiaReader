@@ -24,6 +24,7 @@ import UIKit
         var anchorDiagnostic = "not sampled"
         var loadTask: Task<Void, Never>?
         var timeoutTask: Task<Void, Never>?
+        var timeoutLifecycle = "not timed out"
         init(_ view: EPUBSpreadView) {
             self.view = view
             wrapper.clipsToBounds = true
@@ -95,7 +96,11 @@ import UIKit
         "index=\(currentIndex) revision=\(viewportRevision) top=\(viewportTop) navigation=\(navigation) screenCover=\(screenTurnCover != nil) "
             + slots.keys.sorted().map { index in
                 guard let slot = slots[index] else { return "missing \(index)" }
-                return "slot\(index){ready=\(slot.ready) positioning=\(slot.positioning) failure=\(slot.failure ?? "none") wrapper=\(slot.wrapper.frame) frame=\(slot.view.frame) savedTop=\(String(describing: slot.anchorViewportTop)) anchor=\(slot.anchorDiagnostic)}"
+                var state = "slot\(index){ready=\(slot.ready) positioning=\(slot.positioning) failure=\(slot.failure ?? "none") wrapper=\(slot.wrapper.frame) frame=\(slot.view.frame) savedTop=\(String(describing: slot.anchorViewportTop)) anchor=\(slot.anchorDiagnostic)}"
+                if epubLoadingDiagnosticsEnabled {
+                    state += " lifecycle={\(slot.view.loadingLifecycleDiagnostic)} beforeTimeoutClear={\(slot.timeoutLifecycle)}"
+                }
+                return state
             }.joined(separator: " ")
     }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
@@ -298,6 +303,7 @@ import UIKit
             catch is CancellationError { return }
             catch { self?.boundaryLabel.text = error.localizedDescription; return }
             guard let self, let slot, self.epoch == request, self.slots[index] === slot, !slot.ready else { return }
+            if epubLoadingDiagnosticsEnabled { slot.timeoutLifecycle = slot.view.loadingLifecycleDiagnostic }
             slot.failure = "章节加载超时"
             slot.view.clear()
             self.layoutSlots(preserveAnchor: true)

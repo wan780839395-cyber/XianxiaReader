@@ -3,6 +3,12 @@ import SwiftUI
 import UIKit
 import XianxiaCore
 
+#if DEBUG
+private let readerPresentationDiagnosticsEnabled = true
+#else
+private let readerPresentationDiagnosticsEnabled = false
+#endif
+
 @MainActor struct ReaderView: View {
     let book: Book
     let onReturnToLibrary: (() -> Void)?
@@ -16,6 +22,8 @@ import XianxiaCore
     @State private var showAppearance = false
     @State private var returningToLibrary = false
     @State private var visible = false
+    @State private var presentationTrace: [String] = []
+    @State private var traceSession = readerPresentationDiagnosticsEnabled ? UUID().uuidString : ""
     @EnvironmentObject private var fontInbox: FontDocumentInbox
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory, onReturnToLibrary: (() -> Void)? = nil) {
@@ -60,20 +68,30 @@ import XianxiaCore
                     }
                 }
             }, showContents: { showContents = true }, showBookmarks: { showBookmarks = true },
-               showSearch: { showSearch = true }, showAppearance: { showAppearance = true }, returningToLibrary: returningToLibrary)
+               showSearch: { showSearch = true }, showAppearance: {
+                tracePresentation("settings.tap")
+                showAppearance = true
+                tracePresentation("settings.requested")
+            }, returningToLibrary: returningToLibrary)
         }
         .background(model.appearance.theme.background)
         .tint(ReaderPalette(theme: model.appearance.theme).accent)
         .readerColorScheme(model.appearance.theme)
         .overlay(alignment: .top) { FontInboxFeedback(inbox: fontInbox) }
+        .overlay(alignment: .topLeading) { presentationDiagnostic }
         .sheet(isPresented: $showAppearance, onDismiss: {
+            tracePresentation("settings.dismissed")
             guard visible else { return }
             Task {
                 await model.saveNow()
                 guard visible, !returningToLibrary, !showAppearance, model.isReady, scenePhase == .active else { return }
                 if let failure = model.positionSaveFailure { model.errorMessage = failure }
             }
-        }) { ReaderAppearanceView(model: model) }
+        }) {
+            ReaderAppearanceView(model: model)
+                .onAppear { tracePresentation("settings.content.appeared") }
+                .onDisappear { tracePresentation("settings.content.disappeared") }
+        }
         .sheet(isPresented: $showContents) {
             ReaderContentsView(chapters: model.chapters, bookTitle: book.title, theme: model.appearance.theme) { chapter in
                 showContents = false
@@ -100,11 +118,35 @@ import XianxiaCore
                                               set: { if !$0 { model.errorMessage = nil } })) {
             Button("知道了") { model.errorMessage = nil }
         } message: { Text(model.errorMessage ?? "") }
-        .task { visible = true; model.setAdditionalReduceMotion(requestedReduceMotion); await model.open() }
+        .task {
+            visible = true; tracePresentation("reader.appeared")
+            model.setAdditionalReduceMotion(requestedReduceMotion); await model.open()
+            tracePresentation("reader.open.returned")
+        }
         .onChange(of: requestedReduceMotion) { model.setAdditionalReduceMotion($0) }
-        .onDisappear { visible = false; model.close() }
+        .onChange(of: showAppearance) { _ in tracePresentation("settings.binding.changed") }
+        .onChange(of: model.navigationInProgress) { _ in tracePresentation("navigation.changed") }
+        .onDisappear { tracePresentation("reader.disappeared"); visible = false; model.close() }
         .onChange(of: scenePhase) { phase in
             if phase != .active { model.pauseAutomaticScroll(); Task { await model.saveNow() } }
         }
+    }
+
+    @ViewBuilder private var presentationDiagnostic: some View {
+        if readerPresentationDiagnosticsEnabled && ProcessInfo.processInfo.environment["XR_READER_UI_SETTINGS"] == "1" {
+            Text(presentationTrace.joined(separator: " | "))
+                .font(.system(size: 1)).frame(width: 1, height: 1).clipped().opacity(0.01)
+                .allowsHitTesting(false).accessibilityIdentifier("reader.presentation.diagnostic")
+        }
+    }
+
+    private func tracePresentation(_ event: String) {
+        guard readerPresentationDiagnosticsEnabled, ProcessInfo.processInfo.environment["XR_READER_UI_SETTINGS"] == "1" else { return }
+        var controller = model.engine?.viewController
+        while let parent = controller?.parent { controller = parent }
+        let value = "\(traceSession.prefix(8)):\(Int(ProcessInfo.processInfo.systemUptime * 1000)):\(event) requested=\(showAppearance) visible=\(visible) ready=\(model.isReady) navigating=\(model.navigationInProgress) returning=\(returningToLibrary) attached=\(controller?.viewIfLoaded?.window != nil) modal=\(controller?.presentedViewController != nil) presenting=\(controller?.isBeingPresented == true) dismissing=\(controller?.isBeingDismissed == true) transitioning=\(controller?.transitionCoordinator != nil)"
+        presentationTrace.append(value)
+        if presentationTrace.count > 16 { presentationTrace.removeFirst(presentationTrace.count - 16) }
+        NSLog("XRPresentation %@", value)
     }
 }

@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
+      "sha256": "cecdb1766a004a58d2ace3c92718f6a76b26de0fe399426e1be297875ec7e488"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
+      "sha256": "b4392a904781a5c1f4f618a56e703b297689f3e9c3fceddd1b297fbd92e2aee0"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
@@ -1723,5 +1723,15 @@
     "dependenciesChanged": false,
     "javaScriptAssetsChanged": false,
     "fullCIPendingAtSourceCheckpoint": true
+  },
+  "build29LoadingDiagnosticReview": {
+    "clientDate": "2026-10-19",
+    "scope": "DEBUG bounded24metadata events per spread and pre-timeout-clear snapshot; no title/text/URL/selectors. Read-only native loading/presentation stages; no retry/readiness/timeout/JS/dependency change.",
+    "references": [
+      "https://developer.apple.com/documentation/webkit/wknavigationdelegate",
+      "https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift"
+    ],
+    "diagnosticOnly": true,
+    "fullCIPassed": false
   }
 }

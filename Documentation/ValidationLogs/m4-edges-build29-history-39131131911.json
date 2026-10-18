@@ -1,0 +1,1039 @@
+{
+  "clientDate": "2026-10-19",
+  "recordedAtUTC": "2026-10-18T16:10:52.473669+00:00",
+  "run": 39131131911,
+  "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+  "result": "failure",
+  "coreEach": 137,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 3,
+        "passedTests": 160,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 3,
+    "finishTime": 1792332457.105,
+    "passedTests": 160,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792330212.202,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():377",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 82,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      },
+      {
+        "failureText": "Asynchronous wait failed: Exceeded timeout of 2 seconds, with unfulfilled expectations: \"real reader presentation\".",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 109,
+        "testIdentifierString": "ReadingExperienceTests/testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReadingExperienceTests/testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride",
+        "testName": "testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride()"
+      },
+      {
+        "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 148,
+        "testIdentifierString": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates",
+        "testName": "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "12% of duration",
+        "text": "1 longest test run with outlier durations exceeding 162.34s (three standard deviations)"
+      },
+      {
+        "category": "Longest Test Runs",
+        "impact": "41% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 31.32s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 163
+  },
+  "deviceReleaseBuilt": false,
+  "IPAProduced": false,
+  "rawCurrentRetained": true,
+  "findings": [
+    "Font continuous re-open failed at377 with slot1 unready, navigationfalse, timeout and DOMblank; unique cause unproven.",
+    "New window test passed0.151s but next test logged unbalanced UIHostingController<ReaderSurface> appearance; old theme presentation completion subsequently timed out2s. Temporal relation, not yet proven root for all failures.",
+    "Old chrome UI failed at waitForReturnText after return jump; inspect its actual recording before diagnosis.",
+    "Third old menu reopen case passed on identical source. One allowed unchanged-source full retry is exhausted; no further full blind dispatch."
+  ],
+  "downloadRecovery": {
+    "originalFailure": "Signed range URL HTTP403;176verified chunks preserved",
+    "resumedWith": "Fresh signed redirect, native curl, same artifact12139382561",
+    "completeArtifact": {
+      "run": 39131131911,
+      "artifact": 12139382561,
+      "kind": "apple",
+      "archiveBytes": 1917043323,
+      "archiveSHA256": "2e155723f12c53dd8c8e338175ec32b0ec141bd157afd6efeb6262e4b93b0101",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0000.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0001.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0002.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0003.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0004.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0005.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0006.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0007.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0008.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0009.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0010.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0011.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0012.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0013.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0014.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0015.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0016.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0017.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0018.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0019.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0020.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0021.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0022.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0023.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0024.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0025.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0026.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0027.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0028.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0029.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0030.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0031.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0032.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0033.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0034.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0035.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0036.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0037.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0038.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0039.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0040.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0041.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0042.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0043.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0044.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0045.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0046.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0047.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0048.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0049.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0050.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0051.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0052.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0053.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0054.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0055.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0056.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0057.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0058.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0059.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0060.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0061.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0062.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0063.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0064.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0065.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0066.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0067.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0068.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0069.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0070.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0071.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0072.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0073.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0074.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0075.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0076.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0077.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0078.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0079.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0080.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0081.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0082.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0083.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0084.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0085.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0086.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0087.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0088.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0089.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0090.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0091.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0092.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0093.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0094.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0095.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0096.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0097.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0098.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0099.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0100.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0101.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0102.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0103.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0104.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0105.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0106.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0107.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0108.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0109.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0110.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0111.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0112.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0113.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0114.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0115.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0116.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0117.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0118.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0119.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0120.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0121.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0122.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0123.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0124.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0125.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0126.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0127.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0128.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0129.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0130.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0131.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0132.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0133.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0134.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0135.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0136.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0137.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0138.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0139.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0140.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0141.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0142.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0143.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0144.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0145.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0146.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0147.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0148.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0149.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0150.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0151.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0152.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0153.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0154.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0155.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0156.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0157.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0158.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0159.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0160.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0161.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0162.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0163.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0164.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0165.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0166.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0167.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0168.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0169.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0170.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0171.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0172.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0173.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0174.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0175.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0176.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0177.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0178.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0179.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0180.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0181.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0182.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0183.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0184.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0185.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0186.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0187.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0188.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0189.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0190.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0191.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0192.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0193.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0194.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0195.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0196.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0197.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0198.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0199.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0200.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0201.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0202.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0203.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0204.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0205.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0206.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0207.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0208.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0209.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0210.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0211.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0212.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0213.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0214.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0215.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0216.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0217.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0218.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0219.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0220.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0221.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0222.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0223.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0224.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0225.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0226.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0227.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-download-chunks\\0228.bin",
+          "bytes": 4440699
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39131131911\\apple-diagnostics.zip",
+          "bytes": 1917043323,
+          "sha256": "2e155723f12c53dd8c8e338175ec32b0ec141bd157afd6efeb6262e4b93b0101"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  },
+  "nativeReviewPerformed": true,
+  "nativeReview": {
+    "folder": "build/ci/39131131911/FourthFailureReview",
+    "selectedPNGsViewed": 4,
+    "PNGContactsViewed": 1,
+    "fullVideoOverviewContactsViewed": 4,
+    "originalVideoSeconds": 50.85,
+    "observations": "Actual light/dark second-chapter67percent and return-point strip work until return tap at~30s, then page becomes full dark loading spinner until end50.85s. No original intro text recovered. Not accepted as successful return; no root-cause inference from recording alone."
+  }
+}

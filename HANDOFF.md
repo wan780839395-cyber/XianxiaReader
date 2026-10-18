@@ -79,3 +79,17 @@ cover.layer.zPosition=1明确高于后挂载navigator默认层；真实window测
 ## 同源复验等待期保全检查点
 
 2026-10-18T13:36:04.334882+00:00：39131131911/a9f4f8a仍Apple运行，547编译资源blob全部匹配；当前只有文档/验证记录变化。watch PID19672、collector PID16732、条件准备 PID3372存活；第三轮助手已退出。即将把实际前三轮失败记录和当前恢复点另存appearance私有文档快照[skip ci]，edges仍固定编译源，不触碰正常HEAD/index，也不重派CI。此时Build29仍无IPA/交付。
+
+## 2026-10-19 恢复：第四轮已失败，诊断下载待续
+
+实际39131131911/a9f4f8a已失败，完整full.log/run/artifact清单在；旧字体连续重开DOM blank/加载超时、旧主题呈现2秒超时、旧chrome返回定位失败。collector因artifact临时链接403退出，留下176个完整分片（1476395008字节），条件准备超时退出；当前无本项目Python/GH/FFmpeg助手。正常HEAD/index、1062原路径、51旧包逐SHA核对保持。先刷新临时下载地址续传同artifact12139382561并核SHA/CRC/实际summary，更新第四失败记录；不再完整盲重跑，转生命周期/加载定向诊断。源码仍a9f4f8a，Build29未交付/无ReleaseIPA；最后交付Build28，不关机。
+
+## 2026-10-19 定向诊断改动前
+
+第四完整160/163、Core各137，完整artifact1917043323字节已续传并核SHA/GitHubdigest/CRC/提取，重复229分片/ZIP已删除；实际失败记录m4-edges-build29-history-39131131911.json。不再派发同源全量。先保留6个待修改文件原字节/摘要到.cache/recovery/20261019-build29-diagnostic/before。拟仅补Debug无正文/书名的加载阶段、清理前快照与设置呈现追踪；新窗口测试等待真实viewDidAppear/DidDisappear，不改14原UI主体/旧断言/2秒旧主题或20秒加载/3秒保存预算。现有recovery定向诊断加本次相关病例，不产生IPA、不冒充全量门槛。尚未修改/检查/编译新诊断源，Build29未交付。
+
+定向诊断源已接入待检查：新window测试用真实viewDidAppear/DidDisappear有界回调收尾（旧主题2秒不变）；Vendor两文件只补Debug24条无正文/URL阶段和20秒watchdog清理前快照，公开导航回调只记录状态不重试；App只在Debug UI样例入口加1px不接触触摸的AX追踪与安全元数据日志；recovery选定新增相关病例共10项，另20秒有界日志采集保留原退出码。第四原生4 PNG/1表+50.85秒4总览看过：返回前浅深第二章67%正确，~30秒返回后全页spinner直至失败，不能写成定位通过。下一步Windows449/17、旧test对照/差异冻结→只跑定向10，不进行交付。
+
+首次Windows语法检查未过：现有tree-sitter不接受class body内#if DEBUG成员区，未忽略新增诊断。已改文件顶层编译期开关/方法内守卫：Release开关false，不生成诊断日志或AX节点；字段空默认值保留，Release不分配trace UUID/阶段记录、不新增重试或预算。仍需重新检查/编译；不是编译通过声明。
+
+诊断冻结前检查通过：Windows449语法新增0/54既有Vendor限制、17工具通过，bash -n通过；299个既有test方法主体逐字对照保持，唯一改本轮新增window测试生命周期。6源文件改动白名单/摘要与诊断计划见m4-edges-build29-diagnostic-start.json，差异.cache/recovery/20261019-build29-diagnostic/diagnostic-source.diff。下一步私有快照/独立诊断分支→recovery10，不能改写a9四轮完整失败或签发IPA。

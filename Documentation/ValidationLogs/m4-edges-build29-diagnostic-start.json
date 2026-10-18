@@ -1,0 +1,62 @@
+{
+  "clientDate": "2026-10-19",
+  "recordedAtUTC": "2026-10-18T16:23:10.492201+00:00",
+  "baselineSource": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+  "diagnosticOnly": true,
+  "expectedSelectedTests": 10,
+  "windows": {
+    "swiftGrammarFiles": 449,
+    "newGrammarDiagnostics": 0,
+    "knownVendorGrammarLimitations": 54,
+    "toolingTests": 17,
+    "notSwiftCompilation": true
+  },
+  "existingTestMethodsByteIdentical": 299,
+  "onlyModifiedNewTest": "ReaderSurfaceTests/testRealWindowEdgesPaintWithoutChangingNavigatorOrInterceptingTouches; original pixel/frame/hit assertions unchanged, real viewDidAppear/DidDisappear added",
+  "changedPaths": [
+    "App/Reader/ReaderView.swift",
+    "Documentation/M4_READING_EDGES_VALIDATION_REPORT.json",
+    "Documentation/READING_EDGES_DESIGN.md",
+    "Documentation/ValidationLogs/m4-edges-build29-history-39122142797.json",
+    "Documentation/ValidationLogs/m4-edges-build29-history-39126639352.json",
+    "Documentation/ValidationLogs/m4-edges-build29-history-39131131911.json",
+    "Documentation/ValidationLogs/m4-edges-build29-reference-review.json",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md",
+    "Tests/iOS/ReaderSurfaceTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
+    "scripts/ci_reader_diagnostic.sh"
+  ],
+  "sourceFiles": [
+    {
+      "path": "App/Reader/ReaderView.swift",
+      "sha256": "05a12711d7a31b4cf26c8fe790ca4f4a56e3c557384976c18c60fe0fb7da19fd"
+    },
+    {
+      "path": "Tests/iOS/ReaderSurfaceTests.swift",
+      "sha256": "14dabaffad5624a46e8b4652d459d72fc2835fee9e77dd7887403b5cf4a6bd79"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "sha256": "b4392a904781a5c1f4f618a56e703b297689f3e9c3fceddd1b297fbd92e2aee0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "sha256": "cecdb1766a004a58d2ace3c92718f6a76b26de0fe399426e1be297875ec7e488"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "sha256": "99a330fe1fde3a34db5554cc5d0c3ef95536eea73b44f437e774d05a887b487d"
+    },
+    {
+      "path": "scripts/ci_reader_diagnostic.sh",
+      "sha256": "f1f16b8a852b596ac8fd1e0f99c7a4e47ab878804ce8e80d12a0a960524b610e"
+    }
+  ],
+  "fullSuiteNotPassed": true,
+  "deviceReleaseBuilt": false,
+  "IPAProduced": false,
+  "normalHeadIndexRetained": true
+}

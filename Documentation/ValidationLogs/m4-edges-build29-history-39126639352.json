@@ -131,5 +131,15 @@
     },
     "tapInsideFinalAXFrame": true,
     "rootCauseEstablished": false
+  },
+  "fontExitComparisonReview": {
+    "reviewFolder": "build/ci/39126639352/ThirdFontsReview",
+    "selectedPNGCount": 9,
+    "includesOnePreviouslyViewedPixelDiagnostic": true,
+    "PNGContactsViewed": 2,
+    "fullVideoOverviewContactsViewed": 6,
+    "originalRecordingSeconds": 77.35,
+    "observations": "Viewed8font/layout PNGs plus reusedpixel diagnostic and all6one-second overview contacts of77.35s original font collection case. Font grid/query/explicitselection/three presets/advanced0.05persist reopen visible. At~60.5s reader exit,61.5-62.5s shelf,63.5-68.5s reopen/readable,69.5s settings,70.5s layout with0.05again. No save failure alert appears in this recording. This is one actual later passing sequence, not proof initial saving timing root is fixed.",
+    "motionOrDeviceAccepted": false
   }
 }

@@ -7,6 +7,12 @@
 import ReadiumShared
 @preconcurrency import WebKit
 
+#if DEBUG
+let epubLoadingDiagnosticsEnabled = true
+#else
+let epubLoadingDiagnosticsEnabled = false
+#endif
+
 protocol EPUBSpreadViewDelegate: AnyObject {
     /// Returns the content inset the spread view should use.
     func spreadViewContentInset(_ spreadView: EPUBSpreadView) -> UIEdgeInsets
@@ -66,6 +72,20 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     private var initializationFinished = false
     private var wasCleared = false
     private let onContinuousInitializationReady = CompletionList()
+    private var loadingStages: [String] = []
+    private let loadingTraceID = epubLoadingDiagnosticsEnabled ? UUID().uuidString : ""
+
+    /// Bounded metadata only: no book URL, locator, title or document text.
+    private func recordLoadingStage(_ stage: String) {
+        guard epubLoadingDiagnosticsEnabled, loadingStages.count < 24 else { return }
+        loadingStages.append("\(Int(ProcessInfo.processInfo.systemUptime * 1000)):\(stage)")
+        NSLog("XRReadingLifecycle %@", "\(loadingTraceID.prefix(8)):\(stage) continuous=\(viewModel.infiniteScroll) attached=\(window != nil) loading=\(webView.isLoading) hasURL=\(webView.url != nil) initialization=\(initializationStarted)/\(initializationFinished) cleared=\(wasCleared)")
+    }
+
+    var loadingLifecycleDiagnostic: String {
+        guard epubLoadingDiagnosticsEnabled else { return "disabled" }
+        return "trace=\(loadingTraceID.prefix(8)) navigationFinished=\(navigationFinished) initialization=\(initializationStarted)/\(initializationFinished) cleared=\(wasCleared) attached=\(window != nil) loading=\(webView.isLoading) hasURL=\(webView.url != nil) progress=\(webView.estimatedProgress) stages=\(loadingStages.joined(separator: ","))"
+    }
 
     required init(
         viewModel: EPUBNavigatorViewModel,
@@ -107,6 +127,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         NotificationCenter.default.addObserver(self, selector: #selector(voiceOverStatusDidChange), name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
 
         updateActivityIndicator()
+        recordLoadingStage("request")
         loadSpread()
     }
 
@@ -118,6 +139,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Called when the spread view is removed from the view hierarchy, to
     /// clear pending operations and retain cycles.
     func clear() {
+        recordLoadingStage("clear")
         wasCleared = true
         // A retired resource must not reload the current layout when WebKit
         // delivers a late process-termination or scroll callback.
@@ -188,6 +210,11 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         bootstrapContinuousInitialization()
     }
 
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        recordLoadingStage(window == nil ? "window.detached" : "window.attached")
+    }
+
     // Readium's window-load bridge posts spreadLoaded on requestAnimationFrame.
     // Offscreen preloads can have that callback suspended by WebKit. Native
     // navigation completion starts the SAME full initialization pipeline once
@@ -199,15 +226,18 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         continuousBootstrapTask = Task { @MainActor [weak self] in
             guard let self else { return }
             defer { self.continuousBootstrapTask = nil }
+            self.recordLoadingStage("bootstrap.start")
             self.webView.layoutIfNeeded()
             do {
                 // The normal Readium evaluator waits for spreadLoaded. This
                 // bootstrap probe must run directly, before that signal.
                 let value = try await self.webView.evaluateJavaScript("document.readyState === 'complete' && typeof window.readium?.scrollToLocator === 'function' && innerWidth > 0 && innerHeight > 0")
                 guard !Task.isCancelled, !self.wasCleared else { return }
+                self.recordLoadingStage(value as? Bool == true ? "bootstrap.ready" : "bootstrap.not-ready")
                 if value as? Bool == true { self.spreadDidLoad(NSNull()) }
             } catch {
                 guard !Task.isCancelled, !self.wasCleared else { return }
+                self.recordLoadingStage("bootstrap.error.\((error as NSError).code)")
                 self.log(.error, error)
             }
         }
@@ -446,15 +476,19 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     private func spreadDidLoad(_ body: Any) {
         guard !wasCleared, !initializationStarted else { return }
         initializationStarted = true
+        recordLoadingStage("initialization.start")
         spreadLoadTask = Task { @MainActor in
             guard !Task.isCancelled, !wasCleared else { return }
             isSpreadLoaded = true
             applySettings()
             await spreadDidLoad()
+            recordLoadingStage("initialization.content-returned")
             guard !Task.isCancelled, !wasCleared else { return }
             await delegate?.spreadViewDidLoad(self)
+            recordLoadingStage("initialization.delegate-returned")
             guard !Task.isCancelled, !wasCleared else { return }
             initializationFinished = true
+            recordLoadingStage("initialization.finished")
             onContinuousInitializationReady.complete()
             onSpreadLoadedCallbacks.complete()
             showSpread()
@@ -819,13 +853,27 @@ extension EPUBSpreadView: WKScriptMessageHandler {
 }
 
 extension EPUBSpreadView: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        recordLoadingStage("navigation.started")
+    }
+
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        recordLoadingStage("navigation.committed")
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        recordLoadingStage("navigation.provisional-error.\((error as NSError).code)")
+    }
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        recordLoadingStage("navigation.error.\((error as NSError).code)")
         log(.error, error)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         setNeedsStopActivityIndicator()
         navigationFinished = true
+        recordLoadingStage("navigation.finished")
         bootstrapContinuousInitialization()
     }
 
@@ -849,6 +897,7 @@ extension EPUBSpreadView: WKNavigationDelegate {
     }
 
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        recordLoadingStage("process.terminated")
         guard !wasCleared else { return }
         delegate?.spreadViewDidTerminate()
     }

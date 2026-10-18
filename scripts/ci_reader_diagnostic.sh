@@ -21,6 +21,11 @@ case "$selection" in
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
       -only-testing:XianxiaReaderUITests/LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch
+      -only-testing:XianxiaReaderTests/ReaderSurfaceTests
+      -only-testing:XianxiaReaderTests/ReadingExperienceTests/testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousBoundaryShowsTwoResourcesAndScrollsBack
+      -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates
+      -only-testing:XianxiaReaderUITests/ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection
     )
     ;;
   panels)
@@ -85,6 +90,7 @@ from pathlib import Path
 import json, subprocess, sys
 folder=Path("build/logs");folder.mkdir(parents=True,exist_ok=True);records=[]
 commands=[("processes-after-tests",["ps","-axo","pid,ppid,state,rss,comm"],10),
+          ("reading-lifecycle",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","20m","--info","--style","compact","--predicate",'eventMessage BEGINSWITH "XRReadingLifecycle" OR eventMessage BEGINSWITH "XRPresentation"'],20),
           ("document-services",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","10m","--style","compact","--predicate",'subsystem CONTAINS "DocumentManager" OR subsystem CONTAINS "FileProvider"'],20)]
 for name,command,seconds in commands:
     try:

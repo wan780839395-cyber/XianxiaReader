@@ -23,3 +23,7 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 已查Apple公开 `sheet(item:onDismiss:content:)`（https://developer.apple.com/documentation/swiftui/view/sheet(item:ondismiss:content:)）及Point-Free维护的Swift Navigation README（https://github.com/pointfreeco/swift-navigation#swiftui）。成熟方案以单一可选enum表达互斥destination，避免多个Bool同时要求不同呈现。该项目README示例使用@Observable和case-path宏，与本项目iOS16/ObservableObject不同；本轮没有引入库、宏或改依赖，公开item-sheet思路可用不等于已证明能修复本次单面板失败。当前证据没有同时两个目标，故不借参考名义盲重构。
 
 只做一次a9f4f8a完全同源的完整复验39131131911，旧断言/等待/名单保持。若再次出现相关失败，先在Debug/UI-test专用入口记录不含书名/正文的session、tap/action计数、destination变化、sheet appeared/dismissed和UIKit presenter transition状态，再用既有recovery定向诊断；验证退出码保持，无诊断IPA。不得通过延长等待、再点按钮、删除断言或无限重跑得到绿灯。复验通过也不倒写第三轮为通过，不把未证实菜单唯一根因标成已修。
+
+## 2026-10-19 定向诊断
+
+第四同源完整160/163已失败，原始诊断补齐并保留；不继续完整盲重跑。新窗口测试用UIHostingController子类接真实viewDidAppear/DidDisappear回调完成挂载与收尾，不手调UIKit生命周期方法，不改旧主题用例2秒/原像素断言。参考Apple viewDidAppear与beginAppearanceTransition文档。Vendor沿精确Readium3.11原公开WKNavigationDelegate回调补Debug上限24条阶段元数据及watchdog清理前快照，覆盖请求/导航/初始化/进出窗口/进程退出；App在Debug UI样例入口记录设置action→binding→content与公开presenter状态，上限16条，1px不拦触摸的AX节点及统一日志。记录无书名/URL/正文/Locator；Release编译期开关false，不分配trace UUID、不生成日志/AX，空诊断字段保留。未新增重试、异步采样、JS或延长预算。框架文档https://developer.apple.com/documentation/webkit/wknavigationdelegate；Readium参考https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift。UPSTREAM两文件摘要更新；依赖/JS/Core/DB/锁/默认完整CI保持。recovery额外选相关病例共10项，原退出码与30分钟job限保持，20秒有界收取安全元数据日志；诊断成功也不等于全量/Release/设备通过。Windows449/17通过，Apple定向尚待实际运行。
