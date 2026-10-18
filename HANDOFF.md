@@ -93,3 +93,29 @@ cover.layer.zPosition=1明确高于后挂载navigator默认层；真实window测
 首次Windows语法检查未过：现有tree-sitter不接受class body内#if DEBUG成员区，未忽略新增诊断。已改文件顶层编译期开关/方法内守卫：Release开关false，不生成诊断日志或AX节点；字段空默认值保留，Release不分配trace UUID/阶段记录、不新增重试或预算。仍需重新检查/编译；不是编译通过声明。
 
 诊断冻结前检查通过：Windows449语法新增0/54既有Vendor限制、17工具通过，bash -n通过；299个既有test方法主体逐字对照保持，唯一改本轮新增window测试生命周期。6源文件改动白名单/摘要与诊断计划见m4-edges-build29-diagnostic-start.json，差异.cache/recovery/20261019-build29-diagnostic/diagnostic-source.diff。下一步私有快照/独立诊断分支→recovery10，不能改写a9四轮完整失败或签发IPA。
+
+## 2026-10-19 定向10项已实际启动
+
+run39144858281/sourcea65086c1151831b54d90ed083fa36fc27848b5cb/codex/m4-edges-diagnostic，selection=recovery。正常HEAD/index保持，实际edges编译分支仍a9f4f8a；appearance快照a650保存诊断改动，未改默认完整CI/版本29。只监看/收取本轮诊断，不签发IPA；恢复先核实本run状态和owned助手，不重派。第四完整160/163失败与源码a9仍独立记载。
+
+定向执行中实核：run39144858281/sourcea65086c，watch PID16756、诊断collector PID6064存活，无其他本轮助手；诊断run的547 Git-filtered编译资源blob已记录，不用raw CRLF冒充CI字节。第四完整full.log同一字体失败前明确WebContent进程启动32.046339秒，超过原20秒资源看门狗；仅记为可测贡献线索，不定为全部失败/手机根因，所有旧时限仍保持。
+
+
+## 定向诊断执行期间恢复实核
+
+2026-10-18T16:41:32.517747+00:00：实际39144858281仍原source a65086c；6个诊断改动文件原字节摘要一致，1062原路径在、正常HEAD/index保持。watch16756/collector6064继续复用；不重新派发，不从运行耗时判断挂起。实际断点仍为recovery10结果及生命周期原始日志。resume-source-audit.json保存本次核验；不关机。
+
+
+## 定向实际通过与新完整验收前
+
+2026-10-18T16:53:36.043228+00:00：39144858281/a65086c真实10/10、失败跳过0，Linux137/4探针；新window实际出现/退出0.373s、紧随主题呈现0.276s，appearance不平衡警告0。42 PNG/7表、4条完整视频一秒总览18表全部实际查看，所列菜单重启设置、跨章67%/返回、字体收藏查询三预设及0.05重开/Files取消恢复状态可接受；不当完整动效/手机或163门槛。完整Apple226610009字节已校验SHA/GitHubdigest/CRC，重复28分片/ZIP删除；ignored collector初次错认build前缀的本地异常已保留并改正，不重下。1156条加载阶段/113 trace、72完成初始化最慢6.779s，非UI进程记录；系统reading-lifecycle额外采集20秒超时，无UI呈现完整trace，不冒充取得。
+
+即将同一已诊断a65086c送独立完整163+Core137各/Release29，包含有证据的新增窗口生命周期修正与Debug阶段记录，不再是旧a9同源盲重跑。299旧test主体、全部时限/保存/排版/位置逻辑保持；四次旧完整失败及本轮定向门槛独立，最后交付仍Build28。预先重置主report完整门槛为false；不得把10项通过写成163或IPA。
+
+
+## 修正版完整CI已实际启动
+
+2026-10-18T16:54:17.810810+00:00：run39147081645/sourcea65086c1151831b54d90ed083fa36fc27848b5cb/codex/m4-reading-edges，selection=full，实际正常HEAD/index保持。547冻结编译资源blob，预期Core137各/iOS163=136+27/Release29；定向10及原生复核不替代本轮完整门槛。继续监看和完整收取，禁止重复派发、未过源不交付。恢复先核本run与owned助手。
+
+
+修正版完整39147081645的Core artifact12143123626已真实下载并核GitHubdigest/SHA/CRC，137/137及4组长TXT Release探针通过，仅置linuxCorePassed=true；Apple仍执行。原定向采集20秒超时和四次旧失败保留，新完整源a650冻结，watch44248/collector28904有界运行。

@@ -1,0 +1,148 @@
+{
+  "clientDate": "2026-10-19",
+  "recordedAtUTC": "2026-10-18T16:48:51.813022+00:00",
+  "run": 39144858281,
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "branch": "codex/m4-edges-diagnostic",
+  "selection": "recovery",
+  "expectedSelectedTests": 10,
+  "diagnosticOnly": true,
+  "actualRunConclusion": "success",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 10,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792341922.495,
+    "passedTests": 10,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792341212.822,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 10
+  },
+  "linuxCoreTests": 137,
+  "deviceReleaseBuilt": false,
+  "IPAProduced": false,
+  "fullSuitePassed": false,
+  "nativeReviewPerformed": true,
+  "logPaths": [
+    "build/ci/39144858281/artifacts/XianxiaReader-reader-diagnostic-recovery/logs/reader-diagnostic.log",
+    "build/ci/39144858281/full.log"
+  ],
+  "lifecycleLog": "build/ci/39144858281/artifacts/XianxiaReader-reader-diagnostic-recovery/logs/reading-lifecycle.log",
+  "unbalancedAppearanceWarnings": 0,
+  "logSHA256": "55a51509dfe901452d25bfed9d3001b3529a2a5a6c2c985986638c55b63cbfc4",
+  "selectedTestsPassed": true,
+  "scopedNativeReview": {
+    "imagesActuallyViewed": 42,
+    "imageContactSheetsViewed": 7,
+    "originalRecordingsReviewedByOneSecondOverview": 4,
+    "overviewSheetsActuallyViewed": 18,
+    "reviewManifest": "build/ci/39144858281/DiagnosticReview/review-pending.json",
+    "acceptedScope": "Test-window composite black unsafe edges/red center; continuous two-resource boundary; selected font pages; native Files cancel/default cover/reopen; settings reopens after app relaunch; normal/reduced light/dark chapter67 and return; font grid/query/presets/custom0.05 reopening",
+    "limits": "One-second overviews are state review, not motion/frame-time acceptance. Short loading/return spinners and sheet transitions remain visible; no new rotation recording in diagnostic10. No phone/Release/full163 gate."
+  },
+  "loadingStageReview": {
+    "traces": 113,
+    "stageCounts": {
+      "request": 113,
+      "window.attached": 113,
+      "navigation.started": 85,
+      "navigation.committed": 75,
+      "navigation.finished": 74,
+      "bootstrap.start": 9,
+      "initialization.start": 74,
+      "bootstrap.ready": 9,
+      "initialization.content-returned": 73,
+      "initialization.delegate-returned": 72,
+      "initialization.finished": 72,
+      "clear": 273,
+      "window.detached": 113
+    },
+    "slowestCompleted": [
+      {
+        "trace": "6A7332A6",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 6.779211
+      },
+      {
+        "trace": "3554AFAF",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 6.505802
+      },
+      {
+        "trace": "50910596",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+        "seconds": 6.089075
+      },
+      {
+        "trace": "99110CFD",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 4.493642
+      },
+      {
+        "trace": "B670E014",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 3.297778
+      },
+      {
+        "trace": "23167AF7",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 3.087256
+      },
+      {
+        "trace": "796F665D",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "seconds": 2.658083
+      },
+      {
+        "trace": "8594CB98",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 2.175138
+      },
+      {
+        "trace": "9F531794",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 2.154033
+      },
+      {
+        "trace": "015AB3C7",
+        "case": "XianxiaReaderTests.ReaderRenderingTests testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "seconds": 2.138218
+      }
+    ],
+    "startupDelayMessages": 0,
+    "scope": "Only integration process stdout is captured here; at most24 events per spread, preloads may clear without completion. No recurrence is not unique cause proof."
+  },
+  "additionalSystemLog": {
+    "timedOutAfterSeconds": 20,
+    "fullLogAcquired": false,
+    "UISettingsLifecycleTraceAcquired": false,
+    "originalFailurePreserved": true
+  },
+  "localCollectorRecovery": "Artifact common ancestor was build; extraction is at artifact root. Corrected ignored collector path, reused SHA/CRC verified artifacts with no redownload; initial local traceback retained."
+}

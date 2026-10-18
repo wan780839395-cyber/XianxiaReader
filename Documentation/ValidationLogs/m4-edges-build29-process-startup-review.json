@@ -1,0 +1,113 @@
+{
+  "clientDate": "2026-10-19",
+  "recordedAtUTC": "2026-10-18T16:33:34.117135+00:00",
+  "runs": [
+    {
+      "run": 39113019568,
+      "eventsObserved": 1,
+      "over5Seconds": [],
+      "over20Seconds": 0,
+      "maximumSeconds": 1.120195,
+      "scope": "Only emitted startup-delay messages in original full log; absence is not proof no delay"
+    },
+    {
+      "run": 39118070518,
+      "eventsObserved": 13,
+      "over5Seconds": [
+        {
+          "line": 8420,
+          "processKind": "WebContent",
+          "seconds": 6.536864,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testLateModeChangeCannotRebuildReopenedContinuousReader"
+        },
+        {
+          "line": 9009,
+          "processKind": "WebContent",
+          "seconds": 16.070299,
+          "currentCase": "XianxiaReaderTests.TXTReadingTests testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont"
+        }
+      ],
+      "over20Seconds": 0,
+      "maximumSeconds": 16.070299,
+      "scope": "Only emitted startup-delay messages in original full log; absence is not proof no delay"
+    },
+    {
+      "run": 39122142797,
+      "eventsObserved": 25,
+      "over5Seconds": [
+        {
+          "line": 8000,
+          "processKind": "WebContent",
+          "seconds": 29.007043,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testContinuousBoundaryShowsTwoResourcesAndScrollsBack"
+        },
+        {
+          "line": 8207,
+          "processKind": "WebContent",
+          "seconds": 13.215258,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes"
+        },
+        {
+          "line": 8208,
+          "processKind": "WebContent",
+          "seconds": 12.914009,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes"
+        },
+        {
+          "line": 8209,
+          "processKind": "WebContent",
+          "seconds": 13.059944,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes"
+        }
+      ],
+      "over20Seconds": 1,
+      "maximumSeconds": 29.007043,
+      "scope": "Only emitted startup-delay messages in original full log; absence is not proof no delay"
+    },
+    {
+      "run": 39126639352,
+      "eventsObserved": 3,
+      "over5Seconds": [
+        {
+          "line": 8562,
+          "processKind": "WebContent",
+          "seconds": 10.432172,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor"
+        }
+      ],
+      "over20Seconds": 0,
+      "maximumSeconds": 10.432172,
+      "scope": "Only emitted startup-delay messages in original full log; absence is not proof no delay"
+    },
+    {
+      "run": 39131131911,
+      "eventsObserved": 9,
+      "over5Seconds": [
+        {
+          "line": 8581,
+          "processKind": "WebContent",
+          "seconds": 8.146893,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes"
+        },
+        {
+          "line": 8640,
+          "processKind": "WebContent",
+          "seconds": 32.046339,
+          "currentCase": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes"
+        },
+        {
+          "line": 9319,
+          "processKind": "WebContent",
+          "seconds": 10.500202,
+          "currentCase": "XianxiaReaderTests.TXTReadingTests testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont"
+        }
+      ],
+      "over20Seconds": 1,
+      "maximumSeconds": 32.046339,
+      "scope": "Only emitted startup-delay messages in original full log; absence is not proof no delay"
+    }
+  ],
+  "deviceInference": false,
+  "uniqueRootCauseEstablished": false,
+  "sourceBudgetsChanged": false
+}

@@ -1035,5 +1035,17 @@
     "fullVideoOverviewContactsViewed": 4,
     "originalVideoSeconds": 50.85,
     "observations": "Actual light/dark second-chapter67percent and return-point strip work until return tap at~30s, then page becomes full dark loading spinner until end50.85s. No original intro text recovered. Not accepted as successful return; no root-cause inference from recording alone."
+  },
+  "measuredWebKitStartupLead": {
+    "records": [
+      {
+        "line": 8640,
+        "text": "ios\tBuild, test, and package unsigned IPA\t2026-10-18T13:37:04.4966440Z 2026-10-18 13:37:04.376748+0000 XianxiaReader[21448:63994] [Process] WebContent process (0x12d000c10) took 32.046339 seconds to launch"
+      }
+    ],
+    "launchSeconds": 32.046339,
+    "existingResourceLoadBudgetSeconds": 20,
+    "classification": "Measured same-failure-context process startup delay; plausible contributor to this load timeout, not unique cause for all failures or phone performance",
+    "budgetsChanged": false
   }
 }

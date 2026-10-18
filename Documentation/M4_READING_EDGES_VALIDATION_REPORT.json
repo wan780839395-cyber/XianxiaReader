@@ -1,5 +1,5 @@
 {
-  "stage": "Fourth full160/163 failed; exact-source retry exhausted. Debug-only bounded lifecycle/loading diagnostics next, no Release/IPA.",
+  "stage": "Recovery10 passed and scoped native states reviewed; revised window lifecycle plus bounded Debug metadata now proceeding to independent full163/Release. No Build29 delivery yet.",
   "priorSnapshot": "cfe5e651dd677cad49d1359f7bbd2a538e41781f",
   "preservedPackages": [
     {
@@ -260,10 +260,10 @@
   ],
   "gates": {
     "linuxCorePassed": true,
-    "macOSCorePassed": true,
+    "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
-    "desktopLongTXTValidated": true,
+    "desktopLongTXTValidated": false,
     "Build29DeviceAccepted": false,
     "devicePerformanceAccepted": false,
     "externalSourceAppsAccepted": false,
@@ -396,7 +396,7 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "c8d1921b61ecd605596e66e4d7fc67796a2926b13d74eb0ddad37f1d88aaef6e"
+      "sha256": "05a12711d7a31b4cf26c8fe790ca4f4a56e3c557384976c18c60fe0fb7da19fd"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
@@ -924,7 +924,7 @@
     },
     {
       "path": "Tests/iOS/ReaderSurfaceTests.swift",
-      "sha256": "6b9829a9e2fa332a8d2b2fbe40d95bb32e5e5d08847ee02e1ce32b4df3b460e8"
+      "sha256": "14dabaffad5624a46e8b4652d459d72fc2835fee9e77dd7887403b5cf4a6bd79"
     },
     {
       "path": "Tests/iOS/ReadingExperienceTests.swift",
@@ -1208,7 +1208,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
+      "sha256": "b4392a904781a5c1f4f618a56e703b297689f3e9c3fceddd1b297fbd92e2aee0"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
@@ -1228,7 +1228,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
+      "sha256": "cecdb1766a004a58d2ace3c92718f6a76b26de0fe399426e1be297875ec7e488"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -2368,7 +2368,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "aac49bfaa23e11d78d7acd54bb716060931430dbc9065c0f3a9e90e09cbb631f"
+      "sha256": "e9e0626c19f50734a65ccead6ce932a94377ffac5d5e33ac7b5260b7b9d5efdf"
     },
     {
       "path": "project.yml",
@@ -2384,7 +2384,7 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "76d6d7385be024233f61172dbd4610f6da6c42f33a6c15dcde3b5cd0f72dedb9"
+      "sha256": "f1f16b8a852b596ac8fd1e0f99c7a4e47ab878804ce8e80d12a0a960524b610e"
     },
     {
       "path": "scripts/generate_app_icon.py",
@@ -2506,91 +2506,49 @@
       "total": 163,
       "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39126639352.json",
       "deviceReleaseBuilt": false
+    },
+    {
+      "run": 39131131911,
+      "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+      "passed": 160,
+      "total": 163,
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39131131911.json",
+      "deviceReleaseBuilt": false,
+      "exactSourceRetryExhausted": true
     }
   ],
-  "diagnosticRuns": [],
+  "diagnosticRuns": [
+    {
+      "run": 39144858281,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "branch": "codex/m4-edges-diagnostic",
+      "selection": "recovery",
+      "expectedSelectedTests": 10,
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-diagnostic-result.json",
+      "result": "success",
+      "notFullDeliveryGate": true,
+      "passed": 10,
+      "total": 10
+    }
+  ],
   "branch": "codex/m4-reading-edges",
-  "run": 39131131911,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39131131911",
-  "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+  "run": 39147081645,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645",
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
   "priorBuild28SubjectiveFeel": {
     "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
     "answer": "目前感觉流畅",
     "notMeasuredFPS": true,
     "doesNotAcceptBuild29": true
   },
-  "sameSourceRetryOf": 39126639352,
-  "iOS": {
-    "devicesAndConfigurations": [
-      {
-        "device": {
-          "architecture": "arm64",
-          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
-          "deviceName": "iPhone 16 Pro",
-          "modelName": "iPhone 16 Pro",
-          "osBuildNumber": "22F77",
-          "osVersion": "18.5",
-          "platform": "iOS Simulator"
-        },
-        "expectedFailures": 0,
-        "failedTests": 3,
-        "passedTests": 160,
-        "skippedTests": 0,
-        "testPlanConfiguration": {
-          "configurationId": "1",
-          "configurationName": "Test Scheme Action"
-        }
-      }
-    ],
-    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
-    "expectedFailures": 0,
-    "failedTests": 3,
-    "finishTime": 1792332457.105,
-    "passedTests": 160,
-    "result": "Failed",
-    "skippedTests": 0,
-    "startTime": 1792330212.202,
-    "statistics": [],
-    "testFailures": [
-      {
-        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():377",
-        "targetName": "XianxiaReaderTests",
-        "testIdentifier": 82,
-        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
-        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
-        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
-      },
-      {
-        "failureText": "Asynchronous wait failed: Exceeded timeout of 2 seconds, with unfulfilled expectations: \"real reader presentation\".",
-        "targetName": "XianxiaReaderTests",
-        "testIdentifier": 109,
-        "testIdentifierString": "ReadingExperienceTests/testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride()",
-        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReadingExperienceTests/testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride",
-        "testName": "testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride()"
-      },
-      {
-        "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
-        "targetName": "XianxiaReaderUITests",
-        "testIdentifier": 148,
-        "testIdentifierString": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
-        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates",
-        "testName": "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()"
-      }
-    ],
-    "title": "Test - XianxiaReader",
-    "topInsights": [
-      {
-        "category": "Longest Test Runs",
-        "impact": "12% of duration",
-        "text": "1 longest test run with outlier durations exceeding 162.34s (three standard deviations)"
-      },
-      {
-        "category": "Longest Test Runs",
-        "impact": "41% of duration",
-        "text": "2 longest test runs with outlier durations exceeding 31.32s (three standard deviations)"
-      }
-    ],
-    "totalTestCount": 163
-  },
-  "latestEvidence": "Documentation/ValidationLogs/m4-edges-build29-history-39131131911.json"
+  "latestEvidence": "Documentation/ValidationLogs/m4-edges-build29-diagnostic-result.json",
+  "candidateChangeBasis": {
+    "baseline": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+    "oldTestBodiesByteIdentical": 299,
+    "newWindowTestRealLifecycle": true,
+    "productionReadinessAndSaveBudgetsUnchanged": true,
+    "debugMetadataOnly": true,
+    "selectedEvidence": "Documentation/ValidationLogs/m4-edges-build29-diagnostic-result.json",
+    "remainingRootCauseUncertainty": "WebKit delayed startup and prior UI timing failures not uniquely resolved by this successful diagnostic"
+  }
 }

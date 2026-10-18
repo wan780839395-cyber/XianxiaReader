@@ -27,3 +27,10 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 ## 2026-10-19 定向诊断
 
 第四同源完整160/163已失败，原始诊断补齐并保留；不继续完整盲重跑。新窗口测试用UIHostingController子类接真实viewDidAppear/DidDisappear回调完成挂载与收尾，不手调UIKit生命周期方法，不改旧主题用例2秒/原像素断言。参考Apple viewDidAppear与beginAppearanceTransition文档。Vendor沿精确Readium3.11原公开WKNavigationDelegate回调补Debug上限24条阶段元数据及watchdog清理前快照，覆盖请求/导航/初始化/进出窗口/进程退出；App在Debug UI样例入口记录设置action→binding→content与公开presenter状态，上限16条，1px不拦触摸的AX节点及统一日志。记录无书名/URL/正文/Locator；Release编译期开关false，不分配trace UUID、不生成日志/AX，空诊断字段保留。未新增重试、异步采样、JS或延长预算。框架文档https://developer.apple.com/documentation/webkit/wknavigationdelegate；Readium参考https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift。UPSTREAM两文件摘要更新；依赖/JS/Core/DB/锁/默认完整CI保持。recovery额外选相关病例共10项，原退出码与30分钟job限保持，20秒有界收取安全元数据日志；诊断成功也不等于全量/Release/设备通过。Windows449/17通过，Apple定向尚待实际运行。
+
+
+## 定向结果与完整验收边界
+
+39144858281/sourcea65086c真实10/10，失败跳过0；新窗口实际出现/退出与原主题2秒测试均通过，完整测试日志appearance不平衡警告0。42原图/7表、4原视频一秒总览18表已查看，只接受所列功能状态，不当帧时间/完整动效/手机矩阵。113个trace共1156阶段事件，72个初始化完成记录最慢6.779s，没有同类启动延迟消息；部分预加载取消正常，不能把无复现当所有旧时序根因解决。额外统一日志20秒超时，未取得完整UI呈现trace，不放宽采集时限或原功能断言。实际记录m4-edges-build29-diagnostic-result.json。
+
+在有证据的新窗口生命周期修正与有界Debug诊断基础上，独立完整39147081645/sourcea65086c执行Core137各/iOS163/Release29。它不是旧a9同源再次盲重跑；299既有test主体、加载20秒/保存3秒等预算及既有业务逻辑保持。默认完整CI保持，recovery诊断选择扩大而已；Vendor/App Debug元数据变更已登记，Release无日志/AX，不能继续笼统写Vendor完全未变。未取得本轮全部结果、原生复核和包校验前，Build29仍未交付。
