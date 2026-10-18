@@ -1,6 +1,44 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation() {
+        let app = start(); defer { XCUIDevice.shared.orientation = .portrait; app.terminate() }
+        for theme in ["warm", "charcoal"] {
+            app.buttons["reader.appearance.open"].tap()
+            app.buttons["reader.theme.\(theme)"].tap(); app.buttons["reader.appearance.done"].tap()
+            waitForPanelToClose("reader.appearance.done", in: app)
+            app.buttons["reader.autoscroll.open"].tap()
+            let toggle = app.buttons["reader.autoscroll.toggle"]
+            XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+            let scroll = app.scrollViews["readium.continuous-scroll"]
+            XCTAssertTrue(scroll.waitForExistence(timeout: 20)); waitForReadableText(in: app)
+            scroll.swipeUp()
+            XCTAssertTrue(toggle.isHittable); toggle.tap()
+            let running = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "正在慢滚"), object: toggle)
+            XCTAssertEqual(XCTWaiter.wait(for: [running], timeout: 10), .completed)
+            let elapsed = XCTNSPredicateExpectation(predicate: NSPredicate(value: false), object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [elapsed], timeout: 2), .timedOut)
+            centerTap(in: app)
+            let paused = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "已暂停"), object: toggle)
+            XCTAssertEqual(XCTWaiter.wait(for: [paused], timeout: 10), .completed)
+            XCTAssertFalse(app.buttons["返回书库"].exists)
+            snapshot("reader-edges-paused-\(theme)-build29", in: app)
+            XCUIDevice.shared.orientation = .landscapeLeft
+            let landscape = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [landscape], timeout: 10), .completed)
+            XCTAssertTrue(toggle.isHittable)
+            snapshot("reader-edges-landscape-\(theme)-build29", in: app)
+            XCUIDevice.shared.orientation = .portrait
+            let portrait = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.height > app.frame.width }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [portrait], timeout: 10), .completed)
+            XCTAssertEqual(toggle.value as? String, "已暂停")
+            snapshot("reader-edges-portrait-restored-\(theme)-build29", in: app)
+            app.buttons["reader.autoscroll.close"].tap()
+            XCTAssertTrue(app.buttons["返回书库"].isHittable)
+            XCTAssertGreaterThanOrEqual(app.buttons["返回书库"].frame.height, 44)
+        }
+    }
+
     @MainActor func testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates() {
         for reduced in [false, true] {
             let app = start(reduceMotion: reduced)

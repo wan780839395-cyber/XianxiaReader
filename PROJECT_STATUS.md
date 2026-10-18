@@ -1,3 +1,7 @@
+# Build29 开发中（2026-10-18）
+
+安全区边缘遮罩源码及2新增回归已接入，Windows449语法新增0/54既有Vendor限制、17工具通过；14原UI test主体不变。尚未Apple编译/原生验收/交付，最后仍Build28。实际断点看HANDOFF与新独立完整CI，不改Core/Readium/Vendor/依赖/完整位置。
+
 # 项目状态
 
 2026-10-18 用户在Build28交付后反馈“没问题”，记录为本片总体使用认可；未逐项说明菜单/跨章/设置测试，不扩展为手机FPS、全部设备矩阵或M4整体验收。证据：Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json。后续仍按M4性能计划与旧隐藏菜单安全区问题推进。

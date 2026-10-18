@@ -27,7 +27,7 @@ import XianxiaCore
     var body: some View {
         ZStack {
             if let engine = model.engine {
-                ReaderSurface(viewController: engine.viewController)
+                ReaderSurface(viewController: engine.viewController, pageColor: model.appearance.theme.background)
                     .accessibilityAction(named: "显示阅读菜单") { model.menuVisible = true }
             }
             if let failure = model.openFailure {
