@@ -51,3 +51,31 @@ cover.layer.zPosition=1明确高于后挂载navigator默认层；真实window测
 ## 第二完整结果与最小测试修正（构建前）
 
 39122142797/c30ff2d实际159/163无Release/IPA，Core137各；4失败为新父级layer合成像素、旧continuous跨章边界、旧进度跨章summary及旧书签UI开书。首轮旧字体收藏本轮过，不能追认旧保存时序根因解决。30 PNG/5表与4完整原录屏16表已看：真实浅深安全边缘已盖好；chrome正文第二章但footer旧章、panel失败尚在书架根本未打开reader；后两不通过放宽等待解决。新CALayer.render parent样本红边与屏幕实际黑边不一致，已查Apple层树render与可见UIView.drawHierarchy文档。仅新test合成部分改用UIKit完整屏幕层级快照，保持原像素值/触摸/frame/2秒要求并追加可审原图，孤立shape仍用原render；生产App/Core/Adapter/Vendor/CI/全部旧test不变。完整1744510958byte artifact SHA/CRC/解压已核，重复ZIP/208分片移除。条件准备助手遇失败已退出；下一步Windows→冻结→独立完整验证，不交付未过源。
+
+## 第三完整CI已实际启动
+
+2026-10-18T12:18:13.665372+00:00：run39126639352/sourcea9f4f8ab17bf28707cfc3fb8f171354a13751a3f/codex/m4-reading-edges。Git对c30ff2d核App/Packages/Vendor/scripts/.github/锁/project.yml完全相同，只修本轮新测试UIKit合成采样；原颜色/命中/几何/保存/等待预算与14原UI主体全部保持。547冻结blob，预期Core137各/iOS163=136+27/Release29。前两候选真实失败不追认，本轮尚未编译/交付。原助手均退出，第三watch/collector/条件素材准备另起当前run目录；恢复先核实际任务不重复dispatch。
+
+第三源Core artifact12136805192已核真实SHA/CRC/137测试/4长TXT Release探针；仅Linux门槛true，Apple执行中。对a9f4f8核工作树只有文档变化；对c30ff2d核生产App/全部业务与CI/依赖完全相同。新合成诊断图会与实际阅读截图分列，不混入用户Preview；记录生产不变和旧失败边界。
+
+补查第二轮旧continuous边界失败原诊断：在进入边界移动前初次slot0加载即超时，position=nil、DOM href=blank/ready=complete、slot.ready=false，outer402×874/inset62/34；不是已证实的跨章索引错误，也未据此认定遮罩或环境唯一根因。旧测试/引擎/超时不改，详情已补第二历史记录。第三完整仍运行。
+
+## 再次恢复实核
+
+2026-10-18T13:06:11.476878+00:00：按顺序重读项目文档，正常HEAD/index保持，1062原路径全部仍在，51旧包逐SHA一致；冻结源a9f4f8a后仅文档变化。实际第三CI仍运行，原watch/collector/条件准备三个Python助手存活，未重派或重复启动。断点仍是完整Apple结果，不将前两候选失败或待编译源写成交付；恢复快照build/ci/39126639352/interruption-resume.json。不关机。
+
+## 第三完整实际失败与同源有界复验前
+
+第三39126639352/a9f4f8a为162/163（失败/跳过1/0），Core各137和各4探针正确；新UIKit父级合成像素及浅深慢滚旋转通过，前轮失败旧字体/连续初载/跨章summary/书签开书本轮均过。唯一旧菜单重启后设置无面板（原454断言）。实际4 PNG/1表、57.67秒原视频4总览及44.5–46.2原7帧/1表看过，最终AX有正文/设置但无sheet，无保存alert；根因未定。1889128041byte完整artifact SHA/GitHubdigest/CRC/提取核实，重复ZIP/226分片已清。watch收尾log因EOF退出，独立有界重取真实full.log/manifest成功，原collector已按失败退出；不追认通过/无Release或IPA。只允许一次完全相同a9f4f8a的完整复验，不改生产/旧断言/等待/测试名单；若再失败转定向生命周期诊断，不盲重跑。历史证据m4-edges-build29-history-39126639352.json。
+
+## 同源一次完整复验已启动
+
+2026-10-18T13:21:11.420137+00:00：39131131911/codex/m4-reading-edges/sourcea9f4f8ab17bf28707cfc3fb8f171354a13751a3f。与第三候选源码/测试/CI完全相同，独立门槛全部重置，前3轮失败各自留证。上轮三个助手均已退出，再起本轮有界watch/collector/条件素材准备；恢复时不重复派发。
+
+第三源额外原生复核已看7 PNG/2表和68.99秒安全区录屏5表：迟到内容合成诊断确为黑边红中心；浅深暂停状态边缘可读，旋转PNG是黑区过渡、恢复竖屏PNG是加载，均不当稳定页/Preview。原录屏随后有稳定横屏和竖屏重载后正文，不能等同完整动效/手机验收。已补第三历史记录，第四同源完整仍独立等待。
+
+同源第四完整39131131911的Core artifact12137938207已真实校验SHA/GitHubdigest/CRC/完整提取，137测试与4长TXT Release探针通过，只置本轮Linux门槛；第三失败/原件仍独立。Apple当前执行中，源码a9f4f8a不再变更。
+
+## 同源复验等待期保全检查点
+
+2026-10-18T13:36:04.334882+00:00：39131131911/a9f4f8a仍Apple运行，547编译资源blob全部匹配；当前只有文档/验证记录变化。watch PID19672、collector PID16732、条件准备 PID3372存活；第三轮助手已退出。即将把实际前三轮失败记录和当前恢复点另存appearance私有文档快照[skip ci]，edges仍固定编译源，不触碰正常HEAD/index，也不重派CI。此时Build29仍无IPA/交付。

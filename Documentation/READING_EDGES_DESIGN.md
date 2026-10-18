@@ -15,3 +15,11 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 首候选13812bd/39118070518实际162/163，新增window/慢滚UI通过但原生慢滚仍透字；Adapter在cover建立后异步addSubview(navigator)，所以本片补[CALayer.zPosition](https://developer.apple.com/documentation/quartzcore/calayer/zposition)公开绘制层级1，不重排或移动原视图。真实window测试追加迟到红色正文视图，核父级实际合成上/下黑边与中心红色、原frame和命中保持；只渲染cover自身的测试不足以捕捉层级错误。旧字体收藏失败原视频显示字体重排/退出fresh保存位置未稳定并可见alert，无Release/IPA，不改旧test/3秒预算或用缓存替代fresh；唯一根因未定，下一完整验证独立记录，重试通过不追认为根因修复。
 
 第二候选c30ff2d/39122142797实际159/163，无Release/IPA；真实原生边缘已遮盖，新增父级layer.render像素失败，另3原用例失败分列。依Apple文档，CALayer.render读取层树，UIView.drawHierarchy读取可见屏幕层级；本源实测前者parent z绘制结果与原生截图不一致，故只纠正新测试的合成采样方式，不改颜色断言/预算或生产App。孤立shape仍核精确透明/颜色，新完整UIKit快照作为附件保留。原字体收藏这次过，不追认首轮根因；旧跨章/summary/书架开书失败仍记录不归因遮罩，不盲改Readium或旧测试。
+
+## 第三候选菜单失败的参考与诊断边界
+
+39126639352真实162/163，唯一旧菜单重启设置未打开，失败原视频/最终AX/原生归档事件已核：点击339.33,786落在设置按钮308.7,758/61.3×56内；无设置sheet或保存alert。此证据尚不能判断action未收到、状态更新未呈现或UIKit presentation冲突。窗口截图不能读取SwiftUI私有状态，不用猜测替代根因。
+
+已查Apple公开 `sheet(item:onDismiss:content:)`（https://developer.apple.com/documentation/swiftui/view/sheet(item:ondismiss:content:)）及Point-Free维护的Swift Navigation README（https://github.com/pointfreeco/swift-navigation#swiftui）。成熟方案以单一可选enum表达互斥destination，避免多个Bool同时要求不同呈现。该项目README示例使用@Observable和case-path宏，与本项目iOS16/ObservableObject不同；本轮没有引入库、宏或改依赖，公开item-sheet思路可用不等于已证明能修复本次单面板失败。当前证据没有同时两个目标，故不借参考名义盲重构。
+
+只做一次a9f4f8a完全同源的完整复验39131131911，旧断言/等待/名单保持。若再次出现相关失败，先在Debug/UI-test专用入口记录不含书名/正文的session、tap/action计数、destination变化、sheet appeared/dismissed和UIKit presenter transition状态，再用既有recovery定向诊断；验证退出码保持，无诊断IPA。不得通过延长等待、再点按钮、删除断言或无限重跑得到绿灯。复验通过也不倒写第三轮为通过，不把未证实菜单唯一根因标成已修。

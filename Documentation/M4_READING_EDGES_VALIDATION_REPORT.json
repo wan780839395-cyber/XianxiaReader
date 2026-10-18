@@ -1,5 +1,5 @@
 {
-  "stage": "Build29 Windows checked; not Apple compiled or delivered",
+  "stage": "One exact-source complete reproducibility run dispatched; no new production or test changes",
   "priorSnapshot": "cfe5e651dd677cad49d1359f7bbd2a538e41781f",
   "preservedPackages": [
     {
@@ -2498,23 +2498,32 @@
       "sourceRevision": "c30ff2d2648a8b2e4ca3bbcae2c2f8f6963d6078",
       "result": "159/163: new parent layer pixel sampling and 3 original tests; no Release/IPA; native unsafe edges visibly covered",
       "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39122142797.json"
+    },
+    {
+      "run": 39126639352,
+      "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+      "passed": 162,
+      "total": 163,
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39126639352.json",
+      "deviceReleaseBuilt": false
     }
   ],
   "diagnosticRuns": [],
   "branch": "codex/m4-reading-edges",
-  "run": 39122142797,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39122142797",
-  "sourceRevision": "c30ff2d2648a8b2e4ca3bbcae2c2f8f6963d6078",
-  "partialVerification": {
-    "linuxCoreTests": 137,
-    "longTXTCases": 4,
-    "logSHA256": "e748f8cad26edf167c6e531ea2e13397e86818b117bdb386f64e4e36283c19c9",
-    "AppleStillPending": true
-  },
+  "run": 39131131911,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39131131911",
+  "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
   "priorBuild28SubjectiveFeel": {
     "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
     "answer": "目前感觉流畅",
     "notMeasuredFPS": true,
     "doesNotAcceptBuild29": true
-  }
+  },
+  "partialVerification": {
+    "linuxCoreTests": 137,
+    "longTXTCases": 4,
+    "logSHA256": "bd478202316dac749a3ade34926691807dd946c228350f491a4f2f6efe9a4693",
+    "AppleStillPending": true
+  },
+  "sameSourceRetryOf": 39126639352
 }

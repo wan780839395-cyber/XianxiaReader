@@ -29,5 +29,18 @@
     "sha256": "f9f2469236b10b722dbd1d2dbdf5e8e61c1d23ebc965fd5af4a271c58e0587e5",
     "reason": "Rendering order for asynchronously appended sibling content; no origin/size/inset changes",
     "verifiedForMinimumTarget": true
-  }
+  },
+  "visibleCompositionSnapshotReview": [
+    {
+      "url": "https://developer.apple.com/documentation/quartzcore/calayer/render(in:)",
+      "path": ".cache/recovery/20261018-build29/apple-render.md",
+      "sha256": "c8d67dcd835c153eb5dbca0f26c8754251f0f7d20dfee0ba6ad138b760d666a1"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uiview/drawhierarchy(in:afterscreenupdates:)",
+      "path": ".cache/recovery/20261018-build29/apple-drawhierarchy.md",
+      "sha256": "e7547fc440e83319da309621ab438b3300caeada299eac8b9ecf6fc562b1531d"
+    }
+  ],
+  "snapshotDifferenceScope": "Actual layer-tree vs onscreen z-composite difference observed in second run; not claiming Apple documents all iOS z-order details from its historical macOS limitations paragraph."
 }

@@ -1,0 +1,135 @@
+{
+  "recordedAtUTC": "2026-10-18T13:20:44.484980+00:00",
+  "run": 39126639352,
+  "sourceRevision": "a9f4f8ab17bf28707cfc3fb8f171354a13751a3f",
+  "result": "failure",
+  "coreEach": 137,
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 162,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792328751.06,
+    "passedTests": 162,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792326234.948,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTAssertTrue failed",
+        "targetName": "XianxiaReaderUITests",
+        "testIdentifier": 147,
+        "testIdentifierString": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+        "testName": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "16% of duration",
+        "text": "1 longest test run with outlier durations exceeding 238.29s (three standard deviations)"
+      },
+      {
+        "category": "Longest Test Runs",
+        "impact": "35% of duration",
+        "text": "3 longest test runs with outlier durations exceeding 19.19s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 163
+  },
+  "deviceReleaseBuilt": false,
+  "IPAProduced": false,
+  "rawCurrentRetained": true,
+  "findings": "4 selected native PNGs/one contact and complete57.67second original video/4overviewcontacts plus7originalVFRframes44.5-46.2viewed. After relaunch readable body and menu exist; settings tap does not show sheet. No error alert, no settings sheet in final AX hierarchy. Body loads next resource around tap. Unique cause not established; no claim this is only an AX wait or fixed by rerun.",
+  "newPixelAndRotationTestsPassed": true,
+  "priorFailedOldCasesNowPassedWithoutProductionChanges": true,
+  "uniqueMenuFailureRootCauseEstablished": false,
+  "sameSourceFullRetry": {
+    "allowedCount": 1,
+    "rationale": "Different inherited cases failed across earlier candidates; third corrected new pixel probe passed. Native menu failure has no proven source root. One exact-source complete rerun for reproducibility, preserving every failure/assertion/budget; never reclassifies this run as passed. If it fails again, stop blind full retries and add targeted lifecycle evidence."
+  },
+  "artifacts": [
+    {
+      "path": "build/ci/39126639352/full.log",
+      "bytes": 3409831,
+      "sha256": "d72a588201887ac5c60427ef85d6df7407b628dbabf534daf6f08978331ec84f"
+    },
+    {
+      "path": "build/ci/39126639352/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "bytes": 2221033,
+      "sha256": "907cc47ec4a573c531af530564e0d3e5251c7ef4b56c9bd2af0751e8eaad4c25"
+    },
+    {
+      "path": "build/ci/39126639352/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "bytes": 1851,
+      "sha256": "e8cfc31b96edd5c8f3285d91e4919875468f2fcb400fa6854d249cde8e4f897a"
+    },
+    {
+      "path": "build/ci/39126639352/apple-download-receipt.json",
+      "bytes": 33131,
+      "sha256": "cfef614a32de8946ad10c9145f5f0f5a5b137c3894814a5eff79c8bbdab69629"
+    },
+    {
+      "path": "build/ci/39126639352/EarlyMenuReview/manual-failure-notes.json",
+      "bytes": 3422,
+      "sha256": "5f236f492e7d8da5c01c88e0f0618748ce0357cb7265e34ece1f562c7f841800"
+    }
+  ],
+  "additionalNativeReview": {
+    "selectedPNGCount": 7,
+    "pngContactSheetsManuallyViewed": 2,
+    "fullVideoOverviewContactSheetsManuallyViewed": 5,
+    "durationSeconds": 68.99,
+    "observations": "Actual composite diagnostic is red center with solid black top/bottom. Paused warm/charcoal reading states show page-colored unsafe edges. Landscape PNGs caught rotation/black-region transition and portrait-restored PNGs show loading; excluded from steady reading acceptance. Original video has later stable landscape text and return to portrait after reload; loading/transition and transient overlay ghosting remain outside complete-motion acceptance.",
+    "reviewFolder": "build/ci/39126639352/ThirdEdgesReview",
+    "deviceAccepted": false
+  },
+  "nativeSynthesizedTapEvidence": {
+    "path": "build/ci/39126639352/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FF0B03D7-879B-44BC-A14F-105066E21A98",
+    "sha256": "af78397cc1362f1385ac3671d6368f8f2192ff95db7b585156b45aa4fc757f9e",
+    "decodedFormat": "Apple binary plist archived test event, read-only diagnostic, no app private API",
+    "tapPoints": [
+      {
+        "x": 339.33333333333326,
+        "y": 786.0,
+        "offset": 0.0
+      },
+      {
+        "x": 339.33333333333326,
+        "y": 786.0,
+        "offset": 0.05
+      }
+    ],
+    "finalAXSettingsFrame": {
+      "x": 308.7,
+      "y": 758,
+      "width": 61.3,
+      "height": 56
+    },
+    "tapInsideFinalAXFrame": true,
+    "rootCauseEstablished": false
+  }
+}

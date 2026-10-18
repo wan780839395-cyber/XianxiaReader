@@ -120,5 +120,24 @@
       "bytes": 30575,
       "sha256": "63b37e600e91a868776570ce98263a482195172f9a0f412d3f967af5840f30c9"
     }
-  ]
+  ],
+  "originalContinuousFailureDetail": {
+    "stage": "Initial continuous resource load before chapter-boundary movement",
+    "position": null,
+    "DOMHref": "blank",
+    "DOMReadyState": "complete",
+    "slotReady": false,
+    "slotFailure": "章节加载超时",
+    "viewportBoundsPoints": [
+      402,
+      874
+    ],
+    "outerInsetsTopBottom": [
+      62,
+      34
+    ],
+    "sourceLog": "build/ci/39122142797/full.log",
+    "line": 8021,
+    "uniqueRootCauseConfirmed": false
+  }
 }
