@@ -1,0 +1,31 @@
+{
+  "recordedAtUTC": "2026-10-18T18:03:59.431892+00:00",
+  "run": 39147081645,
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "automaticFullPassed": true,
+  "iOSPassed": 163,
+  "deviceReleaseBuilt": true,
+  "delivered": false,
+  "imagesActuallyViewed": 37,
+  "imageContactSheetsViewed": 7,
+  "recordingsActuallyReviewed": [
+    "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation"
+  ],
+  "videoOverviewSheetsViewed": 5,
+  "nativeAccepted": false,
+  "visualRejection": "At33s charcoal selected while portrait rotation reflow still loading; at37-41s visible layout-not-stable alert; at42-58s body remains warm but cover/controls charcoal. New test only waited app frame ratio, no loaded-page/theme/error assertions. Both landscape PNGs transitional, restored PNGs loading/stale.",
+  "nextStep": "Only strengthen new Build29 UI test with bounded real readable/no-spinner/theme-pixel checks after theme and rotations; original299 methods/budgets/production unchanged. Add case to selected recovery diagnostic before independent full revalidation.",
+  "references": [
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuidevice/orientation.md",
+      "bytes": 1727,
+      "sha256": "96a53e511a949313c5242361ae999cc1a61920fab1e564e150e23668c6bc5a29"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xctest/xctnspredicateexpectation.md",
+      "bytes": 2673,
+      "sha256": "8ced2e16295c4de682fe9a9be54df83a2d271f225a6a151ae9027dc7f3247dd9"
+    }
+  ],
+  "rawCurrentRetained": true
+}

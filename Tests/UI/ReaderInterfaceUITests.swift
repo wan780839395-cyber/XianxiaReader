@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 final class ReaderInterfaceUITests: XCTestCase {
     @MainActor func testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation() {
@@ -7,6 +8,7 @@ final class ReaderInterfaceUITests: XCTestCase {
             app.buttons["reader.appearance.open"].tap()
             app.buttons["reader.theme.\(theme)"].tap(); app.buttons["reader.appearance.done"].tap()
             waitForPanelToClose("reader.appearance.done", in: app)
+            waitForSettledEdgePage(theme: theme, in: app)
             app.buttons["reader.autoscroll.open"].tap()
             let toggle = app.buttons["reader.autoscroll.toggle"]
             XCTAssertTrue(toggle.waitForExistence(timeout: 10))
@@ -26,17 +28,55 @@ final class ReaderInterfaceUITests: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
             let landscape = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [landscape], timeout: 10), .completed)
+            waitForSettledEdgePage(theme: theme, in: app)
             XCTAssertTrue(toggle.isHittable)
             snapshot("reader-edges-landscape-\(theme)-build29", in: app)
             XCUIDevice.shared.orientation = .portrait
             let portrait = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.height > app.frame.width }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [portrait], timeout: 10), .completed)
+            waitForSettledEdgePage(theme: theme, in: app)
             XCTAssertEqual(toggle.value as? String, "已暂停")
             snapshot("reader-edges-portrait-restored-\(theme)-build29", in: app)
             app.buttons["reader.autoscroll.close"].tap()
             XCTAssertTrue(app.buttons["返回书库"].isHittable)
             XCTAssertGreaterThanOrEqual(app.buttons["返回书库"].frame.height, 44)
         }
+    }
+
+    // Physical orientation and the app frame can change before WebKit's
+    // reflow finishes. Check the actual reading page before the next action;
+    // a layout error or stale warm page must not count as a charcoal pass.
+    @MainActor private func waitForSettledEdgePage(theme: String, in app: XCUIApplication) {
+        let rgb: [UInt8] = theme == "charcoal" ? [36, 40, 38] : [248, 245, 237]
+        let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard !app.alerts.firstMatch.exists,
+                  text.allElementsBoundByIndex.contains(where: { $0.isHittable }),
+                  !app.activityIndicators.allElementsBoundByIndex.contains(where: { $0.isHittable }) else { return false }
+            return self.edgePaperMatches(app.screenshot().image, rgb: rgb)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
+                       "Reading text, settled loading and the selected paper color must all be visible")
+        XCTAssertFalse(app.alerts.firstMatch.exists, "A visible layout/save error is not an accepted reading state")
+    }
+
+    @MainActor private func edgePaperMatches(_ image: UIImage, rgb: [UInt8]) -> Bool {
+        guard let source = image.cgImage, source.width >= 40, source.height >= 40,
+              let center = source.cropping(to: CGRect(x: CGFloat((source.width - 40) / 2),
+                  y: CGFloat((source.height - 40) / 2), width: 40, height: 40)) else { return false }
+        var bytes = [UInt8](repeating: 0, count: 40 * 40 * 4)
+        let rendered = bytes.withUnsafeMutableBytes { storage in
+            guard let context = CGContext(data: storage.baseAddress, width: 40, height: 40,
+                bitsPerComponent: 8, bytesPerRow: 160, space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else { return false }
+            context.draw(center, in: CGRect(x: 0, y: 0, width: 40, height: 40)); return true
+        }
+        guard rendered else { return false }
+        let paperPixels = stride(from: 0, to: bytes.count, by: 4).filter { index in
+            bytes[index + 3] > 250 && (0..<3).allSatisfy { abs(Int(bytes[index + $0]) - Int(rgb[$0])) <= 5 }
+        }.count
+        // Text strokes may cross the sample. The actual paper must dominate.
+        return paperPixels >= 880
     }
 
     @MainActor func testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates() {

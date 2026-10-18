@@ -1,0 +1,22 @@
+{
+  "recordedAtUTC": "2026-10-18T17:55:37.596717+00:00",
+  "run": 39147081645,
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "actualCasePasses": 163,
+  "failedCases": 0,
+  "unbalancedAppearanceWarnings": 0,
+  "selectedCaseSeconds": {
+    "testRealWindowEdgesPaintWithoutChangingNavigatorOrInterceptingTouches": 0.154,
+    "testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride": 0.228,
+    "testContinuousBoundaryShowsTwoResourcesAndScrollsBack": 4.377,
+    "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes": 69.113,
+    "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch": 50.62,
+    "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates": 79.303,
+    "testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection": 51.632,
+    "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation": 62.05
+  },
+  "emittedStartupMessages": 7,
+  "maximumEmittedStartupSeconds": 2.01713,
+  "emittedStartupDelaysOver20Seconds": 0,
+  "scope": "Complete original CI log reviewed; absence of a recurrence is not proof of all prior timing root causes fixed. Artifact/source/binary/native gates verified separately."
+}

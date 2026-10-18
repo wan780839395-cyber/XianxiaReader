@@ -62,7 +62,7 @@
     "imageContactSheetsViewed": 7,
     "originalRecordingsReviewedByOneSecondOverview": 4,
     "overviewSheetsActuallyViewed": 18,
-    "reviewManifest": "build/ci/39144858281/DiagnosticReview/review-pending.json",
+    "reviewManifest": "build/ci/39144858281/DiagnosticReview/reviewed.json",
     "acceptedScope": "Test-window composite black unsafe edges/red center; continuous two-resource boundary; selected font pages; native Files cancel/default cover/reopen; settings reopens after app relaunch; normal/reduced light/dark chapter67 and return; font grid/query/presets/custom0.05 reopening",
     "limits": "One-second overviews are state review, not motion/frame-time acceptance. Short loading/return spinners and sheet transitions remain visible; no new rotation recording in diagnostic10. No phone/Release/full163 gate."
   },
@@ -135,8 +135,16 @@
         "seconds": 2.138218
       }
     ],
-    "startupDelayMessages": 0,
-    "scope": "Only integration process stdout is captured here; at most24 events per spread, preloads may clear without completion. No recurrence is not unique cause proof."
+    "startupDelayMessages": 11,
+    "scope": "Only integration process stdout is captured here; at most24 events per spread, preloads may clear without completion. No recurrence is not unique cause proof.",
+    "maximumObservedStagesPerTrace": 15,
+    "tracesReattachedAfterClear": 0,
+    "tracesClearedBeforeFirstAttach": 0,
+    "provisionalNavigationErrorsObserved": 0,
+    "scopeAdditional": "Counts in captured integration stdout only; no trace reached the24-event cap. Cancelled offscreen preloads and cleared views are not classified as load failures.",
+    "maximumEmittedStartupSeconds": 5.896764,
+    "emittedStartupDelaysOver20Seconds": 0,
+    "startupSearchCorrection": "Matched actual WebContent/Networking/GPU process ... took N seconds to launch, not an assumed Starting prefix."
   },
   "additionalSystemLog": {
     "timedOutAfterSeconds": 20,
