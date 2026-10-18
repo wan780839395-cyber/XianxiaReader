@@ -1,6 +1,45 @@
 import XCTest
 
 final class ReaderInterfaceUITests: XCTestCase {
+    @MainActor func testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates() {
+        for reduced in [false, true] {
+            let app = start(reduceMotion: reduced)
+            defer { app.terminate() }
+            let variant = reduced ? "reduced" : "normal"
+            let back = app.buttons["返回书库"]
+            let originalHeader = back.frame
+            XCTAssertGreaterThanOrEqual(originalHeader.height, 44)
+            XCTAssertGreaterThanOrEqual(originalHeader.width, 44)
+            app.buttons["reader.contents.open"].tap()
+            let chapter = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第二章'")).firstMatch
+            XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+            waitForReturnText("灯下第1段", in: app)
+            centerTap(in: app)
+            XCTAssertTrue(app.buttons["reader.mode"].waitForExistence(timeout: 10))
+            let title = app.staticTexts["reader.progress.title"]
+            let updated = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "第二章"), object: title)
+            XCTAssertEqual(XCTWaiter.wait(for: [updated], timeout: 10), .completed)
+            XCTAssertTrue(app.staticTexts["reader.progress.percentage"].exists)
+            XCTAssertEqual(back.frame.minX, originalHeader.minX, accuracy: 1)
+            XCTAssertEqual(back.frame.minY, originalHeader.minY, accuracy: 1)
+            snapshot("reader-chrome-progress-light-\(variant)-build28", in: app)
+            centerTap(in: app)
+            let hidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["reader.mode"])
+            XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 10), .completed)
+            snapshot("reader-chrome-immersive-\(variant)-build28", in: app)
+            centerTap(in: app)
+            XCTAssertTrue(app.buttons["reader.appearance.open"].waitForExistence(timeout: 10))
+            app.buttons["reader.appearance.open"].tap(); app.buttons["reader.theme.charcoal"].tap()
+            app.buttons["reader.appearance.done"].tap()
+            waitForPanelToClose("reader.appearance.done", in: app)
+            XCTAssertTrue(back.isHittable)
+            XCTAssertTrue(title.label.contains("第二章"))
+            snapshot("reader-chrome-progress-dark-\(variant)-build28", in: app)
+            app.buttons["reader.return.go"].tap()
+            waitForReturnText("本样书用于", in: app)
+        }
+    }
+
     @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions() {
         let app = start(); defer { app.terminate() }
         for theme in ["day", "warm", "paper", "charcoal", "oled"] {

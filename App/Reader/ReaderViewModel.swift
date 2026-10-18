@@ -30,7 +30,11 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var isReady = false
     @Published private(set) var chapters: [Chapter] = []
     @Published private(set) var bookmarks: [Bookmark] = []
-    @Published private(set) var position: ReadingPosition?
+    let progress = ReaderProgressState()
+    private(set) var position: ReadingPosition? {
+        get { progress.position }
+        set { progress.update(newValue) }
+    }
     @Published private(set) var openFailure: String?
     @Published private(set) var openStatus = "正在打开书籍…"
     @Published var menuVisible = true
@@ -90,7 +94,7 @@ private enum ReaderJumpError: LocalizedError {
         }
         engine?.interactionProvider?.onReadingGesture = { [weak self] in
             guard let self, self.openRequestID != nil, self.isReady, self.interaction.autoHideMenu else { return }
-            self.menuVisible = false
+            if self.menuVisible { self.menuVisible = false }
         }
         engine?.onError = { [weak self] message in
             self?.pauseAutomaticScroll()

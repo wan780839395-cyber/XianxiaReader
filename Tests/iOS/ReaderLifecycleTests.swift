@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import ReadingInterfaces
 import UIKit
@@ -6,6 +7,57 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        var rootNotifications = 0
+        var progressNotifications = 0
+        let rootSubscription = model.objectWillChange.sink { rootNotifications += 1 }
+        let progressSubscription = model.progress.objectWillChange.sink { progressNotifications += 1 }
+        defer { rootSubscription.cancel(); progressSubscription.cancel(); model.close() }
+        let start = Date()
+        var latest: ReadingPosition?
+        for ordinal in 0..<64 {
+            let value = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 8,
+                locatorData: Data("full-locator-\(ordinal)".utf8), chapterTitle: "当前章", progression: 0.42,
+                updatedAt: start.addingTimeInterval(Double(ordinal)))
+            engine.onPositionChanged?(value)
+            latest = value
+        }
+        XCTAssertEqual(model.position, latest)
+        XCTAssertEqual(model.progress.position?.locatorData, latest?.locatorData)
+        XCTAssertEqual(rootNotifications, 0, "Position-only events must not invalidate the reader/settings root")
+        XCTAssertEqual(progressNotifications, 1, "Unchanged display summaries retain the newest full locator silently")
+
+        let deadline = Date().addingTimeInterval(2)
+        var stored = try await services.repository.position(for: book.id)
+        while stored != latest && Date() < deadline {
+            try await Task.sleep(nanoseconds: 1_000_000)
+            stored = try await services.repository.position(for: book.id)
+        }
+        XCTAssertEqual(stored, latest, "The original asynchronous persistence path must still save the newest full locator")
+        let next = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 9,
+            locatorData: Data("next-complete-anchor".utf8), chapterTitle: "下一章", progression: 0.57,
+            updatedAt: start.addingTimeInterval(100))
+        engine.onPositionChanged?(next)
+        XCTAssertEqual(model.progress.summary.chapterTitle, "下一章")
+        XCTAssertEqual(model.progress.summary.progression, 0.57)
+        XCTAssertEqual(progressNotifications, 2); XCTAssertEqual(rootNotifications, 0)
+        // Let all original persistence tasks drain before the fixture is removed.
+        let finalDeadline = Date().addingTimeInterval(2)
+        stored = try await services.repository.position(for: book.id)
+        while stored != next && Date() < finalDeadline {
+            try await Task.sleep(nanoseconds: 1_000_000)
+            stored = try await services.repository.position(for: book.id)
+        }
+        XCTAssertEqual(stored, next)
+        print("Reader progress isolation: events=65 rootNotifications=\(rootNotifications) summaryNotifications=\(progressNotifications)")
+        rootSubscription.cancel()
+        model.close()
+        let beforeLate = model.position
+        engine.onPositionChanged?(ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([99])))
+        XCTAssertEqual(model.position, beforeLate); XCTAssertEqual(progressNotifications, 2)
+    }
+
     @MainActor func testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress() async throws {
         struct Failure: LocalizedError { var errorDescription: String? { "covered page cannot provide a fresh anchor" } }
         let (book, services, engine, model) = try await openedContext()

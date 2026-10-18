@@ -18,7 +18,11 @@ import XianxiaCore
 
     var body: some View {
         VStack(spacing: 0) {
-            if visible && !model.automaticScrollPresented { header.transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10))) }
+            if visible && !model.automaticScrollPresented {
+                header
+                    .background { headerBackdrop }
+                    .transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: -10)))
+            }
             Spacer(minLength: 12)
             if model.returnPosition != nil { returnControls.padding(.bottom, 8).transition(.opacity) }
             if model.automaticScrollPresented { automaticScrollControls }
@@ -29,6 +33,20 @@ import XianxiaCore
         .animation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.92), value: visible)
         .animation(reduceMotion ? nil : .easeOut(duration: 0.16), value: model.returnPosition != nil)
         .transaction { if reduceMotion { $0.animation = nil; $0.disablesAnimations = true } }
+    }
+
+    /// A page-colored edge hides text around the floating header without blur,
+    /// moving the navigator, or intercepting its taps and scrolling gestures.
+    private var headerBackdrop: some View {
+        model.appearance.theme.background
+            .padding(.horizontal, -14).padding(.top, -8)
+            .ignoresSafeArea(edges: .top)
+            .overlay(alignment: .bottom) {
+                LinearGradient(colors: [model.appearance.theme.background, .clear],
+                               startPoint: .top, endPoint: .bottom)
+                    .frame(height: 24).offset(y: 24)
+            }
+            .allowsHitTesting(false).accessibilityHidden(true)
     }
 
     private var returnControls: some View {
@@ -85,19 +103,7 @@ import XianxiaCore
 
     private var footer: some View {
         VStack(spacing: 14) {
-            VStack(spacing: 10) {
-                HStack(alignment: .firstTextBaseline, spacing: 12) {
-                    Text(model.position?.chapterTitle ?? "正文").font(.footnote).lineLimit(1)
-                    Spacer(minLength: 0)
-                    if let progress = model.position?.progression, progress.isFinite {
-                        Text("\(Int(min(max(progress, 0), 1) * 100))%")
-                            .font(.caption.monospacedDigit()).foregroundStyle(palette.secondaryText)
-                    }
-                }
-                if let progress = model.position?.progression, progress.isFinite {
-                    ProgressView(value: min(max(progress, 0), 1)).accessibilityLabel("全书阅读进度")
-                }
-            }
+            ReaderProgressView(state: model.progress, palette: palette)
             HStack(spacing: 12) {
                 pageButton(forward: false)
                 Spacer(minLength: 0)
