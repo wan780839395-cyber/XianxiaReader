@@ -37,3 +37,17 @@ ReaderSurface追加只绘制实际不安全四边的UIKit/CAShapeLayer装饰，�
 ## 最小层级修正已接入，检查/构建前
 
 cover.layer.zPosition=1明确高于后挂载navigator默认层；真实window测试追加迟到红色内容后核父视图合成上下黑边/中心红色，不再只看cover自身。原frame/触摸/完整位置管线保持，旧字体测试与保存预算完全不改，失败首轮及实际录屏/帧保留。即将正式Windows449/17与原test主体对照，再独立完整CI；未编译新源不交付。
+
+## 第二完整CI已实际启动
+
+2026-10-18T11:10:34.515691+00:00：run39122142797/sourcec30ff2d2648a8b2e4ca3bbcae2c2f8f6963d6078/codex/m4-reading-edges。首轮完整失败/原生拒绝按独立历史记录，不继承为本源门槛；新显式z层级+父级合成回归，其余生产/旧test未改，Windows449/17/14原UI主体保持。547冻结blob，预期Core137各/iOS163=136+27/Release29；本轮未完成不交付。首轮watch/collector已完成且完整诊断保留，新本地监看/收取另启于新run目录；恢复先核实际任务不重复dispatch。
+
+第二完整源c30ff2d的Core artifact12134856979已真实校验SHA/CRC/完整提取，137/137与4长TXT Release探针正确，只置Linux门槛；Apple已从排队进入运行。本轮原生复核还将查看旧字体收藏完整录屏，不能只靠重跑退出码忽略首轮保存失败。当前源不再变化，余下为自动/原生/交付独立门槛。
+
+## 条件式原生素材准备前检查点
+
+第二完整39122142797仍运行。新增有界本地素材准备助手仅在collector严格验证全部自动门槛后生成选定PNG联系表与6条完整原录屏一秒总览，不进行人工接受或打包；CI失败则终止准备。手工查看、原始帧窗口、手机性能与交付仍独立。源码继续冻结c30ff2d，原watch/collector复用不重派，所有helpers均记录在当前run目录。
+
+## 第二完整结果与最小测试修正（构建前）
+
+39122142797/c30ff2d实际159/163无Release/IPA，Core137各；4失败为新父级layer合成像素、旧continuous跨章边界、旧进度跨章summary及旧书签UI开书。首轮旧字体收藏本轮过，不能追认旧保存时序根因解决。30 PNG/5表与4完整原录屏16表已看：真实浅深安全边缘已盖好；chrome正文第二章但footer旧章、panel失败尚在书架根本未打开reader；后两不通过放宽等待解决。新CALayer.render parent样本红边与屏幕实际黑边不一致，已查Apple层树render与可见UIView.drawHierarchy文档。仅新test合成部分改用UIKit完整屏幕层级快照，保持原像素值/触摸/frame/2秒要求并追加可审原图，孤立shape仍用原render；生产App/Core/Adapter/Vendor/CI/全部旧test不变。完整1744510958byte artifact SHA/CRC/解压已核，重复ZIP/208分片移除。条件准备助手遇失败已退出；下一步Windows→冻结→独立完整验证，不交付未过源。

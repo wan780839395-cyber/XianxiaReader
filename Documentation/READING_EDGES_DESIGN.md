@@ -13,3 +13,5 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 ## 首候选与修正
 
 首候选13812bd/39118070518实际162/163，新增window/慢滚UI通过但原生慢滚仍透字；Adapter在cover建立后异步addSubview(navigator)，所以本片补[CALayer.zPosition](https://developer.apple.com/documentation/quartzcore/calayer/zposition)公开绘制层级1，不重排或移动原视图。真实window测试追加迟到红色正文视图，核父级实际合成上/下黑边与中心红色、原frame和命中保持；只渲染cover自身的测试不足以捕捉层级错误。旧字体收藏失败原视频显示字体重排/退出fresh保存位置未稳定并可见alert，无Release/IPA，不改旧test/3秒预算或用缓存替代fresh；唯一根因未定，下一完整验证独立记录，重试通过不追认为根因修复。
+
+第二候选c30ff2d/39122142797实际159/163，无Release/IPA；真实原生边缘已遮盖，新增父级layer.render像素失败，另3原用例失败分列。依Apple文档，CALayer.render读取层树，UIView.drawHierarchy读取可见屏幕层级；本源实测前者parent z绘制结果与原生截图不一致，故只纠正新测试的合成采样方式，不改颜色断言/预算或生产App。孤立shape仍核精确透明/颜色，新完整UIKit快照作为附件保留。原字体收藏这次过，不追认首轮根因；旧跨章/summary/书架开书失败仍记录不归因遮罩，不盲改Readium或旧测试。

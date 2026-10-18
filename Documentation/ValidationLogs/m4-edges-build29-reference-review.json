@@ -22,5 +22,12 @@
     }
   ],
   "implementationReview": "Locked Readium3.11 EPUBInfiniteScrollView safeAreaInsetsDidChange assigns contentInset; viewport/offset/Locator left unchanged. Even-odd page-color unsafe edges decoration attached to existing controller, no container or frame loop.",
-  "notPhonePerformanceEvidence": true
+  "notPhonePerformanceEvidence": true,
+  "secondCandidateLayerOrdering": {
+    "url": "https://developer.apple.com/documentation/quartzcore/calayer/zposition",
+    "local": ".cache/recovery/20261018-build29/apple-zposition.md",
+    "sha256": "f9f2469236b10b722dbd1d2dbdf5e8e61c1d23ebc965fd5af4a271c58e0587e5",
+    "reason": "Rendering order for asynchronously appended sibling content; no origin/size/inset changes",
+    "verifiedForMinimumTarget": true
+  }
 }

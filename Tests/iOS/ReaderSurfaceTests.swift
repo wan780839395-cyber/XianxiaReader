@@ -50,9 +50,13 @@ final class ReaderSurfaceTests: XCTestCase {
         lateContent.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         navigator.view.addSubview(lateContent)
         XCTAssertTrue(navigator.view.subviews.last === lateContent)
-        XCTAssertEqual(try pixel(in: navigator.view, at: top), [0, 0, 0, 255])
-        XCTAssertEqual(try pixel(in: navigator.view, at: bottom), [0, 0, 0, 255])
-        XCTAssertEqual(try pixel(in: navigator.view, at: center), [255, 0, 0, 255])
+        let composited = try onscreenSnapshot(of: navigator.view)
+        let attachment = XCTAttachment(image: UIImage(cgImage: composited))
+        attachment.name = "reader-edges-late-mount-composited-build29"
+        attachment.lifetime = .keepAlways; add(attachment)
+        XCTAssertEqual(try pixel(in: composited, at: top), [0, 0, 0, 255])
+        XCTAssertEqual(try pixel(in: composited, at: bottom), [0, 0, 0, 255])
+        XCTAssertEqual(try pixel(in: composited, at: center), [255, 0, 0, 255])
         XCTAssertEqual(navigator.view.frame, originalFrame)
         XCTAssertTrue(navigator.view.hitTest(CGPoint(x: 150, y: 230), with: nil) === button)
         // UIKit recomputes insets and the transparent opening after layout changes.
@@ -62,6 +66,32 @@ final class ReaderSurfaceTests: XCTestCase {
         XCTAssertEqual(try pixel(in: cover, at: CGPoint(x: 5, y: cover.bounds.midY)), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: CGPoint(x: cover.bounds.maxX - 5, y: cover.bounds.midY)), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: center), [0, 0, 0, 0])
+    }
+
+    @MainActor private func onscreenSnapshot(of view: UIView) throws -> CGImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1; format.opaque = false
+        var complete = false
+        let image = UIGraphicsImageRenderer(bounds: view.bounds, format: format).image { _ in
+            // Capture the visible UIKit composition, including z-position.
+            // CALayer.render(in:) above is only for the isolated shape's pixels.
+            complete = view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        }
+        XCTAssertTrue(complete, "UIKit must capture the complete visible hierarchy")
+        return try XCTUnwrap(image.cgImage)
+    }
+
+    @MainActor private func pixel(in image: CGImage, at point: CGPoint) throws -> [UInt8] {
+        let cropped = try XCTUnwrap(image.cropping(to: CGRect(x: point.x.rounded(.down),
+            y: point.y.rounded(.down), width: 1, height: 1)))
+        var bytes = [UInt8](repeating: 0, count: 4)
+        try bytes.withUnsafeMutableBytes { storage in
+            let context = try XCTUnwrap(CGContext(data: storage.baseAddress, width: 1, height: 1,
+                bitsPerComponent: 8, bytesPerRow: 4, space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
+            context.draw(cropped, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+        }
+        return bytes
     }
 
     @MainActor private func pixel(in view: UIView, at point: CGPoint) throws -> [UInt8] {

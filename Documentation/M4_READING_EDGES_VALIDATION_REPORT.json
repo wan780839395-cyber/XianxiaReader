@@ -924,7 +924,7 @@
     },
     {
       "path": "Tests/iOS/ReaderSurfaceTests.swift",
-      "sha256": "67405da73cf295c81f16f486dd2a3b8755f9c1e45ff6cd1808281650c8ea4fc4"
+      "sha256": "6b9829a9e2fa332a8d2b2fbe40d95bb32e5e5d08847ee02e1ce32b4df3b460e8"
     },
     {
       "path": "Tests/iOS/ReadingExperienceTests.swift",
@@ -2469,6 +2469,7 @@
     "Documentation/READING_EDGES_DESIGN.md",
     "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
     "Documentation/ValidationLogs/m4-edges-build29-history-39118070518.json",
+    "Documentation/ValidationLogs/m4-edges-build29-history-39122142797.json",
     "Documentation/ValidationLogs/m4-edges-build29-reference-review.json",
     "Documentation/ValidationLogs/m4-edges-build29-start.json",
     "Documentation/ValidationLogs/m4-edges-build29-windows.json",
@@ -2491,17 +2492,23 @@
       "sourceRevision": "13812bd2ae4f446ce0ebba8c48bdb8b0946946ba",
       "result": "162/163; old font collection case save-position error, no Release/IPA; new tests passed but raw edges visually rejected",
       "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39118070518.json"
+    },
+    {
+      "run": 39122142797,
+      "sourceRevision": "c30ff2d2648a8b2e4ca3bbcae2c2f8f6963d6078",
+      "result": "159/163: new parent layer pixel sampling and 3 original tests; no Release/IPA; native unsafe edges visibly covered",
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39122142797.json"
     }
   ],
   "diagnosticRuns": [],
   "branch": "codex/m4-reading-edges",
-  "run": 39118070518,
-  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39118070518",
-  "sourceRevision": "13812bd2ae4f446ce0ebba8c48bdb8b0946946ba",
+  "run": 39122142797,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39122142797",
+  "sourceRevision": "c30ff2d2648a8b2e4ca3bbcae2c2f8f6963d6078",
   "partialVerification": {
     "linuxCoreTests": 137,
     "longTXTCases": 4,
-    "logSHA256": "438df2682a98e4e2bdaf7ae1bb2ad495e25efef37cd22c1dbd07fb0f656f71e2",
+    "logSHA256": "e748f8cad26edf167c6e531ea2e13397e86818b117bdb386f64e4e36283c19c9",
     "AppleStillPending": true
   },
   "priorBuild28SubjectiveFeel": {
