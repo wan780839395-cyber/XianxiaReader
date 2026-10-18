@@ -259,7 +259,7 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
+    "linuxCorePassed": true,
     "macOSCorePassed": false,
     "iOSTestsPassed": false,
     "deviceReleaseBuilt": false,
@@ -392,7 +392,7 @@
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
-      "sha256": "59caadc9ee3d05f76ce6d1ad6f62f1bd53b6e22df9ebf0877f484ed94fa38f21"
+      "sha256": "ad077fbde1ef24915ddc6a8bc82226a3e9d327f4cf09bc314ba712a14b296f90"
     },
     {
       "path": "App/Reader/ReaderView.swift",
@@ -924,7 +924,7 @@
     },
     {
       "path": "Tests/iOS/ReaderSurfaceTests.swift",
-      "sha256": "0122fde18ed62b6dfba6ae3693f90570c9accc0d3e9180ccd9b18b2f45b8554b"
+      "sha256": "67405da73cf295c81f16f486dd2a3b8755f9c1e45ff6cd1808281650c8ea4fc4"
     },
     {
       "path": "Tests/iOS/ReadingExperienceTests.swift",
@@ -2463,10 +2463,17 @@
     "App/Reader/ReaderSurface.swift",
     "App/Reader/ReaderView.swift",
     "Documentation/HANDOFF_BUILD28_DELIVERY_2026-10-18.md",
+    "Documentation/M4_READING_CHROME_VALIDATION_REPORT.json",
     "Documentation/M4_READING_EDGES_VALIDATION_REPORT.json",
+    "Documentation/PERFORMANCE_TEST_PLAN.md",
     "Documentation/READING_EDGES_DESIGN.md",
+    "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
+    "Documentation/ValidationLogs/m4-edges-build29-history-39118070518.json",
+    "Documentation/ValidationLogs/m4-edges-build29-reference-review.json",
     "Documentation/ValidationLogs/m4-edges-build29-start.json",
+    "Documentation/ValidationLogs/m4-edges-build29-windows.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
     "Tests/UI/ReaderInterfaceUITests.swift",
     "Tests/iOS/ReaderSurfaceTests.swift",
     "project.yml"
@@ -2478,7 +2485,29 @@
   "expectedIOS": 163,
   "expectedIntegration": 136,
   "expectedUI": 27,
-  "priorCandidates": [],
+  "priorCandidates": [
+    {
+      "run": 39118070518,
+      "sourceRevision": "13812bd2ae4f446ce0ebba8c48bdb8b0946946ba",
+      "result": "162/163; old font collection case save-position error, no Release/IPA; new tests passed but raw edges visually rejected",
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39118070518.json"
+    }
+  ],
   "diagnosticRuns": [],
-  "branch": "codex/m4-reading-edges"
+  "branch": "codex/m4-reading-edges",
+  "run": 39118070518,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39118070518",
+  "sourceRevision": "13812bd2ae4f446ce0ebba8c48bdb8b0946946ba",
+  "partialVerification": {
+    "linuxCoreTests": 137,
+    "longTXTCases": 4,
+    "logSHA256": "438df2682a98e4e2bdaf7ae1bb2ad495e25efef37cd22c1dbd07fb0f656f71e2",
+    "AppleStillPending": true
+  },
+  "priorBuild28SubjectiveFeel": {
+    "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
+    "answer": "目前感觉流畅",
+    "notMeasuredFPS": true,
+    "doesNotAcceptBuild29": true
+  }
 }

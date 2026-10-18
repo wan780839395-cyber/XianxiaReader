@@ -1,0 +1,26 @@
+{
+  "recordedAtUTC": "2026-10-18T10:10:33.287273+00:00",
+  "applePublicAPIs": [
+    "UIView.safeAreaInsets (iOS11+)",
+    "UIView.safeAreaInsetsDidChange (iOS11+)",
+    "CAShapeLayer.fillRule (iOS3+)"
+  ],
+  "minimumTarget": "iOS16",
+  "retrieval": "Apple official markdown; web renderer rejected markdown content type, fetched exact official links using urllib",
+  "localReferences": [
+    {
+      "local": ".cache/recovery/20261018-build29/apple-reference-0.md",
+      "sha256": "bd1fc1880e25af9ae065cf341835020a50b423a2d55aa8071c3f8bdfac069e41"
+    },
+    {
+      "local": ".cache/recovery/20261018-build29/apple-reference-1.md",
+      "sha256": "4c2b8180fc980d795038251268b5978807735d8cf600dc736f2ce91def62a910"
+    },
+    {
+      "local": ".cache/recovery/20261018-build29/apple-reference-2.md",
+      "sha256": "fba6ff4d58e2d3c77d9443ee128f010385f4e68a85e163d935212e09ac4640e5"
+    }
+  ],
+  "implementationReview": "Locked Readium3.11 EPUBInfiniteScrollView safeAreaInsetsDidChange assigns contentInset; viewport/offset/Locator left unchanged. Even-odd page-color unsafe edges decoration attached to existing controller, no container or frame loop.",
+  "notPhonePerformanceEvidence": true
+}

@@ -1,5 +1,13 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
+用户补充Build28正文/设置“目前感觉流畅”，已记录主观手感认可，未扩大为实测FPS/所有设备。Build29继续安全区片，不盲改位置/采样管线，见m4-chrome-build28-device-feedback.json.readingAndSettingsFeel。
+
+## Build29 安全区边缘的验证边界（开发中）
+
+本片装饰只由UIKit布局/安全区和页面色更新驱动，不增加逐帧采样、正文解析或滚动手势。真实window像素/触摸命中和浅深慢滚旋转UI属于正确性与画面验证，完整CI/原生复核前不作交付结论，也不能据此报帧率提升。
+
+取得可连接真机的测量条件后，用Build28与最终Build29的同一原创样书、字体/字号、主题和完整位置比较连续滑动及慢滚，各自分开录屏与不录屏样本；记录布局次数/主线程耗时/渲染hitches和内存，不把安全区遮挡消失当DOM采样成本下降。若没有trace，保留用户手感反馈和具体场景，禁止推定60Hz原因或所有卡顿已解决。
+
 ## Build28 进度展示通知范围（已获模拟器计数，手机仍待测）
 
 本片只缩小App的ObservableObject依赖：完整位置留在稳定的ReaderProgressState，ReaderViewModel保持position接口而不转发其通知；ReaderProgressView单独订阅去重的章名/进度摘要。相同显示摘要仍保留最新Locator并执行原SQLite保存，不节流引擎或数据库。新增65事件真实ViewModel/SQLite测试预期root通知0、摘要通知2，同时核完整字节/版本落盘和关闭后的迟到事件；这只是通知范围/持久化验证，不是SwiftUI body实际执行次数或手机帧时间。

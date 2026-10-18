@@ -9,5 +9,13 @@
   "deviceContext": "iPhone13 / iOS16.6.1 / TrollStore as previously confirmed; not re-specified in this reply",
   "phoneFPSMeasured": false,
   "fullDeviceMatrixAccepted": false,
-  "M4Complete": false
+  "M4Complete": false,
+  "readingAndSettingsFeel": {
+    "confirmedAtUTC": "2026-10-18T10:35:31.571736+00:00",
+    "question": "Build28正文滑动和设置菜单现在手感如何",
+    "answer": "目前感觉流畅",
+    "subjectivelySmooth": true,
+    "scope": "User subjective current reading and settings experience on previously confirmed device; no measured frame times/FPS or full-device matrix",
+    "phoneFPSMeasured": false
+  }
 }

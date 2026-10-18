@@ -42,6 +42,17 @@ final class ReaderSurfaceTests: XCTestCase {
         XCTAssertEqual(try pixel(in: cover, at: top), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: bottom), [0, 0, 0, 255])
         XCTAssertEqual(try pixel(in: cover, at: center), [0, 0, 0, 0])
+        // The real engine appends its navigator after ReaderSurface is mounted.
+        // Composite the parent, not just the cover, to catch hidden decorations.
+        let lateContent = UIView(frame: navigator.view.bounds)
+        lateContent.backgroundColor = .red
+        lateContent.isUserInteractionEnabled = false
+        lateContent.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        navigator.view.addSubview(lateContent)
+        XCTAssertTrue(navigator.view.subviews.last === lateContent)
+        XCTAssertEqual(try pixel(in: navigator.view, at: top), [0, 0, 0, 255])
+        XCTAssertEqual(try pixel(in: navigator.view, at: bottom), [0, 0, 0, 255])
+        XCTAssertEqual(try pixel(in: navigator.view, at: center), [255, 0, 0, 255])
         XCTAssertEqual(navigator.view.frame, originalFrame)
         XCTAssertTrue(navigator.view.hitTest(CGPoint(x: 150, y: 230), with: nil) === button)
         // UIKit recomputes insets and the transparent opening after layout changes.

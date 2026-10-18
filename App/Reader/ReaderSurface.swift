@@ -69,6 +69,9 @@ import UIKit
         accessibilityElementsHidden = true
         isOpaque = false
         backgroundColor = .clear
+        // The engine mounts its navigator asynchronously after this view exists.
+        // Keep the decoration above later siblings without moving their frames.
+        layer.zPosition = 1
     }
 
     @available(*, unavailable) required init?(coder: NSCoder) { fatalError("Use init()") }

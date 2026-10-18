@@ -3585,6 +3585,7 @@
   "deviceFeedback": {
     "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
     "generalUseAccepted": true,
-    "scope": "General acceptance of current use; individual chapter/gesture/settings checks were not specified."
+    "scope": "General acceptance of current use; individual chapter/gesture/settings checks were not specified.",
+    "subjectivelySmoothReadingAndSettings": true
   }
 }
