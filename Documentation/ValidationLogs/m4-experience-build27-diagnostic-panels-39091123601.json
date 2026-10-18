@@ -734,5 +734,11 @@
     ],
     "motionAccepted": false,
     "limitation": "Diagnostic source only; first window contains non-monotonic source PTS; third return flashes opening status before native dismissal. Final-source full/native gates remain separate."
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

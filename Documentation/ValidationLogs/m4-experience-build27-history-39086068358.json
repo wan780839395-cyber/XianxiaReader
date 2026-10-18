@@ -96,5 +96,11 @@
     54
   ],
   "fontOpenFrameViewed": "build/ci/39086068358/FailureReview/font-open-001.png",
-  "evidenceBoundary": "Initial ignored local windows.log/tooling.log/candidate.diff aliases were reused for candidate2; do not claim their original bytes remain at those aliases. Original source snapshot and Windows metadata recovered from b799754 Git; original first full CI repository-check text, all runtime logs, xcresult and raw media retained. No source or root delivery package lost."
+  "evidenceBoundary": "Initial ignored local windows.log/tooling.log/candidate.diff aliases were reused for candidate2; do not claim their original bytes remain at those aliases. Original source snapshot and Windows metadata recovered from b799754 Git; original first full CI repository-check text, all runtime logs, xcresult and raw media retained. No source or root delivery package lost.",
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

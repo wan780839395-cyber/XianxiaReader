@@ -2258,5 +2258,11 @@
     "observations": "Settings sheet remains visibly present after Done throughout the actual32.8-37.2s window; AX contains reader.position.save-error below viewport: fresh location unavailable. Return button is covered by the still-open settings sheet. Existing Done awaits saveNow then refuses dismissal on position failure; not a misplaced return target, and not solely an AX race. Root reason for delayed native font reflow not established."
   },
   "fullLogSHA256": "b554345e84e8a768bfc4805e66bdbd45d88ef14827d49417514bac875dd72fac",
-  "proposedScope": "Keep fresh-save3s/fullLocator/error/old race tests; commit settings before closing, request fresh position from reader on native onDismiss, show failures in visible reader. New meaningful covered-capture/settings-commit regression; no timeout widening or coordinate taps."
+  "proposedScope": "Keep fresh-save3s/fullLocator/error/old race tests; commit settings before closing, request fresh position from reader on native onDismiss, show failures in visible reader. New meaningful covered-capture/settings-commit regression; no timeout widening or coordinate taps.",
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

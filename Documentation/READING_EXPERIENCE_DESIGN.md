@@ -72,7 +72,7 @@ TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(da
 后续full39098863950/18c实际155/157，无Release/IPA；原字体/菜单修正回归均过，新旧TXT continuous初次位置与系统Files空白失败。continuous不走新paged guard；封面录屏和AX确认已呈现空白选择器。官方 https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller 说明标准系统选择器能力，现有桥接已用它；其他Safari/模拟器论坛不证明本例根因。因此暂不继续盲改生产逻辑，保持原预算/断言，补无正文同步超时状态与有界系统服务上下文后定向复现5项，再独立完整157；即使下一轮通过也不追认本次失败根因已定。
 
 
-## 设置完成与可见页面的位置保存（当前待编译修正）
+## 设置完成与可见页面的位置保存（编译前设计记录）
 
 完整39103144069/bc3实际156/157，失败原录屏42.24s全部三总览、Done区32.8–37.2s全部89原始帧八表及AX已查看。设置面板一直存在；AX的reader.position.save-error在屏幕下方，内容为当前位置尚未稳定。旧Done先await saveNow，fresh捕获失败便不dismiss；随后返回书库按钮仍在AX但被真实面板覆盖。这是实际控制流程问题，不能仅用按钮坐标点或改测试等待掩盖，也尚未证明底层字体重排延迟唯一原因。
 
@@ -81,3 +81,11 @@ TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(da
 新增一个真实服务/假引擎边界回归：覆盖页捕获必失败时设置仍能按原值持久化且captureCalls为0；恢复可见后原fresh保存失败保持旧完整位置并可见，重试成功写新完整Locator；关闭后提交被拒绝，实际Preferences路径故障时设置提交拒绝且不采样。原全部测试主体保留，原字体收藏+预设UI用例不改点击步骤/原断言；新的完整门槛为Core各137/iOS158（133集成+25UI）/Release27，当前源码尚待此门槛。
 
 采用公开的[SwiftUI sheet(isPresented:onDismiss:content:)](https://developer.apple.com/documentation/SwiftUI/View/sheet%28isPresented%3AonDismiss%3Acontent%3A%29)，只用iOS16已有的关闭回调，不引用更新系统的新接口。对照Apple [XCUIElement.exists](https://developer.apple.com/documentation/xcuiautomation/xcuielement/exists)、[isHittable](https://developer.apple.com/documentation/xcuiautomation/xcuielement/ishittable)以及[XCTNSPredicateExpectation](https://developer.apple.com/documentation/xctest/xctnspredicateexpectation)：存在不等于可点击；本例实际遮挡已经由录屏和保存错误证实，无需改坐标绕过。
+
+## Build27 最终实际结果
+
+上述候选与“待编译”描述均为当时检查点。最终 bc611bc2acb886d0d8a4e15798633ac29979c24a / 完整 CI 39107016454 已独立通过 Linux/macOS Core 各137、iOS158（133集成+25 UI）、无签名设备 Release27；旧字体收藏UI原步骤不变，新设置提交与完整位置失败保旧/重试回归通过。544编译blob、三锁六pins、字体原字节与各平台长TXT Release探针已核。
+
+原生实际复核64张PNG、6条全长录屏的1fps总览和4个原解码窗口318帧。Done关闭、返回保留正文及暗黑书架往返所列行为通过；退出仍能看到小保存指示，书架重排有瞬时交叠，旧正文顶栏遮挡不作本片修复。目录窗口源PTS有一次回退，保留原顺序/原时间，不用它估算帧率。具体素材、范围和限制见 m4-experience-build27-native-review.json；未查看的资料明确列出。25MB字体导入0.07666秒、三次校验合计0.07864秒仅为本次模拟器Debug测量，没有同机旧实现基线，不等于手机卡顿根因或FPS验收。
+
+Build27 IPA/TestKit 已生成并核CRC/内部IPA/原素材摘要，实际路径与摘要见 PROJECT_STATUS.md。手机iPhone13/iOS16.6.1/TrollStore、微信QQ/Alook标准Open In和正文/菜单性能仍待实际验收；无Share Extension、字体删除、无限名额、单书覆盖或M5功能。

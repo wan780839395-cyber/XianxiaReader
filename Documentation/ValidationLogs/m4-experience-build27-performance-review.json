@@ -104,5 +104,17 @@
     "source": "Current user answered unchanged to explicit device/iOS/install question",
     "phoneFPSMeasured": false,
     "scope": "Configuration confirmation only; not Build27 feature/performance acceptance"
+  },
+  "finalFullRunMeasurement": {
+    "run": 39107016454,
+    "sourceRevision": "bc611bc2acb886d0d8a4e15798633ac29979c24a",
+    "environment": "iPhone16Pro iOS18.5 simulator Debug / Xcode16.4",
+    "fontBytes": 25928940,
+    "importSeconds": 0.0766561250002269,
+    "threeValidationsSeconds": 0.07864070833375081,
+    "evidence": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log:7898",
+    "notPhonePerformance": true,
+    "noSameDeviceBaseline": true,
+    "scope": "Final successful full CI measurement; not phone FPS, hitch, energy, or old-timeout root-cause proof. Initial read-only source inventory remains tied to b799754."
   }
 }

@@ -1,5 +1,5 @@
 {
-  "stage": "Build27 source Windows checked; full native CI pending",
+  "stage": "Build27 delivered after full CI, scoped native review, package and original-work preservation; phone/performance/M4 pending",
   "priorSnapshot": "d378e0ec03b3c9a16d468ba4079cebd67d35653e",
   "preservedPackages": [
     {
@@ -239,17 +239,18 @@
     }
   ],
   "gates": {
-    "linuxCorePassed": false,
-    "macOSCorePassed": false,
-    "iOSTestsPassed": false,
-    "deviceReleaseBuilt": false,
-    "desktopLongTXTValidated": false,
+    "linuxCorePassed": true,
+    "macOSCorePassed": true,
+    "iOSTestsPassed": true,
+    "deviceReleaseBuilt": true,
+    "desktopLongTXTValidated": true,
     "Build27DeviceAccepted": false,
     "M4Complete": false,
     "wechatOpenInAccepted": false,
     "qqOpenInAccepted": false,
     "alookOpenInAccepted": false,
-    "devicePerformanceAccepted": false
+    "devicePerformanceAccepted": false,
+    "externalSourceAppsAccepted": false
   },
   "sourceHashes": [
     {
@@ -2545,7 +2546,13 @@
       "run": 39086068358,
       "sourceRevision": "b799754b93f7a967b41b5552014649ca156c85ed",
       "conclusion": "failure",
-      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json"
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json",
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
+      }
     },
     {
       "run": 39092416032,
@@ -2554,7 +2561,13 @@
       "passed": 155,
       "failed": 2,
       "skipped": 0,
-      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json"
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json",
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
+      }
     },
     {
       "run": 39098863950,
@@ -2563,7 +2576,13 @@
       "passed": 155,
       "failed": 2,
       "skipped": 0,
-      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39098863950.json"
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39098863950.json",
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
+      }
     },
     {
       "run": 39103144069,
@@ -2572,10 +2591,16 @@
       "passed": 156,
       "failed": 1,
       "skipped": 0,
-      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39103144069.json"
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39103144069.json",
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
+      }
     }
   ],
-  "sourceRevision": "bc3c573755b3da7344f816318bd578803b9e6c7a",
+  "sourceRevision": "bc611bc2acb886d0d8a4e15798633ac29979c24a",
   "diagnosticRuns": [
     {
       "run": 39089264017,
@@ -2631,6 +2656,12 @@
         "title": "Test - XianxiaReader",
         "topInsights": [],
         "totalTestCount": 15
+      },
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
       }
     },
     {
@@ -2676,6 +2707,12 @@
         "title": "Test - XianxiaReader",
         "topInsights": [],
         "totalTestCount": 16
+      },
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
       }
     },
     {
@@ -2720,6 +2757,12 @@
         "title": "Test - XianxiaReader",
         "topInsights": [],
         "totalTestCount": 19
+      },
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
       }
     },
     {
@@ -2764,9 +2807,1130 @@
         "title": "Test - XianxiaReader",
         "topInsights": [],
         "totalTestCount": 5
+      },
+      "localRawEvidenceRetention": {
+        "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+        "completeLocalRawCIRetained": false,
+        "historicalResultsAndTextLogsRetained": true,
+        "deliveredIPAAndKitUnchanged": true
       }
     }
   ],
   "pendingBuildBranchUpdate": false,
-  "run": 39103144069
+  "run": 39107016454,
+  "bundledFontOriginalsAndLicensesMatch": true,
+  "releaseHasNoBrokenWebKitOverlayDependency": true,
+  "releaseDebugFixtureFlagsAbsent": true,
+  "baseSimulatorVideo": {
+    "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/InteractionVideo/library-interactions.mp4",
+    "bytes": 472617848,
+    "sha256": "29ad0d7e2bbd47f33b713fcb9212cb17844badd4b0c79880a13362c5bbc9cb25",
+    "scope": "Base simulator diagnostic; may show the home screen while XCTest uses another simulator. Not motion acceptance."
+  },
+  "experienceNativeVideos": [
+    {
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E6FCD3BF-7762-4A80-BE85-09A54B396A01.mp4",
+      "bytes": 30233810,
+      "sha256": "dff7491ce9fa7a7f88aa3c21fbbd07bbdf4abc3c9dc522684c8f734a393a6687",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EA6BE70F-0769-422E-91A2-CCDAB8D85900.mp4",
+      "bytes": 17151478,
+      "sha256": "6783e2b2d1ade3309a6683811760929e9ca39432f1d76a49a84445f76f772ca1",
+      "inspected": true
+    }
+  ],
+  "nativeTestVideos": [
+    {
+      "testIdentifier": "LibraryInteractionUITests/testGridRemovalReflowsAndRestoreReturnsOriginalOrder()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CF66A6FA-6B0D-4D0B-810F-EDC8049D5F6D.mp4",
+      "bytes": 14564629,
+      "sha256": "b280a9f71952a5d1210660ddda5e0161844570d00d667c8503cf364fd209f982",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testNativeListSwipeCancelCommitReopenAndRestore()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/033FDBAC-A940-48C5-B0FD-7BECD0F245BD.mp4",
+      "bytes": 13688737,
+      "sha256": "f33b0941e42b93fbf2e189128f0cd4dcda0fba22f1432a731902ed6caa03d7d6",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testReducedMotionRemovalAndRestoreKeepUsableGrid()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9E6F76DA-3B6A-46B8-904F-1DBAA4D26897.mp4",
+      "bytes": 13384706,
+      "sha256": "d13a6af62b36f786cf02456cd676acf35d49f643c78baf8c48eb381207814154",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B39ACA1A-E0F9-4BAC-A300-AA119EB24CF4.mp4",
+      "bytes": 22859627,
+      "sha256": "594dd6aa6f4abd89ef61e6be117913e12933e070c5d51789ac12b17d3a45d207",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "LibraryInteractionUITests/testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/401BDDB8-FAB2-43A1-9134-5E5F1B2593F9.mp4",
+      "bytes": 17415218,
+      "sha256": "39dbb9d9a4c8afcaf3e9a51110aa94ec1d94110b702634ac41d35e178a565846",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderAppearanceUITests/testNativeThemesTypographyAndPersistenceAfterRelaunch()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ABCCD2DF-DA4C-4466-AC5B-3EBD2E4CA52C.mp4",
+      "bytes": 14863880,
+      "sha256": "f83a96e63632b46eec24fca742728fee5ea109fc6fb400adce3777d3fcf79be6",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2158D4D3-E31F-4E44-BB5F-CC1AB969661F.mp4",
+      "bytes": 23900481,
+      "sha256": "49aac314070b12f122176888d88cd571847207bd05800de8b055d7882e28057c",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testReducedMotionNativeGroupedSettingsRemainUsable()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1E1709A7-5D23-483A-9171-2E9055127363.mp4",
+      "bytes": 8671912,
+      "sha256": "2c513a874b716c3e823e8449313abb3d09cd6595ec11d244218cb3db7188ecf6",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6BDE70AA-C392-4A36-A48A-74CEB0FB6B96.mp4",
+      "bytes": 35891014,
+      "sha256": "4a89e2e848ecfd60eb2f02d7aa7c04fb288d054fc5308d28b6aa585a5553301b",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BCDCD5B4-DAA9-4C8F-BF02-4045A21D1F02.mp4",
+      "bytes": 4980086,
+      "sha256": "37b9348e3c96f9890f74409302d82b5082ae73eb2a49d3caa3111858ed8bed85",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/46A3788D-C355-46EC-88E5-D905994D274E.mp4",
+      "bytes": 16743864,
+      "sha256": "b5f719adcb5913c65e10327f3c166bac0e2a04585ffb791c833cb6cbd5870f4a",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6FA4FCD0-9509-4EB8-A6EA-095EE8A46FBC.mp4",
+      "bytes": 56763158,
+      "sha256": "0fa57620c71a195c5dc63898f1b6fed0072efc3f74ff64192031999dd82de272",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E60B6D29-2ECD-434F-896C-0F45386D9593.mp4",
+      "bytes": 11181535,
+      "sha256": "63f784390467a0b93f38d878acee6ae7022fd5154b193c830e486748d990ab90",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/420CFB7C-4F9A-48C4-A67E-785A1A03184B.mp4",
+      "bytes": 41786203,
+      "sha256": "f734528fc79c9456dad671fd9b4cf789b581715592217c359ac565ddfc9fe47c",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollRespectsAdditionalReduceMotion()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E74C49C-3E9B-4B1B-917E-862FEBEF8EA3.mp4",
+      "bytes": 3715949,
+      "sha256": "66e62736ff7b60b7e68fab3131c004ff330f46deff89186d05dfff8c77ae1332",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointContentsBookmarkAndCurrentPositionRelaunch()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/84A6EA33-4FF8-4E62-8499-4517A65D925C.mp4",
+      "bytes": 32179977,
+      "sha256": "5222d85013ba1c2a1231db202d3bf7a7ed1b126d4b69769346f511c46b39ca78",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testReturnPointSearchDarkReducedMotionAndStay()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BB589D89-67AB-4E67-BA28-7F076B394D73.mp4",
+      "bytes": 10974493,
+      "sha256": "26bb87d310705e346b9105944264a25001f2432830c77ebea1a23549a300e629",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/18AED9E2-31F0-42A6-BF81-2791A1D5B1AF.mp4",
+      "bytes": 31563470,
+      "sha256": "01b319235611c5f5b96e791a3f0f039eba0f8df08863fdbf991165a35a960386",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/95C1675D-9766-4EFA-9DDB-9FF6C9F3B3E0.mp4",
+      "bytes": 24560137,
+      "sha256": "9d52272895df2e7b48b0b77482c4f51bbec70212e468cf74a76c22ce1a946cdb",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReadingFontUITests/testSixNativeFontSamplesAndCustomTypographyPersist()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2D9FF48D-2BA7-40F1-BEE3-238A04787D3E.mp4",
+      "bytes": 19213820,
+      "sha256": "fc67a8a0cf85465a91241ef60b2c467bef15cf4467a066cb2a4763f2b03fad65",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D543B345-96B5-4242-A28E-C253A1CFAAF0.mp4",
+      "bytes": 22380004,
+      "sha256": "299c908026f20cd977842a2a77cb61c2b0eff2490a3b0426bb857b7b5e51bfe1",
+      "inspected": false
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B5E30C35-5AEF-4E9D-97AF-F28DAF759438.mp4",
+      "bytes": 53145221,
+      "sha256": "759a180f0e36e1ed5f9f8b2dec53244401d6377cf5f594f8dfb4f51cca7d7284",
+      "inspected": true
+    },
+    {
+      "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/358CB306-E08E-40D7-B2B1-1AB8628EB187.mp4",
+      "bytes": 23141193,
+      "sha256": "89e7792d6c9b0e5f9ecc2851dfd2bf2af3d97f75f3fcde3fa032c2dfb2dd497d",
+      "inspected": true
+    }
+  ],
+  "panelsNativeVideo": {
+    "testIdentifier": "ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()",
+    "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/B5E30C35-5AEF-4E9D-97AF-F28DAF759438.mp4",
+    "bytes": 53145221,
+    "sha256": "759a180f0e36e1ed5f9f8b2dec53244401d6377cf5f594f8dfb4f51cca7d7284",
+    "inspected": true,
+    "scope": "Actual Build27 native directory/bookmarks/search five-theme presentation and dismissal UI recording"
+  },
+  "actionsNativeVideo": {
+    "testIdentifier": "ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults()",
+    "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/358CB306-E08E-40D7-B2B1-1AB8628EB187.mp4",
+    "bytes": 23141193,
+    "sha256": "89e7792d6c9b0e5f9ecc2851dfd2bf2af3d97f75f3fcde3fa032c2dfb2dd497d",
+    "inspected": true,
+    "scope": "Actual Build27 dark reduced-motion bookmark swipe/delete/reopen and query clear/new term/search jump UI recording"
+  },
+  "latestRun": {
+    "conclusion": "success",
+    "createdAt": "2026-10-18T07:15:58Z",
+    "databaseId": 39107016454,
+    "headBranch": "codex/m4-reading-experience",
+    "headSha": "bc611bc2acb886d0d8a4e15798633ac29979c24a",
+    "jobs": [
+      {
+        "completedAt": "2026-10-18T07:16:12Z",
+        "conclusion": "success",
+        "databaseId": 117614976837,
+        "name": "repository-checks",
+        "startedAt": "2026-10-18T07:16:02Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-18T07:16:04Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-18T07:16:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:07Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-18T07:16:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:07Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-18T07:16:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:08Z",
+            "conclusion": "success",
+            "name": "Install static validation dependencies",
+            "number": 4,
+            "startedAt": "2026-10-18T07:16:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:09Z",
+            "conclusion": "success",
+            "name": "Validate repository and Swift syntax",
+            "number": 5,
+            "startedAt": "2026-10-18T07:16:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:10Z",
+            "conclusion": "success",
+            "name": "Test simulator selection and IPA packaging safeguards",
+            "number": 6,
+            "startedAt": "2026-10-18T07:16:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:10Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-10-18T07:16:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:10Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-18T07:16:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:10Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-18T07:16:10Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454/job/117614976837"
+      },
+      {
+        "completedAt": "2026-10-18T07:18:03Z",
+        "conclusion": "success",
+        "databaseId": 117615016628,
+        "name": "core-tests",
+        "startedAt": "2026-10-18T07:16:15Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-18T07:16:17Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-18T07:16:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:44Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-10-18T07:16:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:48Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-18T07:16:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:16:54Z",
+            "conclusion": "success",
+            "name": "Install SQLite development headers inside test container",
+            "number": 4,
+            "startedAt": "2026-10-18T07:16:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:17:14Z",
+            "conclusion": "success",
+            "name": "Compile and test Core with official Swift toolchain",
+            "number": 5,
+            "startedAt": "2026-10-18T07:16:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:17:59Z",
+            "conclusion": "success",
+            "name": "Measure Release TXT cold import and bounded long-book reopen",
+            "number": 6,
+            "startedAt": "2026-10-18T07:17:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:18:00Z",
+            "conclusion": "success",
+            "name": "Upload Core compilation and test logs",
+            "number": 7,
+            "startedAt": "2026-10-18T07:17:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:18:01Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-10-18T07:18:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:18:01Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-10-18T07:18:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:18:01Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-18T07:18:01Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454/job/117615016628"
+      },
+      {
+        "completedAt": "2026-10-18T08:01:10Z",
+        "conclusion": "success",
+        "databaseId": 117615363397,
+        "name": "ios",
+        "startedAt": "2026-10-18T07:18:12Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-18T07:18:13Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-18T07:18:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:18:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-18T07:18:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T07:59:59Z",
+            "conclusion": "success",
+            "name": "Build, test, and package unsigned IPA",
+            "number": 3,
+            "startedAt": "2026-10-18T07:18:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T08:00:55Z",
+            "conclusion": "success",
+            "name": "Upload build logs, test results, project, and resolved packages",
+            "number": 4,
+            "startedAt": "2026-10-18T07:59:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T08:00:58Z",
+            "conclusion": "success",
+            "name": "Upload unsigned device IPA",
+            "number": 5,
+            "startedAt": "2026-10-18T08:00:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T08:00:59Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-18T08:00:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-18T08:01:08Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-18T08:00:59Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454/job/117615363397"
+      },
+      {
+        "completedAt": "2026-10-18T07:18:03Z",
+        "conclusion": "skipped",
+        "databaseId": 117615364465,
+        "name": "reading-diagnostic",
+        "startedAt": "2026-10-18T07:18:03Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454/job/117615364465"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-18T08:01:11Z",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39107016454"
+  },
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 158,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792310058.489,
+    "passedTests": 158,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792308237.437,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "12% of duration",
+        "text": "1 longest test run with outlier durations exceeding 124.85s (three standard deviations)"
+      },
+      {
+        "category": "Longest Test Runs",
+        "impact": "29% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 23.00s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 158
+  },
+  "linuxCoreTests": 137,
+  "macOSCoreTests": 137,
+  "sourceHashesMatched": 544,
+  "performance": {
+    "linux": {
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "cases": [
+        {
+          "afterImportPeakRSSBytes": 25407488,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21737472,
+          "coldImportMilliseconds": 667.997224,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 7.310111,
+          "finalPeakRSSBytes": 28270592,
+          "maximumWindowBytes": 4897,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 183.50188,
+              "peakRSSBytes": 27557888,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 230.920691,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 182.380345,
+              "peakRSSBytes": 28135424,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 32.351688,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 182.16713,
+              "peakRSSBytes": 28270592,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 32.238661,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf8-5MiB-1000chapters",
+            "normalizedBytes": 4895893,
+            "normalizedSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "sourceBytes": 4895893,
+            "sourceSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 4894,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 4895893,
+              "startByte": 4890996,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 4895893,
+          "windowTraversalMilliseconds": 269.642282
+        },
+        {
+          "afterImportPeakRSSBytes": 29061120,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 22114304,
+          "coldImportMilliseconds": 6310.558996,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 21.039456,
+          "finalPeakRSSBytes": 34693120,
+          "maximumWindowBytes": 17077,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1778.151748,
+              "peakRSSBytes": 32714752,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 994.726183,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 1752.981506,
+              "peakRSSBytes": 34562048,
+              "readingPlanBoundaryBytesRead": 5999,
+              "readingPlanMilliseconds": 93.909114,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 1761.295531,
+              "peakRSSBytes": 34693120,
+              "readingPlanBoundaryBytesRead": 5999,
+              "readingPlanMilliseconds": 94.985384,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 3000,
+          "sample": {
+            "name": "utf8-50MiB-3000chapters",
+            "normalizedBytes": 51229893,
+            "normalizedSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "sourceBytes": 51229893,
+            "sourceSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "chapterCount": 3000,
+            "firstChapter": {
+              "endByte": 17074,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 51229893,
+              "startByte": 51212816,
+              "title": "第3000章 云海问道"
+            }
+          },
+          "visitedBytes": 51229893,
+          "windowTraversalMilliseconds": 1145.017506
+        },
+        {
+          "afterImportPeakRSSBytes": 23986176,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21757952,
+          "coldImportMilliseconds": 6219.25815,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 0.198433,
+          "finalPeakRSSBytes": 24903680,
+          "maximumWindowBytes": 65536,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 1744.801954,
+              "peakRSSBytes": 24641536,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 646.454611,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 1743.775618,
+              "peakRSSBytes": 24772608,
+              "readingPlanBoundaryBytesRead": 1599,
+              "readingPlanMilliseconds": 19.47153,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 1761.983343,
+              "peakRSSBytes": 24903680,
+              "readingPlanBoundaryBytesRead": 1599,
+              "readingPlanMilliseconds": 19.215585,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 800,
+          "sample": {
+            "name": "utf8-50MiB-no-newline",
+            "normalizedBytes": 52427840,
+            "normalizedSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "sourceBytes": 52427840,
+            "sourceSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "chapterCount": 1,
+            "firstChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            },
+            "lastChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            }
+          },
+          "visitedBytes": 52427840,
+          "windowTraversalMilliseconds": 672.176031
+        },
+        {
+          "afterImportPeakRSSBytes": 25538560,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 21737472,
+          "coldImportMilliseconds": 1145.820897,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 7.626365,
+          "finalPeakRSSBytes": 28401664,
+          "maximumWindowBytes": 7333,
+          "operatingSystem": "Ubuntu 22.04.5 LTS",
+          "processorCount": 4,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 229.513373,
+              "peakRSSBytes": 27734016,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 247.590066,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 228.759329,
+              "peakRSSBytes": 28278784,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 32.557906,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 228.038234,
+              "peakRSSBytes": 28401664,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 32.304241,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf16-5MiB-1000chapters",
+            "normalizedBytes": 7331893,
+            "normalizedSHA256": "72f2eba92028ba24730b3e7c6f492445a9656322469b5855f8b3e98d33244c60",
+            "sourceBytes": 5231788,
+            "sourceSHA256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 7330,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 7331893,
+              "startByte": 7324560,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 7331893,
+          "windowTraversalMilliseconds": 284.572278
+        }
+      ],
+      "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
+    },
+    "macOS": {
+      "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+      "cases": [
+        {
+          "afterImportPeakRSSBytes": 10878976,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 6160384,
+          "coldImportMilliseconds": 229.234417,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 6.998375,
+          "finalPeakRSSBytes": 16695296,
+          "maximumWindowBytes": 4897,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 19.420209,
+              "peakRSSBytes": 13434880,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 72.56875,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 17.00925,
+              "peakRSSBytes": 15646720,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 17.639958,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 16.902417,
+              "peakRSSBytes": 16285696,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 16.224541,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf8-5MiB-1000chapters",
+            "normalizedBytes": 4895893,
+            "normalizedSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "sourceBytes": 4895893,
+            "sourceSHA256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 4894,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 4895893,
+              "startByte": 4890996,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 4895893,
+          "windowTraversalMilliseconds": 83.120792
+        },
+        {
+          "afterImportPeakRSSBytes": 17154048,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 6914048,
+          "coldImportMilliseconds": 2374.364417,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 16.042,
+          "finalPeakRSSBytes": 31752192,
+          "maximumWindowBytes": 17077,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 140.366792,
+              "peakRSSBytes": 24608768,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 536.247791,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 91.997208,
+              "peakRSSBytes": 30408704,
+              "readingPlanBoundaryBytesRead": 5999,
+              "readingPlanMilliseconds": 51.846417,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 91.506875,
+              "peakRSSBytes": 31752192,
+              "readingPlanBoundaryBytesRead": 5999,
+              "readingPlanMilliseconds": 52.267792,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 3000,
+          "sample": {
+            "name": "utf8-50MiB-3000chapters",
+            "normalizedBytes": 51229893,
+            "normalizedSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "sourceBytes": 51229893,
+            "sourceSHA256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381",
+            "chapterCount": 3000,
+            "firstChapter": {
+              "endByte": 17074,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 51229893,
+              "startByte": 51212816,
+              "title": "第3000章 云海问道"
+            }
+          },
+          "visitedBytes": 51229893,
+          "windowTraversalMilliseconds": 579.608459
+        },
+        {
+          "afterImportPeakRSSBytes": 8404992,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 5799936,
+          "coldImportMilliseconds": 2290.106958,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 0.088625,
+          "finalPeakRSSBytes": 11386880,
+          "maximumWindowBytes": 65536,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 57.332125,
+              "peakRSSBytes": 9584640,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 447.854166,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 57.669166,
+              "peakRSSBytes": 10420224,
+              "readingPlanBoundaryBytesRead": 1599,
+              "readingPlanMilliseconds": 8.628166,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 57.035291,
+              "peakRSSBytes": 10895360,
+              "readingPlanBoundaryBytesRead": 1599,
+              "readingPlanMilliseconds": 8.530167,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 800,
+          "sample": {
+            "name": "utf8-50MiB-no-newline",
+            "normalizedBytes": 52427840,
+            "normalizedSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "sourceBytes": 52427840,
+            "sourceSHA256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419",
+            "chapterCount": 1,
+            "firstChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            },
+            "lastChapter": {
+              "endByte": 52427840,
+              "startByte": 0,
+              "title": "正文"
+            }
+          },
+          "visitedBytes": 52427840,
+          "windowTraversalMilliseconds": 461.312416
+        },
+        {
+          "afterImportPeakRSSBytes": 12091392,
+          "allChecksPassed": true,
+          "baselinePeakRSSBytes": 6062080,
+          "coldImportMilliseconds": 622.942333,
+          "configuration": "Release",
+          "directoryQueryMilliseconds": 4.685667,
+          "finalPeakRSSBytes": 15728640,
+          "maximumWindowBytes": 7333,
+          "operatingSystem": "Version 15.7.9 (Build 24G830)",
+          "processorCount": 3,
+          "reopens": [
+            {
+              "cacheValidationMilliseconds": 17.662542,
+              "peakRSSBytes": 13254656,
+              "readingPlanBoundaryBytesRead": 0,
+              "readingPlanMilliseconds": 97.294417,
+              "reusedReadingPlanCache": false
+            },
+            {
+              "cacheValidationMilliseconds": 18.268917,
+              "peakRSSBytes": 14729216,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 16.384083,
+              "reusedReadingPlanCache": true
+            },
+            {
+              "cacheValidationMilliseconds": 17.665833,
+              "peakRSSBytes": 15335424,
+              "readingPlanBoundaryBytesRead": 1999,
+              "readingPlanMilliseconds": 16.507125,
+              "reusedReadingPlanCache": true
+            }
+          ],
+          "resourceCount": 1000,
+          "sample": {
+            "name": "utf16-5MiB-1000chapters",
+            "normalizedBytes": 7331893,
+            "normalizedSHA256": "72f2eba92028ba24730b3e7c6f492445a9656322469b5855f8b3e98d33244c60",
+            "sourceBytes": 5231788,
+            "sourceSHA256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc",
+            "chapterCount": 1000,
+            "firstChapter": {
+              "endByte": 7330,
+              "startByte": 0,
+              "title": "第1章 云海问道"
+            },
+            "lastChapter": {
+              "endByte": 7331893,
+              "startByte": 7324560,
+              "title": "第1000章 云海问道"
+            }
+          },
+          "visitedBytes": 7331893,
+          "windowTraversalMilliseconds": 121.226875
+        }
+      ],
+      "scope": "Release desktop Core; 3 warm OS-cache reopens per fresh sample process; not iOS memory/UI acceptance"
+    }
+  },
+  "releaseIPA": {
+    "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39107016454\\artifacts\\XianxiaReader-unsigned-ipa\\XianxiaReader.ipa",
+    "bytes": 68863843,
+    "sha256": "7c3d6684929492d36181974e892226800a36e543f76ed22ebb3c1394f9a52e63",
+    "build": "27",
+    "version": "0.0.1",
+    "bundleIdentifier": "com.xianxiareader.app",
+    "minimumIOS": "16.0",
+    "platform": "iPhoneOS",
+    "architecture": "arm64",
+    "executableMode": "0755",
+    "systemSQLite": true,
+    "noticesIncluded": true,
+    "zipCRC": true,
+    "libraries": [
+      "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+      "/System/Library/Frameworks/UIKit.framework/UIKit",
+      "/usr/lib/libxml2.2.dylib",
+      "/usr/lib/libz.1.dylib",
+      "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+      "/System/Library/Frameworks/Foundation.framework/Foundation",
+      "/usr/lib/libobjc.A.dylib",
+      "/usr/lib/libSystem.B.dylib",
+      "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+      "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+      "/System/Library/Frameworks/Combine.framework/Combine",
+      "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+      "/System/Library/Frameworks/CoreText.framework/CoreText",
+      "/System/Library/Frameworks/CoreTransferable.framework/CoreTransferable",
+      "/System/Library/Frameworks/CryptoKit.framework/CryptoKit",
+      "/System/Library/Frameworks/ImageIO.framework/ImageIO",
+      "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+      "/System/Library/Frameworks/NaturalLanguage.framework/NaturalLanguage",
+      "/System/Library/Frameworks/PDFKit.framework/PDFKit",
+      "/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+      "/System/Library/Frameworks/Security.framework/Security",
+      "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+      "/System/Library/Frameworks/WebKit.framework/WebKit",
+      "/System/Library/Frameworks/_PhotosUI_SwiftUI.framework/_PhotosUI_SwiftUI",
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libcompression.dylib",
+      "/usr/lib/libsqlite3.dylib",
+      "/usr/lib/swift/libswiftAVFoundation.dylib",
+      "/usr/lib/swift/libswiftCompression.dylib",
+      "/usr/lib/swift/libswiftCore.dylib",
+      "/usr/lib/swift/libswiftCoreAudio.dylib",
+      "/usr/lib/swift/libswiftCoreFoundation.dylib",
+      "/usr/lib/swift/libswiftCoreImage.dylib",
+      "/usr/lib/swift/libswiftCoreLocation.dylib",
+      "/usr/lib/swift/libswiftCoreMIDI.dylib",
+      "/usr/lib/swift/libswiftCoreMedia.dylib",
+      "/usr/lib/swift/libswiftDarwin.dylib",
+      "/usr/lib/swift/libswiftDataDetection.dylib",
+      "/usr/lib/swift/libswiftDispatch.dylib",
+      "/usr/lib/swift/libswiftMetal.dylib",
+      "/usr/lib/swift/libswiftNaturalLanguage.dylib",
+      "/usr/lib/swift/libswiftOSLog.dylib",
+      "/usr/lib/swift/libswiftObjectiveC.dylib",
+      "/usr/lib/swift/libswiftQuartzCore.dylib",
+      "/usr/lib/swift/libswiftSpatial.dylib",
+      "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+      "/usr/lib/swift/libswiftXPC.dylib",
+      "/usr/lib/swift/libswift_Concurrency.dylib",
+      "/usr/lib/swift/libswiftos.dylib",
+      "/usr/lib/swift/libswiftsimd.dylib",
+      "/usr/lib/swift/libswiftUIKit.dylib",
+      "/usr/lib/swift/libswiftCoreGraphics.dylib",
+      "/usr/lib/swift/libswiftPhotosUI.dylib"
+    ]
+  },
+  "latestEvidence": "Documentation/ValidationLogs/m4-experience-build27-success.json",
+  "nativeReview": {
+    "path": "Documentation/ValidationLogs/m4-experience-build27-native-review.json",
+    "imagesInspected": true,
+    "videosInspected": true,
+    "consecutiveFramesInspected": true,
+    "reviewedPanelSequencesAccepted": true,
+    "imageCount": 64,
+    "reviewedVideoCount": 6,
+    "originalFrameCount": 318,
+    "scope": "Only the images, selected original recording overviews and original-frame intervals listed in the evidence. Not all retained recordings or phone performance.",
+    "motionFullyAccepted": false,
+    "unacceptedCaptures": [
+      {
+        "name": "experience-fourth-reopen-readable-build27",
+        "reason": "Observed historical reader header/body overlay or geometry limitation; retained as evidence, excluded from delivery previews and steady-state geometry acceptance."
+      },
+      {
+        "name": "reader-menu-dark-build16",
+        "reason": "Observed historical reader header/body overlay or geometry limitation; retained as evidence, excluded from delivery previews and steady-state geometry acceptance."
+      },
+      {
+        "name": "reader-menu-light-build16",
+        "reason": "Observed historical reader header/body overlay or geometry limitation; retained as evidence, excluded from delivery previews and steady-state geometry acceptance."
+      },
+      {
+        "name": "reader-mode-menu-build16",
+        "reason": "Observed historical reader header/body overlay or geometry limitation; retained as evidence, excluded from delivery previews and steady-state geometry acceptance."
+      }
+    ],
+    "limitations": [
+      "Only selected64 PNGs and6 of9 selected recordings reviewed; other114 PNGs and3 recordings retained unreviewed.",
+      "Whole recordings sampled at1fps for overview; four windows retain all original decoded frames, scaling only, no fps filter/interpolation. TOC window contains1 sourcePTS inversion, not reliable frame-time measurement.",
+      "Historical reader header/body overlap and chapter whitespace not fixed/accepted by this slice; excluded fourth-reopen preview.",
+      "Header save indicator during native reader dismissal and transient shelf reordering overlaps remain observed; motionFullyAccepted=false.",
+      "iPhone13/iOS16.6.1/TrollStore configuration confirmed, but Build27 phone performance/Open In WeChat/QQ/Alook/ordinary signing/accessibility/rotation/full reduced-motion matrix pending."
+    ],
+    "acceptedScope": "Selected font collection/query/presets/native settings dismissal, dark shelf search and repeat reader sessions, cover cancellation and inherited themed panel action states only. Original position persistence tests passed independently. No phone FPS/all animations/legacy geometry acceptance."
+  },
+  "deliveredBuild27": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingExperience-Build27.ipa",
+      "bytes": 68863843,
+      "sha256": "7c3d6684929492d36181974e892226800a36e543f76ed22ebb3c1394f9a52e63"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingExperience-Build27-TestKit.zip",
+      "bytes": 76493616,
+      "sha256": "4abcce4a33ce87e9fee896db9a5544130e953db912ee5c951d861910da809ca8"
+    }
+  },
+  "historicalCIRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "currentCompleteRunRetained": 39107016454,
+    "historicalRuns": [
+      39038829961,
+      39086068358,
+      39089264017,
+      39091123601,
+      39092416032,
+      39097420131,
+      39098863950,
+      39102171529,
+      39103144069
+    ]
+  }
 }

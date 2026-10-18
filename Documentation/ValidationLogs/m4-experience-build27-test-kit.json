@@ -1,0 +1,352 @@
+{
+  "recordedAtUTC": "2026-10-18T08:14:35.942806+00:00",
+  "run": 39107016454,
+  "sourceRevision": "bc611bc2acb886d0d8a4e15798633ac29979c24a",
+  "deliveredBuild27": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingExperience-Build27.ipa",
+      "bytes": 68863843,
+      "sha256": "7c3d6684929492d36181974e892226800a36e543f76ed22ebb3c1394f9a52e63"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingExperience-Build27-TestKit.zip",
+      "bytes": 76493616,
+      "sha256": "4abcce4a33ce87e9fee896db9a5544130e953db912ee5c951d861910da809ca8"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    },
+    {
+      "path": "Evidence/UnacceptedNativeCaptures/font-txt-byte-anchor-build23.png",
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3"
+    },
+    {
+      "path": "Fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a"
+    },
+    {
+      "path": "Fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "BuiltInFontLicenses/MaShanZheng-Regular-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "BuiltInFontLicenses/PROVENANCE.json",
+      "sha256": "02ff8d5fc3a03c388312f6ad1b5ece510373aeaea98276028e09d0b83f7a3605"
+    },
+    {
+      "path": "BuiltInFontLicenses/README.txt",
+      "sha256": "f5c2c83d3072883178ad73f7bb739faaa1d40fce2a9f5a67d7d5f19dea25933f"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSansSC-Regular-OFL.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZCOOLXiaoWei-Regular-OFL.txt",
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZhuqueFangsong-Regular-OFL.txt",
+      "sha256": "66cc01ad4df62fca6936431a426104cb32a52ce8da49de9a7d643e02d7659043"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-xiaoWei-build24.png",
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-maShanZheng-build24.png",
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-zhuque-build24.png",
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSans-build24.png",
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-wenKai-build24.png",
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSerif-build24.png",
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d"
+    }
+  ],
+  "previews": [
+    {
+      "name": "experience-layout-custom-reopened-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/00FE565A-C53F-44D3-AD1B-9D2E7C911409.png",
+      "sha256": "603bc5620c7acc9d5bbc62d6e0d0e8676ebda2d9519223ed06679b989d9a212c",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309810.343,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-advanced-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CC24DCA9-46CB-4F8E-A879-F186E1F33DB1.png",
+      "sha256": "c85e9e99a108f7657b20c72ecc5ddcba01347b5813eef1bcece96e6c99ced099",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309796.625,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-comfortable-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/97B81C5C-2E81-4B83-B9C1-EF7FC71A2695.png",
+      "sha256": "019a7fa544289dfab5a0eafecb9d39bc6e5b5bd550118a6e1c9aa2bcce7a0821",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309792.661,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-compact-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E1DC2D1B-0607-45C6-A981-268A38497C7D.png",
+      "sha256": "9910a9b7fd401051e412c2c0763298474d2ae3c281951d65dad5e91d01d293bb",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309791.107,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-layout-spacious-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5BB54DE0-8730-4552-9857-95649C2874BA.png",
+      "sha256": "2fe9e698ceccadf5e7905a2389ec24283c0eadd8ce71a0a203437230abae0bc2",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309786.19,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-imported-font-search-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9853E83E-10BC-4034-BE5D-BD990843C495.png",
+      "sha256": "65b2668c9c00bf861b83e77e3d33fdc085930fa976986d04b0fe1b5a5246362d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309777.871,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-imported-font-grid-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2F79FA04-AAAF-4307-A294-EF490C17EE79.png",
+      "sha256": "2597961dcf6e0e496629a87753a3e7210d286f2657906ed6d8ade519517fda70",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309772.924,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-font-collection-entry-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6E8570FF-4987-4203-99CA-C890928EFC1B.png",
+      "sha256": "392906d3160ac0d54dc3d296dab2a9a8e33cf766d8b368ccfaf809bcd2c084bf",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792309769.971,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-warm-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9291B9E9-8E46-4DD5-85EB-A077BA71951D.png",
+      "sha256": "e97214f6e6f4249fe2d8577d71b7939dd7318fe0e93640f17fe677fde526f9c1",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309862.134,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-warm-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/68F7EBB8-F368-4F4E-8616-76889B586138.png",
+      "sha256": "f3533ab2118e0f392e2b2f2c193eb4bd94abcb058a02257ebee6e02e3567b096",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309849.438,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-charcoal-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2FAF7386-7B91-4A46-AE77-4C828487EB5A.png",
+      "sha256": "4cac95ad8ff6a2a94efcaabb06236fe0d2cfed85113bf628950afb87fa08e009",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309846.617,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-charcoal-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/59C40BDB-B55E-4C5D-ADB8-B94EAB2A992E.png",
+      "sha256": "e0aaeb76d7d5b69617486669ef244e30938f56d50f29b14ca7ef2a893af85af7",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309834.068,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-return-warm-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/1CADC49D-7900-41D7-A798-0E9DA2324D52.png",
+      "sha256": "4cac95ad8ff6a2a94efcaabb06236fe0d2cfed85113bf628950afb87fa08e009",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309831.523,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-search-warm-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/ED8EA681-314E-46EB-965D-7AF7A2C533A0.png",
+      "sha256": "bc8ddf230b18505e98ee5fd362c98c813a14c6776424aa655c80f0520456aa65",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309819.411,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "experience-shelf-system-dark-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C4D3E269-D5F7-4D22-A1AC-FFC714074C62.png",
+      "sha256": "76c9e832b41a9465361f56f4a018eec7cca20b7a45fa399d33771eca73f92657",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792309816.463,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    },
+    {
+      "name": "reader-settings-compact-layout-build27",
+      "path": "build/ci/39107016454/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5B4BAB87-F3AF-472B-927F-CA94A81F5D2C.png",
+      "sha256": "c7525e21bf283f1f1646b7bb0ae0d10d4377a6cd9ff456c831fe809173d4f20f",
+      "testIdentifier": "ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen()",
+      "timestamp": 1792309935.689,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ]
+    }
+  ],
+  "deviceAccepted": false
+}

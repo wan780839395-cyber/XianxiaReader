@@ -3577,5 +3577,12 @@
     ]
   },
   "finalPreservationRecord": "build/ci/39038829961/final-preservation-check.json",
-  "finalDeliveryRecord": "build/ci/39038829961/final-delivery-receipt.json"
+  "finalDeliveryRecord": "build/ci/39038829961/final-delivery-receipt.json",
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-18T08:19:00.807901+00:00",
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

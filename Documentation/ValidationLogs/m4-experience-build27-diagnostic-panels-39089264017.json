@@ -62,5 +62,11 @@
       "sha256": "016244a8544e15e6c1c3787dab78715d9192fdc90922acda2aa7e9a5cbd3ad4c",
       "observations": "Actually viewed original 3-font collection PNG: two-column cards, natural sample sizes, selected iA, readable Chinese fallback and consistent pale green surfaces. Search drawer remains collapsed in this capture; no motion/FPS gate."
     }
-  ]
+  ],
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

@@ -2262,5 +2262,11 @@
       "path": "build/ci/39098863950/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
       "sha256": "271fcd831bfd2e6aafe59b319759e3de8cca40754a7be7958ddaf88cc1b49f80"
     }
-  ]
+  ],
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

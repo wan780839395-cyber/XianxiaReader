@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-17T15:07:27.146609+00:00",
+  "recordedAtUTC": "2026-10-18T08:19:42.787614+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 1013,
+  "fileCount": 1046,
   "files": [
     {
       "path": ".gitattributes",
@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/ios-build.yml",
-      "bytes": 5469,
-      "sha256": "420d4a69e8144c5d24fde0adfb005ce445bc1ebb151855a3835ce9d6c9780f9d"
+      "bytes": 5479,
+      "sha256": "bd917020fb1f7fb59f6eebac4e2f49f55d66b910d8ce71ea0845e9f133706cd6"
     },
     {
       "path": ".gitignore",
@@ -25,13 +25,13 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 33161,
-      "sha256": "3b49a5d1379e6ad0f5049df4230f1b042df48d180a8f7b8e0959b8222c23aeab"
+      "bytes": 34780,
+      "sha256": "9e92ce8d3205d133a0549622b4ead955acc3c791763c908c846800163a21f4b2"
     },
     {
       "path": "App/AppRootView.swift",
-      "bytes": 1591,
-      "sha256": "e02c3bdb9501c01ae0a7cb9c1231fc65f1378b4b30388932eade58f8f2f03c31"
+      "bytes": 1871,
+      "sha256": "62cc4867236f46ec91de135e103eb77aad5076688cfb6f780096dcc565012995"
     },
     {
       "path": "App/AppServices.swift",
@@ -52,6 +52,11 @@
       "path": "App/Import/EPUBImportService.swift",
       "bytes": 4337,
       "sha256": "f7a81d200056b71828f35f0002b4fe75dc0481e889b3804aef7ea2f0d45ceb80"
+    },
+    {
+      "path": "App/Import/FontDocumentInbox.swift",
+      "bytes": 3415,
+      "sha256": "976085f45993fe8ff2437524eb38b93b4927db3a6c13858d006b3b5f952a8a29"
     },
     {
       "path": "App/Library/BookCoverArtwork.swift",
@@ -95,8 +100,8 @@
     },
     {
       "path": "App/Library/LibraryInteractionFixture.swift",
-      "bytes": 4361,
-      "sha256": "ab985d71d949aa9d83d73f249564cd824ba41344fba860ea65db1c87329390e7"
+      "bytes": 4660,
+      "sha256": "b06a1183b6ae854821aa1876c519453b04651f3f19ac6a2fda99d6ec33333574"
     },
     {
       "path": "App/Library/LibraryMotion.swift",
@@ -115,13 +120,18 @@
     },
     {
       "path": "App/Library/LibraryView.swift",
-      "bytes": 16198,
-      "sha256": "9e88309d758ecc8f51f0201756186da66600eaacf3371a83e69d3f5f937e0acd"
+      "bytes": 16880,
+      "sha256": "2ce9810a248488fa4f7a39dcec50adc006d2e518aaedb6b7791bd82acb457de7"
     },
     {
       "path": "App/Library/LibraryViewModel.swift",
       "bytes": 12136,
       "sha256": "90cf728ded067b3a6fedfd219cb24da4810528422831cd308e22012049d94a96"
+    },
+    {
+      "path": "App/Library/ReaderPresentation.swift",
+      "bytes": 195,
+      "sha256": "bad485d608c5329e649b1f8b2376f6a92573d80334148927fc5e7a3ef1c4e1c7"
     },
     {
       "path": "App/Library/TXTEncodingSheet.swift",
@@ -135,18 +145,28 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "bytes": 24552,
-      "sha256": "e737f4145f32fa77ed7104894a50db048c7efdba012eec34895a7336b6686840"
+      "bytes": 27606,
+      "sha256": "62adc867e738de4f24fca0535ba351b2b6173dfb91f9bdcfa44794af8d3e0c65"
     },
     {
       "path": "App/Reader/ReaderCollectionViews.swift",
-      "bytes": 6618,
-      "sha256": "b2494574a5729cf7282d9f8fe43b452a1096bb23ce70d5eb9ac05138ac5ea2b8"
+      "bytes": 6591,
+      "sha256": "8ce4aab2c25fd2535812d029a6a8618498aaf0a4b29e99230215ce44bbfca51a"
+    },
+    {
+      "path": "App/Reader/ReaderColorScheme.swift",
+      "bytes": 2714,
+      "sha256": "0d747f533e9e15318b017d23715348f731c4ed0a08425308a17873f6d01cb8ee"
+    },
+    {
+      "path": "App/Reader/ReaderImportedFontsView.swift",
+      "bytes": 6230,
+      "sha256": "85aad462fb0b07ea0a193b42db55de5c61baa9513e0f999877aca60611ac6919"
     },
     {
       "path": "App/Reader/ReaderMenuView.swift",
-      "bytes": 12532,
-      "sha256": "0c5c604a8680e38436121651db4fc506525956e50be7cd05011c41c34494609c"
+      "bytes": 12757,
+      "sha256": "aa73a54b62405b7d96a625ce6453070ebd4f0a22cbbd6cb66c5632e20dac8a87"
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
@@ -155,13 +175,13 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "bytes": 4114,
-      "sha256": "3c49ca1a485a00b2076c6b9e91b92f4724bea571e27a44b32f0ec5f093d20378"
+      "bytes": 5601,
+      "sha256": "d3acac9677025f4a718b1506d28d816025df17256968b59b44e71f764694fef0"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "bytes": 26433,
-      "sha256": "109d0b07e004e4ed38487cc796ec6031190bfa75cd4220c2bed4668732ff4073"
+      "bytes": 29571,
+      "sha256": "0fa6f52ce34951a6f7db06e32f2b69b8d9fd290ffa41491470ae4bbc099214d2"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -175,13 +195,18 @@
     },
     {
       "path": "App/Reader/ReadingFontPreview.swift",
-      "bytes": 2528,
-      "sha256": "a96a8565e68db411f067cf54da28a86a158d4b18d5de3617c90399de593119aa"
+      "bytes": 2650,
+      "sha256": "d22c50d600c4f634ded859da4e7862d0cdc20ecb32613de6648777e509f8efbd"
     },
     {
       "path": "App/Reader/ReadingFontPreviewRenderer.swift",
       "bytes": 5959,
       "sha256": "86e410a4b5b99b299f36188a9b5cfd5fadbba20e6b0192d0615bc9932f2b77fe"
+    },
+    {
+      "path": "App/Reader/ReadingLayoutPreset.swift",
+      "bytes": 1836,
+      "sha256": "b9f000f4551f0b11cf0b63279bc7b8e3fbfe98e3463c6075d7f45c6916cd74c1"
     },
     {
       "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
@@ -275,8 +300,8 @@
     },
     {
       "path": "App/Resources/Info.plist",
-      "bytes": 1363,
-      "sha256": "19b7aa784be57a899798e2130e7ef1e7e986c57f9d71fcfaeafac72b256acb69"
+      "bytes": 1855,
+      "sha256": "1b9809e2ea8a6edc54de45035b343f2f7c1d60468f9ede2ffccf660c8f84ccd5"
     },
     {
       "path": "App/Resources/ThirdPartyNotices.txt",
@@ -285,8 +310,8 @@
     },
     {
       "path": "App/Search/ReaderSearchField.swift",
-      "bytes": 3477,
-      "sha256": "cda19185e415aea4d2d2fa7893968bf782598e0d3a06014ea7899f1b7c2a4483"
+      "bytes": 3624,
+      "sha256": "66b64ec1118a99152620e082bbd8cff81979cb301b45e9153240dd8ca8598af5"
     },
     {
       "path": "App/Search/ReaderSearchView.swift",
@@ -325,8 +350,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 82711,
-      "sha256": "0e69962858c937f7e87945a699c327e76a0a1706f9dd038d64b21798f23697cd"
+      "bytes": 90283,
+      "sha256": "de6c2cd47b826bab9278dc72f463166be6cef9c6ea7026b6719373ad443ab359"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -335,8 +360,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 54628,
-      "sha256": "ab55431c453f80938e7a9c92aad2257cb63852b900a9f44656033696835eb7c7"
+      "bytes": 62200,
+      "sha256": "3caccc8f7a671501fde8a5350208f628eadd6b8a2c486a74d5a4dea49e738172"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -369,9 +394,19 @@
       "sha256": "520d20ff3a210166d98686c8ee511c4983c1f424b686a0404af35eed1890e4ea"
     },
     {
+      "path": "Documentation/HANDOFF_BUILD26_DELIVERY_2026-10-18.md",
+      "bytes": 7586,
+      "sha256": "c5f542503993e08d25a633d26fff08743007f09c1d90a5b7dca64fd453210775"
+    },
+    {
       "path": "Documentation/HANDOFF_BUILD26_DEVELOPMENT_2026-10-17.md",
       "bytes": 17887,
       "sha256": "2806959da73be23905e93ea475ef9f9aa87639c53f4b0e14402186c1b7d1098a"
+    },
+    {
+      "path": "Documentation/HANDOFF_BUILD27_DEVELOPMENT_2026-10-18.md",
+      "bytes": 25984,
+      "sha256": "0ad682298bcd5276e92102a2a953537a619a35b121e04cfd6ba780ab9fe6152c"
     },
     {
       "path": "Documentation/HANDOFF_HISTORY_2026-10-13.md",
@@ -739,9 +774,14 @@
       "sha256": "37f002a05471717b0fd726edfbd9ea736b3fdaaca8da10469ee077742d081308"
     },
     {
+      "path": "Documentation/M4_READING_EXPERIENCE_VALIDATION_REPORT.json",
+      "bytes": 173521,
+      "sha256": "0ff2a01a1006252186ddd90642acf9406f824e690ae31e0d0589b4f741931424"
+    },
+    {
       "path": "Documentation/M4_READING_PANELS_VALIDATION_REPORT.json",
-      "bytes": 155802,
-      "sha256": "8872f553fed09d705162bf52ccb29aee50f7b54f8f2a7bee6c4fb97a6cfafb67"
+      "bytes": 159701,
+      "sha256": "4ee1cae1e76505bc6df2f9044428a9eebec3c9d4343d55eddd1807844ea7c07c"
     },
     {
       "path": "Documentation/M4_RETURN_VALIDATION_REPORT.json",
@@ -770,8 +810,8 @@
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
-      "bytes": 12644,
-      "sha256": "1d61c1df7e6c8130d1269e8d33de5096447727b473dcc4dc4ec2fe6e6f2a89fd"
+      "bytes": 16085,
+      "sha256": "b4aadc7ac487d04253ec13bf16395b2e3fa04a92af391dba54e5f941e8891a11"
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
@@ -797,6 +837,11 @@
       "path": "Documentation/READING_DEPTH_DESIGN.md",
       "bytes": 9672,
       "sha256": "15b175fef41ee01c1bd95cc617587321fcfecb37089be41efa1f422fd38057cb"
+    },
+    {
+      "path": "Documentation/READING_EXPERIENCE_DESIGN.md",
+      "bytes": 18354,
+      "sha256": "9bcbb6bee87e14a1aac1244475d810391679aa2911d6bf74fd070fe859dcaa0c"
     },
     {
       "path": "Documentation/READING_FEATURE_IDEAS.md",
@@ -1744,6 +1789,111 @@
       "sha256": "ced196131c1e960ca8eaeea74240abb30b5abf0e6d129fd2b1b5db71844c1607"
     },
     {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-18c-windows.json",
+      "bytes": 2297,
+      "sha256": "973ba0988a83d75dabf56621c20fce16571895451dbf3e86a6a822507f6addae"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-bc3-windows.json",
+      "bytes": 2297,
+      "sha256": "6b104ef403bc4cf576379d28ab4748dffb6b32bf10b301b6a01efbfdde41d2a0"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-c518-windows.json",
+      "bytes": 2297,
+      "sha256": "6a8167b32f50e3670773f1995c4d990792d171eaeb8b08ad26d4be1df89cfa53"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+      "bytes": 7373211,
+      "sha256": "04a77d99809cfc4c4cb9ae9eddef0dbfe835a12ed54d875f48acd26c11ca2a3c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39089264017.json",
+      "bytes": 3389,
+      "sha256": "348010c29eacafd24af90191c8e62a4412d2f81b67ba3ed2ac24dc6e0e70cf82"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39091123601.json",
+      "bytes": 38548,
+      "sha256": "30530c29cfb80b5d2d5f3e064771cf644b3b77039a87fcb2132d9571f60d2d6c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39097420131.json",
+      "bytes": 5404,
+      "sha256": "d693c0f2dc014d4249a3af1242cf2685b8b0a3f4a833b7201191b1bb5e8061e9"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-recovery-39102171529.json",
+      "bytes": 4841,
+      "sha256": "e57e024e0162b95bc6cfc3f7dcf83677f4680fb805c8682474b69865ee106140"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-first-windows-record.json",
+      "bytes": 2296,
+      "sha256": "10332d77cdcbbc92f7af039d3180726f02db886f92462d3d562fa2c1f6a60de3"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json",
+      "bytes": 5523,
+      "sha256": "accd26fe58fc8fff5e2f93f7c6bad86068cbfab4df50b9bd57a9cd8544a32162"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json",
+      "bytes": 105192,
+      "sha256": "42261c7480f1c8a72ad8a2dc67114bdab4e8408d504695948c4c2e67579b5a61"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-history-39098863950.json",
+      "bytes": 104309,
+      "sha256": "722abcf4a95fe900aeeac92fa2d1aa278cf3394a5ea2c91aef1d9d074d8d2dab"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-history-39103144069.json",
+      "bytes": 104587,
+      "sha256": "5d23ba015c77e70593bb24085145d47dc8cf5c711ba7788ab72a9880f0bc33b6"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-native-review.json",
+      "bytes": 196931,
+      "sha256": "32dc128b5cb09c5bf18e16f8ee8c59256f51cb7b80bdba7a0c661ab987952814"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-performance-review.json",
+      "bytes": 6559,
+      "sha256": "05bcb4d140557afbdd93d49d3ad2ab389adbc49bc252004007877d9290697279"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-reference-review.json",
+      "bytes": 927,
+      "sha256": "0c7df88f2c09e70eb84a996ed094799600a26dc0519beb0b4d63c2d924d95f35"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-runtime-diagnostics.json",
+      "bytes": 791,
+      "sha256": "eebcbe7d3f12819ec217e3a3b174e738f6f138d5cf97c8b5599eb19f7eff40fe"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-start.json",
+      "bytes": 192172,
+      "sha256": "680eebe3da6edbd965f8a363b2b5efa8d296b1c9b5561172a1cf4c2bb5fcd3a7"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-success.json",
+      "bytes": 21069,
+      "sha256": "2cfbc181446c88dc4341f9bdbbee79687f1615c8357f0f065cb6ebda52d8a230"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-test-kit.json",
+      "bytes": 14410,
+      "sha256": "f84ccfb1d1629c9af14d817caf259b287da0e047a663e72aa7baebd444d7d408"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-experience-build27-windows.json",
+      "bytes": 2297,
+      "sha256": "9121a4ddbae9b15b3ae273d61c2a30b8e49ee775ebdfddf3ccba52233f872c6e"
+    },
+    {
       "path": "Documentation/ValidationLogs/m4-font-build23-api-review.json",
       "bytes": 2077,
       "sha256": "2177509ed801a86d3fc1b67c9be7a7d242735a4525591458c9984e45f64fa9b0"
@@ -2580,8 +2730,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 7586,
-      "sha256": "c5f542503993e08d25a633d26fff08743007f09c1d90a5b7dca64fd453210775"
+      "bytes": 9975,
+      "sha256": "f5d8cfb115f9b4abf0f7298eb05328d9a24461e669e16052bff5f95d44b902e8"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -2655,8 +2805,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 92269,
-      "sha256": "7acaec7390af75b54d3364851003c948b76e65f2e42cbf40819e809d79b16d02"
+      "bytes": 99842,
+      "sha256": "5841cc1304cd781adb8c97107374b9a1802d643fb7c1ba0857cc4b34bb28a0da"
     },
     {
       "path": "Package.resolved",
@@ -2840,8 +2990,8 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
-      "bytes": 4154,
-      "sha256": "9b54f43b1ca68608ffb90bad54da11612f090662f6626c4a88da26613235ca6d"
+      "bytes": 4936,
+      "sha256": "28f272160181f8ee1d36a0bd8916393fbc26ac3a99468d642042458c3e765fb9"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
@@ -2927,6 +3077,11 @@
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
       "bytes": 10307,
       "sha256": "f76663171daa1cba2a436cd40d31e5956ca5904a5613c856c3d349565cfe285d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+      "bytes": 2651,
+      "sha256": "1a9a2b1302f9972b6da02b726774446cba46538900e5188f0d7bd3f7deb46923"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
@@ -3025,13 +3180,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 62547,
-      "sha256": "000abff90aa6b24fcbf8ebc52da69cd95063c9f38d0512a3756046d67ea895e3"
+      "bytes": 70119,
+      "sha256": "9f22b1e669d579938c988b6f231aaa86e1830da8da4b3816073a6977ba6f6d53"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 81946,
-      "sha256": "54b4eeac4193cc654145354a7615fe72d2511255e96b297f601f7d14a4362505"
+      "bytes": 89518,
+      "sha256": "e960254af79e0fc05fa625170ac20046f5596583e3aabd5461d5c989ee390ed1"
     },
     {
       "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",
@@ -3099,14 +3254,19 @@
       "sha256": "3089f91ffca67833bb2cbd6ff2ace7087528fc37ebf9d6f81c0e8f5cd85422e4"
     },
     {
+      "path": "Tests/UI/ReadingExperienceUITests.swift",
+      "bytes": 7525,
+      "sha256": "f6e89d67cf06a9a8c807457f2c0b8be346a36fc3aeb4ea554a123e9071e13068"
+    },
+    {
       "path": "Tests/UI/ReadingFontUITests.swift",
-      "bytes": 13645,
-      "sha256": "985cdd3a43e53a093ca17ab1fd0a0167d81a9be3154630aeef2b182c4d539830"
+      "bytes": 14367,
+      "sha256": "6b036d394cb97f8c6d4759bf076ae407c65cadf1dce0c6ec3c73b27304a188d1"
     },
     {
       "path": "Tests/iOS/BookCoverTests.swift",
-      "bytes": 21283,
-      "sha256": "64ac6616c2c8ac04edb6a3f77bd646b3834f337c2381ac162e7cc33cd4eabb58"
+      "bytes": 21322,
+      "sha256": "e625f95cbc6040bbbd9012ae18df4dc9f8f6b23bace6fb0b0aa2af04c45a3f4f"
     },
     {
       "path": "Tests/iOS/BookDuplicateTests.swift",
@@ -3115,8 +3275,8 @@
     },
     {
       "path": "Tests/iOS/DocumentImportTests.swift",
-      "bytes": 23626,
-      "sha256": "193053badd7cc39ca605a12a169e3af1c4aef4c2ceecff3a9bb616d30b49fa46"
+      "bytes": 23665,
+      "sha256": "e009f2a3ebd584906924a660e2062760756b9d0892604a67eb3dadb50b684b2d"
     },
     {
       "path": "Tests/iOS/EPUBIntegrationTests.swift",
@@ -3125,13 +3285,13 @@
     },
     {
       "path": "Tests/iOS/LibraryRemovalTests.swift",
-      "bytes": 9585,
-      "sha256": "2ab05426829a66b5ba04a0fdbd140c506e87aa5a84006b4dd77917acaa57fb1e"
+      "bytes": 9624,
+      "sha256": "c663e5d2444af87eefacc4bf739d9cfedd63936052b4fd1be2936652536e59f1"
     },
     {
       "path": "Tests/iOS/LibraryTests.swift",
-      "bytes": 10486,
-      "sha256": "599aa6e34c0c717186d6c23971d0f732e79b5f1c63ce0a2071095f4380f05de3"
+      "bytes": 10525,
+      "sha256": "9a01addfe9fd782889d60af384c1a50f3a49102038571c449fc7a82edfbfcfa1"
     },
     {
       "path": "Tests/iOS/PositionCodecTests.swift",
@@ -3140,8 +3300,8 @@
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "bytes": 37902,
-      "sha256": "3832ba7fe0ecbab1562ed2ae65d724f8446ff9714eab9c66297c5c900b5645d7"
+      "bytes": 40434,
+      "sha256": "5abe1c20283c9b7e5df1e49bc03e9527adf06ed21cc1d2af9ef5cc8e5cdfdcbc"
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
@@ -3159,9 +3319,14 @@
       "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75"
     },
     {
+      "path": "Tests/iOS/ReadingExperienceTests.swift",
+      "bytes": 7680,
+      "sha256": "1efd120f1a65cab3e12d6a401a77a6ce2cc701dcf69dfe747acd190cb257c0b8"
+    },
+    {
       "path": "Tests/iOS/ReadingFontTests.swift",
-      "bytes": 15706,
-      "sha256": "426cf32b7b3352936061bf27cd46738b17164d55329135e7c4d0a757dc346564"
+      "bytes": 17755,
+      "sha256": "495240b2d66fae2b10010ceaa2b47f3ff9190e5c77a9bc7f60be0d301b122dda"
     },
     {
       "path": "Tests/iOS/ReadiumSearchTests.swift",
@@ -3170,8 +3335,8 @@
     },
     {
       "path": "Tests/iOS/TXTReadingTests.swift",
-      "bytes": 42764,
-      "sha256": "7300b9246c8e44a08136e500dee6598896d10ed1542ff582233df3ac625d766e"
+      "bytes": 43842,
+      "sha256": "47283b64f4ef7a4e1f9f897f8ad558b0213a004ac5ca138adc25785e6bba25d1"
     },
     {
       "path": "Vendor/ReadiumToolkit/LICENSE",
@@ -3510,8 +3675,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "bytes": 62268,
-      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
+      "bytes": 62694,
+      "sha256": "a88ca88fe0ab75959e86db80e0cd959a3c8a440c92bdf41f609f4e4781f21945"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -4955,13 +5120,13 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "bytes": 78092,
-      "sha256": "2aa48030b5a6f6123f4419485c81d74b264644516c677bb49a61bf0286120161"
+      "bytes": 78478,
+      "sha256": "aac49bfaa23e11d78d7acd54bb716060931430dbc9065c0f3a9e90e09cbb631f"
     },
     {
       "path": "project.yml",
       "bytes": 2716,
-      "sha256": "ad83d7d992923bcd6e4f9301904e431f61d66925791fff98188df9f601a713ed"
+      "sha256": "c94a8c5fd73528297db0133cce1b5bc11a138657536fee52f162cdc10018489b"
     },
     {
       "path": "scripts/check_repository.py",
@@ -4970,13 +5135,13 @@
     },
     {
       "path": "scripts/ci_ios.sh",
-      "bytes": 5289,
-      "sha256": "f9dc83bb50cd09335a41df024e887eeb02eba08d7cdd9e327d0c6b77583d3791"
+      "bytes": 7301,
+      "sha256": "41610f1691600f0102c2cd01e371ea70571d1432bee5a2949f65d72d59056181"
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "bytes": 3387,
-      "sha256": "092dd27a81ae604c5fc496c5141f1414776749f5eaabfea25d89b05d3b6f7ff9"
+      "bytes": 6746,
+      "sha256": "76d6d7385be024233f61172dbd4610f6da6c42f33a6c15dcde3b5cd0f72dedb9"
     },
     {
       "path": "scripts/generate_app_icon.py",

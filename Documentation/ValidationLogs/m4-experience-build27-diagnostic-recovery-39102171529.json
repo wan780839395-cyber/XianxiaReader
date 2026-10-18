@@ -104,5 +104,11 @@
     "method": "One frame per second overview for entire recordings; no original consecutive frame window in this diagnostic",
     "phonePerformanceAccepted": false,
     "fullGate": false
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

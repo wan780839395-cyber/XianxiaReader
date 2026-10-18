@@ -108,5 +108,11 @@
       }
     ],
     "observations": "Three actual original PNGs: natural-sized19pt glyphs in two columns, fixed header query and keyboard, compact preset common controls fit one screen. Whole41.21s collection recording3 overview sheets shows selecting/query/clear/return and three presets/advanced controls/reopen. Overview is not continuous-frame or phone-FPS acceptance; remaining57 prepared PNGs not yet individually inspected."
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

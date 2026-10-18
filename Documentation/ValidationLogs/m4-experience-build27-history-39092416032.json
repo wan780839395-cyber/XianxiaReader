@@ -2282,5 +2282,11 @@
       }
     ],
     "nativeOrMotionAccepted": false
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-experience-build27-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }
