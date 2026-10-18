@@ -1,5 +1,21 @@
 # 长篇性能测试计划（M5 验收，M2 提前使用）
 
+## Build27 正文与设置流畅度专项（待真机测量）
+
+用户确认正文和设置都感到不顺畅；不能归因60Hz。当前Windows/模拟器及字体散列计时不替代真机帧时间，尚未取得手机trace。历史设备为iPhone13/iOS16.6.1/TrollStore，每轮仍需核实际设备、系统、安装方式、IPA SHA、低电量/温度与刷新率条件。
+
+对同一原创样书、字体/目录数量、字号/主题和完整位置做Build26与最终Build27的可比记录：首次开设置与热缓存重复各3轮，字体列表上下浏览，反复开关菜单；正文分别连续滑动30秒、分页点按20次。先普通动效，再单列减少动态效果；自动慢滚另列，不混入手动滚动样本。保持原件和数据库，不能卸载/删库制造基线。
+
+在可连接真机且具有可分析的工具配置后，用实际可用的Time Profiler及Animation Hitches区分主线程提交和渲染阶段；保存原trace/符号、环境和操作时间，不只报平均FPS。报告帧间隔p50/p95/p99、最长停顿、hitch time ratio与持续区间，并对齐耗时栈；60Hz的约16.67ms仅是显示周期，不能据此认定具体卡顿原因。录屏和trace的额外开销需单列，模拟器/XCTest录屏不能充当设备帧率。
+
+待测路径：ReaderViewModel位置发布/SQLite写入频率、Readium连续滚动DOM采样调用/完成数与最大并发、SwiftUI菜单/字体预览更新次数与耗时、CoreText解析、文件摘要与缓存命中。只用操作ID/耗时/计数，诊断不记录未来章节正文。当前Readium3.11源码只证明execute未串行化已经开始的异步采样，未证明手机实际重叠或其为唯一根因。
+
+只有trace确认冗余DOM请求后，才考虑latest-only单飞/尾沿合并；停止滚动和saveNow必须完成最新fresh完整锚点，保留关闭/重开/切模式/排版时迟到结果与重试回归。若主要是SwiftUI依赖更新，则先按实际耗时缩小子视图依赖并保留稳定ID，不盲改整个ObservableObject或丢弃位置事件。任何修复都需相同条件重新测量、完整自动门槛和手机体验分列。
+
+官方方法已于2026-10-18核阅：[Demystify SwiftUI performance (WWDC23)](https://developer.apple.com/videos/play/wwdc2023/10160/)用于先测量、缩小依赖/降低每次body成本；[Explore UI animation hitches and the render loop](https://developer.apple.com/videos/play/tech-talks/10855/)用于提交/渲染与hitch time ratio；[Analyze hangs with Instruments (WWDC23)](https://developer.apple.com/videos/play/wwdc2023/10248/)用于耗时栈定位。另核[WWDC25 SwiftUI instrument](https://developer.apple.com/videos/play/wwdc2025/306/)明确其新工具要求Xcode/Instruments26与更新系统；本项目当前Xcode16.4、最低iOS16，不能照搬其新面板或把升级用户系统当作前提，也不为此迁移到需更高系统的Observation。未加入调试私有API、signpost日志或新运行依赖。
+
+以下长TXT桌面数据为既有M2历史范围。
+
 当前Build8完整自动CI与Release桌面实测已通过，Apple长循环临时对象增长已由同hash样本验证改善；设备性能仍未验收。以下目标保持独立，不把桌面结果当iPhone指标。
 
 ## M2 长篇探针（本轮进行中）

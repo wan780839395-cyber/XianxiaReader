@@ -880,9 +880,14 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         // reflowable pages; fixed/RTL/vertical layouts retain the upstream path.
         if publication.metadata.layout != .fixed, !viewModel.scroll, !viewModel.verticalText,
            viewModel.readingProgression == .ltr {
+            // JS loaded precedes font readiness and the initial locator restore.
+            // A hidden intermediate spread must not publish its chapter-head DOM
+            // over the full anchor retained for the pending typography change.
             guard spreadView.isSpreadLoaded,
+                  spreadView.scrollView.window != nil, spreadView.scrollView.alpha > 0.99,
                   let anchor = await spreadView.findFirstVisibleElementLocator(visibleTop: 0, visibleBottom: sampledSize.height),
                   paginationView?.currentView === spreadView,
+                  spreadView.scrollView.window != nil, spreadView.scrollView.alpha > 0.99,
                   spreadView.webView.scrollView.contentOffset == sampledOffset,
                   spreadView.webView.bounds.size == sampledSize,
                   let locator, anchor.href.isEquivalentTo(locator.href) else { return (nil, nil) }

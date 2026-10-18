@@ -374,7 +374,7 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "23e2acae410d5d62ca827fd452eeb955cd7422e8935803438dbced84b854b37a"
+      "sha256": "2aed2ba48136822a377f4513976d40424df7443551a5a00c11290249d02fa890"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
@@ -1182,7 +1182,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
+      "sha256": "a88ca88fe0ab75959e86db80e0cd959a3c8a440c92bdf41f609f4e4781f21945"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -2338,7 +2338,7 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "2aa48030b5a6f6123f4419485c81d74b264644516c677bb49a61bf0286120161"
+      "sha256": "aac49bfaa23e11d78d7acd54bb716060931430dbc9065c0f3a9e90e09cbb631f"
     },
     {
       "path": "project.yml",
@@ -2354,7 +2354,7 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "85681b63f7b1c5c733237402fce70246ddd6f88a867c85a84c811ef10b83f5cf"
+      "sha256": "d5f4ffb839a45968d906e880ea7efb2a7455244d306973eceb7d84b12bb884e5"
     },
     {
       "path": "scripts/generate_app_icon.py",
@@ -2448,10 +2448,14 @@
     "App/Search/ReaderSearchField.swift",
     "Documentation/HANDOFF_BUILD26_DELIVERY_2026-10-18.md",
     "Documentation/M4_READING_EXPERIENCE_VALIDATION_REPORT.json",
+    "Documentation/PERFORMANCE_TEST_PLAN.md",
     "Documentation/READING_EXPERIENCE_DESIGN.md",
+    "Documentation/ValidationLogs/m4-experience-build27-c518-windows.json",
     "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39089264017.json",
+    "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39091123601.json",
     "Documentation/ValidationLogs/m4-experience-build27-first-windows-record.json",
     "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json",
+    "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json",
     "Documentation/ValidationLogs/m4-experience-build27-performance-review.json",
     "Documentation/ValidationLogs/m4-experience-build27-reference-review.json",
     "Documentation/ValidationLogs/m4-experience-build27-start.json",
@@ -2468,6 +2472,8 @@
     "Tests/iOS/LibraryTests.swift",
     "Tests/iOS/ReadingExperienceTests.swift",
     "Tests/iOS/ReadingFontTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml",
     "scripts/ci_ios.sh",
     "scripts/ci_reader_diagnostic.sh"
@@ -2531,9 +2537,18 @@
       "sourceRevision": "b799754b93f7a967b41b5552014649ca156c85ed",
       "conclusion": "failure",
       "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json"
+    },
+    {
+      "run": 39092416032,
+      "sourceRevision": "c518d70d91d478f51aa33c660eac2ab67dd8f6de",
+      "conclusion": "failure",
+      "passed": 155,
+      "failed": 2,
+      "skipped": 0,
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json"
     }
   ],
-  "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
+  "sourceRevision": "c518d70d91d478f51aa33c660eac2ab67dd8f6de",
   "diagnosticRuns": [
     {
       "run": 39089264017,
@@ -2596,8 +2611,47 @@
       "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
       "selection": "panels",
       "expectedCases": 16,
-      "status": "queued",
-      "conclusion": null
+      "status": "completed",
+      "conclusion": "success",
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39091123601.json",
+      "iOS": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 16,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792292675.009,
+        "passedTests": 16,
+        "result": "Passed",
+        "skippedTests": 0,
+        "startTime": 1792291884.523,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 16
+      }
     }
-  ]
+  ],
+  "pendingBuildBranchUpdate": false,
+  "run": 39092416032
 }

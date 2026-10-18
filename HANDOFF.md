@@ -44,3 +44,20 @@ Windows445/新增0/54既有Vendor限制、17工具、bash -n已过。冻结清�
 第三候选真实定向39091123601/source0c7945c60906b7faa11124b94f1335a36c6647b2已派发，selection=panels16，无设备Release/IPA。新watch_autoscroll.py同run/collect_experience27_diagnostic.py同run是本轮助手，恢复先核run.json/真实进程，不重复派发。
 
 最终全量前补一条目录刷新失效守卫：importReadingFont开始即清fontCatalogRequestID，使导入前已启动的浏览刷新不能在导入/重建完成后覆盖新目录；原请求关闭/重开守卫保持。第三候选39091123601仍在其冻结0c7945c源码执行，结果只属于该源，不取消/重派；此小改另冻结最终源并跑完整Core137/iOS157/Release27，含原字体导入/捕获失败/迟到关闭/重开回归。当前尚未Build27交付。
+
+最终完整待测源已保存私有tip c518d70d91d478f51aa33c660eac2ab67dd8f6de；Windows446/17与544blob核验。构建ref暂仍0c7945c，因为第三诊断39091123601运行中，同ref并发会cancel-in-progress，故不派发/不更新该ref。待旧诊断completed并核实际结果后，CAS更新构建ref到c518d70并派唯一full；不能把0c诊断结果冒充c518全量通过。
+
+第三定向39091123601/0c7945c已completed/success，真实数量/原件正由原收集器下载核验；无设备Release/IPA。最终完整CI39092416032/source c518d70d91d478f51aa33c660eac2ab67dd8f6de已唯一派发，含刷新失效守卫，构建ref已CAS更新到该源。现有watch_autoscroll.py 39092416032与collect_experience27.py同run是本轮助手；旧诊断收集器39091123601可能仍下载，核进程再接续，不重复派发。预期Core各137/iOS157/Release27，尚无本轮成功门槛或安装包。
+
+第三定向原件已全digest/CRC展开并删重复ZIP/分片：实际16/16过、失败/跳过0；中文native44pt/marked-text/光标/换色/清空/收键盘及字体/预设旧回归过。实际查看新字体网格/搜索键盘/紧凑预设/高级展开四PNG，样例与布局协调；该源截图不替代最终c518全量原生门槛。最终完整39092416032继续原run。
+
+完整39092416032等待中已核Apple官方WWDC23/渲染hitches方法及WWDC25工具版本差异，具体手机对比场景、帧分位/主渲染/DOM并发测量与修复回归边界写入PERFORMANCE_TEST_PLAN.md和performance-review；只是待测计划，未取得手机trace，未改运行源码/依赖/最低系统。
+
+原生复核发现需修退出过渡：第三定向0c源新会话录屏全部1fps总览5表和两个原始窗122帧/11表已实看。第三次退出PTS51.182–51.498出现“正在排版书籍”，因ReaderView成功返回时过早model.close使isReady变false；此为原生UI实际发现，不把16/16当动效通过。拟保存成功后保留页面并原生关闭，沿已有onDisappear关闭/失效；返回中不重置flag、不显示打开spinner，失败仍复位可重试。当前完整c518/39092416032继续执行，工作源码暂不变以完成该源严格检查；之后保存其真实自动结果/未交付边界，另冻结最终修正源跑full137/157/Release27。第一返回原窗有PTS反转，不作帧率/全动效验收。
+
+
+## 2026-10-18 恢复核实：原全量已失败，不再运行
+实际GH39092416032/source c518d70已completed/failure（03:48:20UTC），xcresult155/157、2失败0跳过，Linux/macOS Core各137通过；无设备Release/Build27 IPA。完整Apple/Core原件digest/CRC下载完成，watch/collector实际进程均已退出。失败为原隐藏字体重排保持词定位、原菜单切连续后打开目录，原断言/预算未变；不把既有16项定向成功当完整成功。证据m4-experience-build27-history-39092416032.json。普通HEAD/index保持，未提交改动保留。下一步结合原生图/录屏和固定Readium3.11源码修最小生命周期边界，先原失败项及字体/新功能定向，再完整137/157/Release27；退出排版spinner也在本次修复范围。手机帧率与微信/QQ/Alook实际Open In继续待真机，不触发关机。
+
+
+边界修正已落盘、尚未Apple编译：分页自动位置通知补与显式捕获一致的window/alpha前后守卫，拒绝隐藏字体页头覆盖原锚点；Vendor精确声明摘要已更新，版本/依赖/渲染器不变。退出保存成功保留画面直到onDisappear关闭。菜单放在固定viewport overlay，避免加载内容参与菜单布局；原菜单目录失败根因仍需实际定向/录屏验证，未宣称修复。panels增加原两字体定位/原菜单测试共19项，全部原断言/预算不变，先定向后全量。

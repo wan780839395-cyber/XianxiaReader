@@ -1,0 +1,738 @@
+{
+  "recordedAtUTC": "2026-10-18T03:06:22.542472+00:00",
+  "run": 39091123601,
+  "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
+  "selection": "panels",
+  "conclusion": "success",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 16,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792292675.009,
+    "passedTests": 16,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792291884.523,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 16
+  },
+  "fullGate": false,
+  "releaseExecuted": false,
+  "delivered": false,
+  "artifactDigestAndCRCVerified": true,
+  "logSHA256": "86d07251affd377b183c53f167735d924e819577f5e719517fc14c1db8a0c330",
+  "summarySHA256": "e348f8fb1c0890931b4473073e08cdd593358e53275e254b256d478b0540c908",
+  "notes": "Selected 16 native cases only; never substitutes full157 iOS gate, Core each137, Release27 or native/device acceptance",
+  "manualImageReview": [
+    {
+      "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/E6F24466-6EC1-4A90-B884-1C8CB592A0C1.png",
+      "sha256": "46ccb4d5802420a095601032c16bce61b8817592d23873bcb772181fc23bf223",
+      "observations": "Fixed query header, three imported cards and natural samples in two columns; selected iA visible"
+    },
+    {
+      "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/8B5FCE84-1205-4CD4-8D7C-95C4968ED5F3.png",
+      "sha256": "83a4720b0bbeb0fb1855db8b65c2e4f4c8198ee5933c9c658848cbcb41b07967",
+      "observations": "Live iA filter leaves one selected card; visible native input/caret/clear button and matching light keyboard"
+    },
+    {
+      "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/2FA32B00-DF59-42C1-B2B8-95F5D693E79E.png",
+      "sha256": "b06ab20a74dc05ee159c5b79f9c5c509e1531a9828fba54558e9ff1f46912e6b",
+      "observations": "Compact preset selected, fontsize110%, line1.50/margins0.75, collapsed advanced fits first screen with native footer"
+    },
+    {
+      "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/DB1EF39A-2162-48F4-9C74-1C37FB312A06.png",
+      "sha256": "deb842f2517676240d7a3517441d4cd7cb2e289dd277e0b269bd02b50094dd49",
+      "observations": "Expanded advanced typography retains natural spacing and custom label after letter spacing0.05; lower controls continue in native scroll"
+    }
+  ],
+  "manualReviewScope": "Actually viewed four original PNGs from this diagnostic source only; no recording/motion/phone gate; final source needs its own full CI/native review.",
+  "manualVideoReview": {
+    "video": {
+      "name": "Screen Recording 2026-10-18 at 03.00.20 AM.mp4",
+      "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/E1CC3AC9-5B82-4DF9-BD65-6CA97DC9CDE4.mp4",
+      "sha256": "25bad45a177511d374d96799f49fdc3ffcab3ebf944e1781d33046d7730321a5",
+      "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+      "timestamp": 1792292420.297,
+      "inspected": false
+    },
+    "allFiveOneFPSOverviewContactsViewed": true,
+    "originalFrameWindows": [
+      {
+        "run": 39091123601,
+        "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
+        "video": {
+          "name": "Screen Recording 2026-10-18 at 03.00.20 AM.mp4",
+          "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/E1CC3AC9-5B82-4DF9-BD65-6CA97DC9CDE4.mp4",
+          "sha256": "25bad45a177511d374d96799f49fdc3ffcab3ebf944e1781d33046d7730321a5",
+          "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+          "timestamp": 1792292420.297,
+          "inspected": false
+        },
+        "start": 19.5,
+        "end": 20.6,
+        "method": "All original VFR frames in range; no fps filter or interpolation; source PTS from showinfo",
+        "frames": [
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0001.png",
+            "sha256": "61aa3d023e8b9b88bfbdfecca821927991f001e79cc413c8be10130229398647",
+            "sourcePTS": 19.523333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0002.png",
+            "sha256": "7f8b667c5a92950e2eaf0dc1184336acca1d0b2efa1e4858b8ea339a4fe6e587",
+            "sourcePTS": 19.551667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0003.png",
+            "sha256": "acaf053b1a4d8fa5db066ffa72f6deafcebd23db5e760c4b3378ca1344f911d9",
+            "sourcePTS": 19.573333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0004.png",
+            "sha256": "9196ef90c0ac2bda845fe0d97fe8e04f7b77e7d7ef8495b5a7ba34eb89b9ccbb",
+            "sourcePTS": 19.591667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0005.png",
+            "sha256": "6e312bec9132c62afb5c080d317fc294744bcf2e039c2f9fd128505047c48fb0",
+            "sourcePTS": 19.615
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0006.png",
+            "sha256": "19c8e7a1cc1f979cd306ff27fb81970fd503dce44be0f62894fad48c267ae474",
+            "sourcePTS": 19.625
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0007.png",
+            "sha256": "fd377ccf6e034c019435f69c8dedfed816fb663c6c84b51b80324aa6fa645d9f",
+            "sourcePTS": 19.508333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0008.png",
+            "sha256": "39feb67aefd1ee72b14a5aff7009a826c9737257d0778ad77ea42d493f7d7688",
+            "sourcePTS": 19.525
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0009.png",
+            "sha256": "aad8c9b4a696ebaaa2620db5b2373d4c96276c759220f8cdbfbe3d966e1d4430",
+            "sourcePTS": 19.531667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0010.png",
+            "sha256": "0d74bfda511890d3d30b546ac73e6ee7d98054402c545f0d6ec2fe43fa7a5ff3",
+            "sourcePTS": 19.541667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0011.png",
+            "sha256": "751181865cacff278cf496d77565cc0a2a00ccc3d87a01964428ee8560b04a7e",
+            "sourcePTS": 19.558333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0012.png",
+            "sha256": "0b664736b26f1667f1105592ceada159f1e95c307c27734b1b236eafcb60d526",
+            "sourcePTS": 19.575
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0013.png",
+            "sha256": "ffdab41293e7e79ff2f78b8ac5892f1091f52641f8e2dc6f82e46a29b77ae0b8",
+            "sourcePTS": 19.591667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0014.png",
+            "sha256": "a9cd3d3ff7a379d21566b437dcae3aab15ed143269237aa095ee779049164bf1",
+            "sourcePTS": 19.608333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0015.png",
+            "sha256": "bf8a3b583dc0a5e96261b1f89cef0431abb5de7bd0ef6854c7374c2c44fc167c",
+            "sourcePTS": 19.611667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0016.png",
+            "sha256": "bceb1f63ce144dbba5e4787b1ce7facd7b14931488070aed50e8d143f70ab6b0",
+            "sourcePTS": 19.625
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0017.png",
+            "sha256": "7fa2c24459f8387bc1ec08f5efd33f0a8474a56db9db35db0853b011acc1e36b",
+            "sourcePTS": 19.641667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0018.png",
+            "sha256": "b614adcfbe719f2830aaab85e9a499ec803c17bc9de32f173c074c2e9205fd74",
+            "sourcePTS": 19.658333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0019.png",
+            "sha256": "8c33d7a820ac13d8ae1850bb6e991558ce13311673dd3133a076d3d7d6f4af0b",
+            "sourcePTS": 19.661667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0020.png",
+            "sha256": "264d1694a8c08df7f1fc6414855b92e98c8dca864a9ba56fb954ef643af06706",
+            "sourcePTS": 19.675
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0021.png",
+            "sha256": "af25584c37e60f315da347f9b21f56a8e564f105288c90c049e1544dc835e65d",
+            "sourcePTS": 19.691667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0022.png",
+            "sha256": "aae2a244502a5d87e6fbb99ba172edb598572480113e3233fad658ac6cefc901",
+            "sourcePTS": 19.708333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0023.png",
+            "sha256": "7883e48c87b0d91c1bac518c905d3658e09a349db7bea0b97507b5356e1b61d6",
+            "sourcePTS": 19.725
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0024.png",
+            "sha256": "56b96590ceb7ad4d880804c0c5f089211f31bc70625f3618beecff1c44ced780",
+            "sourcePTS": 19.741667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0025.png",
+            "sha256": "00cd90ccd7a272b85972912f5b9508f16a9a79f2c479b49e9819c8e5b0ce8610",
+            "sourcePTS": 19.743333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0026.png",
+            "sha256": "4154dec269038fdb8785562160f10b24c6a8cead0ad24d0660fa570999b3e726",
+            "sourcePTS": 19.758333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0027.png",
+            "sha256": "c9ad625f36f2bf33b14b5e95388bc3f29881184ffb7642f87c045900f41208f9",
+            "sourcePTS": 19.775
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0028.png",
+            "sha256": "5de3608d10629d26eb28525db2c561bef60a17d76bcd5f88806267e2d4e404f2",
+            "sourcePTS": 19.778333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0029.png",
+            "sha256": "325f5cf1aa063eb510d582d4843b1843b050df7c010a11de11e4bd6051fdf828",
+            "sourcePTS": 19.791667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0030.png",
+            "sha256": "213128a641d7b65d333d402f6986e2dec1a1c3521bcdaeea83c5b7910586d7fe",
+            "sourcePTS": 19.808333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0031.png",
+            "sha256": "5420d82a763f85a7b52b17576145d9f91531509dd7bdf627d6a5efebafb9dd34",
+            "sourcePTS": 19.81
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0032.png",
+            "sha256": "4c5b7b7a6ecabed9d3f32299ec3d5160d887df78d81cc1593866eb94b04f1192",
+            "sourcePTS": 19.825
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0033.png",
+            "sha256": "3b8a91a59f811b11bf29ddc2112f53171431da38157a3aefd486f63dd1f5bcca",
+            "sourcePTS": 19.848333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0034.png",
+            "sha256": "a814eda3a88ecac909340bef3c562e1392875c8db758bc5b4e9658bc296c040c",
+            "sourcePTS": 19.858333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0035.png",
+            "sha256": "4b8bd26fac45a3eceb6e690e28224e1ba8c0dd3521ffbf151824cb1f1d0d5153",
+            "sourcePTS": 19.865
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0036.png",
+            "sha256": "f48844735c65934e1124551515c979126adbd676bbb134aff0c263cac0118aea",
+            "sourcePTS": 19.876667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0037.png",
+            "sha256": "864a3ae12647e6709bef861de588125b2b529a36ac85399964188362ab8530f1",
+            "sourcePTS": 19.895
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0038.png",
+            "sha256": "00d70d66c66921d3d04f0f999457e8964e198a767ad6a2580a71427ff62f6b91",
+            "sourcePTS": 19.91
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0039.png",
+            "sha256": "f29212ac51b5ae0eb2c3c70bb3be065a74470fb5a33afb3b0b7b813c6e9d75ff",
+            "sourcePTS": 19.928333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0040.png",
+            "sha256": "0ffbd33239bbf5dfb5e70d00d228b0787ff5cb5a3f321430dae5f82f8fd6c247",
+            "sourcePTS": 19.941667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0041.png",
+            "sha256": "a68f785e3e627a8562808b1c82929ee4f600c789d4b3738ff2db66330dc8a0a4",
+            "sourcePTS": 19.956667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0042.png",
+            "sha256": "29f46e442ac6489706ecda4b29a5660f2b26c8d5e00d3128800a5ea6301cf891",
+            "sourcePTS": 19.975
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0043.png",
+            "sha256": "f3c7bb72facce4e64d701600f607635492a90dd29ce4d5f96c43aa10b3ccdf9f",
+            "sourcePTS": 19.99
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0044.png",
+            "sha256": "014e2275956854e9755778cced931b42d3971f99468807cf58c8c810c42d85d1",
+            "sourcePTS": 20.006667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0045.png",
+            "sha256": "fc3af7108dafdaa6690f092d2731e12105c0fd6606c15faeba6a773aad8656ca",
+            "sourcePTS": 20.023333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0046.png",
+            "sha256": "00c29e3f74b46441ccde618995d9ad559a8f1e9b190689b7ca3a2f4f632c015b",
+            "sourcePTS": 20.04
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0047.png",
+            "sha256": "ec229d363f994a00879e9fb12cdfd29aaa062697100647ec3b77ffa206cb3892",
+            "sourcePTS": 20.058333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0048.png",
+            "sha256": "37cccb379b3235714a07a26fc3c92b9a075c74caf16d8cb8bf5e376ebb592baf",
+            "sourcePTS": 20.073333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0049.png",
+            "sha256": "9b519abcf2ddbbb7d85f182bfe322a623b7291401bf0b54bda8df3c39e416029",
+            "sourcePTS": 20.091667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0050.png",
+            "sha256": "bd002e55d9c134e6837a9d88d00dd80c74f6c18d6888a3a7d0d81e7ad7fe90a9",
+            "sourcePTS": 20.108333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0051.png",
+            "sha256": "86bdf196401a7851bea810f38ddcde8a33bcc9513d1b4cc1e7631c657b33a254",
+            "sourcePTS": 20.123333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0052.png",
+            "sha256": "7a6bec7dd7800016acd3addaa92b198e1ac8e77a980c7ee1a8264db52c23dc38",
+            "sourcePTS": 20.14
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0053.png",
+            "sha256": "b61c0d32718266ae85213c0098a526fd4518aedba1e162d57bb8f3cf3760781e",
+            "sourcePTS": 20.158333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0054.png",
+            "sha256": "c719a60b62c245dd3722332cd63aec6f03136e93a82fcdaae914a161b6ffecd1",
+            "sourcePTS": 20.173333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0055.png",
+            "sha256": "5f6eeb2e4cf321f7b8a0e8c88157245863d8fe7f0e42747e22e38684400084ca",
+            "sourcePTS": 20.343333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/first-return/frame-0056.png",
+            "sha256": "23ef045eb03266b87dd530d5fa735f71addc5242500d799f4fe0588f4445f8ae",
+            "sourcePTS": 20.381667
+          }
+        ],
+        "inspected": true,
+        "observations": "Viewed all56 original decoded frames/5contacts. Reader body exits to dark shelf and recent order animates; source PTS inversion occurs at cross-view capture, so no frame timing/FPS acceptance.",
+        "sourcePTSInversions": 1
+      },
+      {
+        "run": 39091123601,
+        "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
+        "video": {
+          "name": "Screen Recording 2026-10-18 at 03.00.20 AM.mp4",
+          "path": "build/ci/39091123601/diagnostic/ReaderSnapshots/E1CC3AC9-5B82-4DF9-BD65-6CA97DC9CDE4.mp4",
+          "sha256": "25bad45a177511d374d96799f49fdc3ffcab3ebf944e1781d33046d7730321a5",
+          "testIdentifier": "ReadingExperienceUITests/testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions()",
+          "timestamp": 1792292420.297,
+          "inspected": false
+        },
+        "start": 50.8,
+        "end": 52.4,
+        "method": "All original VFR frames in range; no fps filter or interpolation; source PTS from showinfo",
+        "frames": [
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0001.png",
+            "sha256": "b277a8fd38dbb737086f867b5b7fcbb42b32c4c1650cae1cc8a7d76b1cfe0fc3",
+            "sourcePTS": 50.801667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0002.png",
+            "sha256": "76f7713ae3cc5f750f89c87682d686cbd916d65fe83852013f89b47e2014a111",
+            "sourcePTS": 50.803333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0003.png",
+            "sha256": "418746f425222e517234116a76f3dc7efd0d42eed72566695c65f9501aabbe06",
+            "sourcePTS": 50.805
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0004.png",
+            "sha256": "8dae8ff71a03486390abb0c7410cbda53804c01667f5997a76ead6a00ebc4f81",
+            "sourcePTS": 50.81
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0005.png",
+            "sha256": "ca90cb2fbd08c585029ca08a200133e89a99352690dc2021cdcf79187756bb33",
+            "sourcePTS": 50.815
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0006.png",
+            "sha256": "52413ddc0818f0f2a4f0ac9ac50d2e6f310c0da2941683cab024d355a860fb6d",
+            "sourcePTS": 50.816667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0007.png",
+            "sha256": "1dcdf88e9ed1baa232f359525fe00bd5038f24a0e1927834f875d11d8e5e94c7",
+            "sourcePTS": 50.823333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0008.png",
+            "sha256": "bb49e2c03619c70e137b4c5499124af5054337b7cae04326f90cdd1dc80ece08",
+            "sourcePTS": 50.825
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0009.png",
+            "sha256": "75063fb96a0319ccc714326fc0ddba92be35563c72e7ca84a2e0f7606dfd29ab",
+            "sourcePTS": 50.826667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0010.png",
+            "sha256": "c011a59729a3cf5312f459dd5f3aab71562a62bc76c825d0e8789406cb16c6ca",
+            "sourcePTS": 50.836667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0011.png",
+            "sha256": "68cc57b1cc2c9a244a80388191ed638148000300c4a4ab4fbb1691cab1c44a65",
+            "sourcePTS": 50.838333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0012.png",
+            "sha256": "904575acadeb92513447b8134ee5e7330b1ceff17bd1b0a4567ced0fc762a2dc",
+            "sourcePTS": 50.886667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0013.png",
+            "sha256": "5b434f77b0459e32a8012510de31dbab741f65476ae65649f80e147a1468325f",
+            "sourcePTS": 50.92
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0014.png",
+            "sha256": "eb4d121a097de7402be01c90a1f9e88800e0b6d1c8ace5eb71facacd4843e57d",
+            "sourcePTS": 50.926667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0015.png",
+            "sha256": "6ec847165120c6e1a044aa8dc7691ffa602c715d755aac6a4e7fdc55104de503",
+            "sourcePTS": 50.955
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0016.png",
+            "sha256": "a859183db90c296d118ab3472369da69bb44403ac387da455a07ad19e06c8f75",
+            "sourcePTS": 50.991667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0017.png",
+            "sha256": "c5bdae67409d84aa9ebbf2aead69f18c585a5d1d07a520e2f539c17d81337526",
+            "sourcePTS": 51.088333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0018.png",
+            "sha256": "b0545a8ece82359fd4b18cd8950fada5345cdce19d2862dfcf3c10199172b905",
+            "sourcePTS": 51.105
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0019.png",
+            "sha256": "06bcf725b6f38a23422234c1321e927b9bbdfbc37457c056c101dafc32708b99",
+            "sourcePTS": 51.153333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0020.png",
+            "sha256": "063290de94911b45a4a577071540f5f77b03915e8cac7dc2677788071167fc40",
+            "sourcePTS": 51.158333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0021.png",
+            "sha256": "9896c3346711cd781eecbc3767cc856299f389d6f1913ef5eed5e6f5bb31f346",
+            "sourcePTS": 51.181667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0022.png",
+            "sha256": "1b644ae0af1855c89bd02e8762f641a5cc88c8564f7dad8094d86e9f43d06088",
+            "sourcePTS": 51.228333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0023.png",
+            "sha256": "aaed445cc4e7e66289a24032f1136d93045522406ee3e3095b0e8bce876c715c",
+            "sourcePTS": 51.275
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0024.png",
+            "sha256": "38478dd067ba9bc20ad46285cea9f78051587d45efa313fbdc59637021bd16de",
+            "sourcePTS": 51.33
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0025.png",
+            "sha256": "920bf6c4f3fcf2518ebba5358a1ffaa181f29ee69b77e99bc110ee5522344ba5",
+            "sourcePTS": 51.378333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0026.png",
+            "sha256": "885ac018a04b427fcb6e76448dc9d916b3281bb8c511649e84b75bd9f04ff85f",
+            "sourcePTS": 51.425
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0027.png",
+            "sha256": "a6a3aa2fbed151170ca5b6bcc100d667706e86e0d6faf6867fcd890ae2fa0669",
+            "sourcePTS": 51.476667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0028.png",
+            "sha256": "00b587293661cd24486d536edcac699ad215c320377afe5b5505129feb0732da",
+            "sourcePTS": 51.493333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0029.png",
+            "sha256": "8720affc3da7a26369b31f1f3c07c364a4e52e94cadcb359e171516eeea046fb",
+            "sourcePTS": 51.498333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0030.png",
+            "sha256": "e7262be428b80348dc4d8b4c37c60dc13705e3927084eb5eae7ff58211bc3d73",
+            "sourcePTS": 51.503333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0031.png",
+            "sha256": "7f7049a13d0756048dbef8077d77d7594b6d76b8ef3ce3c9ed35339f24062c18",
+            "sourcePTS": 51.511667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0032.png",
+            "sha256": "3ae0addbe4734c049e5de53375d243236f9dc6f41795f2f0d787418c23790d01",
+            "sourcePTS": 51.53
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0033.png",
+            "sha256": "f1ea19b431e2cb01697c36a0be83b2bea0985764a2ecf23539c6bdba2148a26e",
+            "sourcePTS": 51.546667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0034.png",
+            "sha256": "17906de364ef7521a1135243c0a7924bd9e72600481e90ccbbc2baccafa54059",
+            "sourcePTS": 51.561667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0035.png",
+            "sha256": "8c6e880d2239b50aa7714f3c50f86b57e100c854f14cf2cc1e5103cd09fa3ee8",
+            "sourcePTS": 51.578333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0036.png",
+            "sha256": "6ee13bcdf652f156c8b4aa9596e2ab2b98cf3a15f1e044a40980c8e832308976",
+            "sourcePTS": 51.595
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0037.png",
+            "sha256": "5548c586237ab17371fbde64e3d134c44f38f60f4242162a78e7fdf6987bd2b8",
+            "sourcePTS": 51.611667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0038.png",
+            "sha256": "fd1ab633e867b712dbefe973eee6bfd2320f6087e17023802db1183e1f4911e5",
+            "sourcePTS": 51.628333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0039.png",
+            "sha256": "6f07ae21e3762ea4b91c60d4fae02dd61bccb13b34d0c002606651c573bed655",
+            "sourcePTS": 51.643333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0040.png",
+            "sha256": "4876843f4eb481084ca898ab7bd0aaeddef3eb43eba3a1804ebc6315e24c2df7",
+            "sourcePTS": 51.66
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0041.png",
+            "sha256": "15ded26a3542cc27c3f0ca3aecd8c5bd6c23f6d681b16c0703603526b3a66c60",
+            "sourcePTS": 51.676667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0042.png",
+            "sha256": "f77d4b678f8e8fe2bb07c79e1c82d4891e682f5ea8c29a8c5355f2adc56e2373",
+            "sourcePTS": 51.693333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0043.png",
+            "sha256": "620616326a76449a9b72445fb11928e3c65b5dc1ad7b37b6c0956d3df59ae744",
+            "sourcePTS": 51.711667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0044.png",
+            "sha256": "eb01b08e2186c82f60418aa978018a2669dce5ab6dc0ec44bf84142fdf353de9",
+            "sourcePTS": 51.728333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0045.png",
+            "sha256": "02f6f9daa56730341370d647f4b30ce614eef2b463396233ac04579ce2e04c9a",
+            "sourcePTS": 51.731667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0046.png",
+            "sha256": "59ff1038aee3b525f1a9fcd6e2d3879e333b53c8e88aa6ad52d727d88b73e39a",
+            "sourcePTS": 51.746667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0047.png",
+            "sha256": "b5e8aaef57129285026890fcc435db7dbdfeb2e3a41df0f96c817fb0835996a1",
+            "sourcePTS": 51.761667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0048.png",
+            "sha256": "b1b238d6ed6951b733a4bac1bea7079a247c0026ef491001278cb4bddbbd59d1",
+            "sourcePTS": 51.776667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0049.png",
+            "sha256": "3e882744583fa0f08e68aab70423bdfe5ea716aa9997f6f731ffa58cbb7228aa",
+            "sourcePTS": 51.793333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0050.png",
+            "sha256": "ef9a729380694a72c12c6e48b4d6ede8bf1ede9b7ac20b4613ce555dd517f2e6",
+            "sourcePTS": 51.81
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0051.png",
+            "sha256": "a2bb37fb6be2222e61cc940ce972dc65861487d93c5a87aa684356996ff448f1",
+            "sourcePTS": 51.826667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0052.png",
+            "sha256": "0859db59c1ac8da043b975a79349ccf12701759e90ed2eead668c98097116edb",
+            "sourcePTS": 51.843333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0053.png",
+            "sha256": "4962232636459171d400025d838782d8d36b96cbd3dae72a7e320af882abdad3",
+            "sourcePTS": 51.86
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0054.png",
+            "sha256": "5aac15ee48b3c4fc80fc8849c92ba68a2485c53742f8f028677b48fe4772561a",
+            "sourcePTS": 51.876667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0055.png",
+            "sha256": "5f259505a097e4644c5c71bb85f4946d18b95777092a82a7002a4582398d5178",
+            "sourcePTS": 51.893333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0056.png",
+            "sha256": "1af5cb51af5030f5b429602b53283fc15aeca21146333c2982622e56a6a3b85f",
+            "sourcePTS": 51.91
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0057.png",
+            "sha256": "2eb1ba3efa8314c033311aea91baf80f224aeb1879974a3ac2d73ecb26c4efa7",
+            "sourcePTS": 51.926667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0058.png",
+            "sha256": "43a8757470498cea57d2ff3a38639d7284dc6b3bd04a09e2fe7ad2ef5d05d290",
+            "sourcePTS": 51.93
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0059.png",
+            "sha256": "33c77df7cb34b0b4d0ce05d5b9ff2fa6fa8b7fd4c8a2edddf21a9f51a02bbbbe",
+            "sourcePTS": 51.943333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0060.png",
+            "sha256": "32e27def0ea53050117b061ed1163ee45fcb3f26c242d9644f1ea27a09913dc4",
+            "sourcePTS": 51.96
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0061.png",
+            "sha256": "34e65f09277ae43fa0ee164ef3be3bee8cfaf934fac23eb7c404a59a4796f73c",
+            "sourcePTS": 51.976667
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0062.png",
+            "sha256": "6f29e477f0a70994480c298a0f182ccd7fffd6f20aaf11245323676081cc1423",
+            "sourcePTS": 51.993333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0063.png",
+            "sha256": "a6f34b378a128a2c137a216a5c334e1fd0527c0379f4b42500266660d6047847",
+            "sourcePTS": 52.01
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0064.png",
+            "sha256": "d97ab5842e9a9c341a88eb9fe028eb8e32b97f266669712709ffd16a2ae9c7b3",
+            "sourcePTS": 52.025
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0065.png",
+            "sha256": "c239eb84f11666fd823f674cda8c6c6e934b22d5cfab567d404720ca4322076b",
+            "sourcePTS": 52.038333
+          },
+          {
+            "path": "build/ci/39091123601/DiagnosticExperienceReview/sessions/third-return/frame-0066.png",
+            "sha256": "8a0412b68792367bf7c268977d34f7c2fbeda282e3df3c1f27586b717234e609",
+            "sourcePTS": 52.161667
+          }
+        ],
+        "inspected": true,
+        "observations": "Viewed all66 original frames/6contacts. Loading label appears after return tap aroundPTS51.182 through51.498 before native dismissal, then dark shelf remains dark. Confirms visible pre-dismiss loading state in this diagnostic source, not a device FPS result.",
+        "sourcePTSInversions": 0
+      }
+    ],
+    "motionAccepted": false,
+    "limitation": "Diagnostic source only; first window contains non-monotonic source PTS; third return flashes opening status before native dismissal. Final-source full/native gates remain separate."
+  }
+}

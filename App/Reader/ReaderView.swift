@@ -37,26 +37,31 @@ import XianxiaCore
                     Text(failure).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     Button("重试") { Task { await model.retryOpen() } }
                 }.padding(32)
-            } else if !model.isReady {
+            } else if !model.isReady && !returningToLibrary {
                 ProgressView(model.openStatus).accessibilityIdentifier("reader.open.status")
             }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay {
+            // Menu geometry follows the reader viewport, independently of
+            // transient publication/loading content in the surface below it.
             ReaderMenuView(book: book, model: model, returnToLibrary: {
                 guard !returningToLibrary else { return }
                 returningToLibrary = true
                 Task {
                     await model.saveNow()
                     guard visible else { return }
-                    returningToLibrary = false
-                    if let failure = model.settingsSaveFailure { model.errorMessage = failure }
-                    else {
-                        model.close()
+                    if let failure = model.settingsSaveFailure {
+                        returningToLibrary = false; model.errorMessage = failure
+                    } else {
+                        // Preserve the rendered page during native dismissal.
+                        // onDisappear closes and invalidates this session.
                         if let onReturnToLibrary { onReturnToLibrary() } else { dismiss() }
                     }
                 }
             }, showContents: { showContents = true }, showBookmarks: { showBookmarks = true },
                showSearch: { showSearch = true }, showAppearance: { showAppearance = true }, returningToLibrary: returningToLibrary)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(model.appearance.theme.background)
         .tint(ReaderPalette(theme: model.appearance.theme).accent)
         .readerColorScheme(model.appearance.theme)

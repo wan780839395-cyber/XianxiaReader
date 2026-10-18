@@ -1,0 +1,57 @@
+{
+  "recordedAtUTC": "2026-10-18T02:58:21.460332+00:00",
+  "swiftFiles": 446,
+  "addedSyntaxDiagnostics": 0,
+  "upstreamGrammarLimitations": 54,
+  "toolingTests": 17,
+  "appleCompilation": false,
+  "oldTestBodiesPreserved": 37,
+  "modifiedOriginalTests": [
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "test": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+      "reason": "Navigate collection / expand advanced controls; original functional assertions retained; compact panel expectation follows new collapsed design"
+    },
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "test": "testSixNativeFontSamplesAndCustomTypographyPersist",
+      "reason": "Navigate collection / expand advanced controls; original functional assertions retained; compact panel expectation follows new collapsed design"
+    },
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "test": "testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen",
+      "reason": "Navigate collection / expand advanced controls; original functional assertions retained; compact panel expectation follows new collapsed design"
+    },
+    {
+      "path": "Tests/iOS/BookCoverTests.swift",
+      "test": "testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots",
+      "reason": "App-owned inbox injected in native fixture only"
+    },
+    {
+      "path": "Tests/iOS/LibraryRemovalTests.swift",
+      "test": "testNativeRemovalConfirmationTrashAndEmptySnapshots",
+      "reason": "App-owned inbox injected in native fixture only"
+    },
+    {
+      "path": "Tests/iOS/LibraryTests.swift",
+      "test": "testNativeShelfGridListFilterAndRenameErrorSnapshots",
+      "reason": "App-owned inbox injected in native fixture only"
+    }
+  ],
+  "newTests": 11,
+  "sourceBlobs": 544,
+  "logs": [
+    {
+      "path": ".cache/recovery/20261018-build27/windows.log",
+      "sha256": "fca6bceb39f9119921d40433be68a5295bee1e3df1e77838a90054a51ce5f3a4"
+    },
+    {
+      "path": ".cache/recovery/20261018-build27/tooling.log",
+      "sha256": "b5403ea64ef13af93cc6872520a73db4e7d63beb74678215a69eb6dbd3157df5"
+    },
+    {
+      "path": ".cache/recovery/20261018-build27/candidate.diff",
+      "sha256": "bc33e4a11e2fe32d4ec259d17e913f5aff84f076054cfc9b5244a20dc28fb66e"
+    }
+  ]
+}

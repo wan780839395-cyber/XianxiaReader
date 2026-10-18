@@ -60,3 +60,9 @@ TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(da
 
 ## 最终全量前异步复核
 应用字体开始时使旧fontCatalogRequestID失效：刷新在导入前读取的目录，不能在导入完成且fontBusy归false之后迟到覆盖新资源列表。关闭/重开及每次浏览请求ID守卫继续保留；不改变导入事务、引擎目录重建或完整锚点策略。第三候选定向只验证其原冻结源；该守卫纳入独立最终完整源，并跑原字体竞态/捕获失败/关闭/重开与全部回归。
+
+## 原生返回录屏新增发现（尚待修正）
+第三定向16/16后实际看全新会话录屏1fps总览5表和122原帧/11表，第三返回按下后短暂出现打开排版spinner，再向下关闭。代码成功路径过早close将isReady归false并提前重置returning标记，与录屏一致。拟沿原生dismiss→既有onDisappear清理，成功返回中保持标记并隐藏打开spinner，保存失败仍恢复按钮/可见错误；不加快照、计时等待或动画私有API。当前完整c518源先完成实际验证后归档，不把该诊断的功能过关当动效过关，再对修正源完整回归。第一返回原视频PTS有反转，已记录，不能用于设备帧率结论。
+
+
+2026-10-18 恢复边界修正：固定Readium3.11 d82f44f源码中JS loaded早于初始位置完成；本地额外等待字体会扩大隐藏期。自动paged位置通知现在与既有显式DOM捕获一样，await前后拒绝未附窗/alpha不足的页，保留原完整Locator；不是性能优化或引擎升级。官方源 https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBSpreadView.swift 。退出原生dismiss前不close模型，以既有onDisappear统一使会话失效。菜单改viewport overlay隔离加载内容布局；目录点击失败是否解决需原测试/原生录屏，不能从代码推断。全量39092416032实际155/157，记录另存，不继承该源门槛。
