@@ -7,6 +7,8 @@ import UIKit
     @Binding var text: String
     @Binding var focused: Bool
     let palette: ReaderPalette
+    var prompt = "搜索书中关键词"
+    var fieldIdentifier = "reader.search.query"
     let onSubmit: () -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
@@ -22,8 +24,8 @@ import UIKit
         field.contentVerticalAlignment = .center
         field.setContentHuggingPriority(.defaultLow, for: .horizontal)
         field.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        field.accessibilityIdentifier = "reader.search.query"
-        field.accessibilityLabel = "搜索书中关键词"
+        field.accessibilityIdentifier = fieldIdentifier
+        field.accessibilityLabel = prompt
         field.delegate = context.coordinator
         field.addTarget(context.coordinator, action: #selector(Coordinator.textChanged(_:)), for: .editingChanged)
         return field
@@ -31,6 +33,8 @@ import UIKit
 
     func updateUIView(_ field: UITextField, context: Context) {
         context.coordinator.parent = self
+        field.accessibilityIdentifier = fieldIdentifier
+        field.accessibilityLabel = prompt
         // Keep the active Chinese input composition and caret intact. External
         // clear is intentional and may also discard the marked composition.
         if field.text != text && (text.isEmpty || field.markedTextRange == nil) { field.text = text }
@@ -38,7 +42,7 @@ import UIKit
         field.textColor = UIColor(palette.text)
         field.tintColor = UIColor(palette.accent)
         field.keyboardAppearance = palette.theme.isDark ? .dark : .light
-        field.attributedPlaceholder = NSAttributedString(string: "搜索书中关键词", attributes: [
+        field.attributedPlaceholder = NSAttributedString(string: prompt, attributes: [
             .foregroundColor: UIColor(palette.secondaryText)
         ])
         if focused && !field.isFirstResponder && field.window != nil { field.becomeFirstResponder() }

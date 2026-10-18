@@ -17,6 +17,7 @@ case "$selection" in
   panels)
     cases=(
       -only-testing:XianxiaReaderTests/ReadingExperienceTests
+      -only-testing:XianxiaReaderTests/ReaderSearchFieldTests
       -only-testing:XianxiaReaderTests/ReadingFontTests/testExternalFontBrowsingDoesNotRebuildUntilExplicitSelectionAndKeepsFullAnchor
       -only-testing:XianxiaReaderUITests/ReadingExperienceUITests
       -only-testing:XianxiaReaderUITests/ReadingFontUITests

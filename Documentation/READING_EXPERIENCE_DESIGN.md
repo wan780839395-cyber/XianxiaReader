@@ -54,3 +54,6 @@ b799754/39086068358完整xcresult152/156，4失败、0跳过，源码compiler0/�
 TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(data:)/finalize，沿原64KiB消费、取消/错误/计数上限；Linux仍原portable实现。流式算法的SHA256结果、路径/原件、缓存版本和Parser完全不变。Core只多一个条件系统摘要后端，保持业务/SQLite与UI/Readium隔离，没有swift-crypto/CryptoSwift新包或锁变更。新增两Core已知NIST/跨块131089字节与取消/原件回归，对Apple系统和Linux portable都跑；新增iOS完整文楷25MB导入/三次URL校验计时，原3字体开书20秒预算保持。该修复针对已查明的重复CPU/校验工作，仍不冒称手机正文FPS问题已测完。
 
 [Apple SHA256 init](https://developer.apple.com/documentation/cryptokit/sha256/init())、[update](https://developer.apple.com/documentation/cryptokit/sha256/update(data:))和[finalize](https://developer.apple.com/documentation/cryptokit/sha256/finalize())是iOS13+/macOS10.15+公开增量API，适用本项目iOS16/macOS13/Xcode16.4；[apple/swift-crypto](https://github.com/apple/swift-crypto)也采用可用时委托系统CryptoKit的成熟边界。仅参考API与分平台模式，没有引入其最新Swift6.3实现、私有编译标记或依赖。
+
+## 第三候选：固定字体查询栏
+第二候选39089264017实际14/15，字体首次20秒ready/旧高级与持久化回归通过；唯一失败为系统.searchable折叠drawer的AX滚入动作。改复用现有ReaderSearchField，参数化提示/标识，固定顶部44pt原生查询/清空栏，不新增整表重建或引擎搜索。原中文marked-text/光标逻辑不变，panels加入原ReaderSearchFieldTests共16；字体UI仍保留3款/两列/显式选中/实时筛选/预设保留字号/高级持久化，另核44pt/清空恢复/Return收键盘。未增加原20秒预算、未删原断言；尚待真实Apple编译与全量门槛。

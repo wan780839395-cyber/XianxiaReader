@@ -32,3 +32,11 @@ Windows445/新增0/54既有Vendor限制、17工具、bash -n已过。冻结清�
 定位出另一个明确成本：BookFileStore.readingFontURL每次完整SHA；原TXTContentDigest.file逐字节Swift SHA在Debug执行，3个导入含约50MB中文字体，且新设置.task会重复核。拟改Apple系统CryptoKit流式文件SHA（公开iOS13+/Mac10.15+，64KiB有界、相同SHA256/取消/错误，Linux保留原实现），不新增依赖/锁/UI引擎或降低完整性；新增跨块已知摘要/取消回归及完整中文字体3次校验计时。刷设置先小目录比较，仅新变更/显式通知刷新，不因每次开页全量散列。官方CryptoKit init/update/finalize及apple/swift-crypto平台委托已核，详细来源将落设计。尚未Apple编译，先新定向panels诊断（无IPA），通过后再完整新源门槛；旧失败不追认。
 
 第二候选冻结前：Windows446/新增0/54既有Vendor限制、17工具、bash -n通过；544源码/config/resource blob，37旧主体保持/6适配/11新增，预期Core各137、iOS157（132集成+25真UI）。新增流式文件摘要Apple系统后端/两Core测试与完整25MB字体计时、设置小目录未变跳过重复资源校验、开书阶段可见状态；不修改Vendor/Readium/schema/锁。先panels定向15项（无IPA）再完整门槛；原20秒ready和原功能断言保持。先轮本地忽略cache日志别名被第二候选复用，首轮Windows元数据已从b799 Git独立取回，原CI静态/完整日志与xcresult原件保留，边界如history记录，不能把当前cache别名当旧字节。
+
+当前真实定向诊断39089264017/cb633672fa429e9307a4931885adc5747fdf926f，selection=panels现包含15项本片/字体/旧面板回归；不是完整门槛，不生成IPA。旧全量39086068358已经completed/failure且下载完成，两个原助手已退出。新watch_autoscroll.py同run仅查询状态/最终日志manifest，后续下载/断点在.cache/recovery/20261018-build27。正常HEAD/index保持。
+
+## 第二候选定向实际结果与第三候选前
+39089264017/cb63367实际completed/failure，15项14过1失败、0跳过；无Release/IPA、不替代完整门槛。25MB文楷导入0.063474s，三次完整URL摘要0.077738s（模拟器Debug计时，非手机FPS）；原3字体20秒ready已过，JSON规范化与2原字体高级展开/持久化回归均过。唯一失败字体收藏页搜索的系统drawer字段被AX尝试滚入视口时报kAXErrorCannotComplete，发生在真实3字体网格选中之后；实际已查看该网格PNG，字体大小/布局协调。
+下一步复用已验证ReaderSearchField为字体收藏固定44pt原生查询栏，配置独立prompt/标识，避免折叠导航drawer；保持书内查询原默认与中文marked-text/光标行为，panels定向加入已有ReaderSearchFieldTests共16项。新UI保留3字体/两列/选中/查找/预设/持久化/20秒ready断言，改为固定字段并加强44pt/真实键盘关闭/清空。先新定向，再完整新源Core137/iOS157；当前工作未交付。原第一轮152/156与本轮14/15原件都保留。
+
+第三候选测试前：固定顶部44pt原生字体查询/清空栏已落盘，保留原书内字段默认和marked-text/光标逻辑；Windows446/新增0/54既有Vendor限制与17工具通过，544源blob/37旧主体保持/6适配/11新增。即将新源panels16定向（加原输入回归）；完整Core137/iOS157/Release27仍待跑。正常HEAD/index与旧包备份保留。

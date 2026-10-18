@@ -76,11 +76,17 @@ final class ReadingExperienceUITests: XCTestCase {
         let latin = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.font.imported.' AND label CONTAINS[c] 'iA' ")).firstMatch
         XCTAssertTrue(latin.exists); latin.tap(); XCTAssertEqual(latin.value as? String, "已选择")
         snapshot("experience-imported-font-grid", in: app)
-        let query = app.searchFields.firstMatch; XCTAssertTrue(query.exists); query.tap(); query.typeText("iA")
+        let query = app.textFields["reader.fonts.query"]
+        XCTAssertTrue(query.exists); XCTAssertTrue(query.isHittable); XCTAssertGreaterThanOrEqual(query.frame.height, 44)
+        query.tap(); query.typeText("iA")
         XCTAssertEqual(fonts.count, 1); XCTAssertEqual(latin.value as? String, "已选择")
         snapshot("experience-imported-font-search", in: app)
-        let cancel = app.buttons.matching(NSPredicate(format: "label == '取消' OR label == 'Cancel'")).firstMatch
-        XCTAssertTrue(cancel.waitForExistence(timeout: 10)); cancel.tap()
+        let clear = app.buttons["reader.fonts.clear"]
+        XCTAssertTrue(clear.isHittable); XCTAssertGreaterThanOrEqual(clear.frame.height, 44); clear.tap()
+        XCTAssertEqual(fonts.count, 3)
+        query.typeText("iA\n")
+        XCTAssertEqual(fonts.count, 1); XCTAssertFalse(app.keyboards.firstMatch.exists)
+        clear.tap(); XCTAssertEqual(fonts.count, 3)
         app.buttons["reader.fonts.back"].tap()
         app.buttons["排版"].tap()
         XCTAssertFalse(app.buttons["reader.letter-spacing.increase"].exists)
