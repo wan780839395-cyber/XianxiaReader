@@ -47,5 +47,22 @@
     "iOS": "16.6.1",
     "installation": "TrollStore",
     "source": "Documentation/DEVICE_ACCEPTANCE.md historical user confirmation 2026-10-14; not reverified in current feedback"
+  },
+  "subsequentMeasuredOptimization": {
+    "run": 39089264017,
+    "sourceRevision": "cb633672fa429e9307a4931885adc5747fdf926f",
+    "environment": "iOS simulator Debug; existing native test uses full bundled Chinese font",
+    "fontBytes": 25928940,
+    "importSeconds": 0.06347433333337449,
+    "threeValidationsSeconds": 0.07773820833335776,
+    "changes": [
+      "Apple public system streaming file SHA256 preserves content identity and integrity/cancellation",
+      "Unchanged small catalogue avoids repeating full font-resource validation on settings presentation"
+    ],
+    "limitations": [
+      "No same-device old-backend timing baseline; no percentage improvement claim",
+      "Not main-thread/render/DOM sample profiling, physical-device FPS, memory or energy acceptance",
+      "Third candidate retains the same hashing code; its/full native gates still pending"
+    ]
   }
 }

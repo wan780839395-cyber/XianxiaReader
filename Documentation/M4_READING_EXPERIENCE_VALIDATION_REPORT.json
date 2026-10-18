@@ -378,7 +378,7 @@
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "7bb6bfc3b487e980c39fc595089329095a48b2cac7f0b55407c029f6253030af"
+      "sha256": "f23b7378157159047367818f5be3251df7a0e50ae4458589bb1ab97aed650403"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -2533,7 +2533,7 @@
       "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json"
     }
   ],
-  "sourceRevision": "cb633672fa429e9307a4931885adc5747fdf926f",
+  "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
   "diagnosticRuns": [
     {
       "run": 39089264017,
@@ -2590,6 +2590,14 @@
         "topInsights": [],
         "totalTestCount": 15
       }
+    },
+    {
+      "run": 39091123601,
+      "sourceRevision": "0c7945c60906b7faa11124b94f1335a36c6647b2",
+      "selection": "panels",
+      "expectedCases": 16,
+      "status": "queued",
+      "conclusion": null
     }
   ]
 }

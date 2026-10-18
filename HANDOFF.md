@@ -40,3 +40,7 @@ Windows445/新增0/54既有Vendor限制、17工具、bash -n已过。冻结清�
 下一步复用已验证ReaderSearchField为字体收藏固定44pt原生查询栏，配置独立prompt/标识，避免折叠导航drawer；保持书内查询原默认与中文marked-text/光标行为，panels定向加入已有ReaderSearchFieldTests共16项。新UI保留3字体/两列/选中/查找/预设/持久化/20秒ready断言，改为固定字段并加强44pt/真实键盘关闭/清空。先新定向，再完整新源Core137/iOS157；当前工作未交付。原第一轮152/156与本轮14/15原件都保留。
 
 第三候选测试前：固定顶部44pt原生字体查询/清空栏已落盘，保留原书内字段默认和marked-text/光标逻辑；Windows446/新增0/54既有Vendor限制与17工具通过，544源blob/37旧主体保持/6适配/11新增。即将新源panels16定向（加原输入回归）；完整Core137/iOS157/Release27仍待跑。正常HEAD/index与旧包备份保留。
+
+第三候选真实定向39091123601/source0c7945c60906b7faa11124b94f1335a36c6647b2已派发，selection=panels16，无设备Release/IPA。新watch_autoscroll.py同run/collect_experience27_diagnostic.py同run是本轮助手，恢复先核run.json/真实进程，不重复派发。
+
+最终全量前补一条目录刷新失效守卫：importReadingFont开始即清fontCatalogRequestID，使导入前已启动的浏览刷新不能在导入/重建完成后覆盖新目录；原请求关闭/重开守卫保持。第三候选39091123601仍在其冻结0c7945c源码执行，结果只属于该源，不取消/重派；此小改另冻结最终源并跑完整Core137/iOS157/Release27，含原字体导入/捕获失败/迟到关闭/重开回归。当前尚未Build27交付。

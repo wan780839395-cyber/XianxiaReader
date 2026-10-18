@@ -354,6 +354,9 @@ private enum ReaderJumpError: LocalizedError {
     func importReadingFont(from source: URL) async {
         guard isReady, !fontBusy, !navigationInProgress, let engine, let provider = engine.fontProvider,
               let session = openRequestID else { return }
+        // A browsing request started before this import must not replace the
+        // catalogue installed by the completed import/rebuild when it returns.
+        fontCatalogRequestID = nil
         let request = UUID(); fontRequestID = request; fontBusy = true; fontMessage = nil
         defer { if fontRequestID == request { fontRequestID = nil; fontBusy = false } }
         func current() throws {

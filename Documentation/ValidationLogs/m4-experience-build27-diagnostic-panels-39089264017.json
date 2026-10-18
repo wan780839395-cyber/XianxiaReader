@@ -55,5 +55,12 @@
   "artifactDigestAndCRCVerified": true,
   "logSHA256": "53d65700421d7715d58ad9282957fa5b9fe622fd5613bfbbdd8b0af2bb7f7f64",
   "summarySHA256": "d12a3285041c276dc51fbc3fbc8f686bc6ce8f8bd35667d7b8d0bbc4d0fb9947",
-  "notes": "Selected 15 native cases only; never substitutes full157 iOS gate, Core each137, Release27 or native/device acceptance"
+  "notes": "Selected 15 native cases only; never substitutes full157 iOS gate, Core each137, Release27 or native/device acceptance",
+  "manualImageReview": [
+    {
+      "path": "build/ci/39089264017/diagnostic/ReaderSnapshots/07F02FFB-90B8-4E1B-9A3D-4FD9FE8562AF.png",
+      "sha256": "016244a8544e15e6c1c3787dab78715d9192fdc90922acda2aa7e9a5cbd3ad4c",
+      "observations": "Actually viewed original 3-font collection PNG: two-column cards, natural sample sizes, selected iA, readable Chinese fallback and consistent pale green surfaces. Search drawer remains collapsed in this capture; no motion/FPS gate."
+    }
+  ]
 }
