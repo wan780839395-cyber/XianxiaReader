@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-18T09:45:12.631454+00:00",
+  "recordedAtUTC": "2026-10-18T09:55:59.486474+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 1060,
+  "fileCount": 1061,
   "files": [
     {
       "path": ".gitattributes",
@@ -355,8 +355,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 94190,
-      "sha256": "b43c7c614bf6f171173b0ec9a91b3f3cea3f78c94f9fbad4309420a634068566"
+      "bytes": 94543,
+      "sha256": "e7cde227e0da2fac22255890a1cb4100cd516943b3a2a4c65feaa09a73a82510"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -790,8 +790,8 @@
     },
     {
       "path": "Documentation/M4_READING_CHROME_VALIDATION_REPORT.json",
-      "bytes": 158533,
-      "sha256": "c06bce7f6afd38f405be2cfe71731bdd96a323170fc26113548c70117cd88ba2"
+      "bytes": 158833,
+      "sha256": "5f427e4fedec7d126b21083685338b9eb89e37ae6f448dcd0bf8798c7e2f85cf"
     },
     {
       "path": "Documentation/M4_READING_EXPERIENCE_VALIDATION_REPORT.json",
@@ -1747,6 +1747,11 @@
       "path": "Documentation/ValidationLogs/m4-chrome-build28-ci-retention.json",
       "bytes": 1074468,
       "sha256": "41ea3f41d3e2bfd19891c82372b7cb497e413725530ad8572039eb31d75f3a6d"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
+      "bytes": 573,
+      "sha256": "0dec1ae5cb171ed2b896246654733d8a6ae850fd3e4b5a025b147a6d8790ee67"
     },
     {
       "path": "Documentation/ValidationLogs/m4-chrome-build28-native-review.json",
@@ -2795,8 +2800,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 4943,
-      "sha256": "e3c0bdc98e36467b71910bac8dc161d4b6a6e2beb9472da628b8781cf3c9750c"
+      "bytes": 5296,
+      "sha256": "b55c385bad6cee61c9fa389a1a73ec99545389f255384778dd7f4b94933a8e9c"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -2870,8 +2875,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 103438,
-      "sha256": "e98329588dc2bbdd8e8ab886fa4df6bf85668a8ce65a943f7a8eb82c36004649"
+      "bytes": 103791,
+      "sha256": "d97f2a5767b9784bbbd727a80f0dd1ccdab18d6feb02623332c696c6e1bf7d13"
     },
     {
       "path": "Package.resolved",
@@ -3250,8 +3255,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 93099,
-      "sha256": "2706fa548b196370872f3b43a5212ca25f4fca072ecc4708deb7493f8ed3b3da"
+      "bytes": 93452,
+      "sha256": "49ebb9a9da9aa68014d19696b274da909fd5d701b68ec6aa1dfedc3bbffac200"
     },
     {
       "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",

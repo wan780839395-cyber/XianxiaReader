@@ -1,5 +1,7 @@
 # 真机阅读验收
 
+2026-10-18 用户在Build28交付后反馈“没问题”，记录为本片总体使用认可；未逐项说明菜单/跨章/设置测试，不扩展为手机FPS、全部设备矩阵或M4整体验收。证据：Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json。后续仍按M4性能计划与旧隐藏菜单安全区问题推进。
+
 ## Build28 阅读进度依赖与菜单顶部（2026-10-18）
 
 实际源`8acc3f2f7980b3d291155936184f36ddc42d4c84` / `codex/m4-reader-chrome` / [完整CI 39113019568](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39113019568)。Linux/macOS Core各137，iOS161/161（135集成+26真UI）失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release28/min16。三锁六pins、546编译资源blob、六原字体/OFL与每平台4组长TXT Release探针已核。Windows448语法新增0/54既有Vendor限制、17工具通过，语法不是编译；受改测试文件38个原test主体不变，3新增，其他旧回归完整重跑。Core/Adapter/Vendor/CI/schema/依赖均保持Build27。

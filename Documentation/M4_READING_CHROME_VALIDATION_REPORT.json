@@ -258,7 +258,8 @@
     "devicePerformanceAccepted": false,
     "M4Complete": false,
     "standardFontOpenInDeviceAccepted": true,
-    "externalSourceAppsAccepted": false
+    "externalSourceAppsAccepted": false,
+    "Build28GeneralUseAccepted": true
   },
   "sourceHashes": [
     {
@@ -3580,5 +3581,10 @@
     "historicalRuns": [
       39107016454
     ]
+  },
+  "deviceFeedback": {
+    "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
+    "generalUseAccepted": true,
+    "scope": "General acceptance of current use; individual chapter/gesture/settings checks were not specified."
   }
 }

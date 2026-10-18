@@ -1,0 +1,13 @@
+{
+  "recordedAtUTC": "2026-10-18T09:55:53.723866+00:00",
+  "build": 28,
+  "sourceRevision": "8acc3f2f7980b3d291155936184f36ddc42d4c84",
+  "userFeedback": "没问题",
+  "context": "Reply following Build28 delivery",
+  "scope": "General acceptance of current use; individual chapter/gesture/settings checks were not specified.",
+  "generalUseAccepted": true,
+  "deviceContext": "iPhone13 / iOS16.6.1 / TrollStore as previously confirmed; not re-specified in this reply",
+  "phoneFPSMeasured": false,
+  "fullDeviceMatrixAccepted": false,
+  "M4Complete": false
+}
