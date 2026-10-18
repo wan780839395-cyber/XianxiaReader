@@ -9,9 +9,14 @@
   "imagesActuallyViewed": 37,
   "imageContactSheetsViewed": 7,
   "recordingsActuallyReviewed": [
-    "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation"
+    "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+    "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+    "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+    "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+    "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+    "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()"
   ],
-  "videoOverviewSheetsViewed": 5,
+  "videoOverviewSheetsViewed": 31,
   "nativeAccepted": false,
   "visualRejection": "At33s charcoal selected while portrait rotation reflow still loading; at37-41s visible layout-not-stable alert; at42-58s body remains warm but cover/controls charcoal. New test only waited app frame ratio, no loaded-page/theme/error assertions. Both landscape PNGs transitional, restored PNGs loading/stale.",
   "nextStep": "Only strengthen new Build29 UI test with bounded real readable/no-spinner/theme-pixel checks after theme and rotations; original299 methods/budgets/production unchanged. Add case to selected recovery diagnostic before independent full revalidation.",
@@ -27,5 +32,26 @@
       "sha256": "8ced2e16295c4de682fe9a9be54df83a2d271f225a6a151ae9027dc7f3247dd9"
     }
   ],
-  "rawCurrentRetained": true
+  "rawCurrentRetained": true,
+  "originalFrameWindows": [
+    {
+      "path": "build/ci/39147081645/EdgesReview/edges/layout-alert-onset/frames.json",
+      "frames": 45,
+      "sourcePTSInversions": 0,
+      "observations": "45 raw frames confirm visible layout error begins36.78s and body loads warm under it; not accepted"
+    },
+    {
+      "path": "build/ci/39147081645/EdgesReview/autoscroll/slow-start/frames.json",
+      "frames": 3,
+      "sourcePTSInversions": 0,
+      "observations": "Only3 original frames in requested0.7s window, spanning18.335-18.383s; insufficient for full motion acceptance"
+    },
+    {
+      "path": "build/ci/39147081645/EdgesReview/chrome/return-start/frames.json",
+      "frames": 86,
+      "sourcePTSInversions": 0,
+      "observations": "86 raw original frames show fade/loading on return; this window does not include stable final introduction, which was seen later in the full overview"
+    }
+  ],
+  "nativeReview": "build/ci/39147081645/EdgesReview/reviewed-rejected.json"
 }

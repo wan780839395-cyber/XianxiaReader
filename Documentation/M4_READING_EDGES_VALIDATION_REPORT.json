@@ -2529,6 +2529,18 @@
       "notFullDeliveryGate": true,
       "passed": 10,
       "total": 10
+    },
+    {
+      "run": 39153021005,
+      "sourceRevision": "5e893514f31862a8b5e8d7c338e9e3b89e55374b",
+      "branch": "codex/m4-edges-rotation",
+      "selection": "recovery",
+      "expectedSelectedTests": 11,
+      "result": "failure",
+      "notFullDeliveryGate": true,
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-rotation-diagnostic-result.json",
+      "passed": 10,
+      "total": 11
     }
   ],
   "branch": "codex/m4-reading-edges",

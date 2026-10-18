@@ -1,14 +1,16 @@
 # 当前交接与恢复点
 
-## 恢复先看：Build29 修正版完整验收执行中（2026-10-19）
+## 恢复先看：第五完整自动过，原生拒绝；定向11执行中（2026-10-19）
 
-实际断点：完整run39147081645 / source a65086c1151831b54d90ed083fa36fc27848b5cb / codex/m4-reading-edges。原watch PID44248、collector PID28904有界运行；先核build/ci/39147081645/run.json、owned-helpers.json、完整日志和实际进程，复用现有任务，不重复派发。GitHub只有本轮完整任务正在运行。
+当前run39153021005/source5e893514f31862a8b5e8d7c338e9e3b89e55374b/codex/m4-edges-rotation/selection=recovery11。watch PID5896、collector PID39848有界运行；先看build/ci/39153021005/run.json、owned-helpers.json、完整日志和实际进程，复用不重派。
 
-本轮Linux137/137与4组长TXT Release探针已真实校验，Apple/iOS163/设备Release29尚待；不得继承旧macOS结果或把定向10算成163。最后交付仍Build28，根目录没有Build29交付IPA/TestKit。完成完整门槛后仍须本源原生录屏/原始帧复核和包校验，若失败保留实际阶段，不继续同源盲重跑。
+第五完整39147081645/sourcea650真实Core137各/iOS163=136+27/设备Release29及547源/原字体/锁/51旧包全部严格核验；但37原图/7表及新旋转61.54s/5总览已看到旋转未稳定就切色→明确排版失败alert、旧暖白正文配深色控件和边缘，原生拒绝，因此无根Build29交付。最后交付仍Build28。当前主报告保留第五自动通过与原生拒绝，不能改写为自动失败或已交付。
 
-已完成：recovery39144858281/source同a650真实10/10，新增窗口真实出现/退出收尾，appearance不平衡警告0，旧主题2秒测试通过；42原图/7表与4原视频一秒总览18表已查看。加载阶段113 trace/1156事件，已完成72条最慢6.779s；系统额外日志20秒超时，UI完整呈现trace未取得。诊断完整原件SHA/GitHubdigest/CRC已核，重复ZIP/分片清除，详情m4-edges-build29-diagnostic-result.json。四次旧完整失败记录独立保存，a9完全同源复验次数已用尽；本轮a650含有实证的新窗口生命周期修正及Debug元数据，不更改299旧test主体/加载或保存预算。
+新source5e仅加强本轮新增旋转test的真实正文/无spinner无alert/实际纸张主色断言，并将其加入recovery共11项；生产App/Core/Adapter/Vendor/默认完整CI与a650逐字完全相同，299其他test主体不变、原方向10秒/加载20秒/保存3秒预算保持。Windows449语法新增0/54既有限制、17工具通过，仍需新test实际Apple执行。保留图验证新颜色条件能拒绝坏图0/1600、接受正确深色1594/1600和暖白1237/1600；不是编译或设备验收。详情rotation-diagnostic-start与history-39147081645。
 
-保全：正常HEAD6d761749/空index保持，1062原路径与51旧包保留；19恢复ZIP和.cache/recovery诊断前6文件原字节保留。appearance文档恢复tip f603617cb8f964e2a6cccd5978ac10d4a8ee25db，实际compiled source和diagnostic branch仍a650。应用源码冻结，后续只改文档/ignored本地收取工具。用户已取消关机，不关机、不设置自动化。
+此前定向39144858281/a650真实10/10、窗口生命周期警告0，42图/4录屏状态已看；额外统一日志20秒超时，UI完整呈现trace未取得。四次旧完整真实失败独立保存，a9同源复验已用尽。第五与新定向亦独立，未完成新断言/原生确认前不能打包。
+
+保全：正常HEAD6d761749/空index、1062原路径/51旧包/19恢复ZIP及两轮before原字节保持。appearance/rotation源5e89351，edges完整Release源a650，旧diagnostic branch a650。无旧run助手；当前仅5896/39848。用户取消关机持续生效，不关机。
 
 下方为本片开发历史，不能覆盖以上实际断点。
 
@@ -141,8 +143,23 @@ run39144858281/sourcea65086c1151831b54d90ed083fa36fc27848b5cb/codex/m4-edges-dia
 
 ## 第五完整自动通过，但原生发现新用例假通过（修改前）
 
-39147081645/a650真实Core137各/iOS163/Release29全部严格校验，完整artifact1820MiB级SHA/digest/CRC已核并去重复；仍无根Build29交付。实际37 PNG/7表、新旋转61.54s/5总览看过，33s在旋转加载期间切深色，37-41s有页面仍在排版alert，随后浅色正文配深色边缘/控件，不能放行。新UI只等app横竖比例，未等真实正文或断言主题/alert；先加强此新test，不改299旧主体/生产预算。待改2文件原字节备份.cache/recovery/20261019-build29-rotation/before，先选定包含新旋转用例诊断，不能用本轮自动通过冒充原生接受。其余5条预备录屏尚未人工看，不声称已看。详m4-edges-build29-history-39147081645.json。
+39147081645/a650真实Core137各/iOS163/Release29全部严格校验，完整artifact1825047831字节SHA/digest/CRC已核并去重复；仍无根Build29交付。实际37 PNG/7表、新旋转61.54s/5总览看过，33s在旋转加载期间切深色，37-41s有页面仍在排版alert，随后浅色正文配深色边缘/控件，不能放行。新UI只等app横竖比例，未等真实正文或断言主题/alert；先加强此新test，不改299旧主体/生产预算。待改2文件原字节备份.cache/recovery/20261019-build29-rotation/before，先选定包含新旋转用例诊断，不能用本轮自动通过冒充原生接受。其余5条预备录屏尚未人工看，不声称已看。详m4-edges-build29-history-39147081645.json。
 
 新用例已加强待检查：只在本轮新增旋转test内，主题应用后及横/竖恢复后等待实际正文可见、无可见加载spinner/alert，并核截图中央纸张主色（暖白F8F5ED/深灰242826，允许文字笔画），原frame10秒/其他动作及全部旧test保持；每个新就绪条件有20秒上限，不加sleep或重试点击。recovery加入该新用例共11项。生产App/Core/Adapter/Vendor/默认完整CI不改。Apple orientation与XCTNSPredicateExpectation官方markdown已实际读取并留摘要（当前Xcode16.4适用；文档明确设备物理方向不直接等同App界面方向），不把比例变动当WebKit排版完成。下一步Windows449/17、299旧主体对照/原截图判定检查后才派定向11。
 
 旋转新断言冻结前检查已完成：Windows449新增语法0/54既有限制、17工具通过；对a650逐方法核299其他test（含Core137+iOS/UI162）字节一致，仅本轮新增旋转test改；生产App/Core/Adapter/Vendor/默认CI字节完全同a650。保留真实图中央主色检查能拒绝错误深色0/1600而接受正确深色1594/1600及暖白1237/1600，不冒充Apple执行。下一步私有快照/独立rotation诊断分支recovery11，先不改当前a650完整自动门槛或交付IPA。
+
+
+## 定向11项旋转补强已实际启动
+
+run39153021005/source5e893514f31862a8b5e8d7c338e9e3b89e55374b/codex/m4-edges-rotation/selection=recovery。仅新UI就绪断言和诊断名单变化，生产完全同a650；edges仍保持第五完整真实Release源a650，不移动。先核本run与owned-helpers.json，不重复派发。第五完整自动门槛保留true，但原生旋转拒绝/无Build29交付；定向11本身不生成IPA。
+
+
+第五完整补充原生复核已实际看完6原视频/31总览表（37图/7表仍已看），另3窗口134原始帧/13表：旋转alert45帧明确36.78s出现排版错误，PTS有源回退单列；慢滚窗口仅3帧不足完整动效，返回86帧窗口只到加载，最终介绍在总览后续见到。菜单重启设置、字体查询/预设/0.05重开、浅深进度67%/返回、慢滚触摸后台和重开所列状态可接受，但新旋转仍拒绝，不打包。reviewed-rejected.json与第五history已同步。新recovery11继续独立等结果，无生产改动。
+
+
+## 定向11实际10/11与截图观测问题（修改前）
+
+39153021005/5e真实10/11，唯一加强的新旋转test在暖白横屏predicate截止时AX查询被waiter中断，旧10全部过；完整artifact已SHA/GitHubdigest/CRC校验，重复42分片/ZIP清除。1暂停PNG和49秒原视频4总览已看：43-49s横屏正文已可读，未到charcoal且未见alert。现有App横屏PNG2622×1206中央40方块为1600个纯黑像素；物理整屏录屏1206×2622的48s同类暖白中央纸张81.5%，支持App frame裁图坐标导致采样误判线索，不宣称唯一根因。Apple官方XCUIScreen/XCUIScreenshotProviding文档已读，下一步只把新用例的截图/采样改为公开XCUIScreen.main.screenshot并保留首个landscape App/Screen对照图和安全几何/颜色结果，不删readability/no-spinner/no-alert/20秒/55%/容差5要求，旧299与生产不改。待改新UI文件5e原字节备份.cache/recovery/20261019-build29-screen/ReaderInterfaceUITests.before.swift。第五完整A仍原生拒绝，不交付。
+
+整屏观测修正待Apple：只改新用例采样/三个留图为XCUIScreen.main.screenshot，首个横屏就绪时保存App/Screen原图和几何/纸色判定对照；不删任何就绪/颜色/错误条件或改等待预算。Windows449新增0/17工具通过、299其他主体对a650不变、生产与默认完整CI全同a650。源/547blob/2原路径差异见screen-diagnostic-start与恢复目录source.diff，下一步独立screen诊断分支11项，原B失败保留，不交付。

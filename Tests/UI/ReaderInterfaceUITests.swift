@@ -24,19 +24,19 @@ final class ReaderInterfaceUITests: XCTestCase {
             let paused = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "已暂停"), object: toggle)
             XCTAssertEqual(XCTWaiter.wait(for: [paused], timeout: 10), .completed)
             XCTAssertFalse(app.buttons["返回书库"].exists)
-            snapshot("reader-edges-paused-\(theme)-build29", in: app)
+            edgeSnapshot("reader-edges-paused-\(theme)-build29")
             XCUIDevice.shared.orientation = .landscapeLeft
             let landscape = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [landscape], timeout: 10), .completed)
             waitForSettledEdgePage(theme: theme, in: app)
             XCTAssertTrue(toggle.isHittable)
-            snapshot("reader-edges-landscape-\(theme)-build29", in: app)
+            edgeSnapshot("reader-edges-landscape-\(theme)-build29")
             XCUIDevice.shared.orientation = .portrait
             let portrait = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.height > app.frame.width }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [portrait], timeout: 10), .completed)
             waitForSettledEdgePage(theme: theme, in: app)
             XCTAssertEqual(toggle.value as? String, "已暂停")
-            snapshot("reader-edges-portrait-restored-\(theme)-build29", in: app)
+            edgeSnapshot("reader-edges-portrait-restored-\(theme)-build29")
             app.buttons["reader.autoscroll.close"].tap()
             XCTAssertTrue(app.buttons["返回书库"].isHittable)
             XCTAssertGreaterThanOrEqual(app.buttons["返回书库"].frame.height, 44)
@@ -49,15 +49,36 @@ final class ReaderInterfaceUITests: XCTestCase {
     @MainActor private func waitForSettledEdgePage(theme: String, in app: XCUIApplication) {
         let rgb: [UInt8] = theme == "charcoal" ? [36, 40, 38] : [248, 245, 237]
         let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
+        var recordedLandscapeProbe = false
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             guard !app.alerts.firstMatch.exists,
                   text.allElementsBoundByIndex.contains(where: { $0.isHittable }),
                   !app.activityIndicators.allElementsBoundByIndex.contains(where: { $0.isHittable }) else { return false }
-            return self.edgePaperMatches(app.screenshot().image, rgb: rgb)
+            let screen = XCUIScreen.main.screenshot()
+            let frame = app.frame
+            if !recordedLandscapeProbe, frame.width > frame.height {
+                recordedLandscapeProbe = true
+                let cropped = app.screenshot()
+                for (kind, shot) in [("screen", screen), ("app-crop", cropped)] {
+                    let image = XCTAttachment(screenshot: shot)
+                    image.name = "reader-edges-\(kind)-probe-\(theme)-build29"
+                    image.lifetime = .keepAlways; self.add(image)
+                }
+                let detail = XCTAttachment(string: "frame=\(frame) screen=\(screen.image.size) app=\(cropped.image.size) screenPaper=\(self.edgePaperMatches(screen.image, rgb: rgb)) appPaper=\(self.edgePaperMatches(cropped.image, rgb: rgb))")
+                detail.name = "reader-edges-capture-geometry-\(theme)-build29"
+                detail.lifetime = .keepAlways; self.add(detail)
+            }
+            return self.edgePaperMatches(screen.image, rgb: rgb)
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
                        "Reading text, settled loading and the selected paper color must all be visible")
         XCTAssertFalse(app.alerts.firstMatch.exists, "A visible layout/save error is not an accepted reading state")
+    }
+
+    @MainActor private func edgeSnapshot(_ name: String) {
+        // A physical screen capture avoids app-frame cropping during rotation.
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = name; image.lifetime = .keepAlways; add(image)
     }
 
     @MainActor private func edgePaperMatches(_ image: UIImage, rgb: [UInt8]) -> Bool {

@@ -41,3 +41,10 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 39147081645/a650真实163/163与设备Release29通过，但37PNG/7表和新旋转61.54秒/5总览显示：设备方向与app比例改变后WebKit仍在重排，新用例已开始下一次切色，原3秒fresh捕捉失败并显式alert，深色边缘配旧暖白正文；因此原生拒绝、不打包。Apple当前Xcode16.4适用的orientation文档明确物理方向不直接等于App界面方向（https://developer.apple.com/documentation/xcuiautomation/xcuidevice/orientation），XCTNSPredicateExpectation以可观察条件为准（https://developer.apple.com/documentation/xctest/xctnspredicateexpectation），官方原markdown与摘要留在rotation恢复目录。
 
 仅补本轮新旋转test：主题完成、横屏和竖屏后分别在20秒上限内要求真实正文可点击、无可见spinner/alert、截图中央40×40纸张主色占比至少55%（文字可穿过，RGB容差5），不改原方向10秒、旧主体299或任何生产/保存预算。保留图离线核对：正确深色1594/1600、正确暖白1237/1600，错误深色0/1600；这是检查新断言能拒绝已观察坏图，不是iOS编译。recovery加入该case为11项，Windows449/17通过、原生产全相同；Apple新test未跑前不作验收。本源新断言可能揭示实际旋转重排问题，失败应查证不删除条件。
+
+
+## 横屏截图的观测修正（定向11失败后）
+
+39153021005/5e实际10/11，只有新旋转case在暖白横屏就绪predicate截止时AX查询被waiter打断。1暂停PNG与49秒原录屏4总览已看，43-49s实际横屏正文已可读，无charcoal步骤或alert。第五完整保留App横屏PNG均2622×1206，中央40×40完全纯黑；物理录屏1206×2622在48s中央暖白81.5%，支持App frame裁图坐标带黑区的具体观测问题，不把异常归成实际正文一直空白。
+
+依Apple公开XCUIScreen（https://developer.apple.com/documentation/xcuiautomation/xcuiscreen）与XCUIScreenshotProviding，新增case改用XCUIScreen.main.screenshot采样/留图，首个横屏可读时附App/Screen双原图及frame/image尺寸/各自纸色判定对照。全部原readability/no-spinner/no-alert/20秒/55%/容差5与方向10秒不变，不改其他旧test、App或引擎。没有据此宣布排版失败唯一根因已修；先再次定向11验证，若失败看双图事实再定，不无限改预算。
