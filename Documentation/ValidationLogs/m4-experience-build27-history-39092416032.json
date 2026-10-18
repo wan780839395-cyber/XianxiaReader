@@ -2250,5 +2250,37 @@
       "sha256": "0e44ed924cef12161f5a90cabcc46324857e5ae1fbeabe93acc64ef08bfe8364"
     }
   ],
-  "scope": "Actual full failure, not cancellation. Hidden-font replacement lost original paged word; native menu contents did not present after mode switch. Original assertions and time budgets retained. Raw diagnostics downloaded with digest/CRC; no inherited delivery gate."
+  "scope": "Actual full failure, not cancellation. Hidden-font replacement lost original paged word; native menu contents did not present after mode switch. Original assertions and time budgets retained. Raw diagnostics downloaded with digest/CRC; no inherited delivery gate.",
+  "coreEvidence": [
+    {
+      "platform": "Linux",
+      "path": "build/ci/39092416032/core/logs/core-tests.log",
+      "sha256": "93a0cb304953381b3a6586563a1abffe1af4fc8858e812db6c461060728e3784",
+      "coreTestIndices": 137
+    },
+    {
+      "platform": "macOS",
+      "path": "build/ci/39092416032/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "sha256": "2dcf64524713c04ef66852b146b27c9908bc422ba64b9e8ad22fd0d066fe004c",
+      "coreTestIndices": 137
+    }
+  ],
+  "manualFailureReview": {
+    "observations": "Actual original mode-switch frames show menu/footer geometry moving during native menu dismissal and reader reload; contents tap synthesized20.54s, page reappears about20.63s in capture but no TOC. This establishes an unstable boundary, not a unique root cause. Viewport overlay correction must be verified independently. No phone FPS inference.",
+    "windows": [
+      {
+        "path": "build/ci/39092416032/ExperienceReview/menu/contents-tap/frames.json",
+        "sha256": "b9cb3f2b780671ed13b3cae68479b59e6aed0b0d602ffd48baadf64b3a6a7f28",
+        "frames": 51,
+        "allContactsViewed": true
+      },
+      {
+        "path": "build/ci/39092416032/ExperienceReview/menu/after-mode/frames.json",
+        "sha256": "3c3689733c08d0f220aa48b5756794d58f4030d68717abe69580ec370697d0ab",
+        "frames": 48,
+        "allContactsViewed": true
+      }
+    ],
+    "nativeOrMotionAccepted": false
+  }
 }

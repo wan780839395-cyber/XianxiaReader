@@ -66,3 +66,7 @@ TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(da
 
 
 2026-10-18 恢复边界修正：固定Readium3.11 d82f44f源码中JS loaded早于初始位置完成；本地额外等待字体会扩大隐藏期。自动paged位置通知现在与既有显式DOM捕获一样，await前后拒绝未附窗/alpha不足的页，保留原完整Locator；不是性能优化或引擎升级。官方源 https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBSpreadView.swift 。退出原生dismiss前不close模型，以既有onDisappear统一使会话失效。菜单改viewport overlay隔离加载内容布局；目录点击失败是否解决需原测试/原生录屏，不能从代码推断。全量39092416032实际155/157，记录另存，不继承该源门槛。
+
+19项定向39097420131/18c130c已真实全过。上述“尚待修正”是发现时历史检查点；修正已编译且实际复核会话/菜单全录屏7张1fps表与退出95+目录94原VFR帧16表：第三退出保留正文、不见原打开排版spinner，模式加载期间目录可呈现。60张预备PNG尚未逐看，此诊断不替代full137/157/Release27或手机FPS；当前完整39098863950同冻结源执行中。
+
+后续full39098863950/18c实际155/157，无Release/IPA；原字体/菜单修正回归均过，新旧TXT continuous初次位置与系统Files空白失败。continuous不走新paged guard；封面录屏和AX确认已呈现空白选择器。官方 https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller 说明标准系统选择器能力，现有桥接已用它；其他Safari/模拟器论坛不证明本例根因。因此暂不继续盲改生产逻辑，保持原预算/断言，补无正文同步超时状态与有界系统服务上下文后定向复现5项，再独立完整157；即使下一轮通过也不追认本次失败根因已定。

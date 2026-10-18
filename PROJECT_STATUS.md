@@ -1,8 +1,10 @@
-# Build27 开发中（2026-10-18）
+# Build27 开发中（恢复检查点 2026-10-18）
 
-用户新增反馈已开独立切片：字体收藏入口/独立两列查找、排版预设与更多调整、系统暗黑搜索/阅读返回边界、外部TTF/OTF冷暖接收。运行源码已完成Windows446文件语法新增0（54既有Vendor限制）/17工具检查，首候选实际152/156失败且无Release；修JSON规范化/更多整行点击/重复字体校验后尚待完整Apple编译/iOS157项/Core各137预期/Release27与原生复核，不继承Build26门槛。37个受改测试文件原主体保持、6个原主体仅依赖/导航与新折叠预期适配、11新增；无测试删除、Core仅文件SHA的Apple系统流式后端与配套回归，DB/Readium/Vendor/锁未改。HEAD/index保留，1014原路径/47旧包/16旧ZIP及新开工ZIP保全。具体断点见HANDOFF.md与READING_EXPERIENCE_DESIGN.md。手机卡顿、主题/重开实际根因与外部来源应用矩阵仍待核，不以60Hz或语法检查宣称修复。
+最新完整39098863950/source18c130c实际155/157、2失败0跳过；Core各137通过、无设备Release/Build27 IPA。原隐藏字体/菜单修正回归均过，新失败是原TXT continuous初次位置20s超时和原封面Files已呈现但内部空白；1.72GB原件digest/CRC保留，封面录屏/AX已看，根因未定。最后可用交付仍Build26。
 
-当前可恢复断点：第三候选0c7945c/定向39091123601已真实16/16通过、0失败/跳过，原件digest/CRC展开，实际查看4张字体/预设PNG；这不是全量或Release门槛。最终源c518d70d91d478f51aa33c660eac2ab67dd8f6de另外补导入开始使旧目录刷新失效守卫，完整CI39092416032已completed/failure：Core各137通过、iOS155/157，原字体重排定位/原菜单目录两项失败，无设备Release/IPA；尚无Build27交付。恢复先核该run和watch/collector实际进程，不重派或把第三定向追认成最终通过。字体来源微信/QQ/Alook已记录；手机正文/菜单trace尚未取得，官方测量与版本取舍已存PERFORMANCE_TEST_PLAN.md，M4仍未完成。
+新检查点只补测试/CI诊断，不再猜改生产源码：TXT同步无正文状态、20s有界系统文档服务日志/无参数进程RSS，原断言/等待及test主体保留，定向recovery5后再完整137/157/Release27。原19定向39097420131实际19/19，退出/目录189原帧、两会话总览及字体图已实际看，独立于完整门槛；详见HANDOFF及各history。
+
+用户当前已再次确认iPhone13/iOS16.6.1/TrollStore，字体来源微信/QQ/Alook。手机帧时间与这些来源实际Open In仍未验收，不归因60Hz；原HEAD/index、未提交工作、47旧包/17恢复ZIP保留。M4未完，取消关机持续生效。
 
 # 项目状态
 

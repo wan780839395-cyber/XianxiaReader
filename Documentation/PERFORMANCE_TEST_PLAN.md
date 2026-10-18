@@ -95,3 +95,5 @@ Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839
 | utf8-50MiB-3000chapters | 4.42s | 559.8ms | 48.9–71.0ms | 1.52–1.54s | 29.84MiB |
 | utf8-50MiB-no-newline | 4.82s | 476.0ms | 8.8–8.8ms | 1.42–1.42s | 10.25MiB |
 | utf16-5MiB-1000chapters | 0.84s | 91.7ms | 16.7–19.8ms | 0.17–0.18s | 15.80MiB |
+
+2026-10-18 当前用户再次确认测试环境未变：iPhone13 / iOS16.6.1 / TrollStore。属于配置确认，未取得本轮phone trace，不等于Build27功能/性能验收；采用该系统可用的Time Profiler/Animation Hitches链路，不要求升级系统或使用Instruments26新增SwiftUI工具。

@@ -57,6 +57,8 @@ stop_simulator_recording() {
     if wait "$1"; then return 1; else return "$?"; fi
   fi
 }
+if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
+else echo "Additional pre-test process context unavailable; original tests still run"; fi
 test_status=0
 if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
@@ -90,6 +92,30 @@ if xcrun xcresulttool export attachments --path build/SimulatorTests.xcresult --
 else
   export_status=$?
 fi
+# Best-effort, bounded service context; no command arguments or book text.
+# Missing/slow diagnostic tools are recorded, preserving the actual test exit.
+if python3 - "$SIMULATOR_ID" <<'XR_CONTEXT'
+from pathlib import Path
+import json, subprocess, sys
+folder=Path("build/logs");folder.mkdir(parents=True,exist_ok=True);records=[]
+commands=[("processes-after-tests",["ps","-axo","pid,ppid,state,rss,comm"],10),
+          ("document-services",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","10m","--style","compact","--predicate",'subsystem CONTAINS "DocumentManager" OR subsystem CONTAINS "FileProvider"'],20)]
+for name,command,seconds in commands:
+    try:
+        result=subprocess.run(command,capture_output=True,timeout=seconds)
+        (folder/(name+".log")).write_bytes(result.stdout+result.stderr)
+        records.append(dict(name=name,exit=result.returncode,timeout=False))
+    except subprocess.TimeoutExpired as error:
+        (folder/(name+".log")).write_bytes((error.stdout or b"")+(error.stderr or b""))
+        records.append(dict(name=name,timeout=True,error=str(error)))
+    except OSError as error:
+        (folder/(name+".log")).write_text(str(error))
+        records.append(dict(name=name,timeout=False,error=str(error)))
+(folder/"additional-context.json").write_text(json.dumps(dict(bestEffort=True,records=records),indent=2))
+print("Additional simulated service context recorded; original test/build exits preserved")
+XR_CONTEXT
+then echo "Additional context command exit: 0"
+else context_status=$?; echo "Additional context command exit: $context_status; original test/build exits preserved"; fi
 # Export failed-test screenshots too, then propagate the ORIGINAL test exit.
 # A successful test with a failed export also fails, never producing an IPA.
 echo "Simulator test exit: $test_status; attachment export exit: $export_status; summary exit: $summary_status"

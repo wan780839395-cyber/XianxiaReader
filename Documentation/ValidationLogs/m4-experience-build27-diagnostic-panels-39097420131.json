@@ -1,0 +1,112 @@
+{
+  "recordedAtUTC": "2026-10-18T04:55:23.784721+00:00",
+  "run": 39097420131,
+  "sourceRevision": "18c130ce27c8dd1b3bc3ad1bee22adbae8b17456",
+  "selection": "panels",
+  "conclusion": "success",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 19,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792299163.129,
+    "passedTests": 19,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792298388.062,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 19
+  },
+  "fullGate": false,
+  "releaseExecuted": false,
+  "delivered": false,
+  "artifactDigestAndCRCVerified": true,
+  "logSHA256": "19a0b44b75fc825e55d6859e249d543dac549d33719ddffb96f09c31980eab3d",
+  "summarySHA256": "21774a4b1f6b1e48738bdfde603e973be7264e0b33f8418a36d772593c1b565b",
+  "notes": "Selected 19 native cases only; never substitutes full157 iOS gate, Core each137, Release27 or native/device acceptance",
+  "manualVideoReview": {
+    "scope": "Only sessions/menu whole-recording1fps overviews (7 contact sheets) and two original VFR windows (189 original frames/16 sheets) actually viewed. Prepared60 PNGs not yet reviewed here.",
+    "observations": "System-dark shelf search and cancel stay dark across four openings and warm/charcoal/warm reader themes. Third warm return retains paragraph during native dismissal; previous opening-layout spinner absent in selected95 frames. Native TOC presents during mode reload in94-frame window; original menu test passes. This does not establish unique root cause for all old failures or phone performance.",
+    "windows": [
+      {
+        "path": "build/ci/39097420131/DiagnosticExperienceReview/sessions/third-return/frames.json",
+        "sha256": "220ec5b14a5d6c410a74e2bfa74d16c8f321485703bcdb41b61856ed823643de",
+        "originalFrames": 95,
+        "sourcePTSMonotonic": true,
+        "allContactsViewed": true
+      },
+      {
+        "path": "build/ci/39097420131/DiagnosticExperienceReview/menu/mode-contents/frames.json",
+        "sha256": "d02a0f5f4506441e11c3442e779cd8f689b25b0df2aa30a4d639c9aa92fd8ae4",
+        "originalFrames": 94,
+        "sourcePTSMonotonic": true,
+        "allContactsViewed": true
+      }
+    ],
+    "fullNativeGate": false,
+    "phoneFPSAccepted": false
+  },
+  "additionalManualReview": {
+    "originalImages": [
+      {
+        "name": "experience-layout-compact-build27",
+        "path": "build/ci/39097420131/diagnostic/ReaderSnapshots/1D663D40-3769-4062-AF96-908E45EB33A0.png",
+        "sha256": "cfb5095b3a1b52ffc44b47c10296b824c4d20d369fe6f42a064abfbfd15517ff",
+        "inspected": true
+      },
+      {
+        "name": "experience-imported-font-search-build27",
+        "path": "build/ci/39097420131/diagnostic/ReaderSnapshots/D000938A-B9D2-429F-8C94-D5C5A49BD6E5.png",
+        "sha256": "2bbf6b598188b27954b17aa2798ff025cb04c5dd1e78a28b2975fbcfbd978806",
+        "inspected": true
+      },
+      {
+        "name": "experience-imported-font-grid-build27",
+        "path": "build/ci/39097420131/diagnostic/ReaderSnapshots/F3000FAC-CC34-4645-91B6-ADBC190F3899.png",
+        "sha256": "c9b29ac29a64c44b324250a2d2d0cece4bc1c6e0b58eaa4f058e5b069bab75fc",
+        "inspected": true
+      }
+    ],
+    "collectionWholeOverview": [
+      {
+        "path": "build/ci/39097420131/DiagnosticExperienceReview/collection/contact-1.png",
+        "sha256": "fda1bfe5f237c68dafa6a17657faeadb8142fc82517789aba23bf8bdd08cc7f2",
+        "inspected": true
+      },
+      {
+        "path": "build/ci/39097420131/DiagnosticExperienceReview/collection/contact-2.png",
+        "sha256": "d0cd41759ecddbc5be813c163ab715c2e956d0f82303e51eaa99e6866d682341",
+        "inspected": true
+      },
+      {
+        "path": "build/ci/39097420131/DiagnosticExperienceReview/collection/contact-3.png",
+        "sha256": "26053f5cff7d33029b9d2be2c88a3ef8f8e105f3c809532b5774faf34403637a",
+        "inspected": true
+      }
+    ],
+    "observations": "Three actual original PNGs: natural-sized19pt glyphs in two columns, fixed header query and keyboard, compact preset common controls fit one screen. Whole41.21s collection recording3 overview sheets shows selecting/query/clear/return and three presets/advanced controls/reopen. Overview is not continuous-frame or phone-FPS acceptance; remaining57 prepared PNGs not yet individually inspected."
+  }
+}

@@ -83,5 +83,26 @@
       "use": "Version difference: new SwiftUI instrument requires Xcode/Instruments26 and updated OS, unlike current Xcode16.4/minimum16; not a prerequisite for this device"
     }
   ],
-  "measurementPlan": "Documentation/PERFORMANCE_TEST_PLAN.md"
+  "measurementPlan": "Documentation/PERFORMANCE_TEST_PLAN.md",
+  "subsequentDiagnostic19": {
+    "run": 39097420131,
+    "sourceRevision": "18c130ce27c8dd1b3bc3ad1bee22adbae8b17456",
+    "environment": "iPhone16Pro iOS18.5 simulator Debug / Xcode16.4",
+    "fontBytes": 25928940,
+    "importSeconds": 0.04310237499998948,
+    "threeValidationsSeconds": 0.06966412499991748,
+    "nativeTestsPassed": 19,
+    "notPhonePerformance": true,
+    "scope": "Same system SHA backend; separate typography-location visibility guard and menu/return correctness patches. Original read-only source hash inventory above remains tied to b799754, not current source. No DOM sampling/per-frame pipeline performance change."
+  },
+  "currentDeviceContext": {
+    "device": "iPhone 13",
+    "iOS": "16.6.1",
+    "installation": "TrollStore",
+    "confirmedByUser": true,
+    "confirmedAtUTC": "2026-10-18T05:27:53.997563+00:00",
+    "source": "Current user answered unchanged to explicit device/iOS/install question",
+    "phoneFPSMeasured": false,
+    "scope": "Configuration confirmation only; not Build27 feature/performance acceptance"
+  }
 }

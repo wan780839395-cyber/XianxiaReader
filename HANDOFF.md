@@ -61,3 +61,21 @@ Windows445/新增0/54既有Vendor限制、17工具、bash -n已过。冻结清�
 
 
 边界修正已落盘、尚未Apple编译：分页自动位置通知补与显式捕获一致的window/alpha前后守卫，拒绝隐藏字体页头覆盖原锚点；Vendor精确声明摘要已更新，版本/依赖/渲染器不变。退出保存成功保留画面直到onDisappear关闭。菜单放在固定viewport overlay，避免加载内容参与菜单布局；原菜单目录失败根因仍需实际定向/录屏验证，未宣称修复。panels增加原两字体定位/原菜单测试共19项，全部原断言/预算不变，先定向后全量。
+
+19项原生定向已唯一派发39097420131/source18c130ce27c8dd1b3bc3ad1bee22adbae8b17456，含原两字体/原菜单、新切片16项；无完整Release/IPA。watch_autoscroll.py同run和collect_experience27_diagnostic.py同run是本轮助手，恢复核进程/真实run而不重派。Windows446/新增0/54既有语法限制、17工具、bash语法已过；37旧测试主体保持/6既定适配/11新增、544源blob，普通HEAD/index保留。
+
+
+19项定向39097420131/source18c130c实际19/19、失败跳过0，test/summary/export0、551MB原件GitHub digest/CRC全展开并删重复ZIP/分片。原隐藏字体定位7.001s、原两模式字体63.131s、原菜单44.738s均过，原预算/断言未改。实际查看会话/菜单整条1fps总览7表和第三退出95帧/目录94帧共189原VFR帧16表：退出保留正文、所选窗未见打开排版spinner，模式加载期间目录正常呈现；不归因所有旧失败唯一根因，不当手机FPS。60张预备PNG未在此逐看。收集器末端因未预插diagnosticRuns记录触发StopIteration，已改幂等追加并用已校验原件补登记成功，无重跑CI。接下来同冻结18c130c派唯一full137/157/Release27，定向不替代完整门槛。
+
+完整CI39098863950/source18c130ce27c8dd1b3bc3ad1bee22adbae8b17456已唯一派发。新watch_autoscroll.py与collect_experience27.py同run是本轮助手；原19定向watch/collector已结束。恢复先核真实run/进程，不重复派发。预期Core各137/iOS157/Release27，尚无全量/交付门槛。
+
+用户本轮明确答复测试设备“没变”：iPhone13/iOS16.6.1/TrollStore。性能记录已增加currentDeviceContext，手机FPS与Build27设备功能仍未验收；当前完整39098863950继续，不因新答复重派/改源码。
+
+
+完整39098863950/18c130c实际completed/failure，155/157、2失败0跳过；Core各137、原隐藏字体定位/原菜单已过；无Release/IPA。1.72GB Apple/Core原件digest/CRC展开，watch/collector已退出。新失败：原TXT连续模式initial position20s超时、原封面Files选择器已弹但内部空白。实际查看封面整条28.61s总览2表及AX；不能把空白写成按钮无反应，也不能认定新增paged守卫导致continuous失败。先只补TXT超时无正文状态诊断和有界系统文档服务/进程上下文，保持原等待/所有断言，新增recovery5项定向（原两字体/菜单+本次两项）。暂不改生产源码，不以孤立平台论坛归因；之后真实完整门槛独立跑。记录history-39098863950。
+
+诊断实现落盘、定向测试前：生产App/Adapter/Vendor相对18c130c未再变；TXT仅mount弱引用/超时helper增加同步几何与既有无正文生命周期指标，不执行超时JS、不改20s预算及任何test函数主体。CI增加有界20s文档服务日志与无参数进程RSS上下文，明确best-effort、保留真实test/export/summary/recording退出；recovery只选原失败2项+原字体2项+原菜单共5。Apple官方UIDocumentPicker标准用法已核，现有桥接已符合，不以其他系统控制器的模拟器论坛报告判定本例唯一根因。下一步定向复现，再独立full157/Release27；尚无Build27交付。
+
+Windows既有CI失败路径7断言首次未过：新增诊断外层python3在Windows控制流夹具退出49覆盖原test65/export23。没有改旧工具测试；已将整个额外诊断命令也显式best-effort捕获/记录，保证工具缺失不覆盖原测试退出，重新运行17项后才冻结。
+
+诊断候选冻结前完成：Windows446语法新增0/54既有Vendor限制、17工具全部过、两CI脚本bash -n及内嵌Python AST过。受改文件49个原test主体逐函数相同、6既定适配/11新增、544源码blob；生产源码与18c130c相同。将派唯一recovery5，无Release/IPA，保留旧全量失败证据。

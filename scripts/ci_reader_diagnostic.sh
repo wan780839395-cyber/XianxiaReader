@@ -3,7 +3,7 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts or panels}"
+selection="${1:?Choose native-input, fonts, panels or recovery}"
 case "$selection" in
   native-input)
     cases=(-only-testing:XianxiaReaderTests/ReaderSearchFieldTests)
@@ -12,6 +12,15 @@ case "$selection" in
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+    )
+    ;;
+  recovery)
+    cases=(
+      -only-testing:XianxiaReaderTests/TXTReadingTests/testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+      -only-testing:XianxiaReaderUITests/LibraryInteractionUITests/testCoverEditorNativeFilesCancelDefaultSaveAndReopen
+      -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch
     )
     ;;
   panels)
@@ -50,7 +59,9 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'panels' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'panels' || "$selection" == 'recovery' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
+else echo "Additional pre-test process context unavailable; original tests still run"; fi
 test_status=0
 if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
@@ -67,6 +78,30 @@ export_status=0
 if xcrun xcresulttool export attachments --path build/DiagnosticTests.xcresult --output-path build/ReaderSnapshots; then
   export_status=0
 else export_status=$?; fi
+# Best-effort, bounded service context; no command arguments or book text.
+# Missing/slow diagnostic tools are recorded, preserving the actual test exit.
+if python3 - "$SIMULATOR_ID" <<'XR_CONTEXT'
+from pathlib import Path
+import json, subprocess, sys
+folder=Path("build/logs");folder.mkdir(parents=True,exist_ok=True);records=[]
+commands=[("processes-after-tests",["ps","-axo","pid,ppid,state,rss,comm"],10),
+          ("document-services",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","10m","--style","compact","--predicate",'subsystem CONTAINS "DocumentManager" OR subsystem CONTAINS "FileProvider"'],20)]
+for name,command,seconds in commands:
+    try:
+        result=subprocess.run(command,capture_output=True,timeout=seconds)
+        (folder/(name+".log")).write_bytes(result.stdout+result.stderr)
+        records.append(dict(name=name,exit=result.returncode,timeout=False))
+    except subprocess.TimeoutExpired as error:
+        (folder/(name+".log")).write_bytes((error.stdout or b"")+(error.stderr or b""))
+        records.append(dict(name=name,timeout=True,error=str(error)))
+    except OSError as error:
+        (folder/(name+".log")).write_text(str(error))
+        records.append(dict(name=name,timeout=False,error=str(error)))
+(folder/"additional-context.json").write_text(json.dumps(dict(bestEffort=True,records=records),indent=2))
+print("Additional simulated service context recorded; original test/build exits preserved")
+XR_CONTEXT
+then echo "Additional context command exit: 0"
+else context_status=$?; echo "Additional context command exit: $context_status; original test/build exits preserved"; fi
 echo "DIAGNOSTIC ONLY: $selection; test=$test_status summary=$summary_status export=$export_status; no device Release or IPA"
 if (( test_status != 0 )); then exit "$test_status"; fi
 if (( summary_status != 0 )); then exit "$summary_status"; fi

@@ -10,6 +10,8 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class TXTReadingTests: XCTestCase {
+    @MainActor private weak var mountedEngine: ReadiumReaderEngine?
+
     @MainActor func testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont() async throws {
         struct Factory: ReaderEngineFactory {
             let engine: ReadiumReaderEngine
@@ -325,6 +327,7 @@ final class TXTReadingTests: XCTestCase {
     @MainActor private func mount(_ engine: ReadiumReaderEngine) throws -> UIWindow {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }
+        mountedEngine = engine
         let window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
         window.rootViewController = UIHostingController(rootView: ReaderSurface(viewController: engine.viewController))
@@ -347,6 +350,18 @@ final class TXTReadingTests: XCTestCase {
             if ready { return }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
+        // Preserve the original deadline and failure. Synchronous native state
+        // must remain obtainable even when the WebKit bridge is unresponsive.
+        var diagnostic = "checkpoint=\(description)"
+        if let engine = mountedEngine, let root = engine.viewController.viewIfLoaded {
+            diagnostic += "\nwindow=\(root.window != nil) key=\(root.window?.isKeyWindow == true) bounds=\(root.bounds) resources=\(engine.continuousLoadedResourceCount)"
+            diagnostic += "\n" + engine.continuousDiagnosticState
+            for (index, web) in webViews(root).enumerated() {
+                diagnostic += "\nweb[\(index)] attached=\(web.window != nil) loading=\(web.isLoading) alpha=\(web.scrollView.alpha) bounds=\(web.bounds) offset=\(web.scrollView.contentOffset)"
+            }
+        }
+        let attachment = XCTAttachment(string: diagnostic)
+        attachment.name = "txt-native-wait-failure"; attachment.lifetime = .keepAlways; add(attachment)
         throw Failure.timedOut(description)
     }
     @MainActor func testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC() async throws {

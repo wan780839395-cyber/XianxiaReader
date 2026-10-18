@@ -1,11 +1,11 @@
 {
-  "recordedAtUTC": "2026-10-18T04:31:34.440830+00:00",
+  "recordedAtUTC": "2026-10-18T05:53:12.093769+00:00",
   "swiftFiles": 446,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
   "toolingTests": 17,
   "appleCompilation": false,
-  "oldTestBodiesPreserved": 37,
+  "oldTestBodiesPreserved": 49,
   "modifiedOriginalTests": [
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -47,11 +47,11 @@
     },
     {
       "path": ".cache/recovery/20261018-build27/tooling.log",
-      "sha256": "f1ab8a740f53cabc4c714808b5b247aa075d571e33894c4daa18ad9ef02e5cd2"
+      "sha256": "25dea028ac039fb20f59902746b5a7b01eb6fd5f9ed7531c1a300289a1cb3b54"
     },
     {
       "path": ".cache/recovery/20261018-build27/candidate.diff",
-      "sha256": "1c5e041b4706b64f087b2b796e2d33a5a64a4e5360446510c98f3e7200b3d23a"
+      "sha256": "17bec4717110ebd4f3f3edb106e5e56d72b1a6a47fc01197de775870c8b73764"
     }
   ]
 }
