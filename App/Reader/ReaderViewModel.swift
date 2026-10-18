@@ -32,6 +32,7 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var bookmarks: [Bookmark] = []
     @Published private(set) var position: ReadingPosition?
     @Published private(set) var openFailure: String?
+    @Published private(set) var openStatus = "正在打开书籍…"
     @Published var menuVisible = true
     @Published var scrolling = false
     @Published var errorMessage: String?
@@ -108,11 +109,13 @@ private enum ReaderJumpError: LocalizedError {
         started = true
         let requestID = UUID()
         openRequestID = requestID
+        openStatus = "正在读取阅读设置…"
         positionSaveFailure = nil
         do {
             let restoredAppearance = try await services.files.readingAppearance()
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
+            openStatus = "正在准备字体…"
             do {
                 let loaded = try await loadFontResources()
                 try Task.checkCancellation()
@@ -127,6 +130,7 @@ private enum ReaderJumpError: LocalizedError {
             installedFontIDs = Set(fontResources.map { $0.asset.id })
             try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))
             appearance = restoredAppearance
+            openStatus = "正在恢复阅读位置…"
             let restoredInteraction = try await services.files.readingInteraction()
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
@@ -137,6 +141,7 @@ private enum ReaderJumpError: LocalizedError {
             bookmarks = try await services.repository.bookmarks(for: book.id)
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
+            openStatus = "正在排版书籍…"
             try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: restored)
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
@@ -281,11 +286,16 @@ private enum ReaderJumpError: LocalizedError {
 
     func isFontAvailable(_ id: UUID) -> Bool { fontResources.contains(where: { $0.asset.id == id }) }
 
-    func refreshFontCatalogueForBrowsing() async {
+    func refreshFontCatalogueForBrowsing(force: Bool = false) async {
         guard let session = openRequestID, isReady, !fontBusy else { return }
         let request = UUID(); fontCatalogRequestID = request
         defer { if fontCatalogRequestID == request { fontCatalogRequestID = nil } }
         do {
+            // A catalogue is at most 32 KiB. Ordinary settings presentation does
+            // not need to rehash every unchanged multi-megabyte font resource.
+            let catalogue = try await services.files.readingFonts()
+            guard openRequestID == session, fontCatalogRequestID == request, !fontBusy, !Task.isCancelled else { return }
+            guard force || catalogue != importedFonts else { return }
             let loaded = try await loadFontResources()
             guard openRequestID == session, fontCatalogRequestID == request, !fontBusy, !Task.isCancelled else { return }
             importedFonts = loaded.fonts; fontResources = loaded.resources

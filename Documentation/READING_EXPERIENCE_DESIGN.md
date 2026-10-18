@@ -8,7 +8,7 @@
 
 外观首页保留六款内置两列字形，导入字体缩为单个“我的字体”入口与收藏数量。独立原生导航页采用两列惰性网格、辅助功能大字单列和名称搜索；导入在此页完成，当前12款/每款32MiB上限沿用原存储规则。没有新增字体删除或无限名额。导入字形与内置使用同一预览组件/字号；限制CGImage最多按原绘制point尺寸显示，修复短图随宽容器上采样而过大的实际代码路径。透明样例、一个CGFont、12图/8MiB后台缓存保持。
 
-排版首页提供舒适/宽松/紧凑三个显式动作，以及字号/行距/左右留白；段距、字距、字重、缩进和对齐放在“更多调整”。原书样式开关保留且仍禁用对应段落项。预设仅在用户点选时重设段落/留白，不动底色、字体、字号、完整位置或交互偏好；检查当前是否匹配预设只读，旧自定义值不会因开面板被重置。仍使用reading-v1现有字段，无Core/schema/依赖升级。
+排版首页提供舒适/宽松/紧凑三个显式动作，以及字号/行距/左右留白；段距、字距、字重、缩进和对齐放在“更多调整”。原书样式开关保留且仍禁用对应段落项。预设仅在用户点选时重设段落/留白，不动底色、字体、字号、完整位置或交互偏好；检查当前是否匹配预设只读，旧自定义值不会因开面板被重置。仍使用reading-v1现有字段，无领域模型/schema/依赖升级。
 
 ## 系统主题与阅读会话
 
@@ -38,3 +38,19 @@ Info.plist只声明系统TTF/OTF文档类型、Alternate Viewer与原件就地�
 - [Apple onOpenURL](https://developer.apple.com/documentation/swiftui/view/onopenurl(perform:))、[NSURL security scope](https://developer.apple.com/documentation/foundation/nsurl)：scene接收和严格成对释放；本轮只接字体文件，不实现通用下载器/网络服务。
 - [Apple字体概览](https://developer.apple.com/documentation/technologyoverviews/fonts)：CoreText直接descriptor可局部使用而不全局注册；沿既有Readium3.11资源通道，不升级依赖或改排版引擎。
 - 网格、搜索与导航沿本项目已用的原生SwiftUI/Readium3.11界面边界；文档选择回调继续保留Readium TestApp成熟处理，不自建文件选择器或阅读引擎。
+
+已另核Readium 3.11.0精确基线`d82f44f4f05d87add9e22a8b75abbd61dce745dd`的[TestApp AppDelegate](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/TestApp/Sources/AppDelegate.swift)、[LibraryViewController](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/TestApp/Sources/Library/LibraryViewController.swift)与[Info.plist](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/TestApp/Sources/Info.plist)。URL-open与文档选择delegate都汇入既有异步导入服务；文档角色按格式设置。本项目采用同样的单一导入服务边界，UIKit AppDelegate换成现有SwiftUI scene的onOpenURL，字体采用Alternate Viewer，不照搬其书籍Owner声明、网络导入或try!启动。版本差异/摘要记录在m4-experience-build27-reference-review.json；没有复制第三方源码或升级SDK。
+
+## 用户补充与性能只读线索（CI期间）
+
+用户确认字体主要来自微信、QQ、Alook并希望通用兼容；卡顿在正文和设置都能感到。当前标准文档打开声明覆盖能力仍须逐来源实测，不承诺所有分享面板都会列出普通App。读取本地Readium3.11源码确认连续滚动每次UIScroll回调会请求位置更新；Shared.execute只在等待idle时合并调用，不会串行化已启动的async采样。这是DOM定位排队/主线程开销的具体测量疑点，尚未取得手机触发次数、耗时或FPS，不能当唯一原因。此轮未盲改Vendor位置管线；下一性能片先测未完成采样数，再决定latest-only单飞/尾沿合并，并保留最终fresh完整锚点、关闭/切模式/重开迟到回归。路径/摘要与边界在m4-experience-build27-performance-review.json。当前已经落实的性能范围只有预览停止上采样、导入字体独立惰性网格与折叠低频项，不声称正文流畅度已解决。
+
+## 首候选实际诊断及第二候选修复
+
+b799754/39086068358完整xcresult152/156，4失败、0跳过，源码compiler0/无设备Release。系统暗黑搜索/4次开书、原真实字体位置两例等记录本候选通过，不继承新源。已实际查看失败相关9 PNG/2表和字体首次开书53–54秒原视频帧，仍为spinner；没有认定WebKit唯一原因。原更多DisclosureGroup在整行中央点击后未展开，改44pt整行Button/显式内容，原高级功能断言与预算保持。新预设测试仅将JSON输出sortedKeys以消除不承诺的键顺序，原语义/持久化断言保持。
+
+发现每次readingFontURL逐字节Swift SHA256遍历25MB字体，原新增设置.task还会在目录没变时重复全量校验。设置打开现在先比较32KiB内小目录，未变就复用已验证资源；外部变更通知强制刷新以覆盖同UUID缺失重导修复，首次开书/新资源/显式通知仍完整验证，不跳过完整性。
+
+TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(data:)/finalize，沿原64KiB消费、取消/错误/计数上限；Linux仍原portable实现。流式算法的SHA256结果、路径/原件、缓存版本和Parser完全不变。Core只多一个条件系统摘要后端，保持业务/SQLite与UI/Readium隔离，没有swift-crypto/CryptoSwift新包或锁变更。新增两Core已知NIST/跨块131089字节与取消/原件回归，对Apple系统和Linux portable都跑；新增iOS完整文楷25MB导入/三次URL校验计时，原3字体开书20秒预算保持。该修复针对已查明的重复CPU/校验工作，仍不冒称手机正文FPS问题已测完。
+
+[Apple SHA256 init](https://developer.apple.com/documentation/cryptokit/sha256/init())、[update](https://developer.apple.com/documentation/cryptokit/sha256/update(data:))和[finalize](https://developer.apple.com/documentation/cryptokit/sha256/finalize())是iOS13+/macOS10.15+公开增量API，适用本项目iOS16/macOS13/Xcode16.4；[apple/swift-crypto](https://github.com/apple/swift-crypto)也采用可用时委托系统CryptoKit的成熟边界。仅参考API与分平台模式，没有引入其最新Swift6.3实现、私有编译标记或依赖。

@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only source review after phone feedback: reading and settings both feel uneven; not a measured device cause or performance acceptance",
+  "phoneSources": [
+    "WeChat",
+    "QQ",
+    "Alook",
+    "future standard document-open providers"
+  ],
+  "sourceRevision": "b799754b93f7a967b41b5552014649ca156c85ed",
+  "files": [
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "sha256": "3c1b27aeb4b2e6b93b912b068c76b652136c3755b26e203f8f5ca31f39fdc9de"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ControlFlow.swift",
+      "sha256": "f7ff146e30de692f72658f7bb79c595bc6e27885bf49d93e24f01521241644db"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "sha256": "3dcd53f51625dae7477c587ac2e60fdd391d79dc5312290e75560ceb9f088f75"
+    },
+    {
+      "path": "App/Reader/ReaderAppearanceView.swift",
+      "sha256": "deb4196bbbf7c10ad7c3bb3fffa78c815dd25ed1da9773c91e1737d34e89978e"
+    },
+    {
+      "path": "App/Reader/ReadingFontPreviewRenderer.swift",
+      "sha256": "86e410a4b5b99b299f36188a9b5cfd5fadbba20e6b0192d0615bc9932f2b77fe"
+    }
+  ],
+  "findings": [
+    "InfiniteScrollView.scrollViewDidScroll updates viewports/preload and notifies the navigator on every scroll callback.",
+    "Navigator infiniteScrollViewDidUpdateViews forwards to updateCurrentLocation except automatic-scroll mode.",
+    "Readium 3.11 execute() ignores additional calls while polling a false idle condition; it does not serialize an already-running async block once the condition is true. This makes overlapping DOM location work a concrete profiling hypothesis, not a measured phone root cause.",
+    "ReaderViewModel position emissions publish shared state and persist each emitted position; no per-frame write-rate measurement was obtained.",
+    "Build27 stops preview upscaling and removes unbounded inline imported-font views; font parsing remains in a bounded actor."
+  ],
+  "nextMeasurement": "Release on phone: sustained continuous reading vs paged mode, first/repeated settings browsing; measure main/render frame time and outstanding DOM sample count. If redundant samples are confirmed, use latest-request single-flight/trailing coalescing with final fresh full-anchor save and cancellation/reopen regressions, not dropped final positions.",
+  "nativeFPSAccepted": false,
+  "historicalDeviceContext": {
+    "device": "iPhone 13",
+    "iOS": "16.6.1",
+    "installation": "TrollStore",
+    "source": "Documentation/DEVICE_ACCEPTANCE.md historical user confirmation 2026-10-14; not reverified in current feedback"
+  }
+}

@@ -16,6 +16,10 @@ case "$selection" in
     ;;
   panels)
     cases=(
+      -only-testing:XianxiaReaderTests/ReadingExperienceTests
+      -only-testing:XianxiaReaderTests/ReadingFontTests/testExternalFontBrowsingDoesNotRebuildUntilExplicitSelectionAndKeepsFullAnchor
+      -only-testing:XianxiaReaderUITests/ReadingExperienceUITests
+      -only-testing:XianxiaReaderUITests/ReadingFontUITests
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults
     )
@@ -42,6 +46,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
+if [[ "$selection" == 'panels' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 test_status=0
 if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \

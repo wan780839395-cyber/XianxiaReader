@@ -1,6 +1,6 @@
 {
-  "recordedAtUTC": "2026-10-18T01:18:52.863816+00:00",
-  "swiftFiles": 445,
+  "recordedAtUTC": "2026-10-18T02:10:42.840098+00:00",
+  "swiftFiles": 446,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
   "toolingTests": 17,
@@ -38,20 +38,20 @@
       "reason": "App-owned inbox injected in native fixture only"
     }
   ],
-  "newTests": 8,
-  "sourceBlobs": 543,
+  "newTests": 11,
+  "sourceBlobs": 544,
   "logs": [
     {
       "path": ".cache/recovery/20261018-build27/windows.log",
-      "sha256": "cae2485472133655d2fe3575204d40595c46614e299483600aecd1820e883670"
+      "sha256": "fca6bceb39f9119921d40433be68a5295bee1e3df1e77838a90054a51ce5f3a4"
     },
     {
       "path": ".cache/recovery/20261018-build27/tooling.log",
-      "sha256": "da33b9a933afbd7b4458b453bbaf9d620792ab0d1273a587ff49008f67a7e9d9"
+      "sha256": "2d3fb970ff35025536500013eb7ef1d80184ee5a4e45c1b3aac49be84341dec9"
     },
     {
       "path": ".cache/recovery/20261018-build27/candidate.diff",
-      "sha256": "ce1c7eb0c329303d3d260ebd9a60ec64d8bea6f4ff494e9db1f0c63e9c2f5ad2"
+      "sha256": "1393b8be722c4101ab1d21ed10242cbc49a61cb1e3b77cccca2a58560b0e690d"
     }
   ]
 }

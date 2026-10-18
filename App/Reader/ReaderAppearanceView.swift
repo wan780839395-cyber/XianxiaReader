@@ -99,7 +99,7 @@ import XianxiaCore
         .interactiveDismissDisabled(model.fontBusy)
         .task { await model.refreshFontCatalogueForBrowsing() }
         .onReceive(NotificationCenter.default.publisher(for: .readingFontCatalogChanged)) { _ in
-            Task { await model.refreshFontCatalogueForBrowsing() }
+            Task { await model.refreshFontCatalogueForBrowsing(force: true) }
         }
         .sheet(isPresented: $model.choosingFont) {
             EPUBDocumentPicker(onCompletion: { [weak model] result in model?.receiveFontFiles(result) },
@@ -256,7 +256,7 @@ import XianxiaCore
                     HStack(spacing: 8) { presetButtons }
                     VStack(spacing: 8) { presetButtons }
                 }
-                Text("只调整留白与段落，保留字体、字号和底色。")
+                Text("一键搭配排版，保留字体、字号和底色。")
                     .font(.caption).foregroundStyle(palette.secondaryText)
                 Toggle("沿用原书排版", isOn: binding(\.publisherStyles))
                     .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.publisher-styles")
@@ -276,7 +276,18 @@ import XianxiaCore
                 }
             }
             settingsCard {
-                DisclosureGroup(isExpanded: $moreLayout) {
+                Button { moreLayout.toggle() } label: {
+                    HStack {
+                        Text("更多调整").font(.subheadline.weight(.medium))
+                        Spacer()
+                        if !moreLayout { Text("段距 · 字距 · 缩进").font(.caption).foregroundStyle(palette.secondaryText) }
+                        Image(systemName: moreLayout ? "chevron.up" : "chevron.down").font(.caption.weight(.semibold))
+                    }.frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+                }
+                .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+                .accessibilityIdentifier("reader.layout.more")
+                .accessibilityValue(moreLayout ? "已展开" : "已收起")
+                if moreLayout {
                     VStack(spacing: 0) {
                         adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...3, step: 0.1,
                                    key: \.paragraphSpacing, id: "paragraph-spacing", display: model.appearance.paragraphSpacing.formatted(.number.precision(.fractionLength(1))))
@@ -300,13 +311,7 @@ import XianxiaCore
                         .disabled(model.appearance.publisherStyles)
                     Text("字重效果取决于字体本身。")
                         .font(.caption2).foregroundStyle(palette.secondaryText)
-                } label: {
-                    HStack {
-                        Text("更多调整").font(.subheadline.weight(.medium))
-                        Spacer()
-                        if !moreLayout { Text("段距 · 字距 · 缩进").font(.caption).foregroundStyle(palette.secondaryText) }
-                    }.frame(minHeight: 44)
-                }.accessibilityIdentifier("reader.layout.more")
+                }
             }
             if model.appearance.publisherStyles {
                 Text("关闭“沿用原书排版”后，可调整段落设置。")

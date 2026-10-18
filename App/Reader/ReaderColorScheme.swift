@@ -39,14 +39,15 @@ private struct ReaderPresentationStyle: UIViewControllerRepresentable {
         while let controller = node {
             if controller.presentingViewController != nil {
                 if target !== controller { restore(); target = controller; previous = controller.overrideUserInterfaceStyle }
-                applied = style; controller.overrideUserInterfaceStyle = style
+                applied = style
+                if controller.overrideUserInterfaceStyle != style { controller.overrideUserInterfaceStyle = style }
                 return
             }
             node = controller.parent
         }
         // During construction there may be no presentation yet. Do not climb
         // into or modify the window/root controller to compensate for that.
-        overrideUserInterfaceStyle = style
+        if overrideUserInterfaceStyle != style { overrideUserInterfaceStyle = style }
     }
     func restore() {
         if let target, target.overrideUserInterfaceStyle == applied { target.overrideUserInterfaceStyle = previous }

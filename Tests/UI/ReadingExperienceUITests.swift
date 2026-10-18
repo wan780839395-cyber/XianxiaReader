@@ -21,7 +21,9 @@ final class ReadingExperienceUITests: XCTestCase {
         let settings = app.buttons["reader.appearance.open"]
         XCTAssertTrue(settings.waitForExistence(timeout: 20))
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
-        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
+        let readyResult = XCTWaiter.wait(for: [ready], timeout: 20)
+        let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch
+        XCTAssertEqual(readyResult, .completed, progress.exists ? progress.label : "No opening status")
         let texts = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
         let readable = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in texts.allElementsBoundByIndex.contains { $0.isHittable } }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [readable], timeout: 20), .completed)

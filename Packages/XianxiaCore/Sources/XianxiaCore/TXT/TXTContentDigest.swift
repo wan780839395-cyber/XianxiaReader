@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
 
 /// Incremental SHA-256 for cache content identity, following FIPS 180-4.
 /// Kept portable without changing the app's resolved remote dependencies.
@@ -64,13 +67,29 @@ struct TXTContentDigest {
 
     static func file(_ url: URL, chunkBytes: Int = 64 * 1024) throws -> (sha256: String, bytes: Int64) {
         try TXTFileAccess.read(url: url) { handle in
+            // Keep SHA-256 identity and bounded reads, using the public system
+            // implementation on Apple. Large font verification must not run a
+            // byte-at-a-time Swift compression loop in unoptimized iOS builds.
+            #if canImport(CryptoKit)
+            var digest = SHA256(), count: Int64 = 0
+            #else
             var digest = TXTContentDigest(), count: Int64 = 0
+            #endif
             while try TXTFileAccess.consumeChunk(from: handle, maximumBytes: chunkBytes, operation: { data in
-                guard Int64(data.count) <= Int64.max - count else { throw TXTProcessingError.byteOffsetOverflow }
+                guard Int64(data.count) <= Int64.max - count,
+                      UInt64(data.count) <= UInt64.max / 8 - UInt64(count) else { throw TXTProcessingError.byteOffsetOverflow }
                 count += Int64(data.count)
+                #if canImport(CryptoKit)
+                digest.update(data: data)
+                #else
                 try digest.update(data)
+                #endif
             }) {}
+            #if canImport(CryptoKit)
+            return (digest.finalize().map { String(format: "%02x", $0) }.joined(), count)
+            #else
             return (digest.hexDigest(), count)
+            #endif
         }
     }
 }

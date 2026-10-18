@@ -1,0 +1,20 @@
+{
+  "reference": "readium/swift-toolkit",
+  "revision": "d82f44f4f05d87add9e22a8b75abbd61dce745dd",
+  "version": "3.11.0",
+  "files": [
+    {
+      "path": "readium311-AppDelegate.swift",
+      "sha256": "030382ce3429205e6714cd5793695e8f227be1c18d16ce42b8116e1ea7ad0b12"
+    },
+    {
+      "path": "readium311-Info.plist",
+      "sha256": "96f341b4204b55a71871cf94f5c8378bcef2029365a810665809c889abb77f3f"
+    },
+    {
+      "path": "readium311-Library-LibraryViewController.swift",
+      "sha256": "0818652c20f09d2360003d95a262cbecd48222f25d94ac75247106ee0c9c00e0"
+    }
+  ],
+  "reviewedScope": "AppDelegate URL-open routes to existing async library importer; native document-picker delegates converge on same import path; document roles vary by supported format. Our SwiftUI iOS16 implementation uses onOpenURL, existing actor font importer and Alternate Viewer; no SDK update or upstream code copied."
+}

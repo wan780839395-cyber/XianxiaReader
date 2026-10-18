@@ -37,7 +37,9 @@ import XianxiaCore
                     Text(failure).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     Button("重试") { Task { await model.retryOpen() } }
                 }.padding(32)
-            } else if !model.isReady { ProgressView("正在打开书籍…") }
+            } else if !model.isReady {
+                ProgressView(model.openStatus).accessibilityIdentifier("reader.open.status")
+            }
             ReaderMenuView(book: book, model: model, returnToLibrary: {
                 guard !returningToLibrary else { return }
                 returningToLibrary = true

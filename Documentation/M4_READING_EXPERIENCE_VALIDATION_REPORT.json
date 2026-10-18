@@ -1,5 +1,5 @@
 {
-  "stage": "Build27 source Windows checked; full native CI pending",
+  "stage": "Build27 second source Windows446/17 checked; current-source diagnostic then independent full CI pending; previous152/156 failure retained",
   "priorSnapshot": "d378e0ec03b3c9a16d468ba4079cebd67d35653e",
   "preservedPackages": [
     {
@@ -245,7 +245,11 @@
     "deviceReleaseBuilt": false,
     "desktopLongTXTValidated": false,
     "Build27DeviceAccepted": false,
-    "M4Complete": false
+    "M4Complete": false,
+    "wechatOpenInAccepted": false,
+    "qqOpenInAccepted": false,
+    "alookOpenInAccepted": false,
+    "devicePerformanceAccepted": false
   },
   "sourceHashes": [
     {
@@ -346,7 +350,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "deb4196bbbf7c10ad7c3bb3fffa78c815dd25ed1da9773c91e1737d34e89978e"
+      "sha256": "0de2be49ace3acf88b5ebb584a901a017000c11381727e2a673bd1b62c7fd0a6"
     },
     {
       "path": "App/Reader/ReaderCollectionViews.swift",
@@ -354,7 +358,7 @@
     },
     {
       "path": "App/Reader/ReaderColorScheme.swift",
-      "sha256": "395939500065796d5a985689c76dad0baae3fa183eb1f69c5239f65738da64f6"
+      "sha256": "0d747f533e9e15318b017d23715348f731c4ed0a08425308a17873f6d01cb8ee"
     },
     {
       "path": "App/Reader/ReaderImportedFontsView.swift",
@@ -370,11 +374,11 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "e7eb78f07a0b806f1a585b5caa6947c91c3375f1e1573e7a9aaae53616d0b5d1"
+      "sha256": "23e2acae410d5d62ca827fd452eeb955cd7422e8935803438dbced84b854b37a"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "3dcd53f51625dae7477c587ac2e60fdd391d79dc5312290e75560ceb9f088f75"
+      "sha256": "7bb6bfc3b487e980c39fc595089329095a48b2cac7f0b55407c029f6253030af"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -638,7 +642,7 @@
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
-      "sha256": "9b54f43b1ca68608ffb90bad54da11612f090662f6626c4a88da26613235ca6d"
+      "sha256": "28f272160181f8ee1d36a0bd8916393fbc26ac3a99468d642042458c3e765fb9"
     },
     {
       "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
@@ -707,6 +711,10 @@
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
       "sha256": "f76663171daa1cba2a436cd40d31e5956ca5904a5613c856c3d349565cfe285d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+      "sha256": "1a9a2b1302f9972b6da02b726774446cba46538900e5188f0d7bd3f7deb46923"
     },
     {
       "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
@@ -838,7 +846,7 @@
     },
     {
       "path": "Tests/UI/ReadingExperienceUITests.swift",
-      "sha256": "a3a2d1c9d149dedcee4114a48248cd6a28ba24a3a6298c57f5fbc4db2dec841d"
+      "sha256": "96faea21b5239191b19af4edff64fac0db285da4b1d4b73d397a0e0cb760234b"
     },
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -890,7 +898,7 @@
     },
     {
       "path": "Tests/iOS/ReadingExperienceTests.swift",
-      "sha256": "aa4c28e3cb673e8a0b61c2a48715cbe9071ba5b1cb2d81f350e70f135ad9189d"
+      "sha256": "1efd120f1a65cab3e12d6a401a77a6ce2cc701dcf69dfe747acd190cb257c0b8"
     },
     {
       "path": "Tests/iOS/ReadingFontTests.swift",
@@ -2346,7 +2354,7 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "092dd27a81ae604c5fc496c5141f1414776749f5eaabfea25d89b05d3b6f7ff9"
+      "sha256": "54668a2d75664c39bcf883c3d225317ee39b7903c7c234bd17c84d074aedd90c"
     },
     {
       "path": "scripts/generate_app_icon.py",
@@ -2440,8 +2448,15 @@
     "Documentation/HANDOFF_BUILD26_DELIVERY_2026-10-18.md",
     "Documentation/M4_READING_EXPERIENCE_VALIDATION_REPORT.json",
     "Documentation/READING_EXPERIENCE_DESIGN.md",
+    "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json",
+    "Documentation/ValidationLogs/m4-experience-build27-performance-review.json",
+    "Documentation/ValidationLogs/m4-experience-build27-reference-review.json",
     "Documentation/ValidationLogs/m4-experience-build27-start.json",
+    "Documentation/ValidationLogs/m4-experience-build27-windows.json",
     "HANDOFF.md",
+    "PROJECT_STATUS.md",
+    "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+    "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
     "Tests/UI/ReadingExperienceUITests.swift",
     "Tests/UI/ReadingFontUITests.swift",
     "Tests/iOS/BookCoverTests.swift",
@@ -2451,7 +2466,8 @@
     "Tests/iOS/ReadingExperienceTests.swift",
     "Tests/iOS/ReadingFontTests.swift",
     "project.yml",
-    "scripts/ci_ios.sh"
+    "scripts/ci_ios.sh",
+    "scripts/ci_reader_diagnostic.sh"
   ],
   "oldTestBodiesPreserved": 37,
   "modifiedOriginalTests": [
@@ -2486,9 +2502,32 @@
       "reason": "App-owned inbox injected in native fixture only"
     }
   ],
-  "newTests": 8,
-  "expectedCore": 135,
-  "expectedIOS": 156,
-  "expectedIntegration": 131,
-  "expectedUI": 25
+  "newTests": 11,
+  "expectedCore": 137,
+  "expectedIOS": 157,
+  "expectedIntegration": 132,
+  "expectedUI": 25,
+  "branch": "codex/m4-reading-experience",
+  "latestUserFeedback": {
+    "fontSources": [
+      "WeChat",
+      "QQ",
+      "Alook",
+      "other future sources"
+    ],
+    "perceivedJank": [
+      "reading",
+      "settings/menu"
+    ],
+    "phoneCauseConfirmed": false,
+    "reference": "Documentation/ValidationLogs/m4-experience-build27-performance-review.json"
+  },
+  "priorCandidates": [
+    {
+      "run": 39086068358,
+      "sourceRevision": "b799754b93f7a967b41b5552014649ca156c85ed",
+      "conclusion": "failure",
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json"
+    }
+  ]
 }

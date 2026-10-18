@@ -7,6 +7,22 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReadingExperienceTests: XCTestCase {
+    @MainActor func testFullChineseFontValidationRecordsStreamingCostWithoutChangingIdentity() async throws {
+        let services = try await services(), original = try BundledReadingFont.wenKai.resource()
+        let begin = ProcessInfo.processInfo.systemUptime
+        let font = try await ReadingFontImportService(files: services.files).importFont(from: original.fileURL)
+        let importSeconds = ProcessInfo.processInfo.systemUptime - begin
+        let validationStart = ProcessInfo.processInfo.systemUptime
+        for _ in 0..<3 {
+            let url = try await services.files.readingFontURL(font)
+            XCTAssertEqual(url.lastPathComponent, "font.ttf")
+        }
+        let validationSeconds = ProcessInfo.processInfo.systemUptime - validationStart
+        XCTAssertEqual(font.sha256, original.asset.sha256); XCTAssertEqual(font.bytes, original.asset.bytes)
+        print("Chinese font streaming SHA: bytes=\(font.bytes) importSeconds=\(importSeconds) threeValidationsSeconds=\(validationSeconds)")
+        let fonts = try await services.files.readingFonts(); XCTAssertEqual(fonts, [font])
+    }
+
     private func services() async throws -> AppServices {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         return try await AppServices.create(storageRoot: root)
@@ -67,9 +83,10 @@ final class ReadingExperienceTests: XCTestCase {
         var custom = ReadingAppearance(); custom.fontScale = 1.6; custom.theme = .oled
         custom.importedFontID = UUID(); custom.font = .serif; custom.paragraphSpacing = 2.6
         custom.characterSpacing = 0.35; custom.weightMultiplier = 1.5; custom.paragraphIndent = 3.5
-        let bytes = try JSONEncoder().encode(custom)
+        let encoder = JSONEncoder(); encoder.outputFormatting = .sortedKeys
+        let bytes = try encoder.encode(custom)
         XCTAssertFalse(ReadingLayoutPreset.allCases.contains { $0.matches(custom) })
-        XCTAssertEqual(try JSONEncoder().encode(custom), bytes)
+        XCTAssertEqual(try encoder.encode(custom), bytes)
         for preset in ReadingLayoutPreset.allCases {
             let value = try preset.applying(to: custom).validated()
             XCTAssertEqual(value.fontScale, custom.fontScale); XCTAssertEqual(value.theme, custom.theme)
