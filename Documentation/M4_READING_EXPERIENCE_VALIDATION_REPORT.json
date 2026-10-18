@@ -350,7 +350,7 @@
     },
     {
       "path": "App/Reader/ReaderAppearanceView.swift",
-      "sha256": "0de2be49ace3acf88b5ebb584a901a017000c11381727e2a673bd1b62c7fd0a6"
+      "sha256": "62adc867e738de4f24fca0535ba351b2b6173dfb91f9bdcfa44794af8d3e0c65"
     },
     {
       "path": "App/Reader/ReaderCollectionViews.swift",
@@ -374,11 +374,11 @@
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "sha256": "2aed2ba48136822a377f4513976d40424df7443551a5a00c11290249d02fa890"
+      "sha256": "d3acac9677025f4a718b1506d28d816025df17256968b59b44e71f764694fef0"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "f23b7378157159047367818f5be3251df7a0e50ae4458589bb1ab97aed650403"
+      "sha256": "0fa6f52ce34951a6f7db06e32f2b69b8d9fd290ffa41491470ae4bbc099214d2"
     },
     {
       "path": "App/Reader/ReaderVisualStyle.swift",
@@ -882,7 +882,7 @@
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "sha256": "3832ba7fe0ecbab1562ed2ae65d724f8446ff9714eab9c66297c5c900b5645d7"
+      "sha256": "5abe1c20283c9b7e5df1e49bc03e9527adf06ed21cc1d2af9ef5cc8e5cdfdcbc"
     },
     {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
@@ -2452,14 +2452,17 @@
     "Documentation/PERFORMANCE_TEST_PLAN.md",
     "Documentation/READING_EXPERIENCE_DESIGN.md",
     "Documentation/ValidationLogs/m4-experience-build27-18c-windows.json",
+    "Documentation/ValidationLogs/m4-experience-build27-bc3-windows.json",
     "Documentation/ValidationLogs/m4-experience-build27-c518-windows.json",
     "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39089264017.json",
     "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39091123601.json",
     "Documentation/ValidationLogs/m4-experience-build27-diagnostic-panels-39097420131.json",
+    "Documentation/ValidationLogs/m4-experience-build27-diagnostic-recovery-39102171529.json",
     "Documentation/ValidationLogs/m4-experience-build27-first-windows-record.json",
     "Documentation/ValidationLogs/m4-experience-build27-history-39086068358.json",
     "Documentation/ValidationLogs/m4-experience-build27-history-39092416032.json",
     "Documentation/ValidationLogs/m4-experience-build27-history-39098863950.json",
+    "Documentation/ValidationLogs/m4-experience-build27-history-39103144069.json",
     "Documentation/ValidationLogs/m4-experience-build27-performance-review.json",
     "Documentation/ValidationLogs/m4-experience-build27-reference-review.json",
     "Documentation/ValidationLogs/m4-experience-build27-start.json",
@@ -2474,6 +2477,7 @@
     "Tests/iOS/DocumentImportTests.swift",
     "Tests/iOS/LibraryRemovalTests.swift",
     "Tests/iOS/LibraryTests.swift",
+    "Tests/iOS/ReaderLifecycleTests.swift",
     "Tests/iOS/ReadingExperienceTests.swift",
     "Tests/iOS/ReadingFontTests.swift",
     "Tests/iOS/TXTReadingTests.swift",
@@ -2483,7 +2487,7 @@
     "scripts/ci_ios.sh",
     "scripts/ci_reader_diagnostic.sh"
   ],
-  "oldTestBodiesPreserved": 49,
+  "oldTestBodiesPreserved": 73,
   "modifiedOriginalTests": [
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -2516,10 +2520,10 @@
       "reason": "App-owned inbox injected in native fixture only"
     }
   ],
-  "newTests": 11,
+  "newTests": 12,
   "expectedCore": 137,
-  "expectedIOS": 157,
-  "expectedIntegration": 132,
+  "expectedIOS": 158,
+  "expectedIntegration": 133,
   "expectedUI": 25,
   "branch": "codex/m4-reading-experience",
   "latestUserFeedback": {
@@ -2560,9 +2564,18 @@
       "failed": 2,
       "skipped": 0,
       "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39098863950.json"
+    },
+    {
+      "run": 39103144069,
+      "sourceRevision": "bc3c573755b3da7344f816318bd578803b9e6c7a",
+      "conclusion": "failure",
+      "passed": 156,
+      "failed": 1,
+      "skipped": 0,
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-history-39103144069.json"
     }
   ],
-  "sourceRevision": "18c130ce27c8dd1b3bc3ad1bee22adbae8b17456",
+  "sourceRevision": "bc3c573755b3da7344f816318bd578803b9e6c7a",
   "diagnosticRuns": [
     {
       "run": 39089264017,
@@ -2708,8 +2721,52 @@
         "topInsights": [],
         "totalTestCount": 19
       }
+    },
+    {
+      "run": 39102171529,
+      "sourceRevision": "bc3c573755b3da7344f816318bd578803b9e6c7a",
+      "selection": "recovery",
+      "status": "completed",
+      "conclusion": "success",
+      "evidence": "Documentation/ValidationLogs/m4-experience-build27-diagnostic-recovery-39102171529.json",
+      "iOS": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 5,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792303743.581,
+        "passedTests": 5,
+        "result": "Passed",
+        "skippedTests": 0,
+        "startTime": 1792303278.182,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 5
+      }
     }
   ],
   "pendingBuildBranchUpdate": false,
-  "run": 39098863950
+  "run": 39103144069
 }

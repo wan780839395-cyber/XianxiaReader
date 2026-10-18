@@ -66,7 +66,14 @@ import XianxiaCore
         .tint(ReaderPalette(theme: model.appearance.theme).accent)
         .readerColorScheme(model.appearance.theme)
         .overlay(alignment: .top) { FontInboxFeedback(inbox: fontInbox) }
-        .sheet(isPresented: $showAppearance) { ReaderAppearanceView(model: model) }
+        .sheet(isPresented: $showAppearance, onDismiss: {
+            guard visible else { return }
+            Task {
+                await model.saveNow()
+                guard visible, !returningToLibrary, !showAppearance, model.isReady, scenePhase == .active else { return }
+                if let failure = model.positionSaveFailure { model.errorMessage = failure }
+            }
+        }) { ReaderAppearanceView(model: model) }
         .sheet(isPresented: $showContents) {
             ReaderContentsView(chapters: model.chapters, bookTitle: book.title, theme: model.appearance.theme) { chapter in
                 showContents = false

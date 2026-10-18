@@ -9,6 +9,8 @@ import XianxiaCore
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var section = Section.appearance
     @State private var moreLayout = false
+    @State private var savingSettings = false
+    @State private var settingsCommitFailure: String?
     @EnvironmentObject private var fontInbox: FontDocumentInbox
     private enum Section: String, CaseIterable {
         case appearance = "外观", layout = "排版", interaction = "手感"
@@ -71,7 +73,7 @@ import XianxiaCore
                                 .font(.footnote).frame(minHeight: 44)
                                 .accessibilityIdentifier("reader.appearance.reset")
                         }.frame(maxWidth: .infinity)
-                    }.padding(.horizontal, 16).padding(.vertical, 12).disabled(model.fontBusy)
+                    }.padding(.horizontal, 16).padding(.vertical, 12).disabled(model.fontBusy || savingSettings)
                 }
                 .id(section)
                 .accessibilityIdentifier("reader.appearance.scroll")
@@ -81,14 +83,24 @@ import XianxiaCore
             .navigationTitle("阅读设置").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("完成") {
+                    Button {
+                        guard !savingSettings else { return }
+                        savingSettings = true
                         Task {
-                            await model.saveNow()
-                            if model.settingsSaveFailure == nil { dismiss() }
+                            let saved = await model.saveSettingsNow()
+                            savingSettings = false
+                            if saved { dismiss() }
+                            else { settingsCommitFailure = model.appearanceSaveFailure ?? model.interactionSaveFailure }
                         }
+                    } label: {
+                        HStack(spacing: 6) {
+                            if savingSettings { ProgressView().controlSize(.small) }
+                            Text(savingSettings ? "保存中" : "完成")
+                        }.frame(minWidth: 44, minHeight: 44)
                     }
-                    .font(.subheadline.weight(.medium)).frame(minHeight: 44)
-                    .disabled(model.fontBusy)
+                    .font(.subheadline.weight(.medium))
+                    .disabled(model.fontBusy || savingSettings)
+                    .accessibilityLabel("完成").accessibilityValue(savingSettings ? "正在保存设置" : "")
                     .accessibilityIdentifier("reader.appearance.done")
                 }
             }
@@ -96,7 +108,11 @@ import XianxiaCore
         .tint(palette.accent).foregroundStyle(palette.text)
         .readerColorScheme(model.appearance.theme)
         .presentationDetents([.large]).presentationDragIndicator(.visible)
-        .interactiveDismissDisabled(model.fontBusy)
+        .interactiveDismissDisabled(model.fontBusy || savingSettings)
+        .alert("设置尚未保存", isPresented: Binding(get: { settingsCommitFailure != nil },
+                                               set: { if !$0 { settingsCommitFailure = nil } })) {
+            Button("知道了") { settingsCommitFailure = nil }
+        } message: { Text(settingsCommitFailure ?? "") }
         .task { await model.refreshFontCatalogueForBrowsing() }
         .onReceive(NotificationCenter.default.publisher(for: .readingFontCatalogChanged)) { _ in
             Task { await model.refreshFontCatalogueForBrowsing(force: true) }

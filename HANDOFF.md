@@ -79,3 +79,25 @@ Windows445/新增0/54既有Vendor限制、17工具、bash -n已过。冻结清�
 Windows既有CI失败路径7断言首次未过：新增诊断外层python3在Windows控制流夹具退出49覆盖原test65/export23。没有改旧工具测试；已将整个额外诊断命令也显式best-effort捕获/记录，保证工具缺失不覆盖原测试退出，重新运行17项后才冻结。
 
 诊断候选冻结前完成：Windows446语法新增0/54既有Vendor限制、17工具全部过、两CI脚本bash -n及内嵌Python AST过。受改文件49个原test主体逐函数相同、6既定适配/11新增、544源码blob；生产源码与18c130c相同。将派唯一recovery5，无Release/IPA，保留旧全量失败证据。
+
+recovery5已唯一派发39102171529/sourcebc3c573755b3da7344f816318bd578803b9e6c7a；当前watch_autoscroll.py/collect_experience27_diagnostic.py同run为本轮助手，无Release/IPA。旧全量39098863950已结束失败、完整原件已校验收齐、两个助手已退出。恢复核真实进程与run.json后接续，不重派。
+
+
+recovery39102171529/bc3c573实际5/5、0失败/跳过，test/export/summary均0；完整artifact GitHub digest/ZIP CRC已核收齐，原两个助手退出。保留原断言/20s预算，生产App/Packages/Vendor/project.yml/锁相对18c130c无变化。即将同bc3独立full137/157/Release27，定向通过不追认旧失败根因或手机FPS；先看本定向原生Files录屏，正常HEAD/index/旧包保留。
+
+真实full已唯一派发39103144069/sourcebc3c573755b3da7344f816318bd578803b9e6c7a；后续watch_autoscroll.py及collect_experience27.py同run为本轮助手。先核真实run/log/artifact与进程再恢复，不重派。原全量仍155/157失败，新定向5/5分列，尚无Build27 IPA。
+
+recovery5原生人工复核已记诊断JSON：11PNG两表、封面44.68s三总览/菜单54.99s四总览全部实看。Files启动10.5-14.5s仍空白，15.5s出现标题与tabs、17.5s完整最近项目/取消、18.5s回原editor；本次成功不作旧空白唯一根因结论。完整39103144069持续唯一run；当前助手watch exec24776 / collect exec14954，编译源仍bc3。
+
+完整39103144069继续Apple原生阶段；已提前收同run Core artifact116320字节/digest/CRC全展开并删重复ZIP/分片，实际137唯一Core索引与4组Release长TXT探针检查均过。额外本地JSON读取首次用了Windows默认GBK，改显式UTF8后才核探针，不改变原件/CI结果。最终收集器按同artifact回执复用；完整iOS157/Release27仍未有结论。
+
+完整39103144069仍Apple运行中，源bc3固定；本地已核同run Linux137/4探针与Core摘要/CRC。最终交付助手已AST检查；retain_experience27_ci.py现在要求先生成plan并实际审阅，复制为.cache/recovery/20261018-build27/ci-retention-reviewed-plan.json，apply在任何删除前逐字段比较路径/bytes/SHA/49受保护包，清单有变化立即拒绝。尚未清理旧CI。条件最终文档措辞去掉未证实的WebContent唯一归因，仍保留实际启动延迟和旧失败边界。
+
+
+完整39103144069/bc3已completed/failure，原始日志132集成全过/25UI一失败，待下载xcresult核实际157总数。原TXT初始位置、封面Files与两字体/菜单均过，唯一新失败在ReadingExperienceUITests字体收藏+预设用例104行，点设置完成后0.5秒立即点返回书库，AX三次计算hit point=-1,-1。尚未判定遮挡、控件禁用、菜单状态或测试同步原因；等待实际失败AX与原录屏后决定，暂不改生产源码或改坐标点绕过。无Release/IPA。Core已全核137/4探针；1.748GB Apple artifact由原collect助手14954继续下载，watch24776已退出，恢复不要重派。bc3 Windows/工具/diff别名已分别留副本，后续若再冻结不覆盖旧证据。
+
+39103144069原件完整digest/CRC下载已完成，实际xcresult156/157、1失败0跳过，两个助手均已退出。已实际看字体收藏42.24s原录屏全部三张总览和失败AX：并非返回按钮移位/关闭动画未结束，设置整个仍停留，AX有屏幕下方reader.position.save-error：阅读进度尚未保存，当前位置尚未稳定。Done当前await saveNow()并因失败拒绝dismiss，测试随后点被遮挡的返回。下一步提取Done窗原始连续帧核验，归档bc3失败；拟只分开设置持久化与面板关闭后的fresh完整位置保存，失败在可见阅读界面显示，旧采样/3s预算/Locator/旧回归不削弱。已核Apple sheet onDismiss与XCTNSPredicateExpectation/exists-vs-hittable官方文档，写设计后实施。
+
+设置关闭修正已落盘，待验证：ReaderViewModel.saveSettingsNow只提交偏好，ReaderAppearance完成有保存中/失败alert、成功关闭后ReaderView原生onDismiss走原saveNow；原3秒预算/fresh Locator/失败/请求ID守卫不变，原字体收藏UI测试函数完全未改。新增1个Lifecycle边界测试含覆盖页不可采样、设置落盘/真实路径错误、位置失败保旧和fresh重试、close拒绝，预期158=133+25/12新增；原测试主体保留数量由freeze实际重新计算。即将Windows446/工具17，之后独立同源完整CI，不增加定向重复等待。bc3失败原件/89原帧已归档history-39103144069，不追认为通过。
+
+设置关闭候选冻结前：Windows446/新增0/54既有Vendor限制、17工具过；544源码blob，新增Lifecycle文件纳入后73原测试主体逐函数相同、6既定适配/12新增；预期Core各137/iOS158（133集成+25UI）/Release27。原字体收藏UI函数及全部旧保存/迟到/重试/关闭回归未改，原采样3秒预算未变。偏好提交允许同会话渲染失败时退出设置回正文重试，不依赖isReady；关闭会话仍拒绝。即将冻结私有源并独立full，不继承bc3的156/157或recovery5成功门槛；无Build27交付。

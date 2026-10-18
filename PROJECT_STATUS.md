@@ -1,10 +1,10 @@
 # Build27 开发中（恢复检查点 2026-10-18）
 
-最新完整39098863950/source18c130c实际155/157、2失败0跳过；Core各137通过、无设备Release/Build27 IPA。原隐藏字体/菜单修正回归均过，新失败是原TXT continuous初次位置20s超时和原封面Files已呈现但内部空白；1.72GB原件digest/CRC保留，封面录屏/AX已看，根因未定。最后可用交付仍Build26。
+最新完整39103144069/sourcebc3c573实际completed/failure：日志132集成全过、UI24/25，正在收1.748GB Apple原件核xcresult；无设备Release/Build27 IPA。原TXT初始位置和封面Files这次过，唯一新失败在字体收藏/预设用例设置完成后立即点返回书库，AX未算出hit point，待原生录屏/AX核实，暂不猜改生产代码或坐标绕过。最后可用交付仍Build26。
 
-新检查点只补测试/CI诊断，不再猜改生产源码：TXT同步无正文状态、20s有界系统文档服务日志/无参数进程RSS，原断言/等待及test主体保留，定向recovery5后再完整137/157/Release27。原19定向39097420131实际19/19，退出/目录189原帧、两会话总览及字体图已实际看，独立于完整门槛；详见HANDOFF及各history。
+同bc3定向recovery5实际5/5，11PNG/两录屏总览已看，Files有启动空白后正常显示取消；旧失败及根因限制保留。Windows446/17、49原test主体保持/6既定适配/11新增/544源blob；当前Linux原件137/4探针已核，完整Apple验收未通过。
 
-用户当前已再次确认iPhone13/iOS16.6.1/TrollStore，字体来源微信/QQ/Alook。手机帧时间与这些来源实际Open In仍未验收，不归因60Hz；原HEAD/index、未提交工作、47旧包/17恢复ZIP保留。M4未完，取消关机持续生效。
+用户当前再次确认iPhone13/iOS16.6.1/TrollStore；微信/QQ/Alook真实字体打开方式、手机正文及设置帧时间未验收。原HEAD/index、未提交工作、47旧包/17恢复ZIP保留。M4未完，取消关机持续生效。
 
 # 项目状态
 

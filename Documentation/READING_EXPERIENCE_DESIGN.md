@@ -70,3 +70,14 @@ TXTContentDigest.file的Apple路径使用系统CryptoKit SHA256的init/update(da
 19项定向39097420131/18c130c已真实全过。上述“尚待修正”是发现时历史检查点；修正已编译且实际复核会话/菜单全录屏7张1fps表与退出95+目录94原VFR帧16表：第三退出保留正文、不见原打开排版spinner，模式加载期间目录可呈现。60张预备PNG尚未逐看，此诊断不替代full137/157/Release27或手机FPS；当前完整39098863950同冻结源执行中。
 
 后续full39098863950/18c实际155/157，无Release/IPA；原字体/菜单修正回归均过，新旧TXT continuous初次位置与系统Files空白失败。continuous不走新paged guard；封面录屏和AX确认已呈现空白选择器。官方 https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller 说明标准系统选择器能力，现有桥接已用它；其他Safari/模拟器论坛不证明本例根因。因此暂不继续盲改生产逻辑，保持原预算/断言，补无正文同步超时状态与有界系统服务上下文后定向复现5项，再独立完整157；即使下一轮通过也不追认本次失败根因已定。
+
+
+## 设置完成与可见页面的位置保存（当前待编译修正）
+
+完整39103144069/bc3实际156/157，失败原录屏42.24s全部三总览、Done区32.8–37.2s全部89原始帧八表及AX已查看。设置面板一直存在；AX的reader.position.save-error在屏幕下方，内容为当前位置尚未稳定。旧Done先await saveNow，fresh捕获失败便不dismiss；随后返回书库按钮仍在AX但被真实面板覆盖。这是实际控制流程问题，不能仅用按钮坐标点或改测试等待掩盖，也尚未证明底层字体重排延迟唯一原因。
+
+保留原saveNow和Readium3秒fresh捕获、完整Locator、失败保留旧记录和请求ID/关闭/重开守卫。只拆分设置提交：saveSettingsNow等待已排队的外观/交互设置落盘并核同一活动会话，不读取覆盖中的DOM；成功再原生dismiss。ReaderView的sheet onDismiss在面板关闭后调用原saveNow，采样失败由可见阅读页提示，立即返回/重开仍走原保存及迟到过滤。设置写入失败继续留在面板并弹出可见错误；完成期间显示保存中并防重复/阻止新编辑或交互下拉。没有把设置提交冒称阅读位置保存成功，也没有回退旧百分比或扩大时间预算。
+
+新增一个真实服务/假引擎边界回归：覆盖页捕获必失败时设置仍能按原值持久化且captureCalls为0；恢复可见后原fresh保存失败保持旧完整位置并可见，重试成功写新完整Locator；关闭后提交被拒绝，实际Preferences路径故障时设置提交拒绝且不采样。原全部测试主体保留，原字体收藏+预设UI用例不改点击步骤/原断言；新的完整门槛为Core各137/iOS158（133集成+25UI）/Release27，当前源码尚待此门槛。
+
+采用公开的[SwiftUI sheet(isPresented:onDismiss:content:)](https://developer.apple.com/documentation/SwiftUI/View/sheet%28isPresented%3AonDismiss%3Acontent%3A%29)，只用iOS16已有的关闭回调，不引用更新系统的新接口。对照Apple [XCUIElement.exists](https://developer.apple.com/documentation/xcuiautomation/xcuielement/exists)、[isHittable](https://developer.apple.com/documentation/xcuiautomation/xcuielement/ishittable)以及[XCTNSPredicateExpectation](https://developer.apple.com/documentation/xctest/xctnspredicateexpectation)：存在不等于可点击；本例实际遮挡已经由录屏和保存错误证实，无需改坐标绕过。

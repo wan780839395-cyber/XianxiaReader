@@ -186,6 +186,18 @@ private enum ReaderJumpError: LocalizedError {
         automaticScrollPresented = false
     }
 
+    /// A covered navigator may still be rebuilding its DOM. Commit the settings
+    /// here; the presenting reader requests a fresh full position on dismissal.
+    func saveSettingsNow() async -> Bool {
+        pauseAutomaticScroll()
+        guard let sessionID = openRequestID, !Task.isCancelled else { return false }
+        await appearanceSaveTask?.value
+        guard openRequestID == sessionID, !Task.isCancelled else { return false }
+        await interactionSaveTask?.value
+        guard openRequestID == sessionID, !Task.isCancelled else { return false }
+        return appearanceSaveFailure == nil && interactionSaveFailure == nil
+    }
+
     func saveNow() async {
         pauseAutomaticScroll()
         let sessionID = openRequestID

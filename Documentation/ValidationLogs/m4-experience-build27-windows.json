@@ -1,11 +1,11 @@
 {
-  "recordedAtUTC": "2026-10-18T05:53:12.093769+00:00",
+  "recordedAtUTC": "2026-10-18T07:15:30.821561+00:00",
   "swiftFiles": 446,
   "addedSyntaxDiagnostics": 0,
   "upstreamGrammarLimitations": 54,
   "toolingTests": 17,
   "appleCompilation": false,
-  "oldTestBodiesPreserved": 49,
+  "oldTestBodiesPreserved": 73,
   "modifiedOriginalTests": [
     {
       "path": "Tests/UI/ReadingFontUITests.swift",
@@ -38,7 +38,7 @@
       "reason": "App-owned inbox injected in native fixture only"
     }
   ],
-  "newTests": 11,
+  "newTests": 12,
   "sourceBlobs": 544,
   "logs": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "path": ".cache/recovery/20261018-build27/tooling.log",
-      "sha256": "25dea028ac039fb20f59902746b5a7b01eb6fd5f9ed7531c1a300289a1cb3b54"
+      "sha256": "6a9264a63cdae88268b227f95c9daf3f011c5bca2d7ee53bcc633f9aea65a450"
     },
     {
       "path": ".cache/recovery/20261018-build27/candidate.diff",
-      "sha256": "17bec4717110ebd4f3f3edb106e5e56d72b1a6a47fc01197de775870c8b73764"
+      "sha256": "02d514fd8ff456f8c262e941154adfb7ad98de2ccd0138fe1d1c4eeb19e00568"
     }
   ]
 }

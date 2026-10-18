@@ -6,6 +6,48 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress() async throws {
+        struct Failure: LocalizedError { var errorDescription: String? { "covered page cannot provide a fresh anchor" } }
+        let (book, services, engine, model) = try await openedContext()
+        let original = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 7,
+            locatorData: Data([1, 3, 5, 7]), progression: 0.42)
+        try await services.repository.save(original)
+        engine.captureFailure = Failure()
+        var appearance = model.appearance; appearance.characterSpacing = 0.05
+        model.setAppearance(appearance)
+        let committed = await model.saveSettingsNow()
+        XCTAssertTrue(committed); XCTAssertEqual(engine.captureCalls, 0)
+        let settings = try await services.files.readingAppearance()
+        XCTAssertEqual(settings, appearance)
+        let beforeDismissal = try await services.repository.position(for: book.id)
+        XCTAssertEqual(beforeDismissal, original)
+
+        // The reader still needs a fresh anchor after uncovering. A failure
+        // remains visible and must never save a cached chapter head instead.
+        await model.saveNow()
+        XCTAssertNotNil(model.positionSaveFailure)
+        let failedPosition = try await services.repository.position(for: book.id)
+        XCTAssertEqual(failedPosition, original)
+        let fresh = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 9,
+            locatorData: Data([9, 8, 6, 4]), progression: 0.43)
+        engine.captureFailure = nil; engine.captureResult = fresh
+        await model.saveNow()
+        let afterDismissal = try await services.repository.position(for: book.id)
+        XCTAssertEqual(afterDismissal, fresh); XCTAssertNil(model.positionSaveFailure)
+        model.close()
+        let closed = await model.saveSettingsNow(); XCTAssertFalse(closed)
+
+        let (_, failingServices, failingEngine, failingModel) = try await openedContext()
+        let blockedPreferences = try failingServices.files.resolve("Preferences")
+        try Data([1]).write(to: blockedPreferences)
+        var changed = failingModel.appearance; changed.theme = .charcoal
+        failingModel.setAppearance(changed)
+        let failedCommit = await failingModel.saveSettingsNow()
+        XCTAssertFalse(failedCommit); XCTAssertNotNil(failingModel.appearanceSaveFailure)
+        XCTAssertEqual(failingEngine.captureCalls, 0)
+        failingModel.close()
+    }
+
     @MainActor func testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead() async throws {
         let (book, services, engine, model) = try await openedContext()
         let cached = ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([0]), progression: 0)
