@@ -8,6 +8,8 @@ import XianxiaCore
     @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var section = Section.appearance
+    @State private var moreLayout = false
+    @EnvironmentObject private var fontInbox: FontDocumentInbox
     private enum Section: String, CaseIterable {
         case appearance = "外观", layout = "排版", interaction = "手感"
     }
@@ -75,6 +77,7 @@ import XianxiaCore
                 .accessibilityIdentifier("reader.appearance.scroll")
             }
             .background(palette.background)
+            .overlay(alignment: .bottom) { FontInboxFeedback(inbox: fontInbox) }
             .navigationTitle("阅读设置").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -91,9 +94,13 @@ import XianxiaCore
             }
         }
         .tint(palette.accent).foregroundStyle(palette.text)
-        .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
+        .readerColorScheme(model.appearance.theme)
         .presentationDetents([.large]).presentationDragIndicator(.visible)
         .interactiveDismissDisabled(model.fontBusy)
+        .task { await model.refreshFontCatalogueForBrowsing() }
+        .onReceive(NotificationCenter.default.publisher(for: .readingFontCatalogChanged)) { _ in
+            Task { await model.refreshFontCatalogueForBrowsing() }
+        }
         .sheet(isPresented: $model.choosingFont) {
             EPUBDocumentPicker(onCompletion: { [weak model] result in model?.receiveFontFiles(result) },
                 onCoordinatorCreated: { [weak model] value in model?.retainFontCoordinator(value) },
@@ -211,35 +218,22 @@ import XianxiaCore
                 }
             }.disabled(!supportsText)
             settingsCard {
-                sectionTitle("我的字体", symbol: "textformat.abc")
-                ForEach(model.importedFonts) { font in
-                    Button { model.selectImportedFont(font.id) } label: {
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(font.displayName).font(.subheadline).lineLimit(2)
-                                ReadingFontPreview(resource: model.fontResourceForPreview(font.id), theme: model.appearance.theme,
-                                    pointSize: 19, compact: true, unavailable: !model.isFontAvailable(font.id))
-                            }
-                            Spacer(minLength: 8)
-                            Image(systemName: model.appearance.importedFontID == font.id ? "checkmark.circle.fill" : "circle")
-                                .foregroundStyle(palette.accent)
-                        }.frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
-                    }
-                    .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
-                    .accessibilityIdentifier("reader.font.imported.\(font.id.uuidString)")
-                    .accessibilityValue(model.appearance.importedFontID == font.id ? "已选择" : "未选择")
+                NavigationLink {
+                    ReaderImportedFontsView(model: model)
+                } label: {
+                    HStack(spacing: 10) {
+                        Image(systemName: "textformat.abc").foregroundStyle(palette.accent)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("我的字体").font(.subheadline.weight(.medium))
+                            Text(model.importedFonts.isEmpty ? "导入并收藏喜欢的字形" : "已收藏 \(model.importedFonts.count) 款 · 浏览与选择")
+                                .font(.caption).foregroundStyle(palette.secondaryText)
+                        }
+                        Spacer(minLength: 8)
+                        Image(systemName: "chevron.right").font(.caption.weight(.semibold)).foregroundStyle(palette.secondaryText)
+                    }.frame(minHeight: 44).contentShape(Rectangle())
                 }
-                if model.fontBusy { ProgressView("正在导入字体并恢复阅读位置…").font(.footnote) }
-                else {
-                    Button { model.choosingFont = true } label: {
-                        Label("导入字体", systemImage: "plus").font(.subheadline.weight(.medium))
-                            .frame(maxWidth: .infinity, minHeight: 44)
-                    }
-                    .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
-                    .accessibilityIdentifier("reader.font.import")
-                }
-                Text("TTF / OTF · 每款至多 32 MB · 缺字由系统补全")
-                    .font(.caption).foregroundStyle(palette.secondaryText)
+                .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion))
+                .accessibilityIdentifier("reader.fonts.open")
                 if let message = model.fontMessage {
                     Text(message).font(.footnote).foregroundStyle(palette.secondaryText)
                         .accessibilityIdentifier("reader.font.message")
@@ -251,56 +245,89 @@ import XianxiaCore
     private var layoutControls: some View {
         VStack(spacing: 14) {
             settingsCard {
-                Toggle(isOn: binding(\.publisherStyles)) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("沿用原书排版").font(.subheadline)
-                        Text("保留原书的行距、段距与缩进")
-                            .font(.caption).foregroundStyle(palette.secondaryText)
+                HStack {
+                    sectionTitle("排版预设", symbol: "text.book.closed")
+                    Spacer()
+                    if !ReadingLayoutPreset.allCases.contains(where: { $0.matches(model.appearance) }) {
+                        Text(model.appearance.publisherStyles ? "原书" : "自定义").font(.caption).foregroundStyle(palette.secondaryText)
                     }
-                }.accessibilityIdentifier("reader.publisher-styles")
+                }
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 8) { presetButtons }
+                    VStack(spacing: 8) { presetButtons }
+                }
+                Text("只调整留白与段落，保留字体、字号和底色。")
+                    .font(.caption).foregroundStyle(palette.secondaryText)
+                Toggle("沿用原书排版", isOn: binding(\.publisherStyles))
+                    .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.publisher-styles")
             }
             settingsCard {
-                sectionTitle("阅读排版", symbol: "text.alignleft")
+                sectionTitle("常用调整", symbol: "text.alignleft")
                 VStack(spacing: 0) {
-                    adjustment("左右留白", value: model.appearance.pageMargins, range: 0.25...2.5, step: 0.25,
-                               key: \.pageMargins, id: "margins", display: model.appearance.pageMargins.formatted(.number.precision(.fractionLength(2))))
+                    adjustment("字号", value: model.appearance.fontScale, range: 0.8...2, step: 0.1,
+                               key: \.fontScale, id: "font-size", display: "\(Int((model.appearance.fontScale * 100).rounded()))%")
                     Divider().overlay(palette.border)
                     adjustment("行距", value: model.appearance.lineHeight, range: 1.2...2.8, step: 0.1,
                                key: \.lineHeight, id: "line-height", display: model.appearance.lineHeight.formatted(.number.precision(.fractionLength(2))))
                         .disabled(model.appearance.publisherStyles)
                     Divider().overlay(palette.border)
-                    adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...3, step: 0.1,
-                               key: \.paragraphSpacing, id: "paragraph-spacing", display: model.appearance.paragraphSpacing.formatted(.number.precision(.fractionLength(1))))
-                        .disabled(model.appearance.publisherStyles)
-                    Divider().overlay(palette.border)
-                    adjustment("字距", value: model.appearance.characterSpacing, range: 0...0.5, step: 0.05,
-                               key: \.characterSpacing, id: "letter-spacing", display: model.appearance.characterSpacing.formatted(.number.precision(.fractionLength(2))))
-                        .disabled(model.appearance.publisherStyles)
-                    Divider().overlay(palette.border)
-                    adjustment("字重", value: model.appearance.weightMultiplier, range: 0.5...1.75, step: 0.25,
-                               key: \.weightMultiplier, id: "font-weight", display: model.appearance.fontWeight == nil ? "原字重" : "\(Int(model.appearance.weightMultiplier * 100))%")
-                        .disabled(model.appearance.publisherStyles)
-                    Divider().overlay(palette.border)
-                    adjustment("首行缩进", value: model.appearance.paragraphIndent, range: 0...4, step: 0.5,
-                               key: \.paragraphIndent, id: "indent-size", display: "\(model.appearance.paragraphIndent.formatted(.number.precision(.fractionLength(1)))) 字")
-                        .disabled(model.appearance.publisherStyles)
+                    adjustment("左右留白", value: model.appearance.pageMargins, range: 0.25...2.5, step: 0.25,
+                               key: \.pageMargins, id: "margins", display: model.appearance.pageMargins.formatted(.number.precision(.fractionLength(2))))
                 }
-                Toggle("启用首行缩进", isOn: binding(\.firstLineIndent))
-                    .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.indent")
-                    .disabled(model.appearance.publisherStyles)
-                Picker("对齐方式", selection: binding(\.alignment)) {
-                    Text("自然对齐").tag(ReadingAlignment.natural)
-                    Text("两端对齐").tag(ReadingAlignment.justified)
-                }.pickerStyle(.segmented).accessibilityIdentifier("reader.alignment")
-                    .disabled(model.appearance.publisherStyles)
-                Text("字重效果取决于字体本身。")
-                    .font(.caption2).foregroundStyle(palette.secondaryText)
+            }
+            settingsCard {
+                DisclosureGroup(isExpanded: $moreLayout) {
+                    VStack(spacing: 0) {
+                        adjustment("段间距", value: model.appearance.paragraphSpacing, range: 0...3, step: 0.1,
+                                   key: \.paragraphSpacing, id: "paragraph-spacing", display: model.appearance.paragraphSpacing.formatted(.number.precision(.fractionLength(1))))
+                        Divider().overlay(palette.border)
+                        adjustment("字距", value: model.appearance.characterSpacing, range: 0...0.5, step: 0.05,
+                                   key: \.characterSpacing, id: "letter-spacing", display: model.appearance.characterSpacing.formatted(.number.precision(.fractionLength(2))))
+                        Divider().overlay(palette.border)
+                        adjustment("字重", value: model.appearance.weightMultiplier, range: 0.5...1.75, step: 0.25,
+                                   key: \.weightMultiplier, id: "font-weight", display: model.appearance.fontWeight == nil ? "原字重" : "\(Int(model.appearance.weightMultiplier * 100))%")
+                        Divider().overlay(palette.border)
+                        adjustment("首行缩进", value: model.appearance.paragraphIndent, range: 0...4, step: 0.5,
+                                   key: \.paragraphIndent, id: "indent-size", display: "\(model.appearance.paragraphIndent.formatted(.number.precision(.fractionLength(1)))) 字")
+                    }.disabled(model.appearance.publisherStyles)
+                    Toggle("启用首行缩进", isOn: binding(\.firstLineIndent))
+                        .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("reader.indent")
+                        .disabled(model.appearance.publisherStyles)
+                    Picker("对齐方式", selection: binding(\.alignment)) {
+                        Text("自然对齐").tag(ReadingAlignment.natural)
+                        Text("两端对齐").tag(ReadingAlignment.justified)
+                    }.pickerStyle(.segmented).accessibilityIdentifier("reader.alignment")
+                        .disabled(model.appearance.publisherStyles)
+                    Text("字重效果取决于字体本身。")
+                        .font(.caption2).foregroundStyle(palette.secondaryText)
+                } label: {
+                    HStack {
+                        Text("更多调整").font(.subheadline.weight(.medium))
+                        Spacer()
+                        if !moreLayout { Text("段距 · 字距 · 缩进").font(.caption).foregroundStyle(palette.secondaryText) }
+                    }.frame(minHeight: 44)
+                }.accessibilityIdentifier("reader.layout.more")
             }
             if model.appearance.publisherStyles {
                 Text("关闭“沿用原书排版”后，可调整段落设置。")
                     .font(.footnote).foregroundStyle(palette.secondaryText)
             }
         }.disabled(!supportsText)
+    }
+
+    private var presetButtons: some View {
+        ForEach(ReadingLayoutPreset.allCases) { preset in
+            Button { model.setAppearance(preset.applying(to: model.appearance)) } label: {
+                VStack(spacing: 5) {
+                    Text(preset.title).font(.subheadline.weight(.medium)).fixedSize()
+                    Text(preset.detail).font(.caption2).foregroundStyle(palette.secondaryText).fixedSize()
+                }.padding(.horizontal, 8).frame(maxWidth: .infinity, minHeight: 58)
+                    .overlay(RoundedRectangle(cornerRadius: 13).stroke(preset.matches(model.appearance) ? palette.accent : .clear, lineWidth: 1.5))
+            }
+            .buttonStyle(ReaderPressStyle(palette: palette, reduceMotion: reduceMotion, filled: true, radius: 13))
+            .accessibilityIdentifier("reader.layout.preset.\(preset.rawValue)")
+            .accessibilityValue(preset.matches(model.appearance) ? "已选择" : "未选择")
+        }
     }
 
     private func sectionTitle(_ title: String, symbol: String) -> some View {

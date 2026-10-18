@@ -8,6 +8,32 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReadingFontTests: XCTestCase {
+    @MainActor func testExternalFontBrowsingDoesNotRebuildUntilExplicitSelectionAndKeepsFullAnchor() async throws {
+        let services = try await self.services(), book = Book(title: "外部字体", format: .epub, filePath: "Books/test/book.epub")
+        try await services.repository.insert(book, chapters: [])
+        let engine = FontEngine(), model = ReaderViewModel(book: book, services: services, factory: FontFactory(engine: engine))
+        await model.open()
+        let anchor = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 8, locatorData: Data([4, 9, 2, 7]), progression: 0.63)
+        engine.currentPosition = anchor
+        let inbox = FontDocumentInbox(); inbox.attach(files: services.files)
+        inbox.receive(try fixture()); await inbox.waitUntilIdle()
+        await model.refreshFontCatalogueForBrowsing()
+        let font = try XCTUnwrap(model.importedFonts.first)
+        XCTAssertTrue(model.isFontAvailable(font.id)); XCTAssertNotNil(model.fontResourceForPreview(font.id))
+        XCTAssertEqual(engine.opens, 1); XCTAssertEqual(engine.currentPosition, anchor)
+        XCTAssertFalse(engine.fonts.contains { $0.asset.id == font.id }); XCTAssertNil(model.appearance.importedFontID)
+        model.selectImportedFont(font.id)
+        let deadline = Date().addingTimeInterval(10)
+        while model.appearance.importedFontID != font.id, Date() < deadline { try await Task.sleep(nanoseconds: 20_000_000) }
+        XCTAssertEqual(model.appearance.importedFontID, font.id); XCTAssertEqual(engine.opens, 2)
+        XCTAssertTrue(engine.fonts.contains { $0.asset.id == font.id }); XCTAssertEqual(engine.currentPosition, anchor)
+        let savedAnchor = try await services.repository.position(for: book.id); XCTAssertEqual(savedAnchor, anchor)
+        await model.saveNow(); model.close()
+        await model.open()
+        XCTAssertEqual(model.appearance.importedFontID, font.id); XCTAssertEqual(engine.currentPosition?.locatorData, anchor.locatorData)
+        model.close()
+    }
+
     func testTransparentDecodedPreviewCacheReusesSixFacesAndBoundsPixelMemory() async throws {
         let renderer = ReadingFontPreviewRenderer()
         var requests: [ReadingFontPreviewRequest] = []

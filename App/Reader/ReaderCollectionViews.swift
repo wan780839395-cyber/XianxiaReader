@@ -16,7 +16,7 @@ extension View {
 
     func readerPanelPresentation(_ palette: ReaderPalette) -> some View {
         tint(palette.accent)
-            .preferredColorScheme(palette.theme.isDark ? .dark : .light)
+            .readerColorScheme(palette.theme)
             .presentationDetents([.large])
             .presentationDragIndicator(.visible)
     }

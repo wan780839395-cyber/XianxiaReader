@@ -5,7 +5,9 @@ import XianxiaCore
 @MainActor struct LibraryView: View {
     let services: AppServices
     @StateObject private var model: LibraryViewModel
-    @State private var selectedBook: Book?
+    @State private var selectedBook: ReaderPresentation?
+    @EnvironmentObject private var fontInbox: FontDocumentInbox
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
     @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
@@ -49,6 +51,7 @@ import XianxiaCore
             }
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 0) {
+                    FontInboxFeedback(inbox: fontInbox)
                     if model.isImporting {
                         HStack(spacing: 12) {
                             ProgressView()
@@ -85,8 +88,11 @@ import XianxiaCore
             } message: { book in
                 Text("“\(book.title)”将移到回收站，原书、阅读位置和书签会保留，可随时恢复。")
             }
-            .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { book in
-                ReaderView(book: book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root))
+            .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { presentation in
+                ReaderView(book: presentation.book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root), onReturnToLibrary: {
+                    guard selectedBook?.id == presentation.id else { return }
+                    selectedBook = nil
+                }).id(presentation.id)
             }
             .task { await model.refresh() }
         }
@@ -122,7 +128,7 @@ import XianxiaCore
                         Button("恢复") { Task { await model.restoreBook(duplicate.id) } }.buttonStyle(.bordered)
                             .disabled(model.isManaging).accessibilityIdentifier("library.duplicate.restore.\(duplicate.id)")
                     } else {
-                        Button("查看") { model.query = ""; selectedBook = model.books.first(where: { $0.id == duplicate.id })?.book }
+                        Button("查看") { model.query = ""; if let book = model.books.first(where: { $0.id == duplicate.id })?.book { open(book) } }
                             .buttonStyle(.bordered).disabled(model.isManaging)
                             .accessibilityIdentifier("library.duplicate.open.\(duplicate.id)")
                     }
@@ -187,6 +193,7 @@ import XianxiaCore
             Text(model.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                  ? "\(model.books.count) 本藏书" : "\(model.visibleBooks.count) 本匹配").font(.subheadline)
                 .accessibilityIdentifier("library.count")
+                .accessibilityValue(colorScheme == .dark ? "深色" : "浅色")
             Spacer()
             Text(model.sortOrder.title).font(.caption).foregroundStyle(.secondary)
         }
@@ -220,7 +227,7 @@ import XianxiaCore
     }
 
     private func bookButton(_ summary: BookSummary, compact: Bool) -> some View {
-        Button { selectedBook = summary.book } label: {
+        Button { open(summary.book) } label: {
             Group {
                 if compact {
                     HStack(spacing: 16) {
@@ -259,5 +266,10 @@ import XianxiaCore
             }.font(.caption).foregroundStyle(.secondary)
             if let date = summary.lastReadAt { Text(date, style: .relative).font(.caption2).foregroundStyle(.secondary) }
         }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func open(_ book: Book) {
+        guard selectedBook == nil, model.presentedSheet == nil, !model.isManaging else { return }
+        selectedBook = ReaderPresentation(book: book)
     }
 }

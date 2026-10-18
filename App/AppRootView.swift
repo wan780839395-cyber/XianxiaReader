@@ -4,6 +4,7 @@ import SwiftUI
     @State private var services: AppServices?
     @State private var errorMessage: String?
     @State private var interactionFixture: LibraryInteractionFixture?
+    @StateObject private var fontInbox = FontDocumentInbox()
 
     var body: some View {
         Group {
@@ -13,6 +14,8 @@ import SwiftUI
             } else { normalContent }
         }
         .task { if services == nil { await load() } }
+        .onOpenURL { fontInbox.receive($0) }
+        .environmentObject(fontInbox)
     }
 
     @ViewBuilder private var normalContent: some View {
@@ -35,9 +38,11 @@ import SwiftUI
         do {
             let prepared = try await LibraryInteractionFixture.prepareIfRequested()
             if let fixture = prepared {
-                interactionFixture = fixture; services = fixture.services; return
+                interactionFixture = fixture; services = fixture.services
+                fontInbox.attach(files: fixture.services.files); return
             }
             services = try await AppServices.create()
+            if let services { fontInbox.attach(files: services.files) }
         }
         catch { errorMessage = error.localizedDescription }
     }

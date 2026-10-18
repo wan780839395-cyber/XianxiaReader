@@ -9,6 +9,7 @@ import XianxiaCore
     let showBookmarks: () -> Void
     let showSearch: () -> Void
     let showAppearance: () -> Void
+    var returningToLibrary = false
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
     @Environment(\.libraryReduceMotionRequested) private var requestedReduceMotion
     private var palette: ReaderPalette { ReaderPalette(theme: model.appearance.theme) }
@@ -58,10 +59,12 @@ import XianxiaCore
     private var header: some View {
         HStack(spacing: 8) {
             Button(action: returnToLibrary) {
-                Image(systemName: "chevron.down").font(.system(size: 17, weight: .medium))
-                    .frame(width: 44, height: 44)
-                    .contentShape(Rectangle())
-            }.accessibilityLabel("返回书库")
+                Group {
+                    if returningToLibrary { ProgressView() }
+                    else { Image(systemName: "chevron.down").font(.system(size: 17, weight: .medium)) }
+                }.frame(width: 44, height: 44).contentShape(Rectangle())
+            }.accessibilityLabel("返回书库").accessibilityValue(returningToLibrary ? "正在保存并返回" : "")
+                .disabled(returningToLibrary)
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title).font(.subheadline.weight(.medium)).lineLimit(1)
                 if !book.author.isEmpty {

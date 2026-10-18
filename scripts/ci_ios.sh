@@ -44,6 +44,9 @@ SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 # A recording/export failure must not silently produce a supposedly validated IPA.
 mkdir -p build/InteractionVideo
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
+# Exercise the real system-follow shelf/search path on a dark OS. Reader page
+# themes are independent and the existing five-theme tests still run in full.
+xcrun simctl ui "$SIMULATOR_ID" appearance dark
 xcrun simctl io "$SIMULATOR_ID" recordVideo --codec=h264 "$PWD/build/InteractionVideo/library-interactions.mp4" > build/InteractionVideo/recording.log 2>&1 &
 video_pid=$!
 stop_simulator_recording() {

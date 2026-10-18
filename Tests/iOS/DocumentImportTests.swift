@@ -39,7 +39,7 @@ final class DocumentImportTests: XCTestCase {
         let presentation = Presentation(model: model)
         let window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
-        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model))
+        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model).environmentObject(FontDocumentInbox()))
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
         Self.nativeHosts.append((window,presentation))

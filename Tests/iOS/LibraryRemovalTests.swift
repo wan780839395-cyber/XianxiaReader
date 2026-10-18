@@ -95,7 +95,7 @@ final class LibraryRemovalTests: XCTestCase {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
-        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model))
+        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model).environmentObject(FontDocumentInbox()))
         window.makeKeyAndVisible(); window.layoutIfNeeded()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey() }
         try await Task.sleep(nanoseconds: 300_000_000)

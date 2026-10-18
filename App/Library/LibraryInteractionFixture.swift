@@ -58,6 +58,11 @@ private enum LibraryFixtureError: Error { case preferencesUnavailable }
                 throw ImportError.missingSample
             }
             _ = try await ReadingFontImportService(files: services.files).importFont(from: url)
+            if environment["XR_READER_UI_MANY_FONTS"] == "1" {
+                for font in [BundledReadingFont.wenKai, .sourceHanSerif] {
+                    _ = try await ReadingFontImportService(files: services.files).importFont(from: font.resource().fileURL)
+                }
+            }
         }
         return Self(services: services, model: model,
                     reduceMotion: UIAccessibility.isReduceMotionEnabled || environment["XR_LIBRARY_UI_REDUCE_MOTION"] == "1")

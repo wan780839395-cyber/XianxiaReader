@@ -30,6 +30,7 @@ struct ReadingFontPreview: View {
             } else if loadedRequest == request, let image {
                 Image(decorative: image, scale: 3).resizable()
                     .renderingMode(.template).scaledToFit().accessibilityHidden(true)
+                    .frame(maxWidth: CGFloat(image.width) / 3, maxHeight: CGFloat(image.height) / 3, alignment: .leading)
             } else if let failure {
                 Text(failure).font(.caption)
             } else {

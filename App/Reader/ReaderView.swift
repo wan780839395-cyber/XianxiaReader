@@ -5,6 +5,7 @@ import XianxiaCore
 
 @MainActor struct ReaderView: View {
     let book: Book
+    let onReturnToLibrary: (() -> Void)?
     @StateObject private var model: ReaderViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
@@ -13,9 +14,13 @@ import XianxiaCore
     @State private var showBookmarks = false
     @State private var showSearch = false
     @State private var showAppearance = false
+    @State private var returningToLibrary = false
+    @State private var visible = false
+    @EnvironmentObject private var fontInbox: FontDocumentInbox
 
-    init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
+    init(book: Book, services: AppServices, factory: any ReaderEngineFactory, onReturnToLibrary: (() -> Void)? = nil) {
         self.book = book
+        self.onReturnToLibrary = onReturnToLibrary
         _model = StateObject(wrappedValue: ReaderViewModel(book: book, services: services, factory: factory))
     }
 
@@ -34,18 +39,26 @@ import XianxiaCore
                 }.padding(32)
             } else if !model.isReady { ProgressView("正在打开书籍…") }
             ReaderMenuView(book: book, model: model, returnToLibrary: {
+                guard !returningToLibrary else { return }
+                returningToLibrary = true
                 Task {
                     await model.saveNow()
+                    guard visible else { return }
+                    returningToLibrary = false
                     if let failure = model.settingsSaveFailure { model.errorMessage = failure }
-                    else { dismiss() }
+                    else {
+                        model.close()
+                        if let onReturnToLibrary { onReturnToLibrary() } else { dismiss() }
+                    }
                 }
             }, showContents: { showContents = true }, showBookmarks: { showBookmarks = true },
-               showSearch: { showSearch = true }, showAppearance: { showAppearance = true })
+               showSearch: { showSearch = true }, showAppearance: { showAppearance = true }, returningToLibrary: returningToLibrary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(model.appearance.theme.background)
         .tint(ReaderPalette(theme: model.appearance.theme).accent)
-        .preferredColorScheme(model.appearance.theme.isDark ? .dark : .light)
+        .readerColorScheme(model.appearance.theme)
+        .overlay(alignment: .top) { FontInboxFeedback(inbox: fontInbox) }
         .sheet(isPresented: $showAppearance) { ReaderAppearanceView(model: model) }
         .sheet(isPresented: $showContents) {
             ReaderContentsView(chapters: model.chapters, bookTitle: book.title, theme: model.appearance.theme) { chapter in
@@ -73,9 +86,9 @@ import XianxiaCore
                                               set: { if !$0 { model.errorMessage = nil } })) {
             Button("知道了") { model.errorMessage = nil }
         } message: { Text(model.errorMessage ?? "") }
-        .task { model.setAdditionalReduceMotion(requestedReduceMotion); await model.open() }
+        .task { visible = true; model.setAdditionalReduceMotion(requestedReduceMotion); await model.open() }
         .onChange(of: requestedReduceMotion) { model.setAdditionalReduceMotion($0) }
-        .onDisappear { model.close() }
+        .onDisappear { visible = false; model.close() }
         .onChange(of: scenePhase) { phase in
             if phase != .active { model.pauseAutomaticScroll(); Task { await model.saveNow() } }
         }

@@ -49,6 +49,8 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var fontMessage: String?
     @Published var choosingFont = false
     private var fontResources: [ReaderFontResource] = []
+    private var installedFontIDs: Set<UUID> = []
+    private var fontCatalogRequestID: UUID?
     func fontResourceForPreview(_ id: UUID?) -> ReaderFontResource? {
         guard let id else { return nil }
         return fontResources.first { $0.asset.id == id }
@@ -122,6 +124,7 @@ private enum ReaderJumpError: LocalizedError {
                 fontResources = []; fontMessage = error.localizedDescription
             }
             try engine.fontProvider?.setReadingFonts(fontResources)
+            installedFontIDs = Set(fontResources.map { $0.asset.id })
             try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))
             appearance = restoredAppearance
             let restoredInteraction = try await services.files.readingInteraction()
@@ -162,6 +165,7 @@ private enum ReaderJumpError: LocalizedError {
 
     func close() {
         positionSaveRequestID = nil
+        fontCatalogRequestID = nil; installedFontIDs = []
         fontRequestID = nil; fontImportTask?.cancel(); fontImportTask = nil
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = nil
         choosingFont = false; fontBusy = false
@@ -263,12 +267,35 @@ private enum ReaderJumpError: LocalizedError {
         guard fontResources.contains(where: { $0.asset.id == id }) else {
             fontMessage = ReadingFontError.missingFont.localizedDescription; return
         }
+        guard isReady, !fontBusy else { return }
+        if !installedFontIDs.contains(id), let resource = fontResourceForPreview(id) {
+            // An Open In import is added to the catalogue without touching the
+            // active book. Only explicit selection installs it at a saved anchor.
+            fontImportTask = Task { await importReadingFont(from: resource.fileURL) }
+            return
+        }
         fontMessage = nil
         var updated = appearance; updated.importedFontID = id
         setAppearance(updated)
     }
 
     func isFontAvailable(_ id: UUID) -> Bool { fontResources.contains(where: { $0.asset.id == id }) }
+
+    func refreshFontCatalogueForBrowsing() async {
+        guard let session = openRequestID, isReady, !fontBusy else { return }
+        let request = UUID(); fontCatalogRequestID = request
+        defer { if fontCatalogRequestID == request { fontCatalogRequestID = nil } }
+        do {
+            let loaded = try await loadFontResources()
+            guard openRequestID == session, fontCatalogRequestID == request, !fontBusy, !Task.isCancelled else { return }
+            importedFonts = loaded.fonts; fontResources = loaded.resources
+            if let warning = loaded.warning { fontMessage = warning }
+        } catch is CancellationError { return }
+        catch {
+            guard openRequestID == session, fontCatalogRequestID == request else { return }
+            fontMessage = "字体列表暂时无法更新：\(error.localizedDescription)"
+        }
+    }
 
     func retainFontCoordinator(_ coordinator: EPUBDocumentPicker.Coordinator) {
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = coordinator
@@ -347,6 +374,7 @@ private enum ReaderJumpError: LocalizedError {
             try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: position)
             try current()
             fontResources = loaded.resources; importedFonts = loaded.fonts; appearance = updated
+            installedFontIDs = Set(loaded.resources.map { $0.asset.id })
             self.position = engine.currentPosition
             fontMessage = "已导入并启用 \(font.displayName)"; saveAppearanceValue(updated)
         } catch is CancellationError {

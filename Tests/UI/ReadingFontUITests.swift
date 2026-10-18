@@ -48,14 +48,17 @@ final class ReadingFontUITests: XCTestCase {
         let section = app.segmentedControls["reader.appearance.section"]
         XCTAssertTrue(section.isHittable, "Groups stay available while browsing fonts")
         section.buttons["排版"].tap()
-        let alignment = app.segmentedControls["reader.alignment"]
-        XCTAssertTrue(alignment.waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["reader.margins.increase"].isHittable)
+        XCTAssertTrue(app.buttons["reader.line-height.increase"].isHittable)
+        XCTAssertLessThan(app.buttons["reader.margins.increase"].frame.maxY, app.frame.maxY - 20)
+        XCTAssertFalse(app.buttons["reader.indent-size.increase"].exists, "Rare controls start collapsed")
+        snapshot("reader-settings-compact-layout-build27")
+        let more = app.buttons["reader.layout.more"]; reveal(more, up: true); more.tap()
+        let alignment = app.segmentedControls["reader.alignment"]
+        reveal(app.buttons["reader.indent-size.increase"], up: true)
         XCTAssertTrue(app.buttons["reader.indent-size.increase"].isHittable)
-        XCTAssertTrue(alignment.isHittable)
-        XCTAssertLessThan(alignment.frame.maxY, app.frame.maxY - 20)
-        snapshot("reader-settings-compact-layout-build25")
-        let original = app.switches["reader.publisher-styles"]
+        reveal(alignment, up: true); XCTAssertTrue(alignment.isHittable)
+        let original = app.switches["reader.publisher-styles"]; reveal(original, up: false)
         original.tap()
         XCTAssertTrue(app.buttons["reader.margins.increase"].isEnabled, "Original styles must still allow page margins")
         XCTAssertFalse(app.buttons["reader.line-height.increase"].isEnabled)
@@ -100,6 +103,7 @@ final class ReadingFontUITests: XCTestCase {
         }
         let section = app.segmentedControls["reader.appearance.section"]
         reveal(section, up: false); section.buttons["排版"].tap()
+        let more = app.buttons["reader.layout.more"]; reveal(more); more.tap()
         for key in ["letter-spacing", "font-weight", "indent-size"] {
             let button = app.buttons["reader.\(key).increase"]; reveal(button); button.tap()
         }
@@ -108,6 +112,7 @@ final class ReadingFontUITests: XCTestCase {
         app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
         app.terminate(); app.launch(); open()
         reveal(section, up: false); section.buttons["排版"].tap()
+        reveal(more); more.tap()
         reveal(app.staticTexts["reader.letter-spacing.value"])
         XCTAssertEqual(app.staticTexts["reader.letter-spacing.value"].label, "0.05")
         reveal(app.staticTexts["reader.font-weight.value"])
@@ -174,9 +179,10 @@ final class ReadingFontUITests: XCTestCase {
             XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 20), .completed); settings.tap()
         }
         func revealFonts() {
-            let entry = app.buttons["reader.font.import"]
+            let entry = app.buttons["reader.fonts.open"]
             for _ in 0..<4 { if entry.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeUp() }
-            XCTAssertTrue(entry.isHittable)
+            XCTAssertTrue(entry.isHittable); entry.tap()
+            XCTAssertTrue(app.buttons["reader.font.import"].waitForExistence(timeout: 10))
         }
         func snapshot(_ name: String) {
             let image = XCTAttachment(screenshot: app.screenshot()); image.name = name; image.lifetime = .keepAlways; add(image)
@@ -197,15 +203,18 @@ final class ReadingFontUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 20), .completed)
         XCTAssertTrue(app.buttons["reader.font.import"].waitForExistence(timeout: 10))
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-picker-cancel-build23")
+        app.buttons["reader.fonts.back"].tap()
         let done = app.buttons["reader.appearance.done"]
         let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: done)
         XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 20), .completed)
         app.buttons["reader.appearance.done"].tap(); app.buttons["返回书库"].tap()
         app.terminate(); app.launch(); open(); revealFonts()
         XCTAssertEqual(font.value as? String, "已选择"); snapshot("reader-font-reopened-build23")
+        app.buttons["reader.fonts.back"].tap()
         let dark = app.buttons["reader.theme.charcoal"]
         for _ in 0..<5 { if dark.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeDown() }
         XCTAssertTrue(dark.isHittable); dark.tap(); revealFonts(); snapshot("reader-font-selected-dark-build23")
+        app.buttons["reader.fonts.back"].tap()
         let builtIn = app.segmentedControls["reader.font"].buttons["衬线"]
         for _ in 0..<5 { if builtIn.isHittable { break }; app.scrollViews["reader.appearance.scroll"].swipeDown() }
         XCTAssertTrue(builtIn.isHittable)

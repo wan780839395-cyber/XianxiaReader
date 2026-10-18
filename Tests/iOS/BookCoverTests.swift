@@ -221,7 +221,7 @@ final class BookCoverTests: XCTestCase {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
-        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model)); window.makeKeyAndVisible()
+        window.rootViewController = UIHostingController(rootView: LibraryView(services: services, model: model).environmentObject(FontDocumentInbox())); window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey() }
         model.beginCoverEditing(book); try await presentation(window, visible: true)
         let editor = try XCTUnwrap(model.coverEditor)
