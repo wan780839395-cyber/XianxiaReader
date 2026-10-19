@@ -2,6 +2,10 @@
 
 ## R1设置隔离与分项验证（2026-10-19）
 
+最新实际证据：39209145399/cb14211为3/4，微型scheme连续8次加载/释放全过（首次3.20秒，其余0.40～0.61秒），六字体第6次重建WebContent启动62.15秒而失败。39209591549/99acd92为0/2，两项新关闭回归确实在旧生产上失败：分页回调未断开/预加载未移除，立即关闭后两模式均迟到创建WebView。现只修Adapter的close调用和Vendor navigator的终止合同，拒绝初始化跨await迟到；沿用未修改的Readium PaginationView移除/clear机制。等待66项reader-session定向（30 renderer +28 lifecycle+7 settings+1末尾WK control），不先打包/跑UI；原20秒/3秒/字体15秒预算保持。微型probe改排最后，避免预热真实reader回归；移除仅100ms观测且不能证明旧对象泄漏的临时teardown采样，改用明确关闭合同断言。补有界只读资源采样以便区分后续进程启动/内存条件，不记录命令参数或小说。当前修正尚未Apple编译。
+
+第二个互不依赖的关闭合同诊断：[39209591549](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39209591549)，99acd92/codex/webkit-close-diagnostic，生产仍未改。此run预期验证两项新关闭合同是否在旧实现上失败，不能据其结果打包；四项加载对照39209145399仍在原分支运行，没有被取消。两run分别完整保留真实结论。
+
 当前唯一诊断：[39209145399](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39209145399)，源cb1421185a56b51b083ba619b8265770264b3dd6，webkit-loading共4项。453 Swift语法新增0/25工具/bash通过（不是编译）；28原renderer主体逐字不变、生产/UI/样书/锁不变已核。私有快照和准确备份见.cache/recovery/20261019-webkit-loading；正常HEAD/index保持。等待真实原生结果，不更新此构建ref，不重复dispatch。
 
 用户最新要求：把耗时教训写入整个项目并继续解决阻塞。已更新根AGENTS.md并新增Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，后续会话按最小假设实验执行。当前准备webkit-loading定向：一个不导入Readium的微型自定义scheme页面连续8次创建/加载/释放，对照原三个失败用例；原28个renderer函数主体和生产20秒/3秒预算保持，测试helper记录关闭100ms后弱引用是否仍存活。新增1个control及2个关闭合同测试，因此后续候选总单元/集成应为148（旧145全部保留）；先运行4项原生诊断，不打IPA，不盲跑全套。App/Packages/Vendor/UI/project/锁不改。当前新增源码尚未Apple编译，以后续实际run为准。两个关闭回归先在未修生产的源上运行webkit-close诊断：验证分页关闭时仍保留回调，以及已排队初始化能否在close后创建WebView；故意持有旧navigator，证明是否依赖deinit清理。此诊断与四项最小加载互不依赖，使用独立CI分支避免取消旧run。

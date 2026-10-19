@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close]
+        options: [full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, reader-session]
 
 permissions:
   contents: read

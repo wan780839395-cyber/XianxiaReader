@@ -383,7 +383,7 @@ import XianxiaCore
         if let navigator {
             if let locator = navigator.currentLocation { capture(locator) }
             navigator.delegate = nil
-            navigator.closeContinuousScrolling()
+            navigator.closeReadingSession()
             navigator.willMove(toParent: nil)
             navigator.view.removeFromSuperview()
             navigator.removeFromParent()

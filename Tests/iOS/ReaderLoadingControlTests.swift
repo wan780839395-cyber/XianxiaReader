@@ -3,8 +3,9 @@ import WebKit
 import XCTest
 
 /// A local, tiny custom-scheme page separates WebKit startup from EPUB/Readium work.
-final class ReaderLoadingControlTests: XCTestCase {
-    @MainActor func testMinimalCustomSchemeLoadsAndReleasesAcrossRepeatedWindows() async throws {
+// Run after reader cases so the framework probe does not warm their first open.
+final class ZWebKitLoadingControlTests: XCTestCase {
+    @MainActor func testMinimalCustomSchemeLoadsAndReleasesAcrossRepeatedViews() async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
             .first { $0.activationState == .foregroundActive })
         let previous = scene.windows.first { $0.isKeyWindow }

@@ -757,15 +757,6 @@ final class ReaderRenderingTests: XCTestCase {
 
     private enum RenderFailure: Error { case timedOut(String, String), invalidProbe }
 
-    @MainActor private final class RetiredWebView {
-        weak var value: WKWebView?
-        init(_ value: WKWebView) { self.value = value }
-        static func collect(in root: UIView) -> [RetiredWebView] {
-            if let web = root as? WKWebView { return [RetiredWebView(web)] }
-            return root.subviews.flatMap { collect(in: $0) }
-        }
-    }
-
     @MainActor private func mount(_ engine: ReadiumReaderEngine) throws -> (UIWindow, OverlayState) {
         diagnosticEngine = engine
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
@@ -780,19 +771,11 @@ final class ReaderRenderingTests: XCTestCase {
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
         addTeardownBlock {
-            let retired = await MainActor.run {
-                let views = RetiredWebView.collect(in: engine.viewController.view)
+            await MainActor.run {
                 engine.close()
                 window.isHidden = true
                 window.rootViewController = nil
                 previous?.makeKey()
-                return views
-            }
-            // Observe real object retirement, not just removeFromSuperview/clear calls.
-            // Diagnostic only: this does not turn a failed render into a pass.
-            try await Task.sleep(nanoseconds: 100_000_000)
-            await MainActor.run {
-                print("RENDER_RETIRED total=\(retired.count) alive=\(retired.filter { $0.value != nil }.count)")
             }
         }
         return (window, state)

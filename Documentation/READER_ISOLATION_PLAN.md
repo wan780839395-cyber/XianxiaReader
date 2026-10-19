@@ -79,6 +79,18 @@ R1 完成标准：
 
 已核[Apple processPool说明](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool)：配置多个池已不再有效，不能凭旧教程补共享processPool来碰运气。当前Readium 3.11使用readium scheme服务，不是localhost HTTP；不套用旧IPv6排查。下一次实验应以同一原生环境的最小WKWebView加载与实际publication加载作对照，并记录启动/导航/关闭阶段，先判断进程启动、资源服务或会话存活哪一段失常，再决定改动。失败原件及完整来源见[m4-settings-isolation-r1-unit-release-failure.json](ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json)。当前不再无假设地重跑完整CI，不提高原预算，不进入下一职责切片。
 
+## 关闭合同的可复现缺口（2026-10-19）
+
+用户要求将教训写入整个项目，已在根AGENTS.md加入长期规则并链接CHANGE_AND_DIAGNOSIS_WORKFLOW.md。后续排障按明确假设和最小对照推进，不继续无假设整套重跑。
+
+加载对照39209145399/cb14211实际3/4：微型自定义scheme不经过Readium、连续8次创建/加载/释放通过（首次3.20秒，后续0.40～0.61秒）；自动滚动重开及长封面两模式通过，六字体第6次重建的WebContent启动62.154176秒而失败。关闭100ms弱引用观测并不能区分永久泄漏与短暂挂起，因此未作为生产修改依据，临时helper已移除；独立control保留并安排在reader用例后，避免预热其首开。
+
+检查实际代码发现close仅显式shutdown连续容器，分页依赖控制器deinit；初始化跨await也未核已关闭。两项明确关闭合同在未改生产的39209591549/99acd92上实际0/2：分页关闭后仍有导航/UI/scroll delegate与预加载视图；立即关闭后，分页及连续都可能由迟到初始化创建WebView。原始断言及artifact digest/CRC见webkit-close-contract-red-39209591549.json。这是已复现的生命周期缺口，尚不是全部子进程慢启动的唯一原因。
+
+修正仅触及ReadiumAdapter的关闭调用和Vendor navigator：统一终止两种容器，分页先清delegate再removeFromSuperview，触发[Readium 3.11原始PaginationView清理](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Toolkit/PaginationView.swift)和既有spread clear；设置终止标识，initialize开始及await返回后拒绝迟到创建，完成已有初始化等待。旧20秒/3秒/字体15秒预算、存储格式、正文排版、Locator和依赖版本保持。UPSTREAM.json登记准确摘要，不升级Readium，不改通用PaginationView。
+
+先跑reader-session的66项：30个renderer（原28主体不变+2关闭回归）、28生命周期、7设置、1末尾最小WK控制。增加有界只读进程/内存采样应对后续WebContent启动失常，不记录命令参数和书籍内容，不替代真实测试退出。生产/配置源变化后既有UI组件保护必须拒绝复用；定向通过后才冻结同源完整148单元/集成+28 UI和原严格设备Release。当前修正未Apple编译，不能标为已解决或已验收。
+
 ## 本轮时间成本与已落实的改法
 
 实测35项settings测试本身0.85秒，Apple诊断job为11分13秒（39182894124）；3项settings-ui测试173.87秒，Apple诊断job为11分46秒（39188609488）。差额是构建、环境准备、诊断导出等成本，不能全部算测试时间。最后交付Build29的iOS job为55分38秒；其27项UI用例记录耗时之和1708.856秒、136项集成329.296秒（累计用例时间不等同于job墙钟时间）。本轮首完整失败job为43分35秒。源码隔离本身不会消除这些远程固定成本。

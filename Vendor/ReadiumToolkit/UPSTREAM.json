@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "a88ca88fe0ab75959e86db80e0cd959a3c8a440c92bdf41f609f4e4781f21945"
+      "sha256": "58954275e227f511265460140da8f7ea187459cbe3b252411c471b8ce1e99d39"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1733,5 +1733,18 @@
     ],
     "diagnosticOnly": true,
     "fullCIPassed": false
+  },
+  "readerSessionCloseReview": {
+    "date": "2026-10-19",
+    "scope": "Explicitly close paged and continuous containers with upstream remove/clear lifecycle; reject initialization before/after await after close; complete initialized callbacks",
+    "redEvidenceRun": 39209591549,
+    "redProductionRevision": "99acd92f91f597091e6277b89c0c353743ae4ddc",
+    "originalBudgetsUnchanged": true,
+    "dependenciesUnchanged": true,
+    "AppleFixValidationPending": true,
+    "references": [
+      "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Toolkit/PaginationView.swift",
+      "https://developer.apple.com/documentation/uikit/uiview/removefromsuperview()"
+    ]
   }
 }

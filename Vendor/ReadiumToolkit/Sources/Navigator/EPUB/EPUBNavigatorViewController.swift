@@ -144,9 +144,25 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         if preferenceReflowTrace.count > 12 { preferenceReflowTrace.removeFirst() }
     }
 
-    /// Cancel pending chapter loads and break WebKit message-handler cycles
-    /// before the owning reader discards this controller.
-    public func closeContinuousScrolling() { infiniteScrollView?.shutdown() }
+    /// Closing is terminal even while initialization or a page preload is awaiting.
+    /// Removing the paged container invokes its existing spread clear lifecycle;
+    /// a cancelled task alone does not resume the spread's pending continuations.
+    public func closeReadingSession() {
+        guard !isReadingSessionClosed else { return }
+        isReadingSessionClosed = true
+        isActive = false
+        locationUpdateRevision &+= 1
+        infiniteScrollView?.infiniteDelegate = nil
+        infiniteScrollView?.shutdown()
+        infiniteScrollView?.removeFromSuperview()
+        infiniteScrollView = nil
+        paginationView?.delegate = nil
+        paginationView?.removeFromSuperview()
+        paginationView = nil
+        onInitializedCallbacks.complete()
+    }
+
+    private var isReadingSessionClosed = false
 
     public enum AutomaticScrollStep { case moved, waiting, finished, interrupted, failed }
     public var automaticScrollViewportHeight: Double? {
@@ -503,11 +519,15 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
 
     private func initialize() async {
+        guard !isReadingSessionClosed else { return }
         do {
             positionsByReadingOrder = try await loadPositionsByReadingOrder().get()
         } catch {
             log(.error, DebugError("Failed to load positions.", cause: error))
         }
+
+        // The owning reader may have closed while positions were loading.
+        guard !isReadingSessionClosed else { return }
 
         if viewModel.infiniteScroll {
             let isv = EPUBInfiniteScrollView(frame: view.bounds)
@@ -544,7 +564,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private func whenInitialized(_ callback: @escaping () -> Void) {
         let callback = onInitializedCallbacks.add(callback)
-        if state != .initializing {
+        if isReadingSessionClosed || state != .initializing {
             callback()
         }
     }
@@ -717,6 +737,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private func reloadSpreads() {
         guard
+            !isReadingSessionClosed,
             state != .initializing,
             isViewLoaded
         else {

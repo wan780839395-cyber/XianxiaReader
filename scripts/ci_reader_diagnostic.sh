@@ -3,8 +3,16 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading or webkit-close}"
+selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close or reader-session}"
 case "$selection" in
+  reader-session)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests
+      -only-testing:XianxiaReaderTests/ReaderSettingsPersistenceTests
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests
+      -only-testing:XianxiaReaderTests/ZWebKitLoadingControlTests
+    )
+    ;;
   webkit-close)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
@@ -13,7 +21,7 @@ case "$selection" in
     ;;
   webkit-loading)
     cases=(
-      -only-testing:XianxiaReaderTests/ReaderLoadingControlTests
+      -only-testing:XianxiaReaderTests/ZWebKitLoadingControlTests
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testTallCoverUsesWholeViewportInPaginatedAndScrollingModes
@@ -98,6 +106,24 @@ xcrun simctl bootstatus "$SIMULATOR_ID" -b
 if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
+resource_monitor_pid=''
+stop_resource_monitor() {
+  if [[ -n "$resource_monitor_pid" ]]; then
+    if kill -TERM "$resource_monitor_pid"; then
+      if wait "$resource_monitor_pid"; then :
+      else echo "Best-effort resource monitor exit: $?; test exit remains authoritative"; fi
+    else
+      if wait "$resource_monitor_pid"; then :
+      else echo "Best-effort resource monitor already ended: $?; test exit remains authoritative"; fi
+    fi
+    resource_monitor_pid=''
+  fi
+}
+if [[ "$selection" == 'reader-session' ]]; then
+  python3 scripts/capture_native_resources.py > build/logs/native-resources.jsonl 2>&1 &
+  resource_monitor_pid=$!
+  trap stop_resource_monitor EXIT
+fi
 test_status=0
 if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \
@@ -106,6 +132,7 @@ if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
   -resultBundlePath "$PWD/build/DiagnosticTests.xcresult" \
   "${cases[@]}" CODE_SIGNING_ALLOWED=NO; then test_status=0; else test_status=$?; fi
+stop_resource_monitor
 summary_status=0
 if xcrun xcresulttool get test-results summary --path build/DiagnosticTests.xcresult > build/test-results-summary.json; then
   summary_status=0
