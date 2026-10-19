@@ -67,7 +67,7 @@ final class ReaderRenderingTests: XCTestCase {
               window.__xrPreviewReadyRequest=request;
               window.__xrPreviewReadyStarted=true;
               window.__xrPreviewReadySettled=false;
-              const middle=document.body&&getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)');
+              const middle=location.pathname.endsWith('/one.xhtml')&&document.body&&getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)');
               const gate=middle?new Promise(resolve=>{
                 (window.__xrPreviewReadyGates??=[]).push(resolve);
                 window.__xrReleasePreviewReady=()=>window.__xrPreviewReadyGates.splice(0).forEach(release=>release());

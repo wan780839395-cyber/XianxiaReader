@@ -2,6 +2,10 @@
 
 ## R1设置隔离与关闭合同修正（2026-10-19）
 
+39214692053/9bde173已由Agent主动请求取消：字体前置步骤仍执行中，完整验证/Release尚未执行。原因是代码复核发现新的测试屏障对中间字体的预加载页也生效，测试仅持有当前正文页的释放句柄；现将屏障限定到one.xhtml，与原断言目标相同，其他预加载页只等待原生fonts.ready。不是源码失败，不把取消算测试通过/失败；等待最终状态后重新冻结。生产两文件修正保持383b11a相同。取消前job状态保留build/ci/39214692053/before-agent-cancel.json。
+
+当前唯一运行：[fonts-full 39214692053](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39214692053)，冻结源9bde1735c64b16256595bdb8afbe416a92007628/codex/refactor-reader-settings。先字体2项，再完整148单元/集成+28 UI，全部通过才严格无签名设备Release30；同runner复用准备/构建目录，预检summary/附件独立保留。554维护输入匹配Git快照，453 Swift语法新增0/26工具/bash通过（不是编译）。当前候选仍未返回原生结果/无新IPA；不要改构建ref或重复dispatch。
+
 用户要求把教训写入整个项目并继续完成。根AGENTS.md已新增长期规则，并引用Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md；一次一个切片，每次远程实验明确假设和最小范围，不无假设重复整套，不把定向通过当发布通过。
 
 最新39211610770/383b11a已结束，65/66，两个新关闭合同和原三个加载失败用例全部通过；唯一失败是旧分页字体用例等待800ms中间态，尚未请求最终字体。103条有界资源样本观察到主机压缩内存峰值2763MiB、空闲最低55MiB；调度/资源压力确实存在，但不证明历史慢启动唯一原因。原始结果及采样摘要见Documentation/ValidationLogs/reader-session-close-39211610770.json。

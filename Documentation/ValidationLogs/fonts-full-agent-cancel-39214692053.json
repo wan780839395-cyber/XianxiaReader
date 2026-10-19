@@ -1,0 +1,13 @@
+{
+  "recordedAtUTC": "2026-10-19T07:23:51.184688+00:00",
+  "run": 39214692053,
+  "sourceRevision": "9bde1735c64b16256595bdb8afbe416a92007628",
+  "conclusion": "cancelled",
+  "cancelledByAgent": true,
+  "reason": "Narrow synthetic pending-font barrier to current one.xhtml so every held promise is explicitly owned and released by the test",
+  "unfinishedStage": "Targeted font race preflight before full validation",
+  "fullBuildTestStepSkipped": true,
+  "ReleaseBuilt": false,
+  "IPAProduced": false,
+  "notASourceFailure": true
+}

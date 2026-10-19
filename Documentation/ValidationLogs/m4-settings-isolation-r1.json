@@ -1,7 +1,7 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "font-preflight-full-candidate-not-dispatched",
-  "sourceRevision": "383b11a69f71094e229facaa7e4129e128e8956b",
+  "stage": "preflight-cancelled-by-agent-fixture-scope-corrected",
+  "sourceRevision": "9bde1735c64b16256595bdb8afbe416a92007628",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
@@ -337,7 +337,7 @@
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
   "productionInputsIdenticalToOriginalR1": false,
-  "updatedAtUTC": "2026-10-19T07:13:19.153336+00:00",
+  "updatedAtUTC": "2026-10-19T07:15:24.314055+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -514,7 +514,7 @@
     "proof": "Documentation/ValidationLogs/reader-session-close-39211610770.json"
   },
   "fontPreflightFullCandidate": {
-    "status": "not-dispatched",
+    "status": "cancelled",
     "expectedPreflight": 2,
     "expectedUnit": 148,
     "expectedUI": 28,
@@ -525,6 +525,13 @@
     "oneOriginalRendererUsesControlledGate": true,
     "sourceCheckCount": 453,
     "toolingPassed": 26,
-    "phoneAccepted": false
+    "phoneAccepted": false,
+    "run": 39214692053,
+    "sourceRevision": "9bde1735c64b16256595bdb8afbe416a92007628",
+    "ReleaseBuilt": false,
+    "IPAProduced": false,
+    "cancelledByAgent": true,
+    "notASourceFailure": true,
+    "cancelProof": "Documentation/ValidationLogs/fonts-full-agent-cancel-39214692053.json"
   }
 }
