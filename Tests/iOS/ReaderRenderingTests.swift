@@ -8,6 +8,54 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews() async throws {
+        let delay = WKUserScript(source: """
+            Object.defineProperty(document.fonts,'ready',{get(){
+              window.__xrCloseProbeStarted=true;
+              return new Promise(resolve=>setTimeout(()=>resolve(document.fonts),2000));
+            }});
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        for continuous in [false, true] {
+            let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
+            engine.setContinuousScrolling(continuous)
+            let font = try BundledReadingFont.wenKai.resource()
+            try engine.setReadingFonts([font])
+            var appearance = ReadingAppearance(); appearance.importedFontID = font.asset.id
+            try engine.setAppearance(appearance)
+            let (_, state) = try mount(engine); state.visible = false
+            let (_, navigator) = try await open(engine)
+            try await waitUntil {
+                guard let web = self.webViews(in: navigator.view).first else { return false }
+                return try await web.evaluateJavaScript("window.__xrCloseProbeStarted === true") as? Bool == true
+            }
+            let retired = webViews(in: navigator.view)
+            XCTAssertFalse(retired.isEmpty)
+            engine.close()
+            // Keep the old navigator/views alive deliberately: close must revoke
+            // their work now, independently of when Swift/WebKit deallocates them.
+            for web in retired {
+                XCTAssertNil(web.navigationDelegate, "Closing mode=\(continuous) must disconnect navigation callbacks")
+                XCTAssertNil(web.uiDelegate, "Closing mode=\(continuous) must disconnect UI callbacks")
+                XCTAssertNil(web.scrollView.delegate, "Closing mode=\(continuous) must disconnect scroll callbacks")
+            }
+            XCTAssertTrue(webViews(in: navigator.view).isEmpty, "Closed mode=\(continuous) must remove preloaded web views")
+            XCTAssertTrue(engine.viewController.children.isEmpty)
+        }
+    }
+
+    @MainActor func testImmediateCloseCannotMountLatePaginationOrWebViews() async throws {
+        for continuous in [false, true] {
+            let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(continuous)
+            let (_, state) = try mount(engine); state.visible = false
+            let (_, navigator) = try await open(engine)
+            engine.close()
+            // Let the navigator's already-scheduled initialization return after close.
+            try await Task.sleep(nanoseconds: 200_000_000)
+            XCTAssertTrue(engine.viewController.children.isEmpty)
+            XCTAssertTrue(webViews(in: navigator.view).isEmpty, "Closed mode=\(continuous) must reject late initialization")
+        }
+    }
+
     @MainActor func testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord() async throws {
         let delay = WKUserScript(source: """
             Object.defineProperty(document.fonts,'ready',{get(){

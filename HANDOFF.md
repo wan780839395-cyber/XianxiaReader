@@ -2,7 +2,9 @@
 
 ## R1设置隔离与分项验证（2026-10-19）
 
-用户最新要求：把耗时教训写入整个项目并继续解决阻塞。已更新根AGENTS.md并新增Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，后续会话按最小假设实验执行。当前准备webkit-loading定向：一个不导入Readium的微型自定义scheme页面连续8次创建/加载/释放，对照原三个失败用例；原28个renderer函数主体和生产20秒/3秒预算保持，测试helper记录关闭100ms后弱引用是否仍存活。只新增1个独立control测试，因此候选总单元/集成应为146（旧145全部保留）；先运行4项原生诊断，不打IPA，不盲跑全套。App/Packages/Vendor/UI/project/锁不改。当前新增源码尚未Apple编译，以后续实际run为准。
+当前唯一诊断：[39209145399](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39209145399)，源cb1421185a56b51b083ba619b8265770264b3dd6，webkit-loading共4项。453 Swift语法新增0/25工具/bash通过（不是编译）；28原renderer主体逐字不变、生产/UI/样书/锁不变已核。私有快照和准确备份见.cache/recovery/20261019-webkit-loading；正常HEAD/index保持。等待真实原生结果，不更新此构建ref，不重复dispatch。
+
+用户最新要求：把耗时教训写入整个项目并继续解决阻塞。已更新根AGENTS.md并新增Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，后续会话按最小假设实验执行。当前准备webkit-loading定向：一个不导入Readium的微型自定义scheme页面连续8次创建/加载/释放，对照原三个失败用例；原28个renderer函数主体和生产20秒/3秒预算保持，测试helper记录关闭100ms后弱引用是否仍存活。新增1个control及2个关闭合同测试，因此后续候选总单元/集成应为148（旧145全部保留）；先运行4项原生诊断，不打IPA，不盲跑全套。App/Packages/Vendor/UI/project/锁不改。当前新增源码尚未Apple编译，以后续实际run为准。两个关闭回归先在未修生产的源上运行webkit-close诊断：验证分页关闭时仍保留回调，以及已排队初始化能否在close后创建WebView；故意持有旧navigator，证明是否依赖deinit清理。此诊断与四项最小加载互不依赖，使用独立CI分支避免取消旧run。
 
 实际断点：[unit-release 39203522040](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39203522040) / 冻结源`cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f`已于05:38:56 UTC结束，结论failure。xcresult为145总、142通过、3失败、0跳过；settings 7项和lifecycle 28项全部通过。Linux/macOS Core各137、各4项Release TXT探针通过；旧28项UI基线真实日志及同输入保护校验通过。test=65，export/summary/recording=0，Release未执行，没有Build30 IPA。完整Apple/Core原件已下载并核GitHub digest/CRC，监看和下载任务已结束；禁止把监看器exit0写成CI成功。
 
