@@ -9,25 +9,7 @@ import XianxiaCore
 
 final class ReaderRenderingTests: XCTestCase {
     @MainActor func testPagedReopenRestoresFirstCharacterOfLongParagraph() async throws {
-        let probe = WKUserScript(source: """
-            (()=>{
-              const trace=window.__xrPagedRestoreTrace=[];
-              function record(phase,args){
-                const node=document.getElementById('long-paragraph')?.firstChild;
-                let rect=null;
-                if(node?.length){const r=document.createRange();r.setStart(node,0);r.setEnd(node,1);rect=r.getClientRects()[0];}
-                trace.push({phase,href:location.pathname,width:innerWidth,x:scrollX,
-                  requested:typeof args?.[0]==='object'?args[0].left:args?.[0],
-                  firstX:rect?.left,firstY:rect?.top,ready:document.readyState,
-                  fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
-                  family:document.body?getComputedStyle(document.body).fontFamily:null});
-                if(trace.length>16)trace.shift();
-              }
-              const scroll=window.scrollTo;
-              window.scrollTo=function(...args){record('before',args);const result=scroll.apply(window,args);record('after',args);return result;};
-              window.addEventListener('scroll',()=>record('scroll',[]),{passive:true});
-            })()
-            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let probe = Self.pagedRestoreProbe()
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let services = try await AppServices.create(storageRoot: root)
         addTeardownBlock { try FileManager.default.removeItem(at: root) }
@@ -76,7 +58,7 @@ final class ReaderRenderingTests: XCTestCase {
                     let result = try await web.evaluateJavaScript("JSON.stringify(window.__xrPagedRestoreTrace)")
                     let evidence = XCTAttachment(string: String(describing: result))
                     evidence.name = "paged-first-character-restore-trace"; evidence.lifetime = .keepAlways; add(evidence)
-                    print("PAGED_FIRST_CHARACTER_RESTORE \(result)")
+                    print("PAGED_FIRST_CHARACTER_RESTORE \(String(describing: result))")
                 } catch { print("PAGED_RESTORE_DIAGNOSTIC_READ_FAILED \(error)") }
             }
             throw error
@@ -367,7 +349,7 @@ final class ReaderRenderingTests: XCTestCase {
             try await services.files.saveReadingInteraction(interaction)
             var initialAppearance = ReadingAppearance(); initialAppearance.fontScale = 1
             try await services.files.saveReadingAppearance(initialAppearance)
-            let engine = ReadiumReaderEngine(storageRoot: root)
+            let engine = ReadiumReaderEngine(additionalUserScripts: [Self.pagedRestoreProbe()], storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
             await model.open(); XCTAssertTrue(model.isReady)
@@ -547,12 +529,38 @@ final class ReaderRenderingTests: XCTestCase {
                 await model.open()
                 recordReopenCheckpoint("open-returned", font: bundled.rawValue)
                 XCTAssertEqual(model.appearance.importedFontID, asset.id)
+                @MainActor func recordRenderedReopen(_ phase: String) async {
+                    // Observe after the original assertion, so the probe does not
+                    // change the save/close/open sequence or its readiness budget.
+                    for web in webViews(in: engine.viewController.view) {
+                        do {
+                            let result = try await web.evaluateJavaScript("""
+                                JSON.stringify({href:location.pathname,x:scrollX,width:innerWidth,
+                                  fontCondition:(\(chinese)),anchorCondition:(\(nextAnchorScript)),
+                                  family:document.body?getComputedStyle(document.body).fontFamily:null,
+                                  fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
+                                  faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status})),
+                                  trace:window.__xrPagedRestoreTrace})
+                                """)
+                            let details = "phase=\(phase) font=\(bundled.rawValue) continuous=\(continuous) "
+                                + "alpha=\(web.scrollView.alpha) nativeOffset=\(web.scrollView.contentOffset) "
+                                + "nativeSize=\(web.scrollView.contentSize) fontMessage=\(model.fontMessage ?? "nil") "
+                                + "errorMessage=\(model.errorMessage ?? "nil") result=\(String(describing: result))"
+                            let attachment = XCTAttachment(string: details)
+                            attachment.name = "font-rendered-reopen-\(bundled.rawValue)-\(continuous)-\(phase)"
+                            attachment.lifetime = .keepAlways; add(attachment)
+                            print("FONT_RENDERED_REOPEN \(details)")
+                        } catch { print("FONT_RENDERED_DIAGNOSTIC_READ_FAILED \(error)") }
+                    }
+                }
                 do {
                     try await waitUntil {
                         guard let web = active() else { return false }
                         return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                     }
+                    await recordRenderedReopen("passed")
                 } catch {
+                    await recordRenderedReopen("failed")
                     // Read only after the original failure, preserving its timing
                     // and error even when collecting the database evidence fails.
                     do {
@@ -853,6 +861,31 @@ final class ReaderRenderingTests: XCTestCase {
             return abs(((try await reopened.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
         }
         XCTAssertEqual(try continuousScroll(engine).accessibilityValue, "上下整屏")
+    }
+
+    @MainActor private static func pagedRestoreProbe() -> WKUserScript {
+        WKUserScript(source: """
+            (()=>{
+              const trace=window.__xrPagedRestoreTrace=[];
+              function record(phase,args){
+                const node=document.getElementById('long-paragraph')?.firstChild;
+                let rect=null;
+                if(node?.length){const r=document.createRange();r.setStart(node,0);r.setEnd(node,1);rect=r.getClientRects()[0];}
+                trace.push({phase,href:location.pathname,width:innerWidth,x:scrollX,
+                  requested:typeof args?.[0]==='object'?args[0].left:args?.[0],
+                  firstX:rect?.left,firstY:rect?.top,ready:document.readyState,
+                  fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
+                  family:document.body?getComputedStyle(document.body).fontFamily:null,
+                  paragraphFamily:document.getElementById('long-paragraph')?getComputedStyle(document.getElementById('long-paragraph')).fontFamily:null,
+                  documentWidth:document.documentElement.scrollWidth,
+                  faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status}))});
+                if(trace.length>16)trace.shift();
+              }
+              const scroll=window.scrollTo;
+              window.scrollTo=function(...args){record('before',args);const result=scroll.apply(window,args);record('after',args);return result;};
+              window.addEventListener('scroll',()=>record('scroll',[]),{passive:true});
+            })()
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }
 
     @MainActor private weak var diagnosticEngine: ReadiumReaderEngine?

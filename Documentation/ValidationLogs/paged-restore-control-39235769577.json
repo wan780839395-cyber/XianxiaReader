@@ -1,0 +1,45 @@
+{
+  "recordedAtUTC": "2026-10-19T10:47:09.957008+00:00",
+  "run": 39235769577,
+  "sourceRevision": "2f93a11cedcebd6008e8e3134b3c5fbf2ba4fe58",
+  "selection": "paged-restore",
+  "result": "Passed",
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "testDurationSeconds": 13.019,
+  "nativeTestStartedUTC": "2026-10-19T10:42:56.157Z",
+  "nativeJobStartedUTC": "2026-10-19T10:14:44Z",
+  "preTestWallSeconds": 1692.157,
+  "preTestIncludesBuildResolveAndLaunch": true,
+  "sourceCompilerWarnings": 1,
+  "warning": "Test-only optional interpolation in failure trace; fixed before next candidate",
+  "productionRuntimeChanged": false,
+  "meaning": "Exact standalone p25/char0 font restoration succeeded; original complete font chain and historical failure remain unresolved. Not a root-cause fix or complete gate.",
+  "artifact": {
+    "run": 39235769577,
+    "artifact": 12180054563,
+    "kind": "diagnostic",
+    "archiveBytes": 347704,
+    "archiveSHA256": "335f66a69784fe9f6438d5bae07732e793e3eb19fd6065cf4f8b997211c9aaac",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39235769577\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39235769577\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39235769577\\diagnostic-download-chunks\\0000.bin",
+        "bytes": 347704
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39235769577\\diagnostic-diagnostics.zip",
+        "bytes": 347704,
+        "sha256": "335f66a69784fe9f6438d5bae07732e793e3eb19fd6065cf4f8b997211c9aaac"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "nextExperiment": "Run original fonts with synchronous scroll trace and separate font/anchor condition evidence; direct control retained. No production change."
+}

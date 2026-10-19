@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "paged-zero-restore-red-fixture-local-uncompiled",
+  "stage": "standalone-paged-restore-passed-original-fonts-probe-pending",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -602,5 +602,14 @@
     "expectedFinalUnit": 149,
     "expectedFinalUI": 28,
     "expectedFinalTotal": 177
+  },
+  "currentDiagnostic": null,
+  "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
+  "latestPagedControl": {
+    "run": 39235769577,
+    "passed": 1,
+    "durationSeconds": 13.019,
+    "source": "2f93a11cedcebd6008e8e3134b3c5fbf2ba4fe58",
+    "productionFix": false
   }
 }
