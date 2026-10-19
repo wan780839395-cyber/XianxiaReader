@@ -3587,5 +3587,12 @@
     "generalUseAccepted": true,
     "scope": "General acceptance of current use; individual chapter/gesture/settings checks were not specified.",
     "subjectivelySmoothReadingAndSettings": true
+  },
+  "localRawEvidenceRetention": {
+    "updatedAtUTC": "2026-10-19T00:30:17.983369+00:00",
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

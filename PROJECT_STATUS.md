@@ -1,30 +1,24 @@
-## 当前恢复点：同源字体2项复核中（2026-10-19）
-
-39179687615/sourcef320/codex/m4-edges-screen/selection=fonts运行原有2个字体case一次；watch30380/collector37268，核实际run.json与owned-helpers，不重复dispatch。生产/测试均未再改。C39155583794实际10/11、新旋转81.659秒通过；唯一旧字体case初次cover定位20秒未发位置，未到换字体动作，根因不确定，保留失败。当前C完整artifact SHA/digest/CRC已校验并去重；10原图/2表、81秒视频6总览和3窗口114原始帧/11表已看，浅深横屏/恢复竖屏及所列安全边缘可接受，旋转加载/短暂章头仍不算无缝动效。详screen-native-review和screen-diagnostic-result。
-
-完整A39147081645/a650自动163/Release29保持真实通过，旧原生旋转拒绝历史不改；同生产的C正确新序列补充证据分列，待字体复核结果再决定交付，不冒称C11全过或C重建Release。Build29未打包，最后交付Build28，正常HEAD/index和全部未提交改动保持。
-
-最新用户已明确“改完别关机了”：覆盖此前完成后关机授权。保持开机，本轮没有发出关机命令或安排关机。
-
-## 初始位置失败的有界同源字体复核（派发前）
-
-39155583794实际10/11，新旋转全序列81.659秒通过；10 PNG/2表及81秒原视频6表已实际查看，暖白/charcoal横屏与恢复竖屏正文均正确、未见排版错误alert，App横屏裁图黑区由双原图/几何probe证实。完整下载SHA/GitHub digest/CRC已核，分片ZIP去重。
-
-唯一旧字体case在首次cover.xhtml的20秒probe未收到引擎位置；DOM封面ready，两个spread初始化约2.5秒完成，未到字体切换/重排动作。代码有隐藏页保护与初始化/位置采样时序线索，但没有足够证据宣称唯一根因或修改生产逻辑。本轮仅用现有f320/source、现有fonts选择运行原2字体case一次，验证干净job的初始位置及完整双模式/隐藏重排；不扩大超时、不改任何test、不重跑全量或反复重试直到绿。若失败转具体采样/可见性诊断、继续不交付；若通过仍记录C失败与根因不确定，不宣称旧问题已修。完整A163/Release、新C旋转、同源字体复核的来源和结果分别列出。
-
-## 最新恢复实核（2026-10-19，覆盖旧运行中状态）
-
-整屏诊断39155583794/f320已经completed/failure，实际10/11：本轮加强的旋转case通过81.659秒，旧隐藏字体重排case在初始cover.xhtml定位未发出时20秒probe失败，尚未执行换字体。不能将补充11写成全过；完整a650的163/Release通过与其原生拒绝历史继续独立保留。正常HEAD6d761749、空index、628项改动未重置；本轮恢复前没有遗留Python/GH/下载助手。
-
-上轮collector在本地空间前检assert处结束、未完成收取；本轮D盘135654141952可用，保持原12GiB前检通过后重新收取同run完整artifact，不重新派CI、不删除历史。先SHA/CRC/真实summary，再复核新旋转双截图/几何/录屏及旧字体失败。生产不变，不放宽20秒/3秒或删除旧测试。Build29未交付，最后包仍Build28。
-
-最新用户明确“ok 做完帮我关机”，取代旧取消关机指令；仅在本轮开发、必要验收、交付及交接全部完成后执行关机。当前工作未完成，没有发出关机命令或调度。
-
-# Build29 整屏采样定向11执行中（2026-10-19）
-
-第五完整39147081645/a650实际Core137各/iOS163/Release29过，但新旋转序列原生有排版错误alert和颜色不同步，未交付。补强后39153021005/5e实际10/11，新case横屏等待失败；实查App截图中央纯黑而整屏录屏正文正常，现仅改该新case用公开整屏采样/留图并保留App/Screen对照，生产全同a650、其他299主体保持。新39155583794/f320/recovery11执行中；Windows449/17过，原生待核。最后交付Build28，改动/旧包全保留；先看HANDOFF顶部。
-
 # 项目状态
+
+## Build29 阅读安全区边缘（2026-10-19）
+
+本切片已交付。实际Release源`a65086c1151831b54d90ed083fa36fc27848b5cb` / `codex/m4-reading-edges` / [完整CI39147081645](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645)：Linux/macOS Core各137，iOS163/163（136集成+27真UI）、失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release29/min16。547编译资源blob、三锁六pins、六完整原字体/OFL、每平台4长TXT Release探针已核。Windows449语法新增0/54既有Vendor限制、17工具测试通过；语法不算编译。
+
+补充源`f32002880ebe7702321cce90f1d030823c047c53`仅加强本轮新增旋转测试及recovery名单：App/Core/Adapter/Vendor/原Fixtures/锁/project/默认完整CI与上述Release全同字节，547记录中545相同、2测试/诊断路径不同。C[39155583794](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39155583794)实际10/11，新旋转81.659秒通过，唯一旧字体case在初次cover位置未发出时20秒probe失败，尚未执行换字体；完全同源原两个字体case单独复核[39179687615](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39179687615)实际2/2。保留原失败及根因未定风险，不称C11全过、f320完整163/设备Release或旧时序根因已修。299其他原test主体不改；预算/断言保持。精确来源见m4-edges-build29-production-provenance.json。
+
+ReaderSurface保留原完整viewport/控制器，以UIKit真实safeAreaInsets和CAShapeLayer evenOdd绘制页面色不安全四边，中心透明，触摸/辅助功能穿透；明确zPosition高于迟到navigator。仅布局、安全区或颜色变化重绘，无逐滚动回调/blur，禁隐式动画。正文排版/contentInset/offset/完整Locator、数据库/依赖、加载20秒及保存3秒保持。App/Vendor有界Debug安全阶段元数据已登记，Release开关false不记录日志或AX。
+
+安装[XianxiaReader-ReadingEdges-Build29.ipa](build/XianxiaReader-ReadingEdges-Build29.ipa)，SHA256 `2c8ef157dbe26d921c08d3a5ffa10a3ef6ee4d481c7b831ff3eb1191ae42901c`；[原创样书/字体许可/原生Preview测试包](build/XianxiaReader-ReadingEdges-Build29-TestKit.zip)，SHA256 `adfab4519e80cca8357e5b243be21bfeba5d9fcd0843be8e2067986c5b9a9cb9`。覆盖安装保留书库，不卸载或删库；+菜单确认0.0.1 (29)。51旧包、未提交工作、1062原路径及19恢复ZIP保持。
+
+实际原生复核：A37原图/6完整录屏31总览/3窗口134帧已核，A旧旋转的排版alert与颜色错配历史继续拒绝；同生产的C10原图/81秒录屏6总览/3窗口114原始帧（11表）已核，浅深暂停、横屏和恢复竖屏正文与所列安全边缘可接受。App横屏裁图带黑区，公开XCUIScreen整屏图正确，双图/几何probe证明观测差异；Preview只收C的6张正确阅读整屏图。旋转仍显示加载并短暂章头再恢复锚点，不作为无缝动效或手机FPS验收。
+
+旧四轮完整失败、a650早期定向10/10、第五完整自动通过但原生拒绝、B旋转10/11、C10/11和同源字体2/2全部独立留证，不追认旧失败。已核当前无生产变动，采用真实完整Release加同生产补充验证，未跳过失败CI生成IPA。原件本地范围服从最新CI保留回执，文字日志/summary/metadata与项目验证记录保留。
+
+M4整体未完，普通设备/TrollStore、大字/VoiceOver/完整旋转及减少动效矩阵、手机Release帧时间/内存/功耗未验收。Build28“目前感觉流畅”仅实际手机主观反馈；Build27外部字体导入仅用户实际样例。未含字体删除/无限字体/可变轴/单书覆盖、Share Extension或M5。下一步收本片手机状态栏/手势条/旋转与慢滚触摸反馈，按性能计划推进，不盲改定位管线。
+
+最新用户“改完别关机了”：保持开机，本轮不发出关机命令或安排关机。
+
+以下为历史阶段记录，以本节和最新验证回执为准。
 
 2026-10-18 用户在Build28交付后反馈“没问题”，记录为本片总体使用认可；未逐项说明菜单/跨章/设置测试，不扩展为手机FPS、全部设备矩阵或M4整体验收。证据：Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json。后续仍按M4性能计划与旧隐藏菜单安全区问题推进。
 
@@ -463,3 +457,5 @@ M2 TXT导入/Readium阅读/完整字节文本位置与Build6首次文件交接�
 
 Build25收尾保留已完成：旧两轮2464项/1649.9MiB已清理，100项文字/元数据留存；本轮完整诊断、45交付包和15恢复ZIP保留，详见m4-settings-build25-ci-retention.json。测试包仅修正TESTING菜单版本为(25)，其他成员原字节不变，最终摘要与回执同步。手机性能/M4仍待验收，保持开机。
 
+
+Build29本地CI保留收尾：旧7轮20566项9954.8MiB已清理、482文字/summary/metadata留存，A/C/D三组本版验收诊断及53根包、源码/素材/19恢复ZIP保持。旧原件范围服从m4-edges-build29-ci-retention.json，后续最终同步以本版final-delivery-receipt.json为准；保持开机。

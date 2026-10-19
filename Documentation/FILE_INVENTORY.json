@@ -1,7 +1,7 @@
 {
-  "recordedAtUTC": "2026-10-18T09:55:59.486474+00:00",
+  "recordedAtUTC": "2026-10-19T00:31:13.338255+00:00",
   "purpose": "Maintained files excluding this inventory, caches and builds",
-  "fileCount": 1061,
+  "fileCount": 1090,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,8 +25,8 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 35581,
-      "sha256": "76b571267e105ffa43f189045a9fbabb0e99024ccbb1bc61c1f53a05b6b8061f"
+      "bytes": 36317,
+      "sha256": "0674bc4509a653e0c7715bc746e33ec8fdd6116b09f16071f03d8b3eeedbcdc3"
     },
     {
       "path": "App/AppRootView.swift",
@@ -175,13 +175,13 @@
     },
     {
       "path": "App/Reader/ReaderSurface.swift",
-      "bytes": 811,
-      "sha256": "e6a44ffbb2400e3d8094d0d779c14fa7ffe8df775d4b87858ea42fc7bd9c21a1"
+      "bytes": 3732,
+      "sha256": "ad077fbde1ef24915ddc6a8bc82226a3e9d327f4cf09bc314ba712a14b296f90"
     },
     {
       "path": "App/Reader/ReaderView.swift",
-      "bytes": 5601,
-      "sha256": "d3acac9677025f4a718b1506d28d816025df17256968b59b44e71f764694fef0"
+      "bytes": 8207,
+      "sha256": "05a12711d7a31b4cf26c8fe790ca4f4a56e3c557384976c18c60fe0fb7da19fd"
     },
     {
       "path": "App/Reader/ReaderViewModel.swift",
@@ -355,8 +355,8 @@
     },
     {
       "path": "Documentation/DEVICE_ACCEPTANCE.md",
-      "bytes": 94543,
-      "sha256": "e7cde227e0da2fac22255890a1cb4100cd516943b3a2a4c65feaa09a73a82510"
+      "bytes": 98584,
+      "sha256": "bfb38b5ac5fc61ca9ec1eaca94539ca785fcb9be1c6fba97f4c14ccff5772e74"
     },
     {
       "path": "Documentation/DOCKER_RECOVERY.md",
@@ -365,8 +365,8 @@
     },
     {
       "path": "Documentation/FEATURE_MATRIX.md",
-      "bytes": 65642,
-      "sha256": "a39450e5435755d66ebfdb36a6df7b4ecd096fe4f37b4e5635433e517551c05b"
+      "bytes": 69683,
+      "sha256": "b0175dd1955fdafd6d03e205c69062be8529d27e09badd537e4e8cba19fa74f6"
     },
     {
       "path": "Documentation/GITHUB_SETUP.md",
@@ -419,9 +419,19 @@
       "sha256": "0ad682298bcd5276e92102a2a953537a619a35b121e04cfd6ba780ab9fe6152c"
     },
     {
+      "path": "Documentation/HANDOFF_BUILD28_DELIVERY_2026-10-18.md",
+      "bytes": 5296,
+      "sha256": "b55c385bad6cee61c9fa389a1a73ec99545389f255384778dd7f4b94933a8e9c"
+    },
+    {
       "path": "Documentation/HANDOFF_BUILD28_DEVELOPMENT_2026-10-18.md",
       "bytes": 6289,
       "sha256": "5d1ee5fb5ec9d40f5d46413c6fbbbf75709c5e0b14a648a1f4ae5e6cdfe8774e"
+    },
+    {
+      "path": "Documentation/HANDOFF_BUILD29_DEVELOPMENT_2026-10-19.md",
+      "bytes": 32820,
+      "sha256": "7c83f71cca572f0bb54853aa41d4ae6d4ee24d4914f752de83f93581b521792c"
     },
     {
       "path": "Documentation/HANDOFF_HISTORY_2026-10-13.md",
@@ -790,8 +800,13 @@
     },
     {
       "path": "Documentation/M4_READING_CHROME_VALIDATION_REPORT.json",
-      "bytes": 158833,
-      "sha256": "5f427e4fedec7d126b21083685338b9eb89e37ae6f448dcd0bf8798c7e2f85cf"
+      "bytes": 159197,
+      "sha256": "bf711d7a38ef258aa2356e8cc7f5ba05c817f1774874533ca223867979151e33"
+    },
+    {
+      "path": "Documentation/M4_READING_EDGES_VALIDATION_REPORT.json",
+      "bytes": 166851,
+      "sha256": "467a28d82aacc46caca28d7c4497b8e8e8d0b676f006c804549cf0bd35c757ff"
     },
     {
       "path": "Documentation/M4_READING_EXPERIENCE_VALIDATION_REPORT.json",
@@ -830,8 +845,8 @@
     },
     {
       "path": "Documentation/PERFORMANCE_TEST_PLAN.md",
-      "bytes": 17415,
-      "sha256": "7f88dfde3bdb641a52847dd0f820d6adf40e3cb4858f51f99d55126c1e32abe8"
+      "bytes": 18444,
+      "sha256": "ec369271dd39d4ff27672eca5543119fbf56d353ec3b1e9e0b778b021a4974e8"
     },
     {
       "path": "Documentation/READER_VIEWPORT_FIX.md",
@@ -862,6 +877,11 @@
       "path": "Documentation/READING_DEPTH_DESIGN.md",
       "bytes": 9672,
       "sha256": "15b175fef41ee01c1bd95cc617587321fcfecb37089be41efa1f422fd38057cb"
+    },
+    {
+      "path": "Documentation/READING_EDGES_DESIGN.md",
+      "bytes": 16514,
+      "sha256": "15da8b4690831fece9535bc54630dfd8e09897fc7fe5e2e1cc362fc6e9484c7c"
     },
     {
       "path": "Documentation/READING_EXPERIENCE_DESIGN.md",
@@ -1750,13 +1770,13 @@
     },
     {
       "path": "Documentation/ValidationLogs/m4-chrome-build28-device-feedback.json",
-      "bytes": 573,
-      "sha256": "0dec1ae5cb171ed2b896246654733d8a6ae850fd3e4b5a025b147a6d8790ee67"
+      "bytes": 998,
+      "sha256": "686a79f85f6cd773ccd29b6d17997d2d4808e323d406c360d33f76668a1a3ade"
     },
     {
       "path": "Documentation/ValidationLogs/m4-chrome-build28-native-review.json",
-      "bytes": 137309,
-      "sha256": "ea40029b967c5d55b11d57fb79b86e407ad17d6124bb932499a18ef773b5a504"
+      "bytes": 140669,
+      "sha256": "0fbb24b05ff13453e74d3c705d450d5ff99908bacb1e002fce391c93ec84dd64"
     },
     {
       "path": "Documentation/ValidationLogs/m4-chrome-build28-progress-measurement.json",
@@ -1852,6 +1872,126 @@
       "path": "Documentation/ValidationLogs/m4-depth-build18-xctest-idle-diagnostics.json",
       "bytes": 1338,
       "sha256": "ced196131c1e960ca8eaeea74240abb30b5abf0e6d129fd2b1b5db71844c1607"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+      "bytes": 7156688,
+      "sha256": "926cf5de1275f7523111702abe4225318afed5f501703bc94f73afb4cd8c942f"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-diagnostic-result.json",
+      "bytes": 6886,
+      "sha256": "80df8e1f745799e0bb5db8ec518f415a9626148978ffcfb8056704426883d789"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-diagnostic-start.json",
+      "bytes": 103649,
+      "sha256": "2c1b16039e40d641f56009e347483ba18931f80a183892e0ee6a6ed78653ab1c"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-fonts-recheck-result.json",
+      "bytes": 1974,
+      "sha256": "bfd73d4ff119cda4b49f88b043cd18fb80c706a93c4bed52df6c60002a0c78ac"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-fonts-recheck-start.json",
+      "bytes": 523,
+      "sha256": "376b68f0df98cea1feb5b9df60fbdb6469922a41d35a3f5e20306ccdc828b2b6"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-full-lifecycle-review.json",
+      "bytes": 1209,
+      "sha256": "7e2e503284c0608833dc3be0a9c0499bc98bc0d0ede3bb04d53bea7ab6578dc2"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-history-39118070518.json",
+      "bytes": 4190,
+      "sha256": "72951fab699c5b71c1c4fd3fcf741eeedf431052f0bda65c5f3caa4720a6a6e7"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-history-39122142797.json",
+      "bytes": 6779,
+      "sha256": "b1833d047bca9075c7cc5a62a0d8ee956b186622757135cebb3d68e370e2046e"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-history-39126639352.json",
+      "bytes": 6930,
+      "sha256": "248ceb38e569512e294a40e7a75d1d54cab301790555db586722f22abcf4adb7"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-history-39131131911.json",
+      "bytes": 43348,
+      "sha256": "6c19eb5bf53a8503be4daf97c2f68296804d64250302c0adb66744d765d2d490"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-history-39147081645.json",
+      "bytes": 3097,
+      "sha256": "fd7309bd643b663dcfa253570b42f8156495ddfc474fee31851ce0e5bdc39752"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-native-review.json",
+      "bytes": 31918,
+      "sha256": "86022cea59db8cac0d56c1867295e3f547a817c87b19fcc231f28e9fb3add3dd"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-process-startup-review.json",
+      "bytes": 4123,
+      "sha256": "6cffde801dce90065253cda55737d16b1a3eb5097aebd00bf03bd0ef237bf582"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-production-provenance.json",
+      "bytes": 1900,
+      "sha256": "0f1347e675033a17c693a8a03a925dcaec9fc0d1f41d46b3dd56a6bb6c12fc02"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-reference-review.json",
+      "bytes": 2447,
+      "sha256": "863aa1e2290c50d1e0e0db06fc952ee542c0d22c5659a5006dfc0acde13ae8b4"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-rotation-diagnostic-result.json",
+      "bytes": 4531,
+      "sha256": "f960fbe7b4b3ddfac7304128864301846ef464e66525c8bc6301681f5bbecd7a"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-rotation-diagnostic-start.json",
+      "bytes": 101963,
+      "sha256": "734eedd77f56bdc87f2c838bfeb2e924efc14db81a6a02890f72378147520a4a"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-screen-diagnostic-result.json",
+      "bytes": 5891,
+      "sha256": "e82ecb9933fa4cf950a345771da3e0ebae58b454b8972118d3db442bb183a3ef"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-screen-diagnostic-start.json",
+      "bytes": 101961,
+      "sha256": "f740494212ff08a618a51f4adc0fa35478e23dc39ddef2e492d7d83d7c81b558"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-screen-native-review.json",
+      "bytes": 37373,
+      "sha256": "7f2e5e0ccf4ee9605658b59f610f445c19c28e1ef21549fb0d54a15ad0a640dd"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-start.json",
+      "bytes": 206363,
+      "sha256": "14c195412626fa314fded8f31af47ed9d6bac651828c835fb20fdec95c8a7171"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-success.json",
+      "bytes": 21015,
+      "sha256": "0dfc0466dc39ba2df9beba48ec60ab6a59e8a8d840dd3e68c821deb7c3ab45d9"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-test-kit.json",
+      "bytes": 9359,
+      "sha256": "97e0e662d399e64d803cd6f5ebf0fc53038cf68e3dde7bf368fd3bce1b64c940"
+    },
+    {
+      "path": "Documentation/ValidationLogs/m4-edges-build29-windows.json",
+      "bytes": 818,
+      "sha256": "354bc5484f36e9e4686223ac94025a08b06b6548e6e6fc83d5b097d95df88afb"
     },
     {
       "path": "Documentation/ValidationLogs/m4-experience-build27-18c-windows.json",
@@ -2800,8 +2940,8 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 5296,
-      "sha256": "b55c385bad6cee61c9fa389a1a73ec99545389f255384778dd7f4b94933a8e9c"
+      "bytes": 5809,
+      "sha256": "0be11d00802dde7d2f2f0e44b3ac4ee51cfa94ad5757b28ddf31e1b7eda59fd0"
     },
     {
       "path": "HANDOFF_IMPORT_DELEGATE_HISTORY_2026-10-14.md",
@@ -2875,8 +3015,8 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "bytes": 103791,
-      "sha256": "d97f2a5767b9784bbbd727a80f0dd1ccdab18d6feb02623332c696c6e1bf7d13"
+      "bytes": 108150,
+      "sha256": "12e4035f873f0a133d04a870eb9f80d766a34bf8fc6647c04a0c7435a6c2a6cc"
     },
     {
       "path": "Package.resolved",
@@ -3250,13 +3390,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 73629,
-      "sha256": "f5e5cdb339869e3d8d6ca4438ab7055f57ac819f8ac7b673e29e179d3bb7016d"
+      "bytes": 77670,
+      "sha256": "dadb1648aac79622fb8777e6a381d9aca5c2e03078d2cec2e57279c11fbf08eb"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 93452,
-      "sha256": "49ebb9a9da9aa68014d19696b274da909fd5d701b68ec6aa1dfedc3bbffac200"
+      "bytes": 97493,
+      "sha256": "bec1f2cd0965428e254c1e05430faf6c6a39db8d2bd25356f36763f5e176cc24"
     },
     {
       "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",
@@ -3320,8 +3460,8 @@
     },
     {
       "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "bytes": 34195,
-      "sha256": "8b24259ce39e4f040d3c90af0b8251525d3f762491396f57d602bebd3a8206c9"
+      "bytes": 40923,
+      "sha256": "90000176ab2006a9db3ae76fd53f5ed9366e9406b33c0be48a77d2ac056ba932"
     },
     {
       "path": "Tests/UI/ReadingExperienceUITests.swift",
@@ -3392,6 +3532,11 @@
       "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
       "bytes": 6920,
       "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75"
+    },
+    {
+      "path": "Tests/iOS/ReaderSurfaceTests.swift",
+      "bytes": 7638,
+      "sha256": "14dabaffad5624a46e8b4652d459d72fc2835fee9e77dd7887403b5cf4a6bd79"
     },
     {
       "path": "Tests/iOS/ReadingExperienceTests.swift",
@@ -3745,8 +3890,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "bytes": 34037,
-      "sha256": "0bf2e1ac20f01a640b4bd454e9ff753f7831c5e1652ec25711d4d454acd0fe42"
+      "bytes": 34427,
+      "sha256": "b4392a904781a5c1f4f618a56e703b297689f3e9c3fceddd1b297fbd92e2aee0"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
@@ -3770,8 +3915,8 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "bytes": 41204,
-      "sha256": "629db53bb0cbe247177ed9d211f1fa38ae45eb5737f8c83646262c63c79ef3b2"
+      "bytes": 43925,
+      "sha256": "cecdb1766a004a58d2ace3c92718f6a76b26de0fe399426e1be297875ec7e488"
     },
     {
       "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
@@ -5195,13 +5340,13 @@
     },
     {
       "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "bytes": 78478,
-      "sha256": "aac49bfaa23e11d78d7acd54bb716060931430dbc9065c0f3a9e90e09cbb631f"
+      "bytes": 80779,
+      "sha256": "99a330fe1fde3a34db5554cc5d0c3ef95536eea73b44f437e774d05a887b487d"
     },
     {
       "path": "project.yml",
       "bytes": 2716,
-      "sha256": "df84867ca2daabcc317378650559ddde7bc95e14160c59dee598b5510327a13a"
+      "sha256": "2ee3f885049965887ec38c0f28e6a084c6368af15f9d6fe8f1fed96d32d1b3e8"
     },
     {
       "path": "scripts/check_repository.py",
@@ -5215,8 +5360,8 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "bytes": 6746,
-      "sha256": "76d6d7385be024233f61172dbd4610f6da6c42f33a6c15dcde3b5cd0f72dedb9"
+      "bytes": 7679,
+      "sha256": "33b41c91f070e884296c22eaacf60f539ccd65423a1c7ab38e33dcfb80c6a157"
     },
     {
       "path": "scripts/generate_app_icon.py",

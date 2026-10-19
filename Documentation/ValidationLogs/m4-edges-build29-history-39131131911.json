@@ -79,7 +79,7 @@
   },
   "deviceReleaseBuilt": false,
   "IPAProduced": false,
-  "rawCurrentRetained": true,
+  "rawCurrentRetained": false,
   "findings": [
     "Font continuous re-open failed at377 with slot1 unready, navigationfalse, timeout and DOMblank; unique cause unproven.",
     "New window test passed0.151s but next test logged unbalanced UIHostingController<ReaderSurface> appearance; old theme presentation completion subsequently timed out2s. Temporal relation, not yet proven root for all failures.",
@@ -1047,5 +1047,11 @@
     "existingResourceLoadBudgetSeconds": 20,
     "classification": "Measured same-failure-context process startup delay; plausible contributor to this load timeout, not unique cause for all failures or phone performance",
     "budgetsChanged": false
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

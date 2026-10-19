@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+## Build29 阅读安全区
+
+ReaderSurface协调器持有单个ReaderSafeAreaCover，直接附加原控制器view，保持fullsize/原层级。UIKit实际safeAreaInsets/layout驱动CAShapeLayer evenOdd四边页面色，中心透明、触摸和辅助功能穿透，zPosition高于迟到的navigator；布局/安全区/页面色变化才更新，dismantle移除。无逐帧滚动回调，不改引擎viewport/inset/offset、Locator、Core/schema/依赖。真window像素/命中/迟到子视图合成及浅深慢滚旋转验证分列；完整Release源a650，补充仅测试源f320，生产输入相同。详READING_EDGES_DESIGN和M4_READING_EDGES_VALIDATION_REPORT；手机性能和初始封面位置偶发超时根因仍待专项。
+
 ## Build28 进度显示隔离
 
 App独立ReaderProgressState保存完整位置，ReaderViewModel保留position getter/setter接口而不再以自身Published发布位置；只有ReaderProgressView观察去重的章名/归一化进度摘要。原每次位置事件SQLite保存、fresh完整捕获和会话失效不变。ReaderMenu header添加页面色实底/短渐隐装饰，不改变引擎几何与输入。无Core/Adapter/Vendor/依赖/schema变更，iOS16 Combine/SwiftUI。门槛和设备边界见READING_CHROME_DESIGN.md与M4_READING_CHROME_VALIDATION_REPORT.json。

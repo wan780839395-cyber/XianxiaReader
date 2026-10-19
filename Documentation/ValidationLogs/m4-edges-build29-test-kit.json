@@ -1,0 +1,220 @@
+{
+  "recordedAtUTC": "2026-10-19T00:26:17.150553+00:00",
+  "run": 39147081645,
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "deliveredBuild29": {
+    "ipa": {
+      "path": "build/XianxiaReader-ReadingEdges-Build29.ipa",
+      "bytes": 68880521,
+      "sha256": "2c8ef157dbe26d921c08d3a5ffa10a3ef6ee4d481c7b831ff3eb1191ae42901c"
+    },
+    "kit": {
+      "path": "build/XianxiaReader-ReadingEdges-Build29-TestKit.zip",
+      "bytes": 73068298,
+      "sha256": "adfab4519e80cca8357e5b243be21bfeba5d9fcd0843be8e2067986c5b9a9cb9"
+    }
+  },
+  "zipCRC": true,
+  "internalIPAMatches": true,
+  "preservedOriginalFiles": [
+    {
+      "path": "Samples/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677"
+    },
+    {
+      "path": "Samples/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5"
+    },
+    {
+      "path": "Samples/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8"
+    },
+    {
+      "path": "Samples/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838"
+    },
+    {
+      "path": "Samples/utf8-5MiB-1000chapters.txt",
+      "sha256": "491ea2b0907c39b7fbc46f3325ee755c25a0bd752104b01e26f15a8480825bec"
+    },
+    {
+      "path": "Evidence/utf8-5MiB-1000chapters.json",
+      "sha256": "19369e2cf5bc866daa366d8df0cff5e56a9061d068b3f9ef349f5e35bcced395"
+    },
+    {
+      "path": "Samples/utf8-50MiB-3000chapters.txt",
+      "sha256": "f6e154c8c84746e59b7827ecfd2049762704ab96697bf73939405d3800c71381"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-3000chapters.json",
+      "sha256": "1c607bf1ef826051e501702f6259f6b802efc648a25c5ee2711f10e5af7db58f"
+    },
+    {
+      "path": "Samples/utf8-50MiB-no-newline.txt",
+      "sha256": "ba8c303a0d9293033b5fccae24e1f7128e60feffd5ebff2e35de7581ed6fb419"
+    },
+    {
+      "path": "Evidence/utf8-50MiB-no-newline.json",
+      "sha256": "047427bcaa9bf68f6758262f1c46e6581acfbff819c7c9cef66ba4ab7d363657"
+    },
+    {
+      "path": "Samples/utf16-5MiB-1000chapters.txt",
+      "sha256": "5be0c2bf7129d35e9d26fc8bd3288f15e9f44d2d2e2485e167099d97ec2da4fc"
+    },
+    {
+      "path": "Evidence/utf16-5MiB-1000chapters.json",
+      "sha256": "f0c29ff230c9c8b5b632fec7bba39ca583fa026f345b5f407e829fc3c998e484"
+    },
+    {
+      "path": "Samples/ANSI-GBK-云海问道.txt",
+      "sha256": "6b1898102cf8a92fd78a6607ec1ea45020a59f80d897a376fc7bb9e31e9e6dde"
+    },
+    {
+      "path": "Samples/ANSI-Big5-雲海問道.txt",
+      "sha256": "0f01e0f071d543295c28e6d0683d6d55c334a1576480fe1a6b52eac402a67106"
+    },
+    {
+      "path": "Samples/ANSI-Windows1252-Cafe.txt",
+      "sha256": "cf6205d3ad9e006fd2e5a1cc085271f198e6fa7d7246e41039539a038d8a46d3"
+    },
+    {
+      "path": "Evidence/ANSI-ENCODINGS.json",
+      "sha256": "a0a12072a3582b64667c8e8acb0432b64b0f026903392c670ff1798474d9710c"
+    },
+    {
+      "path": "Cover/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722"
+    },
+    {
+      "path": "Evidence/UnacceptedNativeCaptures/font-txt-byte-anchor-build23.png",
+      "sha256": "a3e5b378420faa6e9ee746243ab8bcbf15faa332a7951fcac510121406f7e8a3"
+    },
+    {
+      "path": "Fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a"
+    },
+    {
+      "path": "Fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "BuiltInFontLicenses/MaShanZheng-Regular-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "BuiltInFontLicenses/PROVENANCE.json",
+      "sha256": "02ff8d5fc3a03c388312f6ad1b5ece510373aeaea98276028e09d0b83f7a3605"
+    },
+    {
+      "path": "BuiltInFontLicenses/README.txt",
+      "sha256": "f5c2c83d3072883178ad73f7bb739faaa1d40fce2a9f5a67d7d5f19dea25933f"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSansSC-Regular-OFL.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "BuiltInFontLicenses/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZCOOLXiaoWei-Regular-OFL.txt",
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+    },
+    {
+      "path": "BuiltInFontLicenses/ZhuqueFangsong-Regular-OFL.txt",
+      "sha256": "66cc01ad4df62fca6936431a426104cb32a52ce8da49de9a7d643e02d7659043"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-xiaoWei-build24.png",
+      "sha256": "d6fd8e3c5b20f0d6ee108179173c16c41512d67cfe67d6cd28a003c6afa1d841"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-maShanZheng-build24.png",
+      "sha256": "614430ef67c730eeab301e6282b99c52937f28de1c78f22041149624ac391f33"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-zhuque-build24.png",
+      "sha256": "99a58856c8a7dded40fb96fc8f545e27350772ef388e8102fe9c2ff2e050cd51"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSans-build24.png",
+      "sha256": "164cd959ada852df8a93145dd62072e984c1037e87157e81b4aa8b8bc38e3a38"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-wenKai-build24.png",
+      "sha256": "391ff1d76be602c896206142b94a1be70efe6e577a60e60539f335ff49499279"
+    },
+    {
+      "path": "Evidence/FontGlyphMasks/font-settings-sample-sourceHanSerif-build24.png",
+      "sha256": "36625b6e1e72841186dbde9e39226b63c4fdd0c772b9bd846ea9246c146f716d"
+    }
+  ],
+  "previews": [
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/C45A5FD3-D752-4286-BCA4-464081315BEB.png",
+      "name": "reader-edges-portrait-restored-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c6abb2962ae0fc8bec34d5ecd0852e9aafc85452dfd5a55fa0734b8aa2308126",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6B008733-30E1-46E6-8FB9-6A75CE2B8924.png",
+      "name": "reader-edges-landscape-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5fcb10da099d1ce2d00b0795c908d0b97cb03796ce69d5e6e1bae09f57de855e",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/316F95C3-EDA7-49BF-9AE7-A869F777A27E.png",
+      "name": "reader-edges-paused-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "920c07676226df25047cfab7e77a90909b0e5eb41bd3f3d0be63528c7dfbeffc",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/E6F58F35-BA71-4BD8-8AC7-43AE45207C0F.png",
+      "name": "reader-edges-portrait-restored-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "27a1dbdb9c52a3ac1556e7e45c66e465fc0438894dad4be60300713fbcf608f8",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/32EB8B25-496D-4236-B49F-F708BE0B15C8.png",
+      "name": "reader-edges-landscape-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "7c921bcce84b8fe0d7ca34c12d5926dee440ab86d52b237ab8af2103264def8b",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/FB7472F4-3767-4DCC-BFF0-441598C5D536.png",
+      "name": "reader-edges-paused-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c97243ff977737aac345dc4ae89386e47cc2c739f7e0f4944fdc95f6fde3be20",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    }
+  ],
+  "deviceAccepted": false
+}

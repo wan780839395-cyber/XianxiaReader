@@ -62,7 +62,7 @@
   },
   "deviceReleaseBuilt": false,
   "IPAProduced": false,
-  "rawCurrentRetained": true,
+  "rawCurrentRetained": false,
   "findings": "4 selected native PNGs/one contact and complete57.67second original video/4overviewcontacts plus7originalVFRframes44.5-46.2viewed. After relaunch readable body and menu exist; settings tap does not show sheet. No error alert, no settings sheet in final AX hierarchy. Body loads next resource around tap. Unique cause not established; no claim this is only an AX wait or fixed by rerun.",
   "newPixelAndRotationTestsPassed": true,
   "priorFailedOldCasesNowPassedWithoutProductionChanges": true,
@@ -141,5 +141,11 @@
     "originalRecordingSeconds": 77.35,
     "observations": "Viewed8font/layout PNGs plus reusedpixel diagnostic and all6one-second overview contacts of77.35s original font collection case. Font grid/query/explicitselection/three presets/advanced0.05persist reopen visible. At~60.5s reader exit,61.5-62.5s shelf,63.5-68.5s reopen/readable,69.5s settings,70.5s layout with0.05again. No save failure alert appears in this recording. This is one actual later passing sequence, not proof initial saving timing root is fixed.",
     "motionOrDeviceAccepted": false
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

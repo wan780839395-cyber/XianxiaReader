@@ -103,7 +103,7 @@
   },
   "snapshotMethodCorrection": "Use UIView.drawHierarchy(afterScreenUpdates:true) for composite pixels, retain isolated shape CALayer pixels and all expected opaque/transparent colors. Production source unchanged from c30ff2d.",
   "otherOriginalFailuresRootCauseConfirmed": false,
-  "rawCurrentRetained": true,
+  "rawCurrentRetained": false,
   "artifacts": [
     {
       "path": "build/ci/39122142797/full.log",
@@ -139,5 +139,11 @@
     "sourceLog": "build/ci/39122142797/full.log",
     "line": 8021,
     "uniqueRootCauseConfirmed": false
+  },
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
   }
 }

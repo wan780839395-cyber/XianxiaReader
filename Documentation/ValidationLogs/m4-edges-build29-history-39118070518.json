@@ -96,5 +96,11 @@
     }
   ],
   "rootCauseOfFontSaveTimeoutConfirmed": false,
-  "rawCurrentRetained": true
+  "rawCurrentRetained": false,
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }

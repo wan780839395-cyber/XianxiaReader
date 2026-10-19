@@ -1,0 +1,653 @@
+{
+  "recordedAtUTC": "2026-10-19T00:26:13.370667+00:00",
+  "releaseRun": 39147081645,
+  "releaseSource": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "supplementRun": 39155583794,
+  "supplementSource": "f32002880ebe7702321cce90f1d030823c047c53",
+  "images": [
+    {
+      "name": "reader-edges-late-mount-composited-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CE2AFAA0-FA79-4C4B-A6C0-31CF31161B60.png",
+      "sha256": "b5ad65e3650b54c3cc02fdba5bbeb5756407f21f97bb91268ba479355f6e1fee",
+      "testIdentifier": "ReaderSurfaceTests/testRealWindowEdgesPaintWithoutChangingNavigatorOrInterceptingTouches()",
+      "timestamp": 1792343551.039,
+      "inspected": true,
+      "includeInPreview": false,
+      "purpose": "Native UIKit test-window composite; red center/black unsafe edges diagnostic, not a reading-page preview",
+      "size": [
+        402,
+        874
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-autoscroll-reopened-static-build21",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/FF97E9A4-46B8-49D6-9B6A-14148BA9D54F.png",
+      "sha256": "99eda53e6ca80c251517306bcceddf98ef787d81518871fb4d5a92fa2991fbba",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792343956.066,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-autoscroll-dark-paused-build21",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6DED3964-D690-4305-8D3E-61814B427610.png",
+      "sha256": "a3a7c2b8dc729bf344cda177742d450d46d45ee49ca0a00aec4886f710bc7b71",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792343939.723,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-autoscroll-background-paused-build21",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/945FF4B1-45D0-486C-93BD-A348A8674ACA.png",
+      "sha256": "9d061a4962f604abe4eb578efa3f33f77b07b2bb784d32ceaf4aec865e2ccb14",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792343927.321,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-autoscroll-touch-paused-build21",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/2AB00A8B-B1FC-4617-9934-86A9B1EEA6C4.png",
+      "sha256": "55cec8349f9d367cce21d8c88a2264c98bc5853426615dc4abeb18e63c700e67",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792343923.415,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-autoscroll-light-ready-build21",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BC153A2C-5246-4E6F-97A8-DDE551CCD685.png",
+      "sha256": "56f6cda7ef9a9a198267a9f5865a9b4ed4ce86a9119a14efb13a6843368c3a7b",
+      "testIdentifier": "ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch()",
+      "timestamp": 1792343914.978,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-menu-dark-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DEEA2F05-9B93-4FA0-9343-D391149B3766.png",
+      "sha256": "4f8958363264a330e462c1cf0c30cb489c036bbfc516436daa7cc647340f9941",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344095.744,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-layout-dark-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/366C9A56-C41C-4EE1-A4A9-8FD51306DD7A.png",
+      "sha256": "2b80b0c08afeccb041c699142d010db7d8321bd6d4798698772b15a715c95478",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344094.315,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-appearance-dark-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8B4A6079-5FC5-4429-B44C-9B530BCE5116.png",
+      "sha256": "e3ed14125348ff9de744970573050eb764a94c07932940b7d87fa78287ec351f",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344092.976,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-layout-light-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E430C5C1-EF1D-4D78-BC26-AB3FF0DD13C5.png",
+      "sha256": "2b841c22334005a766e3ea2ac1fea4e85e8f754018443155dc530bd8e05f3f83",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344069.749,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-appearance-light-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D688FBBF-D94C-4FE2-8793-A4E1EF242B53.png",
+      "sha256": "e25bda09c9b5b0d048d1e344f76058bb1f12b77761a5c597015ac81f33d84bc7",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344066.437,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-mode-menu-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A8DA4FAD-BE74-463D-8B30-88E3985D93DC.png",
+      "sha256": "6518ed1f5517782fee63b27ebe53212318f34534cc72a096db4e689c6a9820f9",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344059.827,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-menu-light-build16",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/EF198ACA-8A75-4C9F-AFC8-762F9B2E53DF.png",
+      "sha256": "32a29880d31497b0ab694f0e34879a376bdcc880e64ef59251b96c2aa6018d28",
+      "testIdentifier": "ReaderInterfaceUITests/testNativeMenuLayoutGroupsPublisherRulesAndRelaunch()",
+      "timestamp": 1792344058.089,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-progress-dark-reduced-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/8E9DF1D1-05FC-458F-BACB-33901CA33EFC.png",
+      "sha256": "22f43d863cdbb58f4d16686bed323ab59779a43b457d464277395f5611791eab",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344156.159,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-immersive-reduced-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/47C14E22-61BC-4F11-B1D4-FC130A4B2D89.png",
+      "sha256": "b35027be8cbf1f98e4f532939ef1b1cea03d66a0804513700da6e77dd874ef5b",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344149.615,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-progress-light-reduced-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE4D6A31-37D8-4EEB-ADAE-F3A7D7467547.png",
+      "sha256": "cc22433d9cd9fc515ceaf6d15c50f06b9083485693364c0e6b06323fc35649d9",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344147.799,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-progress-dark-normal-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/96BDB942-0EE7-4D70-974D-3ED23A1008D1.png",
+      "sha256": "22f43d863cdbb58f4d16686bed323ab59779a43b457d464277395f5611791eab",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344126.015,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-immersive-normal-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AB0FF268-C610-40C6-89CD-976B1D3701D6.png",
+      "sha256": "46e4a23369676118d9bf44743d577fe23b6483437c231e1c08ca1de76d64f976",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344119.167,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-chrome-progress-light-normal-build28",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/DE014186-16B9-4F5B-9258-18B9FC05BB7C.png",
+      "sha256": "ba4497bd23e095f7b179aff9517ba11e771868caff669649857d5c716dac0e46",
+      "testIdentifier": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+      "timestamp": 1792344117.257,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-interaction-restored-build17",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E91827A7-2293-45C4-8FA0-EF9E1395353C.png",
+      "sha256": "e976f5c9253580b841c341b3769e8c18ca951c010bf555b4416d19ff27032aaa",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792344292.476,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-interaction-settings-build17",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/018A0CEB-FD71-4A1A-B722-E5CA39101EA0.png",
+      "sha256": "f1ea459430dc622bd399d66ea37e67746a509cb9d349555156bf7df476f7c6a6",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792344267.432,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-continuous-immersive-build17",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/AD8443D3-9532-46D0-88D8-FA68B7480720.png",
+      "sha256": "95d4282fbc1e58fcd2c1bc34d7e65dc1cbfbf0680f90dfaf080df39f6b74371d",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792344260.48,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-horizontal-immersive-build17",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/655251A8-411C-49A9-B7C0-02F0D0E9A8D1.png",
+      "sha256": "4fce1ffa6d6ff55db44db99044b459b449c9ae52b813c4a705932a71a77e2368",
+      "testIdentifier": "ReaderInterfaceUITests/testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu()",
+      "timestamp": 1792344189.153,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "reader-edges-portrait-restored-charcoal-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/3EB49B31-E063-4BBD-AF45-9786586B7D03.png",
+      "sha256": "eaba3addf92be116bf6ceffa11b1512e7f2b413cf80fa3c1d3b76855af5007d4",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344811.002,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-edges-landscape-charcoal-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4E911D2D-4D90-41A0-8202-4699F77DABCA.png",
+      "sha256": "9b43a8b55c43b0c71d1c736475d879bf91f171d1438698066a598c560f42b571",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344809.145,
+      "inspected": true,
+      "size": [
+        2622,
+        1206
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-edges-paused-charcoal-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D9C64D7A-A53B-43C5-BC06-9754925104C2.png",
+      "sha256": "509a582b8589c101cb5c9241f769df794bcca065fbbd64ce6815780093d5087a",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344807.072,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-edges-portrait-restored-warm-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/6144CE0D-A8D1-483D-911C-D2E04EE0B0ED.png",
+      "sha256": "8f8636aebf7b2a117cc978977994a6e56d8344df16d2cef51d31d2e79c1db5b7",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344784.822,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-edges-landscape-warm-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0EF02E41-3BA0-417A-86DF-F15E631DAB91.png",
+      "sha256": "70cc010b9071a8045eaa99a474e34a0607172468da744648ee15c02894440091",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344783.237,
+      "inspected": true,
+      "size": [
+        2622,
+        1206
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "reader-edges-paused-warm-build29",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/74C47996-E034-4402-8B74-B077AD27BB3B.png",
+      "sha256": "fdbe8814773f504cc6cde49c42df085e455e58c2e2aef9e8a374865356140db7",
+      "testIdentifier": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "timestamp": 1792344780.335,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+      "includeInPreview": false,
+      "reason": "Original A rotation sequence rejected; use physical screen captures from C supplementary review instead."
+    },
+    {
+      "name": "experience-layout-custom-reopened-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/D92FA3DA-2624-4E31-BCB2-D63EB8319798.png",
+      "sha256": "a7792b63577b473cf9cfb68cc7bc31fe8184374d90b795768f5bb3421df6045d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345041.985,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-layout-advanced-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C055B748-DF0C-4C53-A6B9-09102BD77C66.png",
+      "sha256": "a7792b63577b473cf9cfb68cc7bc31fe8184374d90b795768f5bb3421df6045d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345028.708,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-layout-comfortable-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/E1925887-1FE8-4511-A786-F8969033473F.png",
+      "sha256": "a6bd8f06ebad509756cbfb56b6476c9caf1e6b3c2dc6e63e4fd46ef86da3e782",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345025.028,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-layout-compact-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/0C4D207C-F2CE-406A-9D46-561F4CD445B2.png",
+      "sha256": "008f6bcb651381909c13dd1c59bcf53377454c1c70e0ecf8a247b8d3b12a5616",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345023.853,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-layout-spacious-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A1FDC15A-0AD6-4A12-8397-E436D1293248.png",
+      "sha256": "6980ba47b69a553f78eb3c833f07a51e2316b02b13cbf61357cc80072dbdce0d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345020.256,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-imported-font-search-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/A9C9DED2-44A3-4832-B282-57DBAB8F7CCB.png",
+      "sha256": "48de9c3c455a0621912e0d234cdba0512824694b3d217d8980edc604ba16c9f7",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345014.978,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-imported-font-grid-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C18C3DE9-4B0F-48EF-9B85-DFDF5727B469.png",
+      "sha256": "9a370ed2c9480df7910889a277c33adbcf6b8e343a3d85e1997bc7c06009b533",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345010.394,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "name": "experience-font-collection-entry-build27",
+      "path": "build/ci/39147081645/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/19D3EBD3-1449-4E8E-B1BE-81C56CB2EAE9.png",
+      "sha256": "aae4aed5cf1c4a9392eae22e8f13558d5ff6ac65728e9c012695f7f2ba923d4d",
+      "testIdentifier": "ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()",
+      "timestamp": 1792345007.128,
+      "inspected": true,
+      "size": [
+        1206,
+        2622
+      ],
+      "sourceRun": 39147081645,
+      "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/C45A5FD3-D752-4286-BCA4-464081315BEB.png",
+      "name": "reader-edges-portrait-restored-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c6abb2962ae0fc8bec34d5ecd0852e9aafc85452dfd5a55fa0734b8aa2308126",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6B008733-30E1-46E6-8FB9-6A75CE2B8924.png",
+      "name": "reader-edges-landscape-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5fcb10da099d1ce2d00b0795c908d0b97cb03796ce69d5e6e1bae09f57de855e",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/A510CCE3-940E-4AEE-984E-9F60D11B6B34.png",
+      "name": "reader-edges-app-crop-probe-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5c574e5c3f43644909bffa33abb11a9db1bb5f4b99e41079dc99a6542180ab82",
+      "inspected": true,
+      "includeInPreview": false,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/DBA5F2FD-01F1-4A94-BCEC-CBFACBA00393.png",
+      "name": "reader-edges-screen-probe-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5fcb10da099d1ce2d00b0795c908d0b97cb03796ce69d5e6e1bae09f57de855e",
+      "inspected": true,
+      "includeInPreview": false,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/316F95C3-EDA7-49BF-9AE7-A869F777A27E.png",
+      "name": "reader-edges-paused-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "920c07676226df25047cfab7e77a90909b0e5eb41bd3f3d0be63528c7dfbeffc",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/E6F58F35-BA71-4BD8-8AC7-43AE45207C0F.png",
+      "name": "reader-edges-portrait-restored-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "27a1dbdb9c52a3ac1556e7e45c66e465fc0438894dad4be60300713fbcf608f8",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/32EB8B25-496D-4236-B49F-F708BE0B15C8.png",
+      "name": "reader-edges-landscape-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "7c921bcce84b8fe0d7ca34c12d5926dee440ab86d52b237ab8af2103264def8b",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/EA564499-31AC-47F9-ADA0-C01AC8EB4232.png",
+      "name": "reader-edges-app-crop-probe-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5e43afc80b7123470cfa55f49c8bcdccd21b2509f17c1173b7f90612205f7370",
+      "inspected": true,
+      "includeInPreview": false,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/C00C9F37-7F3E-438E-82AE-DBADFF0D98EA.png",
+      "name": "reader-edges-screen-probe-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "7c921bcce84b8fe0d7ca34c12d5926dee440ab86d52b237ab8af2103264def8b",
+      "inspected": true,
+      "includeInPreview": false,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/FB7472F4-3767-4DCC-BFF0-441598C5D536.png",
+      "name": "reader-edges-paused-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c97243ff977737aac345dc4ae89386e47cc2c739f7e0f4944fdc95f6fde3be20",
+      "inspected": true,
+      "includeInPreview": true,
+      "sourceRun": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53"
+    }
+  ],
+  "originalFullReview": "build/ci/39147081645/EdgesReview/reviewed-rejected.json",
+  "supplementReview": "Documentation/ValidationLogs/m4-edges-build29-screen-native-review.json",
+  "reviewSummary": "A37原图/6完整录屏31总览/3窗口134帧已核，旧旋转错误序列继续拒绝；同生产输入的C新增10原图/81秒完整录屏6总览/3窗口114帧，浅深慢滚暂停、横屏和恢复竖屏正文与安全边缘可接受。双原图证实App横屏裁图黑区，Preview仅收C的6张实际阅读整屏图。旋转仍有加载和短暂章头再恢复，不作无缝动效、手机FPS或全设备验收。",
+  "limitations": [
+    "Scoped simulation only, not device FPS, power, all orientations/accessibility or M4 completion.",
+    "Orientation rebuild shows loading and briefly chapter head before anchor restoration. Not certified as seamless rotation.",
+    "C overall remains failed10/11 because inherited initial-cover location case timed out before font-change actions; no claim of unique root cause or production fix.",
+    "A rejected rotation record and C inherited initial-cover timeout remain unchanged; isolated fonts2 passing does not establish a root-cause fix."
+  ],
+  "deviceAccepted": false,
+  "M4Complete": false
+}

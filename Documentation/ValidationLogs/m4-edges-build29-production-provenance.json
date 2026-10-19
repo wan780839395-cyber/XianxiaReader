@@ -1,5 +1,5 @@
 {
-  "recordedAtUTC": "2026-10-18T18:50:26.285050+00:00",
+  "recordedAtUTC": "2026-10-19T00:26:13.371714+00:00",
   "fullRun": 39147081645,
   "releaseSource": "a65086c1151831b54d90ed083fa36fc27848b5cb",
   "postFullTestRun": 39155583794,
@@ -13,7 +13,15 @@
     "scripts/ci_reader_diagnostic.sh"
   ],
   "postFullTestsPassed": false,
-  "nativeAccepted": false,
+  "nativeAccepted": true,
   "conditionalStrategy": "If the stricter new test and native review pass on identical production inputs, retain full163/macOSCore/Release results under a650 and record supplementary11 under f320 separately. Do not claim f320 ran full163 or built device Release. Any production/build/resource/lock change requires a new full build. No delivery while either gate is pending.",
-  "IPAReuseConditionsSatisfied": false
+  "IPAReuseConditionsSatisfied": true,
+  "allSupplementRunsPassed": false,
+  "newChangedRotationTestPassed": true,
+  "screenDiagnosticActual": "10/11; old initial-cover probe failure preserved",
+  "fontsRecheckRun": 39179687615,
+  "fontsRecheckActual": "2/2",
+  "fontsRecheckSource": "f32002880ebe7702321cce90f1d030823c047c53",
+  "originalFailureRootCauseResolved": false,
+  "decision": "Retain actual full163/macOSCore/Release under a650. Production/build/resource/lock/default full CI inputs are byte-identical to f320. Changed rotation test passes and has scoped native review in C; only C inherited failure occurred before typography and passes unchanged in one isolated same-source fonts2 run. Accept incremental edges delivery with original timing failure explicitly retained as a remaining risk. Do not claim C11 passed, f320 full163/Release, or font root cause fixed."
 }

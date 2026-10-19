@@ -152,5 +152,11 @@
     "UISettingsLifecycleTraceAcquired": false,
     "originalFailurePreserved": true
   },
-  "localCollectorRecovery": "Artifact common ancestor was build; extraction is at artifact root. Corrected ignored collector path, reused SHA/CRC verified artifacts with no redownload; initial local traceback retained."
+  "localCollectorRecovery": "Artifact common ancestor was build; extraction is at artifact root. Corrected ignored collector path, reused SHA/CRC verified artifacts with no redownload; initial local traceback retained.",
+  "localRawEvidenceRetention": {
+    "record": "Documentation/ValidationLogs/m4-edges-build29-ci-retention.json",
+    "completeLocalRawCIRetained": false,
+    "historicalResultsAndTextLogsRetained": true,
+    "deliveredIPAAndKitUnchanged": true
+  }
 }
