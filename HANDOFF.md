@@ -1,12 +1,14 @@
 # 当前交接与恢复点
 
-## R1设置隔离：实现保留，完整发布失败
+## R1设置隔离：原完整门槛失败；当前只修正纸色测试取样
 
-完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/`024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f`于2026-10-19 21:11（上海）结束failure。实际xcresult 171/177，6失败、0跳过：集成146/149、UI25/28；设置/生命周期35及关闭合同2项通过。test65，summary/export/recording均0；Swift源码编译警告/错误0，Release被阻止，无Build30 IPA。artifact12188251448完整digest/CRC核验，本地原件见build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics。
+完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/024fc87实际171/177（集成146/149、UI25/28），6失败、0跳过；Release被阻止，无Build30 IPA，Build29仍为最后交付。R1设置/生命周期35及关闭合同2通过，原实现及未提交工作保留，不能称旧加载/定位故障已修。
 
-当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。当前该实验尚未派发。
+同机录屏对照[39263942566](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39263942566)/f02ce135已于2026-10-19 22:40（上海）结束failure。ON64/67、OFF66/67，均test65、summary/export/recording0；两次设置/生命周期35、关闭2与最小WebKit控制1/8loads通过。ON存在60秒WebContent启动和blank，OFF仍在换字体前捕获h1/char0，未满足原深段落前置条件。录屏不能解释全部失败，预热/顺序仍混杂，不追加full碰运气。artifact12195716352完整digest/CRC已核，原件build/ci/39263942566/diagnostic/RecordingControl，记录Documentation/ValidationLogs/recording-control-39263942566.json。Linux137与4TXT、repository29实际通过，非iOS/Release验收。
 
-正常HEAD6d761749、空index与未提交改动保留；原554构建输入在恢复时逐摘要匹配024。原fonts定向39240216459为2/2、直接段首39235769577为1/1，不代替当前完整门槛。旧字体故障根因仍未唯一确定；Build29最后交付，手机/TrollStore待验收。长期教训已在根AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
+当前独立切片只修正已证实的旋转纸色误判：原图正文/暖色实际正常，旧40x40中心879/1600而门槛880。改用120x120周围纸色，仍55%、RGB±5和alpha>250，增加密集笔画/错误底色反例；原16测试方法主体逐项相同。生产源码全部不改。触及Tests/UI/ReaderInterfaceUITests.swift、scripts/ci_reader_diagnostic.sh、.github/workflows/ios-build.yml，新增reader-ready-ui只跑新反例、原旋转与两项原白屏重开共4UI，原断言/等待/功能预算保持，不额外后台录屏。不把此修正当作加载或定位修复；Windows453语法新增0、29工具中26通过3POSIX跳过、Bash语法通过；随后冻结，待原生编译/4UI。修改后UI29/full178仅为预期数量，未通过。
+
+正常HEAD6d761749、普通index与旧交付包保持；新冻结使用独立证明，不能把旧f02结果记到新输入。长期规则在根AGENTS.md及Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，不做R2/R3/R4或M5，不关机。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

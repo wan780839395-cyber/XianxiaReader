@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "full177-failed-recording-control-planned",
+  "stage": "paper-probe-fixture-native-pending",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -528,18 +528,20 @@
     "failureProof": "Documentation/ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json"
   },
   "latestWindows": {
-    "SwiftFiles": 453,
-    "addedSyntaxDiagnostics": 0,
-    "preexistingVendorGrammarLimits": 54,
+    "SwiftGrammarFiles": 453,
+    "newGrammarDiagnostics": 0,
+    "pristineVendorGrammarLimitations": 54,
     "toolingPassed": 26,
-    "bashSyntaxPassed": true,
-    "SwiftCompilation": false
+    "toolingSkippedPOSIX": 3,
+    "bashSyntax": true,
+    "sourceCompiler": false,
+    "evidence": ".cache/recovery/20261019-webkit-loading/windows-paper-probe.log"
   },
   "R1Accepted": false,
   "ReleaseBuilt": false,
   "IPAProduced": false,
   "currentBlocker": "Three native WebKit rendering failures; subprocess launches measured 24-31 seconds; cause not fully established",
-  "nextStep": "Independent minimal loading comparison; do not expand to R2/R3/R4 or blindly repeat the full CI",
+  "nextStep": "Windows checks then fresh native four-case UI diagnostic; no full retry; capture/setup failure retained separately",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -590,20 +592,43 @@
   "newUnitTestsSinceBuild29": 12,
   "newUITargetMeasurementTestsSinceBuild29": 1,
   "expectedUnit": 148,
-  "expectedUITarget": 28,
-  "expectedTotal": 176,
+  "expectedUITarget": 29,
+  "expectedTotal": 178,
   "latestCompletedRun": 39230331856,
   "latestCompletedEvidence": "Documentation/ValidationLogs/font-reopen-checkpoints-39230331856.json",
   "pendingLocalChange": {
-    "selection": "paged-restore",
-    "expectedTests": 1,
-    "newRegression": "direct managed EPUB/sourceHanSerif150percent reopen at p25 char0; synchronous scroll/font observation only",
-    "compiled": false,
-    "expectedFinalUnit": 149,
-    "expectedFinalUI": 28,
-    "expectedFinalTotal": 177
+    "scope": "paper-probe fixture only; production unchanged",
+    "selection": "reader-ready-ui",
+    "expectedSelected": 4,
+    "nativeCompile": false,
+    "nativePassed": false
   },
-  "currentDiagnostic": null,
+  "currentDiagnostic": {
+    "run": 39263942566,
+    "sourceRevision": "f02ce1350b024b0087981f52112a8461681d253d",
+    "selection": "recording-control",
+    "perCondition": 67,
+    "releaseAcceptance": false,
+    "verifiedLinuxCore": {
+      "passed": 137,
+      "releaseTXTProbeCases": 4,
+      "compilerDiagnostics": 0,
+      "evidence": "build/ci/39263942566/linux-core-check.json",
+      "artifactDigestAndCRC": true
+    },
+    "verifiedRepositoryTests": {
+      "passed": 29,
+      "failed": 0,
+      "POSIXFixturesExecuted": true,
+      "evidence": "build/ci/39263942566/repository-checks.log"
+    },
+    "conclusion": "failure",
+    "passedByCondition": {
+      "recording-on": 64,
+      "recording-off": 66
+    },
+    "evidence": "Documentation/ValidationLogs/recording-control-39263942566.json"
+  },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
     "run": 39235769577,

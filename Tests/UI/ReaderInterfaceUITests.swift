@@ -107,22 +107,46 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
     }
 
     @MainActor private func edgePaperMatches(_ image: UIImage, rgb: [UInt8]) -> Bool {
-        guard let source = image.cgImage, source.width >= 40, source.height >= 40,
-              let center = source.cropping(to: CGRect(x: CGFloat((source.width - 40) / 2),
-                  y: CGFloat((source.height - 40) / 2), width: 40, height: 40)) else { return false }
-        var bytes = [UInt8](repeating: 0, count: 40 * 40 * 4)
+        guard let source = image.cgImage, source.width >= 120, source.height >= 120,
+              let center = source.cropping(to: CGRect(x: CGFloat((source.width - 120) / 2),
+                  y: CGFloat((source.height - 120) / 2), width: 120, height: 120)) else { return false }
+        var bytes = [UInt8](repeating: 0, count: 120 * 120 * 4)
         let rendered = bytes.withUnsafeMutableBytes { storage in
-            guard let context = CGContext(data: storage.baseAddress, width: 40, height: 40,
-                bitsPerComponent: 8, bytesPerRow: 160, space: CGColorSpaceCreateDeviceRGB(),
+            guard let context = CGContext(data: storage.baseAddress, width: 120, height: 120,
+                bitsPerComponent: 8, bytesPerRow: 480, space: CGColorSpaceCreateDeviceRGB(),
                 bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else { return false }
-            context.draw(center, in: CGRect(x: 0, y: 0, width: 40, height: 40)); return true
+            context.draw(center, in: CGRect(x: 0, y: 0, width: 120, height: 120)); return true
         }
         guard rendered else { return false }
         let paperPixels = stride(from: 0, to: bytes.count, by: 4).filter { index in
             bytes[index + 3] > 250 && (0..<3).allSatisfy { abs(Int(bytes[index + $0]) - Int(rgb[$0])) <= 5 }
         }.count
-        // Text strokes may cross the sample. The actual paper must dominate.
-        return paperPixels >= 880
+        // Keep the original 55% paper requirement and color/alpha tolerances.
+        // A 40px sample can sit inside one Chinese glyph; 120px includes
+        // surrounding paper instead of treating dense strokes as the page color.
+        return paperPixels >= 7920
+    }
+
+    @MainActor func testPaperProbeIncludesSurroundingPaperAndRejectsWrongTheme() {
+        func fixture(background: [UInt8], center: [UInt8]) -> UIImage {
+            let format = UIGraphicsImageRendererFormat(); format.scale = 1; format.opaque = true
+            return UIGraphicsImageRenderer(size: CGSize(width: 240, height: 240), format: format).image { context in
+                func color(_ rgb: [UInt8]) -> UIColor {
+                    UIColor(red: CGFloat(rgb[0]) / 255, green: CGFloat(rgb[1]) / 255,
+                            blue: CGFloat(rgb[2]) / 255, alpha: 1)
+                }
+                color(background).setFill(); context.fill(CGRect(x: 0, y: 0, width: 240, height: 240))
+                color(center).setFill(); context.fill(CGRect(x: 100, y: 100, width: 40, height: 40))
+            }
+        }
+        for (paper, ink, wrong) in [([UInt8(248), 245, 237], [UInt8(48), 56, 50], [UInt8(36), 40, 38]),
+                                     ([UInt8(36), 40, 38], [UInt8(190), 191, 186], [UInt8(248), 245, 237])] {
+            XCTAssertTrue(edgePaperMatches(fixture(background: paper, center: ink), rgb: paper),
+                          "Dense text in the old 40px center must not misclassify the surrounding paper")
+            XCTAssertFalse(edgePaperMatches(fixture(background: wrong, center: wrong), rgb: paper))
+            XCTAssertFalse(edgePaperMatches(fixture(background: wrong, center: paper), rgb: paper),
+                           "A small correct-color patch must not hide a wrong page theme")
+        }
     }
 
     @MainActor func testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates() {

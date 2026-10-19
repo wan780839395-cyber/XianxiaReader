@@ -159,10 +159,20 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 
 完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/`024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f`于2026-10-19 21:11（上海）结束failure。实际xcresult 171/177，6失败、0跳过：集成146/149、UI25/28；设置/生命周期35及关闭合同2项通过。test65，summary/export/recording均0；Swift源码编译警告/错误0，Release被阻止，无Build30 IPA。artifact12188251448完整digest/CRC核验，本地原件见build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics。
 
-当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。当前该实验尚未派发。
+当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。此处为派发前计划，实际结束结果见下节39263942566。
 
 本轮iOS job约109分18秒：原31项renderer累计583.418秒、完整149集成854.649秒；28UI3344.186秒。准备/编译/启动和附件导出另计，未执行设备Release。完整原件校验见ValidationLogs/full-39243868846-failure.json。
 
 对照依据：原fonts诊断没有额外simctl录屏，完整流程有贯穿构建与测试的后台recordVideo；当前失败有WebContent/GPU失去响应，但尚无两者因果证据。复用既有ci_reader_diagnostic.sh reader-session和同runner DerivedData，功能预算、fixture、所有67项断言不改；新包装脚本仅控制外部录屏和保留两份原件。按上轮实际583秒renderer、冷准备约28分钟估算，两组加导出在现有60分钟诊断job范围内；若未完成，记录实际断点，不将未执行计通过。
 
 参考[Apple Xcode测试报告（Xcode15起的原生测试录屏）](https://developer.apple.com/videos/play/wwdc2023/10175/)，本项目Xcode16.4已真实导出每用例视频；[fastlane2.228.0 scan命令生成器](https://github.com/fastlane/fastlane/blob/2.228.0/scan/lib/scan/test_command_generator.rb)保留指定DerivedData、resultBundle和only-testing及pipefail。采用同构建目录及独立结果文件的办法，不引入fastlane依赖、不启用其失败重试、不删除原生视频或断言。顺序预热与runner状态仍需独立判断：on失败/off成功只支持继续核查；两者同失败或全成功不能宣称后台录屏是唯一根因。
+
+派发时记录：对照39263942566/f02ce135已实际派发，repository-checks在Linux真实29/29通过（含3项退出码保全fixture）；原生结果待。复核原始旋转图另找到40像素中心879/1600纸色、门槛880的字形污染，原生geometry screenPaper=false；该片正文/底色实际可见。只在缓存准备120像素代表区域候选并保留55%比例、RGB+/-5与alpha>250，新增错误主题/孤立正确色块反例；未应用、未Apple编译。参考[SnapshotTesting1.18.6的UIImage像素比例与CGContext抽样](https://github.com/pointfreeco/swift-snapshot-testing/blob/1.18.6/Sources/SnapshotTesting/Snapshotting/UIImage.swift)及[Apple XCUIScreenshot](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshot)。它是独立观测问题，不解释about:blank或101秒进程启动。
+
+## 39263942566实际结果与纸色测试独立切片
+
+同一runner ON64/67、OFF66/67，均真实test65、summary/export/recording0，两个原始xcresult及artifact digest/CRC已核。ON最大已记录WebContent启动60.481889秒，OFF3.59652秒（仅日志报告集合，不代表所有启动）；ON三项失败，OFF仍有原hidden-reflow用例在更换字体前捕获h1/char0，未满足深段落前置条件。两组设置/生命周期35、关闭2和框架控制1/8loads通过。顺序和预热仍混杂，既不宣称录屏唯一根因，也不以OFF66/67作为发布成功。完整数据见ValidationLogs/recording-control-39263942566.json。
+
+原生job45分35秒；ON至首测20分45.925秒、67项513.388秒，OFF至首测48.259秒、67项333.371秒，开始前模拟器准备、诊断导出与上传另计。测试期1分钟load median分别291.49/116.83，不能把它当CPU百分比或单独的因果证明。
+
+当前只应用已证实的纸色观测修正：Tests/UI/ReaderInterfaceUITests.swift的40像素中心改120，纸色55%、RGB±5和alpha>250全部保留，新原生正反例要求暖/深底色密集笔画仍接受、错误底色及孤立正确色块拒绝。原16测试主体逐项相同；无生产变更。脚本/workflow只增加reader-ready-ui四项定向（新反例、原旋转、原两项白屏重开），继续保留真正可读、无alert/loading、原等待预算。Windows453语法新增0、29工具中26通过3POSIX跳过、Bash语法通过；原生编译及4UI尚待，不计作178全套通过。

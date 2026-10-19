@@ -1,0 +1,194 @@
+{
+  "recordedAtUTC": "2026-10-19T14:48:45.038212+00:00",
+  "branch": "codex/refactor-reader-settings",
+  "coverage": "Only completed native jobs whose actual run.json is currently local; not a complete account usage or implementation-hours estimate",
+  "completedNativeJobCount": 17,
+  "sumNativeJobMinutes": 575.48,
+  "jobs": [
+    {
+      "run": 39182894124,
+      "sourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T00:57:03Z",
+      "completedAt": "2026-10-19T01:08:16Z",
+      "seconds": 673.0,
+      "source": "build/ci/39182894124/run.json"
+    },
+    {
+      "run": 39184148461,
+      "sourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T01:13:02Z",
+      "completedAt": "2026-10-19T01:56:37Z",
+      "seconds": 2615.0,
+      "source": "build/ci/39184148461/run.json"
+    },
+    {
+      "run": 39188609488,
+      "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T02:11:23Z",
+      "completedAt": "2026-10-19T02:23:09Z",
+      "seconds": 706.0,
+      "source": "build/ci/39188609488/run.json"
+    },
+    {
+      "run": 39189899149,
+      "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T02:27:36Z",
+      "completedAt": "2026-10-19T03:13:41Z",
+      "seconds": 2765.0,
+      "source": "build/ci/39189899149/run.json"
+    },
+    {
+      "run": 39194509105,
+      "sourceRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T03:26:29Z",
+      "completedAt": "2026-10-19T03:42:25Z",
+      "seconds": 956.0,
+      "source": "build/ci/39194509105/run.json"
+    },
+    {
+      "run": 39196134450,
+      "sourceRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T03:47:04Z",
+      "completedAt": "2026-10-19T04:41:38Z",
+      "seconds": 3274.0,
+      "source": "build/ci/39196134450/run.json"
+    },
+    {
+      "run": 39203522040,
+      "sourceRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T05:17:01Z",
+      "completedAt": "2026-10-19T05:38:55Z",
+      "seconds": 1314.0,
+      "source": "build/ci/39203522040/run.json"
+    },
+    {
+      "run": 39209145399,
+      "sourceRevision": "cb1421185a56b51b083ba619b8265770264b3dd6",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T06:20:12Z",
+      "completedAt": "2026-10-19T06:34:46Z",
+      "seconds": 874.0,
+      "source": "build/ci/39209145399/run.json"
+    },
+    {
+      "run": 39211610770,
+      "sourceRevision": "383b11a69f71094e229facaa7e4129e128e8956b",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T06:46:09Z",
+      "completedAt": "2026-10-19T07:00:14Z",
+      "seconds": 845.0,
+      "source": "build/ci/39211610770/run.json"
+    },
+    {
+      "run": 39214692053,
+      "sourceRevision": "9bde1735c64b16256595bdb8afbe416a92007628",
+      "job": "ios",
+      "conclusion": "cancelled",
+      "startedAt": "2026-10-19T07:16:10Z",
+      "completedAt": "2026-10-19T07:22:07Z",
+      "seconds": 357.0,
+      "source": "build/ci/39214692053/run.json"
+    },
+    {
+      "run": 39215839905,
+      "sourceRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
+      "job": "ios",
+      "conclusion": "cancelled",
+      "startedAt": "2026-10-19T07:27:17Z",
+      "completedAt": "2026-10-19T08:32:17Z",
+      "seconds": 3900.0,
+      "source": "build/ci/39215839905/run.json"
+    },
+    {
+      "run": 39226220147,
+      "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T08:57:24Z",
+      "completedAt": "2026-10-19T09:22:56Z",
+      "seconds": 1532.0,
+      "source": "build/ci/39226220147/run.json"
+    },
+    {
+      "run": 39230331856,
+      "sourceRevision": "e960186ce4d34d5bbb4fc2a61070f3ac1b74a9cd",
+      "job": "reading-diagnostic",
+      "conclusion": "cancelled",
+      "startedAt": "2026-10-19T09:30:47Z",
+      "completedAt": "2026-10-19T10:03:38Z",
+      "seconds": 1971.0,
+      "source": "build/ci/39230331856/run.json"
+    },
+    {
+      "run": 39235769577,
+      "sourceRevision": "2f93a11cedcebd6008e8e3134b3c5fbf2ba4fe58",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T10:14:44Z",
+      "completedAt": "2026-10-19T10:46:01Z",
+      "seconds": 1877.0,
+      "source": "build/ci/39235769577/run.json"
+    },
+    {
+      "run": 39240216459,
+      "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T10:51:46Z",
+      "completedAt": "2026-10-19T11:18:03Z",
+      "seconds": 1577.0,
+      "source": "build/ci/39240216459/run.json"
+    },
+    {
+      "run": 39243868846,
+      "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T11:22:16Z",
+      "completedAt": "2026-10-19T13:11:34Z",
+      "seconds": 6558.0,
+      "source": "build/ci/39243868846/run.json"
+    },
+    {
+      "run": 39263942566,
+      "sourceRevision": "f02ce1350b024b0087981f52112a8461681d253d",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T13:54:33Z",
+      "completedAt": "2026-10-19T14:40:08Z",
+      "seconds": 2735.0,
+      "source": "build/ci/39263942566/run.json"
+    }
+  ],
+  "currentFull39243868846": {
+    "integrationCount": 149,
+    "integrationSeconds": 854.649,
+    "rendererCount": 31,
+    "rendererSeconds": 583.418,
+    "uiCount": 28,
+    "uiSeconds": 3344.186,
+    "releaseExecuted": false,
+    "warning": "Per-case/suite sums are not interchangeable with job wall-clock time"
+  },
+  "lessons": [
+    "Repeated cold native preparation and full UI validation dominate observed runtime; architecture edits alone do not remove them",
+    "Preserve failures by contract and use one hypothesis per remote comparison; no unconditioned full retries",
+    "Do not attribute all failures to code coupling or to the CI host without causal evidence"
+  ]
+}

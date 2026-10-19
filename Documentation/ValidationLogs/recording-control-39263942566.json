@@ -1,0 +1,124 @@
+{
+  "recordedAtUTC": "2026-10-19T14:46:29.085379+00:00",
+  "run": 39263942566,
+  "sourceRevision": "f02ce1350b024b0087981f52112a8461681d253d",
+  "conclusion": "failure",
+  "perCondition": 67,
+  "artifact": 12195716352,
+  "artifactBytes": 248917388,
+  "artifactSHA256": "276716e4215d16baa7446d0908cd48ebcaf9ddf351d4e3ba21c7527d0b543bf5",
+  "artifactDigestAndCRC": true,
+  "conditions": [
+    {
+      "label": "recording-on",
+      "passed": 64,
+      "failed": 3,
+      "skipped": 0,
+      "exits": {
+        "diagnostic": 65,
+        "recording": 0
+      },
+      "failedCases": [
+        {
+          "suite": "XianxiaReaderTests.ReaderRenderingTests",
+          "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+          "result": "failed",
+          "seconds": 148.014
+        },
+        {
+          "suite": "XianxiaReaderTests.ReaderRenderingTests",
+          "name": "testPagedReopenRestoresFirstCharacterOfLongParagraph",
+          "result": "failed",
+          "seconds": 34.594
+        },
+        {
+          "suite": "XianxiaReaderTests.ReaderRenderingTests",
+          "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+          "result": "failed",
+          "seconds": 32.762
+        }
+      ],
+      "caseSeconds": 512.919,
+      "maximumLoggedWebContentLaunchSeconds": 60.481889,
+      "launchLogIsNotCompletePopulation": true,
+      "originalSummary": "build\\ci\\39263942566\\diagnostic\\RecordingControl\\recording-on\\test-results-summary.json"
+    },
+    {
+      "label": "recording-off",
+      "passed": 66,
+      "failed": 1,
+      "skipped": 0,
+      "exits": {
+        "diagnostic": 65,
+        "recording": 0
+      },
+      "failedCases": [
+        {
+          "suite": "XianxiaReaderTests.ReaderRenderingTests",
+          "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+          "result": "failed",
+          "seconds": 15.898
+        }
+      ],
+      "caseSeconds": 333.254,
+      "maximumLoggedWebContentLaunchSeconds": 3.59652,
+      "launchLogIsNotCompletePopulation": true,
+      "originalSummary": "build\\ci\\39263942566\\diagnostic\\RecordingControl\\recording-off\\test-results-summary.json"
+    }
+  ],
+  "costAndCoverage": [
+    {
+      "condition": "recording-on",
+      "caseSeconds": 512.919,
+      "suiteSeconds": 513.388,
+      "firstTestAt": "2026-10-19 14:19:51.925",
+      "preparationBeforeFirstTestSeconds": 1245.925,
+      "resourceSamplesDuringTests": 67,
+      "resourceCoverageSeconds": 509.3,
+      "resourceStopsBeforeEndSeconds": 0.1,
+      "testLoadOneMinute": {
+        "min": 143.7900390625,
+        "median": 291.48779296875,
+        "max": 554.4150390625
+      },
+      "webContentLaunchLoggedCount": 107,
+      "webContentLaunchLoggedMax": 60.481889,
+      "launchLogIsNotAllLaunches": true
+    },
+    {
+      "condition": "recording-off",
+      "caseSeconds": 333.254,
+      "suiteSeconds": 333.371,
+      "firstTestAt": "2026-10-19 14:31:21.259",
+      "preparationBeforeFirstTestSeconds": 48.259,
+      "resourceSamplesDuringTests": 55,
+      "resourceCoverageSeconds": 326.7,
+      "resourceStopsBeforeEndSeconds": 4.2,
+      "testLoadOneMinute": {
+        "min": 89.79052734375,
+        "median": 116.83203125,
+        "max": 154.6357421875
+      },
+      "webContentLaunchLoggedCount": 23,
+      "webContentLaunchLoggedMax": 3.59652,
+      "launchLogIsNotAllLaunches": true
+    }
+  ],
+  "settingsAndLifecyclePerCondition": {
+    "passed": 35,
+    "failed": 0
+  },
+  "closeContractsPerCondition": {
+    "passed": 2,
+    "failed": 0
+  },
+  "frameworkControlPerCondition": {
+    "passed": 1,
+    "loads": 8
+  },
+  "sourceCompilerDiagnostics": 0,
+  "interpretation": "Recorder alone does not explain all failures. OFF still fails a deep-word setup assertion before any font change. On/off order and warmup remain confounds; no unique root cause or release acceptance.",
+  "next": "Apply only confirmed paper-probe fixture correction, run four direct UI cases; retain capture/setup failure separately. No full retry.",
+  "releaseExecuted": false,
+  "ipaGenerated": false
+}
