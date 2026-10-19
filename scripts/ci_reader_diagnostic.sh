@@ -3,8 +3,16 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts, panels, recovery, settings or settings-ui}"
+selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui or webkit-loading}"
 case "$selection" in
+  webkit-loading)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLoadingControlTests
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testTallCoverUsesWholeViewportInPaginatedAndScrollingModes
+    )
+    ;;
   settings-ui)
     cases=(
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls

@@ -54,12 +54,12 @@ class UIBaselineTests(unittest.TestCase):
                 check_environment(*value, baseline)
 
     def test_current_unit_gate_rejects_failure_skip_or_missing_test(self):
-        check_unit_summary(dict(result="Passed", totalTestCount=145, passedTests=145, failedTests=0, skippedTests=0))
-        for value in [dict(result="Failed", totalTestCount=145, passedTests=144, failedTests=1, skippedTests=0),
-                      dict(result="Passed", totalTestCount=145, passedTests=144, failedTests=0, skippedTests=1),
-                      dict(result="Passed", totalTestCount=144, passedTests=144, failedTests=0, skippedTests=0),
-                      dict(result="Failed", totalTestCount=145, passedTests=145, failedTests=0, skippedTests=0),
-                      dict(result="Passed", totalTestCount=145, passedTests=145, failedTests=0, skippedTests=0,
+        check_unit_summary(dict(result="Passed", totalTestCount=146, passedTests=146, failedTests=0, skippedTests=0))
+        for value in [dict(result="Failed", totalTestCount=146, passedTests=145, failedTests=1, skippedTests=0),
+                      dict(result="Passed", totalTestCount=146, passedTests=145, failedTests=0, skippedTests=1),
+                      dict(result="Passed", totalTestCount=145, passedTests=145, failedTests=0, skippedTests=0),
+                      dict(result="Failed", totalTestCount=146, passedTests=146, failedTests=0, skippedTests=0),
+                      dict(result="Passed", totalTestCount=146, passedTests=146, failedTests=0, skippedTests=0,
                            testFailures=["an inconsistent failure must not be hidden"])]:
             with self.subTest(summary=value), self.assertRaises(ValueError):
                 check_unit_summary(value)
