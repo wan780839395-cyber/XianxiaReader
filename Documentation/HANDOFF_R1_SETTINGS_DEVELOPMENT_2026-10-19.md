@@ -60,3 +60,37 @@ R1生产代码仍只有AppServices/ReaderViewModel/ReaderSettingsPersistence三�
 
 实现、成熟项目/官方依据、失败详情与当前验证入口：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)、[R1验证记录](Documentation/ValidationLogs/m4-settings-isolation-r1.json)。设置职责提取已编译并通过定向回归，但R1整体验收仍未完成；Build29仍最后交付，没有本片IPA。下一断点是最小WebKit加载/子进程启动对照，先证实原因或隔离条件，再改动与重测；不继续无假设地重跑整套，不扩大到R2/R3/R4，不放宽20秒/3秒预算。
 
+
+
+## 39215839905结束前的旧交接快照（仅历史，不是当前运行状态）
+
+## R1设置隔离与关闭合同修正（2026-10-19）
+
+39214692053/9bde173已由Agent主动请求取消：字体前置步骤仍执行中，完整验证/Release尚未执行。原因是代码复核发现新的测试屏障对中间字体的预加载页也生效，测试仅持有当前正文页的释放句柄；现将屏障限定到one.xhtml，与原断言目标相同，其他预加载页只等待原生fonts.ready。不是源码失败，不把取消算测试通过/失败；等待最终状态后重新冻结。生产两文件修正保持383b11a相同。取消前job状态保留build/ci/39214692053/before-agent-cancel.json。
+
+当前唯一运行：[fonts-full 39215839905](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39215839905)，冻结源be7c4157300574962171ccd09be0292b4b9012bc/codex/refactor-reader-settings。上一fonts-full39214692053由Agent取消并已终止，不是源码失败。当前将人工屏障限定在one.xhtml，预加载页不持有；实际JS语法及三场景放行协议已本地通过（不是原生验收）。554输入/Git blob、空正常index和HEAD已核；Windows453语法新增0/26工具通过。约15:50字体前置步骤已成功，当前完整构建/测试/包步骤执行中；原字体预检summary须最终下载后核2/2，不凭step状态编造数量。完整148+28及严格无签名Release30仍待，预检与完整结果独立，旧UI不复用；无新IPA。不要改构建ref或重复dispatch。
+
+16:04续核：Linux Core137及4组Release TXT探针已从本轮完整artifact实际核验，artifact12169592541的SHA/digest/CRC一致，完整提取在build/ci/39215839905/core；重复ZIP/分片已按既定规则移除。iOS仍执行同一完整步骤。用户明确授权本地浏览器并@Browser；config中Browser插件enabled=true，但cua实际仍报Local browser use is disabled in Work settings，当前无修改该Work开关的接口，不能归因用户禁用，也不能说已开启。不影响现有CLI验证，无需为此重跑CI。
+
+16:06预算复核：本轮iOS在15:27:17开始，job原限额60分钟；字体预检约15:50结束。历史8f的UI阶段约31分37秒，因此当前合并安排存在到16:27左右超时的风险，属于Agent流水线预算安排问题，并非已经发生的源码失败。保持当前运行；结束后先核实际完成阶段及原件，不盲重跑全部。完整流程已补入job总预算和证据上传余量规则。
+
+用户要求把教训写入整个项目并继续完成。根AGENTS.md已新增长期规则，并引用Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md；一次一个切片，每次远程实验明确假设和最小范围，不无假设重复整套，不把定向通过当发布通过。
+
+最新39211610770/383b11a已结束，65/66，两个新关闭合同和原三个加载失败用例全部通过；唯一失败是旧分页字体用例等待800ms中间态，尚未请求最终字体。103条有界资源样本观察到主机压缩内存峰值2763MiB、空闲最低55MiB；调度/资源压力确实存在，但不证明历史慢启动唯一原因。原始结果及采样摘要见Documentation/ValidationLogs/reader-session-close-39211610770.json。
+
+当前准备最后候选：生产修正代码与383b11a相同；只把该旧字体测试的800ms故障注入改为原生fonts.ready加显式屏障，要求中间字体仍未完成时发出最终选择，再主动放行，保留深字锚点/最终字体可见断言和生产预算；失败后的teardown也显式放行。原28个renderer主体中27个逐字保持，1个只改竞态注入同步；新增2关闭合同与1control，总148单元/集成、28 UI。
+
+CI按GitHub官方主机规格改为显式macos-15-intel（4核14GB，Xcode16.4/16F6及iOS18.5保持）。fonts-full先在同一runner跑原两项字体定向，失败真实阻止后续完整门槛和IPA并保留原件；通过后再跑全部148+28及严格Release，重用同runner构建目录避免再准备一台机器。旧ARM UI不复用。26工具测试含新preflight的65/23退出码拒绝和原件保留回归；未派发前不能假定原生通过。
+
+已核实的实验：
+- 39209145399/cb14211实际3/4。微型scheme连续8次加载释放通过，旧六字体第6次重建WebContent启动62.154176秒而失败，不能断言全部是环境问题。加载/关闭100ms观测不证明永久泄漏；临时弱采样已移除，control排末尾避免预热reader。
+- 39209591549/99acd92实际0/2，在未修改生产上复现：分页关闭后导航/UI/scroll回调与预加载视图未清；立即关闭后分页和连续均能迟到创建WebView。两组原件digest/CRC已核，完整日志/summary及断言记录Documentation/ValidationLogs/webkit-loading-control-39209145399.json和webkit-close-contract-red-39209591549.json。
+
+当前修正仅Adapter close调用和Vendor navigator关闭合同（另UPSTREAM准确摘要）：统一终止两容器，先清分页delegate再移除，触发Readium 3.11原始PaginationView/spread clear；initialize开始及await返回后拒绝已关闭会话，完成初始化等待。未改App/UI/Core、存储格式、Locator、排版、锁文件或版本，保留20秒/3秒/字体15秒预算；原28个renderer函数正文不改，新增2关闭合同+1control，总单元/集成为148，UI28。旧UI保护已实际拒绝复用，因此66项通过后必须完整148+28和严格设备Release，不能走unit-release。
+
+R1设置持久化已实现，App生产范围仍3文件，原设置/生命周期35项最新旧run全过。上个完整39196134450/8f的28 UI全过但整体失败；39203522040/cb为142/145、3旧WebKit失败，严格Release阻止。Build29仍最后交付，没有Build30 IPA。R2/R3/R4未实现，手机/M4整体验收未完成。关闭缺口已复现不等于全部慢启动独因已修。
+
+正常HEAD6d761749911233122bcd031fcf718d22a19f9e77、空index及大量既有未提交源码保持。精确备份/差异/554输入见.cache/recovery/20261019-webkit-loading/production-before、close-fix-candidate.json、source-proof-close-fix.json；53旧交付包SHA保全见build/ci/39203522040/recovery-checkpoint.json，旧恢复ZIP未触及。后续若改Vendor/UPSTREAM.json的验证状态，也属于保护输入变化；最终完整门槛冻结前移除临时pending状态，之后只更新项目文档，不回改已构建Vendor元数据。不关机。
+
+完整方案：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。此前断点及所有旧失败历史归档Documentation/HANDOFF_R1_SETTINGS_DEVELOPMENT_2026-10-19.md，不把归档中的运行状态当当前任务。
+

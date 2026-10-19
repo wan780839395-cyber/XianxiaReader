@@ -82,7 +82,9 @@ jobs:
     needs: [repository-checks, core-tests]
     # Explicit 14GB Intel image; the macos-15 alias is a 7GB ARM VM.
     runs-on: macos-15-intel
-    timeout-minutes: 60
+    # Includes clean builds, full native tests, media export, device Release and upload.
+    # Individual reader/test budgets remain unchanged.
+    timeout-minutes: 120
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       READIUM_RESOLVE_BOOTSTRAP: ${{ inputs.resolve_local_readium && '1' || '0' }}
@@ -138,7 +140,7 @@ jobs:
     if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'unit-release' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
-    timeout-minutes: 30
+    timeout-minutes: ${{ inputs.diagnostic_selection == 'reader-session' && 60 || 30 }}
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       DIAGNOSTIC_SELECTION: ${{ inputs.diagnostic_selection }}

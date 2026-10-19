@@ -1,12 +1,12 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "preflight-cancelled-by-agent-fixture-scope-corrected",
-  "sourceRevision": "9bde1735c64b16256595bdb8afbe416a92007628",
+  "stage": "locator-fixture-local-uncompiled",
+  "sourceRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
       "path": ".github/workflows/ios-build.yml",
-      "sha256": "ffecd3141bdb24d9da642b8eab5dab22b2708a6ad02e93b9f34aa1432d2cc478"
+      "sha256": "68294186fc451872210a0f4a23efd1687f326eebe85652453d36ff8c16d1d718"
     },
     {
       "path": "App/AppServices.swift",
@@ -19,6 +19,10 @@
     {
       "path": "App/Reader/ReaderViewModel.swift",
       "sha256": "0a773fd6b4ce2594f28b7d90c118c667eb26d89a09643e2afd703d2ffb56000c"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "sha256": "f29076d8342c3cddb1cbe0d69806157bae8e63347d4072c3a77dbe0d8d778acb"
     },
     {
       "path": "Tests/UI/LibraryInteractionUITests.swift",
@@ -49,16 +53,36 @@
       "sha256": "d2190e361962d4b62dd2b81a3949274527f40ce60198db09b9f7ed8dc8393101"
     },
     {
+      "path": "Tests/iOS/ReaderLoadingControlTests.swift",
+      "sha256": "a81b1a53bdf63281963530cca12f6a04e1862f18e7e0baeb57fdc21c69505a07"
+    },
+    {
       "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "95986d84445b55798e740523fb69373279a6c7e5cd64aa6a1c2b928382ab714d"
+      "sha256": "47cc930e5ece55985829ec20cf3ccacad21b616f400b53014a8ee6ba268d1095"
     },
     {
       "path": "Tests/iOS/ReaderSettingsPersistenceTests.swift",
       "sha256": "34a1abee6e08dd5d65f56701186313849d87c6a76be3bc14d96f477c1d91326b"
     },
     {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "sha256": "58954275e227f511265460140da8f7ea187459cbe3b252411c471b8ce1e99d39"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "sha256": "d35b93cbc28898def3a8a52d885f3d2faf5ea9f77f9959b13c91eeb0768fe817"
+    },
+    {
       "path": "project.yml",
       "sha256": "c1a201ca8455292eb9898e82596addcd2ef22d6dee5de356ac3ab742d16eb467"
+    },
+    {
+      "path": "scripts/capture_native_resources.py",
+      "sha256": "274616e3bacd7284d739285157b14f5769639739319a86ddb74fc619c6b9de80"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "sha256": "60b1a6d3ecd4f747271bae0f2912ae7eee11fda5569ead66948d0517fa41aff0"
     },
     {
       "path": "scripts/ci_ios.sh",
@@ -66,15 +90,19 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "3e58bf4c8da5afb27d391b9a71677e065d9bb476ac4b6828af41eb8e198aec45"
+      "sha256": "3f2fb44ede4c3cd346f0ba8354f883a811c157ef376792e4b73fb1768ed633c7"
+    },
+    {
+      "path": "scripts/test_ci_failure_paths.py",
+      "sha256": "094b9da47d6efc695d2586f31fade8f0f066f333a0e82bbfb8ea02cac2ea2608"
     },
     {
       "path": "scripts/test_ui_baseline.py",
-      "sha256": "919a41b89a2ac09d6fdf6fb740271f39b149fb7eb4b24e45f02e2683a33a91cb"
+      "sha256": "b0ee758eeeb560f3b892b331499c2bf5e7a68b7ef8537bba0854fbb808b3da9a"
     },
     {
       "path": "scripts/verify_ui_baseline.py",
-      "sha256": "38104fbfd8c0f2404387c2faacd418a8c348d1361c621d80df8aaa253dc74f6b"
+      "sha256": "6cddd790af333fc8acf9f6ab976b54b5f6a566245e4ceffa2daf83b311f033e7"
     }
   ],
   "changedPaths": [
@@ -337,7 +365,7 @@
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
   "productionInputsIdenticalToOriginalR1": false,
-  "updatedAtUTC": "2026-10-19T07:15:24.314055+00:00",
+  "updatedAtUTC": "2026-10-19T07:54:23.496409+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -412,6 +440,7 @@
     "App/AppServices.swift",
     "App/Reader/ReaderSettingsPersistence.swift",
     "App/Reader/ReaderViewModel.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
     "Tests/UI/LibraryInteractionUITests.swift",
     "Tests/UI/ReaderAppearanceUITests.swift",
     "Tests/UI/ReaderInterfaceUITests.swift",
@@ -419,19 +448,28 @@
     "Tests/UI/ReadingExperienceUITests.swift",
     "Tests/UI/ReadingFontUITests.swift",
     "Tests/iOS/ReaderLifecycleTests.swift",
+    "Tests/iOS/ReaderLoadingControlTests.swift",
     "Tests/iOS/ReaderRenderingTests.swift",
     "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
     "project.yml",
+    "scripts/capture_native_resources.py",
+    "scripts/check_repository.py",
     "scripts/ci_ios.sh",
     "scripts/ci_reader_diagnostic.sh",
+    "scripts/test_ci_failure_paths.py",
     "scripts/test_ui_baseline.py",
     "scripts/verify_ui_baseline.py"
   ],
-  "sourceInputsMatched": 552,
+  "sourceInputsMatched": 554,
   "productionChangedPaths": [
     "App/AppServices.swift",
+    "App/Reader/ReaderSettingsPersistence.swift",
     "App/Reader/ReaderViewModel.swift",
-    "App/Reader/ReaderSettingsPersistence.swift"
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
   ],
   "thirdFull": {
     "run": 39196134450,
@@ -514,6 +552,21 @@
     "proof": "Documentation/ValidationLogs/reader-session-close-39211610770.json"
   },
   "fontPreflightFullCandidate": {
+    "status": "full-validation-in-progress",
+    "run": 39215839905,
+    "sourceRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
+    "expectedPreflight": 2,
+    "expectedUnit": 148,
+    "expectedUI": 28,
+    "runner": "macos-15-intel",
+    "injectedGateOnlyCurrentDocument": true,
+    "sourceInputs": 554,
+    "ReleaseBuilt": false,
+    "IPAProduced": false,
+    "preflightStepSucceeded": true,
+    "actualPreflightSummaryPendingDownload": true
+  },
+  "cancelledFontPreflightFull": {
     "status": "cancelled",
     "expectedPreflight": 2,
     "expectedUnit": 148,
@@ -533,5 +586,19 @@
     "cancelledByAgent": true,
     "notASourceFailure": true,
     "cancelProof": "Documentation/ValidationLogs/fonts-full-agent-cancel-39214692053.json"
+  },
+  "newUnitTestsSinceBuild29": 12,
+  "newUITargetMeasurementTestsSinceBuild29": 1,
+  "expectedUnit": 148,
+  "expectedUITarget": 28,
+  "expectedTotal": 176,
+  "latestCompletedRun": 39215839905,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/fonts-full-timeout-39215839905.json",
+  "pendingLocalChange": {
+    "fixture": "known full Locator char1200 replaces relative page-turn preparation; original font/word assertions retained",
+    "fullJobMinutes": 120,
+    "readerSessionJobMinutes": 60,
+    "compiled": false,
+    "newDiagnosticRun": null
   }
 }

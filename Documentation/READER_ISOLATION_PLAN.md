@@ -1,6 +1,6 @@
 # 阅读模块隔离实施方案
 
-2026-10-19。关闭修正383b11a已实际65/66，新两项关闭合同及原三加载用例全过；唯一旧字体测试800ms故障窗口未捕获。正在冻结显式屏障及14GB Intel/fonts-full候选，尚无本片Release/IPA。根AGENTS.md及项目排障流程已纳入教训。Build29仍最后交付。
+2026-10-19。39215839905已结束：字体前置2/2，完整单元147/148、UI仅11项后job超时；无Release/IPA。唯一失败在换字体前翻页准备，当前改为完整Locator深字准备并补CI总时限，尚未编译。生产关闭修正保持，下一步66项定向后才完整门槛。Build29仍最后交付。
 
 用户同意优先整理阅读模块的职责边界。目标是让界面、设置、字体、位置与会话问题能够在明确范围内定位，降低后续改动影响旧功能的概率。隔离不能消除所有集成故障，最终交付仍需完整回归。
 
@@ -117,3 +117,12 @@ R1 完成标准：
 
 
 39214692053/9bde173在字体前置步骤由Agent取消，完整验证/Release步骤确为skipped，不记源码失败。代码复核发现屏障还会持有预加载two.xhtml，现限定one.xhtml，与原断言和显式释放句柄一致，避免测试留下人工等待。实际注入JS已在本地检查语法，并以三个协议场景核当前页持有、预加载不持有及仍等待原生ready；这不是Swift/WebKit验收，下一冻结源仍需字体定向和完整原生门槛。
+
+
+## 39215839905实际断点及本次最小实验
+
+原artifact12172841432已完整digest/CRC核验。字体预检2/2不代表其在完整进程历史中通过：完整test在准备第3次翻页时未满足scrollX增量，尚未请求中间/最终字体，已有char430非零完整位置。147其他单元/集成（含2新关闭合同和独立翻页/重叠导航）通过；UI仅11项完成，整体被GitHub1小时限额取消，不能借其生成IPA。gh整轮log末尾停在编译是旧片段，真实artifact的build.log已有全部148和部分UI，需以原件为准。
+
+本次假设：字体重排回归的三次相对翻页准备引入独立导航状态依赖；用既有公开ReadingPosition完整DOM Locator定位long-paragraph/char1200，并要求该字实际可见，随后仍fresh捕获深字、保持中间字体未完成时请求最终字体和原可见断言。与现有Readium3.11 EPUBReflowableSpreadView的版本化DOM Locator路径一致；不改引擎/字号/字体文件/加载或位置预算，独立翻页回归仍跑。先reader-session66带前序状态检验；若仍失败，核实际新失败阶段而非再随机延时。Apple XCTest setup/teardown方式此前已落实到window及engine清理（https://developer.apple.com/documentation/xctest/set-up-and-tear-down-state-in-your-tests）。
+
+GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes）。真实本轮preflight21分21秒、随后准备/Core/编译约9分钟、148测试约13分42秒，既有28UI约31分37秒，尚需设备Release及导出上传，因此60分钟不足。总job设120分钟、66项定向60分钟，生产和单项原预算不变；最终完整选择full避免重复预检。不是通过延长功能等待掩盖测试失败。原超时及真实字体失败各自保留，不追认旧run成功。

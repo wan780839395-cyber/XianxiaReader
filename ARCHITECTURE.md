@@ -4,7 +4,7 @@
 
 AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方法接口调用既有BookFileStore。外观/手感分别有序提交，完成结果过滤最新请求和实际阅读会话；关闭后的已提交写入继续完成，新reader恢复先等待旧队列。该对象不持有引擎、Locator、页面或数据库；ReaderViewModel保留向引擎应用偏好和位置捕获的现有编排。设置完成仅等待设置，回到可见正文后才请求fresh完整位置。JSON格式、3秒位置预算和20秒资源预算保持。参考Readium 3.11偏好存储及Readest设置/书籍状态分离，具体版本与取舍见[方案](Documentation/READER_ISOLATION_PLAN.md)。
 
-此为渐进提取的第一片，未实现字体/位置/会话服务的整体拆分。设置及生命周期35项已通过，最新145项集成有3项旧WebKit渲染失败；同输入28项UI通过不等于一次全套绿灯。尚无本片Release/IPA或手机验收，不能把本节解释为R1整体验收完成。
+此为渐进提取的第一片，未实现字体/位置/会话服务的整体拆分。关闭合同另在Adapter/Navigator明确撤销两容器工作并阻止跨await迟到创建，不改变设置服务职责。最新39215839905有147/148集成通过、UI11项后job超时；唯一字体回归的准备失败仍阻塞发布。测试准备/流水线预算的本地修正尚未编译，尚无本片Release/IPA或手机验收。
 
 ## Build29 阅读安全区
 

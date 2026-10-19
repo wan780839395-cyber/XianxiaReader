@@ -87,25 +87,27 @@ final class ReaderRenderingTests: XCTestCase {
         let (_, state) = try mount(engine); state.visible = false
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
-        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        // This regression owns font replacement, not a sequence of page turns.
+        // Use the same versioned full locator as a real bookmark to prepare a
+        // known deep word; the navigation/overlapping-turn regressions stay separate.
+        let preparedLocator: [String: Any] = [
+            "href": "OEBPS/one.xhtml", "type": "application/xhtml+xml",
+            "locations": [
+                "xianxiaContinuousAnchorVersion": 1, "xianxiaViewportOffset": 4,
+                "domRange": ["start": ["cssSelector": "#long-paragraph", "textNodeIndex": 0, "charOffset": 1200]],
+            ],
+        ]
+        try await engine.go(to: ReadingPosition(bookID: book.id, engineID: ReadiumPositionCodec.engineID,
+                                               locatorData: JSONSerialization.data(withJSONObject: preparedLocator)))
         try await waitUntil {
             guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
                   web.scrollView.alpha > 0.99 else { return false }
-            return try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && window.__xrPreviewReadySettled===true") as? Bool == true
-        }
-        for _ in 0..<3 {
-            let readyWeb = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
-            let previousX = (try await readyWeb.evaluateJavaScript("scrollX") as? Double) ?? 0
-            await engine.turnPage(forward: true)
-            try await waitUntil {
-                guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.alpha > 0.99 else { return false }
-                return ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > previousX + 100
-            }
-        }
-        try await waitUntil {
-            guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
-                  web.scrollView.alpha > 0.99 else { return false }
-            return ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > 100
+            return try await web.evaluateJavaScript("""
+                (()=>{if(!location.pathname.endsWith('/one.xhtml')||window.__xrPreviewReadySettled!==true)return false;
+                const n=document.getElementById('long-paragraph')?.firstChild;if(!n||n.length<=1200)return false;
+                const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);const b=r.getBoundingClientRect();
+                return scrollX>100&&b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
+                """) as? Bool == true
         }
         var saved: ReadingPosition?
         try await waitUntil {

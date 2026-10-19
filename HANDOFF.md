@@ -1,30 +1,20 @@
 # 当前交接与恢复点
 
-## R1设置隔离与关闭合同修正（2026-10-19）
+## R1设置隔离与关闭合同修正（2026-10-19，恢复点）
 
-39214692053/9bde173已由Agent主动请求取消：字体前置步骤仍执行中，完整验证/Release尚未执行。原因是代码复核发现新的测试屏障对中间字体的预加载页也生效，测试仅持有当前正文页的释放句柄；现将屏障限定到one.xhtml，与原断言目标相同，其他预加载页只等待原生fonts.ready。不是源码失败，不把取消算测试通过/失败；等待最终状态后重新冻结。生产两文件修正保持383b11a相同。取消前job状态保留build/ci/39214692053/before-agent-cancel.json。
+实际断点：39215839905/be7c415已结束，GitHub明确报告job超过1小时，由平台取消，不是Agent取消。字体前置实际2/2通过；随后完整148单元/集成执行完，147通过/1用例失败（两条断言），UI仅11项通过，剩余未完成；无完整summary、无Release、无Build30 IPA。完整artifact12172841432（253309118字节）SHA/digest/CRC已核，保留原始build.log及未完成xcresult；gh整轮日志只含旧片段，不能据此说测试没执行。Linux/macOS Core各137及各4组Release探针通过。真实记录Documentation/ValidationLogs/fonts-full-timeout-39215839905.json。
 
-当前唯一运行：[fonts-full 39214692053](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39214692053)，冻结源9bde1735c64b16256595bdb8afbe416a92007628/codex/refactor-reader-settings。先字体2项，再完整148单元/集成+28 UI，全部通过才严格无签名设备Release30；同runner复用准备/构建目录，预检summary/附件独立保留。554维护输入匹配Git快照，453 Swift语法新增0/26工具/bash通过（不是编译）。当前候选仍未返回原生结果/无新IPA；不要改构建ref或重复dispatch。
+失败发生于ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord原第100行：准备深处文字时连续三次翻页，其中一次未观察到X增加；此时尚未请求中间/最终字体。最终页面已有one.xhtml完整正文与char430完整Locator。独立翻页/重叠导航、全部其他渲染测试和新2关闭合同在本轮通过；不能由此推断全部历史慢启动唯一根因已修。
 
-用户要求把教训写入整个项目并继续完成。根AGENTS.md已新增长期规则，并引用Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md；一次一个切片，每次远程实验明确假设和最小范围，不无假设重复整套，不把定向通过当发布通过。
+本地恢复已落地，尚未编译验证：该字体用例改用既有版本化完整Locator跳至long-paragraph的char1200，并要求准备的该字真实可见/scrollX>100；随后仍fresh捕获实际深字、制造中间字体屏障，再请求最终字体并检查同一字/最终字体可见。原生产代码、3秒位置/20秒加载/字体15秒预算、所有最终断言保留，不改独立翻页回归。修改前备份在.cache/recovery/20261019-webkit-loading/after-timeout-before。
 
-最新39211610770/383b11a已结束，65/66，两个新关闭合同和原三个加载失败用例全部通过；唯一失败是旧分页字体用例等待800ms中间态，尚未请求最终字体。103条有界资源样本观察到主机压缩内存峰值2763MiB、空闲最低55MiB；调度/资源压力确实存在，但不证明历史慢启动唯一原因。原始结果及采样摘要见Documentation/ValidationLogs/reader-session-close-39211610770.json。
+流水线预算修正尚未验证：完整iOS job由60设为120分钟，reader-session定向设60分钟，其他定向仍30；区别于生产/单测试预算。已有真实耗时：字体preflight21分21秒（含首次编译）、后续Core/编译约9分钟、148测试约13分42秒，UI历史约31分37秒，还需设备Release/导出/上传。先Windows语法/26工具，再冻结并只跑reader-session66，检验有前序状态时的新准备是否成立；通过后才同输入完整148+28和严格无签名Release，最终不重复fonts-full前检、不复用旧UI。
 
-当前准备最后候选：生产修正代码与383b11a相同；只把该旧字体测试的800ms故障注入改为原生fonts.ready加显式屏障，要求中间字体仍未完成时发出最终选择，再主动放行，保留深字锚点/最终字体可见断言和生产预算；失败后的teardown也显式放行。原28个renderer主体中27个逐字保持，1个只改竞态注入同步；新增2关闭合同与1control，总148单元/集成、28 UI。
+当前无本地python/gh测试进程，远端in_progress/queued列表为空；正常HEAD6d761749911233122bcd031fcf718d22a19f9e77、空index及大量既有未提交改动保持。最后冻结源be7c415的554输入证明仍是历史基线；本地随后只改字体测试/CI超时及文档，须另建新候选证明，不可再称当前554与be7全同。53旧交付包已核摘要且不覆盖。不要关机。
 
-CI按GitHub官方主机规格改为显式macos-15-intel（4核14GB，Xcode16.4/16F6及iOS18.5保持）。fonts-full先在同一runner跑原两项字体定向，失败真实阻止后续完整门槛和IPA并保留原件；通过后再跑全部148+28及严格Release，重用同runner构建目录避免再准备一台机器。旧ARM UI不复用。26工具测试含新preflight的65/23退出码拒绝和原件保留回归；未派发前不能假定原生通过。
+项目长期教训已在根AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，含总job耗时与证据上传余量。只推进R1；R2/R3/R4未提取，Build29仍最后交付，手机/TrollStore/M4整体验收待。浏览器config enabled=true但cua重置后仍报Work禁用，无修改该开关接口；用户已明确授权，不再反复索要授权，不挡CLI验证。
 
-已核实的实验：
-- 39209145399/cb14211实际3/4。微型scheme连续8次加载释放通过，旧六字体第6次重建WebContent启动62.154176秒而失败，不能断言全部是环境问题。加载/关闭100ms观测不证明永久泄漏；临时弱采样已移除，control排末尾避免预热reader。
-- 39209591549/99acd92实际0/2，在未修改生产上复现：分页关闭后导航/UI/scroll回调与预加载视图未清；立即关闭后分页和连续均能迟到创建WebView。两组原件digest/CRC已核，完整日志/summary及断言记录Documentation/ValidationLogs/webkit-loading-control-39209145399.json和webkit-close-contract-red-39209591549.json。
-
-当前修正仅Adapter close调用和Vendor navigator关闭合同（另UPSTREAM准确摘要）：统一终止两容器，先清分页delegate再移除，触发Readium 3.11原始PaginationView/spread clear；initialize开始及await返回后拒绝已关闭会话，完成初始化等待。未改App/UI/Core、存储格式、Locator、排版、锁文件或版本，保留20秒/3秒/字体15秒预算；原28个renderer函数正文不改，新增2关闭合同+1control，总单元/集成为148，UI28。旧UI保护已实际拒绝复用，因此66项通过后必须完整148+28和严格设备Release，不能走unit-release。
-
-R1设置持久化已实现，App生产范围仍3文件，原设置/生命周期35项最新旧run全过。上个完整39196134450/8f的28 UI全过但整体失败；39203522040/cb为142/145、3旧WebKit失败，严格Release阻止。Build29仍最后交付，没有Build30 IPA。R2/R3/R4未实现，手机/M4整体验收未完成。关闭缺口已复现不等于全部慢启动独因已修。
-
-正常HEAD6d761749911233122bcd031fcf718d22a19f9e77、空index及大量既有未提交源码保持。精确备份/差异/554输入见.cache/recovery/20261019-webkit-loading/production-before、close-fix-candidate.json、source-proof-close-fix.json；53旧交付包SHA保全见build/ci/39203522040/recovery-checkpoint.json，旧恢复ZIP未触及。后续若改Vendor/UPSTREAM.json的验证状态，也属于保护输入变化；最终完整门槛冻结前移除临时pending状态，之后只更新项目文档，不回改已构建Vendor元数据。不关机。
-
-完整方案：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。此前断点及所有旧失败历史归档Documentation/HANDOFF_R1_SETTINGS_DEVELOPMENT_2026-10-19.md，不把归档中的运行状态当当前任务。
+完整方案Documentation/READER_ISOLATION_PLAN.md。此前运行快照已归档，不把历史“正在运行”当现状。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 
