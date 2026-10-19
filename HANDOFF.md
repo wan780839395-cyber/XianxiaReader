@@ -2,6 +2,14 @@
 
 ## R1设置隔离与关闭合同修正（2026-10-19，恢复点）
 
+最新39230331856/e960已由GitHub30分钟job限额取消，非Agent取消。原生编译通过、0源码编译诊断；首个字体case实际到09:59UTC才开始，约10:00:53输出恢复等待超时，但还没完整报告用例结束/summary；0项完整用例，第二项未执行。原artifact12178013971（143480字节）完整digest/CRC已核，包含Staging原始stdout及reader-diagnostic.log。不能把这轮写成2项失败或通过。
+
+关键新证据：四阶段model/engine完整Locator都指向one.xhtml第25段char0，saveFailure为空，open返回也持有正确输入；随后真实可见页面却是h1/char0。该次错误发生在打开后的排版恢复，非SQLite读回或设置JSON丢失。完整数据Documentation/ValidationLogs/font-reopen-checkpoints-39230331856.json；失败后的数据库补读未完成，不能假称已取得。
+
+当前最小红灯实验待编译：新增一个直接引擎用例testPagedReopenRestoresFirstCharacterOfLongParagraph，在管理存储原样书/六原字体/思源宋体150%深色条件下，绕开App设置/SQLite写入，直接用同一段首char0完整Locator重开，要求实际字和真实字体可见。只在测试WKUserScript同步记录scrollTo目标/字体ready/段首rect，不改生产。新paged-restore入口只跑此1项；如失败核目标计算/字体布局，若通过则说明还需原完整字体链路对照，不称根因已修。新总149集成+28UI=177，原来148与所有旧断言保留；unit-release计数随新回归增加，不复用旧UI。当前无远端任务，下一次只派发paged-restore1。
+
+本轮原生冷编译已经耗约28分钟才首测，原30分钟job没有导出余量；将所有原生诊断总job设60分钟，完整仍120，加载20秒/位置3秒/字体15秒/测试原等待30秒均不变。不是放宽功能预算。Windows453语法新增0/26工具检查通过；尚未编译新增直接用例。正常HEAD/index与53旧包保持，不关机。
+
 最新39226220147/0283922已结束，65/66，实际test65/summary0/export0；刚改的完整Locator字体竞态用例9.257秒通过，设置/生命周期35及2关闭合同通过。唯一失败改为旧testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes第一个分页sourceHanSerif的save-close-open后同字不见，实际可见且loaded的one.xhtml回到h1 char0；该case未见长WebContent启动，不归咎环境。完整artifact12176542366（124970618字节）digest/CRC已核，目录build/ci/39226220147/diagnostic直接含summary（没有build子目录）；真实证据reader-session-locator-fixture-39226220147.json。没有进入完整CI/Release，无新IPA。
 
 当前最小实验待验证：仅在该原有用例加入同步有界检查点，记录字体可见、saveNow返回、close后、open返回四阶段的model/engine完整Locator与时间戳/错误；不加await或额外capture，不改原save-close-open顺序/功能断言。只有原等待失败后才读取SQLite位置并保留原错误，以区分保存前、close最终回调或打开恢复阶段在哪里丢失。生产代码保持。下一次仅fonts两项（包含上一刚修竞态），不无假设重跑66/完整。

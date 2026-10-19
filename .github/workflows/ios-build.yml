@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, reader-session]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session]
 
 permissions:
   contents: read
@@ -140,7 +140,9 @@ jobs:
     if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'unit-release' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
-    timeout-minutes: ${{ inputs.diagnostic_selection == 'reader-session' && 60 || 30 }}
+    # The last cold native build reached its first test after28minutes.
+    # Keep time for the selected tests and the original failure evidence.
+    timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       DIAGNOSTIC_SELECTION: ${{ inputs.diagnostic_selection }}

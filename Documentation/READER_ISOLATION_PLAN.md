@@ -1,6 +1,6 @@
 # 阅读模块隔离实施方案
 
-2026-10-19。39215839905已结束：字体前置2/2，完整单元147/148、UI仅11项后job超时；无Release/IPA。唯一失败在换字体前翻页准备，当前改为完整Locator深字准备并补CI总时限，尚未编译。生产关闭修正保持，下一步66项定向后才完整门槛。Build29仍最后交付。
+2026-10-19。最新39230331856编译通过但job取消，四阶段完整Locator保留到open、后续排版回章头。当前单项直接段首恢复回归已写尚未编译，先paged-restore1；新全门槛149+28=177/严格Release待。生产R1/关闭修正保持，Build29仍最后交付。
 
 用户同意优先整理阅读模块的职责边界。目标是让界面、设置、字体、位置与会话问题能够在明确范围内定位，降低后续改动影响旧功能的概率。隔离不能消除所有集成故障，最终交付仍需完整回归。
 
@@ -133,3 +133,12 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 39226220147真实65/66；刚改的竞态测试9.257秒通过，另一个旧字体回归在第一个分页sourceHanSerif的save-close-open后回到h1/char0。该caseWebContent启动约1～1.7秒，没有历史慢启动证据；不能把这一失败改说成环境慢。旧用例字节保持到这轮，保留其原失败和完整原件。
 
 下一实验只加测试中的同步位置检查点，不改生产：四阶段保存model/engine完整Locator、updatedAt、saveFailure；不额外await/capture或延迟，失败后才查询数据库。若save-returned已经错误，查fresh保存；若closed变错误，查最终回调；若open-returned输入正确而画面错，查渲染恢复。只选择fonts2保留刚修竞态的直接回归。不是无新证据重跑或删断言；实测通过不自动宣称唯一根因已修。
+
+
+## 段首完整Locator的独立恢复实验
+
+39230331856虽然因job30分钟取消，但test开始前已约28分钟，首字体case留下四阶段完整记录：p25/char0一直保留到open返回，saveFailure为nil，之后真实页面回h1。这次排除设置JSON/SQLite读回丢失；完整summary与失败后DB补读未完成，0完整case，不能称两项失败。记录font-reopen-checkpoints-39230331856.json。
+
+下一项单独从管理存储EPUB、六原字体、思源宋体150%深色，直接用已观察到的p25/char0 Locator打开，要求真实字/字体可见。额外脚本只同步观察window.scrollTo及字体ready/段首rect，没有追加await、固定延时、重试或断言删除；完全不改生产代码。若独立路径重现，查Readium恢复步骤；若不重现，回到原链路的差异，不将偶然通过当修复。Readium3.11对应源码 https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift 已核，标准FontFaceSet.ready涉及字体和布局但不能仅凭它认定本次根因，故记录调用时状态与rect：https://www.w3.org/TR/css-font-loading-3/#fontfaceset-ready-attribute 。
+
+新增直接回归使当前总149集成+28UI=177，所有原有case保留；对应计数门槛同步增加。所有原生诊断job预留60分钟以覆盖实测冷编译及导出，完整120，生产20/3/15秒及测试等待预算不变。

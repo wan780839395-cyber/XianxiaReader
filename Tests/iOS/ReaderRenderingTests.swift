@@ -8,6 +8,82 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testPagedReopenRestoresFirstCharacterOfLongParagraph() async throws {
+        let probe = WKUserScript(source: """
+            (()=>{
+              const trace=window.__xrPagedRestoreTrace=[];
+              function record(phase,args){
+                const node=document.getElementById('long-paragraph')?.firstChild;
+                let rect=null;
+                if(node?.length){const r=document.createRange();r.setStart(node,0);r.setEnd(node,1);rect=r.getClientRects()[0];}
+                trace.push({phase,href:location.pathname,width:innerWidth,x:scrollX,
+                  requested:typeof args?.[0]==='object'?args[0].left:args?.[0],
+                  firstX:rect?.left,firstY:rect?.top,ready:document.readyState,
+                  fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
+                  family:document.body?getComputedStyle(document.body).fontFamily:null});
+                if(trace.length>16)trace.shift();
+              }
+              const scroll=window.scrollTo;
+              window.scrollTo=function(...args){record('before',args);const result=scroll.apply(window,args);record('after',args);return result;};
+              window.addEventListener('scroll',()=>record('scroll',[]),{passive:true});
+            })()
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let services = try await AppServices.create(storageRoot: root)
+        addTeardownBlock { try FileManager.default.removeItem(at: root) }
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
+        let staged = try await services.files.stageEPUB(from: url)
+        let paths = try await services.files.finalize(staged, coverData: nil)
+        let book = Book(id: staged.id, title: "段首恢复回归", format: .epub, filePath: paths.filePath)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [probe], storageRoot: root)
+        try engine.setReadingFonts(try BundledReadingFont.allCases.map { try $0.resource() })
+        var appearance = ReadingAppearance(); appearance.fontScale = 1.5; appearance.theme = .charcoal
+        appearance.importedFontID = BundledReadingFont.sourceHanSerif.id
+        try engine.setAppearance(appearance)
+        let (_, state) = try mount(engine); state.visible = false
+        try await waitUntil { self.diagnosticHost?.hasAppeared == true && engine.viewController.view.window?.isKeyWindow == true }
+        let fileURL = try services.files.resolve(paths.filePath)
+        try await engine.open(book: book, fileURL: fileURL, position: nil)
+        _ = try await self.probe(try XCTUnwrap(engine.viewController.children.first), engine: engine, resource: "cover.xhtml")
+        engine.close()
+        let locator: [String: Any] = [
+            "href": "OEBPS/one.xhtml", "type": "application/xhtml+xml",
+            "locations": ["position": 3, "progression": 0.18518518518518517,
+                          "totalProgression": 0.34259259259259256,
+                          "xianxiaContinuousAnchorVersion": 1, "xianxiaViewportOffset": 3,
+                          "domRange": ["start": ["cssSelector": "html > body > p:nth-of-type(25)",
+                                                 "textNodeIndex": 0, "charOffset": 0]]],
+        ]
+        let position = ReadingPosition(bookID: book.id, engineID: ReadiumPositionCodec.engineID,
+                                       locatorData: try JSONSerialization.data(withJSONObject: locator))
+        try await engine.open(book: book, fileURL: fileURL, position: position)
+        let visible = """
+            (()=>{const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;
+            const r=document.createRange();r.setStart(n,0);r.setEnd(n,1);const b=r.getBoundingClientRect();
+            return location.pathname.endsWith('/one.xhtml')&&b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
+            """
+        let chinese = ReadingFontTests.chineseFontScript(try BundledReadingFont.sourceHanSerif.resource().asset.cssFamily,
+                                                        paragraph: "#long-paragraph")
+        do {
+            try await waitUntil {
+                guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.alpha > 0.99 else { return false }
+                return try await web.evaluateJavaScript("(\(visible)) && (\(chinese))") as? Bool == true
+            }
+        } catch {
+            // Capture native scroll targets only after the original assertion failed.
+            for web in webViews(in: engine.viewController.view) {
+                do {
+                    let result = try await web.evaluateJavaScript("JSON.stringify(window.__xrPagedRestoreTrace)")
+                    let evidence = XCTAttachment(string: String(describing: result))
+                    evidence.name = "paged-first-character-restore-trace"; evidence.lifetime = .keepAlways; add(evidence)
+                    print("PAGED_FIRST_CHARACTER_RESTORE \(result)")
+                } catch { print("PAGED_RESTORE_DIAGNOSTIC_READ_FAILED \(error)") }
+            }
+            throw error
+        }
+        engine.close()
+    }
+
     @MainActor func testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews() async throws {
         let delay = WKUserScript(source: """
             Object.defineProperty(document.fonts,'ready',{get(){

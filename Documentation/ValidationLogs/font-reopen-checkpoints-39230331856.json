@@ -1,0 +1,254 @@
+{
+  "recordedAtUTC": "2026-10-19T10:08:07.403466+00:00",
+  "run": 39230331856,
+  "sourceRevision": "e960186ce4d34d5bbb4fc2a61070f3ac1b74a9cd",
+  "conclusion": "cancelled",
+  "reason": "GitHub30minutejobtimeout",
+  "actualCompletedTests": 0,
+  "firstCaseStarted": true,
+  "firstCaseObservedWaitTimeout": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():475",
+  "structuredSummaryExists": false,
+  "sourceCompilerDiagnostics": 0,
+  "checkpoints": [
+    {
+      "phase": "visible-before-save",
+      "metadata": "phase=visible-before-save font=sourceHanSerif continuous=false ready=true",
+      "saveFailure": "nil",
+      "model": {
+        "updatedAt": 1792404019.7964659,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 5
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      },
+      "engine": {
+        "updatedAt": 1792404019.7964659,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 5
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      }
+    },
+    {
+      "phase": "save-returned",
+      "metadata": "phase=save-returned font=sourceHanSerif continuous=false ready=true",
+      "saveFailure": "nil",
+      "model": {
+        "updatedAt": 1792404022.8281689,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 3
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      },
+      "engine": {
+        "updatedAt": 1792404019.7964659,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 5
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      }
+    },
+    {
+      "phase": "closed",
+      "metadata": "phase=closed font=sourceHanSerif continuous=false ready=false",
+      "saveFailure": "nil",
+      "model": {
+        "updatedAt": 1792404022.8326259,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 3
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      },
+      "engine": null
+    },
+    {
+      "phase": "open-returned",
+      "metadata": "phase=open-returned font=sourceHanSerif continuous=false ready=true",
+      "saveFailure": "nil",
+      "model": {
+        "updatedAt": 1792404022.8326259,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 3
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      },
+      "engine": {
+        "updatedAt": 1792404022.8326259,
+        "locator": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 0,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.18518518518518517,
+            "totalProgression": 0.34259259259259256,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 3
+          },
+          "text": {
+            "after": "沿着石阶前行，云气从山巅缓缓落下。长段第003处，少年沿着石阶前行，云气从山巅缓缓落下。长段第004处，少年沿着石阶前行，云气从",
+            "before": "",
+            "highlight": "长段第000处，少年沿着石阶前行，云气从山巅缓缓落下。长段第001处，少年沿着石阶前行，云气从山巅缓缓落下。长段第002处，少年"
+          },
+          "type": "application/xhtml+xml"
+        }
+      }
+    }
+  ],
+  "observedLaterDOM": "Visible loaded one.xhtml at chapter-header h1 char0",
+  "inference": "The complete paragraph25 char0 Locator survives save,close,and the input to open; this occurrence loses its target during native layout/restoration, not settings JSON or SQLite readback.",
+  "databaseAfterFailureReadCompleted": false,
+  "artifactReceipt": {
+    "run": 39230331856,
+    "artifact": 12178013971,
+    "kind": "diagnostic",
+    "archiveBytes": 143480,
+    "archiveSHA256": "aff799bed06183dfedfa3bc08622048093212ef69372eeb4c097e2dd72d7ff7a",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39230331856\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39230331856\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39230331856\\diagnostic-download-chunks\\0000.bin",
+        "bytes": 143480
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39230331856\\diagnostic-diagnostics.zip",
+        "bytes": 143480,
+        "sha256": "aff799bed06183dfedfa3bc08622048093212ef69372eeb4c097e2dd72d7ff7a"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "IPAProduced": false,
+  "uniqueHistoricalCauseProved": false
+}

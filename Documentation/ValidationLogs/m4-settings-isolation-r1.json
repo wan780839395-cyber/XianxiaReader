@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "font-reopen-checkpoints-local-uncompiled",
+  "stage": "paged-zero-restore-red-fixture-local-uncompiled",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -592,12 +592,15 @@
   "expectedUnit": 148,
   "expectedUITarget": 28,
   "expectedTotal": 176,
-  "latestCompletedRun": 39226220147,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/reader-session-locator-fixture-39226220147.json",
+  "latestCompletedRun": 39230331856,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/font-reopen-checkpoints-39230331856.json",
   "pendingLocalChange": {
-    "diagnosticOnly": "Synchronous font-visible/save-returned/closed/open-returned Locators and timestamps; database read only after original failure",
-    "selection": "fonts",
-    "expectedTests": 2,
-    "compiled": false
+    "selection": "paged-restore",
+    "expectedTests": 1,
+    "newRegression": "direct managed EPUB/sourceHanSerif150percent reopen at p25 char0; synchronous scroll/font observation only",
+    "compiled": false,
+    "expectedFinalUnit": 149,
+    "expectedFinalUI": 28,
+    "expectedFinalTotal": 177
   }
 }
