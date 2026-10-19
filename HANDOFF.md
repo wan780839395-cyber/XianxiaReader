@@ -2,6 +2,10 @@
 
 ## R1设置隔离与关闭合同修正（2026-10-19，恢复点）
 
+最新39226220147/0283922已结束，65/66，实际test65/summary0/export0；刚改的完整Locator字体竞态用例9.257秒通过，设置/生命周期35及2关闭合同通过。唯一失败改为旧testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes第一个分页sourceHanSerif的save-close-open后同字不见，实际可见且loaded的one.xhtml回到h1 char0；该case未见长WebContent启动，不归咎环境。完整artifact12176542366（124970618字节）digest/CRC已核，目录build/ci/39226220147/diagnostic直接含summary（没有build子目录）；真实证据reader-session-locator-fixture-39226220147.json。没有进入完整CI/Release，无新IPA。
+
+当前最小实验待验证：仅在该原有用例加入同步有界检查点，记录字体可见、saveNow返回、close后、open返回四阶段的model/engine完整Locator与时间戳/错误；不加await或额外capture，不改原save-close-open顺序/功能断言。只有原等待失败后才读取SQLite位置并保留原错误，以区分保存前、close最终回调或打开恢复阶段在哪里丢失。生产代码保持。下一次仅fonts两项（包含上一刚修竞态），不无假设重跑66/完整。
+
 实际断点：39215839905/be7c415已结束，GitHub明确报告job超过1小时，由平台取消，不是Agent取消。字体前置实际2/2通过；随后完整148单元/集成执行完，147通过/1用例失败（两条断言），UI仅11项通过，剩余未完成；无完整summary、无Release、无Build30 IPA。完整artifact12172841432（253309118字节）SHA/digest/CRC已核，保留原始build.log及未完成xcresult；gh整轮日志只含旧片段，不能据此说测试没执行。Linux/macOS Core各137及各4组Release探针通过。真实记录Documentation/ValidationLogs/fonts-full-timeout-39215839905.json。
 
 失败发生于ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord原第100行：准备深处文字时连续三次翻页，其中一次未观察到X增加；此时尚未请求中间/最终字体。最终页面已有one.xhtml完整正文与char430完整Locator。独立翻页/重叠导航、全部其他渲染测试和新2关闭合同在本轮通过；不能由此推断全部历史慢启动唯一根因已修。

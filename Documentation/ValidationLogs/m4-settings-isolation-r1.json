@@ -1,7 +1,7 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "locator-fixture-local-uncompiled",
-  "sourceRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
+  "stage": "font-reopen-checkpoints-local-uncompiled",
+  "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
@@ -592,13 +592,12 @@
   "expectedUnit": 148,
   "expectedUITarget": 28,
   "expectedTotal": 176,
-  "latestCompletedRun": 39215839905,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/fonts-full-timeout-39215839905.json",
+  "latestCompletedRun": 39226220147,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/reader-session-locator-fixture-39226220147.json",
   "pendingLocalChange": {
-    "fixture": "known full Locator char1200 replaces relative page-turn preparation; original font/word assertions retained",
-    "fullJobMinutes": 120,
-    "readerSessionJobMinutes": 60,
-    "compiled": false,
-    "newDiagnosticRun": null
+    "diagnosticOnly": "Synchronous font-visible/save-returned/closed/open-returned Locators and timestamps; database read only after original failure",
+    "selection": "fonts",
+    "expectedTests": 2,
+    "compiled": false
   }
 }

@@ -126,3 +126,10 @@ R1 完成标准：
 本次假设：字体重排回归的三次相对翻页准备引入独立导航状态依赖；用既有公开ReadingPosition完整DOM Locator定位long-paragraph/char1200，并要求该字实际可见，随后仍fresh捕获深字、保持中间字体未完成时请求最终字体和原可见断言。与现有Readium3.11 EPUBReflowableSpreadView的版本化DOM Locator路径一致；不改引擎/字号/字体文件/加载或位置预算，独立翻页回归仍跑。先reader-session66带前序状态检验；若仍失败，核实际新失败阶段而非再随机延时。Apple XCTest setup/teardown方式此前已落实到window及engine清理（https://developer.apple.com/documentation/xctest/set-up-and-tear-down-state-in-your-tests）。
 
 GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes）。真实本轮preflight21分21秒、随后准备/Core/编译约9分钟、148测试约13分42秒，既有28UI约31分37秒，尚需设备Release及导出上传，因此60分钟不足。总job设120分钟、66项定向60分钟，生产和单项原预算不变；最终完整选择full避免重复预检。不是通过延长功能等待掩盖测试失败。原超时及真实字体失败各自保留，不追认旧run成功。
+
+
+## 0283922定向结果与位置检查点实验
+
+39226220147真实65/66；刚改的竞态测试9.257秒通过，另一个旧字体回归在第一个分页sourceHanSerif的save-close-open后回到h1/char0。该caseWebContent启动约1～1.7秒，没有历史慢启动证据；不能把这一失败改说成环境慢。旧用例字节保持到这轮，保留其原失败和完整原件。
+
+下一实验只加测试中的同步位置检查点，不改生产：四阶段保存model/engine完整Locator、updatedAt、saveFailure；不额外await/capture或延迟，失败后才查询数据库。若save-returned已经错误，查fresh保存；若closed变错误，查最终回调；若open-returned输入正确而画面错，查渲染恢复。只选择fonts2保留刚修竞态的直接回归。不是无新证据重跑或删断言；实测通过不自动宣称唯一根因已修。

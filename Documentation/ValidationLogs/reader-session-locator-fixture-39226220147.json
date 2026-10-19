@@ -1,0 +1,148 @@
+{
+  "recordedAtUTC": "2026-10-19T09:25:36.988113+00:00",
+  "run": 39226220147,
+  "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 65,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792401644.363,
+    "passedTests": 65,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792400691.273,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():453",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 43,
+        "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "18% of duration",
+        "text": "1 longest test run with outlier durations exceeding 28.77s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 66
+  },
+  "actualTestExit": 65,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "loadingBudgetsChanged": false,
+  "modifiedFontFixturePassed": true,
+  "newCloseContractsPassed": true,
+  "settingsAndLifecycle35Passed": true,
+  "failedAt": "ReaderRenderingTests.swift:453; first bundled sourceHanSerif save-close-open in paged mode",
+  "failureState": "Reopened loaded visible one.xhtml at chapter header; current Locator h1 char0. WebContent launch slow path not observed in this case.",
+  "uniqueCauseProved": false,
+  "IPAProduced": false,
+  "receipt": {
+    "run": 39226220147,
+    "artifact": 12176542366,
+    "kind": "diagnostic",
+    "archiveBytes": 124970618,
+    "archiveSHA256": "9f193ecace623c02076f71de1f4ba16d0048e4812d01a1704bbce7c7fb8c280a",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0000.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0001.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0002.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0003.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0004.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0005.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0006.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0007.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0008.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0009.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0010.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0011.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0012.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0013.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-download-chunks\\0014.bin",
+        "bytes": 7530106
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39226220147\\diagnostic-diagnostics.zip",
+        "bytes": 124970618,
+        "sha256": "9f193ecace623c02076f71de1f4ba16d0048e4812d01a1704bbce7c7fb8c280a"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  }
+}

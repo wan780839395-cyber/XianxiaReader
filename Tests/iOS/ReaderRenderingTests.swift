@@ -357,6 +357,21 @@ final class ReaderRenderingTests: XCTestCase {
                 guard let candidate, candidate.window != nil, candidate.scrollView.alpha > 0.99 else { return nil }
                 return candidate
             }
+            func recordReopenCheckpoint(_ phase: String, font: String, stored: ReadingPosition? = nil) {
+                func describe(_ position: ReadingPosition?) -> String {
+                    guard let position else { return "nil" }
+                    return "updatedAt=\(position.updatedAt.timeIntervalSince1970) "
+                        + String(decoding: position.locatorData, as: UTF8.self)
+                }
+                let details = "phase=\(phase) font=\(font) continuous=\(continuous) ready=\(model.isReady)\n"
+                    + "saveFailure=\(model.positionSaveFailure ?? "nil")\n"
+                    + "model=\(describe(model.position))\nengine=\(describe(engine.currentPosition))\n"
+                    + "stored=\(describe(stored))"
+                let attachment = XCTAttachment(string: details)
+                attachment.name = "font-reopen-\(font)-\(continuous)-\(phase)"
+                attachment.lifetime = .keepAlways; add(attachment)
+                print("FONT_REOPEN_CHECKPOINT \(details)")
+            }
             try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(fontScript) as? Bool == true }
             try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(anchorScript) as? Bool == true }
             let sizeValue = try await XCTUnwrap(active()).evaluateJavaScript("parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize)") as? Double
@@ -448,11 +463,27 @@ final class ReaderRenderingTests: XCTestCase {
                     guard let web = active() else { return false }
                     return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                 }
-                await model.saveNow(); model.close(); await model.open()
+                recordReopenCheckpoint("visible-before-save", font: bundled.rawValue)
+                await model.saveNow()
+                recordReopenCheckpoint("save-returned", font: bundled.rawValue)
+                model.close()
+                recordReopenCheckpoint("closed", font: bundled.rawValue)
+                await model.open()
+                recordReopenCheckpoint("open-returned", font: bundled.rawValue)
                 XCTAssertEqual(model.appearance.importedFontID, asset.id)
-                try await waitUntil {
-                    guard let web = active() else { return false }
-                    return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
+                do {
+                    try await waitUntil {
+                        guard let web = active() else { return false }
+                        return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
+                    }
+                } catch {
+                    // Read only after the original failure, preserving its timing
+                    // and error even when collecting the database evidence fails.
+                    do {
+                        let stored = try await services.repository.position(for: book.id)
+                        recordReopenCheckpoint("failed-restoration", font: bundled.rawValue, stored: stored)
+                    } catch { print("FONT_REOPEN_DIAGNOSTIC_READ_FAILED \(error)") }
+                    throw error
                 }
                 let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
                 chineseImage.name = "font-epub-\(bundled.rawValue)-\(continuous ? "continuous" : "paged")-build23"
