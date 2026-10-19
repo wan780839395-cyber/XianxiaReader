@@ -1,14 +1,16 @@
 # 当前交接与恢复点
 
-## R1 设置持久化隔离（2026-10-19）
+## R1设置隔离与分项验证（2026-10-19）
 
-最终完整 [39189899149](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39189899149) 已真实失败，冻结源 `9b47026ace3d9fc92d1df943b112fb19a96d5ffd`。日志中145集成通过、4项UI失败（安全区旋转AX点击点异常、3项字体用例）；xcresult原件正在核收，不发新完整。无Release/IPA。原watch31874已正常收尾；当前下载artifact12160534423（1730005337字节，exec4548），`build/ci/39189899149/apple-download.log`。已核xcresult169/173；旋转失败后没有恢复设备方向的命令，后续3字体case截图/AX均横屏；UIKit阶段日志的Portrait来自app退出，不是设备方向恢复。正在按Apple测试生命周期及Firefox基类补测试隔离，另用完整可见正文过滤裁切AX再作原hittable断言。只改测试，不改生产源码；备份ui-fixture-before/。
+最新断点：旧完整39196134450/source8f已失败并收齐digest/CRC原件；当前没有未完成的旧CI。28 UI target全部通过，145单元/集成仅旧ContinuousLayoutFailureShowsRetryAndRecoversTheAnchor在初始cover失败，尚未注入故障。raw173唯一case/172过/1失败，xcresult summary172总/171过/1失败，两种原值都保留。20秒预算内WebKit在19.198秒才开始导航；慢启动独因仍未证明已修。
 
-已完成：参考 Readium 3.11、固定 revision Readest 与 Apple actors 合同后，新增共享 ReaderSettingsPersistence、有序存储接口和按 openRequestID 过滤的完成订阅。新增7项存储边界、2项生命周期及1项纯浮点测量测试。旧26项生命周期函数主体、原目录/进度UI函数、存储格式、位置捕获和3秒/20秒预算均保留。外观/手感的引擎应用仍由原编排调用；字体、位置、会话服务的后续提取尚未实现。范围与参考取舍见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
+当前候选只改测试宿主与CI：明确前台scene、真实viewDidAppear/key-window/非零几何后才open；全部28个renderer测试函数主体不变。unit-release必须重新读取真实8f/39196134450元数据和完整UI日志，确认28项各通过一次且无失败/跳过，核App/Packages/Vendor/Tests/UI/Fixtures/project/锁等受保护输入逐字相同，并核Xcode16.4/16F6、host arm64、iPhone16Pro/iOS18.5；才重跑全部145单元/集成。实际summary必须Passed且145/145、无失败/跳过/残留failure，才继续原严格iPhoneOS Release30。默认full不变。不能把这条分项路径写成一次全套173/173。新Apple候选尚未派发，Windows452语法新增0（54旧Vendor限制）/25工具/bash通过。
 
-已有证据：Windows451个Swift文件语法新增错误0（54既有Vendor限制）、17项Python tooling及bash语法通过；settings定向39182894124为35/35；同生产输入的settings-ui39188609488为3/3。首完整39184148461确实170/172失败，完整原件已核收；旧目录点按未生效的独因未定。安全区AX高度43.999999999999986在4ULP内归一化到整数，原44门槛与真实不足反例保留；定向重跑通过不能写成目录根因已修。正式记录 [m4-settings-isolation-r1.json](Documentation/ValidationLogs/m4-settings-isolation-r1.json) 保留全部边界。
+R1生产代码仍只有AppServices/ReaderViewModel/ReaderSettingsPersistence三个文件，App与Packages/Vendor/UI/project/真实锁同8f（也是b111生产输入）。已过settings35/35；UI公共fixture修正的39194509105/8f为6/6，Swift编译诊断0，原件及portrait深灰/文楷原图已核；其后28 UI全套通过。此前完整170/172、169/173及本轮失败均独立保留；目录首次点按失败和WebKit慢启动独因仍未定。R2字体/R3位置/R4会话服务未实现，M4/手机验收未完成。
 
-恢复已核549个源码/测试/构建输入blob与9b完全相同；正常HEAD仍`6d761749911233122bcd031fcf718d22a19f9e77`、正常暂存区空，大量既有未提交改动必须保留。恢复材料在`.cache/recovery/20261019-settings-isolation/`：`start.json`/`before/`、`candidate.json`、`ui-candidate.json`、`source-proof.json`。最终预期Linux/macOS Core各137、iOS173（145集成+28 UI target：27真实UI+1纯测量）、严格iPhoneOS arm64 Release30；须核实际日志/xcresult/打包结果后才交付。旧过程见 [R1开发历史](Documentation/HANDOFF_R1_SETTINGS_DEVELOPMENT_2026-10-19.md)。Build29仍是最后已交付版本。
+正常HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，暂存区空，大量既有未提交源码保留。上个冻结源8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95/分支codex/refactor-reader-settings；当前新增改动先看`.cache/recovery/20261019-settings-isolation/render-harness-before/`、`render-harness-start.json`、`render-boundary-proof.json`，以及方案中的严格分项门槛。正常index看不到的私有快照文件不能直接拿git diff base对工作树判断删除；用alternate-index tree/commit对commit核验。此前本地一次直接比工作树的guard失败已按此修正，真实保护输入仍相同；没有改正常index。53旧交付包SHA已核保持，旧恢复ZIP未触及，不关机。
+
+实现、成熟项目/官方依据、失败详情与当前验证入口：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)、[R1验证记录](Documentation/ValidationLogs/m4-settings-isolation-r1.json)。所有新门槛通过前Build29仍最后交付，没有本片IPA。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

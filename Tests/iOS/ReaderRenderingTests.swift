@@ -673,6 +673,7 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor private weak var diagnosticEngine: ReadiumReaderEngine?
+    @MainActor private weak var diagnosticHost: HarnessHostController?
     @MainActor private final class OverlayState: ObservableObject {
         @Published var visible = true
     }
@@ -694,16 +695,31 @@ final class ReaderRenderingTests: XCTestCase {
         }
     }
 
+    @MainActor private final class HarnessHostController: UIHostingController<Harness> {
+        private(set) var hasAppeared = false
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            hasAppeared = true
+        }
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            hasAppeared = false
+        }
+    }
+
     private enum RenderFailure: Error { case timedOut(String, String), invalidProbe }
 
     @MainActor private func mount(_ engine: ReadiumReaderEngine) throws -> (UIWindow, OverlayState) {
         diagnosticEngine = engine
-        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+            .first { $0.activationState == .foregroundActive })
         let previous = scene.windows.first { $0.isKeyWindow }
         let state = OverlayState()
         let window = UIWindow(windowScene: scene)
         window.frame = scene.coordinateSpace.bounds
-        window.rootViewController = UIHostingController(rootView: Harness(controller: engine.viewController, state: state))
+        let host = HarnessHostController(rootView: Harness(controller: engine.viewController, state: state))
+        diagnosticHost = host
+        window.rootViewController = host
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
         addTeardownBlock {
@@ -718,6 +734,17 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor private func open(_ engine: ReadiumReaderEngine) async throws -> (Book, UIViewController) {
+        // Opening a publication is a separate step from attaching a SwiftUI
+        // host. Match the real foreground presentation before starting WebKit.
+        try await waitUntil {
+            guard let host = self.diagnosticHost, host.hasAppeared,
+                  let window = engine.viewController.view.window,
+                  window.isKeyWindow, !window.isHidden,
+                  window.windowScene?.activationState == .foregroundActive else { return false }
+            let frame = engine.viewController.view.convert(engine.viewController.view.bounds, to: window)
+            return frame.width > 0 && frame.height > 0 && frame.intersects(window.bounds)
+        }
+        print("RENDER_HOST_READY uptimeMs=\(Int(ProcessInfo.processInfo.systemUptime * 1000)) appeared=\(diagnosticHost?.hasAppeared == true) key=\(engine.viewController.view.window?.isKeyWindow == true) bounds=\(engine.viewController.view.bounds)")
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
         let book = Book(title: "阅读页面测试", format: .epub, filePath: "reader-layout.epub")
         try await engine.open(book: book, fileURL: url, position: nil)
@@ -839,6 +866,7 @@ final class ReaderRenderingTests: XCTestCase {
         var diagnostic = "\(caller):\(line)"
         if let engine = diagnosticEngine {
             let root = engine.viewController.view!
+            diagnostic += "\nhostAppeared=\(diagnosticHost?.hasAppeared == true) windowKey=\(root.window?.isKeyWindow == true) windowHidden=\(String(describing: root.window?.isHidden)) scene=\(String(describing: root.window?.windowScene?.activationState)) rootFrame=\(root.frame)"
             diagnostic += "\nposition=\(engine.currentPosition.map { String(decoding: $0.locatorData, as: UTF8.self) } ?? "nil")"
             diagnostic += "\ncontinuous state=\(engine.continuousDiagnosticState)"
             if let scroll = view(identifier: "readium.continuous-scroll", in: root) as? UIScrollView {

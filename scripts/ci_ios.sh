@@ -44,6 +44,14 @@ SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 # A recording/export failure must not silently produce a supposedly validated IPA.
 mkdir -p build/InteractionVideo
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
+case "${IOS_TEST_SCOPE:-full}" in
+  full) set -- ;;
+  unit-release)
+    python3 scripts/verify_ui_baseline.py --simulator-id "$SIMULATOR_ID"
+    set -- -only-testing:XianxiaReaderTests
+    ;;
+  *) echo "Invalid iOS test scope" >&2; exit 2 ;;
+esac
 # Exercise the real system-follow shelf/search path on a dark OS. Reader page
 # themes are independent and the existing five-theme tests still run in full.
 xcrun simctl ui "$SIMULATOR_ID" appearance dark
@@ -65,7 +73,7 @@ if xcodebuild test -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -configuration Debug -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
   -derivedDataPath "$PWD/build/DerivedData" \
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
-  -resultBundlePath "$PWD/build/SimulatorTests.xcresult" CODE_SIGNING_ALLOWED=NO; then
+  -resultBundlePath "$PWD/build/SimulatorTests.xcresult" "$@" CODE_SIGNING_ALLOWED=NO; then
   test_status=0
 else
   test_status=$?
@@ -124,6 +132,9 @@ if (( test_status != 0 )); then exit "$test_status"; fi
 if (( export_status != 0 )); then exit "$export_status"; fi
 if (( summary_status != 0 )); then exit "$summary_status"; fi
 if (( video_status != 0 )); then exit "$video_status"; fi
+if [[ "${IOS_TEST_SCOPE:-full}" == 'unit-release' ]]; then
+  python3 scripts/verify_ui_baseline.py --unit-summary build/test-results-summary.json
+fi
 
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \
   -onlyUsePackageVersionsFromResolvedFile \

@@ -11,13 +11,14 @@ on:
         type: boolean
         default: false
       diagnostic_selection:
-        description: Full delivery gate by default; selected diagnostics never produce an IPA
+        description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, native-input, fonts, panels, recovery, settings, settings-ui]
+        options: [full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui]
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: ios-${{ github.ref }}
@@ -77,13 +78,15 @@ jobs:
             build/TXTPerformance/
 
   ios:
-    if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' }}
+    if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' || inputs.diagnostic_selection == 'unit-release' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15
     timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       READIUM_RESOLVE_BOOTSTRAP: ${{ inputs.resolve_local_readium && '1' || '0' }}
+      IOS_TEST_SCOPE: ${{ inputs.diagnostic_selection == 'unit-release' && 'unit-release' || 'full' }}
+      GH_TOKEN: ${{ github.token }}
     defaults:
       run:
         shell: bash
@@ -109,6 +112,7 @@ jobs:
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json
+            build/ui-baseline-receipt.json
             build/TXTPerformance/
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA
@@ -120,7 +124,7 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' }}
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'unit-release' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15
     timeout-minutes: 30

@@ -1,6 +1,6 @@
 # 阅读模块隔离实施方案
 
-2026-10-19。状态：R1 35/35定向通过；两轮完整分别170/172、169/173失败，原件保留，无新Release/IPA。已定位第二轮旋转AX异常后的测试方向污染，现只补测试隔离，Apple六项定向待验证；生产源与b111保持。Build29仍是最后交付。
+2026-10-19。状态：设置35/35、UI修正6/6通过；8f完整run的28项UI target全过，唯一旧初始化case失败。全日志173唯一case/172过/1失败，xcresult summary172总/171过/1失败，两种原值保留。正在补单元测试宿主前置条件和有输入保护的unit-release门槛；尚无新Release/IPA，Build29仍最后交付。
 
 用户同意优先整理阅读模块的职责边界。目标是让界面、设置、字体、位置与会话问题能够在明确范围内定位，降低后续改动影响旧功能的概率。隔离不能消除所有集成故障，最终交付仍需完整回归。
 
@@ -51,7 +51,7 @@ R1 完成标准：
 ## 验证与定位方式
 
 - 开发时先 Windows 语法检查、Python tooling 与 R1 定向回归；未改动源码的方案文档无需启动编译。
-- 定向验证稳定后冻结同一源，完成既有完整 Core/iOS/严格设备 Release 门槛，再交付。开发过程中的每个文件提取无需各自打包一轮 IPA。
+- 生产或UI输入变化时，冻结同源完成完整Core/iOS/严格设备Release门槛。只改单元测试fixture时可用上文受保护组件路径，必须重跑全部145单元/集成并核真实UI基线，报告分项来源。开发中的每个文件提取无需各自打包一轮IPA。
 - 新对象通过可控写入完成顺序与错误注入测试自己的边界；界面与引擎的组合行为沿用真实集成/UI 回归，不以替身测试替代。
 - 测试失败先区分设置、位置、会话、原生呈现和运行环境，保留同源完整日志及所需原生诊断。重复失败而证据不足时补最小诊断或查对应官方实现，不继续凭猜测扩大生产改动。
 - 界面间距/颜色问题优先进入对应视图；偏好落盘进入设置对象；位置错误进入位置链路；关闭后迟到回调进入会话链路。跨边界才扩大排查。
@@ -63,7 +63,17 @@ R1 完成标准：
 
 已查[Apple测试初始化/清理](https://developer.apple.com/documentation/xctest/set-up-and-tear-down-state-in-your-tests)、[XCUIDevice orientation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/orientation)，并按固定revision审阅[Firefox iOS BaseTestCase](https://github.com/mozilla-mobile/firefox-ios/blob/0bd83b3b97a7dd97b23914030bd2292710b9fb5e/firefox-ios/firefox-ios-tests/Tests/XCUITests/BaseTestCase.swift)的MainActor异步setup/teardown及窗口旋转检查：采用XCTest生命周期公共基类，在每个用例前恢复已知portrait状态，结束/失败后终止测试App并复位方向；不搬入其浏览器导航框架、关闭动效或延长预算。
 
-旋转等待只对完整位于窗口内的正文段落查询原isHittable，避免先探测裁切段落的无效AX点击点；仍须真实可点击正文、无加载、无错误和原纸色像素条件同时成立，原20秒门槛不变。全部28个UI target测试函数正文与9b按LF规范化后逐字保持，只更改公共fixture继承和该等待helper。5个UI类共享一个小基类；生产App、Packages、Vendor、锁文件、project完全不动。先定向重放原进度、安全区、3字体及1纯测量共6项，通过后才考虑最终完整门槛。当前仅Windows452语法新增0/17工具/bash通过，不能写成已Apple编译。
+旋转等待只对完整位于窗口内的正文段落查询原isHittable，避免先探测裁切段落的无效AX点击点；仍须真实可点击正文、无加载、无错误和原纸色像素条件同时成立，原20秒门槛不变。全部28个UI target测试函数正文与9b按LF规范化后逐字保持，只更改公共fixture继承和该等待helper。5个UI类共享一个小基类；生产App、Packages、Vendor、锁文件、project完全不动。先定向重放原进度、安全区、3字体及1纯测量共6项，通过后才考虑最终完整门槛。Windows452语法新增0/17工具/bash通过后，39194509105/8f5b已实际6/6、失败跳过0、源码编译诊断0（5真UI+1纯测量）；GitHub digest/CRC已核，两张原生PNG实看为正确portrait及恢复后的深灰正文/选中文楷。此定向不生成IPA，完整门槛仍待。
+
+## 第三轮断点与验证组件复用
+
+39196134450/8f的原始XCTest记录145项单元/集成（144过、1失败）和28项UI target全部通过（27真实UI+1纯测量）。xcresult summary给出172总/171过/1失败，与173个唯一控制台case存在一项差异；两份原值都保存，不拼成一次完整成功。唯一失败是ReaderRenderingTests的ContinuousLayoutFailureShowsRetryAndRecoversTheAnchor，尚未执行删除DOM的故障注入：request后19.198秒才收到navigation.started，20秒截止触发时初始化尚在原Readium的0.2秒settle阶段。不能据此认定设置写入或字体回归，也不能把一次重放成功当作WebKit慢启动独因已修。
+
+测试宿主按[Apple UIViewController生命周期](https://developer.apple.com/documentation/uikit/uiviewcontroller)及已按固定revision审阅的[SnapshotTesting准备视图实现](https://github.com/pointfreeco/swift-snapshot-testing/blob/28e5de025e3fd98991791bfbf83023ab3708da03/Sources/SnapshotTesting/Common/View.swift)补明确前置条件：选前台scene，等待真实viewDidAppear、key window、已挂载且非零交集后才打开publication；失败记录宿主/窗口/scene状态。28个renderer测试函数主体不改，原30秒测试等待和生产20秒/3秒预算保持；App/Packages/Vendor/UI测试输入保持，未宣称慢启动根因修复。
+
+为避免只改单元测试宿主还重复32分钟的已过UI，增加显式unit-release模式。采用[Apple支持的only-testing](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)按target验证，不引入新测试框架。GitHub官方macos15镜像已提供GitHub CLI，CI用仅actions:read权限读取真实旧run元数据与完整日志；不信任手写passed标志。验证必须同时满足：旧run completed且headSha精确8f；28个指定UI case各通过一次、无失败或跳过；App/Packages/Vendor/Tests/UI/Tests/Fixtures/project.yml/真实锁/.gitattributes/选择器等受保护输入逐字相同；Xcode16.4/16F6、host arm64、iPhone16Pro/iOS18.5匹配。来源输入变化、旧日志不可读、漏项、失败后重跑等情况直接失败，要求full模式。
+
+只有上述UI组件证据成立，才重跑当前全部145项单元/集成（包含旧失败case），实际xcresult必须145/145、失败跳过0，随后运行原严格无签名iPhoneOS Release30。默认full流程仍跑两个完整target，真实test/export/summary/recording/build退出码和完整诊断都保留。新路径是“当前145 + 同输入既有28 + 当前Release”的分项验收，报告不能写成一次全套173/173成功。Core两个平台及TXT探针仍照原门槛执行。25项Python工具测试含漏项、重复、先失败后通过、跳过、源/SDK/设备变化与145数量不齐的拒绝回归；当前Windows452语法新增0/25工具/bash通过，Apple新候选仍待验证。
 
 ## 本轮时间成本与已落实的改法
 

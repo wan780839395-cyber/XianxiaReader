@@ -1,6 +1,6 @@
 # 项目状态
 
-2026-10-19 R1设置隔离35/35通过；完整39189899149确为169/173失败（145集成全过、4 UI失败），无Release/IPA。已定位旋转AX异常后的测试方向污染，按Apple/Firefox测试生命周期补公共fixture，生产代码不变；452语法/17工具通过，六项Apple定向待跑。Build29仍最后交付。范围与证据见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
+2026-10-19 R1设置35/35与UI修正6/6通过；第三轮完整run的28 UI全过，旧初始化case仍失败，无新IPA。已补测试宿主前置合同及受保护的unit-release候选（当前145+已核同输入28UI+当前Release，不能写一次全套绿灯）。Windows452/25工具通过，新Apple候选待验证。Build29仍最后交付。见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

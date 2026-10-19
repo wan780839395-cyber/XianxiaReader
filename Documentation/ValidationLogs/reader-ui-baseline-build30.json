@@ -1,0 +1,139 @@
+{
+  "baselineRun": 39196134450,
+  "baselineRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+  "repository": "wan780839395-cyber/XianxiaReader",
+  "priorOverallConclusion": "failure",
+  "unitFailure": "ReaderRenderingTests/testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor",
+  "uiCases": [
+    [
+      "LibraryInteractionUITests",
+      "testCoverEditorNativeFilesCancelDefaultSaveAndReopen"
+    ],
+    [
+      "LibraryInteractionUITests",
+      "testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback"
+    ],
+    [
+      "LibraryInteractionUITests",
+      "testGridRemovalReflowsAndRestoreReturnsOriginalOrder"
+    ],
+    [
+      "LibraryInteractionUITests",
+      "testNativeListSwipeCancelCommitReopenAndRestore"
+    ],
+    [
+      "LibraryInteractionUITests",
+      "testReducedMotionRemovalAndRestoreKeepUsableGrid"
+    ],
+    [
+      "ReaderAppearanceUITests",
+      "testNativeThemesTypographyAndPersistenceAfterRelaunch"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testAutomaticSlowScrollRespectsAdditionalReduceMotion"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testReducedMotionNativeGroupedSettingsRemainUsable"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testReturnPointContentsBookmarkAndCurrentPositionRelaunch"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testReturnPointSearchDarkReducedMotionAndStay"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation"
+    ],
+    [
+      "ReaderInterfaceUITests",
+      "testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous"
+    ],
+    [
+      "ReadingExperienceUITests",
+      "testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection"
+    ],
+    [
+      "ReadingExperienceUITests",
+      "testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions"
+    ],
+    [
+      "ReadingFontUITests",
+      "testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode"
+    ],
+    [
+      "ReadingFontUITests",
+      "testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen"
+    ],
+    [
+      "ReadingFontUITests",
+      "testNativeFontSelectionPickerCancelDarkResetAndRelaunch"
+    ],
+    [
+      "ReadingFontUITests",
+      "testSixNativeFontSamplesAndCustomTypographyPersist"
+    ]
+  ],
+  "uiCount": 28,
+  "realUICount": 27,
+  "pureMeasurementCount": 1,
+  "xcode": "Xcode 16.4",
+  "simulatorOS": "18.5",
+  "simulatorModel": "iPhone 16 Pro",
+  "localFullLogSHA256": "5e69ef82de0eb6fdd0640429941784cdd71518d763f0f6d67af96b2ec523b043",
+  "artifactReceipt": {
+    "run": 39196134450,
+    "artifact": 12163597568,
+    "archiveBytes": 1867797610,
+    "archiveSHA256": "ae47f98155a1909c67774b06f4d532c53ef337d4ba4f3295e717ba995d394182",
+    "githubDigestMatches": true,
+    "zipCRC": true
+  },
+  "authority": "Real completed run and original full logs/artifact; not an overall successful CI claim",
+  "xcodeBuild": "Build version 16F6",
+  "hostTarget": "Target: arm64-apple-macosx15.0"
+}
