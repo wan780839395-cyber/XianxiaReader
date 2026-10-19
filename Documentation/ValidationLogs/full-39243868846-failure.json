@@ -1,0 +1,87 @@
+{
+  "recordedAtUTC": "2026-10-19T13:41:30.828792+00:00",
+  "run": 39243868846,
+  "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+  "sourceInputs": 554,
+  "localInputsStillMatch": true,
+  "normalHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+  "normalIndexEmpty": true,
+  "conclusion": "failure",
+  "preliminary": false,
+  "source": "original full build.log and xcresult summary, complete artifact digest/CRC verified",
+  "failedCases": [
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "seconds": 226.342
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testScrollingCanMoveToNextResourceAndTOCFragment",
+      "seconds": 21.862
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor",
+      "seconds": 35.215
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+      "seconds": 174.22
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+      "seconds": 147.231
+    },
+    {
+      "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "name": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+      "seconds": 86.061
+    }
+  ],
+  "integrationExecuted": 149,
+  "integrationFailedCases": 3,
+  "integrationFailureAssertions": 5,
+  "uiExecuted": 28,
+  "uiFailedCases": 3,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "next": "One same-runner on/off background-recorder experiment over original reader-session 67; warmup/order remains a confound; no production patch or full retry",
+  "diskFreeGiB": 114.9,
+  "total": 177,
+  "passed": 171,
+  "failedCasesCount": 6,
+  "skipped": 0,
+  "testExit": 65,
+  "summaryExit": 0,
+  "attachmentExit": 0,
+  "recordingExit": 0,
+  "artifact": 12188251448,
+  "artifactBytes": 1107036573,
+  "artifactSHA256": "a54060babf3fc92e89cac58252314cd36fb9ad9012a86c438709b178a014cb43",
+  "githubDigestMatches": true,
+  "zipCRC": true,
+  "originalSummary": "build\\ci\\39243868846\\artifacts\\XianxiaReader-build-diagnostics\\build\\test-results-summary.json",
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "settingsAndLifecycle": {
+    "passed": 35,
+    "failed": 0
+  },
+  "closeContracts": {
+    "passed": 2,
+    "failed": 0
+  },
+  "frameworkControl": {
+    "passed": 1,
+    "iterations": 8
+  },
+  "observations": [
+    "Paged font reopen has alpha=0/about:blank; WebContent startup 101.335/101.700 seconds; complete saved locator still present",
+    "Six-font continuous resource committed but didFinish missing before unchanged 20-second timeout",
+    "Menu test recording 120.5-142.5-second overview shows blank body and spinner after reopen; no native acceptance",
+    "Warm landscape original screenshot has readable body; the settled-edge predicate failure is not yet classified as a loading failure"
+  ]
+}

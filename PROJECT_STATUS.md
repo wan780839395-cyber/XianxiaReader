@@ -1,8 +1,12 @@
 # 项目状态
 
-R1持久化与关闭合同实现保留，发布尚未验收。最新39235769577/2f93直接引擎段首重开1/1通过、13.019秒，原件digest/CRC已核；准备至首测约28分12秒。证明相同p25/char0输入并非必然失败，不能据此称旧完整字体链路已修。先前39230331856四阶段位置完整，但原字体/锚点联合等待失败，分项原因仍未定。
+## R1设置隔离：实现保留，完整发布失败
 
-下一候选只在测试原断言之后记录字体/锚点独立条件、滚动目标与字体状态，生产不改；Windows453语法新增0/26工具通过，新探针尚未编译。仅跑原fonts两项后再判断。当前149集成+28UI=177完整门槛/严格Release30未过、无新IPA；Build29最后交付，R2/R3/R4、手机/TrollStore与M4整体验收待。实际恢复点见HANDOFF.md。
+完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/`024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f`于2026-10-19 21:11（上海）结束failure。实际xcresult 171/177，6失败、0跳过：集成146/149、UI25/28；设置/生命周期35及关闭合同2项通过。test65，summary/export/recording均0；Swift源码编译警告/错误0，Release被阻止，无Build30 IPA。artifact12188251448完整digest/CRC核验，本地原件见build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics。
+
+当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。当前该实验尚未派发。
+
+正常HEAD6d761749、空index与未提交改动保留；原554构建输入在恢复时逐摘要匹配024。原fonts定向39240216459为2/2、直接段首39235769577为1/1，不代替当前完整门槛。旧字体故障根因仍未唯一确定；Build29最后交付，手机/TrollStore待验收。长期教训已在根AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

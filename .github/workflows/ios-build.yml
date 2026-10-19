@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control]
 
 permissions:
   contents: read
@@ -153,7 +153,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/logs
-          bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
+          if [[ "$DIAGNOSTIC_SELECTION" == 'recording-control' ]]; then
+            bash scripts/ci_recording_control.sh 2>&1 | tee build/logs/reader-diagnostic.log
+          else
+            bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
+          fi
       - name: Preserve diagnostic logs and original test result
         if: always()
         uses: actions/upload-artifact@v4
@@ -168,3 +172,4 @@ jobs:
             build/test-results-summary.json
             build/build-environment.txt
             build/Package.resolved
+            build/RecordingControl/

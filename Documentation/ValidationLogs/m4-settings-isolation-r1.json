@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "standalone-paged-restore-passed-original-fonts-probe-pending",
+  "stage": "full177-failed-recording-control-planned",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -611,5 +611,22 @@
     "durationSeconds": 13.019,
     "source": "2f93a11cedcebd6008e8e3134b3c5fbf2ba4fe58",
     "productionFix": false
+  },
+  "latestFonts": {
+    "run": 39240216459,
+    "passed": 2,
+    "source": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+    "historicalRootUniquelyExplained": false
+  },
+  "currentFullGate": {
+    "run": 39243868846,
+    "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+    "result": "Failed",
+    "passed": 171,
+    "total": 177,
+    "failed": 6,
+    "skipped": 0,
+    "releaseExecuted": false,
+    "ipaGenerated": false
   }
 }

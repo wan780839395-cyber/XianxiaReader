@@ -148,3 +148,21 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 39235769577/2f93的直接引擎p25/char0重开实际1/1、13.019秒通过；原生步骤至首测约28分12秒，整个准备包含解析、编译和启动，不冒充测试耗时。artifact12180054563完整digest/CRC核验。说明相同段首输入并非必然恢复错误；不能将原联合等待失败直接归成字不可见、字体失效或R1存储错误。测试Optional插值警告下一候选显式修正。
 
 下一候选只改测试：两个用例共用有界同步scrollTo探针，增加实际FontFace状态和内容宽度；原导入字体用例仅在原断言之后记录字体/目标字两个独立条件与原生offset/size、模型字体/错误信息。原保存关闭打开之间不加await，不改联合断言、15/20/3/30秒预算或生产路径。选择原fonts两项，不重复整套。通过也只记录当轮，原失败和因果未定风险保留；失败则用分项条件选择最小修正。
+
+## 当前两项字体结果及进入完整门槛的理由
+
+39240216459/024真实2/2通过，117.689秒与14.696秒，test/summary/export退出0，Swift源码警告/错误0，artifact12182053807完整digest/CRC验证。六分页重开实际字体和目标字均true，原生x=2010，30份分项原件保留。连续模式断言之后的观察并非与原断言原子同步，预载/空白页false不是新测试失败；旧失败根因仍未唯一确定。生产未改，不将本轮成功写成历史根因已修。
+
+当前554构建输入与024复核一致。此前be7完整失败的字体翻页准备已经更换为确定性完整Locator并定向通过，新增直接段首1项与原字体2项也已有实际结果。因此下一步是当前输入首次完整149集成+28UI=177和严格无签名Release30，而非无新条件重复旧完整CI；不再重复fonts-full前置。若完整失败，保留证据并按关联边界处理；不得导出验收IPA。
+
+## 完整39243868846失败与下一单变量对照（2026-10-19）
+
+完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/`024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f`于2026-10-19 21:11（上海）结束failure。实际xcresult 171/177，6失败、0跳过：集成146/149、UI25/28；设置/生命周期35及关闭合同2项通过。test65，summary/export/recording均0；Swift源码编译警告/错误0，Release被阻止，无Build30 IPA。artifact12188251448完整digest/CRC核验，本地原件见build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics。
+
+当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。当前该实验尚未派发。
+
+本轮iOS job约109分18秒：原31项renderer累计583.418秒、完整149集成854.649秒；28UI3344.186秒。准备/编译/启动和附件导出另计，未执行设备Release。完整原件校验见ValidationLogs/full-39243868846-failure.json。
+
+对照依据：原fonts诊断没有额外simctl录屏，完整流程有贯穿构建与测试的后台recordVideo；当前失败有WebContent/GPU失去响应，但尚无两者因果证据。复用既有ci_reader_diagnostic.sh reader-session和同runner DerivedData，功能预算、fixture、所有67项断言不改；新包装脚本仅控制外部录屏和保留两份原件。按上轮实际583秒renderer、冷准备约28分钟估算，两组加导出在现有60分钟诊断job范围内；若未完成，记录实际断点，不将未执行计通过。
+
+参考[Apple Xcode测试报告（Xcode15起的原生测试录屏）](https://developer.apple.com/videos/play/wwdc2023/10175/)，本项目Xcode16.4已真实导出每用例视频；[fastlane2.228.0 scan命令生成器](https://github.com/fastlane/fastlane/blob/2.228.0/scan/lib/scan/test_command_generator.rb)保留指定DerivedData、resultBundle和only-testing及pipefail。采用同构建目录及独立结果文件的办法，不引入fastlane依赖、不启用其失败重试、不删除原生视频或断言。顺序预热与runner状态仍需独立判断：on失败/off成功只支持继续核查；两者同失败或全成功不能宣称后台录屏是唯一根因。

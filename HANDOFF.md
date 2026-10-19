@@ -1,20 +1,12 @@
 # 当前交接与恢复点
 
-## R1设置隔离与关闭合同修正（2026-10-19，当前恢复点）
+## R1设置隔离：实现保留，完整发布失败
 
-最新[39235769577](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39235769577)/2f93已成功结束：直接引擎段首恢复实际1/1、13.019秒，失败/跳过0，test/summary/export退出0；artifact12180054563完整digest/CRC核验。原生job至首测约28分12秒，包含解析/编译/启动。新测试1条Optional插值警告下一候选已显式String(describing:)修正。此轮没有生产修复、Release或IPA。
+完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/`024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f`于2026-10-19 21:11（上海）结束failure。实际xcresult 171/177，6失败、0跳过：集成146/149、UI25/28；设置/生命周期35及关闭合同2项通过。test65，summary/export/recording均0；Swift源码编译警告/错误0，Release被阻止，无Build30 IPA。artifact12188251448完整digest/CRC核验，本地原件见build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics。
 
-当前无远程任务。下一候选仅改测试探针，先Windows检查、冻结后只派发fonts原两项。原save-close-open联合断言之后分别记录fontCondition/anchorCondition、FontFace状态、有界同步scrollTo记录及原生offset/size；不在保存/关闭/打开之间增加await，不改原断言、生产加载20秒/保存3秒/字体15秒或测试30秒预算。单项控制保留，共用测试探针。通过仅证明本轮，失败则据分项证据选最小修正，不无假设重跑完整。
+当前只做recording-control诊断：同一Intel/Xcode16.4/iOS18.5 runner、相同reader-session67，先开额外simctl录屏，再关掉，保留两份独立xcresult/原始退出及进程内存采样；第二次通过也不会覆盖第一次失败。源码/全部Swift测试/功能预算不改，原完整发布门槛不改。开/关顺序与环境预热仍有混杂，不能以一次通过宣称根因已修。本次不再盲跑full；不启动R2/R3/R4，不关机。当前该实验尚未派发。
 
-本次恢复已核正常HEAD`6d761749911233122bcd031fcf718d22a19f9e77`/空index、未提交工作及唯一远程任务，保留已有R1持久化与关闭资源合同实现。2f93的554输入已核无差异，之后仅改渲染测试/文档，须另冻结source-proof-font-condition-probe.json。上一freeze脚本误把2f93证明写到source-proof-locator-fixture.json，原文件保留并复制到正确source-proof-paged-zero-red.json；前者不是028历史证明。53旧交付包按packages-proof保护，不关机。
-
-证据边界：39226220147/028实际65/66，完整Locator准备的字体竞态9.257秒通过，设置/生命周期35及关闭2项通过；唯一旧导入字体循环在首个sourceHanSerif分页重开后联合等待失败。39230331856/e960因GitHub30分钟总job取消、0完整case/无summary，四阶段model/engine完整p25/char0保留至open返回，saveFailure=nil；后续可见one.xhtml记录h1/offset0，失败后SQLite补读未完成。这排除该次输入丢失，但长段整体rect不能证明首字位置，字体与目标字两个条件尚未分清。新直接1/1证明该输入并非必然失败，不称旧故障根因已修。
-
-Windows新探针453语法新增错误0（54既有Vendor限制）、26工具通过；语法不是编译，新探针尚未原生编译。当前全门槛149集成+28UI=177，reader-session将67，所有旧用例保留。诊断总job60分钟、完整120；不复用旧UI替代生产变更后的门槛。没有149+28完整结果/严格Release30/Build30 IPA。Build29仍最后交付，R2/R3/R4、手机/TrollStore与M4整体待验收。
-
-原始记录在Documentation/ValidationLogs/：fonts-full-timeout-39215839905.json（preflight2/2，完整147/148、11UI后总job1h取消）；reader-session-locator-fixture-39226220147.json；font-reopen-checkpoints-39230331856.json；paged-restore-control-39235769577.json。更早过程与参考资料见READER_ISOLATION_PLAN.md，历史状态不代表当前。
-
-长期教训已写根AGENTS.md与Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，不再用个人记忆代替项目规则。浏览器plugin enabled=true，但cua重置后仍报Work设置禁用；没有暴露修改该Work开关的接口，用户已授权，不重复索要授权，不阻塞CLI验证。
+正常HEAD6d761749、空index与未提交改动保留；原554构建输入在恢复时逐摘要匹配024。原fonts定向39240216459为2/2、直接段首39235769577为1/1，不代替当前完整门槛。旧字体故障根因仍未唯一确定；Build29最后交付，手机/TrollStore待验收。长期教训已在根AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 
