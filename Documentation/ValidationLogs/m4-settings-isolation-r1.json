@@ -1,7 +1,7 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "source-implemented-release-blocked-webkit-loading",
-  "sourceRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
+  "stage": "font-preflight-full-candidate-not-dispatched",
+  "sourceRevision": "383b11a69f71094e229facaa7e4129e128e8956b",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
@@ -336,8 +336,8 @@
     "IPAProduced": false
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
-  "productionInputsIdenticalToOriginalR1": true,
-  "updatedAtUTC": "2026-10-19T05:54:51.023052+00:00",
+  "productionInputsIdenticalToOriginalR1": false,
+  "updatedAtUTC": "2026-10-19T07:13:19.153336+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -490,10 +490,10 @@
     "failureProof": "Documentation/ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json"
   },
   "latestWindows": {
-    "SwiftFiles": 452,
+    "SwiftFiles": 453,
     "addedSyntaxDiagnostics": 0,
     "preexistingVendorGrammarLimits": 54,
-    "toolingPassed": 25,
+    "toolingPassed": 26,
     "bashSyntaxPassed": true,
     "SwiftCompilation": false
   },
@@ -501,5 +501,30 @@
   "ReleaseBuilt": false,
   "IPAProduced": false,
   "currentBlocker": "Three native WebKit rendering failures; subprocess launches measured 24-31 seconds; cause not fully established",
-  "nextStep": "Independent minimal loading comparison; do not expand to R2/R3/R4 or blindly repeat the full CI"
+  "nextStep": "Independent minimal loading comparison; do not expand to R2/R3/R4 or blindly repeat the full CI",
+  "AppSettingsInputsIdenticalToOriginalR1": true,
+  "readerSessionCloseDiagnostic": {
+    "run": 39211610770,
+    "sourceRevision": "383b11a69f71094e229facaa7e4129e128e8956b",
+    "passed": 65,
+    "total": 66,
+    "failed": 1,
+    "closeContractsPassed": 2,
+    "priorThreeLoadingFailuresPassed": true,
+    "proof": "Documentation/ValidationLogs/reader-session-close-39211610770.json"
+  },
+  "fontPreflightFullCandidate": {
+    "status": "not-dispatched",
+    "expectedPreflight": 2,
+    "expectedUnit": 148,
+    "expectedUI": 28,
+    "runner": "macos-15-intel",
+    "nativeXcode": "16.4/16F6",
+    "simulatorOS": "18.5",
+    "originalRendererBodiesUnchanged": 27,
+    "oneOriginalRendererUsesControlledGate": true,
+    "sourceCheckCount": 453,
+    "toolingPassed": 26,
+    "phoneAccepted": false
+  }
 }

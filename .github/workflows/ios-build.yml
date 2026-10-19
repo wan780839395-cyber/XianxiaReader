@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, reader-session]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, reader-session]
 
 permissions:
   contents: read
@@ -78,9 +78,10 @@ jobs:
             build/TXTPerformance/
 
   ios:
-    if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' || inputs.diagnostic_selection == 'unit-release' }}
+    if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' || inputs.diagnostic_selection == 'fonts-full' || inputs.diagnostic_selection == 'unit-release' }}
     needs: [repository-checks, core-tests]
-    runs-on: macos-15
+    # Explicit 14GB Intel image; the macos-15 alias is a 7GB ARM VM.
+    runs-on: macos-15-intel
     timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
@@ -92,6 +93,14 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
+      - name: Targeted font race preflight before full validation
+        if: ${{ inputs.diagnostic_selection == 'fonts-full' }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_reader_diagnostic.sh fonts 2>&1 | tee build/logs/font-preflight.log
+          mv build/ReaderSnapshots build/FontPreflightSnapshots
+          mv build/test-results-summary.json build/font-preflight-summary.json
       - name: Build, test, and package unsigned IPA
         run: |
           set -euo pipefail
@@ -108,10 +117,12 @@ jobs:
             build/logs/
             build/*.xcresult/
             build/ReaderSnapshots/
+            build/FontPreflightSnapshots/
             build/InteractionVideo/
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json
+            build/font-preflight-summary.json
             build/ui-baseline-receipt.json
             build/TXTPerformance/
             XianxiaReader.xcodeproj/
@@ -124,9 +135,9 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'unit-release' }}
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'unit-release' }}
     needs: [repository-checks, core-tests]
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 30
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer

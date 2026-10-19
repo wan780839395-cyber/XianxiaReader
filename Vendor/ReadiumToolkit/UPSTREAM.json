@@ -1741,10 +1741,13 @@
     "redProductionRevision": "99acd92f91f597091e6277b89c0c353743ae4ddc",
     "originalBudgetsUnchanged": true,
     "dependenciesUnchanged": true,
-    "AppleFixValidationPending": true,
     "references": [
       "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Toolkit/PaginationView.swift",
       "https://developer.apple.com/documentation/uikit/uiview/removefromsuperview()"
-    ]
+    ],
+    "closeContractPassRun": 39211610770,
+    "closeContractPassed": 2,
+    "validationEvidence": "Documentation/ValidationLogs/reader-session-close-39211610770.json",
+    "overallDiagnosticPassed": false
   }
 }

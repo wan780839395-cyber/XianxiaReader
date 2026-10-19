@@ -57,17 +57,30 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor func testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord() async throws {
+        let initial = try BundledReadingFont.wenKai.resource(), intermediate = try BundledReadingFont.sourceHanSerif.resource()
+        let final = try BundledReadingFont.sourceHanSans.resource()
         let delay = WKUserScript(source: """
-            Object.defineProperty(document.fonts,'ready',{get(){
+            const fonts=document.fonts;
+            const nativeReady=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(fonts),'ready').get;
+            Object.defineProperty(fonts,'ready',{get(){
+              const request=(window.__xrPreviewReadyRequest||0)+1;
+              window.__xrPreviewReadyRequest=request;
               window.__xrPreviewReadyStarted=true;
-              return new Promise(resolve=>setTimeout(()=>{window.__xrPreviewReadySettled=true;resolve(document.fonts);},800));
+              window.__xrPreviewReadySettled=false;
+              const middle=document.body&&getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)');
+              const gate=middle?new Promise(resolve=>{
+                (window.__xrPreviewReadyGates??=[]).push(resolve);
+                window.__xrReleasePreviewReady=()=>window.__xrPreviewReadyGates.splice(0).forEach(release=>release());
+              }):Promise.resolve();
+              return Promise.all([nativeReady.call(fonts),gate]).then(()=>{
+                if(window.__xrPreviewReadyRequest===request)window.__xrPreviewReadySettled=true;
+                return fonts;
+              });
             }});
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
         var interaction = ReadingInteraction(); interaction.reduceMotion = true
         try engine.setInteraction(interaction)
-        let initial = try BundledReadingFont.wenKai.resource(), intermediate = try BundledReadingFont.sourceHanSerif.resource()
-        let final = try BundledReadingFont.sourceHanSans.resource()
         try engine.setReadingFonts([initial, intermediate, final])
         var appearance = ReadingAppearance(); appearance.fontScale = 1; appearance.importedFontID = initial.asset.id
         try engine.setAppearance(appearance)
@@ -106,13 +119,22 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertGreaterThan(offset, 100, "Prepare a deep original word before font changes: \(selector), char=\(offset)")
         let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
         appearance.importedFontID = intermediate.asset.id; try engine.setAppearance(appearance)
+        var pendingFontWebView: WKWebView?
         try await waitUntil {
             for web in self.webViews(in: navigator.view) {
-                if try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)') && window.__xrPreviewReadyStarted===true && window.__xrPreviewReadySettled!==true") as? Bool == true { return true }
+                if try await web.evaluateJavaScript("location.pathname.endsWith('/one.xhtml') && getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)') && window.__xrPreviewReadyStarted===true && window.__xrPreviewReadySettled!==true") as? Bool == true {
+                    pendingFontWebView = web
+                    return true
+                }
             }
             return false
         }
+        let pendingFont = try XCTUnwrap(pendingFontWebView)
+        addTeardownBlock { try await Self.releaseFontGate(pendingFont) }
         appearance.importedFontID = final.asset.id; try engine.setAppearance(appearance)
+        // The second request is issued while the intermediate font is still held.
+        // Explicitly release the fault injection, rather than racing an 800ms timer.
+        try await Self.releaseFontGate(pendingFont)
         try await waitUntil {
             guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
                   web.scrollView.alpha > 0.99 else { return false }
@@ -124,6 +146,10 @@ final class ReaderRenderingTests: XCTestCase {
                 """) as? Bool == true
         }
         engine.close()
+    }
+
+    @MainActor private static func releaseFontGate(_ web: WKWebView) async throws {
+        _ = try await web.evaluateJavaScript("window.__xrReleasePreviewReady?.(); null")
     }
 
     @MainActor func testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor() async throws {

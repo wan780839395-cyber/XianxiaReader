@@ -8,6 +8,33 @@ import unittest
 
 
 class CIFailurePathTests(unittest.TestCase):
+    def test_font_preflight_propagates_failure_and_preserves_separate_success_evidence(self):
+        from check_repository import yaml, ROOT
+        workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        preflight, = [step["run"] for step in workflow["jobs"]["ios"]["steps"]
+                      if step.get("name") == "Targeted font race preflight before full validation"]
+        git_bash = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "Git/bin/bash.exe"
+        bash = str(git_bash) if os.name == "nt" and git_bash.is_file() else shutil.which("bash")
+        self.assertIsNotNone(bash)
+        for code in (0, 65, 23):
+            with self.subTest(exit=code), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                (root / "scripts").mkdir()
+                (root / "scripts/ci_reader_diagnostic.sh").write_text(
+                    "mkdir -p build/ReaderSnapshots\n"
+                    "echo original-summary > build/test-results-summary.json\n"
+                    "echo original-attachment > build/ReaderSnapshots/native.txt\n"
+                    f"echo ORIGINAL-TEST-EXIT-{code}\nexit {code}\n", encoding="utf-8", newline="\n")
+                result = subprocess.run([bash, "-c", preflight + "\necho FULL-AND-RELEASE\n"],
+                                        cwd=root, text=True, capture_output=True)
+                self.assertEqual(result.returncode, code, result.stderr)
+                self.assertIn(f"ORIGINAL-TEST-EXIT-{code}", (root / "build/logs/font-preflight.log").read_text())
+                prefix = "FontPreflightSnapshots" if code == 0 else "ReaderSnapshots"
+                self.assertEqual((root / "build" / prefix / "native.txt").read_text().strip(), "original-attachment")
+                summary = "font-preflight-summary.json" if code == 0 else "test-results-summary.json"
+                self.assertEqual((root / "build" / summary).read_text().strip(), "original-summary")
+                self.assertEqual("FULL-AND-RELEASE" in result.stdout, code == 0)
+
     def run_section(self, test_exit, export_exit, summary_exit=0, video_exit=0):
         script = (Path(__file__).parent / "ci_ios.sh").read_text(encoding="utf-8")
         section = script[script.index("test_status=0\n"):script.index("\nxcodebuild build ")]

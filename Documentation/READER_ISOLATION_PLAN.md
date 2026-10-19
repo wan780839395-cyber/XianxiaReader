@@ -1,6 +1,6 @@
 # 阅读模块隔离实施方案
 
-2026-10-19。状态：R1设置职责已提取并编译，最新设置/生命周期35项全过；8f完整run的28项UI target全过。受保护unit-release 39203522040/cb0b1e2已结束，真实UI基线/同输入校验通过，但当前145项为142过/3个WebKit渲染失败，Release未执行，没有新IPA。R1未整体验收，Build29仍最后交付。
+2026-10-19。关闭修正383b11a已实际65/66，新两项关闭合同及原三加载用例全过；唯一旧字体测试800ms故障窗口未捕获。正在冻结显式屏障及14GB Intel/fonts-full候选，尚无本片Release/IPA。根AGENTS.md及项目排障流程已纳入教训。Build29仍最后交付。
 
 用户同意优先整理阅读模块的职责边界。目标是让界面、设置、字体、位置与会话问题能够在明确范围内定位，降低后续改动影响旧功能的概率。隔离不能消除所有集成故障，最终交付仍需完整回归。
 
@@ -90,6 +90,14 @@ R1 完成标准：
 修正仅触及ReadiumAdapter的关闭调用和Vendor navigator：统一终止两种容器，分页先清delegate再removeFromSuperview，触发[Readium 3.11原始PaginationView清理](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Toolkit/PaginationView.swift)和既有spread clear；设置终止标识，initialize开始及await返回后拒绝迟到创建，完成已有初始化等待。旧20秒/3秒/字体15秒预算、存储格式、正文排版、Locator和依赖版本保持。UPSTREAM.json登记准确摘要，不升级Readium，不改通用PaginationView。
 
 先跑reader-session的66项：30个renderer（原28主体不变+2关闭回归）、28生命周期、7设置、1末尾最小WK控制。增加有界只读进程/内存采样应对后续WebContent启动失常，不记录命令参数和书籍内容，不替代真实测试退出。生产/配置源变化后既有UI组件保护必须拒绝复用；定向通过后才冻结同源完整148单元/集成+28 UI和原严格设备Release。当前修正未Apple编译，不能标为已解决或已验收。
+
+## 66项结果与最终验证合同
+
+383b11a/39211610770实际65/66，失败/跳过1/0；新两关闭合同和原三个失败用例通过。唯一旧testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord等待“中间字体开始但800ms延迟尚未结束”，最终字体尚未请求；当前页面已加载完成。103条资源样本观察到压缩内存峰值2763MiB、最低空闲55MiB及较大调度负载，不将这单独当作历史全部慢启动的唯一根因。
+
+故障注入改为可控Promise屏障，并等待真正原生FontFaceSet.ready：初始字体正常完成，中间字体由测试持有；观察同一“中间字体未完成”条件后先发出最终选择再显式放行。原深字锚点/最终字体可见条件不变，teardown也释放屏障，不删除断言、不加重试、不改变生产20秒/3秒/字体15秒预算。27个旧renderer主体不变，此1项同步方式单列变化。
+
+已核[GitHub官方主机规格](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)：macos-15为3核7GB ARM，macos-15-intel为4核14GB；[Intel镜像](https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md)仍提供Xcode16.4/16F6与iOS18.5。固定显式Intel标签与对应检查，不升级SDK。新的fonts-full在同一runner先跑原两项字体定向；失败保留真实退出及日志，后续完整验证/Release不会执行。通过后重用同runner构建目录跑完整148单元/集成、28 UI及原严格设备Release；两份summary/附件分开保留，不把预检加入完整结果凑数。26工具测试验证preflight的65/23失败传播及成功原件分离。当前候选尚未派发，不能把旧ARM UI作为该候选的通过证据，最终分别记录x86_64模拟器与arm64设备构建/手机待验收。
 
 ## 本轮时间成本与已落实的改法
 

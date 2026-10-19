@@ -74,7 +74,9 @@ def check_workflow() -> None:
     require(core["container"]["image"] == "swift:6.1.2-jammy@sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f",
             "Core Swift compiler and image digest pin missing")
     require("core-tests" in job["needs"], "iOS build must wait for actual Core tests")
-    require(job["runs-on"] == "macos-15", "macOS runner drift")
+    require(job["runs-on"] == "macos-15-intel", "Pinned 14GB Intel macOS runner drift")
+    require(workflow["jobs"]["reading-diagnostic"]["runs-on"] == "macos-15-intel",
+            "Native diagnostics must use the same pinned runner")
     require(job["env"]["DEVELOPER_DIR"].endswith("Xcode_16.4.app/Contents/Developer"), "Xcode drift")
     diagnostic = next(step for step in job["steps"] if step.get("name", "").startswith("Upload build logs"))
     require(diagnostic.get("if") == "always()", "Failed builds must upload diagnostics")
