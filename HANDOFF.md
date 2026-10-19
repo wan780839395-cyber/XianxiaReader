@@ -2,15 +2,19 @@
 
 ## R1设置隔离与分项验证（2026-10-19）
 
-最新断点：旧完整39196134450/source8f已失败并收齐digest/CRC原件；当前没有未完成的旧CI。28 UI target全部通过，145单元/集成仅旧ContinuousLayoutFailureShowsRetryAndRecoversTheAnchor在初始cover失败，尚未注入故障。raw173唯一case/172过/1失败，xcresult summary172总/171过/1失败，两种原值都保留。20秒预算内WebKit在19.198秒才开始导航；慢启动独因仍未证明已修。
+实际断点：[unit-release 39203522040](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39203522040) / 冻结源`cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f`已于05:38:56 UTC结束，结论failure。xcresult为145总、142通过、3失败、0跳过；settings 7项和lifecycle 28项全部通过。Linux/macOS Core各137、各4项Release TXT探针通过；旧28项UI基线真实日志及同输入保护校验通过。test=65，export/summary/recording=0，Release未执行，没有Build30 IPA。完整Apple/Core原件已下载并核GitHub digest/CRC，监看和下载任务已结束；禁止把监看器exit0写成CI成功。
 
-当前候选只改测试宿主与CI：明确前台scene、真实viewDidAppear/key-window/非零几何后才open；全部28个renderer测试函数主体不变。unit-release必须重新读取真实8f/39196134450元数据和完整UI日志，确认28项各通过一次且无失败/跳过，核App/Packages/Vendor/Tests/UI/Fixtures/project/锁等受保护输入逐字相同，并核Xcode16.4/16F6、host arm64、iPhone16Pro/iOS18.5；才重跑全部145单元/集成。实际summary必须Passed且145/145、无失败/跳过/残留failure，才继续原严格iPhoneOS Release30。默认full不变。不能把这条分项路径写成一次全套173/173。新Apple候选尚未派发，Windows452语法新增0（54旧Vendor限制）/25工具/bash通过。
+上一轮完整验证：39196134450/source8f已失败并收齐digest/CRC原件。28 UI target全部通过，145单元/集成仅旧ContinuousLayoutFailureShowsRetryAndRecoversTheAnchor在初始cover失败，尚未注入故障。raw173唯一case/172过/1失败，xcresult summary172总/171过/1失败，两种原值都保留。20秒预算内WebKit在19.198秒才开始导航；慢启动独因仍未证明已修。
+
+三项失败是ReaderRenderingTests的AutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen、SixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor、TallCoverUsesWholeViewportInPaginatedAndScrollingModes。日志明确出现WebContent进程启动24.550291秒与30.992426/31.131335秒；前一项宿主已appeared、key、foreground、非隐藏。原20秒预算内未完成导航，不是已证明的设置失败，也不能据此认定全部是环境问题。上一轮失败的ContinuousLayoutFailureShowsRetryAndRecoversTheAnchor这次通过；宿主检查没有解决慢启动问题，保留为诊断，不能标成根因修复。详见`Documentation/ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json`。
+
+当前候选只改测试宿主与CI：明确前台scene、真实viewDidAppear/key-window/非零几何后才open；全部28个renderer测试函数主体不变。unit-release重新读取真实8f/39196134450元数据和完整UI日志，核28项各通过一次、无失败/跳过及App/Packages/Vendor/Tests/UI/Fixtures/project/锁等受保护输入相同，并核Xcode16.4/16F6、host arm64、iPhone16Pro/iOS18.5；本轮该保护已实际通过。当前145必须全部通过才继续原严格Release30。默认full保留，不能把分项证据写成一次173/173。Windows452语法新增0（54旧Vendor限制）/25工具/bash已通过；语法不是编译。
 
 R1生产代码仍只有AppServices/ReaderViewModel/ReaderSettingsPersistence三个文件，App与Packages/Vendor/UI/project/真实锁同8f（也是b111生产输入）。已过settings35/35；UI公共fixture修正的39194509105/8f为6/6，Swift编译诊断0，原件及portrait深灰/文楷原图已核；其后28 UI全套通过。此前完整170/172、169/173及本轮失败均独立保留；目录首次点按失败和WebKit慢启动独因仍未定。R2字体/R3位置/R4会话服务未实现，M4/手机验收未完成。
 
-正常HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，暂存区空，大量既有未提交源码保留。上个冻结源8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95/分支codex/refactor-reader-settings；当前新增改动先看`.cache/recovery/20261019-settings-isolation/render-harness-before/`、`render-harness-start.json`、`render-boundary-proof.json`，以及方案中的严格分项门槛。正常index看不到的私有快照文件不能直接拿git diff base对工作树判断删除；用alternate-index tree/commit对commit核验。此前本地一次直接比工作树的guard失败已按此修正，真实保护输入仍相同；没有改正常index。53旧交付包SHA已核保持，旧恢复ZIP未触及，不关机。
+正常HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，暂存区空，大量既有未提交源码保留。实际编译源为cb0b1e2，UI完整验证源为8f5b427；私有分支codex/refactor-reader-settings。恢复材料见`.cache/recovery/20261019-settings-isolation/render-harness-before/`、`render-boundary-proof.json`和`source-proof-unit-release.json`。正常index看不到的私有快照文件不能直接拿git diff base对工作树判断删除；用alternate-index tree/commit对commit核验。此前本地一次直接比工作树的guard失败已按此修正，真实保护输入仍相同；没有改正常index。最新`build/ci/39203522040/recovery-checkpoint.json`已重核552源码/资源输入、53旧交付包SHA、空index和正常HEAD；旧恢复ZIP未触及，不关机。
 
-实现、成熟项目/官方依据、失败详情与当前验证入口：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)、[R1验证记录](Documentation/ValidationLogs/m4-settings-isolation-r1.json)。所有新门槛通过前Build29仍最后交付，没有本片IPA。
+实现、成熟项目/官方依据、失败详情与当前验证入口：[READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)、[R1验证记录](Documentation/ValidationLogs/m4-settings-isolation-r1.json)。设置职责提取已编译并通过定向回归，但R1整体验收仍未完成；Build29仍最后交付，没有本片IPA。下一断点是最小WebKit加载/子进程启动对照，先证实原因或隔离条件，再改动与重测；不继续无假设地重跑整套，不扩大到R2/R3/R4，不放宽20秒/3秒预算。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

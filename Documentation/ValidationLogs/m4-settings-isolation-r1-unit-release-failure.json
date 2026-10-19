@@ -1,0 +1,143 @@
+{
+  "recordedAtUTC": "2026-10-19T05:54:51.023052+00:00",
+  "run": 39203522040,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39203522040",
+  "sourceRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
+  "status": "completed",
+  "conclusion": "failure",
+  "unitSummary": {
+    "result": "Failed",
+    "totalTestCount": 145,
+    "passedTests": 142,
+    "failedTests": 3,
+    "skippedTests": 0
+  },
+  "failures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen():468",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 73,
+      "testIdentifierString": "ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen",
+      "testName": "testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen()"
+    },
+    {
+      "failureText": "failed: caught error: \"navigationFailed\"",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 93,
+      "testIdentifierString": "ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor",
+      "testName": "testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor()"
+    },
+    {
+      "failureText": "failed: caught error: \"timedOut(\"cover.xhtml\", \"DOM: [\\\"fit\\\": , \\\"href\\\": blank, \\\"mediaLimit\\\": , \\\"imageHeight\\\": 0, \\\"title\\\": , \\\"ready\\\": 1, \\\"height\\\": 1828, \\\"width\\\": 980, \\\"imageWidth\\\": 0]; reported location: not emitted\")\"",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 94,
+      "testIdentifierString": "ReaderRenderingTests/testTallCoverUsesWholeViewportInPaginatedAndScrollingModes()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testTallCoverUsesWholeViewportInPaginatedAndScrollingModes",
+      "testName": "testTallCoverUsesWholeViewportInPaginatedAndScrollingModes()"
+    }
+  ],
+  "settingsAndLifecyclePassed": {
+    "ReaderSettingsPersistenceTests": 7,
+    "ReaderLifecycleTests": 28
+  },
+  "linuxCore": 137,
+  "macOSCore": 137,
+  "releaseTXTProbesEach": 4,
+  "uiBaseline": {
+    "baselineRun": 39196134450,
+    "baselineRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+    "currentRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
+    "baselineOverallConclusion": "failure",
+    "uiPassed": 28,
+    "uiFailed": 0,
+    "protectedInputs": [
+      "App",
+      "Packages",
+      "Vendor",
+      "Tests/UI",
+      "Tests/Fixtures",
+      "project.yml",
+      "Package.resolved",
+      ".gitattributes",
+      "scripts/select_simulator.py",
+      "scripts/resolve_local_readium.sh"
+    ],
+    "protectedInputsIdentical": true,
+    "xcode": "Xcode 16.4",
+    "simulatorOS": "18.5",
+    "logSHA256": "0d351fcb3c12759f384872a056a285b4f0a1d2e90b42e4a218bb0ab50cf9dcad",
+    "unitTestsRequiredInCurrentJob": true
+  },
+  "testExit": 65,
+  "attachmentExportExit": 0,
+  "summaryExit": 0,
+  "recordingExit": 0,
+  "AppleCompiled": true,
+  "ReleaseBuilt": false,
+  "IPAProduced": false,
+  "rawSlowProcessLaunches": [
+    {
+      "case": "testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen",
+      "process": "WebContent",
+      "seconds": 24.550291,
+      "raw": "2026-10-19 05:31:22.486048+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e000d00) took 24.550291 seconds to launch"
+    },
+    {
+      "case": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "process": "WebContent",
+      "seconds": 24.525317,
+      "raw": "2026-10-19 05:33:56.827294+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e0100b0) took 24.525317 seconds to launch"
+    },
+    {
+      "case": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "process": "WebContent",
+      "seconds": 25.034772,
+      "raw": "2026-10-19 05:33:57.720317+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e02e920) took 25.034772 seconds to launch"
+    },
+    {
+      "case": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "process": "WebContent",
+      "seconds": 25.163872,
+      "raw": "2026-10-19 05:33:57.858820+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e0306b0) took 25.163872 seconds to launch"
+    },
+    {
+      "case": "testTallCoverUsesWholeViewportInPaginatedAndScrollingModes",
+      "process": "WebContent",
+      "seconds": 30.992426,
+      "raw": "2026-10-19 05:34:52.976681+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e00cc30) took 30.992426 seconds to launch"
+    },
+    {
+      "case": "testTallCoverUsesWholeViewportInPaginatedAndScrollingModes",
+      "process": "WebContent",
+      "seconds": 31.131335,
+      "raw": "2026-10-19 05:34:53.126989+0000 XianxiaReader[27396:79330] [Process] WebContent process (0x12e0100b0) took 31.131335 seconds to launch"
+    }
+  ],
+  "hostReadinessDidNotResolveSlowStart": true,
+  "initialWebKitSlowStartRootCauseResolved": false,
+  "notAllFailuresProvenInfrastructure": true,
+  "productionChangedSinceOriginalR1": false,
+  "phoneAccepted": false,
+  "artifactReceipts": {
+    "apple": {
+      "artifact": 12165771019,
+      "archiveBytes": 241471410,
+      "archiveSHA256": "adc5096957148391e87a489401f2650ca43e3bbdc39d8de42b2d688a0f4bb26e",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39203522040\\artifacts\\XianxiaReader-build-diagnostics"
+    },
+    "core": {
+      "artifact": 12164588749,
+      "archiveBytes": 116291,
+      "archiveSHA256": "d99308735c7efb7cac5a182b222437df3ce53431bc2bcb38d78880ce7e0f6f19",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39203522040\\core"
+    }
+  },
+  "logSHA256": "86693481f8a8437cb4e6e9386267c57a28a18688ae7274113429e2c388448fb7",
+  "nextInvestigation": "Native minimal WKWebView versus publication loading with launch/navigation/close timings; no blind full rerun or increased budgets"
+}

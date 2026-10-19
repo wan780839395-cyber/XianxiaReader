@@ -1,6 +1,6 @@
 # 项目状态
 
-2026-10-19 R1设置35/35与UI修正6/6通过；第三轮完整run的28 UI全过，旧初始化case仍失败，无新IPA。已补测试宿主前置合同及受保护的unit-release候选（当前145+已核同输入28UI+当前Release，不能写一次全套绿灯）。Windows452/25工具通过，新Apple候选待验证。Build29仍最后交付。见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
+2026-10-19 R1设置持久化已从ReaderViewModel提取，生产范围仅3个App文件，参照Readium 3.11/Readest职责边界。最新39203522040/cb0b1e2已结束：设置/生命周期35项全过、Core两平台各137/4探针通过；145项集成总计142过/3个旧WebKit渲染用例失败。同输入的既有28项UI全过，真实日志/源码保护已通过。失败日志有WebContent启动24～31秒，宿主检查未解决，根因仍未定；严格Release未执行，无Build30 IPA。当前没有未完成的本轮CI；Windows452语法新增0/25工具通过（语法不是编译）。R1未整体验收，不进入R2/R3/R4；Build29仍最后交付。见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

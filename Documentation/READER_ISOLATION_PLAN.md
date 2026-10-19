@@ -1,6 +1,6 @@
 # 阅读模块隔离实施方案
 
-2026-10-19。状态：设置35/35、UI修正6/6通过；8f完整run的28项UI target全过，唯一旧初始化case失败。全日志173唯一case/172过/1失败，xcresult summary172总/171过/1失败，两种原值保留。正在补单元测试宿主前置条件和有输入保护的unit-release门槛；尚无新Release/IPA，Build29仍最后交付。
+2026-10-19。状态：R1设置职责已提取并编译，最新设置/生命周期35项全过；8f完整run的28项UI target全过。受保护unit-release 39203522040/cb0b1e2已结束，真实UI基线/同输入校验通过，但当前145项为142过/3个WebKit渲染失败，Release未执行，没有新IPA。R1未整体验收，Build29仍最后交付。
 
 用户同意优先整理阅读模块的职责边界。目标是让界面、设置、字体、位置与会话问题能够在明确范围内定位，降低后续改动影响旧功能的概率。隔离不能消除所有集成故障，最终交付仍需完整回归。
 
@@ -34,7 +34,7 @@
 
 当前接入：AppServices 持有一个共享 ReaderSettingsPersistence，覆盖旧 reader 写入尚未结束时新 reader 打开这一边界；通过四个异步方法的 ReaderSettingsStorage 窄接口调用已有 BookFileStore。独立对象只导入 Combine/Foundation/XianxiaCore，无引擎/Locator/页面依赖。ViewModel 保留原 UI 入口，订阅完成结果并过滤非当前 openRequestID；关闭不丢弃已提交的用户设置。恢复设置先等待该队列，flush 会纳入等待另一条队列期间的新编辑。存储格式、原完整位置捕获、关闭界面时机及原测试预算保持。
 
-新增一个 App 层具体对象，暂名 `ReaderSettingsPersistence`。先迁移 `appearanceSaveTask`、`interactionSaveTask` 和相应的排队、等待与错误结果；延续既有 BookFileStore actor 写入路径和文件格式。需要测试替身时才引入窄接口，不建立通用事件总线或重构框架。
+已新增 App 层具体对象 `ReaderSettingsPersistence`，迁移 `appearanceSaveTask`、`interactionSaveTask` 和相应的排队、等待与错误结果；延续既有 BookFileStore actor 写入路径和文件格式。为控制写入完成顺序与错误注入加入窄存储接口，没有通用事件总线或重构框架。
 
 `ReaderViewModel` 的 `setAppearance`、`setInteraction` 仍负责既有引擎应用与阅读编排，成功后把领域值交给设置持久化对象；`saveSettingsNow` 保留当前会话检查，只等待设置提交。`saveNow` 暂时保留既有设置等待顺序和完整位置捕获，避免提取时同时改变行为。
 
@@ -73,7 +73,11 @@ R1 完成标准：
 
 为避免只改单元测试宿主还重复32分钟的已过UI，增加显式unit-release模式。采用[Apple支持的only-testing](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)按target验证，不引入新测试框架。GitHub官方macos15镜像已提供GitHub CLI，CI用仅actions:read权限读取真实旧run元数据与完整日志；不信任手写passed标志。验证必须同时满足：旧run completed且headSha精确8f；28个指定UI case各通过一次、无失败或跳过；App/Packages/Vendor/Tests/UI/Tests/Fixtures/project.yml/真实锁/.gitattributes/选择器等受保护输入逐字相同；Xcode16.4/16F6、host arm64、iPhone16Pro/iOS18.5匹配。来源输入变化、旧日志不可读、漏项、失败后重跑等情况直接失败，要求full模式。
 
-只有上述UI组件证据成立，才重跑当前全部145项单元/集成（包含旧失败case），实际xcresult必须145/145、失败跳过0，随后运行原严格无签名iPhoneOS Release30。默认full流程仍跑两个完整target，真实test/export/summary/recording/build退出码和完整诊断都保留。新路径是“当前145 + 同输入既有28 + 当前Release”的分项验收，报告不能写成一次全套173/173成功。Core两个平台及TXT探针仍照原门槛执行。25项Python工具测试含漏项、重复、先失败后通过、跳过、源/SDK/设备变化与145数量不齐的拒绝回归；当前Windows452语法新增0/25工具/bash通过，Apple新候选仍待验证。
+只有上述UI组件证据成立，才重跑当前全部145项单元/集成（包含旧失败case），实际xcresult必须145/145、失败跳过0，随后运行原严格无签名iPhoneOS Release30。默认full流程仍跑两个完整target，真实test/export/summary/recording/build退出码和完整诊断都保留。新路径是“当前145 + 同输入既有28 + 当前Release”的分项验收，报告不能写成一次全套173/173成功。Core两个平台及TXT探针仍照原门槛执行。25项Python工具测试含漏项、重复、先失败后通过、跳过、源/SDK/设备变化与145数量不齐的拒绝回归；该候选的Windows452语法新增0/25工具/bash通过；Apple结果见下一段。
+
+39203522040/cb的实际结果已返回：真实UI来源/源码/环境保护通过；设置7项及生命周期28项全部通过，Core两平台各137/4探针通过。当前xcresult 145总、142过、3失败、0跳过，test65、export/summary/recording0，故没有执行Release。三项失败分别为自动滚动关闭重开、六字体连续锚点、长封面两模式用例。日志明确记录WebContent进程启动24.550291、30.992426和31.131335秒，自动滚动失败时宿主appeared/key/foreground/可见均满足；旧布局重试用例反而通过。因此新增宿主前置条件未修复慢启动问题，保留其诊断价值，不能写成修复成功；也没有证据将全部失败归为环境或设置提取。
+
+已核[Apple processPool说明](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool)：配置多个池已不再有效，不能凭旧教程补共享processPool来碰运气。当前Readium 3.11使用readium scheme服务，不是localhost HTTP；不套用旧IPv6排查。下一次实验应以同一原生环境的最小WKWebView加载与实际publication加载作对照，并记录启动/导航/关闭阶段，先判断进程启动、资源服务或会话存活哪一段失常，再决定改动。失败原件及完整来源见[m4-settings-isolation-r1-unit-release-failure.json](ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json)。当前不再无假设地重跑完整CI，不提高原预算，不进入下一职责切片。
 
 ## 本轮时间成本与已落实的改法
 
@@ -83,8 +87,10 @@ R1 完成标准：
 
 当前workflow没有构建缓存。这是后续可单独验证的CI改进点：按Xcode/SDK/真实锁文件保存依赖与可复用构建输入，核验命中/失效与严格锁定；若同一runner上重复筛选测试，再评估Apple的build-for-testing/test-without-building。当前未实施、未测节省时间，不在正在验证的R1版本中混入流水线改造。完整回归和最终Release门槛仍按实际结果记录；定向入口的收益是减少开发诊断范围及无关打包，而不是承诺每轮CI只需一秒。
 
+本轮也有低收益工作：在设置边界已经稳定后，连续整套回归反复碰到不同旧WebKit时序失败，把职责提取扩大成了运行环境和旧渲染链路排障；宿主准备假设验证失败后若继续重复全套，只会增加等待而不能证明原因。已落实的改法是UI公共清理、设置定向入口和有源码保护的组件验证；最新unit-release实际省去了再次运行已通过的28 UI，但仍保留145项严格门槛并正确阻止发包。剩余WebKit问题单列为发布阻塞，所有后续改动先明确假设、影响面和最小复现，拿到新证据后才扩大回归。
+
 ## 回退与交接
 
 每片开始保存源码和必要配置快照，记录输入、触及文件和当前验证状态；回退只恢复该片准确文件，不覆盖其他未提交工作。存储格式和原始书籍保持，用户无需卸载、清库或重新导书。
 
-本方案是唯一详细计划。HANDOFF 和 PROJECT_STATUS 只保留入口与当前切片；验证后才更新架构中的完成状态。目前 R1 源码已接入且 Apple 定向编译/35项测试及3项UI target诊断通过；两轮完整失败独立保留；最新测试隔离修正待Apple六项定向及最终完整门槛，尚无本片IPA或设备验收。
+本方案是唯一详细计划。HANDOFF 和 PROJECT_STATUS 保留入口与当前断点；ARCHITECTURE明确“源码已接入、发布门槛未通过”。R1设置/生命周期35项、UI修正6项与同输入28项UI分别通过；三轮完整失败及最新unit-release失败独立留证。尚无本片Release/IPA或设备验收，R2/R3/R4未实现。

@@ -1,5 +1,11 @@
 # 架构与技术决策
 
+## R1设置持久化边界（2026-10-19，源码已接入，发布门槛未通过）
+
+AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方法接口调用既有BookFileStore。外观/手感分别有序提交，完成结果过滤最新请求和实际阅读会话；关闭后的已提交写入继续完成，新reader恢复先等待旧队列。该对象不持有引擎、Locator、页面或数据库；ReaderViewModel保留向引擎应用偏好和位置捕获的现有编排。设置完成仅等待设置，回到可见正文后才请求fresh完整位置。JSON格式、3秒位置预算和20秒资源预算保持。参考Readium 3.11偏好存储及Readest设置/书籍状态分离，具体版本与取舍见[方案](Documentation/READER_ISOLATION_PLAN.md)。
+
+此为渐进提取的第一片，未实现字体/位置/会话服务的整体拆分。设置及生命周期35项已通过，最新145项集成有3项旧WebKit渲染失败；同输入28项UI通过不等于一次全套绿灯。尚无本片Release/IPA或手机验收，不能把本节解释为R1整体验收完成。
+
 ## Build29 阅读安全区
 
 ReaderSurface协调器持有单个ReaderSafeAreaCover，直接附加原控制器view，保持fullsize/原层级。UIKit实际safeAreaInsets/layout驱动CAShapeLayer evenOdd四边页面色，中心透明、触摸和辅助功能穿透，zPosition高于迟到的navigator；布局/安全区/页面色变化才更新，dismantle移除。无逐帧滚动回调，不改引擎viewport/inset/offset、Locator、Core/schema/依赖。真window像素/命中/迟到子视图合成及浅深慢滚旋转验证分列；完整Release源a650，补充仅测试源f320，生产输入相同。详READING_EDGES_DESIGN和M4_READING_EDGES_VALIDATION_REPORT；手机性能和初始封面位置偶发超时根因仍待专项。

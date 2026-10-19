@@ -1,12 +1,12 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "protected-unit-release-candidate",
-  "sourceRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+  "stage": "source-implemented-release-blocked-webkit-loading",
+  "sourceRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
       "path": ".github/workflows/ios-build.yml",
-      "sha256": "2f039341f739f053f0eafc3b8939636dc0a4d45be2347e09ebf9fc03548dc72a"
+      "sha256": "ffecd3141bdb24d9da642b8eab5dab22b2708a6ad02e93b9f34aa1432d2cc478"
     },
     {
       "path": "App/AppServices.swift",
@@ -49,6 +49,10 @@
       "sha256": "d2190e361962d4b62dd2b81a3949274527f40ce60198db09b9f7ed8dc8393101"
     },
     {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "sha256": "95986d84445b55798e740523fb69373279a6c7e5cd64aa6a1c2b928382ab714d"
+    },
+    {
       "path": "Tests/iOS/ReaderSettingsPersistenceTests.swift",
       "sha256": "34a1abee6e08dd5d65f56701186313849d87c6a76be3bc14d96f477c1d91326b"
     },
@@ -57,8 +61,20 @@
       "sha256": "c1a201ca8455292eb9898e82596addcd2ef22d6dee5de356ac3ab742d16eb467"
     },
     {
+      "path": "scripts/ci_ios.sh",
+      "sha256": "0d9401aca4ff08244315c31dc9425bda9cfbf0c72c6e135c7bf89510821bb4cb"
+    },
+    {
       "path": "scripts/ci_reader_diagnostic.sh",
       "sha256": "3e58bf4c8da5afb27d391b9a71677e065d9bb476ac4b6828af41eb8e198aec45"
+    },
+    {
+      "path": "scripts/test_ui_baseline.py",
+      "sha256": "919a41b89a2ac09d6fdf6fb740271f39b149fb7eb4b24e45f02e2683a33a91cb"
+    },
+    {
+      "path": "scripts/verify_ui_baseline.py",
+      "sha256": "38104fbfd8c0f2404387c2faacd418a8c348d1361c621d80df8aaa253dc74f6b"
     }
   ],
   "changedPaths": [
@@ -321,7 +337,7 @@
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
   "productionInputsIdenticalToOriginalR1": true,
-  "updatedAtUTC": "2026-10-19T05:11:45.738090+00:00",
+  "updatedAtUTC": "2026-10-19T05:54:51.023052+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -403,11 +419,15 @@
     "Tests/UI/ReadingExperienceUITests.swift",
     "Tests/UI/ReadingFontUITests.swift",
     "Tests/iOS/ReaderLifecycleTests.swift",
+    "Tests/iOS/ReaderRenderingTests.swift",
     "Tests/iOS/ReaderSettingsPersistenceTests.swift",
     "project.yml",
-    "scripts/ci_reader_diagnostic.sh"
+    "scripts/ci_ios.sh",
+    "scripts/ci_reader_diagnostic.sh",
+    "scripts/test_ui_baseline.py",
+    "scripts/verify_ui_baseline.py"
   ],
-  "sourceInputsMatched": 550,
+  "sourceInputsMatched": 552,
   "productionChangedPaths": [
     "App/AppServices.swift",
     "App/Reader/ReaderViewModel.swift",
@@ -439,7 +459,7 @@
   },
   "unitRelease": {
     "passed": false,
-    "AppleCompiled": false,
+    "AppleCompiled": true,
     "expectedUnit": 145,
     "reusedUITarget": 28,
     "UIBaselineRun": 39196134450,
@@ -453,6 +473,33 @@
     "refs": [
       "https://developer.apple.com/library/archive/technotes/tn2339/_index.html",
       "https://github.com/pointfreeco/swift-snapshot-testing/blob/28e5de025e3fd98991791bfbf83023ab3708da03/Sources/SnapshotTesting/Common/View.swift"
-    ]
-  }
+    ],
+    "run": 39203522040,
+    "sourceRevision": "cb0b1e296985a3ba7d1fe4c64339d65dea4d5e2f",
+    "status": "completed",
+    "IPAProduced": false,
+    "ReleaseBuilt": false,
+    "conclusion": "failure",
+    "actualUnit": 145,
+    "actualPassed": 142,
+    "actualFailed": 3,
+    "actualSkipped": 0,
+    "settingsAndLifecyclePassed": 35,
+    "UIBaselineVerified": true,
+    "hostReadinessDidNotResolveSlowStart": true,
+    "failureProof": "Documentation/ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json"
+  },
+  "latestWindows": {
+    "SwiftFiles": 452,
+    "addedSyntaxDiagnostics": 0,
+    "preexistingVendorGrammarLimits": 54,
+    "toolingPassed": 25,
+    "bashSyntaxPassed": true,
+    "SwiftCompilation": false
+  },
+  "R1Accepted": false,
+  "ReleaseBuilt": false,
+  "IPAProduced": false,
+  "currentBlocker": "Three native WebKit rendering failures; subprocess launches measured 24-31 seconds; cause not fully established",
+  "nextStep": "Independent minimal loading comparison; do not expand to R2/R3/R4 or blindly repeat the full CI"
 }

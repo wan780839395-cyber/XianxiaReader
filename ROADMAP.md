@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+## R1职责隔离检查点（2026-10-19，未整体验收）
+
+设置持久化提取已接入并编译，设置/生命周期35项通过，同生产/UI输入的28项UI通过。最新39203522040仍为142/145：3项旧WebKit加载失败，Release阻止，无Build30 IPA。当前先独立诊断WebContent进程24～31秒启动与导航链路；不因重跑偶然通过而声称根因修复，不提前提取R2字体/R3位置/R4会话。详细边界与参考见[阅读模块隔离方案](Documentation/READER_ISOLATION_PLAN.md)。Build29仍最后交付。
+
 ## Build29 阅读安全区边缘（2026-10-19）
 
 本切片已交付。实际Release源`a65086c1151831b54d90ed083fa36fc27848b5cb` / `codex/m4-reading-edges` / [完整CI39147081645](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645)：Linux/macOS Core各137，iOS163/163（136集成+27真UI）、失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release29/min16。547编译资源blob、三锁六pins、六完整原字体/OFL、每平台4长TXT Release探针已核。Windows449语法新增0/54既有Vendor限制、17工具测试通过；语法不算编译。
