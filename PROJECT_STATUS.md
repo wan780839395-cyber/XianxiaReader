@@ -1,6 +1,6 @@
 # 项目状态
 
-2026-10-19 R1 设置隔离源b1119d0通过35/35定向；完整39184148461实际170/172（145集成全过、2旧UI失败），无Release/IPA。原生记录显示目录点按后面板仍停留、另有44pt高度2ULP差异；现只修测量精度并定向复核，App/引擎源码保持，旧进度用例不改。Build29仍是最后交付。参考及边界见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
+2026-10-19 R1设置隔离35/35通过；完整39189899149确为169/173失败（145集成全过、4 UI失败），无Release/IPA。已定位旋转AX异常后的测试方向污染，按Apple/Firefox测试生命周期补公共fixture，生产代码不变；452语法/17工具通过，六项Apple定向待跑。Build29仍最后交付。范围与证据见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

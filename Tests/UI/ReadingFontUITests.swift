@@ -1,6 +1,6 @@
 import XCTest
 
-final class ReadingFontUITests: XCTestCase {
+final class ReadingFontUITests: ReaderUITestCase {
     @MainActor func testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen() {
         continueAfterFailure = false
         let app = XCUIApplication()

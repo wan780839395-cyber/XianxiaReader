@@ -1,12 +1,12 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "R1 Apple targeted35 passed; same-source full running; not delivered",
-  "sourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
+  "stage": "UI-test-fixture-isolation-pending-Apple-validation",
+  "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
     {
       "path": ".github/workflows/ios-build.yml",
-      "sha256": "ec40e6d91ebc5d6a47c391f4fdbdcc6bf6373072ccf481ed99387d51418e19d9"
+      "sha256": "2f039341f739f053f0eafc3b8939636dc0a4d45be2347e09ebf9fc03548dc72a"
     },
     {
       "path": "App/AppServices.swift",
@@ -19,6 +19,10 @@
     {
       "path": "App/Reader/ReaderViewModel.swift",
       "sha256": "0a773fd6b4ce2594f28b7d90c118c667eb26d89a09643e2afd703d2ffb56000c"
+    },
+    {
+      "path": "Tests/UI/ReaderInterfaceUITests.swift",
+      "sha256": "515da329ff22505ce9aa3f1c92aae7c6836d899cdc2b8f7c0b01bc20cf114df0"
     },
     {
       "path": "Tests/iOS/ReaderLifecycleTests.swift",
@@ -34,7 +38,7 @@
     },
     {
       "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "9f39cd0cdce3e9a0bfb72edcc11ea76a03de652eb3949b495333875f7e4bd40d"
+      "sha256": "47849c26a72a1430c6d8ebc7784327f5a99d7e105689219b9a941c3cb5d12d49"
     }
   ],
   "changedPaths": [
@@ -114,6 +118,113 @@
     "IPAProduced": false
   },
   "full": {
+    "run": 39189899149,
+    "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
+    "expectedCoreEach": 137,
+    "expectedIOS": 173,
+    "expectedIntegration": 145,
+    "expectedUITarget": 28,
+    "actualUITestCount": 27,
+    "pureMeasurementInUITarget": 1,
+    "passed": false,
+    "ReleaseBuilt": false,
+    "IPAProduced": false,
+    "status": "completed",
+    "conclusion": "failure",
+    "logIntegrationPassed": 145,
+    "logUIFailures": 4,
+    "xcresultVerified": true,
+    "actualIOS": 173,
+    "passedTests": 169,
+    "failedTests": 4,
+    "skippedTests": 0
+  },
+  "phoneAccepted": false,
+  "R2R3R4Implemented": false,
+  "uiDiagnostic": {
+    "run": 39188609488,
+    "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
+    "expectedTests": 3,
+    "productionInputsUnchangedFromFirstCandidate": true,
+    "oldProgressFunctionUnchanged": true,
+    "minimumTouchPoints": 44,
+    "normalizationLimitULP": 4,
+    "realShortfallCounterexamples": [
+      43,
+      43.5,
+      43.999999
+    ],
+    "passed": true,
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 3,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1792376543.417,
+      "passedTests": 3,
+      "result": "Passed",
+      "skippedTests": 0,
+      "startTime": 1792376151.384,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - XianxiaReader",
+      "topInsights": [],
+      "totalTestCount": 3
+    },
+    "artifactDigestsAndCRCVerified": true,
+    "progressUniqueRootCauseResolved": false,
+    "nativeReview": {
+      "imagesActuallyViewed": [
+        {
+          "name": "reader-chrome-progress-dark-reduced-build28_0_220F542C-F4F8-40F3-B713-4A326B0A401A.png",
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39188609488\\diagnostic\\ReaderSnapshots\\EFD320CB-CD5D-4F60-B6BD-628FD71CB12C.png",
+          "test": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()"
+        },
+        {
+          "name": "reader-chrome-progress-light-normal-build28_0_FD0F429C-FE71-4495-9C12-53F20B8954FC.png",
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39188609488\\diagnostic\\ReaderSnapshots\\EF9F87C6-0C22-44AC-8D01-E4DD574B05E5.png",
+          "test": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()"
+        },
+        {
+          "name": "reader-edges-portrait-restored-charcoal-build29_0_678FF356-BE25-49E2-9DFD-D387261C7937.png",
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39188609488\\diagnostic\\ReaderSnapshots\\030E7FE2-7524-4884-BD0C-FA6777C8F878.png",
+          "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()"
+        },
+        {
+          "name": "reader-edges-landscape-warm-build29_0_1B2212CB-7D73-4052-9DB1-B09708FB1CCC.png",
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39188609488\\diagnostic\\ReaderSnapshots\\07FD9A21-6873-46ED-A004-DC4FBD48DDDE.png",
+          "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()"
+        }
+      ],
+      "observations": [
+        "Both normal/light and reduced/dark show second-chapter text and67percent, with return-to-origin strip.",
+        "Selected warm landscape and charcoal restored-portrait pages are readable; not a seamless rotation, exact-anchor or phone-FPS acceptance."
+      ],
+      "scope": "Four endpoint PNGs only; original videos retained, not reviewed in full in this diagnostic",
+      "legacyAttachmentNamesPreserved": true
+    }
+  },
+  "firstFull": {
     "run": 39184148461,
     "expectedCoreEach": 137,
     "expectedIOS": 172,
@@ -123,8 +234,108 @@
     "ReleaseBuilt": false,
     "linuxCorePassed": true,
     "linuxCoreTests": 137,
-    "linuxLongTXTReleaseProbesPassed": 4
+    "linuxLongTXTReleaseProbesPassed": 4,
+    "conclusion": "failure",
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 2,
+          "passedTests": 170,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "finishTime": 1792374829.579,
+      "passedTests": 170,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792372784.34,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "targetName": "XianxiaReaderUITests",
+          "testIdentifier": 157,
+          "testIdentifierString": "ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates",
+          "testName": "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates()"
+        },
+        {
+          "failureText": "XCTAssertGreaterThanOrEqual failed: (\"43.999999999999986\") is less than (\"44.0\")",
+          "targetName": "XianxiaReaderUITests",
+          "testIdentifier": 165,
+          "testIdentifierString": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderUITests/ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+          "testName": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "30% of duration",
+          "text": "2 longest test runs with outlier durations exceeding 19.22s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 172
+    },
+    "IPAProduced": false
   },
-  "phoneAccepted": false,
-  "R2R3R4Implemented": false
+  "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
+  "productionInputsIdenticalToOriginalR1": true,
+  "updatedAtUTC": "2026-10-19T03:22:34.265805+00:00",
+  "secondFull": {
+    "run": 39189899149,
+    "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
+    "expectedCoreEach": 137,
+    "expectedIOS": 173,
+    "expectedIntegration": 145,
+    "expectedUITarget": 28,
+    "actualUITestCount": 27,
+    "pureMeasurementInUITarget": 1,
+    "passed": false,
+    "ReleaseBuilt": false,
+    "IPAProduced": false,
+    "status": "completed",
+    "conclusion": "failure",
+    "logIntegrationPassed": 145,
+    "logUIFailures": 4,
+    "xcresultVerified": true,
+    "actualIOS": 173,
+    "passedTests": 169,
+    "failedTests": 4,
+    "skippedTests": 0
+  },
+  "uiFixtureIsolation": {
+    "productionUnchanged": true,
+    "newTests": 0,
+    "existingUITargetTestFunctionsUnchanged": 28,
+    "windowsSwiftFiles": 452,
+    "addedSyntaxDiagnostics": 0,
+    "preexistingVendorGrammarLimits": 54,
+    "toolingPassed": 17,
+    "diagnosticExpected": 6,
+    "references": [
+      "https://developer.apple.com/documentation/xctest/set-up-and-tear-down-state-in-your-tests",
+      "https://developer.apple.com/documentation/xcuiautomation/xcuidevice/orientation",
+      "https://github.com/mozilla-mobile/firefox-ios/blob/0bd83b3b97a7dd97b23914030bd2292710b9fb5e/firefox-ios/firefox-ios-tests/Tests/XCUITests/BaseTestCase.swift"
+    ],
+    "AppleCompiled": false
+  }
 }

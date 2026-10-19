@@ -1,6 +1,6 @@
 import XCTest
 
-final class LibraryInteractionUITests: XCTestCase {
+final class LibraryInteractionUITests: ReaderUITestCase {
     @MainActor private func start(layout: String, reduceMotion: Bool = false, customCover: Bool = false) -> XCUIApplication {
         continueAfterFailure = false
         let app = XCUIApplication()

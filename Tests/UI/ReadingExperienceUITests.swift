@@ -1,6 +1,6 @@
 import XCTest
 
-final class ReadingExperienceUITests: XCTestCase {
+final class ReadingExperienceUITests: ReaderUITestCase {
     @MainActor private func start(fonts: Bool = false) -> XCUIApplication {
         continueAfterFailure = false
         let app = XCUIApplication()

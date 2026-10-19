@@ -1,7 +1,7 @@
 import XCTest
 import UIKit
 
-final class ReaderInterfaceUITests: XCTestCase {
+final class ReaderInterfaceUITests: ReaderUITestCase {
     // AX frame arithmetic can produce 43.999999999999986 for a 44pt frame.
     // Normalize at most four representable steps, never whole pixels/points.
     private func touchExtentForComparison(_ value: CGFloat) -> CGFloat {
@@ -69,8 +69,15 @@ final class ReaderInterfaceUITests: XCTestCase {
         let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
         var recordedLandscapeProbe = false
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let viewport = app.frame
             guard !app.alerts.firstMatch.exists,
-                  text.allElementsBoundByIndex.contains(where: { $0.isHittable }),
+                  text.allElementsBoundByIndex.contains(where: {
+                      // A clipped WebKit paragraph can report an invalid AX hit
+                      // point during rotation. Probe a complete visible paragraph;
+                      // still require real hittability, settled loading and paper.
+                      let frame = $0.frame
+                      return !frame.isEmpty && viewport.contains(frame) && $0.isHittable
+                  }),
                   !app.activityIndicators.allElementsBoundByIndex.contains(where: { $0.isHittable }) else { return false }
             let screen = XCUIScreen.main.screenshot()
             let frame = app.frame

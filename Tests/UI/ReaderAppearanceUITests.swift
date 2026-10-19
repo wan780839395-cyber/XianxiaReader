@@ -1,6 +1,6 @@
 import XCTest
 
-final class ReaderAppearanceUITests: XCTestCase {
+final class ReaderAppearanceUITests: ReaderUITestCase {
     @MainActor func testNativeThemesTypographyAndPersistenceAfterRelaunch() {
         continueAfterFailure = false
         let app = XCUIApplication()

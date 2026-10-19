@@ -10,6 +10,9 @@ case "$selection" in
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates
       -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation
+      -only-testing:XianxiaReaderUITests/ReadingFontUITests/testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode
+      -only-testing:XianxiaReaderUITests/ReadingFontUITests/testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen
+      -only-testing:XianxiaReaderUITests/ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch
     )
     ;;
   settings)
