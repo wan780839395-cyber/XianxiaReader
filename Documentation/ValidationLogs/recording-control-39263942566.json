@@ -120,5 +120,45 @@
   "interpretation": "Recorder alone does not explain all failures. OFF still fails a deep-word setup assertion before any font change. On/off order and warmup remain confounds; no unique root cause or release acceptance.",
   "next": "Apply only confirmed paper-probe fixture correction, run four direct UI cases; retain capture/setup failure separately. No full retry.",
   "releaseExecuted": false,
-  "ipaGenerated": false
+  "ipaGenerated": false,
+  "pageResetTrace": {
+    "originalAttachment": "build\\ci\\39263942566\\diagnostic\\RecordingControl\\recording-on\\ReaderSnapshots\\204AD45B-3492-4791-8AD9-3F29561B4AC3.txt",
+    "sha256": "36ea6289763cb3eb24150d431aba380d90322e0b5ab4fdd213cacf2d54e80fcd",
+    "test": "testPagedReopenRestoresFirstCharacterOfLongParagraph",
+    "condition": "recording-on",
+    "events": [
+      {
+        "phase": "before",
+        "x": 0,
+        "width": 402,
+        "firstX": 2078,
+        "firstY": 3,
+        "ready": "complete",
+        "fontReady": "ready",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "after",
+        "x": 2010,
+        "width": 402,
+        "firstX": 68,
+        "firstY": 3,
+        "ready": "complete",
+        "fontReady": "ready",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "scroll",
+        "x": 0,
+        "width": 402,
+        "firstX": 2078,
+        "firstY": 3,
+        "ready": "complete",
+        "fontReady": "ready",
+        "documentWidth": 10452
+      }
+    ],
+    "observed": "Explicit scroll reached x2010/target firstX68, later a scroll event has x0/firstX2078 with the same width and ready font. Not a proof of which callback caused it.",
+    "nextHypothesis": "Distinguish upstream ResizeObserver frame rounding, native WebKit offset changes and incorrect visible-view selection; no production patch until discriminated."
+  }
 }

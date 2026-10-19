@@ -176,3 +176,9 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 原生job45分35秒；ON至首测20分45.925秒、67项513.388秒，OFF至首测48.259秒、67项333.371秒，开始前模拟器准备、诊断导出与上传另计。测试期1分钟load median分别291.49/116.83，不能把它当CPU百分比或单独的因果证明。
 
 当前只应用已证实的纸色观测修正：Tests/UI/ReaderInterfaceUITests.swift的40像素中心改120，纸色55%、RGB±5和alpha>250全部保留，新原生正反例要求暖/深底色密集笔画仍接受、错误底色及孤立正确色块拒绝。原16测试主体逐项相同；无生产变更。脚本/workflow只增加reader-ready-ui四项定向（新反例、原旋转、原两项白屏重开），继续保留真正可读、无alert/loading、原等待预算。Windows453语法新增0、29工具中26通过3POSIX跳过、Bash语法通过；原生编译及4UI尚待，不计作178全套通过。
+
+## 原生4UI结果与捕获前置条件诊断
+
+下一独立实验只触及Tests/iOS/ReaderRenderingTests.swift：原fonts两项增加有界ResizeObserver/rAF前后轨迹、准备视图和捕获位置记录；原深段落断言失败后，先留证再停止字体后续步骤，所有原断言/时间预算保留。对照已有2010→0真实回跳，区分ResizeObserver布局回调、原生offset/视图选择与字体变更前的捕获错误。生产、依赖、UI与默认完整门槛不改；源码已应用，待Windows语法预检和新冻结后原生2项。探针读取几何可能影响时序，一次重放通过不代表根因已修。Readium3.11对应修订参考与差异见Documentation/READER_ISOLATION_PLAN.md。
+
+已有原始轨迹204AD45B-3492-4791-8AD9-3F29561B4AC3.txt确认scrollX到2010后回0，首字x68→2078，width402/docWidth10452/font ready保持。不能将它简化为Locator丢失。官方固定版本[Readium3.11 utils.js](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Scripts/src/utils.js)的ResizeObserver调度rAF，再由snapCurrentPosition写scrollLeft；本地bundled JS相符。仅将其视为待证候选，探针转发原回调参数/返回/时序，不改生产脚本；观察geometry可能触发布局，成功不能单独证明修复。另两项UI失败原件独立保留，下一轮不混入UI fixture修补或全套CI。

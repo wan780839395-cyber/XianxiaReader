@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "paper-probe-fixture-native-pending",
+  "stage": "capture-setup-probe-applied-native-pending",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -540,8 +540,8 @@
   "R1Accepted": false,
   "ReleaseBuilt": false,
   "IPAProduced": false,
-  "currentBlocker": "Three native WebKit rendering failures; subprocess launches measured 24-31 seconds; cause not fully established",
-  "nextStep": "Windows checks then fresh native four-case UI diagnostic; no full retry; capture/setup failure retained separately",
+  "currentBlocker": "Verified charcoal rotation loading stall; background UI precondition unverified; font capture/restore can reset from deep anchor before font changes",
+  "nextStep": "Freeze test-only capture probe after Windows grammar check; run existing fonts2 once with new RO/rAF/view observations; no full retry",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -591,43 +591,29 @@
   },
   "newUnitTestsSinceBuild29": 12,
   "newUITargetMeasurementTestsSinceBuild29": 1,
-  "expectedUnit": 148,
+  "expectedUnit": 149,
   "expectedUITarget": 29,
   "expectedTotal": 178,
-  "latestCompletedRun": 39230331856,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/font-reopen-checkpoints-39230331856.json",
+  "latestCompletedRun": 39272564753,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/reader-ready-ui-39272564753.json",
   "pendingLocalChange": {
-    "scope": "paper-probe fixture only; production unchanged",
-    "selection": "reader-ready-ui",
-    "expectedSelected": 4,
+    "scope": "Bounded capture/setup diagnostic only; production unchanged",
+    "selection": "fonts",
+    "expectedSelected": 2,
     "nativeCompile": false,
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39263942566,
-    "sourceRevision": "f02ce1350b024b0087981f52112a8461681d253d",
-    "selection": "recording-control",
-    "perCondition": 67,
-    "releaseAcceptance": false,
-    "verifiedLinuxCore": {
-      "passed": 137,
-      "releaseTXTProbeCases": 4,
-      "compilerDiagnostics": 0,
-      "evidence": "build/ci/39263942566/linux-core-check.json",
-      "artifactDigestAndCRC": true
-    },
-    "verifiedRepositoryTests": {
-      "passed": 29,
-      "failed": 0,
-      "POSIXFixturesExecuted": true,
-      "evidence": "build/ci/39263942566/repository-checks.log"
-    },
+    "run": 39272564753,
+    "sourceRevision": "e85c25f2eee1878bdeb09f5a96dc6193c783ed62",
+    "selection": "reader-ready-ui",
+    "expected": 4,
     "conclusion": "failure",
-    "passedByCondition": {
-      "recording-on": 64,
-      "recording-off": 66
-    },
-    "evidence": "Documentation/ValidationLogs/recording-control-39263942566.json"
+    "releaseAcceptance": false,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "nativeCompile": true
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -653,5 +639,81 @@
     "skipped": 0,
     "releaseExecuted": false,
     "ipaGenerated": false
+  },
+  "latestRecordingControl": {
+    "run": 39263942566,
+    "sourceRevision": "f02ce1350b024b0087981f52112a8461681d253d",
+    "selection": "recording-control",
+    "perCondition": 67,
+    "releaseAcceptance": false,
+    "verifiedLinuxCore": {
+      "passed": 137,
+      "releaseTXTProbeCases": 4,
+      "compilerDiagnostics": 0,
+      "evidence": "build/ci/39263942566/linux-core-check.json",
+      "artifactDigestAndCRC": true
+    },
+    "verifiedRepositoryTests": {
+      "passed": 29,
+      "failed": 0,
+      "POSIXFixturesExecuted": true,
+      "evidence": "build/ci/39263942566/repository-checks.log"
+    },
+    "conclusion": "failure",
+    "passedByCondition": {
+      "recording-on": 64,
+      "recording-off": 66
+    },
+    "evidence": "Documentation/ValidationLogs/recording-control-39263942566.json"
+  },
+  "latestReaderReadyUI": {
+    "run": 39272564753,
+    "sourceRevision": "e85c25f2eee1878bdeb09f5a96dc6193c783ed62",
+    "conclusion": "failure",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+        "result": "failed",
+        "seconds": 93.622
+      },
+      {
+        "name": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+        "result": "passed",
+        "seconds": 130.504
+      },
+      {
+        "name": "testPaperProbeIncludesSurroundingPaperAndRejectsWrongTheme",
+        "result": "passed",
+        "seconds": 4.055
+      },
+      {
+        "name": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+        "result": "failed",
+        "seconds": 190.525
+      }
+    ],
+    "testExit": 65,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "sourceCompilerDiagnosticCount": 0,
+    "sourceCompilerDiagnostics": [],
+    "sourceInputs": 556,
+    "sourceInputsMatched": true,
+    "artifactDigestAndCRC": true,
+    "productionUnchanged": true,
+    "releaseExecuted": false,
+    "ipaGenerated": false,
+    "interpretation": "Four-case native UI boundary only. Not a 178-case full gate or a fix claim for earlier WebContent/capture failures.",
+    "nativeReview": {
+      "method": "Read original native PNG contact sheets 2/3, 1fps video overviews at failure and selected consecutive original frames. Not phone FPS acceptance.",
+      "rotation": "Warm landscape and restored portrait have real text. Charcoal portrait has real text. Charcoal landscape shows persistent preparing labels and spinner through test failure; the guard correctly rejects loading. Not the old 40px paper false negative.",
+      "background": "Video samples during Home/activate show ongoing reader scrolling, no Springboard. Test lacks a verified background-state precondition. Brief unsampled transition is not excluded; no production pause root cause established.",
+      "reviewManifest": "build/ci/39272564753/ReaderReadyUIReview/review-pending.json"
+    },
+    "evidence": "Documentation/ValidationLogs/reader-ready-ui-39272564753.json"
   }
 }

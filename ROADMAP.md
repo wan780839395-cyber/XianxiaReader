@@ -1,14 +1,14 @@
 # 开发路线与阶段门槛
 
-## R1设置隔离：原完整门槛失败；当前只修正纸色测试取样
+## R1设置隔离：纸色反例通过，原生加载/定位仍阻止发布
 
-完整CI[39243868846](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39243868846)/024fc87实际171/177（集成146/149、UI25/28），6失败、0跳过；Release被阻止，无Build30 IPA，Build29仍为最后交付。R1设置/生命周期35及关闭合同2通过，原实现及未提交工作保留，不能称旧加载/定位故障已修。
+完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。录屏同机对照39263942566/f02为ON64/67、OFF66/67，原失败和完整原件保留，不能归因于录屏单一因素。
 
-同机录屏对照[39263942566](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39263942566)/f02ce135已于2026-10-19 22:40（上海）结束failure。ON64/67、OFF66/67，均test65、summary/export/recording0；两次设置/生命周期35、关闭2与最小WebKit控制1/8loads通过。ON存在60秒WebContent启动和blank，OFF仍在换字体前捕获h1/char0，未满足原深段落前置条件。录屏不能解释全部失败，预热/顺序仍混杂，不追加full碰运气。artifact12195716352完整digest/CRC已核，原件build/ci/39263942566/diagnostic/RecordingControl，记录Documentation/ValidationLogs/recording-control-39263942566.json。Linux137与4TXT、repository29实际通过，非iOS/Release验收。
+最新4UI[39272564753](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39272564753)/e85c25f2实际2/4，0跳过，test65、summary/export0，Swift编译诊断0；556冻结输入和artifact12199630365的digest/CRC已核。120像素纸色正反例与菜单重开通过；慢滚在Home/activate后仍显示运行，测试未确认真实后台；旋转在深灰横屏后持续显示“正在准备”，原可读/无加载守卫正确拒绝，不再归咎于纸色。暖色横竖屏、深灰竖屏原生正文可见。记录Documentation/ValidationLogs/reader-ready-ui-39272564753.json；本地watcher88241及下载75255均已完成，无该轮运行任务。纸色修正已Apple编译，旋转未验收，178完整门槛未执行。
 
-当前独立切片只修正已证实的旋转纸色误判：原图正文/暖色实际正常，旧40x40中心879/1600而门槛880。改用120x120周围纸色，仍55%、RGB±5和alpha>250，增加密集笔画/错误底色反例；原16测试方法主体逐项相同。生产源码全部不改。触及Tests/UI/ReaderInterfaceUITests.swift、scripts/ci_reader_diagnostic.sh、.github/workflows/ios-build.yml，新增reader-ready-ui只跑新反例、原旋转与两项原白屏重开共4UI，原断言/等待/功能预算保持，不额外后台录屏。不把此修正当作加载或定位修复；Windows453语法新增0、29工具中26通过3POSIX跳过、Bash语法通过；随后冻结，待原生编译/4UI。修改后UI29/full178仅为预期数量，未通过。
+下一独立实验只触及Tests/iOS/ReaderRenderingTests.swift：原fonts两项增加有界ResizeObserver/rAF前后轨迹、准备视图和捕获位置记录；原深段落断言失败后，先留证再停止字体后续步骤，所有原断言/时间预算保留。对照已有2010→0真实回跳，区分ResizeObserver布局回调、原生offset/视图选择与字体变更前的捕获错误。生产、依赖、UI与默认完整门槛不改；源码已应用，待Windows语法预检和新冻结后原生2项。探针读取几何可能影响时序，一次重放通过不代表根因已修。Readium3.11对应修订参考与差异见Documentation/READER_ISOLATION_PLAN.md。
 
-正常HEAD6d761749、普通index与旧交付包保持；新冻结使用独立证明，不能把旧f02结果记到新输入。长期规则在根AGENTS.md及Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md，不做R2/R3/R4或M5，不关机。
+正常HEAD6d761749、普通index及既有交付包保持，不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

@@ -136,7 +136,7 @@ final class ReaderRenderingTests: XCTestCase {
               });
             }});
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
+        let engine = ReadiumReaderEngine(additionalUserScripts: [delay, Self.pagedRestoreProbe()])
         var interaction = ReadingInteraction(); interaction.reduceMotion = true
         try engine.setInteraction(interaction)
         try engine.setReadingFonts([initial, intermediate, final])
@@ -167,6 +167,12 @@ final class ReaderRenderingTests: XCTestCase {
                 return scrollX>100&&b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
                 """) as? Bool == true
         }
+        // No additional await before the original capture: retain only native
+        // geometry from the view that just satisfied the original deep-word check.
+        let preparedViewID = visibleWebView(in: engine.viewController.view).map { String(describing: ObjectIdentifier($0)) } ?? "nil"
+        let preparedGeometry = visibleWebView(in: engine.viewController.view).map {
+            "frame=\($0.frame) offset=\($0.scrollView.contentOffset) clipped=\(clippedVisibleRect($0, root: engine.viewController.view))"
+        } ?? "nil"
         var saved: ReadingPosition?
         try await waitUntil {
             do { saved = try await engine.captureCurrentPosition(); return true }
@@ -176,7 +182,41 @@ final class ReaderRenderingTests: XCTestCase {
         let locations = try XCTUnwrap(payload["locations"] as? [String: Any]), range = try XCTUnwrap(locations["domRange"] as? [String: Any])
         let point = try XCTUnwrap(range["start"] as? [String: Any])
         let selector = try XCTUnwrap(point["cssSelector"] as? String), offset = try XCTUnwrap(point["charOffset"] as? Int)
+        print("PREPARED_CAPTURE_SAMPLE preparedView=\(preparedViewID) prepared=\(preparedGeometry) selector=\(selector) offset=\(offset)")
         XCTAssertGreaterThan(offset, 100, "Prepare a deep original word before font changes: \(selector), char=\(offset)")
+        if offset <= 100 {
+            // The original precondition already failed. Observe the page before
+            // any font mutation, and do not continue with an invalid deep anchor.
+            let captured = String(decoding: try XCTUnwrap(saved).locatorData, as: UTF8.self)
+            print("PREPARED_CAPTURE_FAILED preparedView=\(preparedViewID) prepared=\(preparedGeometry) captured=\(captured)")
+            for web in webViews(in: engine.viewController.view) {
+                let native = "view=\(ObjectIdentifier(web)) prepared=\(String(describing: ObjectIdentifier(web)) == preparedViewID) "
+                    + "alpha=\(web.scrollView.alpha) frame=\(web.frame) offset=\(web.scrollView.contentOffset) "
+                    + "clipped=\(clippedVisibleRect(web, root: engine.viewController.view)) url=\(web.url?.path ?? "nil")"
+                var dom = "not sampled: native page unavailable"
+                if web.window != nil, web.scrollView.alpha > 0.99, let url = web.url, url.scheme != "about" {
+                    do {
+                        dom = String(describing: try await web.evaluateJavaScript("""
+                            (()=>{const point=r=>r?{left:r.left,right:r.right,top:r.top,bottom:r.bottom}:null;
+                              const n=document.getElementById('long-paragraph')?.firstChild;
+                              let deep=null;if(n&&n.length>1200){const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);deep=point(r.getBoundingClientRect());}
+                              const carets=[];for(const y of [2,12,24])for(const x of [innerWidth*.2,innerWidth*.5,innerWidth*.8]){
+                                const c=document.caretRangeFromPoint(x,y);if(c?.startContainer.nodeType!==Node.TEXT_NODE)continue;
+                                const r=document.createRange(),n=c.startContainer,o=c.startOffset;r.setStart(n,o);r.setEnd(n,Math.min(n.length,o+1));
+                                carets.push({x,y,tag:n.parentElement?.tagName,id:n.parentElement?.id,offset:o,rect:point(r.getClientRects()[0])});}
+                              return JSON.stringify({href:location.pathname,x:scrollX,y:scrollY,width:innerWidth,height:innerHeight,
+                                ready:document.readyState,fontReady:window.__xrPreviewReadySettled,deep,carets,trace:window.__xrPagedRestoreTrace});})()
+                            """))
+                    } catch { dom = "read failed: \(error)" }
+                }
+                let detail = "\(native) DOM=\(dom)"
+                let attachment = XCTAttachment(string: detail)
+                attachment.name = "prepared-capture-before-font-mutation"
+                attachment.lifetime = .keepAlways; add(attachment)
+                print("PREPARED_CAPTURE_FAILED \(detail)")
+            }
+            return
+        }
         let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
         appearance.importedFontID = intermediate.asset.id; try engine.setAppearance(appearance)
         var pendingFontWebView: WKWebView?
@@ -871,7 +911,7 @@ final class ReaderRenderingTests: XCTestCase {
                 const node=document.getElementById('long-paragraph')?.firstChild;
                 let rect=null;
                 if(node?.length){const r=document.createRange();r.setStart(node,0);r.setEnd(node,1);rect=r.getClientRects()[0];}
-                trace.push({phase,href:location.pathname,width:innerWidth,x:scrollX,
+                trace.push({phase,at:performance.now(),href:location.pathname,width:innerWidth,height:innerHeight,x:scrollX,
                   requested:typeof args?.[0]==='object'?args[0].left:args?.[0],
                   firstX:rect?.left,firstY:rect?.top,ready:document.readyState,
                   fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
@@ -881,6 +921,24 @@ final class ReaderRenderingTests: XCTestCase {
                   faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status}))});
                 if(trace.length>16)trace.shift();
               }
+              // Observe only frames scheduled inside a ResizeObserver callback.
+              // Preserve original scheduling, callback arguments and return values.
+              let inResize=false;
+              const frame=window.requestAnimationFrame;
+              window.requestAnimationFrame=function(callback){
+                if(!inResize)return frame.call(this,callback);
+                return frame.call(this,function(...args){
+                  record('resize-frame-before',[]);
+                  try{return callback.apply(this,args);}finally{record('resize-frame-after',[]);}
+                });
+              };
+              const Observer=window.ResizeObserver;
+              window.ResizeObserver=class extends Observer {
+                constructor(callback){super((entries,observer)=>{
+                  const previous=inResize;inResize=true;
+                  try{callback.call(observer,entries,observer);}finally{inResize=previous;}
+                });}
+              };
               const scroll=window.scrollTo;
               window.scrollTo=function(...args){record('before',args);const result=scroll.apply(window,args);record('after',args);return result;};
               window.addEventListener('scroll',()=>record('scroll',[]),{passive:true});

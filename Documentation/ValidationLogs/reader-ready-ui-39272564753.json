@@ -1,0 +1,49 @@
+{
+  "run": 39272564753,
+  "sourceRevision": "e85c25f2eee1878bdeb09f5a96dc6193c783ed62",
+  "conclusion": "failure",
+  "total": 4,
+  "passed": 2,
+  "failed": 2,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+      "result": "failed",
+      "seconds": 93.622
+    },
+    {
+      "name": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+      "result": "passed",
+      "seconds": 130.504
+    },
+    {
+      "name": "testPaperProbeIncludesSurroundingPaperAndRejectsWrongTheme",
+      "result": "passed",
+      "seconds": 4.055
+    },
+    {
+      "name": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+      "result": "failed",
+      "seconds": 190.525
+    }
+  ],
+  "testExit": 65,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnosticCount": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifactDigestAndCRC": true,
+  "productionUnchanged": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "interpretation": "Four-case native UI boundary only. Not a 178-case full gate or a fix claim for earlier WebContent/capture failures.",
+  "nativeReview": {
+    "method": "Read original native PNG contact sheets 2/3, 1fps video overviews at failure and selected consecutive original frames. Not phone FPS acceptance.",
+    "rotation": "Warm landscape and restored portrait have real text. Charcoal portrait has real text. Charcoal landscape shows persistent preparing labels and spinner through test failure; the guard correctly rejects loading. Not the old 40px paper false negative.",
+    "background": "Video samples during Home/activate show ongoing reader scrolling, no Springboard. Test lacks a verified background-state precondition. Brief unsampled transition is not excluded; no production pause root cause established.",
+    "reviewManifest": "build/ci/39272564753/ReaderReadyUIReview/review-pending.json"
+  }
+}
