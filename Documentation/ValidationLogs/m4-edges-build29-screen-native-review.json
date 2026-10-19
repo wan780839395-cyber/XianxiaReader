@@ -1,0 +1,761 @@
+{
+  "run": 39155583794,
+  "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+  "images": [
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/C45A5FD3-D752-4286-BCA4-464081315BEB.png",
+      "name": "reader-edges-portrait-restored-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c6abb2962ae0fc8bec34d5ecd0852e9aafc85452dfd5a55fa0734b8aa2308126",
+      "inspected": true,
+      "includeInPreview": true
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6B008733-30E1-46E6-8FB9-6A75CE2B8924.png",
+      "name": "reader-edges-landscape-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5fcb10da099d1ce2d00b0795c908d0b97cb03796ce69d5e6e1bae09f57de855e",
+      "inspected": true,
+      "includeInPreview": true
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/A510CCE3-940E-4AEE-984E-9F60D11B6B34.png",
+      "name": "reader-edges-app-crop-probe-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5c574e5c3f43644909bffa33abb11a9db1bb5f4b99e41079dc99a6542180ab82",
+      "inspected": true,
+      "includeInPreview": false
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/DBA5F2FD-01F1-4A94-BCEC-CBFACBA00393.png",
+      "name": "reader-edges-screen-probe-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5fcb10da099d1ce2d00b0795c908d0b97cb03796ce69d5e6e1bae09f57de855e",
+      "inspected": true,
+      "includeInPreview": false
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/316F95C3-EDA7-49BF-9AE7-A869F777A27E.png",
+      "name": "reader-edges-paused-charcoal-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "920c07676226df25047cfab7e77a90909b0e5eb41bd3f3d0be63528c7dfbeffc",
+      "inspected": true,
+      "includeInPreview": true
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/E6F58F35-BA71-4BD8-8AC7-43AE45207C0F.png",
+      "name": "reader-edges-portrait-restored-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "27a1dbdb9c52a3ac1556e7e45c66e465fc0438894dad4be60300713fbcf608f8",
+      "inspected": true,
+      "includeInPreview": true
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/32EB8B25-496D-4236-B49F-F708BE0B15C8.png",
+      "name": "reader-edges-landscape-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "7c921bcce84b8fe0d7ca34c12d5926dee440ab86d52b237ab8af2103264def8b",
+      "inspected": true,
+      "includeInPreview": true
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/EA564499-31AC-47F9-ADA0-C01AC8EB4232.png",
+      "name": "reader-edges-app-crop-probe-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "5e43afc80b7123470cfa55f49c8bcdccd21b2509f17c1173b7f90612205f7370",
+      "inspected": true,
+      "includeInPreview": false
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/C00C9F37-7F3E-438E-82AE-DBADFF0D98EA.png",
+      "name": "reader-edges-screen-probe-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "7c921bcce84b8fe0d7ca34c12d5926dee440ab86d52b237ab8af2103264def8b",
+      "inspected": true,
+      "includeInPreview": false
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/FB7472F4-3767-4DCC-BFF0-441598C5D536.png",
+      "name": "reader-edges-paused-warm-build29",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "c97243ff977737aac345dc4ae89386e47cc2c739f7e0f4944fdc95f6fde3be20",
+      "inspected": true,
+      "includeInPreview": true
+    }
+  ],
+  "videos": [
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6FAD25DF-372B-4407-A311-310226B6AFD8.mp4",
+      "name": "Screen Recording 2026-10-18 at 07.00.49 PM.mp4",
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "sha256": "e6ebace5b59912bbffd5fa905bb104a6981f7642cb1226428c9589658f74afbb",
+      "inspected": true
+    }
+  ],
+  "overviews": [
+    {
+      "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+      "contactCount": 6,
+      "secondsSampled": 81
+    }
+  ],
+  "method": "Unmodified original PNG contacts and one-second video overviews; not frame-time or motion acceptance",
+  "recordedAtUTC": "2026-10-19T00:14:06.761691+00:00",
+  "all10PNGAnd2ContactSheetsViewed": true,
+  "fullOriginalVideoOverviewContactSheetsViewed": 6,
+  "originalFrameWindows": [
+    {
+      "run": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+      "video": {
+        "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6FAD25DF-372B-4407-A311-310226B6AFD8.mp4",
+        "name": "Screen Recording 2026-10-18 at 07.00.49 PM.mp4",
+        "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+        "sha256": "e6ebace5b59912bbffd5fa905bb104a6981f7642cb1226428c9589658f74afbb",
+        "inspected": false
+      },
+      "start": 32.0,
+      "end": 33.5,
+      "method": "Every original decoded VFR frame selected by source PTS; no fps filter or interpolation",
+      "frames": [
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0001.png",
+          "sha256": "98f31ddd2aa8cc063ecdffb3aca4702e61eb1033db5a8065a5c3ff3ae064dbe4",
+          "sourcePTS": 32.033333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0002.png",
+          "sha256": "880cd89e8c83133d073f0f080a13762dd6d1b824b3bef88cb49ce2faf4a5f749",
+          "sourcePTS": 32.081667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0003.png",
+          "sha256": "98895a3aea82fcd2d234d97b01fae9c5b1fb5170406101dd4c51f4aaeeda990a",
+          "sourcePTS": 32.131667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0004.png",
+          "sha256": "382ab8e8dc212276939732b67c0732fce989fc2071d18f118c1c398afa614cdd",
+          "sourcePTS": 32.18
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0005.png",
+          "sha256": "61a492dad1523abf22c861e3cb2b46679a7ecd8297504672525cb43cbdbf3ee5",
+          "sourcePTS": 32.23
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0006.png",
+          "sha256": "aceb998145cbbda6e5290750ef555a466ae035915ff8bc0cd55633cc7f9cd1f7",
+          "sourcePTS": 32.28
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0007.png",
+          "sha256": "c816bbacf6f634c07ad478a0505fdcb1206950b43cff6661c5e7680b3b1e7df1",
+          "sourcePTS": 32.33
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0008.png",
+          "sha256": "4a0c331c6b4a9e649c9c81348a0e46dede1b77b91777ee3b35cbcc90c8de73bd",
+          "sourcePTS": 32.381667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0009.png",
+          "sha256": "ba92cd58f7a2453cdc3794d68e1bef20b8875769b061e86dd6e81df976150fa9",
+          "sourcePTS": 32.43
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0010.png",
+          "sha256": "b38b50d773a6f1a24ba5e71752596d9d6b9aa76a5d372b14dd43220b18b36e2a",
+          "sourcePTS": 32.48
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0011.png",
+          "sha256": "251b7ccdd6a7fb136cb85c61a016687849b7749858df8ba80569d750ab824795",
+          "sourcePTS": 32.531667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0012.png",
+          "sha256": "4eb7e5e7ec7011a5745e750c05a7c16359b301964535f88502758575a7fe0a05",
+          "sourcePTS": 32.605
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0013.png",
+          "sha256": "56362899ddfc13416d6b1e4d5e6795313aebb2e635c9fe13faeb77a517b6816a",
+          "sourcePTS": 32.631667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0014.png",
+          "sha256": "a8bfc493f3f709115e406dacc6d10efc80d2f080fd06d1a4dddbf1f97887a138",
+          "sourcePTS": 32.681667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0015.png",
+          "sha256": "bf0983b6d9d68779ca47b9f2d501e0f37beb597d8ae7c3f13c5693add127b51b",
+          "sourcePTS": 32.685
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0016.png",
+          "sha256": "14575a560361f245e2f18bb12d03d2c230cb790d284e31cca012a866381156d2",
+          "sourcePTS": 32.73
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0017.png",
+          "sha256": "7eaf666851c7f1998cd9e6beefa8bbbb5fa5a8b9f977934dc1dbeac027541265",
+          "sourcePTS": 32.781667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0018.png",
+          "sha256": "af3fa792b1d3bc9a71e69e257888d274fbeda34cb851a9dab62d1f12f3117e87",
+          "sourcePTS": 32.831667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0019.png",
+          "sha256": "6800503b02b3fa3e2f7b03e74e48a0082a8363d8d03656a780f268253bed3481",
+          "sourcePTS": 32.89
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0020.png",
+          "sha256": "d288dbe295663ca85714bcdef9453b0928a87fc4472c3c6252337b1da26e07c8",
+          "sourcePTS": 32.946667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0021.png",
+          "sha256": "9efeceb8cffd90d748db1de0af3689842bc1dc9b802be3a4cf2f9d4fb7d614c3",
+          "sourcePTS": 32.965
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0022.png",
+          "sha256": "c8a095453665c61f6d29b3b3079583b674f039d6932e1d08dc0e7b5a643c0c7d",
+          "sourcePTS": 32.966667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0023.png",
+          "sha256": "f45e711059010eab05f28f86700d14b123c10614a85d0da4bf9ae8449f07ae69",
+          "sourcePTS": 32.99
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0024.png",
+          "sha256": "07a127821e9ec5d13effc6013c205f2282c5f58aeaf43d96603a59cbb50df078",
+          "sourcePTS": 33.01
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0025.png",
+          "sha256": "19860ab586f8575a1e615a6519e97adc2336376a2693bf124d561d703a529394",
+          "sourcePTS": 33.038333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/warm-rotation/frame-0026.png",
+          "sha256": "84294713b5245c85e2b370c72ad9200226d0d15dcd57fda6b4b9a7c1473c2fbe",
+          "sourcePTS": 33.068333
+        }
+      ],
+      "inspected": true,
+      "sourcePTSInversions": 0,
+      "observations": "Landscape loading resolves to readable warm page, then original anchor restoration; no assertion that the transient chapter head is seamless."
+    },
+    {
+      "run": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+      "video": {
+        "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6FAD25DF-372B-4407-A311-310226B6AFD8.mp4",
+        "name": "Screen Recording 2026-10-18 at 07.00.49 PM.mp4",
+        "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+        "sha256": "e6ebace5b59912bbffd5fa905bb104a6981f7642cb1226428c9589658f74afbb",
+        "inspected": false
+      },
+      "start": 46.5,
+      "end": 48.0,
+      "method": "Every original decoded VFR frame selected by source PTS; no fps filter or interpolation",
+      "frames": [
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0001.png",
+          "sha256": "04bcfd59ca575f2c780e9974a5bcaaeca9317431140fa96e0a7f72dc487e58a3",
+          "sourcePTS": 46.813333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0002.png",
+          "sha256": "7933aa4ff8d3939aefb110f392d9b8ebfec869416d4a05976a9c43eac888b6cf",
+          "sourcePTS": 46.831667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0003.png",
+          "sha256": "a99b00dcf2155f503418b308d13dbb271baaa2d074367959b3546adb21ff8eb5",
+          "sourcePTS": 46.853333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0004.png",
+          "sha256": "1775f2cda87314f3b124d7e83bfe0fe5cb702784a5d538e02da5c61bf67a03d9",
+          "sourcePTS": 46.898333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0005.png",
+          "sha256": "0808ebc95c1de84a283b2ce1c0f83c83266040697599d51b6482c4ef7954a4ad",
+          "sourcePTS": 46.913333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0006.png",
+          "sha256": "9ed1a31c8cf486e3527cc5f3c95b97bf9a160b67612cb45a718b642572c37d60",
+          "sourcePTS": 46.921667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0007.png",
+          "sha256": "bc3d174d2b73c065be8b628abdc90cced69eb4ad9021fb3cb5059fe8ebd86f09",
+          "sourcePTS": 46.93
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0008.png",
+          "sha256": "78cd36210ef1bac596f59a4ceee330ff0d399c6788e331ec9c53cfbe0b0452d8",
+          "sourcePTS": 46.95
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0009.png",
+          "sha256": "a79504d46d06ae4aeaf7771e75bf39f53e2597efa9ccd3279a72a4608ac6687c",
+          "sourcePTS": 46.966667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0010.png",
+          "sha256": "828349f3795d34cc024d20d1be89c1d40d849738605e0c3e6da173d33de2d1d4",
+          "sourcePTS": 46.985
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0011.png",
+          "sha256": "10abbc21ca1943684469d0f7aa0930afbfeba88c0316ec490b1419dddf060de3",
+          "sourcePTS": 46.99
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0012.png",
+          "sha256": "b72c1483361ee5c0ce266327bd037d4d20415297083ad11706bd47bfd7b3bd9b",
+          "sourcePTS": 47.001667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0013.png",
+          "sha256": "162038304f3863e4d46ce2cf7cd7651d697f0498434b117dfc3cb017ecb2251d",
+          "sourcePTS": 47.016667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0014.png",
+          "sha256": "cb6ff73af4194f7343ee77d4c5aaafac909d14d9b4b87203639294a1c3e9937e",
+          "sourcePTS": 47.031667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0015.png",
+          "sha256": "bfc1de2bb7c6ef57f892eb01e8ce0d693b604c68b9ab6ede520b6c710a131352",
+          "sourcePTS": 47.046667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0016.png",
+          "sha256": "352cf4fcf727e20f925ad97dcf711eeaf7d9cb46c1eeb586c37f968db858b37d",
+          "sourcePTS": 47.063333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0017.png",
+          "sha256": "152bf3febfd96c758f40b19e75815cb98b77f78562d72badd273a9d31663ae91",
+          "sourcePTS": 47.08
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0018.png",
+          "sha256": "ea6bc3b54e1d9eb577043f227cabc35840ed9a19841296f9ce41a3109620dc30",
+          "sourcePTS": 47.098333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0019.png",
+          "sha256": "4aefc1f91fbcb81b2aab66ef13f05e1e15162376171f42e5569ff86cb75432b6",
+          "sourcePTS": 47.12
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0020.png",
+          "sha256": "bfd58622ce626da66c1d6588db841376e1ab44dad872c50e43bc543d4726127a",
+          "sourcePTS": 47.135
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0021.png",
+          "sha256": "9d9f536ddbaed84bb5f2a25d7e56fc03f8db207f285ba89601e257bd6cfdf270",
+          "sourcePTS": 47.148333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0022.png",
+          "sha256": "324ab7c6a2e84b1ab887fe98583374fb050d51157e23722858f1d33eb178a20e",
+          "sourcePTS": 47.166667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0023.png",
+          "sha256": "a8ef366fc451ecb3a68e3dc6bc7089472f4763f33c3441a2e5b7c92cca64456b",
+          "sourcePTS": 47.201667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0024.png",
+          "sha256": "61826128c884acd9da3ae5015576b56d029545ea85418249d071f287b2f9ab26",
+          "sourcePTS": 47.215
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0025.png",
+          "sha256": "61b6e44c9fdb83720d4b0ce1ba0070253ae496074ffa9348f337cb29d73ffafa",
+          "sourcePTS": 47.216667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0026.png",
+          "sha256": "19ecec78ae91290af9093b9b051243153ce8dfa9892032ae75bd9ad4d1301e6a",
+          "sourcePTS": 47.636667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0027.png",
+          "sha256": "609fbf2f51145b956a69d373c6627245e941e9ed29c3589dcb33f77943ddca9d",
+          "sourcePTS": 47.74
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0028.png",
+          "sha256": "9eaa69ac870b5f83db658b41883018c2b97cc88ad126c9e0ba1dcae7754ea0d4",
+          "sourcePTS": 47.783333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0029.png",
+          "sha256": "5278875130d61553a1b442113f31676c3e8d9af9ba792a84ebdd77c2e393e66c",
+          "sourcePTS": 47.841667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0030.png",
+          "sha256": "0062d84fa9164eb47563b4257af4ae4a89ac9fba150cbdd47b90da0a38c7839d",
+          "sourcePTS": 47.871667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0031.png",
+          "sha256": "e9c3b4f5546fd9069c77d287bd131a1c6bab56cd8b562077dbf21e31be52486b",
+          "sourcePTS": 47.875
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0032.png",
+          "sha256": "624606d5acdb1cf3b72887302da7d11d57b6dbc80d7dc9a8b9ca750c181a04f8",
+          "sourcePTS": 47.895
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0033.png",
+          "sha256": "8753eba95c7ee3810ad535cd45cd845643cce9dd042fb3ba1f5fde8bd35d6784",
+          "sourcePTS": 47.91
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0034.png",
+          "sha256": "8b7d5f4d49266139aaa8661061adfe715d0298f0a4748e45e334c8d64698fcdb",
+          "sourcePTS": 47.928333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0035.png",
+          "sha256": "3cb1d60588aee1d334e92cadd75efd57d9cbf30c5aa198a35166d71581c7ffd2",
+          "sourcePTS": 47.961667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-theme/frame-0036.png",
+          "sha256": "c8ba825373d872cd24bddafa2f4abaf1cc18ceef6849aa013d1292faf038b047",
+          "sourcePTS": 47.988333
+        }
+      ],
+      "inspected": true,
+      "sourcePTSInversions": 0,
+      "observations": "Actual native sheet dismissal with charcoal settings/body; no layout-error alert or warm-body/charcoal-edge mismatch."
+    },
+    {
+      "run": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+      "video": {
+        "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6FAD25DF-372B-4407-A311-310226B6AFD8.mp4",
+        "name": "Screen Recording 2026-10-18 at 07.00.49 PM.mp4",
+        "test": "ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation()",
+        "sha256": "e6ebace5b59912bbffd5fa905bb104a6981f7642cb1226428c9589658f74afbb",
+        "inspected": false
+      },
+      "start": 69.0,
+      "end": 71.5,
+      "method": "Every original decoded VFR frame selected by source PTS; no fps filter or interpolation",
+      "frames": [
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0001.png",
+          "sha256": "77ac3c32b0d5d5f297d43b1a6e17da0cad77f2ff1a0d7d398cb423100966a27e",
+          "sourcePTS": 69.123333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0002.png",
+          "sha256": "ca5afee2a528bd907ebba5794e30a69344aaaa90f3152adee2cc12682e523746",
+          "sourcePTS": 69.175
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0003.png",
+          "sha256": "d28293b2ec60b3ed7fc750362b2264acdfe25b13124f2e48a49a302351235050",
+          "sourcePTS": 69.24
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0004.png",
+          "sha256": "5ef174e8799afeeb8444c2e8f644f1b3ffc806255a2e05ad23830d4a8ffe350a",
+          "sourcePTS": 69.328333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0005.png",
+          "sha256": "10536a917aef5d1c8112e1f3cf8aaf17a4340008bb6e53f4b6b403496e0fe964",
+          "sourcePTS": 69.356667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0006.png",
+          "sha256": "72b0f43327a19625952665e8f7eb83d0ba456d8d1a2bd973c1437dcbb12fdaea",
+          "sourcePTS": 69.371667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0007.png",
+          "sha256": "1f8d9e7db3e84c5c260803c6cba99315581cb3a4a911f8e510165a2c79a38971",
+          "sourcePTS": 69.396667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0008.png",
+          "sha256": "a230af14a5666d4ee9a1774dd9f32b714ddcb9af5b8ef24ecd82009508393db1",
+          "sourcePTS": 69.415
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0009.png",
+          "sha256": "e4fd5fbb5a9ec8adf046b9e9d77b93d19c0562157e350609ab3c2c92a5dfe185",
+          "sourcePTS": 69.43
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0010.png",
+          "sha256": "705bfe8b5910b129789acebb6c0cc1f73902ff0bb86554dc97f933b65b0376c0",
+          "sourcePTS": 69.441667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0011.png",
+          "sha256": "8f2e5e2a6abd3a4ac359da9015272202baac2e944f70d2ea54ab62815ffa489a",
+          "sourcePTS": 69.443333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0012.png",
+          "sha256": "765957f31662547354668be7d1087f91823d334712b32fe83c26ea6c138615fe",
+          "sourcePTS": 69.453333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0013.png",
+          "sha256": "c115d70a8e2cb5a3dd6f5f82def2686a5028e231d9eeca8360675757e0c35b00",
+          "sourcePTS": 69.46
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0014.png",
+          "sha256": "14e2944e5d4a11472486d21672ea718e5e4813f931827237150d8480e5e23054",
+          "sourcePTS": 69.468333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0015.png",
+          "sha256": "b6b52d8721f3ba4e767014d4a189d274509626759fd08943d26ecf7f852dfc4b",
+          "sourcePTS": 69.511667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0016.png",
+          "sha256": "37a9559b8c9a221063deb3fb5a293e8a048e5bf55963049baaeac5152a53a570",
+          "sourcePTS": 69.513333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0017.png",
+          "sha256": "b2ed9e5eecf08eec964451c2e0c2f728a927c7ff97b4dc23e1260ec973ca6574",
+          "sourcePTS": 69.515
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0018.png",
+          "sha256": "b38a0603df11ed7bc6203dfd161ba0e81bd668d59b78292382f0a52245337b50",
+          "sourcePTS": 69.516667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0019.png",
+          "sha256": "2218e5a2915418ba3d8b28db84b6989c535bb0b36e1db5a32d17dbdeecf5024f",
+          "sourcePTS": 69.518333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0020.png",
+          "sha256": "20a26688d8b923649edd459a2e9cba4f528aac20e1a4bb8c2fef73af26a56c3c",
+          "sourcePTS": 69.52
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0021.png",
+          "sha256": "7efd40cef40cf279603a1c2588b693e597389e3fb00f7d76d3693f3c7ebd482e",
+          "sourcePTS": 69.521667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0022.png",
+          "sha256": "45fcfb97561f875e4d651b1c22953e1f65746b4a93b007a91e10042493f313dd",
+          "sourcePTS": 69.526667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0023.png",
+          "sha256": "6060a6b821722b80dd2fc9f2cc1ca162cd0efba348984376a5770c77816bc311",
+          "sourcePTS": 69.543333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0024.png",
+          "sha256": "49667578d6670c5be7ad01df0c835ef4ba16096719e1152a5b95f51b78008ff6",
+          "sourcePTS": 69.583333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0025.png",
+          "sha256": "16352c5d78f214095e76a94a777b8befd9842c31b50a96bdcf4a1b03c6a50276",
+          "sourcePTS": 69.586667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0026.png",
+          "sha256": "e7e23f6cd7dd730eede71d34b68f82721f1344ecd9a599212ffead1c09dfdd21",
+          "sourcePTS": 69.595
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0027.png",
+          "sha256": "913357fd924b5c4d61365d19d56d1cf74994e288f5f38a373a11bd573fbc6cf5",
+          "sourcePTS": 69.598333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0028.png",
+          "sha256": "6283cb62b44395612728a726dcdf77c879b75f118bf1a25b2ea310de8810e5d0",
+          "sourcePTS": 69.626667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0029.png",
+          "sha256": "a54670086071ef6d6d84eba5b523d06743a7025de1ad8c10cd7c5450fdb98746",
+          "sourcePTS": 69.675
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0030.png",
+          "sha256": "a3b4fe225d73089b675f9553937e9d30b71ce99fcf0c6b79d3a26c55b00028f7",
+          "sourcePTS": 69.726667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0031.png",
+          "sha256": "3cfe48c4018372d1824f446648387ccbf05967cc6331e7ba25a55e10c09cc58f",
+          "sourcePTS": 69.776667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0032.png",
+          "sha256": "ff6cec59504a9d68b2e336d430a1e8fc7c41f7554ec756a171d8b8cec7dd9c7d",
+          "sourcePTS": 69.825
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0033.png",
+          "sha256": "1c35371505be7d4cf029d506204bb276b570f42cfbf4ad7f4e674ab7eb493789",
+          "sourcePTS": 69.873333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0034.png",
+          "sha256": "fc651cbf74ec14db1fdd77d48b64194f511c76dd8ec3fa5032bbd34b3340e1f6",
+          "sourcePTS": 69.925
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0035.png",
+          "sha256": "933f26d4bc7c661b0c34e9c91d3cd65f5247be2446701a0791a079b9a4437b8d",
+          "sourcePTS": 69.975
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0036.png",
+          "sha256": "b0c20d8dee84c9a58359349a7ade833b21001a5bfbf0f8c0322e67ae85deff06",
+          "sourcePTS": 70.026667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0037.png",
+          "sha256": "003157d60c1559d43eeb58850040b4f3219e450ffaad5bf9b42da5ef4324db0a",
+          "sourcePTS": 70.075
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0038.png",
+          "sha256": "b80d7a9749279ec4614f9932b1af3942d77398ddabeb3263cfc55beab3e64241",
+          "sourcePTS": 70.125
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0039.png",
+          "sha256": "6801e6b371e29798aeec541b8d286268966d5666acc2001866c32b1f9903d092",
+          "sourcePTS": 70.175
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0040.png",
+          "sha256": "7209aec3ac5555c2b5c910020836efa2f74432a778e98f7993bb53d028cbf0d2",
+          "sourcePTS": 70.223333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0041.png",
+          "sha256": "77167b5d496f127e92a9c45ca5f89824d8267449b464f68697cae332f101dc80",
+          "sourcePTS": 70.273333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0042.png",
+          "sha256": "7587933fa5df23f5290fda16f23ce8afe59c7e0f85a535874198faf79bf159f2",
+          "sourcePTS": 70.328333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0043.png",
+          "sha256": "c23a0bcc3944c73c2f56d440e1384371cb397ad0675bae315faeb897128121d5",
+          "sourcePTS": 70.33
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0044.png",
+          "sha256": "69072f874fc6094fea5544256ff5148585c6a870e237874fca3a2da010ed68b8",
+          "sourcePTS": 70.373333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0045.png",
+          "sha256": "198e1801b4e44d09ff87872dbae79d75239d6a01972370c6e192b939f4b3bb3c",
+          "sourcePTS": 70.425
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0046.png",
+          "sha256": "678492d77231560b86d31cce04f7effee6277e47b50335e2b203e4160e579074",
+          "sourcePTS": 70.475
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0047.png",
+          "sha256": "9b0748ccaa35e6fdf2acb75efd8d0ea8f617be26169c29798c1110812e937fc3",
+          "sourcePTS": 70.523333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0048.png",
+          "sha256": "57297cad14392d6d7a90bd52a86422a23800e9cbed9700ace7d6c63eb7650854",
+          "sourcePTS": 70.565
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0049.png",
+          "sha256": "ed868d83a8f83e89404e028d66c6fef58e8f8feae43c1a4a2fe887956e672d80",
+          "sourcePTS": 70.568333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0050.png",
+          "sha256": "6688ec9638301d0eb821f825519b78e2533cd83e3d82c4d7c75cf77a8fc83b50",
+          "sourcePTS": 70.616667
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0051.png",
+          "sha256": "10f9facf36308a45889f96314e009ab7fe3acb5695d3be35e5474b5a62ff57cd",
+          "sourcePTS": 70.633333
+        },
+        {
+          "path": "build/ci/39155583794/DiagnosticReview/dark-restore/frame-0052.png",
+          "sha256": "998b6735f9ddc6584ee70d7c5f7a17d010a7c4b53db7fe28e31b7a391fd6a45d",
+          "sourcePTS": 70.641667
+        }
+      ],
+      "inspected": true,
+      "sourcePTSInversions": 0,
+      "observations": "Native rotation and loading, chapter head briefly visible before restoration to paragraph6; stable charcoal viewport and unsafe edges. Rotation is not a seamless-animation acceptance."
+    }
+  ],
+  "originalFrameCount": 114,
+  "geometryProbes": [
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/6BA35394-5624-48D0-A312-2FE23DE215D6.txt",
+      "sha256": "05622b0e72eb2ccefc67adca6756df75cf7feda40bde25b360c2b713b44e965a",
+      "name": "reader-edges-capture-geometry-charcoal-build29_0_D1C13D39-CDCD-4575-9405-D529AAFEF1DE.txt",
+      "content": "frame=(0.0, 0.0, 874.0, 402.0) screen=(874.0, 402.0) app=(402.0, 874.0) screenPaper=true appPaper=false"
+    },
+    {
+      "path": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/ReaderSnapshots/747D1B8A-5053-4CE2-9A2D-9C962329EE8B.txt",
+      "sha256": "05622b0e72eb2ccefc67adca6756df75cf7feda40bde25b360c2b713b44e965a",
+      "name": "reader-edges-capture-geometry-warm-build29_0_7C5DA75C-828D-47AD-BA92-175775468F30.txt",
+      "content": "frame=(0.0, 0.0, 874.0, 402.0) screen=(874.0, 402.0) app=(402.0, 874.0) screenPaper=true appPaper=false"
+    }
+  ],
+  "acceptedScope": "Warm and charcoal paused slow-scroll pages, landscape readable pages and restored portrait pages, cover geometry and native controls in the listed original material. No layout error alert or theme/body mismatch in this sequence.",
+  "reviewSummary": "C39155583794/f320：10张原图/2表、81秒原视频6总览、3窗口114原始帧/11表实际查看。浅深暂停、横屏/恢复竖屏和所列边缘可接受；两App横屏probe裁图带黑区、两整屏图正确且screenPaper=true/appPaper=false。旋转有加载和短暂章头再恢复锚点，不作为无缝旋转/手机FPS验收。",
+  "nativeSequenceAccepted": true,
+  "overallDiagnosticPassed": false,
+  "deviceAccepted": false,
+  "M4Complete": false,
+  "limitations": [
+    "Scoped simulation only, not device FPS, power, all orientations/accessibility or M4 completion.",
+    "Orientation rebuild shows loading and briefly chapter head before anchor restoration. Not certified as seamless rotation.",
+    "C overall remains failed10/11 because inherited initial-cover location case timed out before font-change actions; no claim of unique root cause or production fix."
+  ]
+}

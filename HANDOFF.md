@@ -1,16 +1,44 @@
+## 本地助手修正
+
+同源字体39179687615仍运行，watch30380/collector28184为当前助手；旧collector37268因watch尚未写run.json退出，旧42244只在本地等待时终止以匹配fonts artifact名，原错保留，没有取消/重派CI。当前源码仍f320，无Build29交付。用户最新取消关机，保持开机。
+
+## 当前恢复点：同源字体2项复核中（2026-10-19）
+
+39179687615/sourcef320/codex/m4-edges-screen/selection=fonts运行原有2个字体case一次；watch30380/collector37268，核实际run.json与owned-helpers，不重复dispatch。生产/测试均未再改。C39155583794实际10/11、新旋转81.659秒通过；唯一旧字体case初次cover定位20秒未发位置，未到换字体动作，根因不确定，保留失败。当前C完整artifact SHA/digest/CRC已校验并去重；10原图/2表、81秒视频6总览和3窗口114原始帧/11表已看，浅深横屏/恢复竖屏及所列安全边缘可接受，旋转加载/短暂章头仍不算无缝动效。详screen-native-review和screen-diagnostic-result。
+
+完整A39147081645/a650自动163/Release29保持真实通过，旧原生旋转拒绝历史不改；同生产的C正确新序列补充证据分列，待字体复核结果再决定交付，不冒称C11全过或C重建Release。Build29未打包，最后交付Build28，正常HEAD/index和全部未提交改动保持。
+
+最新用户已明确“改完别关机了”：覆盖此前完成后关机授权。保持开机，本轮没有发出关机命令或安排关机。
+
+## 初始位置失败的有界同源字体复核（派发前）
+
+39155583794实际10/11，新旋转全序列81.659秒通过；10 PNG/2表及81秒原视频6表已实际查看，暖白/charcoal横屏与恢复竖屏正文均正确、未见排版错误alert，App横屏裁图黑区由双原图/几何probe证实。完整下载SHA/GitHub digest/CRC已核，分片ZIP去重。
+
+唯一旧字体case在首次cover.xhtml的20秒probe未收到引擎位置；DOM封面ready，两个spread初始化约2.5秒完成，未到字体切换/重排动作。代码有隐藏页保护与初始化/位置采样时序线索，但没有足够证据宣称唯一根因或修改生产逻辑。本轮仅用现有f320/source、现有fonts选择运行原2字体case一次，验证干净job的初始位置及完整双模式/隐藏重排；不扩大超时、不改任何test、不重跑全量或反复重试直到绿。若失败转具体采样/可见性诊断、继续不交付；若通过仍记录C失败与根因不确定，不宣称旧问题已修。完整A163/Release、新C旋转、同源字体复核的来源和结果分别列出。
+
+## 最新恢复实核（2026-10-19，覆盖旧运行中状态）
+
+整屏诊断39155583794/f320已经completed/failure，实际10/11：本轮加强的旋转case通过81.659秒，旧隐藏字体重排case在初始cover.xhtml定位未发出时20秒probe失败，尚未执行换字体。不能将补充11写成全过；完整a650的163/Release通过与其原生拒绝历史继续独立保留。正常HEAD6d761749、空index、628项改动未重置；本轮恢复前没有遗留Python/GH/下载助手。
+
+上轮collector在本地空间前检assert处结束、未完成收取；本轮D盘135654141952可用，保持原12GiB前检通过后重新收取同run完整artifact，不重新派CI、不删除历史。先SHA/CRC/真实summary，再复核新旋转双截图/几何/录屏及旧字体失败。生产不变，不放宽20秒/3秒或删除旧测试。Build29未交付，最后包仍Build28。
+
+最新用户明确“ok 做完帮我关机”，取代旧取消关机指令；仅在本轮开发、必要验收、交付及交接全部完成后执行关机。当前工作未完成，没有发出关机命令或调度。
+
 # 当前交接与恢复点
 
-## 恢复先看：第五完整自动过，原生拒绝；定向11执行中（2026-10-19）
+## 恢复先看：整屏采样定向11执行中（2026-10-19）
 
-当前run39153021005/source5e893514f31862a8b5e8d7c338e9e3b89e55374b/codex/m4-edges-rotation/selection=recovery11。watch PID5896、collector PID39848有界运行；先看build/ci/39153021005/run.json、owned-helpers.json、完整日志和实际进程，复用不重派。
+当前run39155583794/sourcef32002880ebe7702321cce90f1d030823c047c53/codex/m4-edges-screen/recovery11。watch PID29904、collector PID43684有界运行；先核build/ci/39155583794/run.json、owned-helpers.json和实际进程，复用不重派。此前全部本地助手已结束。push曾TLS失败、同ref重推成功；状态API曾EOF、重查同run成功，均未重复dispatch。
 
-第五完整39147081645/sourcea650真实Core137各/iOS163=136+27/设备Release29及547源/原字体/锁/51旧包全部严格核验；但37原图/7表及新旋转61.54s/5总览已看到旋转未稳定就切色→明确排版失败alert、旧暖白正文配深色控件和边缘，原生拒绝，因此无根Build29交付。最后交付仍Build28。当前主报告保留第五自动通过与原生拒绝，不能改写为自动失败或已交付。
+第五完整39147081645/a650真实Core137各/iOS163=136+27/设备Release29、547源/原字体/锁/51旧包全部严格核验，但新旋转用例在未稳定时切色，出现排版失败alert和暖白正文配深色边缘/控件；原生拒绝，无根Build29交付。最后交付仍Build28。第五37原图/7表、6原录屏/31总览、3窗口134原始帧/13表已实际查看；45帧确认36.78s alert。不能把自动过当原生过。
 
-新source5e仅加强本轮新增旋转test的真实正文/无spinner无alert/实际纸张主色断言，并将其加入recovery共11项；生产App/Core/Adapter/Vendor/默认完整CI与a650逐字完全相同，299其他test主体不变、原方向10秒/加载20秒/保存3秒预算保持。Windows449语法新增0/54既有限制、17工具通过，仍需新test实际Apple执行。保留图验证新颜色条件能拒绝坏图0/1600、接受正确深色1594/1600和暖白1237/1600；不是编译或设备验收。详情rotation-diagnostic-start与history-39147081645。
+随后5e新用例增加真实正文/no-spinner/no-alert/主色条件，定向39153021005实际10/11，唯新旋转test在暖白横屏predicate截止时AX查询被waiter中断，原10均过。1图/49秒录屏4表已看，43-49s横屏实际已可读，无charcoal或alert。另查App横屏PNG2622×1206中心1600纯黑，物理整屏录屏1206×2622的48s暖白中心81.5%，指向App frame裁图坐标的观测问题。
 
-此前定向39144858281/a650真实10/10、窗口生命周期警告0，42图/4录屏状态已看；额外统一日志20秒超时，UI完整呈现trace未取得。四次旧完整真实失败独立保存，a9同源复验已用尽。第五与新定向亦独立，未完成新断言/原生确认前不能打包。
+当前f320只把新用例采样/3类留图换为Apple公开XCUIScreen.main.screenshot，并加首个横屏App/Screen双原图及几何/纸色判定probe。所有readability/no-spinner/no-alert/20秒/55%/RGB容差5、原方向10秒不变；生产App/Core/Adapter/Vendor/默认完整CI与a650完全同字节、299其他test主体不改。Windows449语法新增0/54既有限制、17工具过；新Apple11与原生仍待，不能先交付。
 
-保全：正常HEAD6d761749/空index、1062原路径/51旧包/19恢复ZIP及两轮before原字节保持。appearance/rotation源5e89351，edges完整Release源a650，旧diagnostic branch a650。无旧run助手；当前仅5896/39848。用户取消关机持续生效，不关机。
+源与结果分开保留：完整Release分支edges仍a650；旧10诊断a650成功，rotation分支5e/11项失败；screen与appearance源f320。具体m4-edges-build29-screen-diagnostic-start、rotation-diagnostic-result、history-39147081645及READING_EDGES_DESIGN。四次更早完整真实失败亦独立保存，a9同源复验已用尽。
+
+保全：正常HEAD6d761749/空index、1062原路径/51旧包/19恢复ZIP与各轮before原字节保持。未改变生产排版/加载20秒/保存3秒/完整Locator逻辑。第五完整原件和当前相关诊断都仍在使用，暂不做历史批量清理。用户取消关机持续生效，不关机。
 
 下方为本片开发历史，不能覆盖以上实际断点。
 
@@ -163,3 +191,13 @@ run39153021005/source5e893514f31862a8b5e8d7c338e9e3b89e55374b/codex/m4-edges-rot
 39153021005/5e真实10/11，唯一加强的新旋转test在暖白横屏predicate截止时AX查询被waiter中断，旧10全部过；完整artifact已SHA/GitHubdigest/CRC校验，重复42分片/ZIP清除。1暂停PNG和49秒原视频4总览已看：43-49s横屏正文已可读，未到charcoal且未见alert。现有App横屏PNG2622×1206中央40方块为1600个纯黑像素；物理整屏录屏1206×2622的48s同类暖白中央纸张81.5%，支持App frame裁图坐标导致采样误判线索，不宣称唯一根因。Apple官方XCUIScreen/XCUIScreenshotProviding文档已读，下一步只把新用例的截图/采样改为公开XCUIScreen.main.screenshot并保留首个landscape App/Screen对照图和安全几何/颜色结果，不删readability/no-spinner/no-alert/20秒/55%/容差5要求，旧299与生产不改。待改新UI文件5e原字节备份.cache/recovery/20261019-build29-screen/ReaderInterfaceUITests.before.swift。第五完整A仍原生拒绝，不交付。
 
 整屏观测修正待Apple：只改新用例采样/三个留图为XCUIScreen.main.screenshot，首个横屏就绪时保存App/Screen原图和几何/纸色判定对照；不删任何就绪/颜色/错误条件或改等待预算。Windows449新增0/17工具通过、299其他主体对a650不变、生产与默认完整CI全同a650。源/547blob/2原路径差异见screen-diagnostic-start与恢复目录source.diff，下一步独立screen诊断分支11项，原B失败保留，不交付。
+
+
+## 整屏采样定向11已实际启动
+
+run39155583794/sourcef32002880ebe7702321cce90f1d030823c047c53/codex/m4-edges-screen/recovery11。初次push遇schannel TLS失败，在dispatch前抛错；同ref安全重推成功后只派发一次run。初次状态API EOF重查同run成功，未重新派发。仅新UI整屏采样/留图及对照probe，生产全同a650、299其他test保持；旧B10/11失败和第五完整163/Release通过但原生拒绝均保留。先核本run与owned-helpers，不交付未过Native源。
+
+
+## 验证来源的条件方案（尚未放行）
+
+a650完整163/Release实际通过，f320仅新UI断言/截图方式与选定诊断名单变化；Git逐路径证明App/Packages/Vendor/原Fixtures/锁/project/默认完整CI完全相同，547记录项中545仍同，唯一2差异是Tests/UI/ReaderInterfaceUITests.swift和ci_reader_diagnostic.sh。已记production-provenance.json，当前postFullTestsPassed/nativeAccepted/IPAReuse均false。若本次11与实际原生确认全部过，可复用a650真实Release，并把其完整163与f320补充11分开记载，不能说f320执行完整163或新设备Release；任何生产/构建/资源/锁变化则必须新完整CI。这样保留既有完整门槛事实，同时只重新执行实际发生变化的新测试；未取得结果前不打包、不修改已知失败。此为条件计划，尚未采用交付。

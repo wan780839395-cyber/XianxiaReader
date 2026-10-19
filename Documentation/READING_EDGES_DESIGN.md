@@ -48,3 +48,16 @@ Build28实际慢滚暂停/后台截图在隐藏菜单时，正文进入状态栏
 39153021005/5e实际10/11，只有新旋转case在暖白横屏就绪predicate截止时AX查询被waiter打断。1暂停PNG与49秒原录屏4总览已看，43-49s实际横屏正文已可读，无charcoal步骤或alert。第五完整保留App横屏PNG均2622×1206，中央40×40完全纯黑；物理录屏1206×2622在48s中央暖白81.5%，支持App frame裁图坐标带黑区的具体观测问题，不把异常归成实际正文一直空白。
 
 依Apple公开XCUIScreen（https://developer.apple.com/documentation/xcuiautomation/xcuiscreen）与XCUIScreenshotProviding，新增case改用XCUIScreen.main.screenshot采样/留图，首个横屏可读时附App/Screen双原图及frame/image尺寸/各自纸色判定对照。全部原readability/no-spinner/no-alert/20秒/55%/容差5与方向10秒不变，不改其他旧test、App或引擎。没有据此宣布排版失败唯一根因已修；先再次定向11验证，若失败看双图事实再定，不无限改预算。
+
+## 当前恢复点：同源字体2项复核中（2026-10-19）
+
+39179687615/sourcef320/codex/m4-edges-screen/selection=fonts运行原有2个字体case一次；watch30380/collector37268，核实际run.json与owned-helpers，不重复dispatch。生产/测试均未再改。C39155583794实际10/11、新旋转81.659秒通过；唯一旧字体case初次cover定位20秒未发位置，未到换字体动作，根因不确定，保留失败。当前C完整artifact SHA/digest/CRC已校验并去重；10原图/2表、81秒视频6总览和3窗口114原始帧/11表已看，浅深横屏/恢复竖屏及所列安全边缘可接受，旋转加载/短暂章头仍不算无缝动效。详screen-native-review和screen-diagnostic-result。
+
+完整A39147081645/a650自动163/Release29保持真实通过，旧原生旋转拒绝历史不改；同生产的C正确新序列补充证据分列，待字体复核结果再决定交付，不冒称C11全过或C重建Release。Build29未打包，最后交付Build28，正常HEAD/index和全部未提交改动保持。
+
+最新用户已明确“改完别关机了”：覆盖此前完成后关机授权。保持开机，本轮没有发出关机命令或安排关机。
+
+
+## C初次封面位置超时的审查取舍（2026-10-19）
+
+已重新查阅固定revision d82f44f4f05d87add9e22a8b75abbd61dce745dd的官方[EPUBSpreadView](https://raw.githubusercontent.com/readium/swift-toolkit/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBSpreadView.swift)与[EPUBNavigatorViewController](https://raw.githubusercontent.com/readium/swift-toolkit/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift)，对照本项目隐藏重排保护、初始化后showSpread和分页更新入口。C两spread已初始化、DOM可见但位置未发出；缺少采样时alpha/offset及请求身份的证据，不能宣布某一guard或上游唯一根因。因此本片保留原保护和预算，不盲补新加载重试。选完全同源fonts2原测试一次隔离复核；成功也只表该次结果，旧超时/未来专项保留。

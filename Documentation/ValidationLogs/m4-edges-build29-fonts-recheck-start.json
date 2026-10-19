@@ -1,0 +1,14 @@
+{
+  "recordedAtUTC": "2026-10-19T00:11:52.982672+00:00",
+  "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+  "branch": "codex/m4-edges-screen",
+  "selection": "fonts",
+  "expectedSelectedTests": 2,
+  "diagnosticOnly": true,
+  "sourceChanged": false,
+  "maxExactSourceRecheck": 1,
+  "reason": "Isolate C initial cover position timeout before typography actions; preserve C failure, no assertions or budgets changed",
+  "fullRun": 39147081645,
+  "rotationRun": 39155583794,
+  "run": 39179687615
+}

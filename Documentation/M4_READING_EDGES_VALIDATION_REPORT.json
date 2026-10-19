@@ -1,5 +1,5 @@
 {
-  "stage": "Full163/Release29 passed, but native new rotation/theme sequence rejected; no delivery. Strengthen only new test readiness and actual page color before selected revalidation.",
+  "stage": "FullA163/Release actual passed; original A native rotation rejected and retained; identical-production C strengthened rotation/scoped native passed; C overall10/11, same-source original fonts2 recheck in progress; no Build29 delivery yet",
   "priorSnapshot": "cfe5e651dd677cad49d1359f7bbd2a538e41781f",
   "preservedPackages": [
     {
@@ -2541,6 +2541,18 @@
       "evidence": "Documentation/ValidationLogs/m4-edges-build29-rotation-diagnostic-result.json",
       "passed": 10,
       "total": 11
+    },
+    {
+      "run": 39155583794,
+      "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+      "branch": "codex/m4-edges-screen",
+      "selection": "recovery",
+      "expectedSelectedTests": 11,
+      "result": "failure",
+      "notFullDeliveryGate": true,
+      "evidence": "Documentation/ValidationLogs/m4-edges-build29-screen-diagnostic-result.json",
+      "passed": 10,
+      "total": 11
     }
   ],
   "branch": "codex/m4-reading-edges",
@@ -3639,5 +3651,26 @@
   "nativeVisualRejection": {
     "evidence": "Documentation/ValidationLogs/m4-edges-build29-history-39147081645.json",
     "accepted": false
+  },
+  "currentRecovery": {
+    "recordedAtUTC": "2026-10-19T00:18:18.484163+00:00",
+    "run": 39179687615,
+    "source": "f32002880ebe7702321cce90f1d030823c047c53",
+    "selection": "fonts",
+    "expected": 2,
+    "helpers": {
+      "source": "f32002880ebe7702321cce90f1d030823c047c53",
+      "collectorCorrection": "Match existing fonts artifact name; only local waiting helper restarted, no CI cancellation or redispatch",
+      "previousCollectors": [
+        37268,
+        42244
+      ],
+      "watch": 30380,
+      "run": 39179687615,
+      "collector": 28184
+    },
+    "sourceChanged": false,
+    "shutdown": false,
+    "latestUserInstruction": "改完别关机了"
   }
 }

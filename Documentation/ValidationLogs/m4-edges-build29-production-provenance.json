@@ -1,0 +1,19 @@
+{
+  "recordedAtUTC": "2026-10-18T18:50:26.285050+00:00",
+  "fullRun": 39147081645,
+  "releaseSource": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "postFullTestRun": 39155583794,
+  "postFullTestSource": "f32002880ebe7702321cce90f1d030823c047c53",
+  "productionPathsChanged": [],
+  "allAppCoreAdapterVendorFixtureLockProjectAndDefaultFullCIInputsIdentical": true,
+  "recordedSourceBlobs": 547,
+  "fullRunBlobsStillIdentical": 545,
+  "changedOnlyTestAndDiagnosticPaths": [
+    "Tests/UI/ReaderInterfaceUITests.swift",
+    "scripts/ci_reader_diagnostic.sh"
+  ],
+  "postFullTestsPassed": false,
+  "nativeAccepted": false,
+  "conditionalStrategy": "If the stricter new test and native review pass on identical production inputs, retain full163/macOSCore/Release results under a650 and record supplementary11 under f320 separately. Do not claim f320 ran full163 or built device Release. Any production/build/resource/lock change requires a new full build. No delivery while either gate is pending.",
+  "IPAReuseConditionsSatisfied": false
+}

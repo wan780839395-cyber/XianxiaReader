@@ -1,0 +1,141 @@
+{
+  "clientDate": "2026-10-19",
+  "recordedAtUTC": "2026-10-19T00:10:31.141673+00:00",
+  "run": 39155583794,
+  "sourceRevision": "f32002880ebe7702321cce90f1d030823c047c53",
+  "branch": "codex/m4-edges-screen",
+  "selection": "recovery",
+  "expectedSelectedTests": 11,
+  "diagnosticOnly": true,
+  "actualRunConclusion": "failure",
+  "iOS": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 10,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792350274.89,
+    "passedTests": 10,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792349525.303,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed: caught error: \"timedOut(\"cover.xhtml\", \"DOM: [\\\"fit\\\": contain, \\\"imageWidth\\\": 362, \\\"ready\\\": 1, \\\"width\\\": 402, \\\"mediaLimit\\\": 712px, \\\"height\\\": 750, \\\"href\\\": /OEBPS/cover.xhtml, \\\"title\\\": 封面完整性, \\\"imageHeight\\\": 712]; reported location: not emitted\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 3,
+        "testIdentifierString": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "testName": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 11
+  },
+  "linuxCoreTests": 137,
+  "deviceReleaseBuilt": false,
+  "IPAProduced": false,
+  "fullSuitePassed": false,
+  "nativeReviewPerformed": true,
+  "logPaths": [
+    "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/logs/reader-diagnostic.log",
+    "build/ci/39155583794/full.log"
+  ],
+  "lifecycleLog": "build/ci/39155583794/artifacts/XianxiaReader-reader-diagnostic-recovery/logs/reading-lifecycle.log",
+  "unbalancedAppearanceWarnings": 0,
+  "logSHA256": "3caf27e1cdc2bfd2facfddf4cddbba20871dd67063b13fd1add2903635816e6c",
+  "selectedTestsPassed": false,
+  "nativeReview": "Documentation/ValidationLogs/m4-edges-build29-screen-native-review.json",
+  "newRotationCasePassed": true,
+  "newRotationSeconds": 81.659,
+  "inheritedFailure": {
+    "stage": "Initial cover probe before any font replacement or hidden reflow",
+    "originalProbeSeconds": 20,
+    "observedDOM": "ready cover.xhtml image362x712 within402x750 viewport; engine location not emitted",
+    "traceIDs": [
+      "585D3E37",
+      "B3712040"
+    ],
+    "initializationFinished": true,
+    "initializationApproxSeconds": 2.5,
+    "allOldAssertionsKept": true,
+    "uniqueRootCauseEstablished": false,
+    "productionFixClaimed": false,
+    "possibleCodePath": "Paged visibility guard may drop location sampling during initialization; evidence lacks actual alpha/offset and event identity, so do not change guard on this evidence.",
+    "boundedFollowupRun": 39179687615,
+    "followupExactSource": "f32002880ebe7702321cce90f1d030823c047c53",
+    "followupSelection": "fonts2",
+    "logSHA256": "3caf27e1cdc2bfd2facfddf4cddbba20871dd67063b13fd1add2903635816e6c"
+  },
+  "actualCases": {
+    "passed": [
+      {
+        "test": "XianxiaReaderTests.ReaderRenderingTests testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+        "seconds": 6.828
+      },
+      {
+        "test": "XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 59.104
+      },
+      {
+        "test": "XianxiaReaderTests.ReaderSurfaceTests testRealWindowEdgesPaintWithoutChangingNavigatorOrInterceptingTouches",
+        "seconds": 0.405
+      },
+      {
+        "test": "XianxiaReaderTests.ReadingExperienceTests testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride",
+        "seconds": 0.322
+      },
+      {
+        "test": "XianxiaReaderTests.TXTReadingTests testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen",
+        "seconds": 8.547
+      },
+      {
+        "test": "XianxiaReaderUITests.LibraryInteractionUITests testCoverEditorNativeFilesCancelDefaultSaveAndReopen",
+        "seconds": 51.153
+      },
+      {
+        "test": "XianxiaReaderUITests.ReaderInterfaceUITests testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+        "seconds": 50.334
+      },
+      {
+        "test": "XianxiaReaderUITests.ReaderInterfaceUITests testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates",
+        "seconds": 67.227
+      },
+      {
+        "test": "XianxiaReaderUITests.ReaderInterfaceUITests testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+        "seconds": 81.659
+      },
+      {
+        "test": "XianxiaReaderUITests.ReadingExperienceUITests testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection",
+        "seconds": 95.527
+      }
+    ],
+    "failed": [
+      {
+        "test": "XianxiaReaderTests.ReaderRenderingTests testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "seconds": 21.257
+      }
+    ]
+  }
+}
