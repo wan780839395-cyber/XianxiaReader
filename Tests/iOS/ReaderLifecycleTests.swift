@@ -187,8 +187,8 @@ final class ReaderLifecycleTests: XCTestCase {
         XCTAssertNil(model.settingsSaveFailure); model.close()
     }
 
-    @MainActor private func openedContext() async throws -> (Book, AppServices, SuspendedEngine, ReaderViewModel) {
-        let result = try await context()
+    @MainActor private func openedContext(settingsStorage: (any ReaderSettingsStorage)? = nil) async throws -> (Book, AppServices, SuspendedEngine, ReaderViewModel) {
+        let result = try await context(settingsStorage: settingsStorage)
         let (_, _, engine, model) = result
         let opened = expectation(description: "reader ready for explicit save")
         engine.onOpenStarted = { opened.fulfill() }
@@ -526,16 +526,67 @@ final class ReaderLifecycleTests: XCTestCase {
         func makeEngine(for format: BookFormat) throws -> any ReaderEngine { engine }
     }
 
-    @MainActor private func context() async throws -> (Book, AppServices, SuspendedEngine, ReaderViewModel) {
+    @MainActor private func context(settingsStorage: (any ReaderSettingsStorage)? = nil) async throws -> (Book, AppServices, SuspendedEngine, ReaderViewModel) {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let repository = try SQLiteBookRepository(url: root.appendingPathComponent("library.sqlite"))
         let files = try BookFileStore(root: root)
         addTeardownBlock { try FileManager.default.removeItem(at: root) }
         let book = Book(title: "生命周期测试", format: .epub, filePath: "Books/test/book.epub")
         try await repository.insert(book, chapters: [])
-        let services = AppServices(repository: repository, files: files)
+        let settings = settingsStorage.map { ReaderSettingsPersistence(storage: $0) }
+        let services = AppServices(repository: repository, files: files, readerSettings: settings)
         let engine = SuspendedEngine()
         return (book, services, engine, ReaderViewModel(book: book, services: services, factory: Factory(engine: engine)))
+    }
+
+    @MainActor func testOldSettingsFailureCannotPublishIntoSameModelReopenedSession() async throws {
+        let storage = ControlledReaderSettingsStorage()
+        defer { storage.failPendingWrites() }
+        let (_, services, engine, model) = try await openedContext(settingsStorage: storage)
+        let writing = expectation(description: "old session settings suspended")
+        storage.onAppearanceStarted = { writing.fulfill() }
+        var appearance = model.appearance; appearance.fontScale = 1.4
+        model.setAppearance(appearance)
+        await fulfillment(of: [writing], timeout: 2)
+        model.close()
+        let requested = expectation(description: "same model reopening")
+        let opened = expectation(description: "new session engine opened")
+        engine.onOpenStarted = { opened.fulfill() }
+        let reopening = Task { requested.fulfill(); await model.open() }
+        await fulfillment(of: [requested], timeout: 2)
+        storage.finishAppearance(error: ControlledReaderSettingsStorage.Failure.write)
+        await fulfillment(of: [opened], timeout: 2)
+        engine.finishOpen(); await reopening.value
+        await services.readerSettings.flush()
+        XCTAssertTrue(model.isReady)
+        XCTAssertNil(model.appearanceSaveFailure, "Old owner completion must not change a reopened session")
+        model.close()
+    }
+
+    @MainActor func testNextReaderRestoresPendingSettingsFromSharedAppServices() async throws {
+        let storage = ControlledReaderSettingsStorage()
+        defer { storage.failPendingWrites() }
+        let (book, services, _, first) = try await openedContext(settingsStorage: storage)
+        let copy = services
+        XCTAssertTrue(copy.readerSettings === services.readerSettings)
+        let writing = expectation(description: "first reader write suspended")
+        storage.onAppearanceStarted = { writing.fulfill() }
+        var appearance = first.appearance; appearance.fontScale = 1.7
+        first.setAppearance(appearance)
+        await fulfillment(of: [writing], timeout: 2)
+        first.close()
+
+        let engine = SuspendedEngine()
+        let next = ReaderViewModel(book: book, services: copy, factory: Factory(engine: engine))
+        let opened = expectation(description: "next reader sees saved preference before engine opens")
+        engine.onOpenStarted = { XCTAssertEqual(engine.appearance, appearance); opened.fulfill() }
+        let opening = Task { await next.open() }
+        storage.finishAppearance()
+        await fulfillment(of: [opened], timeout: 2)
+        engine.finishOpen(); await opening.value
+        XCTAssertEqual(next.appearance, appearance)
+        XCTAssertNil(next.appearanceSaveFailure)
+        next.close()
     }
 
     @MainActor func testCloseDuringOpenCannotReturnReaderToReadyState() async throws {

@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import ReadingInterfaces
 import SwiftUI
@@ -72,8 +73,7 @@ private enum ReaderJumpError: LocalizedError {
     private let services: AppServices
     private var started = false
     private var openRequestID: UUID?
-    private var appearanceSaveTask: Task<Void, Never>?
-    private var interactionSaveTask: Task<Void, Never>?
+    private var settingsSubscriptions: Set<AnyCancellable> = []
     private var additionalReduceMotionRequested = false
     private var navigationRequestID: UUID?
     private var positionSaveRequestID: UUID?
@@ -83,6 +83,15 @@ private enum ReaderJumpError: LocalizedError {
         self.services = services
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
+        services.readerSettings.$appearanceCompletion.sink { [weak self] completion in
+            guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
+            self.appearanceSaveFailure = completion?.errorMessage.map { "设置尚未保存：\($0)" }
+        }.store(in: &settingsSubscriptions)
+        services.readerSettings.$interactionCompletion.sink { [weak self] completion in
+            guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
+            self.interactionSaveFailure = completion?.errorMessage.map { "阅读手感尚未保存：\($0)" }
+            if completion?.errorMessage != nil { self.pauseAutomaticScroll() }
+        }.store(in: &settingsSubscriptions)
         engine?.onCenterTap = { [weak self] in
             guard let self else { return }
             if self.automaticScrollPresented { self.pauseAutomaticScroll(); self.menuVisible = false }
@@ -116,7 +125,7 @@ private enum ReaderJumpError: LocalizedError {
         openStatus = "正在读取阅读设置…"
         positionSaveFailure = nil
         do {
-            let restoredAppearance = try await services.files.readingAppearance()
+            let restoredAppearance = try await services.readerSettings.readingAppearance()
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
             openStatus = "正在准备字体…"
@@ -135,7 +144,7 @@ private enum ReaderJumpError: LocalizedError {
             try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))
             appearance = restoredAppearance
             openStatus = "正在恢复阅读位置…"
-            let restoredInteraction = try await services.files.readingInteraction()
+            let restoredInteraction = try await services.readerSettings.readingInteraction()
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
             try applyInteraction(restoredInteraction)
@@ -195,9 +204,7 @@ private enum ReaderJumpError: LocalizedError {
     func saveSettingsNow() async -> Bool {
         pauseAutomaticScroll()
         guard let sessionID = openRequestID, !Task.isCancelled else { return false }
-        await appearanceSaveTask?.value
-        guard openRequestID == sessionID, !Task.isCancelled else { return false }
-        await interactionSaveTask?.value
+        await services.readerSettings.flush()
         guard openRequestID == sessionID, !Task.isCancelled else { return false }
         return appearanceSaveFailure == nil && interactionSaveFailure == nil
     }
@@ -212,9 +219,7 @@ private enum ReaderJumpError: LocalizedError {
         }
         await engine?.automaticScrollProvider?.flushAutomaticScrollPosition()
         guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
-        await appearanceSaveTask?.value
-        guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
-        await interactionSaveTask?.value
+        await services.readerSettings.flush()
         guard openRequestID == sessionID, positionSaveRequestID == requestID,
               !Task.isCancelled, sessionID != nil, isReady, let engine else { return }
         do {
@@ -262,18 +267,8 @@ private enum ReaderJumpError: LocalizedError {
     }
 
     private func saveAppearanceValue(_ value: ReadingAppearance) {
-        // Preserve input order even if several edits arrive while disk work is suspended.
-        let previous = appearanceSaveTask
-        let files = services.files
-        appearanceSaveTask = Task { [weak self] in
-            await previous?.value
-            do {
-                try await files.saveReadingAppearance(value)
-                self?.appearanceSaveFailure = nil
-            } catch {
-                self?.appearanceSaveFailure = "设置尚未保存：\(error.localizedDescription)"
-            }
-        }
+        guard let owner = openRequestID else { return }
+        services.readerSettings.saveAppearance(value, owner: owner)
     }
 
     func retryAppearanceSave() { setAppearance(appearance) }
@@ -467,18 +462,8 @@ private enum ReaderJumpError: LocalizedError {
         guard isReady, engine?.interactionProvider != nil else { return }
         do { try applyInteraction(value); interaction = value }
         catch { errorMessage = error.localizedDescription; return }
-        let previous = interactionSaveTask
-        let files = services.files
-        interactionSaveTask = Task { [weak self] in
-            await previous?.value
-            do {
-                try await files.saveReadingInteraction(value)
-                self?.interactionSaveFailure = nil
-            } catch {
-                self?.pauseAutomaticScroll()
-                self?.interactionSaveFailure = "阅读手感尚未保存：\(error.localizedDescription)"
-            }
-        }
+        guard let owner = openRequestID else { return }
+        services.readerSettings.saveInteraction(value, owner: owner)
     }
 
     func retryInteractionSave() { setInteraction(interaction) }

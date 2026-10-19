@@ -5,6 +5,14 @@ import XianxiaCore
 struct AppServices: Sendable {
     let repository: SQLiteBookRepository
     let files: BookFileStore
+    let readerSettings: ReaderSettingsPersistence
+
+    init(repository: SQLiteBookRepository, files: BookFileStore,
+         readerSettings: ReaderSettingsPersistence? = nil) {
+        self.repository = repository
+        self.files = files
+        self.readerSettings = readerSettings ?? ReaderSettingsPersistence(storage: files)
+    }
 
     static func create(storageRoot: URL? = nil) async throws -> AppServices {
         try await Task.detached(priority: .userInitiated) {

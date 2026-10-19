@@ -1,5 +1,7 @@
 # 项目状态
 
+2026-10-19 用户明确授权实施阅读隔离并要求参考成熟项目；R1 设置持久化提取已开工，参考及边界见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。当前仅保存恢复基线，R1 尚未编译/验收；Build29 仍是最后交付。
+
 ## Build29 阅读安全区边缘（2026-10-19）
 
 本切片已交付。实际Release源`a65086c1151831b54d90ed083fa36fc27848b5cb` / `codex/m4-reading-edges` / [完整CI39147081645](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645)：Linux/macOS Core各137，iOS163/163（136集成+27真UI）、失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release29/min16。547编译资源blob、三锁六pins、六完整原字体/OFL、每平台4长TXT Release探针已核。Windows449语法新增0/54既有Vendor限制、17工具测试通过；语法不算编译。

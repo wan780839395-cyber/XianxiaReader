@@ -3,8 +3,14 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts, panels or recovery}"
+selection="${1:?Choose native-input, fonts, panels, recovery or settings}"
 case "$selection" in
+  settings)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderSettingsPersistenceTests
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests
+    )
+    ;;
   native-input)
     cases=(-only-testing:XianxiaReaderTests/ReaderSearchFieldTests)
     ;;

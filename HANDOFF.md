@@ -1,5 +1,11 @@
 # 当前交接与恢复点
 
+## 用户同意优先隔离阅读职责（2026-10-19）
+
+用户明确要求实施并参考成熟项目。R1 已审阅同基线 Readium 3.11 UserPreferencesStore、固定 revision Readest 设置/书籍存储及 Apple actors 并发合同，具体链接与取舍在方案。源码已接入共享设置队列、窄存储接口和按会话过滤的完成订阅；新增7项独立存储边界+2项生命周期回归，原test主体待冻结对照。新增 settings 定向入口只跑存储与生命周期，不生成 IPA。恢复基线在 `.cache/recovery/20261019-settings-isolation/start.json`/`before/`。Windows451语法新增0/54既有Vendor限制、17工具、bash -n通过；版本30待Apple定向，随后同源完整门槛，尚未编译/交付。旧完整位置采样与3秒/20秒预算不改。
+
+实施顺序和第一片边界见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。本次已核最新源码与 Build29 最终交付回执；仅完成方案，R1 设置持久化提取尚未实施，未启动新 CI 或产生新验收。恢复时先核实际工作树与任务，再按单片范围推进；Build29 交付和既有未定根因继续按下文记录。
+
 ## Build29 阅读安全区边缘（2026-10-19）
 
 本切片已交付。实际Release源`a65086c1151831b54d90ed083fa36fc27848b5cb` / `codex/m4-reading-edges` / [完整CI39147081645](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645)：Linux/macOS Core各137，iOS163/163（136集成+27真UI）、失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release29/min16。547编译资源blob、三锁六pins、六完整原字体/OFL、每平台4长TXT Release探针已核。Windows449语法新增0/54既有Vendor限制、17工具测试通过；语法不算编译。

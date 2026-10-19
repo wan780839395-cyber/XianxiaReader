@@ -14,7 +14,7 @@ on:
         description: Full delivery gate by default; selected diagnostics never produce an IPA
         type: choice
         default: full
-        options: [full, native-input, fonts, panels, recovery]
+        options: [full, native-input, fonts, panels, recovery, settings]
 
 permissions:
   contents: read
