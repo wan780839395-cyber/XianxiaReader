@@ -2,6 +2,24 @@ import XCTest
 import UIKit
 
 final class ReaderInterfaceUITests: XCTestCase {
+    // AX frame arithmetic can produce 43.999999999999986 for a 44pt frame.
+    // Normalize at most four representable steps, never whole pixels/points.
+    private func touchExtentForComparison(_ value: CGFloat) -> CGFloat {
+        guard value.isFinite else { return value }
+        let integral = value.rounded()
+        return abs(value - integral) <= max(value.ulp, integral.ulp) * 4 ? integral : value
+    }
+
+    @MainActor func testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls() {
+        XCTAssertEqual(touchExtentForComparison(43.999999999999986), 44)
+        XCTAssertGreaterThanOrEqual(touchExtentForComparison(44), 44)
+        for tooSmall in [CGFloat(43), CGFloat(43.5), CGFloat(43.999999)] {
+            XCTAssertLessThan(touchExtentForComparison(tooSmall), 44)
+        }
+        XCTAssertEqual(touchExtentForComparison(44.5), 44.5)
+        XCTAssertTrue(touchExtentForComparison(.nan).isNaN)
+    }
+
     @MainActor func testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation() {
         let app = start(); defer { XCUIDevice.shared.orientation = .portrait; app.terminate() }
         for theme in ["warm", "charcoal"] {
@@ -39,7 +57,7 @@ final class ReaderInterfaceUITests: XCTestCase {
             edgeSnapshot("reader-edges-portrait-restored-\(theme)-build29")
             app.buttons["reader.autoscroll.close"].tap()
             XCTAssertTrue(app.buttons["返回书库"].isHittable)
-            XCTAssertGreaterThanOrEqual(app.buttons["返回书库"].frame.height, 44)
+            XCTAssertGreaterThanOrEqual(touchExtentForComparison(app.buttons["返回书库"].frame.height), 44)
         }
     }
 

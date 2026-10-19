@@ -1,0 +1,130 @@
+{
+  "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
+  "stage": "R1 Apple targeted35 passed; same-source full running; not delivered",
+  "sourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
+  "branch": "codex/refactor-reader-settings",
+  "sourceFiles": [
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "sha256": "ec40e6d91ebc5d6a47c391f4fdbdcc6bf6373072ccf481ed99387d51418e19d9"
+    },
+    {
+      "path": "App/AppServices.swift",
+      "sha256": "342acd8c36ee543dcad4b4d25ff821cc96ea69b88fd6b4aef04c4d712ced3308"
+    },
+    {
+      "path": "App/Reader/ReaderSettingsPersistence.swift",
+      "sha256": "d5a9ca22e902a5acf778876855547996e4d30de3a99bc58bb0816898f55689fc"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "sha256": "0a773fd6b4ce2594f28b7d90c118c667eb26d89a09643e2afd703d2ffb56000c"
+    },
+    {
+      "path": "Tests/iOS/ReaderLifecycleTests.swift",
+      "sha256": "d2190e361962d4b62dd2b81a3949274527f40ce60198db09b9f7ed8dc8393101"
+    },
+    {
+      "path": "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+      "sha256": "34a1abee6e08dd5d65f56701186313849d87c6a76be3bc14d96f477c1d91326b"
+    },
+    {
+      "path": "project.yml",
+      "sha256": "c1a201ca8455292eb9898e82596addcd2ef22d6dee5de356ac3ab742d16eb467"
+    },
+    {
+      "path": "scripts/ci_reader_diagnostic.sh",
+      "sha256": "9f39cd0cdce3e9a0bfb72edcc11ea76a03de652eb3949b495333875f7e4bd40d"
+    }
+  ],
+  "changedPaths": [
+    ".github/workflows/ios-build.yml",
+    "App/AppServices.swift",
+    "App/Reader/ReaderSettingsPersistence.swift",
+    "App/Reader/ReaderViewModel.swift",
+    "Documentation/READER_ISOLATION_PLAN.md",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md",
+    "Tests/iOS/ReaderLifecycleTests.swift",
+    "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+    "project.yml",
+    "scripts/ci_reader_diagnostic.sh"
+  ],
+  "oldLifecycleBodiesUnchanged": 26,
+  "newTests": 9,
+  "windows": {
+    "swiftFiles": 451,
+    "addedSyntaxDiagnostics": 0,
+    "retainedVendorGrammarLimitations": 54,
+    "toolingTests": 17,
+    "SwiftCompiled": false
+  },
+  "references": {
+    "Readium": "d82f44f4f05d87add9e22a8b75abbd61dce745dd",
+    "Readest": "2d37bbfc2e94725e1343ab2a825573545aa59f5f"
+  },
+  "diagnostic": {
+    "run": 39182894124,
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 35,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1792372037.321,
+      "passedTests": 35,
+      "result": "Passed",
+      "skippedTests": 0,
+      "startTime": 1792371712.604,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - XianxiaReader",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "18% of duration",
+          "text": "1 longest test run with outlier durations exceeding 0.10s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 35
+    },
+    "linuxUniqueCoreTests": 137,
+    "SwiftCompilerDiagnostics": 0,
+    "sourceAppIntentsMetadataWarningSeparate": true,
+    "artifactDigestsAndCRCVerified": true,
+    "IPAProduced": false
+  },
+  "full": {
+    "run": 39184148461,
+    "expectedCoreEach": 137,
+    "expectedIOS": 172,
+    "expectedIntegration": 145,
+    "expectedUI": 27,
+    "passed": false,
+    "ReleaseBuilt": false,
+    "linuxCorePassed": true,
+    "linuxCoreTests": 137,
+    "linuxLongTXTReleaseProbesPassed": 4
+  },
+  "phoneAccepted": false,
+  "R2R3R4Implemented": false
+}

@@ -1,6 +1,6 @@
 # 项目状态
 
-2026-10-19 用户明确授权实施阅读隔离并要求参考成熟项目；R1 设置持久化提取已开工，参考及边界见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。当前仅保存恢复基线，R1 尚未编译/验收；Build29 仍是最后交付。
+2026-10-19 R1 设置隔离源b1119d0通过35/35定向；完整39184148461实际170/172（145集成全过、2旧UI失败），无Release/IPA。原生记录显示目录点按后面板仍停留、另有44pt高度2ULP差异；现只修测量精度并定向复核，App/引擎源码保持，旧进度用例不改。Build29仍是最后交付。参考及边界见 [READER_ISOLATION_PLAN.md](Documentation/READER_ISOLATION_PLAN.md)。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

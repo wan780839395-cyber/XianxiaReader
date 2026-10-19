@@ -3,8 +3,15 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts, panels, recovery or settings}"
+selection="${1:?Choose native-input, fonts, panels, recovery, settings or settings-ui}"
 case "$selection" in
+  settings-ui)
+    cases=(
+      -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls
+      -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates
+      -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation
+    )
+    ;;
   settings)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderSettingsPersistenceTests
@@ -71,7 +78,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'panels' || "$selection" == 'recovery' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
 test_status=0
