@@ -535,7 +535,7 @@ final class ReaderRenderingTests: XCTestCase {
             let engine: ReadiumReaderEngine
             func makeEngine(for format: BookFormat) throws -> any ReadingInterfaces.ReaderEngine { engine }
         }
-        for continuous in [false, true] {
+        for continuous in [true] {
             let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
             let services = try await AppServices.create(storageRoot: root)
             addTeardownBlock { try FileManager.default.removeItem(at: root) }
@@ -551,9 +551,19 @@ final class ReaderRenderingTests: XCTestCase {
             let engine = ReadiumReaderEngine(storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
+            // Match the existing open(engine) fixture's foreground precondition
+            // before starting the real ViewModel path. Resource budget stays 20s.
+            try await waitUntil {
+                guard let host = self.diagnosticHost, host.hasAppeared,
+                      let window = engine.viewController.view.window,
+                      window.isKeyWindow, !window.isHidden,
+                      window.windowScene?.activationState == .foregroundActive else { return false }
+                let frame = engine.viewController.view.convert(engine.viewController.view.bounds, to: window)
+                return frame.width > 0 && frame.height > 0 && frame.intersects(window.bounds)
+            }
             await model.open(); XCTAssertTrue(model.isReady)
             let navigator = try XCTUnwrap(engine.viewController.children.first)
-            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml", continuousResourceIndex: continuous ? 0 : nil)
             // App open can request a restored reading mode asynchronously.
             // Finish that initial transition before issuing test navigation.
             try await waitUntil {
@@ -1232,7 +1242,7 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor private func probe(_ navigator: UIViewController, engine: ReadiumReaderEngine,
-                                 resource: String) async throws -> [String: Any] {
+                                 resource: String, continuousResourceIndex: Int? = nil) async throws -> [String: Any] {
         let deadline = Date().addingTimeInterval(20)
         var lastProbe = "No visible web view"
         let script = """
@@ -1247,7 +1257,11 @@ final class ReaderRenderingTests: XCTestCase {
         })()
         """
         while Date() < deadline {
-            if let webView = visibleWebView(in: navigator.view) {
+            let candidate: WKWebView?
+            if let index = continuousResourceIndex {
+                candidate = view(identifier: "readium.chapter.\(index)", in: navigator.view).flatMap { webViews(in: $0).first }
+            } else { candidate = visibleWebView(in: navigator.view) }
+            if let webView = candidate, continuousResourceIndex == nil || webView.scrollView.alpha > 0.99 {
                 // Query the actual rendered WKWebView through its public API.
                 // The host app owns Readium's static symbols; importing its
                 // concrete Navigator metadata here would require duplicate linkage.
@@ -1265,11 +1279,19 @@ final class ReaderRenderingTests: XCTestCase {
                 // and native location update. Wait for both before sending the
                 // next navigation command, just as a reader sees a ready page.
                 if (data["href"] as? String)?.hasSuffix(resource) == true,
-                   data["ready"] as? Bool == true, locatedHref?.hasSuffix(resource) == true { return data }
+                   data["ready"] as? Bool == true, locatedHref?.hasSuffix(resource) == true {
+                    if continuousResourceIndex != nil {
+                        let legacy = visibleWebView(in: navigator.view)
+                        let legacyHref = try await legacy?.evaluateJavaScript("location.pathname")
+                        print("CONTINUOUS_PROBE_SELECTED activeHref=\(data["href"] ?? "nil") legacyHref=\(String(describing: legacyHref)) same=\(legacy === webView) legacyAlpha=\(String(describing: legacy?.scrollView.alpha)) hostAppeared=\(diagnosticHost?.hasAppeared == true)")
+                    }
+                    return data
+                }
             }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
-        throw RenderFailure.timedOut(resource, lastProbe)
+        let native = webViews(in: navigator.view).map { "alpha=\($0.scrollView.alpha) hidden=\($0.isHidden) window=\($0.window != nil) offset=\($0.scrollView.contentOffset) size=\($0.scrollView.contentSize)" }.joined(separator: "; ")
+        throw RenderFailure.timedOut(resource, lastProbe + "; hostAppeared=\(diagnosticHost?.hasAppeared == true) key=\(engine.viewController.view.window?.isKeyWindow == true) continuousResource=\(String(describing: continuousResourceIndex)); \(native)")
     }
 
     @MainActor func testViewportKeepsScreenHeightWhenMenuHidesAndReturns() async throws {

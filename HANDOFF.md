@@ -1,10 +1,18 @@
 # 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
 
+最新用户决定：本轮只查清定位，R3顺延；禁止接线暂存R3候选。CI39428259337/5e2209c原生编译通过，但整例0/1：分页六内置字体走完，进入连续模式初始cover.xhtml时20秒超时，DOM为blank且未发位置，未到连续疑点；不是新增几何观测抛错。原生步骤32分16秒、整例136.633秒，不能把步骤耗时当测试耗时。完整113201043字节diagnostic已SHA/CRC核验并提取build/ci/39428259337/diagnostic，下载重复分片/ZIP按回执清除；完整job日志native-completed-job.log与run/artifacts保留在build/maintenance/R3-20261020。
+
+静态发现封面probe的visibleWebView只检查几何，忽略隐藏/scroll alpha；本项目连续模式存在同层blank WebView（R2附件alpha0）与活动资源WebView。尚未证明此轮封面超时唯一原因。下一最小实验：同一原test仅执行连续模式（私有诊断commit的模式选择，默认完整test继续两模式）；原所有断言、字体序列和20秒资源预算保持。开始前采用现成open(engine) fixture相同的前景/hasAppeared条件；封面probe显式选择readium.chapter.0，成功后记录旧候选href/alpha与真正候选对照；超时保留host与所有native WebView状态。仍保留两锚点几何与后续帧观察。此处是诊断输入有效性修正，不宣称生产初始化或正文根因已修。
+
 用户授权先查清断言后连续模式锚点不匹配，确有问题则修复，再继续位置隔离。先复用39418977905与39411950208完整附件；尚未开始新CI。假设分支：真实布局后移/旧回调回跳，或测试期望锚点与实际重开后锚点不同。必须核清样本所属阶段和坐标，不能仅凭非零offset否认位置问题，也不能把后续false倒写成原断言失败。
 
 本步先限于原测试与原件的只读分析；诊断必要时仅改ReaderRenderingTests的一组观测，不放宽原断言/3秒采样/20秒加载预算，不改Vendor/依赖/字体/界面。结论可恢复后另定义R3最小文件/行为合同，再提取位置捕获、保存、失败保旧、旧请求过滤；不同时提取会话或导航。实现、编译、定向、完整、原生及手机状态分别记录。保留R2所有完成改动和旧失败。
 
 初步只读证据：39418977905小薇/连续的visible-before-save模型锚点p25/443，save-returned、closed、open-returned均p25/436、viewportOffset=-9.9375；后续PNG仍显示长段016处。说明不能将旧目标字false直接等同保存锚点丢失，但缺少Range几何，尚不能收口。W3C CSSOM View https://www.w3.org/TR/cssom-view/#extensions-to-the-range-interface 区分Range片段列表与合并边界框；本地固定Readium3.11的continuousAnchorRectFunction优先getClientRects()[0]，原测试用getBoundingClientRect，需实际测量，不能从规范推定本次原因。
+
+恢复点：最小实验已冻结5e2209c6182896a937e987b205e10abc0c87286a / codex/diagnose-position-observation / CI39428259337；仓库与Linux Core阶段通过，原生步骤运行中，尚无最终回执。只读observer脚本.cache/recovery/observe_position_observation.py保存observation-run/jobs/artifacts到build/maintenance/R3-20261020；恢复先核实际进程/远程run，禁止重复dispatch。实时job日志API不可用，原错在native-live-log-unavailable.txt，不据此判断挂起。
+
+R3a候选只存在.cache/recovery/r3-candidate/tree（11文件），未接入App/Packages实际构建根目录。方案见Documentation/READER_POSITION_ISOLATION.md；候选5 Swift语法通过、135源/18节点静态接线通过、6种禁用import逐一拒绝，VM40处await表达式及顺序保持。候选检查曾发现依赖登记顺序不匹配，已在暂存区纠正，未派发失败原生试验。尚无Swift编译或R3运行验收；必须先依据定位附件作结论，再决定应用候选。普通HEAD/index和所有既有工作仍保持。
 
 最小实验position-observation：只执行原真实字体长链1例，保留原所有断言和预算；附加切换前/实际保存两锚点的rect/rects、scrollY和viewport offset，以及连续模式两呈现帧后的只读采样。生产App/Packages/Vendor/字体/工程/锁均保持7c33645，只增加该测试诊断与workflow/脚本选择。Windows语法已通过（456、新增0/既有54）；62工具仍在执行。普通HEAD/index及1157源文件SHA基线保留build/maintenance/R3-20261020/start.json，源快照r3-start-sources.zip。尚未派发新CI；下一步核工具结果、冻结4个文件、仅派发此1例。若不再出现false也不能追认旧观察根因已修。
 
