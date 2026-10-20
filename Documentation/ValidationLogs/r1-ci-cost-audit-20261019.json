@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-19T15:36:18.539095+00:00",
+  "recordedAtUTC": "2026-10-20T00:39:16.687026+00:00",
   "branch": "codex/refactor-reader-settings",
   "coverage": "Only completed native jobs whose actual run.json is currently local; not a complete account usage or implementation-hours estimate",
-  "completedNativeJobCount": 18,
-  "sumNativeJobMinutes": 607.33,
+  "completedNativeJobCount": 19,
+  "sumNativeJobMinutes": 639.7,
   "jobs": [
     {
       "run": 39182894124,
@@ -184,6 +184,16 @@
       "completedAt": "2026-10-19T15:24:30Z",
       "seconds": 1911.0,
       "source": "build/ci/39272564753/run.json"
+    },
+    {
+      "run": 39279664338,
+      "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-19T15:45:15Z",
+      "completedAt": "2026-10-19T16:17:37Z",
+      "seconds": 1942.0,
+      "source": "build/ci/39279664338/run.json"
     }
   ],
   "currentFull39243868846": {

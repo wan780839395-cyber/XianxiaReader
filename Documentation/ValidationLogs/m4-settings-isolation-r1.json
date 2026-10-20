@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "capture-setup-probe-applied-native-pending",
+  "stage": "scroll-writer-probe-applied-native-pending",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -535,13 +535,13 @@
     "toolingSkippedPOSIX": 3,
     "bashSyntax": true,
     "sourceCompiler": false,
-    "evidence": ".cache/recovery/20261019-webkit-loading/windows-paper-probe.log"
+    "evidence": ".cache/recovery/20261019-webkit-loading/windows-capture-probe.log"
   },
   "R1Accepted": false,
   "ReleaseBuilt": false,
   "IPAProduced": false,
-  "currentBlocker": "Verified charcoal rotation loading stall; background UI precondition unverified; font capture/restore can reset from deep anchor before font changes",
-  "nextStep": "Freeze test-only capture probe after Windows grammar check; run existing fonts2 once with new RO/rAF/view observations; no full retry",
+  "currentBlocker": "Native paged anchor reaches2010 then resets0 before recorded RO; old native UI loading/background gates remain failed",
+  "nextStep": "Test-only root Element scroll writer observation, including preparation failure; original fonts2 and budgets. No full rerun.",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -589,28 +589,36 @@
     "notASourceFailure": true,
     "cancelProof": "Documentation/ValidationLogs/fonts-full-agent-cancel-39214692053.json"
   },
-  "newUnitTestsSinceBuild29": 12,
+  "newUnitTestsSinceBuild29": 13,
   "newUITargetMeasurementTestsSinceBuild29": 1,
   "expectedUnit": 149,
   "expectedUITarget": 29,
   "expectedTotal": 178,
-  "latestCompletedRun": 39272564753,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/reader-ready-ui-39272564753.json",
+  "latestCompletedRun": 39279664338,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/capture-probe-39279664338.json",
   "pendingLocalChange": {
-    "scope": "Bounded capture/setup diagnostic only; production unchanged",
+    "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
     "selection": "fonts",
     "expectedSelected": 2,
     "nativeCompile": false,
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39272564753,
-    "sourceRevision": "e85c25f2eee1878bdeb09f5a96dc6193c783ed62",
-    "selection": "reader-ready-ui",
-    "expected": 4,
+    "run": 39279664338,
+    "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175",
+    "selection": "fonts",
+    "expected": 2,
     "conclusion": "failure",
     "releaseAcceptance": false,
-    "passed": 2,
+    "repositoryChecks": {
+      "passed": 29,
+      "failed": 0,
+      "SwiftGrammarFiles": 453,
+      "evidence": "build/ci/39279664338/repository-checks.log",
+      "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175"
+    },
+    "statusCaveat": "Run/job API queued state is delayed: repository job already has complete passing logs; native job logs endpoint still404. No native completion inferred.",
+    "passed": 0,
     "failed": 2,
     "skipped": 0,
     "nativeCompile": true
@@ -715,5 +723,136 @@
       "reviewManifest": "build/ci/39272564753/ReaderReadyUIReview/review-pending.json"
     },
     "evidence": "Documentation/ValidationLogs/reader-ready-ui-39272564753.json"
+  },
+  "latestCaptureProbe": {
+    "recordedAtUTC": "2026-10-20T00:37:28.043217+00:00",
+    "run": 39279664338,
+    "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175",
+    "conclusion": "failure",
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "result": "failed",
+        "seconds": 78.091
+      },
+      {
+        "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "result": "failed",
+        "seconds": 33.842
+      }
+    ],
+    "testExit": 65,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "sourceCompilerDiagnostics": [],
+    "sourceInputs": 556,
+    "sourceInputsMatched": true,
+    "artifactDigestAndCRC": true,
+    "productionUnchanged": true,
+    "releaseExecuted": false,
+    "ipaGenerated": false,
+    "nativeJobSeconds": 1942.0,
+    "actualCaseSeconds": 111.93299999999999,
+    "fontLoadedButAnchorFailed": true,
+    "verifiedTrace": {
+      "context": "phase=failed font=sourceHanSans continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "href": "/OEBPS/one.xhtml",
+      "x": 0,
+      "font": true,
+      "anchor": false,
+      "trace": [
+        {
+          "phase": "resize-frame-before",
+          "at": 1570,
+          "x": 0,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "resize-frame-after",
+          "at": 1572,
+          "x": 0,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "before",
+          "at": 1649,
+          "x": 0,
+          "requested": 2010,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontReady": "ready",
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "after",
+          "at": 1650.0000000000002,
+          "x": 2010,
+          "requested": 2010,
+          "width": 402,
+          "height": 750,
+          "firstX": 68,
+          "firstY": 3,
+          "fontReady": "ready",
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "scroll",
+          "at": 1746,
+          "x": 0,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontReady": "ready",
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "resize-frame-before",
+          "at": 1747,
+          "x": 0,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontReady": "ready",
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        },
+        {
+          "phase": "resize-frame-after",
+          "at": 1747,
+          "x": 0,
+          "width": 402,
+          "height": 750,
+          "firstX": 2078,
+          "firstY": 3,
+          "fontReady": "ready",
+          "fontStatus": "loaded",
+          "documentWidth": 10452
+        }
+      ]
+    },
+    "observation": "DOM reaches2010 at1650ms then returns0 at1746ms before RO frame1747ms, with same402x750/documentWidth10452 and font ready. The recorded RO frame does not initiate this reset. No unique writer identified.",
+    "nextDiscriminatingExperiment": "Observe root Element.scrollTo/scrollLeft writers with short JS stacks; preserve original callbacks/assertions/budgets and collect bounded trace on preparation failure too. Do not patch production or rerun full.",
+    "limitation": "Hidden-font failed in initial deep-word wait, before new capture diagnostic. RO/rAF and geometry probes can affect timing; no root-fix claim."
   }
 }

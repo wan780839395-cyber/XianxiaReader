@@ -1,0 +1,131 @@
+{
+  "recordedAtUTC": "2026-10-20T00:37:28.043217+00:00",
+  "run": 39279664338,
+  "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175",
+  "conclusion": "failure",
+  "total": 2,
+  "passed": 0,
+  "failed": 2,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "result": "failed",
+      "seconds": 78.091
+    },
+    {
+      "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "result": "failed",
+      "seconds": 33.842
+    }
+  ],
+  "testExit": 65,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifactDigestAndCRC": true,
+  "productionUnchanged": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "nativeJobSeconds": 1942.0,
+  "actualCaseSeconds": 111.93299999999999,
+  "fontLoadedButAnchorFailed": true,
+  "verifiedTrace": {
+    "context": "phase=failed font=sourceHanSans continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+    "href": "/OEBPS/one.xhtml",
+    "x": 0,
+    "font": true,
+    "anchor": false,
+    "trace": [
+      {
+        "phase": "resize-frame-before",
+        "at": 1570,
+        "x": 0,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "resize-frame-after",
+        "at": 1572,
+        "x": 0,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "before",
+        "at": 1649,
+        "x": 0,
+        "requested": 2010,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "after",
+        "at": 1650.0000000000002,
+        "x": 2010,
+        "requested": 2010,
+        "width": 402,
+        "height": 750,
+        "firstX": 68,
+        "firstY": 3,
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "scroll",
+        "at": 1746,
+        "x": 0,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "resize-frame-before",
+        "at": 1747,
+        "x": 0,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      },
+      {
+        "phase": "resize-frame-after",
+        "at": 1747,
+        "x": 0,
+        "width": 402,
+        "height": 750,
+        "firstX": 2078,
+        "firstY": 3,
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "documentWidth": 10452
+      }
+    ]
+  },
+  "observation": "DOM reaches2010 at1650ms then returns0 at1746ms before RO frame1747ms, with same402x750/documentWidth10452 and font ready. The recorded RO frame does not initiate this reset. No unique writer identified.",
+  "nextDiscriminatingExperiment": "Observe root Element.scrollTo/scrollLeft writers with short JS stacks; preserve original callbacks/assertions/budgets and collect bounded trace on preparation failure too. Do not patch production or rerun full.",
+  "limitation": "Hidden-font failed in initial deep-word wait, before new capture diagnostic. RO/rAF and geometry probes can affect timing; no root-fix claim."
+}

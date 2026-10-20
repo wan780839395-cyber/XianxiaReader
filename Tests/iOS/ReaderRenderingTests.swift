@@ -205,7 +205,7 @@ final class ReaderRenderingTests: XCTestCase {
                                 const r=document.createRange(),n=c.startContainer,o=c.startOffset;r.setStart(n,o);r.setEnd(n,Math.min(n.length,o+1));
                                 carets.push({x,y,tag:n.parentElement?.tagName,id:n.parentElement?.id,offset:o,rect:point(r.getClientRects()[0])});}
                               return JSON.stringify({href:location.pathname,x:scrollX,y:scrollY,width:innerWidth,height:innerHeight,
-                                ready:document.readyState,fontReady:window.__xrPreviewReadySettled,deep,carets,trace:window.__xrPagedRestoreTrace});})()
+                                ready:document.readyState,fontReady:window.__xrPreviewReadySettled,deep,carets,trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters});})()
                             """))
                     } catch { dom = "read failed: \(error)" }
                 }
@@ -580,7 +580,7 @@ final class ReaderRenderingTests: XCTestCase {
                                   family:document.body?getComputedStyle(document.body).fontFamily:null,
                                   fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
                                   faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status})),
-                                  trace:window.__xrPagedRestoreTrace})
+                                  trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters})
                                 """)
                             let details = "phase=\(phase) font=\(bundled.rawValue) continuous=\(continuous) "
                                 + "alpha=\(web.scrollView.alpha) nativeOffset=\(web.scrollView.contentOffset) "
@@ -906,8 +906,9 @@ final class ReaderRenderingTests: XCTestCase {
     @MainActor private static func pagedRestoreProbe() -> WKUserScript {
         WKUserScript(source: """
             (()=>{
-              const trace=window.__xrPagedRestoreTrace=[];
-              function record(phase,args){
+              const trace=window.__xrPagedRestoreTrace=[], writers=window.__xrPagedRestoreWriters=[];
+              const writerStack=()=>String(new Error().stack||'').split('\\n').slice(0,5).join('|');
+              function record(phase,args,stack){
                 const node=document.getElementById('long-paragraph')?.firstChild;
                 let rect=null;
                 if(node?.length){const r=document.createRange();r.setStart(node,0);r.setEnd(node,1);rect=r.getClientRects()[0];}
@@ -920,6 +921,9 @@ final class ReaderRenderingTests: XCTestCase {
                   documentWidth:document.documentElement.scrollWidth,
                   faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status}))});
                 if(trace.length>16)trace.shift();
+                if(stack){writers.push({phase,at:performance.now(),x:scrollX,
+                  requested:typeof args?.[0]==='object'?args[0].left:args?.[0],stack});
+                  if(writers.length>16)writers.shift();}
               }
               // Observe only frames scheduled inside a ResizeObserver callback.
               // Preserve original scheduling, callback arguments and return values.
@@ -939,6 +943,22 @@ final class ReaderRenderingTests: XCTestCase {
                   try{callback.call(observer,entries,observer);}finally{inResize=previous;}
                 });}
               };
+              // Readium's own scrollToPosition uses Element.scrollTo, while
+              // snapCurrentPosition writes scrollLeft. Observe both public paths
+              // without replacing their values, scheduling or return behavior.
+              const elementScroll=Element.prototype.scrollTo;
+              Element.prototype.scrollTo=function(...args){
+                if(this!==document.scrollingElement)return elementScroll.apply(this,args);
+                record('element-before',args,writerStack());
+                try{return elementScroll.apply(this,args);}finally{record('element-after',args);}
+              };
+              const left=Object.getOwnPropertyDescriptor(Element.prototype,'scrollLeft');
+              if(left?.set&&left.configurable){Object.defineProperty(Element.prototype,'scrollLeft',{
+                ...left,set(value){
+                  const root=this===document.scrollingElement;
+                  if(root)record('left-before',[value],writerStack());
+                  try{return left.set.call(this,value);}finally{if(root)record('left-after',[value]);}
+                }});}
               const scroll=window.scrollTo;
               window.scrollTo=function(...args){record('before',args);const result=scroll.apply(window,args);record('after',args);return result;};
               window.addEventListener('scroll',()=>record('scroll',[]),{passive:true});
@@ -1149,7 +1169,7 @@ final class ReaderRenderingTests: XCTestCase {
             for webView in webViews(in: root) {
                 diagnostic += "\nweb frame=\(webView.frame) visible=\(clippedVisibleRect(webView, root: root)) offset=\(webView.scrollView.contentOffset)"
                 do {
-                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
+                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,trace:JSON.stringify(window.__xrPagedRestoreTrace),writers:JSON.stringify(window.__xrPagedRestoreWriters),caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
                     diagnostic += " DOM=\(String(describing: value))"
                 } catch { diagnostic += " DOM error=\(error.localizedDescription)" }
             }

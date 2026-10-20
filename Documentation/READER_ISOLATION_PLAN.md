@@ -182,3 +182,11 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 下一独立实验只触及Tests/iOS/ReaderRenderingTests.swift：原fonts两项增加有界ResizeObserver/rAF前后轨迹、准备视图和捕获位置记录；原深段落断言失败后，先留证再停止字体后续步骤，所有原断言/时间预算保留。对照已有2010→0真实回跳，区分ResizeObserver布局回调、原生offset/视图选择与字体变更前的捕获错误。生产、依赖、UI与默认完整门槛不改；源码已应用，待Windows语法预检和新冻结后原生2项。探针读取几何可能影响时序，一次重放通过不代表根因已修。Readium3.11对应修订参考与差异见Documentation/READER_ISOLATION_PLAN.md。
 
 已有原始轨迹204AD45B-3492-4791-8AD9-3F29561B4AC3.txt确认scrollX到2010后回0，首字x68→2078，width402/docWidth10452/font ready保持。不能将它简化为Locator丢失。官方固定版本[Readium3.11 utils.js](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Scripts/src/utils.js)的ResizeObserver调度rAF，再由snapCurrentPosition写scrollLeft；本地bundled JS相符。仅将其视为待证候选，探针转发原回调参数/返回/时序，不改生产脚本；观察geometry可能触发布局，成功不能单独证明修复。另两项UI失败原件独立保留，下一轮不混入UI fixture修补或全套CI。
+
+## 39279664338实际结果与滚动写入者诊断
+
+最新fonts2[39279664338](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39279664338)/f32cc933已实际结束0/2，0跳过，test65/summary0/export0，Swift编译诊断0；556输入逐项匹配，artifact12203080049完整digest/CRC已核。无本轮watcher/下载进程残留。sourceHanSans分页重开字体已加载但锚点失败，DOM在1650ms到2010、1746ms回0，已记录RO帧1747ms才开始；402x750/docWidth10452/font ready不变，不能将该RO回调当作回跳起点。另一项在换字体前准备深段落失败，新捕获后探针未执行。原生job32分22秒，两个case累计111.933秒；准备/编译/启动/导出不能统称用例耗时。完整记录Documentation/ValidationLogs/capture-probe-39279664338.json。
+
+当前下一独立实验只改同一ReaderRenderingTests测试文件：为Readium实际使用的Element.scrollTo及scrollLeft setter保留原参数/this/返回并记录有界调用栈；准备wait失败也导出轨迹。原断言、预算、生产及依赖不改，现有RO轨迹与独立写入轨迹各最多16条，不收集正文。区分JS主动写回0与未被这些公开路径记录的回跳；没有记录到写入也不能独自证明是WebKit内部错误。先Windows/JS语法、冻结，再执行原fonts2；禁止无新证据full重跑。当前已应用，原生待验证。
+
+参考固定Readium3.11 utils.js的document.scrollingElement.scrollTo与scrollLeft调用；[MDN Element.scrollTo](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo)与[scrollLeft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft)核对公开签名。MDN当前包含较新Promise返回说明，不假定iOS18.5支持；探针原样返回运行时真实值，既不await也不更改调度。只在configurable原setter存在时转发，不缺省模拟或吞错。观察仍可能影响时序，不把通过当作根因修复。

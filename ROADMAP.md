@@ -6,7 +6,9 @@
 
 最新4UI[39272564753](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39272564753)/e85c25f2实际2/4，0跳过，test65、summary/export0，Swift编译诊断0；556冻结输入和artifact12199630365的digest/CRC已核。120像素纸色正反例与菜单重开通过；慢滚在Home/activate后仍显示运行，测试未确认真实后台；旋转在深灰横屏后持续显示“正在准备”，原可读/无加载守卫正确拒绝，不再归咎于纸色。暖色横竖屏、深灰竖屏原生正文可见。记录Documentation/ValidationLogs/reader-ready-ui-39272564753.json；本地watcher88241及下载75255均已完成，无该轮运行任务。纸色修正已Apple编译，旋转未验收，178完整门槛未执行。
 
-下一独立实验只触及Tests/iOS/ReaderRenderingTests.swift：原fonts两项增加有界ResizeObserver/rAF前后轨迹、准备视图和捕获位置记录；原深段落断言失败后，先留证再停止字体后续步骤，所有原断言/时间预算保留。对照已有2010→0真实回跳，区分ResizeObserver布局回调、原生offset/视图选择与字体变更前的捕获错误。生产、依赖、UI与默认完整门槛不改；源码已应用，待Windows语法预检和新冻结后原生2项。探针读取几何可能影响时序，一次重放通过不代表根因已修。Readium3.11对应修订参考与差异见Documentation/READER_ISOLATION_PLAN.md。
+最新fonts2[39279664338](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39279664338)/f32cc933已实际结束0/2，0跳过，test65/summary0/export0，Swift编译诊断0；556输入逐项匹配，artifact12203080049完整digest/CRC已核。无本轮watcher/下载进程残留。sourceHanSans分页重开字体已加载但锚点失败，DOM在1650ms到2010、1746ms回0，已记录RO帧1747ms才开始；402x750/docWidth10452/font ready不变，不能将该RO回调当作回跳起点。另一项在换字体前准备深段落失败，新捕获后探针未执行。原生job32分22秒，两个case累计111.933秒；准备/编译/启动/导出不能统称用例耗时。完整记录Documentation/ValidationLogs/capture-probe-39279664338.json。
+
+当前下一独立实验只改同一ReaderRenderingTests测试文件：为Readium实际使用的Element.scrollTo及scrollLeft setter保留原参数/this/返回并记录有界调用栈；准备wait失败也导出轨迹。原断言、预算、生产及依赖不改，现有RO轨迹与独立写入轨迹各最多16条，不收集正文。区分JS主动写回0与未被这些公开路径记录的回跳；没有记录到写入也不能独自证明是WebKit内部错误。先Windows/JS语法、冻结，再执行原fonts2；禁止无新证据full重跑。当前已应用；Windows453语法新增0/54Vendor限制、探针JS语法和本地转发合同检查通过（均非Swift编译/原生验收），原生待验证。
 
 正常HEAD6d761749、普通index及既有交付包保持，不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
@@ -452,3 +454,5 @@ Build8长篇TXT自动门槛通过：[CI38587015887](https://github.com/wan780839
 2026-10-14后续首次导入：用户否定Build6设备首次体验；最新Build7 / [CI38572197917](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/38572197917)各68Core/55iOS/Release通过，直接从delegate启动导入、保持关闭后的delegate、统一sheet/持久错误反馈；完整书架/无dismiss/弱回调与原生命周期回归保留。新包build/XianxiaReader-Import-Build7-TestKit.zip，旧4/5/6均保留。用户随后确认首次导入正常，M2长书/设备及M3/M4门槛不变；详见IMPORT_DELEGATE_FIX.md与HANDOFF。
 
 2026-10-14用户验收补充：Build7交付后回复“ok 能正常导入了 没问题”，首次导入问题已确认解决，deviceFirstImportAccepted=true；源码/安装包未变。格式/文件来源未逐项报告，完整M2长书/设备及M3/M4门槛不变；证据Documentation/ValidationLogs/m2-import-build7-device-feedback.json。
+
+当前fonts2诊断已派发：https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39279664338 / f32cc9333418a2ca30e97e2e47676f5f07bad175。Windows453语法新增0/54Vendor限制已通过（非编译），556输入冻结；仅ReaderRenderingTests测试诊断变化，无生产变更，原断言与预算保留。不移动冻结输入，不追加full。首次dispatch HTTP500后两次只读确认无新run，才重发一次成功。
