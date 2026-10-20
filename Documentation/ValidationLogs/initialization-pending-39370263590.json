@@ -75,5 +75,13 @@
     "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
     "Vendor/ReadiumToolkit/UPSTREAM.json"
   ],
-  "acceptance": "Qualified negative baseline only; candidate source applied, native candidate compilation/preflight/full180/Release remain pending. No Agent cancellation was issued."
+  "acceptance": "Qualified unchanged-production negative baseline remains0/1; candidate applied afterward and now verified by the same fixture in preflight/full on39373881574. See m4-settings-isolation-r1-success.json.",
+  "candidateResolution": {
+    "run": 39373881574,
+    "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+    "targetedPassed": 6,
+    "fullPassed": 180,
+    "strictDeviceReleasePassed": true,
+    "phoneAccepted": false
+  }
 }

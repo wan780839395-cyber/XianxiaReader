@@ -1,0 +1,24 @@
+{
+  "recordedAtUTC": "2026-10-20T07:46:53.068048+00:00",
+  "run": 39373881574,
+  "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+  "ipa": {
+    "path": "build/XianxiaReader-SettingsIsolation-Build30.ipa",
+    "sha256": "35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638",
+    "bytes": 68890724
+  },
+  "testKit": {
+    "path": "build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip",
+    "sha256": "c61538db0ea6f209c1aadcbbbf9f6fc067d82f8af1cd0ddaa597b76e31be7128",
+    "bytes": 64238089,
+    "crc": true,
+    "sourceFiles": 24
+  },
+  "automaticAccepted": true,
+  "simulatorVisualScopeAccepted": true,
+  "ordinaryDeviceAccepted": false,
+  "trollStoreDeviceAccepted": false,
+  "phoneFrameRateAccepted": false,
+  "originalPackagesPreserved": 53,
+  "computerShutdownRequested": false
+}

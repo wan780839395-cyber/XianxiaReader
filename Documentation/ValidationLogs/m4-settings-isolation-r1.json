@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-20T02:09:03.737662+00:00",
-  "stage": "readium-test-link-native-running",
+  "stage": "build30-software-and-simulator-scope-accepted-phone-pending",
   "branch": "codex/refactor-reader-settings",
   "oldLifecycleBodiesUnchanged": 26,
   "newTests": 9,
@@ -242,7 +242,7 @@
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
   "productionInputsIdenticalToOriginalR1": false,
-  "updatedAtUTC": "2026-10-20T01:37:39.116933+00:00",
+  "updatedAtUTC": "2026-10-20T07:51:04.738226+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -405,20 +405,18 @@
     "failureProof": "Documentation/ValidationLogs/m4-settings-isolation-r1-unit-release-failure.json"
   },
   "latestWindows": {
-    "SwiftGrammarFiles": 453,
-    "newGrammarDiagnostics": 0,
-    "pristineVendorGrammarLimitations": 54,
+    "grammarFiles": 453,
+    "addedDiagnostics": 0,
+    "knownVendorGrammarLimitations": 54,
     "toolingPassed": 26,
-    "toolingSkippedPOSIX": 3,
-    "bashSyntax": true,
-    "sourceCompiler": false,
-    "evidence": ".cache/recovery/20261019-webkit-loading/windows-scroll-writer-probe.log"
+    "toolingWindowsSkipped": 3,
+    "syntaxIsNotCompilation": true
   },
-  "R1Accepted": false,
-  "ReleaseBuilt": false,
-  "IPAProduced": false,
-  "currentBlocker": "New test target link failed before any test executed; explicit local package product dependencies added",
-  "nextStep": "Same selected6 with test-link-only project config correction",
+  "R1Accepted": true,
+  "ReleaseBuilt": true,
+  "IPAProduced": true,
+  "currentBlocker": null,
+  "nextStep": "Install delivered Build30 over the existing app and collect phone position/settings/rotation feedback; no new architecture slice started",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -466,29 +464,20 @@
     "notASourceFailure": true,
     "cancelProof": "Documentation/ValidationLogs/fonts-full-agent-cancel-39214692053.json"
   },
-  "newUnitTestsSinceBuild29": 14,
+  "newUnitTestsSinceBuild29": 15,
   "newUITargetMeasurementTestsSinceBuild29": 1,
-  "expectedUnit": 150,
+  "expectedUnit": 151,
   "expectedUITarget": 29,
-  "expectedTotal": 179,
-  "latestCompletedRun": 39354867480,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json",
-  "pendingLocalChange": {
-    "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
-    "selection": "fonts",
-    "expectedSelected": 2,
-    "nativeCompile": false,
-    "nativePassed": false
-  },
+  "expectedTotal": 180,
+  "latestCompletedRun": 39373881574,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/m4-settings-isolation-r1-success.json",
+  "pendingLocalChange": null,
   "currentDiagnostic": {
-    "run": 39357294714,
-    "sourceRevision": "832fbaa45db4224007748141fd579d349772833d",
-    "status": "in_progress",
-    "selection": "continuous-rotation",
-    "expectedSelected": 6,
-    "nativeCompiled": false,
-    "releaseExecuted": false,
-    "ipaGenerated": false
+    "run": 39373881574,
+    "status": "completed",
+    "conclusion": "success",
+    "targetedPassed": 6,
+    "fullPassed": 180
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -505,15 +494,35 @@
     "historicalRootUniquelyExplained": false
   },
   "currentFullGate": {
-    "run": 39243868846,
-    "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
-    "result": "Failed",
-    "passed": 171,
-    "total": 177,
-    "failed": 6,
+    "checkedAtUTC": "2026-10-20T07:39:45.244365+00:00",
+    "run": 39373881574,
+    "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+    "passed": true,
+    "currentUnit": 151,
+    "currentUI": 29,
+    "total": 180,
+    "failed": 0,
     "skipped": 0,
-    "releaseExecuted": false,
-    "ipaGenerated": false
+    "coreEach": 137,
+    "releaseTXTProbesEach": 4,
+    "releaseBuild": 30,
+    "strictUnsignedDeviceRelease": true,
+    "sourceInputsMatched": 556,
+    "targetedEvidence": {
+      "run": 39373881574,
+      "passed": 6,
+      "selection": "continuous-rotation-preflight"
+    },
+    "runner": "macos-15-intel",
+    "sourceCompilerWarnings": 0,
+    "sourceCompilerErrors": 0,
+    "oldPackagesPreserved": 53,
+    "locksMatched": true,
+    "dependencyPins": 6,
+    "UIReused": false,
+    "oldFailuresErased": false,
+    "allHistoricalSlowWebContentLaunchesUniquelyExplained": false,
+    "phoneAccepted": false
   },
   "latestRecordingControl": {
     "run": 39263942566,
@@ -771,13 +780,9 @@
     ]
   },
   "nextSlice": {
-    "changedCodePaths": [
-      "project.yml"
-    ],
-    "productionUnchanged": true,
-    "selection": "continuous-rotation",
-    "expectedSelected": 6,
-    "nativeCompiled": false
+    "kind": "phone-acceptance",
+    "build": 30,
+    "pending": true
   },
   "latestBackgroundPrecondition": {
     "recordedAtUTC": "2026-10-20T01:35:24.174339+00:00",
@@ -961,7 +966,7 @@
     "toolingTests": 17,
     "SwiftCompiled": false
   },
-  "latestVerifiedSourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
+  "latestVerifiedSourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
   "recovery20261020DependencyBoundary": {
     "recordedAtUTC": "2026-10-20T02:20:31.058266+00:00",
     "run": 39357294714,
@@ -1031,5 +1036,70 @@
       "phone"
     ],
     "report": "initialization-pending-39370263590.json"
-  }
+  },
+  "historicalPreBuild30Checkpoint": {
+    "stage": "readium-test-link-native-running",
+    "R1Accepted": false,
+    "ReleaseBuilt": false,
+    "IPAProduced": false,
+    "currentBlocker": "New test target link failed before any test executed; explicit local package product dependencies added",
+    "nextStep": "Same selected6 with test-link-only project config correction",
+    "expectedUnit": 150,
+    "expectedUITarget": 29,
+    "expectedTotal": 179,
+    "latestCompletedRun": 39354867480,
+    "latestCompletedEvidence": "Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json",
+    "nextSlice": {
+      "changedCodePaths": [
+        "project.yml"
+      ],
+      "productionUnchanged": true,
+      "selection": "continuous-rotation",
+      "expectedSelected": 6,
+      "nativeCompiled": false
+    },
+    "pendingLocalChange": {
+      "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
+      "selection": "fonts",
+      "expectedSelected": 2,
+      "nativeCompile": false,
+      "nativePassed": false
+    },
+    "currentDiagnostic": {
+      "run": 39357294714,
+      "sourceRevision": "832fbaa45db4224007748141fd579d349772833d",
+      "status": "in_progress",
+      "selection": "continuous-rotation",
+      "expectedSelected": 6,
+      "nativeCompiled": false,
+      "releaseExecuted": false,
+      "ipaGenerated": false
+    }
+  },
+  "acceptanceScope": "Implementation, actual compilation, targeted6, full180, strict device Release and bounded simulator visual scope; phone acceptance remains separate",
+  "finalBuild30": {
+    "recordedAtUTC": "2026-10-20T07:46:53.068048+00:00",
+    "run": 39373881574,
+    "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+    "ipa": {
+      "path": "build/XianxiaReader-SettingsIsolation-Build30.ipa",
+      "sha256": "35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638",
+      "bytes": 68890724
+    },
+    "testKit": {
+      "path": "build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip",
+      "sha256": "c61538db0ea6f209c1aadcbbbf9f6fc067d82f8af1cd0ddaa597b76e31be7128",
+      "bytes": 64238089,
+      "crc": true,
+      "sourceFiles": 24
+    },
+    "automaticAccepted": true,
+    "simulatorVisualScopeAccepted": true,
+    "ordinaryDeviceAccepted": false,
+    "trollStoreDeviceAccepted": false,
+    "phoneFrameRateAccepted": false,
+    "originalPackagesPreserved": 53,
+    "computerShutdownRequested": false
+  },
+  "fieldScopeNotes": "Initial implementation/old diagnostic fields are historical snapshots. stage, currentFullGate, finalBuild30 and latestCompletedEvidence describe current acceptance; phone acceptance remains false."
 }

@@ -1,5 +1,11 @@
 # 真机阅读验收
 
+## Build30 设置隔离与定位（2026-10-20，手机待验）
+
+已交付build/XianxiaReader-SettingsIsolation-Build30.ipa，版本0.0.1(30)、同bundleID/min16；覆盖安装保留书库，不卸载或删库。CI39373881574/aa0a119定向6/6、完整180/180与严格无签名设备Release通过。8张模拟器原图及四次旋转窗口38原始帧已核，不作为手机帧率或真机体验验收。
+
+手机核对：正文深处换字体/字号/主题后关面板，回书库重开的位置与错误；连续暂停后浅深主题横竖旋转；开始慢滚→桌面→再打开已暂停。尚无Build30手机反馈。此前用户“已暂停”只记录Build29该路径，不扩展为Build30/M4总体通过。包/验证摘要见ValidationLogs/m4-settings-isolation-build30-delivery.json与r1-success/native-review。
+
 ## Build29 阅读安全区边缘（2026-10-19）
 
 本切片已交付。实际Release源`a65086c1151831b54d90ed083fa36fc27848b5cb` / `codex/m4-reading-edges` / [完整CI39147081645](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39147081645)：Linux/macOS Core各137，iOS163/163（136集成+27真UI）、失败/跳过0，test/export/summary/recording退出0，严格无签名iPhoneOS arm64 Release29/min16。547编译资源blob、三锁六pins、六完整原字体/OFL、每平台4长TXT Release探针已核。Windows449语法新增0/54既有Vendor限制、17工具测试通过；语法不算编译。

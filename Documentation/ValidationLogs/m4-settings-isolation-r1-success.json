@@ -1,0 +1,176 @@
+{
+  "checkedAtUTC": "2026-10-20T07:39:45.244365+00:00",
+  "run": 39373881574,
+  "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+  "passed": true,
+  "currentUnit": 151,
+  "currentUI": 29,
+  "total": 180,
+  "failed": 0,
+  "skipped": 0,
+  "coreEach": 137,
+  "releaseTXTProbesEach": 4,
+  "releaseBuild": 30,
+  "strictUnsignedDeviceRelease": true,
+  "sourceInputsMatched": 556,
+  "targetedEvidence": {
+    "run": 39373881574,
+    "passed": 6,
+    "selection": "continuous-rotation-preflight"
+  },
+  "runner": "macos-15-intel",
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "oldPackagesPreserved": 53,
+  "locksMatched": true,
+  "dependencyPins": 6,
+  "UIReused": false,
+  "oldFailuresErased": false,
+  "allHistoricalSlowWebContentLaunchesUniquelyExplained": false,
+  "phoneAccepted": false,
+  "recordedAtUTC": "2026-10-20T07:51:04.738226+00:00",
+  "artifactReceipts": {
+    "apple": {
+      "archiveBytes": 996783606,
+      "archiveSHA256": "b1207b2e755f016f0a17438fc7055de355dc419eb42b13bec70334976a297453",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "artifact": 12247932502
+    },
+    "core": {
+      "archiveBytes": 116314,
+      "archiveSHA256": "e122f72c169e6148cc6d83b164b89c2fcffdcb3b40f350fdba10ca608c91e973",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "artifact": 12243105038
+    },
+    "ipa": {
+      "archiveBytes": 68739898,
+      "archiveSHA256": "4236e9db801fa3a9eda0f598fc14142e0c0d476dc62e84d3bea5b2505853be83",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "artifact": 12247763101
+    }
+  },
+  "ipaInspection": {
+    "run": 39373881574,
+    "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+    "ipa": "build/ci/39373881574/artifacts/XianxiaReader-unsigned-ipa/XianxiaReader.ipa",
+    "bytes": 68890724,
+    "sha256": "35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638",
+    "bundleIdentifier": "com.xianxiareader.app",
+    "version": "0.0.1",
+    "build": "30",
+    "minimumOS": "16.0",
+    "arm64": true,
+    "platform": "iPhoneOS",
+    "machOBuilds": [
+      {
+        "platform": 2,
+        "minimumOS": 1048576,
+        "sdk": 1180928
+      }
+    ],
+    "crc": true,
+    "executablePermission": true,
+    "embeddedSigningArtifactsAbsent": true,
+    "fonts": [
+      {
+        "name": "LXGWWenKai-Regular.ttf",
+        "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350"
+      },
+      {
+        "name": "MaShanZheng-Regular.ttf",
+        "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+      },
+      {
+        "name": "ZCOOLXiaoWei-Regular.ttf",
+        "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1"
+      },
+      {
+        "name": "ZhuqueFangsong-Regular.ttf",
+        "sha256": "558c62730844fe54ba220146ed62f859d4e2880188d92d985f8921c6e3743bc4"
+      },
+      {
+        "name": "SourceHanSansSC-Regular.otf",
+        "sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256"
+      },
+      {
+        "name": "SourceHanSerifSC-Regular.otf",
+        "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117"
+      }
+    ],
+    "accepted": true,
+    "phoneAccepted": false
+  },
+  "delivery": {
+    "recordedAtUTC": "2026-10-20T07:46:53.068048+00:00",
+    "run": 39373881574,
+    "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+    "ipa": {
+      "path": "build/XianxiaReader-SettingsIsolation-Build30.ipa",
+      "sha256": "35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638",
+      "bytes": 68890724
+    },
+    "testKit": {
+      "path": "build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip",
+      "sha256": "c61538db0ea6f209c1aadcbbbf9f6fc067d82f8af1cd0ddaa597b76e31be7128",
+      "bytes": 64238089,
+      "crc": true,
+      "sourceFiles": 24
+    },
+    "automaticAccepted": true,
+    "simulatorVisualScopeAccepted": true,
+    "ordinaryDeviceAccepted": false,
+    "trollStoreDeviceAccepted": false,
+    "phoneFrameRateAccepted": false,
+    "originalPackagesPreserved": 53,
+    "computerShutdownRequested": false
+  },
+  "nativeReview": "m4-settings-isolation-r1-native-review.json",
+  "implementationScope": [
+    "App ReaderSettingsPersistence separates ordered appearance/interaction storage from engine/location state",
+    "saveSettingsNow does not sample a covered reader; fresh location is captured after dismissal",
+    "ReadiumAdapter cancels superseded preference requests and skips exact applied-preference repeats",
+    "Readium continuous settings disable irrelevant paged auto-spread rebuilds",
+    "Reflowable spread initialization restores the latest explicit complete PageLocation"
+  ],
+  "productionFiles": [
+    "App/AppServices.swift",
+    "App/Reader/ReaderSettingsPersistence.swift",
+    "App/Reader/ReaderViewModel.swift",
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "regressionEvidence": {
+    "negativeInitialization": 39370263590,
+    "positivePreflightSeconds": 7.407,
+    "fullInitializationSeconds": 12.55,
+    "preflightTotal": 6,
+    "fullIntegration": 151,
+    "fullUI": 29,
+    "settingsPersistenceCases": 7,
+    "lifecycleCases": 28,
+    "preflightCaseSeconds": 321.007,
+    "fullIntegrationCaseSeconds": 804.415,
+    "fullUICaseSeconds": 3899.124
+  },
+  "windows": {
+    "grammarFiles": 453,
+    "addedDiagnostics": 0,
+    "knownVendorGrammarLimitations": 54,
+    "toolingPassed": 26,
+    "toolingWindowsSkipped": 3,
+    "syntaxIsNotCompilation": true
+  },
+  "limitations": [
+    "Ordinary/TrollStore phone acceptance and frame rate remain pending",
+    "R2/R3/R4/M5 and broader M4 completion are outside this slice",
+    "Historical failures/cancellations remain independently recorded; no unique cause claimed for every old WebContent/host stall"
+  ],
+  "rawOriginals": "build/ci/39373881574",
+  "sourceProof": ".cache/recovery/20261019-webkit-loading/source-proof-latest-initial-location.json"
+}

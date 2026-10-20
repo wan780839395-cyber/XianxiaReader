@@ -1,0 +1,96 @@
+{
+  "recordedAtUTC": "2026-10-20T07:46:49.169580+00:00",
+  "run": 39373881574,
+  "sourceRevision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+  "staticImages": [
+    {
+      "label": "warm-paused",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/4A2062AD-B9CD-43C5-AFDB-32D114B77113.png",
+      "sha256": "dd5ae8d5bbeb75456d3c0321a643f70c007418fb5be493348842e0d71b8a308c",
+      "inspected": true
+    },
+    {
+      "label": "warm-landscape",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/9C8241C3-3C04-4B58-A4D8-2ACE90421BBC.png",
+      "sha256": "ed3c77f2b9b8cc45ccdabb36112fde388ebb9d8adcda713575b8f4be1876dc3f",
+      "inspected": true
+    },
+    {
+      "label": "warm-restored",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/13FC0765-A86E-4BCC-8773-370840D52539.png",
+      "sha256": "39d215267ba19f004987457f53dce560fce268cc25495a32fee6114aa0862b63",
+      "inspected": true
+    },
+    {
+      "label": "charcoal-paused",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/CF936505-EF3B-4C6E-BBB9-CDF101E529D0.png",
+      "sha256": "f94b7a232480c5adbeafcf945aac4f6c81ce1284f0eb0f1394df32c68964e5df",
+      "inspected": true
+    },
+    {
+      "label": "charcoal-landscape",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/529FDEA6-2237-4F17-AE7C-E42F68EFF5D6.png",
+      "sha256": "82af9c0858a2a491b7bbd4fbc20eea9bf0f2fc47dcfae50b6333832a44bb8b0c",
+      "inspected": true
+    },
+    {
+      "label": "charcoal-restored",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5D45AABE-7456-4812-8596-14DEDAB43562.png",
+      "sha256": "f94b7a232480c5adbeafcf945aac4f6c81ce1284f0eb0f1394df32c68964e5df",
+      "inspected": true
+    },
+    {
+      "label": "font-continuous",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/00376F42-2AA3-45C1-9353-EE5110BED228.png",
+      "sha256": "96932f07e34e96aa97682a4c425a060b8d31917f431e7d19870d21fb97a946e3",
+      "inspected": true
+    },
+    {
+      "label": "font-paged",
+      "path": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/14C00B5B-79C2-4AA5-99D9-689ACF708B2F.png",
+      "sha256": "143fa842d8b5047184d3d3568bb9d8f6ec52ed59f2e9993e5572b825a37d7d82",
+      "inspected": true
+    }
+  ],
+  "observations": "Eight actual current-run images reviewed: warm/charcoal paused landscape/restored portrait readable without alert/spinner; real SourceHanSans paged/continuous body rendered. Historical build23/29 attachment labels are inherited test names; source is this exact Build30 run, not reused historical images.",
+  "motion": {
+    "record": "build/ci/39373881574/NativeReview/motion-review.json",
+    "video": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/573A66FB-AD9E-4B4A-BD56-FF4F1A1601E5.mp4",
+    "videoSHA256": "846efa568f0a0517239a72869719b2faf9e8f2387527cf69b0555a3b9c90fcf9",
+    "windows": [
+      [
+        "warm-landscape",
+        77.5,
+        82.5
+      ],
+      [
+        "warm-portrait",
+        90.5,
+        95.5
+      ],
+      [
+        "charcoal-landscape",
+        180,
+        185
+      ],
+      [
+        "charcoal-portrait",
+        198,
+        203
+      ]
+    ],
+    "originalFrames": 38,
+    "inspected": true,
+    "selectedWindowsAccepted": true,
+    "fullVideoInspected": false
+  },
+  "simulatorVisualScopeAccepted": true,
+  "ordinaryDeviceAccepted": false,
+  "trollStoreDeviceAccepted": false,
+  "phoneFrameRateAccepted": false,
+  "limitations": [
+    "Current simulator native transition windows only; no phone performance acceptance",
+    "Not every moment of the218.07second recording was inspected",
+    "No claim that every historical slow WebContent/test-host launch has a unique resolved cause"
+  ]
+}

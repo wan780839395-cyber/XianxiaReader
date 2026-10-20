@@ -1,18 +1,18 @@
 # 架构与技术决策
 
-## R1设置持久化边界（2026-10-19，源码已接入，发布门槛未通过）
+## R1设置持久化边界（Build30软件门槛通过，手机待验）
 
 AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方法接口调用既有BookFileStore。外观/手感分别有序提交，完成结果过滤最新请求和实际阅读会话；关闭后的已提交写入继续完成，新reader恢复先等待旧队列。该对象不持有引擎、Locator、页面或数据库；ReaderViewModel保留向引擎应用偏好和位置捕获的现有编排。设置完成仅等待设置，回到可见正文后才请求fresh完整位置。JSON格式、3秒位置预算和20秒资源预算保持。参考Readium 3.11偏好存储及Readest设置/书籍状态分离，具体版本与取舍见[方案](Documentation/READER_ISOLATION_PLAN.md)。
 
-此为渐进提取第一片，未整体拆分字体/位置/会话服务。39230331856证明该次完整位置保留至open输入，39235769577直接引擎重开同一段首1/1通过；原字体链路的字体/目标字联合失败仍未分清。当前只增强测试分项证据，生产设置/存储及渲染管线保持。当前024完整171/177、6项失败，Release受阻。完整位置仍在入口，失败期间存在about:blank和101秒WebContent启动；关闭2合同及设置/生命周期35通过，不宣称全部旧加载故障已修。录屏开/关39263942566已结束64/67与66/67，OFF仍有换字体前的深段落捕获前置条件失败，不能认定仅录屏或仅环境。当前独立修正旋转纸色抽样误判，生产边界保持；严格Release/手机验收尚未通过。
+此为渐进提取第一片，未整体拆分字体/位置/会话服务。Build30源aa0a119/39373881574已通过定向6、完整151集成+29UI、Core各137及严格设备Release；8原图/四次旋转38原始帧已复核，手机性能/实际体验仍待验。历史024完整171/177与后续失败/取消独立保留，不能用最终成功倒写历史或统一归因旧加载故障。完整结果见ValidationLogs的r1-success和native-review回执。
 
-## 偏好提交的幂等边界（定向已验证，发布未通过）
+## 偏好提交的幂等边界（Build30已验证）
 
-ReadiumAdapter在取消被替代的请求后，比较完整EPUBPreferences与最后实际提交的appliedPreferences；相同偏好不再进入DOM采样或重排。撤销尚未提交的编辑回到已应用状态同样终止旧请求。真实变化仍保留fresh完整锚点、原3秒采样及可见错误，不清空错误来伪造通过。39362754281/176303d原生2/2：重复模式/外观与撤销请求保持原DOM字、同WebView，原六字体两模式重开30条观测errorMessage均nil。首次真实模式恢复与重复提交仍有区别；完整180/设备Release未验收。
+ReadiumAdapter在取消被替代的请求后，比较完整EPUBPreferences与最后实际提交的appliedPreferences；相同偏好不再进入DOM采样或重排。撤销尚未提交的编辑回到已应用状态同样终止旧请求。真实变化仍保留fresh完整锚点、原3秒采样及可见错误，不清空错误来伪造通过。39362754281/176303d原生2/2：重复模式/外观与撤销请求保持原DOM字、同WebView，原六字体两模式重开30条观测errorMessage均nil。首次真实模式恢复与重复提交仍有区别；Build30完整180/严格设备Release已通过，手机待验。
 
-## 连续旋转的双页策略边界（定向局部通过，发布未通过）
+## 连续旋转的双页策略边界（Build30已验证）
 
-Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；39358438791的6项实际5/6：同字viewport及实际浅深旋转通过，hidden初始深字失败另立初始化对照；后续幂等回归新增后最终180/Release仍待完整验证。证据与固定上游差异见READER_ISOLATION_PLAN.md。
+Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；39358438791的6项实际5/6：同字viewport及实际浅深旋转通过，hidden初始深字失败另立初始化对照；后续幂等与初始化覆盖修复后39373881574最终180/严格Release已通过，手机待验。证据与固定上游差异见READER_ISOLATION_PLAN.md。
 
 ## Build29 阅读安全区
 
@@ -245,6 +245,6 @@ ReadingInterfaces提供完整位置capture，Adapter沿用有界DOM采样，Vend
 
 App只读Bundle两原中文字体/稳定UUID与最多12用户资源合并（≤14 faces），内置不复制/摘要；Core身份/独立目录与App后台CoreText验证、ReadingInterfaces目录capability→Adapter公开CSSFontFace/既有资源通道。新增目录以完整位置保护重开，资源字体排版完整锚点重载；每await校验，关闭取消/迟到隔离，失败恢复旧目录。原schema/正文/Locator/依赖保持，可选UUID旧偏好兼容。原生与手机性能门槛分列，见READING_FONT_IMPORT_DESIGN.md。
 
-## 初始化定位的先后顺序（源码已应用，候选验收待执行）
+## 初始化定位的先后顺序（Build30已验证）
 
-Readium的isSpreadLoaded早于初始字体/排版和位置恢复。ReflowableSpreadView每次收到完整PageLocation先更新已有pendingLocation，再依原有已加载状态立即定位或等待；初始字体完成后读取最新值。仅移动已有赋值，不增加状态、轮询、重试或预算。39370263590不改生产的显式屏障对照证明真实字体ready/深字可见后放行会回章头；最小候选原生、完整180和设备验收仍待验证。
+Readium的isSpreadLoaded早于初始字体/排版和位置恢复。ReflowableSpreadView每次收到完整PageLocation先更新已有pendingLocation，再依原有已加载状态立即定位或等待；初始字体完成后读取最新值。仅移动已有赋值，不增加状态、轮询、重试或预算。39370263590不改生产的显式屏障对照证明真实字体ready/深字可见后放行会回章头；同fixture先行与完整再次通过，Build30全180与严格设备Release已通过，手机实际验收仍待反馈。

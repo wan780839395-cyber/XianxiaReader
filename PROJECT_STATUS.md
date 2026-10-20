@@ -1,20 +1,18 @@
 # 项目状态
 
-当前断点（2026-10-20）：39370263590/d28feaa真实1项对照0/1，四阶段齐全后ready/可见WK回到x0，证明初始化覆盖新定位；自然结束，未取消。仅将Vendor既有pendingLocation赋值提前并同步来源摘要，另554输入保持；候选预检/6项→完整180→Release待执行，无Build30。
+当前断点（2026-10-20）：Build30已交付；39373881574/aa0a119定向6/6、全量180/180、两Core各137与严格设备Release通过，556输入/三锁/原字体/53旧包及三个artifact已核。本轮原生8图/38原始帧复核完成，手机验收待反馈；无新的CI或实现任务在运行。
 
-## R1 设置隔离：当前验收边界
+## Build30 设置隔离与定位修复（2026-10-20）
 
-Build29 是最后已交付版本；Build30 尚未生成。完整旧轮39243868846为171/177，保留失败；当前新增回归后的发布门槛是151集成+29UI=180，尚未完整执行通过。
+本片软件与所列模拟器验收完成。实际Release源`aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a` / `codex/refactor-reader-settings` / [完整CI39373881574](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39373881574)：定向6/6，完整151集成+29真UI=180/180，失败/跳过0；Linux/macOS Core各137、每平台TXT Release探针各4；测试/summary/export/recording真实退出均0，源码编译诊断0，严格无签名iPhoneOS arm64 Release30/min16。556输入、实际354 Vendor来源、三锁六pins、六套完整字体摘要及53旧包保持已核；三个完整artifact SHA/CRC与原始日志已收齐，UI未复用。
 
-- 设置/生命周期35、关闭请求失效2是历史定向结果。后台前置条件39352276145为1/1，生产暂停逻辑未改；用户确认Build29手机回桌面再打开后慢滚已暂停。
-- 连续旋转39358438791为5/6：同字viewport、真实字体重开、跨章、六字体连续、浅深真实旋转通过；hidden字体用例在初始深字准备阶段失败，尚未换字体，完整/Release自动跳过。
-- 偏好幂等39362754281/176303d为2/2，真实编译及原生测试通过，30条字体观测errorMessage全nil。相同偏好不再触发DOM采样，撤回排队编辑会取消旧请求；真实变化仍保留完整锚点及原预算。定向结果不替代完整180。
-- 初始化对照39365686520由Agent取消，0用例执行；原始Session停在宿主launch请求后，不能归因于fixture、定位或环境单一原因。原始artifact与取消记录已保存。
-- 初始化对照39370263590/d28feaa真实0/1：原字体ready、目标字可见、放行初始化后可见WK回到x0。完整原件及SHA/CRC/556已核，未取消。仅把pendingLocation赋值移至isSpreadLoaded判断前，UPSTREAM同步；554其他输入保持，候选Windows/原生6项、完整180及Release尚待验证。
+App独立ReaderSettingsPersistence排队保存设置，不持有引擎/Locator；设置面板覆盖时不采样正文位置，关闭面板后fresh保存。相同偏好幂等并取消被替代请求；连续模式关闭无关双页重建；初始化等字体结束后采用最新完整定位。保留原3秒位置/20秒资源预算，未增加重试或降断言，数据库/依赖版本保持。定位合格负对照39370263590先证明ready/可见原字在放行后回0，本轮同fixture在先行与完整两轮均保住原字。
 
-下一步和运行进程以[HANDOFF](HANDOFF.md)当前断点为准。不得重新运行旧apply/freeze脚本、恢复已撤回的Readium根产品链接或变更锁文件。旧链接/解析失败均为0用例执行，已由后续原生编译排除，不能继续当作待做工作。阶段细节见[隔离方案](Documentation/READER_ISOLATION_PLAN.md)及各ValidationLogs原始回执；旧首页完整内容移入[恢复历史](Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md)。
+安装[Build30 IPA](build/XianxiaReader-SettingsIsolation-Build30.ipa)，SHA256 `35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638`；[原创样书、原字体许可与本轮Preview测试包](build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip)，SHA256 `c61538db0ea6f209c1aadcbbbf9f6fc067d82f8af1cd0ddaa597b76e31be7128`。覆盖安装同bundleID，保留书库，不卸载或删库，+菜单确认0.0.1 (30)。实际IPA内容CRC、arm64/iOS平台/min16/执行权限及六字体摘要已核。
 
-普通HEAD/index、未提交工作、53旧包及恢复ZIP保持；不进入R2/R3/R4/M5，不关机。长期小步边界、失败归因和验证规则见AGENTS.md与[变更及排障流程](Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md)。
+已实际查看本轮8张原生图，以及浅深两主题四次旋转窗口的38个原始PTS帧：正文可读、所列暂停/旋转恢复状态无加载/错误提示；稀疏VFR录屏不作为手机FPS验收，也未称整段218秒全部看完。普通设备/TrollStore、手机位置/设置体验与帧率仍待反馈；用户“已暂停”仅Build29原路径。本轮未做R2/R3/R4/M5，M4整体未宣称完成。先收手机反馈，再定义下一独立切片。
+
+历史171/177、后续0执行链接/锁解析失败、Agent取消和5/6等都保留原结果，不能倒写为通过。软件结果、原生范围及包回执分别见[最终验证](Documentation/ValidationLogs/m4-settings-isolation-r1-success.json)、[原生复核](Documentation/ValidationLogs/m4-settings-isolation-r1-native-review.json)、[交付记录](Documentation/ValidationLogs/m4-settings-isolation-build30-delivery.json)。长期教训在AGENTS.md及[变更排障流程](Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md)，当前断点只以[HANDOFF](HANDOFF.md)为准。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 
