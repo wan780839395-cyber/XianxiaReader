@@ -1,5 +1,13 @@
 # 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
 
+最新结论：第三轮1d8c696/39439273417连续单例1/1通过，但新增只读几何在楷体、思源黑体均复现保存同字的top从预期-9.9375变为0.0625、delta10，截图前后持续；两个Range方法一致且只含一个片段。证据snapshot-geometries.json及完整8345530字节原件已SHA/CRC核验，不能把1/1写成定位已修。旧三组baseline/R2完整Locator内容逐字段相同，已排除保存内容差异。
+
+候选原因收窄到EPUBInfiniteScrollView.go：内层DOM先执行go，外层若坐标没变，依赖scrollViewDidScroll的updateViewports可能不再执行；初始load路径已有主动updateViewports。先构造确定性负对照：原FreshReturn测试在连续模式重复定位同一canonical字/offset=-10，保持外层坐标不变并显式屏蔽该次外层scroll回调；完整生命周期清理恢复delegate。旧源码必须在指定LATE_CANONICAL_VIEWPORT_OFFSET断言失败，才在同一runner/DerivedData验证仅补updateViewports的一行修正与5直接回归（EPUB重复返回、真实字体两模式、隐藏重排、连续resize、TXT完整锚点返回）。不新增target/修改依赖/位置格式/预算。负对照不成立或失败位置不同则终止后半实验，不盲跑修正。
+
+本片R3继续顺延。新增截图后保存字delta<3及原目标字仍在位的断言，补上原测试只检查一次ready而遗漏后续偏移的覆盖。scripts/ci_position_offset_control.sh明确保存旧exit65及真实失败原件，要求指定负对照后修正5/5；不导出IPA。首次Windows语法已过，尚未冻结负对照或修改Vendor；工具中新增POSIX驱动fixture在Windows明确未执行，Linux前置将先验证四种成功/错误结果及浅clone，再允许原生job。
+
+正在执行第三个有条件变化的单例：1d8c696409f2e677df5da0290386bcdf479c3419 / codex/diagnose-position-native-snapshot / CI39439273417，selection仍position-observation、私有测试仅连续模式。仅删除已证实不支持的Promise，改在原有UIGraphics原生截图之后复用同一String JSON观测函数；没有新的异步JS API/等待。默认工作文件仍保留两模式。source/frozen/dispatch为snapshot前缀；observer.cache/recovery/observe_position_snapshot.py保存snapshot-run/jobs/artifacts，恢复须先核实际run和进程，不能重复派发。当前未有第三轮行为结果；R3继续未接线、生产507保护输入及普通index保持。前两轮分别在封面准备、Agent诊断桥接中断，不能将三轮混成通过。
+
 最新断点：第二轮97cd5ce/39434816178已完成失败。有效前景/连续封面已过（activeHref=cover.xhtml、legacy同一view、alpha1、hostAppeared=true），首个思源宋体原定位断言通过，两个点实际top/expectedTop均-9.9375、delta0；随后Agent新增evaluateJavaScript返回Promise导致WKErrorDomain5，整例0/1、31.242秒，后续五字体未执行。属于诊断错误，不能归为正文失败或初始化根因已修。83626657字节原件已SHA/CRC核验完整提取build/ci/39434816178/diagnostic，完整日志continuous-completed-job.log。用户已被明确告知这项错误及R3继续顺延。
 
 已删除该Promise和额外两帧等待，改在既有原生截图之后第二次读取String JSON（after-native-snapshot），原断言/预算保持；这不是“两帧稳定”证明。下一轮沿同一连续单例、原生产源、原字体序列，不重复分页链，不新增生产代码。派发前核Swift语法与冻结差异，若再次在准备/诊断阻塞则依据新原件改变实验，不能盲跑。

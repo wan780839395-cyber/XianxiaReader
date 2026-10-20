@@ -535,7 +535,7 @@ final class ReaderRenderingTests: XCTestCase {
             let engine: ReadiumReaderEngine
             func makeEngine(for format: BookFormat) throws -> any ReadingInterfaces.ReaderEngine { engine }
         }
-        for continuous in [true] {
+        for continuous in [false, true] {
             let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
             let services = try await AppServices.create(storageRoot: root)
             addTeardownBlock { try FileManager.default.removeItem(at: root) }
@@ -743,7 +743,8 @@ final class ReaderRenderingTests: XCTestCase {
                 await model.open()
                 recordReopenCheckpoint("open-returned", font: bundled.rawValue)
                 XCTAssertEqual(model.appearance.importedFontID, asset.id)
-                @MainActor func recordRenderedReopen(_ phase: String) async {
+                @discardableResult @MainActor func recordRenderedReopen(_ phase: String) async -> [String: Any]? {
+                    var activeSnapshot: [String: Any]?
                     // Observe after the original assertion, so the probe does not
                     // change the save/close/open sequence or its readiness budget.
                     for web in webViews(in: engine.viewController.view) {
@@ -778,8 +779,13 @@ final class ReaderRenderingTests: XCTestCase {
                             attachment.name = "font-rendered-reopen-\(bundled.rawValue)-\(continuous)-\(phase)"
                             attachment.lifetime = .keepAlways; add(attachment)
                             print("FONT_RENDERED_REOPEN \(details)")
+                            if web === active(), let serialized = result as? String,
+                               let data = serialized.data(using: .utf8) {
+                                activeSnapshot = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                            }
                         } catch { print("FONT_RENDERED_DIAGNOSTIC_READ_FAILED \(error)") }
                     }
+                    return activeSnapshot
                 }
                 do {
                     try await waitUntil {
@@ -803,7 +809,16 @@ final class ReaderRenderingTests: XCTestCase {
                 chineseImage.lifetime = .keepAlways; add(chineseImage)
                 // Use the existing synchronous native snapshot as the second
                 // observation boundary. evaluateJavaScript cannot return a Promise.
-                if continuous { await recordRenderedReopen("after-native-snapshot") }
+                if continuous {
+                    let observed = await recordRenderedReopen("after-native-snapshot")
+                    let snapshot = try XCTUnwrap(observed)
+                    let geometry = try XCTUnwrap(snapshot["geometry"] as? [String: Any])
+                    let saved = try XCTUnwrap(geometry["saved"] as? [String: Any])
+                    let delta = try XCTUnwrap(saved["delta"] as? Double)
+                    XCTAssertEqual(saved["visible"] as? Bool, true)
+                    XCTAssertLessThan(abs(delta), 3, "CONTINUOUS_SAVED_VIEWPORT_OFFSET font=\(bundled.rawValue)")
+                    XCTAssertEqual(snapshot["anchorCondition"] as? Bool, true, "The original pre-font word must remain in place after the native snapshot")
+                }
             }
             model.close()
         }
@@ -816,7 +831,7 @@ final class ReaderRenderingTests: XCTestCase {
             if continuous { engine.setContinuousScrolling(true) }
             let (window, state) = try mount(engine); state.visible = false
             let (book, navigator) = try await open(engine)
-            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+            _ = try await probe(navigator, engine: engine, resource: "cover.xhtml", continuousResourceIndex: continuous ? 0 : nil)
             try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
             let web = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
             if continuous {
@@ -845,6 +860,46 @@ final class ReaderRenderingTests: XCTestCase {
             let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
                 window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
             }); image.name = "return-epub-\(continuous ? "continuous" : "paged")-build22"; image.lifetime = .keepAlways; add(image)
+            if continuous {
+                // A clipped first line is a valid canonical position. Repeat the
+                // identical seek with no outer scroll callback, as happens when
+                // setContentOffset does not change the outer coordinate.
+                var targetJSON = json, targetLocations = locations
+                targetLocations["xianxiaViewportOffset"] = -10.0
+                targetJSON["locations"] = targetLocations
+                let target = ReadingPosition(bookID: origin.bookID, engineID: origin.engineID,
+                    locatorVersion: origin.locatorVersion,
+                    locatorData: try JSONSerialization.data(withJSONObject: targetJSON, options: .sortedKeys),
+                    chapterTitle: origin.chapterTitle, progression: origin.progression, updatedAt: origin.updatedAt)
+                let range = try XCTUnwrap(targetLocations["domRange"] as? [String: Any])
+                let start = try XCTUnwrap(range["start"] as? [String: Any])
+                let startJSON = String(decoding: try JSONSerialization.data(withJSONObject: start), as: UTF8.self)
+                let topScript = """
+                    (()=>{const p=\(startJSON),n=document.querySelector(p.cssSelector)?.childNodes[p.textNodeIndex];
+                    if(!n)return null;const r=document.createRange();r.setStart(n,p.charOffset);r.setEnd(n,p.charOffset+1);
+                    return r.getBoundingClientRect().top;})()
+                    """
+                try await jump(engine, book: book, href: "OEBPS/two.xhtml")
+                try await engine.go(to: target)
+                let restored = try resourceWebView(engine, index: 1)
+                try await waitUntil { abs(((try await restored.evaluateJavaScript(topScript) as? Double) ?? 10000) + 10) < 3 }
+                let scroll = try continuousScroll(engine), beforeOuter = scroll.contentOffset.y
+                let previousDelegate = scroll.delegate
+                addTeardownBlock { await MainActor.run { scroll.delegate = previousDelegate } }
+                defer { scroll.delegate = previousDelegate }
+                scroll.delegate = nil
+                try await engine.go(to: target)
+                let repeatedImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+                    window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+                }); repeatedImage.name = "continuous-repeated-canonical-seek"; repeatedImage.lifetime = .keepAlways; add(repeatedImage)
+                let afterValue = try await restored.evaluateJavaScript(topScript) as? Double
+                let after = try XCTUnwrap(afterValue)
+                let details = "expectedTop=-10 actualTop=\(after) outerBefore=\(beforeOuter) outerAfter=\(scroll.contentOffset.y) inner=\(restored.scrollView.contentOffset.y)"
+                print("CONTINUOUS_REPEAT_ANCHOR \(details)")
+                let evidence = XCTAttachment(string: details); evidence.name = "continuous-repeated-anchor"; evidence.lifetime = .keepAlways; add(evidence)
+                XCTAssertLessThan(abs(scroll.contentOffset.y - beforeOuter), 0.5, "Control must keep the same outer coordinate")
+                XCTAssertLessThan(abs(after + 10), 3, "LATE_CANONICAL_VIEWPORT_OFFSET: repeated seek must preserve the saved word offset without a scroll callback")
+            }
             engine.close()
         }
     }

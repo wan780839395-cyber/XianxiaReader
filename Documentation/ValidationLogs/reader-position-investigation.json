@@ -1,5 +1,5 @@
 {
-  "status": "native_snapshot_observation_prepared",
+  "status": "real_post_assert_offset_drift_confirmed_control_prepared",
   "R3": "deferred_by_user; candidates not applied",
   "productionRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
   "previousR2Gate": "53/53 historical, not a new position proof",
@@ -177,6 +177,52 @@
         "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
         "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
       }
+    },
+    {
+      "run": 39439273417,
+      "revision": "1d8c696409f2e677df5da0290386bcdf479c3419",
+      "status": "test_passed_but_saved_anchor_drift_observed",
+      "modes": [
+        "continuous"
+      ],
+      "productionChanged": false,
+      "observation": "after original native screenshot, same supported String JSON function, no Promise",
+      "executed": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 62.445,
+      "affectedFonts": [
+        "wenKai",
+        "sourceHanSans"
+      ],
+      "savedAnchorDelta": 10,
+      "rangeFragmentsEqual": true,
+      "artifact": {
+        "run": 39439273417,
+        "artifact": 12275143147,
+        "kind": "diagnostic",
+        "archiveBytes": 8345530,
+        "archiveSHA256": "f63f8f9058d37b81967ccd12a512d11c2134ac261ec4e31190e54e91c72015cc",
+        "githubDigestMatches": true,
+        "zipCRC": true,
+        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
+        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
+        "extractionScope": "complete artifact",
+        "duplicatePathsRemoved": [
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-download-chunks\\0000.bin",
+            "bytes": 8345530
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-diagnostics.zip",
+            "bytes": 8345530,
+            "sha256": "f63f8f9058d37b81967ccd12a512d11c2134ac261ec4e31190e54e91c72015cc"
+          }
+        ],
+        "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+        "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+      }
     }
   ],
   "originalAssertionsAndBudgetsUnchanged": true,
@@ -184,5 +230,5 @@
   "deviceReleaseExecuted": false,
   "phoneAccepted": false,
   "newIPA": false,
-  "nextExperiment": "Remove unsupported Promise; observe after original native screenshot, continuous branch only; no production changes"
+  "nextExperiment": "Specified old-source repeated-canonical-seek failure, then one-call viewport synchronization fix and five direct cases in same runner/build"
 }
