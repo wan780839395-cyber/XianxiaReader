@@ -1439,7 +1439,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
-      "sha256": "75d4226b83dd7a9a4a41b1746268056ccf89dd3e6793f22651f1a8b441915f3a"
+      "sha256": "e2ff1f7b2fc685300f2adcaf10369f0d55bab29676d7472b9ee4e0309789f9dd"
     },
     {
       "path": "Package.swift",
@@ -1749,5 +1749,19 @@
     "closeContractPassed": 2,
     "validationEvidence": "Documentation/ValidationLogs/reader-session-close-39211610770.json",
     "overallDiagnosticPassed": false
+  },
+  "continuousSpreadPolicyReview": {
+    "date": "2026-10-20",
+    "scope": "Infinite-scroll resolved settings always use spread.never; paged preferences unchanged. Avoid a double-spread orientation invalidation for single-page continuous slots.",
+    "diagnosticEvidenceRun": 39272564753,
+    "referencePR811Head": "5e22cb79782d667778a1c9516ad713171853b3f6",
+    "referencePRMerged": false,
+    "references": [
+      "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
+      "https://github.com/readium/swift-toolkit/pull/811"
+    ],
+    "originalBudgetsUnchanged": true,
+    "nativeCompiled": false,
+    "fullCIPassed": false
   }
 }

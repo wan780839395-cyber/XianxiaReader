@@ -193,9 +193,11 @@ public struct EPUBSettings: ConfigurableSettings {
                 ?? true,
             readingProgression: readingProgression,
             scroll: scroll,
-            spread: preferences.spread
+            // Continuous chapters are single-page slots. Keep spread policy
+            // disabled too, so orientation cannot invalidate/reload those slots.
+            spread: infiniteScroll ? .never : (preferences.spread
                 ?? defaults.spread
-                ?? .auto,
+                ?? .auto),
             textAlign: preferences.textAlign
                 ?? defaults.textAlign,
             textColor: preferences.textColor,

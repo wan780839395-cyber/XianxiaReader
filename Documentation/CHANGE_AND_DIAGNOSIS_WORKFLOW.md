@@ -39,3 +39,8 @@ R1设置提取本身与相关35项回归较早完成，但后续卷入UI方向�
 - 设计探针先核最早失败阶段：准备深位置、捕获、变更、重开分别在哪里可能停止。取证不能全挂在尚未到达的步骤后；公共失败出口应保留当前有界轨迹。39279664338的hidden-font在准备wait失败，捕获后探针没有执行，说明只缩小触及文件并不等于实验有效。
 - 沿固定版本实现列全与假设有关的实际API入口，再设计最小观测。Readium3.11的窗口scrollTo、根Element.scrollTo与scrollLeft setter是不同入口；只观察窗口scrollTo和RO帧不足以识别回跳写入者。用同一测试文件覆盖这些入口，保留原参数/this/返回/异常及原预算；明确未覆盖路径和探针几何读取可能影响时序的限制。
 - 耗时用真实时间线核算。39279664338原生job1942秒，两个case合计111.933秒；XcodeGen构建158.64秒，模拟器boot约356秒，xcodebuild test包含构建，xcresult的startTime不能直接当测试App启动时刻。App第一条原生日志16:11:09，到第一case16:11:13约4秒；不能把前面十余分钟编译记成App/WebContent启动。原始标记见build/ci/39279664338/phase-markers.json，完整日志及版本独立保留。
+
+
+本轮原始日志补证：测试后的simctl log show在20秒超时，只输出getpwuid_r提示；不能把该空文件当作没有生命周期事件。已从原xcresult诊断目录只读恢复UI app stdout（14049034 bytes/SHA3804b4791522c0698d7649269cf65cd5317ab01a08ca32770c97787fc03db027）、runner stdout与session/scheduling共4份原日志，未重跑CI。下次应先利用xcresult现有完整诊断并核其source/run/hash，再考虑增加远程观测。当前解析仅用于明确子树，不声称是通用xcresult工具或解析了system.logarchive。
+
+39348950147最新成本核对：原生job1577秒，首case日志前1324.183秒，原两case合计147.142秒；原生2/2不等于根因修复。源码只增加观测时，即使转绿也要保留旧失败与观测扰动风险。独立语法预检/项目工具检查尽量先完成，再执行有区分力的最小原生选择。明细build/ci/39348950147/phase-markers.json。

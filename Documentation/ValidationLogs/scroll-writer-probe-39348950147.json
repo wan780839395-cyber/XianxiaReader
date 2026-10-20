@@ -44,5 +44,13 @@
     "build/ci/39348950147/diagnostic/test-results-summary.json",
     "build/ci/39348950147/diagnostic/DiagnosticTests.xcresult",
     "build/ci/39348950147/scroll-writer-probe-check.json"
-  ]
+  ],
+  "staticReview": {
+    "originalPNGCount": 14,
+    "viewedThumbnailSheets": 3,
+    "realBodyVisible": true,
+    "readerErrorAlertsCovered": false,
+    "animationOrDeviceAccepted": false,
+    "manifest": "build/ci/39348950147/FontReview/manifest.json"
+  }
 }

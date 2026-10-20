@@ -2,7 +2,7 @@
 
 ## R1设置隔离：字体诊断2/2，完整发布仍未通过
 
-完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。当前预期149集成+29UI=178，尚未执行完整178门槛。
+完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。当前预期150集成+29UI=179，尚未执行完整179门槛。
 
 最新滚动写入者诊断[39348950147](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39348950147)/96e913a已完成2/2，0失败/跳过，test/summary/export均0，Swift编译诊断0；556冻结输入匹配，artifact12233013451完整SHA/CRC已核。六字体分页和连续模式原断言、隐藏重排原断言通过；此轮只增强测试探针，没有生产修复，未复现旧回跳，不能宣称根因已修。连续字体诊断仍出现既有排版错误消息，不等于无错误用户流程。原件和边界见Documentation/ValidationLogs/scroll-writer-probe-39348950147.json。
 
@@ -10,7 +10,9 @@
 
 最近4UI39272564753/e85仍2/4：纸色正反例和菜单重开通过；Home/activate后运行但缺少真实后台前置条件；深灰横屏持续“正在准备”，原可读/无加载守卫拒绝。后者仍阻塞发布，不归咎于纸色或无证据归咎环境。
 
-用户已确认Build29手机慢滚→桌面→再打开为“已暂停”，仅此交付版本路径反馈，不代替R1设备验收。当前独立切片仅修后台UI前置条件：Tests/UI/ReaderInterfaceUITests.swift一个原方法，确认正在慢滚、一次Home后真实后台/挂起且桌面图标可见，再activate并保留原立即暂停断言；失败留状态和原生截图。CI增加background-ui只跑原1项。生产代码、暂停逻辑、功能预算及其余测试不改。参考固定Mozilla c603c9c及Apple状态API，版本与差异见Documentation/READER_ISOLATION_PLAN.md。已应用；Windows453语法新增0/54既有Vendor限制、工具29中26通过3POSIX本地跳过、Bash语法通过，均非原生编译。下一步冻结后只跑background-ui原1项。
+用户已确认Build29手机慢滚→桌面→再打开为“已暂停”，仅此交付版本路径反馈。后台UI前置条件[39352276145](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39352276145)/ff196499已完成1/1，0失败/跳过，test/summary/export0，Swift编译诊断0，556输入及artifact12234387680完整SHA/CRC已核。原立即暂停断言保持，日志实际53.23秒Home→56.76秒桌面图标→59.18秒activate→62.56秒暂停截图；已查看该原图，真实正文与已暂停可见。生产暂停逻辑不改，证明本测试切片通过，不抹去旧失败或代替完整/设备验收。watcher21713/receiver75655均退出0，无本轮残留进程；记录Documentation/ValidationLogs/background-precondition-39352276145.json。
+
+下一独立切片：连续模式章节固定单页，但resolved spread仍auto，使旋转触发整组WebView销毁/重开。原xcresult的D3E58E25附窗后24.566秒未进入导航/初始化，定位到DOM恢复之前。只在EPUBSettings解析infiniteScroll时固定spread=never，保留分页auto/always/never偏好；新回归覆盖模式切回/defaults。原字体、定位和旋转断言/预算保持。来源与证据在Documentation/READER_ISOLATION_PLAN.md；源码已应用；Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，均非原生编译。原生6项待执行，预期150集成+29UI=179不等于已验收。
 
 正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 

@@ -1,0 +1,59 @@
+{
+  "recordedAtUTC": "2026-10-20T01:35:24.174339+00:00",
+  "run": 39352276145,
+  "sourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
+  "selection": "background-ui",
+  "conclusion": "success",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+      "result": "passed",
+      "seconds": 129.016
+    }
+  ],
+  "testFailures": [],
+  "testExit": 0,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifact": 12234387680,
+  "archiveBytes": 41239287,
+  "archiveSHA256": "0368e29f158bf9415bf369c6daba61eb261e13d30f23d29186c688f5c43e7073",
+  "artifactDigestAndCRC": true,
+  "nativeJobSeconds": 1131.0,
+  "caseSeconds": 129.016,
+  "productionUnchanged": true,
+  "originalPauseAssertionPreserved": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "full178Accepted": false,
+  "scope": "One original slow-scroll UI method, including touch pause, confirmed Home transition, immediate foreground pause and static relaunch; no full or device acceptance",
+  "localOwnedWorkers": "watcher21713 and receiver75655 exited0; process inventory no matching worker",
+  "coreLinux": {
+    "tests": 137,
+    "TXTProbes": 4,
+    "repositoryToolingTests": 29,
+    "passed": true,
+    "nativeIOSAcceptance": false
+  },
+  "nativeStaticReview": {
+    "file": "build/ci/39352276145/diagnostic/ReaderSnapshots/C9B2FE10-3A45-487E-A36D-8AC82FB305EF.png",
+    "viewed": true,
+    "realBodyAndPausedControlsVisible": true,
+    "fullVideoReviewed": false
+  },
+  "homeBoundary": {
+    "homeSeconds": 53.23,
+    "springboardQuerySeconds": 56.76,
+    "activateSeconds": 59.18,
+    "pausedSnapshotSeconds": 62.56,
+    "originalImmediatePausedAssertionUnchanged": true
+  },
+  "interpretation": "Confirms this fixture after an actual Home/background precondition; production unchanged. Build29 phone feedback is separate. This is not full179, Release or current-source device acceptance."
+}

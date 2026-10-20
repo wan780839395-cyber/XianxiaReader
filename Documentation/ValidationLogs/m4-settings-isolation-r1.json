@@ -1,132 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-20T01:12:46.402899+00:00",
-  "stage": "background-ui-precondition-applied-pending-validation",
-  "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
+  "recordedAtUTC": "2026-10-20T01:36:30.882566+00:00",
+  "stage": "continuous-rotation-policy-applied-native-pending",
   "branch": "codex/refactor-reader-settings",
-  "sourceFiles": [
-    {
-      "path": ".github/workflows/ios-build.yml",
-      "sha256": "68294186fc451872210a0f4a23efd1687f326eebe85652453d36ff8c16d1d718"
-    },
-    {
-      "path": "App/AppServices.swift",
-      "sha256": "342acd8c36ee543dcad4b4d25ff821cc96ea69b88fd6b4aef04c4d712ced3308"
-    },
-    {
-      "path": "App/Reader/ReaderSettingsPersistence.swift",
-      "sha256": "d5a9ca22e902a5acf778876855547996e4d30de3a99bc58bb0816898f55689fc"
-    },
-    {
-      "path": "App/Reader/ReaderViewModel.swift",
-      "sha256": "0a773fd6b4ce2594f28b7d90c118c667eb26d89a09643e2afd703d2ffb56000c"
-    },
-    {
-      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
-      "sha256": "f29076d8342c3cddb1cbe0d69806157bae8e63347d4072c3a77dbe0d8d778acb"
-    },
-    {
-      "path": "Tests/UI/LibraryInteractionUITests.swift",
-      "sha256": "b35cd63e46c1318ac101e29e386c3b7a21d3156bb0acbdc1af093f15c6aa81e5"
-    },
-    {
-      "path": "Tests/UI/ReaderAppearanceUITests.swift",
-      "sha256": "d3890e1d2bc33414c9675f763cf9b260fa7e25547b55051601b68c7532618a2d"
-    },
-    {
-      "path": "Tests/UI/ReaderInterfaceUITests.swift",
-      "sha256": "85daa3ed1072a0f766d05bc22a04372170b3b30d43ce7fa62fc62b7aa8f4fac4"
-    },
-    {
-      "path": "Tests/UI/ReaderUITestCase.swift",
-      "sha256": "5a538768937ec60a084cbd38a47d01b232bf02c437aed61b930b2a4a25f46042"
-    },
-    {
-      "path": "Tests/UI/ReadingExperienceUITests.swift",
-      "sha256": "ff913cacba3decc2a880c716d5b09f6ea6bc6c5ecb5a6631011c751fc2b0d4cd"
-    },
-    {
-      "path": "Tests/UI/ReadingFontUITests.swift",
-      "sha256": "9412c95896fb5597e5e12ccf9dcdc1a67287e5a68724871c4885bc672d680c45"
-    },
-    {
-      "path": "Tests/iOS/ReaderLifecycleTests.swift",
-      "sha256": "d2190e361962d4b62dd2b81a3949274527f40ce60198db09b9f7ed8dc8393101"
-    },
-    {
-      "path": "Tests/iOS/ReaderLoadingControlTests.swift",
-      "sha256": "a81b1a53bdf63281963530cca12f6a04e1862f18e7e0baeb57fdc21c69505a07"
-    },
-    {
-      "path": "Tests/iOS/ReaderRenderingTests.swift",
-      "sha256": "47cc930e5ece55985829ec20cf3ccacad21b616f400b53014a8ee6ba268d1095"
-    },
-    {
-      "path": "Tests/iOS/ReaderSettingsPersistenceTests.swift",
-      "sha256": "34a1abee6e08dd5d65f56701186313849d87c6a76be3bc14d96f477c1d91326b"
-    },
-    {
-      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "58954275e227f511265460140da8f7ea187459cbe3b252411c471b8ce1e99d39"
-    },
-    {
-      "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
-      "sha256": "d35b93cbc28898def3a8a52d885f3d2faf5ea9f77f9959b13c91eeb0768fe817"
-    },
-    {
-      "path": "project.yml",
-      "sha256": "c1a201ca8455292eb9898e82596addcd2ef22d6dee5de356ac3ab742d16eb467"
-    },
-    {
-      "path": "scripts/capture_native_resources.py",
-      "sha256": "274616e3bacd7284d739285157b14f5769639739319a86ddb74fc619c6b9de80"
-    },
-    {
-      "path": "scripts/check_repository.py",
-      "sha256": "60b1a6d3ecd4f747271bae0f2912ae7eee11fda5569ead66948d0517fa41aff0"
-    },
-    {
-      "path": "scripts/ci_ios.sh",
-      "sha256": "0d9401aca4ff08244315c31dc9425bda9cfbf0c72c6e135c7bf89510821bb4cb"
-    },
-    {
-      "path": "scripts/ci_reader_diagnostic.sh",
-      "sha256": "3f2fb44ede4c3cd346f0ba8354f883a811c157ef376792e4b73fb1768ed633c7"
-    },
-    {
-      "path": "scripts/test_ci_failure_paths.py",
-      "sha256": "094b9da47d6efc695d2586f31fade8f0f066f333a0e82bbfb8ea02cac2ea2608"
-    },
-    {
-      "path": "scripts/test_ui_baseline.py",
-      "sha256": "b0ee758eeeb560f3b892b331499c2bf5e7a68b7ef8537bba0854fbb808b3da9a"
-    },
-    {
-      "path": "scripts/verify_ui_baseline.py",
-      "sha256": "6cddd790af333fc8acf9f6ab976b54b5f6a566245e4ceffa2daf83b311f033e7"
-    }
-  ],
-  "changedPaths": [
-    ".github/workflows/ios-build.yml",
-    "App/AppServices.swift",
-    "App/Reader/ReaderSettingsPersistence.swift",
-    "App/Reader/ReaderViewModel.swift",
-    "Documentation/READER_ISOLATION_PLAN.md",
-    "HANDOFF.md",
-    "PROJECT_STATUS.md",
-    "Tests/iOS/ReaderLifecycleTests.swift",
-    "Tests/iOS/ReaderSettingsPersistenceTests.swift",
-    "project.yml",
-    "scripts/ci_reader_diagnostic.sh"
-  ],
   "oldLifecycleBodiesUnchanged": 26,
   "newTests": 9,
-  "windows": {
-    "swiftFiles": 451,
-    "addedSyntaxDiagnostics": 0,
-    "retainedVendorGrammarLimitations": 54,
-    "toolingTests": 17,
-    "SwiftCompiled": false
-  },
   "references": {
     "Readium": "d82f44f4f05d87add9e22a8b75abbd61dce745dd",
     "Readest": "2d37bbfc2e94725e1343ab2a825573545aa59f5f"
@@ -365,7 +242,7 @@
   },
   "originalR1SourceRevision": "b1119d0b79601d0537c7208533d2b079e5706e7e",
   "productionInputsIdenticalToOriginalR1": false,
-  "updatedAtUTC": "2026-10-19T07:54:23.496409+00:00",
+  "updatedAtUTC": "2026-10-20T01:37:39.116933+00:00",
   "secondFull": {
     "run": 39189899149,
     "sourceRevision": "9b47026ace3d9fc92d1df943b112fb19a96d5ffd",
@@ -462,7 +339,7 @@
     "scripts/test_ui_baseline.py",
     "scripts/verify_ui_baseline.py"
   ],
-  "sourceInputsMatched": 554,
+  "sourceInputsMatched": 556,
   "productionChangedPaths": [
     "App/AppServices.swift",
     "App/Reader/ReaderSettingsPersistence.swift",
@@ -540,8 +417,8 @@
   "R1Accepted": false,
   "ReleaseBuilt": false,
   "IPAProduced": false,
-  "currentBlocker": "Native paged anchor reaches2010 then resets0 before recorded RO; old native UI loading/background gates remain failed",
-  "nextStep": "Test-only root Element scroll writer observation, including preparation failure; original fonts2 and budgets. No full rerun.",
+  "currentBlocker": "Charcoal landscape replacement did not enter navigation/initialization; old paged reset remains unproven. Background precondition fixture now1/1 passed.",
+  "nextStep": "Freeze continuous spread policy and run selection6; original assertions/budgets, no full retry",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -589,13 +466,13 @@
     "notASourceFailure": true,
     "cancelProof": "Documentation/ValidationLogs/fonts-full-agent-cancel-39214692053.json"
   },
-  "newUnitTestsSinceBuild29": 13,
+  "newUnitTestsSinceBuild29": 14,
   "newUITargetMeasurementTestsSinceBuild29": 1,
-  "expectedUnit": 149,
+  "expectedUnit": 150,
   "expectedUITarget": 29,
-  "expectedTotal": 178,
-  "latestCompletedRun": 39279664338,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/capture-probe-39279664338.json",
+  "expectedTotal": 179,
+  "latestCompletedRun": 39352276145,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/background-precondition-39352276145.json",
   "pendingLocalChange": {
     "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
     "selection": "fonts",
@@ -604,16 +481,15 @@
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39348950147,
-    "sourceRevision": "96e913a0782370272705ca8d8e3ac62577c5e878",
-    "status": "completed",
-    "conclusion": "success",
-    "selection": "fonts",
-    "total": 2,
-    "passed": 2,
+    "run": 39352276145,
+    "sourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
+    "selection": "background-ui",
+    "total": 1,
+    "passed": 1,
     "failed": 0,
-    "releaseExecuted": false,
-    "ipaGenerated": false
+    "skipped": 0,
+    "conclusion": "success",
+    "status": "completed"
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -896,14 +772,12 @@
     ]
   },
   "nextSlice": {
-    "selection": "background-ui",
-    "expected": 1,
-    "productionUnchanged": true,
+    "selection": "continuous-rotation",
+    "expected": 6,
     "applied": true,
     "nativeCompiled": false,
-    "originalPauseAssertionPreserved": true,
-    "noHomeRetry": true,
-    "preconditionSeconds": 10,
+    "productionScope": "EPUBSettings resolves infiniteScroll spread.never only; paged preference unchanged",
+    "expectedFull": 179,
     "windows": {
       "swiftGrammarFiles": 453,
       "newDiagnostics": 0,
@@ -913,5 +787,188 @@
       "bashSyntax": true,
       "SwiftCompiled": false
     }
-  }
+  },
+  "latestBackgroundPrecondition": {
+    "recordedAtUTC": "2026-10-20T01:35:24.174339+00:00",
+    "run": 39352276145,
+    "sourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
+    "selection": "background-ui",
+    "conclusion": "success",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+        "result": "passed",
+        "seconds": 129.016
+      }
+    ],
+    "testFailures": [],
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "sourceCompilerDiagnostics": [],
+    "sourceInputs": 556,
+    "sourceInputsMatched": true,
+    "artifact": 12234387680,
+    "archiveBytes": 41239287,
+    "archiveSHA256": "0368e29f158bf9415bf369c6daba61eb261e13d30f23d29186c688f5c43e7073",
+    "artifactDigestAndCRC": true,
+    "nativeJobSeconds": 1131.0,
+    "caseSeconds": 129.016,
+    "productionUnchanged": true,
+    "originalPauseAssertionPreserved": true,
+    "releaseExecuted": false,
+    "ipaGenerated": false,
+    "full178Accepted": false,
+    "scope": "One original slow-scroll UI method, including touch pause, confirmed Home transition, immediate foreground pause and static relaunch; no full or device acceptance",
+    "localOwnedWorkers": "watcher21713 and receiver75655 exited0; process inventory no matching worker",
+    "coreLinux": {
+      "tests": 137,
+      "TXTProbes": 4,
+      "repositoryToolingTests": 29,
+      "passed": true,
+      "nativeIOSAcceptance": false
+    },
+    "nativeStaticReview": {
+      "file": "build/ci/39352276145/diagnostic/ReaderSnapshots/C9B2FE10-3A45-487E-A36D-8AC82FB305EF.png",
+      "viewed": true,
+      "realBodyAndPausedControlsVisible": true,
+      "fullVideoReviewed": false
+    },
+    "homeBoundary": {
+      "homeSeconds": 53.23,
+      "springboardQuerySeconds": 56.76,
+      "activateSeconds": 59.18,
+      "pausedSnapshotSeconds": 62.56,
+      "originalImmediatePausedAssertionUnchanged": true
+    },
+    "interpretation": "Confirms this fixture after an actual Home/background precondition; production unchanged. Build29 phone feedback is separate. This is not full179, Release or current-source device acceptance."
+  },
+  "initialImplementationSourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
+  "initialImplementationSourceFiles": [
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "sha256": "68294186fc451872210a0f4a23efd1687f326eebe85652453d36ff8c16d1d718"
+    },
+    {
+      "path": "App/AppServices.swift",
+      "sha256": "342acd8c36ee543dcad4b4d25ff821cc96ea69b88fd6b4aef04c4d712ced3308"
+    },
+    {
+      "path": "App/Reader/ReaderSettingsPersistence.swift",
+      "sha256": "d5a9ca22e902a5acf778876855547996e4d30de3a99bc58bb0816898f55689fc"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "sha256": "0a773fd6b4ce2594f28b7d90c118c667eb26d89a09643e2afd703d2ffb56000c"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "sha256": "f29076d8342c3cddb1cbe0d69806157bae8e63347d4072c3a77dbe0d8d778acb"
+    },
+    {
+      "path": "Tests/UI/LibraryInteractionUITests.swift",
+      "sha256": "b35cd63e46c1318ac101e29e386c3b7a21d3156bb0acbdc1af093f15c6aa81e5"
+    },
+    {
+      "path": "Tests/UI/ReaderAppearanceUITests.swift",
+      "sha256": "d3890e1d2bc33414c9675f763cf9b260fa7e25547b55051601b68c7532618a2d"
+    },
+    {
+      "path": "Tests/UI/ReaderInterfaceUITests.swift",
+      "sha256": "85daa3ed1072a0f766d05bc22a04372170b3b30d43ce7fa62fc62b7aa8f4fac4"
+    },
+    {
+      "path": "Tests/UI/ReaderUITestCase.swift",
+      "sha256": "5a538768937ec60a084cbd38a47d01b232bf02c437aed61b930b2a4a25f46042"
+    },
+    {
+      "path": "Tests/UI/ReadingExperienceUITests.swift",
+      "sha256": "ff913cacba3decc2a880c716d5b09f6ea6bc6c5ecb5a6631011c751fc2b0d4cd"
+    },
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "sha256": "9412c95896fb5597e5e12ccf9dcdc1a67287e5a68724871c4885bc672d680c45"
+    },
+    {
+      "path": "Tests/iOS/ReaderLifecycleTests.swift",
+      "sha256": "d2190e361962d4b62dd2b81a3949274527f40ce60198db09b9f7ed8dc8393101"
+    },
+    {
+      "path": "Tests/iOS/ReaderLoadingControlTests.swift",
+      "sha256": "a81b1a53bdf63281963530cca12f6a04e1862f18e7e0baeb57fdc21c69505a07"
+    },
+    {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "sha256": "47cc930e5ece55985829ec20cf3ccacad21b616f400b53014a8ee6ba268d1095"
+    },
+    {
+      "path": "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+      "sha256": "34a1abee6e08dd5d65f56701186313849d87c6a76be3bc14d96f477c1d91326b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "sha256": "58954275e227f511265460140da8f7ea187459cbe3b252411c471b8ce1e99d39"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "sha256": "d35b93cbc28898def3a8a52d885f3d2faf5ea9f77f9959b13c91eeb0768fe817"
+    },
+    {
+      "path": "project.yml",
+      "sha256": "c1a201ca8455292eb9898e82596addcd2ef22d6dee5de356ac3ab742d16eb467"
+    },
+    {
+      "path": "scripts/capture_native_resources.py",
+      "sha256": "274616e3bacd7284d739285157b14f5769639739319a86ddb74fc619c6b9de80"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "sha256": "60b1a6d3ecd4f747271bae0f2912ae7eee11fda5569ead66948d0517fa41aff0"
+    },
+    {
+      "path": "scripts/ci_ios.sh",
+      "sha256": "0d9401aca4ff08244315c31dc9425bda9cfbf0c72c6e135c7bf89510821bb4cb"
+    },
+    {
+      "path": "scripts/ci_reader_diagnostic.sh",
+      "sha256": "3f2fb44ede4c3cd346f0ba8354f883a811c157ef376792e4b73fb1768ed633c7"
+    },
+    {
+      "path": "scripts/test_ci_failure_paths.py",
+      "sha256": "094b9da47d6efc695d2586f31fade8f0f066f333a0e82bbfb8ea02cac2ea2608"
+    },
+    {
+      "path": "scripts/test_ui_baseline.py",
+      "sha256": "b0ee758eeeb560f3b892b331499c2bf5e7a68b7ef8537bba0854fbb808b3da9a"
+    },
+    {
+      "path": "scripts/verify_ui_baseline.py",
+      "sha256": "6cddd790af333fc8acf9f6ab976b54b5f6a566245e4ceffa2daf83b311f033e7"
+    }
+  ],
+  "initialImplementationChangedPaths": [
+    ".github/workflows/ios-build.yml",
+    "App/AppServices.swift",
+    "App/Reader/ReaderSettingsPersistence.swift",
+    "App/Reader/ReaderViewModel.swift",
+    "Documentation/READER_ISOLATION_PLAN.md",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md",
+    "Tests/iOS/ReaderLifecycleTests.swift",
+    "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+    "project.yml",
+    "scripts/ci_reader_diagnostic.sh"
+  ],
+  "initialImplementationWindows": {
+    "swiftFiles": 451,
+    "addedSyntaxDiagnostics": 0,
+    "retainedVendorGrammarLimitations": 54,
+    "toolingTests": 17,
+    "SwiftCompiled": false
+  },
+  "latestVerifiedSourceRevision": "ff196499c340760471afbed318d9ac99debaa432"
 }

@@ -1,4 +1,6 @@
 @testable import ReadiumAdapter
+@testable import ReadiumNavigator
+import ReadiumShared
 import ReadingInterfaces
 import SwiftUI
 import UIKit
@@ -8,6 +10,23 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    func testContinuousLayoutDisablesSpreadsWithoutChangingPagedPreference() throws {
+        for preference in [EPUBPreferences(spread: .auto), EPUBPreferences(spread: .always), EPUBPreferences(spread: .never)] {
+            let expected = try XCTUnwrap(preference.spread)
+            var continuous = preference; continuous.infiniteScroll = true
+            let resolved = EPUBSettings(preferences: continuous, defaults: EPUBDefaults(), metadata: Metadata())
+            XCTAssertTrue(resolved.infiniteScroll); XCTAssertTrue(resolved.scroll)
+            XCTAssertEqual(resolved.spread, .never, "Single-page continuous slots must not trigger a double-spread reload on orientation changes")
+            continuous.infiniteScroll = false
+            let paged = EPUBSettings(preferences: continuous, defaults: EPUBDefaults(), metadata: Metadata())
+            XCTAssertFalse(paged.infiniteScroll); XCTAssertEqual(paged.spread, expected)
+        }
+        let inherited = EPUBSettings(preferences: EPUBPreferences(), defaults: EPUBDefaults(infiniteScroll: true, spread: .always), metadata: Metadata())
+        XCTAssertTrue(inherited.infiniteScroll); XCTAssertTrue(inherited.scroll); XCTAssertEqual(inherited.spread, .never)
+        let explicitPaged = EPUBSettings(preferences: EPUBPreferences(infiniteScroll: false), defaults: EPUBDefaults(infiniteScroll: true, spread: .always), metadata: Metadata())
+        XCTAssertFalse(explicitPaged.infiniteScroll); XCTAssertEqual(explicitPaged.spread, .always)
+    }
+
     @MainActor func testPagedReopenRestoresFirstCharacterOfLongParagraph() async throws {
         let probe = Self.pagedRestoreProbe()
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)

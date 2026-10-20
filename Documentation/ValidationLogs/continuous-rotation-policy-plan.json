@@ -1,0 +1,75 @@
+{
+  "recordedAtUTC": "2026-10-20T01:22:05.616667+00:00",
+  "run": 39272564753,
+  "sourceRevision": "e85c25f2eee1878bdeb09f5a96dc6193c783ed62",
+  "extraction": "Read-only original xcresult diagnostics tree / UI runner app stdout, four log files recovered; no new native run. Bounded parser inspected this subtree only, not system.logarchive.",
+  "artifact": 12199630365,
+  "appStdout": ".cache/recovery/20261019-webkit-loading/old-ui-xcresult/StandardOutputAndStandardError-com.xianxiareader.app.txt",
+  "appStdoutBytes": 14049034,
+  "appStdoutSHA256": "3804b4791522c0698d7649269cf65cd5317ab01a08ca32770c97787fc03db027",
+  "events": [
+    {
+      "line": 97471,
+      "text": "2026-10-19 15:19:49.963755+0000 XianxiaReader[41173:111036] XRReadingLifecycle D3E58E25:request continuous=true attached=false loading=false hasURL=false initialization=false/false cleared=false"
+    },
+    {
+      "line": 97474,
+      "text": "2026-10-19 15:19:50.286479+0000 XianxiaReader[41173:111036] XRReadingLifecycle D3E58E25:window.attached continuous=true attached=true loading=true hasURL=true initialization=false/false cleared=false"
+    },
+    {
+      "line": 120327,
+      "text": "2026-10-19 15:20:14.529868+0000 XianxiaReader[41173:111036] XRReadingLifecycle D3E58E25:clear continuous=true attached=true loading=true hasURL=true initialization=false/false cleared=false"
+    }
+  ],
+  "observedSeconds": 24.566113,
+  "interpretation": "At final charcoal landscape, old ready views were cleared, replacement D3E58E25 attached with loading=true and initialization=false/false, then cleared without any recorded navigation or initialization event. This localizes this failure before DOM/locator restore; it does not uniquely identify stalled WebKit startup or its system cause.",
+  "policyDefect": "Infinite-scroll preference documents disabled spreads; controller makes every continuous chapter a single spread, but resolved EPUBSettings retains auto spread. View size change toggles spreadEnabled and queues invalidatePaginationView/reloadSpreads, discarding otherwise ready continuous WebViews.",
+  "sourcePointers": [
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift:78",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift:196",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift:287",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift:771"
+  ],
+  "proposal": "Resolve spread=never for infiniteScroll only; existing continuous frame/ResizeObserver measurement keeps reflow. Preserve paged spread preference, source locator and all original UI assertions/budgets.",
+  "refs": [
+    "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
+    "https://github.com/readium/swift-toolkit/pull/811"
+  ],
+  "referenceLimits": "PR811 head5e22cb79782d667778a1c9516ad713171853b3f6 remains open/unmerged; inspected ViewModel and Settings patches retain this gap. No claim this fix is upstream-shipped. Existing bounded single-page implementation is local.",
+  "applied": true,
+  "nativeCompiled": false,
+  "expectedNativeSelection": "continuous-rotation",
+  "expectedSelected": 6,
+  "expectedUnit": 150,
+  "expectedUI": 29,
+  "expectedFull": 179,
+  "originalInputs": [
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
+      "sha256": "75d4226b83dd7a9a4a41b1746268056ccf89dd3e6793f22651f1a8b441915f3a"
+    },
+    {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "sha256": "aac841f013a8d9dbab49345154422bdbee6dfba9ee3a7e47addf3ac4dd92132b"
+    }
+  ],
+  "appliedAtUTC": "2026-10-20T01:36:31.550611+00:00",
+  "changedPaths": [
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "scripts/ci_reader_diagnostic.sh",
+    ".github/workflows/ios-build.yml",
+    "scripts/verify_ui_baseline.py",
+    "scripts/test_ui_baseline.py"
+  ],
+  "windows": {
+    "swiftGrammarFiles": 453,
+    "newDiagnostics": 0,
+    "vendorLimitations": 54,
+    "toolingPassed": 26,
+    "toolingSkipped": 3,
+    "bashSyntax": true,
+    "SwiftCompiled": false
+  }
+}

@@ -200,3 +200,13 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 用户确认当前交付Build29慢滚后回桌面、再打开为“已暂停”。最近4UI中Home→立即activate没有确认App进入后台，截图采样也未显示桌面；证据不足以改生产暂停逻辑。下一切片只修改原慢滚UI方法并增加background-ui单项入口。运行前确认正在慢滚，一次Home后最多10秒等待App处于后台/挂起且Springboard至少一个可点击图标，再activate；原立即暂停断言保持。前置条件失败即附状态和整屏原图并失败退出，无重按Home、无功能重试、无延长暂停等待。
 
 参考[Apple XCUIApplication.state](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.property)和固定[Firefox iOS c603c9c BaseTestCase.swift](https://github.com/mozilla-mobile/firefox-ios/blob/c603c9cd2274930f5011fbb243745caadb6abe08/firefox-ios/firefox-ios-tests/Tests/XCUITests/BaseTestCase.swift#L66)。采用其Home→确认后台/桌面→activate顺序；允许真实后台或已挂起，不复制Firefox特定runner图标名、忽略wait结果或额外idle sleep。当前CI使用Xcode16.4/iOS18.5，行为仍须原生验证。深灰横屏加载失败继续单列，当前切片不改变旋转或字体生产路径。
+
+## 后台1/1通过后：连续模式旋转的最小生产切片
+
+[39352276145](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39352276145)/ff196499实际1/1，0失败/跳过，test/summary/export0，编译诊断0，556输入与artifact12234387680完整SHA/CRC已核。日志53.23秒Home、56.76秒桌面图标、59.18秒activate，原立即暂停断言通过；已查看62.56秒原图，真实正文和已暂停控制可见，完整录屏未逐帧验收。生产暂停逻辑不改，旧未确认后台的失败仍保留，Build29手机反馈独立记录。
+
+从39272564753原始xcresult只读补出UI runner/app/session/scheduling四份日志，不再依据超时的simctl空日志。深灰横屏替换视图D3E58E25在15:19:49.963755请求、15:19:50.286479附窗，直到15:20:14.529868被清理仍未记录navigation/initialization，loading=true。此失败发生在DOM和Locator恢复之前，尚不能唯一归因WebKit内部或宿主。
+
+已定位一个可消除的触发链：本地infiniteScroll协议写明关闭双页、Navigator创建连续章节时也固定单页，但EPUBSettings仍解析spread=.auto；ViewModel在横竖变化时翻转spreadEnabled，队列失效后销毁/重载整组连续WebView。固定[Readium3.11 ViewModel](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift)的自动双页逻辑适用于原分页；[PR811](https://github.com/readium/swift-toolkit/pull/811)最新核实head5e22cb7仍open/unmerged，其Settings/ViewModel补丁也保留该缺口。该PR仅集成参考，不当作正式上游修复。
+
+当前仅在EPUBSettings偏好解析中令infiniteScroll使用spread=.never，保留分页auto/always/never与defaults/显式模式优先级。连续frame/ResizeObserver测量路径继续承担旋转重排；不改字体、完整Locator、预算、依赖和原UI断言。一个新增纯设置回归覆盖三种分页偏好、继承默认连续以及显式切回分页；旧RenderingTests方法主体保持。UPSTREAM摘要登记对应源，CI新continuous-rotation选择6项：该回归、原两字体、原章跳转、原连续六字体和原浅深旋转UI。Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，尚非Swift编译；预期150集成+29UI=179，完整179和设备Release待验证。单元复用守卫同步150，当前旧失败UI不能作为可复用基线。
