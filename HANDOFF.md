@@ -1,5 +1,9 @@
 # 当前断点：连续偏移直接验证完成；分页另查，R3顺延（2026-10-21）
 
+最新：608a98f/39472174050原生2/2通过，原test exit0，driver因要求负对照必须失败而exit1，后半未执行、无候选；不能写成源码失败或问题已修。189523字节中间文字与7977082字节完整原件均SHA/CRC已核。原JS观察读取矩形/样式、包ResizeObserver/rAF，加上canonical返回调试JSON后的scrollX/documentWidth读取，可能改变布局/时序（尚非已证根因）。已改成不读矩形/样式/不包Resize/rAF的有界写入/scroll事件记录，canonical仅在滚动前保存已计算target/width并返回原Bool，补原生requested/initial/script-returned尺寸。新driver允许基线exit0/65且真实保留baselineWasNegative，0不能当修复或负对照，不再因此关闭warm环境。正例8个原case：原6直接位置/TXT/连续检查加两字体初始化关闭/迟到回调，生产预算/原断言未改。新source尚未编译/冻结/派发，R3未做，无修复候选与关机计划。
+
+当前唯一运行：staged源608a98f81cac8210a283fabd228086267218ce05 / codex/diagnose-paged-font-restore-stage2 / CI39472174050。已派发一次，Windows456语法新增0/既有54、64工具59过5POSIX跳过（21.937s）、Bash语法过；新driver fixture在Linux前置先验5种结果，未过不会开始native。observer .cache/recovery/observe_paged_font_staged.py / session45449，前缀staged，run进入“Validate reviewed paged font candidate...”时会保存staged-interim-artifacts并输出BASELINE TEXT READY，随后最多15分钟等待候选。候选必须608a98f精确child并仅改白名单Vendor，固定ref refs/heads/codex/fix-paged-font-restore-stage2；尚未存在/推送候选，不能把诊断当修复。取baseline文字优先（小artifact），判明go输入/初始pending/真实尺寸/JS target-before-after后再修；不盲猜源码。若baseline准备无效或全绿将止于原件，不称根因已修。最终完整产物会保留baseline原xcresult及正例6项；workflow head是baseline，若安装候选须以patched-inputs.json证明实际编译candidate SHA，不能混称run head。用户不接夜间问题、无需手机通知；分页未验证修好前不关机，R3顺延到下轮。
+
 分页首轮诊断f620349/CI39465081517已失败1/2，103779244字节artifact已SHA/CRC核验。原生账证明：保存/重开返回/重建输入均p25/1049（progression0.37037），新view第一次publish已是h1/0、x0；hidden fixture本次通过。排除本样本采样/数据库丢完整锚点，尚不能区分初始go未生效、尺寸未定或后续重置。已新增requested/initial/canonical-script有界metadata，复用JS writer探针并使用既有storageRoot测试init，不增加await/预算。下一轮staged控制先保留失败baseline文字，最多15分钟等待本Agent审阅后的exact-child候选，只允许Nav/Reflowable/Pagination/UPSTREAM差异，然后同runner/DerivedData跑原6直接case；无候选则明确失败/保留原件，不自动补丁、不导出IPA。此等待是CI调试输入门槛，不改变生产3/20秒预算。R3今晚不做，分页修复验证完成再关机。
 
 旧JS写入观察39348950147已是2/2且没有候选reset writer，不能当旧回跳已修。本轮新增区分条件为native锚点阶段账（sample/submit/reload/publish），JS探针只复用既有fixture；若只得到重放成功，不据此修复/关闭问题。

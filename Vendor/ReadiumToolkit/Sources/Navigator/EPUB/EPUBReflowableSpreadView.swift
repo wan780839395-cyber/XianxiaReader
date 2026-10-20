@@ -286,7 +286,8 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
                 kind = "locator"
                 char = locator.locations.domRange?.jsonObject["start"]?.object?["charOffset"]?.double ?? -1
             }
-            print("XR_PAGED_GO phase=\(phase) kind=\(kind) char=\(char) width=\(bounds.width) height=\(bounds.height) webWidth=\(webView.bounds.width) webHeight=\(webView.bounds.height) contentWidth=\(scrollView.contentSize.width) x=\(scrollView.contentOffset.x) attached=\(window != nil) loaded=\(isSpreadLoaded)")
+            let identifier = String(describing: ObjectIdentifier(self))
+            print("XR_PAGED_GO view=\(identifier) phase=\(phase) kind=\(kind) char=\(char) width=\(bounds.width) height=\(bounds.height) webWidth=\(webView.bounds.width) webHeight=\(webView.bounds.height) contentWidth=\(scrollView.contentSize.width) x=\(scrollView.contentOffset.x) attached=\(window != nil) loaded=\(isSpreadLoaded)")
         #endif
     }
 
@@ -379,38 +380,34 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
             do {
                 let json = try locator.jsonString()
                 #if DEBUG
-                    let completion = "JSON.stringify({ok:true,char:locator.locations.domRange?.start?.charOffset,before,target,x:scrollX,y:scrollY,width:innerWidth,height:innerHeight,rectLeft:rect.left,rectTop:rect.top,documentWidth:document.documentElement.scrollWidth,scrollingWidth:document.scrollingElement?.scrollWidth,clientWidth:document.scrollingElement?.clientWidth,fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status})"
+                    let record = "window.__xrCanonicalGoTarget={char:locator.locations.domRange?.start?.charOffset,target,width};"
                 #else
-                    let completion = "true"
+                    let record = ""
                 #endif
                 let result = await evaluateScript("""
                     (() => {
                       const locator = \(json);
                       const rect = (\(Self.continuousAnchorRectFunction))(locator);
                       if (!rect || innerWidth <= 0) return false;
-                      const before = scrollX;
+                      const before = scrollX, width = innerWidth;
                       let target;
                       if (\(viewModel.infiniteScroll)) {
                         const offset = locator.locations?.xianxiaViewportOffset;
                         const top = Math.max(0, rect.top + scrollY - (Number.isFinite(offset) ? offset : 0));
                         target = top;
+                        \(record)
                         window.scrollTo({top,behavior:'instant'});
                       } else {
                         const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
                         target = page * innerWidth;
+                        \(record)
                         window.scrollTo({left:page * innerWidth,behavior:'instant'});
                       }
-                      return \(completion);
+                      return true;
                     })()
                     """)
                 let value = try result.get()
-                #if DEBUG
-                    if let text = value as? String {
-                        let data = try JSONSerialization.jsonObject(with: Data(text.utf8)) as? [String: Any]
-                        print("XR_CANONICAL_RESTORE \(text)")
-                        return (data?["ok"] as? Bool) == true
-                    }
-                #endif
+                tracePagedGo("script-returned", .locator(locator))
                 return (value as? Bool) == true
             } catch {
                 log(.error, error)

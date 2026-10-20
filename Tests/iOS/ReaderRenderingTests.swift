@@ -235,7 +235,7 @@ final class ReaderRenderingTests: XCTestCase {
               });
             }});
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        let engine = ReadiumReaderEngine(additionalUserScripts: [delay, Self.pagedRestoreProbe()])
+        let engine = ReadiumReaderEngine(additionalUserScripts: [delay, Self.pagedNavigationWriterProbe()])
         var interaction = ReadingInteraction(); interaction.reduceMotion = true
         try engine.setInteraction(interaction)
         try engine.setReadingFonts([initial, intermediate, final])
@@ -364,7 +364,7 @@ final class ReaderRenderingTests: XCTestCase {
                                 const r=document.createRange(),n=c.startContainer,o=c.startOffset;r.setStart(n,o);r.setEnd(n,Math.min(n.length,o+1));
                                 carets.push({x,y,tag:n.parentElement?.tagName,id:n.parentElement?.id,offset:o,rect:point(r.getClientRects()[0])});}
                               return JSON.stringify({href:location.pathname,x:scrollX,y:scrollY,width:innerWidth,height:innerHeight,
-                                ready:document.readyState,fontReady:window.__xrPreviewReadySettled,deep,carets,trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters});})()
+                                ready:document.readyState,fontReady:window.__xrPreviewReadySettled,deep,carets,canonicalTarget:window.__xrCanonicalGoTarget,trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters});})()
                             """))
                     } catch { dom = "read failed: \(error)" }
                 }
@@ -548,7 +548,7 @@ final class ReaderRenderingTests: XCTestCase {
             try await services.files.saveReadingInteraction(interaction)
             var initialAppearance = ReadingAppearance(); initialAppearance.fontScale = 1
             try await services.files.saveReadingAppearance(initialAppearance)
-            let engine = ReadiumReaderEngine(additionalUserScripts: [Self.pagedRestoreProbe()], storageRoot: root)
+            let engine = ReadiumReaderEngine(additionalUserScripts: [Self.pagedNavigationWriterProbe()], storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
             // Match the existing open(engine) fixture's foreground precondition
@@ -769,7 +769,7 @@ final class ReaderRenderingTests: XCTestCase {
                                     return {time:performance.now(),y:scrollY,height:innerHeight,documentHeight:document.documentElement.scrollHeight,
                                       beforeSelection:point(\(nextAnchorLocations)),saved:point(\(savedLocationsJSON))};
                                   })(),
-                                  trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters})
+                                  canonicalTarget:window.__xrCanonicalGoTarget,trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters})
                                 """)
                             let details = "phase=\(phase) font=\(bundled.rawValue) continuous=\(continuous) "
                                 + "alpha=\(web.scrollView.alpha) nativeOffset=\(web.scrollView.contentOffset) "
@@ -1150,6 +1150,32 @@ final class ReaderRenderingTests: XCTestCase {
         XCTAssertEqual(try continuousScroll(engine).accessibilityValue, "上下整屏")
     }
 
+    // Do not read rectangles/styles or wrap ResizeObserver/rAF: those reads can
+    // force layout and change the initial-restore race being observed.
+    @MainActor private static func pagedNavigationWriterProbe() -> WKUserScript {
+        WKUserScript(source: """
+            (()=>{
+              const trace=window.__xrPagedRestoreTrace=[], writers=window.__xrPagedRestoreWriters=[];
+              const record=(phase,args)=>{
+                const value=args[0], requested=typeof value==='object'?value?.left:value;
+                writers.push({phase,requested,at:performance.now(),stack:String(new Error().stack||'')});
+                if(writers.length>24)writers.shift();
+              };
+              const windowScroll=window.scrollTo;
+              window.scrollTo=function(...args){record('window-scrollTo',args);return windowScroll.apply(this,args);};
+              const elementScroll=Element.prototype.scrollTo;
+              Element.prototype.scrollTo=function(...args){record('element-scrollTo',args);return elementScroll.apply(this,args);};
+              const descriptor=Object.getOwnPropertyDescriptor(Element.prototype,'scrollLeft');
+              if(descriptor?.set)Object.defineProperty(Element.prototype,'scrollLeft',{
+                ...descriptor,set(value){record('scrollLeft',[value]);return descriptor.set.call(this,value);}
+              });
+              addEventListener('scroll',()=>{
+                trace.push({at:performance.now(),x:scrollX,y:scrollY});if(trace.length>24)trace.shift();
+              },{passive:true});
+            })()
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+    }
+
     @MainActor private static func pagedRestoreProbe() -> WKUserScript {
         WKUserScript(source: """
             (()=>{
@@ -1433,7 +1459,7 @@ final class ReaderRenderingTests: XCTestCase {
                     continue
                 }
                 do {
-                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,trace:JSON.stringify(window.__xrPagedRestoreTrace),writers:JSON.stringify(window.__xrPagedRestoreWriters),caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
+                    let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,canonicalTarget:JSON.stringify(window.__xrCanonicalGoTarget),trace:JSON.stringify(window.__xrPagedRestoreTrace),writers:JSON.stringify(window.__xrPagedRestoreWriters),caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
                     diagnostic += " DOM=\(String(describing: value))"
                 } catch { diagnostic += " DOM error=\(error.localizedDescription)" }
             }

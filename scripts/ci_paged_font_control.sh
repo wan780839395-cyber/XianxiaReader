@@ -50,15 +50,16 @@ from pathlib import Path
 import json,sys
 status,folder=sys.argv[1:]
 d=json.loads(Path(folder,'baseline/test-results-summary.json').read_text())
-assert int(status)==65 and d['totalTestCount']==2 and d['failedTests']>0 and d['skippedTests']==0,d
+assert int(status) in (0,65) and d['totalTestCount']==2 and d['skippedTests']==0,d
+assert (int(status)==0)==(d['failedTests']==0),d
 allowed={'ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()','ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()'}
-assert d.get('testFailures') and all(f['testIdentifierString'] in allowed for f in d['testFailures']), d
-Path(folder,'baseline-failed.json').write_text(json.dumps(dict(originalExit=65,summary=d))+'\n')
-print('Original failing baseline retained. This is not a passing test result.')
+assert all(f['testIdentifierString'] in allowed for f in d.get('testFailures',[])), d
+Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,summary=d))+'\n')
+print('Original baseline exit retained:',status,'; a green replay is not a fix.')
 PY
     ;;
   patched)
-    test -f "$folder/baseline-failed.json"
+    test -f "$folder/baseline-result.json"
     reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-restore-stage2}"
     deadline=$((SECONDS + 900))
     while true; do
@@ -82,14 +83,15 @@ Path(folder,'candidate-revision.txt').write_text(revision+'\n')
 Path(folder,'candidate-delta.json').write_text(json.dumps(sorted(changed))+'\n')
 PY
     verify_inputs "$candidate" patched
-    run_cases position-fix patched
+    run_cases paged-font-acceptance patched
     if (( statuses[0] != 0 )); then exit "${statuses[0]}"; fi
     python3 - "$folder" <<'PY'
 from pathlib import Path
 import json,sys
 d=json.loads(Path('build/test-results-summary.json').read_text())
-assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==6 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
-Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=65,patchedOriginalExit=0,passed=6,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
+assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==8 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
+baseline=json.loads(Path(sys.argv[1],'baseline-result.json').read_text())
+Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],patchedOriginalExit=0,passed=8,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
 PY
     ;;
   *) exit 2 ;;

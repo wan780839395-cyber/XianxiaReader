@@ -14,6 +14,18 @@ case "$selection" in
   position-control-baseline)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes)
     ;;
+  paged-font-acceptance)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView
+      -only-testing:XianxiaReaderTests/TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader
+    )
+    ;;
   position-fix)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph
