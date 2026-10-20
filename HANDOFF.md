@@ -1,5 +1,11 @@
 # 当前断点：连续偏移直接验证完成；分页另查，R3顺延（2026-10-21）
 
+派发前：Windows456语法新增0/既有54，63工具59通过4POSIX跳过，22.800秒。诊断仅两个原分页字体case；私有长链只选false，原断言/预算保持。普通HEAD/index、其余505输入及上一轮连续修正保持。最新用户不需要夜间问题/手机通知，必要问题写交接留待早晨；分页问题解决并保存结果后关机，R3下一轮。不安排定时关机、不在失败未决时先关。
+
+分页诊断切片：仅DEBUG最多64条采样/提交/重建/发布的字偏移、类别、revision、native几何与view身份；不记录正文/完整selector/href，不增await或改行为预算。原隐藏字体fixture复用现有pagedRestoreProbe记录脚本写入；新paged-font选择仅两个原分页字体case（长链私有冻结仅分页，默认仍双模式）。本轮不实施R3，先Windows检查，尚未编译/派发/取得新结果。参考固定Readium3.11 spreadDidLoad/spreadLoaded与native load状态差异；官方源https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift。
+
+最新用户授权（2026-10-21）：先单独查清并修好分页换字体回章头，再继续R3；控制改动/验证范围。当前只读核查原件，尚无生产改动/新CI；分页深字p25/1016→h1原因未定。开始基线build/maintenance/PagedFont-20261021/start.json，保留原HEAD/index及已有改动。新增用户指示：本次工作完成并保存交接后关机，覆盖之前保持开机；尚未安排关机。需要用户决定则保留现场不先关机。手机Codex/Remote入口已询问，主动推送未验证，不能承诺送达。
+
 连续阅读偏移的直接行为已验证；整组仍失败5/6，不能发布。实际源`5340a5b48aecb554fabeb7f1ad6d5da3903eeee8` / [CI39456749155](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39456749155)，原生产控制`a84b6719d17f6a49c5e709ef9d56aa86faa72a8e`。同runner、同测试输入、534+534实际blob核对：旧源指定断言误差10.875点，修正后0.875点（原<3点断言保持）；连续六字体截图后保存字delta全0、字体ready与目标字可见。实际查看六张原生正文图，不代表动效或手机验收。
 
 修正仅在`EPUBReflowableSpreadView.go(to:)`的无限连续canonical DOM分支同时消费完整字锚点与保存的viewport偏移；另同步UPSTREAM摘要。首个仅补native updateViewports的候选129e3506未修好，已撤回；不修改字体/App/Core/依赖/位置格式或预算。默认工作测试仍执行字体两模式；本次私有诊断源的字体链只选连续，不能声称其分页字体链通过。

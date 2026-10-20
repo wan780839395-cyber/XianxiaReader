@@ -139,6 +139,23 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     }
     // Bounded numeric/boolean lifecycle diagnostics; no book text, selectors or titles.
     private var preferenceReflowTrace: [String] = []
+    private var pagedAnchorTraceCount = 0
+    private func tracePagedAnchor(_ phase: String, _ locator: Locator?) {
+        #if DEBUG
+            guard infiniteScrollView == nil, pagedAnchorTraceCount < 64 else { return }
+            pagedAnchorTraceCount += 1
+            let point = locator?.locations.domRange?.jsonObject["start"]?.object
+            let selector = point?["cssSelector"]?.string ?? ""
+            let kind = selector.contains("h1") ? "heading" : selector.contains("p:nth-of-type") ? "paragraph" : "other"
+            let char = point?["charOffset"]?.double ?? -1
+            let spread = paginationView?.currentView as? EPUBSpreadView
+            let x = spread?.webView.scrollView.contentOffset.x ?? -1
+            let alpha = spread?.scrollView.alpha ?? -1
+            let loaded = spread?.isSpreadLoaded ?? false
+            let identifier = spread.map { String(describing: ObjectIdentifier($0)) } ?? "nil"
+            print("XR_PAGED_ANCHOR phase=\(phase) kind=\(kind) char=\(char) revision=\(locationUpdateRevision) x=\(x) alpha=\(alpha) loaded=\(loaded) view=\(identifier)")
+        #endif
+    }
     private func tracePreferenceReflow(_ value: String) {
         preferenceReflowTrace.append(value)
         if preferenceReflowTrace.count > 12 { preferenceReflowTrace.removeFirst() }
@@ -226,6 +243,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
             }
         } else { return false }
         guard let anchor else { tracePreferenceReflow("no DOM sample"); return false }
+        tracePagedAnchor("sample", anchor)
         tracePreferenceReflow("sampled DOM=\(anchor.locations.domRange != nil)")
         let previous = currentLocation?.href.isEquivalentTo(anchor.href) == true ? currentLocation : nil
         locationUpdateRevision &+= 1
@@ -758,6 +776,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private func _reloadSpreads() {
         let locator = currentLocation
+        tracePagedAnchor("reload", locator)
         tracePreferenceReflow("reload DOM=\(locator?.locations.domRange != nil)")
 
         guard on(.load(locator)) else { return }
@@ -951,6 +970,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         let (location, computedViewport) = await computeCurrentLocationAndViewport()
         guard locationUpdateRevision == revision, infiniteScrollView === activeInfiniteView,
               paginationView === activePaginationView, let location else { return }
+        tracePagedAnchor("publish", location)
         currentLocation = location
         viewport = computedViewport
 
@@ -1170,6 +1190,7 @@ open class EPUBNavigatorViewController: InputObservableViewController,
     /// after text reflow so an unchanged horizontal page offset cannot select
     /// different text. Continuous mode has its own ResizeObserver/anchor repair.
     public func submitPreferences(_ preferences: EPUBPreferences, reloadingPagination: Bool) {
+        tracePagedAnchor("submit", currentLocation)
         // Use the same invalidation decision as the upstream mode/layout path:
         // update injected CSS and its cache, then rebuild without dynamic writes.
         tracePreferenceReflow("submit reload=\(reloadingPagination) DOM=\(currentLocation?.locations.domRange != nil)")

@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "58954275e227f511265460140da8f7ea187459cbe3b252411c471b8ce1e99d39"
+      "sha256": "b54fa451bc1b9cfb9494814fe0ded75577ce15599e8204b542a94e047e4a3104"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
