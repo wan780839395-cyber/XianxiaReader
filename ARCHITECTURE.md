@@ -1,12 +1,12 @@
 # 架构与技术决策
 
-## I1设置逻辑模块（实现及Windows检查通过，Apple待验证）
+## 当前维护边界（2026-10-20，I0/I1完成，I2起待实施）
 
-ReaderSettingsPersistence从App移动到ReaderSettings本地包（只依赖Core/Apple Combine），仅公开现有调用需要的成员，算法与JSON路径保持。原7项测试源同时进入包内ReaderSettingsTests和原XianxiaReaderTests，精确sharedTestSources许可只适用于unit-test节点，生产源仍单一归属。默认完整CI增加同一逻辑门槛；既有workflow新增reader-logic / reader-logic-integration选择。真实编译、运行与性能须等原始CI结果，当前454语法与61工具不作为Swift验收。设计见FAST_VALIDATION.md。
+ReaderSettingsPersistence已从App移入ReaderSettings本地包，只依赖XianxiaCore/Apple Combine，仅公开既有调用需要的成员，算法/JSON路径不变。原7项测试源同时进入包内ReaderSettingsTests和原XianxiaReaderTests，精确sharedTestSources许可只允许两个unit-test节点；生产源仍单一归属。App与原iOS设置/生命周期实际编译运行35/35；macOS独立逻辑7/7且依赖树仅ReaderSettings/Core，源1545a3c/CI39398382008。默认完整CI增加同一逻辑门槛；既有workflow新增reader-logic / reader-logic-integration。完整180/真UI/原生动态/设备Release及手机验收未对本维护源执行，设计与证据见FAST_VALIDATION.md和ValidationLogs/project-isolation-i1.json。
 
-## 当前架构维护路线（2026-10-20）
+architecture-boundaries.json登记当前131个Swift源/14区域/15个图节点/4个package图条目（含Vendor）、5个精确import例外；check_architecture.py解析真实import/SwiftPM声明与XcodeGen，检查包/target循环和源码归属，并扫描实际target源路径。当前22项边界正反例、Linux完整工具61/61通过；Windows61项58通过/3既有POSIX跳过、454语法新增0/54既有限制，语法不代替编译。旧I0回执的12区域/13节点/3包是I1新增模块前历史，不能作为当前计数。
 
-用户确认全项目维护与功能隔离优先，再开发后续功能。目标依赖、状态负责人、实施切片、验收标准及未来功能接入合同见[全项目隔离与维护计划](Documentation/PROJECT_ISOLATION_PLAN.md)。I0守卫已落地：architecture-boundaries.json登记区域、依赖和5个精确例外，check_architecture.py解析真实import/SwiftPM声明与XcodeGen，检查包/target循环及编译源码归属，同时扫描实际target源路径以覆盖常规目录外的新功能；已纳入check_repository。Windows20项边界正反例及完整工具46通过/3既有POSIX跳过；源码453语法新增0，静态检查不是Swift编译。现有App功能仍共用target，不能阻止该target内全部类型访问；3个App具体适配依赖仍待I5消除，2个真实Readium集成fixture例外单列。未新增Swift target、未完成R2/R3/R4，也未进行新原生CI。
+现有App功能仍共用target，守卫不能阻止其内部全部类型访问；3个App具体适配依赖待I5消除，2个真实Readium集成fixture例外单列。反向影响映射只给保守验证计划，未知/共享输入转完整范围，不授权跳过发布门槛或复用UI。下一片I2/R2复用现有字体导入/预览服务提取编排，再按R3/R4/I5/I6推进；未来新功能接入合同与保留产品计划见PROJECT_ISOLATION_PLAN.md。
 
 ## R1设置持久化边界（Build30软件门槛通过，手机待验）
 

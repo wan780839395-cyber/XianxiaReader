@@ -1,8 +1,10 @@
 # 项目状态
 
-I1当前（2026-10-20）：设置持久化已封装为ReaderSettings本地包，原7项合同测试/fixture原文保留并接入独立macOS和原iOS target；快速脚本、严格xUnit验证及保守影响映射已实现。Windows454语法新增0/54既有限制、Python工具61项58通过/3既有POSIX本机跳过，Bash语法通过。当前冻结输入准备一次reader-logic-integration（macOS7项+原iOS35项）真实编译验证，尚未取得Apple结果；完整180/设备Release与手机验收未重跑，最后交付仍Build30。未进入R2/R3/R4。
+当前维护进度（2026-10-20）：I0依赖守卫与I1快速验证入口完成，下一片I2/R2字体编排；全项目隔离仍在推进，R3/R4/书库/导入/搜索边界与I6未完成。ReaderSettings已成为仅依赖Core的真实本地模块，原算法/文件格式/7项测试保持，App与原iOS target已接线编译。快速结果、保守影响映射和完整发布门槛分别记录，详见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)和[快速入口](Documentation/FAST_VALIDATION.md)。
 
-当前断点（2026-10-20）：维护与功能隔离优先。I0依赖守卫已落地并接入仓库检查：131个Swift文件/12区域/13个target图节点、包/target循环与5个精确例外；20项边界正反例通过，完整Python工具49项46通过/3项既有POSIX本机跳过，453语法新增0/54既有Vendor限制。529个App/Packages/Vendor/Tests/锁/project保护输入与普通HEAD/index未变；本片未跑Swift编译/原生CI、未生成项目新IPA。下一片I1快速验证入口，R2/R3/R4等仍待实施；见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)与[本片记录](Documentation/ValidationLogs/project-isolation-i0.json)。最后交付仍Build30，手机验收待反馈，后续产品计划保留。
+I1唯一[CI39398382008](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39398382008) / 源1545a3cdafa248e563c01c408e04cd8cc3e71154：macOS逻辑7/7、原iOS设置/生命周期35/35、Linux工具61/61，失败/跳过0，真实XML/xcresult摘要/完整日志及artifact摘要已核。快速步骤115秒含92.18秒编译，首次iOS接线验证1763秒含准备/编译/启动/导出，case合计1.963秒；不能称首次迁移全程只需115秒。Windows454语法新增0/54既有限制，61工具58通过/3既有POSIX跳过。564冻结输入、461个Vendor/Core/Adapter/资源/锁保护输入和普通HEAD/index保持，详见[本片回执](Documentation/ValidationLogs/project-isolation-i1.json)。
+
+当前维护源未跑完整180、真UI/原生动态、设备Release或手机验收，未生成新IPA；最终门槛留I6。最后交付仍为下述Build30，其验收只适用于对应Release源。未来产品计划完整保留，维护期间不提前实现。
 
 ## Build30 设置隔离与定位修复（2026-10-20）
 

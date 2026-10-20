@@ -1,0 +1,338 @@
+{
+  "recordedAtUTC": "2026-10-20T09:45:36.744305+00:00",
+  "slice": "I1 fast settings contract validation",
+  "status": "implemented_and_targeted_apple_validation_passed",
+  "sourceRevision": "1545a3cdafa248e563c01c408e04cd8cc3e71154",
+  "branch": "refs/heads/codex/maintenance-reader-settings",
+  "run": 39398382008,
+  "sourceInputs": 564,
+  "preservation": {
+    "recordedAtUTC": "2026-10-20T09:45:36.744305+00:00",
+    "revision": "1545a3cdafa248e563c01c408e04cd8cc3e71154",
+    "sourceInputs": 564,
+    "sourceStillFrozen": true,
+    "unchangedVendorCoreAdapterResourcesFixturesLocks": 461,
+    "algorithmEqualAfterRemovingOnlyPublicVisibility": true,
+    "originalSettingsTestsAndFixtureEqualAfterOnlyModuleImport": true,
+    "originalLifecycleSourceEqualAfterOnlyModuleImport": true,
+    "normalHeadUnchanged": true,
+    "normalIndexUnchanged": true,
+    "expectedChangedBaselinePaths": [
+      ".github/workflows/ios-build.yml",
+      "App/AppServices.swift",
+      "App/Reader/ReaderSettingsPersistence.swift",
+      "App/Reader/ReaderViewModel.swift",
+      "Documentation/architecture-boundaries.json",
+      "Tests/iOS/ReaderLifecycleTests.swift",
+      "Tests/iOS/ReaderSettingsPersistenceTests.swift",
+      "project.yml",
+      "scripts/check_architecture.py",
+      "scripts/ci_ios.sh",
+      "scripts/test_architecture.py"
+    ],
+    "newRuntimeBehavior": false
+  },
+  "windows": {
+    "swiftGrammarFiles": 454,
+    "newGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "pythonTests": 61,
+    "passed": 58,
+    "skippedExistingPOSIX": 3,
+    "swiftCompiled": false
+  },
+  "macOS": {
+    "recordedAtUTC": "2026-10-20T09:45:36.127639+00:00",
+    "validationKind": "macos_swiftpm_logic",
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "packages": [
+      "ReaderSettings",
+      "XianxiaCore"
+    ],
+    "cases": [
+      "testAppearanceWritesAcrossReadersStayOrderedAndObsoleteResultsAreNotPublished",
+      "testFlushIncludesAppearanceQueuedWhileWaitingForInteraction",
+      "testInteractionWritesKeepLatestValueAndFailureIndependentOfAppearance",
+      "testLatestAppearanceFailureIsVisibleUntilExplicitRetrySucceeds",
+      "testNewReaderRestoreWaitsForPendingAppearanceWrite",
+      "testRealFileStoreKeepsExistingPreferencePathsAndValues",
+      "testStorageReadErrorPropagatesWithoutReplacingSettingsWithDefaults"
+    ],
+    "appHostUsed": false,
+    "readiumResolved": false,
+    "iOSIntegrationAccepted": false,
+    "releaseAccepted": false,
+    "caseSecondsSummedNotWallClock": 1.521305539,
+    "buildSeconds": 92.18,
+    "stepSecondsIncludingBuild": 115.0
+  },
+  "iOSIntegration": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 35,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792489161.502,
+    "passedTests": 35,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792488195.844,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "22% of duration",
+        "text": "1 longest test run with outlier durations exceeding 0.27s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 35,
+    "cases": [
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testAppearanceRestoresBeforeOpenAndRapidEditsPersistInOrder",
+        "seconds": 0.135
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testAppearanceWriteFailureShowsRetryAndKeepsCurrentReadingSession",
+        "seconds": 0.429
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testAutomaticScrollAdditionalReduceMotionAndModeExitCannotStartMotion",
+        "seconds": 0.038
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
+        "seconds": 0.067
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings",
+        "seconds": 0.066
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testCloseDuringOpenCannotReturnReaderToReadyState",
+        "seconds": 0.033
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+        "seconds": 0.042
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testFailedOpenCanRetryAndBecomeReady",
+        "seconds": 0.042
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
+        "seconds": 0.058
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist",
+        "seconds": 0.078
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testLateBookmarkFailureAfterCloseCannotShowError",
+        "seconds": 0.035
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testLateChapterNavigationCannotHideReopenedReadersMenu",
+        "seconds": 0.043
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testLatePositionAfterCloseIsNotPersisted",
+        "seconds": 0.036
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+        "seconds": 0.044
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testNextReaderRestoresPendingSettingsFromSharedAppServices",
+        "seconds": 0.044
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testOldSettingsFailureCannotPublishIntoSameModelReopenedSession",
+        "seconds": 0.04
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+        "seconds": 0.047
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+        "seconds": 0.045
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+        "seconds": 0.033
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+        "seconds": 0.036
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+        "seconds": 0.032
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+        "seconds": 0.036
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+        "seconds": 0.103
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+        "seconds": 0.115
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+        "seconds": 0.044
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks",
+        "seconds": 0.055
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks",
+        "seconds": 0.046
+      },
+      {
+        "class": "ReaderLifecycleTests",
+        "name": "testVerticalScreenRestoreAndContinuousSwitchRetainSameSession",
+        "seconds": 0.056
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testAppearanceWritesAcrossReadersStayOrderedAndObsoleteResultsAreNotPublished",
+        "seconds": 0.044
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testFlushIncludesAppearanceQueuedWhileWaitingForInteraction",
+        "seconds": 0.007
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testInteractionWritesKeepLatestValueAndFailureIndependentOfAppearance",
+        "seconds": 0.006
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testLatestAppearanceFailureIsVisibleUntilExplicitRetrySucceeds",
+        "seconds": 0.006
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testNewReaderRestoreWaitsForPendingAppearanceWrite",
+        "seconds": 0.005
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testRealFileStoreKeepsExistingPreferencePathsAndValues",
+        "seconds": 0.014
+      },
+      {
+        "class": "ReaderSettingsPersistenceTests",
+        "name": "testStorageReadErrorPropagatesWithoutReplacingSettingsWithDefaults",
+        "seconds": 0.003
+      }
+    ],
+    "stepSecondsIncludingPreparationBuildLaunchExport": 1763.0,
+    "caseSecondsSummedNotWallClock": 1.9629999999999999,
+    "selectedSuiteWallSeconds": 2.454,
+    "sourceDiagnostics": [],
+    "diagnosticMarker": "DIAGNOSTIC ONLY: settings; test=0 summary=0 export=0; no device Release or IPA"
+  },
+  "fullReleaseGateRun": false,
+  "deviceReleaseRun": false,
+  "deviceAccepted": false,
+  "IPAProduced": false,
+  "next": "I2/R2 font orchestration: define one new slice before implementation; I6 full180/Release/native/device acceptance remain pending for maintenance source.",
+  "linuxTooling": {
+    "tests": 61,
+    "passed": 61,
+    "skipped": 0,
+    "seconds": 13.515,
+    "fullLogVerified": true
+  },
+  "artifact": {
+    "run": 39398382008,
+    "artifact": 12255325786,
+    "kind": "logic",
+    "archiveBytes": 405068,
+    "archiveSHA256": "f1f68e98c7de28763c7f09d00ac530c509b44a835aeabb3acbdb671e15ad9fe6",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39398382008\\reader-logic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39398382008\\reader-logic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39398382008\\logic-download-chunks\\0000.bin",
+        "bytes": 405068
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39398382008\\logic-diagnostics.zip",
+        "bytes": 405068,
+        "sha256": "f1f68e98c7de28763c7f09d00ac530c509b44a835aeabb3acbdb671e15ad9fe6"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "evidence": {
+    "root": "build/ci/39398382008",
+    "fullLogSHA256": "a55f6af912de90bfebf444e4a9212bc1c008bab5c1d2a6232538bd83d063aa5f",
+    "settingsIntegrationLogSHA256": "d32bc02aa4cca01b1d5e73536753dbb7f2b9c612931b7a59557afcd787307b3b",
+    "environment": "Xcode 16.4\nBuild version 16F6\nApple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)\nTarget: x86_64-apple-macosx15.0\nProductName:\t\tmacOS\nProductVersion:\t\t15.7.9\nBuildVersion:\t\t24G830\n"
+  }
+}

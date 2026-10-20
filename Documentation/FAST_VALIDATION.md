@@ -1,6 +1,6 @@
 # I1 设置逻辑快速验证
 
-2026-10-20。实现及Windows工具检查进行中；Apple编译/执行须以最终ValidationLogs/project-isolation-i1.json和HANDOFF为准，不因本文存在而宣称通过。
+2026-10-20。本片已实现并通过真实定向编译/执行，唯一CI39398382008/源1545a3cdafa248e563c01c408e04cd8cc3e71154；原件及分项回执见ValidationLogs/project-isolation-i1.json与build/ci/39398382008。本维护源未执行完整180/原生动态/设备Release或手机验收，未生成新IPA。
 
 ## 最小模块与保留合同
 
@@ -18,6 +18,19 @@ I0的生产源码单一编译归属继续保持。只对这一份精确测试文
 - 原默认完整发布路径保持，ci_ios.sh在Core/iOS原门槛之前增加同一逻辑脚本。快速结果不替代完整发布验收，开发迭代无需反复导出IPA。
 
 脚本保留真实SwiftPM退出码、完整日志和xUnit；verify_reader_logic.py要求原7个名字各执行一次，无失败/跳过/重复/遗漏，同时读取真实show-dependencies JSON，依赖树必须只有ReaderSettings与XianxiaCore。零测试、错误类别或额外依赖不能写成功回执。receipt只承认macOS逻辑，不承认iOS集成、原生体验或发布。
+
+## 本轮实测与已有分层入口
+
+| 层级 | 入口/本轮结果 | 证据范围 |
+| --- | --- | --- |
+| 仓库/工具 | check_repository与Python unittest；Linux61/61、Windows58通过3既有POSIX跳过 | 静态/工具，不代替Swift编译 |
+| 独立设置逻辑 | test_reader_logic.sh；macOS7/7，步骤115秒，编译92.18秒，case耗时之和1.521秒 | 真实依赖仅ReaderSettings/Core，未启动App/Readium |
+| App设置合同 | ci_reader_diagnostic.sh settings；原iOS35/35 | App/测试接线与设置/生命周期合同；case合计1.963秒、suite墙钟2.454秒，步骤1763秒含准备/编译/启动/导出 |
+| 真实引擎合同 | 复用ci_reader_diagnostic.sh fonts / preferences-idempotency / reader-session等既有选择，按当片合同选最小范围 | I1未执行，不复用Build30冒充当前源通过 |
+| 原生UI | 复用ci_reader_diagnostic.sh settings-ui / background-ui等既有选择 | I1未执行；XCTest与截图不代替手机动态体验 |
+| 最终发布 | ci_ios.sh / workflow full，冻结输入执行原151集成+29UI及严格设备Release | I1未执行，留I6；定向逻辑成功不授权跳过 |
+
+上述计时来自完整原始日志与job步骤，不把case耗时之和、冷编译、App启动或整个CI墙钟混成一个数字。SwiftPM还会输出一次Swift Testing“0 tests”信息；本项目7项是XCTest，必须以同轮tests.xml的精确身份核验，不能据那一行判定零执行或拿它当七项通过。
 
 ## 影响范围映射
 

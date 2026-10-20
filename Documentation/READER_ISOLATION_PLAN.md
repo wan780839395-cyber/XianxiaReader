@@ -2,7 +2,11 @@
 
 2026-10-20用户确认将隔离范围扩展到整个项目，并优先于新增功能。[全项目隔离与维护计划](PROJECT_ISOLATION_PLAN.md)负责整体依赖/测试/新功能接入与后续产品清单；本文保留R1证据及R2/R3/R4的具体职责。当前R1已通过软件门槛，其他切片未完成；总方案登记不改变其验收状态。
 
-## 当前验收（2026-10-20，Build30）
+## I1维护更新（2026-10-20）
+
+R1持久化已进一步封装为ReaderSettings本地模块，只依赖Core；原算法和测试主体保持。当前维护源1545a3c/CI39398382008真实macOS逻辑7/7、原iOS设置/生命周期35/35，无失败/跳过；快速步骤115秒含编译，未跑本维护源完整180或设备Release，未生成新IPA。I0/I1本片完成，下一片R2字体编排；R3/R4仍待实施。完整方案/接入规则见PROJECT_ISOLATION_PLAN，证据见ValidationLogs/project-isolation-i1.json。
+
+## 当前交付验收（2026-10-20，Build30）
 
 R1本片已通过39373881574/aa0a119：先行6/6、完整151+29=180/180、两Core各137与严格设备Release30，556输入/三锁/实际Vendor/字体和53旧包已核。当前8原图与四次旋转38原始帧已查看，手机/TrollStore/帧率待反馈。交付包及摘要以PROJECT_STATUS/HANDOFF和ValidationLogs/m4-settings-isolation-build30-delivery.json为准；不做R2/R3/R4/M5。以下按时间保留的失败和“下一步”仅为历史分析，不能替代当前验收或触发旧脚本重跑。
 
@@ -40,7 +44,7 @@ R1本片已通过39373881574/aa0a119：先行6/6、完整151+29=180/180、两Cor
 
 当前接入：AppServices 持有一个共享 ReaderSettingsPersistence，覆盖旧 reader 写入尚未结束时新 reader 打开这一边界；通过四个异步方法的 ReaderSettingsStorage 窄接口调用已有 BookFileStore。独立对象只导入 Combine/Foundation/XianxiaCore，无引擎/Locator/页面依赖。ViewModel 保留原 UI 入口，订阅完成结果并过滤非当前 openRequestID；关闭不丢弃已提交的用户设置。恢复设置先等待该队列，flush 会纳入等待另一条队列期间的新编辑。存储格式、原完整位置捕获、关闭界面时机及原测试预算保持。
 
-已新增 App 层具体对象 `ReaderSettingsPersistence`，迁移 `appearanceSaveTask`、`interactionSaveTask` 和相应的排队、等待与错误结果；延续既有 BookFileStore actor 写入路径和文件格式。为控制写入完成顺序与错误注入加入窄存储接口，没有通用事件总线或重构框架。
+R1当时新增 App 层具体对象 `ReaderSettingsPersistence`（I1已移入独立ReaderSettings包），迁移 `appearanceSaveTask`、`interactionSaveTask` 和相应的排队、等待与错误结果；延续既有 BookFileStore actor 写入路径和文件格式。为控制写入完成顺序与错误注入加入窄存储接口，没有通用事件总线或重构框架。
 
 `ReaderViewModel` 的 `setAppearance`、`setInteraction` 仍负责既有引擎应用与阅读编排，成功后把领域值交给设置持久化对象；`saveSettingsNow` 保留当前会话检查，只等待设置提交。`saveNow` 暂时保留既有设置等待顺序和完整位置捕获，避免提取时同时改变行为。
 
