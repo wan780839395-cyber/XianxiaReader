@@ -131,9 +131,16 @@ private enum ReaderJumpError: LocalizedError {
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
             openStatus = "正在准备字体…"
-            try await fonts.prepareForOpen()
-            try Task.checkCancellation()
-            guard openRequestID == requestID else { throw CancellationError() }
+            do {
+                let loaded = try await fonts.loadResources()
+                try Task.checkCancellation()
+                guard openRequestID == requestID else { throw CancellationError() }
+                try fonts.commitOpening(loaded, session: requestID)
+            } catch is CancellationError { throw CancellationError() }
+            catch {
+                guard openRequestID == requestID else { throw CancellationError() }
+                try fonts.reportOpeningFailure(error.localizedDescription, session: requestID)
+            }
             try engine.fontProvider?.setReadingFonts(fonts.resources)
             fonts.markResourcesInstalled()
             try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))

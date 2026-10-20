@@ -1,5 +1,23 @@
 # 项目交接：维护与功能隔离优先，Build30 已交付
 
+R2打开边界修正已实现：删除模块prepareForOpen异步包装，VM恢复原await加载→核会话→同步commitOpening→安装/应用；模块同步提交仍拒绝旧会话/取消，新增7项测试保留原断言仅更新调用桥接。只改3个Swift文件，原52测试/fixture与Core/Vendor/锁/字体不变。修正Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过（21.857秒），新源码尚未Swift编译；准备唯一同源53定向，之前52/53和A过B失败各自保留，不冒充修正后验收。
+
+R2最小A/B39411950208已自然结束failure：同runner/共同脚本/同一原test各一次，pre-R2 222f10e真实1/1（139.189秒），R2 f29c4ba真实0/1（87.752秒），失败改到756行sourceHanSans分页重开；不能归因本地网络，也不能把首轮719与这次756直接视为同根因。完整83141238字节artifact已SHA/CRC核/提取，A/B原源树/日志/summary/xcresult俱在；比较回执minimal-comparison-result.json。
+
+实际诊断：保存/closed/open-returned完整p25/char1049正确，随后字体ready/loaded但anchor false、x0/h1，晚位置回调也覆盖存储。原因未定。下一唯一源码修正假设：R2新增prepareForOpen异步封装引入了额外提交边界，恢复原ViewModel的await加载→核会话→同步提交→安装/应用顺序；只改VM.open、新模块入口、新7项测试调用桥接，不动位置算法/Vendor/原测试/预算。修前3文件ZIP已存before-open-boundary-correction.zip，f29及首两轮失败全部保留。修正后先Windows定向/静态，再冻结跑53原受影响范围（生产打开流程改变须重新验证UI，不复用首轮结果），未进入R3。
+
+R2恢复11:22UTC：工具连接刷新后旧exec65104不可用，CIM证实旧control观察器已不在；原run.json最后11:14UTC为旧快照，已重新只读查询核仍in_progress。新观察exec53955/.cache/recovery/observe_reader_fonts_r2_control.py，未重派CI。主目录生产566输入仍冻结；PROJECT_STATUS/ROADMAP/ARCHITECTURE/总方案已如实同步52/53与A/B待，不提前记R2验收。
+
+R2最小A/B已实际派发：[39411950208](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39411950208)，诊断源293251e8cf74cabcbdd3cfb946ed7203a1e0cccc / codex/diagnose-r2-fonts。独立managed worktree C:/Users/78083/.codex/worktrees/r2-font-comparison/XianxiaReader，只改workflow/harness/HANDOFF三处；App/Packages/Vendor/Tests/project/锁均与f29相同，主工作目录566输入保持冻结。harness在远程临时checkout依次测试pre-R2 222f10e与R2 f29c4ba，同runner/共同原诊断脚本，只选原失败test各一次，不改函数/断言/预算，不重试；分别保留实际源树、summary、xcresult、原退出码和上下文。任一失败整体仍非0，结果不能冒充原53通过。只读观察exec65104/.cache/recovery/observe_reader_fonts_r2_control.py，原件到build/ci/39411950208；原53观察/接收均已退出。
+
+首轮53的五张原生设置截图已实际查看：浅色选择/取消/重开均保选中，深色可读，重置后未选中；回执build/maintenance/R2-20261020/native-review.json。不称完整UI/动效/手机验收。生产不再追加修改，先等A/B原始结果区分原因。
+
+R2实际断点：唯一53项CI39406897687/f29c4ba已自然结束failure，源码真实编译0诊断，52通过/1失败/0跳过。新模块7、原字体8、设置7、生命周期28、隐藏重排1及原生picker1通过；失败原real-font用例719行在分页第一次内置字体切换后未保住正文。诊断名Continuous不等于连续模式；附件font-real-load-anchor-false/font-epub-paged证明该阶段，根因及与R2关系未定。129975990字节完整artifact已GitHubSHA/CRC核验、完整保留并按回执清重复ZIP/分片；首轮失败回执build/maintenance/R2-20261020/first-targeted-failure.json。原所有566输入继续冻结，未修改测试断言/重试/预算。
+
+下一项已明确假设：单轮同runner最小A/B，原失败test不改，分别pre-R2 222f10e与R2 f29c4ba；共同诊断脚本只选择这一项，复用已编译依赖，分别留原退出码/xcresult/日志。A也失败才有改前证据；A过B失败支持关联；两者通过只说明单项没复现，不能倒写首轮53全绿或根因已修。只改诊断harness独立分支，生产源不变，完整187/Release/设备仍留I6。
+
+R2唯一CI已实际派发：[39406897687](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39406897687)，源f29c4babbc0e92d83b286703540e1334ff771532 / codex/maintenance-reader-fonts / font-isolation。566输入已核冻结，原52个测试/fixture输入及26个非字体ReaderViewModel方法原文保持。实际仓库/Core job成功，reading-diagnostic运行中；未取得新Swift/53项原件。只读有界观察器PID20856 / exec1169，命令.cache/recovery/watch_reader_fonts_r2.py 39406897687，结果写build/ci/39406897687；一次API观察失败原stderr已留存，未重派测试。恢复先核实际run/进程，不使用旧I1观察器。预期53精确身份在build/maintenance/R2-20261020/expected-cases.json，当前回执project-isolation-r2.json为pending。
+
 R2派发前最终：Windows456语法新增0/54既有限制，62工具59通过/3既有POSIX跳过（21.156秒），Bash语法通过；133 Swift源/15区域/16节点/5例外。460个Core/Adapter/Vendor/资源/样书/锁保护输入不变（仅XianxiaReading manifest为本片新增target必要改动），原所有测试保持，普通HEAD/index保持。准备从222f10e冻结到codex/maintenance-reader-fonts，唯一选择font-isolation53项；不做完整187/设备Release/IPA。
 
 ## 当前断点：R2字体编排开始（2026-10-20）
@@ -11,6 +29,10 @@ R2基线564输入/旧文件恢复ZIP在build/maintenance/R2-20261020。影响文
 R2可恢复检查点：ReaderFonts源码、App桥接/状态转发、Package/project/边界登记已接线；7项直接模块竞态合同及font-isolation53项选择已写。原字体/生命周期测试逐字节保持；最初456语法新增0/54既有限制、61工具58通过3POSIX跳过。新增字体依赖越界负例后将跑最终Windows检查（预期62项），尚无Swift编译。R2设计/成熟实现取舍见Documentation/READER_FONT_ISOLATION.md；源码改动未进入R3/R4，尚未派发CI。
 
 R2范围自查：原unit-release工具硬编码151项，新增7直接合同后只把精确门槛提高到158并同步原工具正反例，不降低断言、不复用旧UI。Windows第一轮62项59通过/3既有POSIX跳过、456语法新增0；最后计数工具变更后重跑工具最终日志，Swift源不变。
+
+R2观察恢复10:29UTC：原watcher exec1169已因累计3次API TLS/EOF错误退出1，不再活跃；原3份stderr完整保留。仅对本地观察进程设置GODEBUG=http2client=0，单次元数据查询2.05秒成功，仍reading-diagnostic in_progress；这不证明HTTP2是根因，也没有修改CI或重跑测试。新只读观察器exec47809，命令.cache/recovery/watch_reader_fonts_r2_http1.py 39406897687，错误写独立watch-http1-error-*不覆盖旧证据。恢复时核实际CIM及run.json，所有566输入继续冻结。
+
+R2观察恢复10:40UTC：HTTP/1观察器exec47809也累计3次API错误后退出1，证明前述客户端开关未解决连接问题；原错误各自保留。按GitHub官方GET workflow run/list jobs文档，独立Python urllib只读观察成功，当前exec27936/.cache/recovery/observe_reader_fonts_r2_rest.py，每60秒读取同一个run（连续3次错误即停），原始run-rest/jobs-rest及兼容run.json保留metadataSource。真实job仍运行，未重派/取消CI，未改566输入。用户说明可能本地网络问题，作为线索而非已证实根因。恢复先核本段进程，不再复用旧CLI观察器。
 
 ## I1已完成基线（历史，以下结果保留）
 

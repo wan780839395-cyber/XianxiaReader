@@ -1,6 +1,8 @@
 # 项目状态
 
-R2进行中：ReaderFonts独立target及App/测试接线已实现，迁移目录/资源/选中判断/刷新和导入令牌；原导入/预览/字体原件及原测试保持。Windows456语法新增0/54既有限制、工具62项59通过/3既有POSIX跳过、Bash语法通过；尚未Swift编译。冻结后仅派发font-isolation53项，完整158+29=187及设备Release留I6，无新IPA。设计见Documentation/READER_FONT_ISOLATION.md；下方I1结果仅适用其原源。
+R2打开边界修正已实现：删除模块prepareForOpen异步包装，VM恢复原await加载→核会话→同步commitOpening→安装/应用；模块同步提交仍拒绝旧会话/取消，新增7项测试保留原断言仅更新调用桥接。只改3个Swift文件，原52测试/fixture与Core/Vendor/锁/字体不变。修正Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过（21.857秒），新源码尚未Swift编译；准备唯一同源53定向，之前52/53和A过B失败各自保留，不冒充修正后验收。
+
+R2当前：ReaderFonts已真实接线编译，源码编译诊断0；新字体合同7/7、原字体8/8、设置7/7、生命周期28/28、隐藏字体重排1/1、原生picker1/1通过。唯一53项CI39406897687/f29c4ba实际52通过1失败无跳过：原字体长链在分页首次内置字体切换719行未保住正文，根因及与R2关联未定。已核完整原件和五张设置截图，不能写成53全过或R2整体验收完成。正在唯一最小A/B39411950208：相同原失败test在pre-R2 222f10e/R2 f29c4ba各一次，独立诊断源293251e，不改生产/测试函数/断言/预算。完整187/Release/设备仍未执行，无新IPA。
 
 当前维护进度（2026-10-20）：I0依赖守卫与I1快速验证入口完成，下一片I2/R2字体编排；全项目隔离仍在推进，R3/R4/书库/导入/搜索边界与I6未完成。ReaderSettings已成为仅依赖Core的真实本地模块，原算法/文件格式/7项测试保持，App与原iOS target已接线编译。快速结果、保守影响映射和完整发布门槛分别记录，详见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)和[快速入口](Documentation/FAST_VALIDATION.md)。
 

@@ -6,12 +6,18 @@ import XianxiaCore
 
 /// Direct module contracts: no AppServices, file importer, engine or process-wide font registration.
 @MainActor final class ReaderFontCoordinatorTests: XCTestCase {
+    private let openingSession = UUID()
+    private func prepareOpen(_ value: ReaderFontCoordinator, session: UUID? = nil) async throws {
+        let owner = session ?? openingSession
+        let loaded = try await value.loadResources()
+        try value.commitOpening(loaded, session: owner)
+    }
     private func asset(_ name: String) throws -> ReadingFontAsset {
         try ReadingFontAsset(id: UUID(), displayName: name, fileExtension: "ttf", sha256: String(repeating: "a", count: 64), bytes: 16)
     }
     private func coordinator(_ storage: FontCatalogFixture, bundled: [ReaderFontResource] = []) -> ReaderFontCoordinator {
         let value = ReaderFontCoordinator(storage: storage) { .init(fonts: [], resources: bundled, warning: nil) }
-        value.beginSession(UUID())
+        value.beginSession(openingSession)
         addTeardownBlock { await storage.releaseAll() }
         return value
     }
@@ -20,7 +26,7 @@ import XianxiaCore
         let bundled = try asset("内置"), missing = try asset("丢失字体")
         let storage = FontCatalogFixture(); await storage.setFonts([missing]); await storage.setMissing(missing.id)
         let value = coordinator(storage, bundled: [.init(asset: bundled, fileURL: URL(fileURLWithPath: "/bundled.ttf"))])
-        try await value.prepareForOpen(); value.markResourcesInstalled()
+        try await prepareOpen(value); value.markResourcesInstalled()
         XCTAssertEqual(value.importedFonts, [missing]); XCTAssertTrue(value.isAvailable(bundled.id))
         XCTAssertFalse(value.isAvailable(missing.id)); XCTAssertNotNil(value.message)
         var saved = ReadingAppearance(); saved.importedFontID = missing.id; saved.font = .serif
@@ -33,7 +39,7 @@ import XianxiaCore
     func testBrowsingSkipsUnchangedFilesAndOnlyExplicitSelectionRequestsInstallation() async throws {
         let first = try asset("原字体"), added = try asset("外部字体")
         let storage = FontCatalogFixture(); await storage.setFonts([first])
-        let value = coordinator(storage); try await value.prepareForOpen(); value.markResourcesInstalled()
+        let value = coordinator(storage); try await prepareOpen(value); value.markResourcesInstalled()
         let initial = await storage.urlReads
         await value.refreshForBrowsing(); let unchanged = await storage.urlReads
         XCTAssertEqual(initial, unchanged)
@@ -108,9 +114,10 @@ import XianxiaCore
         let storage = FontCatalogFixture(), value = coordinator(storage)
         let started = expectation(description: "old opening suspended")
         await storage.holdNextList { started.fulfill() }
-        let opening = Task { try await value.prepareForOpen() }
+        let opening = Task { try await prepareOpen(value) }
         await fulfillment(of: [started], timeout: 10)
-        value.close(); value.beginSession(UUID()); await storage.setFonts([latest]); try await value.prepareForOpen()
+        value.close(); let newSession = UUID(); value.beginSession(newSession)
+        await storage.setFonts([latest]); try await prepareOpen(value, session: newSession)
         await storage.releaseList([old])
         do { try await opening.value; XCTFail("Late opening must be invalidated") }
         catch { XCTAssertTrue(error is CancellationError) }
@@ -120,7 +127,7 @@ import XianxiaCore
     func testCancelledBrowseCannotPublishAndReadFailurePreservesLastCatalogue() async throws {
         let saved = try asset("现有字体"), added = try asset("取消结果")
         let storage = FontCatalogFixture(); await storage.setFonts([saved])
-        let value = coordinator(storage); try await value.prepareForOpen()
+        let value = coordinator(storage); try await prepareOpen(value)
         let started = expectation(description: "cancelled refresh suspended")
         await storage.holdNextList { started.fulfill() }
         let refresh = Task { await value.refreshForBrowsing() }

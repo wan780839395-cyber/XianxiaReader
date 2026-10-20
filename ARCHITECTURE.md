@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+## R2当前实现与验收边界
+
+ReaderFonts独立target只依赖ReadingInterfaces/Core，拥有目录、资源/安装ID、选中判断、busy/message及请求身份；App仍拥有原导入/预览/Bundle/picker和锚点/引擎重开。当前133 Swift源/15区域/16节点/5精确例外，新增字体越界负例已随62工具验证；456语法新增0。真实编译0诊断，新模块7/7及其他原定向通过，但首轮53仍52过1失败，原分页内置字体长链719行待最小A/B，不能称R2全验收或完整187通过。说明见Documentation/READER_FONT_ISOLATION.md和回执；本片没有资源/锁/Vendor升级。
+
 ## 当前维护边界（2026-10-20，I0/I1完成，I2起待实施）
 
 ReaderSettingsPersistence已从App移入ReaderSettings本地包，只依赖XianxiaCore/Apple Combine，仅公开既有调用需要的成员，算法/JSON路径不变。原7项测试源同时进入包内ReaderSettingsTests和原XianxiaReaderTests，精确sharedTestSources许可只允许两个unit-test节点；生产源仍单一归属。App与原iOS设置/生命周期实际编译运行35/35；macOS独立逻辑7/7且依赖树仅ReaderSettings/Core，源1545a3c/CI39398382008。默认完整CI增加同一逻辑门槛；既有workflow新增reader-logic / reader-logic-integration。完整180/真UI/原生动态/设备Release及手机验收未对本维护源执行，设计与证据见FAST_VALIDATION.md和ValidationLogs/project-isolation-i1.json。

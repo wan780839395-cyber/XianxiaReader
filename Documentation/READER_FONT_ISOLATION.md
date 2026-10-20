@@ -1,5 +1,7 @@
 # R2 字体编排隔离
 
+R2打开边界修正已实现：删除模块prepareForOpen异步包装，VM恢复原await加载→核会话→同步commitOpening→安装/应用；模块同步提交仍拒绝旧会话/取消，新增7项测试保留原断言仅更新调用桥接。只改3个Swift文件，原52测试/fixture与Core/Vendor/锁/字体不变。修正Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过（21.857秒），新源码尚未Swift编译；准备唯一同源53定向，之前52/53和A过B失败各自保留，不冒充修正后验收。
+
 2026-10-20。本文描述本片实现合同；编译/执行状态以HANDOFF及ValidationLogs/project-isolation-r2.json为准。未验证的源码不作为已验收功能。
 
 ## 范围与状态负责人
@@ -33,6 +35,12 @@ Windows先执行check_repository.py --swift-syntax、Python tooling和Bash语法
 冻结输入后仅一次workflow的font-isolation选择：新增字体模块7、原字体8、原设置7、生命周期28、原真实字体2及原生picker1，共53项。使用原ci_reader_diagnostic.sh的退出码、xcresult、完整日志/附件及超时，不新增重试。默认Core任务保持原137项与TXT探针，本片不修改其入口。若其他边界失败，保留原件、判断关联再决定最小对照，不自动改整个项目。
 
 完整187、原生动效/更多UI、严格设备Release和普通设备/TrollStore验收留I6；本片不生成IPA。新增模块沿用iOS16/Swift tools5.10。因为现有ReaderFontResource在依赖UIKit的ReadingInterfaces，R2通过iOS target真实编译和直接模块测试验证，不宣称已有macOS无App字体快速入口，也不为得到该入口扩改接口类型/移动资源。I1设置快速路径不受影响。
+
+## 首轮实际结果与最小对照
+
+源f29c4ba/CI39406897687已真实编译，0源码诊断；53项实际52过1失败0跳过。新增模块7、原字体8、设置7、生命周期28、隐藏重排1和原生picker1全部通过；唯一旧真实字体长链在分页第一次内置字体选择719行丢失预期正文，根因及与提取关系未定。通用诊断函数名Continuous不证明连续模式，附件false/paged已核。完整原件已SHA/CRC收齐，五张原生设置状态截图已查看；首轮失败不倒写。
+
+诊断专用managed worktree/分支293251e只改workflow/harness/HANDOFF，生产/原测试与f29全同；唯一CI39411950208在同runner共用原诊断、原函数/断言/预算，分别执行pre-R2 222f10e及R2 f29各一次。它只选择原失败test，不重跑53/完整187、不生成IPA。若都通过只说明最小情境未复现；若改前也失败可证明此前存在，均不能自动归因环境或宣称根因已修。结果待回执更新。
 
 ## 已核参考与取舍
 

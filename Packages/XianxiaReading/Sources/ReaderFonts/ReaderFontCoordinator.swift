@@ -60,18 +60,16 @@ extension BookFileStore: ReaderFontCatalogStorage {}
 
     public func markResourcesInstalled() { installedIDs = Set(resources.map { $0.asset.id }) }
 
-    public func prepareForOpen() async throws {
-        guard let owner = session else { throw CancellationError() }
-        do {
-            let loaded = try await loadResources()
-            try Task.checkCancellation()
-            guard session == owner else { throw CancellationError() }
-            importedFonts = loaded.fonts; resources = loaded.resources; message = loaded.warning
-        } catch is CancellationError { throw CancellationError() }
-        catch {
-            guard session == owner else { throw CancellationError() }
-            resources = []; message = error.localizedDescription
-        }
+    /// Commit synchronously at the caller's original post-load boundary.
+    public func commitOpening(_ loaded: Snapshot, session owner: UUID) throws {
+        try Task.checkCancellation()
+        guard session == owner else { throw CancellationError() }
+        importedFonts = loaded.fonts; resources = loaded.resources; message = loaded.warning
+    }
+
+    public func reportOpeningFailure(_ description: String, session owner: UUID) throws {
+        guard session == owner else { throw CancellationError() }
+        resources = []; message = description
     }
 
     /// Loading is separate from publication: an import commits only after the reader rebuild succeeds.
