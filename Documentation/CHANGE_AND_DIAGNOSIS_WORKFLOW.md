@@ -44,3 +44,5 @@ R1设置提取本身与相关35项回归较早完成，但后续卷入UI方向�
 本轮原始日志补证：测试后的simctl log show在20秒超时，只输出getpwuid_r提示；不能把该空文件当作没有生命周期事件。已从原xcresult诊断目录只读恢复UI app stdout（14049034 bytes/SHA3804b4791522c0698d7649269cf65cd5317ab01a08ca32770c97787fc03db027）、runner stdout与session/scheduling共4份原日志，未重跑CI。下次应先利用xcresult现有完整诊断并核其source/run/hash，再考虑增加远程观测。当前解析仅用于明确子树，不声称是通用xcresult工具或解析了system.logarchive。
 
 39348950147最新成本核对：原生job1577秒，首case日志前1324.183秒，原两case合计147.142秒；原生2/2不等于根因修复。源码只增加观测时，即使转绿也要保留旧失败与观测扰动风险。独立语法预检/项目工具检查尽量先完成，再执行有区分力的最小原生选择。明细build/ci/39348950147/phase-markers.json。
+
+39354554615在check_vendor前置校验失败，原生未执行：Windows临时候选以CRLF写入，UPSTREAM按该原始字节登记，而.gitattributes提交为LF。只在Windows工作树跑校验无法发现此差异。含内容摘要的源码修订须先统一仓库EOL，再在私有候选的实际Git blob上核全部Vendor清单；数量、可归一化字节匹配和本地通过不能代替提交内容校验。该轮原失败保持，不写成Swift编译/六用例失败。

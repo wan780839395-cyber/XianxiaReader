@@ -1,6 +1,6 @@
 {
   "recordedAtUTC": "2026-10-20T01:36:30.882566+00:00",
-  "stage": "continuous-rotation-policy-applied-native-pending",
+  "stage": "continuous-rotation-digest-corrected-native-pending",
   "branch": "codex/refactor-reader-settings",
   "oldLifecycleBodiesUnchanged": 26,
   "newTests": 9,
@@ -471,8 +471,8 @@
   "expectedUnit": 150,
   "expectedUITarget": 29,
   "expectedTotal": 179,
-  "latestCompletedRun": 39352276145,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/background-precondition-39352276145.json",
+  "latestCompletedRun": 39354554615,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/continuous-rotation-39354554615-precheck-failure.json",
   "pendingLocalChange": {
     "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
     "selection": "fonts",
@@ -481,15 +481,14 @@
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39352276145,
-    "sourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
-    "selection": "background-ui",
-    "total": 1,
-    "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "conclusion": "success",
-    "status": "completed"
+    "run": 39354554615,
+    "sourceRevision": "d1ad446ca829b51bd10488797f9ce70d02002f16",
+    "status": "completed",
+    "conclusion": "failure",
+    "failedStage": "repository-checks/check_vendor",
+    "nativeExecuted": false,
+    "selectedTestsExecuted": 0,
+    "expectedSelected": 6
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {

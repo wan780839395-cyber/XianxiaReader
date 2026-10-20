@@ -14,6 +14,8 @@
 
 下一独立切片：连续模式章节固定单页，但resolved spread仍auto，使旋转触发整组WebView销毁/重开。原xcresult的D3E58E25附窗后24.566秒未进入导航/初始化，定位到DOM恢复之前。只在EPUBSettings解析infiniteScroll时固定spread=never，保留分页auto/always/never偏好；新回归覆盖模式切回/defaults。原字体、定位和旋转断言/预算保持。来源与证据在Documentation/READER_ISOLATION_PLAN.md；源码已应用；Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，均非原生编译。原生6项待执行，预期150集成+29UI=179不等于已验收。
 
+首次6项派发39354554615/d1ad446在仓库来源校验失败：Windows CRLF摘要与实际Git LF不同；原生未执行、测试执行0项。已统一LF与来源摘要，Windows预检再次通过；接下来先核提交中的完整Vendor清单，再重新派发同6项，不追加full。
+
 正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）

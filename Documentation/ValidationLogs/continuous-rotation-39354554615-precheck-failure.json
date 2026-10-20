@@ -1,0 +1,15 @@
+{
+  "recordedAtUTC": "2026-10-20T01:40:09.250347+00:00",
+  "run": 39354554615,
+  "sourceRevision": "d1ad446ca829b51bd10488797f9ce70d02002f16",
+  "conclusion": "failure",
+  "failedStage": "repository check_vendor",
+  "reason": "UPSTREAM digest described Windows CRLF file while committed Git blob is LF",
+  "localOldSHA256": "e2ff1f7b2fc685300f2adcaf10369f0d55bab29676d7472b9ee4e0309789f9dd",
+  "committedLFSHA256": "371fbdbad00f9029f6b869fc4c28c31077492ede1454438f62129dcdc1716bab",
+  "nativeExecuted": false,
+  "selectedTestsExecuted": 0,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "correctiveChange": "Normalize this reviewed source to LF and inventory that actual blob; also verify all committed Vendor inventory before next push"
+}

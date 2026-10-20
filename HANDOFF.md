@@ -14,6 +14,8 @@
 
 下一独立切片：连续模式章节固定单页，但resolved spread仍auto，使旋转触发整组WebView销毁/重开。原xcresult的D3E58E25附窗后24.566秒未进入导航/初始化，定位到DOM恢复之前。只在EPUBSettings解析infiniteScroll时固定spread=never，保留分页auto/always/never偏好；新回归覆盖模式切回/defaults。原字体、定位和旋转断言/预算保持。来源与证据在Documentation/READER_ISOLATION_PLAN.md；源码已应用；Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，均非原生编译。原生6项待执行，预期150集成+29UI=179不等于已验收。
 
+首次6项派发39354554615/d1ad446在仓库来源校验失败：Windows CRLF摘要与实际Git LF不同；原生未执行、测试执行0项。已统一LF与来源摘要，Windows预检再次通过；接下来先核提交中的完整Vendor清单，再重新派发同6项，不追加full。
+
 正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）
@@ -62,3 +64,5 @@ M4整体未完，普通设备/TrollStore、大字/VoiceOver/完整旋转及减�
 
 
 后续连续旋转候选只保存在.cache：continuous-spread-plan.json / continuous-spread-candidate.diff，尚未应用或原生编译。原xcresult已补出4份UI日志；D3E58E25在深灰横屏替换正文后24.566秒没有navigation/initialization事件。源码发现infiniteScroll文档宣称禁用spread、controller已固定单页，但EPUBSettings仍auto，横竖切换触发全量invalidate/reload；候选仅continuous解析spread=never，保留分页偏好。固定Readium3.11/PR811 head5e22已核，PR仍未合并，不能冒充上游现成修复。新回归将验证auto/always/never和defaults/显式切回，默认门槛需150集成+29UI=179，不能继续用149单元基线。当前后台run39352276145/ff19649仍冻结，不应用后续候选。
+
+ACTUAL39354554615/d1ad446 repository check_vendor failed: Windows CRLF digest vs Git LF. Native job skipped, zero selected cases executed, no diagnosticartifact. Watcher/receiver exited, no source compile result. Corrected source EOL to LF and inventory SHA371fbdbad00f9029f6b869fc4c28c31077492ede1454438f62129dcdc1716bab; production semantics unchanged. Before next push verify actual Git Vendor blobs then select same6, no full.

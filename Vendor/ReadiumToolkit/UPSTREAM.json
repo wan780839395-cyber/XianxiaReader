@@ -1439,7 +1439,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
-      "sha256": "e2ff1f7b2fc685300f2adcaf10369f0d55bab29676d7472b9ee4e0309789f9dd"
+      "sha256": "371fbdbad00f9029f6b869fc4c28c31077492ede1454438f62129dcdc1716bab"
     },
     {
       "path": "Package.swift",
