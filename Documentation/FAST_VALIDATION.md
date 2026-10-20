@@ -2,6 +2,12 @@
 
 2026-10-20。本片已实现并通过真实定向编译/执行，唯一CI39398382008/源1545a3cdafa248e563c01c408e04cd8cc3e71154；原件及分项回执见ValidationLogs/project-isolation-i1.json与build/ci/39398382008。本维护源未执行完整180/原生动态/设备Release或手机验收，未生成新IPA。
 
+## R2新增入口与当前门槛
+
+ReaderFonts已在XianxiaReading内独立编译，当前font-isolation诊断选择覆盖53项（7模块、8原字体、7设置、28生命周期、2真实字体、1原生picker），修正源410343b/39418977905通过；不生成IPA。字体仍依赖iOS的ReadingInterfaces，未建macOS无App字体入口；不要把下方I1的115秒当R2编译耗时。
+
+原测试保留，增加7字体合同后完整门槛158集成+29UI=187，unit-release的严格计数同步提高158，保护输入/环境要求不变。本维护源完整187未跑；任何生产/UI输入变化仍需新验证，不能借本入口复用旧UI。I1设置包/脚本/原7合同未改，下面计时仅保留其历史实测。
+
 ## 最小模块与保留合同
 
 ReaderSettings本地Swift包仅依赖XianxiaCore，最低iOS16/macOS13、Swift tools5.10；原ReaderSettingsPersistence从App移动到该包，仅公开现有调用需要的类型/成员，排队、错误、owner/request过滤、flush和文件路径不变。Combine来自Apple SDK，不引入OpenCombine、Readium或新远程依赖。Linux Core包保持原有依赖与测试入口。

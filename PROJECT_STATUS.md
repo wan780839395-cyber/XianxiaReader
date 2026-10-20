@@ -1,14 +1,12 @@
 # 项目状态
 
-R2打开边界修正已实现：删除模块prepareForOpen异步包装，VM恢复原await加载→核会话→同步commitOpening→安装/应用；模块同步提交仍拒绝旧会话/取消，新增7项测试保留原断言仅更新调用桥接。只改3个Swift文件，原52测试/fixture与Core/Vendor/锁/字体不变。修正Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过（21.857秒），新源码尚未Swift编译；准备唯一同源53定向，之前52/53和A过B失败各自保留，不冒充修正后验收。
+当前维护（2026-10-20）：I0依赖守卫、I1快速设置入口、I2/R2字体编排本片门槛完成；下一片I3/R3完整位置，随后R4会话/I5功能边界/I6发布。全项目隔离仍未完成，App多数功能仍共用target。后续产品计划保留，维护期间不提前实现，见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)。
 
-R2当前：ReaderFonts已真实接线编译，源码编译诊断0；新字体合同7/7、原字体8/8、设置7/7、生命周期28/28、隐藏字体重排1/1、原生picker1/1通过。唯一53项CI39406897687/f29c4ba实际52通过1失败无跳过：原字体长链在分页首次内置字体切换719行未保住正文，根因及与R2关联未定。已核完整原件和五张设置截图，不能写成53全过或R2整体验收完成。正在唯一最小A/B39411950208：相同原失败test在pre-R2 222f10e/R2 f29c4ba各一次，独立诊断源293251e，不改生产/测试函数/断言/预算。完整187/Release/设备仍未执行，无新IPA。
+R2源410343b7bbdb7b0f667d277c910f7f349a4d4ae7 / [CI39418977905](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39418977905)：真实编译0源码诊断，同源53/53无失败/跳过；新字体模块7、原字体8、设置7、生命周期28、真实字体2、原生picker1。Linux62工具/Core137/TXT4通过；Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过。566输入、26个非字体VM方法、原52测试/fixture与460保护输入保持，普通HEAD/index未改。设计与完整分项回执见[字体隔离](Documentation/READER_FONT_ISOLATION.md)、[验证记录](Documentation/ValidationLogs/project-isolation-r2.json)。
 
-当前维护进度（2026-10-20）：I0依赖守卫与I1快速验证入口完成，下一片I2/R2字体编排；全项目隔离仍在推进，R3/R4/书库/导入/搜索边界与I6未完成。ReaderSettings已成为仅依赖Core的真实本地模块，原算法/文件格式/7项测试保持，App与原iOS target已接线编译。快速结果、保守影响映射和完整发布门槛分别记录，详见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)和[快速入口](Documentation/FAST_VALIDATION.md)。
+ReaderFonts实际拥有目录/资源/选中判断/请求身份；复用原导入/预览和引擎协调。初版52/53及A/B改前过、R2失败均保留；恢复原调用方的await/同步提交边界后重新53/53，未改预算或原断言，不声称完整WebKit根因已证。断言后连续锚点偶发不匹配在改前也存在，单列R3/I6观察，不用单次样本证明改善。
 
-I1唯一[CI39398382008](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39398382008) / 源1545a3cdafa248e563c01c408e04cd8cc3e71154：macOS逻辑7/7、原iOS设置/生命周期35/35、Linux工具61/61，失败/跳过0，真实XML/xcresult摘要/完整日志及artifact摘要已核。快速步骤115秒含92.18秒编译，首次iOS接线验证1763秒含准备/编译/启动/导出，case合计1.963秒；不能称首次迁移全程只需115秒。Windows454语法新增0/54既有限制，61工具58通过/3既有POSIX跳过。564冻结输入、461个Vendor/Core/Adapter/资源/锁保护输入和普通HEAD/index保持，详见[本片回执](Documentation/ValidationLogs/project-isolation-i1.json)。
-
-当前维护源未跑完整180、真UI/原生动态、设备Release或手机验收，未生成新IPA；最终门槛留I6。最后交付仍为下述Build30，其验收只适用于对应Release源。未来产品计划完整保留，维护期间不提前实现。
+已查看当前七张原生图（五设置、两正文），未做完整动效/手机体验验收。本维护源完整158+29=187、严格设备Release、普通设备/TrollStore尚未执行，无新IPA；最后交付仍下述Build30，只对应其Release源。原生步骤1893秒含所有准备/编译/测试/导出，case合计313.263秒；分项计时不当作整条CI或纯编译耗时。
 
 ## Build30 设置隔离与定位修复（2026-10-20）
 

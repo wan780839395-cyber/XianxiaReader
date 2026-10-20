@@ -1,15 +1,15 @@
 {
-  "recordedAtUTC": "2026-10-20T10:53:04.552505+00:00",
+  "recordedAtUTC": "2026-10-20T12:50:42.732930+00:00",
   "slice": "I2/R2 font catalogue orchestration",
-  "status": "R2_regression_suspected_restoring_original_open_commit_boundary",
-  "sourceRevision": "f29c4babbc0e92d83b286703540e1334ff771532",
+  "status": "implemented_targeted_native_validation_passed",
+  "sourceRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
   "branch": "refs/heads/codex/maintenance-reader-fonts",
-  "run": 39406897687,
+  "run": 39418977905,
   "sourceInputs": 566,
-  "protectedInputsUnchanged": 460,
+  "hypothesis": "Remove extra async prepare wrapper and preserve original caller load/guard/synchronous commit/apply order; causal root not yet proven.",
   "preservation": {
-    "recordedAtUTC": "2026-10-20T10:20:15.557571+00:00",
-    "revision": "f29c4babbc0e92d83b286703540e1334ff771532",
+    "recordedAtUTC": "2026-10-20T12:40:49.827724+00:00",
+    "revision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
     "sourceInputs": 566,
     "sourceStillFrozen": true,
     "ordinaryHeadIndexUnchanged": true,
@@ -70,593 +70,363 @@
     "pythonTests": 62,
     "passed": 59,
     "skippedExistingPOSIX": 3,
-    "swiftCompiled": false,
-    "toolingSeconds": 21.156,
-    "bashSyntaxPassed": true
+    "toolingSeconds": 21.857,
+    "swiftCompiled": false
   },
   "targeted": {
     "expectedTotal": 53,
     "expectedUnitIntegration": 52,
     "expectedNativeUI": 1,
     "rawEvidenceVerified": true,
-    "passed": 52,
-    "failed": 1,
+    "swiftCompiled": true,
+    "passed": 53,
+    "failed": 0,
     "skipped": 0,
     "cases": [
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testBrowsingSkipsUnchangedFilesAndOnlyExplicitSelectionRequestsInstallation",
-        "result": "passed",
-        "seconds": 0.065
+        "seconds": 0.026
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testCancelledBrowseCannotPublishAndReadFailurePreservesLastCatalogue",
-        "result": "passed",
-        "seconds": 0.018
+        "seconds": 0.017
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testCloseReopenRejectsLateOpenCatalogueWithoutChangingNewSession",
-        "result": "passed",
-        "seconds": 0.119
+        "seconds": 0.011
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testCloseReopenRejectsOldImportAndItsCleanupCannotClearNewBusyState",
-        "result": "passed",
-        "seconds": 0.053
+        "seconds": 0.02
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testImportInvalidatesPendingBrowseAndPublishesOnlyAfterExplicitCommit",
-        "result": "passed",
-        "seconds": 0.012
+        "seconds": 0.016
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testOlderBrowseCompletionAndCleanupCannotReplaceOrInvalidateNewerBrowse",
-        "result": "passed",
-        "seconds": 0.015
+        "seconds": 0.013
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderFontCoordinatorTests",
         "name": "testOpenLoadsBundledResourcesAndMissingImportFallsBackWithoutChangingPreference",
-        "result": "passed",
-        "seconds": 0.086
+        "seconds": 0.026
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testAppearanceRestoresBeforeOpenAndRapidEditsPersistInOrder",
-        "result": "passed",
-        "seconds": 0.1
+        "seconds": 0.102
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testAppearanceWriteFailureShowsRetryAndKeepsCurrentReadingSession",
-        "result": "passed",
-        "seconds": 0.06
+        "seconds": 0.355
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testAutomaticScrollAdditionalReduceMotionAndModeExitCannotStartMotion",
-        "result": "passed",
-        "seconds": 0.271
+        "seconds": 0.039
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
-        "result": "passed",
-        "seconds": 0.054
+        "seconds": 0.07
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings",
-        "result": "passed",
-        "seconds": 0.064
+        "seconds": 0.072
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testCloseDuringOpenCannotReturnReaderToReadyState",
-        "result": "passed",
-        "seconds": 0.027
+        "seconds": 0.038
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
-        "result": "passed",
-        "seconds": 0.034
+        "seconds": 0.049
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testFailedOpenCanRetryAndBecomeReady",
-        "result": "passed",
-        "seconds": 0.033
+        "seconds": 0.048
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
-        "result": "passed",
-        "seconds": 0.042
+        "seconds": 0.077
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist",
-        "result": "passed",
-        "seconds": 0.037
+        "seconds": 0.05
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testLateBookmarkFailureAfterCloseCannotShowError",
-        "result": "passed",
-        "seconds": 0.029
+        "seconds": 0.037
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testLateChapterNavigationCannotHideReopenedReadersMenu",
-        "result": "passed",
-        "seconds": 0.031
+        "seconds": 0.041
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testLatePositionAfterCloseIsNotPersisted",
-        "result": "passed",
-        "seconds": 0.028
+        "seconds": 0.036
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
-        "result": "passed",
-        "seconds": 0.031
+        "seconds": 0.2
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testNextReaderRestoresPendingSettingsFromSharedAppServices",
-        "result": "passed",
-        "seconds": 0.04
+        "seconds": 0.038
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testOldSettingsFailureCannotPublishIntoSameModelReopenedSession",
-        "result": "passed",
         "seconds": 0.04
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
-        "result": "passed",
-        "seconds": 0.048
+        "seconds": 0.053
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
-        "result": "passed",
-        "seconds": 0.041
+        "seconds": 0.089
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
-        "result": "passed",
-        "seconds": 0.034
+        "seconds": 0.049
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
-        "result": "passed",
-        "seconds": 0.039
+        "seconds": 0.054
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
-        "result": "passed",
-        "seconds": 0.03
+        "seconds": 0.041
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
-        "result": "passed",
-        "seconds": 0.025
+        "seconds": 0.034
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
-        "result": "passed",
-        "seconds": 0.092
+        "seconds": 0.102
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
-        "result": "passed",
-        "seconds": 0.06
+        "seconds": 0.079
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
-        "result": "passed",
-        "seconds": 0.032
+        "seconds": 0.041
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
         "name": "testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks",
-        "result": "passed",
-        "seconds": 0.035
-      },
-      {
-        "target": "XianxiaReaderTests",
-        "class": "ReaderLifecycleTests",
-        "name": "testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks",
-        "result": "passed",
         "seconds": 0.043
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderLifecycleTests",
+        "name": "testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks",
+        "seconds": 0.042
+      },
+      {
+        "target": "XianxiaReaderTests",
+        "class": "ReaderLifecycleTests",
         "name": "testVerticalScreenRestoreAndContinuousSwitchRetainSameSession",
-        "result": "passed",
-        "seconds": 0.049
+        "seconds": 0.053
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderRenderingTests",
         "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
-        "result": "failed",
-        "seconds": 51.769
+        "seconds": 139.733
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderRenderingTests",
         "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
-        "result": "passed",
-        "seconds": 6.948
+        "seconds": 11.918
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testAppearanceWritesAcrossReadersStayOrderedAndObsoleteResultsAreNotPublished",
-        "result": "passed",
-        "seconds": 0.078
+        "seconds": 0.105
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testFlushIncludesAppearanceQueuedWhileWaitingForInteraction",
-        "result": "passed",
-        "seconds": 0.006
+        "seconds": 0.009
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testInteractionWritesKeepLatestValueAndFailureIndependentOfAppearance",
-        "result": "passed",
-        "seconds": 0.006
+        "seconds": 0.009
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testLatestAppearanceFailureIsVisibleUntilExplicitRetrySucceeds",
-        "result": "passed",
-        "seconds": 0.005
+        "seconds": 0.007
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testNewReaderRestoreWaitsForPendingAppearanceWrite",
-        "result": "passed",
-        "seconds": 0.004
+        "seconds": 0.143
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testRealFileStoreKeepsExistingPreferencePathsAndValues",
-        "result": "passed",
-        "seconds": 0.027
+        "seconds": 0.017
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReaderSettingsPersistenceTests",
         "name": "testStorageReadErrorPropagatesWithoutReplacingSettingsWithDefaults",
-        "result": "passed",
         "seconds": 0.003
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible",
-        "result": "passed",
-        "seconds": 1.394
+        "seconds": 1.541
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testBundledChineseOriginalFontsHaveGlyphsLicensesAndDoNotUseImportSlots",
-        "result": "passed",
-        "seconds": 0.572
+        "seconds": 0.836
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testExternalFontBrowsingDoesNotRebuildUntilExplicitSelectionAndKeepsFullAnchor",
-        "result": "passed",
-        "seconds": 0.163
+        "seconds": 0.113
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testFontCaptureCloseReopenLateResultCannotRebuildNewReader",
-        "result": "passed",
-        "seconds": 0.079
+        "seconds": 0.075
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testFontCaptureFailureDoesNotCloseReaderAndReimportRetries",
-        "result": "passed",
-        "seconds": 0.095
+        "seconds": 0.077
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testFontImportRebuildFullAnchorSaveResetAndMissingAssetFallback",
-        "result": "passed",
-        "seconds": 0.099
+        "seconds": 0.071
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testRealCoreTextFileValidationDuplicateAndOriginalBytesPreserved",
-        "result": "passed",
-        "seconds": 0.122
+        "seconds": 0.093
       },
       {
         "target": "XianxiaReaderTests",
         "class": "ReadingFontTests",
         "name": "testTransparentDecodedPreviewCacheReusesSixFacesAndBoundsPixelMemory",
-        "result": "passed",
-        "seconds": 0.235
+        "seconds": 0.348
       },
       {
         "target": "XianxiaReaderUITests",
         "class": "ReadingFontUITests",
         "name": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
-        "result": "passed",
-        "seconds": 150.756
+        "seconds": 156.064
       }
     ],
-    "summary": {
-      "devicesAndConfigurations": [
-        {
-          "device": {
-            "architecture": "x86_64",
-            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
-            "deviceName": "iPhone 16 Pro",
-            "modelName": "iPhone 16 Pro",
-            "osBuildNumber": "22F77",
-            "osVersion": "18.5",
-            "platform": "iOS Simulator"
-          },
-          "expectedFailures": 0,
-          "failedTests": 1,
-          "passedTests": 52,
-          "skippedTests": 0,
-          "testPlanConfiguration": {
-            "configurationId": "1",
-            "configurationName": "Test Scheme Action"
-          }
-        }
-      ],
-      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
-      "expectedFailures": 0,
-      "failedTests": 1,
-      "finishTime": 1792493000.001,
-      "passedTests": 52,
-      "result": "Failed",
-      "skippedTests": 0,
-      "startTime": 1792492009.775,
-      "statistics": [],
-      "testFailures": [
-        {
-          "failureText": "failed - Continuous reader did not reach expected state at testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes():719",
-          "targetName": "XianxiaReaderTests",
-          "testIdentifier": 36,
-          "testIdentifierString": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()",
-          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
-          "testName": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()"
-        }
-      ],
-      "title": "Test - XianxiaReader",
-      "topInsights": [
-        {
-          "category": "Longest Test Runs",
-          "impact": "82% of duration",
-          "text": "1 longest test run with outlier durations exceeding 22.65s (three standard deviations)"
-        }
-      ],
-      "totalTestCount": 53
-    }
+    "stepSecondsIncludingPreparationBuildLaunchExport": 1893.0,
+    "caseSecondsSummedNotWallClock": 313.2629999999999,
+    "diagnosticMarker": "DIAGNOSTIC ONLY: font-isolation; test=0 summary=0 export=0; no device Release or IPA",
+    "sourceDiagnostics": []
   },
-  "fullMaintenanceGate": {
-    "unitIntegration": 158,
-    "nativeUI": 29,
-    "total": 187,
-    "executed": false
-  },
-  "nativeVisualReview": true,
-  "deviceReleaseRun": false,
-  "deviceAccepted": false,
-  "IPAProduced": false,
-  "next": "Remove the extra R2 async prepareForOpen wrapper; restore original caller await/guard/synchronous publication/engine-application order without touching Readium or position algorithms.",
-  "artifact": {
+  "firstTrial": {
+    "sourceRevision": "f29c4babbc0e92d83b286703540e1334ff771532",
     "run": 39406897687,
-    "artifact": 12258492740,
-    "kind": "diagnostic",
-    "archiveBytes": 129975990,
-    "archiveSHA256": "d64b74290983155caddc4f469593180481af595d30e037caa6addfccb80550b4",
-    "githubDigestMatches": true,
-    "zipCRC": true,
-    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic",
-    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic",
-    "extractionScope": "complete artifact",
-    "duplicatePathsRemoved": [
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0000.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0001.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0002.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0003.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0004.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0005.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0006.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0007.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0008.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0009.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0010.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0011.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0012.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0013.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0014.bin",
-        "bytes": 8388608
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-download-chunks\\0015.bin",
-        "bytes": 4146870
-      },
-      {
-        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic-diagnostics.zip",
-        "bytes": 129975990,
-        "sha256": "d64b74290983155caddc4f469593180481af595d30e037caa6addfccb80550b4"
-      }
-    ],
-    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
-    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    "swiftCompiled": true,
+    "sourceDiagnostics": 0,
+    "passed": 52,
+    "failed": 1,
+    "skipped": 0,
+    "failure": {
+      "test": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "sourceLine": 719,
+      "phase": "First bundled-font selection in paged mode before the first font-reopen checkpoint",
+      "basis": "Current attachments contain font-real-load-anchor-false and font-epub-paged; no reopen checkpoints emitted. Continuous is a generic diagnostic function name, not proof of scrolling mode.",
+      "rootCause": "undetermined",
+      "relationToR2": "undetermined; the path uses ReaderViewModel selection and must be compared"
+    },
+    "fullHistoricalReportAtRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
+    "localReceipt": "build/maintenance/R2-20261020/first-targeted-failure.json"
   },
-  "swiftCompiled": true,
-  "sourceCompileDiagnostics": [],
-  "failure": {
-    "test": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
-    "sourceLine": 719,
-    "phase": "First bundled-font selection in paged mode before the first font-reopen checkpoint",
-    "basis": "Current attachments contain font-real-load-anchor-false and font-epub-paged; no reopen checkpoints emitted. Continuous is a generic diagnostic function name, not proof of scrolling mode.",
-    "rootCause": "undetermined",
-    "relationToR2": "undetermined; the path uses ReaderViewModel selection and must be compared"
-  },
-  "fullLogSHA256": "1452c6cd159b1c386fd90602b790f349026a7724f05af100d1ac0387715907fe",
-  "nativeReview": {
-    "recordedAtUTC": "2026-10-20T11:02:25.435327+00:00",
-    "run": 39406897687,
-    "revision": "f29c4babbc0e92d83b286703540e1334ff771532",
-    "scope": "Five original native font-settings checkpoints, not full reading/motion/device acceptance",
-    "images": [
-      {
-        "name": "reader-font-default-restored-build23_0_B03E0745-0A5B-488A-B59E-4158D4238E2B.png",
-        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\35289044-0A24-4C56-944A-8302BD3BB61C.png",
-        "sha256": "555f7d2de6206af47b4940ecda50dce924b9528e4be061e823a7ac81ca6f5565"
-      },
-      {
-        "name": "reader-font-selected-dark-build23_0_EE44750D-29A1-4EF2-AD89-6391F4632845.png",
-        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\892E4756-3DBC-4FAD-B267-0101D0CE0986.png",
-        "sha256": "79436ef9b06ee6d3249cfaade5cd58f793e42ca4f927323db7b9748f4384f31a"
-      },
-      {
-        "name": "reader-font-reopened-build23_0_F23AFDB1-5D6C-4609-BDE6-F3288AEB5010.png",
-        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\AE933D64-9838-4B0F-B8EF-42831DEA4DD4.png",
-        "sha256": "bb39c0104644d73b02e74a19da4310bf0eba1468d963faebc83077530fe100dc"
-      },
-      {
-        "name": "reader-font-picker-cancel-build23_0_FDF26155-D124-4532-A92E-F9E513273EBB.png",
-        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\9D694C86-664B-4F79-9FE4-E7C940778A96.png",
-        "sha256": "1663aae2cbfb4e6e94c979f60a56e5278ca48a4a26c56f7b3e832c2a9e9efd92"
-      },
-      {
-        "name": "reader-font-selected-light-build23_0_EB88539E-408E-498B-ABF1-97E9D6744ECB.png",
-        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\9F336BAD-D4A7-4B96-94A8-1F914E20AB30.png",
-        "sha256": "ae93c620820cfbd82fbda10723be92b70116dd27dd2f6ce7591df3a76b44df42"
-      }
-    ],
-    "observations": [
-      "Light selection, cancelled picker and reopening show the same one imported font with selected tick.",
-      "Dark theme keeps labels/sample readable and preserves selected tick.",
-      "Reset returns the imported-font card to unselected state.",
-      "No loading/error overlay visible in these five settings screenshots."
-    ],
-    "motionReviewed": false,
-    "fullUIAccepted": false,
-    "deviceAccepted": false
-  },
-  "minimalComparison": {
+  "matchedComparison": {
     "recordedAtUTC": "2026-10-20T11:55:27.871392+00:00",
     "run": 39411950208,
     "harnessRevision": "293251e8cf74cabcbdd3cfb946ed7203a1e0cccc",
@@ -829,12 +599,217 @@
     "rootCause": "undetermined",
     "nextHypothesis": "Remove the extra R2 async prepareForOpen wrapper; restore original caller await/guard/synchronous publication/engine-application order without touching Readium or position algorithms."
   },
-  "linuxTooling": {
+  "firstTrialScopedNativeReview": {
+    "recordedAtUTC": "2026-10-20T11:02:25.435327+00:00",
+    "run": 39406897687,
+    "revision": "f29c4babbc0e92d83b286703540e1334ff771532",
+    "scope": "Five original native font-settings checkpoints, not full reading/motion/device acceptance",
+    "images": [
+      {
+        "name": "reader-font-default-restored-build23_0_B03E0745-0A5B-488A-B59E-4158D4238E2B.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\35289044-0A24-4C56-944A-8302BD3BB61C.png",
+        "sha256": "555f7d2de6206af47b4940ecda50dce924b9528e4be061e823a7ac81ca6f5565"
+      },
+      {
+        "name": "reader-font-selected-dark-build23_0_EE44750D-29A1-4EF2-AD89-6391F4632845.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\892E4756-3DBC-4FAD-B267-0101D0CE0986.png",
+        "sha256": "79436ef9b06ee6d3249cfaade5cd58f793e42ca4f927323db7b9748f4384f31a"
+      },
+      {
+        "name": "reader-font-reopened-build23_0_F23AFDB1-5D6C-4609-BDE6-F3288AEB5010.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\AE933D64-9838-4B0F-B8EF-42831DEA4DD4.png",
+        "sha256": "bb39c0104644d73b02e74a19da4310bf0eba1468d963faebc83077530fe100dc"
+      },
+      {
+        "name": "reader-font-picker-cancel-build23_0_FDF26155-D124-4532-A92E-F9E513273EBB.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\9D694C86-664B-4F79-9FE4-E7C940778A96.png",
+        "sha256": "1663aae2cbfb4e6e94c979f60a56e5278ca48a4a26c56f7b3e832c2a9e9efd92"
+      },
+      {
+        "name": "reader-font-selected-light-build23_0_EB88539E-408E-498B-ABF1-97E9D6744ECB.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39406897687\\diagnostic\\ReaderSnapshots\\9F336BAD-D4A7-4B96-94A8-1F914E20AB30.png",
+        "sha256": "ae93c620820cfbd82fbda10723be92b70116dd27dd2f6ce7591df3a76b44df42"
+      }
+    ],
+    "observations": [
+      "Light selection, cancelled picker and reopening show the same one imported font with selected tick.",
+      "Dark theme keeps labels/sample readable and preserves selected tick.",
+      "Reset returns the imported-font card to unselected state.",
+      "No loading/error overlay visible in these five settings screenshots."
+    ],
+    "motionReviewed": false,
+    "fullUIAccepted": false,
+    "deviceAccepted": false
+  },
+  "firstTrialLinuxTooling": {
     "tests": 62,
     "passed": 62,
     "skipped": 0,
     "seconds": 11.239,
     "fullLogVerified": true
+  },
+  "firstTrialLinuxCore": {
+    "uniqueExecutedTests": 137,
+    "stepSucceeded": true,
+    "txtReleaseProbes": 4,
+    "allChecksPassed": true,
+    "deviceAcceptance": false,
+    "artifactReceipt": "build/ci/39406897687/core-download-receipt.json"
+  },
+  "fullMaintenanceGate": {
+    "unitIntegration": 158,
+    "nativeUI": 29,
+    "total": 187,
+    "executed": false
+  },
+  "deviceReleaseRun": false,
+  "deviceAccepted": false,
+  "IPAProduced": false,
+  "next": "I3/R3 position responsibility slice; define its contract first and carry the separate post-assertion observation. I6 full187/native motion/Release/device gates remain pending.",
+  "artifact": {
+    "run": 39418977905,
+    "artifact": 12264842210,
+    "kind": "diagnostic",
+    "archiveBytes": 40474049,
+    "archiveSHA256": "6f424933f406843b9f8573421509bd62d27a40a015fa51c12f9c9efe40bb8d41",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-download-chunks\\0000.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-download-chunks\\0001.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-download-chunks\\0002.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-download-chunks\\0003.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-download-chunks\\0004.bin",
+        "bytes": 6919617
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic-diagnostics.zip",
+        "bytes": 40474049,
+        "sha256": "6f424933f406843b9f8573421509bd62d27a40a015fa51c12f9c9efe40bb8d41"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "linuxTooling": {
+    "tests": 62,
+    "passed": 62,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 12.614,
+    "fullLogVerified": true
+  },
+  "coreOriginalMarkers": [
+    "core-tests\tCompile and test Core with official Swift toolchain\t2026-10-20T12:01:40.2720428Z [137/137] Testing XianxiaCoreTests.TXTReadingPlanCacheTests/testValidChecksumCannotApproveContinuationOrPrematureScalarCuts"
+  ],
+  "evidence": {
+    "root": "build/ci/39418977905",
+    "fullLogSHA256": "de0c7451a5f5feff34729ab724a10cb125daf75fcaffd6c1dd2757963807bb3f",
+    "diagnosticLogSHA256": "6c40e71fdb94bc660ad4941cac3594b17b9352773cb2b1bd708d7f995e3c205e",
+    "environment": "Xcode 16.4\nBuild version 16F6\nApple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)\nTarget: x86_64-apple-macosx15.0\nProductName:\t\tmacOS\nProductVersion:\t\t15.7.9\nBuildVersion:\t\t24G830\n"
+  },
+  "swiftCompiled": true,
+  "nativeVisualReview": true,
+  "nativeReview": {
+    "recordedAtUTC": "2026-10-20T12:50:42.732930+00:00",
+    "run": 39418977905,
+    "sourceRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
+    "images": [
+      {
+        "name": "reader-font-default-restored-build23_0_0DCD28D3-4F46-4FE7-9DB0-97E9CF961526.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\C475B05E-0375-4950-BC57-A52EA95D9695.png",
+        "sha256": "709f6f37051a3086f5d94f39463afd222bb30e90bc39cf1c4fd1a41116174349"
+      },
+      {
+        "name": "reader-font-selected-dark-build23_0_9AC3A381-0295-4A02-AA5A-8F985FEC87B0.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\226077E5-AEC3-4C34-84E1-94572C513A86.png",
+        "sha256": "6ecfbf60c746c14420faba034aec2d7b3c2b282c01347ea1728b20c6ff533791"
+      },
+      {
+        "name": "reader-font-reopened-build23_0_8A69D663-2B85-49F4-82DE-9664BF26E961.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\48B2AE13-5CAA-4717-BCC9-C58D2F46E4D3.png",
+        "sha256": "13bb838a7843d75eca606bd6e06019ba0989028527291549344c23f53b44ba6b"
+      },
+      {
+        "name": "reader-font-picker-cancel-build23_0_7FCBFE15-A5E8-4D66-8B3C-43F4182DFEE2.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\D65A2A6E-5568-448D-95C3-BD52F1237BD7.png",
+        "sha256": "918e8a961702af97dc5071d12f5b896a3d3f95b6d95189e04aef2fa125413300"
+      },
+      {
+        "name": "reader-font-selected-light-build23_0_D5C1B583-84DE-4912-A4EA-73A8F5733063.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\AE5314F0-33DC-4F17-8351-B43CD50A7048.png",
+        "sha256": "367413e169533465a4f6cc2ca420d4937ff1e49fc217b12d33c18e5113802a7d"
+      },
+      {
+        "name": "font-epub-continuous-build23_0_E2F96CA4-0262-4086-AD35-893B25DF9529.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\F19AE8F4-E6CF-4503-8460-4899796551B3.png",
+        "sha256": "8fb62a60eb447ed2f795713be2f4699e9b4ceea321226969fbb50f1614fb8bea"
+      },
+      {
+        "name": "font-epub-paged-build23_0_40186CA2-F3F3-4C32-9A1C-8B88E065956B.png",
+        "file": "D:\\ai项目\\XianxiaReader\\build\\ci\\39418977905\\diagnostic\\ReaderSnapshots\\FCA8B3B5-D9C9-41F8-B1FB-29D1BBEF7E4C.png",
+        "sha256": "faf37b8a9ed11488fcf9900f6f86e31326daa5190d5bd57c3290e275c8759097"
+      }
+    ],
+    "scope": "Five original settings checkpoints plus two initial imported-font reading captures in paged/continuous mode.",
+    "observations": [
+      "Selection/cancel/reopen retain the imported-font tick and readable sample.",
+      "Dark theme stays readable; reset leaves imported font unselected.",
+      "The two selected reading captures contain readable dark text pages, not loading/error overlays."
+    ],
+    "allFontFramesViewed": false,
+    "motionReviewed": false,
+    "fullUIAccepted": false,
+    "deviceAccepted": false
+  },
+  "postAssertionPositionObservation": {
+    "baseline": {
+      "groups": 12,
+      "true": 10,
+      "false": {
+        "zhuque/true": {
+          "anchor": false,
+          "native": "phase=passed font=zhuque continuous=true alpha=1.0 nativeOffset=(0.0, 4824.0) nativeSize=(402.0, 18422.0) fontMessage=nil errorMessage=nil",
+          "attachment": "46D68A3B-91C9-407D-912A-2ECC9FD9CBCA.txt"
+        },
+        "sourceHanSans/true": {
+          "anchor": false,
+          "native": "phase=passed font=sourceHanSans continuous=true alpha=1.0 nativeOffset=(0.0, 4822.0) nativeSize=(402.0, 18423.0) fontMessage=nil errorMessage=nil",
+          "attachment": "9AF8C95A-9FA7-43D1-9542-D803CAB2B948.txt"
+        }
+      }
+    },
+    "corrected": {
+      "groups": 12,
+      "true": 11,
+      "false": {
+        "xiaoWei/true": {
+          "anchor": false,
+          "native": "phase=passed font=xiaoWei continuous=true alpha=1.0 nativeOffset=(0.0, 4808.0) nativeSize=(402.0, 18824.0) fontMessage=nil errorMessage=nil",
+          "attachment": "43F409E0-B40D-437D-8CCA-0E24FD45EFC9.txt"
+        }
+      }
+    },
+    "meaning": "A separate post-assertion continuous-mode observation also exists before R2. These single samples do not establish a rate improvement, root cause, long-term stability or chapter-head loss.",
+    "followUp": "R3/I6: correlate the same canonical anchor, viewport offset and settled layout across later frames, without changing original production/assertion budgets.",
+    "currentDiagnostic": "xiaoWei/continuous anchorCondition=false after the original assertion passed; native offset4808, font loaded, errors nil.",
+    "baselineDiagnostic": "sourceHanSans/continuous and zhuque/continuous also have anchorCondition=false after original assertions passed; native offsets4822/4824."
   },
   "linuxCore": {
     "uniqueExecutedTests": 137,
@@ -842,6 +817,16 @@
     "txtReleaseProbes": 4,
     "allChecksPassed": true,
     "deviceAcceptance": false,
-    "artifactReceipt": "build/ci/39406897687/core-download-receipt.json"
+    "artifactReceipt": "build/ci/39418977905/core-download-receipt.json"
+  },
+  "correctionConclusion": "Restoring the original caller async/publication/application boundary was followed by fresh53/53 under unchanged assertions and budgets. Earlier failures retained; a single pass does not prove the complete WebKit timing root cause.",
+  "comparisonWorktree": {
+    "identityKey": "C:\\Users\\78083\\.codex\\worktrees\\r2-font-comparison\\XianxiaReader",
+    "attachmentType": "archived_worktree",
+    "artifactId": "01a15955-0b84-71b0-a754-db3860d1fbf8",
+    "sourceRevision": "293251e8cf74cabcbdd3cfb946ed7203a1e0cccc",
+    "recoverable": true,
+    "verifiedBy": "Codex list_artifacts after archive_worktree",
+    "checkoutStillExists": false
   }
 }

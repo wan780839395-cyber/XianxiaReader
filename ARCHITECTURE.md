@@ -1,16 +1,12 @@
 # 架构与技术决策
 
-## R2当前实现与验收边界
+## 当前维护边界（2026-10-20，I0/I1/I2完成，I3起待实施）
 
-ReaderFonts独立target只依赖ReadingInterfaces/Core，拥有目录、资源/安装ID、选中判断、busy/message及请求身份；App仍拥有原导入/预览/Bundle/picker和锚点/引擎重开。当前133 Swift源/15区域/16节点/5精确例外，新增字体越界负例已随62工具验证；456语法新增0。真实编译0诊断，新模块7/7及其他原定向通过，但首轮53仍52过1失败，原分页内置字体长链719行待最小A/B，不能称R2全验收或完整187通过。说明见Documentation/READER_FONT_ISOLATION.md和回执；本片没有资源/锁/Vendor升级。
+ReaderSettings保持Core-only独立包，原设置7项合同保留；ReaderFonts是XianxiaReading内已实际接线/编译的target，只依赖ReadingInterfaces/Core，拥有目录、资源/已安装ID、选中判断、busy/message与请求身份。App转发通知并保留原导入/预览/Bundle/picker和完整锚点/引擎重开；原await加载后在调用方核会话、同步提交并应用，不为纯提取额外包装async prepare。R2源410343b/39418977905真实53/53、0源码诊断，旧失败/A-B及未定时序风险独立保留。
 
-## 当前维护边界（2026-10-20，I0/I1完成，I2起待实施）
+当前133 Swift源/15区域/16图节点/4包图条目（含Vendor），5个精确import例外；check_architecture解析import、SwiftPM/XcodeGen依赖/源码归属并拒绝越界和循环。23项边界正反例随Linux62/62工具通过，Windows59通过3既有POSIX跳过，456语法新增0/54既有限制。语法不代替编译，静态守卫仍不能隔离同一个App target内全部类型；3个具体适配组装依赖待I5消除，2个真实Readium fixture例外单列。
 
-ReaderSettingsPersistence已从App移入ReaderSettings本地包，只依赖XianxiaCore/Apple Combine，仅公开既有调用需要的成员，算法/JSON路径不变。原7项测试源同时进入包内ReaderSettingsTests和原XianxiaReaderTests，精确sharedTestSources许可只允许两个unit-test节点；生产源仍单一归属。App与原iOS设置/生命周期实际编译运行35/35；macOS独立逻辑7/7且依赖树仅ReaderSettings/Core，源1545a3c/CI39398382008。默认完整CI增加同一逻辑门槛；既有workflow新增reader-logic / reader-logic-integration。完整180/真UI/原生动态/设备Release及手机验收未对本维护源执行，设计与证据见FAST_VALIDATION.md和ValidationLogs/project-isolation-i1.json。
-
-architecture-boundaries.json登记当前131个Swift源/14区域/15个图节点/4个package图条目（含Vendor）、5个精确import例外；check_architecture.py解析真实import/SwiftPM声明与XcodeGen，检查包/target循环和源码归属，并扫描实际target源路径。当前22项边界正反例、Linux完整工具61/61通过；Windows61项58通过/3既有POSIX跳过、454语法新增0/54既有限制，语法不代替编译。旧I0回执的12区域/13节点/3包是I1新增模块前历史，不能作为当前计数。
-
-现有App功能仍共用target，守卫不能阻止其内部全部类型访问；3个App具体适配依赖待I5消除，2个真实Readium集成fixture例外单列。反向影响映射只给保守验证计划，未知/共享输入转完整范围，不授权跳过发布门槛或复用UI。下一片I2/R2复用现有字体导入/预览服务提取编排，再按R3/R4/I5/I6推进；未来新功能接入合同与保留产品计划见PROJECT_ISOLATION_PLAN.md。
+原151集成增加7字体合同成为158，UI仍29，总187；完整发布、原生动态/手机、严格设备Release留I6。R3/I6须单独复核断言后的连续锚点诊断不匹配（改前也有），不从53项通过推出后续每一帧均稳定。R2未做位置算法/Readium修复，字体逻辑仍通过iOS验证，不宣称已有无App/macOS字体入口。设计/参考/证据见READER_FONT_ISOLATION、FAST_VALIDATION及ValidationLogs/project-isolation-r2.json；下一片先定义R3合同。
 
 ## R1设置持久化边界（Build30软件门槛通过，手机待验）
 
