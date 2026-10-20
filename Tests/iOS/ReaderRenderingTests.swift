@@ -650,6 +650,7 @@ final class ReaderRenderingTests: XCTestCase {
             let metricValue = try await XCTUnwrap(active()).evaluateJavaScript(metricScript) as? Double
             let firstMetric = try XCTUnwrap(metricValue)
             var nextAnchorScript = anchorScript
+            var nextAnchorLocations = "null"
             func sampleNextAnchor() async throws {
                 var captured: ReadingPosition?
                 try await waitUntil {
@@ -658,6 +659,7 @@ final class ReaderRenderingTests: XCTestCase {
                 }
                 let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: XCTUnwrap(captured).locatorData) as? [String: Any])
                 let locations = try XCTUnwrap(payload["locations"] as? [String: Any])
+                nextAnchorLocations = String(decoding: try JSONSerialization.data(withJSONObject: locations), as: UTF8.self)
                 let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
                 let point = try XCTUnwrap(range["start"] as? [String: Any])
                 let selector = try XCTUnwrap(point["cssSelector"] as? String)
@@ -723,6 +725,9 @@ final class ReaderRenderingTests: XCTestCase {
                 recordReopenCheckpoint("visible-before-save", font: bundled.rawValue)
                 await model.saveNow()
                 recordReopenCheckpoint("save-returned", font: bundled.rawValue)
+                let savedPayload = try XCTUnwrap(JSONSerialization.jsonObject(with: XCTUnwrap(model.position).locatorData) as? [String: Any])
+                let savedLocations = try XCTUnwrap(savedPayload["locations"] as? [String: Any])
+                let savedLocationsJSON = String(decoding: try JSONSerialization.data(withJSONObject: savedLocations), as: UTF8.self)
                 model.close()
                 recordReopenCheckpoint("closed", font: bundled.rawValue)
                 await model.open()
@@ -739,6 +744,20 @@ final class ReaderRenderingTests: XCTestCase {
                                   family:document.body?getComputedStyle(document.body).fontFamily:null,
                                   fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status,
                                   faces:Array.from(document.fonts).map(f=>({family:f.family,status:f.status})),
+                                  geometry:(()=>{
+                                    function point(locations){
+                                      const p=locations?.domRange?.start, n=p&&document.querySelector(p.cssSelector)?.childNodes[p.textNodeIndex];
+                                      if(!n||n.nodeType!==3||p.charOffset>=n.length)return null;
+                                      const r=document.createRange();r.setStart(n,p.charOffset);r.setEnd(n,p.charOffset+1);
+                                      const b=r.getBoundingClientRect();
+                                      return {point:p,expectedTop:locations.xianxiaViewportOffset,
+                                        rect:b.toJSON(),rects:Array.from(r.getClientRects(),x=>x.toJSON()),
+                                        visible:b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight,
+                                        delta:b.top-(locations.xianxiaViewportOffset??0)};
+                                    }
+                                    return {time:performance.now(),y:scrollY,height:innerHeight,documentHeight:document.documentElement.scrollHeight,
+                                      beforeSelection:point(\(nextAnchorLocations)),saved:point(\(savedLocationsJSON))};
+                                  })(),
                                   trace:window.__xrPagedRestoreTrace,writers:window.__xrPagedRestoreWriters})
                                 """)
                             let details = "phase=\(phase) font=\(bundled.rawValue) continuous=\(continuous) "
@@ -758,6 +777,13 @@ final class ReaderRenderingTests: XCTestCase {
                         return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                     }
                     await recordRenderedReopen("passed")
+                    if continuous {
+                        // Read two subsequent presented frames, retaining the original
+                        // assertions and budgets above. This probe performs no writes.
+                        let web = try XCTUnwrap(active())
+                        _ = try await web.evaluateJavaScript("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(true))))")
+                        await recordRenderedReopen("two-frames-later")
+                    }
                     XCTAssertNil(model.errorMessage, "A rendered font must not leave a reading alert; font=\(bundled.rawValue) continuous=\(continuous)")
                 } catch {
                     await recordRenderedReopen("failed")

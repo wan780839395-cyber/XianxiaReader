@@ -1,4 +1,14 @@
-# 项目交接：R2字体编排本片完成，下一片R3
+# 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
+
+用户授权先查清断言后连续模式锚点不匹配，确有问题则修复，再继续位置隔离。先复用39418977905与39411950208完整附件；尚未开始新CI。假设分支：真实布局后移/旧回调回跳，或测试期望锚点与实际重开后锚点不同。必须核清样本所属阶段和坐标，不能仅凭非零offset否认位置问题，也不能把后续false倒写成原断言失败。
+
+本步先限于原测试与原件的只读分析；诊断必要时仅改ReaderRenderingTests的一组观测，不放宽原断言/3秒采样/20秒加载预算，不改Vendor/依赖/字体/界面。结论可恢复后另定义R3最小文件/行为合同，再提取位置捕获、保存、失败保旧、旧请求过滤；不同时提取会话或导航。实现、编译、定向、完整、原生及手机状态分别记录。保留R2所有完成改动和旧失败。
+
+初步只读证据：39418977905小薇/连续的visible-before-save模型锚点p25/443，save-returned、closed、open-returned均p25/436、viewportOffset=-9.9375；后续PNG仍显示长段016处。说明不能将旧目标字false直接等同保存锚点丢失，但缺少Range几何，尚不能收口。W3C CSSOM View https://www.w3.org/TR/cssom-view/#extensions-to-the-range-interface 区分Range片段列表与合并边界框；本地固定Readium3.11的continuousAnchorRectFunction优先getClientRects()[0]，原测试用getBoundingClientRect，需实际测量，不能从规范推定本次原因。
+
+最小实验position-observation：只执行原真实字体长链1例，保留原所有断言和预算；附加切换前/实际保存两锚点的rect/rects、scrollY和viewport offset，以及连续模式两呈现帧后的只读采样。生产App/Packages/Vendor/字体/工程/锁均保持7c33645，只增加该测试诊断与workflow/脚本选择。Windows语法已通过（456、新增0/既有54）；62工具仍在执行。普通HEAD/index及1157源文件SHA基线保留build/maintenance/R3-20261020/start.json，源快照r3-start-sources.zip。尚未派发新CI；下一步核工具结果、冻结4个文件、仅派发此1例。若不再出现false也不能追认旧观察根因已修。
+
+# 上一片：R2字体编排本片完成
 
 2026-10-20。用户优先维护全项目、隔离功能，再新增产品功能；发现偏移及时纠正，不能判断的产品取舍及时问。I0/I1/I2本片门槛完成，整个项目隔离尚未完成。下一轮先定义I3/R3完整位置的文件/合同/直接回归，不在R2收尾提前实施；后续产品清单保留在PROJECT_ISOLATION_PLAN、ROADMAP、READING_FEATURE_IDEAS。
 
