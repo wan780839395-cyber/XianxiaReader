@@ -28,33 +28,35 @@
     "XianxiaReading": {
       "path": "Packages/XianxiaReading",
       "packagePaths": ["../XianxiaCore", "../../Vendor/ReadiumToolkit"],
-      "products": {"ReadingInterfaces": ["ReadingInterfaces"], "ReadiumAdapter": ["ReadiumAdapter"]},
+      "products": {"ReadingInterfaces": ["ReadingInterfaces"], "ReadiumAdapter": ["ReadiumAdapter"], "ReaderFonts": ["ReaderFonts"]},
       "targets": {
         "ReadingInterfaces": {"kind": "target", "path": "Sources/ReadingInterfaces", "dependencies": ["XianxiaCore"]},
+        "ReaderFonts": {"kind": "target", "path": "Sources/ReaderFonts", "dependencies": ["ReadingInterfaces", "XianxiaCore"]},
         "ReadiumAdapter": {"kind": "target", "path": "Sources/ReadiumAdapter", "dependencies": ["ReadingInterfaces", "XianxiaCore", "ReadiumShared", "ReadiumStreamer", "ReadiumNavigator"]}
       }
     }
   },
   "projectPackages": {"XianxiaCore": "Packages/XianxiaCore", "XianxiaReading": "Packages/XianxiaReading", "ReaderSettings": "Packages/ReaderSettings"},
   "projectTargets": {
-    "XianxiaReader": {"kind": "application", "sources": ["App"], "dependencies": ["XianxiaCore", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings"]},
-    "XianxiaReaderTests": {"kind": "bundle.unit-test", "sources": ["Tests/iOS", "Packages/ReaderSettings/Tests/ReaderSettingsTests"], "dependencies": ["XianxiaReader", "XianxiaCore", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings"]},
+    "XianxiaReader": {"kind": "application", "sources": ["App"], "dependencies": ["XianxiaCore", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings", "ReaderFonts"]},
+    "XianxiaReaderTests": {"kind": "bundle.unit-test", "sources": ["Tests/iOS", "Packages/ReaderSettings/Tests/ReaderSettingsTests"], "dependencies": ["XianxiaReader", "XianxiaCore", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings", "ReaderFonts"]},
     "XianxiaReaderUITests": {"kind": "bundle.ui-testing", "sources": ["Tests/UI"], "dependencies": ["XianxiaReader"]}
   },
   "areas": [
     {"name": "App assembly", "target": "XianxiaReader", "files": ["App/AppRootView.swift", "App/AppServices.swift", "App/XianxiaReaderApp.swift"], "imports": ["Foundation", "ReaderSettings", "SwiftUI", "XianxiaCore"]},
     {"name": "Import", "target": "XianxiaReader", "path": "App/Import", "imports": ["Foundation", "ReadingInterfaces", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "XianxiaCore"]},
     {"name": "Library", "target": "XianxiaReader", "path": "App/Library", "imports": ["CoreGraphics", "CoreTransferable", "Foundation", "ImageIO", "PhotosUI", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "XianxiaCore"]},
-    {"name": "Reader", "target": "XianxiaReader", "path": "App/Reader", "imports": ["Combine", "CoreGraphics", "CoreText", "Foundation", "ImageIO", "ReaderSettings", "ReadingInterfaces", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "XianxiaCore"]},
+    {"name": "Reader", "target": "XianxiaReader", "path": "App/Reader", "imports": ["Combine", "CoreGraphics", "CoreText", "Foundation", "ImageIO", "ReaderSettings", "ReaderFonts", "ReadingInterfaces", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "XianxiaCore"]},
     {"name": "Search", "target": "XianxiaReader", "path": "App/Search", "imports": ["Foundation", "ReadingInterfaces", "SwiftUI", "UIKit", "XianxiaCore"]},
     {"name": "Core", "target": "XianxiaCore", "path": "Packages/XianxiaCore/Sources/XianxiaCore", "imports": ["CSQLite", "CTextCodec", "CryptoKit", "Foundation"]},
     {"name": "Core tests", "target": "XianxiaCoreTests", "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests", "imports": ["CSQLite", "Foundation", "XCTest", "XianxiaCore"]},
     {"name": "TXT desktop probe", "target": "TXTPerformanceProbe", "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe", "imports": ["Darwin", "Dispatch", "Foundation", "Glibc", "XianxiaCore"]},
     {"name": "Reading interfaces", "target": "ReadingInterfaces", "path": "Packages/XianxiaReading/Sources/ReadingInterfaces", "imports": ["Foundation", "UIKit", "XianxiaCore"]},
     {"name": "Readium adapter", "target": "ReadiumAdapter", "path": "Packages/XianxiaReading/Sources/ReadiumAdapter", "imports": ["Foundation", "ReadingInterfaces", "ReadiumNavigator", "ReadiumShared", "ReadiumStreamer", "UIKit", "WebKit", "XianxiaCore"]},
-    {"name": "iOS integration tests", "target": "XianxiaReaderTests", "path": "Tests/iOS", "imports": ["Combine", "CoreText", "CryptoKit", "Foundation", "ImageIO", "ReaderSettings", "ReadingInterfaces", "ReadiumAdapter", "SQLite3", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "WebKit", "XCTest", "XianxiaCore", "XianxiaReader"]},
+    {"name": "iOS integration tests", "target": "XianxiaReaderTests", "path": "Tests/iOS", "imports": ["Combine", "CoreText", "CryptoKit", "Foundation", "ImageIO", "ReaderSettings", "ReaderFonts", "ReadingInterfaces", "ReadiumAdapter", "SQLite3", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "WebKit", "XCTest", "XianxiaCore", "XianxiaReader"]},
     {"name": "Settings logic", "target": "ReaderSettings", "path": "Packages/ReaderSettings/Sources/ReaderSettings", "imports": ["Combine", "Foundation", "XianxiaCore"]},
     {"name": "Settings contract tests", "target": "ReaderSettingsTests", "path": "Packages/ReaderSettings/Tests/ReaderSettingsTests", "imports": ["Foundation", "ReaderSettings", "XCTest", "XianxiaCore"]},
+    {"name": "Font coordination", "target": "ReaderFonts", "path": "Packages/XianxiaReading/Sources/ReaderFonts", "imports": ["Combine", "Foundation", "ReadingInterfaces", "XianxiaCore"]},
     {"name": "Native UI tests", "target": "XianxiaReaderUITests", "path": "Tests/UI", "imports": ["UIKit", "XCTest"]}
   ],
   "fileRules": {

@@ -6,7 +6,8 @@ let package = Package(
     platforms: [.iOS(.v16)],
     products: [
         .library(name: "ReadingInterfaces", targets: ["ReadingInterfaces"]),
-        .library(name: "ReadiumAdapter", targets: ["ReadiumAdapter"])
+        .library(name: "ReadiumAdapter", targets: ["ReadiumAdapter"]),
+        .library(name: "ReaderFonts", targets: ["ReaderFonts"])
     ],
     dependencies: [
         .package(path: "../XianxiaCore"),
@@ -14,6 +15,10 @@ let package = Package(
     ],
     targets: [
         .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore")]),
+        .target(name: "ReaderFonts", dependencies: [
+            "ReadingInterfaces",
+            .product(name: "XianxiaCore", package: "XianxiaCore")
+        ]),
         .target(name: "ReadiumAdapter", dependencies: [
             "ReadingInterfaces",
             .product(name: "XianxiaCore", package: "XianxiaCore"),

@@ -41,6 +41,8 @@ targets:
         product: ReadiumAdapter
       - package: ReaderSettings
         product: ReaderSettings
+      - package: XianxiaReading
+        product: ReaderFonts
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.app
@@ -68,6 +70,8 @@ targets:
         product: ReadiumAdapter
       - package: ReaderSettings
         product: ReaderSettings
+      - package: XianxiaReading
+        product: ReaderFonts
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.tests

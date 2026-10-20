@@ -1,4 +1,5 @@
 import Foundation
+import ReaderFonts
 import ReadingInterfaces
 import XianxiaCore
 
@@ -74,5 +75,15 @@ enum BundledReadingFont: String, CaseIterable, Identifiable {
         let asset = try ReadingFontAsset(id: id, displayName: title, fileExtension: fileExtension,
             sha256: metadata.sha256, bytes: metadata.bytes)
         return ReaderFontResource(asset: asset, fileURL: url)
+    }
+
+    /// Resource ownership stays in the App bundle; the font module receives values only.
+    @MainActor static func catalogueResources() -> ReaderFontCoordinator.Snapshot {
+        var resources: [ReaderFontResource] = [], warning: String?
+        for bundled in allCases {
+            do { resources.append(try bundled.resource()) }
+            catch { warning = "\(bundled.title)：\(error.localizedDescription)" }
+        }
+        return .init(fonts: [], resources: resources, warning: warning)
     }
 }

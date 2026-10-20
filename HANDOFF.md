@@ -1,6 +1,18 @@
 # 项目交接：维护与功能隔离优先，Build30 已交付
 
-## 当前断点：I1完成，下一片I2/R2（2026-10-20）
+R2派发前最终：Windows456语法新增0/54既有限制，62工具59通过/3既有POSIX跳过（21.156秒），Bash语法通过；133 Swift源/15区域/16节点/5例外。460个Core/Adapter/Vendor/资源/样书/锁保护输入不变（仅XianxiaReading manifest为本片新增target必要改动），原所有测试保持，普通HEAD/index保持。准备从222f10e冻结到codex/maintenance-reader-fonts，唯一选择font-isolation53项；不做完整187/设备Release/IPA。
+
+## 当前断点：R2字体编排开始（2026-10-20）
+
+R2授权已核；564个I1输入全部匹配，普通HEAD/index和既有工作保持，未见项目观察/接收残留。R2限定为新增XianxiaReading内ReaderFonts独立target（依赖Core/ReadingInterfaces，不依赖ReadiumAdapter/App），迁移字体目录/资源/选中判断、刷新及导入令牌失效；App保留CoreText导入、预览/Bundle资源、picker和完整锚点/引擎重开协调。保留浏览不重开、显式选中才安装、缺字降级但不改保存偏好、失败保旧/可重试、关闭重开迟到结果不能污染新会话。生产不复制字体服务，不动存储/schema/锁/Vendor或布局预算。
+
+R2基线564输入/旧文件恢复ZIP在build/maintenance/R2-20261020。影响文件拟为ReaderViewModel、BundledReadingFont、新ReaderFonts源码/直接逻辑测试、Reading Package.swift、project.yml、边界登记与单一font-isolation诊断选择；原ReadingFontTests/生命周期/真实引擎/UI用例不删改。先Windows静态/工具及保全，再一次冻结源的最小font-isolation真实编译/集成/两项真实字体与一项原生选择；完整发布/设备Release留I6，不生成IPA。参考已取Readium固定3.11基线字体指南、Readest2d37bbf字体store/service和Apple actor重入说明，取舍将写R2设计；没有产品行为变更需决定，发现偏移则先收缩。
+
+R2可恢复检查点：ReaderFonts源码、App桥接/状态转发、Package/project/边界登记已接线；7项直接模块竞态合同及font-isolation53项选择已写。原字体/生命周期测试逐字节保持；最初456语法新增0/54既有限制、61工具58通过3POSIX跳过。新增字体依赖越界负例后将跑最终Windows检查（预期62项），尚无Swift编译。R2设计/成熟实现取舍见Documentation/READER_FONT_ISOLATION.md；源码改动未进入R3/R4，尚未派发CI。
+
+R2范围自查：原unit-release工具硬编码151项，新增7直接合同后只把精确门槛提高到158并同步原工具正反例，不降低断言、不复用旧UI。Windows第一轮62项59通过/3既有POSIX跳过、456语法新增0；最后计数工具变更后重跑工具最终日志，Swift源不变。
+
+## I1已完成基线（历史，以下结果保留）
 
 用户确认先维护整个项目、做好功能隔离，再继续新功能；发现偏移及时纠正，不能判断的产品取舍及时提问。I0依赖守卫与I1快速入口已落地，整个项目隔离仍未完成。下一轮先定义I2/R2字体编排的文件/合同/定向门槛，不在I1收尾混入字体、位置或会话提取。后续产品计划保留在PROJECT_ISOLATION_PLAN、ROADMAP与READING_FEATURE_IDEAS。
 

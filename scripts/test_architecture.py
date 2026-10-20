@@ -85,6 +85,12 @@ class ArchitectureTests(unittest.TestCase):
             with self.subTest(module=module), self.change("Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift", lambda text: text + f"\nimport {module}\n"):
                 self.blocked(f"must not import {module}")
 
+    def test_font_coordination_cannot_acquire_app_or_engine_implementation_dependencies(self):
+        file = "Packages/XianxiaReading/Sources/ReaderFonts/ReaderFontCoordinator.swift"
+        for module in ["XianxiaReader", "ReadiumAdapter", "ReadiumNavigator", "UIKit", "SwiftUI"]:
+            with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
+                self.blocked(f"Font coordination must not import {module}")
+
     def test_native_ui_tests_cannot_import_app_business_modules(self):
         file = next((self.root / "Tests/UI").glob("*.swift")).relative_to(self.root).as_posix()
         with self.change(file, lambda text: text + "\nimport XianxiaCore\n"):

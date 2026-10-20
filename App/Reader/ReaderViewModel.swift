@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 import ReaderSettings
+import ReaderFonts
 import ReadingInterfaces
 import SwiftUI
 import XianxiaCore
@@ -51,18 +52,15 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var automaticScrollPresented = false
     @Published private(set) var returnPosition: ReadingPosition?
     @Published private(set) var navigationInProgress = false
-    @Published private(set) var importedFonts: [ReadingFontAsset] = []
-    @Published private(set) var fontBusy = false
-    @Published private(set) var fontMessage: String?
-    @Published var choosingFont = false
-    private var fontResources: [ReaderFontResource] = []
-    private var installedFontIDs: Set<UUID> = []
-    private var fontCatalogRequestID: UUID?
-    func fontResourceForPreview(_ id: UUID?) -> ReaderFontResource? {
-        guard let id else { return nil }
-        return fontResources.first { $0.asset.id == id }
+    private let fonts: ReaderFontCoordinator
+    var importedFonts: [ReadingFontAsset] { fonts.importedFonts }
+    var fontBusy: Bool { fonts.busy }
+    var fontMessage: String? {
+        get { fonts.message }
+        set { fonts.message = newValue }
     }
-    private var fontRequestID: UUID?
+    @Published var choosingFont = false
+    func fontResourceForPreview(_ id: UUID?) -> ReaderFontResource? { fonts.resourceForPreview(id) }
     private var fontImportTask: Task<Void, Never>?
     private var fontPickerCoordinator: EPUBDocumentPicker.Coordinator?
     var settingsSaveFailure: String? { appearanceSaveFailure ?? interactionSaveFailure ?? positionSaveFailure }
@@ -82,8 +80,10 @@ private enum ReaderJumpError: LocalizedError {
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
         self.services = services
+        fonts = ReaderFontCoordinator(storage: services.files, bundledResources: BundledReadingFont.catalogueResources)
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
+        fonts.objectWillChange.sink { [weak self] in self?.objectWillChange.send() }.store(in: &settingsSubscriptions)
         services.readerSettings.$appearanceCompletion.sink { [weak self] completion in
             guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
             self.appearanceSaveFailure = completion?.errorMessage.map { "设置尚未保存：\($0)" }
@@ -123,6 +123,7 @@ private enum ReaderJumpError: LocalizedError {
         started = true
         let requestID = UUID()
         openRequestID = requestID
+        fonts.beginSession(requestID)
         openStatus = "正在读取阅读设置…"
         positionSaveFailure = nil
         do {
@@ -130,18 +131,11 @@ private enum ReaderJumpError: LocalizedError {
             try Task.checkCancellation()
             guard openRequestID == requestID else { throw CancellationError() }
             openStatus = "正在准备字体…"
-            do {
-                let loaded = try await loadFontResources()
-                try Task.checkCancellation()
-                guard openRequestID == requestID else { throw CancellationError() }
-                importedFonts = loaded.fonts; fontResources = loaded.resources; fontMessage = loaded.warning
-            } catch is CancellationError { throw CancellationError() }
-            catch {
-                guard openRequestID == requestID else { throw CancellationError() }
-                fontResources = []; fontMessage = error.localizedDescription
-            }
-            try engine.fontProvider?.setReadingFonts(fontResources)
-            installedFontIDs = Set(fontResources.map { $0.asset.id })
+            try await fonts.prepareForOpen()
+            try Task.checkCancellation()
+            guard openRequestID == requestID else { throw CancellationError() }
+            try engine.fontProvider?.setReadingFonts(fonts.resources)
+            fonts.markResourcesInstalled()
             try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))
             appearance = restoredAppearance
             openStatus = "正在恢复阅读位置…"
@@ -184,10 +178,10 @@ private enum ReaderJumpError: LocalizedError {
 
     func close() {
         positionSaveRequestID = nil
-        fontCatalogRequestID = nil; installedFontIDs = []
-        fontRequestID = nil; fontImportTask?.cancel(); fontImportTask = nil
+        fonts.close()
+        fontImportTask?.cancel(); fontImportTask = nil
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = nil
-        choosingFont = false; fontBusy = false
+        choosingFont = false
         navigationRequestID = nil
         navigationInProgress = false
         returnPosition = nil
@@ -275,48 +269,24 @@ private enum ReaderJumpError: LocalizedError {
     func retryAppearanceSave() { setAppearance(appearance) }
 
     func selectBuiltInFont(_ font: ReadingFont) {
-        fontMessage = nil
-        var updated = appearance; updated.font = font; updated.importedFontID = nil
-        setAppearance(updated)
+        setAppearance(fonts.builtInSelection(font, appearance: appearance))
     }
 
     func selectImportedFont(_ id: UUID) {
-        guard fontResources.contains(where: { $0.asset.id == id }) else {
-            fontMessage = ReadingFontError.missingFont.localizedDescription; return
-        }
-        guard isReady, !fontBusy else { return }
-        if !installedFontIDs.contains(id), let resource = fontResourceForPreview(id) {
-            // An Open In import is added to the catalogue without touching the
-            // active book. Only explicit selection installs it at a saved anchor.
+        guard let selection = fonts.importedSelection(id, appearance: appearance, isReady: isReady) else { return }
+        switch selection {
+        case .install(let resource):
+            // Browsing never installs a new catalogue; explicit selection owns the rebuild.
             fontImportTask = Task { await importReadingFont(from: resource.fileURL) }
-            return
+        case .appearance(let updated): setAppearance(updated)
         }
-        fontMessage = nil
-        var updated = appearance; updated.importedFontID = id
-        setAppearance(updated)
     }
 
-    func isFontAvailable(_ id: UUID) -> Bool { fontResources.contains(where: { $0.asset.id == id }) }
+    func isFontAvailable(_ id: UUID) -> Bool { fonts.isAvailable(id) }
 
     func refreshFontCatalogueForBrowsing(force: Bool = false) async {
-        guard let session = openRequestID, isReady, !fontBusy else { return }
-        let request = UUID(); fontCatalogRequestID = request
-        defer { if fontCatalogRequestID == request { fontCatalogRequestID = nil } }
-        do {
-            // A catalogue is at most 32 KiB. Ordinary settings presentation does
-            // not need to rehash every unchanged multi-megabyte font resource.
-            let catalogue = try await services.files.readingFonts()
-            guard openRequestID == session, fontCatalogRequestID == request, !fontBusy, !Task.isCancelled else { return }
-            guard force || catalogue != importedFonts else { return }
-            let loaded = try await loadFontResources()
-            guard openRequestID == session, fontCatalogRequestID == request, !fontBusy, !Task.isCancelled else { return }
-            importedFonts = loaded.fonts; fontResources = loaded.resources
-            if let warning = loaded.warning { fontMessage = warning }
-        } catch is CancellationError { return }
-        catch {
-            guard openRequestID == session, fontCatalogRequestID == request else { return }
-            fontMessage = "字体列表暂时无法更新：\(error.localizedDescription)"
-        }
+        guard isReady else { return }
+        await fonts.refreshForBrowsing(force: force)
     }
 
     func retainFontCoordinator(_ coordinator: EPUBDocumentPicker.Coordinator) {
@@ -335,30 +305,7 @@ private enum ReaderJumpError: LocalizedError {
     }
 
     private func effectiveAppearance(_ value: ReadingAppearance) -> ReadingAppearance {
-        var effective = value
-        if let id = value.importedFontID, !fontResources.contains(where: { $0.asset.id == id }) {
-            effective.importedFontID = nil; effective.font = .original
-            fontMessage = ReadingFontError.missingFont.localizedDescription
-        }
-        return effective
-    }
-
-    private func loadFontResources() async throws -> (fonts: [ReadingFontAsset], resources: [ReaderFontResource], warning: String?) {
-        var resources: [ReaderFontResource] = [], warning: String?
-        for bundled in BundledReadingFont.allCases {
-            do { resources.append(try bundled.resource()) }
-            catch { warning = "\(bundled.title)：\(error.localizedDescription)" }
-        }
-        let fonts: [ReadingFontAsset]
-        do { fonts = try await services.files.readingFonts() }
-        catch is CancellationError { throw CancellationError() }
-        catch { return ([], resources, error.localizedDescription) }
-        for font in fonts {
-            try Task.checkCancellation()
-            do { resources.append(ReaderFontResource(asset: font, fileURL: try await services.files.readingFontURL(font))) }
-            catch { warning = "\(font.displayName)：\(error.localizedDescription)" }
-        }
-        return (fonts, resources, warning)
+        fonts.effectiveAppearance(value)
     }
 
     /// A new catalogue is installed once at navigator construction. Ordinary
@@ -366,23 +313,21 @@ private enum ReaderJumpError: LocalizedError {
     func importReadingFont(from source: URL) async {
         guard isReady, !fontBusy, !navigationInProgress, let engine, let provider = engine.fontProvider,
               let session = openRequestID else { return }
-        // A browsing request started before this import must not replace the
-        // catalogue installed by the completed import/rebuild when it returns.
-        fontCatalogRequestID = nil
-        let request = UUID(); fontRequestID = request; fontBusy = true; fontMessage = nil
-        defer { if fontRequestID == request { fontRequestID = nil; fontBusy = false } }
+        guard let fontRequest = fonts.beginImport() else { return }
+        let request = fontRequest.id
+        defer { fonts.finishImport(fontRequest) }
         func current() throws {
-            try Task.checkCancellation()
-            guard openRequestID == session, fontRequestID == request else { throw CancellationError() }
+            try fonts.checkCurrent(fontRequest)
+            guard openRequestID == session else { throw CancellationError() }
         }
         var anchor: ReadingPosition?
         var rebuilding = false
-        let oldResources = fontResources, oldAppearance = appearance
+        let oldResources = fonts.resources, oldAppearance = appearance
         do {
             pauseAutomaticScroll()
             let font = try await ReadingFontImportService(files: services.files).importFont(from: source)
             try current()
-            let loaded = try await loadFontResources()
+            let loaded = try await fonts.loadResources()
             try current()
             guard loaded.resources.contains(where: { $0.asset.id == font.id }) else { throw ReadingFontError.missingFont }
             let position = try await engine.captureCurrentPosition()
@@ -398,18 +343,18 @@ private enum ReaderJumpError: LocalizedError {
             try engine.appearanceProvider?.setAppearance(updated)
             try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: position)
             try current()
-            fontResources = loaded.resources; importedFonts = loaded.fonts; appearance = updated
-            installedFontIDs = Set(loaded.resources.map { $0.asset.id })
+            try fonts.commitImport(loaded, font: font, request: fontRequest)
+            appearance = updated
             self.position = engine.currentPosition
-            fontMessage = "已导入并启用 \(font.displayName)"; saveAppearanceValue(updated)
+            saveAppearanceValue(updated)
         } catch is CancellationError {
             // Closing invalidates this request. Never close or mutate a reopened reader.
-            if openRequestID == session, fontRequestID == request, rebuilding {
+            if openRequestID == session, fonts.isCurrent(fontRequest), rebuilding {
                 engine.close(); isReady = false; started = false
                 openFailure = "字体应用已取消，请重试打开。"
             }
         } catch {
-            guard openRequestID == session, fontRequestID == request else { return }
+            guard openRequestID == session, fonts.isCurrent(fontRequest) else { return }
             let original = error.localizedDescription
             if rebuilding, let anchor {
                 do {
@@ -418,7 +363,7 @@ private enum ReaderJumpError: LocalizedError {
                     try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: anchor)
                     try current()
                 } catch {
-                    guard openRequestID == session, fontRequestID == request else { return }
+                    guard openRequestID == session, fonts.isCurrent(fontRequest) else { return }
                     isReady = false; started = false
                     openFailure = "字体应用失败：\(original)。恢复阅读失败：\(error.localizedDescription)"
                 }
@@ -427,10 +372,10 @@ private enum ReaderJumpError: LocalizedError {
             // Reload the list even when capture was not stable; importing and
             // changing the current reading layout have separate commit points.
             do {
-                let fonts = try await services.files.readingFonts()
-                try current(); importedFonts = fonts
+                try await fonts.reloadImportedFonts(for: fontRequest)
+                try current()
             } catch {
-                guard openRequestID == session, fontRequestID == request else { return }
+                guard openRequestID == session, fonts.isCurrent(fontRequest) else { return }
                 fontMessage = "\(original)。字体列表：\(error.localizedDescription)"
             }
         }

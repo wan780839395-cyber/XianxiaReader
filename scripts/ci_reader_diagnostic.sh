@@ -79,6 +79,17 @@ case "$selection" in
   native-input)
     cases=(-only-testing:XianxiaReaderTests/ReaderSearchFieldTests)
     ;;
+  font-isolation)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderFontCoordinatorTests
+      -only-testing:XianxiaReaderTests/ReadingFontTests
+      -only-testing:XianxiaReaderTests/ReaderSettingsPersistenceTests
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+      -only-testing:XianxiaReaderUITests/ReadingFontUITests/testNativeFontSelectionPickerCancelDarkResetAndRelaunch
+    )
+    ;;
   fonts)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
