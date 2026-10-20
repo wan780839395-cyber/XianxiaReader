@@ -246,3 +246,15 @@ e2c7990/39358438791预检5/6，完整179及设备Release自动跳过；无Agent�
 剩余hidden原始5/6失败仅发生在第一次准备深字。固定[Readium3.11 ReflowableSpreadView](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift)在isSpreadLoaded之后仍延迟pendingLocation恢复，本地字体ready等待扩大该窗口；外部go在isSpreadLoaded=true时不更新pendingLocation。因此最小对照只改原test fixture：真实字体已ready但显式暂停初始定位，先导航到1200th字并证明可见，再放行；原30秒ready+字可见断言不放宽。失败后再采集released/faceReady/readyObserved/settled、native attached/alpha和scrollX/字可见，保留原错误。
 
 只有放行前目标明确可见、放行后文档ready且显示却回到x0、目标字不可见，才支持初始化默认start覆盖新seek；更早失败或旧实现字仍保留都不能套用补丁。首次initialization-pending仅此1项，Vendor/Adapter生产及锁不变；候选仅将pendingLocation更新移到早期loaded判断之前，暂不应用。该实验不是重试字体切换，它在字体变化前区分定位覆盖与实际加载/字体重排故障。
+
+
+对照的ready信号来自保留的原生FontFaceSet.ready getter；仅对返回的Promise追加显式放行，不用固定短延迟假定字体/布局已完成。其语义依据[W3C CSS Font Loading 3](https://www.w3.org/TR/css-font-loading-3/#font-face-set-ready)：ready等待当前字体加载和相关布局结束，后续文档变化仍可能开始新加载。具体字形/实际字体加载由独立原字体回归继续验证；初始化对照只验证已稳定页面的定位是否被覆盖。
+
+
+### 宿主启动边界与对照前置修正
+
+39365686520/c9dcba9被Agent取消，原生0项；完整artifact/CRC/SHA和556来源核。原Session最后04:12:47.590启动宿主（wait_for_debugger=1）未返回，stdout0，未进入fixture；不能把37.6分钟写成测试或定位源码失败，也不能唯一归因平台。取消为修正静态前置并止损，记录initialization-pending-39365686520-cancelled.json。
+
+已核[Apple XCTest executionTimeAllowance](https://developer.apple.com/documentation/xctest/xctestcase/executiontimeallowance)用于已执行用例、须启用测试超时；增加它不处理当前无用例宿主阶段。本轮不修改该预算。查[runner-images同Xcode16.4/macOS15相似报告13129](https://github.com/actions/runner-images/issues/13129)，其平台为visionOS，不能搬作当前iOS18.5/Intel根因或照搬降级；维护者也要求原始系统/启动证据。先复用项目有界进程/内存观察，记录App与testmanagerd/debugserver/xctest/xcodebuild，保留原Session，下轮若再启动失败能区分进程是否出现；不盲改编译器/SDK/权限。
+
+对照fixture独立修正：先公开导航至one.xhtml让其进入viewport，再等rAF驱动的font-ready阶段，只查询几何当前WKWebView；失败诊断对隐藏/未准备窗口仅记录native几何，保留原断言/错误/30秒预算，不等待隐藏DOM。生产仍为176303d，Vendor候选不应用。

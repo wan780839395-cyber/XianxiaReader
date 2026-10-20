@@ -1,0 +1,112 @@
+{
+  "recordedAtUTC": "2026-10-20T04:22:48.690304+00:00",
+  "run": 39365686520,
+  "sourceRevision": "c9dcba9e051340fa38598c7d1b7c798ad912153c",
+  "selection": "initialization-pending",
+  "conclusion": "cancelled",
+  "expectedSelected": 1,
+  "total": null,
+  "passed": null,
+  "failed": null,
+  "skipped": null,
+  "summaryReadError": "[Errno 2] No such file or directory: 'build\\\\ci\\\\39365686520\\\\diagnostic\\\\test-results-summary.json'",
+  "cases": [],
+  "testFailures": null,
+  "testExit": null,
+  "summaryExit": null,
+  "exportExit": null,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifact": 12240662458,
+  "archiveBytes": 87685,
+  "archiveSHA256": "74e133954dc71cd597b14db46a4f11225ad3d2d508cb818941740a0bcb1f5ba9",
+  "artifactDigestAndCRC": true,
+  "nativeJobSeconds": 2256.0,
+  "caseSeconds": 0,
+  "productionChangedPaths": [],
+  "originalAssertionsAndBudgetsPreserved": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "full180Accepted": false,
+  "scope": "Test-only initializer ordering control on unchanged production; original hidden-font assertion/budget retained. No production candidate/full/device acceptance.",
+  "controlStages": [],
+  "initializationFailureRows": [],
+  "qualifiedInitializationOverwriteControl": false,
+  "candidateApplied": false,
+  "agentCancellation": true,
+  "cancelReceipt": {
+    "recordedAtUTC": "2026-10-20T04:20:59.292116+00:00",
+    "run": 39365686520,
+    "sourceRevision": "c9dcba9e051340fa38598c7d1b7c798ad912153c",
+    "actor": "Agent",
+    "action": "Cancel own diagnostic to correct an unreliable test precondition",
+    "actualKnownStage": {
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "databaseId": 118442428753,
+      "name": "reading-diagnostic",
+      "startedAt": "2026-10-20T03:44:25Z",
+      "status": "in_progress",
+      "steps": [
+        {
+          "completedAt": "2026-10-20T03:44:29Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-20T03:44:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-20T03:44:38Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-20T03:44:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Run selected native diagnostics without device packaging",
+          "number": 3,
+          "startedAt": "2026-10-20T03:44:38Z",
+          "status": "in_progress"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Preserve diagnostic logs and original test result",
+          "number": 4,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/checkout@v4",
+          "number": 8,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        }
+      ],
+      "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39365686520/job/118442428753"
+    },
+    "reason": "Fixture waits for offscreen paged resource initialization before navigating it into viewport; the Readium spreadLoaded bridge uses requestAnimationFrame. Original loop and its diagnostic also query hidden WebViews. This cannot reliably qualify the intended initialized-location ordering.",
+    "uncertainty": "Fine-grained native substage/log is not yet available; do not claim this proves a production hang or source failure",
+    "nextCondition": "Navigate resource into viewport first; query only the geometrically current WebView; keep original30-second word assertion and production unchanged"
+  },
+  "actualCasesStarted": 0,
+  "testsExecuted": 0,
+  "testResultComplete": false,
+  "lastKnownNativeBoundary": "Host app installed;04:12:47.590 launch request with wait_for_debugger=1; no bundle proxy/test-case start or host stdout before04:21 Agent cancellation",
+  "noUniqueLaunchRootCauseEstablished": true,
+  "fixtureNotExecuted": true,
+  "fixtureOrderingRiskIsSeparate": true,
+  "session": {
+    "path": "build\\ci\\39365686520\\diagnostic\\DiagnosticTests.xcresult\\Staging\\1_Test\\Diagnostics\\XianxiaReaderTests-E3DDC25A-D55B-4AD3-8D78-0D692861C63B-Configuration-Test Scheme Action-Iteration-1\\XianxiaReaderTests-EF427AB2-6999-41C9-9553-A3B761222882\\Session-XianxiaReaderTests-2026-10-20_041158-r342Vx.log",
+    "sha256": "f69ce80d915c0a7a6eda90f82d735d9c278cc4a27df839efa19dd082346c3acb",
+    "stdoutBytes": 0
+  },
+  "nextExperiment": "First bring target resource into viewport, query current WebView only, skip hidden/unready DOM in failure diagnostics; enable existing bounded process/memory monitor for this selected diagnostic. Production unchanged."
+}

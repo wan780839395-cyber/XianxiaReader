@@ -6,9 +6,13 @@ AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方�
 
 此为渐进提取第一片，未整体拆分字体/位置/会话服务。39230331856证明该次完整位置保留至open输入，39235769577直接引擎重开同一段首1/1通过；原字体链路的字体/目标字联合失败仍未分清。当前只增强测试分项证据，生产设置/存储及渲染管线保持。当前024完整171/177、6项失败，Release受阻。完整位置仍在入口，失败期间存在about:blank和101秒WebContent启动；关闭2合同及设置/生命周期35通过，不宣称全部旧加载故障已修。录屏开/关39263942566已结束64/67与66/67，OFF仍有换字体前的深段落捕获前置条件失败，不能认定仅录屏或仅环境。当前独立修正旋转纸色抽样误判，生产边界保持；严格Release/手机验收尚未通过。
 
-## 连续旋转的双页策略边界（源码已修，原生待验证）
+## 偏好提交的幂等边界（定向已验证，发布未通过）
 
-Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；本策略须单独6项及最终179/Release验证。证据与固定上游差异见READER_ISOLATION_PLAN.md。
+ReadiumAdapter在取消被替代的请求后，比较完整EPUBPreferences与最后实际提交的appliedPreferences；相同偏好不再进入DOM采样或重排。撤销尚未提交的编辑回到已应用状态同样终止旧请求。真实变化仍保留fresh完整锚点、原3秒采样及可见错误，不清空错误来伪造通过。39362754281/176303d原生2/2：重复模式/外观与撤销请求保持原DOM字、同WebView，原六字体两模式重开30条观测errorMessage均nil。首次真实模式恢复与重复提交仍有区别；完整180/设备Release未验收。
+
+## 连续旋转的双页策略边界（定向局部通过，发布未通过）
+
+Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；39358438791的6项实际5/6：同字viewport及实际浅深旋转通过，hidden初始深字失败另立初始化对照；后续幂等回归新增后最终180/Release仍待完整验证。证据与固定上游差异见READER_ISOLATION_PLAN.md。
 
 ## Build29 阅读安全区
 

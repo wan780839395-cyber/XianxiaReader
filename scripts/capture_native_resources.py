@@ -24,7 +24,8 @@ def main() -> None:
                     rows = value.splitlines()[1:]
                     rows.sort(key=lambda row: int(row.split(None, 4)[3]), reverse=True)
                     selected = rows[:20]
-                    selected += [row for row in rows[20:] if "WebKit" in row or "XianxiaReader" in row]
+                    selected += [row for row in rows[20:] if any(name in row for name in
+                        ("WebKit", "XianxiaReader", "testmanagerd", "debugserver", "xctest", "xcodebuild"))]
                     value = "\n".join(selected)
                 sample[name] = {"exit": result.returncode, "stdout": value, "stderr": result.stderr}
             except (OSError, ValueError, subprocess.TimeoutExpired) as error:

@@ -152,7 +152,7 @@ stop_resource_monitor() {
     resource_monitor_pid=''
   fi
 }
-if [[ "$selection" == 'reader-session' || "$selection" == 'fonts' ]]; then
+if [[ "$selection" == 'reader-session' || "$selection" == 'fonts' || "$selection" == 'initialization-pending' ]]; then
   python3 scripts/capture_native_resources.py > build/logs/native-resources.jsonl 2>&1 &
   resource_monitor_pid=$!
   trap stop_resource_monitor EXIT

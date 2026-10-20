@@ -244,15 +244,20 @@ final class ReaderRenderingTests: XCTestCase {
         let (_, state) = try mount(engine); state.visible = false
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        // Bring the resource into the viewport before waiting for its
+        // requestAnimationFrame-driven spreadLoaded/font initialization.
+        try await engine.go(to: Chapter(id: "fixture:initialization-one", bookID: book.id, ordinal: 1,
+                                       title: "初始化目标", href: "OEBPS/one.xhtml"))
+        print("INITIALIZATION_PENDING_CONTROL stage=target-resource-in-viewport")
         // Hold the initial pending-location restore after the real font has
         // loaded. A seek issued now must remain the latest location when the
         // initializer resumes; this ordering does not depend on a short sleep.
         var initialDocument: WKWebView?
         try await waitUntil {
-            for web in self.webViews(in: engine.viewController.view) {
-                if try await web.evaluateJavaScript("window.__xrInitialFontReadyHeld===true && window.__xrInitialFontFaceReady===true") as? Bool == true {
-                    initialDocument = web; return true
-                }
+            guard let web = self.visibleWebView(in: engine.viewController.view),
+                  web.url?.lastPathComponent == "one.xhtml" else { return false }
+            if try await web.evaluateJavaScript("window.__xrInitialFontReadyHeld===true && window.__xrInitialFontFaceReady===true") as? Bool == true {
+                initialDocument = web; return true
             }
             return false
         }
@@ -298,21 +303,26 @@ final class ReaderRenderingTests: XCTestCase {
                     """) as? Bool == true
             }
         } catch {
-            do {
-                let value = try await heldDocument.evaluateJavaScript("""
-                    (()=>{const n=document.getElementById('long-paragraph')?.firstChild;let wordVisible=false;
-                    if(n&&n.length>1200){const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);
-                      const b=r.getBoundingClientRect();wordVisible=b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;}
-                    return JSON.stringify({released:window.__xrInitialFontReleased===true,
-                      faceReady:window.__xrInitialFontFaceReady===true,
-                      readyObserved:window.__xrInitialRestoreReadyObserved===true,
-                      settled:window.__xrPreviewReadySettled===true,x:scrollX,wordVisible,href:location.pathname});})()
-                    """)
-                let details = "attached=\(heldDocument.window != nil) alpha=\(heldDocument.scrollView.alpha) result=\(String(describing: value))"
-                let attachment = XCTAttachment(string: details)
-                attachment.name = "initial-pending-location-failure"; attachment.lifetime = .keepAlways; add(attachment)
-                print("INITIALIZATION_PENDING_FAILURE \(details)")
-            } catch { print("INITIALIZATION_PENDING_DIAGNOSTIC_READ_FAILED \(error)") }
+            let diagnosticRect = clippedVisibleRect(heldDocument, root: engine.viewController.view)
+            if heldDocument.window != nil, diagnosticRect.width > 0, diagnosticRect.height > 0 {
+                do {
+                    let value = try await heldDocument.evaluateJavaScript("""
+                        (()=>{const n=document.getElementById('long-paragraph')?.firstChild;let wordVisible=false;
+                        if(n&&n.length>1200){const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);
+                          const b=r.getBoundingClientRect();wordVisible=b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;}
+                        return JSON.stringify({released:window.__xrInitialFontReleased===true,
+                          faceReady:window.__xrInitialFontFaceReady===true,
+                          readyObserved:window.__xrInitialRestoreReadyObserved===true,
+                          settled:window.__xrPreviewReadySettled===true,x:scrollX,wordVisible,href:location.pathname});})()
+                        """)
+                    let details = "attached=\(heldDocument.window != nil) alpha=\(heldDocument.scrollView.alpha) result=\(String(describing: value))"
+                    let attachment = XCTAttachment(string: details)
+                    attachment.name = "initial-pending-location-failure"; attachment.lifetime = .keepAlways; add(attachment)
+                    print("INITIALIZATION_PENDING_FAILURE \(details)")
+                } catch { print("INITIALIZATION_PENDING_DIAGNOSTIC_READ_FAILED \(error)") }
+            } else {
+                print("INITIALIZATION_PENDING_DIAGNOSTIC_SKIPPED hidden or detached viewport")
+            }
             throw error
         }
         print("INITIALIZATION_PENDING_CONTROL stage=original-word-survived-initial-restore")
@@ -1317,7 +1327,12 @@ final class ReaderRenderingTests: XCTestCase {
                 diagnostic += "\nouter offset=\(scroll.contentOffset) inset=\(scroll.contentInset) content=\(scroll.contentSize) bounds=\(scroll.bounds)"
             }
             for webView in webViews(in: root) {
-                diagnostic += "\nweb frame=\(webView.frame) visible=\(clippedVisibleRect(webView, root: root)) offset=\(webView.scrollView.contentOffset)"
+                let visibleRect = clippedVisibleRect(webView, root: root)
+                diagnostic += "\nweb frame=\(webView.frame) visible=\(visibleRect) offset=\(webView.scrollView.contentOffset)"
+                guard webView.window != nil, visibleRect.width > 0, visibleRect.height > 0 else {
+                    diagnostic += " DOM not queried: hidden or detached native viewport"
+                    continue
+                }
                 do {
                     let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,trace:JSON.stringify(window.__xrPagedRestoreTrace),writers:JSON.stringify(window.__xrPagedRestoreWriters),caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
                     diagnostic += " DOM=\(String(describing: value))"

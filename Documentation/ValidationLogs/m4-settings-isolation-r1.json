@@ -1003,5 +1003,16 @@
     "releaseExecuted": false,
     "evidence": "preferences-idempotency-39362754281.json",
     "nextExperiment": "initialization-pending1 on unchanged production with explicit initial-font gate; Vendor candidate not applied"
+  },
+  "recovery20261020CancelledControl": {
+    "run": 39365686520,
+    "source": "c9dcba9e051340fa38598c7d1b7c798ad912153c",
+    "conclusion": "Agent cancelled",
+    "casesExecuted": 0,
+    "observedBoundary": "Host launch request; no test-bundle/case stdout",
+    "artifactSHAAndCRC": true,
+    "qualifiedRootCause": false,
+    "evidence": "initialization-pending-39365686520-cancelled.json",
+    "next": "Correct visible-target fixture and enable bounded host process/memory observation, production unchanged"
   }
 }
