@@ -226,3 +226,14 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 新增且从未执行的内部EPUBSettings case改为现有Adapter挂窗集成回归：非零DOM字在宽/窄viewport仍可见、同WebView、资源窗口有界；其viewport变化不是物理旋转，原UI case继续执行真实浅深横竖旋转。分页与六字体原断言保持。默认三处fixture退出临时root-scroll/RO探针，避免测量几何影响时序；原字体屏障、失败后取证、断言及预算保持。旧有探针原件不删，2/2不算根因已修。
 
 rotation-full只复用同job环境/编译产物，严格先6预检，成功后新鲜全179及无签名设备Release；不复用旧case结果。各阶段日志/summary/xcresult分开保留，失败不能交付IPA。总job上限150分钟容纳历史109.3分钟完整执行及新增预检/导出/Release，个别生产和测试时限不放宽。
+
+
+### 重复偏好与初始化定位分别隔离（2026-10-20，原生待验证）
+
+e2c7990/39358438791预检5/6，完整179及设备Release自动跳过；无Agent取消。连续单页策略对应的同字viewport与浅深实际旋转通过，但不能称所有旧WebKit故障消失。hidden-font失败在初始1200th字准备，尚未进行字体替换，当前页h1/offset0；作为独立初始化/定位边界保留。
+
+另一个实证是连续字体在原断言通过后12条errorMessage。ReaderView会将它呈为阅读提示；原字体fixture只挂引擎，不能由截图无弹窗推断真实UI无错。源码发现ReaderViewModel.open在引擎已按initial preferences创建后重复continuous=true，Adapter即使偏好等值仍开始3秒DOM采样，字体初始化未定时会报“页面仍在排版”。
+
+本片仅在Adapter取消旧请求后，用[固定Readium3.11 Hashable偏好协议](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Preferences/Configurable.swift)比较请求与appliedPreferences；相同则不采样。官方initial配置与本地open中的appliedPreferences赋值共同说明无需重新应用。这是本地Adapter判断，非声称上游已修复。真实变化、3秒预算、错误回调、完整Locator保持。
+
+新增可独立验的公共行为：重复相同连续模式/外观仍可立即fresh捕获原DOM字；撤销尚未提交的模式切换回已应用状态也保持原WebView和连续模式。原真实字体重开保留全部字形/锚点断言，增加无errorMessage断言。最小preferences-idempotency选择这2项；hidden初始化问题不混改/不通过重跑掩盖。151集成+29UI=180最终门槛未执行。

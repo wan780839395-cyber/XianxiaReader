@@ -1,0 +1,407 @@
+{
+  "recordedAtUTC": "2026-10-20T03:01:31.771901+00:00",
+  "run": 39358438791,
+  "sourceRevision": "e2c7990b7613cee76ebee1c867c6a9e5538cf8b0",
+  "selection": "rotation-full",
+  "conclusion": "failure",
+  "expectedSelected": 6,
+  "expectedFull": 179,
+  "preflight": {
+    "step": {
+      "completedAt": "2026-10-20T02:58:47Z",
+      "conclusion": "failure",
+      "name": "Targeted continuous rotation preflight before full validation",
+      "number": 4,
+      "startedAt": "2026-10-20T02:23:37Z",
+      "status": "completed"
+    },
+    "total": 6,
+    "passed": 5,
+    "failed": 1,
+    "skipped": 0,
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord():207",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 4,
+        "testIdentifierString": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "testName": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()"
+      }
+    ],
+    "summaryReadError": null,
+    "cases": [
+      {
+        "suite": "XianxiaReaderTests.ReaderRenderingTests",
+        "name": "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "result": "passed",
+        "seconds": 10.868
+      },
+      {
+        "suite": "XianxiaReaderTests.ReaderRenderingTests",
+        "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "result": "passed",
+        "seconds": 172.398
+      },
+      {
+        "suite": "XianxiaReaderTests.ReaderRenderingTests",
+        "name": "testScrollingCanMoveToNextResourceAndTOCFragment",
+        "result": "passed",
+        "seconds": 7.154
+      },
+      {
+        "suite": "XianxiaReaderTests.ReaderRenderingTests",
+        "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "result": "failed",
+        "seconds": 34.574
+      },
+      {
+        "suite": "XianxiaReaderTests.ReaderRenderingTests",
+        "name": "testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor",
+        "result": "passed",
+        "seconds": 25.251
+      },
+      {
+        "suite": "XianxiaReaderUITests.ReaderInterfaceUITests",
+        "name": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+        "result": "passed",
+        "seconds": 192.017
+      }
+    ],
+    "caseSeconds": 442.26199999999994,
+    "sourceCompilerDiagnostics": []
+  },
+  "full": {
+    "step": {
+      "completedAt": "2026-10-20T02:58:47Z",
+      "conclusion": "skipped",
+      "name": "Build, test, and package unsigned IPA",
+      "number": 5,
+      "startedAt": "2026-10-20T02:58:47Z",
+      "status": "completed"
+    },
+    "executed": false,
+    "total": null,
+    "passed": null,
+    "failed": null,
+    "skipped": null,
+    "cases": [],
+    "caseSeconds": 0
+  },
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifactReceipts": {
+    "apple": {
+      "run": 39358438791,
+      "artifact": 12236824414,
+      "kind": "apple",
+      "archiveBytes": 187916017,
+      "archiveSHA256": "09192d5bbda1695402ec5d6b894c12da5fa6a87e32b1df716a3a362862807560",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0000.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0001.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0002.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0003.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0004.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0005.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0006.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0007.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0008.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0009.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0010.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0011.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0012.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0013.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0014.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0015.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0016.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0017.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0018.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0019.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0020.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0021.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-download-chunks\\0022.bin",
+          "bytes": 3366641
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\apple-diagnostics.zip",
+          "bytes": 187916017,
+          "sha256": "09192d5bbda1695402ec5d6b894c12da5fa6a87e32b1df716a3a362862807560"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "core": {
+      "run": 39358438791,
+      "artifact": 12235873267,
+      "kind": "core",
+      "archiveBytes": 116304,
+      "archiveSHA256": "e2d865f0aac1ea0cc91cb5a96e2806e506439a3cb0c12ee3b8f25c0dad4b586d",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\core",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\core",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\core-download-chunks\\0000.bin",
+          "bytes": 116304
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39358438791\\core-diagnostics.zip",
+          "bytes": 116304,
+          "sha256": "e2d865f0aac1ea0cc91cb5a96e2806e506439a3cb0c12ee3b8f25c0dad4b586d"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  },
+  "acceptance": "Raw stages collected only; final gates/native visual review/device acceptance still separate",
+  "finalAccepted": false,
+  "phoneAccepted": false,
+  "actualNativeJob": {
+    "completedAt": "2026-10-20T03:00:36Z",
+    "conclusion": "failure",
+    "databaseId": 118419274304,
+    "name": "ios",
+    "startedAt": "2026-10-20T02:23:26Z",
+    "status": "completed",
+    "steps": [
+      {
+        "completedAt": "2026-10-20T02:23:28Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "startedAt": "2026-10-20T02:23:27Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T02:23:37Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "startedAt": "2026-10-20T02:23:28Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T02:23:37Z",
+        "conclusion": "skipped",
+        "name": "Targeted font race preflight before full validation",
+        "number": 3,
+        "startedAt": "2026-10-20T02:23:37Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T02:58:47Z",
+        "conclusion": "failure",
+        "name": "Targeted continuous rotation preflight before full validation",
+        "number": 4,
+        "startedAt": "2026-10-20T02:23:37Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T02:58:47Z",
+        "conclusion": "skipped",
+        "name": "Build, test, and package unsigned IPA",
+        "number": 5,
+        "startedAt": "2026-10-20T02:58:47Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T03:00:13Z",
+        "conclusion": "success",
+        "name": "Upload build logs, test results, project, and resolved packages",
+        "number": 6,
+        "startedAt": "2026-10-20T02:58:47Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T03:00:13Z",
+        "conclusion": "skipped",
+        "name": "Upload unsigned device IPA",
+        "number": 7,
+        "startedAt": "2026-10-20T03:00:13Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T03:00:15Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 14,
+        "startedAt": "2026-10-20T03:00:13Z",
+        "status": "completed"
+      },
+      {
+        "completedAt": "2026-10-20T03:00:33Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 15,
+        "startedAt": "2026-10-20T03:00:15Z",
+        "status": "completed"
+      }
+    ],
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39358438791/job/118419274304"
+  },
+  "originalArtifactsFullyVerified": true,
+  "fontAlertRows": [
+    {
+      "phase": "passed",
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "wenKai",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "wenKai",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "sourceHanSans",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "sourceHanSans",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "zhuque",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "zhuque",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "maShanZheng",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "maShanZheng",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "xiaoWei",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    },
+    {
+      "phase": "passed",
+      "font": "xiaoWei",
+      "continuous": true,
+      "error": "页面仍在排版，请稍后重新选择字体或排版设置。"
+    }
+  ],
+  "agentCancelled": false,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "hiddenFailureBoundary": "Deep-word preparation before any font mutation; original1200th character instead at heading/offset0",
+  "nativeStaticReview": {
+    "inspected": [
+      "F7B6147A-7688-49C3-8F3F-847F585B7EDD.png",
+      "DA9DCC55-6C88-47A5-9DD0-87D2CD94C087.png",
+      "294A9587-985F-4E40-888C-2B3E2D2ED390.png"
+    ],
+    "accepted": "Listed charcoal landscape/restored portrait and mounted-width resize show real readable text; paused controls visible; no whole recording/FPS/device acceptance"
+  },
+  "nextSlice": "Adapter redundant identical preferences must not initiate3s DOM sampling. Hidden initial navigation race remains separate; no full retry until direct blockers clear."
+}

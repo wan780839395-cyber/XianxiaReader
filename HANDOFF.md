@@ -1,21 +1,25 @@
-# 项目交接（2026-10-20 10:26上海，实际证据优先）
+# 项目交接（2026-10-20 11:08上海）
 
-## 当前断点（已核实更新）
+## 当前断点
 
-39357294714/832fbaa已在依赖解析阶段失败，6项0执行，完整artifact12236241412 SHA/CRC核。测试target直连Readium包引出swift-docc-plugin而锁文件拒绝新依赖；不是编译或行为结果。watcher/receiver已退出，无残留。当前计划：保留原件，撤回本轮project.yml直连产品（恢复abbcf18已实际解析的原图），将尚未执行的新内部设置case改为现有Adapter接口挂窗viewport/同字/同WebView回归。临时滚动/RO探针退出默认fixture，原断言、字体屏障、生产预算保留。采用同job6项预检→完整179→严格Release，任何失败阻止后续；复用准备和编译，不复用测试结果。先备份、应用、Windows预检、冻结Git输入，再派发；冻结前不得称已原生通过。
+39358438791/e2c7990已完成：6项5通过1失败，源码编译诊断0，test65/summary与export0；完整179/设备Release自动跳过，无IPA，非Agent取消。apple12236824414完整187916017字节SHA09192d5bbda1695402ec5d6b894c12da5fa6a87e32b1df716a3a362862807560/CRC核，Core原件亦核；556冻结输入匹配。watcher78684/PID46912和receiver74065/PID42400均退出0，恢复仍核实际CommandLine，普通HEAD/index/旧包保持。
 
-## 下一步（当前）
+新窗口同字/同WebView、导入字体重开、跨章、六字体连续排版、浅深真实旋转通过；实际看了深灰横屏/恢复竖屏与宽viewport3张原图，正文和暂停控件可读。没有完整录屏/手机FPS验收。
 
-Windows检查：453文件语法0新增/54既有Vendor限制；29工具26pass/3POSIX本地跳过，Bash语法通过。变更5文件，原生产实现/六pins锁与832fbaa相同，project.yml回到abbcf18原字节。备份before-rotation-interface-gate，计划rotation-interface-gate-plan.json。准备冻结/派发rotation-full：6项新鲜预检→完整150集成+29UI→严格无签名设备Release；失败阻止后续，原日志/summary/xcresult保留，不把未执行当通过。原生尚未执行。
+失败：hidden-font在最初准备1200th字的前置条件就回到h1/offset0，尚未切字体；保留原30秒断言，不把重放通过当根因修复。同时导入字体case虽然通过，连续流程12条保留“页面仍在排版…”错误，真实ReaderView会弹阅读提示，阻止交付。详ValidationLogs/continuous-rotation-39358438791.json。
 
-## 已完成边界
+## 下一片：重复设置的幂等边界
 
-- 后台UI39352276145/ff196499已1/1，真实Home/后台/桌面/activate/原立即暂停断言和原图核实。用户Build29手机反馈已暂停，只覆盖该路径。
-- 字体39348950147/96e913a诊断2/2但只观测变化，不能认定旧2010→0回跳根因已修。默认fixture现移除临时几何探针，最终须重测。
-- 连续spread=.never单路径生产修正保留；原4UI深灰横屏失败的旧原件/xcresult日志仍保留，当前未原生验证。
-- 上轮39354867480/abbcf18链接失败，0项执行；本轮39357294714解析失败，0项执行，不能写成6项通过/失败。
-- 最后完整39243868846/024fc87为171/177失败，当前179从未通过。无Build30，Build29最后交付。
+只改Adapter submitPreservingLocation已应用偏好等值判断：先cancel旧请求，再比较现有Hashable EPUBPreferences，完全相同则不启动3秒DOM采样；真变化的采样/错误保持。依据固定Readium3.11 ConfigurablePreferences协议、初始config偏好及本地appliedPreferences记录。ReaderViewModel.open在engine.open后重复continuous=true，正是无变化却重新采样的路径。新回归验证重复模式/外观能立即fresh捕获同DOM字，撤销尚未提交模式也不重建；原字体重开断言后增加无阅读错误校验。计划最小preferences-idempotency2项（新合同+原字体case），不先跑已知hidden失败或full。新预期151集成+29UI=180，未运行。此片与hidden初始化/导航覆盖分开验收；后者准备可控字体屏障实验，禁止顺手混改。
 
-## 保全
+先保全实际e2c7990输入/备份，再应用、Windows预检、alternate-index冻结及派发。本片已应用：before-idempotent-preferences备份，6文件（Adapter单guard、测试/名单/计数）。Windows453语法0新增/54Vendor限制、工具26pass3本地POSIX跳过、Bash通过。冻结/定向2项待执行，尚未原生编译。
 
-普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空；历史未提交/未跟踪实际源码、53旧包和恢复ZIP保持。使用alternate index，不checkout/reset，不把私有源相对工作树的整树diff误报删除。不做R2/R3/R4/M5或关机。历史全文Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md；新失败见ValidationLogs/continuous-rotation-39357294714-resolve-failure.json。
+## 历史/保全
+
+39354867480为测试target链接失败0执行；39357294714为新增顶层本地包引出docc的解析失败0执行，恢复原project依赖图后本轮真正完成原生6项。不要重跑旧apply/freeze。Build29为最后交付；R1最后完整39243868846仍171/177，无Build30。后台UI39352276145已1/1、用户Build29手机已暂停。旧字体39348950147插桩2/2不代表2010→0根因已修。
+
+普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空，历史未提交/未跟踪源码、Vendor、53旧包/恢复ZIP均保留。无R2/R3/R4/M5、无关清理或关机。历史全文Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md。
+
+## 工具实证
+
+cua.createBrowserTab仍报Work设置禁用本地浏览器；未改权限/配置。gh run view日志在run未完成时被CLI拒绝；job REST日志可读，但gh2.102终端转义保护须--allow-escape-sequences后捕获原始文件，不能把保护错误说成服务不开放。API原件可能缓冲，不能按尾部推断挂起。完成后的full.log/xcresult/artifact才是最终结果。

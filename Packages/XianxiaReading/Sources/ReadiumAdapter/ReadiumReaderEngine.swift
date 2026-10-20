@@ -306,6 +306,9 @@ import XianxiaCore
     private func submitPreservingLocation() {
         cancelModeChange()
         guard let navigator else { return }
+        // Repeating applied preferences must not sample an opening DOM.
+        // Cancel first so reverting a queued edit keeps the current settings.
+        guard preferences != appliedPreferences else { return }
         let requestID = UUID()
         modeChangeRequestID = requestID
         let requestedPreferences = preferences

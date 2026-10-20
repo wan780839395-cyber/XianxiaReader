@@ -1,6 +1,6 @@
 # 项目状态
 
-当前断点（2026-10-20 10:29上海）：39357294714/832fbaa在锁定依赖解析失败，6项0执行（不是行为结果）；原件SHA/CRC已核，无残留。已恢复原project.yml依赖图，新case改用Adapter挂窗同字/同WebView回归，默认字体fixture移除临时滚动探针；生产源码和锁保持。Windows453语法0新增/54Vendor限制，工具26pass3本地POSIX跳过。准备冻结并派发同job6预检→完整179→严格Release，任一步失败阻止后续；Build30未验收/无IPA。
+当前断点（2026-10-20 11:08上海）：39358438791/e2c7990原生5/6，hidden准备深字失败及连续字体错误消息独立留证，full/Release自动跳过。Adapter重复相同偏好单guard与公共回归已应用，Windows453语法0新增/54限制、工具26pass3skip；正准备冻结preferences-idempotency2项，完整151+29=180尚未执行，无Build30。
 
 ## R1设置隔离：字体诊断2/2，完整发布仍未通过
 

@@ -974,5 +974,19 @@
     "full179Accepted": false,
     "deviceReleaseAccepted": false,
     "ipaGenerated": false
+  },
+  "recovery20261020ActualPreflight": {
+    "run": 39358438791,
+    "source": "e2c7990b7613cee76ebee1c867c6a9e5538cf8b0",
+    "passed": 5,
+    "total": 6,
+    "failed": 1,
+    "skipped": 0,
+    "fullExecuted": false,
+    "releaseExecuted": false,
+    "ipaGenerated": false,
+    "evidence": "continuous-rotation-39358438791.json",
+    "nextSlice": "Adapter no-op equality; Windows only, native pending",
+    "newExpectedFull": 180
   }
 }

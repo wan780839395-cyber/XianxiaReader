@@ -8,6 +8,46 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
+    @MainActor func testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange() async throws {
+        let engine = ReadiumReaderEngine()
+        let appearance = ReadingAppearance()
+        try engine.setAppearance(appearance); engine.setContinuousScrolling(true)
+        var errors: [String] = []; engine.onError = { errors.append($0) }
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let scroll = try continuousScroll(engine)
+        try await waitUntil {
+            let web = try self.resourceWebView(engine, index: 1)
+            return abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5
+        }
+        scroll.contentOffset.y += 600
+        try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        func point(_ position: ReadingPosition) throws -> NSDictionary {
+            let data = try XCTUnwrap(JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any])
+            let locations = try XCTUnwrap(data["locations"] as? [String: Any])
+            let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
+            let start = try XCTUnwrap(range["start"] as? [String: Any])
+            XCTAssertGreaterThan(try XCTUnwrap(start["charOffset"] as? Int), 100)
+            return NSDictionary(dictionary: start)
+        }
+        let original = try point(try await engine.captureCurrentPosition())
+        let originalWeb = try resourceWebView(engine, index: 1)
+        for revertingQueuedEdit in [false, true] {
+            if revertingQueuedEdit { engine.setContinuousScrolling(false) }
+            engine.setContinuousScrolling(true)
+            try engine.setAppearance(appearance)
+            // A redundant request must never make a fresh capture unavailable.
+            let captured = try await engine.captureCurrentPosition()
+            XCTAssertEqual(try point(captured), original)
+            XCTAssertTrue(try resourceWebView(engine, index: 1) === originalWeb)
+            XCTAssertNotNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
+            XCTAssertTrue(errors.isEmpty, "Repeating applied preferences must not raise a layout error: \(errors)")
+        }
+        engine.close()
+    }
+
     @MainActor func testContinuousViewportResizeKeepsOriginalWordAndLiveWebView() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (window, state) = try mount(engine); state.visible = false
@@ -646,6 +686,7 @@ final class ReaderRenderingTests: XCTestCase {
                         return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                     }
                     await recordRenderedReopen("passed")
+                    XCTAssertNil(model.errorMessage, "A rendered font must not leave a reading alert; font=\(bundled.rawValue) continuous=\(continuous)")
                 } catch {
                     await recordRenderedReopen("failed")
                     // Read only after the original failure, preserving its timing

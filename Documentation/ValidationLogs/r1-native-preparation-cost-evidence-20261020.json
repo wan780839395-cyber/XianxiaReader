@@ -1,0 +1,47 @@
+{
+  "recordedAtUTC": "2026-10-20T02:31:53.070255+00:00",
+  "run": 39348950147,
+  "source": "build/ci/39348950147/full.log",
+  "nativeJobSeconds": 1577,
+  "firstCaseAfterNativeJobSeconds": 1324.183,
+  "testCaseSeconds": 147.142,
+  "markers": [
+    {
+      "line": 1093,
+      "timestamp": "2026-10-20T00:45:33.8215160Z",
+      "event": "Created project at"
+    },
+    {
+      "line": 1137,
+      "timestamp": "2026-10-20T00:46:11.2399130Z",
+      "event": "Resolved source packages:"
+    },
+    {
+      "line": 1149,
+      "timestamp": "2026-10-20T00:48:33.0185540Z",
+      "event": "Monitoring boot status for"
+    },
+    {
+      "line": 1732,
+      "timestamp": "2026-10-20T00:52:04.6888700Z",
+      "event": "\tFinished"
+    },
+    {
+      "line": 1735,
+      "timestamp": "2026-10-20T00:53:26.5453070Z",
+      "event": "/usr/bin/xcodebuild test -project"
+    },
+    {
+      "line": 1743,
+      "timestamp": "2026-10-20T00:53:55.0592660Z",
+      "event": "Resolved source packages:"
+    },
+    {
+      "line": 8020,
+      "timestamp": "2026-10-20T01:03:56.1825050Z",
+      "event": "Test Case '-[XianxiaReaderTests.ReaderRenderingTests testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes]' started."
+    }
+  ],
+  "interpretation": "Log emission timestamps locate XcodeGen generation, dependency-resolution output, simulator boot and xcodebuild test. Gaps are not exact exclusive phase durations; pre-case interval is not App launch time.",
+  "currentChange": "rotation-full reuses native job environment and build artifacts between selected6 and fresh full179; it does not reuse test results or alter functional budgets"
+}

@@ -8,6 +8,12 @@ case "$selection" in
   paged-restore)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph)
     ;;
+  preferences-idempotency)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+    )
+    ;;
   continuous-rotation)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView
