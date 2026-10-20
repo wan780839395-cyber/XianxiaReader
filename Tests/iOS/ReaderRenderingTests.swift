@@ -1,6 +1,4 @@
 @testable import ReadiumAdapter
-@testable import ReadiumNavigator
-import ReadiumShared
 import ReadingInterfaces
 import SwiftUI
 import UIKit
@@ -10,25 +8,55 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderRenderingTests: XCTestCase {
-    func testContinuousLayoutDisablesSpreadsWithoutChangingPagedPreference() throws {
-        for preference in [EPUBPreferences(spread: .auto), EPUBPreferences(spread: .always), EPUBPreferences(spread: .never)] {
-            let expected = try XCTUnwrap(preference.spread)
-            var continuous = preference; continuous.infiniteScroll = true
-            let resolved = EPUBSettings(preferences: continuous, defaults: EPUBDefaults(), metadata: Metadata())
-            XCTAssertTrue(resolved.infiniteScroll); XCTAssertTrue(resolved.scroll)
-            XCTAssertEqual(resolved.spread, .never, "Single-page continuous slots must not trigger a double-spread reload on orientation changes")
-            continuous.infiniteScroll = false
-            let paged = EPUBSettings(preferences: continuous, defaults: EPUBDefaults(), metadata: Metadata())
-            XCTAssertFalse(paged.infiniteScroll); XCTAssertEqual(paged.spread, expected)
+    @MainActor func testContinuousViewportResizeKeepsOriginalWordAndLiveWebView() async throws {
+        let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
+        let (window, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let scroll = try continuousScroll(engine)
+        try await waitUntil {
+            let web = try self.resourceWebView(engine, index: 1)
+            guard web.window != nil, web.scrollView.alpha > 0.99 else { return false }
+            return abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5
         }
-        let inherited = EPUBSettings(preferences: EPUBPreferences(), defaults: EPUBDefaults(infiniteScroll: true, spread: .always), metadata: Metadata())
-        XCTAssertTrue(inherited.infiniteScroll); XCTAssertTrue(inherited.scroll); XCTAssertEqual(inherited.spread, .never)
-        let explicitPaged = EPUBSettings(preferences: EPUBPreferences(infiniteScroll: false), defaults: EPUBDefaults(infiniteScroll: true, spread: .always), metadata: Metadata())
-        XCTAssertFalse(explicitPaged.infiniteScroll); XCTAssertEqual(explicitPaged.spread, .always)
+        scroll.contentOffset.y += 600
+        try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        let saved = try await engine.captureCurrentPosition()
+        let data = try XCTUnwrap(JSONSerialization.jsonObject(with: saved.locatorData) as? [String: Any])
+        let locations = try XCTUnwrap(data["locations"] as? [String: Any])
+        let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
+        let point = try XCTUnwrap(range["start"] as? [String: Any])
+        let selector = try XCTUnwrap(point["cssSelector"] as? String)
+        let offset = try XCTUnwrap(point["charOffset"] as? Int); XCTAssertGreaterThan(offset, 100)
+        let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
+        let originalWeb = try resourceWebView(engine, index: 1)
+        let originalFrame = window.frame
+        // A real mounted viewport resize checks the live continuous path.
+        // The existing UI scenario separately rotates the physical simulator.
+        defer { window.frame = originalFrame; window.layoutIfNeeded() }
+        for size in [CGSize(width: originalFrame.height, height: originalFrame.width), originalFrame.size] {
+            window.frame = CGRect(origin: originalFrame.origin, size: size)
+            window.layoutIfNeeded()
+            try await waitUntil {
+                let web = try self.resourceWebView(engine, index: 1)
+                guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else { return false }
+                return try await web.evaluateJavaScript("""
+                    (()=>{const n=document.querySelector(\(quoted))?.firstChild;
+                    if(!n||n.nodeType!==3||n.length<=\(offset))return false;
+                    const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
+                    return Math.abs(innerWidth-\(size.width))<2 && b.bottom>0 && b.top<innerHeight && b.right>0 && b.left<innerWidth;})()
+                    """) as? Bool == true
+            }
+            XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
+            let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+                window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+            }); image.name = "continuous-resize-same-word-\(Int(size.width))"; image.lifetime = .keepAlways; add(image)
+        }
+        engine.close()
     }
 
     @MainActor func testPagedReopenRestoresFirstCharacterOfLongParagraph() async throws {
-        let probe = Self.pagedRestoreProbe()
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let services = try await AppServices.create(storageRoot: root)
         addTeardownBlock { try FileManager.default.removeItem(at: root) }
@@ -36,7 +64,7 @@ final class ReaderRenderingTests: XCTestCase {
         let staged = try await services.files.stageEPUB(from: url)
         let paths = try await services.files.finalize(staged, coverData: nil)
         let book = Book(id: staged.id, title: "段首恢复回归", format: .epub, filePath: paths.filePath)
-        let engine = ReadiumReaderEngine(additionalUserScripts: [probe], storageRoot: root)
+        let engine = ReadiumReaderEngine(storageRoot: root)
         try engine.setReadingFonts(try BundledReadingFont.allCases.map { try $0.resource() })
         var appearance = ReadingAppearance(); appearance.fontScale = 1.5; appearance.theme = .charcoal
         appearance.importedFontID = BundledReadingFont.sourceHanSerif.id
@@ -155,7 +183,7 @@ final class ReaderRenderingTests: XCTestCase {
               });
             }});
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        let engine = ReadiumReaderEngine(additionalUserScripts: [delay, Self.pagedRestoreProbe()])
+        let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
         var interaction = ReadingInteraction(); interaction.reduceMotion = true
         try engine.setInteraction(interaction)
         try engine.setReadingFonts([initial, intermediate, final])
@@ -408,7 +436,7 @@ final class ReaderRenderingTests: XCTestCase {
             try await services.files.saveReadingInteraction(interaction)
             var initialAppearance = ReadingAppearance(); initialAppearance.fontScale = 1
             try await services.files.saveReadingAppearance(initialAppearance)
-            let engine = ReadiumReaderEngine(additionalUserScripts: [Self.pagedRestoreProbe()], storageRoot: root)
+            let engine = ReadiumReaderEngine(storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
             await model.open(); XCTAssertTrue(model.isReady)

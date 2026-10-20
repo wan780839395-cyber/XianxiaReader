@@ -10,7 +10,7 @@ case "$selection" in
     ;;
   continuous-rotation)
     cases=(
-      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousLayoutDisablesSpreadsWithoutChangingPagedPreference
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testScrollingCanMoveToNextResourceAndTOCFragment

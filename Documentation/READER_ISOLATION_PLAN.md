@@ -215,3 +215,14 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 ## 原生链接断点39354867480与测试依赖修复
 
 最新39354867480/abbcf18已结束，仓库/Core通过，iOS源码无编译诊断但XianxiaReaderTests链接失败，原生用例执行0项；不是6项行为失败或通过。完整artifact12235502581 SHA/CRC已核，原件build/ci/39354867480。新增测试直接使用ReadiumNavigator/Shared，测试target缺少显式产品链接；按XcodeGen2.46官方声明，只在project.yml给测试target增加已有本地包两产品，不更改Readium/远程pins/生产源码。下一步Windows预检/实际Git来源清单后同6项验证。当前无旧watcher/receiver残留。记录Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json。 采用固定[XcodeGen2.46包产品依赖规范](https://github.com/yonaskolb/XcodeGen/blob/2.46.0/Docs/ProjectSpec.md#dependency)，复用同一个Vendor/ReadiumToolkit本地包，App目标及包版本保持。未应用缓存中的live-resize/rotation-full候选，先完成当前6项。
+
+
+### 2026-10-20 测试依赖边界收敛（原生待验证）
+
+39357294714/832fbaa在xcodebuild依赖解析退出74：测试target新增顶层Readium本地包后要求swift-docc-plugin，现有六pins锁拒绝该新依赖；0项执行。原始artifact12236241412完整SHA/CRC与556来源核实。前一轮链接失败不等于加直接包就足够；源码import、产品链接、锁定依赖图必须分别验证。
+
+选择恢复abbcf18已真实解析的project.yml，而不是为新增内部设置测试加入文档插件和新锁。官方[Swift-DocC插件说明](https://github.com/swiftlang/swift-docc-plugin#adding-the-swift-docc-plugin-as-a-dependency)说明它用于文档生成；本Vendor Package.swift确实声明插件，本轮解析原始错误证明顶层包带来的图差异。未修改上游manifest或伪造锁。
+
+新增且从未执行的内部EPUBSettings case改为现有Adapter挂窗集成回归：非零DOM字在宽/窄viewport仍可见、同WebView、资源窗口有界；其viewport变化不是物理旋转，原UI case继续执行真实浅深横竖旋转。分页与六字体原断言保持。默认三处fixture退出临时root-scroll/RO探针，避免测量几何影响时序；原字体屏障、失败后取证、断言及预算保持。旧有探针原件不删，2/2不算根因已修。
+
+rotation-full只复用同job环境/编译产物，严格先6预检，成功后新鲜全179及无签名设备Release；不复用旧case结果。各阶段日志/summary/xcresult分开保留，失败不能交付IPA。总job上限150分钟容纳历史109.3分钟完整执行及新增预检/导出/Release，个别生产和测试时限不放宽。

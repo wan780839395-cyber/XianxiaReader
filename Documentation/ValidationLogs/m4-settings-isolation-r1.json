@@ -1,6 +1,6 @@
 {
-  "recordedAtUTC": "2026-10-20T02:07:44.148721+00:00",
-  "stage": "readium-test-link-dependency-applied-native-pending",
+  "recordedAtUTC": "2026-10-20T02:09:03.737662+00:00",
+  "stage": "readium-test-link-native-running",
   "branch": "codex/refactor-reader-settings",
   "oldLifecycleBodiesUnchanged": 26,
   "newTests": 9,
@@ -481,12 +481,14 @@
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39354867480,
-    "sourceRevision": "abbcf18c992ad9c8369be0c745e881de08939677",
-    "status": "completed",
-    "conclusion": "failure",
-    "failedStage": "XianxiaReaderTests link",
-    "selectedTestsExecuted": 0
+    "run": 39357294714,
+    "sourceRevision": "832fbaa45db4224007748141fd579d349772833d",
+    "status": "in_progress",
+    "selection": "continuous-rotation",
+    "expectedSelected": 6,
+    "nativeCompiled": false,
+    "releaseExecuted": false,
+    "ipaGenerated": false
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -959,5 +961,18 @@
     "toolingTests": 17,
     "SwiftCompiled": false
   },
-  "latestVerifiedSourceRevision": "ff196499c340760471afbed318d9ac99debaa432"
+  "latestVerifiedSourceRevision": "ff196499c340760471afbed318d9ac99debaa432",
+  "recovery20261020DependencyBoundary": {
+    "recordedAtUTC": "2026-10-20T02:20:31.058266+00:00",
+    "run": 39357294714,
+    "source": "832fbaa45db4224007748141fd579d349772833d",
+    "phase": "locked dependency resolution",
+    "exit": 74,
+    "testsExecuted": 0,
+    "evidence": "continuous-rotation-39357294714-resolve-failure.json",
+    "current": "Original project graph restored; Adapter-only resize test replaces never-executed direct Readium policy test; native pending",
+    "full179Accepted": false,
+    "deviceReleaseAccepted": false,
+    "ipaGenerated": false
+  }
 }
