@@ -1,0 +1,356 @@
+{
+  "run": 39456749155,
+  "revision": "5340a5b48aecb554fabeb7f1ad6d5da3903eeee8",
+  "baselineSpecifiedFailure": [
+    {
+      "failureText": "XCTAssertLessThan failed: (\"10.875\") is not less than (\"3.0\") - LATE_CANONICAL_VIEWPORT_OFFSET: repeated seek must preserve the saved word offset without a scroll callback",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "testName": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()"
+    }
+  ],
+  "patched": {
+    "result": "Failed",
+    "passed": 5,
+    "failed": 1,
+    "skipped": 0,
+    "total": 6,
+    "failures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord():397",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 5,
+        "testIdentifierString": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "testName": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()"
+      }
+    ]
+  },
+  "passedCases": [
+    [
+      "ReaderRenderingTests",
+      "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+      "9.688"
+    ],
+    [
+      "ReaderRenderingTests",
+      "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "21.238"
+    ],
+    [
+      "ReaderRenderingTests",
+      "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "59.899"
+    ],
+    [
+      "ReaderRenderingTests",
+      "testPagedReopenRestoresFirstCharacterOfLongParagraph",
+      "5.009"
+    ],
+    [
+      "TXTReadingTests",
+      "testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+      "17.456"
+    ]
+  ],
+  "inputBlobs": {
+    "baseline": 534,
+    "patched": 534
+  },
+  "postSnapshotFonts": {
+    "xiaoWei": {
+      "attachment": "49B52699-F059-41CB-B2EB-8EC5812A3D34.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 436,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 83,
+          "y": -9.9375,
+          "width": 8,
+          "height": 25,
+          "top": -9.9375,
+          "right": 91,
+          "bottom": 15.0625,
+          "left": 83
+        },
+        "rects": [
+          {
+            "x": 83,
+            "y": -9.9375,
+            "width": 8,
+            "height": 25,
+            "top": -9.9375,
+            "right": 91,
+            "bottom": 15.0625,
+            "left": 83
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    },
+    "maShanZheng": {
+      "attachment": "20E955A4-B693-48B0-B6B4-057DDD09CE03.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 443,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 68,
+          "y": -9.9375,
+          "width": 24,
+          "height": 25,
+          "top": -9.9375,
+          "right": 92,
+          "bottom": 15.0625,
+          "left": 68
+        },
+        "rects": [
+          {
+            "x": 68,
+            "y": -9.9375,
+            "width": 24,
+            "height": 25,
+            "top": -9.9375,
+            "right": 92,
+            "bottom": 15.0625,
+            "left": 68
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    },
+    "zhuque": {
+      "attachment": "A88EED85-3E66-444B-9C7B-F26A80A71E94.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 448,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 68,
+          "y": -9.9375,
+          "width": 24,
+          "height": 30,
+          "top": -9.9375,
+          "right": 92,
+          "bottom": 20.0625,
+          "left": 68
+        },
+        "rects": [
+          {
+            "x": 68,
+            "y": -9.9375,
+            "width": 24,
+            "height": 30,
+            "top": -9.9375,
+            "right": 92,
+            "bottom": 20.0625,
+            "left": 68
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    },
+    "sourceHanSans": {
+      "attachment": "2F226B27-84A7-42E6-894F-177B646DEE5D.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 448,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 68,
+          "y": -9.9375,
+          "width": 24,
+          "height": 35,
+          "top": -9.9375,
+          "right": 92,
+          "bottom": 25.0625,
+          "left": 68
+        },
+        "rects": [
+          {
+            "x": 68,
+            "y": -9.9375,
+            "width": 24,
+            "height": 35,
+            "top": -9.9375,
+            "right": 92,
+            "bottom": 25.0625,
+            "left": 68
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    },
+    "wenKai": {
+      "attachment": "6BDC1BB4-1018-4833-9111-54FC2E40F350.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 448,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 68,
+          "y": -9.9375,
+          "width": 24,
+          "height": 30,
+          "top": -9.9375,
+          "right": 92,
+          "bottom": 20.0625,
+          "left": 68
+        },
+        "rects": [
+          {
+            "x": 68,
+            "y": -9.9375,
+            "width": 24,
+            "height": 30,
+            "top": -9.9375,
+            "right": 92,
+            "bottom": 20.0625,
+            "left": 68
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    },
+    "sourceHanSerif": {
+      "attachment": "8EED26C2-2B4F-4E3D-B665-4A03AB1E2270.txt",
+      "fontReady": true,
+      "anchor": true,
+      "saved": {
+        "point": {
+          "textNodeIndex": 0,
+          "charOffset": 448,
+          "cssSelector": "html > body > p:nth-of-type(25)"
+        },
+        "expectedTop": -9.9375,
+        "rect": {
+          "x": 68,
+          "y": -9.9375,
+          "width": 24,
+          "height": 35,
+          "top": -9.9375,
+          "right": 92,
+          "bottom": 25.0625,
+          "left": 68
+        },
+        "rects": [
+          {
+            "x": 68,
+            "y": -9.9375,
+            "width": 24,
+            "height": 35,
+            "top": -9.9375,
+            "right": 92,
+            "bottom": 25.0625,
+            "left": 68
+          }
+        ],
+        "visible": true,
+        "delta": 0
+      }
+    }
+  },
+  "repeatedControl": {
+    "attachment": "AB25EDF9-FEBC-4941-AB44-88BCB116EA6F.txt",
+    "text": "expectedTop=-10 actualTop=-9.125 outerBefore=2376.0 outerAfter=2376.0 inner=2373.0"
+  },
+  "fontScope": "continuous only; repository default retains both modes",
+  "R3Deferred": true,
+  "pagedFontFailureSeparateReleaseBlocker": true,
+  "full187Executed": false,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "newIPA": false,
+  "continuousDirectChecksPassed": true,
+  "entireNativeGatePassed": false,
+  "nativeCompilationPassed": true,
+  "sourceCompilerDiagnostics": 0,
+  "baselineExpectedOffset": -10,
+  "baselineActualOffset": 0.875,
+  "baselineErrorPoints": 10.875,
+  "patchedActualOffset": -9.125,
+  "patchedErrorPoints": 0.875,
+  "baselineTestExit": 65,
+  "patchedTestExit": 65,
+  "rawXCTestFailureIssues": 2,
+  "rawXCTestUnexpectedIssues": 1,
+  "windowsSyntax": {
+    "files": 456,
+    "addedDiagnostics": 0,
+    "existingVendorLimitations": 54,
+    "swiftCompilation": false
+  },
+  "windowsTooling": {
+    "total": 63,
+    "passed": 59,
+    "posixSkipped": 4
+  },
+  "linuxTooling": {
+    "total": 63,
+    "passed": 63
+  },
+  "linuxCore": {
+    "cases": 137,
+    "jobConclusion": "success",
+    "separateSwiftTestingSuiteReportedZero": true
+  },
+  "txtReleaseDesktopProbes": 4,
+  "nativeReview": {
+    "fontPNGsViewed": 6,
+    "scope": "six static native body images only; no motion or phone acceptance"
+  },
+  "protectedInputsUnchanged": 505,
+  "ordinaryHeadIndexUnchanged": true,
+  "cost": {
+    "nativeStepSeconds": 1724.0,
+    "firstTestAfterStepStartSeconds": 1196.844,
+    "baselineCaseSeconds": 38.359,
+    "patchedCasesSeconds": 150.732,
+    "totalCasesSeconds": 189.091,
+    "note": "native step includes environment, dependency resolution, compilation, launch, testing and result export; do not label it pure compile time"
+  },
+  "pagedFailure": {
+    "case": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+    "line": 397,
+    "preparedAnchor": "p:nth-of-type(25)/char1016; native x1608",
+    "failedAnchor": "h1/char0; x0",
+    "relationshipToThisChange": "not established; do not blame environment or call this independent proven old failure",
+    "priorRun": "129e3506/39447634363: hidden reflow passed; separate paged font import also returned to chapter head",
+    "userScope": "continuous closure only; paged investigation separate",
+    "releaseBlocker": true
+  },
+  "nextExperiment": "Separate paged-font slice: compare complete sampled/reload Locators for held intermediate and final font requests using retained raw evidence; only if needed one same-fixture old/new control, no blind full gate replay."
+}

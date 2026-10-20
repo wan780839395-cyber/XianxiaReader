@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+定位维护边界（2026-10-21）：无限连续canonical DOM seek内部消费完整字锚点及viewportOffset，防止内外层定位目标不同；生产仅ReflowableSpreadView及Vendor摘要变化，未提取R3。直接控制与连续字体检查通过，整组5/6、分页字体失败仍阻塞发布，因果未定；不把该结果写成R3或整体位置验收。详见HANDOFF及ValidationLogs/continuous-offset-39456749155.json。
+
 ## 当前维护边界（2026-10-20，I0/I1/I2完成，I3起待实施）
 
 ReaderSettings保持Core-only独立包，原设置7项合同保留；ReaderFonts是XianxiaReading内已实际接线/编译的target，只依赖ReadingInterfaces/Core，拥有目录、资源/已安装ID、选中判断、busy/message与请求身份。App转发通知并保留原导入/预览/Bundle/picker和完整锚点/引擎重开；原await加载后在调用方核会话、同步提交并应用，不为纯提取额外包装async prepare。R2源410343b/39418977905真实53/53、0源码诊断，旧失败/A-B及未定时序风险独立保留。

@@ -1,53 +1,16 @@
-# 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
+# 当前断点：连续偏移直接验证完成；分页另查，R3顺延（2026-10-21）
 
-第二候选派发前检查：Windows456语法新增0/既有54，63工具59通过4POSIX跳过（35.229秒）、两Bash语法通过；不是Swift编译。新A/B先冻结原生产a84b6719d17f6a49c5e709ef9d56aa86faa72a8e，只有6例私有选择，生产与bc95fac逐blob相同。即将冻结ReflowableSpreadView+UPSTREAM两文件；R3/分页旧故障范围不变。
+连续阅读偏移的直接行为已验证；整组仍失败5/6，不能发布。实际源`5340a5b48aecb554fabeb7f1ad6d5da3903eeee8` / [CI39456749155](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39456749155)，原生产控制`a84b6719d17f6a49c5e709ef9d56aa86faa72a8e`。同runner、同测试输入、534+534实际blob核对：旧源指定断言误差10.875点，修正后0.875点（原<3点断言保持）；连续六字体截图后保存字delta全0、字体ready与目标字可见。实际查看六张原生正文图，不代表动效或手机验收。
 
-## 当前断点：连续偏移第二候选，分页另查（2026-10-21）
+修正仅在`EPUBReflowableSpreadView.go(to:)`的无限连续canonical DOM分支同时消费完整字锚点与保存的viewport偏移；另同步UPSTREAM摘要。首个仅补native updateViewports的候选129e3506未修好，已撤回；不修改字体/App/Core/依赖/位置格式或预算。默认工作测试仍执行字体两模式；本次私有诊断源的字体链只选连续，不能声称其分页字体链通过。
 
-用户确认本轮只收口连续偏移，分页字体章头问题独立排查，R3顺延。39447634363/129e3506已完成失败：旧runtime负对照在指定断言失败10.875点；补updateViewports候选同样失败，不能验收，已只撤回其InfiniteScrollView和UPSTREAM两文件。完整156223138字节原件已核SHA/CRC并提取，原始退出65与两个失败保留；修正组3/5，另一项为分页字体重开章头，未走连续修改路径。
+5项通过：连续resize、EPUB完整锚点重复定位（含分页/连续）、连续六字体重开、分页长段完整字重开、TXT完整锚点返回。唯一失败为分页隐藏换字体用例397行：准备p25/char1016、x1608，结束h1/char0、x0。它与本改动的因果关系尚未证实，不能归咎环境；原CI保持失败/exit65（XCTest同一失败case两条issue），没有生成成功gate回执。用户已确认分页另查，故本轮保留该发布阻塞，不扩改、不重跑凑绿。
 
-下一实验只改ReflowableSpreadView已有canonical DOM定位：无限连续模式在WebKit内部消费同一个字锚点与xianxiaViewportOffset；分页原分支保持。相同测试输入先运行原生产1例指定负对照，再运行6个直接用例（明确加入原分页完整字锚点回归；本次私有诊断字体链仅连续，默认仓库仍两模式）。原3点断言/预算、完整Locator/依赖/字体/App/Core保持，不增加等待重试，不导出IPA。新假设是内层默认文本定位忽略保存的viewport偏移；此前一行同步失败只排除该候选，不能冒称已捕获迟到写入者。
+Windows456语法新增0/既有54、63工具59通过4POSIX跳过；Linux63工具、Core137、桌面TXT Release探针4通过；原生真实编译0源码错误。原生步骤28分44秒含准备/编译/测试/导出，实际case共189.091秒；首例在步骤开始1196.844秒后才进入，不能把总步骤算作测试或纯编译耗时。161356828字节diagnostic与116316字节Core完整artifact已SHA/CRC核验；原始日志、xcresult、manifest、正反例输入均在build/ci/39456749155，重复ZIP/分片按回执清除。
 
-生成/检查/冻结前更新本断点；第二候选已实施，当前未编译/验收，先执行Windows检查后冻结同输入A/B。完整187、设备Release、手机验收未执行，R3候选仍只在.cache不接线。旧分页字体问题继续作为发布阻塞项。
+R3按用户决定顺延，13候选文件仍仅在.cache未接线，未编译或验收。完整187、设备Release、手机验收未执行，无新IPA，最后交付仍Build30。505保护输入、普通HEAD/index保持；没有运行中的本轮CI/observer/download。下一独立片先用已留原件比较分页两个字体请求的完整采样/重载Locator，必要时只跑同fixture最小对照，不盲重跑6/187。
 
-
-当前唯一远程运行：修正源129e350605d9c81169827ee013237bae10120fb5 / codex/fix-continuous-position-offset / CI39447634363；负对照runtime bc95fac052937f4a0c15c3794d733ede4d25aefa。2026-10-20 15:56UTC独立REST核run仍in_progress，repository-checks与Core已success，原生控制步骤运行中。原push成功但后续git ls-remote因schannel握手失败，已用REST ref核同一SHA且确认没有既有run后仅派发一次；offset-fix-frozen.json含恢复核对。原observer三次网络读取失败退出，不是CI失败；查实际任务后已恢复只读观察。默认原生步骤不分内部阶段，未见原件前不能猜基线/正例是否执行或通过。
-
-即将派发有确定性控制的修正验证：负对照runtime bc95fac052937f4a0c15c3794d733ede4d25aefa，沿用原生产文件；正例候选仅在EPUBInfiniteScrollView.go的外层setContentOffset后补已有updateViewports，并同步UPSTREAM该文件摘要/理由。内层DOM已移动但外层坐标不变时，主动同步不能依赖外层delegate回调。App/Core/字体/锁/工程均保持；507保护输入只有这2个Vendor文件例外，其余505不变。截图后位置检查已由观察升级为真实断言，原断言与预算保留。
-
-Windows本候选456语法新增0/既有Vendor54、63工具59通过4明确POSIX本机跳过（35.888秒）、两Bash语法通过；已静态核XCTest autoclosure无await，尚未Swift编译。本次新增POSIX控制驱动fixture先在Linux前置执行，覆盖浅clone、预定红转绿、基线意外绿、错误失败、修正失败；它先通过才开始原生编译。原生同一runner先执行旧源1例，必须原exit65且唯一失败标记LATE_CANONICAL_VIEWPORT_OFFSET；再以相同测试输入/DerivedData执行修正版5例，不增加重试、放宽预算或生成IPA。R3按用户选择顺延，.cache暂存13文件不接线。
-
-最新结论：第三轮1d8c696/39439273417连续单例1/1通过，但新增只读几何在楷体、思源黑体均复现保存同字的top从预期-9.9375变为0.0625、delta10，截图前后持续；两个Range方法一致且只含一个片段。证据snapshot-geometries.json及完整8345530字节原件已SHA/CRC核验，不能把1/1写成定位已修。旧三组baseline/R2完整Locator内容逐字段相同，已排除保存内容差异。
-
-候选原因收窄到EPUBInfiniteScrollView.go：内层DOM先执行go，外层若坐标没变，依赖scrollViewDidScroll的updateViewports可能不再执行；初始load路径已有主动updateViewports。先构造确定性负对照：原FreshReturn测试在连续模式重复定位同一canonical字/offset=-10，保持外层坐标不变并显式屏蔽该次外层scroll回调；完整生命周期清理恢复delegate。旧源码必须在指定LATE_CANONICAL_VIEWPORT_OFFSET断言失败，才在同一runner/DerivedData验证仅补updateViewports的一行修正与5直接回归（EPUB重复返回、真实字体两模式、隐藏重排、连续resize、TXT完整锚点返回）。不新增target/修改依赖/位置格式/预算。负对照不成立或失败位置不同则终止后半实验，不盲跑修正。
-
-本片R3继续顺延。新增截图后保存字delta<3及原目标字仍在位的断言，补上原测试只检查一次ready而遗漏后续偏移的覆盖。scripts/ci_position_offset_control.sh明确保存旧exit65及真实失败原件，要求指定负对照后修正5/5；不导出IPA。首次Windows语法已过，尚未冻结负对照或修改Vendor；工具中新增POSIX驱动fixture在Windows明确未执行，Linux前置将先验证四种成功/错误结果及浅clone，再允许原生job。
-
-正在执行第三个有条件变化的单例：1d8c696409f2e677df5da0290386bcdf479c3419 / codex/diagnose-position-native-snapshot / CI39439273417，selection仍position-observation、私有测试仅连续模式。仅删除已证实不支持的Promise，改在原有UIGraphics原生截图之后复用同一String JSON观测函数；没有新的异步JS API/等待。默认工作文件仍保留两模式。source/frozen/dispatch为snapshot前缀；observer.cache/recovery/observe_position_snapshot.py保存snapshot-run/jobs/artifacts，恢复须先核实际run和进程，不能重复派发。当前未有第三轮行为结果；R3继续未接线、生产507保护输入及普通index保持。前两轮分别在封面准备、Agent诊断桥接中断，不能将三轮混成通过。
-
-最新断点：第二轮97cd5ce/39434816178已完成失败。有效前景/连续封面已过（activeHref=cover.xhtml、legacy同一view、alpha1、hostAppeared=true），首个思源宋体原定位断言通过，两个点实际top/expectedTop均-9.9375、delta0；随后Agent新增evaluateJavaScript返回Promise导致WKErrorDomain5，整例0/1、31.242秒，后续五字体未执行。属于诊断错误，不能归为正文失败或初始化根因已修。83626657字节原件已SHA/CRC核验完整提取build/ci/39434816178/diagnostic，完整日志continuous-completed-job.log。用户已被明确告知这项错误及R3继续顺延。
-
-已删除该Promise和额外两帧等待，改在既有原生截图之后第二次读取String JSON（after-native-snapshot），原断言/预算保持；这不是“两帧稳定”证明。下一轮沿同一连续单例、原生产源、原字体序列，不重复分页链，不新增生产代码。派发前核Swift语法与冻结差异，若再次在准备/诊断阻塞则依据新原件改变实验，不能盲跑。
-
-最新用户决定：本轮只查清定位，R3顺延；禁止接线暂存R3候选。CI39428259337/5e2209c原生编译通过，但整例0/1：分页六内置字体走完，进入连续模式初始cover.xhtml时20秒超时，DOM为blank且未发位置，未到连续疑点；不是新增几何观测抛错。原生步骤32分16秒、整例136.633秒，不能把步骤耗时当测试耗时。完整113201043字节diagnostic已SHA/CRC核验并提取build/ci/39428259337/diagnostic，下载重复分片/ZIP按回执清除；完整job日志native-completed-job.log与run/artifacts保留在build/maintenance/R3-20261020。
-
-第二次最小实验已派发97cd5ce671696b0d67084f92f3ab103d4305412c / codex/diagnose-continuous-position / CI39434816178；Linux前置通过、原生步骤运行中，尚无行为结果。私有commit只选择原test连续分支，工作目录默认test仍有两模式。observer为.cache/recovery/observe_continuous_position.py，continuous-run/jobs/artifacts/frozen均独立命名；首轮旧证明不覆盖。新观察会同时核切换前/实际保存两点、片段/合并矩形与后续帧。旧false与true的同字体inner offset差约10点，xianxiaViewportOffset约-9.9375，新增假设为迟到DOM定位忽略偏移；只作线索，尚不改Vendor。
-
-外部复核：Apple公开viewDidAppear文档（https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdidappear(_:)）说明出现生命周期；固定Readium3.11 SwiftUI指南（https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/docs/Guides/Navigator/SwiftUI.md）用真实父控制器与有效view.bounds挂载；WebKit iOS测试窗口（https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/ios/PlatformWebViewIOS.mm）显式makeKeyAndVisible及析构隐藏。后者为查阅时main快照，并非iOS18.5锁定版本，只参考窗口fixture管理，不移植其私有API；生产不变，当前候选按本项目既有公开UIKit fixture约束输入。
-
-静态发现封面probe的visibleWebView只检查几何，忽略隐藏/scroll alpha；本项目连续模式存在同层blank WebView（R2附件alpha0）与活动资源WebView。尚未证明此轮封面超时唯一原因。下一最小实验：同一原test仅执行连续模式（私有诊断commit的模式选择，默认完整test继续两模式）；原所有断言、字体序列和20秒资源预算保持。开始前采用现成open(engine) fixture相同的前景/hasAppeared条件；封面probe显式选择readium.chapter.0，成功后记录旧候选href/alpha与真正候选对照；超时保留host与所有native WebView状态。仍保留两锚点几何与后续帧观察。此处是诊断输入有效性修正，不宣称生产初始化或正文根因已修。
-
-用户授权先查清断言后连续模式锚点不匹配，确有问题则修复，再继续位置隔离。先复用39418977905与39411950208完整附件；尚未开始新CI。假设分支：真实布局后移/旧回调回跳，或测试期望锚点与实际重开后锚点不同。必须核清样本所属阶段和坐标，不能仅凭非零offset否认位置问题，也不能把后续false倒写成原断言失败。
-
-本步先限于原测试与原件的只读分析；诊断必要时仅改ReaderRenderingTests的一组观测，不放宽原断言/3秒采样/20秒加载预算，不改Vendor/依赖/字体/界面。结论可恢复后另定义R3最小文件/行为合同，再提取位置捕获、保存、失败保旧、旧请求过滤；不同时提取会话或导航。实现、编译、定向、完整、原生及手机状态分别记录。保留R2所有完成改动和旧失败。
-
-初步只读证据：39418977905小薇/连续的visible-before-save模型锚点p25/443，save-returned、closed、open-returned均p25/436、viewportOffset=-9.9375；后续PNG仍显示长段016处。说明不能将旧目标字false直接等同保存锚点丢失，但缺少Range几何，尚不能收口。W3C CSSOM View https://www.w3.org/TR/cssom-view/#extensions-to-the-range-interface 区分Range片段列表与合并边界框；本地固定Readium3.11的continuousAnchorRectFunction优先getClientRects()[0]，原测试用getBoundingClientRect，需实际测量，不能从规范推定本次原因。
-
-恢复点：最小实验已冻结5e2209c6182896a937e987b205e10abc0c87286a / codex/diagnose-position-observation / CI39428259337；仓库与Linux Core阶段通过，原生步骤运行中，尚无最终回执。只读observer脚本.cache/recovery/observe_position_observation.py保存observation-run/jobs/artifacts到build/maintenance/R3-20261020；恢复先核实际进程/远程run，禁止重复dispatch。实时job日志API不可用，原错在native-live-log-unavailable.txt，不据此判断挂起。
-
-R3a候选只存在.cache/recovery/r3-candidate/tree（11文件），未接入App/Packages实际构建根目录。方案见Documentation/READER_POSITION_ISOLATION.md；候选5 Swift语法通过、135源/18节点静态接线通过、6种禁用import逐一拒绝，VM40处await表达式及顺序保持。候选检查曾发现依赖登记顺序不匹配，已在暂存区纠正，未派发失败原生试验。尚无Swift编译或R3运行验收；必须先依据定位附件作结论，再决定应用候选。普通HEAD/index和所有既有工作仍保持。
-
-最小实验position-observation：只执行原真实字体长链1例，保留原所有断言和预算；附加切换前/实际保存两锚点的rect/rects、scrollY和viewport offset，以及连续模式两呈现帧后的只读采样。生产App/Packages/Vendor/字体/工程/锁均保持7c33645，只增加该测试诊断与workflow/脚本选择。Windows语法已通过（456、新增0/既有54）；62工具仍在执行。普通HEAD/index及1157源文件SHA基线保留build/maintenance/R3-20261020/start.json，源快照r3-start-sources.zip。尚未派发新CI；下一步核工具结果、冻结4个文件、仅派发此1例。若不再出现false也不能追认旧观察根因已修。
+精确回执：Documentation/ValidationLogs/continuous-offset-39456749155.json。历史调查交接可从a84b6719/5340a5b提交及reader-position-investigation回执恢复；不把旧pending段落当当前事实。
 
 # 上一片：R2字体编排本片完成
 

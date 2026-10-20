@@ -1,5 +1,5 @@
 {
-  "status": "first offset candidate failed; DOM candidate pending; paged font separate by user",
+  "status": "continuous direct behavior verified; overall native gate failed5/6; paged font separate release blocker; R3 deferred",
   "R3": "deferred_by_user; candidates not applied",
   "productionRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
   "previousR2Gate": "53/53 historical, not a new position proof",
@@ -234,6 +234,17 @@
       "candidateRejected": true,
       "pagedFontFailureSeparate": true,
       "artifact": "build/ci/39447634363/diagnostic"
+    },
+    {
+      "revision": "5340a5b48aecb554fabeb7f1ad6d5da3903eeee8",
+      "run": 39456749155,
+      "baselineSpecifiedFailureErrorPoints": 10.875,
+      "patchedErrorPoints": 0.875,
+      "sixFontsPostSnapshotDelta": 0,
+      "passed": 5,
+      "failed": 1,
+      "wholeGatePassed": false,
+      "receipt": "Documentation/ValidationLogs/continuous-offset-39456749155.json"
     }
   ],
   "originalAssertionsAndBudgetsUnchanged": true,
@@ -241,5 +252,5 @@
   "deviceReleaseExecuted": false,
   "phoneAccepted": false,
   "newIPA": false,
-  "nextExperiment": "Identical control fixture; canonical DOM plus viewportOffset inside infinite-scroll WebKit; baseline specified red then six scoped cases. Font case continuous only in private commit; default both modes retained."
+  "nextExperiment": "Separate paged-font slice: compare complete sampled/reload Locators for held intermediate and final font requests using retained raw evidence; only if needed one same-fixture old/new control, no blind full gate replay."
 }
