@@ -1,6 +1,8 @@
 # 项目状态
 
-当前断点（2026-10-20）：Build30已交付；39373881574/aa0a119定向6/6、全量180/180、两Core各137与严格设备Release通过，556输入/三锁/原字体/53旧包及三个artifact已核。本轮原生8图/38原始帧复核完成，手机验收待反馈；无新的CI或实现任务在运行。
+I1当前（2026-10-20）：设置持久化已封装为ReaderSettings本地包，原7项合同测试/fixture原文保留并接入独立macOS和原iOS target；快速脚本、严格xUnit验证及保守影响映射已实现。Windows454语法新增0/54既有限制、Python工具61项58通过/3既有POSIX本机跳过，Bash语法通过。当前冻结输入准备一次reader-logic-integration（macOS7项+原iOS35项）真实编译验证，尚未取得Apple结果；完整180/设备Release与手机验收未重跑，最后交付仍Build30。未进入R2/R3/R4。
+
+当前断点（2026-10-20）：维护与功能隔离优先。I0依赖守卫已落地并接入仓库检查：131个Swift文件/12区域/13个target图节点、包/target循环与5个精确例外；20项边界正反例通过，完整Python工具49项46通过/3项既有POSIX本机跳过，453语法新增0/54既有Vendor限制。529个App/Packages/Vendor/Tests/锁/project保护输入与普通HEAD/index未变；本片未跑Swift编译/原生CI、未生成项目新IPA。下一片I1快速验证入口，R2/R3/R4等仍待实施；见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)与[本片记录](Documentation/ValidationLogs/project-isolation-i0.json)。最后交付仍Build30，手机验收待反馈，后续产品计划保留。
 
 ## Build30 设置隔离与定位修复（2026-10-20）
 

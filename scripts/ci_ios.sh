@@ -27,6 +27,7 @@ fi
 python3 scripts/verify_readium_lock.py Package.resolved
 cp Package.resolved build/Package.resolved
 
+bash scripts/test_reader_logic.sh
 swift test --package-path Packages/XianxiaCore --parallel
 swift build --package-path Packages/XianxiaCore --configuration release --product TXTPerformanceProbe
 PROBE_BIN=$(swift build --package-path Packages/XianxiaCore --configuration release --show-bin-path)

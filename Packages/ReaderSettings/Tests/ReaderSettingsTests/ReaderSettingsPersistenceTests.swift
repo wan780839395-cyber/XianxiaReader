@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 import XianxiaCore
-@testable import XianxiaReader
+@testable import ReaderSettings
 
 final class ReaderSettingsPersistenceTests: XCTestCase {
     @MainActor func testAppearanceWritesAcrossReadersStayOrderedAndObsoleteResultsAreNotPublished() async {

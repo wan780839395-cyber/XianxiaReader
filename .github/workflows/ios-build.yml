@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration]
 
 permissions:
   contents: read
@@ -40,6 +40,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
 
   core-tests:
+    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' }}
     needs: repository-checks
     runs-on: ubuntu-22.04
     timeout-minutes: 15
@@ -76,6 +77,44 @@ jobs:
           path: |
             build/logs/
             build/TXTPerformance/
+
+  reader-logic:
+    if: ${{ inputs.diagnostic_selection == 'reader-logic' || inputs.diagnostic_selection == 'reader-logic-integration' }}
+    needs: repository-checks
+    runs-on: macos-15-intel
+    timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run settings contracts without App host or Readium
+        run: bash scripts/test_reader_logic.sh
+      - name: Validate original iOS settings and lifecycle integration
+        if: ${{ inputs.diagnostic_selection == 'reader-logic-integration' }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_reader_diagnostic.sh settings 2>&1 | tee build/logs/settings-integration.log
+      - name: Preserve original logic and optional integration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-reader-logic
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            build/logs/
+            build/ReaderLogic/
+            build/DiagnosticTests.xcresult/
+            build/ReaderSnapshots/
+            build/test-results-summary.json
+            build/build-environment.txt
 
   ios:
     if: ${{ !inputs.diagnostic_selection || inputs.diagnostic_selection == 'full' || inputs.diagnostic_selection == 'fonts-full' || inputs.diagnostic_selection == 'rotation-full' || inputs.diagnostic_selection == 'unit-release' }}
@@ -149,7 +188,7 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' }}
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
     # The last cold native build reached its first test after28minutes.

@@ -1,5 +1,13 @@
 # 架构与技术决策
 
+## I1设置逻辑模块（实现及Windows检查通过，Apple待验证）
+
+ReaderSettingsPersistence从App移动到ReaderSettings本地包（只依赖Core/Apple Combine），仅公开现有调用需要的成员，算法与JSON路径保持。原7项测试源同时进入包内ReaderSettingsTests和原XianxiaReaderTests，精确sharedTestSources许可只适用于unit-test节点，生产源仍单一归属。默认完整CI增加同一逻辑门槛；既有workflow新增reader-logic / reader-logic-integration选择。真实编译、运行与性能须等原始CI结果，当前454语法与61工具不作为Swift验收。设计见FAST_VALIDATION.md。
+
+## 当前架构维护路线（2026-10-20）
+
+用户确认全项目维护与功能隔离优先，再开发后续功能。目标依赖、状态负责人、实施切片、验收标准及未来功能接入合同见[全项目隔离与维护计划](Documentation/PROJECT_ISOLATION_PLAN.md)。I0守卫已落地：architecture-boundaries.json登记区域、依赖和5个精确例外，check_architecture.py解析真实import/SwiftPM声明与XcodeGen，检查包/target循环及编译源码归属，同时扫描实际target源路径以覆盖常规目录外的新功能；已纳入check_repository。Windows20项边界正反例及完整工具46通过/3既有POSIX跳过；源码453语法新增0，静态检查不是Swift编译。现有App功能仍共用target，不能阻止该target内全部类型访问；3个App具体适配依赖仍待I5消除，2个真实Readium集成fixture例外单列。未新增Swift target、未完成R2/R3/R4，也未进行新原生CI。
+
 ## R1设置持久化边界（Build30软件门槛通过，手机待验）
 
 AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方法接口调用既有BookFileStore。外观/手感分别有序提交，完成结果过滤最新请求和实际阅读会话；关闭后的已提交写入继续完成，新reader恢复先等待旧队列。该对象不持有引擎、Locator、页面或数据库；ReaderViewModel保留向引擎应用偏好和位置捕获的现有编排。设置完成仅等待设置，回到可见正文后才请求fresh完整位置。JSON格式、3秒位置预算和20秒资源预算保持。参考Readium 3.11偏好存储及Readest设置/书籍状态分离，具体版本与取舍见[方案](Documentation/READER_ISOLATION_PLAN.md)。

@@ -201,12 +201,17 @@ def check_vendor() -> None:
     verify_vendor()
 
 
+def check_architecture_boundaries() -> None:
+    from check_architecture import check_architecture
+    check_architecture(ROOT)
+
+
 def main() -> None:
     argument_parser = argparse.ArgumentParser()
     argument_parser.add_argument("--swift-syntax", action="store_true")
     argument_parser.add_argument("--report", type=Path)
     args = argument_parser.parse_args()
-    checks = [check_documents, check_project, check_workflow, check_schema, check_fixtures, check_vendor]
+    checks = [check_documents, check_project, check_workflow, check_schema, check_fixtures, check_vendor, check_architecture_boundaries]
     completed = []
     for check in checks:
         check()

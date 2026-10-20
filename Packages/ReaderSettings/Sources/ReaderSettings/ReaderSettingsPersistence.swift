@@ -3,7 +3,7 @@ import Foundation
 import XianxiaCore
 
 /// The settings boundary has no reader, navigator, locator or presentation dependency.
-protocol ReaderSettingsStorage: Sendable {
+public protocol ReaderSettingsStorage: Sendable {
     func readingAppearance() async throws -> ReadingAppearance
     func readingInteraction() async throws -> ReadingInteraction
     func saveReadingAppearance(_ value: ReadingAppearance) async throws
@@ -14,14 +14,14 @@ extension BookFileStore: ReaderSettingsStorage {}
 
 /// Shared by AppServices so a closing reader cannot write behind a newer reader.
 /// Enqueue synchronously on MainActor; an actor alone does not order work across awaits.
-@MainActor final class ReaderSettingsPersistence {
-    struct Completion: Equatable {
-        let owner: UUID
-        let errorMessage: String?
+@MainActor public final class ReaderSettingsPersistence {
+    public struct Completion: Equatable {
+        public let owner: UUID
+        public let errorMessage: String?
     }
 
-    @Published private(set) var appearanceCompletion: Completion?
-    @Published private(set) var interactionCompletion: Completion?
+    @Published public private(set) var appearanceCompletion: Completion?
+    @Published public private(set) var interactionCompletion: Completion?
 
     private let storage: any ReaderSettingsStorage
     private var appearanceTask: Task<Void, Never>?
@@ -29,21 +29,21 @@ extension BookFileStore: ReaderSettingsStorage {}
     private var appearanceRequestID: UUID?
     private var interactionRequestID: UUID?
 
-    nonisolated init(storage: any ReaderSettingsStorage) {
+    public nonisolated init(storage: any ReaderSettingsStorage) {
         self.storage = storage
     }
 
-    func readingAppearance() async throws -> ReadingAppearance {
+    public func readingAppearance() async throws -> ReadingAppearance {
         while let pending = appearanceTask { await pending.value }
         return try await storage.readingAppearance()
     }
 
-    func readingInteraction() async throws -> ReadingInteraction {
+    public func readingInteraction() async throws -> ReadingInteraction {
         while let pending = interactionTask { await pending.value }
         return try await storage.readingInteraction()
     }
 
-    func saveAppearance(_ value: ReadingAppearance, owner: UUID) {
+    public func saveAppearance(_ value: ReadingAppearance, owner: UUID) {
         let requestID = UUID()
         appearanceRequestID = requestID
         let previous = appearanceTask
@@ -59,7 +59,7 @@ extension BookFileStore: ReaderSettingsStorage {}
         }
     }
 
-    func saveInteraction(_ value: ReadingInteraction, owner: UUID) {
+    public func saveInteraction(_ value: ReadingInteraction, owner: UUID) {
         let requestID = UUID()
         interactionRequestID = requestID
         let previous = interactionTask
@@ -77,7 +77,7 @@ extension BookFileStore: ReaderSettingsStorage {}
 
     /// Include writes queued while suspended in either lane, rather than returning
     /// after an obsolete snapshot of just one of the queues has completed.
-    func flush() async {
+    public func flush() async {
         while appearanceTask != nil || interactionTask != nil {
             let appearance = appearanceTask
             let interaction = interactionTask

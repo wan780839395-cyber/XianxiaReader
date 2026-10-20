@@ -10,6 +10,8 @@ packages:
     path: Packages/XianxiaCore
   XianxiaReading:
     path: Packages/XianxiaReading
+  ReaderSettings:
+    path: Packages/ReaderSettings
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -37,6 +39,8 @@ targets:
         product: ReadingInterfaces
       - package: XianxiaReading
         product: ReadiumAdapter
+      - package: ReaderSettings
+        product: ReaderSettings
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.app
@@ -50,6 +54,7 @@ targets:
     platform: iOS
     sources:
       - path: Tests/iOS
+      - path: Packages/ReaderSettings/Tests/ReaderSettingsTests
       - path: Tests/Fixtures
         buildPhase: resources
         type: folder
@@ -61,6 +66,8 @@ targets:
         product: ReadingInterfaces
       - package: XianxiaReading
         product: ReadiumAdapter
+      - package: ReaderSettings
+        product: ReaderSettings
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.tests

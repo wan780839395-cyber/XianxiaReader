@@ -1,0 +1,167 @@
+{
+  "recordedAtUTC": "2026-10-20T08:38:49.350512+00:00",
+  "slice": "I0 dependency inventory and static guard",
+  "status": "implemented_windows_validated",
+  "lastProductDelivery": "Build30 / aa0a119 / 39373881574; device feedback remains pending",
+  "changedToolInputsSHA256": {
+    "Documentation/architecture-boundaries.json": "33b83ff2fe25bb79a1b0655cb5ae208f0ab79cb1a819cd516be392ada7a6c20b",
+    "scripts/check_architecture.py": "19e4128a1ca68653e75cfd2b91af94b668056bd64195e59b8476a89ec254c1bc",
+    "scripts/test_architecture.py": "de1309ead0a64ffd1b4a45f04ddd8e5759d2972768cee7974d4b3bbf54d9e1d7",
+    "scripts/check_repository.py": "435ccf3ab8045865b05a98de4155a8685e22160906e14c0ab8af2571c30478c9"
+  },
+  "productionAndExistingWorkPreservation": {
+    "baselineFiles": 556,
+    "changedBaselineFiles": [
+      "scripts/check_repository.py"
+    ],
+    "protectedFiles": 529,
+    "protectedChanged": [],
+    "head": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "headUnchanged": true,
+    "indexUnchanged": true,
+    "frozenToolInputsMatch": true
+  },
+  "architecture": {
+    "swiftFiles": 131,
+    "areas": 12,
+    "targetGraphNodes": 13,
+    "packages": {
+      "XianxiaCore": [],
+      "XianxiaReading": [
+        "XianxiaCore",
+        "ReadiumToolkit"
+      ],
+      "ReadiumToolkit": []
+    },
+    "exceptions": [
+      {
+        "file": "App/AppServices.swift",
+        "import": "ReadiumAdapter",
+        "reason": "Existing assembly import; review and remove if unused during I5.",
+        "removeIn": "I5"
+      },
+      {
+        "file": "App/Library/LibraryView.swift",
+        "import": "ReadiumAdapter",
+        "reason": "Existing ReaderView construction creates ReadiumEngineFactory; move to App assembly in I5.",
+        "removeIn": "I5"
+      },
+      {
+        "file": "App/Library/LibraryViewModel.swift",
+        "import": "ReadiumAdapter",
+        "reason": "Existing import assembly creates ReadiumPublicationLoader; inject metadata capability in I5.",
+        "removeIn": "I5"
+      },
+      {
+        "file": "Tests/iOS/ReadiumSearchTests.swift",
+        "import": "ReadiumShared",
+        "reason": "Real Readium search extension integration fixture; not a production allowance.",
+        "removeIn": "Review when separating integration test targets in I1"
+      },
+      {
+        "file": "Tests/iOS/TXTReadingTests.swift",
+        "import": "ReadiumShared",
+        "reason": "Real TXT/Readium publication integration fixture; not a production allowance.",
+        "removeIn": "Review when separating integration test targets in I1"
+      }
+    ]
+  },
+  "validation": {
+    "repositoryStaticChecks": [
+      "check_documents",
+      "check_project",
+      "check_workflow",
+      "check_schema",
+      "check_fixtures",
+      "check_vendor",
+      "check_architecture_boundaries"
+    ],
+    "swiftSyntax": {
+      "files": 453,
+      "newDiagnostics": 0,
+      "retainedVendorParserLimitations": 54,
+      "isSwiftCompilation": false
+    },
+    "architectureTests": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "pythonTooling": {
+      "total": 49,
+      "passed": 46,
+      "failed": 0,
+      "skipped": 3,
+      "seconds": 12.343,
+      "exitCode": 0,
+      "skippedCases": [
+        "test_both_successes_keep_separate_results (test_recording_control.RecordingControlTests.test_both_successes_keep_separate_results) ... skipped 'POSIX signal fixture runs in repository-checks on Linux'",
+        "test_first_failure_survives_later_success (test_recording_control.RecordingControlTests.test_first_failure_survives_later_success) ... skipped 'POSIX signal fixture runs in repository-checks on Linux'",
+        "test_second_failure_is_not_hidden (test_recording_control.RecordingControlTests.test_second_failure_is_not_hidden) ... skipped 'POSIX signal fixture runs in repository-checks on Linux'"
+      ]
+    },
+    "qualifiedGuardNegativeControl": {
+      "oldGuardRejectedUnownedRegisteredTarget": false,
+      "regressionTestExitCode": 1,
+      "correctedGuardRejectedIt": true,
+      "regressionTestAfterFixExitCode": 0,
+      "finalSuiteIncludesCase": true
+    },
+    "remoteCIExecuted": false,
+    "swiftCompiled": false,
+    "nativeReviewed": false,
+    "deviceAccepted": false,
+    "projectIPAProduced": false
+  },
+  "entryPoints": [
+    "python scripts/check_architecture.py",
+    "python scripts/check_repository.py --swift-syntax",
+    "python -m unittest discover -s scripts -p 'test_*.py' -v"
+  ],
+  "limitations": [
+    "App feature areas still share one compiler target; same-target type access is not isolated.",
+    "Three production adapter imports remain explicit migration debt; two Readium integration fixture imports are separate exceptions.",
+    "Only the currently supported literal SwiftPM/XcodeGen declaration syntax is statically parsed; unsupported dynamic/source-selection syntax fails for review.",
+    "Vendor internal graph, C/header semantics, Swift typing and linkage are not compiled by this guard; existing provenance/lock checks and future Apple validation remain required.",
+    "Three pre-existing POSIX signal cases were not executed on Windows; no new Linux/macOS CI was run."
+  ],
+  "nextSlice": "I1 fast logic-test entry and impact map; no R2/R3/R4 migration in I0",
+  "evidence": [
+    {
+      "path": "build/maintenance/I0-20261020/accepted-tool-inputs.json",
+      "sha256": "ec02797269334d8cc03ef889b58539d7f45f0e85a0edd8b48aa26b6a97a2672b"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/accepted-repository-checks.json",
+      "sha256": "2c37f7803b503e749d03a0760c95e5c1bf3a190d97f31b3a1d4aba095feac17e"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/accepted-repository-checks.log",
+      "sha256": "848a4011552c2795ad00542a63f37077c5536da96ca0c64e059329cec868aba6"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/accepted-tooling.log",
+      "sha256": "aa95174bd57e03f98b52851e726e3f4ad17bfb3c7cc160f33ec79227a38423c2"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/accepted-architecture.json",
+      "sha256": "18a6241d9aa8e0388e1c8695bc6ef4b765818754ee4ec6b26fec6dd4b7621673"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/accepted-preservation.json",
+      "sha256": "669073061f291aeef18aaecac7d4f278ed6caa535d4a34237bc5105829455179"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/new-target-ownership-negative-control.log",
+      "sha256": "e7620b1919144c55650f988a5cadc18f3e478167bd1fc2d90ebf80a54048d6f2"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/new-target-ownership-positive-control.log",
+      "sha256": "e42db04cf0d01a26351a64f5acee78c2793c5890e3d769614bc1aa305be21bff"
+    },
+    {
+      "path": "build/maintenance/I0-20261020/check-repository-I0.patch",
+      "sha256": "42822bdcc3a9494fa8c9d73da6ea70db9a0f8bce86e38edd9cd2c808b999308f"
+    }
+  ]
+}

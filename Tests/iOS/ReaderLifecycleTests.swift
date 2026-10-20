@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import ReaderSettings
 import ReadingInterfaces
 import UIKit
 import XCTest
