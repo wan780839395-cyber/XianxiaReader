@@ -1,5 +1,9 @@
 # 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
 
+即将派发有确定性控制的修正验证：负对照runtime bc95fac052937f4a0c15c3794d733ede4d25aefa，沿用原生产文件；正例候选仅在EPUBInfiniteScrollView.go的外层setContentOffset后补已有updateViewports，并同步UPSTREAM该文件摘要/理由。内层DOM已移动但外层坐标不变时，主动同步不能依赖外层delegate回调。App/Core/字体/锁/工程均保持；507保护输入只有这2个Vendor文件例外，其余505不变。截图后位置检查已由观察升级为真实断言，原断言与预算保留。
+
+Windows本候选456语法新增0/既有Vendor54、63工具59通过4明确POSIX本机跳过（35.888秒）、两Bash语法通过；已静态核XCTest autoclosure无await，尚未Swift编译。本次新增POSIX控制驱动fixture先在Linux前置执行，覆盖浅clone、预定红转绿、基线意外绿、错误失败、修正失败；它先通过才开始原生编译。原生同一runner先执行旧源1例，必须原exit65且唯一失败标记LATE_CANONICAL_VIEWPORT_OFFSET；再以相同测试输入/DerivedData执行修正版5例，不增加重试、放宽预算或生成IPA。R3按用户选择顺延，.cache暂存13文件不接线。
+
 最新结论：第三轮1d8c696/39439273417连续单例1/1通过，但新增只读几何在楷体、思源黑体均复现保存同字的top从预期-9.9375变为0.0625、delta10，截图前后持续；两个Range方法一致且只含一个片段。证据snapshot-geometries.json及完整8345530字节原件已SHA/CRC核验，不能把1/1写成定位已修。旧三组baseline/R2完整Locator内容逐字段相同，已排除保存内容差异。
 
 候选原因收窄到EPUBInfiniteScrollView.go：内层DOM先执行go，外层若坐标没变，依赖scrollViewDidScroll的updateViewports可能不再执行；初始load路径已有主动updateViewports。先构造确定性负对照：原FreshReturn测试在连续模式重复定位同一canonical字/offset=-10，保持外层坐标不变并显式屏蔽该次外层scroll回调；完整生命周期清理恢复delegate。旧源码必须在指定LATE_CANONICAL_VIEWPORT_OFFSET断言失败，才在同一runner/DerivedData验证仅补updateViewports的一行修正与5直接回归（EPUB重复返回、真实字体两模式、隐藏重排、连续resize、TXT完整锚点返回）。不新增target/修改依赖/位置格式/预算。负对照不成立或失败位置不同则终止后半实验，不盲跑修正。

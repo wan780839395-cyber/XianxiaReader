@@ -16,6 +16,8 @@
 
 ## R3a：完整位置状态与保存请求身份
 
+定位前置核查最新：39439273417给出有效几何，楷体与思源黑体在原断言后及原生截图后，保存字top=0.0625、expected=-9.9375、delta10，rect/rects完全相同。候选最小修正复用初始load已有updateViewports，在显式go设置外层offset后同样无条件同步一次，避免同坐标时没有外层回调导致内层DOM坐标残留。负对照冻结bc95fac只加强测试/诊断、生产不变：连续同一完整字/offset=-10的重复go，外层保持原坐标，显式不送scroll delegate回调，生命周期恢复该delegate。只有旧源在唯一指定断言失败，再运行一行修正和五个直接边界，才接受本片；暂无结果，不能预先宣称实际异步写入者或所有定位问题已修。R3候选仍未接线。
+
 本小片计划把完整不透明ReadingPosition、显式保存请求身份、失败状态及同步结果接纳迁入真实ReaderPositions模块；App进度视图只观察显示摘要。通过原Core业务值复用版本化Locator，不解析/重写EPUB Locator或TXT锚点，不改变SQLite规则。
 
 沿用现有XianxiaCore包，增加独立Foundation-only产品/target与直接测试target，避免引入新顶层包或Readium/UIKit依赖；XianxiaCore业务target不反向依赖ReaderPositions。project.yml实际链接产品，架构登记同步增加独立区域/节点及禁止UI/引擎导入的反例。与原ReaderSettings、Readium TestApp设置存储借鉴同一原则：状态/保存有效性拥有明确负责人，平台动作在调用方协调；不引入第三方框架。

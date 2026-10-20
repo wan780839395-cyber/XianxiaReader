@@ -278,6 +278,9 @@ import UIKit
         // coordinate atomically, so no old animation can overwrite a reflow
         // correction. User drag/deceleration and one-screen turns are separate.
         setContentOffset(CGPoint(x: 0, y: y - contentInset.top), animated: false)
+        // DOM go can move the inner WebView even when the outer seek is a no-op.
+        // Reconcile explicitly; an unchanged offset need not emit didScroll.
+        updateViewports()
         preload()
         infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
         return true
