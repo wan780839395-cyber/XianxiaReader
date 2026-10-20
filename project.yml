@@ -10,6 +10,8 @@ packages:
     path: Packages/XianxiaCore
   XianxiaReading:
     path: Packages/XianxiaReading
+  ReadiumToolkit:
+    path: Vendor/ReadiumToolkit
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -61,6 +63,10 @@ targets:
         product: ReadingInterfaces
       - package: XianxiaReading
         product: ReadiumAdapter
+      - package: ReadiumToolkit
+        product: ReadiumNavigator
+      - package: ReadiumToolkit
+        product: ReadiumShared
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xianxiareader.tests

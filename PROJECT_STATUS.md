@@ -12,9 +12,9 @@
 
 用户已确认Build29手机慢滚→桌面→再打开为“已暂停”，仅此交付版本路径反馈。后台UI前置条件[39352276145](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39352276145)/ff196499已完成1/1，0失败/跳过，test/summary/export0，Swift编译诊断0，556输入及artifact12234387680完整SHA/CRC已核。原立即暂停断言保持，日志实际53.23秒Home→56.76秒桌面图标→59.18秒activate→62.56秒暂停截图；已查看该原图，真实正文与已暂停可见。生产暂停逻辑不改，证明本测试切片通过，不抹去旧失败或代替完整/设备验收。watcher21713/receiver75655均退出0，无本轮残留进程；记录Documentation/ValidationLogs/background-precondition-39352276145.json。
 
-下一独立切片：连续模式章节固定单页，但resolved spread仍auto，使旋转触发整组WebView销毁/重开。原xcresult的D3E58E25附窗后24.566秒未进入导航/初始化，定位到DOM恢复之前。只在EPUBSettings解析infiniteScroll时固定spread=never，保留分页auto/always/never偏好；新回归覆盖模式切回/defaults。原字体、定位和旋转断言/预算保持。来源与证据在Documentation/READER_ISOLATION_PLAN.md；源码已应用；Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，均非原生编译。原生6项待执行，预期150集成+29UI=179不等于已验收。
+最新39354867480/abbcf18已结束，仓库/Core通过，iOS源码无编译诊断但XianxiaReaderTests链接失败，原生用例执行0项；不是6项行为失败或通过。完整artifact12235502581 SHA/CRC已核，原件build/ci/39354867480。新增测试直接使用ReadiumNavigator/Shared，测试target缺少显式产品链接；按XcodeGen2.46官方声明，只在project.yml给测试target增加已有本地包两产品，不更改Readium/远程pins/生产源码。下一步Windows预检/实际Git来源清单后同6项验证。当前无旧watcher/receiver残留。记录Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json。
 
-首次6项派发39354554615/d1ad446在仓库来源校验失败：Windows CRLF摘要与实际Git LF不同；原生未执行、测试执行0项。已统一LF与来源摘要，Windows预检再次通过；接下来先核提交中的完整Vendor清单，再重新派发同6项，不追加full。
+连续模式仅在EPUBSettings解析infiniteScroll时固定spread=never，避免自动双页旋转的多余销毁重开；保留分页偏好。源码已应用，原6项行为仍待验证；150集成+29UI=179完整门槛与Release/设备未通过。
 
 正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 

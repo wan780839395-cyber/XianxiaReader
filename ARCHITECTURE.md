@@ -7,10 +7,10 @@ AppServices共享ReaderSettingsPersistence，通过ReaderSettingsStorage四方�
 此为渐进提取第一片，未整体拆分字体/位置/会话服务。39230331856证明该次完整位置保留至open输入，39235769577直接引擎重开同一段首1/1通过；原字体链路的字体/目标字联合失败仍未分清。当前只增强测试分项证据，生产设置/存储及渲染管线保持。当前024完整171/177、6项失败，Release受阻。完整位置仍在入口，失败期间存在about:blank和101秒WebContent启动；关闭2合同及设置/生命周期35通过，不宣称全部旧加载故障已修。录屏开/关39263942566已结束64/67与66/67，OFF仍有换字体前的深段落捕获前置条件失败，不能认定仅录屏或仅环境。当前独立修正旋转纸色抽样误判，生产边界保持；严格Release/手机验收尚未通过。
 
 ## 连续旋转的双页策略边界（源码已修，原生待验证）
-+
-+Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；本策略须单独6项及最终179/Release验证。证据与固定上游差异见READER_ISOLATION_PLAN.md。
-+
-+## Build29 阅读安全区
+
+Readium本地infiniteScroll始终以单页章节组成有界连续窗口；EPUBSettings解析时关闭spread，避免原分页的auto双页状态在旋转时使整组WebView失效重载。分页模式保留原spread偏好，连续frame/ResizeObserver仍处理几何与锚点重排。仅修设置解析，不更换排版引擎、Locator或加载预算。39352276145后台UI原1项已通过；本策略须单独6项及最终179/Release验证。证据与固定上游差异见READER_ISOLATION_PLAN.md。
+
+## Build29 阅读安全区
 
 ReaderSurface协调器持有单个ReaderSafeAreaCover，直接附加原控制器view，保持fullsize/原层级。UIKit实际safeAreaInsets/layout驱动CAShapeLayer evenOdd四边页面色，中心透明、触摸和辅助功能穿透，zPosition高于迟到的navigator；布局/安全区/页面色变化才更新，dismantle移除。无逐帧滚动回调，不改引擎viewport/inset/offset、Locator、Core/schema/依赖。真window像素/命中/迟到子视图合成及浅深慢滚旋转验证分列；完整Release源a650，补充仅测试源f320，生产输入相同。详READING_EDGES_DESIGN和M4_READING_EDGES_VALIDATION_REPORT；手机性能和初始封面位置偶发超时根因仍待专项。
 

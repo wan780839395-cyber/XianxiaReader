@@ -210,3 +210,8 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 已定位一个可消除的触发链：本地infiniteScroll协议写明关闭双页、Navigator创建连续章节时也固定单页，但EPUBSettings仍解析spread=.auto；ViewModel在横竖变化时翻转spreadEnabled，队列失效后销毁/重载整组连续WebView。固定[Readium3.11 ViewModel](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift)的自动双页逻辑适用于原分页；[PR811](https://github.com/readium/swift-toolkit/pull/811)最新核实head5e22cb7仍open/unmerged，其Settings/ViewModel补丁也保留该缺口。该PR仅集成参考，不当作正式上游修复。
 
 当前仅在EPUBSettings偏好解析中令infiniteScroll使用spread=.never，保留分页auto/always/never与defaults/显式模式优先级。连续frame/ResizeObserver测量路径继续承担旋转重排；不改字体、完整Locator、预算、依赖和原UI断言。一个新增纯设置回归覆盖三种分页偏好、继承默认连续以及显式切回分页；旧RenderingTests方法主体保持。UPSTREAM摘要登记对应源，CI新continuous-rotation选择6项：该回归、原两字体、原章跳转、原连续六字体和原浅深旋转UI。Windows453语法新增0/54限制、工具26通过3POSIX本地跳过、Bash语法通过，尚非Swift编译；预期150集成+29UI=179，完整179和设备Release待验证。单元复用守卫同步150，当前旧失败UI不能作为可复用基线。
+
+
+## 原生链接断点39354867480与测试依赖修复
+
+最新39354867480/abbcf18已结束，仓库/Core通过，iOS源码无编译诊断但XianxiaReaderTests链接失败，原生用例执行0项；不是6项行为失败或通过。完整artifact12235502581 SHA/CRC已核，原件build/ci/39354867480。新增测试直接使用ReadiumNavigator/Shared，测试target缺少显式产品链接；按XcodeGen2.46官方声明，只在project.yml给测试target增加已有本地包两产品，不更改Readium/远程pins/生产源码。下一步Windows预检/实际Git来源清单后同6项验证。当前无旧watcher/receiver残留。记录Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json。 采用固定[XcodeGen2.46包产品依赖规范](https://github.com/yonaskolb/XcodeGen/blob/2.46.0/Docs/ProjectSpec.md#dependency)，复用同一个Vendor/ReadiumToolkit本地包，App目标及包版本保持。未应用缓存中的live-resize/rotation-full候选，先完成当前6项。

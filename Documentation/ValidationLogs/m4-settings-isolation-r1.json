@@ -1,6 +1,6 @@
 {
-  "recordedAtUTC": "2026-10-20T01:36:30.882566+00:00",
-  "stage": "continuous-rotation-digest-corrected-native-pending",
+  "recordedAtUTC": "2026-10-20T02:07:44.148721+00:00",
+  "stage": "readium-test-link-dependency-applied-native-pending",
   "branch": "codex/refactor-reader-settings",
   "oldLifecycleBodiesUnchanged": 26,
   "newTests": 9,
@@ -417,8 +417,8 @@
   "R1Accepted": false,
   "ReleaseBuilt": false,
   "IPAProduced": false,
-  "currentBlocker": "Charcoal landscape replacement did not enter navigation/initialization; old paged reset remains unproven. Background precondition fixture now1/1 passed.",
-  "nextStep": "Freeze continuous spread policy and run selection6; original assertions/budgets, no full retry",
+  "currentBlocker": "New test target link failed before any test executed; explicit local package product dependencies added",
+  "nextStep": "Same selected6 with test-link-only project config correction",
   "AppSettingsInputsIdenticalToOriginalR1": true,
   "readerSessionCloseDiagnostic": {
     "run": 39211610770,
@@ -471,8 +471,8 @@
   "expectedUnit": 150,
   "expectedUITarget": 29,
   "expectedTotal": 179,
-  "latestCompletedRun": 39354554615,
-  "latestCompletedEvidence": "Documentation/ValidationLogs/continuous-rotation-39354554615-precheck-failure.json",
+  "latestCompletedRun": 39354867480,
+  "latestCompletedEvidence": "Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json",
   "pendingLocalChange": {
     "scope": "Root scroll writer and preparation-failure diagnostic only; no production change",
     "selection": "fonts",
@@ -481,14 +481,12 @@
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39354554615,
-    "sourceRevision": "d1ad446ca829b51bd10488797f9ce70d02002f16",
+    "run": 39354867480,
+    "sourceRevision": "abbcf18c992ad9c8369be0c745e881de08939677",
     "status": "completed",
     "conclusion": "failure",
-    "failedStage": "repository-checks/check_vendor",
-    "nativeExecuted": false,
-    "selectedTestsExecuted": 0,
-    "expectedSelected": 6
+    "failedStage": "XianxiaReaderTests link",
+    "selectedTestsExecuted": 0
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -771,21 +769,13 @@
     ]
   },
   "nextSlice": {
+    "changedCodePaths": [
+      "project.yml"
+    ],
+    "productionUnchanged": true,
     "selection": "continuous-rotation",
-    "expected": 6,
-    "applied": true,
-    "nativeCompiled": false,
-    "productionScope": "EPUBSettings resolves infiniteScroll spread.never only; paged preference unchanged",
-    "expectedFull": 179,
-    "windows": {
-      "swiftGrammarFiles": 453,
-      "newDiagnostics": 0,
-      "vendorLimitations": 54,
-      "toolingPassed": 26,
-      "toolingSkipped": 3,
-      "bashSyntax": true,
-      "SwiftCompiled": false
-    }
+    "expectedSelected": 6,
+    "nativeCompiled": false
   },
   "latestBackgroundPrecondition": {
     "recordedAtUTC": "2026-10-20T01:35:24.174339+00:00",
