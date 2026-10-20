@@ -18,7 +18,7 @@ restore_and_verify() {
 from pathlib import Path
 import hashlib, json, subprocess, sys
 revision, phase, folder = sys.argv[1:]
-for name in ['Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift', 'Vendor/ReadiumToolkit/UPSTREAM.json']:
+for name in ['Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift', 'Vendor/ReadiumToolkit/UPSTREAM.json']:
     Path(name).write_bytes(subprocess.check_output(['git', 'show', revision + ':' + name]))
 roots = ['App', 'Packages', 'Vendor', 'Tests', 'project.yml', 'Package.resolved', '.gitattributes', 'scripts/ci_reader_diagnostic.sh']
 entries = subprocess.check_output(['git', 'ls-tree', '-rz', revision, '--', *roots]).split(b'\0')
@@ -83,10 +83,10 @@ import json, sys
 folder = Path(sys.argv[1])
 result = json.loads(Path('build/test-results-summary.json').read_text())
 assert result['result'] == 'Passed'
-assert result['totalTestCount'] == result['passedTests'] == 5
+assert result['totalTestCount'] == result['passedTests'] == 6
 assert result['failedTests'] == result['skippedTests'] == 0 and not result.get('testFailures')
 negative = json.loads((folder/'negative-control.json').read_text())
 assert negative['expectedFailureObserved']
-(folder/'receipt.json').write_text(json.dumps({'baseline': negative, 'patchedPassed': 5, 'patchedFailed': 0, 'patchedSkipped': 0, 'sharedBuildDirectory': True, 'full187Executed': False, 'deviceReleaseExecuted': False, 'newIPA': False}, indent=2) + '\n')
-print('POSITION CONTROL: old source failed specified assertion; patched five cases passed; no Release or IPA')
+(folder/'receipt.json').write_text(json.dumps({'baseline': negative, 'patchedPassed': 6, 'patchedFailed': 0, 'patchedSkipped': 0, 'sharedBuildDirectory': True, 'importedFontCaseScope': 'continuous only in this diagnostic commit; default repository gate retains both modes', 'full187Executed': False, 'deviceReleaseExecuted': False, 'newIPA': False}, indent=2) + '\n')
+print('POSITION CONTROL: old source failed specified assertion; patched six scoped cases passed; no Release or IPA')
 PY

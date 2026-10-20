@@ -1,5 +1,16 @@
 # 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
 
+## 当前断点：连续偏移第二候选，分页另查（2026-10-21）
+
+用户确认本轮只收口连续偏移，分页字体章头问题独立排查，R3顺延。39447634363/129e3506已完成失败：旧runtime负对照在指定断言失败10.875点；补updateViewports候选同样失败，不能验收，已只撤回其InfiniteScrollView和UPSTREAM两文件。完整156223138字节原件已核SHA/CRC并提取，原始退出65与两个失败保留；修正组3/5，另一项为分页字体重开章头，未走连续修改路径。
+
+下一实验只改ReflowableSpreadView已有canonical DOM定位：无限连续模式在WebKit内部消费同一个字锚点与xianxiaViewportOffset；分页原分支保持。相同测试输入先运行原生产1例指定负对照，再运行6个直接用例（明确加入原分页完整字锚点回归；本次私有诊断字体链仅连续，默认仓库仍两模式）。原3点断言/预算、完整Locator/依赖/字体/App/Core保持，不增加等待重试，不导出IPA。新假设是内层默认文本定位忽略保存的viewport偏移；此前一行同步失败只排除该候选，不能冒称已捕获迟到写入者。
+
+生成/检查/冻结前更新本断点；第二候选已实施，当前未编译/验收，先执行Windows检查后冻结同输入A/B。完整187、设备Release、手机验收未执行，R3候选仍只在.cache不接线。旧分页字体问题继续作为发布阻塞项。
+
+
+当前唯一远程运行：修正源129e350605d9c81169827ee013237bae10120fb5 / codex/fix-continuous-position-offset / CI39447634363；负对照runtime bc95fac052937f4a0c15c3794d733ede4d25aefa。2026-10-20 15:56UTC独立REST核run仍in_progress，repository-checks与Core已success，原生控制步骤运行中。原push成功但后续git ls-remote因schannel握手失败，已用REST ref核同一SHA且确认没有既有run后仅派发一次；offset-fix-frozen.json含恢复核对。原observer三次网络读取失败退出，不是CI失败；查实际任务后已恢复只读观察。默认原生步骤不分内部阶段，未见原件前不能猜基线/正例是否执行或通过。
+
 即将派发有确定性控制的修正验证：负对照runtime bc95fac052937f4a0c15c3794d733ede4d25aefa，沿用原生产文件；正例候选仅在EPUBInfiniteScrollView.go的外层setContentOffset后补已有updateViewports，并同步UPSTREAM该文件摘要/理由。内层DOM已移动但外层坐标不变时，主动同步不能依赖外层delegate回调。App/Core/字体/锁/工程均保持；507保护输入只有这2个Vendor文件例外，其余505不变。截图后位置检查已由观察升级为真实断言，原断言与预算保留。
 
 Windows本候选456语法新增0/既有Vendor54、63工具59通过4明确POSIX本机跳过（35.888秒）、两Bash语法通过；已静态核XCTest autoclosure无await，尚未Swift编译。本次新增POSIX控制驱动fixture先在Linux前置执行，覆盖浅clone、预定红转绿、基线意外绿、错误失败、修正失败；它先通过才开始原生编译。原生同一runner先执行旧源1例，必须原exit65且唯一失败标记LATE_CANONICAL_VIEWPORT_OFFSET；再以相同测试输入/DerivedData执行修正版5例，不增加重试、放宽预算或生成IPA。R3按用户选择顺延，.cache暂存13文件不接线。

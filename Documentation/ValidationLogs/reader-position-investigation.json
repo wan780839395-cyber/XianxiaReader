@@ -1,5 +1,5 @@
 {
-  "status": "real_post_assert_offset_drift_confirmed_control_prepared",
+  "status": "first offset candidate failed; DOM candidate pending; paged font separate by user",
   "R3": "deferred_by_user; candidates not applied",
   "productionRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
   "previousR2Gate": "53/53 historical, not a new position proof",
@@ -28,68 +28,68 @@
         "archiveSHA256": "5b6432cfa0cf35ca4fe258b21020e41476bd7202457ee4249b91b00e30f2619c",
         "githubDigestMatches": true,
         "zipCRC": true,
-        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
-        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
+        "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
+        "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
         "extractionScope": "complete artifact",
         "duplicatePathsRemoved": [
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0000.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0000.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0001.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0001.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0002.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0002.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0003.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0003.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0004.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0004.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0005.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0005.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0006.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0006.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0007.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0007.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0008.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0008.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0009.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0009.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0010.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0010.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0011.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0011.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0012.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0012.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0013.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0013.bin",
             "bytes": 4149139
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-diagnostics.zip",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-diagnostics.zip",
             "bytes": 113201043,
             "sha256": "5b6432cfa0cf35ca4fe258b21020e41476bd7202457ee4249b91b00e30f2619c"
           }
@@ -124,52 +124,52 @@
         "archiveSHA256": "c50005e85c077801e72d44a9bcd9d1d949d7638706e917d2d84b03aacb039123",
         "githubDigestMatches": true,
         "zipCRC": true,
-        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
-        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
+        "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
+        "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
         "extractionScope": "complete artifact",
         "duplicatePathsRemoved": [
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0000.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0000.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0001.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0001.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0002.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0002.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0003.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0003.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0004.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0004.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0005.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0005.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0006.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0006.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0007.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0007.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0008.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0008.bin",
             "bytes": 8388608
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0009.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0009.bin",
             "bytes": 8129185
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-diagnostics.zip",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-diagnostics.zip",
             "bytes": 83626657,
             "sha256": "c50005e85c077801e72d44a9bcd9d1d949d7638706e917d2d84b03aacb039123"
           }
@@ -206,16 +206,16 @@
         "archiveSHA256": "f63f8f9058d37b81967ccd12a512d11c2134ac261ec4e31190e54e91c72015cc",
         "githubDigestMatches": true,
         "zipCRC": true,
-        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
-        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
+        "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
+        "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39439273417\\diagnostic",
         "extractionScope": "complete artifact",
         "duplicatePathsRemoved": [
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-download-chunks\\0000.bin",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-download-chunks\\0000.bin",
             "bytes": 8345530
           },
           {
-            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-diagnostics.zip",
+            "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39439273417\\diagnostic-diagnostics.zip",
             "bytes": 8345530,
             "sha256": "f63f8f9058d37b81967ccd12a512d11c2134ac261ec4e31190e54e91c72015cc"
           }
@@ -223,6 +223,17 @@
         "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
         "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
       }
+    },
+    {
+      "revision": "129e350605d9c81169827ee013237bae10120fb5",
+      "run": 39447634363,
+      "baselineSpecifiedFailureDelta": 10.875,
+      "candidateSameFailureDelta": 10.875,
+      "passed": 3,
+      "failed": 2,
+      "candidateRejected": true,
+      "pagedFontFailureSeparate": true,
+      "artifact": "build/ci/39447634363/diagnostic"
     }
   ],
   "originalAssertionsAndBudgetsUnchanged": true,
@@ -230,5 +241,5 @@
   "deviceReleaseExecuted": false,
   "phoneAccepted": false,
   "newIPA": false,
-  "nextExperiment": "Specified old-source repeated-canonical-seek failure, then one-call viewport synchronization fix and five direct cases in same runner/build"
+  "nextExperiment": "Identical control fixture; canonical DOM plus viewportOffset inside infinite-scroll WebKit; baseline specified red then six scoped cases. Font case continuous only in private commit; default both modes retained."
 }

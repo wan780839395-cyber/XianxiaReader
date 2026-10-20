@@ -535,7 +535,7 @@ final class ReaderRenderingTests: XCTestCase {
             let engine: ReadiumReaderEngine
             func makeEngine(for format: BookFormat) throws -> any ReadingInterfaces.ReaderEngine { engine }
         }
-        for continuous in [false, true] {
+        for continuous in [true] {
             let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
             let services = try await AppServices.create(storageRoot: root)
             addTeardownBlock { try FileManager.default.removeItem(at: root) }

@@ -20,7 +20,7 @@ class PositionControlTests(unittest.TestCase):
                 def git(*args):
                     return subprocess.check_output(["git", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", *args], cwd=root, stderr=subprocess.DEVNULL)
                 git("init")
-                for name in ["Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift", "Vendor/ReadiumToolkit/UPSTREAM.json"]:
+                for name in ["Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift", "Vendor/ReadiumToolkit/UPSTREAM.json"]:
                     path = root/name; path.parent.mkdir(parents=True, exist_ok=True); path.write_text("old\n")
                 (root/"scripts").mkdir()
                 shutil.copyfile(ROOT/"scripts/ci_position_offset_control.sh", root/"scripts/ci_position_offset_control.sh")
@@ -36,7 +36,7 @@ phase, mode = sys.argv[1], os.environ['CONTROL_FIXTURE_MODE']
 baseline = phase == 'position-control-baseline'
 failed = (baseline and mode != 'baseline-green') or (not baseline and mode == 'patched-failure')
 marker = 'wrong failure' if mode == 'wrong-failure' else 'LATE_CANONICAL_VIEWPORT_OFFSET'
-total = 1 if baseline else 5
+total = 1 if baseline else 6
 result = dict(result='Failed' if failed else 'Passed', totalTestCount=total, failedTests=1 if failed else 0, passedTests=total-1 if failed else total, skippedTests=0, testFailures=[dict(failureText=marker, testIdentifierString='ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()')] if failed else [])
 Path('build/test-results-summary.json').write_text(json.dumps(result))
 Path('build/fixture-exit.txt').write_text('65' if failed else '0')
@@ -45,7 +45,7 @@ exit "$(cat build/fixture-exit.txt)"
 '''
                 (root/"scripts/ci_reader_diagnostic.sh").write_text(fake)
                 git("add", "."); git("commit", "-qm", "baseline")
-                for name in ["Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift", "Vendor/ReadiumToolkit/UPSTREAM.json"]:
+                for name in ["Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift", "Vendor/ReadiumToolkit/UPSTREAM.json"]:
                     (root/name).write_text("new\n")
                 git("add", "."); git("commit", "-qm", "patched")
                 checkout = Path(folder)/"checkout"
@@ -58,7 +58,7 @@ exit "$(cat build/fixture-exit.txt)"
                 if mode == "success":
                     data = json.loads(receipt.read_text())
                     self.assertEqual(data["baseline"]["originalTestExit"], 65)
-                    self.assertEqual(data["patchedPassed"], 5)
+                    self.assertEqual(data["patchedPassed"], 6)
                     self.assertFalse(data["newIPA"])
                 elif mode in {"baseline-green", "wrong-failure"}:
                     self.assertFalse((checkout/"build/PositionControl/patched-inputs.json").exists())

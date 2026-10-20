@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "da6be367f691b22ade554ec2f81dc9dbb4326b2e65c805026c5ed02cab4fdf92"
+      "sha256": "b4392a904781a5c1f4f618a56e703b297689f3e9c3fceddd1b297fbd92e2aee0"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
@@ -1770,6 +1770,5 @@
     "reason": "isSpreadLoaded precedes delayed initial font/layout restoration. Record every explicit location before this guard so initialization restores the latest seek instead of an older preloaded chapter start.",
     "scope": "Move existing pendingLocation assignment only; preserve complete PageLocation, animation, cancellation/continuations, font readiness, errors and all budgets.",
     "regression": "39370263590/d28feaa controlled unchanged-production baseline: real font ready and deep word visible while held; after release attached alpha1 document settled at x0 with original word absent. Final candidate acceptance is recorded separately in project validation logs."
-  },
-  "continuousNoopSeekViewportSync": "Synchronize the inner WebView after every explicit outer seek, including unchanged offsets; retain canonical viewport offset without relying on a scroll delegate callback. No format, budget, dependency or font change."
+  }
 }
