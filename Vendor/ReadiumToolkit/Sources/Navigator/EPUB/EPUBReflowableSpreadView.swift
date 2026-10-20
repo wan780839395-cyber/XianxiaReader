@@ -205,6 +205,7 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
         }
 
         let location = pendingLocation
+        tracePagedGo("initial", location.location)
         await go(to: location.location, animated: location.animated)
 
         // The rendering is sometimes very slow. So in case we don't show the first page of the resource, we add
@@ -274,7 +275,23 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
     /// Location to scroll to in the resource once the page is loaded.
     private var pendingLocation: PendingLocation = .init(location: .start, animated: false)
 
+    private var pagedGoTraceCount = 0
+    private func tracePagedGo(_ phase: String, _ location: PageLocation) {
+        #if DEBUG
+            guard !viewModel.scroll, pagedGoTraceCount < 24 else { return }
+            pagedGoTraceCount += 1
+            var kind = "start", char: Double = -1
+            if case .end = location { kind = "end" }
+            if case let .locator(locator) = location {
+                kind = "locator"
+                char = locator.locations.domRange?.jsonObject["start"]?.object?["charOffset"]?.double ?? -1
+            }
+            print("XR_PAGED_GO phase=\(phase) kind=\(kind) char=\(char) width=\(bounds.width) height=\(bounds.height) webWidth=\(webView.bounds.width) webHeight=\(webView.bounds.height) contentWidth=\(scrollView.contentSize.width) x=\(scrollView.contentOffset.x) attached=\(window != nil) loaded=\(isSpreadLoaded)")
+        #endif
+    }
+
     override func go(to location: PageLocation, animated: Bool) async {
+        tracePagedGo("requested", location)
         // The JS bridge can be ready while initial font/layout work is waiting.
         // Its later restore must use the latest seek, not a preloaded page start.
         pendingLocation = PendingLocation(location: location, animated: animated)
@@ -361,23 +378,40 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
            locator.locations.domRange != nil {
             do {
                 let json = try locator.jsonString()
+                #if DEBUG
+                    let completion = "JSON.stringify({ok:true,char:locator.locations.domRange?.start?.charOffset,before,target,x:scrollX,y:scrollY,width:innerWidth,height:innerHeight,rectLeft:rect.left,rectTop:rect.top,documentWidth:document.documentElement.scrollWidth,scrollingWidth:document.scrollingElement?.scrollWidth,clientWidth:document.scrollingElement?.clientWidth,fontReady:window.__xianxiaReadingFontReady,fontStatus:document.fonts.status})"
+                #else
+                    let completion = "true"
+                #endif
                 let result = await evaluateScript("""
                     (() => {
                       const locator = \(json);
                       const rect = (\(Self.continuousAnchorRectFunction))(locator);
                       if (!rect || innerWidth <= 0) return false;
+                      const before = scrollX;
+                      let target;
                       if (\(viewModel.infiniteScroll)) {
                         const offset = locator.locations?.xianxiaViewportOffset;
                         const top = Math.max(0, rect.top + scrollY - (Number.isFinite(offset) ? offset : 0));
+                        target = top;
                         window.scrollTo({top,behavior:'instant'});
                       } else {
                         const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
+                        target = page * innerWidth;
                         window.scrollTo({left:page * innerWidth,behavior:'instant'});
                       }
-                      return true;
+                      return \(completion);
                     })()
                     """)
-                return (try result.get() as? Bool) == true
+                let value = try result.get()
+                #if DEBUG
+                    if let text = value as? String {
+                        let data = try JSONSerialization.jsonObject(with: Data(text.utf8)) as? [String: Any]
+                        print("XR_CANONICAL_RESTORE \(text)")
+                        return (data?["ok"] as? Bool) == true
+                    }
+                #endif
+                return (value as? Bool) == true
             } catch {
                 log(.error, error)
                 return false

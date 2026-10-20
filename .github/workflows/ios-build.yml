@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control]
 
 permissions:
   contents: read
@@ -204,13 +204,33 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/logs
-          if [[ "$DIAGNOSTIC_SELECTION" == 'recording-control' ]]; then
+          if [[ "$DIAGNOSTIC_SELECTION" == 'paged-font-control' ]]; then
+            bash scripts/ci_paged_font_control.sh baseline
+          elif [[ "$DIAGNOSTIC_SELECTION" == 'recording-control' ]]; then
             bash scripts/ci_recording_control.sh 2>&1 | tee build/logs/reader-diagnostic.log
           elif [[ "$DIAGNOSTIC_SELECTION" == 'position-fix' ]]; then
             bash scripts/ci_position_offset_control.sh 2>&1 | tee build/logs/reader-diagnostic.log
           else
             bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
           fi
+      - name: Preserve paged font baseline text for diagnosis
+        if: always() && inputs.diagnostic_selection == 'paged-font-control'
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-paged-font-baseline-text
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            build/PagedFontControl/baseline/logs/reader-diagnostic.log
+            build/PagedFontControl/baseline/test-results-summary.json
+            build/PagedFontControl/baseline/ReaderSnapshots/*.txt
+            build/PagedFontControl/baseline/ReaderSnapshots/manifest.json
+            build/PagedFontControl/baseline-inputs.json
+            build/PagedFontControl/baseline-exits.txt
+      - name: Validate reviewed paged font candidate on the same runner
+        if: success() && inputs.diagnostic_selection == 'paged-font-control'
+        shell: bash
+        run: bash scripts/ci_paged_font_control.sh patched
       - name: Preserve diagnostic logs and original test result
         if: always()
         uses: actions/upload-artifact@v4
@@ -227,3 +247,4 @@ jobs:
             build/Package.resolved
             build/RecordingControl/
             build/PositionControl/
+            build/PagedFontControl/

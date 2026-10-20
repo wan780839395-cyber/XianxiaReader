@@ -548,7 +548,7 @@ final class ReaderRenderingTests: XCTestCase {
             try await services.files.saveReadingInteraction(interaction)
             var initialAppearance = ReadingAppearance(); initialAppearance.fontScale = 1
             try await services.files.saveReadingAppearance(initialAppearance)
-            let engine = ReadiumReaderEngine(storageRoot: root)
+            let engine = ReadiumReaderEngine(additionalUserScripts: [Self.pagedRestoreProbe()], storageRoot: root)
             let (window, state) = try mount(engine); state.visible = false
             let model = ReaderViewModel(book: book, services: services, factory: Factory(engine: engine))
             // Match the existing open(engine) fixture's foreground precondition

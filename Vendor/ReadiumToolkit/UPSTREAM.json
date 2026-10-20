@@ -1427,7 +1427,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "49a24b6d3466f8f25cc318b50e7d17f3f4c346c030f4bfae8fcbb7b4f61a5eeb"
+      "sha256": "4ea7f6cabf89303b16a02b64d9ba1edd0b10d9f111f8fa2a6c13420b2c87dc8a"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",

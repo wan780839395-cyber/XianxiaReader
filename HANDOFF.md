@@ -1,5 +1,11 @@
 # 当前断点：连续偏移直接验证完成；分页另查，R3顺延（2026-10-21）
 
+分页首轮诊断f620349/CI39465081517已失败1/2，103779244字节artifact已SHA/CRC核验。原生账证明：保存/重开返回/重建输入均p25/1049（progression0.37037），新view第一次publish已是h1/0、x0；hidden fixture本次通过。排除本样本采样/数据库丢完整锚点，尚不能区分初始go未生效、尺寸未定或后续重置。已新增requested/initial/canonical-script有界metadata，复用JS writer探针并使用既有storageRoot测试init，不增加await/预算。下一轮staged控制先保留失败baseline文字，最多15分钟等待本Agent审阅后的exact-child候选，只允许Nav/Reflowable/Pagination/UPSTREAM差异，然后同runner/DerivedData跑原6直接case；无候选则明确失败/保留原件，不自动补丁、不导出IPA。此等待是CI调试输入门槛，不改变生产3/20秒预算。R3今晚不做，分页修复验证完成再关机。
+
+旧JS写入观察39348950147已是2/2且没有候选reset writer，不能当旧回跳已修。本轮新增区分条件为native锚点阶段账（sample/submit/reload/publish），JS探针只复用既有fixture；若只得到重放成功，不据此修复/关闭问题。
+
+当前唯一运行：诊断源f620349bea43ed6c628490f95009e49f66a00313 / codex/diagnose-paged-font-anchor / CI39465081517。selection=paged-font，仅两个原测试，长字体链私有仅分页；工作默认仍双模式。observer .cache/recovery/observe_paged_font.py / exec session63297，侧档build/maintenance/PagedFont-20261021/diagnostic-run/jobs/artifacts，恢复须核mtime和远程run，禁止重复派发。尚无新native结果，尚未修复分页、未接线R3，也未安排关机；用户不接夜间问题，需决策写交接，问题解决/验证/保存后再关机。
+
 派发前：Windows456语法新增0/既有54，63工具59通过4POSIX跳过，22.800秒。诊断仅两个原分页字体case；私有长链只选false，原断言/预算保持。普通HEAD/index、其余505输入及上一轮连续修正保持。最新用户不需要夜间问题/手机通知，必要问题写交接留待早晨；分页问题解决并保存结果后关机，R3下一轮。不安排定时关机、不在失败未决时先关。
 
 分页诊断切片：仅DEBUG最多64条采样/提交/重建/发布的字偏移、类别、revision、native几何与view身份；不记录正文/完整selector/href，不增await或改行为预算。原隐藏字体fixture复用现有pagedRestoreProbe记录脚本写入；新paged-font选择仅两个原分页字体case（长链私有冻结仅分页，默认仍双模式）。本轮不实施R3，先Windows检查，尚未编译/派发/取得新结果。参考固定Readium3.11 spreadDidLoad/spreadLoaded与native load状态差异；官方源https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift。
