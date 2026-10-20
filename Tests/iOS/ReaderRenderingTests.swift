@@ -212,12 +212,24 @@ final class ReaderRenderingTests: XCTestCase {
               window.__xrPreviewReadyRequest=request;
               window.__xrPreviewReadyStarted=true;
               window.__xrPreviewReadySettled=false;
-              const middle=location.pathname.endsWith('/one.xhtml')&&document.body&&getComputedStyle(document.body).fontFamily.includes('\(intermediate.asset.cssFamily)');
-              const gate=middle?new Promise(resolve=>{
+              const one=location.pathname.endsWith('/one.xhtml')&&document.body;
+              const family=one?getComputedStyle(document.body).fontFamily:'';
+              const middle=one&&family.includes('\(intermediate.asset.cssFamily)');
+              const initial=one&&family.includes('\(initial.asset.cssFamily)')&&window.__xrInitialFontReleased!==true;
+              const ready=nativeReady.call(fonts);
+              if(initial)ready.then(()=>{window.__xrInitialFontFaceReady=true;});
+              const gate=initial?new Promise(resolve=>{
+                window.__xrInitialFontReadyHeld=true;
+                (window.__xrInitialFontGates??=[]).push(resolve);
+                window.__xrReleaseInitialFont=()=>{
+                  window.__xrInitialFontReleased=true;
+                  window.__xrInitialFontGates.splice(0).forEach(release=>release());
+                };
+              }):middle?new Promise(resolve=>{
                 (window.__xrPreviewReadyGates??=[]).push(resolve);
                 window.__xrReleasePreviewReady=()=>window.__xrPreviewReadyGates.splice(0).forEach(release=>release());
               }):Promise.resolve();
-              return Promise.all([nativeReady.call(fonts),gate]).then(()=>{
+              return Promise.all([ready,gate]).then(()=>{
                 if(window.__xrPreviewReadyRequest===request)window.__xrPreviewReadySettled=true;
                 return fonts;
               });
@@ -232,6 +244,19 @@ final class ReaderRenderingTests: XCTestCase {
         let (_, state) = try mount(engine); state.visible = false
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        // Hold the initial pending-location restore after the real font has
+        // loaded. A seek issued now must remain the latest location when the
+        // initializer resumes; this ordering does not depend on a short sleep.
+        var initialDocument: WKWebView?
+        try await waitUntil {
+            for web in self.webViews(in: engine.viewController.view) {
+                if try await web.evaluateJavaScript("window.__xrInitialFontReadyHeld===true && window.__xrInitialFontFaceReady===true") as? Bool == true {
+                    initialDocument = web; return true
+                }
+            }
+            return false
+        }
+        print("INITIALIZATION_PENDING_CONTROL stage=real-font-ready-initial-restore-held")
         // This regression owns font replacement, not a sequence of page turns.
         // Use the same versioned full locator as a real bookmark to prepare a
         // known deep word; the navigation/overlapping-turn regressions stay separate.
@@ -244,16 +269,53 @@ final class ReaderRenderingTests: XCTestCase {
         ]
         try await engine.go(to: ReadingPosition(bookID: book.id, engineID: ReadiumPositionCodec.engineID,
                                                locatorData: JSONSerialization.data(withJSONObject: preparedLocator)))
+        let heldDocument = try XCTUnwrap(initialDocument)
         try await waitUntil {
-            guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
-                  web.scrollView.alpha > 0.99 else { return false }
-            return try await web.evaluateJavaScript("""
-                (()=>{if(!location.pathname.endsWith('/one.xhtml')||window.__xrPreviewReadySettled!==true)return false;
+            return try await heldDocument.evaluateJavaScript("""
+                (()=>{if(window.__xrInitialFontReadyHeld!==true||window.__xrInitialFontReleased===true)return false;
                 const n=document.getElementById('long-paragraph')?.firstChild;if(!n||n.length<=1200)return false;
                 const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);const b=r.getBoundingClientRect();
                 return scrollX>100&&b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
                 """) as? Bool == true
         }
+        print("INITIALIZATION_PENDING_CONTROL stage=original-word-visible-while-held")
+        let released = try await heldDocument.evaluateJavaScript("""
+            (()=>{if(typeof window.__xrReleaseInitialFont!=='function')return false;
+              window.__xrReleaseInitialFont();return true;})()
+            """) as? Bool
+        XCTAssertEqual(released, true)
+        print("INITIALIZATION_PENDING_CONTROL stage=initial-restore-released")
+        do {
+            try await waitUntil {
+                guard let web = self.visibleWebView(in: engine.viewController.view), web.scrollView.window != nil,
+                      web.scrollView.alpha > 0.99 else { return false }
+                return try await web.evaluateJavaScript("""
+                    (()=>{if(!location.pathname.endsWith('/one.xhtml')||window.__xrPreviewReadySettled!==true)return false;
+                    window.__xrInitialRestoreReadyObserved=true;
+                    const n=document.getElementById('long-paragraph')?.firstChild;if(!n||n.length<=1200)return false;
+                    const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);const b=r.getBoundingClientRect();
+                    return scrollX>100&&b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
+                    """) as? Bool == true
+            }
+        } catch {
+            do {
+                let value = try await heldDocument.evaluateJavaScript("""
+                    (()=>{const n=document.getElementById('long-paragraph')?.firstChild;let wordVisible=false;
+                    if(n&&n.length>1200){const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);
+                      const b=r.getBoundingClientRect();wordVisible=b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;}
+                    return JSON.stringify({released:window.__xrInitialFontReleased===true,
+                      faceReady:window.__xrInitialFontFaceReady===true,
+                      readyObserved:window.__xrInitialRestoreReadyObserved===true,
+                      settled:window.__xrPreviewReadySettled===true,x:scrollX,wordVisible,href:location.pathname});})()
+                    """)
+                let details = "attached=\(heldDocument.window != nil) alpha=\(heldDocument.scrollView.alpha) result=\(String(describing: value))"
+                let attachment = XCTAttachment(string: details)
+                attachment.name = "initial-pending-location-failure"; attachment.lifetime = .keepAlways; add(attachment)
+                print("INITIALIZATION_PENDING_FAILURE \(details)")
+            } catch { print("INITIALIZATION_PENDING_DIAGNOSTIC_READ_FAILED \(error)") }
+            throw error
+        }
+        print("INITIALIZATION_PENDING_CONTROL stage=original-word-survived-initial-restore")
         // No additional await before the original capture: retain only native
         // geometry from the view that just satisfied the original deep-word check.
         let preparedViewID = visibleWebView(in: engine.viewController.view).map { String(describing: ObjectIdentifier($0)) } ?? "nil"

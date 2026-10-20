@@ -1,25 +1,25 @@
-# 项目交接（2026-10-20 11:08上海）
+# 项目交接（2026-10-20 11:41上海，准备初始化单项对照）
 
 ## 当前断点
 
-39358438791/e2c7990已完成：6项5通过1失败，源码编译诊断0，test65/summary与export0；完整179/设备Release自动跳过，无IPA，非Agent取消。apple12236824414完整187916017字节SHA09192d5bbda1695402ec5d6b894c12da5fa6a87e32b1df716a3a362862807560/CRC核，Core原件亦核；556冻结输入匹配。watcher78684/PID46912和receiver74065/PID42400均退出0，恢复仍核实际CommandLine，普通HEAD/index/旧包保持。
+39362754281/176303d已完成2/2，编译诊断0，test/summary/export0；完整artifact12238663866 SHAfa1b55033ff53d9b72332059a061cd6497e2c7a0ccdb88da3fa966fe4101dddb/CRC与556来源核。真实字体30条观测errorMessage全部nil；新的重复偏好/撤销未提交模式均能fresh捕获原DOM字和保持原WebView。watcher9446/PID7960、receiver21292/PID4576均退出0，无新原生任务。仅这一Adapter片定向验收，未过完整180/设备Release/手机。
 
-新窗口同字/同WebView、导入字体重开、跨章、六字体连续排版、浅深真实旋转通过；实际看了深灰横屏/恢复竖屏与宽viewport3张原图，正文和暂停控件可读。没有完整录屏/手机FPS验收。
+## 下一项：原实现的初始化定位对照
 
-失败：hidden-font在最初准备1200th字的前置条件就回到h1/offset0，尚未切字体；保留原30秒断言，不把重放通过当根因修复。同时导入字体case虽然通过，连续流程12条保留“页面仍在排版…”错误，真实ReaderView会弹阅读提示，阻止交付。详ValidationLogs/continuous-rotation-39358438791.json。
+只应用initialization-pending-candidate中的测试fixture和1项选择（3文件）；不应用其Vendor候选，生产源码/依赖保持176303d。已保存before-initialization-pending-control，Windows453语法0新增/54限制、工具26pass3POSIX本地skip、Bash通过。冻结/派发initialization-pending1项待执行。
 
-## 下一片：重复设置的幂等边界
+假设：isSpreadLoaded已经true而spreadDidLoad仍等待字体；此时go深字不更新pendingLocation，初始化随后默认start覆盖新定位。对照显式等待真实字体ready并暂停初始化，先证明原1200th字可见，再放行，保持原30秒联合ready/字可见断言。只有首3阶段完整、失败后attached/alpha可见、released/faceReady/readyObserved/settled都true且x=0/wordVisible=false，才支持这个覆盖原因。若更早失败或放行后字仍在，不能套用Vendor候选。
 
-只改Adapter submitPreservingLocation已应用偏好等值判断：先cancel旧请求，再比较现有Hashable EPUBPreferences，完全相同则不启动3秒DOM采样；真变化的采样/错误保持。依据固定Readium3.11 ConfigurablePreferences协议、初始config偏好及本地appliedPreferences记录。ReaderViewModel.open在engine.open后重复continuous=true，正是无变化却重新采样的路径。新回归验证重复模式/外观能立即fresh捕获同DOM字，撤销尚未提交模式也不重建；原字体重开断言后增加无阅读错误校验。计划最小preferences-idempotency2项（新合同+原字体case），不先跑已知hidden失败或full。新预期151集成+29UI=180，未运行。此片与hidden初始化/导航覆盖分开验收；后者准备可控字体屏障实验，禁止顺手混改。
+候选仅缓存：将pendingLocation赋值移到isSpreadLoaded判断之前，每次seek都登记最新位置；未修改读取/采样/字体/等待预算。初次对照不应用该生产改动。JS屏障语法与显式初始/中间字体放行本地检查通过，Swiftgrammar0，不等于原生编译。
 
-先保全实际e2c7990输入/备份，再应用、Windows预检、alternate-index冻结及派发。本片已应用：before-idempotent-preferences备份，6文件（Adapter单guard、测试/名单/计数）。Windows453语法0新增/54Vendor限制、工具26pass3本地POSIX跳过、Bash通过。冻结/定向2项待执行，尚未原生编译。
+## 已有发布阻塞/保全
 
-## 历史/保全
+39358438791/e2c7990为5/6，hidden在初始深字准备失败（尚未换字体），完整179/Release自动跳过，无Agent取消；另有12条连续字体错误消息，后由当前2项幂等修复定向清零。其原件artifact12236824414完整SHA/CRC核，原图深灰横屏/恢复竖屏/宽viewport3张已看，其他录屏/手机FPS未验收。连续单页策略源码保留；当前最终预期151集成+29UI=180，从未完整通过。
 
-39354867480为测试target链接失败0执行；39357294714为新增顶层本地包引出docc的解析失败0执行，恢复原project依赖图后本轮真正完成原生6项。不要重跑旧apply/freeze。Build29为最后交付；R1最后完整39243868846仍171/177，无Build30。后台UI39352276145已1/1、用户Build29手机已暂停。旧字体39348950147插桩2/2不代表2010→0根因已修。
+Build29最后交付，无Build30。后台UI39352276145已1/1，用户Build29手机已暂停。39354867480链接失败0执行，39357294714新增根包docc解析失败0执行；原project依赖图已恢复，不重跑旧apply/freeze。
 
-普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空，历史未提交/未跟踪源码、Vendor、53旧包/恢复ZIP均保留。无R2/R3/R4/M5、无关清理或关机。历史全文Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md。
+普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空，历史未提交/未跟踪源码、Vendor、53旧包/恢复ZIP保持；无R2/R3/R4/M5、无关清理/关机。历史全文Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md。首次真实模式变化与后续重复偏好区分，不能称guard唯一解决所有初始化故障。
 
-## 工具实证
+## 工具
 
-cua.createBrowserTab仍报Work设置禁用本地浏览器；未改权限/配置。gh run view日志在run未完成时被CLI拒绝；job REST日志可读，但gh2.102终端转义保护须--allow-escape-sequences后捕获原始文件，不能把保护错误说成服务不开放。API原件可能缓冲，不能按尾部推断挂起。完成后的full.log/xcresult/artifact才是最终结果。
+cua本地浏览器仍报Work设置禁用，未改权限。job REST日志可用gh api --allow-escape-sequences捕获文件；404可能还未flush，成功尾部也可能缓冲7分钟，不能据尾部判挂起。最终核完整full.log/xcresult与artifact，不重派发。

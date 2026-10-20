@@ -1,9 +1,9 @@
 {
-  "recordedAtUTC": "2026-10-20T01:36:08.437853+00:00",
+  "recordedAtUTC": "2026-10-20T03:41:46.731515+00:00",
   "branch": "codex/refactor-reader-settings",
   "coverage": "Only completed native jobs whose actual run.json is currently local; not a complete account usage or implementation-hours estimate",
-  "completedNativeJobCount": 21,
-  "sumNativeJobMinutes": 684.83,
+  "completedNativeJobCount": 25,
+  "sumNativeJobMinutes": 769.45,
   "jobs": [
     {
       "run": 39182894124,
@@ -214,6 +214,46 @@
       "completedAt": "2026-10-20T01:35:05Z",
       "seconds": 1131.0,
       "source": "build/ci/39352276145/run.json"
+    },
+    {
+      "run": 39354867480,
+      "sourceRevision": "abbcf18c992ad9c8369be0c745e881de08939677",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-20T01:44:00Z",
+      "completedAt": "2026-10-20T02:02:26Z",
+      "seconds": 1106.0,
+      "source": "build/ci/39354867480/run.json"
+    },
+    {
+      "run": 39357294714,
+      "sourceRevision": "832fbaa45db4224007748141fd579d349772833d",
+      "job": "reading-diagnostic",
+      "conclusion": "failure",
+      "startedAt": "2026-10-20T02:10:47Z",
+      "completedAt": "2026-10-20T02:13:59Z",
+      "seconds": 192.0,
+      "source": "build/ci/39357294714/run.json"
+    },
+    {
+      "run": 39358438791,
+      "sourceRevision": "e2c7990b7613cee76ebee1c867c6a9e5538cf8b0",
+      "job": "ios",
+      "conclusion": "failure",
+      "startedAt": "2026-10-20T02:23:26Z",
+      "completedAt": "2026-10-20T03:00:36Z",
+      "seconds": 2230.0,
+      "source": "build/ci/39358438791/run.json"
+    },
+    {
+      "run": 39362754281,
+      "sourceRevision": "176303d4f310face4211ee308374cd4b24b2131f",
+      "job": "reading-diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-10-20T03:11:17Z",
+      "completedAt": "2026-10-20T03:37:06Z",
+      "seconds": 1549.0,
+      "source": "build/ci/39362754281/run.json"
     }
   ],
   "currentFull39243868846": {

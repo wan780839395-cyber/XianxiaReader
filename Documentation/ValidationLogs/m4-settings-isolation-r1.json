@@ -988,5 +988,20 @@
     "evidence": "continuous-rotation-39358438791.json",
     "nextSlice": "Adapter no-op equality; Windows only, native pending",
     "newExpectedFull": 180
+  },
+  "recovery20261020Idempotency": {
+    "run": 39362754281,
+    "source": "176303d4f310face4211ee308374cd4b24b2131f",
+    "passed": 2,
+    "total": 2,
+    "renderedFontRows": 30,
+    "fontAlertRows": 0,
+    "artifactSHAAndCRC": true,
+    "sourceInputs": 556,
+    "compilerDiagnostics": 0,
+    "full180Accepted": false,
+    "releaseExecuted": false,
+    "evidence": "preferences-idempotency-39362754281.json",
+    "nextExperiment": "initialization-pending1 on unchanged production with explicit initial-font gate; Vendor candidate not applied"
   }
 }

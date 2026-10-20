@@ -1,0 +1,53 @@
+{
+  "recordedAtUTC": "2026-10-20T03:37:37.246603+00:00",
+  "run": 39362754281,
+  "sourceRevision": "176303d4f310face4211ee308374cd4b24b2131f",
+  "selection": "preferences-idempotency",
+  "conclusion": "success",
+  "expectedSelected": 2,
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "summaryReadError": null,
+  "cases": [
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "result": "passed",
+      "seconds": 175.128
+    },
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange",
+      "result": "passed",
+      "seconds": 5.913
+    }
+  ],
+  "fontAlertRows": [],
+  "testFailures": [],
+  "testExit": 0,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifact": 12238663866,
+  "archiveBytes": 15580152,
+  "archiveSHA256": "fa1b55033ff53d9b72332059a061cd6497e2c7a0ccdb88da3fa966fe4101dddb",
+  "artifactDigestAndCRC": true,
+  "nativeJobSeconds": 1549.0,
+  "caseSeconds": 181.041,
+  "productionChangedPaths": [
+    "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift"
+  ],
+  "originalAssertionsAndBudgetsPreserved": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "full180Accepted": false,
+  "scope": "One Adapter equality guard; new public repeated-preference/fresh-capture contract and original real-font reopen test strengthened with no-reader-alert. Hidden initial navigation stays separate. No full/device acceptance.",
+  "renderedFontRows": 30,
+  "renderedFontAlertRows": 0,
+  "nativeStaticImagesInspected": false,
+  "scopeAcceptance": "Compilation and targeted2 accepted; full180/actual reader UI/device not accepted; first-ever real mode change is distinct from repeated preferences"
+}

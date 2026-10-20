@@ -237,3 +237,12 @@ e2c7990/39358438791预检5/6，完整179及设备Release自动跳过；无Agent�
 本片仅在Adapter取消旧请求后，用[固定Readium3.11 Hashable偏好协议](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/Preferences/Configurable.swift)比较请求与appliedPreferences；相同则不采样。官方initial配置与本地open中的appliedPreferences赋值共同说明无需重新应用。这是本地Adapter判断，非声称上游已修复。真实变化、3秒预算、错误回调、完整Locator保持。
 
 新增可独立验的公共行为：重复相同连续模式/外观仍可立即fresh捕获原DOM字；撤销尚未提交的模式切换回已应用状态也保持原WebView和连续模式。原真实字体重开保留全部字形/锚点断言，增加无errorMessage断言。最小preferences-idempotency选择这2项；hidden初始化问题不混改/不通过重跑掩盖。151集成+29UI=180最终门槛未执行。
+
+
+### 初始化定位的最小对照（2026-10-20，生产未改）
+
+幂等片39362754281/176303d已2/2，30字体观测errorMessage均nil，test/summary/export0，源码编译诊断0，完整原件SHA/CRC和556输入核实。它证明重复偏好公共合同和本次字体流程清除错误消息；不把首次真实模式变化等同于重复，也不代替完整180/设备验收。
+
+剩余hidden原始5/6失败仅发生在第一次准备深字。固定[Readium3.11 ReflowableSpreadView](https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift)在isSpreadLoaded之后仍延迟pendingLocation恢复，本地字体ready等待扩大该窗口；外部go在isSpreadLoaded=true时不更新pendingLocation。因此最小对照只改原test fixture：真实字体已ready但显式暂停初始定位，先导航到1200th字并证明可见，再放行；原30秒ready+字可见断言不放宽。失败后再采集released/faceReady/readyObserved/settled、native attached/alpha和scrollX/字可见，保留原错误。
+
+只有放行前目标明确可见、放行后文档ready且显示却回到x0、目标字不可见，才支持初始化默认start覆盖新seek；更早失败或旧实现字仍保留都不能套用补丁。首次initialization-pending仅此1项，Vendor/Adapter生产及锁不变；候选仅将pendingLocation更新移到早期loaded判断之前，暂不应用。该实验不是重试字体切换，它在字体变化前区分定位覆盖与实际加载/字体重排故障。

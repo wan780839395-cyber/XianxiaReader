@@ -8,6 +8,9 @@ case "$selection" in
   paged-restore)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph)
     ;;
+  initialization-pending)
+    cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord)
+    ;;
   preferences-idempotency)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange
@@ -133,7 +136,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
 resource_monitor_pid=''
