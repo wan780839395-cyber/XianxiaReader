@@ -1,5 +1,7 @@
 # 项目交接：维护与功能隔离优先，Build30 已交付
 
+R2诊断专用worktree：生产及原测试保持f29c4ba，不在这里实现功能。首轮53实际52过1失败（分页首次内置字体719行），完整原件在主工作目录build/ci/39406897687。只新增同runner原失败test的A/B harness：baseline222f10e、R2f29c4ba各一次，共用原诊断/断言/预算和DerivedData；分别保存退出码、真实源树、xcresult/summary/日志。不重试、不做完整187、不打IPA。原主工作目录566输入持续冻结。
+
 R2派发前最终：Windows456语法新增0/54既有限制，62工具59通过/3既有POSIX跳过（21.156秒），Bash语法通过；133 Swift源/15区域/16节点/5例外。460个Core/Adapter/Vendor/资源/样书/锁保护输入不变（仅XianxiaReading manifest为本片新增target必要改动），原所有测试保持，普通HEAD/index保持。准备从222f10e冻结到codex/maintenance-reader-fonts，唯一选择font-isolation53项；不做完整187/设备Release/IPA。
 
 ## 当前断点：R2字体编排开始（2026-10-20）

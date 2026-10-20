@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, font-isolation-control]
 
 permissions:
   contents: read
@@ -206,6 +206,9 @@ jobs:
           mkdir -p build/logs
           if [[ "$DIAGNOSTIC_SELECTION" == 'recording-control' ]]; then
             bash scripts/ci_recording_control.sh 2>&1 | tee build/logs/reader-diagnostic.log
+          elif [[ "$DIAGNOSTIC_SELECTION" == 'font-isolation-control' ]]; then
+            cp scripts/ci_r2_font_comparison.sh "$RUNNER_TEMP/r2-font-comparison.sh"
+            XR_CONTROL_ROOT="$PWD" bash "$RUNNER_TEMP/r2-font-comparison.sh" 2>&1 | tee build/logs/reader-diagnostic.log
           else
             bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
           fi
@@ -224,3 +227,4 @@ jobs:
             build/build-environment.txt
             build/Package.resolved
             build/RecordingControl/
+            build/R2FontControl/
