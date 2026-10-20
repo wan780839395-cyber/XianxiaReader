@@ -1,0 +1,48 @@
+{
+  "recordedAtUTC": "2026-10-20T01:09:08.445568+00:00",
+  "run": 39348950147,
+  "sourceRevision": "96e913a0782370272705ca8d8e3ac62577c5e878",
+  "conclusion": "success",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "result": "passed",
+      "seconds": 135.3
+    },
+    {
+      "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "result": "passed",
+      "seconds": 11.842
+    }
+  ],
+  "testExit": 0,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifactDigestAndCRC": true,
+  "productionUnchanged": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "candidateResetWriters": [],
+  "interpretation": "Observer experiment only. Source/case/assertion gates preserved. No observed public writer does not prove all JavaScript paths were excluded or a WebKit internal root cause. Passing instrumentation is not a production fix.",
+  "artifact": 12233013451,
+  "archiveBytes": 15720204,
+  "archiveSHA256": "6b174a302358779a0afe721cebf08fdac9b92b60c32bfe54f70d748f314f35ad",
+  "renderedRows": 30,
+  "sixFontsBothModesCompleted": true,
+  "observation": "All six original paged font iterations restored x2010. Adjacent/hidden resources are also logged; false anchor flags there are not failed case assertions. One continuous snapshot occurred between successful polling and diagnostic sampling, so diagnostics are not atomic.",
+  "residual": "Continuous font iterations logged the existing layout-error message from sourceHanSans onward. This 2/2 result does not prove an error-free user flow or resolve the old reset.",
+  "localOwnedWorkers": "watcher and receiver exited; process inventory found no matching Python worker",
+  "evidence": [
+    "build/ci/39348950147/diagnostic/logs/reader-diagnostic.log",
+    "build/ci/39348950147/diagnostic/test-results-summary.json",
+    "build/ci/39348950147/diagnostic/DiagnosticTests.xcresult",
+    "build/ci/39348950147/scroll-writer-probe-check.json"
+  ]
+}

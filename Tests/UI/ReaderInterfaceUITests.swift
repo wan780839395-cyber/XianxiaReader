@@ -380,7 +380,24 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
         let paused = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "已暂停"), object: toggle)
         XCTAssertEqual(XCTWaiter.wait(for: [paused], timeout: 10), .completed)
         snapshot("reader-autoscroll-touch-paused-build21", in: app)
-        toggle.tap(); XCUIDevice.shared.press(.home); app.activate()
+        toggle.tap()
+        XCTAssertEqual(toggle.value as? String, "正在慢滚", "The background scenario must begin with active slow scroll")
+        XCUIDevice.shared.press(.home)
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let state = app.state
+            return (state == .runningBackground || state == .runningBackgroundSuspended)
+                && springboard.icons.allElementsBoundByIndex.contains(where: { $0.isHittable })
+        }, object: nil)
+        guard XCTWaiter.wait(for: [background], timeout: 10) == .completed else {
+            let detail = XCTAttachment(string: "appState=\(app.state.rawValue) springboardState=\(springboard.state.rawValue)")
+            detail.name = "background-transition-precondition"; detail.lifetime = .keepAlways; add(detail)
+            edgeSnapshot("reader-background-precondition-failed")
+            XCTFail("Home must actually background the app before testing pause on foreground return")
+            return
+        }
+        app.activate()
+        XCTAssertEqual(app.state, .runningForeground)
         XCTAssertEqual(toggle.value as? String, "已暂停")
         snapshot("reader-autoscroll-background-paused-build21", in: app)
         app.buttons["reader.autoscroll.close"].tap()

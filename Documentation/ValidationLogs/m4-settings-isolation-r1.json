@@ -1,6 +1,6 @@
 {
-  "recordedAtUTC": "2026-10-19T01:12:10.386273+00:00",
-  "stage": "scroll-writer-probe-applied-native-pending",
+  "recordedAtUTC": "2026-10-20T01:12:46.402899+00:00",
+  "stage": "background-ui-precondition-applied-pending-validation",
   "sourceRevision": "0283922838e2040d4f8b1fdcc975d83dbde64825",
   "branch": "codex/refactor-reader-settings",
   "sourceFiles": [
@@ -535,7 +535,7 @@
     "toolingSkippedPOSIX": 3,
     "bashSyntax": true,
     "sourceCompiler": false,
-    "evidence": ".cache/recovery/20261019-webkit-loading/windows-capture-probe.log"
+    "evidence": ".cache/recovery/20261019-webkit-loading/windows-scroll-writer-probe.log"
   },
   "R1Accepted": false,
   "ReleaseBuilt": false,
@@ -604,24 +604,16 @@
     "nativePassed": false
   },
   "currentDiagnostic": {
-    "run": 39279664338,
-    "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175",
+    "run": 39348950147,
+    "sourceRevision": "96e913a0782370272705ca8d8e3ac62577c5e878",
+    "status": "completed",
+    "conclusion": "success",
     "selection": "fonts",
-    "expected": 2,
-    "conclusion": "failure",
-    "releaseAcceptance": false,
-    "repositoryChecks": {
-      "passed": 29,
-      "failed": 0,
-      "SwiftGrammarFiles": 453,
-      "evidence": "build/ci/39279664338/repository-checks.log",
-      "sourceRevision": "f32cc9333418a2ca30e97e2e47676f5f07bad175"
-    },
-    "statusCaveat": "Run/job API queued state is delayed: repository job already has complete passing logs; native job logs endpoint still404. No native completion inferred.",
-    "passed": 0,
-    "failed": 2,
-    "skipped": 0,
-    "nativeCompile": true
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "releaseExecuted": false,
+    "ipaGenerated": false
   },
   "sourceFilesHistoricalRevision": "be7c4157300574962171ccd09be0292b4b9012bc",
   "latestPagedControl": {
@@ -854,5 +846,72 @@
     "observation": "DOM reaches2010 at1650ms then returns0 at1746ms before RO frame1747ms, with same402x750/documentWidth10452 and font ready. The recorded RO frame does not initiate this reset. No unique writer identified.",
     "nextDiscriminatingExperiment": "Observe root Element.scrollTo/scrollLeft writers with short JS stacks; preserve original callbacks/assertions/budgets and collect bounded trace on preparation failure too. Do not patch production or rerun full.",
     "limitation": "Hidden-font failed in initial deep-word wait, before new capture diagnostic. RO/rAF and geometry probes can affect timing; no root-fix claim."
+  },
+  "latestWriterProbe": {
+    "recordedAtUTC": "2026-10-20T01:09:08.445568+00:00",
+    "run": 39348950147,
+    "sourceRevision": "96e913a0782370272705ca8d8e3ac62577c5e878",
+    "conclusion": "success",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "result": "passed",
+        "seconds": 135.3
+      },
+      {
+        "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "result": "passed",
+        "seconds": 11.842
+      }
+    ],
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "sourceCompilerDiagnostics": [],
+    "sourceInputs": 556,
+    "sourceInputsMatched": true,
+    "artifactDigestAndCRC": true,
+    "productionUnchanged": true,
+    "releaseExecuted": false,
+    "ipaGenerated": false,
+    "candidateResetWriters": [],
+    "interpretation": "Observer experiment only. Source/case/assertion gates preserved. No observed public writer does not prove all JavaScript paths were excluded or a WebKit internal root cause. Passing instrumentation is not a production fix.",
+    "artifact": 12233013451,
+    "archiveBytes": 15720204,
+    "archiveSHA256": "6b174a302358779a0afe721cebf08fdac9b92b60c32bfe54f70d748f314f35ad",
+    "renderedRows": 30,
+    "sixFontsBothModesCompleted": true,
+    "observation": "All six original paged font iterations restored x2010. Adjacent/hidden resources are also logged; false anchor flags there are not failed case assertions. One continuous snapshot occurred between successful polling and diagnostic sampling, so diagnostics are not atomic.",
+    "residual": "Continuous font iterations logged the existing layout-error message from sourceHanSans onward. This 2/2 result does not prove an error-free user flow or resolve the old reset.",
+    "localOwnedWorkers": "watcher and receiver exited; process inventory found no matching Python worker",
+    "evidence": [
+      "build/ci/39348950147/diagnostic/logs/reader-diagnostic.log",
+      "build/ci/39348950147/diagnostic/test-results-summary.json",
+      "build/ci/39348950147/diagnostic/DiagnosticTests.xcresult",
+      "build/ci/39348950147/scroll-writer-probe-check.json"
+    ]
+  },
+  "nextSlice": {
+    "selection": "background-ui",
+    "expected": 1,
+    "productionUnchanged": true,
+    "applied": true,
+    "nativeCompiled": false,
+    "originalPauseAssertionPreserved": true,
+    "noHomeRetry": true,
+    "preconditionSeconds": 10,
+    "windows": {
+      "swiftGrammarFiles": 453,
+      "newDiagnostics": 0,
+      "vendorLimitations": 54,
+      "toolingPassed": 26,
+      "toolingSkipped": 3,
+      "bashSyntax": true,
+      "SwiftCompiled": false
+    }
   }
 }

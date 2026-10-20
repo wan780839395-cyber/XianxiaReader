@@ -1,16 +1,18 @@
 # 项目状态
 
-## R1设置隔离：纸色反例通过，原生加载/定位仍阻止发布
+## R1设置隔离：字体诊断2/2，完整发布仍未通过
 
-完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。录屏同机对照39263942566/f02为ON64/67、OFF66/67，原失败和完整原件保留，不能归因于录屏单一因素。
+完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。当前预期149集成+29UI=178，尚未执行完整178门槛。
 
-最新4UI[39272564753](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39272564753)/e85c25f2实际2/4，0跳过，test65、summary/export0，Swift编译诊断0；556冻结输入和artifact12199630365的digest/CRC已核。120像素纸色正反例与菜单重开通过；慢滚在Home/activate后仍显示运行，测试未确认真实后台；旋转在深灰横屏后持续显示“正在准备”，原可读/无加载守卫正确拒绝，不再归咎于纸色。暖色横竖屏、深灰竖屏原生正文可见。记录Documentation/ValidationLogs/reader-ready-ui-39272564753.json；本地watcher88241及下载75255均已完成，无该轮运行任务。纸色修正已Apple编译，旋转未验收，178完整门槛未执行。
+最新滚动写入者诊断[39348950147](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39348950147)/96e913a已完成2/2，0失败/跳过，test/summary/export均0，Swift编译诊断0；556冻结输入匹配，artifact12233013451完整SHA/CRC已核。六字体分页和连续模式原断言、隐藏重排原断言通过；此轮只增强测试探针，没有生产修复，未复现旧回跳，不能宣称根因已修。连续字体诊断仍出现既有排版错误消息，不等于无错误用户流程。原件和边界见Documentation/ValidationLogs/scroll-writer-probe-39348950147.json。
 
-最新fonts2[39279664338](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39279664338)/f32cc933已实际结束0/2，0跳过，test65/summary0/export0，Swift编译诊断0；556输入逐项匹配，artifact12203080049完整digest/CRC已核。无本轮watcher/下载进程残留。sourceHanSans分页重开字体已加载但锚点失败，DOM在1650ms到2010、1746ms回0，已记录RO帧1747ms才开始；402x750/docWidth10452/font ready不变，不能将该RO回调当作回跳起点。另一项在换字体前准备深段落失败，新捕获后探针未执行。原生job32分22秒，两个case累计111.933秒；准备/编译/启动/导出不能统称用例耗时。完整记录Documentation/ValidationLogs/capture-probe-39279664338.json。
+前轮39279664338/f32实际0/2，原失败和2010→0轨迹保持：已记录RO帧晚于回跳，未找出唯一写入者。最新插桩通过不能倒写旧结果。当前无39348950147的watcher/接收/下载进程残留。
 
-当前下一独立实验只改同一ReaderRenderingTests测试文件：为Readium实际使用的Element.scrollTo及scrollLeft setter保留原参数/this/返回并记录有界调用栈；准备wait失败也导出轨迹。原断言、预算、生产及依赖不改，现有RO轨迹与独立写入轨迹各最多16条，不收集正文。区分JS主动写回0与未被这些公开路径记录的回跳；没有记录到写入也不能独自证明是WebKit内部错误。先Windows/JS语法、冻结，再执行原fonts2；禁止无新证据full重跑。当前已应用；Windows453语法新增0/54Vendor限制、探针JS语法和本地转发合同检查通过（均非Swift编译/原生验收），原生待验证。
+最近4UI39272564753/e85仍2/4：纸色正反例和菜单重开通过；Home/activate后运行但缺少真实后台前置条件；深灰横屏持续“正在准备”，原可读/无加载守卫拒绝。后者仍阻塞发布，不归咎于纸色或无证据归咎环境。
 
-正常HEAD6d761749、普通index及既有交付包保持，不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
+用户已确认Build29手机慢滚→桌面→再打开为“已暂停”，仅此交付版本路径反馈，不代替R1设备验收。当前独立切片仅修后台UI前置条件：Tests/UI/ReaderInterfaceUITests.swift一个原方法，确认正在慢滚、一次Home后真实后台/挂起且桌面图标可见，再activate并保留原立即暂停断言；失败留状态和原生截图。CI增加background-ui只跑原1项。生产代码、暂停逻辑、功能预算及其余测试不改。参考固定Mozilla c603c9c及Apple状态API，版本与差异见Documentation/READER_ISOLATION_PLAN.md。已应用；Windows453语法新增0/54既有Vendor限制、工具29中26通过3POSIX本地跳过、Bash语法通过，均非原生编译。下一步冻结后只跑background-ui原1项。
+
+正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 
@@ -473,3 +475,7 @@ Build25收尾保留已完成：旧两轮2464项/1649.9MiB已清理，100项文�
 Build29本地CI保留收尾：旧7轮20566项9954.8MiB已清理、482文字/summary/metadata留存，A/C/D三组本版验收诊断及53根包、源码/素材/19恢复ZIP保持。旧原件范围服从m4-edges-build29-ci-retention.json，后续最终同步以本版final-delivery-receipt.json为准；保持开机。
 
 当前fonts2诊断已派发：https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39279664338 / f32cc9333418a2ca30e97e2e47676f5f07bad175。Windows453语法新增0/54Vendor限制已通过（非编译），556输入冻结；仅ReaderRenderingTests测试诊断变化，无生产变更，原断言与预算保留。不移动冻结输入，不追加full。首次dispatch HTTP500后两次只读确认无新run，才重发一次成功。
+
+2026-10-20恢复后，滚动写入者fonts2诊断已派发：https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39348950147 / 96e913a0782370272705ca8d8e3ac62577c5e878。556冻结输入，只改一个测试文件，Windows/JS/本地转发检查已过（非原生）。旧39279664338是0/2完成，旧watcher/下载均无残留；当前watcher见build/ci/39348950147-watch.log。完成前不移动或改变冻结源码。
+
+2026-10-20用户手机反馈：当前交付Build29开始慢滚→回桌面→再打开后“已暂停”。只记录此手机路径，不等于R1当前源设备/完整矩阵验收。原生后台失败先核测试真实进入后台的前置条件，不据此补生产暂停逻辑。记录Documentation/ValidationLogs/build29-background-phone-20261020.json。

@@ -3,10 +3,13 @@
 # The default full ios-build.yml/ci_ios.sh pipeline remains the delivery gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui}"
+selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui}"
 case "$selection" in
   paged-restore)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph)
+    ;;
+  background-ui)
+    cases=(-only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch)
     ;;
   reader-ready-ui)
     cases=(
@@ -114,7 +117,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
 resource_monitor_pid=''

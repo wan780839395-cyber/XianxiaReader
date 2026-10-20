@@ -190,3 +190,13 @@ GitHub job的timeout-minutes是整个job限额（https://docs.github.com/en/acti
 当前下一独立实验只改同一ReaderRenderingTests测试文件：为Readium实际使用的Element.scrollTo及scrollLeft setter保留原参数/this/返回并记录有界调用栈；准备wait失败也导出轨迹。原断言、预算、生产及依赖不改，现有RO轨迹与独立写入轨迹各最多16条，不收集正文。区分JS主动写回0与未被这些公开路径记录的回跳；没有记录到写入也不能独自证明是WebKit内部错误。先Windows/JS语法、冻结，再执行原fonts2；禁止无新证据full重跑。当前已应用，原生待验证。
 
 参考固定Readium3.11 utils.js的document.scrollingElement.scrollTo与scrollLeft调用；[MDN Element.scrollTo](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo)与[scrollLeft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft)核对公开签名。MDN当前包含较新Promise返回说明，不假定iOS18.5支持；探针原样返回运行时真实值，既不await也不更改调度。只在configurable原setter存在时转发，不缺省模拟或吞错。观察仍可能影响时序，不把通过当作根因修复。
+
+补充参考核对（2026-10-20，仅诊断，未升级/移植）：Readium upstream相关文件最近提交列表中，EPUBReflowableSpreadView最新02508bc为页边距滑动、PaginationView最新6691403为离屏媒体，utils.js仍以3e8f317的相邻章节动效为最近变更，未找到直接对应当前2010→0的现成修补。[R2D2BC v3.0.0-alpha.19](https://github.com/d-i-t-a/R2D2BC/releases/tag/v3.0.0-alpha.19)修的是document.write替换iframe.src后，progression0被truthy guard忽略而保留旧偏移；与本项目WKWebView加载、已实际到2010后被归0的证据不同，不移植其guard或引入该引擎。继续用当前固定Readium3.11和原生写入轨迹选择最小修复。
+
+## 39348950147实际结果与后台UI前置条件（2026-10-20）
+
+96e913a的fonts2实际2/2，0失败/跳过，test/summary/export0，Swift编译诊断0；556输入、完整artifact12233013451的SHA/CRC已核。原六字体两模式与隐藏重排断言执行通过，六个分页实例都恢复x2010，未复现旧2010→0。探针增加几何读取和调用栈会影响时序，不能将通过解释成生产修复。连续模式若干采样仍带既有排版错误消息；邻接资源/隐藏WebView也被逐项记录，单条anchor=false既不自动构成用例失败，也不能用2/2推断无错误用户流程。验证记录见[原生结果](ValidationLogs/scroll-writer-probe-39348950147.json)，旧0/2原件保留。
+
+用户确认当前交付Build29慢滚后回桌面、再打开为“已暂停”。最近4UI中Home→立即activate没有确认App进入后台，截图采样也未显示桌面；证据不足以改生产暂停逻辑。下一切片只修改原慢滚UI方法并增加background-ui单项入口。运行前确认正在慢滚，一次Home后最多10秒等待App处于后台/挂起且Springboard至少一个可点击图标，再activate；原立即暂停断言保持。前置条件失败即附状态和整屏原图并失败退出，无重按Home、无功能重试、无延长暂停等待。
+
+参考[Apple XCUIApplication.state](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.property)和固定[Firefox iOS c603c9c BaseTestCase.swift](https://github.com/mozilla-mobile/firefox-ios/blob/c603c9cd2274930f5011fbb243745caadb6abe08/firefox-ios/firefox-ios-tests/Tests/XCUITests/BaseTestCase.swift#L66)。采用其Home→确认后台/桌面→activate顺序；允许真实后台或已挂起，不复制Firefox特定runner图标名、忽略wait结果或额外idle sleep。当前CI使用Xcode16.4/iOS18.5，行为仍须原生验证。深灰横屏加载失败继续单列，当前切片不改变旋转或字体生产路径。

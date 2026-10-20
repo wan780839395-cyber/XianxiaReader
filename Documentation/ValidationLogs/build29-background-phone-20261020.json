@@ -1,0 +1,11 @@
+{
+  "recordedAtUTC": "2026-10-20T01:03:46.765667+00:00",
+  "reportedBy": "user",
+  "build": 29,
+  "sourceRevision": "a65086c1151831b54d90ed083fa36fc27848b5cb",
+  "scenario": "Start slow scroll, go to Home screen, return to app",
+  "result": "paused",
+  "evidence": "User reply: 已暂停",
+  "coverage": "One reported phone path on deliveredBuild29; not current R1 device acceptance or the full device matrix",
+  "implication": "Supports investigating missing actual-background precondition of native UI fixture; does not prove current CI lifecycle event occurred"
+}

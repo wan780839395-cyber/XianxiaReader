@@ -443,3 +443,5 @@ Build 2 的导入回归优先：更新后先点击“导入内置样书”（书
 测试失败时保留现有数据、记录操作与具体提示。普通设备签名安装与 TrollStore 结果分开；本表不将模拟器 XCTest 或用户“已安装巨魔”视为应用验收。
 
 Build14基本自用反馈证据：[m3-library-build14-user-feedback.json](ValidationLogs/m3-library-build14-user-feedback.json)。其余未逐项报告的矩阵继续待记录，不由“正常”推断全覆盖。
+
+2026-10-20用户手机反馈：当前交付Build29开始慢滚→回桌面→再打开后“已暂停”。只记录此手机路径，不等于R1当前源设备/完整矩阵验收。原生后台失败先核测试真实进入后台的前置条件，不据此补生产暂停逻辑。记录Documentation/ValidationLogs/build29-background-phone-20261020.json。
