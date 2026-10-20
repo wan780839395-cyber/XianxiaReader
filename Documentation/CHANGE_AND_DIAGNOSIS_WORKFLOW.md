@@ -36,6 +36,8 @@ R1设置提取本身与相关35项回归较早完成，但后续卷入UI方向�
 
 ## 2026-10-20：让一次诊断覆盖真实断点
 
+连续位置诊断补充：WKWebView.evaluateJavaScript不能直接把Promise对象当结果返回；Swift的async重载不意味着自动await JavaScript Promise。39434816178因此在首个字体原断言通过后报WKErrorDomain5并中断，是新增诊断错误，不能归为正文定位失败。需要异步JS时先核Apple callAsyncJavaScript合同及版本；能复用既有原生截图边界完成观察时，优先移除不必要的异步桥接。本轮改为原截图之后返回String JSON的只读采样，不再引入Promise/额外等待；旧失败与实际未执行的字体组必须保留。
+
 - 设计探针先核最早失败阶段：准备深位置、捕获、变更、重开分别在哪里可能停止。取证不能全挂在尚未到达的步骤后；公共失败出口应保留当前有界轨迹。39279664338的hidden-font在准备wait失败，捕获后探针没有执行，说明只缩小触及文件并不等于实验有效。
 - 沿固定版本实现列全与假设有关的实际API入口，再设计最小观测。Readium3.11的窗口scrollTo、根Element.scrollTo与scrollLeft setter是不同入口；只观察窗口scrollTo和RO帧不足以识别回跳写入者。用同一测试文件覆盖这些入口，保留原参数/this/返回/异常及原预算；明确未覆盖路径和探针几何读取可能影响时序的限制。
 - 耗时用真实时间线核算。39279664338原生job1942秒，两个case合计111.933秒；XcodeGen构建158.64秒，模拟器boot约356秒，xcodebuild test包含构建，xcresult的startTime不能直接当测试App启动时刻。App第一条原生日志16:11:09，到第一case16:11:13约4秒；不能把前面十余分钟编译记成App/WebContent启动。原始标记见build/ci/39279664338/phase-markers.json，完整日志及版本独立保留。

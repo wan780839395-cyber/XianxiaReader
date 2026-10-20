@@ -1,5 +1,7 @@
 # 项目状态
 
+当前定位核查（2026-10-20）：用户选择本轮先查清正文定位、R3顺延。生产App/Packages/Vendor保持R2；R3候选仅在.cache暂存未接线。首个只读观测源5e2209c/CI39428259337编译通过，整例0/1：分页字体链已走完，连续初始封面20秒超时，尚未到目标观察。原件与失败保留，不能算定位已修。下一最小诊断源97cd5ce/CI39434816178只执行连续模式，保留原字体/断言/预算，补有效前景和准确资源WebView选择及旧候选对照；结果待收。完整187/设备Release/手机验收未执行，无新IPA。当前断点以HANDOFF和reader-position-investigation回执为准。
+
 当前维护（2026-10-20）：I0依赖守卫、I1快速设置入口、I2/R2字体编排本片门槛完成；下一片I3/R3完整位置，随后R4会话/I5功能边界/I6发布。全项目隔离仍未完成，App多数功能仍共用target。后续产品计划保留，维护期间不提前实现，见[总方案](Documentation/PROJECT_ISOLATION_PLAN.md)。
 
 R2源410343b7bbdb7b0f667d277c910f7f349a4d4ae7 / [CI39418977905](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39418977905)：真实编译0源码诊断，同源53/53无失败/跳过；新字体模块7、原字体8、设置7、生命周期28、真实字体2、原生picker1。Linux62工具/Core137/TXT4通过；Windows456语法新增0/54既有限制、62工具59通过3既有POSIX跳过。566输入、26个非字体VM方法、原52测试/fixture与460保护输入保持，普通HEAD/index未改。设计与完整分项回执见[字体隔离](Documentation/READER_FONT_ISOLATION.md)、[验证记录](Documentation/ValidationLogs/project-isolation-r2.json)。

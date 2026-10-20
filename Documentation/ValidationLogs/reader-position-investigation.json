@@ -1,0 +1,188 @@
+{
+  "status": "native_snapshot_observation_prepared",
+  "R3": "deferred_by_user; candidates not applied",
+  "productionRevision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
+  "previousR2Gate": "53/53 historical, not a new position proof",
+  "experiments": [
+    {
+      "revision": "5e2209c6182896a937e987b205e10abc0c87286a",
+      "run": 39428259337,
+      "status": "blocked_before_continuous_observation",
+      "nativeCompilation": "passed",
+      "swiftSourceDiagnostics": 0,
+      "testcase": {
+        "executed": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "durationSeconds": 136.633
+      },
+      "failure": "initial continuous cover.xhtml: blank DOM, no position emitted within original20s budget",
+      "targetedContinuousGeometryCollected": false,
+      "productionChanged": false,
+      "artifact": {
+        "run": 39428259337,
+        "artifact": 12268404488,
+        "kind": "diagnostic",
+        "archiveBytes": 113201043,
+        "archiveSHA256": "5b6432cfa0cf35ca4fe258b21020e41476bd7202457ee4249b91b00e30f2619c",
+        "githubDigestMatches": true,
+        "zipCRC": true,
+        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
+        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic",
+        "extractionScope": "complete artifact",
+        "duplicatePathsRemoved": [
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0000.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0001.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0002.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0003.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0004.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0005.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0006.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0007.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0008.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0009.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0010.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0011.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0012.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-download-chunks\\0013.bin",
+            "bytes": 4149139
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39428259337\\diagnostic-diagnostics.zip",
+            "bytes": 113201043,
+            "sha256": "5b6432cfa0cf35ca4fe258b21020e41476bd7202457ee4249b91b00e30f2619c"
+          }
+        ],
+        "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+        "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+      },
+      "userScope": "position investigation only; R3 deferred",
+      "candidateR3Applied": false
+    },
+    {
+      "run": 39434816178,
+      "revision": "97cd5ce671696b0d67084f92f3ab103d4305412c",
+      "status": "diagnostic_bridge_failure_after_first_font_assertion",
+      "nativeCompilation": "passed",
+      "executed": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 31.242,
+      "productionChanged": false,
+      "initialCoverPassed": true,
+      "originalFirstFontAssertionPassed": true,
+      "firstFontBothAnchorDelta": 0,
+      "laterFontsExecuted": false,
+      "failure": "Agent diagnostic returned unsupported JavaScript Promise through evaluateJavaScript",
+      "artifact": {
+        "run": 39434816178,
+        "artifact": 12271927945,
+        "kind": "diagnostic",
+        "archiveBytes": 83626657,
+        "archiveSHA256": "c50005e85c077801e72d44a9bcd9d1d949d7638706e917d2d84b03aacb039123",
+        "githubDigestMatches": true,
+        "zipCRC": true,
+        "completeExtractionRetained": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
+        "extractionPath": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic",
+        "extractionScope": "complete artifact",
+        "duplicatePathsRemoved": [
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0000.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0001.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0002.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0003.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0004.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0005.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0006.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0007.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0008.bin",
+            "bytes": 8388608
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-download-chunks\\0009.bin",
+            "bytes": 8129185
+          },
+          {
+            "path": "D:\\ai\u9879\u76ee\\XianxiaReader\\build\\ci\\39434816178\\diagnostic-diagnostics.zip",
+            "bytes": 83626657,
+            "sha256": "c50005e85c077801e72d44a9bcd9d1d949d7638706e917d2d84b03aacb039123"
+          }
+        ],
+        "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+        "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+      }
+    }
+  ],
+  "originalAssertionsAndBudgetsUnchanged": true,
+  "full187Executed": false,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "newIPA": false,
+  "nextExperiment": "Remove unsupported Promise; observe after original native screenshot, continuous branch only; no production changes"
+}

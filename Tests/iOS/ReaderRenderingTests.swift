@@ -787,13 +787,6 @@ final class ReaderRenderingTests: XCTestCase {
                         return try await web.evaluateJavaScript("(\(chinese)) && (\(nextAnchorScript))") as? Bool == true
                     }
                     await recordRenderedReopen("passed")
-                    if continuous {
-                        // Read two subsequent presented frames, retaining the original
-                        // assertions and budgets above. This probe performs no writes.
-                        let web = try XCTUnwrap(active())
-                        _ = try await web.evaluateJavaScript("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(true))))")
-                        await recordRenderedReopen("two-frames-later")
-                    }
                     XCTAssertNil(model.errorMessage, "A rendered font must not leave a reading alert; font=\(bundled.rawValue) continuous=\(continuous)")
                 } catch {
                     await recordRenderedReopen("failed")
@@ -808,6 +801,9 @@ final class ReaderRenderingTests: XCTestCase {
                 let chineseImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) })
                 chineseImage.name = "font-epub-\(bundled.rawValue)-\(continuous ? "continuous" : "paged")-build23"
                 chineseImage.lifetime = .keepAlways; add(chineseImage)
+                // Use the existing synchronous native snapshot as the second
+                // observation boundary. evaluateJavaScript cannot return a Promise.
+                if continuous { await recordRenderedReopen("after-native-snapshot") }
             }
             model.close()
         }

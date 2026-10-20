@@ -1,6 +1,14 @@
 # 当前工作：先核正文定位疑点，再推进R3第一片（2026-10-20）
 
+最新断点：第二轮97cd5ce/39434816178已完成失败。有效前景/连续封面已过（activeHref=cover.xhtml、legacy同一view、alpha1、hostAppeared=true），首个思源宋体原定位断言通过，两个点实际top/expectedTop均-9.9375、delta0；随后Agent新增evaluateJavaScript返回Promise导致WKErrorDomain5，整例0/1、31.242秒，后续五字体未执行。属于诊断错误，不能归为正文失败或初始化根因已修。83626657字节原件已SHA/CRC核验完整提取build/ci/39434816178/diagnostic，完整日志continuous-completed-job.log。用户已被明确告知这项错误及R3继续顺延。
+
+已删除该Promise和额外两帧等待，改在既有原生截图之后第二次读取String JSON（after-native-snapshot），原断言/预算保持；这不是“两帧稳定”证明。下一轮沿同一连续单例、原生产源、原字体序列，不重复分页链，不新增生产代码。派发前核Swift语法与冻结差异，若再次在准备/诊断阻塞则依据新原件改变实验，不能盲跑。
+
 最新用户决定：本轮只查清定位，R3顺延；禁止接线暂存R3候选。CI39428259337/5e2209c原生编译通过，但整例0/1：分页六内置字体走完，进入连续模式初始cover.xhtml时20秒超时，DOM为blank且未发位置，未到连续疑点；不是新增几何观测抛错。原生步骤32分16秒、整例136.633秒，不能把步骤耗时当测试耗时。完整113201043字节diagnostic已SHA/CRC核验并提取build/ci/39428259337/diagnostic，下载重复分片/ZIP按回执清除；完整job日志native-completed-job.log与run/artifacts保留在build/maintenance/R3-20261020。
+
+第二次最小实验已派发97cd5ce671696b0d67084f92f3ab103d4305412c / codex/diagnose-continuous-position / CI39434816178；Linux前置通过、原生步骤运行中，尚无行为结果。私有commit只选择原test连续分支，工作目录默认test仍有两模式。observer为.cache/recovery/observe_continuous_position.py，continuous-run/jobs/artifacts/frozen均独立命名；首轮旧证明不覆盖。新观察会同时核切换前/实际保存两点、片段/合并矩形与后续帧。旧false与true的同字体inner offset差约10点，xianxiaViewportOffset约-9.9375，新增假设为迟到DOM定位忽略偏移；只作线索，尚不改Vendor。
+
+外部复核：Apple公开viewDidAppear文档（https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdidappear(_:)）说明出现生命周期；固定Readium3.11 SwiftUI指南（https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/docs/Guides/Navigator/SwiftUI.md）用真实父控制器与有效view.bounds挂载；WebKit iOS测试窗口（https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/ios/PlatformWebViewIOS.mm）显式makeKeyAndVisible及析构隐藏。后者为查阅时main快照，并非iOS18.5锁定版本，只参考窗口fixture管理，不移植其私有API；生产不变，当前候选按本项目既有公开UIKit fixture约束输入。
 
 静态发现封面probe的visibleWebView只检查几何，忽略隐藏/scroll alpha；本项目连续模式存在同层blank WebView（R2附件alpha0）与活动资源WebView。尚未证明此轮封面超时唯一原因。下一最小实验：同一原test仅执行连续模式（私有诊断commit的模式选择，默认完整test继续两模式）；原所有断言、字体序列和20秒资源预算保持。开始前采用现成open(engine) fixture相同的前景/hasAppeared条件；封面probe显式选择readium.chapter.0，成功后记录旧候选href/alpha与真正候选对照；超时保留host与所有native WebView状态。仍保留两锚点几何与后续帧观察。此处是诊断输入有效性修正，不宣称生产初始化或正文根因已修。
 
