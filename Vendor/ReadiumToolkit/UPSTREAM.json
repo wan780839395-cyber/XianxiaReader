@@ -1427,7 +1427,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "19ab7308346ba538b431e8493d25c1bc7bb3104fc86b89828ea1ceb21f0276f4"
+      "sha256": "49a24b6d3466f8f25cc318b50e7d17f3f4c346c030f4bfae8fcbb7b4f61a5eeb"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
@@ -1770,5 +1770,12 @@
     "reason": "isSpreadLoaded precedes delayed initial font/layout restoration. Record every explicit location before this guard so initialization restores the latest seek instead of an older preloaded chapter start.",
     "scope": "Move existing pendingLocation assignment only; preserve complete PageLocation, animation, cancellation/continuations, font readiness, errors and all budgets.",
     "regression": "39370263590/d28feaa controlled unchanged-production baseline: real font ready and deep word visible while held; after release attached alpha1 document settled at x0 with original word absent. Final candidate acceptance is recorded separately in project validation logs."
+  },
+  "continuousCanonicalOffsetReview": {
+    "date": "2026-10-21",
+    "scope": "Infinite horizontal LTR canonical DOM seeks consume the saved xianxiaViewportOffset inside WebKit; existing paged canonical branch is retained.",
+    "reason": "Native-only updateViewports candidate failed the same deterministic control by 10.875 points (39447634363). The default upstream text matcher does not consume this extension offset.",
+    "budgetsAndDependenciesUnchanged": true,
+    "acceptancePending": true
   }
 }

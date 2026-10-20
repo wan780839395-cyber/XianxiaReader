@@ -354,17 +354,26 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
         // Locators sampled by our viewport extension carry an exact DOM point.
         // Upstream 3.11's JS text matcher does not consume domRange, so repeated
         // prose can select a different occurrence after pagination is rebuilt.
-        if !viewModel.scroll, !viewModel.verticalText, viewModel.readingProgression == .ltr,
+        // Infinite scroll must also consume the saved viewport offset internally;
+        // an unchanged outer offset need not produce another scroll callback.
+        if (!viewModel.scroll || viewModel.infiniteScroll), !viewModel.verticalText, viewModel.readingProgression == .ltr,
            locator.locations.otherLocations["xianxiaContinuousAnchorVersion"]?.double == 1,
            locator.locations.domRange != nil {
             do {
                 let json = try locator.jsonString()
                 let result = await evaluateScript("""
                     (() => {
-                      const rect = (\(Self.continuousAnchorRectFunction))(\(json));
+                      const locator = \(json);
+                      const rect = (\(Self.continuousAnchorRectFunction))(locator);
                       if (!rect || innerWidth <= 0) return false;
-                      const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
-                      window.scrollTo({left:page * innerWidth,behavior:'instant'});
+                      if (\(viewModel.infiniteScroll)) {
+                        const offset = locator.locations?.xianxiaViewportOffset;
+                        const top = Math.max(0, rect.top + scrollY - (Number.isFinite(offset) ? offset : 0));
+                        window.scrollTo({top,behavior:'instant'});
+                      } else {
+                        const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
+                        window.scrollTo({left:page * innerWidth,behavior:'instant'});
+                      }
                       return true;
                     })()
                     """)
