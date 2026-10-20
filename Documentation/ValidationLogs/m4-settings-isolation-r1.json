@@ -1014,5 +1014,22 @@
     "qualifiedRootCause": false,
     "evidence": "initialization-pending-39365686520-cancelled.json",
     "next": "Correct visible-target fixture and enable bounded host process/memory observation, production unchanged"
+  },
+  "initializationOverwriteControl": {
+    "run": 39370263590,
+    "source": "d28feaa120c6ddb7b26dce0450cf561cc3e7ffc7",
+    "qualified": true,
+    "total": 1,
+    "failed": 1,
+    "agentCancelled": false,
+    "candidateApplied": true,
+    "candidateAcceptancePending": [
+      "Windows",
+      "native6",
+      "full180",
+      "deviceRelease",
+      "phone"
+    ],
+    "report": "initialization-pending-39370263590.json"
   }
 }

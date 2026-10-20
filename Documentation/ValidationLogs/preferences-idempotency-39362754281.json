@@ -48,6 +48,19 @@
   "scope": "One Adapter equality guard; new public repeated-preference/fresh-capture contract and original real-font reopen test strengthened with no-reader-alert. Hidden initial navigation stays separate. No full/device acceptance.",
   "renderedFontRows": 30,
   "renderedFontAlertRows": 0,
-  "nativeStaticImagesInspected": false,
-  "scopeAcceptance": "Compilation and targeted2 accepted; full180/actual reader UI/device not accepted; first-ever real mode change is distinct from repeated preferences"
+  "nativeStaticImagesInspected": true,
+  "scopeAcceptance": "Compilation and targeted2 accepted; full180/actual reader UI/device not accepted; first-ever real mode change is distinct from repeated preferences",
+  "nativeStaticReview": {
+    "images": [
+      {
+        "path": "build\\ci\\39362754281\\diagnostic\\ReaderSnapshots\\5D49250F-DA76-4290-8B7D-028980352433.png",
+        "sha256": "96932f07e34e96aa97682a4c425a060b8d31917f431e7d19870d21fb97a946e3"
+      },
+      {
+        "path": "build\\ci\\39362754281\\diagnostic\\ReaderSnapshots\\2C92A8C8-4F25-442A-952C-B2376CC6B67D.png",
+        "sha256": "09d5ee831ad0012e209c86e61e96d02bdce4c24f6a6267bc3fad51ec2b621bbb"
+      }
+    ],
+    "accepted": "SourceHanSans continuous/paged real body text is rendered and readable in these2 engine-harness captures. Exact word/real-font assertions and nil model errors are verified by tests; no complete ReaderView/animation/phone acceptance."
+  }
 }

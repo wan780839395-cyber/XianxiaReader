@@ -1,29 +1,31 @@
-# 项目交接（2026-10-20 12:33上海，初始化对照恢复）
+# 项目交接（2026-10-20，初始化位置覆盖最小修复）
 
-## 当前实际断点
+## 当前断点
 
-39365686520/c9dcba9由Agent取消（非源码失败），完整artifact12240662458/87685字节SHA74e133954dc71cd597b14db46a4f11225ad3d2d508cb818941740a0bcb1f5ba9/CRC与556来源核。原生测试0执行，无summary/测试退出码，xcresult仅Staging未完成。Session日志04:12:47.590发出宿主App launch请求（wait_for_debugger=1）后未记录bundle连接或case开始，标准输出0字节，Agent04:21取消；源码已构建/安装至宿主启动阶段。不能说这37.6分钟由测试fixture、定位或环境独有原因造成。fixture本体没有运行，也未证明pendingLocation假设。
+39370263590/d28feaa自然结束failure，未发出Agent取消。原生1执行0/1、46.530秒、测试65/summary0/export0、Swift编译诊断0；完整artifact12241737946/98953768字节SHA1ba77a568362b9cb6e20f75e14b0c4445d6d6cf73f417a5d492eba720f8fb2db及CRC、556输入全核。watcher93265/PID24684和receiver45461/PID20636已退出0，恢复先核实际CommandLine。
 
-watcher38944/PID26412与receiver40407/PID20560均退出0，恢复核CIM实际CommandLine。普通HEAD/index、旧包/已完成生产改动保持。当前无原生任务。
+对照合格：目标章节已进viewport、真实原字体ready、屏障保持时char1200可见；显式放行后当前WK attached/alpha1、released/faceReady/readyObserved/settled均true，x0且原字不可见。失败在原30秒联合断言，尚未替换字体，不是宿主未启动。原始build/ci/39370263590，记录Documentation/ValidationLogs/initialization-pending-39370263590.json。
 
-## 下一项（同一生产源，只修fixture与观测）
+已备份before-latest-initial-location后，仅修改Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift：把既有pendingLocation赋值移到isSpreadLoaded判断前，初始化等字体结束时读取最新定位。同步UPSTREAM真实LF摘要19ab7308346ba538b431e8493d25c1bc7bb3104fc86b89828ea1ceb21f0276f4及固定版本理由。另554构建输入不变，d28修正后的fixture原样保留；没有套用缓存旧测试。
 
-initialization-visible-control已应用（before-initialization-visible-control备份）：先用公开导航把one.xhtml移进viewport，再仅检查几何当前的WKWebView等待原生font-ready屏障；失败时隐藏/未准备窗口只记native几何，不再等待其DOM。原30秒字可见断言、原字体替换/锚点合同保持。仅修测试前置顺序，不能当成前轮未进入测试的原因。
+本步源码已应用，Windows预检/原生候选编译、定向6、完整180、设备Release均待执行。下一步先Windows语法/工具/Bash，再按实际Git blob与354 Vendor清单冻结私有候选，rotation-full同job顺序6项→151集成+29UI→严格无签名设备Release30。各阶段失败阻止后续，不复用旧UI，不重复派发。冻结后直到结果/原件收齐不改构建输入。
 
-同时把现有30分钟有界capture_native_resources监测用于initialization-pending，并保留testmanagerd/debugserver/xctest进程名（不含参数/书文），下次若宿主仍起不来能分清App进程存在与否及内存状态；不改真实功能预算/不重试用例。预计3源文件（测试/诊断选择monitor/监测器），生产仍为176303d。已备份并应用，Windows453语法0新增/54限制、工具26pass3本地POSIX跳过、Bash通过；冻结/派发1项待执行。
+## 已验证与发布边界
 
-只有首个target-resource-in-viewport、原3阶段完整，失败后attached/alpha可见、released/faceReady/readyObserved/settled均true、x0且wordVisible=false才支持初始化覆盖。若更早失败/原字保留就不应用缓存Vendor候选；候选仅将pendingLocation更新移至isSpreadLoaded判断前。
+39362754281/176303d幂等2/2，30字体观测errorMessage全nil，完整artifact SHA/CRC与556核；两张真实字体原图已看，限engine harness静态正文。真实偏好变化仍完整fresh采样/原3秒预算，首次模式恢复与重复提交有区别。
 
-## 已验证和发布边界
+39358438791/e2c7990原6项5/6：viewport同字/同WK、真实字体重开、跨章、六字体连续、浅深实际旋转通过，hidden初始深字失败、full/Release自动跳过。连续模式spread=never修复保留；原生3图已看，整段录屏/手机FPS未验收。
 
-39362754281/176303d幂等片2/2，真实编译0诊断、test/summary/export0，完整artifact12238663866 SHA/CRC与556核；30字体观测errorMessage全nil。首开真实模式变化与后续重复偏好有别，不声称guard唯一解释所有历史初始化故障。
+39352276145后台UI1/1，用户Build29手机“已暂停”，限该路径；生产暂停逻辑不改。完整旧39243868846仍171/177，当前完整180从未通过、设备Release未执行，无Build30；Build29最后交付。
 
-39358438791/e2c7990原6项5/6：same-word viewport、真实字体重开、跨章、六字体连续、浅深旋转通过；hidden最初深字失败（未换字体），另有12条连续字体错误，后来幂等2项清零。本轮full/Release自动跳过，无Agent取消。已看深灰横/恢复竖和宽viewport3原图；未整段录屏/手机FPS。
+39365686520前轮Agent取消/0用例，原始Session停宿主launch请求，不能归因fixture或环境独有原因；不能与本轮真实断言失败混写。旧链接/锁解析0执行独立保留，project图已恢复，不重加Readium根产品或修改锁。
 
-最终151集成+29UI=180从未完整通过，设备Release未执行，无Build30；Build29最后交付。后台UI39352276145已1/1，用户Build29手机已暂停。39354867480链接0执行、39357294714docc锁解析0执行都独立保留，原project图已恢复。
+## 成本与保留
 
-普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空，历史未提交/未跟踪源码、Vendor、53旧包/恢复ZIP保持；不重跑旧apply/freeze、不做R2/R3/R4/M5、无关清理或关机。历史Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md。
+本轮原生job1972秒，首case05:03:25UTC、job04:36:17，case46.530秒；结束case后仍有结果整理/诊断/上传。资源原件187样本，04:47:35至05:06:37UTC、跨度1142.622秒，未采满30分钟；不能把32.9分钟全记成用例或App启动。35分钟成本取消脚本先复查发现任务已完成，未发出取消API；不得运行该旧脚本处理下一轮。
+
+PROJECT_STATUS/ROADMAP旧R1首页已完整归档恢复历史，当前首页不再带已失效“下一步”。普通HEAD6d761749911233122bcd031fcf718d22a19f9e77、普通index空、53旧包/恢复ZIP/未提交源码保持；不用整树reset/checkout。不做R2/R3/R4/M5、无关清理或关机。
 
 ## 工具
 
-cua本地浏览器仍报Work设置禁用，未改权限。job REST日志用gh api --allow-escape-sequences原样捕获；404可能未flush，尾部也可能缓冲7分钟，不能据尾部推断挂起。以上宿主断点来自收齐的原始Session与空stdout，不是网页尾部猜测。
+gh .cache/tools/gh_2.102.0/bin/gh.exe；cua本地浏览器仍报Work禁用，未改权限，CLI正常。job日志API404不等于挂起，必须收原件后报告实际阶段。使用独立索引创建私有候选，不移动普通HEAD/index。运行任务/验证接收均在派发后补写本页。

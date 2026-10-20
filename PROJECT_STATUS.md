@@ -1,24 +1,20 @@
 # 项目状态
 
-当前断点（2026-10-20 12:33上海）：39365686520/c9dcba9被Agent取消，用例0执行；原Session停在宿主launch请求，stdout0，不能归因fixture或定位。完整原artifact/556来源核。已修静态fixture前置为先显示章节并避免隐藏DOM诊断，新增有界宿主观测；生产保持176303d，Windows通过，待冻结单项对照。幂等2/2保留，完整180/Release未通过，无Build30。
+当前断点（2026-10-20）：39370263590/d28feaa真实1项对照0/1，四阶段齐全后ready/可见WK回到x0，证明初始化覆盖新定位；自然结束，未取消。仅将Vendor既有pendingLocation赋值提前并同步来源摘要，另554输入保持；候选预检/6项→完整180→Release待执行，无Build30。
 
-## R1设置隔离：字体诊断2/2，完整发布仍未通过
+## R1 设置隔离：当前验收边界
 
-完整39243868846/024fc87仍为171/177失败，Release未执行，无Build30 IPA；Build29是最后交付。当前预期150集成+29UI=179，尚未执行完整179门槛。
+Build29 是最后已交付版本；Build30 尚未生成。完整旧轮39243868846为171/177，保留失败；当前新增回归后的发布门槛是151集成+29UI=180，尚未完整执行通过。
 
-最新滚动写入者诊断[39348950147](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39348950147)/96e913a已完成2/2，0失败/跳过，test/summary/export均0，Swift编译诊断0；556冻结输入匹配，artifact12233013451完整SHA/CRC已核。六字体分页和连续模式原断言、隐藏重排原断言通过；此轮只增强测试探针，没有生产修复，未复现旧回跳，不能宣称根因已修。连续字体诊断仍出现既有排版错误消息，不等于无错误用户流程。原件和边界见Documentation/ValidationLogs/scroll-writer-probe-39348950147.json。
+- 设置/生命周期35、关闭请求失效2是历史定向结果。后台前置条件39352276145为1/1，生产暂停逻辑未改；用户确认Build29手机回桌面再打开后慢滚已暂停。
+- 连续旋转39358438791为5/6：同字viewport、真实字体重开、跨章、六字体连续、浅深真实旋转通过；hidden字体用例在初始深字准备阶段失败，尚未换字体，完整/Release自动跳过。
+- 偏好幂等39362754281/176303d为2/2，真实编译及原生测试通过，30条字体观测errorMessage全nil。相同偏好不再触发DOM采样，撤回排队编辑会取消旧请求；真实变化仍保留完整锚点及原预算。定向结果不替代完整180。
+- 初始化对照39365686520由Agent取消，0用例执行；原始Session停在宿主launch请求后，不能归因于fixture、定位或环境单一原因。原始artifact与取消记录已保存。
+- 初始化对照39370263590/d28feaa真实0/1：原字体ready、目标字可见、放行初始化后可见WK回到x0。完整原件及SHA/CRC/556已核，未取消。仅把pendingLocation赋值移至isSpreadLoaded判断前，UPSTREAM同步；554其他输入保持，候选Windows/原生6项、完整180及Release尚待验证。
 
-前轮39279664338/f32实际0/2，原失败和2010→0轨迹保持：已记录RO帧晚于回跳，未找出唯一写入者。最新插桩通过不能倒写旧结果。当前无39348950147的watcher/接收/下载进程残留。
+下一步和运行进程以[HANDOFF](HANDOFF.md)当前断点为准。不得重新运行旧apply/freeze脚本、恢复已撤回的Readium根产品链接或变更锁文件。旧链接/解析失败均为0用例执行，已由后续原生编译排除，不能继续当作待做工作。阶段细节见[隔离方案](Documentation/READER_ISOLATION_PLAN.md)及各ValidationLogs原始回执；旧首页完整内容移入[恢复历史](Documentation/HANDOFF_R1_RECOVERY_HISTORY_2026-10-20.md)。
 
-最近4UI39272564753/e85仍2/4：纸色正反例和菜单重开通过；Home/activate后运行但缺少真实后台前置条件；深灰横屏持续“正在准备”，原可读/无加载守卫拒绝。后者仍阻塞发布，不归咎于纸色或无证据归咎环境。
-
-用户已确认Build29手机慢滚→桌面→再打开为“已暂停”，仅此交付版本路径反馈。后台UI前置条件[39352276145](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39352276145)/ff196499已完成1/1，0失败/跳过，test/summary/export0，Swift编译诊断0，556输入及artifact12234387680完整SHA/CRC已核。原立即暂停断言保持，日志实际53.23秒Home→56.76秒桌面图标→59.18秒activate→62.56秒暂停截图；已查看该原图，真实正文与已暂停可见。生产暂停逻辑不改，证明本测试切片通过，不抹去旧失败或代替完整/设备验收。watcher21713/receiver75655均退出0，无本轮残留进程；记录Documentation/ValidationLogs/background-precondition-39352276145.json。
-
-最新39354867480/abbcf18已结束，仓库/Core通过，iOS源码无编译诊断但XianxiaReaderTests链接失败，原生用例执行0项；不是6项行为失败或通过。完整artifact12235502581 SHA/CRC已核，原件build/ci/39354867480。新增测试直接使用ReadiumNavigator/Shared，测试target缺少显式产品链接；按XcodeGen2.46官方声明，只在project.yml给测试target增加已有本地包两产品，不更改Readium/远程pins/生产源码。下一步Windows预检/实际Git来源清单后同6项验证。当前无旧watcher/receiver残留。记录Documentation/ValidationLogs/continuous-rotation-39354867480-link-failure.json。
-
-连续模式仅在EPUBSettings解析infiniteScroll时固定spread=never，避免自动双页旋转的多余销毁重开；保留分页偏好。源码已应用，原6项行为仍待验证；150集成+29UI=179完整门槛与Release/设备未通过。
-
-正常HEAD6d761749、普通index及既有交付包保持；不做R2/R3/R4/M5，不关机。长期规则在AGENTS.md和Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md。
+普通HEAD/index、未提交工作、53旧包及恢复ZIP保持；不进入R2/R3/R4/M5，不关机。长期小步边界、失败归因和验证规则见AGENTS.md与[变更及排障流程](Documentation/CHANGE_AND_DIAGNOSIS_WORKFLOW.md)。
 
 ## Build29 阅读安全区边缘（2026-10-19）
 

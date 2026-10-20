@@ -1,0 +1,79 @@
+{
+  "recordedAtUTC": "2026-10-20T05:10:24.113016+00:00",
+  "run": 39370263590,
+  "sourceRevision": "d28feaa120c6ddb7b26dce0450cf561cc3e7ffc7",
+  "selection": "initialization-pending",
+  "conclusion": "failure",
+  "expectedSelected": 1,
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "skipped": 0,
+  "summaryReadError": null,
+  "cases": [
+    {
+      "suite": "XianxiaReaderTests.ReaderRenderingTests",
+      "name": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "result": "failed",
+      "seconds": 46.53
+    }
+  ],
+  "testFailures": [
+    {
+      "failureText": "failed - Continuous reader did not reach expected state at testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord():294",
+      "targetName": "XianxiaReaderTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()",
+      "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "testName": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()"
+    }
+  ],
+  "testExit": 65,
+  "summaryExit": 0,
+  "exportExit": 0,
+  "sourceCompilerDiagnostics": [],
+  "sourceInputs": 556,
+  "sourceInputsMatched": true,
+  "artifact": 12241737946,
+  "archiveBytes": 98953768,
+  "archiveSHA256": "1ba77a568362b9cb6e20f75e14b0c4445d6d6cf73f417a5d492eba720f8fb2db",
+  "artifactDigestAndCRC": true,
+  "nativeJobSeconds": 1972.0,
+  "caseSeconds": 46.53,
+  "productionChangedPaths": [],
+  "originalAssertionsAndBudgetsPreserved": true,
+  "releaseExecuted": false,
+  "ipaGenerated": false,
+  "full180Accepted": false,
+  "scope": "Test-only initializer ordering control on unchanged production; original hidden-font assertion/budget retained. Visible-resource prerequisite plus bounded host observation; no production candidate/full/device acceptance.",
+  "controlStages": [
+    "target-resource-in-viewport",
+    "real-font-ready-initial-restore-held",
+    "original-word-visible-while-held",
+    "initial-restore-released"
+  ],
+  "initializationFailureRows": [
+    {
+      "raw": "INITIALIZATION_PENDING_FAILURE attached=true alpha=1.0 result=Optional({\"released\":true,\"faceReady\":true,\"readyObserved\":true,\"settled\":true,\"x\":0,\"wordVisible\":false,\"href\":\"/OEBPS/one.xhtml\"})",
+      "state": {
+        "released": true,
+        "faceReady": true,
+        "readyObserved": true,
+        "settled": true,
+        "x": 0,
+        "wordVisible": false,
+        "href": "/OEBPS/one.xhtml"
+      },
+      "attached": true,
+      "alpha": 1.0
+    }
+  ],
+  "qualifiedInitializationOverwriteControl": true,
+  "candidateApplied": true,
+  "candidateAppliedAtUTC": "2026-10-20T05:12:40.725902+00:00",
+  "candidateChangedPaths": [
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "acceptance": "Qualified negative baseline only; candidate source applied, native candidate compilation/preflight/full180/Release remain pending. No Agent cancellation was issued."
+}

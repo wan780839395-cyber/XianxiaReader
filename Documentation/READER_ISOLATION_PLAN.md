@@ -258,3 +258,9 @@ e2c7990/39358438791预检5/6，完整179及设备Release自动跳过；无Agent�
 已核[Apple XCTest executionTimeAllowance](https://developer.apple.com/documentation/xctest/xctestcase/executiontimeallowance)用于已执行用例、须启用测试超时；增加它不处理当前无用例宿主阶段。本轮不修改该预算。查[runner-images同Xcode16.4/macOS15相似报告13129](https://github.com/actions/runner-images/issues/13129)，其平台为visionOS，不能搬作当前iOS18.5/Intel根因或照搬降级；维护者也要求原始系统/启动证据。先复用项目有界进程/内存观察，记录App与testmanagerd/debugserver/xctest/xcodebuild，保留原Session，下轮若再启动失败能区分进程是否出现；不盲改编译器/SDK/权限。
 
 对照fixture独立修正：先公开导航至one.xhtml让其进入viewport，再等rAF驱动的font-ready阶段，只查询几何当前WKWebView；失败诊断对隐藏/未准备窗口仅记录native几何，保留原断言/错误/30秒预算，不等待隐藏DOM。生产仍为176303d，Vendor候选不应用。
+
+## 2026-10-20 初始化覆盖的合格对照与最小候选
+
+39370263590/d28feaa原生1项0/1，真实编译0诊断。公开导航目标章节进入viewport，真实FontFaceSet.ready已完成后保持显式屏障，证明char1200可见，再放行初始化；原30秒联合断言失败，当前WK attached/alpha1、released/faceReady/readyObserved/settled均true，x0且原字不可见。完整artifact SHA/CRC与556来源核，支持旧初始化位置覆盖新seek，排除“尚未换字体却归因后续字体替换”的错误边界。原件/报告initialization-pending-39370263590.json，不能将前一轮0执行的Agent取消当作同一失败。
+
+与固定Readium3.11 d82f44f4f05d87add9e22a8b75abbd61dce745dd的ReflowableSpreadView对照：isSpreadLoaded在0.2秒初始化恢复前已true，本地真实字体等待进一步暴露该窗口。只将既有pendingLocation赋值移到该判断前，最新完整位置成为初始化恢复目标；不新增等待或改变任何预算，保持当前d28测试fixture，UPSTREAM登记真实LF摘要。Windows预检后冻结同一输入，rotation-full同job先6项、再完整180、最后严格Release；候选验收仍待执行。

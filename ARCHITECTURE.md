@@ -244,3 +244,7 @@ ReadingInterfaces提供完整位置capture，Adapter沿用有界DOM采样，Vend
 ## Build23 字体资源
 
 App只读Bundle两原中文字体/稳定UUID与最多12用户资源合并（≤14 faces），内置不复制/摘要；Core身份/独立目录与App后台CoreText验证、ReadingInterfaces目录capability→Adapter公开CSSFontFace/既有资源通道。新增目录以完整位置保护重开，资源字体排版完整锚点重载；每await校验，关闭取消/迟到隔离，失败恢复旧目录。原schema/正文/Locator/依赖保持，可选UUID旧偏好兼容。原生与手机性能门槛分列，见READING_FONT_IMPORT_DESIGN.md。
+
+## 初始化定位的先后顺序（源码已应用，候选验收待执行）
+
+Readium的isSpreadLoaded早于初始字体/排版和位置恢复。ReflowableSpreadView每次收到完整PageLocation先更新已有pendingLocation，再依原有已加载状态立即定位或等待；初始字体完成后读取最新值。仅移动已有赋值，不增加状态、轮询、重试或预算。39370263590不改生产的显式屏障对照证明真实字体ready/深字可见后放行会回章头；最小候选原生、完整180和设备验收仍待验证。

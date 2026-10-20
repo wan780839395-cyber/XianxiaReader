@@ -275,9 +275,11 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
     private var pendingLocation: PendingLocation = .init(location: .start, animated: false)
 
     override func go(to location: PageLocation, animated: Bool) async {
+        // The JS bridge can be ready while initial font/layout work is waiting.
+        // Its later restore must use the latest seek, not a preloaded page start.
+        pendingLocation = PendingLocation(location: location, animated: animated)
         guard isSpreadLoaded else {
             // Delays moving to the location until the document is loaded.
-            pendingLocation = PendingLocation(location: location, animated: animated)
 
             await waitGoToCompletion()
             return
