@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "cecdb1766a004a58d2ace3c92718f6a76b26de0fe399426e1be297875ec7e488"
+      "sha256": "6488e15006a38620bb2d2aea92f99416d7e8e5e1c632f021340a7d02195907ac"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1793,6 +1793,15 @@
     ],
     "contract": "Do not overwrite explicit paged word seek from body metrics notification at unchanged viewport width. Actual width changes retain upstream page snap. Continuous R() branch, virtual page calculation, j() progression, font/position budgets, locator format and dependencies unchanged.",
     "regression": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord uses a real captured Readium ResizeObserver frame and explicit release with stale scrollX0; test checks unchanged actual offset and original word after rendering frame. Same9case baseline/candidate order also retains continuous and close controls.",
+    "validationPendingAtSourceCheckpoint": true
+  },
+  "reflowableNativeReadiness": {
+    "date": "2026-10-21",
+    "source": "Readium3.11.0 d82f44f4f05d87add9e22a8b75abbd61dce745dd",
+    "reference": "https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+    "scope": "Extend the existing continuous native bootstrap to reflowable paged spreads; fixed layout retains its original bridge. Native didFinish and a real viewport start the same complete initialization once; DOM complete alone never publishes a position.",
+    "preserved": "Font and full pending locator restoration, once guard, close cancellation, continuous path, position guards, all budgets and dependencies.",
+    "regression": "Hold the actual one.xhtml spreadLoaded animation-frame callback, prove DOM complete and held, require a visible full native position before explicit release, then retain that position. Exact old1/new6 control pending.",
     "validationPendingAtSourceCheckpoint": true
   }
 }

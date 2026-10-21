@@ -66,7 +66,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     private(set) var isSpreadLoaded = false
     private var spreadLoadTask: Task<Void, Never>?
-    private var continuousBootstrapTask: Task<Void, Never>?
+    private var nativeBootstrapTask: Task<Void, Never>?
     private var navigationFinished = false
     private var initializationStarted = false
     private var initializationFinished = false
@@ -153,8 +153,8 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
         spreadLoadTask?.cancel()
         spreadLoadTask = nil
-        continuousBootstrapTask?.cancel()
-        continuousBootstrapTask = nil
+        nativeBootstrapTask?.cancel()
+        nativeBootstrapTask = nil
 
         // Disable JS messages to break WKUserContentController reference.
         disableJSMessages()
@@ -207,7 +207,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        bootstrapContinuousInitialization()
+        bootstrapInitialization()
     }
 
     override func didMoveToWindow() {
@@ -219,13 +219,15 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     // Offscreen preloads can have that callback suspended by WebKit. Native
     // navigation completion starts the SAME full initialization pipeline once
     // the Readium script and a real viewport are available; it does not mark
-    // the spread ready merely because the DOM is complete.
-    private func bootstrapContinuousInitialization() {
-        guard viewModel.infiniteScroll, navigationFinished, !wasCleared, !initializationStarted,
-              continuousBootstrapTask == nil, bounds.width > 0, bounds.height > 0 else { return }
-        continuousBootstrapTask = Task { @MainActor [weak self] in
+    // the spread ready merely because the DOM is complete. Reflowable paged
+    // spreads also preload offscreen; fixed-layout initialization is unchanged.
+    private func bootstrapInitialization() {
+        guard (viewModel.infiniteScroll || self is EPUBReflowableSpreadView),
+              navigationFinished, !wasCleared, !initializationStarted,
+              nativeBootstrapTask == nil, bounds.width > 0, bounds.height > 0 else { return }
+        nativeBootstrapTask = Task { @MainActor [weak self] in
             guard let self else { return }
-            defer { self.continuousBootstrapTask = nil }
+            defer { self.nativeBootstrapTask = nil }
             self.recordLoadingStage("bootstrap.start")
             self.webView.layoutIfNeeded()
             do {
@@ -874,7 +876,7 @@ extension EPUBSpreadView: WKNavigationDelegate {
         setNeedsStopActivityIndicator()
         navigationFinished = true
         recordLoadingStage("navigation.finished")
-        bootstrapContinuousInitialization()
+        bootstrapInitialization()
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
