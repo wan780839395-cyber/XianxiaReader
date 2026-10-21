@@ -1,0 +1,29 @@
+{
+  "status": "implementation prepared; Windows/source checks next; native not dispatched",
+  "scope": "qualify existing same-width native control; one old + one candidate on same runner",
+  "baselineNativeOldRuntime": "a8125716758aef5802b6d53b3129acc53947c004",
+  "candidateRuntimeFrozen": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+  "runtimeChangeThisTurn": false,
+  "fixtureChangedOnlyExistingCase": true,
+  "originalAssertionAndBudgetUnchanged": true,
+  "references": [
+    {
+      "url": "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Scripts/src/utils.js",
+      "finding": "body observer routes all body size changes to viewport-width handler and horizontal snap; keep fixed version"
+    },
+    {
+      "url": "https://github.com/web-platform-tests/wpt/blob/master/resize-observer/resources/resizeTestHelper.js",
+      "blob": "284a780c259684c2f40a5e20458f8bcf78ab0966",
+      "finding": "explicit next RAF step/completion and observer cleanup; reference only, no importing timeout or assertions"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/webkit/wkcontentworld/page",
+      "finding": "page scripts share page world; separate worlds do not share arbitrary global variables; current default APIs match"
+    }
+  ],
+  "next": "Windows checks then freeze exact-child pair before native dispatch",
+  "full188Executed": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "R3Started": false
+}

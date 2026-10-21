@@ -14,6 +14,9 @@ case "$selection" in
   position-control-baseline)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes)
     ;;
+  paged-resize-control)
+    cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord)
+    ;;
   paged-font-acceptance)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph

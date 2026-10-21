@@ -1,4 +1,5 @@
 #!/bin/bash
+# One native resize-control case on each source; preserve real exits and evidence.
 # Preserve a diagnostic baseline, then validate an explicitly supplied child commit
 # on the same runner/DerivedData. No Release build, automatic patch or test retry.
 set -euo pipefail
@@ -39,7 +40,7 @@ case "${1:?baseline or patched}" in
     mkdir -p "$folder" build/logs
     git rev-parse HEAD > "$folder/baseline-revision.txt"
     verify_inputs "$(cat "$folder/baseline-revision.txt")" baseline
-    run_cases paged-font-acceptance baseline
+    run_cases paged-resize-control baseline
     mkdir "$folder/baseline"
     cp -R build/logs "$folder/baseline/logs"
     for entry in DiagnosticTests.xcresult ReaderSnapshots test-results-summary.json build-environment.txt Package.resolved; do
@@ -50,24 +51,31 @@ from pathlib import Path
 import json,sys
 status,folder=sys.argv[1:]
 d=json.loads(Path(folder,'baseline/test-results-summary.json').read_text())
-assert int(status) in (0,65) and d['totalTestCount']==9 and d['skippedTests']==0,d
+assert int(status) in (0,65) and d['totalTestCount']==1 and d['skippedTests']==0,d
 assert (int(status)==0)==(d['failedTests']==0),d
-allowed={'ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader()', 'ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()', 'ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()', 'ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph()', 'ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()', 'ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()', 'ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()', 'ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()', 'TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()'}
+allowed={'ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()'}
 assert all(f['testIdentifierString'] in allowed for f in d.get('testFailures',[])), d
 qualified=any(f.get('testIdentifierString')=='ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()' and 'SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION' in f.get('failureText','') for f in d.get('testFailures',[]))
-Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,sameWidthControlledFailure=qualified,summary=d))+'\n')
+import re
+lines=Path(folder,'baseline/logs/reader-diagnostic.log').read_text(errors='replace').splitlines()
+evidence=[json.loads(line.split('SAME_WIDTH_RESIZE_CONTROL_EVIDENCE ',1)[1]) for line in lines if line.startswith('SAME_WIDTH_RESIZE_CONTROL_EVIDENCE ')]
+assert len(evidence)==1, 'Exactly one native control evidence record is required'
+e=evidence[0]
+target=e.get('owner',{}).get('source','').find('document.scrollingElement.scrollLeft')>=0
+frames=e.get('frames',[])
+entered=target and len(frames)==1 and frames[0].get('target') is True and e.get('returned') is True and e.get('href','').endswith('/one.xhtml') and e.get('mode')!='readium-scroll-on'
+staleRead=bool(e.get('reads'))
+zeroWrite=any(row.get('value')==0 for row in e.get('writes',[]))
+qualified=qualified and entered and staleRead and zeroWrite
+Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,sameWidthControlledFailure=qualified,targetFrameEntered=entered,injectedReadObserved=staleRead,zeroWriteObserved=zeroWrite,controlEvidence=e,summary=d))+'\n')
 print('Original baseline exit retained:',status,'; a green replay is not a fix.')
 PY
     ;;
   patched)
     test -f "$folder/baseline-result.json"
-    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-resize-writer}"
-    deadline=$((SECONDS + 900))
-    while true; do
-      if remote=$(git ls-remote --heads origin "$reference") && [[ -n "$remote" ]]; then break; fi
-      if (( SECONDS >= deadline )); then echo 'No reviewed candidate supplied within 15 minutes' >&2; exit 75; fi
-      sleep 10
-    done
+    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-native-control}"
+    remote=$(git ls-remote --heads origin "$reference")
+    test -n "$remote" # Candidate must be frozen and pushed before dispatch; no empty wait.
     git fetch --no-tags --depth=2 origin "$reference"
     candidate=$(git rev-parse FETCH_HEAD)
     python3 - "$candidate" "$folder" <<'PY'
@@ -76,7 +84,7 @@ import json,subprocess,sys
 revision,folder=sys.argv[1:]
 baseline=Path(folder,'baseline-revision.txt').read_text().strip()
 assert subprocess.check_output(['git','rev-parse',revision+'^']).decode().strip()==baseline, 'Candidate must be the exact baseline child'
-allowed={'Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift','Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/PaginationView.swift','Vendor/ReadiumToolkit/UPSTREAM.json','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js'}
+allowed={'Vendor/ReadiumToolkit/UPSTREAM.json','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js'}
 changed=set(subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r',baseline,revision,'--','App','Packages','Vendor','Tests','scripts','.github','project.yml','Package.resolved','.gitattributes']).decode().splitlines())
 assert changed and changed<=allowed and 'Vendor/ReadiumToolkit/UPSTREAM.json' in changed,changed
 for name in changed: Path(name).write_bytes(subprocess.check_output(['git','show',revision+':'+name]))
@@ -84,15 +92,24 @@ Path(folder,'candidate-revision.txt').write_text(revision+'\n')
 Path(folder,'candidate-delta.json').write_text(json.dumps(sorted(changed))+'\n')
 PY
     verify_inputs "$candidate" patched
-    run_cases paged-font-acceptance patched
+    run_cases paged-resize-control patched
     if (( statuses[0] != 0 )); then exit "${statuses[0]}"; fi
     python3 - "$folder" <<'PY'
 from pathlib import Path
 import json,sys
 d=json.loads(Path('build/test-results-summary.json').read_text())
-assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==9 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
+assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==1 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
 baseline=json.loads(Path(sys.argv[1],'baseline-result.json').read_text())
-Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],sameWidthControlledFailure=baseline['sameWidthControlledFailure'],patchedOriginalExit=0,passed=9,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,full188Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
+lines=Path('build/logs/reader-diagnostic.log').read_text(errors='replace').splitlines()
+evidence=[json.loads(line.split('SAME_WIDTH_RESIZE_CONTROL_EVIDENCE ',1)[1]) for line in lines if line.startswith('SAME_WIDTH_RESIZE_CONTROL_EVIDENCE ')]
+assert len(evidence)==1, 'Exactly one patched native control evidence record is required'
+e=evidence[0]
+frames=e.get('frames',[])
+assert len(frames)==1 and frames[0].get('target') is True and e.get('returned') is True, e
+assert not e.get('writes'), 'Candidate same-width frame must not attempt a root position write'
+Path(sys.argv[1],'patched-control-evidence.json').write_text(json.dumps(e,indent=2)+'\n')
+Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],sameWidthControlledFailure=baseline['sameWidthControlledFailure'],patchedOriginalExit=0,passed=1,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,full188Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
+assert baseline['sameWidthControlledFailure'], 'Native negative control did not enter the old failing writer; candidate success alone is unqualified'
 PY
     ;;
   *) exit 2 ;;

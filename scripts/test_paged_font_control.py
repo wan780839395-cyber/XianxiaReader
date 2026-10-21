@@ -8,13 +8,13 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-VENDOR = ['Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift','Vendor/ReadiumToolkit/UPSTREAM.json']
+VENDOR = ['Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js','Vendor/ReadiumToolkit/UPSTREAM.json']
 
 
 @unittest.skipIf(os.name == 'nt', 'Staged native control requires POSIX Git/Bash paths')
 class PagedFontControlTests(unittest.TestCase):
     def test_baseline_failure_candidate_parent_and_real_positive_exit(self):
-        for mode, expected in [('success',0),('baseline-green',0),('wrong-failure',1),('wrong-parent',1),('patched-failure',65)]:
+        for mode, expected in [('success',0),('baseline-green',1),('wrong-failure',1),('wrong-parent',1),('patched-failure',65)]:
             with self.subTest(mode=mode), tempfile.TemporaryDirectory() as folder:
                 origin=Path(folder)/'origin';origin.mkdir()
                 def git(*args):
@@ -33,10 +33,12 @@ import json,os,sys
 from pathlib import Path
 mode=os.environ['CONTROL_FIXTURE_MODE'];baseline=not Path('build/PagedFontControl/baseline-result.json').exists()
 failed=(baseline and mode!='baseline-green') or (not baseline and mode=='patched-failure')
-total=9
+total=1
 name='wrong' if mode=='wrong-failure' else 'ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()'
 d=dict(result='Failed' if failed else 'Passed',totalTestCount=total,passedTests=total-int(failed),failedTests=int(failed),skippedTests=0,testFailures=[dict(testIdentifierString=name,failureText='SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION')] if failed else [])
 Path('build/test-results-summary.json').write_text(json.dumps(d))
+evidence=dict(owner=dict(source='document.scrollingElement.scrollLeft'),frames=[dict(target=True)],returned=True,href='/OEBPS/one.xhtml',mode='readium-paged-on',reads=[dict(value=0)] if baseline else [],writes=[dict(value=0)] if baseline else [])
+print('SAME_WIDTH_RESIZE_CONTROL_EVIDENCE '+json.dumps(evidence))
 Path('build/fixture-exit.txt').write_text('65' if failed else '0')
 PY
 exit "$(cat build/fixture-exit.txt)"
@@ -46,7 +48,7 @@ exit "$(cat build/fixture-exit.txt)"
                 if mode=='wrong-parent':
                     (origin/'extra.txt').write_text('unreviewed');git('add','.');git('commit','-qm','unrelated parent')
                 for name in VENDOR:(origin/name).write_text('new\n')
-                git('add','.');git('commit','-qm','candidate');git('branch','codex/fix-paged-font-resize-writer')
+                git('add','.');git('commit','-qm','candidate');git('branch','codex/fix-paged-font-native-control')
                 checkout=Path(folder)/'checkout'
                 subprocess.run(['git','clone','--depth=1','--branch','baseline',origin.as_uri(),str(checkout)],check=True,capture_output=True)
                 env=dict(os.environ,CONTROL_FIXTURE_MODE=mode)
@@ -58,7 +60,7 @@ exit "$(cat build/fixture-exit.txt)"
                 receipt=checkout/'build/PagedFontControl/receipt.json'
                 self.assertEqual(receipt.exists(),mode in {'success','baseline-green'})
                 if receipt.exists():
-                    d=json.loads(receipt.read_text());self.assertEqual(d['baselineOriginalExit'],0 if mode=='baseline-green' else 65);self.assertEqual(d['baselineWasNegative'],mode!='baseline-green');self.assertEqual(d['passed'],9);self.assertFalse(d['newIPA']);self.assertEqual(d['sameWidthControlledFailure'],mode!='baseline-green')
+                    d=json.loads(receipt.read_text());self.assertEqual(d['baselineOriginalExit'],0 if mode=='baseline-green' else 65);self.assertEqual(d['baselineWasNegative'],mode!='baseline-green');self.assertEqual(d['passed'],1);self.assertFalse(d['newIPA']);self.assertEqual(d['sameWidthControlledFailure'],mode!='baseline-green')
 
 
 if __name__=='__main__':
