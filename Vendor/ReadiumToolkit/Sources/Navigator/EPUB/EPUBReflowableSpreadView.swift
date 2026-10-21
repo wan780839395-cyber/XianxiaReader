@@ -401,7 +401,9 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
                         const page = Math.floor(Math.max(0, rect.left + scrollX) / innerWidth);
                         target = page * innerWidth;
                         \(record)
-                        window.scrollTo({left:page * innerWidth,behavior:'instant'});
+                        // Match Readium's resize-page snap primitive. Window.scrollTo
+                        // can remain pending while that callback still reads scrollX=0.
+                        document.scrollingElement.scrollLeft = target;
                       }
                       return true;
                     })()

@@ -1427,7 +1427,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
-      "sha256": "b25a7028ae52f04f343bdb900f5064df0443ac2274ab55266e37739f52cd2c82"
+      "sha256": "116cc7f65071ec9faa4fbe06974f67f63cfa9a5f4006924278e15ace6c0b493f"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
@@ -1775,6 +1775,21 @@
     "date": "2026-10-21",
     "scope": "Infinite horizontal LTR canonical DOM seeks consume the saved xianxiaViewportOffset inside WebKit; existing paged canonical branch is retained.",
     "reason": "Native-only updateViewports candidate failed the same deterministic control by 10.875 points (39447634363). The default upstream text matcher does not consume this extension offset.",
+    "budgetsAndDependenciesUnchanged": true,
+    "acceptancePending": true
+  },
+  "pagedCanonicalScrollReview": {
+    "date": "2026-10-21",
+    "scope": "Horizontal LTR paged canonical full-DOM seek only: use scrollingElement.scrollLeft, matching the pinned Readium resize snap writer. Continuous scroll unchanged.",
+    "evidenceRun": 39478971105,
+    "observed": "Initial locator char1049 and target3618 preserved. window-scrollTo requested3618 at1535ms; pinned ResizeObserver rAF wrote scrollLeft0 at1545ms; first publish h1/0. Font ready and DOM point valid.",
+    "hypothesis": "Root scrollLeft setter uses the same position path as the resize snap, preventing a pending Window.scrollTo from being overwritten with stale scrollX. Must verify in native; not yet accepted.",
+    "references": [
+      "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/dom/Element.cpp",
+      "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/LocalDOMWindow.cpp"
+    ],
+    "referenceVersionLimit": "Readium is pinned3.11; WebKit main is mechanism reference only, not claimed identical to iOS18.5.",
     "budgetsAndDependenciesUnchanged": true,
     "acceptancePending": true
   }
