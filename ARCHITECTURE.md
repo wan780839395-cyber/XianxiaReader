@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+R3c保存断点（2026-10-21，用户已确认不追加运行）：导航/返回点负责人已在现有ReaderPositions实现并真实编译，源c180e1126cb1283f5599644a9232b8ee6ccf717e / [CI39585860717](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717)结论failure。独立24/24、现有6项导航回归通过，原生整组18/19；唯一旧EPUB用例首次分页跳正文时DOM已到one.xhtml，但currentPosition仍报cover，尚未捕获/返回原点。该用例直接调用原引擎，未经过新导航负责人，原引擎/用例与上一片同字节；根因、环境归因及回归因果均未证，不能称整组或R3已验收。字体双模式六套、同宽分页writer、TXT及原保存回归通过。代码与旧WIP保留，下一轮只查此单例，R4顺延；未跑完整188/设备Release/手机，无新IPA。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3c.json。
+
+以下保留各自源与日期的历史记录；当前只以本段及HANDOFF为准。
+
 R3b本片完成（2026-10-21）：现有ReaderPositions接管显式保存的捕获、原预算等待、写库、错误与同步结果发布，App只提供原引擎/仓库的窄桥接；每个已接收进度事件的原Task写入保持。实际源421a5786e2be65baf661bc889c166ac8f22aff41 / [CI39580846569](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569)，独立16/16（原6+新增10）、原iOS定向13/13、Linux工具71/71。导航/返回点与字体导入重开事务、原flush顺序、Core/Vendor/锁及原测试保持。下一片R3导航/返回点；R3整体和全项目隔离尚未完成。未跑完整188、设备Release或手机，无新IPA，最后交付仍Build30。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3b.json。
 
 以下为各自源与阶段的历史记录，当前断点以本段及HANDOFF为准。

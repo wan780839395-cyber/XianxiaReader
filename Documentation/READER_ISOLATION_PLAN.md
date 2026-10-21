@@ -1,5 +1,9 @@
 # 阅读模块隔离实施方案
 
+R3c保存断点（2026-10-21，用户已确认不追加运行）：导航/返回点负责人已在现有ReaderPositions实现并真实编译，源c180e1126cb1283f5599644a9232b8ee6ccf717e / [CI39585860717](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717)结论failure。独立24/24、现有6项导航回归通过，原生整组18/19；唯一旧EPUB用例首次分页跳正文时DOM已到one.xhtml，但currentPosition仍报cover，尚未捕获/返回原点。该用例直接调用原引擎，未经过新导航负责人，原引擎/用例与上一片同字节；根因、环境归因及回归因果均未证，不能称整组或R3已验收。字体双模式六套、同宽分页writer、TXT及原保存回归通过。代码与旧WIP保留，下一轮只查此单例，R4顺延；未跑完整188/设备Release/手机，无新IPA。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3c.json。
+
+以下保留各自源与日期的历史记录；当前只以本段及HANDOFF为准。
+
 R2维护更新（2026-10-20）：字体目录/资源/选择及请求身份已移入真实ReaderFonts target；恢复调用方原await/同步提交边界后，源410343b/39418977905同源53/53通过，原导入/预览/存储/资源/位置算法保持。当前I0/I1/I2本片完成，下一片R3；本维护源完整187/Release/设备仍待I6，无新IPA。早期52/53及A/B改前过、R2失败均保留；改前也有的断言后连续锚点观察单列R3/I6，不据此扩修Readium。详见READER_FONT_ISOLATION及最终回执，下方旧I1/R1记录保留其原源边界。
 
 2026-10-20用户确认将隔离范围扩展到整个项目，并优先于新增功能。[全项目隔离与维护计划](PROJECT_ISOLATION_PLAN.md)负责整体依赖/测试/新功能接入与后续产品清单；本文保留R1证据及R2/R3/R4的具体职责。当前R1已通过软件门槛，其他切片未完成；总方案登记不改变其验收状态。

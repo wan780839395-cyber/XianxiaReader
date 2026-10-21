@@ -1,6 +1,29 @@
 # R3 阅读位置隔离
 
-R3c进行中（2026-10-21）：现有ReaderPositions接管导航锁、完整返回点及单次capture→go→同步提交；VM保留原ready入口、错误/菜单和字体事务。close/字体只改导航状态入口，原16独立合同、原测试、R3a/b实现、Core/Vendor/manifest/锁保持。Windows464语法新增0/54既有、71工具65过6 POSIX跳过/Bash通过；尚未Swift编译。冻结后仅24独立与19原iOS，不跑完整188/设备Release或IPA。
+## R3c实现与未通过的整组门槛（2026-10-21）
+
+R3c保存断点（2026-10-21，用户已确认不追加运行）：导航/返回点负责人已在现有ReaderPositions实现并真实编译，源c180e1126cb1283f5599644a9232b8ee6ccf717e / [CI39585860717](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717)结论failure。独立24/24、现有6项导航回归通过，原生整组18/19；唯一旧EPUB用例首次分页跳正文时DOM已到one.xhtml，但currentPosition仍报cover，尚未捕获/返回原点。该用例直接调用原引擎，未经过新导航负责人，原引擎/用例与上一片同字节；根因、环境归因及回归因果均未证，不能称整组或R3已验收。字体双模式六套、同宽分页writer、TXT及原保存回归通过。代码与旧WIP保留，下一轮只查此单例，R4顺延；未跑完整188/设备Release/手机，无新IPA。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3c.json。
+
+ReaderNavigationCoordinator在现有Foundation/Core包唯一持有完整返回点、导航令牌及busy状态，will-change通知接VM原objectWillChange。模块只接两个MainActor异步能力（采样、go）及同步会话/忙碌/暂停/成功通知，不持有引擎、仓库、字体或页面，不解析Locator。VM仍保留ready/engine检查与原目录/书签/搜索/返回入口及错误处理。新增入口核原会话，拒绝绑定重开后的新会话。
+
+顺序为占锁→暂停→仅首次离开采样一次完整原点→原取消/会话/请求/所属书校验→go→原取消/身份校验→同步发布返回点/原隐藏菜单→defer只清自己的锁。发布全部在新增async入口内部完成，VM返回后不再提交。导航不复用保存的3秒/32ms重试；失败保留已有返回点、返回成功才清除，stay只在空闲时清除。原点只保存在会话内，不作为阅读进度写库；实际页面回调仍保存当前位置。旧采样不go，旧go不发布/隐藏新菜单，旧defer不清新锁；不能撤销已交给引擎的go。
+
+字体原本共用导航锁，本片只把原锁赋值/defer换为beginExternal/endExternal；完整import/capture/save/reopen/commit与await原文保持。close仅在原三条清空的位置调用navigation.close，最后引擎回调及openRequestID失效顺序保持。原saveNow、R3a/b模块及桥接、其他33个VM方法、原16合同、全部原测试/fixture、Core/Vendor/字体/资源/manifest/锁不改。581输入SHA/实际运行Git树、普通HEAD/index与旧WIP核对。140 Swift源/17区域/18节点/5精确例外，未加target或白名单。
+
+新增8项独立合同以continuation显式放行采样/go，覆盖完整原点/发布与通知顺序、失败/跨书原点/重试、字体共享锁/stay、迟到采样/go、取消及旧入口。原16合同原文保持。现24/24及原6导航回归通过；原生整组仍18/19，不能写19通过。Swift模块/App真实编译0源码错误；Linux工具71/71；Windows464语法新增0/54既有Vendor限制，71工具65过6 POSIX跳过（23.584秒），Bash通过。起草的unit-value语法表现与旧13项工具fixture计数在本地修正；首轮tooling失败原件保留，未改生产断言/预算。
+
+唯一失败是ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes在最初分页迭代的jump helper1640超时：当前页报告cover.xhtml，实际可见DOM为one.xhtml/complete、long段落top=0。该用例直接构造ReadiumReaderEngine，没有调用VM或新导航模块；没有产生首个return-epub-paged截图，尚未执行原点捕获/返回断言。错误通用标签写Continuous，不代表已进入连续分支。源码路径与观察支持单列“跳正文后上报位置未更新”疑点；尚无匹配对照证明根因、环境归因或与本改动的因果。
+
+其他18项通过，包括原6导航、保存/进度、双模式六字体、同宽分页writer及TXT。两模式字体/原字条件过，连续截图后六位置delta全0；同宽root写入0，真实进度1608/injected=false，owner/frame源码匹配冻结JS。以上仅对应样本，不可替代失败的EPUB完整返回点用例，也不能称整个位置行为稳定。
+
+仅一轮CI。独立步骤142秒含Swift构建93.38秒；原生步骤1633秒，首suite前1116.23秒含工具/依赖/编译/启动，19项实际执行合计357.974秒，余量含诊断/导出。92811656字节原件经GitHub digest/SHA/ZIP CRC核验，完整日志、两个xcresult、manifest/附件在build/ci/39585860717；只精确清重复ZIP。失败单例原始日志在build/maintenance/R3c-20261021/failed-native-case.log，权威回执project-isolation-r3c.json保留failure/18+1及用户决定，不生成假成功回执。
+
+参考[Swift SE-0306 actor重入](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0306-actors.md)和当前锁定[Readium3.11 Navigator能力](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/Navigator.swift)，沿用引擎实际go、应用临时返回点的边界；MainActor不替代await后身份复核。复用项目已验同步提交/窄通知及受控fixture模式，不升级工具链或引入第三方框架。
+
+用户已选择本轮保存、下一轮只查这一例，禁止追加CI或进入R4。下一实验先从原件比较adapter.currentPosition与navigator/currentLocation更新、初始化完成和go时序，区分正文已到但上报停封面与真正跳转未完成；需远程时只选原单例、保留同30秒断言，先明确对照条件，不无假设重放。完整188、设备Release、手机/动态验收未跑，无新IPA，最后交付Build30。
+
+## R3b及更早历史证据（仅对应其当时源）
+
 
 R3b捕获与持久化编排本片已实现、编译并通过定向验收。实际源`421a5786e2be65baf661bc889c166ac8f22aff41` / [CI39580846569](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569)，独立16/16与原iOS13/13。分项回执[project-isolation-r3b.json](ValidationLogs/project-isolation-r3b.json)。导航/返回点下一片，R3整体及全项目隔离仍未完成。
 

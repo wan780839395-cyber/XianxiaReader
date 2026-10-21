@@ -1,0 +1,490 @@
+{
+  "recordedAtUTC": "2026-10-21T11:14:37.315214+00:00",
+  "phase": "r3c_implemented_compiled_navigation_pass_native_gate_failed",
+  "revision": "c180e1126cb1283f5599644a9232b8ee6ccf717e",
+  "run": 39585860717,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717",
+  "module": "ReaderPositions",
+  "layout": "independent local Foundation package -> original Core product",
+  "moduleLogic": {
+    "cases": [
+      "testAbsentObsoleteOrCancelledEntryDoesNotSample",
+      "testAbsentSessionCannotCommitAndInvalidationPreservesState",
+      "testCancellationKeepsUnpublishedOrExistingOrigin",
+      "testCaptureAndStorageFailuresKeepOldPositionAndRetryClearsError",
+      "testChangedOwnerRejectsResultEvenBeforeInvalidation",
+      "testCloseAndReopenedSessionRejectOldResult",
+      "testEmittedFailureReportsOriginalMessageWithoutChangingExplicitSaveState",
+      "testEmittedPositionsKeepEveryFullWriteAfterRequestInvalidation",
+      "testExternalRequestSharesBusyLockAndStayCannotClearWhileBusy",
+      "testFailedCaptureAndForeignOriginNeverNavigate",
+      "testFailurePreservesFullPositionAndRetryClearsVisibleError",
+      "testFirstFullOriginSurvivesExcursionAndReturnOrStay",
+      "testFixedLayoutUsesCompletePageWithoutSampling",
+      "testFreshCaptureStoresFullLocatorBeforePublishingResult",
+      "testLateCaptureCannotNavigateOrEndNewRequest",
+      "testLateOperationCannotPublishAcrossSessions",
+      "testLateStorageCompletionCannotPublishAcrossSessions",
+      "testNavigationAndReturnFailureKeepOriginForRetry",
+      "testObsoleteEntryCannotSampleNavigateOrPublish",
+      "testObsoleteOrCancelledCaptureCannotWrite",
+      "testOpaquePositionAndEveryEventAreRetained",
+      "testSupersededRequestAndOldCleanupCannotTouchNewSave",
+      "testUnavailableCaptureRetriesThenPreservesFullLocator",
+      "testUnavailableDeadlineKeepsOriginalPositionAndBudget"
+    ],
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "appHostUsed": false,
+    "readiumResolved": false,
+    "recordedAtUTC": "2026-10-21T11:10:04.744624+00:00",
+    "validationKind": "reader_positions_logic",
+    "releaseAccepted": false,
+    "deviceAccepted": false
+  },
+  "native": {
+    "cases": [
+      "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+      "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+      "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+      "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen"
+    ],
+    "passed": 18,
+    "failed": 1,
+    "skipped": 0,
+    "appHostUsed": true,
+    "failures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at jump(_:book:href:):1640",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 16,
+        "testIdentifierString": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+        "testName": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()"
+      }
+    ],
+    "exactSuccessfulSelectionAccepted": false,
+    "sixExistingNavigationCasesPassed": [
+      "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay"
+    ]
+  },
+  "appSwiftCompiled": true,
+  "nativeTargetedAccepted": false,
+  "navigationSixOriginalContractsAccepted": true,
+  "requiredNativeGateAccepted": false,
+  "originalTestsAndPositionFixUnchanged": true,
+  "frozenInputsVerified": 581,
+  "coreManifestAndImplementationUnchanged": true,
+  "originalSaveNowAnd33OtherVMMethodsUnchanged": true,
+  "navigationPublicationInsideCoordinatorBeforeAsyncReturn": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "architecture": {
+    "swiftSources": 140,
+    "areas": 17,
+    "nodes": 18,
+    "preciseExceptions": 5
+  },
+  "windows": {
+    "grammar": 464,
+    "addedGrammarDiagnostics": 0,
+    "pristineVendorLimitations": 54,
+    "toolingTotal": 71,
+    "passed": 65,
+    "posixSkipped": 6,
+    "seconds": 23.584
+  },
+  "linuxTooling": {
+    "total": 71,
+    "passed": 71,
+    "skipped": 0,
+    "seconds": 16.874
+  },
+  "writer": {
+    "ownerAndFrameSourcesMatchBundledAsset": true,
+    "rootWrites": [],
+    "reads": [
+      {
+        "value": 1608,
+        "injected": false,
+        "role": "progression",
+        "stack": "get@user-script:291:57:35\nj@user-script:295:1:68740\n@user-script:295:1:68492\n@user-script:291:65:14\nglobal code@readium://A1281DBA-137E-437E-BF27-4EBA856B6D77/OEBPS/one.xhtml:1:29"
+      }
+    ],
+    "originalPositionAndWordAssertionsPassed": true,
+    "attachment": "8F6F36DC-BB50-497F-877E-9F18123AAC04.txt"
+  },
+  "fontObservations": [
+    {
+      "font": "xiaoWei",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "54999C36-8095-4379-B685-96280465CCDD.txt"
+    },
+    {
+      "font": "xiaoWei",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "439AA720-D767-4EC0-861F-C3562926D273.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "FCEC684D-271C-4344-8333-3B1922FF8CF9.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "BEA0A102-A0E3-4ADE-872B-011DE40F0192.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "86CB2468-F084-4667-85C0-F9578CD10142.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "37B0FB9C-9210-4298-A2B6-0183F56B4B75.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "FB393963-5326-4540-8869-D8DD391EB12F.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "87527F32-66EB-414A-8AFD-64D66CE438DE.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "958D870A-772B-4F4E-8376-860887600AD6.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "C48CE7B9-1413-4F92-A6D9-C515A310FF6C.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "56871576-0AB8-4262-8535-67C3B4FC63BA.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "FDEF7011-7E8D-41FA-9A8A-9FDF68A51D17.txt"
+    },
+    {
+      "font": "xiaoWei",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "E0214B0B-D4FF-4625-A952-2A5C81059136.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "54AD694F-BF65-4D63-B457-9AC4833AD8D7.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "480C1FFA-3472-4AEB-A9AD-D9CE25083F70.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "AD8B251F-640F-467E-9480-D0F30F759C43.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "25C8B24E-F182-4C7F-9E9E-1CDED0A35E73.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "BC1A9461-86E1-4539-A3B5-39112DD3D9F5.txt"
+    }
+  ],
+  "inactiveOrBlankObservationsRetained": 24,
+  "costs": {
+    "logicStepSeconds": 142.0,
+    "logicBuildReportedSeconds": 93.38,
+    "nativeStepIncludingPreparationBuildExportSeconds": 1633.0,
+    "beforeFirstNativeSuiteSeconds": 1116.22988,
+    "summedCaseSeconds": 357.974,
+    "cases": [
+      {
+        "test": "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+        "outcome": "passed",
+        "seconds": 0.177
+      },
+      {
+        "test": "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+        "outcome": "passed",
+        "seconds": 0.058
+      },
+      {
+        "test": "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+        "outcome": "passed",
+        "seconds": 0.08
+      },
+      {
+        "test": "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+        "outcome": "passed",
+        "seconds": 0.044
+      },
+      {
+        "test": "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+        "outcome": "passed",
+        "seconds": 0.124
+      },
+      {
+        "test": "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+        "outcome": "passed",
+        "seconds": 0.064
+      },
+      {
+        "test": "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+        "outcome": "passed",
+        "seconds": 0.05
+      },
+      {
+        "test": "ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+        "outcome": "passed",
+        "seconds": 0.048
+      },
+      {
+        "test": "ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+        "outcome": "passed",
+        "seconds": 0.045
+      },
+      {
+        "test": "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+        "outcome": "passed",
+        "seconds": 0.048
+      },
+      {
+        "test": "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+        "outcome": "passed",
+        "seconds": 0.039
+      },
+      {
+        "test": "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+        "outcome": "passed",
+        "seconds": 0.108
+      },
+      {
+        "test": "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+        "outcome": "passed",
+        "seconds": 0.156
+      },
+      {
+        "test": "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+        "outcome": "passed",
+        "seconds": 0.039
+      },
+      {
+        "test": "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+        "outcome": "passed",
+        "seconds": 0.07
+      },
+      {
+        "test": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+        "outcome": "failed",
+        "seconds": 87.402
+      },
+      {
+        "test": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "outcome": "passed",
+        "seconds": 239.402
+      },
+      {
+        "test": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+        "outcome": "passed",
+        "seconds": 5.769
+      },
+      {
+        "test": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+        "outcome": "passed",
+        "seconds": 24.251
+      }
+    ]
+  },
+  "artifact": {
+    "run": 39585860717,
+    "artifact": 12339774623,
+    "kind": "diagnostic",
+    "archiveBytes": 92811656,
+    "archiveSHA256": "365487766bb4fe1e315ebaeba894a349cb48418f973f487104143419014051b9",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39585860717\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39585860717\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39585860717\\diagnostic-received.zip",
+        "bytes": 92811656,
+        "sha256": "365487766bb4fe1e315ebaeba894a349cb48418f973f487104143419014051b9"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "previousR3bEvidencePreserved": {
+    "acceptedRun": 39580846569,
+    "logic": 16,
+    "native": 13
+  },
+  "originalStatePersistenceAnd16ContractsUnchanged": true,
+  "newNavigationContracts": 8,
+  "allOriginalNativeTestsUnchanged": true,
+  "fontReopenTransactionUnchangedExceptSharedNavigationLock": true,
+  "closeOrderUnchangedExceptNavigationReset": true,
+  "source": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderNavigationCoordinator.swift",
+  "semantics": {
+    "singleCaptureWithoutSaveRetry": true,
+    "firstCompleteOriginPerExcursion": true,
+    "failureRetainsExistingOrigin": true,
+    "stayOnlyWhenIdle": true,
+    "originNeverWrittenAsProgress": true,
+    "obsoleteEntryRejected": true,
+    "lateResultCannotPublishOrReleaseNewRequest": true,
+    "sharedFontLockRetained": true,
+    "capturePersistenceAndSaveBudgetUnchanged": true
+  },
+  "fullGateExecuted": false,
+  "fullGateCount": 188,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "visualMotionAccepted": false,
+  "ipaCreated": false,
+  "remaining": "User chose to save this slice and checkpoint; next turn only investigate the single initial EPUB jump/reporting discrepancy, before R4; no more CI this turn",
+  "userDecision": "Save current implementation and evidence; investigate one EPUB case next turn; do not run more CI or start R4",
+  "failureAnalysis": {
+    "failedCase": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+    "stage": "first paged jump from cover to one.xhtml before capturing return origin",
+    "genericContinuousErrorLabelDoesNotIdentifyMode": true,
+    "reportedPositionHref": "OEBPS/cover.xhtml",
+    "visibleDOMHref": "/OEBPS/one.xhtml",
+    "visibleDOMReady": "complete",
+    "paragraphTop": 0,
+    "directEngineCaseDoesNotCallNewNavigationCoordinator": true,
+    "engineAndFixtureUnchangedSincePriorPassingR3b": true,
+    "rootCauseProven": false,
+    "environmentOnlyProven": false,
+    "regressionCausalityProven": false,
+    "nextExperiment": "Compare the original engine go and currentPosition publication at this same initial jump under the same 30s assertion; isolate preceding fixtures or delayed initialization with controlled release only after reviewing retained logs; do not blindly repeat 19/full188"
+  }
+}
