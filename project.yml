@@ -35,6 +35,8 @@ targets:
     dependencies:
       - package: XianxiaCore
         product: XianxiaCore
+      - package: XianxiaCore
+        product: ReaderPositions
       - package: XianxiaReading
         product: ReadingInterfaces
       - package: XianxiaReading
@@ -64,6 +66,8 @@ targets:
       - target: XianxiaReader
       - package: XianxiaCore
         product: XianxiaCore
+      - package: XianxiaCore
+        product: ReaderPositions
       - package: XianxiaReading
         product: ReadingInterfaces
       - package: XianxiaReading

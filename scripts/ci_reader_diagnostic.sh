@@ -5,6 +5,23 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  position-isolation)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted
+      -only-testing:XianxiaReaderTests/ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+      -only-testing:XianxiaReaderTests/TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen
+    )
+    ;;
   paged-font)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord

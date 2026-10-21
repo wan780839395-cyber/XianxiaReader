@@ -2,6 +2,7 @@ import Combine
 import Foundation
 import ReaderSettings
 import ReaderFonts
+import ReaderPositions
 import ReadingInterfaces
 import SwiftUI
 import XianxiaCore
@@ -47,7 +48,7 @@ private enum ReaderJumpError: LocalizedError {
     @Published private(set) var appearanceSaveFailure: String?
     @Published private(set) var interaction = ReadingInteraction()
     @Published private(set) var interactionSaveFailure: String?
-    @Published private(set) var positionSaveFailure: String?
+    var positionSaveFailure: String? { positions.saveFailure }
     @Published private(set) var automaticScrollState = ReaderAutomaticScrollState.stopped
     @Published private(set) var automaticScrollPresented = false
     @Published private(set) var returnPosition: ReadingPosition?
@@ -75,7 +76,7 @@ private enum ReaderJumpError: LocalizedError {
     private var settingsSubscriptions: Set<AnyCancellable> = []
     private var additionalReduceMotionRequested = false
     private var navigationRequestID: UUID?
-    private var positionSaveRequestID: UUID?
+    private var positions: ReaderPositionState { progress.positions }
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -83,6 +84,7 @@ private enum ReaderJumpError: LocalizedError {
         fonts = ReaderFontCoordinator(storage: services.files, bundledResources: BundledReadingFont.catalogueResources)
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
+        positions.onSaveFailureWillChange = { [weak self] in self?.objectWillChange.send() }
         fonts.objectWillChange.sink { [weak self] in self?.objectWillChange.send() }.store(in: &settingsSubscriptions)
         services.readerSettings.$appearanceCompletion.sink { [weak self] completion in
             guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
@@ -125,7 +127,7 @@ private enum ReaderJumpError: LocalizedError {
         openRequestID = requestID
         fonts.beginSession(requestID)
         openStatus = "正在读取阅读设置…"
-        positionSaveFailure = nil
+        positions.clearSaveFailure()
         do {
             let restoredAppearance = try await services.readerSettings.readingAppearance()
             try Task.checkCancellation()
@@ -184,7 +186,7 @@ private enum ReaderJumpError: LocalizedError {
     }
 
     func close() {
-        positionSaveRequestID = nil
+        positions.invalidateSave()
         fonts.close()
         fontImportTask?.cancel(); fontImportTask = nil
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = nil
@@ -214,15 +216,12 @@ private enum ReaderJumpError: LocalizedError {
     func saveNow() async {
         pauseAutomaticScroll()
         let sessionID = openRequestID
-        let requestID = UUID()
-        positionSaveRequestID = requestID
-        defer {
-            if positionSaveRequestID == requestID { positionSaveRequestID = nil }
-        }
+        let requestID = positions.beginSave(sessionID: sessionID)
+        defer { positions.endSave(requestID) }
         await engine?.automaticScrollProvider?.flushAutomaticScrollPosition()
-        guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
+        guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
         await services.readerSettings.flush()
-        guard openRequestID == sessionID, positionSaveRequestID == requestID,
+        guard positions.isCurrent(requestID, sessionID: openRequestID),
               !Task.isCancelled, sessionID != nil, isReady, let engine else { return }
         do {
             var sampled: ReadingPosition?
@@ -236,25 +235,24 @@ private enum ReaderJumpError: LocalizedError {
                 while sampled == nil {
                     do { sampled = try await engine.captureCurrentPosition() }
                     catch ReaderPositionCaptureError.unavailable {
-                        guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
+                        guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
                         guard Date() < deadline else { throw ReaderPositionCaptureError.unavailable }
                         try await Task.sleep(nanoseconds: 32_000_000)
-                        guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
+                        guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
                     }
                 }
             }
             try Task.checkCancellation()
-            guard openRequestID == sessionID, positionSaveRequestID == requestID else { return }
+            guard positions.isCurrent(requestID, sessionID: openRequestID) else { return }
             guard let fresh = sampled else { throw ReaderPositionCaptureError.unavailable }
             try await services.repository.save(fresh)
-            guard openRequestID == sessionID, positionSaveRequestID == requestID, !Task.isCancelled else { return }
-            position = fresh
-            positionSaveFailure = nil
+            guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
+            positions.saved(fresh, request: requestID, sessionID: openRequestID)
         } catch is CancellationError {
             return
         } catch {
-            guard openRequestID == sessionID, positionSaveRequestID == requestID else { return }
-            positionSaveFailure = "阅读进度尚未保存：\(error.localizedDescription)"
+            guard positions.isCurrent(requestID, sessionID: openRequestID) else { return }
+            positions.failed("阅读进度尚未保存：\(error.localizedDescription)", request: requestID, sessionID: openRequestID)
         }
     }
 

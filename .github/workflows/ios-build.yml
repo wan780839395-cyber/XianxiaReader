@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation]
 
 permissions:
   contents: read
@@ -40,7 +40,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
 
   core-tests:
-    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' }}
+    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' }}
     needs: repository-checks
     runs-on: ubuntu-22.04
     timeout-minutes: 15
@@ -111,6 +111,44 @@ jobs:
           path: |
             build/logs/
             build/ReaderLogic/
+            build/DiagnosticTests.xcresult/
+            build/ReaderSnapshots/
+            build/test-results-summary.json
+            build/build-environment.txt
+
+  reader-positions:
+    if: ${{ inputs.diagnostic_selection == 'position-isolation' }}
+    needs: repository-checks
+    runs-on: macos-15-intel
+    timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile isolated position contracts without App or Readium
+        run: bash scripts/test_reader_positions.sh
+      - name: Validate original save and native anchor contracts
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_reader_diagnostic.sh position-isolation 2>&1 | tee build/logs/reader-diagnostic.log
+          python3 scripts/verify_reader_positions.py native build --report build/ReaderPositions/native-receipt.json
+      - name: Preserve original position contract and native evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-position-isolation
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            build/logs/
+            build/ReaderPositions/
             build/DiagnosticTests.xcresult/
             build/ReaderSnapshots/
             build/test-results-summary.json
@@ -188,7 +226,7 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' }}
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
     # The last cold native build reached its first test after28minutes.

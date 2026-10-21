@@ -1,3 +1,13 @@
+# 当前断点：R3a 位置状态与保存请求隔离，开始实施（2026-10-21）
+
+用户明确继续R3，保留现有功能和已修好的定位行为。本轮只做R3a：ReaderPositions Foundation-only真实target负责完整ReadingPosition、显式保存请求身份/失效、保存错误。App仍在原调用点执行捕获、原3秒/32ms预算、慢滚/设置flush及数据库await；不新增async封装。返回点/导航、捕获持久化编排与统一会话后续单列，不能称R3整体完成。
+
+影响文件：新ReaderPositionState及6项独立合同；ReaderViewModel/ReaderProgressView同步接线；Core manifest/project.yml、架构登记及禁止UI/引擎依赖反例；快速入口/证据核验、影响映射、CI新增position-isolation选项。旧缓存整体覆盖会删除最新分页入口，禁止整包复制。原VM其他方法、现有iOS用例、Vendor四项定位修复、设置/字体模块、资源、锁与数据库实现保全。
+
+定向门槛：Windows仓库/语法与工具；macOS独立6项真实SwiftPM合同（无App/Readium）；原iOS保存/进度/迟到结果8项生命周期+1项进度；真实EPUB/TXT完整锚点重开、同宽分页writer、双模式字体重开4项，共13项原生用例。冻结后仅派发这一组，不跑完整188/设备Release/导包。SwiftPM使用--parallel --xunit-output并核对精确测试身份与实际依赖。原断言/预算不变；失败保留原件并证明关联后再决定。
+
+本轮保全快照：build/maintenance/R3a-20261021/before.json及HANDOFF-before.md；普通HEAD/index保持，旧CI已完成且无活动本地观察/下载任务。最后已验分页1+1的事实见下文；R3a源码/接线及快速入口已完成。Windows458语法新增0/既有Vendor限制54，71工具65通过/6 POSIX跳过（24.158秒），Bash语法通过；尚未Swift编译/原生验收。冻结前核对全部1170已有输入、原用例与VM await表达式/非本片方法，随后只派发position-isolation（6+13），不继承旧片验收。
+
 # 当前断点：分页字体回章头缺陷定向收口，下一切片R3（2026-10-21）
 
 用户授权先确认分页问题，再做R3；首组暴露屏障越界后，用户明确只再补一组1+1。两组已自然结束，追加组39561815911成功；本轮不再派发第三组，不在收尾混入R3。保持电脑开机。

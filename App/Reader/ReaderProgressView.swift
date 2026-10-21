@@ -1,3 +1,4 @@
+import ReaderPositions
 import SwiftUI
 import XianxiaCore
 
@@ -14,14 +15,19 @@ struct ReaderProgressSummary: Equatable {
 }
 
 @MainActor final class ReaderProgressState: ObservableObject {
-    private(set) var position: ReadingPosition?
+    let positions = ReaderPositionState()
+    var position: ReadingPosition? { positions.position }
     @Published private(set) var summary = ReaderProgressSummary(nil)
 
-    func update(_ position: ReadingPosition?) {
-        self.position = position
-        let next = ReaderProgressSummary(position)
-        if summary != next { summary = next }
+    init() {
+        positions.onPositionChanged = { [weak self] position in
+            guard let self else { return }
+            let next = ReaderProgressSummary(position)
+            if self.summary != next { self.summary = next }
+        }
     }
+
+    func update(_ position: ReadingPosition?) { positions.update(position) }
 }
 
 @MainActor struct ReaderProgressView: View {

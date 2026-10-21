@@ -1,5 +1,7 @@
 # I1 设置逻辑快速验证
 
+R3a新增（2026-10-21，当前待编译）：`bash scripts/test_reader_positions.sh <新的输出目录>`只执行Core包内ReaderPositions的6项真实合同，保留xUnit/依赖/真实退出码并拒绝陈旧输出目录。workflow输入`position-isolation`先同一6项，再13项已有保存/进度/EPUB/TXT/字体/分页writer用例；不跑完整188、性能探针、设备Release或IPA。精确身份守卫见scripts/verify_reader_positions.py，禁止把定向结果写成发布验收。R3整体仍有捕获/持久化编排和返回点职责待迁移，详见READER_POSITION_ISOLATION。
+
 2026-10-21最新：分页writer定向补证39561815911完成，同一单用例旧负例1/1、新正例1/1，原字与无位置写入均核；生产9bb6c86保持，下一切片R3未实施。完整188、设备Release/手机仍待独立门槛，不能把本1+1或历史9/9称全量通过。首组屏障越界失败保留；最新事实见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。
 
 当前分页快速入口：macOS单正例用`bash scripts/ci_reader_diagnostic.sh paged-resize-control`，只选已有same-width用例；对照用`paged-font-control` workflow输入，在已经冻结的旧源branch派发，预先提供exact-child候选，driver只跑旧/新各1case并严格核目标frame、snap注入、真实进度旁路、原位置/原字断言与输入。默认候选ref为`codex/fix-paged-font-owner-control`，重用时必须先更新成与新baseline精确配对的源，不能把历史ref直接套在任意当前HEAD上。已有`paged-font-acceptance`9case内部入口保留，但本片未重跑9/188；此对照不打包设备IPA。

@@ -1,5 +1,21 @@
 # R3 阅读位置隔离
 
+## 2026-10-21 R3a 当前实施合同
+
+本轮用户授权继续R3，先交付位置状态与显式保存请求隔离。源码初稿已接线，尚未Swift编译/原生验收。旧候选只复用经过当前差异审阅的10个文件；当前分页控制workflow、断言、故障注入和字体双模式默认值保留。
+
+ReaderPositions是现有Core包内独立产品/target，只依赖XianxiaCore业务值与Foundation。它唯一保存不透明ReadingPosition、显式保存令牌/所属会话和保存错误；不解析Locator、不持有引擎/仓库/字体/界面、不自行创建异步任务。ReaderProgressState仅将同步位置通知转换为原去重摘要，完整位置不再由UI容器另存一份。错误继续在突变前通知ReaderViewModel；位置事件不触发整个ViewModel刷新。
+
+saveNow中的每个await、guard、3秒截止/32ms既有间隔、固定布局分支、慢滚暂停/flush、设置flush和写库调用保持原调用点及顺序。新令牌判断等价于原会话ID+请求ID判断；旧defer只能结束自己的请求，关闭使令牌失效，保存失败保留完整位置，成功先发布完整位置再清除错误。close仍允许引擎发出最后位置回调后才使openRequestID失效。导航/返回点和会话生命周期不是本片迁移对象。
+
+快速入口为`bash scripts/test_reader_positions.sh <新的输出目录>`，真实SwiftPM只执行6项状态合同，要求原始xUnit全部精确身份、无重复/失败/跳过、Core包无外部依赖；保留真实退出码。workflow新增`position-isolation`：仓库/工具检查后，同一macOS runner先6项独立合同，再原13项iOS用例（8保存/生命周期+1进度+4真实EPUB/TXT/字体/同宽writer）；不跑Core性能探针、完整188或设备导包。脚本会编译原scheme其他target，选例不能消除所有冷准备成本。
+
+6项合同不接入iOS测试源，既有159集成+29UI数量保持188；完整发布流程照常测试Core包（原137+本片6=143），不以本定向结果代替I6。现有iOS用例主体、Vendor四项修复及资源/锁/数据库实现按输入哈希保全。运行证据及保护快照在build/maintenance/R3a-20261021，状态以HANDOFF最新记录为准。
+
+取舍参考已复核[SwiftPM官方target/product与testTarget规则](https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html)和[isowords实际功能target依赖布局](https://github.com/pointfreeco/isowords/blob/main/Package.swift)。仅借用显式target依赖与独立测试的做法；保留本项目tools5.10、iOS16/macOS13、Xcode16.4，不迁移其TCA/iOS下限或远程依赖。纯同步提取避免重演R2新增挂起点的问题。
+
+R3a完成后，捕获/写库编排、导航与返回点的责任迁移仍属于R3后续切片；状态模块落地不能写成R3整体或全项目隔离完成。
+
 2026-10-20。当前为切片设计，尚未实现/编译/验收。用户最新选择本轮只查清定位、R3顺延；候选仅在.cache暂存，不接入构建根目录。不将R2的53/53复用为本片结果。
 
 ## 连续直接验证与分页未决（2026-10-21）

@@ -66,6 +66,15 @@ class ValidationPlanTests(unittest.TestCase):
         self.assertFalse(result["acceptanceGranted"])
         self.assertTrue(result["releaseGate"]["unchanged"])
 
+    def test_position_source_selects_independent_contracts_and_retains_app_integration(self):
+        result = plan(["Packages/XianxiaCore/Sources/ReaderPositions/ReaderPositionState.swift"])
+        checks = [entry["name"] for entry in result["checksInOrder"]]
+        self.assertIn("position-logic", checks)
+        self.assertIn("ios-integration", checks)
+        self.assertIn("ReaderPositionsTests", result["affectedTargets"])
+        self.assertFalse(result["acceptanceGranted"])
+        self.assertTrue(result["releaseGate"]["unchanged"])
+
     def test_shared_test_changes_include_both_test_targets(self):
         result = plan(["Packages/ReaderSettings/Tests/ReaderSettingsTests/ReaderSettingsPersistenceTests.swift"])
         self.assertIn("ReaderSettingsTests", result["affectedTargets"])

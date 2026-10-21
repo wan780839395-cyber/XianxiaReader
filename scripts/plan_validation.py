@@ -9,6 +9,7 @@ COMMANDS = {
     "repository": "python scripts/check_repository.py --swift-syntax",
     "tooling": "python -m unittest discover -s scripts -p 'test_*.py' -v",
     "reader-logic": "bash scripts/test_reader_logic.sh <fresh-output-folder>",
+    "position-logic": "bash scripts/test_reader_positions.sh <fresh-output-folder>",
     "core": "swift test --package-path Packages/XianxiaCore --parallel",
     "ios-integration": "bash scripts/ci_reader_diagnostic.sh settings (settings changes); full integration for other App/engine changes",
     "native-ui": "existing native UI regressions for the affected feature; full UI at delivery",
@@ -44,6 +45,8 @@ def plan(changed, root=ROOT):
         affected = expanded
     if affected & {"ReaderSettings", "ReaderSettingsTests"}:
         tiers.add("reader-logic")
+    if affected & {"ReaderPositions", "ReaderPositionsTests"}:
+        tiers.add("position-logic")
     if affected & {"XianxiaCore", "XianxiaCoreTests", "TXTPerformanceProbe"}:
         tiers.add("core")
     if affected & {"XianxiaReader", "XianxiaReaderTests", "ReadiumAdapter", "ReadingInterfaces"}:
