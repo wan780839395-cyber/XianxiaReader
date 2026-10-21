@@ -1,5 +1,19 @@
 # R3 阅读位置隔离
 
+## 连续返回原单例：准备条件通过，保留可见性疑点（2026-10-21）
+
+诊断源d8d39d5 / CI39600873539仅原FreshReturnCapture单例1/1（46.146秒），没有生产修改。完整captured/restored附件与stdout一致：连续before/returned longTop=-599.125，char499、savedOffset与实际glyphTop均-3.125、nativeClip0、scrollY2367；返回重建WebView仍一致，独立重复seek目标-10实际-10.125、外层坐标不变。旧失败没有before，无法倒推其误差或根因；新增只读诊断await也可能扰动时序，不能称修复。
+
+原测试准备在请求连续+600后只等待scrollY>500。章内long段落本身已有较大文档坐标，条件可能在移动前为真，不能证明本次动作完成。修正源e234b2bf6a583d0a1019bb142582c1bc97f34aab仅在原初始top探针同时读initialY，要求实际scrollY进入initialY+600的3px内再capture，附initial/requested/actual证据。实际移动、完整origin、false/true顺序、原返回3px/30秒/100ms及截图后独立观察保持；不是生产补丁，也不能当旧失败的合格根因对照。
+
+用户授权的单轮CI39607326744 completed/success，修正源e234b2b，原单例1/1（51.275秒）、无失败/跳过，真实build/test及summary/export退出均0、源码编译错误0。准备附件实测initialY1767、requested2367、actual2367，旧>500在动作前确已为真；连续保存与返回longTop仍-599.125，同char499/offset-3.125/clip0。分页scrollX1206→1206。后续独立repeat实际-9.125对目标-10，误差0.875、外层2376不变，原几何合同过。
+
+实际查看两张返回正文图均可读；第三张后续continuous-repeated-canonical-seek为白图，前一诊断版d8d39d5相同截图也白。该原观察先截图再读字符Range，未断言可见像素，因此几何通过不能等同可见性完成；原因尚未知，不归咎准备修正/环境，也不追认为已修。按本轮只验一例的授权保存，不追加CI、不进入R4；下一片只分辨实际可见性与截图取样时刻，再决定是否需要生产修正。
+
+584输入逐blob匹配，父诊断源到修正源只有目标测试准备和HANDOFF两个文件；所有生产、分页加载、CI入口和其他方法保持。Windows464语法新增0/54限制（非编译）、76工具70过6 POSIX跳过，未为无变化的Python源码重跑；本轮Linux76/76。原生步骤1385秒，首suite前1280.445秒含工具/依赖/编译/启动，case51.275秒，余量含诊断导出；不能把总成本算纯测试。完整2662625字节artifact经digest/SHA/CRC核验，两个xcresult、完整日志、summary及全部附件保留build/ci/39607326744，只精确清重复ZIP。一次只读API EOF已留原始错误，没有重派任务。完整189/Core137/设备Release/手机未跑，无新IPA；分项权威见[本片结果](ValidationLogs/continuous-return-preparation.json)。
+
+参考锁定[Readium3.11 VisualNavigator](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/VisualNavigator.swift)的采样接口与[CSSOM View Range几何](https://www.w3.org/TR/cssom-view/#dom-range-getclientrects)区分viewport和document坐标；本项目连续扩展不等同上游实现，也不把规范当实际WebKit时序证据。
+
 ## EPUB首次加载专项：对照有效，整组未过，已保存（2026-10-21）
 
 用户选择本轮收口保存，下一轮只查连续返回，不追加CI或启动R4。实际控制基线609cbd03463b64f312216a1c397616cd2be0659f，候选0de44ba6d2d5875816f1a42a06d04f4313e21d9c为精确子提交；仅Vendor SpreadView和UPSTREAM差异，584输入各相位均核冻结Git blob。原R1/R2/R3、Readium JS、Core/锁及原测试行为/30秒/3px预算保持，普通HEAD/index及全部旧WIP保留。

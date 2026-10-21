@@ -1,0 +1,718 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUTC": "2026-10-21T13:51:40.615297+00:00",
+  "scope": "Original FreshReturnCapture test preparation and diagnosis only; no R4, production change, full gate or IPA",
+  "implementation": {
+    "diagnosticRevision": "d8d39d5d9301e93a9efe7790c57896c18869b9c6",
+    "verificationRevision": "e234b2bf6a583d0a1019bb142582c1bc97f34aab",
+    "baseProductionRevision": "0de44ba6d2d5875816f1a42a06d04f4313e21d9c",
+    "productionUnchanged": true,
+    "modeOrder": [
+      false,
+      true
+    ],
+    "returnTolerancePoints": 3,
+    "waitBudgetSeconds": 30,
+    "pollMilliseconds": 100,
+    "movePoints": 600,
+    "originalLateObservationPreserved": true,
+    "otherMethodsUnchanged": true
+  },
+  "priorFailure": {
+    "run": 39594313793,
+    "overallCandidatePassed": 5,
+    "overallCandidateFailed": 1,
+    "phase": "continuous return original 3px assertion",
+    "beforeValueMissing": true,
+    "rootCauseProven": false,
+    "notRetroactivelyAccepted": true
+  },
+  "diagnostic": {
+    "recordedAtUTC": "2026-10-21T13:14:58.313030+00:00",
+    "run": 39600873539,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39600873539",
+    "revision": "d8d39d5d9301e93a9efe7790c57896c18869b9c6",
+    "conclusion": "success",
+    "kind": "diagnostic_replay_without_production_change_not_a_fix",
+    "nativePassed": 1,
+    "nativeFailed": 0,
+    "nativeSkipped": 0,
+    "nativeCaseSeconds": 46.146,
+    "compilerSourceErrors": 0,
+    "nativeBuildPassed": true,
+    "observations": [
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": 402,
+        "dom": {
+          "anchor": {
+            "bottom": 25,
+            "documentY": 2,
+            "left": 84,
+            "right": 101,
+            "top": 2
+          },
+          "canonicalTarget": null,
+          "height": 750,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": 0,
+          "ready": "complete",
+          "width": 402,
+          "x": 402,
+          "y": 0
+        },
+        "lastReturned": null,
+        "mode": "paged",
+        "nativeClipTop": 0,
+        "nativeInnerY": 0,
+        "nativeState": "preferences:  / paged preferences: reload DOM=false; paged sample loaded=true; sampled DOM=true",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(10)",
+            "domRange": {
+              "start": {
+                "charOffset": 2,
+                "cssSelector": "html > body > p:nth-of-type(10)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 2,
+            "progression": 0,
+            "totalProgression": 0.25,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 2
+          },
+          "text": {
+            "after": "",
+            "before": "青山",
+            "highlight": "之下，少年缓步前行。这是第10段原创排版测试文字，山风从远处吹来。"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "captured",
+        "queryFinishedUptime": 1879.1366972100002,
+        "queryStartedUptime": 1879.123183765,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": 402,
+        "dom": {
+          "anchor": {
+            "bottom": 25,
+            "documentY": 2,
+            "left": 84,
+            "right": 101,
+            "top": 2
+          },
+          "canonicalTarget": {
+            "char": 2,
+            "target": 402,
+            "width": 402
+          },
+          "height": 750,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": 0,
+          "ready": "complete",
+          "width": 402,
+          "x": 402,
+          "y": 0
+        },
+        "lastReturned": 402,
+        "mode": "paged",
+        "nativeClipTop": 0,
+        "nativeInnerY": 0,
+        "nativeState": "preferences:  / paged preferences: reload DOM=false; paged sample loaded=true; sampled DOM=true",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(10)",
+            "domRange": {
+              "start": {
+                "charOffset": 2,
+                "cssSelector": "html > body > p:nth-of-type(10)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 2,
+            "progression": 0,
+            "totalProgression": 0.25,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 2
+          },
+          "text": {
+            "after": "",
+            "before": "青山",
+            "highlight": "之下，少年缓步前行。这是第10段原创排版测试文字，山风从远处吹来。"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "restored",
+        "queryFinishedUptime": 1882.2151496350002,
+        "queryStartedUptime": 1882.207243426,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": -599.125,
+        "dom": {
+          "anchor": {
+            "bottom": 19.875,
+            "documentY": 2363.875,
+            "left": 85,
+            "right": 102,
+            "top": -3.125
+          },
+          "canonicalTarget": null,
+          "height": 778,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": -599.125,
+          "ready": "complete",
+          "width": 402,
+          "x": 0,
+          "y": 2367
+        },
+        "lastReturned": null,
+        "mode": "continuous",
+        "nativeClipTop": 0,
+        "nativeInnerY": 2367,
+        "nativeState": "preferences:  / index=1 revision=2 top=2431.0 navigation=false screenCover=false slot0{ready=false positioning=true failure=none wrapper=(0.0, 9248.0, 402.0, 778.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=9E173D67 navigationFinished=false initialization=false/false cleared=false attached=true loading=true hasURL=true progress=0.1 stages=1889877:request,1889889:window.attached} beforeTimeoutClear={not timed out} slot1{ready=true positioning=false failure=none wrapper=(0.0, 64.0, 402.0, 8342.0) frame=(0.0, 2367.0, 402.0, 778.0) savedTop=Optional(2367.0) anchor=sample=1 documentY=2363.875 documentTop=2367.0 local=2367.0 revision=2 accepted} lifecycle={trace=1B62EB0D navigationFinished=true initialization=true/true cleared=false attached=true loading=false hasURL=true progress=1.0 stages=1886809:request,1886821:window.attached,1888268:navigation.started,1889412:navigation.committed,1889597:navigation.finished,1889599:bootstrap.start,1889602:initialization.start,1889606:bootstrap.ready,1889822:initialization.content-returned,1889825:initialization.delegate-returned,1889825:initialization.finished} beforeTimeoutClear={not timed out}",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 499,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.21181970750419563,
+            "totalProgression": 0.3559098537520978,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": -3.125
+          },
+          "text": {
+            "after": "缓落下。长段第021处，少年沿着石阶前行，云气从山巅缓缓落下。长段第022处，少年沿着石阶前行，云气从山巅缓缓落下。长段第023",
+            "before": "016处，少年沿着石阶前行，云气从山巅缓缓落下。长段第017处，少年沿着石阶前行，云气从山巅缓缓落下。长段第018处，少年沿着石",
+            "highlight": "阶前行，云气从山巅缓缓落下。长段第019处，少年沿着石阶前行，云气从山巅缓缓落下。长段第020处，少年沿着石阶前行，云气从山巅缓"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "captured",
+        "queryFinishedUptime": 1890.1883393,
+        "queryStartedUptime": 1890.1824438590002,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": -599.125,
+        "dom": {
+          "anchor": {
+            "bottom": 19.875,
+            "documentY": 2363.875,
+            "left": 85,
+            "right": 102,
+            "top": -3.125
+          },
+          "canonicalTarget": {
+            "char": 499,
+            "target": 2367,
+            "width": 402
+          },
+          "height": 778,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": -599.125,
+          "ready": "complete",
+          "width": 402,
+          "x": 0,
+          "y": 2367
+        },
+        "lastReturned": -599.125,
+        "mode": "continuous",
+        "nativeClipTop": 0,
+        "nativeInnerY": 2367,
+        "nativeState": "preferences:  / index=1 revision=3 top=2431.0 navigation=false screenCover=false slot0{ready=false positioning=true failure=none wrapper=(0.0, 9248.0, 402.0, 778.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=E73C0D5B navigationFinished=false initialization=false/false cleared=false attached=true loading=true hasURL=true progress=0.1 stages=1896038:request,1896047:window.attached} beforeTimeoutClear={not timed out} slot1{ready=true positioning=false failure=none wrapper=(0.0, 64.0, 402.0, 8342.0) frame=(0.0, 2367.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=79D70634 navigationFinished=true initialization=true/true cleared=false attached=true loading=false hasURL=true progress=1.0 stages=1893235:request,1893245:window.attached,1894418:navigation.started,1895639:navigation.committed,1895767:navigation.finished,1895770:bootstrap.start,1895773:initialization.start,1895777:bootstrap.ready,1895988:initialization.content-returned,1895991:initialization.delegate-returned,1895992:initialization.finished} beforeTimeoutClear={not timed out}",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 499,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.21181970750419563,
+            "totalProgression": 0.3559098537520978,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": -3.125
+          },
+          "text": {
+            "after": "缓落下。长段第021处，少年沿着石阶前行，云气从山巅缓缓落下。长段第022处，少年沿着石阶前行，云气从山巅缓缓落下。长段第023",
+            "before": "016处，少年沿着石阶前行，云气从山巅缓缓落下。长段第017处，少年沿着石阶前行，云气从山巅缓缓落下。长段第018处，少年沿着石",
+            "highlight": "阶前行，云气从山巅缓缓落下。长段第019处，少年沿着石阶前行，云气从山巅缓缓落下。长段第020处，少年沿着石阶前行，云气从山巅缓"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "restored",
+        "queryFinishedUptime": 1896.0762303990002,
+        "queryStartedUptime": 1896.072587372,
+        "sameWebView": false
+      }
+    ],
+    "attachmentJSONMatchesFullLog": true,
+    "repeatedSeek": {
+      "expectedTop": -10,
+      "actualTop": -10.125,
+      "errorPoints": 0.125,
+      "outerBefore": 2376,
+      "outerAfter": 2376,
+      "inner": 2373
+    },
+    "productionUnchanged": true,
+    "oldFailureReproduced": false,
+    "oldFailureBeforeValueUnknown": true,
+    "clippingHypothesisNotProven": true,
+    "newPreparationChangeAlreadyAccepted": false,
+    "full189Executed": false,
+    "core137Executed": false,
+    "deviceReleaseExecuted": false,
+    "deviceAccepted": false,
+    "timing": {
+      "nativeStepSeconds": 1666.0,
+      "preparationUntilFirstSuiteSeconds": 1572.667
+    },
+    "artifact": {
+      "run": 39600873539,
+      "artifact": 12347822086,
+      "kind": "diagnostic",
+      "archiveBytes": 612791,
+      "archiveSHA256": "dabbff242d3a715c6fa751e48f33e2e9b93ece66020573de21d20f870f5b1391",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39600873539\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39600873539\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39600873539\\diagnostic-received.zip",
+          "bytes": 612791,
+          "sha256": "dabbff242d3a715c6fa751e48f33e2e9b93ece66020573de21d20f870f5b1391"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "next": "Strengthen the original deep-scroll preparation from absolute scrollY>500 to the explicit initialY+600 target, then verify only this original case as authorized."
+  },
+  "verification": {
+    "recordedAtUTC": "2026-10-21T13:48:39.683542+00:00",
+    "run": 39607326744,
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39607326744",
+    "revision": "e234b2bf6a583d0a1019bb142582c1bc97f34aab",
+    "conclusion": "success",
+    "kind": "stricter_preparation_single_case_verification_no_production_change",
+    "nativePassed": 1,
+    "nativeFailed": 0,
+    "nativeSkipped": 0,
+    "nativeCaseSeconds": 51.275,
+    "compilerSourceErrors": 0,
+    "nativeBuildPassed": true,
+    "observations": [
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": 1206,
+        "dom": {
+          "anchor": {
+            "bottom": 25,
+            "documentY": 2,
+            "left": 85,
+            "right": 102,
+            "top": 2
+          },
+          "canonicalTarget": null,
+          "height": 750,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": 0,
+          "ready": "complete",
+          "width": 402,
+          "x": 1206,
+          "y": 0
+        },
+        "lastReturned": null,
+        "mode": "paged",
+        "nativeClipTop": 0,
+        "nativeInnerY": 0,
+        "nativeState": "preferences:  / paged preferences: reload DOM=false; paged sample loaded=true; sampled DOM=true",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 318,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.16666666666666666,
+            "totalProgression": 0.3333333333333333,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 2
+          },
+          "text": {
+            "after": "14处，少年沿着石阶前行，云气从山巅缓缓落下。长段第015处，少年沿着石阶前行，云气从山巅缓缓落下。长段第016处，少年沿着石阶",
+            "before": "着石阶前行，云气从山巅缓缓落下。长段第010处，少年沿着石阶前行，云气从山巅缓缓落下。长段第011处，少年沿着石阶前行，云气从山",
+            "highlight": "巅缓缓落下。长段第012处，少年沿着石阶前行，云气从山巅缓缓落下。长段第013处，少年沿着石阶前行，云气从山巅缓缓落下。长段第0"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "captured",
+        "queryFinishedUptime": 1840.73383803,
+        "queryStartedUptime": 1840.6970830880002,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": 1206,
+        "dom": {
+          "anchor": {
+            "bottom": 25,
+            "documentY": 2,
+            "left": 85,
+            "right": 102,
+            "top": 2
+          },
+          "canonicalTarget": {
+            "char": 318,
+            "target": 1206,
+            "width": 402
+          },
+          "height": 750,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": 0,
+          "ready": "complete",
+          "width": 402,
+          "x": 1206,
+          "y": 0
+        },
+        "lastReturned": 1206,
+        "mode": "paged",
+        "nativeClipTop": 0,
+        "nativeInnerY": 0,
+        "nativeState": "preferences:  / paged preferences: reload DOM=false; paged sample loaded=true; sampled DOM=true",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 318,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.16666666666666666,
+            "totalProgression": 0.3333333333333333,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": 2
+          },
+          "text": {
+            "after": "14处，少年沿着石阶前行，云气从山巅缓缓落下。长段第015处，少年沿着石阶前行，云气从山巅缓缓落下。长段第016处，少年沿着石阶",
+            "before": "着石阶前行，云气从山巅缓缓落下。长段第010处，少年沿着石阶前行，云气从山巅缓缓落下。长段第011处，少年沿着石阶前行，云气从山",
+            "highlight": "巅缓缓落下。长段第012处，少年沿着石阶前行，云气从山巅缓缓落下。长段第013处，少年沿着石阶前行，云气从山巅缓缓落下。长段第0"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "restored",
+        "queryFinishedUptime": 1844.309159826,
+        "queryStartedUptime": 1844.3012268260002,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": -599.125,
+        "dom": {
+          "anchor": {
+            "bottom": 19.875,
+            "documentY": 2363.875,
+            "left": 85,
+            "right": 102,
+            "top": -3.125
+          },
+          "canonicalTarget": null,
+          "height": 778,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": -599.125,
+          "ready": "complete",
+          "width": 402,
+          "x": 0,
+          "y": 2367
+        },
+        "lastReturned": null,
+        "mode": "continuous",
+        "nativeClipTop": 0,
+        "nativeInnerY": 2367,
+        "nativeState": "preferences:  / index=1 revision=2 top=2431.0 navigation=false screenCover=false slot0{ready=false positioning=true failure=none wrapper=(0.0, 9248.0, 402.0, 778.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=6C10D57B navigationFinished=false initialization=false/false cleared=false attached=true loading=true hasURL=true progress=0.1 stages=1851197:request,1851206:window.attached} beforeTimeoutClear={not timed out} slot1{ready=true positioning=false failure=none wrapper=(0.0, 64.0, 402.0, 8342.0) frame=(0.0, 2367.0, 402.0, 778.0) savedTop=Optional(2367.0) anchor=cached local=2367.0 revision=2} lifecycle={trace=C8BA6B37 navigationFinished=true initialization=true/true cleared=false attached=true loading=false hasURL=true progress=1.0 stages=1848415:request,1848425:window.attached,1849910:navigation.started,1850812:navigation.committed,1850930:navigation.finished,1850931:bootstrap.start,1850934:initialization.start,1850937:bootstrap.ready,1851155:initialization.content-returned,1851158:initialization.delegate-returned,1851158:initialization.finished} beforeTimeoutClear={not timed out}",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 499,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.28374490529848956,
+            "totalProgression": 0.39187245264924475,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": -3.125
+          },
+          "text": {
+            "after": "缓落下。长段第021处，少年沿着石阶前行，云气从山巅缓缓落下。长段第022处，少年沿着石阶前行，云气从山巅缓缓落下。长段第023",
+            "before": "016处，少年沿着石阶前行，云气从山巅缓缓落下。长段第017处，少年沿着石阶前行，云气从山巅缓缓落下。长段第018处，少年沿着石",
+            "highlight": "阶前行，云气从山巅缓缓落下。长段第019处，少年沿着石阶前行，云气从山巅缓缓落下。长段第020处，少年沿着石阶前行，云气从山巅缓"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "captured",
+        "queryFinishedUptime": 1851.459936249,
+        "queryStartedUptime": 1851.457377891,
+        "sameWebView": true
+      },
+      {
+        "alpha": 1,
+        "attached": true,
+        "before": -599.125,
+        "dom": {
+          "anchor": {
+            "bottom": 19.875,
+            "documentY": 2363.875,
+            "left": 85,
+            "right": 102,
+            "top": -3.125
+          },
+          "canonicalTarget": {
+            "char": 499,
+            "target": 2367,
+            "width": 402
+          },
+          "height": 778,
+          "href": "/OEBPS/one.xhtml",
+          "longTop": -599.125,
+          "ready": "complete",
+          "width": 402,
+          "x": 0,
+          "y": 2367
+        },
+        "lastReturned": -599.125,
+        "mode": "continuous",
+        "nativeClipTop": 0,
+        "nativeInnerY": 2367,
+        "nativeState": "preferences:  / index=1 revision=3 top=2431.0 navigation=false screenCover=false slot0{ready=false positioning=true failure=none wrapper=(0.0, 9248.0, 402.0, 778.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=7BB251EA navigationFinished=false initialization=false/false cleared=false attached=true loading=true hasURL=true progress=0.1 stages=1857232:request,1857257:window.attached} beforeTimeoutClear={not timed out} slot1{ready=true positioning=false failure=none wrapper=(0.0, 64.0, 402.0, 8342.0) frame=(0.0, 2367.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=FFBE8038 navigationFinished=true initialization=true/true cleared=false attached=true loading=false hasURL=true progress=1.0 stages=1854516:request,1854531:window.attached,1855888:navigation.started,1856807:navigation.committed,1856944:navigation.finished,1856945:bootstrap.start,1856949:initialization.start,1856951:bootstrap.ready,1857176:initialization.content-returned,1857179:initialization.delegate-returned,1857180:initialization.finished} beforeTimeoutClear={not timed out}",
+        "origin": {
+          "href": "OEBPS/one.xhtml",
+          "locations": {
+            "cssSelector": "html > body > p:nth-of-type(25)",
+            "domRange": {
+              "start": {
+                "charOffset": 499,
+                "cssSelector": "html > body > p:nth-of-type(25)",
+                "textNodeIndex": 0
+              }
+            },
+            "position": 3,
+            "progression": 0.28374490529848956,
+            "totalProgression": 0.39187245264924475,
+            "xianxiaContinuousAnchorVersion": 1,
+            "xianxiaViewportOffset": -3.125
+          },
+          "text": {
+            "after": "缓落下。长段第021处，少年沿着石阶前行，云气从山巅缓缓落下。长段第022处，少年沿着石阶前行，云气从山巅缓缓落下。长段第023",
+            "before": "016处，少年沿着石阶前行，云气从山巅缓缓落下。长段第017处，少年沿着石阶前行，云气从山巅缓缓落下。长段第018处，少年沿着石",
+            "highlight": "阶前行，云气从山巅缓缓落下。长段第019处，少年沿着石阶前行，云气从山巅缓缓落下。长段第020处，少年沿着石阶前行，云气从山巅缓"
+          },
+          "type": "application/xhtml+xml"
+        },
+        "phase": "restored",
+        "queryFinishedUptime": 1857.417789416,
+        "queryStartedUptime": 1857.3895426140002,
+        "sameWebView": false
+      }
+    ],
+    "attachmentJSONMatchesFullLog": true,
+    "preparation": {
+      "actualY": 2367,
+      "initialY": 1767,
+      "legacyConditionAlreadyTrue": true,
+      "requestedY": 2367
+    },
+    "repeatedSeek": {
+      "expectedTop": -10.0,
+      "actualTop": -9.125,
+      "errorPoints": 0.875,
+      "outerBefore": 2376.0,
+      "outerAfter": 2376.0,
+      "inner": 2373.0
+    },
+    "productionUnchanged": true,
+    "oldFailureReproduced": false,
+    "oldFailureBeforeValueUnknown": true,
+    "clippingHypothesisNotProven": true,
+    "newPreparationChangeAcceptedInThisSample": true,
+    "full189Executed": false,
+    "core137Executed": false,
+    "deviceReleaseExecuted": false,
+    "deviceAccepted": false,
+    "timing": {
+      "nativeStepSeconds": 1385.0,
+      "preparationUntilFirstSuiteSeconds": 1280.445
+    },
+    "artifact": {
+      "run": 39607326744,
+      "artifact": 12350481069,
+      "kind": "diagnostic",
+      "archiveBytes": 2662625,
+      "archiveSHA256": "0e7be14f35285fea8e5ebb53763032f8239c325d5d6482991d4e110b70b18565",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic-received.zip",
+          "bytes": 2662625,
+          "sha256": "0e7be14f35285fea8e5ebb53763032f8239c325d5d6482991d4e110b70b18565"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "next": "Save this single slice and evidence. R4 remains a separate next slice; no additional CI."
+  },
+  "finding": {
+    "oldPreparationCondition": "scrollY > 500",
+    "newPreparationCondition": "abs(actualY - (initialY + 600)) < 3",
+    "observed": {
+      "actualY": 2367,
+      "initialY": 1767,
+      "legacyConditionAlreadyTrue": true,
+      "requestedY": 2367
+    },
+    "testSetupDefectConfirmed": true,
+    "exactPriorFailureCauseUnknown": true,
+    "diagnosticAwaitMayAffectTiming": true
+  },
+  "visualReview": {
+    "pagedReturn": "Readable native text",
+    "continuousReturn": "Readable native text",
+    "repeatedSeek": "Blank native screenshot despite coordinate assertions passing; cause not determined",
+    "presentBeforePreparationChange": true,
+    "visibilityAccepted": false,
+    "files": [
+      {
+        "path": "build\\ci\\39607326744\\diagnostic\\ReaderSnapshots\\435F6DFC-A81F-4B3A-9037-BCB37545D375.png",
+        "sha256": "bdaa7d3e1029701dc91f87578f7c77e743bda04dd2e288113f214906413e753d"
+      },
+      {
+        "path": "build\\ci\\39607326744\\diagnostic\\ReaderSnapshots\\078C791C-5250-416F-9F42-AED5374531D2.png",
+        "sha256": "3cf0f574b09d4b5f9596e9094c60e503c4d26f6d2e374d3fb553fd803e922434"
+      },
+      {
+        "path": "build\\ci\\39607326744\\diagnostic\\ReaderSnapshots\\416ACE40-B35C-4194-8AFB-5067B0776375.png",
+        "sha256": "ff25c21505e3dc87a646492241f4cb05234c66809708c91b16c741d40f3bc267"
+      },
+      {
+        "path": "build\\ci\\39600873539\\diagnostic\\ReaderSnapshots\\DCCB8DFB-D344-4FF8-AD5F-A50AA0839567.png",
+        "sha256": "ff25c21505e3dc87a646492241f4cb05234c66809708c91b16c741d40f3bc267"
+      }
+    ]
+  },
+  "checks": {
+    "windowsSwiftSyntaxFiles": 464,
+    "addedSyntaxDiagnostics": 0,
+    "pristineVendorGrammarLimitations": 54,
+    "syntaxIsCompilation": false,
+    "windowsTooling": {
+      "total": 76,
+      "passed": 70,
+      "skippedPOSIX": 6,
+      "seconds": 24.772,
+      "source": "build/maintenance/continuous-return-20261021/windows-tooling.log",
+      "repeatedForUnchangedTools": false
+    },
+    "linuxTooling": {
+      "total": 76,
+      "passed": 76,
+      "skipped": 0,
+      "seconds": 15.72
+    },
+    "nativeCases": 1,
+    "nativePassed": 1,
+    "nativeFailed": 0,
+    "nativeSkipped": 0,
+    "compilerSourceErrors": 0,
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0
+  },
+  "preserved": {
+    "frozenInputCount": 584,
+    "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+    "R1R2R3AndPagedNativeReadiness": true,
+    "full189NotExecuted": true,
+    "Core137NotExecuted": true,
+    "deviceReleaseNotExecuted": true,
+    "phoneNotAccepted": true,
+    "lastDeliveredBuild": 30
+  },
+  "evidence": {
+    "fullLog": "build\\ci\\39607326744\\full.log",
+    "fullLogSHA256": "d50473722830de83360dffc54a51b931e1c09c8930e44d47b72cf2f04a01997e",
+    "twoXCResultsRetained": true,
+    "completeArtifactVerified": {
+      "run": 39607326744,
+      "artifact": 12350481069,
+      "kind": "diagnostic",
+      "archiveBytes": 2662625,
+      "archiveSHA256": "0e7be14f35285fea8e5ebb53763032f8239c325d5d6482991d4e110b70b18565",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39607326744\\diagnostic-received.zip",
+          "bytes": 2662625,
+          "sha256": "0e7be14f35285fea8e5ebb53763032f8239c325d5d6482991d4e110b70b18565"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "singleReadAPIError": "EOF, original stderr retained; workflow not retried"
+  },
+  "acceptance": "Stricter preparation and original return geometry pass this single native sample. Prior failure exact cause and repeated-seek visibility remain unresolved; no overall R3/full release acceptance.",
+  "next": "Save this slice. A later slice must distinguish repeated-seek blank snapshot from actual visible rendering before claiming all return behavior accepted; R4 is not started."
+}

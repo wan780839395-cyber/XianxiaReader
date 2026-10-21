@@ -1,28 +1,30 @@
-# 当前工作：单查连续返回原位置（2026-10-21，用户已授权继续）
+# 当前断点：连续返回单例通过，测试准备漏洞修正，可见性另留疑点（2026-10-21）
 
-正在冻结本次准备条件修正：相对诊断源d8d39d5仅目标测试准备段与HANDOFF变化，随后只派发continuous-return原单例一次。原返回断言及截图后独立观察原文保留；生产/分页加载/CI入口不变。本次原生结果待取得，不能复用诊断版通过代替。冻结receipt为build/maintenance/continuous-return-20261021/preparation-frozen.json，恢复时核实际revision/remote/run，禁止重复派发。
+用户最新授权：继续且只验证修正准备条件后的原单例。本片已收齐结果并保存，不追加CI，不进入R4；电脑保持开机。原HEAD/index与全部旧WIP必须保留，不reset/clean。
 
-用户已明确选择继续且只验证修正准备条件后的这一例（另轮冷准备25–35分钟已说明）；不加原生整组/其他case/R4。当前诊断事实已核完整日志、summary、原生编译、4份附件JSON与stdout一致，重复seek差0.125；diagnostic-result.json已保存。下一冻结只改目标测试准备/HANDOFF，CI入口和生产沿用d8d39d5，不重复无变化的Python工具套件；语法464新增0/54限制已过（非编译），待单例原生验收。
+## 实际修改与结论
 
-诊断CI39600873539 completed/success，d8d39d5，原单例1/1（46.146秒）过，生产未变，不能称修复。连续captured/restored均longTop=-599.125、char499、savedOffset=-3.125、glyphTop=-3.125、nativeClip0、scrollY2367；返回WebView已重建但字位置相同，重复seek实际-10.125/外层2376不变也过。旧失败before仍未知，不能追认为裁切或环境原因。完整原件612791字节/digest与CRC核，build/ci/39600873539；观测汇总build/maintenance/continuous-return-20261021/observations.json。
+生产完全未改，分页native bootstrap及R1/R2/R3保持。诊断源d8d39d5d9301e93a9efe7790c57896c18869b9c6（codex/diagnose-continuous-return）增加原单例captured/restored/failed完整origin、原before/比较值和native几何证据，并加只选这一例的continuous-return入口；原false/true、3px/30秒/100ms及截图后的独立repeat保留。额外只读await可能扰动时序，诊断通过不能证明旧失败根因。
 
-已在本地只修原测试准备条件：原scrollY>500可能在+600移动前即为真，现同一次原初始top探针附带initialY，等待实际scrollY进入initialY+600的3px内才capture；新增actual/target/precondition附件。原600移动、返回3px/30秒/100ms、false/true、完整origin与截图后观察保持，生产仍未动。此修改尚未原生编译/验证，不能拿诊断版1/1当新准备条件已通过；先本地检查并收口当前诊断事实，再决定最小下一验证，不跑全套/R4。
+修正源e234b2bf6a583d0a1019bb142582c1bc97f34aab（codex/verify-continuous-return-preparation）是诊断源精确子提交，仅测试准备/HANDOFF两文件差异。旧scrollY>500在本次初始1767时已为真，现确认请求+600的目标2367实际到位后再capture，原返回断言不变。584运行输入与Git blob、所有其他测试方法/原返回后文、普通HEAD和index均核。验证确实等到本次动作完成，是本片已确认修正；旧失败缺before，精确原因仍未知，没有新生产修复可宣称。
 
-20:50实时核到d8d39d5的TEST BUILD SUCCEEDED，已进入iPhone16 Pro首次bootstatus；单例尚未执行。此时仅诊断测试原生编译通过，生产仍上一轮候选；等待记录captured/restored/failed的原比较值后再选修正。最终编译/执行与耗时按完整日志核实。
+## 实际验证与范围
 
-已仅派发[CI39600873539](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39600873539)，实际head已核d8d39d5；repository-checks过，Core/全套/其他诊断均跳过，单例步骤冷准备中。不追加其他选择。观察器.cache/recovery/watch_continuous_return.py只读、会保存run/full.log/artifact元数据；恢复核实际CI/文件/进程，旧exec会话不是当前任务状态。
+诊断CI39600873539 completed/success，原单例1/1（46.146秒），生产未变。修正后[CI39607326744](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39607326744) completed/success，实际head e234b2b，原单例1/1（51.275秒）、失败/跳过0，build-for-testing及真实test成功，test/summary/export均0，源码编译错误0。Linux76/76；Windows464语法新增0/54既有限制（非编译）、76工具70过6 POSIX跳过24.772秒、Bash过，未为未变Python工具追加重跑。完整Core137/iOS189、设备Release、普通设备/TrollStore、手机未验，无新IPA，最后交付Build30。
 
-尚未证实的分辨假设：firstVisibleElementLocator可能复用了与当前DOM几何不匹配的缓存锚点；或WebView浮动/裁切量前后不同，而原断言比较未经native clip换算的DOM段落top。新captured/failed/restored行同时给出原origin的字符Range、longTop、原before与原predicate最后读值、nativeClipTop和native状态，可检查savedOffset与实际字位置、采样与返回坐标。需要真实结果才能选择修复，不把该假设当根因。W3C CSSOM View Range几何与固定3.11 VisualNavigator已查，本地连续实现是自有扩展，不能当上游完整方案。
+准备附件initialY1767/requested2367/actual2367，legacyConditionAlreadyTrue=true。连续保存/返回longTop均-599.125、char499/savedOffset=-3.125、实际glyphTop=-3.125/clip0/scrollY2367；返回WebView重建但实际字相同。分页scrollX1206→1206。独立重复seek目标-10实际-9.125，误差0.875、外层2376不变，原坐标断言过。诊断版对应返回也完全相同，独立repeat误差0.125。这些只是各自样本，旧5/6与18/19不改写为全过。
 
-诊断冻结源d8d39d5d9301e93a9efe7790c57896c18869b9c6，codex/diagnose-continuous-return远程ref已核；相对081b5d2仅单测试/CI选择/HANDOFF四文件，584输入逐Git blob匹配，所有生产（含分页bootstrap）未改。逐方法核原测试只有目标单例加诊断和一个私有记录helper；前置准备/完整capture、后续截图/重复seek原文保持。Windows76工具70过6 POSIX跳过24.772秒、Bash/464语法新增0/54限制通过，均未替代原生编译。接下来只派发continuous-return一次，预期20–30分钟冷准备与原1例；若只重放过仍须判断诊断扰动，不能转入R4。
+## 必须保留的可见性疑点与下一片
 
-诊断已实现、生产未改：原单例在原before之后附加一次只读同字符Range/段落/scrollY采样，失败/成功出口记录原before、最后一次原断言读值、完整origin、模式、native clip/inner/frame诊断与WebView身份。原predicate仍为abs(value-before)<3、30秒/100ms不变，false/true及截图后的重复seek观察保留。该额外await可能改变时序，单次通过不等于修好。continuous-return CI入口只选原1条，跳过Core/全套/IPA，保留原退出/xcresult。Windows语法464新增0/54既有限制通过（非编译），下一步76工具/Bash后冻结并只跑本单例。
+实际查看本轮分页/连续返回原生截图均正文可读。但截图后的独立continuous-repeated-canonical-seek附件是白图，前一诊断版同名附件也白；其原流程先截图再读Range，仅坐标断言过不能代表可见像素验收。尚不能确定实际呈现与截图取样时刻的关系，也不能归咎环境或本次准备修正。原件与风险均保留，不隐藏或为此扩改/追加CI。本轮只验一例的授权已完成，下一片先单查这一可见性疑点，再推进R4；不从单次几何成功声称全部返回功能已修好。
 
-已核584输入与上一轮候选相同、旧CI均completed、无观察/下载任务。普通HEAD/index保持。先只补原FreshReturnCapture一个用例的阶段/模式、完整origin、原before/最后一次返回读值及同视图锚点几何；false/true顺序、原断言/预算与独立观察保留，分页native bootstrap及R1/R2/R3不改。先区分origin采样与恢复/测量时刻，不先改生产。原生只跑这一例，不跑19/189；R4在此问题收口后另片。
+## 原件、成本和恢复
 
-本轮预计只触及Tests/iOS/ReaderRenderingTests.swift、最小单例CI选择和状态文档。准备/编译/导出仍需冷成本；新增诊断可能影响时序，若只重放成功不能称根因修复。参考锁定Readium3.11 VisualNavigator语义与W3C CSSOM View Range几何，不升级依赖。基线及原交接在build/maintenance/continuous-return-20261021。
+权威Documentation/ValidationLogs/continuous-return-preparation.json，设计Documentation/READER_POSITION_ISOLATION.md。新原生步骤1385秒，其中首suite前1280.445秒为工具/依赖/编译/启动准备，单例51.275秒，余量含诊断导出；上一诊断步骤1666秒、首suite前1572.667秒，不把准备算纯测试。新完整artifact2662625字节，12350481069，SHA/digest 0e7be14f35285fea8e5ebb53763032f8239c325d5d6482991d4e110b70b18565；CRC/完整展开与两个xcresult/summary/全部附件JSON已核，原始日志在build/ci/39607326744。旧诊断原件在build/ci/39600873539，612791字节，digest dabbff242d3a715c6fa751e48f33e2e9b93ece66020573de21d20f870f5b1391。只精确清重复ZIP，不动源码/包/旧原件。
 
-以下为上一轮已保存事实，用户本轮继续授权覆盖其中停止追加的旧安排。
+只读观察中有一次API EOF，原stderr已留，之后实际任务成功且完整日志收齐，没有重派CI。watcher和下载均结束；旧会话/PID不代表当前活跃状态，恢复查实际run/进程。冻结/保护/坐标汇总及两阶段回执在build/maintenance/continuous-return-20261021，最终文档检查点另记final-checkpoint.json，不是重新运行源。生成最终文档检查点前先执行仓库结构检查和保全核对；没有待执行原生任务。
+
+以下保留上一轮加载缺口专项的历史原始结果，不能当当前运行状态。
 
 # 当前断点：EPUB加载缺口对照有效，连续返回仍失败，已按用户选择保存（2026-10-21）
 

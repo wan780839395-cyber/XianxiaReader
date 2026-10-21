@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-21连续返回专项：生产、Readium分页bootstrap和R1/R2/R3模块均保持，未增加异步生产层。e234b2b只强化原测试准备为本次initialY+600真实完成；CI39607326744原单例1/1、原生编译通过，原返回3px/30秒与截图后观察保留。诊断样本完整字符/viewport偏移与实际DOM返回一致，旧失败缺before不能追认根因。后续重复seek坐标虽过、原生截图空白（诊断旧版同样），可见性未验收；R4未开始。详见[本片结果](Documentation/ValidationLogs/continuous-return-preparation.json)与READER_POSITION_ISOLATION。
+
 2026-10-21 Readium3.11重排分页候选沿用已有连续模式的原生bootstrap：WK didFinish/真实viewport和Readium脚本就绪后只启动同一完整初始化一次，字体与pending完整Locator恢复完成后才显示和上报；固定布局、关闭取消、位置guard及连续JS保持。候选运行源0de44ba，仅SpreadView和UPSTREAM相对控制基线变化，原生编译通过、加载屏障对照有效；整组仍5/6，原例后续连续返回981失败，不能当作全定位验收。R4未开始，下一轮按用户选择单查连续返回；连续语句/await次序保持不等于已排除前序分页的运行时影响。详见[专项原始结果](Documentation/ValidationLogs/epub-native-readiness-control.json)与READER_POSITION_ISOLATION。
 
 以下保留各自源与日期的历史记录；当前只以本段及HANDOFF为准。
