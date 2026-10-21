@@ -1568,7 +1568,7 @@ final class ReaderRenderingTests: XCTestCase {
             if ready { return }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
-        var diagnostic = "\(caller):\(line)"
+        var diagnostic = "\(caller):\(line) sampledAtUptime=\(ProcessInfo.processInfo.systemUptime)"
         if let engine = diagnosticEngine {
             let root = engine.viewController.view!
             diagnostic += "\nhostAppeared=\(diagnosticHost?.hasAppeared == true) windowKey=\(root.window?.isKeyWindow == true) windowHidden=\(String(describing: root.window?.isHidden)) scene=\(String(describing: root.window?.windowScene?.activationState)) rootFrame=\(root.frame)"
@@ -1579,14 +1579,14 @@ final class ReaderRenderingTests: XCTestCase {
             }
             for webView in webViews(in: root) {
                 let visibleRect = clippedVisibleRect(webView, root: root)
-                diagnostic += "\nweb frame=\(webView.frame) visible=\(visibleRect) offset=\(webView.scrollView.contentOffset)"
+                diagnostic += "\nweb frame=\(webView.frame) visible=\(visibleRect) offset=\(webView.scrollView.contentOffset) contentAlpha=\(webView.scrollView.alpha) loading=\(webView.isLoading) sampledAtUptime=\(ProcessInfo.processInfo.systemUptime)"
                 guard webView.window != nil, visibleRect.width > 0, visibleRect.height > 0 else {
                     diagnostic += " DOM not queried: hidden or detached native viewport"
                     continue
                 }
                 do {
                     let value = try await webView.evaluateJavaScript("({href:location.pathname,ready:document.readyState,y:scrollY,height:innerHeight,line12:document.getElementById('line-12')?.getBoundingClientRect().top,line18:document.getElementById('line-18')?.getBoundingClientRect().top,long:document.getElementById('long-paragraph')?.getBoundingClientRect().top,canonicalTarget:JSON.stringify(window.__xrCanonicalGoTarget),trace:JSON.stringify(window.__xrPagedRestoreTrace),writers:JSON.stringify(window.__xrPagedRestoreWriters),caretOffsets:[0.2,0.5,0.8].map(x=>document.caretRangeFromPoint(innerWidth*x,2)?.startOffset)})")
-                    diagnostic += " DOM=\(String(describing: value))"
+                    diagnostic += " DOM=\(String(describing: value)) returnedAtUptime=\(ProcessInfo.processInfo.systemUptime) currentPositionAfterDOM=\(engine.currentPosition.map { String(decoding: $0.locatorData, as: UTF8.self) } ?? "nil") contentAlphaAfterDOM=\(webView.scrollView.alpha)"
                 } catch { diagnostic += " DOM error=\(error.localizedDescription)" }
             }
         }
@@ -1889,6 +1889,81 @@ final class ReaderRenderingTests: XCTestCase {
         try await engine.open(book: book, fileURL: url, position: nil)
         try await waitUntil { engine.continuousLoadedResourceCount >= 2 && engine.currentPosition != nil }
         XCTAssertNotNil(view(identifier: "readium.continuous-scroll", in: engine.viewController.view))
+    }
+
+    @MainActor func testPagedNativeLoadDoesNotWaitForAnimationFrameBridge() async throws {
+        let script = WKUserScript(source: """
+        (() => {
+          const nativeFrame = window.requestAnimationFrame.bind(window);
+          const pending = [], sources = [];
+          window.__xrReleaseSpreadLoaded = () => {
+            const callbacks = pending.splice(0);
+            callbacks.forEach(callback => callback(performance.now()));
+            return callbacks.length;
+          };
+          window.__xrSpreadLoadedGate = () => ({pending:pending.length,sources:sources.slice()});
+          window.requestAnimationFrame = callback => {
+            if (location.pathname.endsWith('/OEBPS/one.xhtml') && String(callback).includes('spreadLoaded')) {
+              sources.push(String(callback)); pending.push(callback); return 0;
+            }
+            return nativeFrame(callback);
+          };
+        })();
+        """, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [script])
+        var interaction = ReadingInteraction(); interaction.reduceMotion = true
+        try engine.setInteraction(interaction)
+        let (_, state) = try mount(engine); state.visible = false
+        defer { engine.close() }
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await engine.go(to: Chapter(id: "fixture:OEBPS/one.xhtml#long-paragraph", bookID: book.id,
+            ordinal: 1, title: "测试目标", href: "OEBPS/one.xhtml#long-paragraph"))
+        let web = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        try await waitUntil {
+            let gate = try await web.evaluateJavaScript("({href:location.pathname,ready:document.readyState,pending:window.__xrSpreadLoadedGate?.().pending ?? 0})") as? [String: Any]
+            return gate?["href"] as? String == "/OEBPS/one.xhtml" && gate?["ready"] as? String == "complete"
+                && (gate?["pending"] as? Int ?? 0) > 0
+        }
+        func evidence(_ phase: String) async throws -> [String: Any] {
+            let started = ProcessInfo.processInfo.systemUptime
+            let domValue = try await web.evaluateJavaScript("({href:location.pathname,ready:document.readyState,gate:window.__xrSpreadLoadedGate()})")
+            let dom = try XCTUnwrap(domValue as? [String: Any])
+            var locator: [String: Any] = [:]
+            if let position = engine.currentPosition {
+                locator = try XCTUnwrap(JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any])
+            }
+            let row: [String: Any] = ["phase": phase, "dom": dom,
+                "alpha": Double(web.scrollView.alpha), "attached": web.window != nil,
+                "keyWindow": web.window?.isKeyWindow == true, "loading": web.isLoading,
+                "reportedHref": locator["href"] as? String ?? "nil",
+                "fullDOMAnchor": (locator["locations"] as? [String: Any])?["domRange"] != nil,
+                "queryStartedUptime": started, "queryFinishedUptime": ProcessInfo.processInfo.systemUptime]
+            let text = String(decoding: try JSONSerialization.data(withJSONObject: row, options: [.sortedKeys]), as: UTF8.self)
+            let attachment = XCTAttachment(string: text); attachment.name = "epub-native-ready-\(phase)"
+            attachment.lifetime = .keepAlways; add(attachment)
+            print("EPUB_NATIVE_READY_CONTROL_EVIDENCE \(text)")
+            return row
+        }
+        _ = try await evidence("prepared")
+        do {
+            try await waitUntil(caller: "PAGED_NATIVE_READY_MUST_PUBLISH") {
+                guard web.window != nil, web.scrollView.alpha > 0.99, let position = engine.currentPosition,
+                      let locator = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any] else { return false }
+                return locator["href"] as? String == "OEBPS/one.xhtml"
+            }
+        } catch {
+            _ = try await evidence("failed")
+            throw error
+        }
+        let ready = try await evidence("ready")
+        XCTAssertEqual(ready["fullDOMAnchor"] as? Bool, true)
+        let released = try await web.evaluateJavaScript("window.__xrReleaseSpreadLoaded()") as? Int
+        XCTAssertGreaterThan(try XCTUnwrap(released), 0, "The original bridge must still be held until native readiness is proved")
+        _ = try await engine.captureCurrentPosition()
+        let late = try await evidence("released")
+        XCTAssertEqual(late["reportedHref"] as? String, "OEBPS/one.xhtml")
+        XCTAssertGreaterThan(try XCTUnwrap(late["alpha"] as? Double), 0.99)
     }
 
     @MainActor func testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge() async throws {

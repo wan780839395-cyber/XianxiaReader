@@ -5,6 +5,19 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  epub-ready-baseline)
+    cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge)
+    ;;
+  epub-ready-patched)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord
+    )
+    ;;
   position-isolation)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator
@@ -207,7 +220,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' ]]; then
+if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.
