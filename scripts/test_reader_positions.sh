@@ -11,7 +11,7 @@ mkdir -p "$output"
 output="$(cd "$output" && pwd)"
 swift --version | tee "$output/environment.log"
 uname -s | tee -a "$output/environment.log"
-swift package --package-path Packages/XianxiaCore show-dependencies --format json > "$output/dependencies.json"
-swift test --package-path Packages/XianxiaCore --parallel --filter ReaderPositionStateTests \
+swift package --package-path Packages/ReaderPositions show-dependencies --format json > "$output/dependencies.json"
+swift test --package-path Packages/ReaderPositions --parallel --filter ReaderPositionStateTests \
   --xunit-output "$output/tests.xml" 2>&1 | tee "$output/tests.log"
 python3 scripts/verify_reader_positions.py logic "$output" --report "$output/receipt.json"

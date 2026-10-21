@@ -150,6 +150,7 @@ jobs:
             build/logs/
             build/ReaderPositions/
             build/DiagnosticTests.xcresult/
+            build/PositionBuild.xcresult/
             build/ReaderSnapshots/
             build/test-results-summary.json
             build/build-environment.txt
@@ -209,6 +210,7 @@ jobs:
             build/FontPreflightSnapshots/
             build/ContinuousRotationPreflightSnapshots/
             build/InteractionVideo/
+            build/ReaderPositions/
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json

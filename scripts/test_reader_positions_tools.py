@@ -22,7 +22,7 @@ class PositionEvidenceTests(unittest.TestCase):
         self.suite = ET.Element("testsuite", tests="6", errors="0", failures="0")
         for name in sorted(LOGIC_TESTS):
             ET.SubElement(self.suite, "testcase", classname="ReaderPositionsTests.ReaderPositionStateTests", name=name)
-        (self.root / "dependencies.json").write_text(json.dumps({"name": "XianxiaCore", "dependencies": []}))
+        (self.root / "dependencies.json").write_text(json.dumps({"name": "ReaderPositions", "dependencies": [{"name": "XianxiaCore", "dependencies": []}]}))
 
     def logic(self, suite=None):
         tree = ET.Element("testsuites")
@@ -33,7 +33,9 @@ class PositionEvidenceTests(unittest.TestCase):
     def test_six_contracts_require_exact_identity_without_external_packages(self):
         self.assertEqual(self.logic()["passed"], 6)
         for dependencies in [{"name": "Other", "dependencies": []},
-                             {"name": "XianxiaCore", "dependencies": [{"name": "ReadiumToolkit"}]}]:
+                             {"name": "ReaderPositions", "dependencies": []},
+                             {"name": "ReaderPositions", "dependencies": [{"name": "ReadiumToolkit", "dependencies": []}]},
+                             {"name": "ReaderPositions", "dependencies": [{"name": "XianxiaCore", "dependencies": [{"name": "ReadiumToolkit"}]}]}]:
             with self.subTest(dependencies=dependencies):
                 (self.root / "dependencies.json").write_text(json.dumps(dependencies))
                 with self.assertRaises(ValueError): self.logic()

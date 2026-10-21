@@ -13,16 +13,23 @@
         "ReaderSettingsTests": {"kind": "testTarget", "path": "Tests/ReaderSettingsTests", "dependencies": ["ReaderSettings", "XianxiaCore"]}
       }
     },
+    "ReaderPositions": {
+      "path": "Packages/ReaderPositions",
+      "packagePaths": ["../XianxiaCore"],
+      "products": {"ReaderPositions": ["ReaderPositions"]},
+      "targets": {
+        "ReaderPositions": {"kind": "target", "path": "Sources/ReaderPositions", "dependencies": ["XianxiaCore"]},
+        "ReaderPositionsTests": {"kind": "testTarget", "path": "Tests/ReaderPositionsTests", "dependencies": ["ReaderPositions", "XianxiaCore"]}
+      }
+    },
     "XianxiaCore": {
       "path": "Packages/XianxiaCore",
       "packagePaths": [],
-      "products": {"XianxiaCore": ["XianxiaCore"], "TXTPerformanceProbe": ["TXTPerformanceProbe"], "ReaderPositions": ["ReaderPositions"]},
+      "products": {"XianxiaCore": ["XianxiaCore"], "TXTPerformanceProbe": ["TXTPerformanceProbe"]},
       "targets": {
         "CSQLite": {"kind": "systemLibrary", "path": "Sources/CSQLite", "dependencies": []},
         "CTextCodec": {"kind": "target", "path": "Sources/CTextCodec", "dependencies": []},
         "XianxiaCore": {"kind": "target", "path": "Sources/XianxiaCore", "dependencies": ["CSQLite", "CTextCodec"]},
-        "ReaderPositions": {"kind": "target", "path": "Sources/ReaderPositions", "dependencies": ["XianxiaCore"]},
-        "ReaderPositionsTests": {"kind": "testTarget", "path": "Tests/ReaderPositionsTests", "dependencies": ["ReaderPositions", "XianxiaCore"]},
         "TXTPerformanceProbe": {"kind": "executableTarget", "path": "Benchmarks/TXTPerformanceProbe", "dependencies": ["XianxiaCore"]},
         "XianxiaCoreTests": {"kind": "testTarget", "path": "Tests/XianxiaCoreTests", "dependencies": ["XianxiaCore", "CSQLite"]}
       }
@@ -38,7 +45,7 @@
       }
     }
   },
-  "projectPackages": {"XianxiaCore": "Packages/XianxiaCore", "XianxiaReading": "Packages/XianxiaReading", "ReaderSettings": "Packages/ReaderSettings"},
+  "projectPackages": {"XianxiaCore": "Packages/XianxiaCore", "XianxiaReading": "Packages/XianxiaReading", "ReaderSettings": "Packages/ReaderSettings", "ReaderPositions": "Packages/ReaderPositions"},
   "projectTargets": {
     "XianxiaReader": {"kind": "application", "sources": ["App"], "dependencies": ["XianxiaCore", "ReaderPositions", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings", "ReaderFonts"]},
     "XianxiaReaderTests": {"kind": "bundle.unit-test", "sources": ["Tests/iOS", "Packages/ReaderSettings/Tests/ReaderSettingsTests"], "dependencies": ["XianxiaReader", "XianxiaCore", "ReaderPositions", "ReadingInterfaces", "ReadiumAdapter", "ReaderSettings", "ReaderFonts"]},
@@ -58,8 +65,8 @@
     {"name": "iOS integration tests", "target": "XianxiaReaderTests", "path": "Tests/iOS", "imports": ["Combine", "CoreText", "CryptoKit", "Foundation", "ImageIO", "ReaderSettings", "ReaderFonts", "ReadingInterfaces", "ReadiumAdapter", "SQLite3", "SwiftUI", "UIKit", "UniformTypeIdentifiers", "WebKit", "XCTest", "XianxiaCore", "XianxiaReader"]},
     {"name": "Settings logic", "target": "ReaderSettings", "path": "Packages/ReaderSettings/Sources/ReaderSettings", "imports": ["Combine", "Foundation", "XianxiaCore"]},
     {"name": "Settings contract tests", "target": "ReaderSettingsTests", "path": "Packages/ReaderSettings/Tests/ReaderSettingsTests", "imports": ["Foundation", "ReaderSettings", "XCTest", "XianxiaCore"]},
-    {"name": "Position state", "target": "ReaderPositions", "path": "Packages/XianxiaCore/Sources/ReaderPositions", "imports": ["Foundation", "XianxiaCore"]},
-    {"name": "Position contracts", "target": "ReaderPositionsTests", "path": "Packages/XianxiaCore/Tests/ReaderPositionsTests", "imports": ["Foundation", "ReaderPositions", "XCTest", "XianxiaCore"]},
+    {"name": "Position state", "target": "ReaderPositions", "path": "Packages/ReaderPositions/Sources/ReaderPositions", "imports": ["Foundation", "XianxiaCore"]},
+    {"name": "Position contracts", "target": "ReaderPositionsTests", "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests", "imports": ["Foundation", "ReaderPositions", "XCTest", "XianxiaCore"]},
     {"name": "Font coordination", "target": "ReaderFonts", "path": "Packages/XianxiaReading/Sources/ReaderFonts", "imports": ["Combine", "Foundation", "ReadingInterfaces", "XianxiaCore"]},
     {"name": "Native UI tests", "target": "XianxiaReaderUITests", "path": "Tests/UI", "imports": ["UIKit", "XCTest"]}
   ],

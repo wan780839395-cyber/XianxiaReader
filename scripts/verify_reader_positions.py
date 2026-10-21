@@ -50,8 +50,10 @@ def verify_logic(folder):
     if names != Counter({name: 1 for name in LOGIC_TESTS}) or int(suites[0].get("tests", "-1")) != len(LOGIC_TESTS):
         raise ValueError("Every position contract must execute exactly once")
     dependencies = json.loads((folder / "dependencies.json").read_text(encoding="utf-8"))
-    if dependencies["name"] != "XianxiaCore" or dependencies["dependencies"]:
-        raise ValueError("Position logic must use the local Core package without external dependencies")
+    children = dependencies["dependencies"]
+    if (dependencies["name"] != "ReaderPositions" or len(children) != 1
+            or children[0]["name"] != "XianxiaCore" or children[0]["dependencies"]):
+        raise ValueError("Position logic must depend only on the local Core product")
     return dict(cases=sorted(names), passed=len(names), failed=0, skipped=0, appHostUsed=False, readiumResolved=False)
 
 

@@ -92,7 +92,7 @@ class ArchitectureTests(unittest.TestCase):
                 self.blocked(f"Font coordination must not import {module}")
 
     def test_position_state_cannot_acquire_ui_or_engine_dependencies(self):
-        file = "Packages/XianxiaCore/Sources/ReaderPositions/ReaderPositionState.swift"
+        file = "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionState.swift"
         for module in ["ReadingInterfaces", "ReaderFonts", "ReadiumAdapter", "ReadiumNavigator", "UIKit", "SwiftUI"]:
             with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
                 self.blocked(f"Position state must not import {module}")

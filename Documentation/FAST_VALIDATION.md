@@ -1,6 +1,6 @@
 # I1 设置逻辑快速验证
 
-R3a新增（2026-10-21，当前待编译）：`bash scripts/test_reader_positions.sh <新的输出目录>`只执行Core包内ReaderPositions的6项真实合同，保留xUnit/依赖/真实退出码并拒绝陈旧输出目录。workflow输入`position-isolation`先同一6项，再13项已有保存/进度/EPUB/TXT/字体/分页writer用例；不跑完整188、性能探针、设备Release或IPA。精确身份守卫见scripts/verify_reader_positions.py，禁止把定向结果写成发布验收。R3整体仍有捕获/持久化编排和返回点职责待迁移，详见READER_POSITION_ISOLATION。
+R3a新增（2026-10-21，首轮6/6、原生接线失败，新独立包待验证）：`bash scripts/test_reader_positions.sh <新的输出目录>`只执行独立ReaderPositions包的6项真实合同（仅依赖Core），保留xUnit/依赖/真实退出码并拒绝陈旧输出目录。workflow输入`position-isolation`先同一6项，再13项已有保存/进度/EPUB/TXT/字体/分页writer用例；不跑完整188、性能探针、设备Release或IPA。精确身份守卫见scripts/verify_reader_positions.py，禁止把定向结果写成发布验收。R3整体仍有捕获/持久化编排和返回点职责待迁移，详见READER_POSITION_ISOLATION。
 
 2026-10-21最新：分页writer定向补证39561815911完成，同一单用例旧负例1/1、新正例1/1，原字与无位置写入均核；生产9bb6c86保持，下一切片R3未实施。完整188、设备Release/手机仍待独立门槛，不能把本1+1或历史9/9称全量通过。首组屏障越界失败保留；最新事实见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。
 

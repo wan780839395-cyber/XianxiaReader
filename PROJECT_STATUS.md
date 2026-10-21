@@ -1,5 +1,9 @@
 # 项目状态
 
+R3a接线纠偏（2026-10-21）：首轮CI39569845077独立6/6，但Xcode规划Core动态产品时引用缺失CSQLite，iOS test65/0项执行。原件与失败保留。位置源码/6合同/App逻辑字节保持，模块改用现有ReaderSettings的独立Foundation包布局，通过Core产品依赖；Core manifest、SDK SQLite和锁恢复/保持。当前新接线尚未原生验收。仅position-isolation新增先build-for-testing再boot/test，优先暴露接线错误；仍同6+13、原断言/预算，无全188/Release/IPA。
+
+R3a进行中（2026-10-21）：ReaderPositions真实Foundation-only产品/target已接线，接管完整位置、显式保存请求身份/失效和保存错误；原捕获/写库await、预算与顺序保留。源a9d4e8424c01c6163af89d2f127f5a4caedffee7 / CI39569845077仅运行6独立+13原生合同，尚未收齐编译/定向结果。Windows458语法新增0/既有54、71工具65过6 POSIX跳过；原测试/定位修复保持。R3捕获/持久化与返回点职责后续继续，不能称R3或全项目隔离完成；完整188/设备Release/手机均未验，无新IPA。
+
 2026-10-21分页字体回章头缺陷的定向验证已收口；下一独立切片R3，本轮未实施R3、未派发第三组、保持开机。
 
 CI39561815911 success：旧4e650462/新af9b773c同fixture与预算、原两行为断言不变，实际仅JS+UPSTREAM差异；runtime同旧a812571/新9bb6c86。原生旧1608→0、原字不可见、test65；新1608→1608、原字可见、test0/1项通过/无跳过，负对照已合格。两边536输入与实际载入callback/frame源码核验，源码编译0错误；旧snap实际写0，新不写位置，进度读取1608且未被注入。

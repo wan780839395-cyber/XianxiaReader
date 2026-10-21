@@ -1,5 +1,18 @@
 # R3 阅读位置隔离
 
+## 首轮接线失败与最小纠偏
+
+CI39569845077/源a9d4e84已保留完整原件：macOS真实6/6、原生test65/0项执行；Xcode16.4生成的XianxiaCore dynamic产品规划引用缺失CSQLite target，尚未进入源码编译/测试。本轮新增Core包内产品直接依赖Core target是相关结构差异；结合错误推断为产品/内部target消费混合的规划问题，尚不能当作精确根因证明。
+
+改为现有ReaderSettings的成熟本地模式：独立Packages/ReaderPositions，原状态源与6测试字节迁移不变，显式.product依赖原XianxiaCore；Core manifest恢复首轮之前的原件，不强制改变Core静态/动态类型，不改SQLite SDK链接/依赖锁。架构登记、project.yml、快速入口和精确依赖核验随之调整。新依赖树必须只有ReaderPositions→XianxiaCore，Core无外部依赖。完整Core仍137项，位置6项由ci_ios.sh独立执行并保留原件，iOS完整188不变。
+
+仅本片position-isolation入口在模拟器boot前先对同一个选定destination执行标准build-for-testing，保留PositionBuild.xcresult与真实错误退出码；原xcodebuild test随后复用正常编译产物，原13项/断言/预算不变。提前发现接线故障，避免先支付模拟器迁移成本；不修改其他诊断或发布测试时序。此构建步骤不是测试通过，也不能替代原13项执行。
+
+参考：[GRDB维护者对相同dynamic+SQLite缺target报错的说明](https://forums.swift.org/t/errors-on-build-after-add-package-grdb/76189)。其Xcode16.1案例涉及同时嵌入GRDB/GRDBDynamic，本项目16.4未声明这两个产品，只能借鉴检查产品消费路径，不能照抄为本项目已证原因。实际选择独立包来自本项目已验ReaderSettings布局和SwiftPM官方显式产品依赖规则；新原生构建仍须验证。
+
+以下Core包内布局与143项描述为首轮设计历史，已由独立包/Core137+位置6取代。
+
+
 ## 2026-10-21 R3a 当前实施合同
 
 本轮用户授权继续R3，先交付位置状态与显式保存请求隔离。源码初稿已接线，尚未Swift编译/原生验收。旧候选只复用经过当前差异审阅的10个文件；当前分页控制workflow、断言、故障注入和字体双模式默认值保留。

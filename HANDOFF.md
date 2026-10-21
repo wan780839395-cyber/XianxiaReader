@@ -1,3 +1,15 @@
+# 当前断点：R3a原生接线失败已留证，修正包边界（2026-10-21）
+
+首源a9d4e84/CI39569845077：真实macOS独立6/6、Linux仓库/工具通过；原生test65、summary/export0，0项执行。完整59180字节artifact已核GitHub digest/SHA/ZIP CRC，原件build/ci/39569845077，独立xUnit与Core无外部依赖已重新核验。错误为XianxiaCore自动dynamic产品的BuildFile引用缺失PACKAGE-TARGET:CSQLite，发生在测试前构建规划；不归因定位行为或环境、不写成原生通过。
+
+新假设/最小改动：同Core包新产品直接依赖Core target，与既有外部产品消费者触发Xcode动态产品规划冲突；这是结合错误与接线差异的推断，待新实际构建验证。改用现有ReaderSettings已验证布局：ReaderPositions为独立Foundation包，通过.product依赖原Core产品；业务代码/6测试/App调用不变，Core manifest恢复原件、SQLite SDK/链接/资源/锁不变。不强制改Core static/dynamic、不升级依赖。仍只验证同一6+13合同，不混入R3b/全188。
+
+参考SwiftPM target/product官方规则、GRDB维护者在Swift Forums对相同dynamic+SQLite缺target错误的说明；说明不是本项目根因证明，最终需实际接线编译。独立包接线与先编译再boot的本片入口已修正，本地459语法新增0/既有54、71工具65过6 POSIX跳过（24.093秒）、Bash和静态边界通过。即将冻结独立包接线，仍仅6+13，不重跑全套。保留首轮失败原件及失败预算，不能覆盖成功。
+
+# 当前断点：R3a已冻结，定向CI39569845077运行中（2026-10-21）
+
+实际源a9d4e8424c01c6163af89d2f127f5a4caedffee7，codex/maintenance-position-state-r3a；只选position-isolation的6独立+13原生合同。1170原有输入中1157保持，35原测试输入保持，所有原await表达式/顺序及其他VM方法保持。仓库/工具Linux步骤已过；macOS独立6项合同步骤已通过（2分21秒，原件待最终下载复核），正在XcodeGen/原生工程冷准备，13项原用例尚未收齐。普通HEAD/index及既有WIP保持，无新IPA。恢复先核run、frozen.json、完整日志与实际文件。
+
 # 当前断点：R3a 位置状态与保存请求隔离，开始实施（2026-10-21）
 
 用户明确继续R3，保留现有功能和已修好的定位行为。本轮只做R3a：ReaderPositions Foundation-only真实target负责完整ReadingPosition、显式保存请求身份/失效、保存错误。App仍在原调用点执行捕获、原3秒/32ms预算、慢滚/设置flush及数据库await；不新增async封装。返回点/导航、捕获持久化编排与统一会话后续单列，不能称R3整体完成。

@@ -201,6 +201,18 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
+if [[ "$selection" == 'position-isolation' ]]; then
+  # Catch new product/target wiring errors before waiting for simulator migration.
+  # Compile the exact selected destination; the original test action below keeps
+  # its cases, assertions and budgets, reusing these ordinary build products.
+  xcodebuild build-for-testing -project XianxiaReader.xcodeproj -scheme XianxiaReader \
+    -onlyUsePackageVersionsFromResolvedFile \
+    -configuration Debug -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+    -derivedDataPath "$PWD/build/DerivedData" \
+    -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
+    -resultBundlePath "$PWD/build/PositionBuild.xcresult" \
+    "${cases[@]}" CODE_SIGNING_ALLOWED=NO
+fi
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
 if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
