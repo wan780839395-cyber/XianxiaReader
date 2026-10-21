@@ -14,6 +14,8 @@ packages:
     path: Packages/ReaderSettings
   ReaderPositions:
     path: Packages/ReaderPositions
+  ReaderSessions:
+    path: Packages/ReaderSessions
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -39,6 +41,8 @@ targets:
         product: XianxiaCore
       - package: ReaderPositions
         product: ReaderPositions
+      - package: ReaderSessions
+        product: ReaderSessions
       - package: XianxiaReading
         product: ReadingInterfaces
       - package: XianxiaReading

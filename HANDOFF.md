@@ -1,4 +1,16 @@
-# 当前断点：重复定位截图边界本片通过，下一独立片R4（2026-10-21）
+# 当前工作：R4a会话归属与关闭失效（2026-10-21，用户已授权）
+
+R4a源码和最小验证入口已写，尚未编译/执行：新ReaderSessions Foundation-only产品、按次绑定owner的回调门、旧写入完成后的错误发布门，保留close最后位置先接收后失效。复核发现原字体失败只重置started不清ID，已用allowReopening原样保留，不能把两者合并。原28个测试正文保持，新增2个原生合同及6个包合同；新selection只跑旧1负对照+候选13生命周期例，共用runner/缓存，不跑全套。当前门槛因新增2例变为162+29=191，更新守卫不等于执行完整门槛。接下来先Windows静态/工具检查，再冻结只派一次此selection；详细合同见Documentation/READER_SESSION_ISOLATION.md。
+
+Windows检查完成：467 Swift语法新增0（54既有Vendor parser限制），仓库/依赖边界通过；Python82项中75通过、7 POSIX跳过，日志build/maintenance/R4a-20261021/{repository,tooling}.log；3个受影响Bash分别bash-n通过。不是Swift编译。实时核CI39619940734已completed/success，无旧运行需要接续；本地无Swift命令。冻结前须逐旧方法/await行、全部1194旧路径hash核保护，再用私有索引提交；普通HEAD/index保留。
+
+本轮范围：独立Foundation ReaderSessions负责人拥有started/请求ID/所属书及回调接收规则；VM保留原打开/重试/关闭编排、await和同步发布顺序，只按打开请求绑定引擎回调、关闭后失效。明确修正：旧闭包在同model重开后不接收；关闭后error/tap/gesture/slow-scroll回调不发布；进度已接收的每次写入继续执行，旧会话写入失败不污染新会话；engine.close最后位置回调仍先接收再失效。只选新独立会话合同及相关原打开/关闭/重试/迟到位置/导航/设置生命周期回归，不跑Readium19/全189/设备Release或截图重放。打开/重试编排、字体事务、保存/导航模块和Vendor/依赖锁不改；R4b后续。
+
+已核584运行输入与9aac4d完全一致、普通HEAD/index保持，无旧观察/下载进程；1194保存路径保护基线见build/maintenance/R4a-20261021/before.json，上一交接原件同目录。预计影响新Packages/ReaderSessions、App/Reader/ReaderViewModel.swift、Tests/iOS/ReaderLifecycleTests.swift及最小XcodeGen/依赖登记/快速验证/CI接线与状态文档。新target必须实际编译接线；不只移动目录或给UUID包空壳。实现前先核实际fixture与既有模块模式，再冻结执行最小原生门槛，准备成本和测试分记。
+
+以下是上一截图切片的已保存原始事实，不覆盖用户本轮R4a继续指令。
+
+# 上一断点：重复定位截图边界本片通过，下一独立片R4（2026-10-21）
 
 用户已授权先查清重复定位白图，再继续R4；本片已完成两轮同原单例的诊断/验证，停止追加截图CI。生产及分页加载/既有定位/R1/R2/R3隔离全部保留，无新IPA，电脑保持开机。普通HEAD/index及全部旧WIP不能reset/clean。下一片R4先明确会话请求归属、关闭失效与原await/同步发布顺序，随后拆打开/重试/关闭；不要为旧即时对照图再盲跑截图例，不把R4混入当前验收源。
 

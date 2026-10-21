@@ -8,6 +8,83 @@ import XianxiaCore
 @testable import XianxiaReader
 
 final class ReaderLifecycleTests: XCTestCase {
+    @MainActor func testClosedAndReopenedSessionRejectsCapturedOldCallbacks() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let oldPosition = try XCTUnwrap(engine.onPositionChanged)
+        let oldError = try XCTUnwrap(engine.onError)
+        let oldTap = try XCTUnwrap(engine.onCenterTap)
+        let oldGesture = try XCTUnwrap(engine.onReadingGesture)
+        let oldScroll = try XCTUnwrap(engine.onAutomaticScrollStateChanged)
+        defer { model.close() }
+        model.close()
+        let opened = expectation(description: "same model reopened")
+        engine.onOpenStarted = { opened.fulfill() }
+        let opening = Task { await model.open() }
+        await fulfillment(of: [opened], timeout: 2)
+        engine.finishOpen(); await opening.value; engine.onOpenStarted = nil
+        XCTAssertTrue(model.isReady)
+        let current = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 9,
+            locatorData: Data("current-full-anchor".utf8), updatedAt: Date())
+        engine.onPositionChanged?(current)
+        try await awaitStored(current, services: services)
+        model.menuVisible = true
+        print("READER_SESSION_CONTROL_READY sameModelReopened=true currentPositionStored=true")
+        oldScroll(.running)
+        XCTAssertEqual(model.automaticScrollState, .stopped, "STALE_SESSION_CALLBACK scroll")
+        oldGesture()
+        XCTAssertTrue(model.menuVisible, "STALE_SESSION_CALLBACK gesture")
+        model.menuVisible = true
+        oldTap()
+        XCTAssertTrue(model.menuVisible, "STALE_SESSION_CALLBACK tap")
+        oldError("obsolete reader error")
+        XCTAssertNil(model.errorMessage, "STALE_SESSION_CALLBACK error")
+        let late = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 9,
+            locatorData: Data("obsolete-full-anchor".utf8), updatedAt: current.updatedAt.addingTimeInterval(1))
+        oldPosition(late)
+        XCTAssertEqual(model.position, current, "STALE_SESSION_CALLBACK position")
+        // In the old-source control, drain its accepted write before fixture cleanup.
+        if model.position == late { try await awaitStored(late, services: services) }
+        engine.onError?("current reader error")
+        XCTAssertEqual(model.errorMessage, "current reader error")
+        model.errorMessage = nil; model.menuVisible = true
+        engine.onCenterTap?()
+        XCTAssertFalse(model.menuVisible, "The new owner's callback must remain connected")
+    }
+
+    @MainActor func testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition() async throws {
+        let (book, services, engine, model) = try await openedContext()
+        let callback = try XCTUnwrap(engine.onPositionChanged)
+        let foreign = ReadingPosition(bookID: UUID(), engineID: "test", locatorData: Data([90]))
+        callback(foreign)
+        XCTAssertNil(model.position, "A different book cannot enter this session")
+        let final = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 7,
+            locatorData: Data("complete-final-close-anchor".utf8), progression: 0.73)
+        engine.finalPositionOnClose = final
+        model.close()
+        XCTAssertEqual(model.position, final, "Engine close must publish before invalidation")
+        try await awaitStored(final, services: services)
+        XCTAssertFalse(model.isReady)
+        model.menuVisible = true
+        engine.onCenterTap?(); engine.onError?("closed error")
+        engine.onAutomaticScrollStateChanged?(.running); engine.onReadingGesture?()
+        callback(ReadingPosition(bookID: book.id, engineID: "test", locatorData: Data([91])))
+        XCTAssertTrue(model.menuVisible); XCTAssertNil(model.errorMessage)
+        XCTAssertEqual(model.automaticScrollState, .stopped)
+        XCTAssertEqual(model.position, final)
+        let stored = try await services.repository.position(for: book.id)
+        XCTAssertEqual(stored, final)
+    }
+
+    @MainActor private func awaitStored(_ position: ReadingPosition, services: AppServices) async throws {
+        let deadline = Date().addingTimeInterval(2)
+        var stored = try await services.repository.position(for: position.bookID)
+        while stored != position && Date() < deadline {
+            try await Task.sleep(nanoseconds: 1_000_000)
+            stored = try await services.repository.position(for: position.bookID)
+        }
+        XCTAssertEqual(stored, position)
+    }
+
     @MainActor func testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator() async throws {
         let (book, services, engine, model) = try await openedContext()
         var rootNotifications = 0
@@ -448,6 +525,7 @@ final class ReaderLifecycleTests: XCTestCase {
         func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
         func setContinuousScrolling(_ enabled: Bool) { continuous = enabled; continuousChanges += 1 }
         var closeCount = 0
+        var finalPositionOnClose: ReadingPosition?
         var appearanceProvider: (any ReaderAppearanceProviding)? { self }
         var supportsTextAppearance: Bool { true }
         var appearance: ReadingAppearance?
@@ -480,7 +558,14 @@ final class ReaderLifecycleTests: XCTestCase {
             if let error { continuation?.resume(throwing: error) }
             else { continuation?.resume() }
         }
-        func close() { closeCount += 1; currentPosition = nil }
+        func close() {
+            closeCount += 1
+            if let final = finalPositionOnClose {
+                finalPositionOnClose = nil
+                onPositionChanged?(final)
+            }
+            currentPosition = nil
+        }
         func turnPage(forward: Bool) async {}
         func go(to chapter: Chapter) async throws { try await navigation() }
         func go(to position: ReadingPosition) async throws {

@@ -3,6 +3,7 @@ import Foundation
 import ReaderSettings
 import ReaderFonts
 import ReaderPositions
+import ReaderSessions
 import ReadingInterfaces
 import SwiftUI
 import XianxiaCore
@@ -66,8 +67,8 @@ enum ReaderMode: CaseIterable, Hashable {
     let engine: (any ReaderEngine)?
     private let book: Book
     private let services: AppServices
-    private var started = false
-    private var openRequestID: UUID?
+    private let sessions = ReaderSessionState()
+    private var openRequestID: UUID? { sessions.requestID }
     private var settingsSubscriptions: Set<AnyCancellable> = []
     private var additionalReduceMotionRequested = false
     private let navigation = ReaderNavigationCoordinator()
@@ -93,41 +94,54 @@ enum ReaderMode: CaseIterable, Hashable {
             self.interactionSaveFailure = completion?.errorMessage.map { "阅读手感尚未保存：\($0)" }
             if completion?.errorMessage != nil { self.pauseAutomaticScroll() }
         }.store(in: &settingsSubscriptions)
-        engine?.onCenterTap = { [weak self] in
+    }
+
+    private func bindEngineCallbacks(_ engine: any ReaderEngine, owner: UUID) {
+        engine.onCenterTap = { [weak self] in
             guard let self else { return }
-            if self.automaticScrollPresented { self.pauseAutomaticScroll(); self.menuVisible = false }
-            else { self.menuVisible.toggle() }
+            self.sessions.accept(owner) {
+                if self.automaticScrollPresented { self.pauseAutomaticScroll(); self.menuVisible = false }
+                else { self.menuVisible.toggle() }
+            }
         }
-        engine?.automaticScrollProvider?.onAutomaticScrollStateChanged = { [weak self] value in
-            guard let self, self.openRequestID != nil else { return }
-            self.automaticScrollState = value
+        engine.automaticScrollProvider?.onAutomaticScrollStateChanged = { [weak self] value in
+            guard let self else { return }
+            self.sessions.accept(owner) { self.automaticScrollState = value }
         }
-        engine?.interactionProvider?.onReadingGesture = { [weak self] in
-            guard let self, self.openRequestID != nil, self.isReady, self.interaction.autoHideMenu else { return }
-            if self.menuVisible { self.menuVisible = false }
+        engine.interactionProvider?.onReadingGesture = { [weak self] in
+            guard let self else { return }
+            self.sessions.accept(owner) {
+                guard self.isReady, self.interaction.autoHideMenu else { return }
+                if self.menuVisible { self.menuVisible = false }
+            }
         }
-        engine?.onError = { [weak self] message in
-            self?.pauseAutomaticScroll()
-            self?.errorMessage = message
+        engine.onError = { [weak self] message in
+            guard let self else { return }
+            self.sessions.accept(owner) {
+                self.pauseAutomaticScroll()
+                self.errorMessage = message
+            }
         }
-        engine?.onPositionChanged = { [weak self] position in
-            guard let self, self.openRequestID != nil else { return }
-            self.position = position
-            // Save each emitted position immediately; SQLite rejects stale out-of-order writes.
-            Task {
-                await self.positionPersistence.persistEmitted(position) { message in
-                    self.pauseAutomaticScroll()
-                    self.errorMessage = message
+        engine.onPositionChanged = { [weak self] position in
+            guard let self else { return }
+            self.sessions.accept(owner, bookID: position.bookID) {
+                self.position = position
+                // Keep every accepted write, including close's final position.
+                Task {
+                    await self.positionPersistence.persistEmitted(position) { message in
+                        self.sessions.accept(owner) {
+                            self.pauseAutomaticScroll()
+                            self.errorMessage = message
+                        }
+                    }
                 }
             }
         }
     }
 
     func open() async {
-        guard !started, let engine else { return }
-        started = true
-        let requestID = UUID()
-        openRequestID = requestID
+        guard let engine, let requestID = sessions.begin(bookID: book.id) else { return }
+        bindEngineCallbacks(engine, owner: requestID)
         fonts.beginSession(requestID)
         openStatus = "正在读取阅读设置…"
         positions.clearSaveFailure()
@@ -173,8 +187,7 @@ enum ReaderMode: CaseIterable, Hashable {
         } catch is CancellationError {
             guard openRequestID == requestID else { return }
             engine.close()
-            openRequestID = nil
-            started = false
+            sessions.invalidate()
         } catch {
             guard openRequestID == requestID else { return }
             openFailure = error.localizedDescription
@@ -197,8 +210,7 @@ enum ReaderMode: CaseIterable, Hashable {
         navigation.close()
         // Allow the engine's final position callback before invalidating this session.
         engine?.close()
-        openRequestID = nil
-        started = false
+        sessions.invalidate()
         isReady = false
         automaticScrollState = .stopped
         automaticScrollPresented = false
@@ -326,7 +338,7 @@ enum ReaderMode: CaseIterable, Hashable {
         } catch is CancellationError {
             // Closing invalidates this request. Never close or mutate a reopened reader.
             if openRequestID == session, fonts.isCurrent(fontRequest), rebuilding {
-                engine.close(); isReady = false; started = false
+                engine.close(); isReady = false; sessions.allowReopening()
                 openFailure = "字体应用已取消，请重试打开。"
             }
         } catch {
@@ -340,7 +352,7 @@ enum ReaderMode: CaseIterable, Hashable {
                     try current()
                 } catch {
                     guard openRequestID == session, fonts.isCurrent(fontRequest) else { return }
-                    isReady = false; started = false
+                    isReady = false; sessions.allowReopening()
                     openFailure = "字体应用失败：\(original)。恢复阅读失败：\(error.localizedDescription)"
                 }
             }

@@ -55,9 +55,9 @@ def check_environment(environment: str, devices: dict, simulator_id: str, baseli
 
 def check_unit_summary(summary: dict) -> None:
     if not (summary.get("result") == "Passed" and not summary.get("testFailures")
-            and summary.get("totalTestCount") == summary.get("passedTests") == 160
+            and summary.get("totalTestCount") == summary.get("passedTests") == 162
             and summary.get("failedTests") == summary.get("skippedTests") == 0):
-        raise ValueError("All 160 current unit/integration tests must pass without skips before Release")
+        raise ValueError("All 162 current unit/integration tests must pass without skips before Release")
 
 
 def capture(command: list[str], stem: str) -> bytes:
@@ -89,7 +89,7 @@ def main() -> None:
     args = parser.parse_args()
     if args.unit_summary:
         check_unit_summary(json.loads(args.unit_summary.read_text(encoding="utf-8")))
-        print("Current unit/integration coverage verified: 160/160, failed/skipped 0.")
+        print("Current unit/integration coverage verified: 162/162, failed/skipped 0.")
         return
     if not args.simulator_id:
         parser.error("--simulator-id is required to verify prior UI coverage")

@@ -5,6 +5,26 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  session-owner-baseline)
+    cases=(-only-testing:XianxiaReaderTests/ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks)
+    ;;
+  session-isolation)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testCloseDuringOpenCannotReturnReaderToReadyState
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testFailedOpenCanRetryAndBecomeReady
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testOldSettingsFailureCannotPublishIntoSameModelReopenedSession
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen
+    )
+    ;;
   continuous-return)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes)
     ;;
@@ -223,7 +243,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' ]]; then
+if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.

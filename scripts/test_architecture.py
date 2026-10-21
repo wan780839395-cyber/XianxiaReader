@@ -97,6 +97,12 @@ class ArchitectureTests(unittest.TestCase):
             with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
                 self.blocked(f"Position state must not import {module}")
 
+    def test_session_ownership_cannot_acquire_business_ui_or_engine_dependencies(self):
+        file = "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift"
+        for module in ["XianxiaCore", "ReadingInterfaces", "ReaderFonts", "ReadiumAdapter", "UIKit", "SwiftUI"]:
+            with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
+                self.blocked(f"Session ownership must not import {module}")
+
     def test_native_ui_tests_cannot_import_app_business_modules(self):
         file = next((self.root / "Tests/UI").glob("*.swift")).relative_to(self.root).as_posix()
         with self.change(file, lambda text: text + "\nimport XianxiaCore\n"):
