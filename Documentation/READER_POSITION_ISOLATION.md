@@ -1,41 +1,42 @@
 # R3 阅读位置隔离
 
-R3b进行中（2026-10-21）：捕获/原预算等待/写库/错误及同步结果发布迁入现有ReaderPositions，窄App桥接保留原引擎/仓库，回调每事件原Task写库保持。原慢滚/设置flush顺序、导航/返回点、字体导入事务及Core/Vendor/锁不变。Windows462语法新增0/54既有、71工具65过6 POSIX跳过/Bash通过；尚未Swift编译。冻结后只派发16独立（原6+新增10）及原13 iOS，不跑完整188或设备Release/IPA。
+R3b捕获与持久化编排本片已实现、编译并通过定向验收。实际源`421a5786e2be65baf661bc889c166ac8f22aff41` / [CI39580846569](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569)，独立16/16与原iOS13/13。分项回执[project-isolation-r3b.json](ValidationLogs/project-isolation-r3b.json)。导航/返回点下一片，R3整体及全项目隔离仍未完成。
 
-2026-10-21，R3a本片已实现/编译/定向验收。实际源755b428a60143d8f649372e6c545cc1e03f82ecb / [CI39573863939](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39573863939)。权威分项为ValidationLogs/project-isolation-r3a.json，历史设计/首轮失败过程保留在HANDOFF_R3_DEVELOPMENT_2026-10-21.md。R3整体与全项目隔离仍未完成。
+## 责任及依赖
 
-## 状态与依赖负责人
+现有独立Packages/ReaderPositions保持Foundation→XianxiaCore、tools5.10、iOS16/macOS13。ReaderPositionState仍唯一持有完整不透明位置、保存令牌/所属会话及保存错误；ReaderProgressState仍只发布原去重进度摘要。新增ReaderPositionPersistence拥有显式捕获/等待/写库/错误/同步发布，也承接每个已接收进度事件的写库。没有新增包、target或远程依赖，原manifest、project.yml、依赖守卫及锁不改。
 
-独立Packages/ReaderPositions采用项目既有ReaderSettings布局，最低iOS16/macOS13、tools5.10，只通过显式Core产品依赖使用ReadingPosition。状态target只导入Foundation/XianxiaCore，不持有引擎、仓库、字体、页面或任务，不解析/改写Locator或TXT锚点。Core manifest及SQLite SDK/库配置恢复并保持原件；没有强制改变静态/动态链接或升级依赖。
+ReaderPositionSource只有固定布局能力、完整缓存位置和fresh捕获；nil只表示原引擎暂时不可采样。ReaderPositionStorage只有保存完整ReadingPosition。App的ReaderEnginePositionSource只把原unavailable错误转成nil，其他错误原样传播；ReaderPositionRepository只转发到原BookRepository actor，实际数据库I/O及旧时间戳拒绝仍由Core负责。模块不导入UI/Readium，不解析或重写Locator/TXT锚点。
 
-ReaderPositionState唯一保留完整位置、显式保存令牌/所属会话及保存错误；ReaderProgressState只把同步位置事件转换为原去重摘要，避免两份位置状态。错误在突变前通知ReaderViewModel；不透明位置事件继续不触发整个ViewModel刷新。App组装/调用仍经原ReadingInterfaces。
+## 保留的时序与行为
 
-## 保留的调用合同
+VM保留暂停慢滚→beginSave及defer→原慢滚flush→请求/取消检查→原设置flush→会话/ready/引擎检查这一整段。随后调用真正负责工作的captureAndSave；模块入口再核请求、非空会话及取消，采样、写库await后，在原guard内同步state.saved，完成后才返回VM。VM返回后只有原defer，不把状态提交移到新增await之后。此片新增异步职责入口，不能沿用R3a“所有await表达式原样”的说法。
 
-saveNow的全部await表达式及顺序保持：暂停慢滚→慢滚flush→设置flush→完整实时捕获→原数据库保存→原同步发布。原3秒截止、32ms不可采样等待、固定布局直接使用完整缓存位置、Task取消与每个会话/请求guard保持。没有为纯提取增加async封装。
+固定布局继续使用完整缓存页，不采样；重排正文仍fresh捕获，原Date+3秒预算、32ms不可用等待及各挂起点后的身份检查保持。错误显示原中文消息、保留旧完整位置，重试成功才更新并清错。旧捕获不写库；已进入仓库的写入可能完成，Core按原时间戳处理，模块只阻止旧结果/错误覆盖新会话状态，不承诺撤销已提交写入。
 
-新令牌判断等价于原会话ID+请求ID；旧defer只能结束自己的请求，close使令牌失效。失败保留完整位置并发布原可见错误；成功先更新完整位置再清除错误。close仍允许引擎发送最后回调后才使openRequestID失效。原35个其他VM方法、35个原测试/fixture输入及Vendor定位修复保持。
+引擎回调仍先同步接收完整位置，再每事件创建原来的一次Task；不合并或丢弃重复事件，不增加关闭后过滤，以保留close最后回调的写入。回调失败仍调用原暂停慢滚及可见错误处理。其潜在迟到错误属于后续会话切片，本片未宣称修复。open/close、导航/返回点、设置、慢滚及字体导入的capture→save→reopen特殊事务均未改，其他36个VM方法逐字保持。
 
-## 入口与验收
+## 定向合同与结果
 
-- `bash scripts/test_reader_positions.sh <新的输出目录>`：独立真实SwiftPM 6项合同，无App/Readium；拒绝已有目录，保存真实退出码、xUnit和依赖。精确身份各一次、无失败/重复/遗漏/跳过；真实依赖只允许ReaderPositions→XianxiaCore。
-- workflow的position-isolation：先6项，再8保存/生命周期+1进度+4真实EPUB/TXT/字体/同宽writer，共13项原用例。原断言/预算/测试主体保持。只本片先build-for-testing再boot/test，保留两个xcresult，优先暴露接线错误。普通完整发布顺序与门槛保持。
-- 原完整Core仍137项；ci_ios.sh另外执行同一6项独立位置合同，保留原件。6项不加入iOS测试源，完整iOS仍159集成+29UI=188，当前未跑。
+- 原ReaderPositionStateTests六项完全保持；新增十项用受控continuation覆盖完整Locator及发布顺序、固定布局、不可用后重试、原3秒预算、采样/存储失败和重试清错、取消/过期入口、悬挂捕获、迟到存储结果，以及每事件完整写入与原错误。没有缩短生产预算或加入测试用生产开关。
+- `bash scripts/test_reader_positions.sh <新的输出目录>`独立16/16，无App/Readium；拒绝已有目录，保留真实退出、完整日志、xUnit及真实依赖图。核验每项名字与所属类各一次，错误类/遗漏/多余/重复/失败/跳过均拒绝。
+- 原8保存/生命周期+1进度+4 EPUB/TXT/双模式六字体/同宽writer，共13/13；原测试、fixture、断言和预算不动。真实模块及iOS App编译成功，无源码编译错误。Linux工具71/71；Windows462语法新增0/既有Vendor限制54，71工具65通过6 POSIX跳过；Bash通过。语法不是编译。
+- 冻结579源码/测试/配置输入核对本地SHA与实际运行Git树；原状态/六合同、原35测试及全部Core/Vendor/字体/设置/资源/锁保持。138 Swift源、17区域、18图节点、5精确import例外，未扩白名单。普通HEAD/index及原有WIP保持。
 
-最终macOS6/6、iOS13/13、Linux工具71/71；Windows459语法新增0/既有Vendor限制54，71工具65过6 POSIX跳过。语法不是编译；真实模块与App编译由本轮macOS/iOS构建证明。135 Swift源/17区域/18图节点/5精确例外，新增禁止UI/引擎导入反例，未扩白名单。
+原字/字体条件在两种模式六套字体通过；连续截图后的六个保存位置delta为[0, 0, 0, 0, 0, 0]。同宽分页回归原位置/原字断言通过，root写入0，真实进度值1608、injected=false，实际owner/frame源码匹配冻结JS。保留全部附件，包括多个挂载或空白WebView观察，不把它们直接当失败或静默删除。以上只支持对应样本，不能证明所有WebKit时序或手机体验。
 
-两个模式各六字体重开原字/字体条件通过；连续截图后六保存位置delta全0。same-width回归原位置/原字断言通过，真实owner/frame源码匹配冻结JS，root写入0，唯一进度读1608且injected=false。该证据只覆盖这些样本，不证明所有WebKit时序、原生动效或手机体验。
+## 成本与证据
 
-独立步骤103秒含Swift报告81.5秒构建；原生步骤1392秒，首suite前1149.924秒含工具/依赖/编译/启动，实际13项累计202.182秒，余量含导出/诊断。没有把准备成本叫作测试时间或纯编译时间。完整17612505字节artifact经GitHub digest/SHA/ZIP CRC校验，原件build/ci/39573863939；只删除其重复ZIP。
+只派发一次position-isolation，未跑完整188或设备Release。独立步骤101秒，Swift报告构建51.54秒；原生步骤1269秒，首suite前949.087秒包含工具/依赖/编译/启动，13项实际执行合计279.299秒，余量含导出及诊断。准备时间不是用例执行或纯编译时间。
 
-## 首轮失败及取舍
+完整artifact、两份xcresult、xUnit、依赖图、完整日志与附件在build/ci/39580846569，下载回执核对GitHub digest/SHA、字节数、ZIP CRC与安全展开；只清除该轮重复ZIP。冻结与最终文档检查点在build/maintenance/R3b-20261021。完整发布仍需同源门槛；本片无新IPA，最后交付Build30。
 
-首源a9d4e84 / CI39569845077真实独立6/6，但Xcode16.4规划Core自动dynamic产品时引用缺失PACKAGE-TARGET:CSQLite，原生test65、0项执行；完整59180字节原件及失败回执保留。新包接线与预先编译通过，不把首轮改写成功，也不宣称精确证明Xcode内部根因。
+## 参考及实际取舍
 
-已查[SwiftPM官方target/product与testTarget规则](https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html)、[isowords实际功能target依赖布局](https://github.com/pointfreeco/isowords/blob/main/Package.swift)及[GRDB维护者对相同dynamic/SQLite缺target报错的说明](https://forums.swift.org/t/errors-on-build-after-add-package-grdb/76189)。GRDB是Xcode16.1同时嵌入两个产品的案例，本项目16.4消费图不同，只借鉴检查产品路径，不能照抄其根因。最终复用本项目已验ReaderSettings独立包布局，不迁移TCA、不提高系统下限。
+参考[Swift SE-0306 actor规则](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0306-actors.md)及[SE-0338非actor async执行规则](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0338-clarify-execution-non-actor-async.md)：actor方法在await处可重入，不能用MainActor替代身份复核。沿用当前工具链，不引入新并发模式。对照[Readium 3.11.0 navigator实际实现](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift)与项目现有引擎合同：缓存currentPosition不替代正文fresh采样，App桥接不暴露Readium类型。复用本项目已验ReaderSettings/Core窄存储模式和现有ReaderPositions接线，不升级依赖或扩大改造。
 
-## 剩余切片与发布边界
+## 历史及下一片
 
-下一R3切片是完整捕获/写库编排的责任迁移，再单列导航/返回点；须先定义最小采样/存储能力、同步提交边界、迟到/取消规则及直接回归。R4会话负责人后续推进。不能因状态模块落地而称R3或全项目隔离完成，也不提前实现未来产品功能。
+R3a源755b428a60143d8f649372e6c545cc1e03f82ecb / CI39573863939曾通过6+13，详见ValidationLogs/project-isolation-r3a.json及HANDOFF_R3_DEVELOPMENT_2026-10-21.md。首轮CI39569845077独立6过、iOS规划Core dynamic/CSQLite失败、0项执行，原件与失败回执仍保留；复用ReaderSettings包布局后接线可用，不宣称Xcode内部精确根因已证。旧[SwiftPM规则](https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html)、[isowords布局](https://github.com/pointfreeco/isowords/blob/main/Package.swift)及[GRDB不同消费图案例](https://forums.swift.org/t/errors-on-build-after-add-package-grdb/76189)只支持接线取舍，不移植其架构或根因。
 
-完整188、设备Release、普通设备/TrollStore、手机/动态验收均未执行，无新IPA；最后交付仍Build30。完整发布仍须同源重新验证，不能以本6+13或历史设备结果替代。
+下一独立片R3导航/返回点；字体导入特殊重开事务保留其原负责人，R4会话生命周期随后推进。完整Core137/iOS159+29=188、严格设备Release、普通设备/TrollStore、手机及动态体验均未在本片执行，不以16+13替代。原产品计划继续保留，维护期间不提前实现。

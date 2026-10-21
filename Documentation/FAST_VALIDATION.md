@@ -1,6 +1,9 @@
 # I1 设置逻辑快速验证
 
-R3a位置快速入口已验（2026-10-21）：`bash scripts/test_reader_positions.sh <新的输出目录>`真实独立6/6，只依赖Core，不使用App/Readium；步骤103秒含81.5秒构建。workflow的position-isolation先同6项，再13项原iOS合同，源755b428/CI39573863939通过；不跑完整188/设备Release/IPA。仅本片先编译接线再boot/test。精确身份/依赖与真实退出码守卫见verify_reader_positions.py，保留首次接线失败0项记录，不能降低断言或把重放成功写成内部根因已证。完整发布另执行这6项，Core仍137、iOS仍188。详见READER_POSITION_ISOLATION及project-isolation-r3a.json。
+R3b当前位置入口（2026-10-21）：`bash scripts/test_reader_positions.sh <新的输出目录>`真实独立16/16，原状态6项及捕获/持久化10项，精确核验名字和所属测试类，各执行一次、无失败/跳过，真实依赖仅ReaderPositions→Core。本轮步骤101秒，Swift报告构建51.54秒；workflow position-isolation先这16项，再原13项iOS合同，源421a578/CI39580846569均通过。原生步骤1269秒含准备/编译/启动/测试/导出，首suite前949.087秒，13项执行时间之和279.299秒。不跑完整188/设备Release/IPA；未来完整发布通过同一脚本另执行16项，不把它们塞入iOS计数。Core仍137、iOS仍159+29=188，当前未执行完整门槛。原13测试与预算保持。
+
+以下按所标日期保留历史入口和成本，当前数量以本段为准。
+
 
 
 2026-10-21最新：分页writer定向补证39561815911完成，同一单用例旧负例1/1、新正例1/1，原字与无位置写入均核；生产9bb6c86保持，下一切片R3未实施。完整188、设备Release/手机仍待独立门槛，不能把本1+1或历史9/9称全量通过。首组屏障越界失败保留；最新事实见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。

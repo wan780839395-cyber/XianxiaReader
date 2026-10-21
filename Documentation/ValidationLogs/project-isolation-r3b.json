@@ -1,0 +1,398 @@
+{
+  "recordedAtUTC": "2026-10-21T10:23:40.656944+00:00",
+  "phase": "r3b_targeted_accepted",
+  "revision": "421a5786e2be65baf661bc889c166ac8f22aff41",
+  "run": 39580846569,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569",
+  "module": "ReaderPositions",
+  "layout": "independent local Foundation package -> original Core product",
+  "moduleLogic": {
+    "cases": [
+      "testAbsentObsoleteOrCancelledEntryDoesNotSample",
+      "testAbsentSessionCannotCommitAndInvalidationPreservesState",
+      "testCaptureAndStorageFailuresKeepOldPositionAndRetryClearsError",
+      "testChangedOwnerRejectsResultEvenBeforeInvalidation",
+      "testCloseAndReopenedSessionRejectOldResult",
+      "testEmittedFailureReportsOriginalMessageWithoutChangingExplicitSaveState",
+      "testEmittedPositionsKeepEveryFullWriteAfterRequestInvalidation",
+      "testFailurePreservesFullPositionAndRetryClearsVisibleError",
+      "testFixedLayoutUsesCompletePageWithoutSampling",
+      "testFreshCaptureStoresFullLocatorBeforePublishingResult",
+      "testLateStorageCompletionCannotPublishAcrossSessions",
+      "testObsoleteOrCancelledCaptureCannotWrite",
+      "testOpaquePositionAndEveryEventAreRetained",
+      "testSupersededRequestAndOldCleanupCannotTouchNewSave",
+      "testUnavailableCaptureRetriesThenPreservesFullLocator",
+      "testUnavailableDeadlineKeepsOriginalPositionAndBudget"
+    ],
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "appHostUsed": false,
+    "readiumResolved": false,
+    "recordedAtUTC": "2026-10-21T10:23:39.337083+00:00",
+    "validationKind": "reader_positions_logic",
+    "releaseAccepted": false,
+    "deviceAccepted": false
+  },
+  "native": {
+    "cases": [
+      "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+      "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+      "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+      "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen"
+    ],
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "appHostUsed": true,
+    "recordedAtUTC": "2026-10-21T10:23:39.358778+00:00",
+    "validationKind": "reader_positions_native",
+    "releaseAccepted": false,
+    "deviceAccepted": false
+  },
+  "appSwiftCompiled": true,
+  "nativeTargetedAccepted": true,
+  "originalTestsAndPositionFixUnchanged": true,
+  "frozenInputsVerified": 579,
+  "coreManifestAndImplementationUnchanged": true,
+  "originalFlushPrefixAnd36OtherVMMethodsUnchanged": true,
+  "publicationInsideCoordinatorBeforeAsyncReturn": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "architecture": {
+    "swiftSources": 138,
+    "areas": 17,
+    "nodes": 18,
+    "preciseExceptions": 5
+  },
+  "windows": {
+    "grammar": 462,
+    "addedGrammarDiagnostics": 0,
+    "pristineVendorLimitations": 54,
+    "toolingTotal": 71,
+    "passed": 65,
+    "posixSkipped": 6,
+    "seconds": 24.363
+  },
+  "linuxTooling": {
+    "total": 71,
+    "passed": 71,
+    "skipped": 0,
+    "seconds": 18.487
+  },
+  "writer": {
+    "ownerAndFrameSourcesMatchBundledAsset": true,
+    "rootWrites": [],
+    "reads": [
+      {
+        "value": 1608,
+        "injected": false,
+        "role": "progression",
+        "stack": "get@user-script:330:57:35\nj@user-script:334:1:68740\n@user-script:334:1:68492\n@user-script:330:65:14\nglobal code@readium://D5CF9F6A-B749-48CD-B398-D8557B49BDEE/OEBPS/one.xhtml:1:29"
+      }
+    ],
+    "originalPositionAndWordAssertionsPassed": true,
+    "attachment": "2EEA988D-250B-42E5-9C64-A74CB79CE483.txt"
+  },
+  "fontObservations": [
+    {
+      "font": "xiaoWei",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "05CA4B8D-04D8-40A2-9497-951ED64D8D5C.txt"
+    },
+    {
+      "font": "xiaoWei",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "4C97D561-6FBB-4216-BADE-583D3197DE4C.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "3022CF66-CBB5-4A96-AE09-162AB90BFB56.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "D255213D-0FFC-4DD9-B2F3-F793B7D88691.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "A6F8E6C0-5717-4FC4-BB3D-F7D62AA6C394.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "D7090124-8392-4EB2-A852-2509D409782F.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "EEBD7C3F-E5EC-466D-9D84-5A2FA552233A.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "E02A6D38-E52A-4846-BB5F-271303352BDD.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "98CDD720-1226-4602-9FDA-6F253BB7666F.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "C6F4468D-1BEB-4888-BFD2-D7643CA3BE64.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "phase": "after-native-snapshot",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "8E3E64DA-8CF1-4AB8-8221-4225EED6D256.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": true,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "8682F60F-8FB7-45C6-B13A-746E8A2B1D2D.txt"
+    },
+    {
+      "font": "xiaoWei",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "3063E1A5-D680-4B06-9E47-0D95BBD69910.txt"
+    },
+    {
+      "font": "maShanZheng",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "F0210BCB-64D1-4A36-AC79-24653ACFF457.txt"
+    },
+    {
+      "font": "zhuque",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "AD0B13C3-9F88-46DF-8E0A-6F7AE22B4839.txt"
+    },
+    {
+      "font": "sourceHanSans",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "3EDF8596-ABB2-4102-8230-50A6499BE556.txt"
+    },
+    {
+      "font": "wenKai",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "6B0CF848-A5BD-4416-8DE8-DD14047A4EB5.txt"
+    },
+    {
+      "font": "sourceHanSerif",
+      "continuous": false,
+      "phase": "passed",
+      "delta": 0,
+      "visible": true,
+      "fontCondition": true,
+      "anchorCondition": true,
+      "attachment": "522DEE28-A136-4B32-A108-DF9883B0DF5E.txt"
+    }
+  ],
+  "inactiveOrBlankObservationsRetained": 24,
+  "costs": {
+    "logicStepSeconds": 101.0,
+    "logicBuildReportedSeconds": 51.54,
+    "nativeStepIncludingPreparationBuildExportSeconds": 1269.0,
+    "beforeFirstNativeSuiteSeconds": 949.087005,
+    "summedCaseSeconds": 279.299,
+    "cases": [
+      {
+        "test": "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+        "seconds": 0.161
+      },
+      {
+        "test": "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+        "seconds": 0.045
+      },
+      {
+        "test": "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+        "seconds": 0.052
+      },
+      {
+        "test": "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+        "seconds": 0.059
+      },
+      {
+        "test": "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+        "seconds": 0.044
+      },
+      {
+        "test": "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+        "seconds": 0.11
+      },
+      {
+        "test": "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+        "seconds": 0.116
+      },
+      {
+        "test": "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+        "seconds": 0.045
+      },
+      {
+        "test": "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+        "seconds": 0.002
+      },
+      {
+        "test": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+        "seconds": 47.4
+      },
+      {
+        "test": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+        "seconds": 206.704
+      },
+      {
+        "test": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+        "seconds": 3.746
+      },
+      {
+        "test": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+        "seconds": 20.815
+      }
+    ]
+  },
+  "artifact": {
+    "run": 39580846569,
+    "artifact": 12338481672,
+    "kind": "diagnostic",
+    "archiveBytes": 19194179,
+    "archiveSHA256": "cd65f8368e21e4700462905b70c5b998209f431037456255eb2656a95e81031a",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39580846569\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39580846569\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39580846569\\diagnostic-received.zip",
+        "bytes": 19194179,
+        "sha256": "cd65f8368e21e4700462905b70c5b998209f431037456255eb2656a95e81031a"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "previousR3aEvidencePreserved": {
+    "acceptedRun": 39573863939,
+    "firstWiringFailureRun": 39569845077
+  },
+  "originalSixStateContractsUnchanged": true,
+  "newCapturePersistenceContracts": 10,
+  "allOriginalNativeTestsUnchanged": true,
+  "navigationReturnPointsAndFontReopenTransactionUnchanged": true,
+  "source": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionPersistence.swift",
+  "bridge": "App/Reader/ReaderPositionAdapters.swift",
+  "semantics": {
+    "deadlineSeconds": 3,
+    "unavailableRetryNanoseconds": 32000000,
+    "fullOpaqueLocatorPreserved": true,
+    "acceptedEventWritesCoalesced": false,
+    "alreadyEnteredStorageCancelled": false,
+    "lifecycleAndTaskOwnershipMoved": false,
+    "navigationMoved": false,
+    "fontTransactionMoved": false
+  },
+  "fullGateExecuted": false,
+  "fullGateCount": 188,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "visualMotionAccepted": false,
+  "ipaCreated": false,
+  "remainingR3": "navigation/return-point ownership; font-reopen remains its original transaction; R4 session owner remains subsequent"
+}

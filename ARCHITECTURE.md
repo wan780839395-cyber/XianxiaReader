@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+R3b本片完成（2026-10-21）：现有ReaderPositions接管显式保存的捕获、原预算等待、写库、错误与同步结果发布，App只提供原引擎/仓库的窄桥接；每个已接收进度事件的原Task写入保持。实际源421a5786e2be65baf661bc889c166ac8f22aff41 / [CI39580846569](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569)，独立16/16（原6+新增10）、原iOS定向13/13、Linux工具71/71。导航/返回点与字体导入重开事务、原flush顺序、Core/Vendor/锁及原测试保持。下一片R3导航/返回点；R3整体和全项目隔离尚未完成。未跑完整188、设备Release或手机，无新IPA，最后交付仍Build30。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3b.json。
+
+以下为各自源与阶段的历史记录，当前断点以本段及HANDOFF为准。
+
 R3a本片完成（2026-10-21）：独立ReaderPositions Foundation包接管完整位置、显式保存身份/失效和保存错误；原捕获/写库await、预算及同步发布顺序保留。实际源755b428a60143d8f649372e6c545cc1e03f82ecb / CI39573863939，macOS独立6/6、原iOS定向13/13、Linux工具71/71；双模式六字体/EPUB/TXT锚点及同宽分页writer回归通过。首轮Core产品接线规划失败已留证并改用既有ReaderSettings包模式。R3捕获/持久化编排和导航/返回点后续继续；完整188、设备Release、手机未验，无新IPA。
 
 
