@@ -39,7 +39,7 @@ case "${1:?baseline or patched}" in
     mkdir -p "$folder" build/logs
     git rev-parse HEAD > "$folder/baseline-revision.txt"
     verify_inputs "$(cat "$folder/baseline-revision.txt")" baseline
-    run_cases paged-font baseline
+    run_cases paged-font-acceptance baseline
     mkdir "$folder/baseline"
     cp -R build/logs "$folder/baseline/logs"
     for entry in DiagnosticTests.xcresult ReaderSnapshots test-results-summary.json build-environment.txt Package.resolved; do
@@ -50,17 +50,18 @@ from pathlib import Path
 import json,sys
 status,folder=sys.argv[1:]
 d=json.loads(Path(folder,'baseline/test-results-summary.json').read_text())
-assert int(status) in (0,65) and d['totalTestCount']==2 and d['skippedTests']==0,d
+assert int(status) in (0,65) and d['totalTestCount']==9 and d['skippedTests']==0,d
 assert (int(status)==0)==(d['failedTests']==0),d
-allowed={'ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()','ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()'}
+allowed={'ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader()', 'ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()', 'ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()', 'ReaderRenderingTests/testPagedReopenRestoresFirstCharacterOfLongParagraph()', 'ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()', 'ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()', 'ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()', 'ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()', 'TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen()'}
 assert all(f['testIdentifierString'] in allowed for f in d.get('testFailures',[])), d
-Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,summary=d))+'\n')
+qualified=any(f.get('testIdentifierString')=='ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()' and 'SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION' in f.get('failureText','') for f in d.get('testFailures',[]))
+Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,sameWidthControlledFailure=qualified,summary=d))+'\n')
 print('Original baseline exit retained:',status,'; a green replay is not a fix.')
 PY
     ;;
   patched)
     test -f "$folder/baseline-result.json"
-    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-restore-stage2}"
+    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-resize-writer}"
     deadline=$((SECONDS + 900))
     while true; do
       if remote=$(git ls-remote --heads origin "$reference") && [[ -n "$remote" ]]; then break; fi
@@ -75,7 +76,7 @@ import json,subprocess,sys
 revision,folder=sys.argv[1:]
 baseline=Path(folder,'baseline-revision.txt').read_text().strip()
 assert subprocess.check_output(['git','rev-parse',revision+'^']).decode().strip()==baseline, 'Candidate must be the exact baseline child'
-allowed={'Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift','Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/PaginationView.swift','Vendor/ReadiumToolkit/UPSTREAM.json'}
+allowed={'Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift','Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/PaginationView.swift','Vendor/ReadiumToolkit/UPSTREAM.json','Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js'}
 changed=set(subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r',baseline,revision,'--','App','Packages','Vendor','Tests','scripts','.github','project.yml','Package.resolved','.gitattributes']).decode().splitlines())
 assert changed and changed<=allowed and 'Vendor/ReadiumToolkit/UPSTREAM.json' in changed,changed
 for name in changed: Path(name).write_bytes(subprocess.check_output(['git','show',revision+':'+name]))
@@ -89,9 +90,9 @@ PY
 from pathlib import Path
 import json,sys
 d=json.loads(Path('build/test-results-summary.json').read_text())
-assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==8 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
+assert d['result']=='Passed' and d['totalTestCount']==d['passedTests']==9 and d['failedTests']==d['skippedTests']==0 and not d.get('testFailures'),d
 baseline=json.loads(Path(sys.argv[1],'baseline-result.json').read_text())
-Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],patchedOriginalExit=0,passed=8,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
+Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],sameWidthControlledFailure=baseline['sameWidthControlledFailure'],patchedOriginalExit=0,passed=9,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,full188Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
 PY
     ;;
   *) exit 2 ;;

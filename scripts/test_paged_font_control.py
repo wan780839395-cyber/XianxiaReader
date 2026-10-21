@@ -31,11 +31,11 @@ mkdir -p build/logs build/DiagnosticTests.xcresult build/ReaderSnapshots
 python3 - "$1" <<'PY'
 import json,os,sys
 from pathlib import Path
-mode=os.environ['CONTROL_FIXTURE_MODE'];baseline=sys.argv[1]=='paged-font'
+mode=os.environ['CONTROL_FIXTURE_MODE'];baseline=not Path('build/PagedFontControl/baseline-result.json').exists()
 failed=(baseline and mode!='baseline-green') or (not baseline and mode=='patched-failure')
-total=2 if baseline else 8
-name='wrong' if mode=='wrong-failure' else 'ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord()'
-d=dict(result='Failed' if failed else 'Passed',totalTestCount=total,passedTests=total-int(failed),failedTests=int(failed),skippedTests=0,testFailures=[dict(testIdentifierString=name,failureText='original fixture failure')] if failed else [])
+total=9
+name='wrong' if mode=='wrong-failure' else 'ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()'
+d=dict(result='Failed' if failed else 'Passed',totalTestCount=total,passedTests=total-int(failed),failedTests=int(failed),skippedTests=0,testFailures=[dict(testIdentifierString=name,failureText='SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION')] if failed else [])
 Path('build/test-results-summary.json').write_text(json.dumps(d))
 Path('build/fixture-exit.txt').write_text('65' if failed else '0')
 PY
@@ -46,7 +46,7 @@ exit "$(cat build/fixture-exit.txt)"
                 if mode=='wrong-parent':
                     (origin/'extra.txt').write_text('unreviewed');git('add','.');git('commit','-qm','unrelated parent')
                 for name in VENDOR:(origin/name).write_text('new\n')
-                git('add','.');git('commit','-qm','candidate');git('branch','codex/fix-paged-font-restore-stage2')
+                git('add','.');git('commit','-qm','candidate');git('branch','codex/fix-paged-font-resize-writer')
                 checkout=Path(folder)/'checkout'
                 subprocess.run(['git','clone','--depth=1','--branch','baseline',origin.as_uri(),str(checkout)],check=True,capture_output=True)
                 env=dict(os.environ,CONTROL_FIXTURE_MODE=mode)
@@ -58,7 +58,7 @@ exit "$(cat build/fixture-exit.txt)"
                 receipt=checkout/'build/PagedFontControl/receipt.json'
                 self.assertEqual(receipt.exists(),mode in {'success','baseline-green'})
                 if receipt.exists():
-                    d=json.loads(receipt.read_text());self.assertEqual(d['baselineOriginalExit'],0 if mode=='baseline-green' else 65);self.assertEqual(d['baselineWasNegative'],mode!='baseline-green');self.assertEqual(d['passed'],8);self.assertFalse(d['newIPA'])
+                    d=json.loads(receipt.read_text());self.assertEqual(d['baselineOriginalExit'],0 if mode=='baseline-green' else 65);self.assertEqual(d['baselineWasNegative'],mode!='baseline-green');self.assertEqual(d['passed'],9);self.assertFalse(d['newIPA']);self.assertEqual(d['sameWidthControlledFailure'],mode!='baseline-green')
 
 
 if __name__=='__main__':

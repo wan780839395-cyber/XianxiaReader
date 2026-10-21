@@ -96,6 +96,77 @@ final class ReaderRenderingTests: XCTestCase {
         engine.close()
     }
 
+    @MainActor func testSameWidthBodyResizeDoesNotOverwritePendingPagedWord() async throws {
+        let barrier = WKUserScript(source: """
+            (()=>{
+              const Original=window.ResizeObserver;
+              window.ResizeObserver=class extends Original {
+                constructor(callback){super((entries,observer)=>{
+                  if(entries.some(entry=>entry.target===document.body)){
+                    window.__xrQueueBodyResize=()=>{
+                      const original=window.requestAnimationFrame;
+                      window.requestAnimationFrame=frame=>{
+                        window.__xrHeldBodyFrame=frame;
+                        return original.call(window,()=>{});
+                      };
+                      try{callback(entries,observer);}finally{window.requestAnimationFrame=original;}
+                      return typeof window.__xrHeldBodyFrame==='function';
+                    };
+                  }
+                  callback(entries,observer);
+                });}
+              };
+              window.__xrReleaseBodyResize=()=>{
+                const frame=window.__xrHeldBodyFrame;if(typeof frame!=='function')return false;
+                delete window.__xrHeldBodyFrame;
+                const descriptor=Object.getOwnPropertyDescriptor(window,'scrollX');
+                // Reproduce the stale coordinate captured in the real failure.
+                // The actual viewport and pending word remain unchanged.
+                Object.defineProperty(window,'scrollX',{configurable:true,get:()=>0});
+                try{frame(performance.now());}finally{
+                  if(descriptor)Object.defineProperty(window,'scrollX',descriptor);else delete window.scrollX;
+                }
+                requestAnimationFrame(()=>{window.__xrBodyResizeCompleted=true;});
+                return true;
+              };
+            })()
+            """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let engine = ReadiumReaderEngine(additionalUserScripts: [barrier])
+        defer { engine.close() }
+        let (_, state) = try mount(engine); state.visible = false
+        let (book, navigator) = try await open(engine)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        let locator: [String: Any] = ["href": "OEBPS/one.xhtml", "type": "application/xhtml+xml",
+            "locations": ["xianxiaContinuousAnchorVersion": 1,
+                "domRange": ["start": ["cssSelector": "#long-paragraph", "textNodeIndex": 0, "charOffset": 1200]]]]
+        try await engine.go(to: ReadingPosition(bookID: book.id, engineID: ReadiumPositionCodec.engineID,
+                                               locatorData: JSONSerialization.data(withJSONObject: locator)))
+        let web = try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+        let word = """
+            (()=>{const n=document.getElementById('long-paragraph')?.firstChild;
+            if(!n||n.length<=1200)return false;
+            const r=document.createRange();r.setStart(n,1200);r.setEnd(n,1201);const b=r.getBoundingClientRect();
+            return b.right>0&&b.left<innerWidth&&b.bottom>0&&b.top<innerHeight;})()
+            """
+        try await waitUntil {
+            try await web.evaluateJavaScript("scrollX>100 && typeof window.__xrQueueBodyResize==='function' && (\(word))") as? Bool == true
+        }
+        let beforeValue = try await web.evaluateJavaScript("scrollX") as? Double
+        let before = try XCTUnwrap(beforeValue)
+        let queued = try await web.evaluateJavaScript("window.__xrQueueBodyResize()") as? Bool
+        XCTAssertEqual(queued, true)
+        let released = try await web.evaluateJavaScript("window.__xrReleaseBodyResize()") as? Bool
+        XCTAssertEqual(released, true)
+        try await waitUntil { try await web.evaluateJavaScript("window.__xrBodyResizeCompleted===true") as? Bool == true }
+        let afterValue = try await web.evaluateJavaScript("scrollX") as? Double
+        let after = try XCTUnwrap(afterValue)
+        let visible = try await web.evaluateJavaScript(word) as? Bool
+        print("SAME_WIDTH_RESIZE_CONTROL before=\(before) after=\(after) wordVisible=\(String(describing: visible))")
+        XCTAssertEqual(after, before, accuracy: 1, "SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION")
+        XCTAssertEqual(visible, true, "The original word must survive the released same-width body callback")
+    }
+
     @MainActor func testPagedReopenRestoresFirstCharacterOfLongParagraph() async throws {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let services = try await AppServices.create(storageRoot: root)

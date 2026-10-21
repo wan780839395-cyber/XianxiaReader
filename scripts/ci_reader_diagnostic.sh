@@ -24,6 +24,7 @@ case "$selection" in
       -only-testing:XianxiaReaderTests/TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord
     )
     ;;
   position-fix)
