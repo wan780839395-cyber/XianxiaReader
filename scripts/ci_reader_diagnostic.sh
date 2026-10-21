@@ -15,6 +15,12 @@ case "$selection" in
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError
       -only-testing:XianxiaReaderTests/ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes
       -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord

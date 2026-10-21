@@ -1,5 +1,7 @@
 # R3 阅读位置隔离
 
+R3c进行中（2026-10-21）：现有ReaderPositions接管导航锁、完整返回点及单次capture→go→同步提交；VM保留原ready入口、错误/菜单和字体事务。close/字体只改导航状态入口，原16独立合同、原测试、R3a/b实现、Core/Vendor/manifest/锁保持。Windows464语法新增0/54既有、71工具65过6 POSIX跳过/Bash通过；尚未Swift编译。冻结后仅24独立与19原iOS，不跑完整188/设备Release或IPA。
+
 R3b捕获与持久化编排本片已实现、编译并通过定向验收。实际源`421a5786e2be65baf661bc889c166ac8f22aff41` / [CI39580846569](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39580846569)，独立16/16与原iOS13/13。分项回执[project-isolation-r3b.json](ValidationLogs/project-isolation-r3b.json)。导航/返回点下一片，R3整体及全项目隔离仍未完成。
 
 ## 责任及依赖

@@ -11,7 +11,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT
-from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, NATIVE_TESTS, verify_logic, verify_native
+from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, verify_logic, verify_native
 
 
 class PositionEvidenceTests(unittest.TestCase):
@@ -21,7 +21,7 @@ class PositionEvidenceTests(unittest.TestCase):
         self.root = Path(folder.name)
         self.suite = ET.Element("testsuite", tests=str(len(LOGIC_TESTS)), errors="0", failures="0")
         for name in sorted(LOGIC_TESTS):
-            cls = "ReaderPositionStateTests" if name in STATE_TESTS else "ReaderPositionPersistenceTests"
+            cls = TEST_CLASSES[name]
             ET.SubElement(self.suite, "testcase", classname="ReaderPositionsTests." + cls, name=name)
         (self.root / "dependencies.json").write_text(json.dumps({"name": "ReaderPositions", "dependencies": [{"name": "XianxiaCore", "dependencies": []}]}))
 
@@ -65,13 +65,13 @@ class PositionEvidenceTests(unittest.TestCase):
             lines.extend([prefix + "started.", prefix + "passed (1.000 seconds)."])
         log = "\n".join(lines) + "\n"
         (self.root / "logs/reader-diagnostic.log").write_text(log)
-        summary = dict(totalTestCount=13, passedTests=13, failedTests=0, skippedTests=0, testFailures=[])
+        summary = dict(totalTestCount=len(NATIVE_TESTS), passedTests=len(NATIVE_TESTS), failedTests=0, skippedTests=0, testFailures=[])
         (self.root / "test-results-summary.json").write_text(json.dumps(summary))
         return log, summary
 
     def test_original_native_cases_and_summary_must_agree_without_retries(self):
         log, summary = self.native_fixture()
-        self.assertEqual(verify_native(self.root)["passed"], 13)
+        self.assertEqual(verify_native(self.root)["passed"], len(NATIVE_TESTS))
         for bad in [log.replace("passed", "failed", 1), log + log, "\n".join(log.splitlines()[2:]), ""]:
             (self.root / "logs/reader-diagnostic.log").write_text(bad)
             with self.assertRaises(ValueError): verify_native(self.root)

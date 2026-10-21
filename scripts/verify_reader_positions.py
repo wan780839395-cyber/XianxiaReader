@@ -27,7 +27,22 @@ PERSISTENCE_TESTS = {
     "testEmittedPositionsKeepEveryFullWriteAfterRequestInvalidation",
     "testEmittedFailureReportsOriginalMessageWithoutChangingExplicitSaveState",
 }
-LOGIC_TESTS = STATE_TESTS | PERSISTENCE_TESTS
+NAVIGATION_TESTS = {
+    "testFirstFullOriginSurvivesExcursionAndReturnOrStay",
+    "testFailedCaptureAndForeignOriginNeverNavigate",
+    "testNavigationAndReturnFailureKeepOriginForRetry",
+    "testExternalRequestSharesBusyLockAndStayCannotClearWhileBusy",
+    "testLateCaptureCannotNavigateOrEndNewRequest",
+    "testLateOperationCannotPublishAcrossSessions",
+    "testCancellationKeepsUnpublishedOrExistingOrigin",
+    "testObsoleteEntryCannotSampleNavigateOrPublish",
+}
+TEST_CLASSES = {
+    **dict.fromkeys(STATE_TESTS, "ReaderPositionStateTests"),
+    **dict.fromkeys(PERSISTENCE_TESTS, "ReaderPositionPersistenceTests"),
+    **dict.fromkeys(NAVIGATION_TESTS, "ReaderNavigationCoordinatorTests"),
+}
+LOGIC_TESTS = set(TEST_CLASSES)
 NATIVE_TESTS = {
     "ReaderLifecycleTests/" + name for name in [
         "testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
@@ -38,6 +53,12 @@ NATIVE_TESTS = {
         "testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
         "testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
         "testLatePositionAfterCloseIsNotPersisted",
+        "testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+        "testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+        "testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+        "testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+        "testLateChapterNavigationCannotHideReopenedReadersMenu",
+        "testLateBookmarkFailureAfterCloseCannotShowError",
     ]
 } | {
     "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
@@ -56,8 +77,8 @@ def verify_logic(folder):
     names = Counter()
     for case in tree.iter("testcase"):
         name = case.get("name", "").removesuffix("()")
-        expected_class = "ReaderPositionStateTests" if name in STATE_TESTS else "ReaderPositionPersistenceTests"
-        if case.get("classname") not in {expected_class, "ReaderPositionsTests." + expected_class}:
+        expected_class = TEST_CLASSES.get(name)
+        if expected_class is None or case.get("classname") not in {expected_class, "ReaderPositionsTests." + expected_class}:
             raise ValueError("Unexpected position contract class")
         if any(child.tag in {"failure", "error", "skipped"} for child in case.iter()):
             raise ValueError("Position contract failed or skipped")

@@ -25,11 +25,6 @@ enum ReaderMode: CaseIterable, Hashable {
     }
 }
 
-private enum ReaderJumpError: LocalizedError {
-    case busy
-    var errorDescription: String? { "正在跳转，请稍候。" }
-}
-
 @MainActor final class ReaderViewModel: ObservableObject {
     @Published private(set) var isReady = false
     @Published private(set) var chapters: [Chapter] = []
@@ -51,8 +46,8 @@ private enum ReaderJumpError: LocalizedError {
     var positionSaveFailure: String? { positions.saveFailure }
     @Published private(set) var automaticScrollState = ReaderAutomaticScrollState.stopped
     @Published private(set) var automaticScrollPresented = false
-    @Published private(set) var returnPosition: ReadingPosition?
-    @Published private(set) var navigationInProgress = false
+    var returnPosition: ReadingPosition? { navigation.returnPosition }
+    var navigationInProgress: Bool { navigation.inProgress }
     private let fonts: ReaderFontCoordinator
     var importedFonts: [ReadingFontAsset] { fonts.importedFonts }
     var fontBusy: Bool { fonts.busy }
@@ -75,7 +70,7 @@ private enum ReaderJumpError: LocalizedError {
     private var openRequestID: UUID?
     private var settingsSubscriptions: Set<AnyCancellable> = []
     private var additionalReduceMotionRequested = false
-    private var navigationRequestID: UUID?
+    private let navigation = ReaderNavigationCoordinator()
     private var positions: ReaderPositionState { progress.positions }
     private lazy var positionPersistence = ReaderPositionPersistence(
         state: positions, storage: ReaderPositionRepository(services.repository))
@@ -87,6 +82,7 @@ private enum ReaderJumpError: LocalizedError {
         do { engine = try factory.makeEngine(for: book.format) }
         catch { engine = nil; openFailure = error.localizedDescription }
         positions.onSaveFailureWillChange = { [weak self] in self?.objectWillChange.send() }
+        navigation.onStateWillChange = { [weak self] in self?.objectWillChange.send() }
         fonts.objectWillChange.sink { [weak self] in self?.objectWillChange.send() }.store(in: &settingsSubscriptions)
         services.readerSettings.$appearanceCompletion.sink { [weak self] completion in
             guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
@@ -198,9 +194,7 @@ private enum ReaderJumpError: LocalizedError {
         fontImportTask?.cancel(); fontImportTask = nil
         fontPickerCoordinator?.invalidate(); fontPickerCoordinator = nil
         choosingFont = false
-        navigationRequestID = nil
-        navigationInProgress = false
-        returnPosition = nil
+        navigation.close()
         // Allow the engine's final position callback before invalidating this session.
         engine?.close()
         openRequestID = nil
@@ -317,8 +311,8 @@ private enum ReaderJumpError: LocalizedError {
             try await services.repository.save(position)
             try current()
             anchor = position
-            navigationRequestID = request; navigationInProgress = true
-            defer { if navigationRequestID == request { navigationRequestID = nil; navigationInProgress = false } }
+            navigation.beginExternal(request)
+            defer { navigation.endExternal(request) }
             var updated = appearance; updated.importedFontID = font.id
             engine.close(); rebuilding = true
             try provider.setReadingFonts(loaded.resources)
@@ -451,36 +445,20 @@ private enum ReaderJumpError: LocalizedError {
     }
 
     func stayAtCurrentPosition() {
-        guard !navigationInProgress else { return }
-        returnPosition = nil
+        navigation.stay()
     }
 
     private func navigate(returning: Bool = false,
                           operation: @MainActor (any ReaderEngine) async throws -> Void) async throws {
         guard isReady, let engine, let session = openRequestID else { throw ReaderPositionCaptureError.unavailable }
-        guard navigationRequestID == nil, !fontBusy else { throw ReaderJumpError.busy }
-        let request = UUID()
-        navigationRequestID = request
-        navigationInProgress = true
-        defer {
-            if navigationRequestID == request {
-                navigationRequestID = nil
-                navigationInProgress = false
-            }
+        do {
+            try await navigation.navigate(bookID: book.id, session: session, sessionID: { self.openRequestID },
+                isBlocked: { self.fontBusy }, pause: { self.pauseAutomaticScroll() },
+                capture: { try await engine.captureCurrentPosition() }, onSuccess: { self.menuVisible = false },
+                operation: { try await operation(engine) }, returning: returning)
+        } catch ReaderNavigationError.unavailable {
+            throw ReaderPositionCaptureError.unavailable
         }
-        pauseAutomaticScroll()
-        // One origin per excursion. Ordinary callbacks keep saving the actual
-        // current reading position; closing never silently returns to origin.
-        var origin = returnPosition
-        if origin == nil && !returning { origin = try await engine.captureCurrentPosition() }
-        try Task.checkCancellation()
-        guard openRequestID == session, navigationRequestID == request else { throw CancellationError() }
-        guard returning || origin?.bookID == book.id else { throw ReaderPositionCaptureError.unavailable }
-        try await operation(engine)
-        try Task.checkCancellation()
-        guard openRequestID == session, navigationRequestID == request else { throw CancellationError() }
-        returnPosition = returning ? nil : origin
-        menuVisible = false
     }
 
     func addBookmark() async {
