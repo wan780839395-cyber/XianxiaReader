@@ -1,5 +1,17 @@
 # R3 阅读位置隔离
 
+## EPUB首次加载专项：对照有效，整组未过，已保存（2026-10-21）
+
+用户选择本轮收口保存，下一轮只查连续返回，不追加CI或启动R4。实际控制基线609cbd03463b64f312216a1c397616cd2be0659f，候选0de44ba6d2d5875816f1a42a06d04f4313e21d9c为精确子提交；仅Vendor SpreadView和UPSTREAM差异，584输入各相位均核冻结Git blob。原R1/R2/R3、Readium JS、Core/锁及原测试行为/30秒/3px预算保持，普通HEAD/index及全部旧WIP保留。
+
+锁定Readium3.11.0的spreadLoaded由requestAnimationFrame发送，分页缺少连续模式已有的原生完成bootstrap。本轮只控one.xhtml真实桥回调，证明DOM complete、窗口有效、pending1；旧码39.575秒在指定断言失败（内层alpha0、position cover、真实65）。候选桥仍held时完成完整初始化、alpha1/position one/full DOM锚点成立，放行原桥后保持。候选只扩大原有bootstrap到重排分页，保留字体/完整pendingLocator、once/close与位置guard，不把DOM完成直接当ready。固定布局不扩大；连续路径语句/await次序仅改标识，不能因此排除前序分页运行时影响。参考锁定[3.11.0原始SpreadView](https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift)，复用已有连续桥屏障fixture，不升级依赖。
+
+[CI39594313793](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39594313793)实际failure，候选5/6、真实65，无重试/跳过。受控分页、原连续bootstrap、两模式关闭、隐藏字体与同宽writer过。原FreshReturn用例首次跳转和整个分页分支已过（分页原生截图保留），但连续返回原点在981未满足原3px：返回后one.xhtml可见/完整初始化，scrollY2367、long top=-599.125、完整锚点char499/offset-3.125，已不是cover上报。原before值未记录，不能报告精确delta，也不能判断是新回归、原保存采样/返回误差或前序状态影响。旧R3c初始69秒延迟精确原因也未由这组对照证实。
+
+下一轮只给原单例补模式/阶段、采样前后同一视图DOM、完整origin、跳出前before及返回后测量，保留false/true顺序和原3px/30秒。先区分错误origin与错误恢复/测量时刻；必要时才做同fixture旧/新单例对照，前置失败不能算返回负例，重放成功不能当根因修复。不先动连续算法、不重跑19/189。
+
+两相位build-for-testing真实通过、0源码编译错误；Windows464语法新增0/54既有限制（非编译）、76工具70过6 POSIX跳过24.333秒，Linux76/76。原生driver1527秒：基线首suite前914.855秒准备，旧单例39.575秒；候选suite91.675秒（6项合计91.483秒），其他成本含增量准备及两次原件/附件导出。未跑独立24/Core137/完整189/设备Release/手机，无新IPA。完整119059067字节artifact经digest/SHA/CRC与展开核验，仅重复ZIP清除。详见[权威结果](ValidationLogs/epub-native-readiness-control.json)，原件build/ci/39594313793，冻结及失败单例在build/maintenance/EPUB-first-jump-20261021。下方R3c旧18/19仍按当时源保留，不改写成当前门槛。
+
 ## R3c实现与未通过的整组门槛（2026-10-21）
 
 R3c保存断点（2026-10-21，用户已确认不追加运行）：导航/返回点负责人已在现有ReaderPositions实现并真实编译，源c180e1126cb1283f5599644a9232b8ee6ccf717e / [CI39585860717](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717)结论failure。独立24/24、现有6项导航回归通过，原生整组18/19；唯一旧EPUB用例首次分页跳正文时DOM已到one.xhtml，但currentPosition仍报cover，尚未捕获/返回原点。该用例直接调用原引擎，未经过新导航负责人，原引擎/用例与上一片同字节；根因、环境归因及回归因果均未证，不能称整组或R3已验收。字体双模式六套、同宽分页writer、TXT及原保存回归通过。代码与旧WIP保留，下一轮只查此单例，R4顺延；未跑完整188/设备Release/手机，无新IPA。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3c.json。

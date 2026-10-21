@@ -1,0 +1,364 @@
+{
+  "recordedAtUTC": "2026-10-21T12:20:47.913344+00:00",
+  "phase": "controlled_paged_readiness_gap_fixed_selected_gate_failed_saved_by_user",
+  "run": 39594313793,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39594313793",
+  "workflowConclusion": "failure",
+  "sourcePair": {
+    "baseline": "609cbd03463b64f312216a1c397616cd2be0659f",
+    "candidate": "0de44ba6d2d5875816f1a42a06d04f4313e21d9c",
+    "changed": [
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Vendor/ReadiumToolkit/UPSTREAM.json"
+    ]
+  },
+  "frozenInputsPerPhase": 584,
+  "sourceInputProofsMatched": true,
+  "implementation": {
+    "scope": "Existing native full-initialization bootstrap extended to reflowable paged spreads only.",
+    "fullInitializationAndFontAndPendingLocatorPreserved": true,
+    "closeCancellationAndOnceGuardPreserved": true,
+    "continuousStatementsAndAwaitOrderPreserved": true,
+    "continuousRuntimeSideEffectsNotExcluded": true,
+    "appR1R2R3CoreReadiumJSAndDependencyLockUnchanged": true,
+    "originalTestsAndBudgetsPreserved": true
+  },
+  "qualifiedOldControl": {
+    "phase": "baseline",
+    "originalExit": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "qualifiedNegative": true,
+    "evidence": [
+      {
+        "alpha": 0,
+        "attached": true,
+        "dom": {
+          "gate": {
+            "pending": 1,
+            "sources": [
+              "function(){webkit.messageHandlers.spreadLoaded.postMessage({})}"
+            ]
+          },
+          "href": "/OEBPS/one.xhtml",
+          "ready": "complete"
+        },
+        "fullDOMAnchor": false,
+        "keyWindow": true,
+        "loading": false,
+        "phase": "prepared",
+        "queryFinishedUptime": 1412.37802286,
+        "queryStartedUptime": 1412.375231014,
+        "reportedHref": "OEBPS/cover.xhtml"
+      },
+      {
+        "alpha": 0,
+        "attached": true,
+        "dom": {
+          "gate": {
+            "pending": 1,
+            "sources": [
+              "function(){webkit.messageHandlers.spreadLoaded.postMessage({})}"
+            ]
+          },
+          "href": "/OEBPS/one.xhtml",
+          "ready": "complete"
+        },
+        "fullDOMAnchor": false,
+        "keyWindow": true,
+        "loading": false,
+        "phase": "failed",
+        "queryFinishedUptime": 1443.6602834280002,
+        "queryStartedUptime": 1443.6577542700002,
+        "reportedHref": "OEBPS/cover.xhtml"
+      }
+    ],
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "x86_64",
+            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 0,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1792584187.965,
+      "passedTests": 0,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792583991.849,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "failed - Continuous reader did not reach expected state at PAGED_NATIVE_READY_MUST_PUBLISH:1950",
+          "targetName": "XianxiaReaderTests",
+          "testIdentifier": 1,
+          "testIdentifierString": "ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge",
+          "testName": "testPagedNativeLoadDoesNotWaitForAnimationFrameBridge()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [],
+      "totalTestCount": 1
+    },
+    "fullGateExecuted": false,
+    "deviceAccepted": false
+  },
+  "candidateControlEvidence": [
+    {
+      "alpha": 0,
+      "attached": true,
+      "dom": {
+        "gate": {
+          "pending": 1,
+          "sources": [
+            "function(){webkit.messageHandlers.spreadLoaded.postMessage({})}"
+          ]
+        },
+        "href": "/OEBPS/one.xhtml",
+        "ready": "complete"
+      },
+      "fullDOMAnchor": false,
+      "keyWindow": true,
+      "loading": false,
+      "phase": "prepared",
+      "queryFinishedUptime": 1876.950095249,
+      "queryStartedUptime": 1876.9463022080001,
+      "reportedHref": "OEBPS/cover.xhtml"
+    },
+    {
+      "alpha": 1,
+      "attached": true,
+      "dom": {
+        "gate": {
+          "pending": 1,
+          "sources": [
+            "function(){webkit.messageHandlers.spreadLoaded.postMessage({})}"
+          ]
+        },
+        "href": "/OEBPS/one.xhtml",
+        "ready": "complete"
+      },
+      "fullDOMAnchor": true,
+      "keyWindow": true,
+      "loading": false,
+      "phase": "ready",
+      "queryFinishedUptime": 1877.0616002400002,
+      "queryStartedUptime": 1877.05709885,
+      "reportedHref": "OEBPS/one.xhtml"
+    },
+    {
+      "alpha": 1,
+      "attached": true,
+      "dom": {
+        "gate": {
+          "pending": 0,
+          "sources": [
+            "function(){webkit.messageHandlers.spreadLoaded.postMessage({})}"
+          ]
+        },
+        "href": "/OEBPS/one.xhtml",
+        "ready": "complete"
+      },
+      "fullDOMAnchor": true,
+      "keyWindow": true,
+      "loading": false,
+      "phase": "released",
+      "queryFinishedUptime": 1877.181155849,
+      "queryStartedUptime": 1877.1794995960001,
+      "reportedHref": "OEBPS/one.xhtml"
+    }
+  ],
+  "controlledPairSupportsFix": true,
+  "historical69SecondDelayExactCauseProven": false,
+  "candidate": {
+    "originalExit": 65,
+    "teeExit": 0,
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "x86_64",
+            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 5,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1792584651.329,
+      "passedTests": 5,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792584440.919,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "failed - Continuous reader did not reach expected state at testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes():981",
+          "targetName": "XianxiaReaderTests",
+          "testIdentifier": 3,
+          "testIdentifierString": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+          "testName": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [],
+      "totalTestCount": 6
+    },
+    "cases": [
+      {
+        "case": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+        "outcome": "passed",
+        "elapsedSeconds": 12.255
+      },
+      {
+        "case": "ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+        "outcome": "passed",
+        "elapsedSeconds": 5.13
+      },
+      {
+        "case": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+        "outcome": "failed",
+        "elapsedSeconds": 49.36
+      },
+      {
+        "case": "ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge",
+        "outcome": "passed",
+        "elapsedSeconds": 3.443
+      },
+      {
+        "case": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+        "outcome": "passed",
+        "elapsedSeconds": 3.361
+      },
+      {
+        "case": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+        "outcome": "passed",
+        "elapsedSeconds": 17.934
+      }
+    ],
+    "selectedGatePassed": false,
+    "allSixStartedAndEndedOnce": true,
+    "caseSecondsSum": 91.483
+  },
+  "remainingFailure": {
+    "case": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+    "mode": "continuous",
+    "line": 981,
+    "stage": "return to captured full origin",
+    "originalPagedBranchReachedSnapshot": true,
+    "initialBodyJumpPassedInBothBranches": true,
+    "restoredDocument": "OEBPS/one.xhtml",
+    "innerContentAlpha": 1,
+    "initializationComplete": true,
+    "restoredScrollY": 2367,
+    "restoredLongParagraphTop": -599.125,
+    "reportedCharOffset": 499,
+    "reportedViewportOffset": -3.125,
+    "comparisonBeforeValueNotRecorded": true,
+    "exactPixelDeltaUnknown": true,
+    "regressionCausalityNotProven": true,
+    "rawAttachment": "build\\ci\\39594313793\\diagnostic\\ReaderSnapshots\\51A001B5-3196-4139-AF04-F2E9536C6308.txt"
+  },
+  "validation": {
+    "windowsTooling": {
+      "total": 76,
+      "passed": 70,
+      "skipped": 6,
+      "elapsedSeconds": 24.333
+    },
+    "linuxTooling": {
+      "total": 76,
+      "passed": 76,
+      "skipped": 0,
+      "elapsedSeconds": 12.98
+    },
+    "windowsSwiftSyntax": {
+      "files": 464,
+      "addedDiagnostics": 0,
+      "pristineLimitations": 54,
+      "isCompilation": false
+    },
+    "nativeBuildForTestingPassedForBothPhases": true,
+    "compilerSourceErrors": 0,
+    "core137Rerun": false,
+    "readerPositions24Rerun": false,
+    "fullIOS189Executed": false,
+    "deviceReleaseExecuted": false,
+    "deviceAcceptance": false,
+    "newIPA": false
+  },
+  "timing": {
+    "nativeDriverSeconds": 1527.0,
+    "baselinePreparationUntilFirstSuiteSeconds": 914.855,
+    "baselineCaseSeconds": 39.575,
+    "baselineSuiteSeconds": 39.58,
+    "baselineVerificationToCandidateSuiteSeconds": 242.453,
+    "candidateSuiteSeconds": 91.675,
+    "note": "Driver also includes source verification, tool/resolve/build/boot/launch and result export; preparation is not test execution."
+  },
+  "artifact": {
+    "run": 39594313793,
+    "artifact": 12344571830,
+    "kind": "diagnostic",
+    "archiveBytes": 119059067,
+    "archiveSHA256": "ae42d5dfee5f8e07cb4a509c07e9042cb29a300da7ba34a81a51ef0ef594f993",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39594313793\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39594313793\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39594313793\\diagnostic-received.zip",
+        "bytes": 119059067,
+        "sha256": "ae42d5dfee5f8e07cb4a509c07e9042cb29a300da7ba34a81a51ef0ef594f993"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "sourceCounts": {
+    "architectureSwiftSources": 140,
+    "areas": 17,
+    "nodes": 18,
+    "preciseExceptions": 5
+  },
+  "userDecision": "Save this slice and failure evidence now; next turn investigate only continuous return, R4 remains deferred.",
+  "nextExperiment": "Add mode/phase and full captured locator plus same-view DOM before/after capture, before departure and after return to the original single case. Keep original3px/30s and false/true ordering. Compare qualified old/new only if needed; do not treat a prerequisite failure or one successful replay as root-cause proof.",
+  "r4Started": false,
+  "releaseAccepted": false,
+  "deviceAccepted": false
+}

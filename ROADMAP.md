@@ -1,6 +1,6 @@
 # 开发路线与阶段门槛
 
-R3c保存断点（2026-10-21，用户已确认不追加运行）：导航/返回点负责人已在现有ReaderPositions实现并真实编译，源c180e1126cb1283f5599644a9232b8ee6ccf717e / [CI39585860717](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39585860717)结论failure。独立24/24、现有6项导航回归通过，原生整组18/19；唯一旧EPUB用例首次分页跳正文时DOM已到one.xhtml，但currentPosition仍报cover，尚未捕获/返回原点。该用例直接调用原引擎，未经过新导航负责人，原引擎/用例与上一片同字节；根因、环境归因及回归因果均未证，不能称整组或R3已验收。字体双模式六套、同宽分页writer、TXT及原保存回归通过。代码与旧WIP保留，下一轮只查此单例，R4顺延；未跑完整188/设备Release/手机，无新IPA。详见READER_POSITION_ISOLATION及ValidationLogs/project-isolation-r3c.json。
+2026-10-21当前断点：EPUB分页原生加载缺口取得旧1项失败/候选受控成功的同机对照，但候选整组5/6，原单例在连续返回原位置的3px断言失败；R3整组仍不能验收。按用户选择先保存，下一轮只查这一连续返回例，R4阅读会话隔离尚未开始。保留R1/R2/R3和后续产品计划，不追加本轮CI。完整门槛因新增1项回归成为160集成+29UI=189，本片未执行完整/Release/手机。详见[专项原始结果](Documentation/ValidationLogs/epub-native-readiness-control.json)。
 
 以下保留各自源与日期的历史记录；当前只以本段及HANDOFF为准。
 

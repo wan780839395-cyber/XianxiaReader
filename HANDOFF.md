@@ -1,20 +1,30 @@
-## 当前恢复点：受控旧1/新6准备冻结（尚未Swift编译，2026-10-21）
+# 当前断点：EPUB加载缺口对照有效，连续返回仍失败，已按用户选择保存（2026-10-21）
 
-已实现测试/诊断入口，生产源码仍为原R3c版本。新增一个分页rAF桥屏障用例，只挂起one.xhtml真实spreadLoaded回调，保留cover和其他rAF；必须证明DOM complete、窗口挂载、桥仍held，才进入原30秒位置/内层alpha断言。候选通过后才放行原桥并核完整DOM锚点不回退。失败诊断新增采样时刻、内层alpha、DOM返回后的位置，原断言/预算不变。严格核真实旧退出65/合格失败1与新退出0/6通过，共用runner/DerivedData；不合格即停，不重试。
+用户最新选择：先保存本片和失败证据，下一轮只查连续返回。停止追加CI/修正，不进R4；保持开机。普通HEAD/index和全部旧WIP保留，禁止reset/clean。
 
-当前仅语法/5项新工具用例通过，接下来完整Windows工具76项、Bash语法后冻结旧源码+相同fixture，再只改SpreadView和UPSTREAM形成精确子提交。尚无本片远程run/原生结果。未来完整iOS计数由159集成+29UI改为160+29=189，仅新增回归带来的计数更新，本片不跑完整门槛。普通HEAD/index和全部旧WIP保留；R4尚未开始。
+## 实际输入与结果
 
-参考已核锁定Readium3.11.0原始SpreadView/ReflowableSpreadView/PaginationView/Navigator源码（.cache/recovery/epub-first-jump）；沿用本项目已经回归的连续模式原生bootstrap和桥屏障fixture，不升级依赖、不另建排版器。原失败诊断先读position再await DOM，且外层可见矩形不含内层scrollView alpha，因此不能据旧附件证明正文当时已经可读。新对照只能证明/排除这一桥通知缺口，不能倒推历史69秒延迟的精确原因。
+控制基线609cbd03463b64f312216a1c397616cd2be0659f（codex/epub-ready-control-baseline），候选0de44ba6d2d5875816f1a42a06d04f4313e21d9c（codex/fix-epub-native-readiness），远程refs已核；候选是精确子提交，仅Vendor SpreadView/UPSTREAM两文件差异。CI39594313793实际head为基线，脚本在合格旧负例后覆盖精确两文件候选，两相位584冻结输入均核Git blob，不能把基线head误当候选执行源。最终文档检查点另记于本地final-checkpoint.json，不是重跑源。
 
-## 单例实验假设（尚未验证）
+[CI39594313793](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39594313793) completed/failure。旧1项39.575秒合格复现指定断言失败，test65/tee0；候选6项为5过1失败，test65/tee0，无跳过/重试。两相位真实build-for-testing过，0源码编译错误。新分页加载屏障、原连续bootstrap、双模式关闭、隐藏字体、同宽writer过；原FreshReturnCapture用例首次跳正文及分页完整返回分支已过，连续返回981失败。因此只确认加载缺口修正有直接证据，整组/R3及全部定位未验收，R4未开始。
 
-旧Paged没有native bootstrap，目标one的spreadLoaded rAF被挂起时，DOM complete但原生alpha仍0、currentPosition仍cover；当前连续模式已经有安全fallback。待实验复用既有rAF屏障，只控one资源（cover正常），证明实际进入held=true/DOMready，再保持同30秒断言观察是否bodyalpha和currentPosition到one。候选只扩已有完整bootstrap到重排分页，保留JS/viewport检查、初始化一次、字体/完整锚点保护、close取消，不直接发伪造位置。旧1项严格负例、候选受控1+原失败1及连续fallback/关闭/隐藏字体/同宽writer各1，共新6项；同runner/相同fixture与原预算，不跑19/188/设备Release。历史39585860717初始化过迟的精确69秒原因不能由新对照倒推，诊断位置与DOM采样时间也需分别标明。
+## 已改与实际断点
 
-# 当前断点：单查EPUB首次跳正文与位置上报（2026-10-21）
+正文DOM complete不等于原生正文已经可读。旧页真实one.xhtml桥pending1时内层alpha0、currentPosition cover；候选用连续模式原有native didFinish+viewport/script探针启动同一完整初始化一次，字体/完整pending Locator完成后才alpha1/上报one/full DOM锚点，放行原桥后保持。仅扩大到重排分页；固定布局、连续语句/await次序、关闭取消、位置guard、Readium JS/R1/R2/R3/Core/依赖锁和原断言预算保持。精确3.11参考与取舍见READER_POSITION_ISOLATION及UPSTREAM。旧日志position先采样再await DOM，外层可见矩形没检查内层alpha；历史69秒延迟精确原因仍未证。
 
-用户最新授权：先查清正文DOM已到one但仍上报cover，有缺陷就修复，收口后才继续R4。范围只围绕原FreshReturnCapture单例/首次跳转-初始化-位置发布，不混R4或全量验证。原R3a/b/c、字体/分页writer/连续定位修复保留。当前581输入与R3c冻结相同，普通HEAD/index和旧WIP保持，无活动原CI任务。
+当前唯一失败为连续分支返回完整origin后的原3px断言，非初始封面问题。返回后DOM one、内层alpha1、初始化完成，scrollY2367、long top=-599.125，完整锚点char499/viewportOffset-3.125。原before值没有附件，不能确定delta或根因，不能归咎新代码或环境。分页原生截图与连续失败原件均保留；连续路径直接语句没变也不能排除前序分页状态影响。
 
-已核CI39585860717 completed/failure与完整原件：24独立/6原导航过，整组18/19；失败首次分页go时目标spread loaded=false，目标didFinish/initialization.start迟到，诊断DOM one/complete/long top0但engine position cover。尚不能据DOM complete判为原生可读初始化已完成。优先核isSpreadLoaded、currentLocation发布guard、go完成及目标pending位置；不直接伪造位置或放宽30秒用例/3秒保存/20秒资源预算。先查当前锁定3.11官方和成熟实现，再决定最小修正及受控实验。尚未改源码/编译/派发本片CI。基线及原交接见build/maintenance/EPUB-first-jump-20261021。
+## 下一轮唯一实验
+
+只查原FreshReturnCapture单例的连续返回：先补模式/阶段、采样前后同一视图DOM、完整origin、跳出前before及返回后测量，保留false/true顺序、原3px/30秒及独立观察。先区分origin采样与恢复/测量时刻；需要远程才做同fixture旧/新一个单例对照，必须进入该返回阶段，不能把前置失败算返回负例或把单次重放成功写成已修。不要先改连续算法，不跑19/189或进入R4。若涉及更改预算/时序/范围，及时问用户。
+
+## 验证、原件与成本
+
+Windows464语法新增0/54既有限制（不是编译），76工具70过6 POSIX跳过（24.333秒），Bash通过；Linux76/76。原生driver1527秒，基线首suite前914.855秒含工具/依赖/编译/启动，旧case39.575秒；候选suite91.675秒（6项合计91.483），其余含增量准备和导出。不把冷准备当测试，不把5/6写成修复全过。未重跑独立24/Core137/完整189、设备Release/普通设备/TrollStore/手机，无新IPA，最后交付Build30。
+
+权威Documentation/ValidationLogs/epub-native-readiness-control.json。完整原件119059067字节，artifact12344571830，SHA ae42d5dfee5f8e07cb4a509c07e9042cb29a300da7ba34a81a51ef0ef594f993，GitHub digest/CRC/完整展开均核；保留build/ci/39594313793/diagnostic中两相位xcresult、日志、summary、截图/附件、输入证明及baseline-verification。只清本轮重复ZIP，不动历史原件/包/源码。冻结、保全、工具结果、连续失败原件在build/maintenance/EPUB-first-jump-20261021，开发过程交接保存HANDOFF-development.md。watcher及下载均已结束、临时浏览器页已关闭；恢复查真实run/进程，旧exec/PID不当当前事实。
+
+以下为上一片R3c当时的已保存断点，当前以本页上文和专项结果为准。
 
 # 当前断点：R3c实现已保存，下一轮只查一个EPUB疑点（2026-10-21）
 
