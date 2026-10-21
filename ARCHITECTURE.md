@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-22 R4a：App → ReaderSessions → Foundation，真实SwiftPM产品已接入XcodeGen并实际编译。包拥有started/request/book身份与同步accept门；App每次open绑定owner，完整位置还校验book，迟到写入只过滤错误发布。engine.close最后位置先接收，随后invalidate；原Task写入和全部原await顺序保留，字体失败allowReopening保留旧owner直到下一次begin。原生同机旧1项负对照/候选13项、包6项通过；没有新增生产await，R4b异步编排后续。5个精确依赖例外不增加，静态142文件/19区域/20节点。详细合同见[会话隔离](Documentation/READER_SESSION_ISOLATION.md)与[R4a原始结果](Documentation/ValidationLogs/project-isolation-r4a.json)。
+
 2026-10-21重复定位本片只修测试渲染边界，未改生产或引入新异步生产层。原go/字符坐标可先于截图像素生效；当前挂窗WebView/alpha正确时即时drawHierarchy也可白，即使返回true。测试在原坐标断言之后用WK afterScreenUpdates=true纳入pending updates，再验实际窗口非白和字/外层仍不变；viewport与生产同样扣contentInset。9aac4d / CI39619940734真实编译、原单例1/1。原即时图保留而不当渲染完成证明；手机瞬态/精确GPU时序未验。分页bootstrap及R1/R2/R3保持；下一独立片R4。见[权威结果](Documentation/ValidationLogs/repeated-seek-snapshot-boundary.json)。
 
 2026-10-21连续返回专项：生产、Readium分页bootstrap和R1/R2/R3模块均保持，未增加异步生产层。e234b2b只强化原测试准备为本次initialY+600真实完成；CI39607326744原单例1/1、原生编译通过，原返回3px/30秒与截图后观察保留。诊断样本完整字符/viewport偏移与实际DOM返回一致，旧失败缺before不能追认根因。后续重复seek坐标虽过、原生截图空白（诊断旧版同样），可见性未验收；R4未开始。详见[本片结果](Documentation/ValidationLogs/continuous-return-preparation.json)与READER_POSITION_ISOLATION。

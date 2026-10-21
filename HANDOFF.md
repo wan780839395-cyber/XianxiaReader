@@ -1,8 +1,39 @@
+# 当前断点：R4a本片完成，下一片R4b（2026-10-22）
+
+用户当前授权的会话归属与关闭失效切片已完成，实现/独立包编译/原生接线编译/定向验收通过；停在此边界，不自动混入打开/重试/关闭编排、I5或新增产品。电脑保持开机。下一片R4b保留原await/同步发布与现有定位；所有后续产品计划仍在ROADMAP/READING_FEATURE_IDEAS，未提前实现。
+
+## 当前实际结果
+
+- 运行源f516c28406a06884fa551d5ac25ef42028f59c3d / refs/heads/codex/isolate-reader-session-ownership，[CI39627814766](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39627814766) completed/success；仅一次派发、无原生重试。独立6/6；旧VM单例合格失败（5个STALE_SESSION_CALLBACK断言，test65）；候选13/13、test/summary/export均0；两轮build-for-testing成功、源码编译错误0。
+- ReaderSessions Foundation-only产品拥有started/request/book与同步发布门；每次open绑定owner。旧tap/gesture/scroll/error/position及跨书位置拒绝，迟到写入错误不影响重开；close最后完整位置先接收再invalidate，已接收写入继续完成。字体失败允许重开但保留旧ID直到新begin的旧规则保留。原生产await行序列、28个旧测试正文完全一致，Core/Adapter/Vendor/字体/锁及R1/R2/R3定位源码不变。
+- Windows最终467语法新增0（54既有Vendor限制，非编译），83工具中76过/7 POSIX跳过；远程冻结版本Linux82/82。冻结后5个工具/配置差异仅未来入口接线、规划正例与显式UTF-8读取，均本地复核；App/Packages/原生测试均与f516c28相同，不把这些工具改动冒充已在远程运行。静态142第一方Swift/19区域/20节点，5精确例外不增加。
+- 当前仅R4a本片验收；R4b、R3整组、全项目隔离/完整162+29=191、设备Release/普通设备/TrollStore/手机均未验收，无新IPA，最后交付Build30。
+
+## 成本、原件与恢复
+
+包步骤83秒（Swift构建62.04秒），原生新旧对照步骤1719秒，首suite前1131.018秒；旧用例2.592秒、候选13项总0.890秒，实际执行合计3.482秒，其余是准备/编译/模拟器与宿主/结果采集。不能把1719秒称用例执行，也不能承诺共用缓存就没有候选启动成本。
+
+权威Documentation/ValidationLogs/project-isolation-r4a.json；设计Documentation/READER_SESSION_ISOLATION.md；快速入口FAST_VALIDATION。完整artifact12359693099、56581158字节、SHA/digest4febf85f4266185ef620a40c478bfc0d5f309dee0368ff277fc65f3b84865f19，build/ci/39627814766/diagnostic完整保留，CRC/摘要/原始日志/四个xcresult/两阶段591输入逐blob已核。仅删除该已校验artifact的重复ZIP，不动历史、源码、包或恢复文件。
+
+build/maintenance/R4a-20261021含1194路径保护before.json、frozen.json、result.json、最终工具日志及状态。普通HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，index SHA仍b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28；不得reset/clean旧WIP。收口检查点将保存到refs/heads/codex/reader-session-isolation-saved，实际SHA以同目录final-checkpoint.json和远程ref核对，不重派CI。观察/下载进程均已完成。
+
+## 本片过程记录
+
+以下是当时的中间状态与上片历史，均不覆盖上方最终结果；其中“待编译/运行中/下一片R4”的文字不可当作当前状态。
+
 # 当前工作：R4a会话归属与关闭失效（2026-10-21，用户已授权）
 
 R4a源码和最小验证入口已写，尚未编译/执行：新ReaderSessions Foundation-only产品、按次绑定owner的回调门、旧写入完成后的错误发布门，保留close最后位置先接收后失效。复核发现原字体失败只重置started不清ID，已用allowReopening原样保留，不能把两者合并。原28个测试正文保持，新增2个原生合同及6个包合同；新selection只跑旧1负对照+候选13生命周期例，共用runner/缓存，不跑全套。当前门槛因新增2例变为162+29=191，更新守卫不等于执行完整门槛。接下来先Windows静态/工具检查，再冻结只派一次此selection；详细合同见Documentation/READER_SESSION_ISOLATION.md。
 
 Windows检查完成：467 Swift语法新增0（54既有Vendor parser限制），仓库/依赖边界通过；Python82项中75通过、7 POSIX跳过，日志build/maintenance/R4a-20261021/{repository,tooling}.log；3个受影响Bash分别bash-n通过。不是Swift编译。实时核CI39619940734已completed/success，无旧运行需要接续；本地无Swift命令。冻结前须逐旧方法/await行、全部1194旧路径hash核保护，再用私有索引提交；普通HEAD/index保留。
+
+已冻结并仅派一次：f516c28406a06884fa551d5ac25ef42028f59c3d / refs/heads/codex/isolate-reader-session-ownership，[CI39627814766](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39627814766) session-isolation。冻结收据build/maintenance/R4a-20261021/frozen.json：591运行输入逐blob核对，1184旧路径hash未变；普通HEAD/index保持。VM所有旧方法除准入/失效/回调与2处字体started机械映射完全一致，原await行序列一致；原28个lifecycle测试正文全部一致。当前原生编译/定向待结果，禁止提前记通过。只读观察进程启动，输出run/full日志/元数据到build/ci/39627814766，若中断核实际job再决定，不重派。
+
+冻结后仅补将来入口接线：plan_validation新增session-logic、full ci_ios执行同一6项独立入口并保留产物、1条工具正例；这4个工具/配置文件变化不参与本轮原生selection执行，须单独本地复核，最终检查点与f516c28分别记录。App/Packages/原生测试/锁不再改。远程仓库检查已通过；当前包编译尚待完成。不能把冻结后工具结果归入远程82项，也不能声称full脚本已执行。
+
+后续入口本地复核完成：83项Python中76通过、7 POSIX跳过（tooling-final.log）；467语法/架构通过，142第一方Swift、19区域、20图节点、仍5精确例外；ci_ios bash-n通过。591冻结输入现仅上述4个工具/配置差异，全部App/Packages/原生测试hash一致。远程独立包步骤已完成（83秒），已进入对照原生环境/工程准备；完整6项/原生结果仍以最终下载receipt/日志/xcresult核验后记录。
+
+2026-10-22 00点后恢复点：同一CI仍在运行。网页已显示旧单例2.592秒，先输出sameModelReopened/currentPositionStored，再仅出现scroll/gesture/tap/error/position五个STALE_SESSION_CALLBACK预定断言，1个case失败（不是5个case）。driver已进入候选重新resolve/增量编译，意味着旧门校验已放行；正式收口仍要下载并复核receipt、真正65和xcresult，不以网页尾部代替原件。候选13项尚待结果，不能重派CI；本地App/Packages/原生测试未再修改。
 
 本轮范围：独立Foundation ReaderSessions负责人拥有started/请求ID/所属书及回调接收规则；VM保留原打开/重试/关闭编排、await和同步发布顺序，只按打开请求绑定引擎回调、关闭后失效。明确修正：旧闭包在同model重开后不接收；关闭后error/tap/gesture/slow-scroll回调不发布；进度已接收的每次写入继续执行，旧会话写入失败不污染新会话；engine.close最后位置回调仍先接收再失效。只选新独立会话合同及相关原打开/关闭/重试/迟到位置/导航/设置生命周期回归，不跑Readium19/全189/设备Release或截图重放。打开/重试编排、字体事务、保存/导航模块和Vendor/依赖锁不改；R4b后续。
 

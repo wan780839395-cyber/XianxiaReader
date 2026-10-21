@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT
 from verify_reader_sessions import CONTROL, LOGIC_TESTS, NATIVE_TESTS, verify_logic, verify_native
+from plan_validation import plan
 
 
 class SessionEvidenceTests(unittest.TestCase):
@@ -62,11 +63,13 @@ class SessionEvidenceTests(unittest.TestCase):
 
     def test_native_requires_exact_cases_summary_and_original_exit(self):
         log, summary = self.native()
+        log += "UTF-8 diagnostic: 中文日志\n"
+        (self.root / "logs/reader-diagnostic.log").write_text(log, encoding="utf-8")
         self.assertEqual(verify_native(self.root, False, 0)["passed"], len(NATIVE_TESTS))
         for bad in [log + log, log.replace("passed", "failed", 1), "\n".join(log.splitlines()[2:])]:
-            (self.root / "logs/reader-diagnostic.log").write_text(bad)
+            (self.root / "logs/reader-diagnostic.log").write_text(bad, encoding="utf-8")
             with self.assertRaises(ValueError): verify_native(self.root, False, 0)
-        (self.root / "logs/reader-diagnostic.log").write_text(log)
+        (self.root / "logs/reader-diagnostic.log").write_text(log, encoding="utf-8")
         with self.assertRaises(ValueError): verify_native(self.root, False, 65)
         for key in ["totalTestCount", "passedTests", "failedTests", "skippedTests"]:
             bad = dict(summary); bad[key] += 1
@@ -93,6 +96,17 @@ class SessionEvidenceTests(unittest.TestCase):
             for case in selected:
                 cls, name = case.split("/")
                 self.assertIn("func " + name + "(", (ROOT / f"Tests/iOS/{cls}.swift").read_text(encoding="utf-8"))
+
+    def test_new_session_target_plans_fast_contracts_before_native_and_full_gate_retains_them(self):
+        result = plan(["Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift"])
+        names = [entry["name"] for entry in result["checksInOrder"]]
+        self.assertLess(names.index("session-logic"), names.index("ios-integration"))
+        self.assertFalse(result["conservativeFallback"])
+        self.assertFalse(result["acceptanceGranted"])
+        self.assertNotIn("core", names)
+        script = (ROOT / "scripts/ci_ios.sh").read_text(encoding="utf-8")
+        self.assertEqual(script.count("bash scripts/test_reader_sessions.sh"), 1)
+        self.assertLess(script.index("bash scripts/test_reader_sessions.sh"), script.index("xcodebuild -resolvePackageDependencies"))
 
     @unittest.skipIf(os.name == "nt", "POSIX executable fixture validated on Linux CI")
     def test_shell_preserves_swift_failure_and_refuses_prior_evidence(self):

@@ -1,0 +1,143 @@
+{
+  "recordedAtUTC": "2026-10-21T16:19:55.995344+00:00",
+  "phase": "r4a_targeted_accepted",
+  "revision": "f516c28406a06884fa551d5ac25ef42028f59c3d",
+  "run": 39627814766,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39627814766",
+  "module": "ReaderSessions",
+  "layout": "Foundation-only SwiftPM product linked into App by XcodeGen",
+  "logic": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "testAcceptedWorkFinishesButLateErrorCannotPublishIntoReopenedSession",
+      "testAdmissionRetainsFailedOpenUntilCloseAndRejectsDuplicateOpen",
+      "testCapturedCallbacksCannotPublishAfterCloseOrSameBookReopen",
+      "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
+      "testFinalSynchronousPositionIsAcceptedBeforeInvalidation",
+      "testForeignBookCannotPublishWithinCurrentSession"
+    ],
+    "appHostUsed": false
+  },
+  "qualifiedOldControl": {
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "cases": [
+      "ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks"
+    ],
+    "qualifiedNegative": true,
+    "originalExit": 65,
+    "appHostUsed": true
+  },
+  "native": {
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "ReaderLifecycleTests/testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
+      "ReaderLifecycleTests/testCloseDuringOpenCannotReturnReaderToReadyState",
+      "ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks",
+      "ReaderLifecycleTests/testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition",
+      "ReaderLifecycleTests/testFailedOpenCanRetryAndBecomeReady",
+      "ReaderLifecycleTests/testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
+      "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "ReaderLifecycleTests/testOldSettingsFailureCannotPublishIntoSameModelReopenedSession",
+      "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest"
+    ],
+    "qualifiedNegative": false,
+    "originalExit": 0,
+    "appHostUsed": true
+  },
+  "nativePhases": {
+    "baseline": {
+      "buildForTestingPassed": true,
+      "sourceCompileErrors": 0,
+      "testExit": 65,
+      "summaryExit": 0,
+      "exportExit": 0,
+      "executedCaseSeconds": 2.592,
+      "originalLogSHA256": "88eedf2753bc094556e00203bd562141d8a28933f232d412a3739252077d2e9f"
+    },
+    "candidate": {
+      "buildForTestingPassed": true,
+      "sourceCompileErrors": 0,
+      "testExit": 0,
+      "summaryExit": 0,
+      "exportExit": 0,
+      "executedCaseSeconds": 0.89,
+      "originalLogSHA256": "83944d7ce28ed3754f7c1c745d79646723e91275014bc951d18768a3e9e8ad32"
+    }
+  },
+  "sourcePair": {
+    "runtimeInputs": 591,
+    "onlyOverlay": "App/Reader/ReaderViewModel.swift",
+    "allOtherInputsIdentical": true,
+    "oldVMRevision": "a3aea572e692688fd9704e1b5035d6de260b0e02"
+  },
+  "preservation": {
+    "originalAwaitLineSequenceUnchanged": true,
+    "all28OriginalLifecycleTestBodiesUnchanged": true,
+    "fontFailedRebuildAdmissionPreserved": true,
+    "engineFinalPositionBeforeInvalidation": true,
+    "acceptedPersistenceCompletes": true,
+    "R1R2R3AndReadiumAdapterVendorCoreAndLockUnchanged": true
+  },
+  "local": {
+    "swiftGrammarFiles": 467,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorGrammarLimitations": 54,
+    "initialPythonTests": 82,
+    "initialPythonPassed": 75,
+    "initialPythonPOSIXSkipped": 7,
+    "finalPythonTests": 83,
+    "finalPythonPassed": 76,
+    "finalPythonPOSIXSkipped": 7,
+    "remoteLinuxToolingTests": 82,
+    "remoteLinuxToolingPassed": 82,
+    "finalToolingOnlyDelta": [
+      ".github/workflows/ios-build.yml",
+      "scripts/ci_ios.sh",
+      "scripts/plan_validation.py",
+      "scripts/test_reader_sessions_tools.py",
+      "scripts/verify_reader_sessions.py"
+    ]
+  },
+  "cost": {
+    "moduleStepSeconds": 83.0,
+    "moduleSwiftBuildSeconds": 62.04,
+    "nativePairStepSeconds": 1719.0,
+    "untilFirstNativeSuiteSeconds": 1131.018,
+    "baselineCaseSeconds": 2.592,
+    "candidateCaseSeconds": 0.89,
+    "workflowDispatches": 1,
+    "nativeTestRetries": 0
+  },
+  "artifact": {
+    "id": 12359693099,
+    "archiveBytes": 56581158,
+    "sha256": "4febf85f4266185ef620a40c478bfc0d5f309dee0368ff277fc65f3b84865f19",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39627814766\\diagnostic"
+  },
+  "acceptance": {
+    "implementation": true,
+    "standaloneMacCompilation": true,
+    "standaloneContracts": true,
+    "iOSAppAndTestsCompilation": true,
+    "targetedNative": true,
+    "complete191Executed": false,
+    "readiumRenderingGroupExecuted": false,
+    "deviceReleaseBuild": false,
+    "newIPA": false,
+    "ordinaryDevice": false,
+    "trollStore": false
+  },
+  "remaining": "R4b open/retry/close orchestration; no next product feature implemented"
+}

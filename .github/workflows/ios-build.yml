@@ -237,6 +237,7 @@ jobs:
             build/ContinuousRotationPreflightSnapshots/
             build/InteractionVideo/
             build/ReaderPositions/
+            build/ReaderSessions/
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json

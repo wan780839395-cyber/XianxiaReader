@@ -1,5 +1,7 @@
 # 项目状态
 
+2026-10-22 当前维护结果：R4a会话归属/关闭失效本片完成。ReaderSessions为Foundation-only真实包并接入App；每次打开绑定owner，旧回调及跨书位置不能发布，关闭最终完整位置仍写入，已接收写入不取消。运行源f516c284 / CI39627814766，独立6/6、旧1项合格负对照（5个预定断言）、候选iOS13/13，原生编译通过。原await及28个旧生命周期测试正文不变，R1/R2/R3与定位修复保持。当前仅本片定向验收，完整162+29=191、设备Release/普通设备/TrollStore/手机未跑，无新IPA，最后交付Build30。下一片R4b打开/重试/关闭编排，新增产品计划继续保留。详见[R4a原始结果](Documentation/ValidationLogs/project-isolation-r4a.json)与HANDOFF。
+
 2026-10-21重复定位白图本片收口：测试截图取样早于待提交像素更新；坐标、当前挂窗视图和alpha正常，但即时图可白。候选9aac4d / CI39619940734原单例1/1（43.231秒），真实编译0源码错误、test/summary/export均0；afterScreenUpdates=true后的WebKit和原生窗口图有正文，viewport覆盖1、字偏移-9.125、外层2376不变，原返回合同保持。生产、分页加载修正及R1/R2/R3隔离未改。首诊39615950830的0/1和本轮误算安全区已留证，修正的是测试边界，不是新的引擎修复。原即时图（包括本次连续返回图）仍可白，保留作对照；不以此证明手机瞬态显示/全部截图或完整门槛。下一独立片R4会话身份/关闭失效，再拆编排；本片未实施R4、未跑全套189/Release/手机，无新IPA。详见[权威结果](Documentation/ValidationLogs/repeated-seek-snapshot-boundary.json)与HANDOFF。
 
 2026-10-21连续返回专项本片保存：修正源e234b2b / CI39607326744 success，原单例1/1（51.275秒）、真实原生编译通过，原3px/30秒保持。只修测试准备：实测initial1767已满足旧>500，现等待本次+600到2367才capture；连续保存/返回longTop同为-599.125、char499/offset-3.125一致。生产及分页bootstrap/R1/R2/R3未变；旧失败缺before，精确根因未证。返回两模式正文截图正常，但后续重复seek截图空白（前一诊断版也存在），几何断言过不代表该可见性验收，已单列疑点。本轮不追加CI、不进R4，整组R3/完整189/Release/手机未验，无新IPA。见[本片原始结果](Documentation/ValidationLogs/continuous-return-preparation.json)和HANDOFF。

@@ -1,4 +1,10 @@
-# I1 设置逻辑快速验证
+# 隔离模块快速验证
+
+当前事实以此段为准：f516c284 / CI39627814766独立6/6、旧1项合格失败、候选13/13，真实编译通过。Windows最终83项中76通过/7 POSIX跳过；远程冻结源Linux82/82，新增规划正例及显式UTF-8工具修正另经本地检查，未归入远程82项。模块步骤83秒（Swift构建62.04秒）；原生对照步骤1719秒，首suite前1131.018秒，旧用例2.592秒/候选13项合计0.890秒；其余为准备、构建、启动与结果采集。只派一次、无原生重试。完整191/Release未跑，下方其他日期数量为历史记录。
+
+R4a当前入口（2026-10-22，本片定向通过）：`bash scripts/test_reader_sessions.sh <新的输出目录>`直接编译真实Foundation-only包并精确执行6个会话合同，无Core/Readium/App宿主。`session-isolation` workflow只跑此入口、旧VM的1项合格回调负对照和候选13项生命周期回归，保留原exit/summary/xcresult，不导出IPA。详细合同与原await/关闭顺序见READER_SESSION_ISOLATION.md。
+
+冻结原生输入f516c28后补充的自动计划/完整门槛接线单独验证：plan_validation对ReaderSessions源码先列session-logic，再列既有原生门槛；ci_ios在原有包检查后执行同一会话入口，完整产物保留ReaderSessions目录。不会因独立合同通过自动复用UI或签发Release；本轮完整脚本未执行。新增2项iOS回归后未来完整计数162+29=191，独立6项另计。
 
 R3c当前入口（2026-10-21）：test_reader_positions.sh独立24项（状态6+保存10+导航8）通过；position-isolation保持原13项并补原6导航，当前19项实际18过1失败，严格native verifier拒绝成功回执。未改原测试/断言/预算。源码c180e112/CI39585860717，用户决定本轮保存，下一轮仅查FreshReturnCapture首次EPUB跳正文/位置上报一例，不重跑19/188碰运气。完整Core仍137、iOS159+29=188；无IPA。
 

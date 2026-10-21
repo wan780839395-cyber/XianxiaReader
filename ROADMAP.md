@@ -1,5 +1,7 @@
 # 开发路线与阶段门槛
 
+2026-10-22 当前断点：R4a会话归属/关闭失效已通过独立6项、同机旧1项负对照和候选13项生命周期回归，原生接线/编译通过；原await、旧28测试、定位及R1/R2/R3保留。下一独立片R4b只提取打开/重试/关闭编排，保留时序及结果发布，不混入字体事务、导航或新产品功能。R4整体、R3整组、全项目隔离和完整191/Release/手机均不能称完成；无新IPA。后续产品计划保持原条目。详见[R4a原始结果](Documentation/ValidationLogs/project-isolation-r4a.json)与READER_SESSION_ISOLATION。
+
 2026-10-21当前断点：重复定位截图边界已修并验原单例1/1，9aac4d / CI39619940734；仅测试变化，实际更新后原生窗口与WK图可读，原位置合同不变。保留即时白图和首诊失败，不宣称旧全部失败根因/手机显示已证；完整189与Release未跑。下一独立片开始R4：先核会话请求归属、关闭失效及相应竞态合同，再移动打开/重试/关闭编排，保留原await/同步发布顺序，产品计划不变。详见[本片结果](Documentation/ValidationLogs/repeated-seek-snapshot-boundary.json)。
 
 2026-10-21当前切片已保存：原返回点单例的准备条件修正e234b2b / CI39607326744为1/1、原生编译通过，生产未改。原连续返回位置断言过，旧失败精确根因未证；后续重复seek坐标过但截图空白，留证后另片单查，不擅自追加CI。R4尚未开始，R3整体及完整189/Release/手机不能验收，无新IPA；产品计划保持。详见[本片结果](Documentation/ValidationLogs/continuous-return-preparation.json)。
