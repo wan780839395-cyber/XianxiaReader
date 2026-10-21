@@ -1,34 +1,35 @@
-# 当前任务：查清分页负对照未命中，再确认字体回章头修复（2026-10-21）
+# 当前断点：分页字体回章头缺陷定向收口，下一切片R3（2026-10-21）
 
-用户最新明确继续，授权先查原生负对照未命中原因，确认分页换字体问题修复后才继续R3；控制代码/验证范围，不跑整套。旧“保存后停止”指令已被本次继续覆盖。保持开机。
+用户授权先确认分页问题，再做R3；首组暴露屏障越界后，用户明确只再补一组1+1。两组已自然结束，追加组39561815911成功；本轮不再派发第三组，不在收尾混入R3。保持电脑开机。
 
-当前事实：ecde4d4是本地保存检查点；实际旧/新原生源a812571/9bb6c86，CI39528802200已结束，候选9/9但新同宽屏障旧源也通过，sameWidthControlledFailure=false。编译/536+536输入与完整原件此前已核；不能把旧关闭失败算分页负对照。503保护输入、普通HEAD/index保持，无活动observer/download；R3未接线。
+## 已确认的行为与来源
 
-本轮切片：只查/加强Tests/iOS/ReaderRenderingTests.swift中已有同宽ResizeObserver屏障，必要时为单用例对照调整scripts/ci_reader_diagnostic.sh、scripts/ci_paged_font_control.sh及其直接工具回归；生产JS候选与UPSTREAM先冻结9bb6c86，不动App/Core/字体模块/依赖/Locator/预算。旧字体/截图用例和默认双模式保留。
+- 实际旧源4e6504624fac4d786247c8df07d42460cf1f67b9、实际修正af9b773c7fc04198432f4af238524af62cdf29a5为exact child；同一fixture/预算/原断言，且只差Readium JS+UPSTREAM。旧/新runtime分别字节同a812571/9bb6c86。workflow HEAD是旧源，不误当实际候选。
+- 真原生单case各一次：旧1608→0、char1200不可见、原两行为断言失败，test65；新1608→1608、原字可见，test0、1/1、失败/跳过0。合格负对照true，原生已载入回调/帧源码均与对应Git源码匹配，两边536输入逐blob/SHA核验，源码编译错误0。
+- 旧snap读取注入0并真实委托root scrollLeft写0；旧后续进度读取原生0/injected=false。新没有snap读取或任何root位置写入，唯一进度读取真实1608/injected=false。只把故障注入到目标writer，未改变其后续正常通知；真实宽变两边3216、连续一致仅在离线语义检查，不能冒充此run原生旋转覆盖。
+- 生产修复仍只有固定Readium3.11 body ResizeObserver：初次/同宽正文尺寸通知不再重写位置，真实页宽变化继续原对齐；O更新、虚拟页、进度通知、canonical恢复保持。当前4个Vendor文件仍字节同9bb6c86，App/Core/字体模块/依赖/Locator/预算未改。此前同生产39528802200实际9/9、六分页字体目标字可见/保存delta0，单列历史正向证据，不冒充这轮重新执行字体链。
 
-区分假设：屏障可能捕获非目标callback/frame、stale scrollX getter未被实际writer读取，或写入后另一路恢复；尚未证实。新增有界无几何诊断只记录observer/frame源码、href/初始化标志、getter命中、root scrollLeft写入与顺序，并断言确实进入目标路径；不靠短sleep或重试。先核官方WKContentWorld与WebKit/Readium原实现及成熟fixture，再决定最小修改。
+## 屏障问题与历史限制
 
-验证顺序：先Windows/JS语法和实际回调语义控制；冻结同一fixture，至多旧/新单用例各一次、共用runner与DerivedData，不跑9/188或设备Release/IPA。原生若仍未形成负对照，保留原件并改根据诊断归因，不重复碰绿；范围或产品取舍不清再问用户。单用例对照通过仍不等于完整188、手机或R3验收。之后是否需要补一个原字体链，以取得原生证据后的受影响边界决定并明确记录，不自动扩成整套。
+首组39557140861旧1608→0，新虽无root写入却1608→804，均test65；新侧唯一注入0来自进度函数j，证明屏障污染第二所有者。追加组仅将该进度读委托原活getter，同生产守卫保住1608；原两断言不放宽。先前离线空j漏掉共享读取，是本次可避免的额外冷准备成本，教训已写入CHANGE_AND_DIAGNOSIS_WORKFLOW。新fixture从真实帧尾取进度函数名并核JSC栈，版本/帧尾或活getter变化直接失败；driver有进度被误注入时必须拒绝的反例。
 
-已实现待验证：已有native单用例现在只捕获包含真实root scrollLeft写入的Readium回调/帧，记录源码、href/inline模式、实际stale getter读取与原生root setter尝试并原样委托；原位置/可见断言与预算保持。控制driver仅此1case×旧/新，候选限JS+UPSTREAM，提前提供exact-child，删除空等900秒；基线还须实证目标帧、stale读取、写0及原断言失败，候选须无位置写入，未形成负对照则保留回执但门槛失败。原9case入口保留但本轮不用。
+旧39528802200没有回调/读写证据，旧源重放为何未复现的精确历史原因不能倒推。本轮已经形成合格负/正对照并排除所查writer，不能编造成“旧绿灯确实是捕错回调/环境原因”。旧关闭字体576行失败、此前连续resize81行失败仍独立记录发布影响；本片通过不抹去旧失败或证明所有位置时序问题都已消失。
 
-参考已核：Readium固定d82f44f的utils.js中body RO每次调用onViewportWidthChanged→snapCurrentPosition，不区分页宽/正文变化；WPT resize-observer/resources/resizeTestHelper.js用下一RAF显式推进/完成并断开observer；WKUserScript与evaluateJavaScript默认page world一致。未升级依赖。参考原文与摘要在本轮build目录和Documentation/ValidationLogs/paged-font-control-20261021.json。
+## 验证、原件与成本
 
-本地真实回调+新fixture的最小DOM控制已通过：旧同宽实际委托写0，新不写且保3618；真实宽变两边3216、连续一致。只作为低成本语义检查，不作WebKit验收。下一步Windows仓库/Swift语法、定向工具/Bash与Node检查，之后冻结并派发一次同runner1+1；生产文件仍与9bb6c86字节一致。
+Windows456语法新增0/54既有Vendor限制，64工具59过5POSIX跳过/24.365秒；Bash/Node通过。最终Linux64/64（含driver6种情形）、Core137不同身份、TXT Release4通过，完整原件已核。语法不是编译；此run真实iOS模拟器编译和原行为单例另列。
 
-冻结/派发前断点：旧627ad851c1f19051a814af54174f3477c5ef7f35，新8115cb88fd48183a6996b3a587474bf8da181eca为exact child，仅JS+UPSTREAM差异，分别字节同a812571/9bb6c86；两个codex/diagnose-paged-font-native-control与codex/fix-paged-font-native-control已原子推送。Windows最终语法456/新增0、工具64中59过5POSIX跳过，Node/Bash通过；实际单case门槛只能由原生结果确认。接下来只派发一次paged-font-control（driver此源严格1+1）；未派发前不能写成运行中或通过。冻结/推送在本轮frozen.json/push.log。
+最终基线步骤1879秒，首suite前1701.584秒，case14.425秒；暖候选步骤266秒、首suite前223.072秒、case11.353秒。此前失败组基线1517秒/case10.259秒，候选270秒/case6.913秒。首例前包含工具/依赖/模拟器/编译/启动，不能称纯编译或纯测试；完整步骤还含关闭/导出。原生选例不等于减少所有scheme编译成本，本轮没有混改缓存工程。
 
-已派发CI39557140861（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39557140861），实时HEAD627ad851核对，06:43 UTC处于Linux repository-checks。这里只说明准备中；原生尚未编译/执行，不把前置通过当问题修好。整个实验仅旧/新单case，共用runner/DerivedData，无新Release/IPA。
+最终diagnostic93204220、baseline文字120130、Core116313字节，均GitHub digest/SHA/ZIP CRC核验；全原件在build/ci/39561815911，两边xcresult/完整日志/附件/实际输入保留。失败组144009926字节完整原件在39557140861；重复ZIP/分片已按精确回执清除，未做历史批量清理。最终权威：[成功分项](Documentation/ValidationLogs/paged-font-control-39561815911.json)、[失败组](Documentation/ValidationLogs/paged-font-control-39557140861.json)、[累计调查](Documentation/ValidationLogs/paged-font-investigation.json)。
 
-运行中恢复点（07:00 UTC）：CI39557140861的repository-checks已成功（Linux64工具含本driver正反例），Core job成功、137不同测试身份与TXT4执行原件已下载SHA/CRC核；reader-logic与完整ios job为按选择skip。原生job119080280285，当前步骤Run selected native diagnostics without device packaging始于06:45:16UTC，约15分钟仍active；没有可读单case结果，不能断言卡住或未执行测试。job logs API目前404，原stderr已留native-live-error.txt；不要盲重试/取消或派发第二轮。完整新run状态留在本轮run.json；Core在build/ci/39557140861/core，下载回执已在同目录。没有后台observer/download常驻进程。本轮冻结后没有改生产/fixture；每个其他Rendering方法原文保留证明在unchanged-rendering-contract.json。等自然完成再收基线/候选原生原件，核实际回调源码、stale读取、root写入、原行为断言和536+536输入；若缺负对照仍标待补证，不冒充修好、不推进R3。
+完整188、设备Release、普通设备/TrollStore、手机/动效未验，无新IPA；最后交付仍Build30。此片只做故障注入及定位行为验收，没有新正文图目视验收。普通HEAD6d761749911233122bcd031fcf718d22a19f9e77/index SHA256 b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28与503保护输入保持；全部其他Rendering方法与正常字体双模式默认值保持。
 
-最新实际断点：39557140861本轮1+1已结束失败；完整144009926字节diagnostic、122472文字、116278Core原件已核SHA/CRC。旧实际1608→0、原字不可见、原两断言失败，targetFrameEntered/injectedRead/zeroWrite均true；新真实guard已载入、root writes=[]，却1608→804且原字不可见，test=65。新侧唯一注入scrollX读取栈属于进度函数j，而非已跳过的snap：故障注入越过目标writer边界是已证事实；该j注入是否导致804仍需最小对照，不能直接改生产j()或称修好。两边536输入与真实callback/frame源码均已核，first-native-analysis.json。旧39528802200无上述证据，不能倒推其绿灯具体归因。
+本轮资料build/maintenance/PagedFontControl-20261021，最终保存信息见final-checkpoint.json/final-processes.json；普通HEAD/index不改，快照不等于该文档提交运行过完整发布。当前没有活动CI/observer/download；最终进程核对以回执为准。
 
-用户已明确选择“继续只补这一组1+1”。下一片仅将已有屏障限定为snap读取旧坐标，正常进度函数（从真实帧尾解析，固定版本核源码）通过原生getter读真实坐标；增加reads injected/role证据并在driver同时核注入与旁路。先离线必须真实执行j的读取，证明旧写0、新不写且j读3618；原位置/原字断言、预算不变，生产JS/UPSTREAM仍固定9bb6c86。通过本地后再冻结同fixture、旧/新exact child并仅补一次1+1。不推进R3；本轮确认失败不得写成已修。
+## 下一独立切片
 
-追加1+1派发前检查点：屏障已只对实际snap读取注入0；从真实Readium帧尾提取后续进度函数名，通过已核原生Error.stack辨认，进度函数必须委托原活getter，找不到活getter或帧尾变化直接失败。reads记录role/injected/value，driver核旧snap注入+写0+进度旁路、新只有真实进度读>100且无位置写入；原两行为断言/预算保持。离线真实回调现在也执行j的window.scrollX读（上一mock的空j遗漏了这个边界），结果旧0、new3618，new progression3618且injected=false；宽变两边3216、连续一致。接下来Windows/直接工具检查，再冻结新同fixture old/new；用户只授权再补这一组，不跑9/188或改生产。
-
-本轮资料：build/maintenance/PagedFontControl-20261021。旧证据：Documentation/ValidationLogs/paged-font-resize-39528802200.json、build/ci/39528802200与build/maintenance/PagedFont-20261021/final-checkpoint.json。历史交接见Documentation/HANDOFF_PAGED_FONT_INVESTIGATION_2026-10-21.md。
+R3完整位置隔离仍未实施。13候选只在.cache/recovery/r3-candidate/tree，不能直接接线或写成已编译；先审阅最新真实文件与await/发布/同步提交顺序，明确位置状态、完整Locator持久化、取消/旧回调负责人和定向入口，再小步推进。当前已收口的分页writer回归必须保留，R3不改字体/设置/会话边界、依赖、位置格式或预算；完整188与Release设备门槛留I6。全项目隔离仍未完成，后续产品计划保留。
 
 # 上一片：R2字体编排本片完成
 

@@ -1,5 +1,5 @@
 {
-  "status": "checkpoint saved per user; candidate targeted passes; native negative control unqualified; not accepted as fully fixed",
+  "status": "paged same-width font-position defect targeted acceptance passed; next separate slice R3; no full release/device acceptance",
   "scope": "paged font regression only; R3 deferred",
   "productionBaseline": "dc31745dfef4b56d8d59809984556ec39d005293",
   "firstDiagnostic": {
@@ -188,5 +188,22 @@
     "passed": 8,
     "seconds": 0.237,
     "notUsedByCurrentNativeRun": true
+  },
+  "latestNativeConfirmation": {
+    "run": 39561815911,
+    "baseline": "4e6504624fac4d786247c8df07d42460cf1f67b9",
+    "candidate": "af9b773c7fc04198432f4af238524af62cdf29a5",
+    "runtimeUnchangedFrom9bb6c86": true,
+    "oldAfter": 0,
+    "newAfter": 1608,
+    "originalWordVisible": true,
+    "nativeNegativeQualified": true,
+    "inputProofsPerSide": 536,
+    "reference": "Documentation/ValidationLogs/paged-font-control-39561815911.json",
+    "priorFailedPair": "Documentation/ValidationLogs/paged-font-control-39557140861.json",
+    "full188": false,
+    "deviceRelease": false,
+    "newIPA": false,
+    "R3Implemented": false
   }
 }

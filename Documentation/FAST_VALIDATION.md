@@ -1,5 +1,9 @@
 # I1 设置逻辑快速验证
 
+2026-10-21最新：分页writer定向补证39561815911完成，同一单用例旧负例1/1、新正例1/1，原字与无位置写入均核；生产9bb6c86保持，下一切片R3未实施。完整188、设备Release/手机仍待独立门槛，不能把本1+1或历史9/9称全量通过。首组屏障越界失败保留；最新事实见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。
+
+当前分页快速入口：macOS单正例用`bash scripts/ci_reader_diagnostic.sh paged-resize-control`，只选已有same-width用例；对照用`paged-font-control` workflow输入，在已经冻结的旧源branch派发，预先提供exact-child候选，driver只跑旧/新各1case并严格核目标frame、snap注入、真实进度旁路、原位置/原字断言与输入。默认候选ref为`codex/fix-paged-font-owner-control`，重用时必须先更新成与新baseline精确配对的源，不能把历史ref直接套在任意当前HEAD上。已有`paged-font-acceptance`9case内部入口保留，但本片未重跑9/188；此对照不打包设备IPA。
+
 2026-10-21分页维护补充：新增1条可控body resize原生回归，未来完整门槛为159集成+29UI=188，Release严格unit计数同步提高159；完整188尚未执行。当前9+9已结束，候选9/9但原生负对照未命中，用户保存断点，不代表修复/发布门槛，最新见HANDOFF与paged-font-investigation回执。下方R2的187仅其当时源的历史数量。
 
 2026-10-20。本片已实现并通过真实定向编译/执行，唯一CI39398382008/源1545a3cdafa248e563c01c408e04cd8cc3e71154；原件及分项回执见ValidationLogs/project-isolation-i1.json与build/ci/39398382008。本维护源未执行完整180/原生动态/设备Release或手机验收，未生成新IPA。

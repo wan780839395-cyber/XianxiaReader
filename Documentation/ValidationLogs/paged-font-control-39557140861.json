@@ -1,0 +1,344 @@
+{
+  "run": 39557140861,
+  "status": "failed; qualified old failure; candidate no root write but broad fault also corrupts progression read; not accepted",
+  "baseline": "627ad851c1f19051a814af54174f3477c5ef7f35",
+  "candidate": "8115cb88fd48183a6996b3a587474bf8da181eca",
+  "phases": {
+    "baseline": {
+      "actualInputProofsVerified": 536,
+      "before": 1608.0,
+      "after": 0.0,
+      "wordVisible": false,
+      "actualNativeCallbackMatchesCompiledRevision": true,
+      "actualCandidateGuardLoaded": false,
+      "rootWrites": [
+        {
+          "value": 0,
+          "stack": "set@user-script:1:39:92\n@user-script:5:1:68451\n@user-script:5:1:68466\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "coordinateReads": [
+        {
+          "value": 0,
+          "stack": "get@user-script:1:46:55\n@user-script:5:1:68414\n@user-script:5:1:68466\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        },
+        {
+          "value": 0,
+          "stack": "get@user-script:1:46:55\nj@user-script:5:1:68718\n@user-script:5:1:68470\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "caseResults": [
+        [
+          "failed",
+          "10.259"
+        ]
+      ],
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "x86_64",
+              "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 1,
+            "passedTests": 0,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "finishTime": 1792566593.865,
+        "passedTests": 0,
+        "result": "Failed",
+        "skippedTests": 0,
+        "startTime": 1792565798.273,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertEqualWithAccuracy failed: (\"0.0\") is not equal to (\"1608.0\") +/- (\"1.0\") - SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION",
+            "targetName": "XianxiaReaderTests",
+            "testIdentifier": 1,
+            "testIdentifierString": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()",
+            "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+            "testName": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()"
+          }
+        ],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 1
+      },
+      "sourceCompilerErrors": 0
+    },
+    "patched": {
+      "actualInputProofsVerified": 536,
+      "before": 1608.0,
+      "after": 804.0,
+      "wordVisible": false,
+      "actualNativeCallbackMatchesCompiledRevision": true,
+      "actualCandidateGuardLoaded": true,
+      "rootWrites": [],
+      "coordinateReads": [
+        {
+          "value": 0,
+          "stack": "get@user-script:1:46:55\nj@user-script:5:1:68740\n@user-script:5:1:68492\n@user-script:1:48:14\nglobal code@readium://6B6C4B87-1305-4436-A12C-F43B75C0BA3B/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "caseResults": [
+        [
+          "failed",
+          "6.913"
+        ]
+      ],
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "x86_64",
+              "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 1,
+            "passedTests": 0,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "finishTime": 1792566879.901,
+        "passedTests": 0,
+        "result": "Failed",
+        "skippedTests": 0,
+        "startTime": 1792566712.68,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertEqualWithAccuracy failed: (\"804.0\") is not equal to (\"1608.0\") +/- (\"1.0\") - SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION",
+            "targetName": "XianxiaReaderTests",
+            "testIdentifier": 1,
+            "testIdentifierString": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()",
+            "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+            "testName": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()"
+          }
+        ],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 1
+      },
+      "sourceCompilerErrors": 0
+    }
+  },
+  "baselineResult": {
+    "originalExit": 65,
+    "baselineWasNegative": true,
+    "sameWidthControlledFailure": true,
+    "targetFrameEntered": true,
+    "injectedReadObserved": true,
+    "zeroWriteObserved": true,
+    "controlEvidence": {
+      "observers": [
+        {
+          "id": 0,
+          "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+        }
+      ],
+      "frames": [
+        {
+          "source": "function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()}",
+          "target": true
+        }
+      ],
+      "reads": [
+        {
+          "value": 0,
+          "stack": "get@user-script:1:46:55\n@user-script:5:1:68414\n@user-script:5:1:68466\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        },
+        {
+          "value": 0,
+          "stack": "get@user-script:1:46:55\nj@user-script:5:1:68718\n@user-script:5:1:68470\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "writes": [
+        {
+          "value": 0,
+          "stack": "set@user-script:1:39:92\n@user-script:5:1:68451\n@user-script:5:1:68466\n@user-script:1:48:14\nglobal code@readium://B3D36CF1-DFEC-4AAF-8806-73E08DD49E97/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "owner": {
+        "id": 0,
+        "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+      },
+      "href": "/OEBPS/one.xhtml",
+      "ready": "complete",
+      "mode": "readium-paged-on",
+      "reflowable": true,
+      "releasing": false,
+      "returned": true
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "x86_64",
+            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 0,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1792566593.865,
+      "passedTests": 0,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792565798.273,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqualWithAccuracy failed: (\"0.0\") is not equal to (\"1608.0\") +/- (\"1.0\") - SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION",
+          "targetName": "XianxiaReaderTests",
+          "testIdentifier": 1,
+          "testIdentifierString": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+          "testName": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [],
+      "totalTestCount": 1
+    }
+  },
+  "candidateOriginalExits": "test=65 tee=0",
+  "distinguishedCause": "Both phases entered correct Readium callback/frame. Old read0 then delegated root scrollLeft0 and lost word. Guarded frame made no root write; its sole injected read was in progression helper j. The fixture corrupts a second owner. Candidate ended804. That broad injection is proven; it causing804 remains a hypothesis to distinguish by bypassing only that read.",
+  "historicalLimit": "Prior 39528802200 lacked callback/read/write records; exact reason its old replay stayed1608 cannot be reconstructed as fact. Instrumentation and test isolation changed, so this result does not prove which change caused reproduction.",
+  "userNextChoice": "Explicitly authorized exactly one additional old/new single-case pair after narrowing fault to snap read; do not change production, budgets or assertions; no R3.",
+  "timings": {
+    "baseline": {
+      "stepStartUTC": "2026-10-21T06:45:16+00:00",
+      "stepEndUTC": "2026-10-21T07:10:33+00:00",
+      "stepWallSeconds": 1517.0,
+      "firstSuiteUTC": "2026-10-21T07:08:11.332000+00:00",
+      "beforeFirstSuiteSeconds": 1375.332,
+      "actualCaseSeconds": [
+        10.259
+      ],
+      "meaning": "Before-first mixes preparation/compilation/launch; full step also contains test shutdown/export; not pure test time."
+    },
+    "patched": {
+      "stepStartUTC": "2026-10-21T07:10:41+00:00",
+      "stepEndUTC": "2026-10-21T07:15:11+00:00",
+      "stepWallSeconds": 270.0,
+      "firstSuiteUTC": "2026-10-21T07:13:18.120000+00:00",
+      "beforeFirstSuiteSeconds": 157.12,
+      "actualCaseSeconds": [
+        6.913
+      ],
+      "meaning": "Before-first mixes preparation/compilation/launch; full step also contains test shutdown/export; not pure test time."
+    }
+  },
+  "artifacts": [
+    {
+      "run": 39557140861,
+      "artifact": 12328010236,
+      "kind": "diagnostic",
+      "archiveBytes": 144009926,
+      "archiveSHA256": "6b867b03b7f91b63e53d26e26112a1b23f8fde0c39c497c403c02d8ce772f872",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\diagnostic-native-receipt.zip",
+          "bytes": 144009926,
+          "sha256": "6b867b03b7f91b63e53d26e26112a1b23f8fde0c39c497c403c02d8ce772f872"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    {
+      "run": 39557140861,
+      "artifact": 12327955477,
+      "kind": "baseline",
+      "archiveBytes": 122472,
+      "archiveSHA256": "1c26521ad3ec616bdea529c52fb68050bff1287d8ad3b9aceab6dfe4acef0916",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\paged-font-baseline-text",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\paged-font-baseline-text",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\baseline-native-receipt.zip",
+          "bytes": 122472,
+          "sha256": "1c26521ad3ec616bdea529c52fb68050bff1287d8ad3b9aceab6dfe4acef0916"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    {
+      "run": 39557140861,
+      "artifact": 12325894529,
+      "kind": "core",
+      "archiveBytes": 116278,
+      "archiveSHA256": "072d41d73310b71bfb00d5354337d7e28951aebc593fa2e71a95feb5bdba0c29",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\core",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\core",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39557140861\\core-native-receipt.zip",
+          "bytes": 116278,
+          "sha256": "072d41d73310b71bfb00d5354337d7e28951aebc593fa2e71a95feb5bdba0c29"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  ],
+  "finalRunStatus": "completed",
+  "finalRunConclusion": "failure",
+  "full188Executed": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "R3Started": false,
+  "sourcePreserved": "unchanged production candidate9bb6c86; first source627ad851/8115cb88 retained; next fixture only changes fault-owner boundary"
+}

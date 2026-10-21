@@ -1,5 +1,5 @@
 {
-  "status": "first native pair failed; owner-only fixture prepared and checked; one additional pair authorized",
+  "status": "targeted paged defect gate passed after owner-limited native comparison; no further run/R3 this slice",
   "scope": "qualify existing same-width native control; one old + one candidate on same runner",
   "baselineNativeOldRuntime": "a8125716758aef5802b6d53b3129acc53947c004",
   "candidateRuntimeFrozen": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
@@ -21,7 +21,7 @@
       "finding": "page scripts share page world; separate worlds do not share arbitrary global variables; current default APIs match"
     }
   ],
-  "next": "dispatch one same-runner old/new single-case native control",
+  "next": "save final source/document checkpoint; then R3 is next separate slice",
   "full188Executed": false,
   "deviceReleaseExecuted": false,
   "newIPA": false,
@@ -91,5 +91,38 @@
     "WindowsPlatformSkipped": 5,
     "WindowsToolsSeconds": 24.365,
     "directDriverNegativeScenarioAdded": "wrong-progress-owner"
-  }
+  },
+  "additionalRun": 39561815911,
+  "additionalFrozen": {
+    "frozenAtUTC": "2026-10-21T07:24:44.659063+00:00",
+    "baseline": "4e6504624fac4d786247c8df07d42460cf1f67b9",
+    "candidate": "af9b773c7fc04198432f4af238524af62cdf29a5",
+    "baselineRef": "codex/diagnose-paged-font-owner-control",
+    "candidateRef": "codex/fix-paged-font-owner-control",
+    "exactChild": true,
+    "runtimeDelta": [
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "Vendor/ReadiumToolkit/UPSTREAM.json"
+    ],
+    "oldRuntimeByteExactTo": "a8125716758aef5802b6d53b3129acc53947c004",
+    "candidateRuntimeByteExactTo": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+    "sameFixturePaths": [
+      "Documentation/HANDOFF_PAGED_FONT_INVESTIGATION_2026-10-21.md",
+      "Documentation/ValidationLogs/paged-font-control-20261021.json",
+      "HANDOFF.md",
+      "PROJECT_STATUS.md",
+      "Tests/iOS/ReaderRenderingTests.swift",
+      "scripts/ci_paged_font_control.sh",
+      "scripts/ci_reader_diagnostic.sh",
+      "scripts/test_paged_font_control.py"
+    ],
+    "nativeCasesPerSource": 1,
+    "faultRole": "snap only; progression delegates original live getter",
+    "originalAssertionsAndBudgetKept": true,
+    "ordinaryHeadUnchanged": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "ordinaryIndexUnchangedSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+    "noFull188ReleaseOrR3": true
+  },
+  "finalRun": 39561815911,
+  "finalRecord": "Documentation/ValidationLogs/paged-font-control-39561815911.json"
 }

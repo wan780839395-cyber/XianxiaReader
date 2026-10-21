@@ -1,0 +1,435 @@
+{
+  "status": "paged same-width font-position defect targeted gate passed; full release/device/R3 not accepted",
+  "run": 39561815911,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39561815911",
+  "baseline": "4e6504624fac4d786247c8df07d42460cf1f67b9",
+  "candidate": "af9b773c7fc04198432f4af238524af62cdf29a5",
+  "originalRuntime": "a8125716758aef5802b6d53b3129acc53947c004",
+  "fixedRuntime": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+  "phases": {
+    "baseline": {
+      "actualInputProofsVerified": 536,
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "x86_64",
+              "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 1,
+            "passedTests": 0,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "finishTime": 1792569497.6,
+        "passedTests": 0,
+        "result": "Failed",
+        "skippedTests": 0,
+        "startTime": 1792568326.208,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertEqualWithAccuracy failed: (\"0.0\") is not equal to (\"1608.0\") +/- (\"1.0\") - SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION",
+            "targetName": "XianxiaReaderTests",
+            "testIdentifier": 1,
+            "testIdentifierString": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()",
+            "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+            "testName": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()"
+          }
+        ],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 1
+      },
+      "originalExits": "test=65 tee=0",
+      "before": 1608.0,
+      "after": 0.0,
+      "wordVisible": false,
+      "actualNativeCallbackMatchesCompiledRevision": true,
+      "callbackSHA256": "ff74f1ae7623cbb5c61c71d41f9d2ad34d14398eeee886d8126e1278f6649a90",
+      "actualGuardLoaded": false,
+      "controlEvidence": {
+        "observers": [
+          {
+            "id": 0,
+            "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+          }
+        ],
+        "frames": [
+          {
+            "source": "function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()}",
+            "target": true
+          }
+        ],
+        "reads": [
+          {
+            "value": 0,
+            "injected": true,
+            "role": "snap",
+            "stack": "get@user-script:1:57:35\n@user-script:5:1:68414\n@user-script:5:1:68466\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+          },
+          {
+            "value": 0,
+            "injected": false,
+            "role": "progression",
+            "stack": "get@user-script:1:57:35\nj@user-script:5:1:68718\n@user-script:5:1:68470\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+          }
+        ],
+        "writes": [
+          {
+            "value": 0,
+            "stack": "set@user-script:1:49:92\n@user-script:5:1:68451\n@user-script:5:1:68466\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+          }
+        ],
+        "owner": {
+          "id": 0,
+          "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+        },
+        "href": "/OEBPS/one.xhtml",
+        "ready": "complete",
+        "mode": "readium-paged-on",
+        "reflowable": true,
+        "progressionFunction": "j",
+        "releasing": false,
+        "returned": true
+      },
+      "sourceCompilerErrors": 0,
+      "timings": {
+        "stepStartUTC": "2026-10-21T07:27:47+00:00",
+        "stepEndUTC": "2026-10-21T07:59:06+00:00",
+        "stepWallSeconds": 1879.0,
+        "firstSuiteUTC": "2026-10-21T07:56:08.584000+00:00",
+        "beforeFirstSuiteSeconds": 1701.584,
+        "actualCaseSeconds": [
+          14.425
+        ]
+      }
+    },
+    "patched": {
+      "actualInputProofsVerified": 536,
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "x86_64",
+              "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "deviceName": "iPhone 16 Pro",
+              "modelName": "iPhone 16 Pro",
+              "osBuildNumber": "22F77",
+              "osVersion": "18.5",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 1,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "XianxiaReader 路 Built with macOS 15.7.9",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792569789.625,
+        "passedTests": 1,
+        "result": "Passed",
+        "skippedTests": 0,
+        "startTime": 1792569669.65,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - XianxiaReader",
+        "topInsights": [],
+        "totalTestCount": 1
+      },
+      "originalExits": "test=0 tee=0",
+      "before": 1608.0,
+      "after": 1608.0,
+      "wordVisible": true,
+      "actualNativeCallbackMatchesCompiledRevision": true,
+      "callbackSHA256": "ed482d4d15f47db990b6aea4b03cfd3457c25b39b6466aaa65ed20434c456e18",
+      "actualGuardLoaded": true,
+      "controlEvidence": {
+        "observers": [
+          {
+            "id": 0,
+            "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){const e=O;O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()&&e>0&&e!==O){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+          }
+        ],
+        "frames": [
+          {
+            "source": "function(){const e=O;O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()&&e>0&&e!==O){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()}",
+            "target": true
+          }
+        ],
+        "reads": [
+          {
+            "value": 1608,
+            "injected": false,
+            "role": "progression",
+            "stack": "get@user-script:1:57:35\nj@user-script:5:1:68740\n@user-script:5:1:68492\n@user-script:1:65:14\nglobal code@readium://7EFCB2F7-6657-415B-9CA1-E112C35A5C2D/OEBPS/one.xhtml:1:29"
+          }
+        ],
+        "writes": [],
+        "owner": {
+          "id": 0,
+          "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){const e=O;O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()&&e>0&&e!==O){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+        },
+        "href": "/OEBPS/one.xhtml",
+        "ready": "complete",
+        "mode": "readium-paged-on",
+        "reflowable": true,
+        "progressionFunction": "j",
+        "releasing": false,
+        "returned": true
+      },
+      "sourceCompilerErrors": 0,
+      "timings": {
+        "stepStartUTC": "2026-10-21T07:59:14+00:00",
+        "stepEndUTC": "2026-10-21T08:03:40+00:00",
+        "stepWallSeconds": 266.0,
+        "firstSuiteUTC": "2026-10-21T08:02:57.072000+00:00",
+        "beforeFirstSuiteSeconds": 223.072,
+        "actualCaseSeconds": [
+          11.353
+        ]
+      }
+    }
+  },
+  "comparisonReceipt": {
+    "baselineOriginalExit": 65,
+    "baselineWasNegative": true,
+    "sameWidthControlledFailure": true,
+    "patchedOriginalExit": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "sharedDerivedData": true,
+    "full187Executed": false,
+    "full188Executed": false,
+    "deviceReleaseExecuted": false,
+    "newIPA": false
+  },
+  "baselineQualification": {
+    "originalExit": 65,
+    "baselineWasNegative": true,
+    "sameWidthControlledFailure": true,
+    "targetFrameEntered": true,
+    "injectedReadObserved": true,
+    "zeroWriteObserved": true,
+    "progressionBypassObserved": true,
+    "controlEvidence": {
+      "observers": [
+        {
+          "id": 0,
+          "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+        }
+      ],
+      "frames": [
+        {
+          "source": "function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()}",
+          "target": true
+        }
+      ],
+      "reads": [
+        {
+          "value": 0,
+          "injected": true,
+          "role": "snap",
+          "stack": "get@user-script:1:57:35\n@user-script:5:1:68414\n@user-script:5:1:68466\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+        },
+        {
+          "value": 0,
+          "injected": false,
+          "role": "progression",
+          "stack": "get@user-script:1:57:35\nj@user-script:5:1:68718\n@user-script:5:1:68470\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "writes": [
+        {
+          "value": 0,
+          "stack": "set@user-script:1:49:92\n@user-script:5:1:68451\n@user-script:5:1:68466\n@user-script:1:65:14\nglobal code@readium://D5C50D54-F217-4769-901A-7F3C29CDBF1E/OEBPS/one.xhtml:1:29"
+        }
+      ],
+      "owner": {
+        "id": 0,
+        "source": "()=>{t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame(function(){O=window.innerWidth,function(){const t=\"readium-virtual-page\";var e=document.getElementById(t);if(R()||2!=parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(\"column-count\"))){var r;null===(r=e)||void 0===r||r.remove()}else{var n=document.scrollingElement.scrollWidth/window.innerWidth;Math.round(2*n)/2%1>.1&&(e?e.remove():((e=document.createElement(\"div\")).setAttribute(\"id\",t),e.style.breakBefore=\"column\",e.innerHTML=\"&#8203;\",document.body.appendChild(e)))}}(),function(){if(!R()){var t=I(window.scrollX+1);document.scrollingElement.scrollLeft=t}}(),j()})}"
+      },
+      "href": "/OEBPS/one.xhtml",
+      "ready": "complete",
+      "mode": "readium-paged-on",
+      "reflowable": true,
+      "progressionFunction": "j",
+      "releasing": false,
+      "returned": true
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "x86_64",
+            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 0,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1792569497.6,
+      "passedTests": 0,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792568326.208,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqualWithAccuracy failed: (\"0.0\") is not equal to (\"1608.0\") +/- (\"1.0\") - SAME_WIDTH_RESIZE_MUST_NOT_WRITE_POSITION",
+          "targetName": "XianxiaReaderTests",
+          "testIdentifier": 1,
+          "testIdentifierString": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+          "testName": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [],
+      "totalTestCount": 1
+    }
+  },
+  "priorFailedPair": "Documentation/ValidationLogs/paged-font-control-39557140861.json",
+  "historicalNonreproductionLimit": "39528802200 did not record actual callback/read/write identities; its single green baseline cannot be assigned an exact historical cause. Current qualified native pair proves the intended path.",
+  "fixtureCorrection": "First diagnostic injected0 into both snap and progression j; candidate made no root write but failed at804. Additional pair injects snap only; progression uses original getter. Same production guard now preserves1608 and visible char1200.",
+  "priorFontEvidence": {
+    "run": 39528802200,
+    "actualCompiledCandidate": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+    "pagedFontsPassed": 6,
+    "savedPointDelta": 0,
+    "freshFontChainExecutedThisRun": false,
+    "limit": "Same production preserved; prior 9/9 is separate evidence, not this run executing font case or full188."
+  },
+  "preservation": {
+    "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+    "originalProtectedInputsUnchanged": 503,
+    "productionStillByteExactTo9bb6c86": true,
+    "R3CandidateUnwired": true
+  },
+  "artifacts": [
+    {
+      "run": 39561815911,
+      "artifact": 12330396481,
+      "kind": "diagnostic",
+      "archiveBytes": 93204220,
+      "archiveSHA256": "e1cfcae9dfa48390276f5ba3896a6ccc203d239f258ce12a2cf156fd97d6f59e",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\diagnostic-native-receipt.zip",
+          "bytes": 93204220,
+          "sha256": "e1cfcae9dfa48390276f5ba3896a6ccc203d239f258ce12a2cf156fd97d6f59e"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    {
+      "run": 39561815911,
+      "artifact": 12329367698,
+      "kind": "baseline",
+      "archiveBytes": 120130,
+      "archiveSHA256": "0cb316da2a39e43ca64103bc80b1815d5bf0a4ee959bac121f66a70b8bcd064a",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\paged-font-baseline-text",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\paged-font-baseline-text",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\baseline-native-receipt.zip",
+          "bytes": 120130,
+          "sha256": "0cb316da2a39e43ca64103bc80b1815d5bf0a4ee959bac121f66a70b8bcd064a"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    {
+      "run": 39561815911,
+      "artifact": 12327669355,
+      "kind": "core",
+      "archiveBytes": 116313,
+      "archiveSHA256": "d93accd989e4317f232316d1e88d255c2bd926f378e2e1ffcc65242ce25e9f79",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\core",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\core",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39561815911\\core-native-receipt.zip",
+          "bytes": 116313,
+          "sha256": "d93accd989e4317f232316d1e88d255c2bd926f378e2e1ffcc65242ce25e9f79"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  ],
+  "windows": {
+    "grammarFiles": 456,
+    "addedDiagnostics": 0,
+    "existingVendorGrammarLimitations": 54,
+    "toolingTotal": 64,
+    "passed": 59,
+    "platformSkipped": 5,
+    "seconds": 24.365,
+    "BashNode": "passed"
+  },
+  "linux": {
+    "toolingTotal": 64,
+    "passed": 64,
+    "directDriverScenarios": 6,
+    "uniqueCoreTests": 137,
+    "TXTReleaseProbes": 4,
+    "coreOriginalArtifactVerified": true
+  },
+  "limits": [
+    "No full188, device Release, new IPA or phone acceptance.",
+    "No fresh font-chain execution in this single-case run; prior same-production six-font records explicitly separate.",
+    "Native text/geometry only; no new visual, motion or phone acceptance.",
+    "No R3 implementation or third comparison run.",
+    "Step times include preparation/compilation/launch/test shutdown/export; not pure test or compiler duration."
+  ],
+  "nextSlice": "R3 complete position ownership isolation, defined and verified separately after saving this defect checkpoint."
+}
