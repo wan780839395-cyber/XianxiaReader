@@ -1,5 +1,7 @@
 # 项目状态
 
+R3b进行中（2026-10-21）：捕获/原预算等待/写库/错误及同步结果发布迁入现有ReaderPositions，窄App桥接保留原引擎/仓库，回调每事件原Task写库保持。原慢滚/设置flush顺序、导航/返回点、字体导入事务及Core/Vendor/锁不变。Windows462语法新增0/54既有、71工具65过6 POSIX跳过/Bash通过；尚未Swift编译。冻结后只派发16独立（原6+新增10）及原13 iOS，不跑完整188或设备Release/IPA。
+
 R3a本片完成（2026-10-21）：独立ReaderPositions Foundation包接管完整位置、显式保存身份/失效和保存错误；原捕获/写库await、预算及同步发布顺序保留。实际源755b428a60143d8f649372e6c545cc1e03f82ecb / CI39573863939，macOS独立6/6、原iOS定向13/13、Linux工具71/71；双模式六字体/EPUB/TXT锚点及同宽分页writer回归通过。首轮Core产品接线规划失败已留证并改用既有ReaderSettings包模式。R3捕获/持久化编排和导航/返回点后续继续；完整188、设备Release、手机未验，无新IPA。
 
 

@@ -1,5 +1,7 @@
 # R3 阅读位置隔离
 
+R3b进行中（2026-10-21）：捕获/原预算等待/写库/错误及同步结果发布迁入现有ReaderPositions，窄App桥接保留原引擎/仓库，回调每事件原Task写库保持。原慢滚/设置flush顺序、导航/返回点、字体导入事务及Core/Vendor/锁不变。Windows462语法新增0/54既有、71工具65过6 POSIX跳过/Bash通过；尚未Swift编译。冻结后只派发16独立（原6+新增10）及原13 iOS，不跑完整188或设备Release/IPA。
+
 2026-10-21，R3a本片已实现/编译/定向验收。实际源755b428a60143d8f649372e6c545cc1e03f82ecb / [CI39573863939](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39573863939)。权威分项为ValidationLogs/project-isolation-r3a.json，历史设计/首轮失败过程保留在HANDOFF_R3_DEVELOPMENT_2026-10-21.md。R3整体与全项目隔离仍未完成。
 
 ## 状态与依赖负责人

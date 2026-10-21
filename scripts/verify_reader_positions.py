@@ -1,4 +1,4 @@
-"""Require exact executed R3a contracts; these receipts never grant release acceptance."""
+"""Require exact executed position contracts; never grant release acceptance."""
 import argparse
 from collections import Counter
 from datetime import datetime, timezone
@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-LOGIC_TESTS = {
+STATE_TESTS = {
     "testOpaquePositionAndEveryEventAreRetained",
     "testSupersededRequestAndOldCleanupCannotTouchNewSave",
     "testCloseAndReopenedSessionRejectOldResult",
@@ -15,6 +15,19 @@ LOGIC_TESTS = {
     "testFailurePreservesFullPositionAndRetryClearsVisibleError",
     "testAbsentSessionCannotCommitAndInvalidationPreservesState",
 }
+PERSISTENCE_TESTS = {
+    "testFreshCaptureStoresFullLocatorBeforePublishingResult",
+    "testFixedLayoutUsesCompletePageWithoutSampling",
+    "testUnavailableCaptureRetriesThenPreservesFullLocator",
+    "testUnavailableDeadlineKeepsOriginalPositionAndBudget",
+    "testCaptureAndStorageFailuresKeepOldPositionAndRetryClearsError",
+    "testObsoleteOrCancelledCaptureCannotWrite",
+    "testLateStorageCompletionCannotPublishAcrossSessions",
+    "testAbsentObsoleteOrCancelledEntryDoesNotSample",
+    "testEmittedPositionsKeepEveryFullWriteAfterRequestInvalidation",
+    "testEmittedFailureReportsOriginalMessageWithoutChangingExplicitSaveState",
+}
+LOGIC_TESTS = STATE_TESTS | PERSISTENCE_TESTS
 NATIVE_TESTS = {
     "ReaderLifecycleTests/" + name for name in [
         "testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
@@ -42,11 +55,13 @@ def verify_logic(folder):
         raise ValueError("Position contracts contain failed/skipped or unexpected suites")
     names = Counter()
     for case in tree.iter("testcase"):
-        if case.get("classname") not in {"ReaderPositionStateTests", "ReaderPositionsTests.ReaderPositionStateTests"}:
+        name = case.get("name", "").removesuffix("()")
+        expected_class = "ReaderPositionStateTests" if name in STATE_TESTS else "ReaderPositionPersistenceTests"
+        if case.get("classname") not in {expected_class, "ReaderPositionsTests." + expected_class}:
             raise ValueError("Unexpected position contract class")
         if any(child.tag in {"failure", "error", "skipped"} for child in case.iter()):
             raise ValueError("Position contract failed or skipped")
-        names[case.get("name", "").removesuffix("()")] += 1
+        names[name] += 1
     if names != Counter({name: 1 for name in LOGIC_TESTS}) or int(suites[0].get("tests", "-1")) != len(LOGIC_TESTS):
         raise ValueError("Every position contract must execute exactly once")
     dependencies = json.loads((folder / "dependencies.json").read_text(encoding="utf-8"))
@@ -82,10 +97,10 @@ def main():
     parser.add_argument("--report", required=True, type=Path)
     args = parser.parse_args()
     result = (verify_logic if args.kind == "logic" else verify_native)(args.folder)
-    result.update(recordedAtUTC=datetime.now(timezone.utc).isoformat(), validationKind=f"r3a_{args.kind}",
+    result.update(recordedAtUTC=datetime.now(timezone.utc).isoformat(), validationKind=f"reader_positions_{args.kind}",
                   releaseAccepted=False, deviceAccepted=False)
     args.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(f"PASS R3a {args.kind}: {result['passed']} exact contracts; not release/device acceptance")
+    print(f"PASS reader positions {args.kind}: {result['passed']} exact contracts; not release/device acceptance")
 
 
 if __name__ == "__main__":

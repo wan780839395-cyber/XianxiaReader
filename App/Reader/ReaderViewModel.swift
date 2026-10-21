@@ -77,6 +77,8 @@ private enum ReaderJumpError: LocalizedError {
     private var additionalReduceMotionRequested = false
     private var navigationRequestID: UUID?
     private var positions: ReaderPositionState { progress.positions }
+    private lazy var positionPersistence = ReaderPositionPersistence(
+        state: positions, storage: ReaderPositionRepository(services.repository))
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -116,7 +118,12 @@ private enum ReaderJumpError: LocalizedError {
             guard let self, self.openRequestID != nil else { return }
             self.position = position
             // Save each emitted position immediately; SQLite rejects stale out-of-order writes.
-            Task { await self.persist(position) }
+            Task {
+                await self.positionPersistence.persistEmitted(position) { message in
+                    self.pauseAutomaticScroll()
+                    self.errorMessage = message
+                }
+            }
         }
     }
 
@@ -223,37 +230,7 @@ private enum ReaderJumpError: LocalizedError {
         await services.readerSettings.flush()
         guard positions.isCurrent(requestID, sessionID: openRequestID),
               !Task.isCancelled, sessionID != nil, isReady, let engine else { return }
-        do {
-            var sampled: ReadingPosition?
-            if engine.appearanceProvider?.supportsTextAppearance == false {
-                // Fixed-layout pages keep their full page locator; they have no
-                // reflowable DOM anchor to sample.
-                guard let page = engine.currentPosition else { throw ReaderPositionCaptureError.unavailable }
-                sampled = page
-            } else {
-                let deadline = Date().addingTimeInterval(3)
-                while sampled == nil {
-                    do { sampled = try await engine.captureCurrentPosition() }
-                    catch ReaderPositionCaptureError.unavailable {
-                        guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
-                        guard Date() < deadline else { throw ReaderPositionCaptureError.unavailable }
-                        try await Task.sleep(nanoseconds: 32_000_000)
-                        guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
-                    }
-                }
-            }
-            try Task.checkCancellation()
-            guard positions.isCurrent(requestID, sessionID: openRequestID) else { return }
-            guard let fresh = sampled else { throw ReaderPositionCaptureError.unavailable }
-            try await services.repository.save(fresh)
-            guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
-            positions.saved(fresh, request: requestID, sessionID: openRequestID)
-        } catch is CancellationError {
-            return
-        } catch {
-            guard positions.isCurrent(requestID, sessionID: openRequestID) else { return }
-            positions.failed("阅读进度尚未保存：\(error.localizedDescription)", request: requestID, sessionID: openRequestID)
-        }
+        await positionPersistence.captureAndSave(from: ReaderEnginePositionSource(engine), request: requestID) { self.openRequestID }
     }
 
     func setAppearance(_ value: ReadingAppearance) {
@@ -522,11 +499,6 @@ private enum ReaderJumpError: LocalizedError {
             try await services.repository.removeBookmark(bookmark.id)
             bookmarks = try await services.repository.bookmarks(for: book.id)
         } catch { errorMessage = error.localizedDescription }
-    }
-
-    private func persist(_ position: ReadingPosition) async {
-        do { try await services.repository.save(position) }
-        catch { pauseAutomaticScroll(); errorMessage = "阅读进度未能写入：\(error.localizedDescription)" }
     }
 
     func showAutomaticScroll() {

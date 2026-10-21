@@ -11,7 +11,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT
-from verify_reader_positions import LOGIC_TESTS, NATIVE_TESTS, verify_logic, verify_native
+from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, NATIVE_TESTS, verify_logic, verify_native
 
 
 class PositionEvidenceTests(unittest.TestCase):
@@ -19,9 +19,10 @@ class PositionEvidenceTests(unittest.TestCase):
         folder = tempfile.TemporaryDirectory()
         self.addCleanup(folder.cleanup)
         self.root = Path(folder.name)
-        self.suite = ET.Element("testsuite", tests="6", errors="0", failures="0")
+        self.suite = ET.Element("testsuite", tests=str(len(LOGIC_TESTS)), errors="0", failures="0")
         for name in sorted(LOGIC_TESTS):
-            ET.SubElement(self.suite, "testcase", classname="ReaderPositionsTests.ReaderPositionStateTests", name=name)
+            cls = "ReaderPositionStateTests" if name in STATE_TESTS else "ReaderPositionPersistenceTests"
+            ET.SubElement(self.suite, "testcase", classname="ReaderPositionsTests." + cls, name=name)
         (self.root / "dependencies.json").write_text(json.dumps({"name": "ReaderPositions", "dependencies": [{"name": "XianxiaCore", "dependencies": []}]}))
 
     def logic(self, suite=None):
@@ -30,8 +31,8 @@ class PositionEvidenceTests(unittest.TestCase):
         ET.ElementTree(tree).write(self.root / "tests.xml")
         return verify_logic(self.root)
 
-    def test_six_contracts_require_exact_identity_without_external_packages(self):
-        self.assertEqual(self.logic()["passed"], 6)
+    def test_all_contracts_require_exact_identity_without_external_packages(self):
+        self.assertEqual(self.logic()["passed"], len(LOGIC_TESTS))
         for dependencies in [{"name": "Other", "dependencies": []},
                              {"name": "ReaderPositions", "dependencies": []},
                              {"name": "ReaderPositions", "dependencies": [{"name": "ReadiumToolkit", "dependencies": []}]},
@@ -41,13 +42,16 @@ class PositionEvidenceTests(unittest.TestCase):
                 with self.assertRaises(ValueError): self.logic()
 
     def test_missing_duplicate_extra_wrong_failed_and_skipped_logic_is_rejected(self):
-        for mode in ["missing", "duplicate", "extra", "wrong-class", "failure", "skipped", "empty"]:
+        for mode in ["missing", "duplicate", "extra", "wrong-class", "moved-class", "failure", "skipped", "empty"]:
             with self.subTest(mode=mode):
                 suite = deepcopy(self.suite)
                 if mode == "missing": suite.remove(suite[0])
                 elif mode == "duplicate": suite.append(deepcopy(suite[0]))
                 elif mode == "extra": ET.SubElement(suite, "testcase", classname="ReaderPositionStateTests", name="testOther")
                 elif mode == "wrong-class": suite[0].set("classname", "Other")
+                elif mode == "moved-class":
+                    other = "ReaderPositionPersistenceTests" if suite[0].get("name") in STATE_TESTS else "ReaderPositionStateTests"
+                    suite[0].set("classname", "ReaderPositionsTests." + other)
                 elif mode in {"failure", "skipped"}: ET.SubElement(suite[0], mode)
                 else: suite.clear()
                 with self.assertRaises(ValueError): self.logic(suite)
