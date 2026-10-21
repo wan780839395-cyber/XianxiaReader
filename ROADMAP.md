@@ -1,8 +1,8 @@
 # 开发路线与阶段门槛
 
-R3a接线纠偏（2026-10-21）：首轮CI39569845077独立6/6，但Xcode规划Core动态产品时引用缺失CSQLite，iOS test65/0项执行。原件与失败保留。位置源码/6合同/App逻辑字节保持，模块改用现有ReaderSettings的独立Foundation包布局，通过Core产品依赖；Core manifest、SDK SQLite和锁恢复/保持。当前新接线尚未原生验收。仅position-isolation新增先build-for-testing再boot/test，优先暴露接线错误；仍同6+13、原断言/预算，无全188/Release/IPA。
+R3a本片完成（2026-10-21）：独立ReaderPositions Foundation包接管完整位置、显式保存身份/失效和保存错误；原捕获/写库await、预算及同步发布顺序保留。实际源755b428a60143d8f649372e6c545cc1e03f82ecb / CI39573863939，macOS独立6/6、原iOS定向13/13、Linux工具71/71；双模式六字体/EPUB/TXT锚点及同宽分页writer回归通过。首轮Core产品接线规划失败已留证并改用既有ReaderSettings包模式。R3捕获/持久化编排和导航/返回点后续继续；完整188、设备Release、手机未验，无新IPA。
 
-R3a进行中（2026-10-21）：ReaderPositions真实Foundation-only产品/target已接线，接管完整位置、显式保存请求身份/失效和保存错误；原捕获/写库await、预算与顺序保留。源a9d4e8424c01c6163af89d2f127f5a4caedffee7 / CI39569845077仅运行6独立+13原生合同，尚未收齐编译/定向结果。Windows458语法新增0/既有54、71工具65过6 POSIX跳过；原测试/定位修复保持。R3捕获/持久化与返回点职责后续继续，不能称R3或全项目隔离完成；完整188/设备Release/手机均未验，无新IPA。
+
 
 2026-10-21最新：分页字体回章头缺陷定向收口，CI39561815911同fixture旧1608→0失败、新1608→1608原字可见且无位置写入，实际回调与536+536输入已核。首组屏障进度污染失败保留，生产仍9bb6c86，原断言/预算不改。下一独立切片R3，尚未实施；完整188/设备Release/手机未做、无新IPA。全项目隔离未完成；详见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。
 

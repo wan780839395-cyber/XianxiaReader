@@ -1,6 +1,7 @@
 # I1 设置逻辑快速验证
 
-R3a新增（2026-10-21，首轮6/6、原生接线失败，新独立包待验证）：`bash scripts/test_reader_positions.sh <新的输出目录>`只执行独立ReaderPositions包的6项真实合同（仅依赖Core），保留xUnit/依赖/真实退出码并拒绝陈旧输出目录。workflow输入`position-isolation`先同一6项，再13项已有保存/进度/EPUB/TXT/字体/分页writer用例；不跑完整188、性能探针、设备Release或IPA。精确身份守卫见scripts/verify_reader_positions.py，禁止把定向结果写成发布验收。R3整体仍有捕获/持久化编排和返回点职责待迁移，详见READER_POSITION_ISOLATION。
+R3a位置快速入口已验（2026-10-21）：`bash scripts/test_reader_positions.sh <新的输出目录>`真实独立6/6，只依赖Core，不使用App/Readium；步骤103秒含81.5秒构建。workflow的position-isolation先同6项，再13项原iOS合同，源755b428/CI39573863939通过；不跑完整188/设备Release/IPA。仅本片先编译接线再boot/test。精确身份/依赖与真实退出码守卫见verify_reader_positions.py，保留首次接线失败0项记录，不能降低断言或把重放成功写成内部根因已证。完整发布另执行这6项，Core仍137、iOS仍188。详见READER_POSITION_ISOLATION及project-isolation-r3a.json。
+
 
 2026-10-21最新：分页writer定向补证39561815911完成，同一单用例旧负例1/1、新正例1/1，原字与无位置写入均核；生产9bb6c86保持，下一切片R3未实施。完整188、设备Release/手机仍待独立门槛，不能把本1+1或历史9/9称全量通过。首组屏障越界失败保留；最新事实见HANDOFF与ValidationLogs/paged-font-control-39561815911.json。
 

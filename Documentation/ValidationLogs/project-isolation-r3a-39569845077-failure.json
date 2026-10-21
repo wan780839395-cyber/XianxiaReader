@@ -1,0 +1,73 @@
+{
+  "run": 39569845077,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39569845077",
+  "revision": "a9d4e8424c01c6163af89d2f127f5a4caedffee7",
+  "conclusion": "failure",
+  "implementationScope": "R3a state/save identity; original Core-package product layout",
+  "moduleLogic": {
+    "cases": [
+      "testAbsentSessionCannotCommitAndInvalidationPreservesState",
+      "testChangedOwnerRejectsResultEvenBeforeInvalidation",
+      "testCloseAndReopenedSessionRejectOldResult",
+      "testFailurePreservesFullPositionAndRetryClearsVisibleError",
+      "testOpaquePositionAndEveryEventAreRetained",
+      "testSupersededRequestAndOldCleanupCannotTouchNewSave"
+    ],
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "appHostUsed": false,
+    "readiumResolved": false,
+    "recordedAtUTC": "2026-10-21T08:54:50.249398+00:00",
+    "validationKind": "r3a_logic",
+    "releaseAccepted": false,
+    "deviceAccepted": false
+  },
+  "nativeCompiled": false,
+  "nativeTestsExecuted": 0,
+  "nativeTestExit": 65,
+  "nativeSummaryExit": 0,
+  "nativeAttachmentExportExit": 0,
+  "error": "Unable to resolve build file in auto dynamic XianxiaCore: missing PACKAGE-TARGET:CSQLite",
+  "failureStage": "Xcode native build planning before any XCTest; not a reading-position assertion",
+  "costs": {
+    "logicStepSeconds": 141.0,
+    "logicBuildReportedSeconds": 113.06,
+    "logicXUnitSumSeconds": 1.108522793,
+    "nativeStepIncludingPreparationExportSeconds": 1130.0,
+    "nativeBuildPlanningSessionSeconds": 144.83899998664856,
+    "caseExecutionSeconds": 0
+  },
+  "artifact": {
+    "run": 39569845077,
+    "artifact": 12333005921,
+    "kind": "diagnostic",
+    "archiveBytes": 59180,
+    "archiveSHA256": "6d8d558ee0fb2ed84e1312b0d71abec0e1e69fc58ced4b02b051fb5da1b005bf",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39569845077\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39569845077\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39569845077\\diagnostic-received.zip",
+        "bytes": 59180,
+        "sha256": "6d8d558ee0fb2ed84e1312b0d71abec0e1e69fc58ced4b02b051fb5da1b005bf"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "linuxTooling": {
+    "total": 71,
+    "passed": 71,
+    "skipped": 0,
+    "seconds": 14.651
+  },
+  "nextExperiment": "Same unchanged state/tests/App through independent ReaderPositions package consuming original Core product; build-for-testing before simulator boot, then identical 6+13 contracts",
+  "exactCompilerRootCauseProven": false,
+  "fullGateExecuted": false,
+  "deviceReleaseExecuted": false,
+  "ipaCreated": false
+}
