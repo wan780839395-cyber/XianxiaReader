@@ -83,5 +83,20 @@
     "Six-font continuous resource committed but didFinish missing before unchanged 20-second timeout",
     "Menu test recording 120.5-142.5-second overview shows blank body and spinner after reopen; no native acceptance",
     "Warm landscape original screenshot has readable body; the settled-edge predicate failure is not yet classified as a loading failure"
-  ]
+  ],
+  "rotationProbe": {
+    "path": "build/ci/39243868846/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/BCBCEDC7-A157-474F-9E0F-D7512B6AC20B.png",
+    "rawSHA256": "3c1e4d44e2f6d013cd431d8d3cc12d701671dfcadf5db09ed1e50da3fa54a69f",
+    "rawSize": [
+      1206,
+      2622
+    ],
+    "exifOrientation": 8,
+    "original40CenterPaperCountPIL": 879,
+    "originalThreshold": 880,
+    "proposed120CenterPaperCountPIL": 12697,
+    "proposedSame55PercentThreshold": 7920,
+    "diagnosis": "40px window smaller than a CJK glyph and intersects strokes; native original helper returns false; all readable/settled guards had passed before pixel check",
+    "nativeFixTested": false
+  }
 }

@@ -1,0 +1,417 @@
+{
+  "status": "checkpoint saved per user; candidate targeted passes; native negative control unqualified; not accepted as fully fixed",
+  "date": "2026-10-21",
+  "userInstruction": {
+    "finishCurrentRunThenSaveCheckpoint": true,
+    "noFurtherDispatch": true,
+    "noR3": true,
+    "keepComputerOn": true
+  },
+  "run": 39528802200,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39528802200",
+  "baseline": "a8125716758aef5802b6d53b3129acc53947c004",
+  "compiledCandidate": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+  "workflowHeadIsBaseline": true,
+  "inputProofs": {
+    "baseline": 536,
+    "patched": 536
+  },
+  "runtimeDelta": [
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "baselineResult": {
+    "passed": 8,
+    "failed": 1,
+    "skipped": 0,
+    "testExit": 65,
+    "failure": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader():576",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 1,
+        "testIdentifierString": "ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader",
+        "testName": "testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader()"
+      }
+    ],
+    "newCaseBeforeAfter": [
+      1608,
+      1608
+    ]
+  },
+  "candidateResult": {
+    "baselineOriginalExit": 65,
+    "baselineWasNegative": true,
+    "sameWidthControlledFailure": false,
+    "patchedOriginalExit": 0,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "sharedDerivedData": true,
+    "full187Executed": false,
+    "full188Executed": false,
+    "deviceReleaseExecuted": false,
+    "newIPA": false
+  },
+  "nativeNegativeControlQualified": false,
+  "candidateNewCaseBeforeAfter": [
+    1608,
+    1608
+  ],
+  "interpretation": "The baseline failure was delayed-font-close, not the new same-width case. A green candidate is positive regression evidence, not a qualified old-bad/new-good native font proof. Do not claim all timing causes fixed.",
+  "fonts": [
+    {
+      "font": "sourceHanSerif",
+      "x": 3618,
+      "canonicalTarget": {
+        "char": 1049,
+        "target": 3618,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1668,
+          "x": 3618,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3618,
+          "at": 1588,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://FFEBCCBC-89AD-41AD-9CB7-7B5994635BB4/OEBPS/one.xhtml:30:20\nglobal code@readium://FFEBCCBC-89AD-41AD-9CB7-7B5994635BB4/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    },
+    {
+      "font": "wenKai",
+      "x": 3618,
+      "canonicalTarget": {
+        "char": 1049,
+        "target": 3618,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1664.0000000000002,
+          "x": 3618,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3618,
+          "at": 1566,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://9DDC7C2C-F65E-4ADC-A4B2-404411614CD3/OEBPS/one.xhtml:30:20\nglobal code@readium://9DDC7C2C-F65E-4ADC-A4B2-404411614CD3/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    },
+    {
+      "font": "sourceHanSans",
+      "x": 3618,
+      "canonicalTarget": {
+        "char": 1049,
+        "target": 3618,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1818,
+          "x": 3618,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3618,
+          "at": 1719,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://FDD492C8-74E5-48E1-A73E-1445F7717572/OEBPS/one.xhtml:30:20\nglobal code@readium://FDD492C8-74E5-48E1-A73E-1445F7717572/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    },
+    {
+      "font": "zhuque",
+      "x": 3618,
+      "canonicalTarget": {
+        "char": 1049,
+        "target": 3618,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1632.0000000000002,
+          "x": 3618,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3618,
+          "at": 1622,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://DAB2F544-ADB0-46EF-8857-FAC1F0D0CA79/OEBPS/one.xhtml:30:20\nglobal code@readium://DAB2F544-ADB0-46EF-8857-FAC1F0D0CA79/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    },
+    {
+      "font": "maShanZheng",
+      "x": 3216,
+      "canonicalTarget": {
+        "char": 803,
+        "target": 3216,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1633,
+          "x": 3216,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3216,
+          "at": 1574,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://7C2179B1-20A9-4F13-8774-05A90AC8F597/OEBPS/one.xhtml:30:20\nglobal code@readium://7C2179B1-20A9-4F13-8774-05A90AC8F597/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    },
+    {
+      "font": "xiaoWei",
+      "x": 3216,
+      "canonicalTarget": {
+        "char": 767,
+        "target": 3216,
+        "width": 402
+      },
+      "fontReady": "ready",
+      "fontCondition": true,
+      "anchorCondition": true,
+      "savedPointVisible": true,
+      "savedPointDelta": 0,
+      "trace": [
+        {
+          "at": 1992,
+          "x": 3216,
+          "y": 0
+        }
+      ],
+      "writers": [
+        {
+          "phase": "window-scrollTo",
+          "requested": 3216,
+          "at": 1991,
+          "stack": "record@user-script:84:5:78\n@user-script:84:9:43\n@readium://838EDD0F-934D-498C-AB14-3934E5163AF5/OEBPS/one.xhtml:30:20\nglobal code@readium://838EDD0F-934D-498C-AB14-3934E5163AF5/OEBPS/one.xhtml:33:3"
+        }
+      ],
+      "errorFree": true
+    }
+  ],
+  "fontObservationBoundary": "passed record before existing native screenshot; no new post-screenshot paged assertion; private long chain paged-only, normal working default retains both modes",
+  "offlineControl": {
+    "scope": "Offline actual pinned resize callback + actual new test barrier under minimal DOM stubs; not WebKit or native acceptance",
+    "initialProbeCorrection": "First mock assumed a stale initial coordinate without injecting it. Corrected this separate mock condition explicitly; native fixture/source unchanged",
+    "old": "a8125716758aef5802b6d53b3129acc53947c004",
+    "fixed": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+    "before": {
+      "initialAfter": 0,
+      "sameWidthAfter": 0,
+      "widthChangedAfter": 3216
+    },
+    "after": {
+      "initialAfter": 0,
+      "sameWidthAfter": 3618,
+      "widthChangedAfter": 3216
+    },
+    "continuousBefore": {
+      "initialAfter": 0,
+      "sameWidthAfter": 3618,
+      "widthChangedAfter": 3618
+    },
+    "continuousAfter": {
+      "initialAfter": 0,
+      "sameWidthAfter": 3618,
+      "widthChangedAfter": 3618
+    },
+    "initialBefore": {
+      "initialAfter": 0,
+      "sameWidthAfter": 0,
+      "widthChangedAfter": 3216
+    },
+    "initialAfter": {
+      "initialAfter": 3618,
+      "sameWidthAfter": 3618,
+      "widthChangedAfter": 3216
+    }
+  },
+  "linux": {
+    "toolingJobPassed": true,
+    "coreUniqueCases": 137,
+    "TXTSamplesPassed": 4,
+    "coreArtifactBytes": 116279
+  },
+  "windows": {
+    "grammarFiles": 456,
+    "addedDiagnostics": 0,
+    "existingVendorLimitations": 54,
+    "grammarIsNotCompilation": true,
+    "toolingBeforeLastDriverEdits": {
+      "total": 64,
+      "passed": 59,
+      "posixSkipped": 5
+    },
+    "latestDriverPOSIXFixture": "passed current Linux repository-checks before native",
+    "nodeFixtureAndRuntimeSyntaxPassed": true,
+    "bashSyntaxPassed": true,
+    "postFreezeReleaseCounterTests": {
+      "passed": 8,
+      "seconds": 0.237,
+      "newCounter": 159,
+      "notUsedByNativeRun": true
+    }
+  },
+  "full188Executed": false,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "nativeImagesIndividuallyReviewed": false,
+  "newIPA": false,
+  "R3Implemented": false,
+  "preservation": {
+    "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+    "protectedInputsUnchanged": 503,
+    "compiledRuntimeVendorInputsStillExact": true
+  },
+  "timing": {
+    "baseline": {
+      "stepStarted": "2026-10-21T01:44:15Z",
+      "stepCompleted": "2026-10-21T02:23:22Z",
+      "firstSuiteUTC": "2026-10-21T02:15:34.387000+00:00",
+      "beforeFirstCaseSeconds": 1879.387,
+      "caseDurationSumSeconds": 256.171,
+      "stepWallSeconds": 2347.0,
+      "sourceCompilerDiagnostics": 0
+    },
+    "candidate": {
+      "stepStarted": "2026-10-21T02:23:34Z",
+      "stepCompleted": "2026-10-21T02:30:42Z",
+      "firstSuiteUTC": "2026-10-21T02:26:49.202000+00:00",
+      "beforeFirstCaseSeconds": 195.202,
+      "caseDurationSumSeconds": 203.38,
+      "stepWallSeconds": 428.0,
+      "sourceCompilerDiagnostics": 0
+    }
+  },
+  "artifacts": {
+    "baseline": {
+      "run": 39528802200,
+      "artifact": 12315513970,
+      "kind": "baseline",
+      "archiveBytes": 194581,
+      "archiveSHA256": "6d411b1849ecb2c7fa93e677821e5bd13a34922b1ddcfd174ae2c831c11a278a",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\paged-font-baseline-text",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\paged-font-baseline-text",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\baseline-native-receipt.zip",
+          "bytes": 194581,
+          "sha256": "6d411b1849ecb2c7fa93e677821e5bd13a34922b1ddcfd174ae2c831c11a278a"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "diagnostic": {
+      "run": 39528802200,
+      "artifact": 12316805436,
+      "kind": "diagnostic",
+      "archiveBytes": 123747635,
+      "archiveSHA256": "efea4bc22336380db410ca77ffd86fb07860ee85472652db97085ad168982e3b",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\diagnostic",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\diagnostic",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\diagnostic-native-receipt.zip",
+          "bytes": 123747635,
+          "sha256": "efea4bc22336380db410ca77ffd86fb07860ee85472652db97085ad168982e3b"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "core": {
+      "run": 39528802200,
+      "artifact": 12314905801,
+      "kind": "core",
+      "archiveBytes": 116279,
+      "archiveSHA256": "7ed7a53f43692ad863675607517910ff34753b66b8f025ba58efd669d1e85e61",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\core",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\core",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39528802200\\core-native-receipt.zip",
+          "bytes": 116279,
+          "sha256": "7ed7a53f43692ad863675607517910ff34753b66b8f025ba58efd669d1e85e61"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  },
+  "nextExperiment": "Do not rerun9/188. First diagnose which actual Readium ResizeObserver/frame was captured: bounded source fingerprint, href, native visible/initialization state, injected scrollX getter hit count and horizontal write attempts/order. No extra geometry reads or sleeps. Determine why native old source stayed1608 although offline callback reset0. Only after explicit user resume consider one old/new native case; retain current candidate unaccepted until evidence qualifies.",
+  "interruptionRecovery": {
+    "checkedAtUTC": "2026-10-21T06:28:34.861538+00:00",
+    "actualUnfinishedStep": "final local Git checkpoint and process receipt only",
+    "productionAndNativeFixtureChanged": false,
+    "newTestsOrCIDispatched": false,
+    "ownedProcessCount": 0,
+    "checkpointReceipt": "build/maintenance/PagedFont-20261021/final-checkpoint.json",
+    "processReceipt": "build/maintenance/PagedFont-20261021/final-processes.json",
+    "normalFontBothModesDefaultPreserved": true,
+    "nativeEvidenceStillCorrespondsToPrivatePagedOnlyRevision": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8"
+  }
+}

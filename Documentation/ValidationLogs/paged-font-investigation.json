@@ -1,0 +1,192 @@
+{
+  "status": "checkpoint saved per user; candidate targeted passes; native negative control unqualified; not accepted as fully fixed",
+  "scope": "paged font regression only; R3 deferred",
+  "productionBaseline": "dc31745dfef4b56d8d59809984556ec39d005293",
+  "firstDiagnostic": {
+    "revision": "f620349bea43ed6c628490f95009e49f66a00313",
+    "run": 39465081517,
+    "passed": 1,
+    "failed": 1,
+    "testExit": 65,
+    "sourceCompilerDiagnostics": 0,
+    "failedCase": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes:791",
+    "scope": "paged only private fixture; default working font case remains both modes",
+    "observations": [
+      "sample and reload p25/char1049; full saved/open-returned locator also preserved; progression0.37037037037037035",
+      "first publish on new spread h1/char0 at native x0; selected font and FontFaceSet ready; saved point still valid at rectLeft3686",
+      "hidden reflow original case passed10.361s; passing replay is not a fix"
+    ],
+    "artifactBytes": 103779244,
+    "artifactSHAAndCRCVerified": true,
+    "local": "build/ci/39465081517/diagnostic",
+    "ledger": "build/maintenance/PagedFont-20261021/anchor-ledger.log"
+  },
+  "stagedDiagnostic": {
+    "revision": "608a98f81cac8210a283fabd228086267218ce05",
+    "run": 39472174050,
+    "selection": "paged-font-control",
+    "source": "requested/initial/private canonical go input and viewport/script geometry metadata; supported String JSON, no extra await or behavior budget changes",
+    "baselineCases": 2,
+    "expectedPatchedCases": 6,
+    "candidateRef": "refs/heads/codex/fix-paged-font-restore-stage2",
+    "candidateMustHaveExactParent": true,
+    "candidateRuntimeAllowlist": [
+      "EPUBNavigatorViewController.swift",
+      "EPUBReflowableSpreadView.swift",
+      "PaginationView.swift",
+      "UPSTREAM.json"
+    ],
+    "candidateSubmitted": false,
+    "waitForReviewedCandidateSeconds": 900,
+    "automaticPatch": false,
+    "workflowHeadIsBaselineNotCandidate": true,
+    "actualCandidateMustMatchPatchedInputBlobs": true,
+    "conclusion": "workflow failure due to baseline collection criterion; actual tests2/2passed, test exit0, patched not executed",
+    "artifactBytes": 7977082,
+    "artifactSHAAndCRCVerified": true,
+    "baselineTextBytes": 189523,
+    "interpretation": "passing observation is not a fix; measurement may affect layout/timing; strict negative prerequisite prevented keeping runner, acknowledged design mistake"
+  },
+  "windows": {
+    "swiftGrammarFiles": 456,
+    "addedDiagnostics": 0,
+    "existingVendorLimitations": 54,
+    "notSwiftCompilation": true,
+    "tooling": 64,
+    "passed": 59,
+    "posixSkipped": 5,
+    "bashSyntaxPassed": true
+  },
+  "full187Executed": false,
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "newIPA": false,
+  "shutdown": {
+    "cancelledByUserMorning": true,
+    "notScheduled": true,
+    "keepRunning": true
+  },
+  "lightDiagnostic": {
+    "revision": "d4cb60717246eb18533e1166e92e3ddf31c969fc",
+    "run": 39478971105,
+    "diagnosticOnly": true,
+    "baselineCases": 2,
+    "expectedPatchedCases": 8,
+    "changes": "no post-scroll DOM geometry getters, no ResizeObserver/rAF wrapping; only precomputed target and bounded native/input/event metadata",
+    "baselineMayPassButIsNotAFix": true,
+    "candidateMustHaveExactParent": true,
+    "candidateSubmitted": false,
+    "passed": 1,
+    "failed": 1,
+    "testExit": 65,
+    "workflowFailure": "No candidate supplied during900s gate; not source failure",
+    "baselineTextSHAAndCRCVerified": true,
+    "observedWriter": "window-scrollTo3618 at1535ms; ResizeObserver scrollLeft0 at1545ms",
+    "rootCauseLimit": "Late reset writer proven for failed reopen sample; setter-path correction not validated yet",
+    "artifactBytes": 79176639,
+    "artifactSHAAndCRCVerified": true,
+    "sourceCompilerDiagnostics": 0
+  },
+  "setterCandidate": {
+    "revision": "4597b3455c8dc7f4ebfd88f4005e446c2f10431a",
+    "run": 39523316446,
+    "baselineRevision": "d4cb60717246eb18533e1166e92e3ddf31c969fc",
+    "status": "rejected; production files reverted to baseline",
+    "runtimeDelta": [
+      "EPUBReflowableSpreadView.swift",
+      "UPSTREAM.json"
+    ],
+    "testCIInputBlobsUnchanged": true,
+    "preservedProtectedInputs": 504,
+    "ordinaryIndexUnchanged": true,
+    "coreArtifact": {
+      "bytes": 116279,
+      "SHAAndCRCVerified": true,
+      "local": "build\\ci\\39523316446\\core",
+      "TXTAllChecksPassed": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "gate": "Core job passed; not candidate native acceptance"
+    },
+    "baselinePassed": 1,
+    "baselineFailed": 1,
+    "baselineTestExit": 65,
+    "baselineWasNegative": true,
+    "baselineTextBytes": 147222,
+    "baselineTextSHAAndCRCVerified": true,
+    "baselineFailureFont": "wenKai",
+    "nativeAcceptancePending": true,
+    "passed": 6,
+    "failed": 2,
+    "testExit": 65,
+    "artifactBytes": 178163935,
+    "artifactSHAAndCRCVerified": true,
+    "sourceCompilerDiagnostics": 0,
+    "failureCases": [
+      "continuous resize:81",
+      "paged font change:731"
+    ],
+    "rootCauseLimit": "Setter-path hypothesis disproved: same resize callback still overwrites target3618 with0. Continuous failure independent, relationship unproven.",
+    "inputProofs": {
+      "baseline": 536,
+      "patched": 536
+    }
+  },
+  "resizeGuardCandidate": {
+    "revision": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+    "baseline": "a8125716758aef5802b6d53b3129acc53947c004",
+    "run": 39528802200,
+    "baselineCases": 9,
+    "candidateCases": 9,
+    "sameTestInputsAndOrder": true,
+    "original8TestsUnchanged": true,
+    "newControlledTest": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+    "runtimeFiles": [
+      "readium-reflowable.js",
+      "UPSTREAM.json"
+    ],
+    "protectedUnchanged": 503,
+    "ordinaryHeadIndexUnchanged": true,
+    "nativeAcceptancePending": true,
+    "offlineActualCallbackControl": "passed old0/new3618, actual width change3216both, continuous unchanged; minimal DOM stubs, not WebKit or native acceptance",
+    "baselinePassed": 8,
+    "baselineFailed": 1,
+    "baselineTestExit": 65,
+    "nativeControlledNegativeQualified": false,
+    "baselineNewTestObservation": "before1608 after1608 original word visible; old source passed. Offline old0/new3618 is a different mocked boundary, not native failure proof.",
+    "baselineFailure": "closing delayed-font-ready:576",
+    "baselineTextBytes": 194581,
+    "baselineTextSHAAndCRCVerified": true,
+    "acceptancePending": true,
+    "nativePassed": 9,
+    "nativeFailed": 0,
+    "nativeSkipped": 0,
+    "testExit": 0,
+    "actualInputProofs": {
+      "baseline": 536,
+      "patched": 536
+    },
+    "artifactBytes": 123747635,
+    "artifactSHAAndCRCVerified": true,
+    "finalRecord": "Documentation/ValidationLogs/paged-font-resize-39528802200.json"
+  },
+  "full188Executed": false,
+  "userInstruction": {
+    "finishCurrentRunThenSaveCheckpoint": true,
+    "noFurtherDispatch": true,
+    "noR3": true,
+    "keepComputerOn": true
+  },
+  "localReleaseCounter": {
+    "unitIntegration": 159,
+    "UI": 29,
+    "futureTotal": 188,
+    "localToolingTests": 8,
+    "passed": 8,
+    "seconds": 0.237,
+    "notUsedByCurrentNativeRun": true
+  }
+}

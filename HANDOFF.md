@@ -1,40 +1,41 @@
-# 当前准备：同宽ResizeObserver写入隔离的9+9对照
+# 当前断点：本轮已收齐，按用户选择保存，停止补证（2026-10-21）
 
-单一行为切片：viewport宽度未变的body尺寸通知不再写分页位置；初次O=0不对齐，真实宽变保留原对齐，虚拟页及进度通知仍执行。新显式frame barrier回归已加入、原测试全文保持；原字可见前置和after-frame原位置断言。两边相同9case/顺序，包含已失败连续case和之前的两个关闭case，以区分测试顺序/旧连续问题；不靠扩大成完整188。Windows456语法新增0/54、64工具59过5POSIX跳过、Node测试脚本及Bash语法过。尚未编译/派发此源。保持开机，R3不做。
+用户明确选择“本轮收完后先保存断点”。本轮已经自然结束、完整证据已收齐；不再派发补证、不继续修改fixture、不推进R3。电脑保持开机，不安排关机。下次仅在用户明确继续后恢复。
 
-# 当前：root setter候选已拒绝并撤回（2026-10-21早晨，保持开机）
+## 本次中断恢复核对
 
-39523316446实际基线1/2、候选6/8、test exit65，候选4597b345真实编译0源码错误。完整178163935字节artifact SHA/CRC核验，原件build/ci/39523316446/diagnostic。分页change731行仍target3618后ResizeObserver scrollLeft0；另continuous resize81行失败，因果未定单列。ReflowableSpreadView/UPSTREAM已精确恢复d4cb607，失败候选没有保留为生产修复；R3不做、保持开机。下一最小切片仅上游body ResizeObserver：仅viewport宽度真正变化时才重对齐页，初次/同宽正文尺寸变化不写位置；先补显式barrier、陈旧scrollX故障注入确定性回归，再冻结同runner9基线+9正例，完全相同case及执行顺序（包括关闭→连续原控制），原预算/断言不改。尚未应用新JS修正或派发。以下为本run历史准备记录。
+2026-10-21恢复时发现：CI及完整产物收集、分项验证和文档已完成；尚未落盘的是最终Git检查点与进程回执。本次仅补齐这两项，未改生产/fixture、未重新测试或派发CI。实时核对CI39528802200已success，最近20轮没有活动任务，本轮observer/download进程为0；503原保护输入与普通HEAD/index保持。保存正常双模式字体测试默认值，不把它冒充已执行的私有分页单模式9/9。具体检查点与收口凭据见下文final-checkpoint.json和final-processes.json。
 
-# 当前断点：分页换字体回章头的最小候选验证中（2026-10-21早晨）
+## 事实与验收边界
 
-用户最新指令：取消关机，保持开机；没有安排或执行过关机。只收口分页问题，R3仍未接线；原13候选仅在.cache。没有新增产品功能、IPA、完整187或设备Release/手机验收。
+- CI39528802200 success；workflow HEAD是基线a8125716758aef5802b6d53b3129acc53947c004，实际安装/编译候选9bb6c86ff0c500200d1413df0906a6cf9139bbb8，由patched-inputs.json证明。两边536实际输入逐blob/SHA核验；相同9case/顺序、原断言和预算不改。
+- 基线8/9，exit65，唯一失败旧testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader原576行。候选9/9、exit0、失败/跳过0，两边源码编译错误0。不能把基线的关闭失败当分页负对照，也不从一次正例推出关闭时序旧问题已修。
+- 新testSameWidthBodyResizeDoesNotOverwritePendingPagedWord两边before1608/after1608、word可见，旧代码也通过，sameWidthControlledFailure=false。原生可控负对照未命中，尚不合格；源码候选保留、分页问题不写成已彻底修好/完整收口。
+- 候选六字体分页原链均真实loaded、无font/errorMessage、目标字可见、保存字delta0；采样在既有native截图之前，不是分页截图后断言。私有冻结该长链仅分页，工作默认仍双模式；其他真实捕获/关闭/TXT/连续控制按原9项执行。图片未逐张目视，不作完整原生视觉/动效/手机验收。
+- 生产候选只改固定Readium3.11的readium-reflowable.js body ResizeObserver：记录前一个页宽O，只有e>0且e!==O才执行原分页对齐；初次/同宽正文尺寸通知不写位置。O更新、虚拟页和j()进度通知、连续R()及canonical恢复window.scrollTo保持。UPSTREAM新增精确JS override，pristine baseline摘要保留。无R3提取、App/Core/字体/依赖/Locator/预算变化。
+- 离线真实回调+同一屏障的最小DOM stub旧0/新3618、真实宽变两边3216、连续一致，仅证明该算法边界，不替代原生负例。不能隐去原生屏障未命中的事实。
 
-## 当前唯一任务
+## 已完成检查、成本与保全
 
-- CI39523316446，基线d4cb60717246eb18533e1166e92e3ddf31c969fc，branch codex/diagnose-paged-font-light-observation，selection=paged-font-control。同branch/同baseline SHA存在旧run，必须使用此ID；恢复先核实际run/jobs、进程和文件，不重复派发。
-- 已审阅候选4597b3455c8dc7f4ebfd88f4005e446c2f10431a，为d4cb607精确child，已先推refs/heads/codex/fix-paged-font-restore-stage2再派发本run。runtime仅ReflowableSpreadView分页canonical DOM分支将window.scrollTo改为root scrollLeft=target，以及UPSTREAM摘要/说明。此为行为修正，不是R3提取；连续分支、完整Locator、字体等待/原await、3/20秒预算、原断言保持。
-- 先执行2个原分页字体用例并保留真实基线0/65，再安装候选、核全部运行blob，同runner/DerivedData执行8个原直接位置/字体/关闭/TXT回归。候选已存在，无需人工临时提交；没有自动补丁或重试。工作默认长字体测试仍双模式，私有冻结该长链仅分页，不能冒充其连续字体链复测。
-- Windows456语法新增0/54既有Vendor限制、verify_vendor357通过；语法不是编译。64工具fixture已随当前远程repository-checks通过，Core/native状态读取实际jobs；本run基线已核真实1/2、exit65，楷体wenKai重开回章头，147222字节文字SHA/CRC核验。正例8项运行中，尚无候选结果。
-- 只读observer .cache/recovery/observe_paged_font_setter.py，当前session28886（仅为保留读取错误stderr而重启本地观察器，远程run未重启；恢复须核实际PID，旧session不能当进程仍活）；输出build/maintenance/PagedFont-20261021/setter-run/jobs/artifacts.json。gh api需时可用GODEBUG=http2client=0；读网失败不代表CI失败。
+Windows456语法新增0/54既有Vendor限制、357 Vendor来源、Node运行/fixture语法和Bash通过；语法不是编译。Linux本run64 tooling前置、Core137不同身份与TXT Release探针4通过。新增1项回归后未来完整门槛159集成+29UI=188；本地最终校验器158→159及8个正反例通过0.237秒，该Python计数器更新未用于本次native源，不冒充本run已验该工具版本。
 
-## 已确认失败与待证明机制
+基线原生步骤2347秒，首例前1879.387秒含准备/编译/启动，case合计256.171秒；暖环境候选步骤428秒、首例前195.202秒、case203.380秒。不得把39分钟基线步骤写为测试或纯编译耗时。
 
-- 首诊f620349/39465081517真实1/2，保存、打开返回、重建输入完整p25/char1049正确，新页面第一次publish h1/0。文件存在、字体ready、完整字锚点有效；不是本样本保存/数据库丢失。
-- 第二诊608a98f/39472174050实际2/2；driver错误要求负对照必须失败，未进入候选阶段，不是源码失败/已修。重型观测可能改变布局/时序，根因未由此证明。
-- 轻量d4cb607/39478971105真实1/2、test exit65、0源码编译错误。决定性失败链：初始location char1049、canonicalTarget3618/width402；window-scrollTo请求3618 at1535ms；Readium3.11 ResizeObserver/rAF在1545ms写scrollLeft0，首次publish h1/0。该样本的后续覆盖写入已抓到；不把hidden用例偶发失败自动认成同根因。
-- 轻量run最终失败在900秒等候候选（无人提交），不是新增源码失败。139590字节文字与79176639字节完整artifact已SHA/CRC核验，build/ci/39478971105；raw xcresult/完整日志保留。完整原件首次collect正确，zip/分片按回执清除。ledger=build/maintenance/PagedFont-20261021/light-ledger.log。
-- 当前候选假设：使用与resize snap相同的root scrollLeft直接属性路径，避免Window.scrollTo待生效时被旧scrollX覆盖。WebKit Element/LocalDOMWindow main源码显示不同position调用路径；只作机制参考，不冒充iOS18.5对应源码或已证修复。原生对照后才接受/拒绝。
+完整diagnostic123747635字节、baseline文字194581字节、Core116279字节均GitHub digest/SHA/ZIP CRC核验；原件在build/ci/39528802200，含两边raw xcresult/完整日志/附件/实际输入。重复ZIP/分片按各download-receipt删除；当前开发证据保留，未做历史清理。原失败39523316446完整178163935字节也保留。
 
-## 保全与下一步
+普通HEAD6d761749911233122bcd031fcf718d22a19f9e77/index SHA256 b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28保持；503保护输入与实际编译Vendor源码保持。完整188、设备Release/普通设备/TrollStore/手机验收未执行，无新IPA，最后交付仍Build30。R3的13候选仍仅.cache，未接线/编译。
 
-普通HEAD6d761749911233122bcd031fcf718d22a19f9e77/index SHA256 b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28保持；504保护输入和既有WIP/上一片连续修正保持。候选freeze/diff/dispatch在build/maintenance/PagedFont-20261021/setter-*.json与.diff；使用alternate index，无reset/clean/普通提交。
+权威回执：[本轮完整分项](Documentation/ValidationLogs/paged-font-resize-39528802200.json)、[累计调查](Documentation/ValidationLogs/paged-font-investigation.json)。冻结/离线/逐blob/计时/保全在build/maintenance/PagedFont-20261021/resize-guard-*。最新私有checkpoint及进程收口信息见同目录final-checkpoint.json/final-processes.json；普通HEAD/index不改。
 
-先取本run实际原测试+候选8结果与patched-inputs候选SHA，再收完整artifact、native后续writer/锚点和所需原图。若失败，保留原件并用新差异缩小原因，不重跑全CI碰绿；若通过，写清负对照是否真失败、修正实际范围和未执行的完整/Release/设备门槛。用户明确保持开机。此前逐轮交接原文已保存在[分页调查历史](Documentation/HANDOFF_PAGED_FONT_INVESTIGATION_2026-10-21.md)，其中关机/运行状态为历史，以本节和实际证据为准。
+## 用户继续后的下一项区分实验（本轮不执行）
 
-## 前片连续偏移结果（保留）
+先查为何新native屏障让旧源也保住1608：仅记录被捕获的实际Readium ResizeObserver/frame源码指纹、href、附窗/可见与初始化状态、注入scrollX getter命中次数、水平写入尝试及顺序。先证明故障注入确实进入目标writer；不加几何读取、固定等待或重试，不凭Node stub推断WebKit。屏障合格后只考虑旧/新单用例1+1，不重跑9/188。用户已明确本轮到此，不能把这段计划当作自动执行授权。
 
-5340a5b/39456749155同runner旧源10.875点→修正0.875点，原<3点断言保持；连续六字体截图后保存字delta0、字体ready、目标字可见。整组5/6，分页hidden字体失败仍为发布阻塞，不能发布/生成IPA。唯一生产修正为无限连续canonical DOM分支内部消费完整字锚点与viewportOffset；native updateViewports失败候选已撤回，InfiniteScrollView保持原字节。六张原图已看，非动效或手机验收。精确回执Documentation/ValidationLogs/continuous-offset-39456749155.json；原控制a84b6719/5340输入及505保护证据保留。
+此前root setter4597b345实际6/8、分页仍被同RO写0，已精确撤回至d4cb607；失败原件与原因保留。其连续resize81行失败、本轮基线closing576行失败分别记录发布影响，未证明与本JS守卫相关，不扩修/归咎环境。旧逐轮交接在[分页调查历史](Documentation/HANDOFF_PAGED_FONT_INVESTIGATION_2026-10-21.md)，其中运行/关机说法为历史，以本节和真实证据为准。
+
+## 上一片连续偏移（保留）
+
+5340a5b/39456749155同runner旧源10.875点→修正0.875点，原<3点断言保持；连续六字体截图后delta0、字体ready、目标字可见。整组5/6，分页字体失败未消除发布阻塞。仅无限连续canonical DOM内消费完整字锚点和viewportOffset；native updateViewports失败候选已撤回、InfiniteScrollView原字节保持。详见ValidationLogs/continuous-offset-39456749155.json；不算R3或完整发布。
 
 # 上一片：R2字体编排本片完成
 

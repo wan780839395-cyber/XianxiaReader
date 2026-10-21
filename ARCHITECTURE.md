@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-21断点：分页body ResizeObserver写入边界候选9bb6c86/CI39528802200真实9/9，原生负对照未命中，尚未验收收口；用户选择保存断点，不再补证/推进R3，保持开机。未来完整门槛188（新增1项），完整/Release/设备未做，无新IPA。详见HANDOFF与ValidationLogs/paged-font-resize-39528802200.json；以下历史隔离/产品计划保留。
+
 定位维护边界（2026-10-21）：无限连续canonical DOM seek内部消费完整字锚点及viewportOffset，防止内外层定位目标不同；生产仅ReflowableSpreadView及Vendor摘要变化，未提取R3。直接控制与连续字体检查通过，整组5/6、分页字体失败仍阻塞发布，因果未定；不把该结果写成R3或整体位置验收。详见HANDOFF及ValidationLogs/continuous-offset-39456749155.json。
 
 ## 当前维护边界（2026-10-20，I0/I1/I2完成，I3起待实施）

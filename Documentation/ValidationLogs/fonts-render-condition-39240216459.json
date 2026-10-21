@@ -1,0 +1,3631 @@
+{
+  "recordedAtUTC": "2026-10-19T11:19:16.081554+00:00",
+  "run": 39240216459,
+  "sourceRevision": "024fc87e37cbc1f39af4fff42a7b1ee1f7fd059f",
+  "selection": "fonts",
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "testDurationsSeconds": {
+    "importedFontsBothModes": 117.689,
+    "replacementDuringHiddenReflow": 14.696
+  },
+  "testSummaryExportExitCodes": [
+    0,
+    0,
+    0
+  ],
+  "sourceCompilerWarnings": 0,
+  "sourceCompilerErrors": 0,
+  "renderedReopenRecords": [
+    {
+      "metadata": "phase=passed font=sourceHanSerif continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000001",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000001",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000001",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000001",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSerif continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000001",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSerif continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1828.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=wenKai continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000002",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000002",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000002",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000002",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=wenKai continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000002",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=wenKai continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(0.0, 0.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSans continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000003",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 3,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSans continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000003",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSans continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1828.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=zhuque continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000004",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 6,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=zhuque continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000004",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=zhuque continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(0.0, 0.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=maShanZheng continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10452.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000005",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000005",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000005",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000005",
+            "documentWidth": 10452,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=maShanZheng continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000005",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=maShanZheng continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(0.0, 0.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=xiaoWei continuous=false alpha=1.0 nativeOffset=(2010.0, 0.0) nativeSize=(10854.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 2010,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000006",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "before",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "requested": 2010,
+            "firstX": 2078,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000006",
+            "documentWidth": 10854,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "after",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "requested": 2010,
+            "firstX": 68,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000006",
+            "documentWidth": 10854,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 2010,
+            "firstX": 68,
+            "firstY": 8,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000006",
+            "documentWidth": 10854,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=xiaoWei continuous=false alpha=1.0 nativeOffset=(0.0, 0.0) nativeSize=(402.0, 750.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/two.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000006",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfontf3b9f22eae4e4ecbafb0b43201eed358",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont3abfb64efade41df9c93d0a2f82152d8",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=xiaoWei continuous=false alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1828.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSerif continuous=true alpha=1.0 nativeOffset=(0.0, 4821.0) nativeSize=(402.0, 18422.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000001",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000001",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000001",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSerif continuous=true alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1897.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=wenKai continuous=true alpha=1.0 nativeOffset=(0.0, 4824.0) nativeSize=(402.0, 18412.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000002",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000002",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1227.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000002",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=wenKai continuous=true alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1897.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSans continuous=true alpha=1.0 nativeOffset=(0.0, 4832.0) nativeSize=(402.0, 18423.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000003",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": 3604.0625,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1227.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000003",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=sourceHanSans continuous=true alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1897.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=zhuque continuous=true alpha=1.0 nativeOffset=(0.0, 4834.0) nativeSize=(402.0, 18422.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000004",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1227.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1227.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000004",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=zhuque continuous=true alpha=1.0 nativeOffset=(0.0, 33.0) nativeSize=(402.0, 829.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/cover.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "xrfont7872666f6e7440008000000000000004",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/cover.xhtml",
+            "width": 402,
+            "x": 0,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "paragraphFamily": null,
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=maShanZheng continuous=true alpha=1.0 nativeOffset=(0.0, 4778.0) nativeSize=(402.0, 17986.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000005",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1175.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000005",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1185.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000005",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=maShanZheng continuous=true alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(0.0, 0.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    },
+    {
+      "metadata": "phase=passed font=xiaoWei continuous=true alpha=1.0 nativeOffset=(0.0, 4818.0) nativeSize=(402.0, 18824.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "/OEBPS/one.xhtml",
+        "x": 0,
+        "width": 402,
+        "fontCondition": true,
+        "anchorCondition": true,
+        "family": "xrfont7872666f6e7440008000000000000006",
+        "fontReady": "ready",
+        "fontStatus": "loaded",
+        "faces": [
+          {
+            "family": "xrfont7872666f6e7440008000000000000001",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000002",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000003",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000004",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000005",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "status": "loaded"
+          },
+          {
+            "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+            "status": "unloaded"
+          },
+          {
+            "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          },
+          {
+            "family": "OpenDyslexic",
+            "status": "unloaded"
+          }
+        ],
+        "trace": [
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1217.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000006",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          },
+          {
+            "phase": "scroll",
+            "href": "/OEBPS/one.xhtml",
+            "width": 402,
+            "x": 0,
+            "firstX": 68,
+            "firstY": -1227.9375,
+            "ready": "complete",
+            "fontReady": "ready",
+            "fontStatus": "loaded",
+            "family": "xrfont7872666f6e7440008000000000000006",
+            "paragraphFamily": "xrfont7872666f6e7440008000000000000006",
+            "documentWidth": 402,
+            "faces": [
+              {
+                "family": "xrfont7872666f6e7440008000000000000001",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000002",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000003",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000004",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000005",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont7872666f6e7440008000000000000006",
+                "status": "loaded"
+              },
+              {
+                "family": "xrfont499a1ea1f7e743c8bfbd9b2c0eb80159",
+                "status": "unloaded"
+              },
+              {
+                "family": "xrfont9deef5dcdcfa49a5abc6051250893733",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              },
+              {
+                "family": "OpenDyslexic",
+                "status": "unloaded"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "metadata": "phase=passed font=xiaoWei continuous=true alpha=0.0 nativeOffset=(0.0, 0.0) nativeSize=(980.0, 1897.0) fontMessage=nil errorMessage=nil",
+      "rendered": {
+        "href": "blank",
+        "x": 0,
+        "width": 980,
+        "fontCondition": false,
+        "anchorCondition": false,
+        "family": "-webkit-standard",
+        "fontStatus": "loaded",
+        "faces": []
+      }
+    }
+  ],
+  "artifact": {
+    "run": 39240216459,
+    "artifact": 12182053807,
+    "kind": "diagnostic",
+    "archiveBytes": 15642201,
+    "archiveSHA256": "907b1027753b0dbe384e4865dd84ff86d82455e34e3c12b71e2eaace89714909",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39240216459\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39240216459\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39240216459\\diagnostic-download-chunks\\0000.bin",
+        "bytes": 8388608
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39240216459\\diagnostic-download-chunks\\0001.bin",
+        "bytes": 7253593
+      },
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39240216459\\diagnostic-diagnostics.zip",
+        "bytes": 15642201,
+        "sha256": "907b1027753b0dbe384e4865dd84ff86d82455e34e3c12b71e2eaace89714909"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "sourceInputsReverified": 554,
+  "productionRuntimeChanged": false,
+  "historicalFailureUniquelyExplained": false,
+  "postAssertionProbeIsNotAtomicWithPriorWait": true,
+  "meaning": "Original two font contracts passed this occurrence. Six paged reopens preserve both actual font and target glyph. Offscreen/preloaded views may have false predicates; post-assertion continuous snapshots may change, not failures of the original passed assertion. Historical failures remain unresolved risks.",
+  "nextGate": "First fresh full149integration+28UI=177 after deterministic font preparation fix and direct control; strict unsigned Release30 only after all pass. No extra preflight or production change.",
+  "nativeStaticReview": {
+    "reviewedOriginals": [
+      {
+        "path": "build\\ci\\39240216459\\diagnostic\\ReaderSnapshots\\5FF6F233-809E-42C0-BA89-03466AF586E6.png",
+        "sha256": "679b780b39b28429b214c6c88c697853ba3b291ffc838fc9d27c8ad925d50ddb",
+        "observation": "Paged sourceHanSerif after reopen: original long paragraph000 visible with soft gray Chinese glyphs on charcoal, no chapter-heading reset in this accepted snapshot."
+      },
+      {
+        "path": "build\\ci\\39240216459\\diagnostic\\ReaderSnapshots\\E3A0BFB5-FBC5-4F56-BC80-B4B5744493F3.png",
+        "sha256": "ee154f5b405aa970724d20d4181076615ffd65543d9eee63626d6924f9473b3e",
+        "observation": "Continuous sourceHanSerif after reopen: long paragraph017 onward visible, bottom partially clipped line is a scrolling harness edge, not App safe-area acceptance."
+      }
+    ],
+    "reviewedImages": 2,
+    "scope": "Only these two original integration-window screenshots; no video, app transition, phone FPS or device acceptance."
+  }
+}
