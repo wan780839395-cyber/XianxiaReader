@@ -1,5 +1,27 @@
 # R3 阅读位置隔离
 
+## 重复定位白图专项：截图边界本片通过（2026-10-21）
+
+候选CI39619940734 completed/success，9aac4d10afbefd2144137d0ddc9af5dce7fca0d6，原单例1/1（43.231秒）无失败/跳过，真实编译0源码错误，test/summary/export均0。原即时repeat图仍白（完整性Bool=true），更新后WK图非白比例0.144965、实际窗口0.187717；两图已实际查看并为正文。按正确contentInset的viewport=(0,62,402,778)，覆盖1，当前挂窗WebView与alpha/presentation均保持；截图后原字top=-9.125、外层2376不变，原0.5/3px保持。原初次分页返回x1206→1206、连续longTop -599.125→-599.125及完整origin一致。
+
+这确认修正的是测试取样/渲染边界，无生产补丁。候选的初次连续返回即时截图也白，归入同一即时取样限制保留；不称所有即时图可读，不用之后重复seek的正文图倒写该较早截图时刻。没有证明精确GPU/屏幕合成时序或手机瞬态显示；原连续失败before缺失的历史限制也保留。当前repeat的更新后实际窗口/位置合同已验，不为即时对照图再追加盲跑。
+
+两轮均仅原一例：诊断0/1与候选1/1分别保留。原生步骤1189/1064秒，首suite前1032.232/985.643秒准备，用例28.808/43.231秒，总实际测试72.039秒，准备2017.875秒；其余含导出/诊断。候选完整artifact3797532字节、12355342399、digest99cf02d558826fd74f21cbc5aaf763ea56e44e6cb0c258c22418bd75a26852a1，SHA/CRC/两个xcresult/全部附件和JSON一致已核，build/ci/39619940734保留；仅重复ZIP清除。两次Linux76/76，Windows464语法新增0/54限制（非编译），CI/Python工具未改不重复76本地工具。完整Core137/iOS189/设备Release/手机未跑，无新IPA。下一独立片R4，不能将本片1/1拼成旧整组全绿。权威[配对结果](ValidationLogs/repeated-seek-snapshot-boundary.json)。
+
+以下保留本片初始诊断/修正过程，各处“待验”仅指当时状态，当前以上文为准。
+
+
+本片最新：诊断CI39615950830（841a234）0/1（28.808秒）、build成功、test65/summary0/export0。当前挂窗WebView/alpha/presentation/frame均正常，原几何断言过；原drawHierarchy Bool=true却白，WK afterScreenUpdates=false也白，而随后同窗口正文图正常（ink0.187717），没有再go。新增可见比例的分母误用了874高bounds而非扣除contentInset后的778，造成0.89016假失败；该误测明确由本轮引入，不能记成生产裁切问题。整个失败及完整60MB原件保留，不改写。
+
+候选9aac4d10afbefd2144137d0ddc9af5dce7fca0d6（841a234精确子源，仅测试/HANDOFF）按生产同一contentInset修分母，不降低0.9阈值；请求WebKit afterScreenUpdates=true纳入待提交画面，保留原最初图与原断言，增加真实原生窗口非白和截图后原字3px/外层0.5仍不变的检查。WK非白断言没有删除、无sleep/重试/预算增加。参考[Apple afterScreenUpdates合同](https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/afterscreenupdates)：false为立即旧画面，true纳入pending updates；成熟库1.18.4的false策略用于通用快照，不适合本例刚go后的渲染验收，不能盲抄。候选CI39619940734仍在冷准备，不能先称通过或修好，生产始终未改。
+
+
+用户要求先单查白图，保留已修定位与隔离。本轮源841a2342c3851658dfaafab8f3b4e893916df305 / CI39615950830只跑原FreshReturnCapture一例，生产与CI入口未变。原重复go后同步读当前WebView身份、window、alpha、裁切相对真实连续viewport与frame；原drawHierarchy及其后的原0.5/3px断言仍先执行，并新增记录其Bool。之后才取一次WebKit native snapshot和第二张窗口图，分别记录数据。未增加生产等待、测试重试/预算或提前await遮盖原状态。
+
+本轮新增可见性合同要求原重复go返回时仍为当前挂窗WebView、连续viewport覆盖>90%、内容alpha>0.99；原几何断言保留。随后WebKit截图要求96×96代表整页的非白比例>0.005，仅用于拒绝空白，不当像素级排版正确或屏幕合成验收。旧本轮正文图在Pillow同尺度约0.191、白图0；这是阈值粗核，非CoreGraphics或原生测试替代。结果未到，不能写成生产已修复。
+
+参考[Apple drawHierarchy Bool合同](https://developer.apple.com/documentation/uikit/uiview/drawhierarchy(in:afterscreenupdates:))：false表示层级图缺少部分视图数据，不将afterScreenUpdates=true解释为任意远程渲染均已完成。参考[swift-snapshot-testing 1.18.4固定源码](https://github.com/pointfreeco/swift-snapshot-testing/blob/1.18.4/Sources/SnapshotTesting/Common/View.swift#L809)：WK专用异步takeSnapshot、afterScreenUpdates=false，再将结果合成视图；本项目仅借鉴API取舍，保留旧图作对照，不引入库、不覆盖真实原生视图。本轮仍须用native裁切/alpha与实际图区分渲染和取样，不单靠DOM或WK图片证明屏幕可见。
+
 ## 连续返回原单例：准备条件通过，保留可见性疑点（2026-10-21）
 
 诊断源d8d39d5 / CI39600873539仅原FreshReturnCapture单例1/1（46.146秒），没有生产修改。完整captured/restored附件与stdout一致：连续before/returned longTop=-599.125，char499、savedOffset与实际glyphTop均-3.125、nativeClip0、scrollY2367；返回重建WebView仍一致，独立重复seek目标-10实际-10.125、外层坐标不变。旧失败没有before，无法倒推其误差或根因；新增只读诊断await也可能扰动时序，不能称修复。

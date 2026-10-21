@@ -1,22 +1,30 @@
-# 当前工作：单查重复定位白图（2026-10-21，用户已授权继续）
+# 当前断点：重复定位截图边界本片通过，下一独立片R4（2026-10-21）
 
-本地最小修正已完成待检查/原生：viewport按生产同一contentInset扣除62/34，维持原0.9阈值；WebKit snapshot改afterScreenUpdates=true（Apple明确纳入pending updates，false仅旧画面），原最初drawHierarchy/原坐标检查保持；新增真实窗口非白及截图之后原字3px/外层0.5仍保持的断言，WebKit非白断言也未删除。只改测试、没有生产/CI/Python变化，不添加固定sleep、重试或预算。配对图已实际查看：旧原图/WKfalse白，callback后同窗口正常；这支持取样/提交边界，非手机白屏或精确GPU时序的证明。下一步冻结为841a234精确子源后，只补同continuous-return一例（预计20–30分钟冷准备已向用户说明），不跑整组/R4。
+用户已授权先查清重复定位白图，再继续R4；本片已完成两轮同原单例的诊断/验证，停止追加截图CI。生产及分页加载/既有定位/R1/R2/R3隔离全部保留，无新IPA，电脑保持开机。普通HEAD/index及全部旧WIP不能reset/clean。下一片R4先明确会话请求归属、关闭失效与原await/同步发布顺序，随后拆打开/重试/关闭；不要为旧即时对照图再盲跑截图例，不把R4混入当前验收源。
 
-CI39615950830 completed/failure，原例0/1、28.808秒，真实build过、test65/summary0/export0，失败只在新增两条检查。原位置/0.5/3px仍过。原生当前WebView身份/挂窗/key/内容与presentation alpha均1，inRoot=(0,62,402,778)，未发现旧视图或隐藏；新比例误用874高scroll.bounds，未按生产viewportHeight减contentInset，导致778/874=0.89016假失败，须纠正测量而非降低0.9阈值。旧原图白、drawHierarchy Bool却true；WebKit afterScreenUpdates=false图片也白，之后同视图同坐标窗口图已正常（ink0.187717）。故Bool/DOM都不能单独验收，证据指向捕获早于像素提交；尚不能把精确合成时序或手机实际显示断言为已证。下一本地最小修正拟仅校准viewport contentInset、按Apple pending-screen-update合同请求true的WebKit截图，并断言后续原生窗口非白，保留最初原图/原几何；生产不改。还需一次原单例原生验证，尚未派发。
+## 实际修改与验收
 
-原件60316779字节、artifact12354331379、digest 4cc98ce99d66c1b92f611f28f68f9c02a53c5e095a401252ba2642f0a975127a，SHA/CRC/完整展开核，两个xcresult/summary/原图/配对截图与stdout/JSON附件一致，已保存build/ci/39615950830及本片result.json。原生步骤1189秒、首suite前1032.232秒，不能把等待当28秒测试。watcher和下载已结束，保留原失败；不得改写为生产失败或通过。本轮到此只有这一轮CI，无R4/全套。
+诊断源841a2342c3851658dfaafab8f3b4e893916df305（codex/diagnose-repeated-seek-visibility），父上一文档检查点b2a199b；候选9aac4d10afbefd2144137d0ddc9af5dce7fca0d6（codex/fix-repeated-seek-snapshot）为精确子源，相对只有测试/HANDOFF两文件。584运行输入逐Git blob核，所有其他原方法保持；原false/true、+600准确准备、原30秒/100ms、返回3px、repeat外层0.5/原字3px和最初原截图都保留。新增3个私有helper及1个局部rect函数，只读native状态/截图/像素；没有新生产await或变更CI/Python工具。
 
-CI39615950830实时约10分14秒已核TEST BUILD SUCCEEDED，现等iPhone16 Pro bootstatus。新增诊断/可见性代码已原生编译，行为未执行；仍只跑原单例。完整日志和最终编译/真实退出待自然结束核实，未追加生产改动/CI。
+白图出现在原go完成/DOM坐标已对，但像素更新尚未被截图纳入的时刻。当前挂窗WebView、alpha/presentation均1，原生frame正确；drawHierarchy Bool=true也能白。修正测试按生产contentInset扣62/34得778高真实viewport，维持0.9覆盖阈值；WK afterScreenUpdates=true纳入pending updates，随后验实际窗口非白、同一字/外层仍保持。首诊把874外层bounds当viewport分母，是本轮测试误测，已明确纠正，不能记成生产裁切问题。旧WK false策略来自成熟库通用快照，不适用刚go后的更新验收；Apple合同/取舍写入设计文档。
 
-已派发CI39615950830（https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39615950830），实际head 841a2342c3851658dfaafab8f3b4e893916df305已核。只选原continuous-return一个case；watch_repeated_seek_visibility.py只读观察，将元数据/完整日志/artifact清单保留build/ci/39615950830，不重派。当前queued/冷准备，新增可见性断言及WebKit截图尚未原生编译/执行。全量/其他case/R4均未开始。
+## 真实结果与证据边界
 
-冻结并推送841a2342c3851658dfaafab8f3b4e893916df305（codex/diagnose-repeated-seek-visibility），父b2a199b；仅原测试诊断/HANDOFF两文件，584输入逐blob核、原目标用例移除新增诊断后逐字等于父源，所有其他方法原文保持，新增3个私有helper含1个局部rect函数（冻结器首次误按3个函数计数，已按真实AST纠正为4，不是源码/测试失败）。464语法新增0/54限制与仓库检查通过，非原生编译。CI/Python工具未改，不重复76工具；原生只派发continuous-return一次，恢复先核实际run。
+[诊断CI39615950830](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39615950830) completed/failure：0/1、28.808秒，build过、test65/summary0/export0。原位置断言过，新比例0.89016误测失败和WK false白图失败保留；之后同视图/同位置窗口图正常，不能把该后图倒写成最初图当时可见。
 
-最小实验已实现待本地检查/原生编译：只在原FreshReturnCapture重复seek段读同步native身份/裁切/alpha，记录原drawHierarchy返回值；原截图、原Range和外层0.5/字3px断言仍先执行，之后才追加WebKit native takeSnapshot（afterScreenUpdates=false）与一次窗口图作对照。新增当前WebView/窗口/原生可见高度及内容alpha断言、WebKit非白页断言；不延长预算、不加重试、不提前await“等绿”。若原生视图错位/隐藏则证实生产呈现问题；若原层级截图缺数据而WebKit/原生几何正常，再区分截图方法与实际呈现。Apple drawHierarchy Bool合同、snapshot配置及swift-snapshot-testing 1.18.4的WK专用异步截图已查；不引入库或替换原图。生产/CI入口仍未改，只计划continuous-return原单例一次，约20–30分钟冷准备；结果前不认定修好或进R4。
+[候选CI39619940734](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39619940734) completed/success，实际head9aac4d，原一例1/1、43.231秒、无失败/跳过，build/test成功、源码编译错误0、test/summary/export均0。真实viewport覆盖1、同视图挂窗、alpha1；更新后WK图非白比例0.144965、实际窗口0.187717，两图实际查看可读；截图后原字top=-9.125、外层2376不变。原分页返回x1206→1206、连续longTop -599.125→-599.125、char499/offset-3.125一致。没有延长预算、固定sleep或测试重试。
 
-本轮只分辨原FreshReturnCapture末尾重复canonical seek的白图：实际可见层/当前WebView身份、原snapshot是否成功以及截图取样时刻。584运行输入与上轮e234b2b保持，1193保存路径已在build/maintenance/repeated-seek-visibility-20261021/before.json建立保护基线；普通HEAD/index保持，无旧watch/download进程。先读原件/固定Readium3.11与Apple官方截图合同，再设计原单例最小诊断或修正，原3px/30秒、+600准备、false/true、外层delegate nil与独立观察保留，不先改生产。影响预期仅该测试与必要设计/交接；如证据指向生产才明确最小生产切片。R4待本疑点收口另片，不跑全套或新增产品功能。
+原最初repeat图仍白且完整性Bool=true，作为不可靠即时取样的原始对照保留。本次原连续返回即时图也白，分页即时图可读；已实际查看五图，不称所有即时截图已验收。已修并验的是repeat的更新后原生渲染/位置合同，无新的引擎修复；精确GPU/物理屏幕时序和手机瞬态不在本片证明范围，旧连续失败缺before的历史根因也未追认。完整R3整组、Core137/iOS189、设备Release/普通设备/TrollStore/手机均未重跑，无新IPA，最后交付Build30。
 
-以下是上一轮保存的真实结果；其中“本轮不追加CI”只指上一轮，不覆盖用户当前继续指令。
+## 成本、原件、恢复
+
+两轮原生步骤1189/1064秒，首suite前1032.232/985.643秒为工具/依赖/编译/启动准备，实际case28.808/43.231秒，总实际测试72.039秒、准备2017.875秒；余量含导出/诊断。Windows464语法新增0/54既有Vendor限制通过（非编译），CI/Python源码未改不重复76本地工具；两轮Linux76/76。最终仓库结构检查在文档保存前执行，记录结果，不以检查代替原生。
+
+权威Documentation/ValidationLogs/repeated-seek-snapshot-boundary.json；设计Documentation/READER_POSITION_ISOLATION.md。诊断完整artifact60316779字节、12354331379、SHA/digest4cc98ce99d66c1b92f611f28f68f9c02a53c5e095a401252ba2642f0a975127a，build/ci/39615950830保留。候选3797532字节、12355342399、SHA/digest99cf02d558826fd74f21cbc5aaf763ea56e44e6cb0c258c22418bd75a26852a1，build/ci/39619940734保留。均已CRC/完整展开、两个xcresult、summary和全部JSON/stdout一致核验；仅精确清重复ZIP，不动源码/包/旧原件。每轮一次只读API EOF均留原始stderr，未重派CI。
+
+watcher及下载均已结束，临时浏览器页收尾关闭；恢复先查实际run/进程，不复用旧session/PID。保护1193旧路径、冻结及结果在build/maintenance/repeated-seek-visibility-20261021；最终文档检查点另记final-checkpoint.json，不是重新运行源。R4尚无生产改动，需作为下一独立切片建新保护基线，保留原close最后位置回调与open请求失效顺序，再按实际影响选择相应竞态回归；不无条件重跑Readium19/全189。
+
+以下为上一片保存的历史原件与限制，当前以本页上文及专项结果为准。
 
 # 上一断点：连续返回单例通过，测试准备漏洞修正，可见性另留疑点（2026-10-21）
 
