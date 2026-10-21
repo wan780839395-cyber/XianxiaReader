@@ -1074,9 +1074,10 @@ final class ReaderRenderingTests: XCTestCase {
 
                 // WebKit content is rendered separately from UIKit's hierarchy.
                 // Keep the original window image above; compare a native WebKit
-                // snapshot only AFTER the original coordinate assertions.
+                // snapshot only AFTER the original coordinate assertions, and
+                // include pending content updates instead of the old pixels.
                 let configuration = WKSnapshotConfiguration()
-                configuration.afterScreenUpdates = false
+                configuration.afterScreenUpdates = true
                 let webImage = try await restored.takeSnapshot(configuration: configuration)
                 let webAttachment = XCTAttachment(image: webImage)
                 webAttachment.name = "continuous-repeated-webkit"; webAttachment.lifetime = .keepAlways; add(webAttachment)
@@ -1088,11 +1089,17 @@ final class ReaderRenderingTests: XCTestCase {
                 afterAttachment.name = "continuous-repeated-window-after-webkit"; afterAttachment.lifetime = .keepAlways; add(afterAttachment)
                 let webInk = try repeatedSeekInkFraction(webImage)
                 let windowInk = try repeatedSeekInkFraction(afterImage)
+                let finalTopValue = try await restored.evaluateJavaScript(topScript) as? Double
+                let finalTop = try XCTUnwrap(finalTopValue)
                 let afterSnapshot: [String: Any] = ["phase":"native-webkit-snapshot", "webInkFraction":webInk,
                     "windowInkFraction":windowInk,"hierarchyComplete":afterHierarchyComplete,
+                    "afterScreenUpdates":configuration.afterScreenUpdates,"finalWordTop":finalTop,
                     "native":try repeatedSeekNativeState(engine, window: window, web: restored)]
                 try recordRepeatedSeekVisibility(afterSnapshot)
                 XCTAssertGreaterThan(webInk, 0.005, "REPEATED_SEEK_WEBKIT_BLANK: a text coordinate alone does not prove rendered content")
+                XCTAssertGreaterThan(windowInk, 0.005, "REPEATED_SEEK_WINDOW_BLANK: the actual reader hierarchy must contain rendered text")
+                XCTAssertLessThan(abs(finalTop + 10), 3, "Rendering the snapshot must preserve the original word offset")
+                XCTAssertLessThan(abs(scroll.contentOffset.y - beforeOuter), 0.5, "Rendering must not move the outer coordinate")
             }
             engine.close()
         }
@@ -1103,7 +1110,7 @@ final class ReaderRenderingTests: XCTestCase {
         let root = engine.viewController.view!
         let visible = clippedVisibleRect(web, root: root)
         let scroll = try continuousScroll(engine)
-        let viewport = scroll.convert(scroll.bounds, to: root).intersection(root.bounds)
+        let viewport = scroll.convert(scroll.bounds.inset(by: scroll.contentInset), to: root).intersection(root.bounds)
         let visibleInViewport = visible.intersection(viewport)
         func rect(_ value: CGRect) -> Any {
             value.isNull || value.isInfinite ? NSNull() : [value.minX,value.minY,value.width,value.height]
