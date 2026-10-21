@@ -976,12 +976,28 @@ final class ReaderRenderingTests: XCTestCase {
             XCTAssertNotNil(locations["domRange"], "Return points must retain a full text anchor")
             let beforeValue = try await web.evaluateJavaScript(script) as? Double
             let before = try XCTUnwrap(beforeValue)
+            try await recordReturnCapture("captured", engine: engine, web: web, originalWeb: web,
+                continuous: continuous, origin: origin, before: before, returned: nil)
             try await jump(engine, book: book, href: "OEBPS/two.xhtml")
             try await engine.go(to: origin)
-            try await waitUntil {
-                let restored = continuous ? try self.resourceWebView(engine, index: 1) : try XCTUnwrap(self.visibleWebView(in: engine.viewController.view))
-                return abs(((try await restored.evaluateJavaScript(script) as? Double) ?? 10000) - before) < 3
+            var lastReturnedValue: Double?
+            do {
+                try await waitUntil {
+                    let restored = continuous ? try self.resourceWebView(engine, index: 1) : try XCTUnwrap(self.visibleWebView(in: engine.viewController.view))
+                    lastReturnedValue = try await restored.evaluateJavaScript(script) as? Double
+                    return abs((lastReturnedValue ?? 10000) - before) < 3
+                }
+            } catch {
+                do {
+                    let restored = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+                    try await recordReturnCapture("failed", engine: engine, web: restored, originalWeb: web,
+                        continuous: continuous, origin: origin, before: before, returned: lastReturnedValue)
+                } catch { print("RETURN_CAPTURE_DIAGNOSTIC_FAILED \(error)") } // Preserve the original assertion/error.
+                throw error
             }
+            let returnedWeb = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
+            try await recordReturnCapture("restored", engine: engine, web: returnedWeb, originalWeb: web,
+                continuous: continuous, origin: origin, before: before, returned: lastReturnedValue)
             XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
             let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
                 window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
@@ -1028,6 +1044,44 @@ final class ReaderRenderingTests: XCTestCase {
             }
             engine.close()
         }
+    }
+    @MainActor private func recordReturnCapture(_ phase: String, engine: ReadiumReaderEngine,
+        web: WKWebView, originalWeb: WKWebView, continuous: Bool, origin: ReadingPosition,
+        before: Double, returned: Double?) async throws {
+        let originJSON = try XCTUnwrap(JSONSerialization.jsonObject(with: origin.locatorData) as? [String: Any])
+        let encoded = String(decoding: try JSONSerialization.data(withJSONObject: originJSON, options: [.sortedKeys]), as: UTF8.self)
+        let started = ProcessInfo.processInfo.systemUptime
+        let value = try await web.evaluateJavaScript("""
+            (() => {
+              const origin = \(encoded), p = origin.locations?.domRange?.start;
+              const element = p ? document.querySelector(p.cssSelector) : null;
+              const node = element?.childNodes[p.textNodeIndex];
+              let anchor = null;
+              if (node?.nodeType === Node.TEXT_NODE && p.charOffset >= 0 && p.charOffset < node.length) {
+                const range = document.createRange();
+                range.setStart(node, p.charOffset); range.setEnd(node, p.charOffset + 1);
+                const rect = range.getClientRects()[0] || range.getBoundingClientRect();
+                anchor = {top:rect.top,bottom:rect.bottom,left:rect.left,right:rect.right,documentY:rect.top+scrollY};
+              }
+              return {href:location.pathname,ready:document.readyState,width:innerWidth,height:innerHeight,
+                x:scrollX,y:scrollY,longTop:document.getElementById('long-paragraph')?.getBoundingClientRect().top,
+                anchor,canonicalTarget:window.__xrCanonicalGoTarget ?? null};
+            })()
+            """)
+        let dom = try XCTUnwrap(value as? [String: Any])
+        let root = engine.viewController.view!
+        let visible = clippedVisibleRect(web, root: root)
+        let clipTop: Any = visible.isNull ? NSNull() : web.convert(visible, from: root).minY
+        let row: [String: Any] = ["phase":phase,"mode":continuous ? "continuous" : "paged",
+            "origin":originJSON,"before":before,"lastReturned":returned.map { $0 as Any } ?? NSNull(),
+            "dom":dom,"nativeClipTop":clipTop,"nativeInnerY":web.scrollView.contentOffset.y,
+            "alpha":web.scrollView.alpha,"attached":web.window != nil,"sameWebView":web === originalWeb,
+            "nativeState":engine.continuousDiagnosticState,
+            "queryStartedUptime":started,"queryFinishedUptime":ProcessInfo.processInfo.systemUptime]
+        let text = String(decoding: try JSONSerialization.data(withJSONObject: row, options: [.sortedKeys]), as: UTF8.self)
+        let attachment = XCTAttachment(string: text); attachment.name = "return-capture-\(continuous ? "continuous" : "paged")-\(phase)"
+        attachment.lifetime = .keepAlways; add(attachment)
+        print("RETURN_CAPTURE_EVIDENCE \(text)")
     }
     @MainActor func testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)

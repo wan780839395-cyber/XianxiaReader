@@ -1,3 +1,13 @@
+# 当前工作：单查连续返回原位置（2026-10-21，用户已授权继续）
+
+诊断已实现、生产未改：原单例在原before之后附加一次只读同字符Range/段落/scrollY采样，失败/成功出口记录原before、最后一次原断言读值、完整origin、模式、native clip/inner/frame诊断与WebView身份。原predicate仍为abs(value-before)<3、30秒/100ms不变，false/true及截图后的重复seek观察保留。该额外await可能改变时序，单次通过不等于修好。continuous-return CI入口只选原1条，跳过Core/全套/IPA，保留原退出/xcresult。Windows语法464新增0/54既有限制通过（非编译），下一步76工具/Bash后冻结并只跑本单例。
+
+已核584输入与上一轮候选相同、旧CI均completed、无观察/下载任务。普通HEAD/index保持。先只补原FreshReturnCapture一个用例的阶段/模式、完整origin、原before/最后一次返回读值及同视图锚点几何；false/true顺序、原断言/预算与独立观察保留，分页native bootstrap及R1/R2/R3不改。先区分origin采样与恢复/测量时刻，不先改生产。原生只跑这一例，不跑19/189；R4在此问题收口后另片。
+
+本轮预计只触及Tests/iOS/ReaderRenderingTests.swift、最小单例CI选择和状态文档。准备/编译/导出仍需冷成本；新增诊断可能影响时序，若只重放成功不能称根因修复。参考锁定Readium3.11 VisualNavigator语义与W3C CSSOM View Range几何，不升级依赖。基线及原交接在build/maintenance/continuous-return-20261021。
+
+以下为上一轮已保存事实，用户本轮继续授权覆盖其中停止追加的旧安排。
+
 # 当前断点：EPUB加载缺口对照有效，连续返回仍失败，已按用户选择保存（2026-10-21）
 
 用户最新选择：先保存本片和失败证据，下一轮只查连续返回。停止追加CI/修正，不进R4；保持开机。普通HEAD/index和全部旧WIP保留，禁止reset/clean。
