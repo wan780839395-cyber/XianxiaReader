@@ -1049,8 +1049,10 @@ final class ReaderRenderingTests: XCTestCase {
                 defer { scroll.delegate = previousDelegate }
                 scroll.delegate = nil
                 try await engine.go(to: target)
+                let nativeAtReturn = try repeatedSeekNativeState(engine, window: window, web: restored)
+                var hierarchyComplete = false
                 let repeatedImage = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
-                    window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+                    hierarchyComplete = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
                 }); repeatedImage.name = "continuous-repeated-canonical-seek"; repeatedImage.lifetime = .keepAlways; add(repeatedImage)
                 let afterValue = try await restored.evaluateJavaScript(topScript) as? Double
                 let after = try XCTUnwrap(afterValue)
@@ -1059,9 +1061,83 @@ final class ReaderRenderingTests: XCTestCase {
                 let evidence = XCTAttachment(string: details); evidence.name = "continuous-repeated-anchor"; evidence.lifetime = .keepAlways; add(evidence)
                 XCTAssertLessThan(abs(scroll.contentOffset.y - beforeOuter), 0.5, "Control must keep the same outer coordinate")
                 XCTAssertLessThan(abs(after + 10), 3, "LATE_CANONICAL_VIEWPORT_OFFSET: repeated seek must preserve the saved word offset without a scroll callback")
+                let nativeAfterMeasurement = try repeatedSeekNativeState(engine, window: window, web: restored)
+                let immediate: [String: Any] = ["phase":"original-hierarchy", "hierarchyComplete":hierarchyComplete,
+                    "atReturn":nativeAtReturn,"afterOriginalMeasurement":nativeAfterMeasurement]
+                try recordRepeatedSeekVisibility(immediate)
+                XCTAssertEqual(nativeAtReturn["sameCurrentWebView"] as? Bool, true, "REPEATED_SEEK_REPLACED_WEBVIEW")
+                XCTAssertEqual(nativeAtReturn["windowAttached"] as? Bool, true, "REPEATED_SEEK_DETACHED_WEBVIEW")
+                XCTAssertGreaterThan(try XCTUnwrap(nativeAtReturn["visibleHeightFraction"] as? Double), 0.9,
+                    "REPEATED_SEEK_NATIVE_CLIPPED: the restored document must occupy the reader viewport")
+                XCTAssertGreaterThan(try XCTUnwrap(nativeAtReturn["contentAlpha"] as? Double), 0.99,
+                    "REPEATED_SEEK_NATIVE_HIDDEN: DOM geometry alone must not pass a hidden document")
+
+                // WebKit content is rendered separately from UIKit's hierarchy.
+                // Keep the original window image above; compare a native WebKit
+                // snapshot only AFTER the original coordinate assertions.
+                let configuration = WKSnapshotConfiguration()
+                configuration.afterScreenUpdates = false
+                let webImage = try await restored.takeSnapshot(configuration: configuration)
+                let webAttachment = XCTAttachment(image: webImage)
+                webAttachment.name = "continuous-repeated-webkit"; webAttachment.lifetime = .keepAlways; add(webAttachment)
+                var afterHierarchyComplete = false
+                let afterImage = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
+                    afterHierarchyComplete = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+                }
+                let afterAttachment = XCTAttachment(image: afterImage)
+                afterAttachment.name = "continuous-repeated-window-after-webkit"; afterAttachment.lifetime = .keepAlways; add(afterAttachment)
+                let webInk = try repeatedSeekInkFraction(webImage)
+                let windowInk = try repeatedSeekInkFraction(afterImage)
+                let afterSnapshot: [String: Any] = ["phase":"native-webkit-snapshot", "webInkFraction":webInk,
+                    "windowInkFraction":windowInk,"hierarchyComplete":afterHierarchyComplete,
+                    "native":try repeatedSeekNativeState(engine, window: window, web: restored)]
+                try recordRepeatedSeekVisibility(afterSnapshot)
+                XCTAssertGreaterThan(webInk, 0.005, "REPEATED_SEEK_WEBKIT_BLANK: a text coordinate alone does not prove rendered content")
             }
             engine.close()
         }
+    }
+    @MainActor private func repeatedSeekNativeState(_ engine: ReadiumReaderEngine, window: UIWindow,
+        web: WKWebView) throws -> [String: Any] {
+        let current = try resourceWebView(engine, index: 1)
+        let root = engine.viewController.view!
+        let visible = clippedVisibleRect(web, root: root)
+        let scroll = try continuousScroll(engine)
+        let viewport = scroll.convert(scroll.bounds, to: root).intersection(root.bounds)
+        let visibleInViewport = visible.intersection(viewport)
+        func rect(_ value: CGRect) -> Any {
+            value.isNull || value.isInfinite ? NSNull() : [value.minX,value.minY,value.width,value.height]
+        }
+        return ["sameCurrentWebView":current === web,"windowKey":window.isKeyWindow,"windowHidden":window.isHidden,
+            "windowAttached":web.window === window,"webHidden":web.isHidden,"webAlpha":web.alpha,
+            "contentAlpha":Double(web.scrollView.alpha),"presentationAlpha":web.layer.presentation()?.opacity ?? -1,
+            "frame":rect(web.frame),"inRoot":rect(web.convert(web.bounds, to: root)),"visibleRect":rect(visible),
+            "visibleHeightFraction":visibleInViewport.isNull || viewport.height <= 0 ? 0.0 : Double(visibleInViewport.height / viewport.height),
+            "viewport":rect(viewport),
+            "rootBounds":rect(root.bounds),"innerY":web.scrollView.contentOffset.y,
+            "nativeState":engine.continuousDiagnosticState,"uptime":ProcessInfo.processInfo.systemUptime]
+    }
+    @MainActor private func recordRepeatedSeekVisibility(_ row: [String: Any]) throws {
+        let text = String(decoding: try JSONSerialization.data(withJSONObject: row, options: [.sortedKeys]), as: UTF8.self)
+        let attachment = XCTAttachment(string: text); attachment.name = "repeated-seek-visibility-\(row["phase"] ?? "unknown")"
+        attachment.lifetime = .keepAlways; add(attachment)
+        print("REPEATED_SEEK_VISIBILITY \(text)")
+    }
+    @MainActor private func repeatedSeekInkFraction(_ image: UIImage) throws -> Double {
+        let source = try XCTUnwrap(image.cgImage)
+        let size = 96
+        var pixels = [UInt8](repeating: 255, count: size * size * 4)
+        try pixels.withUnsafeMutableBytes { buffer in
+            let context = try XCTUnwrap(CGContext(data: buffer.baseAddress, width: size, height: size,
+                bitsPerComponent: 8, bytesPerRow: size * 4, space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue))
+            context.setFillColor(UIColor.white.cgColor); context.fill(CGRect(x: 0, y: 0, width: size, height: size))
+            context.draw(source, in: CGRect(x: 0, y: 0, width: size, height: size))
+        }
+        let ink = stride(from: 0, to: pixels.count, by: 4).filter { offset in
+            Int(pixels[offset]) + Int(pixels[offset + 1]) + Int(pixels[offset + 2]) < 600
+        }.count
+        return Double(ink) / Double(size * size)
     }
     @MainActor private func recordReturnCapture(_ phase: String, engine: ReadiumReaderEngine,
         web: WKWebView, originalWeb: WKWebView, continuous: Bool, origin: ReadingPosition,

@@ -1,4 +1,12 @@
-# 当前断点：连续返回单例通过，测试准备漏洞修正，可见性另留疑点（2026-10-21）
+# 当前工作：单查重复定位白图（2026-10-21，用户已授权继续）
+
+最小实验已实现待本地检查/原生编译：只在原FreshReturnCapture重复seek段读同步native身份/裁切/alpha，记录原drawHierarchy返回值；原截图、原Range和外层0.5/字3px断言仍先执行，之后才追加WebKit native takeSnapshot（afterScreenUpdates=false）与一次窗口图作对照。新增当前WebView/窗口/原生可见高度及内容alpha断言、WebKit非白页断言；不延长预算、不加重试、不提前await“等绿”。若原生视图错位/隐藏则证实生产呈现问题；若原层级截图缺数据而WebKit/原生几何正常，再区分截图方法与实际呈现。Apple drawHierarchy Bool合同、snapshot配置及swift-snapshot-testing 1.18.4的WK专用异步截图已查；不引入库或替换原图。生产/CI入口仍未改，只计划continuous-return原单例一次，约20–30分钟冷准备；结果前不认定修好或进R4。
+
+本轮只分辨原FreshReturnCapture末尾重复canonical seek的白图：实际可见层/当前WebView身份、原snapshot是否成功以及截图取样时刻。584运行输入与上轮e234b2b保持，1193保存路径已在build/maintenance/repeated-seek-visibility-20261021/before.json建立保护基线；普通HEAD/index保持，无旧watch/download进程。先读原件/固定Readium3.11与Apple官方截图合同，再设计原单例最小诊断或修正，原3px/30秒、+600准备、false/true、外层delegate nil与独立观察保留，不先改生产。影响预期仅该测试与必要设计/交接；如证据指向生产才明确最小生产切片。R4待本疑点收口另片，不跑全套或新增产品功能。
+
+以下是上一轮保存的真实结果；其中“本轮不追加CI”只指上一轮，不覆盖用户当前继续指令。
+
+# 上一断点：连续返回单例通过，测试准备漏洞修正，可见性另留疑点（2026-10-21）
 
 用户最新授权：继续且只验证修正准备条件后的原单例。本片已收齐结果并保存，不追加CI，不进入R4；电脑保持开机。原HEAD/index与全部旧WIP必须保留，不reset/clean。
 
