@@ -1,5 +1,5 @@
 {
-  "status": "implementation prepared; Windows/source checks next; native not dispatched",
+  "status": "first native pair failed; owner-only fixture prepared and checked; one additional pair authorized",
   "scope": "qualify existing same-width native control; one old + one candidate on same runner",
   "baselineNativeOldRuntime": "a8125716758aef5802b6d53b3129acc53947c004",
   "candidateRuntimeFrozen": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
@@ -21,9 +21,75 @@
       "finding": "page scripts share page world; separate worlds do not share arbitrary global variables; current default APIs match"
     }
   ],
-  "next": "Windows checks then freeze exact-child pair before native dispatch",
+  "next": "dispatch one same-runner old/new single-case native control",
   "full188Executed": false,
   "deviceReleaseExecuted": false,
   "newIPA": false,
-  "R3Started": false
+  "R3Started": false,
+  "frozen": {
+    "frozenAtUTC": "2026-10-21T06:42:22.569584+00:00",
+    "baseline": "627ad851c1f19051a814af54174f3477c5ef7f35",
+    "candidate": "8115cb88fd48183a6996b3a587474bf8da181eca",
+    "baselineRef": "codex/diagnose-paged-font-native-control",
+    "candidateRef": "codex/fix-paged-font-native-control",
+    "exactChild": true,
+    "runtimeDelta": [
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "Vendor/ReadiumToolkit/UPSTREAM.json"
+    ],
+    "oldRuntimeByteExactTo": "a8125716758aef5802b6d53b3129acc53947c004",
+    "fixedRuntimeByteExactTo": "9bb6c86ff0c500200d1413df0906a6cf9139bbb8",
+    "sameFixtureAndTooling": [
+      "Documentation/HANDOFF_PAGED_FONT_INVESTIGATION_2026-10-21.md",
+      "Documentation/ValidationLogs/paged-font-control-20261021.json",
+      "HANDOFF.md",
+      "PROJECT_STATUS.md",
+      "Tests/iOS/ReaderRenderingTests.swift",
+      "scripts/ci_paged_font_control.sh",
+      "scripts/ci_reader_diagnostic.sh",
+      "scripts/test_paged_font_control.py"
+    ],
+    "nativeCasesPerSource": 1,
+    "originalBudgetsAndAssertionsKept": true,
+    "privateFontLongChainDefault": "both modes; not selected in this experiment",
+    "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+    "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+    "full188Planned": false,
+    "deviceReleasePlanned": false,
+    "R3Planned": false
+  },
+  "windows": {
+    "swiftGrammarFiles": 456,
+    "addedDiagnostics": 0,
+    "existingVendorGrammarLimitations": 54,
+    "toolingTotal": 64,
+    "passed": 59,
+    "platformSkipped": 5,
+    "seconds": 22.778,
+    "BashAndNodeSyntax": "passed"
+  },
+  "run": 39557140861,
+  "runURL": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39557140861",
+  "firstNativeAnalysis": "build/maintenance/PagedFontControl-20261021/first-native-analysis.json",
+  "baselineQualified": true,
+  "candidateOriginalTestExit": 65,
+  "candidateAfter": 804,
+  "candidateRootWrites": [],
+  "nextUserChoice": "Explicitly authorized exactly one additional old/new single-case pair after narrowing fault to snap read; do not change production, budgets or assertions; no R3.",
+  "ownerOnlyFault": {
+    "productionChanged": false,
+    "nativeProgressionGetterDelegated": true,
+    "functionIdentifiedFromActualFrameTail": true,
+    "injectedRole": "snap only",
+    "roleAndInjectedEvidenceRequired": true,
+    "originalBehaviorAssertionsAndBudgetKept": true,
+    "offlineRealCallbackWithProgressionRead": "old0/new3618; new progression3618 not injected; widths/continuous unchanged",
+    "windowsGrammarFiles": 456,
+    "windowsAddedDiagnostics": 0,
+    "WindowsToolsTotal": 64,
+    "WindowsPassed": 59,
+    "WindowsPlatformSkipped": 5,
+    "WindowsToolsSeconds": 24.365,
+    "directDriverNegativeScenarioAdded": "wrong-progress-owner"
+  }
 }

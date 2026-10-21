@@ -64,16 +64,17 @@ e=evidence[0]
 target=e.get('owner',{}).get('source','').find('document.scrollingElement.scrollLeft')>=0
 frames=e.get('frames',[])
 entered=target and len(frames)==1 and frames[0].get('target') is True and e.get('returned') is True and e.get('href','').endswith('/one.xhtml') and e.get('mode')!='readium-scroll-on'
-staleRead=bool(e.get('reads'))
+staleRead=any(row.get('injected') is True and row.get('role')=='snap' and row.get('value')==0 for row in e.get('reads',[]))
+progressionRead=any(row.get('injected') is False and row.get('role')=='progression' for row in e.get('reads',[]))
 zeroWrite=any(row.get('value')==0 for row in e.get('writes',[]))
-qualified=qualified and entered and staleRead and zeroWrite
-Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,sameWidthControlledFailure=qualified,targetFrameEntered=entered,injectedReadObserved=staleRead,zeroWriteObserved=zeroWrite,controlEvidence=e,summary=d))+'\n')
+qualified=qualified and entered and staleRead and zeroWrite and progressionRead
+Path(folder,'baseline-result.json').write_text(json.dumps(dict(originalExit=int(status),baselineWasNegative=int(status)==65,sameWidthControlledFailure=qualified,targetFrameEntered=entered,injectedReadObserved=staleRead,zeroWriteObserved=zeroWrite,progressionBypassObserved=progressionRead,controlEvidence=e,summary=d))+'\n')
 print('Original baseline exit retained:',status,'; a green replay is not a fix.')
 PY
     ;;
   patched)
     test -f "$folder/baseline-result.json"
-    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-native-control}"
+    reference="${XR_PAGED_FONT_CANDIDATE_REF:-refs/heads/codex/fix-paged-font-owner-control}"
     remote=$(git ls-remote --heads origin "$reference")
     test -n "$remote" # Candidate must be frozen and pushed before dispatch; no empty wait.
     git fetch --no-tags --depth=2 origin "$reference"
@@ -107,6 +108,7 @@ e=evidence[0]
 frames=e.get('frames',[])
 assert len(frames)==1 and frames[0].get('target') is True and e.get('returned') is True, e
 assert not e.get('writes'), 'Candidate same-width frame must not attempt a root position write'
+assert e.get('reads') and all(row.get('injected') is False and row.get('role')=='progression' and row.get('value',0)>100 for row in e['reads']), 'Candidate must use only the live progression coordinate, with no injected snap read'
 Path(sys.argv[1],'patched-control-evidence.json').write_text(json.dumps(e,indent=2)+'\n')
 Path(sys.argv[1],'receipt.json').write_text(json.dumps(dict(baselineOriginalExit=baseline['originalExit'],baselineWasNegative=baseline['baselineWasNegative'],sameWidthControlledFailure=baseline['sameWidthControlledFailure'],patchedOriginalExit=0,passed=1,failed=0,skipped=0,sharedDerivedData=True,full187Executed=False,full188Executed=False,deviceReleaseExecuted=False,newIPA=False),indent=2)+'\n')
 assert baseline['sameWidthControlledFailure'], 'Native negative control did not enter the old failing writer; candidate success alone is unqualified'

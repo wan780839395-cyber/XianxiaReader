@@ -116,7 +116,12 @@ final class ReaderRenderingTests: XCTestCase {
                         const original=window.requestAnimationFrame;
                         window.requestAnimationFrame=frame=>{
                           const text=source(frame);state.frames.push({source:text,target:isTarget(text)});
-                          if(isTarget(text))window.__xrHeldBodyFrame=frame;
+                          if(isTarget(text)){
+                            const tail=text.slice(text.lastIndexOf(',')+1);
+                            if(!tail.endsWith('()}'))throw Error('Readium progression tail changed');
+                            state.progressionFunction=tail.slice(0,-3);
+                            window.__xrHeldBodyFrame=frame;
+                          }
                           return original.call(window,()=>{});
                         };
                         try{callback.call(observer,entries,observer);}finally{window.requestAnimationFrame=original;}
@@ -131,6 +136,11 @@ final class ReaderRenderingTests: XCTestCase {
                 const frame=window.__xrHeldBodyFrame;if(typeof frame!=='function')return false;
                 delete window.__xrHeldBodyFrame;
                 const descriptor=Object.getOwnPropertyDescriptor(window,'scrollX');
+                let nativeX=descriptor;
+                for(let owner=Object.getPrototypeOf(window);!nativeX&&owner;owner=Object.getPrototypeOf(owner)){
+                  nativeX=Object.getOwnPropertyDescriptor(owner,'scrollX');
+                }
+                if(!nativeX?.get)throw Error('Original live scrollX getter is required');
                 const left=Object.getOwnPropertyDescriptor(Element.prototype,'scrollLeft');
                 if(!left?.set||!left.configurable)throw Error('Root scrollLeft writer cannot be observed');
                 state.releasing=true;
@@ -140,10 +150,17 @@ final class ReaderRenderingTests: XCTestCase {
                     return left.set.call(this,value);
                   }
                 });
-                // Inject only the stale read seen in the real failing resize frame.
-                // Observe the real root setter; do not replace its requested value.
+                // Fault only snap's read. The following progression notification
+                // keeps its real coordinate; corrupting both owners is another fault.
+                // Identify the pinned helper from the actual frame, preserving source.
                 Object.defineProperty(window,'scrollX',{configurable:true,get(){
-                  state.reads.push({value:0,stack:String(new Error().stack||'')});return 0;
+                  const stack=String(new Error().stack||'');
+                  const progression=stack.split(String.fromCharCode(10)).some(line=>
+                    line.startsWith(state.progressionFunction+'@')||
+                    line.trimStart().startsWith('at '+state.progressionFunction+' ('));
+                  const value=progression?nativeX.get.call(window):0;
+                  state.reads.push({value,injected:!progression,role:progression?'progression':'snap',stack});
+                  return value;
                 }});
                 try{frame(performance.now());}finally{
                   if(descriptor)Object.defineProperty(window,'scrollX',descriptor);else delete window.scrollX;
