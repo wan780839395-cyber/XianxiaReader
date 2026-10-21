@@ -1,5 +1,21 @@
 # 当前工作：单查连续返回原位置（2026-10-21，用户已授权继续）
 
+正在冻结本次准备条件修正：相对诊断源d8d39d5仅目标测试准备段与HANDOFF变化，随后只派发continuous-return原单例一次。原返回断言及截图后独立观察原文保留；生产/分页加载/CI入口不变。本次原生结果待取得，不能复用诊断版通过代替。冻结receipt为build/maintenance/continuous-return-20261021/preparation-frozen.json，恢复时核实际revision/remote/run，禁止重复派发。
+
+用户已明确选择继续且只验证修正准备条件后的这一例（另轮冷准备25–35分钟已说明）；不加原生整组/其他case/R4。当前诊断事实已核完整日志、summary、原生编译、4份附件JSON与stdout一致，重复seek差0.125；diagnostic-result.json已保存。下一冻结只改目标测试准备/HANDOFF，CI入口和生产沿用d8d39d5，不重复无变化的Python工具套件；语法464新增0/54限制已过（非编译），待单例原生验收。
+
+诊断CI39600873539 completed/success，d8d39d5，原单例1/1（46.146秒）过，生产未变，不能称修复。连续captured/restored均longTop=-599.125、char499、savedOffset=-3.125、glyphTop=-3.125、nativeClip0、scrollY2367；返回WebView已重建但字位置相同，重复seek实际-10.125/外层2376不变也过。旧失败before仍未知，不能追认为裁切或环境原因。完整原件612791字节/digest与CRC核，build/ci/39600873539；观测汇总build/maintenance/continuous-return-20261021/observations.json。
+
+已在本地只修原测试准备条件：原scrollY>500可能在+600移动前即为真，现同一次原初始top探针附带initialY，等待实际scrollY进入initialY+600的3px内才capture；新增actual/target/precondition附件。原600移动、返回3px/30秒/100ms、false/true、完整origin与截图后观察保持，生产仍未动。此修改尚未原生编译/验证，不能拿诊断版1/1当新准备条件已通过；先本地检查并收口当前诊断事实，再决定最小下一验证，不跑全套/R4。
+
+20:50实时核到d8d39d5的TEST BUILD SUCCEEDED，已进入iPhone16 Pro首次bootstatus；单例尚未执行。此时仅诊断测试原生编译通过，生产仍上一轮候选；等待记录captured/restored/failed的原比较值后再选修正。最终编译/执行与耗时按完整日志核实。
+
+已仅派发[CI39600873539](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39600873539)，实际head已核d8d39d5；repository-checks过，Core/全套/其他诊断均跳过，单例步骤冷准备中。不追加其他选择。观察器.cache/recovery/watch_continuous_return.py只读、会保存run/full.log/artifact元数据；恢复核实际CI/文件/进程，旧exec会话不是当前任务状态。
+
+尚未证实的分辨假设：firstVisibleElementLocator可能复用了与当前DOM几何不匹配的缓存锚点；或WebView浮动/裁切量前后不同，而原断言比较未经native clip换算的DOM段落top。新captured/failed/restored行同时给出原origin的字符Range、longTop、原before与原predicate最后读值、nativeClipTop和native状态，可检查savedOffset与实际字位置、采样与返回坐标。需要真实结果才能选择修复，不把该假设当根因。W3C CSSOM View Range几何与固定3.11 VisualNavigator已查，本地连续实现是自有扩展，不能当上游完整方案。
+
+诊断冻结源d8d39d5d9301e93a9efe7790c57896c18869b9c6，codex/diagnose-continuous-return远程ref已核；相对081b5d2仅单测试/CI选择/HANDOFF四文件，584输入逐Git blob匹配，所有生产（含分页bootstrap）未改。逐方法核原测试只有目标单例加诊断和一个私有记录helper；前置准备/完整capture、后续截图/重复seek原文保持。Windows76工具70过6 POSIX跳过24.772秒、Bash/464语法新增0/54限制通过，均未替代原生编译。接下来只派发continuous-return一次，预期20–30分钟冷准备与原1例；若只重放过仍须判断诊断扰动，不能转入R4。
+
 诊断已实现、生产未改：原单例在原before之后附加一次只读同字符Range/段落/scrollY采样，失败/成功出口记录原before、最后一次原断言读值、完整origin、模式、native clip/inner/frame诊断与WebView身份。原predicate仍为abs(value-before)<3、30秒/100ms不变，false/true及截图后的重复seek观察保留。该额外await可能改变时序，单次通过不等于修好。continuous-return CI入口只选原1条，跳过Core/全套/IPA，保留原退出/xcresult。Windows语法464新增0/54既有限制通过（非编译），下一步76工具/Bash后冻结并只跑本单例。
 
 已核584输入与上一轮候选相同、旧CI均completed、无观察/下载任务。普通HEAD/index保持。先只补原FreshReturnCapture一个用例的阶段/模式、完整origin、原before/最后一次返回读值及同视图锚点几何；false/true顺序、原断言/预算与独立观察保留，分页native bootstrap及R1/R2/R3不改。先区分origin采样与恢复/测量时刻，不先改生产。原生只跑这一例，不跑19/189；R4在此问题收口后另片。

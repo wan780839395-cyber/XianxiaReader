@@ -962,9 +962,27 @@ final class ReaderRenderingTests: XCTestCase {
             let web = continuous ? try resourceWebView(engine, index: 1) : try XCTUnwrap(visibleWebView(in: engine.viewController.view))
             if continuous {
                 let scroll = try continuousScroll(engine)
-                try await waitUntil { abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5 }
+                var initialY: Double?
+                try await waitUntil {
+                    let probe = try await web.evaluateJavaScript("({top:document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000,y:scrollY})") as? [String: Any]
+                    initialY = probe?["y"] as? Double
+                    return abs(probe?["top"] as? Double ?? 10000) < 5 && initialY != nil
+                }
+                let startY = try XCTUnwrap(initialY), requestedY = startY + 600
                 scroll.setContentOffset(CGPoint(x: 0, y: scroll.contentOffset.y + 600), animated: false)
-                try await waitUntil { ((try await web.evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+                var preparedY: Double?
+                // The chapter's start can already be beyond 500. Require this
+                // particular move to finish before defining the return origin.
+                try await waitUntil {
+                    preparedY = try await web.evaluateJavaScript("scrollY") as? Double
+                    return abs((preparedY ?? 10000) - requestedY) < 3
+                }
+                let preparation: [String: Any] = ["initialY":startY,"requestedY":requestedY,
+                    "actualY":try XCTUnwrap(preparedY),"legacyConditionAlreadyTrue":startY > 500]
+                let text = String(decoding: try JSONSerialization.data(withJSONObject: preparation, options: [.sortedKeys]), as: UTF8.self)
+                let attachment = XCTAttachment(string: text); attachment.name = "continuous-return-prepared-move"
+                attachment.lifetime = .keepAlways; add(attachment)
+                print("RETURN_CAPTURE_PREPARATION \(text)")
             } else {
                 await engine.turnPage(forward: true)
                 try await waitUntil { ((try await web.evaluateJavaScript("scrollX") as? Double) ?? 0) > 100 }
