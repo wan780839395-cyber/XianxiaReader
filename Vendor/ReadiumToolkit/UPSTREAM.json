@@ -1452,6 +1452,10 @@
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
       "sha256": "033a0f73e4211d5d4eae3e0a59c3190f0e30df5ee1618dd2bc1d1bdf66119ebe"
+    },
+    {
+      "path": "Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "sha256": "b9cd6bff152af694720549b1e1111b016c5ef482e1842c3bab506695ff471833"
     }
   ],
   "remoteDependencyPins": [
@@ -1777,5 +1781,18 @@
     "reason": "Native-only updateViewports candidate failed the same deterministic control by 10.875 points (39447634363). The default upstream text matcher does not consume this extension offset.",
     "budgetsAndDependenciesUnchanged": true,
     "acceptancePending": true
+  },
+  "pagedResizeWriteBoundary": {
+    "date": "2026-10-21",
+    "scope": "Existing body ResizeObserver still updates page width, virtual-page padding and progression; it writes paged scrollLeft only when a prior nonzero viewport width actually changed. Initial/same-width body changes do not own the reading position.",
+    "reason": "39478971105 and39523316446 captured canonical target3618 followed by same ResizeObserver scrollLeft0; setter-only4597b345 failed6/8 and was reverted.",
+    "source": "Readium3.11 d82f44f4f05d87add9e22a8b75abbd61dce745dd; original JS baseline hash retained in baselineFiles",
+    "references": [
+      "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "https://www.w3.org/TR/resize-observer/"
+    ],
+    "contract": "Do not overwrite explicit paged word seek from body metrics notification at unchanged viewport width. Actual width changes retain upstream page snap. Continuous R() branch, virtual page calculation, j() progression, font/position budgets, locator format and dependencies unchanged.",
+    "regression": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord uses a real captured Readium ResizeObserver frame and explicit release with stale scrollX0; test checks unchanged actual offset and original word after rendering frame. Same9case baseline/candidate order also retains continuous and close controls.",
+    "validationPendingAtSourceCheckpoint": true
   }
 }
