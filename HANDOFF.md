@@ -1,3 +1,21 @@
+# 连续视口同例对照：本地检查通过，准备冻结（2026-10-22）
+
+仅保存patch指定的一行变化：before DOM查询await改NSNull。已逐字审阅其余测试代码与b618ca86匹配，484语法0新增（非编译），生产/Vendor/原断言/预算/其余观察保持。现在冻结并只派发continuous-resize原方法1例；不跑23项/full/Core/独立模块/UI/设备Release。结果未形成，旧故障根因仍待证。
+
+本片目录build/maintenance/I6-viewport-control-20261022含before、检查，随后写入frozen/唯一dispatch；中断先核实际run，禁止重复派发。设计与因果边界见Documentation/I6_VIEWPORT_RESIZE_CONTROL.md。
+
+---
+
+# 连续视口缩放同例对照开始（2026-10-22）
+
+用户已恢复并明确授权：只撤去指定`await domProbe(originalFrame.width)`，不改其余探针/原断言/30秒100ms/12视图/横竖顺序，仅原continuous-resize单例，不跑整套。下一步核准保存patch后应用，完成本地语法/范围审阅再冻结派发一次。
+
+已核上轮保存2dcd6909及实测b618ca86/CI39754777198完成success；617输入零漂移，普通HEAD/index不变，无遗留实验进程（查询自身gh已结束）。本轮before保护1249路径，build/maintenance/I6-viewport-control-20261022保存本片全部证据。旧full191/192、根因未证/Release未执行保持，不把对照准备称已验收。
+
+唯一假设：上轮缩放前新增DOM观察挂起点可能改变复现。对照before DOM明确标null，保留初始scrollY查询及原Locator、之后联合条件/重排记录；若仍通过，只能说明本样本不依赖此等待，不能据此排除其他观察、共享顺序或旧故障。若失败先保存原件，按具体条件和measure决策判断，不盲改算法或重跑整套。
+
+---
+
 # 连续视口缩放：证据保存，本轮结束（2026-10-22）
 
 用户最新决定“先保存本轮证据，下一轮做该对照”。不追加CI、不应用对照patch，不跑23项/full/设备Release，不进入新功能。原生轮次均完成，自己的观察/下载任务已结束，电脑保持开机。

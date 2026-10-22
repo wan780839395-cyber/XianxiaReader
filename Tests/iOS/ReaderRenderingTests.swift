@@ -104,7 +104,7 @@ final class ReaderRenderingTests: XCTestCase {
             attachment.lifetime = .keepAlways;add(attachment)
             print("CONTINUOUS_RESIZE_EVIDENCE \(text)")
         }
-        checkpoints.append(["phase":"before-resize","dom":try await domProbe(originalFrame.width),
+        checkpoints.append(["phase":"before-resize","dom":NSNull(),
             "nativeState":engine.continuousDiagnosticState,"outerY":scroll.contentOffset.y])
         try record("before-resize")
         // A real mounted viewport resize checks the live continuous path.
