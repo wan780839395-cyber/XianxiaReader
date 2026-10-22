@@ -1,3 +1,25 @@
+# 连续视口同例对照：本片保存，下一轮只做无CI设计（2026-10-22）
+
+用户最新决定“保存本片，下一轮先做无CI复现设计”。本轮结束，不追加CI、不实施屏障/定位修复、不改已测代码，不跑整套/设备Release。自己的观察/下载已完成，电脑保持开机。
+
+冻结82b35f768442c6127baa9a540b28fae0f0edbc82 / CI39759498210 completed success。相对b618ca86/39754777198，唯一运行输入变化是before检查点的`await domProbe(originalFrame.width)`改NSNull；其余616输入及所有探针/原断言/30秒100ms/12视图/横竖顺序保持。原App/测试模拟器真实编译通过；原单例精确1/1（11.293秒），test/summary/export均0，9处/7种旧warning保持、无新增。CI Linux109通过，本地语法484无新增（非编译）。仅派1次，无额外预检/重跑。
+
+原Locator char499，before native请求/实际outer2369；DOM明确null，不能宣称本轮查过缩放前Range或DOM滚动完成。横屏2次采样：首native874×306/DOM402×778、原字top=-219.125不可见；0.130935秒后DOM874×306、top=-3.125可见。恢复竖屏又2次采样top23.875可见。始终同WebView/挂窗/alpha1。measure两次guard=true、desiredLocal2151/2340，均实际应用。原合同只要求原字最终可见，本片不声称无瞬态跳动或逐像素相等。
+
+结论仅为：该样本不依赖那个额外等待也通过。旧full39735403242失败未复现、根因未证，不称已修复或假失败；不能合并时源称192/192。没有产品算法/模块/依赖/配置改动，设备Release/手机仍未验，无新IPA，最后交付Build30。
+
+权威Documentation/I6_VIEWPORT_RESIZE_CONTROL.md及ValidationLogs/project-isolation-i6-viewport-control.json；build/maintenance/I6-viewport-control-20261022含before保护1249旧路径、frozen/唯一dispatch、scope-audit/result/resize-evidence、用户决定及后续final-checkpoint。主步骤1337秒：首suite前1285.197秒，case11.293秒，其余40.510秒；上传/下载另计。build/ci/39759498210完整artifact12418352195/2239281B/SHAee96d417242b2651ae571d865280593a53426666db536e82ebb7b6b80ce514b1已digest/CRC/安全展开核验，保留完整日志、两xcresult、summary及全部附件；只清除已验证重复ZIP。旧原件及Build30交付不动。
+
+下一轮先只做无CI设计和静态审阅，不能直接实现或派发：核对“位置采样跨越尺寸变化后是否被接收并替换保存锚点”的可控复现，明确屏障插点、显式放行/取消清理、原断言与结果判读。源码仅见尺寸变化不改变viewportRevision、采样await后无独立尺寸身份；尚未观察到它实际导致故障，不得直接当根因修算法。order-context记录旧前序模式切换但清理已注册，未证明共享污染。先读layout-sampling-hypothesis/order-context、完整本片证据及实际文件/Git，不重派已完成run。普通HEAD/index及617已测输入保持。
+
+---
+
+# 连续视口缩放单例运行中：禁止重复派发（2026-10-22）
+
+冻结源82b35f768442c6127baa9a540b28fae0f0edbc82，CI39759498210，selection=continuous-resize，仅原失败方法1例。原断言及30秒/100ms预算不变；不跑Core/模块/23项/UI/full/设备Release，无新IPA。此刻仍在准备/编译，尚无本片结果。恢复先核build/maintenance/I6-viewport-control-20261022的frozen/dispatch与真实run，禁止重复派发。旧full191/192与全部原件仍保留，普通HEAD/index未改。
+
+---
+
 # 连续视口同例对照：本地检查通过，准备冻结（2026-10-22）
 
 仅保存patch指定的一行变化：before DOM查询await改NSNull。已逐字审阅其余测试代码与b618ca86匹配，484语法0新增（非编译），生产/Vendor/原断言/预算/其余观察保持。现在冻结并只派发continuous-resize原方法1例；不跑23项/full/Core/独立模块/UI/设备Release。结果未形成，旧故障根因仍待证。

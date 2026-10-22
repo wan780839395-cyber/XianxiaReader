@@ -1,5 +1,7 @@
 # 连续视口缩放：单例诊断（2026-10-22）
 
+后续已按用户授权完成指定等待的单例对照：CI39759498210/1例通过，仍未复现旧故障；用户决定下一轮先做无CI复现设计。见[对照完整结果](I6_VIEWPORT_RESIZE_CONTROL.md)。下文为原观察基线的历史记录。
+
 2026-10-22本片已保存：修正探针编译后，源b618ca86 / [CI39754777198](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39754777198)原单例1/1通过（20.730秒），前后证据齐。旧full失败未复现，根因未证，未改定位算法；用户决定本轮保存、下一轮只做撤去一个缩放前DOM观察await的对照。本轮结束，不追加CI。
 
 旧最终full源77eebf40 / CI39735403242：191/192，唯一失败为 ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView 首次变宽后联合等待；详见[I6最终结果](I6_FINAL_ACCEPTANCE.md)。原件完整保留，根因尚未证明，Release未执行。
