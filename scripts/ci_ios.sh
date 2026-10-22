@@ -32,6 +32,7 @@ bash scripts/test_reader_positions.sh
 bash scripts/test_reader_sessions.sh
 bash scripts/test_library_shelf.sh
 bash scripts/test_book_imports.sh
+bash scripts/test_reader_search.sh
 swift test --package-path Packages/XianxiaCore --parallel
 swift build --package-path Packages/XianxiaCore --configuration release --product TXTPerformanceProbe
 PROBE_BIN=$(swift build --package-path Packages/XianxiaCore --configuration release --show-bin-path)

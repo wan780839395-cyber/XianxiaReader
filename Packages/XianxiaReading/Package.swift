@@ -12,10 +12,11 @@ let package = Package(
     dependencies: [
         .package(path: "../XianxiaCore"),
         .package(path: "../BookImports"),
+        .package(path: "../ReaderSearch"),
         .package(path: "../../Vendor/ReadiumToolkit")
     ],
     targets: [
-        .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports")]),
+        .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports"), .product(name: "ReaderSearch", package: "ReaderSearch")]),
         .target(name: "ReaderFonts", dependencies: [
             "ReadingInterfaces",
             .product(name: "XianxiaCore", package: "XianxiaCore")

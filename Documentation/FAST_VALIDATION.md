@@ -1,3 +1,11 @@
+# I5c 搜索快速入口（2026-10-22，候选待验证）
+
+- `bash scripts/test_reader_search.sh <fresh-output-folder>`：macOS独立ReaderSearch8合同，Core/Combine，无App/Readium。
+- workflow `diagnostic_selection=search-isolation`：仅上项及13原生搜索/输入/返回点；先build-for-testing，再启动模拟器。精确case/依赖/退出码验证见`verify_reader_search.py`，门槛不能替代完整192或设备Release。
+- 边界与原顺序见`SEARCH_ISOLATION.md`。当前尚未验证，不能作为通过证据。
+
+---
+
 2026-10-22 I5b已验：`bash scripts/test_book_imports.sh <fresh-output-folder>`仅BookImports8项；`import-isolation`仅包8+原生14，先接线编译再模拟器，不跑完整192或IPA。最终c8b53e38/CI39712813755为8+14及编译通过，仅本片门槛，详见IMPORT_ISOLATION。
 
 2026-10-22 I5a已验入口：`bash scripts/test_library_shelf.sh <fresh-output-folder>`仅LibraryShelf六合同；`library-isolation`仅该包+原书库/回收站/封面17+新增延迟初始化1=18项，不跑完整192/IPA。最终1532b863/CI39707770264独立6+原生18及编译通过，仅本片门槛，详见LIBRARY_ISOLATION。

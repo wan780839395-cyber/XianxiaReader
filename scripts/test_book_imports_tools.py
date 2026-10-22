@@ -68,7 +68,7 @@ class ImportEvidenceTests(unittest.TestCase):
         native=next(s for s in steps if "verify_book_imports.py native" in s.get("run", ""))
         self.assertIn("import-isolation",logic["if"]);self.assertIn("import-isolation",native["if"])
         self.assertIn("set -euo pipefail",native["run"])
-        self.assertIn("'import-isolation' ]]; then",(ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8"))
+        self.assertIn("\"$selection\" == 'import-isolation'",(ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8"))
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,3 +1,15 @@
+# 当前断点：I5c 搜索边界隔离开始（2026-10-22）
+
+- 用户授权只做搜索边界；保留 I5a/b、R1–R4 和修好的阅读定位，不运行完整192、Release或IPA。
+- 已核实上一片保存点 `32de76158ad18f0ccd0968bd97d0a35317a375b1`，610个运行输入一致；普通HEAD/index不变，无遗留Python/Swift/gh测试进程。开始快照：`build/maintenance/I5-search-20261022/before.json`（原交接另存同目录）。
+- 本片拟将搜索DTO/协议与原ReaderSearchViewModel原样迁至独立ReaderSearch SwiftPM模块，仅依赖Core及Foundation/Combine。App和ReadingInterfaces保留typealias兼容入口；不新增异步封装，不改搜索字段、界面、Readium服务/限制或阅读导航。
+- Windows语法已通过484文件（非编译）；初次漏登projectPackages被静态门禁拦截，已补精确登记并保留原始失败日志。原VM逐字符机械对照确认12个await和所有函数正文不变，搜索声明原样，所有Tests/iOS正文不变。Python102项检查通过（95通过/7 POSIX跳过）；shell三脚本语法通过。即将冻结并仅派发8+13定向验证，未运行编译/原生；原生失败先留证不扩片。
+- 实现已落盘，尚未编译：ReaderSearch真实target及Core依赖、App/ReadingInterfaces兼容别名、依赖登记与正反例、8独立合同和13原生选择入口已接线。即将运行Windows语法/工具检查，冻结前逐一核对原VM正文和全部原生测试。
+- 定向门槛：独立搜索合同、原搜索VM/Readium/原生输入及搜索返回点合同；Windows静态/工具检查后冻结输入，一次定向原生执行。实现、编译、验证均尚未完成。
+- 若出现其他边界失败，先留证并核实归属，不为全绿扩大范围。电脑保持开机。
+
+---
+
 # 当前断点：I5b导入事务本片完成，搜索留后续（2026-10-22）
 
 2026-10-22 I5b导入事务本片完成：BookImports为真实Foundation/Core独立包，拥有原EPUB/TXT导入服务与元数据合同；App/ReadingInterfaces以typealias保留旧调用名称/协议身份，无async包装、原11await与服务body保持。最终c8b53e38 / CI39712813755独立macOS8/8、原生14/14，包及App/测试接线编译通过。App批次UI/Task/picker/FontInbox、书库、搜索及阅读/字体/定位/会话/Core/Adapter/Vendor/资源/锁保持；批次呈现仍在App，不能称全部导入编排或全项目已隔离。完整163+29=192/Core137全组/Release/设备/手机未跑，无新IPA，最后交付Build30。搜索后续。详见Documentation/IMPORT_ISOLATION.md及ValidationLogs/project-isolation-i5-import.json。

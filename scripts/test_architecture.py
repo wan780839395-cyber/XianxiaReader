@@ -107,6 +107,20 @@ class ArchitectureTests(unittest.TestCase):
         with self.change("App/Reader/ReaderViewModel.swift", lambda text: text + "\nimport ReadiumAdapter\n"):
             self.blocked("Reader must not import ReadiumAdapter")
 
+    def test_search_module_cannot_acquire_ui_engine_or_database_dependencies(self):
+        file = "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearchViewModel.swift"
+        for module in ["SwiftUI", "UIKit", "ReadingInterfaces", "ReadiumAdapter", "ReaderPositions"]:
+            with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
+                self.blocked(f"Search requests must not import {module}")
+        with self.change(file, lambda text: text + "\nlet wrong: SQLiteBookRepository? = nil\n"):
+            self.blocked("must not reference SQLiteBookRepository")
+
+    def test_search_ui_and_compatibility_bridge_cannot_reacquire_concrete_dependencies(self):
+        with self.change("App/Search/ReaderSearchView.swift", lambda text: text + "\nlet wrong: ReaderViewModel? = nil\n"):
+            self.blocked("Search must not reference ReaderViewModel")
+        with self.change("App/Search/ReaderSearchViewModel.swift", lambda text: text + "\nimport ReadingInterfaces\n"):
+            self.blocked("Search must not import ReadingInterfaces")
+
     def test_settings_storage_cannot_acquire_reader_or_ui_dependencies(self):
         for module in ["ReadingInterfaces", "SwiftUI", "UIKit"]:
             with self.subTest(module=module), self.change("Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift", lambda text: text + f"\nimport {module}\n"):
@@ -185,7 +199,7 @@ class ArchitectureTests(unittest.TestCase):
 
     def test_nonliteral_dependency_array_is_rejected(self):
         file = "Packages/XianxiaReading/Package.swift"
-        with self.change(file, lambda text: text.replace('dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports")]', 'dependencies: injectedDependencies', 1)):
+        with self.change(file, lambda text: text.replace('dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports"), .product(name: "ReaderSearch", package: "ReaderSearch")]', 'dependencies: injectedDependencies', 1)):
             self.blocked("expected a literal array")
 
     def test_package_cycle_is_rejected_even_without_a_target_cycle(self):

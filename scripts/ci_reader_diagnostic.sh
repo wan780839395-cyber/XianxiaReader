@@ -5,6 +5,23 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  search-isolation)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay
+      -only-testing:XianxiaReaderTests/ReaderSearchFieldTests/testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears
+      -only-testing:XianxiaReaderTests/ReaderSearchViewModelTests/testEmptyAndOversizedQueryNeverStartEngineSearch
+      -only-testing:XianxiaReaderTests/ReaderSearchViewModelTests/testLatePageCannotReplaceNewQueryResults
+      -only-testing:XianxiaReaderTests/ReaderSearchViewModelTests/testLateStartedSessionIsCancelledAfterQueryChanges
+      -only-testing:XianxiaReaderTests/ReaderSearchViewModelTests/testLoadMoreIsExplicitAndResultsStopAtVisibleLimit
+      -only-testing:XianxiaReaderTests/ReaderSearchViewModelTests/testSelectionDelegatesOpaquePositionAndReportsNavigationFailure
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testBatchSizeSnippetBoundsAndEndPreserveCSSLocator
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testCombiningCharactersEmojiAndInlineSegmentBoundaries
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testConcurrentNextRejectedAndCancelledSessionRejectsLatePage
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testContentReadFailureIsNotReportedAsNoMatches
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch
+      -only-testing:XianxiaReaderTests/ReadiumSearchTests/testRealEPUB2AndEPUB3ChineseSearchPositions
+    )
+    ;;
   import-isolation)
     cases=(
       -only-testing:XianxiaReaderTests/BookDuplicateTests/testCancelledDuplicateImportDoesNotRemoveAlreadyCommittedBook
@@ -269,7 +286,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' ]]; then
+if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.

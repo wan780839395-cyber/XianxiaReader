@@ -20,6 +20,8 @@ packages:
     path: Packages/LibraryShelf
   BookImports:
     path: Packages/BookImports
+  ReaderSearch:
+    path: Packages/ReaderSearch
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -51,6 +53,8 @@ targets:
         product: LibraryShelf
       - package: BookImports
         product: BookImports
+      - package: ReaderSearch
+        product: ReaderSearch
       - package: XianxiaReading
         product: ReadingInterfaces
       - package: XianxiaReading
