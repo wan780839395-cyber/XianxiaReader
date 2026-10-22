@@ -717,7 +717,22 @@ class EPUBSpreadView: UIView, Loggable, PageView {
                     for key in ["width", "height", "scrollY"] {
                         if let value = metadata[key] as? NSNumber { fields[key] = value.doubleValue }
                     }
+                    // Already returned by this evaluation; no second DOM read.
+                    for key in ["documentY", "documentTop"] {
+                        if let value = data[key] as? NSNumber { fields[key] = value.doubleValue }
+                    }
                 }
+                fields["visibleTop"] = Double(visibleTop)
+                fields["visibleBottom"] = Double(visibleBottom)
+                if case let .success(value) = result {
+                    fields["evaluationSucceeded"] = 1
+                    fields["resultObject"] = value is [String: Any] ? 1 : 0
+                    if let data = value as? [String: Any] {
+                        fields["documentYFinite"] = (data["documentY"] as? NSNumber)?.doubleValue.isFinite == true ? 1 : 0
+                        fields["documentTopFinite"] = (data["documentTop"] as? NSNumber)?.doubleValue.isFinite == true ? 1 : 0
+                        fields["locatorPresent"] = data["locator"] == nil ? 0 : 1
+                    }
+                } else { fields["evaluationSucceeded"] = 0 }
                 fixtureMetadata(fields)
             }
         #endif

@@ -1,0 +1,75 @@
+{
+  "recordedAtUTC": "2026-10-22T14:07:11.791106+00:00",
+  "implementationComplete": true,
+  "scopeAudit": {
+    "recordedAtUTC": "2026-10-22T14:05:36.866052+00:00",
+    "parent": "fe23d24539dc0bf2507cd2ed1d74b17cc79fff29",
+    "projections": [
+      {
+        "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+        "releaseNormalizedIdentical": true,
+        "releaseByteIdentical": false,
+        "releaseNormalizedSHA256": "40beeaa722f2e35acd5d5c0b3500efd19c21c285b3c913e97cd75e13ad03ea3f",
+        "multilineJavaScriptIdentical": true,
+        "awaitLinesIdentical": true
+      },
+      {
+        "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+        "releaseNormalizedIdentical": true,
+        "releaseByteIdentical": true,
+        "releaseNormalizedSHA256": "63019e1d591c59aa48556548eef0a1ce29773529af5a5500610761d3ae668bd8",
+        "multilineJavaScriptIdentical": true,
+        "awaitLinesIdentical": true
+      }
+    ],
+    "runtimeInputCount": 617,
+    "runtimeChanges": [
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Vendor/ReadiumToolkit/UPSTREAM.json"
+    ],
+    "otherRuntimeInputsUnchanged": 614,
+    "upstreamOnlyTwoDigestChanges": true,
+    "previousRawEvidenceUnchanged": true,
+    "ciDispatches": 0,
+    "compiled": false,
+    "nativeExecuted": 0,
+    "oldRunInference": {
+      "source": "65a82618fb1174c84be6c10729de92e828b79e25",
+      "run": 39782692503,
+      "requestID": "68457F71-D05E-4F7B-A5C7-BAF6243184D4",
+      "observedAttempts": [
+        "0",
+        "1",
+        "2"
+      ],
+      "proven": "Attempts 0 and 1 reached the sole continue after valid context/snapshot and documentTop mismatch, with their 32ms sleeps returning normally",
+      "unproven": "Final attempt exit branch, captured clipTop and responsible DOM scroll writer; no exact third-attempt cause or old-full root cause claimed"
+    },
+    "diagnosticEvent": "sample-decision once per executed attempt at iteration exit, at most three per admitted sample; original event/waiter bounds unchanged",
+    "limitations": [
+      "Guard flags are observed before the original guard; asynchronous cancellation can arrive between observation and guard, so actual context-invalid reason takes precedence",
+      "snapshot-unavailable includes evaluation, shape, numeric or Locator decode failure; returned metadata narrows these without rerunning decoding or JavaScript",
+      "Initial slot-not-ready guard precedes request admission and is unchanged; this slice diagnoses the already-held S only"
+    ]
+  },
+  "checks": {
+    "swiftGrammarFiles": 484,
+    "newDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "pythonTests": 15,
+    "passed": 14,
+    "skipped": 1
+  },
+  "ciDispatches": 0,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "smokePassed": false,
+  "oldFullRootCauseProven": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "originalAssertionsAndBudgetsUnchanged": true,
+  "algorithmChanged": false,
+  "nextExecutionAuthorized": false,
+  "deliveredBuild30HashesUnchanged": true
+}

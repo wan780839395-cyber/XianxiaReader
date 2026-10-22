@@ -704,12 +704,25 @@ public struct EPUBViewportFixtureEvent: Sendable {
         #if DEBUG
             let fixture = viewportFixtureControl
             let fixtureID = fixture.map { _ in UUID() }
-            let fixtureContext = fixture == nil ? [:] : fixtureValues(index, slot)
+            var fixtureInputs = fixture == nil ? [:] : fixtureValues(index, slot)
+            if fixture != nil {
+                // Frozen inputs to this request, before the S suspension.
+                fixtureInputs["clipTop"] = String(describing: clipTop)
+                fixtureInputs["clipBottom"] = String(describing: clipBottom)
+                fixtureInputs["viewMinYAtStart"] = String(describing: slot.view.frame.minY)
+                fixtureInputs["wrapperMinYAtStart"] = String(describing: slot.wrapper.frame.minY)
+                fixtureInputs["viewportTopAtStart"] = String(describing: viewportTop)
+            }
+            let fixtureContext = fixtureInputs
             var fixtureOutcome = "rejected"
+            var fixtureReason = "not-finished"
             if let id = fixtureID { fixture?.observe(.init(requestID: id, kind: "sample-start", values: fixtureContext)) }
             defer {
                 if let id = fixtureID {
                     var values = fixtureValues(index, slot); values["outcome"] = fixtureOutcome
+                    values["reason"] = fixtureReason
+                    values["clipTop"] = fixtureContext["clipTop"]
+                    values["clipBottom"] = fixtureContext["clipBottom"]
                     fixture?.observe(.init(requestID: id, kind: "sample-finished", values: values))
                 }
             }
@@ -720,13 +733,14 @@ public struct EPUBViewportFixtureEvent: Sendable {
             slot.anchorDiagnostic = "cached local=\(localTop) revision=\(revision)"
             #if DEBUG
                 fixtureOutcome = "cached"
+                fixtureReason = "cached"
             #endif
             return anchor
         }
         #if DEBUG
             if let fixture, let id = fixtureID {
                 guard await fixture.pause(.init(requestID: id, kind: "sample-before-read", values: fixtureContext)) else {
-                    fixtureOutcome = "aborted"; return nil
+                    fixtureOutcome = "aborted"; fixtureReason = "barrier-aborted"; return nil
                 }
             }
         #endif
@@ -744,23 +758,87 @@ public struct EPUBViewportFixtureEvent: Sendable {
                 }
                 let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom,
                                                                                fixtureMetadata: metadata)
+                var fixtureDecision: [String: String] = [:]
+                if fixtureID != nil {
+                    fixtureDecision = fixtureContext
+                    fixtureDecision["attempt"] = String(attempt)
+                    fixtureDecision["observationPoint"] = "after-snapshot-await"
+                    fixtureDecision["recordingPoint"] = "iteration-exit"
+                    // Observed immediately after the same await; the original
+                    // short-circuit guard below still decides, including cancellation.
+                    fixtureDecision["notCancelled"] = String(!Task.isCancelled)
+                    fixtureDecision["epochMatches"] = String(epoch == request)
+                    fixtureDecision["indexMatches"] = String(currentIndex == index)
+                    fixtureDecision["slotMatches"] = String(slots[index] === slot)
+                    fixtureDecision["movingMatches"] = String(automaticScrolling == moving)
+                    fixtureDecision["notPositioning"] = String(!slot.positioning)
+                    fixtureDecision["revisionMatches"] = String(viewportRevision == revision)
+                    fixtureDecision["localMatches"] = String(abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5)
+                    fixtureDecision["viewportMatches"] = String(moving || (viewportRevision == revision
+                        && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5))
+                    fixtureDecision["snapshotAvailable"] = String(snapshot != nil)
+                    fixtureDecision["currentRevision"] = String(viewportRevision)
+                    fixtureDecision["currentLocalTop"] = String(describing: viewportTop - slot.wrapper.frame.minY)
+                    fixtureDecision["currentViewMinY"] = String(describing: slot.view.frame.minY)
+                    if let snapshot {
+                        fixtureDecision["documentTop"] = String(describing: snapshot.documentTop)
+                        fixtureDecision["documentY"] = String(describing: snapshot.documentY)
+                        fixtureDecision["expectedDocumentTop"] = String(describing: max(0, localTop))
+                        fixtureDecision["documentTopDelta"] = String(describing: snapshot.documentTop - max(0, localTop))
+                        fixtureDecision["documentTopMatches"] = String(abs(snapshot.documentTop - max(0, localTop)) < 1)
+                    }
+                }
+                defer {
+                    if let id = fixtureID {
+                        fixtureDecision["reason"] = fixtureReason
+                        fixture?.observe(.init(requestID: id, kind: "sample-decision", values: fixtureDecision))
+                    }
+                }
             #else
                 let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom)
             #endif
             guard !Task.isCancelled, epoch == request, currentIndex == index, slots[index] === slot,
                   automaticScrolling == moving, !slot.positioning,
-                  moving || (viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5) else { return nil }
-            guard let snapshot else { return nil }
+                  moving || (viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5) else {
+                #if DEBUG
+                    fixtureReason = "context-invalid"
+                #endif
+                return nil
+            }
+            guard let snapshot else {
+                #if DEBUG
+                    fixtureReason = "snapshot-unavailable"
+                #endif
+                return nil
+            }
             // One bounded WebKit callback returns a complete DOM range and its
             // viewport offset. It remains a valid saved point while moving;
             // never cache it against a later physical viewport revision.
-            if moving { return snapshot.locator }
+            if moving {
+                #if DEBUG
+                    fixtureReason = "moving-snapshot-returned"
+                #endif
+                return snapshot.locator
+            }
             slot.anchorDiagnostic = "sample=\(attempt) documentY=\(snapshot.documentY) documentTop=\(snapshot.documentTop) local=\(localTop) revision=\(revision)"
             if abs(snapshot.documentTop - max(0, localTop)) >= 1 {
+                #if DEBUG
+                    fixtureReason = attempt < 2 ? "document-top-mismatch-retry" : "document-top-mismatch-exhausted"
+                #endif
                 if attempt < 2 {
                     do { try await Task.sleep(nanoseconds: 32_000_000) }
-                    catch is CancellationError { return nil }
-                    catch { boundaryLabel.text = error.localizedDescription; return nil }
+                    catch is CancellationError {
+                        #if DEBUG
+                            fixtureReason = "retry-sleep-cancelled"
+                        #endif
+                        return nil
+                    }
+                    catch {
+                        #if DEBUG
+                            fixtureReason = "retry-sleep-error"
+                        #endif
+                        boundaryLabel.text = error.localizedDescription; return nil
+                    }
                 }
                 continue
             }
@@ -769,6 +847,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
             slot.savedAnchor = snapshot.locator
             #if DEBUG
                 fixtureOutcome = "committed"
+                fixtureReason = "committed"
             #endif
             slot.anchorDocumentY = snapshot.documentY
             slot.anchorDiagnostic += " accepted"

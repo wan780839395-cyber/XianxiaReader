@@ -1,3 +1,31 @@
+# S拒绝诊断已保存：零CI，未编译，下一步需新执行授权（2026-10-22）
+
+2026-10-22 S rejected被动诊断切片完成，零CI：旧同请求attempt0/1/2可证明前两次有效snapshot后documentTop不匹配，第三次终止原因仍缺。只补两Swift DEBUG诊断（冻结clip/frame、同次documentTop、逐项guard观察/实际reason）及两项Vendor摘要，原JS/await/算法/测试/断言预算保持；其余614运行输入不变。484语法/静态及14工具通过/1 POSIX跳过，未编译/原生运行。不能称S已通过或旧full根因已证，旧191/192及Release/手机缺口、Build30保持。见[诊断与判读](Documentation/I6_VIEWPORT_S_DIAGNOSTICS.md)。
+
+基线fe23d245，最新源见build/maintenance/I6-viewport-s-diagnostics-20261022/final-checkpoint.json；before/scope-audit/result及本地完整日志同目录。旧CI39782692503/65a82618仍smoke 0/1，旧原件已核未动；没有运行helper或新CI。已用旧控制流证明前两次重试来源，第三次及DOM回到1767的写入者仍未知，不能把scrollY直接当documentTop。
+
+新增sample-decision在迭代退出defer同步发出，guard布尔值为await后观察、reason为实际分支；取消可在观察之后到达。clip/frame是请求开始冻结值，documentTop来自原同次JS返回；无额外JS/采样/await/Task。原guard/catch只加DEBUG原因，Release归一文本一致，原断言、fixture、S/M资格、事件上限和预算不改。snapshot-unavailable内部的Locator解码仍属组合分支，没有为细分而重复解码。
+
+下一片只有用户新授权才可原生编译/跑原smoke单例，先核新增clip/documentTop/逐项reason与最后拒绝分支，不派整套、不改算法；本片未验证新增字段实际运行或M。普通HEAD/index及Build30保持，无新IPA，不关机。
+
+---
+
+# S诊断已接线，验证前：零CI、未编译（2026-10-22）
+
+只改两处DEBUG采样诊断及Vendor两项摘要：冻结clip/frame、同次返回documentTop/JSON状态、每次await后的逐项上下文观察及实际终止分支。原guard/await/状态写入和JS脚本保留；sample-decision在原迭代退出时defer同步记录，无新增await/Task/采样。即将核Release投影、范围、语法及受影响工具；这些不等于编译或S复现。基线/证据build/maintenance/I6-viewport-s-diagnostics-20261022，禁止派CI。
+
+---
+
+# S rejected诊断切片进行中：零CI、只补证据（2026-10-22）
+
+用户授权查清S rejected并补clipTop/documentTop及逐项拒绝原因，不派CI、不改定位算法。已核上一轮39782692503真实结束、无运行helper，当前617输入与fe23d245保存候选一致。新基线build/maintenance/I6-viewport-s-diagnostics-20261022/before.json。
+
+范围仅InfiniteScroll采样诊断、Spread同次JS结果诊断和Vendor摘要；不改Adapter、XCTest、控制器、屏障资格、断言、30秒/3秒、3次/32ms、原JS脚本或生产guard/写入。全部新增内容限DEBUG；验证用去DEBUG后完整源码对照及受影响Python/仓库语法检查，不派CI。原失败附件/完整日志保持。
+
+旧事件同一S有attempt0/1/2，按实际代码唯一continue路径可证明前两次通过上下文与有效snapshot后发生documentTop不匹配；最后一次原因、clipTop与移回1767写入者仍未知，不能追认旧full根因。下一步加被动诊断，原生编译/运行未执行，完成后同步报告及保存断点。普通HEAD/index及Build30保持，不关机。
+
+---
+
 # Adapter桥单轮原生验证已保存：编译通过，S前置失败，禁止自动重派（2026-10-22）
 
 2026-10-22 Adapter桥修正版仅一轮CI39782692503/65a82618/attempt1：原生编译/链接通过，Linux111及控制器机制6项通过；原视口smoke 0/1（12.506秒），停在缩放前S资格。S实际命中/放行但终结rejected，M未执行；失败后active/tasks/waiters均空。1767/2367现场不足证明具体拒绝分支，clip/documentTop/guard诊断仍缺；旧full根因未证。本轮617运行输入零漂移、未改算法/原断言预算、未重派。原件与断点已保存，旧full191/192、Release/手机缺口和Build30保持。见[本片结果](Documentation/I6_VIEWPORT_ADAPTER_SMOKE.md)。

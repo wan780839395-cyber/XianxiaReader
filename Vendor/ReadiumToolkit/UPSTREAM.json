@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "5ddc8e8d8e28510328546d9d7eb0a120178b23ee2f8415c08df5054bd542618a"
+      "sha256": "aff80e360d2e09ca65461db045fe5e548bb6962f500dcc21a3870677acc229e5"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "182a3413cf8d719b7116ad4ed76f7430c65c528c5e60f5e80717fa804abb625c"
+      "sha256": "0b479a6d19fbe57e54d9e2ff251ff9c9cda0b7271c3bbdc5ca6ac70b947f127a"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",

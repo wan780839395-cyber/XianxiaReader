@@ -1,5 +1,9 @@
 # Adapter桥接修正版：唯一smoke原生验证（2026-10-22）
 
+2026-10-22 S rejected被动诊断切片完成，零CI：旧同请求attempt0/1/2可证明前两次有效snapshot后documentTop不匹配，第三次终止原因仍缺。只补两Swift DEBUG诊断（冻结clip/frame、同次documentTop、逐项guard观察/实际reason）及两项Vendor摘要，原JS/await/算法/测试/断言预算保持；其余614运行输入不变。484语法/静态及14工具通过/1 POSIX跳过，未编译/原生运行。不能称S已通过或旧full根因已证，旧191/192及Release/手机缺口、Build30保持。见[诊断与判读](I6_VIEWPORT_S_DIAGNOSTICS.md)。
+
+以下为先前范围和实测记录，不能当作新诊断的运行结果。
+
 [CI39782692503](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39782692503) / `65a82618fb1174c84be6c10729de92e828b79e25` / attempt1已收齐。**原生编译/链接通过，六项控制器机制通过，原单例0/1；smoke未验收。** 失败停在缩放前S资格，M与原缩放后字可见断言未执行。仅本次授权一次dispatch，无CI重试。
 
 ## 本轮范围与可复用结果

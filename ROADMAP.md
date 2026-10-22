@@ -1,5 +1,7 @@
 # 开发路线与阶段门槛
 
+2026-10-22 S rejected被动诊断切片完成，零CI：旧同请求attempt0/1/2可证明前两次有效snapshot后documentTop不匹配，第三次终止原因仍缺。只补两Swift DEBUG诊断（冻结clip/frame、同次documentTop、逐项guard观察/实际reason）及两项Vendor摘要，原JS/await/算法/测试/断言预算保持；其余614运行输入不变。484语法/静态及14工具通过/1 POSIX跳过，未编译/原生运行。不能称S已通过或旧full根因已证，旧191/192及Release/手机缺口、Build30保持。见[诊断与判读](Documentation/I6_VIEWPORT_S_DIAGNOSTICS.md)。
+
 2026-10-22 Adapter桥修正版仅一轮CI39782692503/65a82618/attempt1：原生编译/链接通过，Linux111及控制器机制6项通过；原视口smoke 0/1（12.506秒），停在缩放前S资格。S实际命中/放行但终结rejected，M未执行；失败后active/tasks/waiters均空。1767/2367现场不足证明具体拒绝分支，clip/documentTop/guard诊断仍缺；旧full根因未证。本轮617运行输入零漂移、未改算法/原断言预算、未重派。原件与断点已保存，旧full191/192、Release/手机缺口和Build30保持。见[本片结果](Documentation/I6_VIEWPORT_ADAPTER_SMOKE.md)。
 
 2026-10-22 smoke唯一CI已收口：9f1c503a/39777683114/attempt1，Linux111通过，原生准备/构建819秒后测试包链接失败（5组SDK诊断类型符号），原生/机制执行0。原因是夹具Adapter typealias未建立自有类型；已修2文件Debug桥候选，484语法/静态及本地14工具通过/1 POSIX跳过，尚未重新编译/原生验证。未重派、算法/原断言预算保持。旧full191/192、Release/手机缺口和Build30保持。见[结果与断点](Documentation/I6_VIEWPORT_SMOKE.md)。
