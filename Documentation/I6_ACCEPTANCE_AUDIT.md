@@ -13,7 +13,7 @@
 | Reader宿主 | ReaderViewModel:69仍持有AppServices；位置/字体/会话编排已分出，但宿主仍能取得广泛Core能力 | 明确保留债务；以后按具体变更收窄端口，不在审计中重写Reader或宣称全项目彻底隔离 |
 | 书库界面 | LibraryViewModel仍拥有批次导入Task、picker、反馈及操作互斥；BookImports拥有实际导入事务 | 现有界面编排保留；新导入业务进入所属模块，批次重构另片 |
 | UI/平台桥接 | 三个界面仍在App target；ReadingInterfaces含UIKit；ReaderFonts仍依赖该iOS合同 | 静态守卫与真实模块编译分开报告；没有无App macOS字体门槛，不为形式增加UI targets |
-| Readium例外 | ReadiumSearchTests.swift、TXTReadingTests.swift精确导入ReadiumShared | 均为真实集成fixture，理由/移除阶段齐全，保留；生产SDK仅Adapter/组装层 |
+| Readium例外 | ReadiumSearchTests.swift、TXTReadingTests.swift精确导入ReadiumShared | 均为真实集成fixture，理由/移除阶段齐全，保留；生产Readium SDK仅在Adapter，App组装只引入ReadiumAdapter |
 | 既有源码警告 | 10次/8条唯一警告，与I5b逐条一致；搜索新增0 | LibraryAssembly符合、ImportOutcome及UIKit delegate Sendable，当前Swift5编译通过；另片处理，不静音、不混入Swift6迁移 |
 
 ## 已有证据可以怎样用
