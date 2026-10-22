@@ -6,7 +6,7 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-LOGIC_TESTS = {
+STATE_TESTS = {
     "testAdmissionRetainsFailedOpenUntilCloseAndRejectsDuplicateOpen",
     "testForeignBookCannotPublishWithinCurrentSession",
     "testCapturedCallbacksCannotPublishAfterCloseOrSameBookReopen",
@@ -14,6 +14,19 @@ LOGIC_TESTS = {
     "testAcceptedWorkFinishesButLateErrorCannotPublishIntoReopenedSession",
     "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
 }
+LIFECYCLE_TESTS = {
+    "testOpeningPublishesInOriginalStageAndAwaitOrder",
+    "testOrdinaryOpenFailureKeepsOwnerAndRetryClosesBeforeClearingFailure",
+    "testFontFailureFallsBackButFontCancellationDoesNot",
+    "testDuplicateOpenAndMissingEngineDoNotStartAnotherRequest",
+    "testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession",
+    "testCallerCancellationClosesOnlyItsOwnedEngine",
+    "testCloseOrderingAcceptsFinalPositionBeforeInvalidating",
+    "testBoundEntryRetainsHostUntilReleasedWithoutCreatingTaskWrapper",
+}
+LOGIC_TESTS = STATE_TESTS | LIFECYCLE_TESTS
+TEST_CLASSES = {**dict.fromkeys(STATE_TESTS, "ReaderSessionStateTests"),
+                **dict.fromkeys(LIFECYCLE_TESTS, "ReaderSessionLifecycleTests")}
 CONTROL = "ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks"
 NATIVE_TESTS = {CONTROL} | {"ReaderLifecycleTests/" + name for name in [
     "testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition",
@@ -39,7 +52,8 @@ def verify_logic(folder):
     names = Counter()
     for case in root.iter("testcase"):
         name = case.get("name", "").removesuffix("()")
-        if (case.get("classname") not in {"ReaderSessionStateTests", "ReaderSessionsTests.ReaderSessionStateTests"}
+        expected_class = TEST_CLASSES.get(name)
+        if (expected_class is None or case.get("classname") not in {expected_class, "ReaderSessionsTests." + expected_class}
                 or any(n.tag in {"failure", "error", "skipped"} for n in case.iter())):
             raise ValueError("Session contract has wrong class or did not pass")
         names[name] += 1

@@ -14,7 +14,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, epub-ready-control, continuous-return, session-isolation]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, epub-ready-control, continuous-return, session-isolation, session-lifecycle]
 
 permissions:
   contents: read
@@ -40,7 +40,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
 
   core-tests:
-    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'session-isolation' }}
+    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' }}
     needs: repository-checks
     runs-on: ubuntu-22.04
     timeout-minutes: 15
@@ -117,7 +117,7 @@ jobs:
             build/build-environment.txt
 
   reader-positions:
-    if: ${{ inputs.diagnostic_selection == 'position-isolation' || inputs.diagnostic_selection == 'epub-ready-control' || inputs.diagnostic_selection == 'continuous-return' || inputs.diagnostic_selection == 'session-isolation' }}
+    if: ${{ inputs.diagnostic_selection == 'position-isolation' || inputs.diagnostic_selection == 'epub-ready-control' || inputs.diagnostic_selection == 'continuous-return' || inputs.diagnostic_selection == 'session-isolation' || inputs.diagnostic_selection == 'session-lifecycle' }}
     needs: repository-checks
     runs-on: macos-15-intel
     timeout-minutes: 60
@@ -154,7 +154,7 @@ jobs:
           mkdir -p build/logs
           bash scripts/ci_reader_diagnostic.sh continuous-return 2>&1 | tee build/logs/reader-diagnostic.log
       - name: Compile independent session contracts without App or Readium
-        if: ${{ inputs.diagnostic_selection == 'session-isolation' }}
+        if: ${{ inputs.diagnostic_selection == 'session-isolation' || inputs.diagnostic_selection == 'session-lifecycle' }}
         run: bash scripts/test_reader_sessions.sh
       - name: Validate old callback control and focused session lifecycle
         if: ${{ inputs.diagnostic_selection == 'session-isolation' }}
@@ -162,11 +162,18 @@ jobs:
           set -euo pipefail
           mkdir -p build/logs
           bash scripts/ci_reader_session_control.sh 2>&1 | tee build/logs/session-control-driver.log
+      - name: Validate only the existing session lifecycle cases
+        if: ${{ inputs.diagnostic_selection == 'session-lifecycle' }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash scripts/ci_reader_diagnostic.sh session-isolation 2>&1 | tee build/logs/reader-diagnostic.log
+          python3 scripts/verify_reader_sessions.py candidate build --status 0 --report build/ReaderSessions/native-receipt.json
       - name: Preserve original position contract and native evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.diagnostic_selection == 'session-isolation' && 'XianxiaReader-session-isolation' || inputs.diagnostic_selection == 'continuous-return' && 'XianxiaReader-continuous-return' || inputs.diagnostic_selection == 'epub-ready-control' && 'XianxiaReader-epub-ready-control' || 'XianxiaReader-position-isolation' }}
+          name: ${{ inputs.diagnostic_selection == 'session-lifecycle' && 'XianxiaReader-session-lifecycle' || inputs.diagnostic_selection == 'session-isolation' && 'XianxiaReader-session-isolation' || inputs.diagnostic_selection == 'continuous-return' && 'XianxiaReader-continuous-return' || inputs.diagnostic_selection == 'epub-ready-control' && 'XianxiaReader-epub-ready-control' || 'XianxiaReader-position-isolation' }}
           retention-days: 7
           if-no-files-found: warn
           path: |
@@ -255,7 +262,7 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'session-isolation' }}
+    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
     # The last cold native build reached its first test after28minutes.

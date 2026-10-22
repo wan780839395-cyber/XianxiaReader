@@ -10,8 +10,8 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 
-from check_architecture import ROOT
-from verify_reader_sessions import CONTROL, LOGIC_TESTS, NATIVE_TESTS, verify_logic, verify_native
+from check_architecture import ROOT, yaml
+from verify_reader_sessions import CONTROL, LOGIC_TESTS, NATIVE_TESTS, TEST_CLASSES, verify_logic, verify_native
 from plan_validation import plan
 
 
@@ -22,7 +22,7 @@ class SessionEvidenceTests(unittest.TestCase):
         self.root = Path(folder.name)
         self.suite = ET.Element("testsuite", tests=str(len(LOGIC_TESTS)), errors="0", failures="0")
         for name in sorted(LOGIC_TESTS):
-            ET.SubElement(self.suite, "testcase", classname="ReaderSessionsTests.ReaderSessionStateTests", name=name)
+            ET.SubElement(self.suite, "testcase", classname="ReaderSessionsTests." + TEST_CLASSES[name], name=name)
         (self.root / "dependencies.json").write_text(json.dumps(dict(name="ReaderSessions", dependencies=[])))
 
     def logic(self, suite=None):
@@ -31,13 +31,14 @@ class SessionEvidenceTests(unittest.TestCase):
         return verify_logic(self.root)
 
     def test_logic_requires_exact_contracts_and_no_external_dependencies(self):
-        self.assertEqual(self.logic()["passed"], 6)
-        for mode in ["missing", "duplicate", "extra", "wrong-class", "failed", "skipped"]:
+        self.assertEqual(self.logic()["passed"], len(LOGIC_TESTS))
+        for mode in ["missing", "duplicate", "extra", "wrong-class", "moved-class", "failed", "skipped"]:
             suite = deepcopy(self.suite)
             if mode == "missing": suite.remove(suite[0])
             elif mode == "duplicate": suite.append(deepcopy(suite[0]))
             elif mode == "extra": ET.SubElement(suite, "testcase", name="testOther")
             elif mode == "wrong-class": suite[0].set("classname", "Other")
+            elif mode == "moved-class": suite[0].set("classname", "ReaderSessionsTests.ReaderSessionStateTests" if "Lifecycle" in suite[0].get("classname") else "ReaderSessionsTests.ReaderSessionLifecycleTests")
             else: ET.SubElement(suite[0], "failure" if mode == "failed" else "skipped")
             with self.subTest(mode=mode), self.assertRaises(ValueError): self.logic(suite)
         for module in ["ReadiumToolkit", "XianxiaCore"]:
@@ -96,6 +97,17 @@ class SessionEvidenceTests(unittest.TestCase):
             for case in selected:
                 cls, name = case.split("/")
                 self.assertIn("func " + name + "(", (ROOT / f"Tests/iOS/{cls}.swift").read_text(encoding="utf-8"))
+        workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        job = workflow["jobs"]["reader-positions"]
+        self.assertIn("== 'session-lifecycle'", job["if"])
+        self.assertIn("!= 'session-lifecycle'", workflow["jobs"]["core-tests"]["if"])
+        steps = {step.get("name"): step for step in job["steps"]}
+        old_control = steps["Validate old callback control and focused session lifecycle"]
+        self.assertNotIn("session-lifecycle", old_control["if"])
+        positive = steps["Validate only the existing session lifecycle cases"]
+        self.assertIn("ci_reader_diagnostic.sh session-isolation", positive["run"])
+        self.assertNotIn("ci_reader_session_control", positive["run"])
+        self.assertIn("verify_reader_sessions.py candidate", positive["run"])
 
     def test_new_session_target_plans_fast_contracts_before_native_and_full_gate_retains_them(self):
         result = plan(["Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift"])

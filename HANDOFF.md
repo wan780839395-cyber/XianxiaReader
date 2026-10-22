@@ -1,4 +1,16 @@
-# 当前断点：R4a本片完成，下一片R4b（2026-10-22）
+# 当前工作：R4b打开/重试/关闭编排隔离（2026-10-22，用户已授权）
+
+仅推进现有ReaderSessions的编排切片。Foundation合同通过类型化方法引用接收原7个打开异步操作和原同步应用/清理；App保留SDK桥接。VM使用绑定方法值转交open/retryOpen，避免额外异步转发/Task；每次调用的编排上下文保留VM直到结束，VM不持有该上下文形成环。原阶段顺序、await后检查、字体失败降级、取消与普通失败区分、retry完整close后清错、close最终位置先接收再失效全部保留。R4a回调门/位置/字体事务和Core/Adapter/Vendor/锁不改。
+
+源码及合同入口已写，尚未编译/验证：新增ReaderSessionLifecycle.swift、App/Reader/ReaderSessionHost.swift、8项ReaderSessionLifecycleTests；VM只替换原open/retry/close块为绑定入口与同步桥接工厂，其余方法不改。沿用既有包/target/架构区域，新增session-lifecycle choice只跑14独立+原13定向，不执行旧负对照；原生测试不修改、完整计数191不变。详细合同见Documentation/READER_SESSION_LIFECYCLE_ISOLATION.md。下一步先Windows语法/工具/静态顺序审阅，通过后冻结再派一次CI；语法不当编译。
+
+Windows首检已通过：470 Swift语法新增0（54既有Vendor限制），Python83中76通过/7 POSIX跳过；工具新增核新choice不会执行旧负对照，独立14合同按各自类精确验收。此后仅修测试final-close observer的局部强引用为bookID值，避免fixture持有自身；不影响合同/入口，冻结前保留对其静态复核。当前无Swift编译/原生新结果，不记通过。
+
+基线fd259b0f1a93df774c51fc74f1e521fc2254a06a；已核591运行输入与保存检查点一致、1203路径保护基线build/maintenance/R4b-20261022/before.json，普通HEAD/index不动，无旧运行观察进程。实现前已读4文档、实际源码、Git状态与原件；R4a真实6+13及旧1负保留。只跑新增包内编排合同与原13生命周期回归，不重跑旧负对照、Readium19、完整191或Release/IPA；先本地静态/工具，再冻结一次定向CI。原生准备成本与用例执行分记；发现其他边界失败先留证、不扩修。
+
+以下为R4a已保存结果及历史，不覆盖本轮继续指令。
+
+# 上一断点：R4a本片完成，下一片R4b（2026-10-22）
 
 用户当前授权的会话归属与关闭失效切片已完成，实现/独立包编译/原生接线编译/定向验收通过；停在此边界，不自动混入打开/重试/关闭编排、I5或新增产品。电脑保持开机。下一片R4b保留原await/同步发布与现有定位；所有后续产品计划仍在ROADMAP/READING_FEATURE_IDEAS，未提前实现。
 

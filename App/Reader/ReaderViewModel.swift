@@ -139,81 +139,73 @@ enum ReaderMode: CaseIterable, Hashable {
         }
     }
 
-    func open() async {
-        guard let engine, let requestID = sessions.begin(bookID: book.id) else { return }
-        bindEngineCallbacks(engine, owner: requestID)
-        fonts.beginSession(requestID)
-        openStatus = "正在读取阅读设置…"
-        positions.clearSaveFailure()
-        do {
-            let restoredAppearance = try await services.readerSettings.readingAppearance()
-            try Task.checkCancellation()
-            guard openRequestID == requestID else { throw CancellationError() }
-            openStatus = "正在准备字体…"
-            do {
-                let loaded = try await fonts.loadResources()
-                try Task.checkCancellation()
-                guard openRequestID == requestID else { throw CancellationError() }
-                try fonts.commitOpening(loaded, session: requestID)
-            } catch is CancellationError { throw CancellationError() }
-            catch {
-                guard openRequestID == requestID else { throw CancellationError() }
-                try fonts.reportOpeningFailure(error.localizedDescription, session: requestID)
-            }
-            try engine.fontProvider?.setReadingFonts(fonts.resources)
-            fonts.markResourcesInstalled()
-            try engine.appearanceProvider?.setAppearance(effectiveAppearance(restoredAppearance))
-            appearance = restoredAppearance
-            openStatus = "正在恢复阅读位置…"
-            let restoredInteraction = try await services.readerSettings.readingInteraction()
-            try Task.checkCancellation()
-            guard openRequestID == requestID else { throw CancellationError() }
-            try applyInteraction(restoredInteraction)
-            interaction = restoredInteraction
-            let restored = try await services.repository.position(for: book.id)
-            chapters = try await services.repository.chapters(for: book.id)
-            bookmarks = try await services.repository.bookmarks(for: book.id)
-            try Task.checkCancellation()
-            guard openRequestID == requestID else { throw CancellationError() }
-            openStatus = "正在排版书籍…"
-            try await engine.open(book: book, fileURL: services.files.resolve(book.filePath), position: restored)
-            try Task.checkCancellation()
-            guard openRequestID == requestID else { throw CancellationError() }
-            if let currentChapters = engine.currentChapters { chapters = currentChapters }
-            scrolling = restoredInteraction.continuousScrolling && engine.supportsContinuousScrolling
-            if scrolling { engine.setContinuousScrolling(true) }
-            position = engine.currentPosition
-            isReady = true
-        } catch is CancellationError {
-            guard openRequestID == requestID else { return }
-            engine.close()
-            sessions.invalidate()
-        } catch {
-            guard openRequestID == requestID else { return }
-            openFailure = error.localizedDescription
-        }
-    }
+    // Bound methods preserve the caller's task and avoid an async forwarding
+    // wrapper. The transient lifecycle retains this model for that invocation.
+    var open: @MainActor () async -> Void { makeSessionLifecycle().open }
+    var retryOpen: @MainActor () async -> Void { makeSessionLifecycle().retryOpen }
+    func close() { makeSessionLifecycle().close() }
 
-    func retryOpen() async {
-        guard engine != nil else { return }
-        close()
-        openFailure = nil
-        await open()
-    }
-
-    func close() {
-        positions.invalidateSave()
-        fonts.close()
-        fontImportTask?.cancel(); fontImportTask = nil
-        fontPickerCoordinator?.invalidate(); fontPickerCoordinator = nil
-        choosingFont = false
-        navigation.close()
-        // Allow the engine's final position callback before invalidating this session.
-        engine?.close()
-        sessions.invalidate()
-        isReady = false
-        automaticScrollState = .stopped
-        automaticScrollPresented = false
+    private func makeSessionLifecycle() -> ReaderSessionLifecycle<ReaderSessionHost> {
+        let engine = engine
+        return ReaderSessionLifecycle(state: sessions, host: ReaderSessionHost(
+            bookID: book.id, book: book,
+            readAppearance: services.readerSettings.readingAppearance,
+            loadFonts: fonts.loadResources,
+            readInteraction: services.readerSettings.readingInteraction,
+            readPosition: services.repository.position(for:),
+            readChapters: services.repository.chapters(for:),
+            readBookmarks: services.repository.bookmarks(for:),
+            openEngine: engine?.open(book:fileURL:position:),
+            resolveFile: { try self.services.files.resolve(self.book.filePath) },
+            begin: { owner in
+                if let engine { self.bindEngineCallbacks(engine, owner: owner) }
+                self.fonts.beginSession(owner)
+            },
+            showStage: { stage in
+                switch stage {
+                case .settings: self.openStatus = "正在读取阅读设置…"
+                case .fonts: self.openStatus = "正在准备字体…"
+                case .position: self.openStatus = "正在恢复阅读位置…"
+                case .layout: self.openStatus = "正在排版书籍…"
+                }
+            },
+            clearSaveFailure: positions.clearSaveFailure,
+            commitFonts: fonts.commitOpening(_:session:),
+            reportFontFailure: fonts.reportOpeningFailure(_:session:),
+            applyAppearance: { restored in
+                try engine?.fontProvider?.setReadingFonts(self.fonts.resources)
+                self.fonts.markResourcesInstalled()
+                try engine?.appearanceProvider?.setAppearance(self.effectiveAppearance(restored))
+                self.appearance = restored
+            },
+            applyInteraction: { restored in
+                try self.applyInteraction(restored)
+                self.interaction = restored
+            },
+            publishChapters: { self.chapters = $0 },
+            publishBookmarks: { self.bookmarks = $0 },
+            publishReady: { restored in
+                if let currentChapters = engine?.currentChapters { self.chapters = currentChapters }
+                self.scrolling = restored.continuousScrolling && engine?.supportsContinuousScrolling == true
+                if self.scrolling { engine?.setContinuousScrolling(true) }
+                self.position = engine?.currentPosition
+                self.isReady = true
+            },
+            publishOpenFailure: { self.openFailure = $0 },
+            invalidatePositionCapture: positions.invalidateSave,
+            closeFonts: {
+                self.fonts.close()
+                self.fontImportTask?.cancel(); self.fontImportTask = nil
+                self.fontPickerCoordinator?.invalidate(); self.fontPickerCoordinator = nil
+                self.choosingFont = false
+            },
+            closeNavigation: navigation.close,
+            closeEngine: { engine?.close() },
+            publishClosed: {
+                self.isReady = false
+                self.automaticScrollState = .stopped
+                self.automaticScrollPresented = false
+            }))
     }
 
     /// A covered navigator may still be rebuilding its DOM. Commit the settings
