@@ -1,0 +1,83 @@
+{
+  "recordedAtUTC": "2026-10-22T15:26:02.923646+00:00",
+  "parent": "07e11c4777a0f4d7145154c11db884ca7cbd73c8",
+  "runtimeInputCount": 617,
+  "runtimeChanges": [
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
+    "scripts/test_reader_positions_tools.py",
+    "scripts/verify_reader_positions.py"
+  ],
+  "otherRuntimeInputsUnchanged": 612,
+  "projections": [
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "releaseNormalizedIdentical": true,
+      "multilineScriptsIdentical": true,
+      "releaseByteIdentical": true,
+      "releaseNormalizedSHA256": "40beeaa722f2e35acd5d5c0b3500efd19c21c285b3c913e97cd75e13ad03ea3f"
+    },
+    {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "releaseNormalizedIdentical": true,
+      "multilineScriptsIdentical": true,
+      "releaseByteIdentical": true,
+      "releaseNormalizedSHA256": "b76f2a34bc70cbddf4689d63ce1fa0f999eba2d02410a8485b0489879ab558be"
+    }
+  ],
+  "upstreamOnlyOneDigestChanged": true,
+  "sDiagnosticsAndAlgorithmSuffixIdentical": true,
+  "xctestMethods": 35,
+  "changedXCTestMethods": [
+    "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+  ],
+  "otherXCTestMethodsUnchanged": 34,
+  "originalBudgetCountsIdentical": true,
+  "previousRawEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "ciDispatches": 0,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "implemented": true,
+  "localStaticPassed": true,
+  "swiftGrammarFiles": 484,
+  "swiftGrammarAddedDiagnostics": 0,
+  "pythonTests": {
+    "executed": 15,
+    "passed": 14,
+    "skipped": 1,
+    "skipReason": "POSIX fixture not executable on Windows"
+  },
+  "swiftMechanicsExecuted": false,
+  "smokeAccepted": false,
+  "oldSFinalRejectionProven": false,
+  "oldFullRootCauseProven": false,
+  "fullReexecuted": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "lastNativeSource": "2274ba253c1d172edbfb05d2efa6ebeba0acc5fd",
+  "lastNativeRun": 39793517830,
+  "lastNativePassed": 0,
+  "lastNativeExecuted": 1,
+  "evidence": [
+    {
+      "path": "build/maintenance/I6-smoke-admission-20261022/before.json",
+      "sha256": "b8f9a89e87c3ae2fa3335bafbed0ca12dffe161d6a4082e1f085f03e7646cf5f"
+    },
+    {
+      "path": "build/maintenance/I6-smoke-admission-20261022/scope-audit.json",
+      "sha256": "2cf1bea33c28083485e1a96cf9f22e66e804596e5f9d789693ad6eac10c7818e"
+    },
+    {
+      "path": "build/maintenance/I6-smoke-admission-20261022/local-check.log",
+      "sha256": "05c894e72f9f3e46142180c4dbc3f112b71eb9b9758bce1d34a721194f96cde6"
+    },
+    {
+      "path": "build/maintenance/I6-smoke-admission-20261022/local-tool-tests.log",
+      "sha256": "4b5c516c2656496498ae7b98ddf9e39cb5d4510ba9ceed046961e2230eb805e9"
+    }
+  ]
+}

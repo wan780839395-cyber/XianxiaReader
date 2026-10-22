@@ -174,7 +174,7 @@ def verify_viewport_smoke(folder, status=0):
         raise ValueError("Require exactly one real smoke cleanup record, not an ordinary case pass")
     row = rows[0]
     if (row.get("stage") != 4 or row.get("failure") != "none"
-            or any(row.get(key) != [] for key in ["active", "tasks", "waiters"])):
+            or any(row.get(key) != [] for key in ["active", "tasks", "waiters", "queued", "running"])):
         raise ValueError("Smoke must finish its safe sequence and clean all registered work")
     events = row.get("events", [])
     if (not row.get("nonce") or not 1 <= len(events) <= 128
@@ -216,8 +216,86 @@ def verify_viewport_smoke(folder, status=0):
     if (len(closing) != 1 or len(abort) != 1 or abort[0].get("count") != "0"
             or int(closing[0]["sequence"]) >= int(abort[0]["sequence"])):
         raise ValueError("Require explicit terminal close and abort cleanup receipts")
+    seq = lambda e: int(e["sequence"])
+    armed = [e for e in events if e.get("kind") == "admission-armed"]
+    complete = [e for e in events if e.get("kind") == "admission-complete"]
+    if (len(armed) != 1 or len(complete) != 1 or len(measures) != 1
+            or not seq(sample_finished) < seq(armed[0]) < seq(complete[0]) < seq(closing[0])
+            or any(complete[0].get(k) != "0" for k in ["queued", "running", "waiters"])):
+        raise ValueError("Require one primary M and a completed admission interval after S")
+    arm, end = armed[0], complete[0]
+    primary = measures[0]["requestID"]
+    owner_keys = ["reader", "epoch", "slot", "webView", "index", "anchor"]
+    before_m = event(primary, "measure-before-commit")
+    if (any(not arm.get(k) or before_m.get(k) != arm[k] for k in owner_keys)
+            or not float(arm.get("targetWidth", "nan")) > 0
+            or not abs(float(before_m.get("dom.width", "nan")) - float(arm["targetWidth"])) < 2):
+        raise ValueError("Primary M must use the original owner/anchor and the real target DOM")
+    controlled = [e for e in events if seq(arm) < seq(e) < seq(end)]
+    starts = [e for e in controlled if e.get("kind") == "work-start"]
+    if not starts or len({e["requestID"] for e in starts}) != len(starts):
+        raise ValueError("Every controlled SDK work request needs one lifetime start")
+    records = {}
+    for start in starts:
+        request = start["requestID"]
+        queued = event(request, "queued")
+        point = queued.get("gate")
+        if point not in ["measure-before-capture", "sample-before-capture"]:
+            raise ValueError("Admission must precede context capture")
+        entry = event(request, point)
+        admitted = event(request, "admitted")
+        kind = "measure" if point == "measure-before-capture" else "sample"
+        captured = event(request, kind + "-start")
+        terminal = event(request, kind + "-finished")
+        finished = event(request, "work-finished")
+        if (not seq(arm) < seq(start) < seq(entry) < seq(queued) < seq(admitted) < seq(captured)
+                < seq(terminal) < seq(finished) < seq(end)
+                or admitted.get("point") != point or admitted.get("disposition") != "run"
+                or finished.get("captured") != "true"
+                or any(entry.get(k) != arm[k] or captured.get(k) != arm[k] for k in ["reader", "epoch"])):
+            raise ValueError("Need entry permission before capture and the actual SDK terminal receipt")
+        if (any(not entry.get(k) or entry.get(k) != captured.get(k) for k in ["reader", "epoch", "slot", "webView", "index"])
+                or request == primary and any(captured.get(k) != arm[k] for k in owner_keys)):
+            raise ValueError("Captured owner must match the admitted request and primary anchor")
+        records[request] = dict(queued=queued, admitted=admitted, finished=finished)
+    if primary not in records:
+        raise ValueError("The primary M may not bypass admission")
+    # No admitted/queued/domain-start/work-finished may hide outside a work lifetime.
+    controlled_kinds = {"queued", "admitted", "measure-start", "sample-start", "work-finished",
+                        "measure-before-capture", "sample-before-capture"}
+    if any(e["requestID"] not in records for e in controlled if e.get("kind") in controlled_kinds):
+        raise ValueError("Unregistered work bypassed the controlled interval")
+    ordered = sorted(records, key=lambda request: seq(records[request]["admitted"]))
+    expected = [primary] + sorted((request for request in records if request != primary),
+                                  key=lambda request: seq(records[request]["queued"]))
+    if ordered != expected or any(seq(records[a]["finished"]) >= seq(records[b]["admitted"])
+                                  for a, b in zip(ordered, ordered[1:])):
+        raise ValueError("Drain must admit one fresh request after the previous SDK work finishes")
+    pending = set()
+    for e in events:
+        kind, request = e.get("kind"), e["requestID"]
+        if kind in ["queued", "admitted"] and not seq(arm) < seq(e) < seq(end):
+            raise ValueError("Entry permissions escaped the controlled interval")
+        if kind in ["queued", "held"]:
+            key = (request, e.get("gate"))
+            if key in pending: raise ValueError("Repeated continuation registration")
+            pending.add(key)
+            if len(pending) > 32: raise ValueError("Shared entry/commit waiter budget exceeded")
+        elif kind in ["admitted", "released"]:
+            point = e.get("point")
+            if point is None and kind == "released":
+                point = "sample-before-read" if request == samples[0]["requestID"] else "measure-before-commit"
+            key = (request, point)
+            if key not in pending: raise ValueError("Permission did not match the registered gate point")
+            pending.remove(key)
+        if kind in ["admission-complete", "closing"] and pending:
+            raise ValueError("Admission or cleanup declared completion with pending continuations")
+        if seq(e) > seq(closing[0]) and e.get("outcome") == "committed":
+            raise ValueError("SDK committed after terminal close")
+    if pending: raise ValueError("Unreleased continuation remains")
     return dict(result, mechanismChecks=6, sdkSampleHeld=1, sdkMeasuresHeld=len(measures),
                 realTerminalReceipts=len(held), cleanupEmpty=True, fixture=row,
+                admissionRequests=len(records), serialDrainVerified=True,
                 conflictReplayExecuted=False, oldFullRootCauseProven=False)
 
 

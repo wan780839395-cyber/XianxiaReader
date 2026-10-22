@@ -418,14 +418,31 @@ public struct EPUBViewportFixtureEvent: Sendable {
         return slot.view.webView.scrollView.contentOffset.y
     }
     private func measure(_ index: Int, slot: Slot, request: UUID) async {
+        #if DEBUG
+            let fixture = viewportFixtureControl
+            let fixtureID = fixture.map { _ in UUID() }
+            var fixtureWorkCaptured = false
+            if let id = fixtureID {
+                fixture?.observe(.init(requestID: id, kind: "work-start", values: fixtureValues(index, slot)))
+            }
+            defer {
+                if let id = fixtureID {
+                    var values = fixtureValues(index, slot); values["captured"] = String(fixtureWorkCaptured)
+                    fixture?.observe(.init(requestID: id, kind: "work-finished", values: values))
+                }
+            }
+            if let fixture, let id = fixtureID {
+                guard await fixture.pause(.init(requestID: id, kind: "measure-before-capture", values: fixtureValues(index, slot))),
+                      !Task.isCancelled, epoch == request, slots[index] === slot else { return }
+            }
+            fixtureWorkCaptured = true
+        #endif
         let anchorJSON: String
         let measuredRevision = viewportRevision
         let measuredAnchor = slot.savedAnchor
         let measuredLocalTop = viewportTop - slot.wrapper.frame.minY
         let measuredAnchorIsCurrent = savedAnchorMatchesViewport(slot, revision: measuredRevision)
         #if DEBUG
-            let fixture = viewportFixtureControl
-            let fixtureID = fixture.map { _ in UUID() }
             let fixtureContext = fixture == nil ? [:] : fixtureValues(index, slot)
             var fixtureOutcome = "not-committed"
             if let id = fixtureID { fixture?.observe(.init(requestID: id, kind: "measure-start", values: fixtureContext)) }
@@ -692,7 +709,32 @@ public struct EPUBViewportFixtureEvent: Sendable {
         return abs(viewportTop - slot.wrapper.frame.minY - savedTop) < 0.5
     }
     func firstVisibleElementLocator() async -> Locator? {
+        #if DEBUG
+            let fixture = viewportFixtureControl
+            let fixtureID = fixture.map { _ in UUID() }
+            let fixtureEntryEpoch = epoch
+            let fixtureEntryIndex = currentIndex
+            let fixtureEntrySlot = slots[currentIndex]
+            var fixtureWorkCaptured = false
+            if let id = fixtureID, let slot = fixtureEntrySlot {
+                fixture?.observe(.init(requestID: id, kind: "work-start", values: fixtureValues(fixtureEntryIndex, slot)))
+            }
+            defer {
+                if let id = fixtureID, let slot = fixtureEntrySlot {
+                    var values = fixtureValues(fixtureEntryIndex, slot); values["captured"] = String(fixtureWorkCaptured)
+                    fixture?.observe(.init(requestID: id, kind: "work-finished", values: values))
+                }
+            }
+            if let fixture, let id = fixtureID, let slot = fixtureEntrySlot {
+                guard await fixture.pause(.init(requestID: id, kind: "sample-before-capture", values: fixtureValues(fixtureEntryIndex, slot))),
+                      !Task.isCancelled, epoch == fixtureEntryEpoch, currentIndex == fixtureEntryIndex,
+                      slots[fixtureEntryIndex] === slot else { return nil }
+            }
+        #endif
         guard let slot = slots[currentIndex], slot.ready, !slot.positioning else { return nil }
+        #if DEBUG
+            fixtureWorkCaptured = true
+        #endif
         let clipTop = max(0, viewportTop - slot.wrapper.frame.minY - slot.view.frame.minY)
         let clipBottom = min(viewportHeight, slot.height - slot.view.frame.minY)
         let request = epoch
@@ -702,8 +744,6 @@ public struct EPUBViewportFixtureEvent: Sendable {
         let moving = automaticScrolling
         slot.anchorDiagnostic = "requested local=\(localTop) clip=\(clipTop)...\(clipBottom) revision=\(revision)"
         #if DEBUG
-            let fixture = viewportFixtureControl
-            let fixtureID = fixture.map { _ in UUID() }
             var fixtureInputs = fixture == nil ? [:] : fixtureValues(index, slot)
             if fixture != nil {
                 // Frozen inputs to this request, before the S suspension.

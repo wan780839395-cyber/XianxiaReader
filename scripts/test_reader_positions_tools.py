@@ -184,33 +184,69 @@ class PositionEvidenceTests(unittest.TestCase):
             events.append(dict(requestID=request, kind=kind, sequence=str(len(events) + 1), nonce="fixture", **values))
         add("S", "sample-before-read"); add("S", "held", gate="sample-before-read")
         add("S", "released", disposition="run"); add("S", "sample-finished", outcome="committed")
-        add("M", "measure-before-commit"); add("M", "held", gate="measure-before-commit")
+        owner = dict(reader="reader", epoch="epoch", slot="slot", webView="web", index="1", anchor="A")
+        neighbor = dict(owner, slot="neighbor", webView="neighbor-web", index="0")
+        add("arm", "admission-armed", **owner, targetWidth="874")
+        for request, kind, values in [("N", "measure", neighbor), ("M", "measure", owner)]:
+            add(request, "work-start", **values)
+            add(request, kind + "-before-capture", **values)
+            add(request, "queued", gate=kind + "-before-capture")
+        add("M", "admitted", point="measure-before-capture", disposition="run")
+        add("M", "measure-start", **owner)
+        add("M", "measure-before-commit", **owner, **{"dom.width":"874"})
+        add("M", "held", gate="measure-before-commit")
+        add("P", "work-start", **owner)
+        add("P", "sample-before-capture", **owner)
+        add("P", "queued", gate="sample-before-capture")
         add("M", "released", disposition="run")
         flags = dict.fromkeys(["ownerMatches", "anchorEqual", "anchorCurrentAtStart", "anchorCurrentNow",
                                "revisionMatches", "localMatches", "mayRestore"], "true")
         add("M", "measure-guard", **flags); add("M", "measure-finished", outcome="committed")
+        add("M", "work-finished", captured="true")
+        for request, kind, values in [("N", "measure", neighbor), ("P", "sample", owner)]:
+            add(request, "admitted", point=kind + "-before-capture", disposition="run")
+            add(request, kind + "-start", **values)
+            add(request, kind + "-finished", outcome="committed")
+            add(request, "work-finished", captured="true")
+        add("done", "admission-complete", queued="0", running="0", waiters="0")
         add("close", "closing"); add("abort", "abort-issued", count="0")
-        row = dict(nonce="fixture", stage=4, failure="none", active=[], tasks=[], waiters=[], events=events)
+        row = dict(nonce="fixture", stage=4, failure="none", active=[], tasks=[], waiters=[], queued=[], running=[], events=events)
         marker = "CONTINUOUS_FIXTURE_MECHANICS passed=6 liveSDKReceiptsRequired=true\n"
         def write(value, mechanics=marker):
             (self.root / "logs/reader-diagnostic.log").write_text(log + "\n" + mechanics + "CONTINUOUS_VIEWPORT_FIXTURE " + json.dumps(value) + "\n")
         write(row)
-        self.assertEqual(verify_viewport_smoke(self.root)["realTerminalReceipts"], 2)
+        result = verify_viewport_smoke(self.root)
+        self.assertEqual(result["realTerminalReceipts"], 2)
+        self.assertEqual(result["admissionRequests"], 3)
+        self.assertTrue(result["serialDrainVerified"])
         with self.assertRaises(ValueError): verify_viewport_smoke(self.root, status=65)
         for mechanics in ["", marker + marker]:
             write(row, mechanics)
             with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
         for key, value in [("stage", 3), ("failure", "late-commit"), ("active", ["S"]),
-                           ("tasks", ["T"]), ("waiters", ["M"])]:
+                           ("tasks", ["T"]), ("waiters", ["M"]), ("queued", ["N"]), ("running", ["P"])]:
             bad = deepcopy(row); bad[key] = value; write(bad)
             with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+        ix = lambda request, kind: next(i for i, e in enumerate(events) if e["requestID"] == request and e["kind"] == kind)
         for index, key, value in [(1,"gate","cache-hit"), (2,"disposition","abort"),
-                                   (3,"outcome","cached"), (7,"mayRestore","false"),
-                                   (0,"nonce","other"), (8,"sequence","1")]:
+                                   (3,"outcome","cached"), (ix("M","measure-guard"),"mayRestore","false"),
+                                   (0,"nonce","other"), (ix("M","work-finished"),"captured","false"),
+                                   (ix("M","admitted"),"point","measure-before-commit"),
+                                   (ix("N","measure-start"),"epoch","other"),
+                                   (ix("M","measure-before-commit"),"dom.width","402")]:
             bad = deepcopy(row); bad["events"][index][key] = value; write(bad)
             with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
         for index in range(len(events)):
             bad = deepcopy(row); bad["events"].pop(index); write(bad)
+            with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+        # Preserve sequential numbering so these fail on the causal contract,
+        # rather than merely noticing a missing/repeated sequence number.
+        for moved, before in [(ix("M","measure-start"), ix("M","admitted")),
+                               (ix("N","admitted"), ix("M","work-finished")),
+                               (ix("P","admitted"), ix("N","admitted"))]:
+            bad = deepcopy(row); event = bad["events"].pop(moved); bad["events"].insert(before, event)
+            for i, event in enumerate(bad["events"]): event["sequence"] = str(i + 1)
+            write(bad)
             with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
 
     def test_viewport_smoke_route_is_single_case_and_passes_runner_environment(self):

@@ -1,3 +1,19 @@
+# smoke统一准入候选完成：仅本地通过，零CI（2026-10-22）
+
+2026-10-22 smoke统一准入/逐条排空候选已实现，本地检查通过，零CI：捕获前管理同reader/epoch的measure与sample；主M实际退出后其余请求逐条新捕获，许可按入场/提交点区分，取消清理跟踪至真实终结。只改5项运行输入，其余612保持；Release投影、原脚本、S诊断、定位算法、断言及预算保持。484语法/静态通过、14工具通过/1 POSIX跳过；未Swift编译/原生运行，旧smoke0/1、full191/192、I6/Release/手机缺口及Build30不变。见[本片实现与验证边界](Documentation/I6_SMOKE_ADMISSION.md)。
+
+实现及本地结果已收齐，开始最终保存断点。恢复目录build/maintenance/I6-smoke-admission-20261022，基线07e11c47；核final-checkpoint、result、scope-audit和完整日志，不用旧CI39793517830计给新源。没有原生执行/新IPA，不自动派CI或做冲突对照；旧S第三次拒绝及full根因均未证。普通HEAD/index、Build30和既有原件保持，不关机。
+
+---
+
+# smoke统一准入实施进行中：本地检查、零CI（2026-10-22）
+
+用户已授权按最小方案实施捕获前统一准入及主M后逐条排空；不派CI、不改定位算法，原断言/预算/S诊断保持。基线07e11c47，617运行输入零漂移，before在build/maintenance/I6-smoke-admission-20261022。范围限InfiniteScrollView DEBUG入口、ReaderRenderingTests私有夹具及同例、Vendor该文件摘要、原位置证据校验器与工具正反例5项。
+
+SDK work生命周期从入口到实际defer终结；许可按请求+入场/提交点区分，合计32waiter/128事件不变。S阶段入口立即放行，主S和原capture完成后才关闭入场；现有S采样诊断/原JS/guard保留。主M真实完成后其余操作逐条新捕获，原30秒/100ms横屏等待内确认排空及原字可见，原竖屏不注入。当前5项源码已接线，开始本地语法及受影响工具检查；Swift编译/原生未执行，不能引用旧CI为新源通过。普通HEAD/index及Build30保持，不关机。
+
+---
+
 # smoke安全顺序审阅已保存：最小方案明确，未实施/零CI（2026-10-22）
 
 2026-10-22 smoke安全顺序审阅完成，未实施、零CI：已证旧宽M1绕过屏障使revision/local改变，后续native采样又改写锚点指纹；held M2的原恢复guard因而失效。最小方案是在捕获上下文前，对受控reader/epoch的measure/sample统一准入，主M实际完成后逐条新捕获排空；保留原提交屏障/guard、S诊断、断言及全部预算。不能只扩大旧结果屏障或放宽guard。617运行输入保持，旧smoke0/1及full191/192未变。见[审阅与方案](Documentation/I6_SMOKE_SAFE_ORDER_REVIEW.md)。

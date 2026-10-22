@@ -12,6 +12,7 @@ import XianxiaCore
 @MainActor private final class ViewportFixture: ReadiumReaderEngine.ViewportFixtureControl {
     typealias Event = ReadiumReaderEngine.ViewportFixtureEvent
     private enum Failure: Error { case invalid(String) }
+    private struct GateKey: Hashable { let requestID: UUID; let point: String }
     private weak var engine: ReadiumReaderEngine?
     private weak var window: UIWindow?
     private let originalFrame: CGRect
@@ -27,8 +28,13 @@ import XianxiaCore
     private var finished: [UUID: Event] = [:]
     private var dom: [UUID: Event] = [:]
     private var guards: [UUID: Event] = [:]
-    private var waiters: [UUID: CheckedContinuation<Bool, Never>] = [:]
-    private var permits: Set<UUID> = []
+    private var waiters: [GateKey: CheckedContinuation<Bool, Never>] = [:]
+    private var permits: Set<GateKey> = []
+    private var workActive: [UUID: Event] = [:]
+    private var entryQueue: [Event] = []
+    private var entryRunning: UUID?
+    private var primary: UUID?
+    private var admissionActive = false
     private var tasks: [UUID: Task<Void, Never>] = [:]
     private var auxiliaryStarted = false
     private var sampleOuterY: Double?
@@ -42,7 +48,13 @@ import XianxiaCore
     var onHeld: (() -> Void)?
     var onEvidence: ((XCTAttachment) -> Void)?
     var waiterCount: Int { waiters.count }
-    var sampleHeld: Bool { sample.map { waiters[$0.requestID] != nil } ?? false }
+    var sampleHeld: Bool { sample.map { waiters[GateKey(requestID: $0.requestID, point: "sample-before-read")] != nil } ?? false }
+    var needsDOMReadiness: Bool { stage == 2 && primary == nil }
+    var queuedWorkCount: Int { entryQueue.count }
+    var admittedWorkID: UUID? { entryRunning }
+    private var isQuiescent: Bool {
+        entryQueue.isEmpty && entryRunning == nil && workActive.isEmpty && active.isEmpty && waiters.isEmpty
+    }
 
     init(engine: ReadiumReaderEngine? = nil, window: UIWindow? = nil) {
         self.engine = engine; self.window = window; originalFrame = window?.frame ?? .zero
@@ -50,16 +62,25 @@ import XianxiaCore
 
     func armSample(outerY: Double) { armed = true; sampleOuterY = outerY }
     func bindActualScroll(outerY: Double) { sampleOuterY = outerY }
-    func armMeasures(width: Double, owner: [String: String]) { measureWidth = width; self.owner = owner }
+    func armMeasures(width: Double, owner: [String: String]) {
+        measureWidth = width; self.owner = owner; admissionActive = true
+        append(Event(requestID: UUID(), kind: "admission-armed", values: owner.merging(["targetWidth":String(width)]) { _, new in new }))
+    }
 
     func observe(_ event: Event) {
-        if event.kind.hasSuffix("-start") {
+        if event.kind == "work-start" { workActive[event.requestID] = event }
+        if event.kind == "work-finished" {
+            workActive.removeValue(forKey: event.requestID)
+            if entryRunning == event.requestID { entryRunning = nil }
+        }
+        if event.kind == "measure-start" || event.kind == "sample-start" {
             guard active.count < 128 else { fail("request-overflow"); return }
             active[event.requestID] = event
         }
-        if event.kind.hasSuffix("-finished") { active.removeValue(forKey: event.requestID) }
+        let terminal = event.kind == "measure-finished" || event.kind == "sample-finished"
+        if terminal { active.removeValue(forKey: event.requestID) }
         guard armed else { return }
-        if event.kind.hasSuffix("-finished") {
+        if terminal {
             finished[event.requestID] = event
             if closed, event.values["outcome"] == "committed" { fail("commit-after-close", closeReader: false) }
         }
@@ -67,7 +88,10 @@ import XianxiaCore
         if event.kind == "measure-guard" { guards[event.requestID] = event }
         if event.values["anchor"] == "serialization-error" { fail("anchor-serialization") }
         append(event)
-        if active.count > 128 || finished.count > 128 || dom.count > 128 { fail("request-overflow") }
+        if Set(active.keys).union(workActive.keys).count > 128 || finished.count > 128 || dom.count > 128 { fail("request-overflow") }
+        if admissionActive, !closed, event.kind == "work-finished", event.values["captured"] != "true" {
+            fail("admitted-work-not-captured")
+        }
     }
 
     private func append(_ event: Event) {
@@ -84,28 +108,48 @@ import XianxiaCore
         guard !closed else { return false }
         if Task.isCancelled { cancelled(); return false }
         guard armed else { return true }
+        if event.kind == "measure-before-capture" || event.kind == "sample-before-capture" {
+            guard admissionActive else { return true }
+            guard ["reader", "epoch"].allSatisfy({ event.values[$0] == owner[$0] }), workActive[event.requestID] != nil else {
+                fail("entry-owner-or-lifetime-mismatch"); return false
+            }
+            return await awaitPermit(event, entry: true)
+        }
         let matchingSample = event.kind == "sample-before-read" && sample == nil
             && event.values["index"] == "1" && event.values["ready"] == "true"
             && event.values["moving"] == "false" && event.values["positioning"] == "false"
             && abs((Double(event.values["outerY"] ?? "") ?? -.infinity) - (sampleOuterY ?? .infinity)) < 0.5
-        let matchingMeasure = event.kind == "measure-before-commit" && !draining
-            && measureWidth.map { abs((Double(event.values["dom.width"] ?? "") ?? -.infinity) - $0) < 2 } == true
-            && ["reader", "epoch", "slot", "webView", "index"].allSatisfy { event.values[$0] == owner[$0] }
+        let matchingMeasure = event.kind == "measure-before-commit" && admissionActive && !draining && event.requestID == primary
+        if matchingMeasure {
+            guard measureWidth.map({ abs((Double(event.values["dom.width"] ?? "") ?? -.infinity) - $0) < 2 }) == true,
+                  ["reader", "epoch", "slot", "webView", "index", "anchor"].allSatisfy({ event.values[$0] == owner[$0] }) else {
+                fail("primary-M-DOM-or-owner-unqualified"); return false
+            }
+        }
+        if admissionActive, event.kind == "measure-before-commit", entryRunning != event.requestID {
+            fail("measure-bypassed-entry"); return false
+        }
         guard matchingSample || matchingMeasure else { return true }
         if matchingSample { sample = event }
         if matchingMeasure { measures.append(event.requestID) }
+        return await awaitPermit(event, entry: false)
+    }
+
+    private func awaitPermit(_ event: Event, entry: Bool) async -> Bool {
+        let key = GateKey(requestID: event.requestID, point: event.kind)
         let run = await withTaskCancellationHandler {
             await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
                 if closed || Task.isCancelled { continuation.resume(returning: false); return }
-                if permits.contains(event.requestID) { continuation.resume(returning: true); return }
+                if permits.contains(key) { continuation.resume(returning: true); return }
                 guard waiters.count < 32 else {
                     fail("waiter-overflow"); continuation.resume(returning: false); return
                 }
-                guard waiters[event.requestID] == nil else {
+                guard waiters[key] == nil else {
                     fail("duplicate-enter"); continuation.resume(returning: false); return
                 }
-                waiters[event.requestID] = continuation
-                append(Event(requestID: event.requestID, kind: "held", values: ["gate": event.kind]))
+                waiters[key] = continuation
+                if entry { entryQueue.append(event) }
+                append(Event(requestID: event.requestID, kind: entry ? "queued" : "held", values: ["gate": event.kind]))
                 if !closed { onHeld?() }
             }
         } onCancel: { [weak self] in
@@ -121,24 +165,46 @@ import XianxiaCore
     }
 
     func release(_ id: UUID) {
+        resume(id, point: measures.contains(id) ? "measure-before-commit" : "sample-before-read", entry: false)
+    }
+
+    private func resume(_ id: UUID, point: String, entry: Bool) {
         guard !closed else { return }
-        guard permits.count < 128 || permits.contains(id) else { fail("permit-overflow"); return }
+        let key = GateKey(requestID: id, point: point)
+        guard permits.count < 128 || permits.contains(key) else { fail("permit-overflow"); return }
         // Remember a release arriving before enter. Repeated release cannot resume twice.
-        let first = permits.insert(id).inserted
-        let continuation = waiters.removeValue(forKey: id)
-        if first { append(Event(requestID: id, kind: "released", values: ["disposition":"run"])) }
+        let first = permits.insert(key).inserted
+        let continuation = waiters.removeValue(forKey: key)
+        if first { append(Event(requestID: id, kind: entry ? "admitted" : "released", values: ["disposition":"run", "point":point])) }
         continuation?.resume(returning: !closed)
     }
 
-    func drainMeasures() {
+    func admitPrimary(domWidthReady: Bool) -> Bool {
+        // Choose the first target-slot request before it captures anything.
+        guard primary == nil, domWidthReady, let next = entryQueue.first(where: { event in
+            event.kind == "measure-before-capture" && ["slot", "webView", "index"].allSatisfy { event.values[$0] == owner[$0] }
+        }) else { return false }
+        primary = next.requestID; admit(next); return true
+    }
+
+    private func admit(_ event: Event) {
+        guard entryRunning == nil else { fail("overlapping-admission"); return }
+        entryRunning = event.requestID
+        entryQueue.removeAll { $0.requestID == event.requestID }
+        resume(event.requestID, point: event.kind, entry: true)
+    }
+
+    @discardableResult func drainMeasures() -> Bool {
         draining = true
-        for id in measures { release(id) }
+        guard entryRunning == nil else { return false }
+        if let next = entryQueue.first { admit(next); return false }
+        return isQuiescent
     }
 
     func invalidate(_ reason: String) {
         // Initial mount/navigation clear happens before arming; it is not an injected failure.
         guard armed, !cleaning, !closed else { return }
-        if stage == 4 { abort(closeReader: false) }
+        if stage == 4, !admissionActive { abort(closeReader: false) }
         else { fail("owner-invalidated:" + reason, closeReader: false) }
     }
 
@@ -155,6 +221,7 @@ import XianxiaCore
         for task in tasks.values { task.cancel() }
         if closeReader { closeOwnedReader() }
         let pending = waiters; waiters.removeAll()
+        entryQueue.removeAll()
         append(Event(requestID: UUID(), kind: "abort-issued", values: ["count":String(pending.count)]))
         for (_, continuation) in pending { continuation.resume(returning: false) }
     }
@@ -197,7 +264,7 @@ import XianxiaCore
 
     /// Safe order only: S commits at old size, then real resize, M release/receipt/drain.
     /// Called by the original 100ms/30s predicate; never waits on a gate here.
-    func advanceSafeResize(to size: CGSize) throws -> Bool {
+    func advanceSafeResize(to size: CGSize, domWidthReady: Bool = false) throws -> Bool {
         try checkFailure()
         guard let sample else { throw Failure.invalid("missing-S") }
         switch stage {
@@ -205,35 +272,47 @@ import XianxiaCore
             release(sample.requestID); stage = 1
         case 1:
             guard let receipt = finished[sample.requestID] else { return false }
+            guard workActive[sample.requestID] == nil, tasks.isEmpty else { return false }
             guard receipt.values["outcome"] == "committed", receipt.values["anchor"] == originalAnchor,
                   let metadata = dom[sample.requestID],
                   abs((Double(metadata.values["dom.width"] ?? "") ?? -.infinity)
                       - (Double(sample.values["nativeWidth"] ?? "") ?? .infinity)) < 2,
-                  !active.values.contains(where: { $0.kind == "measure-start" }) else {
+                  active.isEmpty, workActive.isEmpty else {
                 fail("safe-S-or-preexisting-measure-unqualified"); try checkFailure(); return false
             }
             armMeasures(width: Double(size.width), owner: receipt.values)
             window?.frame = CGRect(origin: originalFrame.origin, size: size)
             window?.layoutIfNeeded(); stage = 2
         case 2:
-            guard let id = measures.first, let start = active[id] else { return false }
+            if primary == nil { _ = admitPrimary(domWidthReady: domWidthReady); return false }
+            guard let id = measures.first, let start = active[id],
+                  waiters[GateKey(requestID: id, point: "measure-before-commit")] != nil else { return false }
             guard start.values["anchor"] == originalAnchor else {
                 fail("M-did-not-capture-A"); try checkFailure(); return false
             }
             release(id); stage = 3
         case 3:
-            guard let id = measures.first, let receipt = finished[id] else { return false }
+            guard let id = measures.first, let receipt = finished[id], workActive[id] == nil else { return false }
             guard receipt.values["outcome"] == "committed", let decision = guards[id],
                   ["ownerMatches", "anchorEqual", "anchorCurrentAtStart", "anchorCurrentNow", "revisionMatches", "localMatches", "mayRestore"]
                     .allSatisfy({ decision.values[$0] == "true" }) else {
                 fail("safe-M-original-guard-not-qualified"); try checkFailure(); return false
             }
-            drainMeasures()
-            guard measures.allSatisfy({ finished[$0] != nil }) else { return false }
+            guard drainMeasures() else { return false }
             stage = 4
+        case 4:
+            if !isQuiescent { stage = 3; _ = drainMeasures(); return false }
         default: return true
         }
-        return false
+        return stage == 4
+    }
+
+    func acceptVisibleResize() throws -> Bool {
+        try checkFailure()
+        guard admissionActive, stage == 4, isQuiescent else { return false }
+        admissionActive = false
+        append(Event(requestID: UUID(), kind: "admission-complete", values: ["queued":"0", "running":"0", "waiters":"0"]))
+        return true
     }
 
     func cleanUp() {
@@ -248,18 +327,20 @@ import XianxiaCore
     func tearDown() async {
         cleanUp()
         let deadline = Date().addingTimeInterval(3)
-        while (!active.isEmpty || !tasks.isEmpty) && Date() < deadline {
+        while (!active.isEmpty || !workActive.isEmpty || entryRunning != nil || !tasks.isEmpty) && Date() < deadline {
             do { try await Task.sleep(nanoseconds: 100_000_000) }
             catch { XCTFail("Fixture cleanup cancelled: \(error)"); break }
         }
-        if !active.isEmpty || !tasks.isEmpty || !waiters.isEmpty {
-            XCTFail("Fixture cleanup residual requests=\(active.keys) tasks=\(tasks.keys) waiters=\(waiters.keys)")
+        if !isQuiescent || !tasks.isEmpty {
+            XCTFail("Fixture cleanup residual requests=\(active.keys) work=\(workActive.keys) tasks=\(tasks.keys) waiters=\(waiters.keys)")
         }
         if let failure { XCTFail("Viewport fixture: " + failure) }
         do {
             let payload: [String: Any] = ["nonce":nonce, "events":events, "stage":stage,
-                "active":active.keys.map(\.uuidString), "tasks":tasks.keys.map(\.uuidString),
-                "waiters":waiters.keys.map(\.uuidString), "failure":failure ?? "none"]
+                "active":Set(active.keys).union(workActive.keys).map(\.uuidString), "tasks":tasks.keys.map(\.uuidString),
+                "waiters":waiters.keys.map { $0.requestID.uuidString + ":" + $0.point },
+                "queued":entryQueue.map { $0.requestID.uuidString }, "running":entryRunning.map { [$0.uuidString] } ?? [],
+                "failure":failure ?? "none"]
             let data = try JSONSerialization.data(withJSONObject: payload, options: .sortedKeys)
             let text = String(decoding: data, as: UTF8.self)
             let attachment = XCTAttachment(string: text); attachment.name = "continuous-viewport-fixture"
@@ -439,7 +520,16 @@ final class ReaderRenderingTests: XCTestCase {
                 try await waitUntil {
                     #if DEBUG
                         if let fixture, size != originalFrame.size {
-                            guard try fixture.advanceSafeResize(to: size) else { return false }
+                            var ready = false
+                            if fixture.needsDOMReadiness {
+                                let web = try self.resourceWebView(engine, index: 1)
+                                guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else { return false }
+                                let dom = try await domProbe(size.width)
+                                if polls.count == 320 { polls.removeFirst() }
+                                polls.append(["phase":"fixture-width-readiness", "dom":dom])
+                                ready = dom["widthMatches"] as? Bool == true
+                            }
+                            guard try fixture.advanceSafeResize(to: size, domWidthReady: ready) else { return false }
                         }
                     #endif
                     let web = try self.resourceWebView(engine, index: 1)
@@ -451,6 +541,12 @@ final class ReaderRenderingTests: XCTestCase {
                         row["accepted"] = false;polls.append(row);return false
                     }
                     let dom = try await domProbe(size.width);row["dom"] = dom;polls.append(row)
+                    #if DEBUG
+                        if let fixture, size != originalFrame.size {
+                            guard dom["accepted"] as? Bool == true else { return false }
+                            return try fixture.acceptVisibleResize()
+                        }
+                    #endif
                     return dom["accepted"] as? Bool == true
                 }
             } catch {
@@ -2834,20 +2930,32 @@ private extension ReaderRenderingTests {
             let control = ViewportFixture(); control.armSample(outerY: 100)
             let entered = XCTestExpectation(description: "fixture registered continuation")
             let finished = XCTestExpectation(description: "fixture resumed continuation")
+            entered.expectedFulfillmentCount = cancelled ? 2 : 1
+            finished.expectedFulfillmentCount = cancelled ? 2 : 1
             control.onHeld = { entered.fulfill() }
+            if cancelled { control.armMeasures(width: 874, owner: values) }
+            var entryOutcome: Bool?
+            let entryTask: Task<Void, Never>? = cancelled ? Task { @MainActor in
+                let entryID = UUID()
+                control.observe(Event(requestID: entryID, kind: "work-start", values: values))
+                entryOutcome = await control.pause(Event(requestID: entryID, kind: "sample-before-capture", values: values))
+                control.observe(Event(requestID: entryID, kind: "work-finished", values: ["captured":"false"]))
+                finished.fulfill()
+            } : nil
             let id = UUID()
             var outcome: Bool?
             let task = Task { @MainActor in
                 outcome = await control.pause(Event(requestID: id, kind: "sample-before-read", values: values))
                 finished.fulfill()
             }
-            defer { task.cancel(); control.cleanUp() }
+            defer { task.cancel(); entryTask?.cancel(); control.cleanUp() }
             await fulfillment(of: [entered], timeout: 3)
-            guard control.waiterCount == 1 else { throw RenderFailure.invalidProbe }
+            guard control.waiterCount == (cancelled ? 2 : 1) else { throw RenderFailure.invalidProbe }
             if cancelled { task.cancel() }
             else { control.release(id); control.release(id) }
             await fulfillment(of: [finished], timeout: 3)
             guard outcome == !cancelled, control.waiterCount == 0 else { throw RenderFailure.invalidProbe }
+            if cancelled { guard entryOutcome == false, control.queuedWorkCount == 0 else { throw RenderFailure.invalidProbe } }
         }
         let before = ViewportFixture(); before.armSample(outerY: 100)
         let cancelledFinished = XCTestExpectation(description: "cancel before registration")
@@ -2862,25 +2970,47 @@ private extension ReaderRenderingTests {
         guard cancelledOutcome == false, before.waiterCount == 0 else { throw RenderFailure.invalidProbe }
 
         let group = ViewportFixture(); group.armSample(outerY: 100)
+        let seed = UUID(); group.release(seed)
+        guard await group.pause(Event(requestID: seed, kind: "sample-before-read", values: values)) else { throw RenderFailure.invalidProbe }
         group.armMeasures(width: 874, owner: values)
-        let entered = XCTestExpectation(description: "two measure waiters"); entered.expectedFulfillmentCount = 2
-        let finished = XCTestExpectation(description: "two measure receipts"); finished.expectedFulfillmentCount = 2
-        group.onHeld = { entered.fulfill() }
-        var outcomes: [Bool] = []
-        let tasks = (0..<2).map { _ in Task { @MainActor in
-            let run = await group.pause(Event(requestID: UUID(), kind: "measure-before-commit", values: values))
-            outcomes.append(run)
-            finished.fulfill()
+        let entered = XCTestExpectation(description: "two measures and a sample queued before capture")
+        let finished = XCTestExpectation(description: "three SDK work receipts"); finished.expectedFulfillmentCount = 3
+        group.onHeld = { [weak group] in
+            guard let group else { return }
+            if group.queuedWorkCount == 3 { entered.fulfill() }
+            else if group.queuedWorkCount == 2, group.waiterCount == 3, let id = group.admittedWorkID {
+                // Entry permission must not consume the separate commit gate.
+                group.release(id); group.release(id)
+            }
+        }
+        var outcomes: [UUID: Bool] = [:]
+        let tasks = (0..<3).map { index in Task { @MainActor in
+            let id = UUID(), kind = index == 2 ? "sample" : "measure"
+            group.observe(Event(requestID: id, kind: "work-start", values: values))
+            let run = await group.pause(Event(requestID: id, kind: kind + "-before-capture", values: values))
+            defer {
+                group.observe(Event(requestID: id, kind: "work-finished", values: ["captured":String(run)]))
+                _ = group.drainMeasures()
+                finished.fulfill()
+            }
+            outcomes[id] = run
+            guard run, group.admittedWorkID == id else { XCTFail("Admission overlap"); return }
+            group.observe(Event(requestID: id, kind: kind + "-start", values: values))
+            let commit = await group.pause(Event(requestID: id, kind: kind == "measure" ? "measure-before-commit" : "sample-before-read", values: values))
+            guard commit else { XCTFail("Unexpected fixture abort"); return }
+            group.observe(Event(requestID: id, kind: kind + "-finished", values: ["outcome":"committed"]))
         } }
         defer { tasks.forEach { $0.cancel() }; group.cleanUp() }
         await fulfillment(of: [entered], timeout: 3)
-        guard group.waiterCount == 2 else { throw RenderFailure.invalidProbe }
-        group.drainMeasures()
+        guard group.waiterCount == 3, group.admitPrimary(domWidthReady: true),
+              group.queuedWorkCount == 2, group.admittedWorkID != nil else { throw RenderFailure.invalidProbe }
         await fulfillment(of: [finished], timeout: 3)
-        guard outcomes == [true, true], group.waiterCount == 0 else { throw RenderFailure.invalidProbe }
+        guard outcomes.count == 3, outcomes.values.allSatisfy({ $0 }), group.waiterCount == 0,
+              group.queuedWorkCount == 0, group.admittedWorkID == nil, group.drainMeasures() else { throw RenderFailure.invalidProbe }
         group.cleanUp()
         let late = await group.pause(Event(requestID: UUID(), kind: "measure-before-commit", values: values))
-        guard !late else { throw RenderFailure.invalidProbe }
+        let lateEntry = await group.pause(Event(requestID: UUID(), kind: "sample-before-capture", values: values))
+        guard !late, !lateEntry else { throw RenderFailure.invalidProbe }
         print("CONTINUOUS_FIXTURE_MECHANICS passed=6 liveSDKReceiptsRequired=true")
     }
 }
