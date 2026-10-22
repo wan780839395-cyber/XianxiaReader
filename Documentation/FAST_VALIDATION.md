@@ -1,8 +1,8 @@
-# I5c 搜索快速入口（2026-10-22，候选待验证）
+# I5c 搜索快速入口（2026-10-22，本片已验证）
 
 - `bash scripts/test_reader_search.sh <fresh-output-folder>`：macOS独立ReaderSearch8合同，Core/Combine，无App/Readium。
 - workflow `diagnostic_selection=search-isolation`：仅上项及13原生搜索/输入/返回点；先build-for-testing，再启动模拟器。精确case/依赖/退出码验证见`verify_reader_search.py`，门槛不能替代完整192或设备Release。
-- 边界与原顺序见`SEARCH_ISOLATION.md`。当前尚未验证，不能作为通过证据。
+- 边界与原顺序见`SEARCH_ISOLATION.md`。最终53f7e1f2/CI39715718761为独立8/8、原生13/13及编译通过；不代表完整/设备验收。
 
 ---
 

@@ -1,3 +1,25 @@
+# 当前断点：I5c搜索本片完成，I6尚未启动（2026-10-22）
+
+完整原生日志有10次/8条唯一源码警告，与I5b CI39712813755逐条完全相同（新增/消失均0）：LibraryAssembly外部符合、BookDuplicateTests的ImportOutcome Sendable、ReaderRenderingTests的UIKit delegate Sendable/preconcurrency；独立搜索包及本片搜索源码警告0。保留真实日志，不静音或扩入本片；现Swift5目标可编译，未来Swift6迁移须另审阅。
+
+2026-10-22 I5c搜索本片完成：ReaderSearch真实独立包拥有原搜索DTO/可选协议与请求/分页/取消/选择编排，只依赖Core及Foundation/Combine。App与ReadingInterfaces保留typealias兼容，无新异步层，原12await、函数正文、发布与清理顺序不变。最终53f7e1f2 / CI39715718761独立macOS8/8、原生13/13，包及App/测试接线真实编译通过。搜索界面/输入、Readium3.11安全搜索服务/限制、ReaderPositions及书库/导入/字体/会话/Core/Adapter/Vendor/资源/锁不改；原生测试正文不改。完整163+29=192、Core137全组、Release/设备/手机未跑，无新IPA，最后交付Build30。详见Documentation/SEARCH_ISOLATION.md与ValidationLogs/project-isolation-i5-search.json。
+
+Windows484语法新增0（54既有Vendor限制，非编译）、102工具95通过7 POSIX跳过；最终Linux102/102。首静态projectPackages漏登已被拦截并修正，原repository.log保留，修正后repository-corrected.log通过；未改生产行为来绕过门禁。静态156第一方源/25区/26节点/2精确例外。独立包依赖Combine，仅macOS合同，不声称Linux包通过。新搜索源码编译警告0，实际test/summary/export均0；既有LibraryAssembly外部符合警告按原记录保留。
+
+本轮仅1次派发/1次原生执行：独立包步骤68.0秒（Swift构建51.05秒）；原生步骤965.0秒，其中首原生suite前928.468秒，13用例实际合计4.402秒。独立合同与冷工具/依赖/工程生成/原生编译/模拟器准备成本分开，不以全套重跑补绿。
+
+原件build/ci/39715718761/diagnostic，artifact12399144481/446473字节/SHA8f8530ac60963fa0b4b8f8cc329be301e41256f275d568d0510feadf844c9efa，GitHub digest/CRC/安全完整解压已核，仅清除精确重复ZIP。build/maintenance/I5-search-20261022含before/frozen/scope-audit/result/final-checkpoint，617运行输入与被测源一致；普通HEAD/index及旧WIP保留。恢复先核现场/ref/实际进程，勿重派已完成CI。电脑保持开机。
+
+下一片应先按总方案核对剩余边界与I6所需门槛，不能把本片13例当完整验收；原产品计划保留ROADMAP/READING_FEATURE_IDEAS。以下是历史过程，顶部最终事实优先。
+
+# 运行中：I5c 独立搜索8/8已过，原生13例待完成（2026-10-22）
+
+- 冻结源码`53f7e1f268d58f37219dcbbba1d47204c57db124`，ref `codex/isolate-reader-search`；CI39715718761仅派发一次，当前reader-positions原生定向步骤运行中。独立ReaderSearch包真实Swift6.1.2编译与8合同已通过（浏览器实时日志，最终以完整下载日志/xUnit/receipt复核）。App/测试编译和13原生仍未验收；不把本条当最终成功。
+- `build/maintenance/I5-search-20261022`保存before/frozen/scope-audit/dispatch。617冻结运行输入；保留1228旧路径基线（13个明确改动、1215原样）。原VM12await/正文、搜索声明及全部原iOS测试已精确核对；普通HEAD/index保持。
+- 自己启动的只读观察器`.cache/recovery/watch_i5_search.py 39715718761`在运行（会在结束后取完整日志/manifest，不重派CI）。恢复先核实际状态/进程/完整日志，禁止从网页旧尾部推断挂起。完整192/Core137/Release/设备未跑，无新IPA，不关机。
+
+---
+
 # 当前断点：I5c 搜索边界隔离开始（2026-10-22）
 
 - 用户授权只做搜索边界；保留 I5a/b、R1–R4 和修好的阅读定位，不运行完整192、Release或IPA。

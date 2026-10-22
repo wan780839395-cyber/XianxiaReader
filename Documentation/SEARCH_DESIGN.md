@@ -1,5 +1,7 @@
 # M1 搜索设计与边界
 
+2026-10-22 I5c：搜索DTO/协议与原请求模型现在由独立ReaderSearch模块拥有，ReadingInterfaces通过公开typealias保留原可选能力入口；App通过模型别名接线。原12await/清理/发布顺序、Readium服务、限制及导航不变；CI39715718761独立8与原生13通过。见SEARCH_ISOLATION.md，以下原M1行为设计保留。
+
 2026-10-13：最终 CI 38402285563 已通过全部 20 iOS tests、设备 Release 与 IPA，源码编译零警告。保持 Readium exact 3.11.0 与现有锁文件，完整阶段/设备体验未验收。证据见 M1_SEARCH_VALIDATION_REPORT.json。
 
 ## 引擎边界

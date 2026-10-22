@@ -1,0 +1,148 @@
+{
+  "recordedAtUTC": "2026-10-22T03:34:23.416834+00:00",
+  "phase": "i5_search_targeted_accepted",
+  "revision": "53f7e1f268d58f37219dcbbba1d47204c57db124",
+  "run": 39715718761,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39715718761",
+  "logic": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "testCloseWhileProviderIsSuspendedRejectsAndCancelsLateSession",
+      "testDelayedOldCancellationCannotClearNewSessionOrItsNextPage",
+      "testEmptyAndOversizedQueryNeverStartEngineSearch",
+      "testLatePageCannotReplaceNewQueryResults",
+      "testLateSelectionFailureCannotPublishIntoNewQuery",
+      "testLateStartedSessionIsCancelledAfterQueryChanges",
+      "testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+      "testSelectionDelegatesOpaquePositionAndReportsNavigationFailure"
+    ],
+    "appHostUsed": false
+  },
+  "native": {
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "ReaderSearchFieldTests/testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears",
+      "ReaderSearchViewModelTests/testEmptyAndOversizedQueryNeverStartEngineSearch",
+      "ReaderSearchViewModelTests/testLatePageCannotReplaceNewQueryResults",
+      "ReaderSearchViewModelTests/testLateStartedSessionIsCancelledAfterQueryChanges",
+      "ReaderSearchViewModelTests/testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+      "ReaderSearchViewModelTests/testSelectionDelegatesOpaquePositionAndReportsNavigationFailure",
+      "ReadiumSearchTests/testBatchSizeSnippetBoundsAndEndPreserveCSSLocator",
+      "ReadiumSearchTests/testCombiningCharactersEmojiAndInlineSegmentBoundaries",
+      "ReadiumSearchTests/testConcurrentNextRejectedAndCancelledSessionRejectsLatePage",
+      "ReadiumSearchTests/testContentReadFailureIsNotReportedAsNoMatches",
+      "ReadiumSearchTests/testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch",
+      "ReadiumSearchTests/testRealEPUB2AndEPUB3ChineseSearchPositions"
+    ],
+    "appHostUsed": true
+  },
+  "implementation": {
+    "module": "ReaderSearch",
+    "dependencies": [
+      "XianxiaCore"
+    ],
+    "frameworks": [
+      "Foundation",
+      "Combine"
+    ],
+    "appCompatibility": "ReaderSearchViewModel typealias",
+    "readingCompatibility": "Five public DTO/protocol/limits/error typealiases in ReadingInterfaces",
+    "newAsyncWrappers": false,
+    "searchUIAndReadiumAlgorithmChanged": false
+  },
+  "preservation": {
+    "originalModelOnlyAccessModifiersAndImportsChanged": true,
+    "originalAwaitCount": 12,
+    "searchDeclarationsByteEquivalent": true,
+    "appAndReadingCompatibilityTypealiases": true,
+    "noAsyncWrappersOrTasksAdded": true,
+    "allOriginalNativeTestsAndOtherAppFilesUnchanged": true,
+    "allOtherAppFilesCoreLibraryShelfReaderPositionsSessionsFontsReadiumAdapterVendorResourcesLocksUnchanged": true,
+    "fullPositionBookmarkAndOriginalRetentionUnchanged": true
+  },
+  "local": {
+    "swiftGrammarFiles": 484,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "pythonTests": 102,
+    "windowsPassed": 95,
+    "windowsPOSIXSkipped": 7,
+    "finalLinuxPassed": 102,
+    "initialBoundaryRegistrationFailureRetained": "repository.log; projectPackages registration corrected before freeze, repository-corrected.log passed"
+  },
+  "architecture": {
+    "firstPartySwiftFiles": 156,
+    "areas": 25,
+    "graphNodes": 26,
+    "preciseExceptions": 2
+  },
+  "compilation": {
+    "macOSPackage": true,
+    "iOSAppAndTests": true,
+    "sourceCompileErrors": 0,
+    "newSearchWarnings": [],
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ],
+    "packageWarnings": [],
+    "nativeWarningOccurrences": 10,
+    "nativeUniqueWarnings": [
+      "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1048:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+    ],
+    "warningBaselineRun": 39712813755,
+    "warningIdentitiesExactlyMatchBaseline": true
+  },
+  "cost": {
+    "workflowDispatches": 1,
+    "nativeTestExecutions": 1,
+    "moduleStepSeconds": 68.0,
+    "moduleSwiftBuildSeconds": 51.05,
+    "nativeStepSeconds": 965.0,
+    "beforeFirstNativeSuiteSeconds": 928.468,
+    "actualNativeCaseSeconds": 4.402
+  },
+  "artifact": {
+    "id": 12399144481,
+    "bytes": 446473,
+    "sha256": "8f8530ac60963fa0b4b8f8cc329be301e41256f275d568d0510feadf844c9efa",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39715718761\\diagnostic"
+  },
+  "acceptance": {
+    "implementation": true,
+    "compilation": true,
+    "independentMacContracts": true,
+    "independentLinuxPackage": false,
+    "targetedNative": true,
+    "full192Executed": false,
+    "Core137Executed": false,
+    "deviceRelease": false,
+    "ordinaryDevice": false,
+    "trollStore": false,
+    "phoneAccepted": false,
+    "newIPA": false
+  },
+  "remaining": "Search UI remains in App; import batch UI/picker remains App responsibility. Complete isolation/release/device gates pending; future product plans retained."
+}
