@@ -140,6 +140,8 @@ if (( summary_status != 0 )); then exit "$summary_status"; fi
 if (( video_status != 0 )); then exit "$video_status"; fi
 if [[ "${IOS_TEST_SCOPE:-full}" == 'unit-release' ]]; then
   python3 scripts/verify_ui_baseline.py --unit-summary build/test-results-summary.json
+else
+  python3 scripts/verify_ui_baseline.py --full-summary build/test-results-summary.json
 fi
 
 xcodebuild build -project XianxiaReader.xcodeproj -scheme XianxiaReader \

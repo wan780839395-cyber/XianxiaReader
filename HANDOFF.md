@@ -1,3 +1,33 @@
+# 当前断点：I6a审计与门禁修补完成，23项原生尚未派发（2026-10-22）
+
+2026-10-22 I6a边界/证据审计及两处发布门禁修补完成：原始合同与传递输入核实后，6个独立模块只可分项引用，不能相加成同源验收。补齐完整artifact的设置/导入/搜索证据目录，并在Release前增加full192全部通过、零失败/跳过摘要门禁。105项本地工具98通过/7 POSIX跳过，语法484无新增诊断（非编译）；首旧夹具失败及修正保留。仅5个CI/tooling输入变化，其余612及全部生产Swift/原生测试/工程/资源/锁保持。Reader宿主AppServices、UI/批次桥接和字体iOS依赖仍是边界限制；下一片只做原19位置+4加载=23项，不复用旧28项UI配置。当前零CI派发、未跑原生/完整192/Release/手机、无新App IPA，I6整体未验收。详见[审计与精确门槛](Documentation/I6_ACCEPTANCE_AUDIT.md)及ValidationLogs/project-isolation-i6-audit.json。
+
+本轮门禁在Windows以真实Bash/Python和受控外部工具夹具验证，不能说已跑Xcode或新CI。精确23项清单、本轮105日志、旧夹具失败/修正及基线见build/maintenance/I6-audit-20261022。恢复先核该目录final-checkpoint.json、617运行输入、普通HEAD/index及实际进程。后续只补23项入口并冻结输入，失败先留证；不自动扩大到全套、Release、AppServices重构、警告清理或新功能。电脑保持开机。
+
+以下为本片过程和历史，顶部事实优先。
+
+# I6a范围修正：补两处已证的验收门禁缺口（2026-10-22）
+
+审计发现完整ios artifact未收ReaderLogic/BookImports/ReaderSearch，且ci_ios.sh仅unit-release校验163、full没有明确192且零跳过的summary门禁。现将本片从纯审计收窄为“审计+这两处验收入口修补”：只改完整CI产物清单、full summary检查与正反例，不改生产/原生测试/断言/预算，不派发任何CI。原before快照仍有效；最终报告必须修正“617全部输入不变”的临时表述，分别报告Swift输入保留与CI/tooling改动。本轮新工具检查需要重新执行，不能复用旧102当本轮结果。
+
+---
+
+# 当前断点：I6a审计完成，下一片仅23项位置/加载门槛（2026-10-22）
+
+2026-10-22 I6a审计完成，尚未执行I6原生/完整验收：617运行输入与I5c被测源一致，6个独立模块的原始合同、传递输入和日志可分项复核，不能相加成同源全绿。Reader宿主AppServices、批次/UI编排、同target类型隔离及字体iOS依赖保留明确边界债务。下一片限定原位置19+加载回归4=23项，先收口R3；旧Build30受保护输入51处不同，不能复用旧UI29。完整163+29=192、设备Release及手机仍待后续，本轮零CI派发、生产/测试/工程/资源/锁不改、无新IPA。见[审计与精确门槛](Documentation/I6_ACCEPTANCE_AUDIT.md)及ValidationLogs/project-isolation-i6-audit.json。
+
+本轮只做审计和文档，未修改生产/测试/工作流。恢复先核build/maintenance/I6-audit-20261022/final-checkpoint.json、617输入、普通HEAD/index和实际进程；不要重跑已核组件或把旧18/19、5/6改写为已过。下一片原断言/预算不变，不自动扩大到AppServices重构、警告修复、全套、Release或新产品。电脑保持开机。
+
+以下为历史过程，顶部事实优先。
+
+# 当前断点：I6a 剩余边界与验收范围审计开始（2026-10-22）
+
+用户本轮要求先核对剩余边界和必要验收范围，不直接运行全套。以I5c保存点`88e3d87089677fc97a79816fef755360234b289d`为基线，617运行输入现场一致，普通HEAD/index不变，无遗留测试进程。快照见`build/maintenance/I6-audit-20261022/before.json`。
+
+本片只审计实际源码依赖/保留桥接、已有真实日志及输入匹配、未收口的定位合同和后续最小用例清单；不提取更多生产模块，不改测试/断言/预算，不派发CI、全套、Release或IPA。结论须区分可分项复用、仅历史参考、当前仍缺证，不能把多轮结果相加成同源通过。
+
+---
+
 # 当前断点：I5c搜索本片完成，I6尚未启动（2026-10-22）
 
 完整原生日志有10次/8条唯一源码警告，与I5b CI39712813755逐条完全相同（新增/消失均0）：LibraryAssembly外部符合、BookDuplicateTests的ImportOutcome Sendable、ReaderRenderingTests的UIKit delegate Sendable/preconcurrency；独立搜索包及本片搜索源码警告0。保留真实日志，不静音或扩入本片；现Swift5目标可编译，未来Swift6迁移须另审阅。

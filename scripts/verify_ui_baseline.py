@@ -60,6 +60,13 @@ def check_unit_summary(summary: dict) -> None:
         raise ValueError("All 163 current unit/integration tests must pass without skips before Release")
 
 
+def check_full_summary(summary: dict) -> None:
+    if not (summary.get("result") == "Passed" and not summary.get("testFailures")
+            and summary.get("totalTestCount") == summary.get("passedTests") == 192
+            and summary.get("failedTests") == summary.get("skippedTests") == 0):
+        raise ValueError("All 192 current integration/UI tests must pass without skips before Release")
+
+
 def capture(command: list[str], stem: str) -> bytes:
     folder = Path("build/logs")
     folder.mkdir(parents=True, exist_ok=True)
@@ -86,7 +93,12 @@ def main() -> None:
     parser.add_argument("--revision", default=os.environ.get("GITHUB_SHA", "HEAD"))
     parser.add_argument("--simulator-id")
     parser.add_argument("--unit-summary", type=Path)
+    parser.add_argument("--full-summary", type=Path)
     args = parser.parse_args()
+    if args.full_summary:
+        check_full_summary(json.loads(args.full_summary.read_text(encoding="utf-8")))
+        print("Current full coverage verified: 192/192, failed/skipped 0.")
+        return
     if args.unit_summary:
         check_unit_summary(json.loads(args.unit_summary.read_text(encoding="utf-8")))
         print("Current unit/integration coverage verified: 163/163, failed/skipped 0.")

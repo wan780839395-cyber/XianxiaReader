@@ -3,7 +3,8 @@ import tempfile
 from pathlib import Path
 import unittest
 
-from verify_ui_baseline import check_environment, check_metadata, check_protected_inputs, check_ui_log, check_unit_summary
+from check_architecture import ROOT, yaml
+from verify_ui_baseline import check_environment, check_metadata, check_protected_inputs, check_ui_log, check_unit_summary, check_full_summary
 
 
 class UIBaselineTests(unittest.TestCase):
@@ -63,6 +64,27 @@ class UIBaselineTests(unittest.TestCase):
                            testFailures=["an inconsistent failure must not be hidden"])]:
             with self.subTest(summary=value), self.assertRaises(ValueError):
                 check_unit_summary(value)
+
+    def test_current_full_gate_rejects_zero_missing_extra_failed_skipped_and_inconsistent_summary(self):
+        complete = dict(result="Passed", totalTestCount=192, passedTests=192, failedTests=0, skippedTests=0)
+        check_full_summary(complete)
+        variants = [{}, dict(complete, totalTestCount=0, passedTests=0),
+                    dict(complete, totalTestCount=191, passedTests=191),
+                    dict(complete, totalTestCount=193, passedTests=193),
+                    dict(complete, passedTests=191, skippedTests=1),
+                    dict(complete, passedTests=191, failedTests=1),
+                    dict(complete, result="Failed"), dict(complete, testFailures=["crashed earlier attempt"])]
+        for value in variants:
+            with self.subTest(summary=value), self.assertRaises(ValueError):
+                check_full_summary(value)
+
+    def test_full_artifact_retains_every_standalone_contract_folder(self):
+        workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        upload = next(s for s in workflow["jobs"]["ios"]["steps"]
+                      if s.get("uses", "").startswith("actions/upload-artifact") and "build/logs/" in s["with"].get("path", ""))
+        paths = set(upload["with"]["path"].splitlines())
+        for folder in ["ReaderLogic", "ReaderPositions", "ReaderSessions", "LibraryShelf", "BookImports", "ReaderSearch"]:
+            self.assertIn(f"build/{folder}/", paths)
 
     def test_git_guard_allows_unit_harness_change_but_rejects_app_or_ui_change(self):
         previous = Path.cwd()

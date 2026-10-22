@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -39,7 +40,7 @@ class CIFailurePathTests(unittest.TestCase):
                     self.assertEqual((root / "build" / summary).read_text().strip(), "original-summary")
                     self.assertEqual("FULL-AND-RELEASE" in result.stdout, code == 0)
 
-    def run_section(self, test_exit, export_exit, summary_exit=0, video_exit=0):
+    def run_section(self, test_exit, export_exit, summary_exit=0, video_exit=0, skipped_tests=0):
         script = (Path(__file__).parent / "ci_ios.sh").read_text(encoding="utf-8")
         section = script[script.index("test_status=0\n"):script.index("\nxcodebuild build ")]
         git_bash = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "Git/bin/bash.exe"
@@ -50,18 +51,26 @@ SIMULATOR_ID=test
 video_pid=test
 stop_simulator_recording() { return "$XR_VIDEO_EXIT"; }
 xcodebuild() { echo TEST; return "$XR_TEST_EXIT"; }
+python3() { "$XR_FIXTURE_PYTHON" "$@"; }
 xcrun() {
-  if [[ "$1 $2 $3" == "xcresulttool get test-results" ]]; then echo SUMMARY; return "$XR_SUMMARY_EXIT"; fi
+  if [[ "$1 $2 $3" == "xcresulttool get test-results" ]]; then
+    printf '{"result":"Passed","totalTestCount":192,"passedTests":%d,"failedTests":0,"skippedTests":%d}\n' "$((192-XR_SKIPPED_TESTS))" "$XR_SKIPPED_TESTS"
+    return "$XR_SUMMARY_EXIT"
+  fi
   echo EXPORT; return "$XR_EXPORT_EXIT";
 }
 """ + section + "\necho RELEASE\n"
         with tempfile.TemporaryDirectory() as directory:
+            (Path(directory) / "scripts").mkdir()
+            shutil.copyfile(Path(__file__).parent / "verify_ui_baseline.py", Path(directory) / "scripts/verify_ui_baseline.py")
             (Path(directory) / "build").mkdir()
             (Path(directory) / "build/InteractionVideo").mkdir()
             (Path(directory) / "build/InteractionVideo/library-interactions.mp4").write_bytes(b"control-flow fixture, not a real recording")
             return subprocess.run([bash, "-c", harness], text=True, capture_output=True, cwd=directory,
                                   env={**os.environ, "XR_TEST_EXIT": str(test_exit), "XR_EXPORT_EXIT": str(export_exit),
-                                       "XR_SUMMARY_EXIT": str(summary_exit), "XR_VIDEO_EXIT": str(video_exit)})
+                                       "XR_SUMMARY_EXIT": str(summary_exit), "XR_VIDEO_EXIT": str(video_exit),
+                                       "XR_SKIPPED_TESTS": str(skipped_tests), "IOS_TEST_SCOPE": "full",
+                                       "XR_FIXTURE_PYTHON": Path(sys.executable).as_posix()})
 
     def test_recording_failure_blocks_release_and_preserves_original_test_failure(self):
         for test_exit in (0,65):
@@ -89,6 +98,12 @@ xcrun() {
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("EXPORT", result.stdout)
         self.assertIn("RELEASE", result.stdout)
+
+    def test_skipped_case_blocks_release_even_when_xcode_and_exports_succeed(self):
+        result = self.run_section(0, 0, skipped_tests=1)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("All 192", result.stderr)
+        self.assertNotIn("RELEASE", result.stdout)
 
     def test_summary_failure_keeps_original_test_exit_and_blocks_false_release(self):
         failed = self.run_section(65, 0, summary_exit=47)

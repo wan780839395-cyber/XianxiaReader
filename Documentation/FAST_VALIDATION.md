@@ -1,3 +1,9 @@
+# I6a 当前验收入口（2026-10-22）
+
+完整发布的ci_ios.sh在原真实退出检查后、设备Release前新增`verify_ui_baseline.py --full-summary build/test-results-summary.json`，要求192/192且零失败/跳过；本轮只做本地105工具检查，未运行完整或设备门槛。完整artifact收齐六个独立合同目录。下一片23项原生范围见[I6a审计](I6_ACCEPTANCE_AUDIT.md)，尚无新selector/派发。历史UI复用配置28项/ARM与当前29项/Intel不匹配，不能作为捷径。
+
+---
+
 # I5c 搜索快速入口（2026-10-22，本片已验证）
 
 - `bash scripts/test_reader_search.sh <fresh-output-folder>`：macOS独立ReaderSearch8合同，Core/Combine，无App/Readium。

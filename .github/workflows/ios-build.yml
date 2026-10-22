@@ -281,6 +281,9 @@ jobs:
             build/ReaderPositions/
             build/ReaderSessions/
             build/LibraryShelf/
+            build/ReaderLogic/
+            build/BookImports/
+            build/ReaderSearch/
             build/build-environment.txt
             build/Package*.resolved
             build/test-results-summary.json
