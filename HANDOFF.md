@@ -1,3 +1,17 @@
+# 连续视口缩放：首轮编译错误已留证，仅修探针一行（2026-10-22）
+
+CI39752863708 / 18e7bb94在测试编译阶段失败，原生用例0次；新增诊断NSStringFromCGRect在当前Swift不可用，非阅读功能失败。完整workflow日志、PositionBuild.xcresult、原编译诊断artifact12415715147已digest/CRC核对保存；初轮冻结/派发/结果保存在build/maintenance/I6-viewport-20261022/attempt-1。实际原生主步骤耗时见其result，不冒称是测试执行。
+
+仅改该诊断的frame格式化为String(describing:)，不碰断言/预算/产品算法。下一步本地检查后冻结新源，再仅派发同一continuous-resize单例；不重跑full/23项/组件/Core/Release。用户已授权此例诊断和必要修复，原交接“只一次full”保持；第二轮只因具体编译修正，不是盲重放。若中断先核attempt-1与后续compiled-probe的frozen/dispatch，不能重复派发。
+
+---
+
+# 连续视口缩放单例运行中：禁止重复派发（2026-10-22）
+
+冻结源18e7bb94d5e07c38d4c4569a0c29eef0547c338a，CI39752863708，selection=continuous-resize，仅原失败方法1例。原断言及30秒/100ms预算不变；不跑Core/模块/23项/UI/full/设备Release，无新IPA。此刻仍在准备/编译，尚无本片结果。恢复先核build/maintenance/I6-viewport-20261022的frozen/dispatch与真实run，禁止重复派发。旧full191/192与全部原件仍保留，普通HEAD/index未改。
+
+---
+
 # 连续视口缩放：探针完成，准备冻结单例（2026-10-22）
 
 本地语法484无新增诊断（非编译）；受影响工具20项19通过/1 POSIX跳过，首次缺PYTHONPATH导入错误及更正原件均保存。已审阅Debug有界重排记录不增加await、不改恢复guard/应用顺序；只修改失败方法的观察，原30秒/100ms/联合条件/12视图/横竖顺序不变。

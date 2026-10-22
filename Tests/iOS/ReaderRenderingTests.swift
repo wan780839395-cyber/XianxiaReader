@@ -119,7 +119,7 @@ final class ReaderRenderingTests: XCTestCase {
                     let web = try self.resourceWebView(engine, index: 1)
                     var row: [String: Any] = ["expectedWidth":size.width,"sameWebView":web === originalWeb,
                         "attached":web.window != nil,"alpha":web.scrollView.alpha,"outerY":scroll.contentOffset.y,
-                        "webFrame":NSStringFromCGRect(web.frame),"uptime":ProcessInfo.processInfo.systemUptime]
+                        "webFrame":String(describing:web.frame),"uptime":ProcessInfo.processInfo.systemUptime]
                     if polls.count == 320 { polls.removeFirst() }
                     guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else {
                         row["accepted"] = false;polls.append(row);return false

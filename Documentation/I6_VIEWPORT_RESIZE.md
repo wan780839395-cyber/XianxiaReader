@@ -25,3 +25,7 @@
 ## 验证状态
 
 本地静态/Swift语法484无新增诊断，非编译；受影响位置门禁/CI失败路径/Readium来源20项中19通过、1 POSIX跳过。首次工具调用缺PYTHONPATH导致3个导入错误，原件保留；按scripts入口修正后通过，不是产品失败。尚未获得本片Swift编译或单例结果。冻结前再次核范围，仅派发continuous-resize。结果/原件写入build/maintenance/I6-viewport-20261022及对应CI目录，不将单例等同I6最终验收，无新IPA。
+
+### 首轮实际编译结果
+
+18e7bb94 / CI39752863708在原生编译失败，测试0次。新增探针用了当前Swift不可用的NSStringFromCGRect；已只改为String(describing:)，原件与第一轮机器记录保存在attempt-1。根因诊断尚未执行，不属于产品失败或修复。下一轮只验证这个明确编译修正后的原单例。
