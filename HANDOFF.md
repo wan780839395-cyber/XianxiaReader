@@ -1,3 +1,15 @@
+# 连续视口可控复现设计：设计完成，未实施、零CI（2026-10-22）
+
+用户本轮只授权设计与静态审阅；保留原断言/预算、现有隔离及定位修复，不实施屏障、不改定位算法、不派CI。已完成[可控复现设计](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)：H1为“旧请求上下文跨尺寸后读新DOM，B覆盖A，measure因anchorEqual=false不恢复A”；它仍是假设，不能追认为旧full根因。
+
+实际源码审阅纠正了三点：S须在缓存未命中且首次真实DOM读取前扣住，扣旧结果不足以检验H1；M须扣住目标新布局的并发测量组，避免其他测量先补偿；受控方法的裸frame teardown和defer须同时换成幂等复合清理，先关闭失效/abort再恢复窗口。逐请求身份、同一次JS元数据、显式release/finished回执、安全/冲突顺序、原30秒/3秒预算、原有3次DOM采样/32ms间隔及结果分类已写清。参考Swift官方、Apple XCTest及固定版本Async Algorithms Gate，仅取适用模式，不加依赖。
+
+当前仅文档变更，尚无fixture、无Swift编译、无新增测试/CI执行；617运行输入对已测82b35f76/CI39759498210零漂移，普通HEAD/index保持。基线与审计目录build/maintenance/I6-viewport-repro-design-20261022，源快照父7048594fcf0bafa22c683d9265e3db1d654b2687。仓库文档/工程/工作流/schema/fixture/Vendor/架构7类静态检查全部通过（python scripts/check_repository.py，exit0）；这不是Swift语法、编译或测试。实际差异限9个文档/审计文件，617输入逐项SHA256零漂移。
+
+本片边界到设计保存为止。下一片若用户授权，先实现本同例最小Debug fixture并核命中/取消/默认关闭路径，再另行确定原生匹配对照范围；不可凭本设计直接派CI或改算法。旧full39735403242仍191/192，旧根因未证；I6/Release/手机未验收，无新IPA，最后交付Build30，电脑保持运行。
+
+---
+
 # 连续视口同例对照：本片保存，下一轮只做无CI设计（2026-10-22）
 
 用户最新决定“保存本片，下一轮先做无CI复现设计”。本轮结束，不追加CI、不实施屏障/定位修复、不改已测代码，不跑整套/设备Release。自己的观察/下载已完成，电脑保持开机。

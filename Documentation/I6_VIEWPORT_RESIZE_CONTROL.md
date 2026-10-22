@@ -1,5 +1,7 @@
 # 连续视口缩放：单一观察挂起点对照（2026-10-22）
 
+2026-10-22 后续仅设计已完成，未实施或派CI；原同例结果与本页证据保持。采样前/测量提交前屏障、放行清理及资格判读见[可控复现设计](I6_VIEWPORT_REPRODUCTION_DESIGN.md)。以下为上一片历史原件记录。
+
 2026-10-22已收口：源82b35f76 / [CI39759498210](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39759498210)，原单例1/1（11.293秒）；旧故障未复现，根因未证。用户决定保存本片，下一轮先做无CI复现设计。本轮结束，不追加实验。以下先列本片冻结合同，实际结果见后文。
 
 用户授权仅撤去`await domProbe(originalFrame.width)`，保留现有功能/隔离/定位修复、所有其他观察、原断言及30秒/100ms预算，只跑原continuous-resize单例。源码当前仅原方法一行变化，before DOM字段为null，不伪造缩放前DOM证据。初始scrollY查询及保存Locator、原字Range/宽度等联合条件的后续采样、Debug有界重排记录、窗口teardown、12视图及先横后竖顺序保持。

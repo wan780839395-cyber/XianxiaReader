@@ -1,0 +1,75 @@
+{
+  "recordedAtUTC": "2026-10-22T10:58:43.048386+00:00",
+  "slice": "I6 continuous viewport controlled reproduction design only",
+  "designDocument": "Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md",
+  "parentSavedRevision": "7048594fcf0bafa22c683d9265e3db1d654b2687",
+  "unchangedRuntimeBaseline": {
+    "revision": "82b35f768442c6127baa9a540b28fae0f0edbc82",
+    "run": 39759498210,
+    "inputCount": 617
+  },
+  "hypothesis": "An old-size sampling request reads the new layout and replaces A with real B, so a measuring request capturing A declines restoration; original glyph may become invisible.",
+  "hypothesisProven": false,
+  "oldFullRootCauseProven": false,
+  "designReviewed": true,
+  "gates": {
+    "S": "Once per qualifying cache-miss request, before its first original DOM read; original captured context retained.",
+    "M": "Group of qualifying current-slot new-layout measurements, after real JS result but before original owner guard or state writes.",
+    "qualification": "Per-request owner/epoch/slot/revision/localTop and same-evaluation DOM metadata; cache hit, missed gate or earlier compensation invalidates experiment.",
+    "release": "Conflict: resize -> M entered -> S terminal receipt -> M0 terminal receipt -> drain Mi. Safe: S terminal receipt at old size with A unchanged -> resize -> M drain."
+  },
+  "cleanup": "Instance-owned, idempotent; close to invalidate before abort resumes and frame restore; LIFO composite teardown replaces both bare frame cleanup paths; bounded drain with residual IDs reported.",
+  "preservedBudgets": {
+    "originalWaitSeconds": 30,
+    "pollMilliseconds": 100,
+    "originalCaptureSeconds": 3,
+    "existingDOMSamplesMaximum": 3,
+    "existingMismatchIntervalMilliseconds": 32
+  },
+  "newFixtureCleanupBudgetSecondsPlanned": 3,
+  "sourceOrTestModified": false,
+  "fixtureImplemented": false,
+  "algorithmModified": false,
+  "ciDispatches": 0,
+  "checks": {
+    "repositoryStatic": {
+      "command": "python scripts/check_repository.py",
+      "exitCode": 0,
+      "groupsPassed": [
+        "documents",
+        "project",
+        "workflow",
+        "schema",
+        "fixtures",
+        "vendor",
+        "architecture_boundaries"
+      ],
+      "notCompilationOrTests": true
+    },
+    "swiftSyntax": "not rerun; runtime unchanged",
+    "pythonToolingTests": "not rerun; tooling unchanged",
+    "swiftCompilation": "not run",
+    "nativeTests": "not run",
+    "deviceRelease": "not run",
+    "phone": "not run"
+  },
+  "priorFinalFull": {
+    "run": 39735403242,
+    "passed": 191,
+    "total": 192,
+    "releaseExecuted": false,
+    "notClearedByDesign": true
+  },
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "nextScope": "Only implement this fixture after a new user instruction; native comparisons need an explicit selected range. No automatic CI or algorithm change.",
+  "preservationAudit": {
+    "previousSourcePaths": 1251,
+    "changedPreviousPaths": 7,
+    "newDocumentationPaths": 2,
+    "runtimeInputCount": 617,
+    "runtimeDrift": [],
+    "ordinaryHeadIndexUnchanged": true,
+    "sourceOrTestChanges": []
+  }
+}
