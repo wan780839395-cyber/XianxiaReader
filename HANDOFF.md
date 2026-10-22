@@ -1,3 +1,51 @@
+# I6最终断点：一次full191/192，原件收齐，禁止重派（2026-10-22）
+
+2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；下一实验仅此单例诊断，是否追加冷准备已询问用户，未自行派发。I6未通过，不进入新功能。
+
+冻结源77eebf40ff70318c7bced90b28269aa5198084f0，GitHub实际run_attempt=1。只升工程构建号30→31；617输入现场匹配。生产/原生测试/资源/锁/预算与全部既有隔离定位修复保留。主步骤5947秒：首suite前1653.361秒含工具/组件/Core/解析/编译/启动，集成case846.937秒、UI3194.564秒，其余252.138秒含导出收束，无Release成本。
+
+唯一失败ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView在首次402×874→874×402、原81行30秒等待失败；原方法与交付Build30逐字同，直接Engine/InfiniteScroll源码也相同，但其他Readium/测试文件及顺序有变化。终态one.xhtml可读alpha1/ready、当前char777/localY2367；原char/Range、身份比较与measure决策没有记录，不能宣布原字丢失、测试假失败或归咎环境。+600后>500的准备条件存在漏洞，只是待区分假设，非已证根因。原2条issue仅1失败case；全部192各执行一次。
+
+完整artifact12411464644/1196915933B/SHA edbe1c6972311ab31124e20a525a5c612e4805ef2c0d3870c8642353651ac8a8，Core12406981251/116294B/SHA c94ea0a806317f85b392d8f68e4e3b66c3e8d292e2b522c503c258a715df3376，digest/CRC/完整展开均核，重复ZIP/分片按精确回执清除。build/ci/39735403242保留全部xcresult、内部完整tee日志、summary、文本/像素/录屏和六包/Core回执。workflow日志末缺退出marker，内部build.log实际test65/summary0/export0/recording0，不以外部缺尾倒写失败点。模拟器源码编译0错误，8处warning/6种消息与39729365995同，新增消息0。
+
+收口权威Documentation/I6_FINAL_ACCEPTANCE.md与ValidationLogs/project-isolation-i6-final.json；build/maintenance/I6-final-20261022含before/frozen/唯一dispatch/result/原失败切片、保护Build30哈希及后续final-checkpoint。只读watcher/下载已结束，无运行中的CI。用户新范围答复优先；未收到追加诊断授权不得再派发，尤其不可自动重跑192。若获单例授权，先补有界准备/原字/各子条件和measure探针，再冻结新输入，仅一例，原预算断言保持；不能承诺单例即发布验收。
+
+当前仅完成取证/文档，未改生产或失败测试，未宣布根因修复、完整视觉/手机验收。普通HEAD/index及旧WIP保留，电脑保持开机。恢复先核final-checkpoint/实际文件/Git/进程与run；切勿重复派已完成CI。
+
+---
+
+# I6失败取证中：主步骤failure，正在上传诊断，禁止重跑（2026-10-22）
++
++唯一CI39735403242，full/77eebf40ff70318c7bced90b28269aa5198084f0/Build31。主步骤06:42:58→08:22:05 UTC，5947秒后failure；workflow尚在上传诊断。当前不知具体测试/导出/构建失败点，不能写192通过或归咎源码/环境。下一步只收该轮完整原件、真实退出与摘要后查清，不自动整套重试，不改断言/预算/生产。
++
++build/maintenance/I6-final-20261022/main-step-failure.json已保留真实step元数据；只读watch_i6_final.py仍在跟踪，结束会收full.log/artifacts.json，之后用download_i6_final.py与collect_i6_final.py收口。无新IPA交付，最后仍Build30，617输入冻结、普通HEAD/index保持，电脑保持开机。
++
++---
++
++# I6只读观察断点：主任务仍在运行，不追旧实时片段（2026-10-22）
++
++同一CI39735403242/full/77eebf40/Build31，派发仍1次。已取到完成job的真实API原日志：109工具通过、Linux137唯一调度+真实成功退出；Core artifact12406981251完整下载/CRC/摘要已核，Release TXT4通过。本轮这些是新执行结果。
++
++实时浏览器曾见初始化关闭单例双模式通过；后因日志页崩溃，临时tab6关闭也被崩溃data URL策略阻挡，未更改权限，不再操作该页。API可读运行中日志但连续返回07:12旧片段/86项通过，已停止重复追读；不可把局部/旧尾部当最终计数或卡住证据。独立只读watch_i6_final.py仍每45秒取真实状态，结束后收完整full.log/manifest。
++
++最终192/Apple设备Release/IPA仍未验收；frozen/dispatch/native-started/observation-checkpoint在build/maintenance/I6-final-20261022。现成collect_i6_final.py/download_i6_final.py/verify_i6_final_ipa.py/review_i6_final_images.py仅在.cache/recovery，未纳入构建输入。仅允许收结果，不重新派发；失败先保存原件查清。普通HEAD/index和617输入保持，电脑保持开机。
++
++---
++
++# I6运行断点：原生用例已开始，结果仍待收齐（2026-10-22）
++
++CI39735403242仅派1次full，源77eebf40ff70318c7bced90b28269aa5198084f0，Build31。真实浏览器已见XCTest DocumentImportTests原生导入用例通过；不据局部实时日志宣布192通过。仓库/Core job元数据success；CLI在workflow结束前暂不提供完整job日志，读日志的exit1原件已留，不是测试失败。原生/full/设备Release最终结果均待完整日志、xcresult和产物。617运行输入及普通HEAD/index现场再核不变。
++
++只读观察器.cache/recovery/watch_i6_final.py 39735403242仍在运行，结束后保存build/ci/39735403242/run.json、full.log、artifacts.json。冻结/唯一派发回执在build/maintenance/I6-final-20261022。恢复核实际进程和CI，不重派/不加预检；失败先留证，不自动整套重试。电脑保持开机。
++
++---
++
++# I6最终验收运行中：一次full已派发，禁止重复（2026-10-22）
+
+冻结源77eebf40ff70318c7bced90b28269aa5198084f0，ref refs/heads/codex/i6-final-acceptance，CI39735403242，selection=full，Build31。仅派发1次，192=163集成+29UI及同源设备Release；不叠加原生预检。运行结果尚未形成，不代表通过。617冻结输入、1245旧路径、普通HEAD/index及既有改动保持；运行源只工程构建号变化，生产/测试/依赖/预算不变。恢复读取build/maintenance/I6-final-20261022/frozen.json、dispatch.json与真实CI，不自动整套重试。失败保存完整原件后查清；电脑保持开机。
+
+---
+
 # I6最终验收冻结前：仅版本号变化，准备派发一次full（2026-10-22）
 
 1245旧路径保留，运行输入只project.yml构建号30→31；生产/原生测试/资源/锁/CI门禁/预算保持。Windows仓库/484语法新增0、既有Vendor54（非编译），仅42项边界与full门禁工具检查通过，无额外原生预检。现在冻结617运行输入，仅派发一次full覆盖163+29=192与同源设备Release。用户明确不自动整套重试；恢复先核本地frozen/dispatch和实际CI，不重复派发。build/maintenance/I6-final-20261022保存全部原始输入及回执。当前尚无新编译/原生/Release/IPA结果。普通HEAD/index保持，电脑保持开机。

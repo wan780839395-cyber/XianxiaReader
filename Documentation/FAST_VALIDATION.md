@@ -1,3 +1,9 @@
+# I6最终门槛失败已留证：不重跑full
+
+2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；下一实验仅此单例诊断，是否追加冷准备已询问用户，未自行派发。I6未通过，不进入新功能。 见[原件与断点](I6_FINAL_ACCEPTANCE.md)。
+
+---
+
 # I6d 最终范围已核（2026-10-22，尚未派发）
 
 下一轮推荐冻结最终输入后仅选择workflow `diagnostic_selection=full` 一次，原生163+29=192及同源严格设备Release/包；保留现有组件/Core/TXT快检。不要前置position-acceptance/fonts-full/rotation-full，不走不合格的unit-release旧UI复用。本轮仅审计，未启动。可复用原件、剩余门槛及成本见[I6d最终范围](I6_FINAL_ACCEPTANCE_SCOPE.md)。

@@ -1,5 +1,7 @@
 # 项目状态
 
+2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；下一实验仅此单例诊断，是否追加冷准备已询问用户，未自行派发。I6未通过，不进入新功能。 见[本轮结果与下一实验](Documentation/I6_FINAL_ACCEPTANCE.md)。以下为历史阶段记录，顶部结果优先。
+
 2026-10-22 I6d最终范围审计完成，零CI派发、生产/测试/配置/617运行输入不变。六模块历史合同及最新编译/109工具可分项引用；位置校验器仅非logic部分变化，旧24 xUnit已重核。UI基线28/ARM与当前29/Intel及54受保护输入不匹配，旧Build30亦51项变化；最终仍缺同源163+29=192、设备Release/包及手机。下一轮只用现有full一次，不再前置23/字体/旋转；保留现有组件/Core/TXT快检，不另建复用框架。见[最终范围与复用清单](Documentation/I6_FINAL_ACCEPTANCE_SCOPE.md)及ValidationLogs/project-isolation-i6-final-scope.json。I6未整体验收。
 
 2026-10-22 I6c初始化关闭单例已收口：598aedd / CI39729365995真实编译及原单例1/1通过，含分页/连续两分支。原生记录证实分页初始FontFaceSet JS包装对象已回收，旧实例hook未进、prototype后备接住真实ready；仅修测试探针生命周期和显式屏障，生产/隔离/定位修复、原关闭断言与30秒/15秒预算保持。只派1轮，未跑23项或整套，旧22/23保留历史；完整192/Release/手机仍待验收，无新IPA。见[本片原因与证据](Documentation/I6_INITIALIZATION_CLOSE.md)及ValidationLogs/project-isolation-i6-close.json。

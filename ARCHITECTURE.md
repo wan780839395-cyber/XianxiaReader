@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；下一实验仅此单例诊断，是否追加冷准备已询问用户，未自行派发。I6未通过，不进入新功能。 见[本轮结果与下一实验](Documentation/I6_FINAL_ACCEPTANCE.md)。以下I6d等为历史阶段记录。
+
 2026-10-22 I6d只复核验收与剩余边界，156第一方Swift/25区域/26图节点/2精确例外保持，617运行输入无变化。Reader宿主广泛AppServices、App批次/呈现与同target UI类型访问仍明确登记，静态守卫不等于完整类型隔离；不为形式增加target。六模块合同分项可引用，原生共享顺序及发布验收仍需当前192/Release；本轮不执行。见[最终范围](Documentation/I6_FINAL_ACCEPTANCE_SCOPE.md)。
 
 2026-10-22 I6c未改变生产依赖或异步顺序，仅修初始化关闭测试的探针生命周期与显式字体门。原生分页记录证明实例hook随初始JS包装对象丢失，prototype后备捕获实际读取；在初始化仍pending时，分页/连续原关闭断言全部通过。原隔离/定位行为保持，完整验收仍待I6下一片。见[原因与证据](Documentation/I6_INITIALIZATION_CLOSE.md)。

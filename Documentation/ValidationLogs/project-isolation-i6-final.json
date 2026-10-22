@@ -1,0 +1,2575 @@
+{
+  "recordedAtUTC": "2026-10-22T08:36:01.310427+00:00",
+  "run": 39735403242,
+  "sourceRevision": "77eebf40ff70318c7bced90b28269aa5198084f0",
+  "build": "31",
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39735403242",
+  "conclusion": "failure",
+  "passed": false,
+  "checks": [
+    {
+      "name": "workflow_complete_success",
+      "passed": false,
+      "detail": "failure"
+    },
+    {
+      "name": "single_full_dispatch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GitHub_single_run_attempt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinned_Apple_toolchain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinned_Linux_Swift",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_inputs_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "expected_jobs_success",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "no_native_preflights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "summary_exact192_zero_failure_skip",
+      "passed": false,
+      "detail": "All 192 current integration/UI tests must pass without skips before Release"
+    },
+    {
+      "name": "native_each_starts_once",
+      "passed": true,
+      "detail": {
+        "startEvents": 192,
+        "unique": 192
+      }
+    },
+    {
+      "name": "native_each_passes_once",
+      "passed": false,
+      "detail": {
+        "endEvents": 192,
+        "unique": 192
+      }
+    },
+    {
+      "name": "real_test_export_summary_exits_zero",
+      "passed": false,
+      "detail": [
+        [
+          "65",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "real_recording_exit_zero",
+      "passed": true,
+      "detail": [
+        "0"
+      ]
+    },
+    {
+      "name": "native_test_succeeded",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "fresh_ui_no_reuse_receipt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_ReaderLogic",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_ReaderPositions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_ReaderSessions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_LibraryShelf",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_BookImports",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "module_ReaderSearch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Core137_macOS",
+      "passed": true,
+      "detail": {
+        "scheduled": 137,
+        "unique": 137
+      }
+    },
+    {
+      "name": "TXTRelease4_macOS",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Core137_Linux",
+      "passed": true,
+      "detail": {
+        "scheduled": 137,
+        "unique": 137
+      }
+    },
+    {
+      "name": "TXTRelease4_Linux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict_device_release_invocation",
+      "passed": false,
+      "detail": []
+    },
+    {
+      "name": "device_build_succeeded",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "resolved_locks_match",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete_artifact_apple",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete_artifact_core",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete_artifact_ipa",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "Linux_tooling109",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 191,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792657211.92,
+    "passedTests": 191,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792652344.952,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testContinuousViewportResizeKeepsOriginalWordAndLiveWebView():81",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 93,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "testName": "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "33% of duration",
+        "text": "2 longest test runs with outlier durations exceeding 56.31s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 192
+  },
+  "environment": {
+    "Apple": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ],
+    "Linux": [
+      "Swift version 6.1.2 (swift-6.1.2-RELEASE)",
+      "Target: x86_64-unknown-linux-gnu"
+    ]
+  },
+  "events": [
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testBackgroundDownsamplingAppliesEXIFOnceAndRetainsOriginalBytes",
+      "result": "passed",
+      "seconds": 0.146
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testFirstFileDelegateCallbackSurvivesWrapperAndInvalidSelectionCanRetry",
+      "result": "passed",
+      "seconds": 0.149
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testLateCancelledLoadAndClosedEditorCannotReplaceNewDraftOrSession",
+      "result": "passed",
+      "seconds": 0.153
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testMissingThumbnailUsesOriginalWithWarningAndBothFailuresRemainVisible",
+      "result": "passed",
+      "seconds": 0.238
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots",
+      "result": "passed",
+      "seconds": 6.639
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testPhotoFileTransferCopiesBeforeProviderDisappearsAndCancellationPreservesBook",
+      "result": "passed",
+      "seconds": 0.285
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testRealDatabaseFailureKeepsDraftForRetryAndRefreshKeepsLatestMetadata",
+      "result": "passed",
+      "seconds": 0.135
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookCoverTests",
+      "method": "testRealTXTAndEPUBCoverSaveStartupTrashRestoreAndDefaultPreserveRelatedData",
+      "result": "passed",
+      "seconds": 0.273
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookDuplicateTests",
+      "method": "testCancelledDuplicateImportDoesNotRemoveAlreadyCommittedBook",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookDuplicateTests",
+      "method": "testDuplicateTrashFeedbackRestoresExplicitlyAndKeepsSavedProgressAfterRestart",
+      "result": "passed",
+      "seconds": 0.07
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookDuplicateTests",
+      "method": "testMixedBatchCountsDuplicatesNewBooksAndBadFilesTruthfully",
+      "result": "passed",
+      "seconds": 0.121
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.BookDuplicateTests",
+      "method": "testRealEPUBAndTXTRenamedCopiesKeepUUIDCoverAndFullReadingHistory",
+      "result": "passed",
+      "seconds": 0.106
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testBroadPickerImportsTXTAndUppercaseEPUBRejectsUnsupportedFileInSameBatch",
+      "result": "passed",
+      "seconds": 0.064
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testBundledSamplesImportWithoutFileProvider",
+      "result": "passed",
+      "seconds": 0.067
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testCancelledPickerCannotStartImportWithLateFiles",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testEmptyBatchReportsErrorAndCanRetryWithSamples",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testEmptyPickerCallbackExplainsMissingFile",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testFirstEPUBSelectionThroughNativeSheetImportsWithoutRetry",
+      "result": "passed",
+      "seconds": 1.663
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip",
+      "result": "passed",
+      "seconds": 5.835
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testFirstInvalidSelectionInFullLibraryShowsFeedbackAndCanRetry",
+      "result": "passed",
+      "seconds": 4.149
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testFirstPickerCallbackAfterFullLibraryDismissalStillImports",
+      "result": "passed",
+      "seconds": 2.038
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry",
+      "result": "passed",
+      "seconds": 2.535
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles",
+      "result": "passed",
+      "seconds": 5.855
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testPickerDeliversSelectedFilesOnceAndIgnoresLateCancellation",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testSelectionStartsImportWithoutAnySheetDismissalCallback",
+      "result": "passed",
+      "seconds": 0.188
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testShelfOwnsPickerDelegateUntilTerminalEventWithoutRetainCycle",
+      "result": "passed",
+      "seconds": 0.081
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.DocumentImportTests",
+      "method": "testSingleURLDelegateDeliversOnceAndIgnoresDuplicateArrayAndCancel",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.EPUBIntegrationTests",
+      "method": "testCorruptEPUBImportRollsBackFilesAndDatabase",
+      "result": "passed",
+      "seconds": 0.065
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.EPUBIntegrationTests",
+      "method": "testEPUB2AndEPUB3MetadataAndNavigationIndex",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.EPUBIntegrationTests",
+      "method": "testNavigatorCanBeCreatedWithoutAnHTTPServer",
+      "result": "passed",
+      "seconds": 0.058
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.EPUBIntegrationTests",
+      "method": "testRealImportPersistsBookAndCachedTOC",
+      "result": "passed",
+      "seconds": 0.177
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryBoundaryTests",
+      "method": "testShelfDefersModelCreationUntilMountedAndKeepsItAcrossLayout",
+      "result": "passed",
+      "seconds": 0.726
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryRemovalTests",
+      "method": "testConfirmationCancelMissingBookErrorAndRecoveryRetryKeepShelfTruthful",
+      "result": "passed",
+      "seconds": 0.261
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryRemovalTests",
+      "method": "testNativeRemovalConfirmationTrashAndEmptySnapshots",
+      "result": "passed",
+      "seconds": 8.038
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryRemovalTests",
+      "method": "testOverlappingRefreshDoesNotBringBackRemovedBookOrHideRestoredBook",
+      "result": "passed",
+      "seconds": 0.234
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryRemovalTests",
+      "method": "testTXTAndEPUBRemovalSurvivesRealAppStartupRecoveryAndRestoresRelatedData",
+      "result": "passed",
+      "seconds": 0.301
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryTests",
+      "method": "testLayoutSortPreferencesPersistAndInvalidValuesFallBack",
+      "result": "passed",
+      "seconds": 0.037
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryTests",
+      "method": "testMetadataOnlyFilteringNumericSortAndReadingProgress",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryTests",
+      "method": "testNativeShelfGridListFilterAndRenameErrorSnapshots",
+      "result": "passed",
+      "seconds": 7.427
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryTests",
+      "method": "testRefreshOverlappingCommittedRenameKeepsLatestTitle",
+      "result": "passed",
+      "seconds": 0.42
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.LibraryTests",
+      "method": "testRenameThroughShelfPersistsOriginalAndCompleteReadingPosition",
+      "result": "passed",
+      "seconds": 0.237
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.PositionCodecTests",
+      "method": "testLocatorRoundTripPreservesFragmentsAndTextContext",
+      "result": "passed",
+      "seconds": 0.011
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.PositionCodecTests",
+      "method": "testWrongBookEngineVersionAndCorruptDataAreRejected",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testBrowsingSkipsUnchangedFilesAndOnlyExplicitSelectionRequestsInstallation",
+      "result": "passed",
+      "seconds": 0.025
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testCancelledBrowseCannotPublishAndReadFailurePreservesLastCatalogue",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testCloseReopenRejectsLateOpenCatalogueWithoutChangingNewSession",
+      "result": "passed",
+      "seconds": 1.829
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testCloseReopenRejectsOldImportAndItsCleanupCannotClearNewBusyState",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testImportInvalidatesPendingBrowseAndPublishesOnlyAfterExplicitCommit",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testOlderBrowseCompletionAndCleanupCannotReplaceOrInvalidateNewerBrowse",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderFontCoordinatorTests",
+      "method": "testOpenLoadsBundledResourcesAndMissingImportFallsBackWithoutChangingPreference",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testAppearanceRestoresBeforeOpenAndRapidEditsPersistInOrder",
+      "result": "passed",
+      "seconds": 0.097
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testAppearanceWriteFailureShowsRetryAndKeepsCurrentReadingSession",
+      "result": "passed",
+      "seconds": 0.053
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testAutomaticScrollAdditionalReduceMotionAndModeExitCannotStartMotion",
+      "result": "passed",
+      "seconds": 0.037
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
+      "result": "passed",
+      "seconds": 0.059
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testAutomaticScrollPreferenceWriteFailurePausesAndRetryKeepsOriginalSettings",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testClosedAndReopenedSessionRejectsCapturedOldCallbacks",
+      "result": "passed",
+      "seconds": 0.044
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testCloseDuringOpenCannotReturnReaderToReadyState",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "result": "passed",
+      "seconds": 0.047
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testFailedOpenCanRetryAndBecomeReady",
+      "result": "passed",
+      "seconds": 0.047
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
+      "result": "passed",
+      "seconds": 0.058
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testLateBookmarkFailureAfterCloseCannotShowError",
+      "result": "passed",
+      "seconds": 0.033
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testLatePositionAfterCloseIsNotPersisted",
+      "result": "passed",
+      "seconds": 0.031
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testNextReaderRestoresPendingSettingsFromSharedAppServices",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testOldSettingsFailureCannotPublishIntoSameModelReopenedSession",
+      "result": "passed",
+      "seconds": 0.076
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "result": "passed",
+      "seconds": 0.054
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "result": "passed",
+      "seconds": 0.568
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "result": "passed",
+      "seconds": 0.036
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "result": "passed",
+      "seconds": 0.033
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "result": "passed",
+      "seconds": 0.096
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+      "result": "passed",
+      "seconds": 0.07
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "result": "passed",
+      "seconds": 0.03
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testUnsupportedLayoutRetainsPreferredVerticalScreenForOtherBooks",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderLifecycleTests",
+      "method": "testVerticalScreenRestoreAndContinuousSwitchRetainSameSession",
+      "result": "passed",
+      "seconds": 0.054
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderProgressTests",
+      "method": "testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testAutomaticScrollCrossesChapterStopsAtBookEndAndBackgroundDoesNotResume",
+      "result": "passed",
+      "seconds": 16.185
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testAutomaticScrollRealDisplayLinkPauseLateFrameFullLocatorAndReopen",
+      "result": "passed",
+      "seconds": 11.427
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testClosingDuringDelayedFontReadyCannotNavigateOrNotifyNewReader",
+      "result": "passed",
+      "seconds": 6.869
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+      "result": "passed",
+      "seconds": 5.401
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousBoundaryShowsTwoResourcesAndScrollsBack",
+      "result": "passed",
+      "seconds": 9.688
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousFragmentAndDOMBookmarkRestore",
+      "result": "passed",
+      "seconds": 8.083
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousHeightChangeKeepsVisibleDOMAnchor",
+      "result": "passed",
+      "seconds": 5.673
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousLayoutFailureShowsRetryAndRecoversTheAnchor",
+      "result": "passed",
+      "seconds": 8.489
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousLongParagraphRestoresCharacterAndViewportOffset",
+      "result": "passed",
+      "seconds": 8.632
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "result": "passed",
+      "seconds": 5.691
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousSearchJumpAndModeRoundTripKeepTheParagraph",
+      "result": "passed",
+      "seconds": 10.6
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+      "result": "failed",
+      "seconds": 38.021
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testEPUBAppearanceUsesRealCSSAndPreservesAnchorAcrossReflowAndReopen",
+      "result": "passed",
+      "seconds": 9.326
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "result": "passed",
+      "seconds": 23.999
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testImmediateCloseCannotMountLatePaginationOrWebViews",
+      "result": "passed",
+      "seconds": 0.714
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "result": "passed",
+      "seconds": 185.387
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testInstantScreenFrameProtectionRejectsOverlapAndClearsOnDragModeJumpAndClose",
+      "result": "passed",
+      "seconds": 7.768
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testLateModeChangeCannotRebuildReopenedContinuousReader",
+      "result": "passed",
+      "seconds": 6.354
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testMotionPolicyReachesRealWebNavigationAndOverlappingTurnsDoNotQueue",
+      "result": "passed",
+      "seconds": 4.517
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testPagedNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "result": "passed",
+      "seconds": 7.818
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testPagedReopenRestoresFirstCharacterOfLongParagraph",
+      "result": "passed",
+      "seconds": 9.224
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testPagedTypographyKeepsNonzeroTextAnchorInsteadOfOldPageOffset",
+      "result": "passed",
+      "seconds": 16.174
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testPagedTypographyRebuildDoesNotQueueDynamicCSSIntoNewPage",
+      "result": "passed",
+      "seconds": 14.73
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange",
+      "result": "passed",
+      "seconds": 10.232
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testRetiredContinuousProcessCannotReloadPagedReader",
+      "result": "passed",
+      "seconds": 9.23
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+      "result": "passed",
+      "seconds": 8.833
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testScrollingCanMoveToNextResourceAndTOCFragment",
+      "result": "passed",
+      "seconds": 9.858
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "result": "passed",
+      "seconds": 30.477
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testSixFontsAndExtendedTypographyKeepFreshNonzeroContinuousAnchor",
+      "result": "passed",
+      "seconds": 29.827
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testTallCoverUsesWholeViewportInPaginatedAndScrollingModes",
+      "result": "passed",
+      "seconds": 6.324
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testThousandResourcesUseBoundedWindowAndCloseClearsViews",
+      "result": "passed",
+      "seconds": 14.604
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testVerticalScreenCommandsCrossPhysicalChapterBoundaryAndRejectOverlappingAnimation",
+      "result": "passed",
+      "seconds": 10.107
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testVerticalScreenKeepsNonzeroDOMAnchorAcrossPolicyToggleAndReopen",
+      "result": "passed",
+      "seconds": 8.418
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testVerticalScreenNativeTargetsOverlapReverseCancelClampAndLeaveContinuousUnchanged",
+      "result": "passed",
+      "seconds": 5.055
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderRenderingTests",
+      "method": "testViewportKeepsScreenHeightWhenMenuHidesAndReturns",
+      "result": "passed",
+      "seconds": 3.232
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchFieldTests",
+      "method": "testNativeQueryFieldKeepsChineseCompositionAndCaretAcrossThemeThenClears",
+      "result": "passed",
+      "seconds": 5.483
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "method": "testEmptyAndOversizedQueryNeverStartEngineSearch",
+      "result": "passed",
+      "seconds": 0.136
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "method": "testLatePageCannotReplaceNewQueryResults",
+      "result": "passed",
+      "seconds": 0.452
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "method": "testLateStartedSessionIsCancelledAfterQueryChanges",
+      "result": "passed",
+      "seconds": 0.008
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "method": "testLoadMoreIsExplicitAndResultsStopAtVisibleLimit",
+      "result": "passed",
+      "seconds": 0.05
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSearchViewModelTests",
+      "method": "testSelectionDelegatesOpaquePositionAndReportsNavigationFailure",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testAppearanceWritesAcrossReadersStayOrderedAndObsoleteResultsAreNotPublished",
+      "result": "passed",
+      "seconds": 0.149
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testFlushIncludesAppearanceQueuedWhileWaitingForInteraction",
+      "result": "passed",
+      "seconds": 0.009
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testInteractionWritesKeepLatestValueAndFailureIndependentOfAppearance",
+      "result": "passed",
+      "seconds": 0.016
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testLatestAppearanceFailureIsVisibleUntilExplicitRetrySucceeds",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testNewReaderRestoreWaitsForPendingAppearanceWrite",
+      "result": "passed",
+      "seconds": 0.033
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testRealFileStoreKeepsExistingPreferencePathsAndValues",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSettingsPersistenceTests",
+      "method": "testStorageReadErrorPropagatesWithoutReplacingSettingsWithDefaults",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReaderSurfaceTests",
+      "method": "testRealWindowEdgesPaintWithoutChangingNavigatorOrInterceptingTouches",
+      "result": "passed",
+      "seconds": 0.276
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testColdFontDocumentQueuesUntilServicesAndDeduplicatesWithoutSelecting",
+      "result": "passed",
+      "seconds": 0.142
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testDocumentDeclarationUsesSystemFontTypesAndAlternateViewerRole",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testFullChineseFontValidationRecordsStreamingCostWithoutChangingIdentity",
+      "result": "passed",
+      "seconds": 1.359
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testPresetsPreserveFontSizeThemeAndValidateWithoutChangingCustomValuesOnInspection",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testReaderPresentationThemeNeverChangesShelfOrWindowAndRestoresLocalOverride",
+      "result": "passed",
+      "seconds": 0.241
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingExperienceTests",
+      "method": "testWarmFontDocumentFailureIsVisibleAndNextImportRecovers",
+      "result": "passed",
+      "seconds": 0.105
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testActualNativePreviewImagesDifferAcrossSixFontsAndInvalidInputIsVisible",
+      "result": "passed",
+      "seconds": 1.795
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testBundledChineseOriginalFontsHaveGlyphsLicensesAndDoNotUseImportSlots",
+      "result": "passed",
+      "seconds": 0.889
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testExternalFontBrowsingDoesNotRebuildUntilExplicitSelectionAndKeepsFullAnchor",
+      "result": "passed",
+      "seconds": 0.189
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testFontCaptureCloseReopenLateResultCannotRebuildNewReader",
+      "result": "passed",
+      "seconds": 0.084
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testFontCaptureFailureDoesNotCloseReaderAndReimportRetries",
+      "result": "passed",
+      "seconds": 0.124
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testFontImportRebuildFullAnchorSaveResetAndMissingAssetFallback",
+      "result": "passed",
+      "seconds": 0.11
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testRealCoreTextFileValidationDuplicateAndOriginalBytesPreserved",
+      "result": "passed",
+      "seconds": 0.136
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadingFontTests",
+      "method": "testTransparentDecodedPreviewCacheReusesSixFacesAndBoundsPixelMemory",
+      "result": "passed",
+      "seconds": 0.681
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testBatchSizeSnippetBoundsAndEndPreserveCSSLocator",
+      "result": "passed",
+      "seconds": 0.012
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testCombiningCharactersEmojiAndInlineSegmentBoundaries",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testConcurrentNextRejectedAndCancelledSessionRejectsLatePage",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testContentReadFailureIsNotReportedAsNoMatches",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testLiteralQueryCaseInsensitiveAndNoCrossParagraphMatch",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ReadiumSearchTests",
+      "method": "testRealEPUB2AndEPUB3ChineseSearchPositions",
+      "result": "passed",
+      "seconds": 0.858
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testActualTXTImportUTF8UTF16AndGB18030ChoiceRetryPreservesFiles",
+      "result": "passed",
+      "seconds": 0.38
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testAutomaticScrollAcrossTXTWindowKeepsByteAnchorAndReopensStatic",
+      "result": "passed",
+      "seconds": 19.751
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testDefaultANSIImportReportsDetectedEncodingAndKeepsOriginalAcrossReopen",
+      "result": "passed",
+      "seconds": 0.429
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testExplicitBig5AndWesternANSIThroughAppImportAndReadiumResources",
+      "result": "passed",
+      "seconds": 0.227
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+      "result": "passed",
+      "seconds": 21.793
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testImportedFontTXTRebuildKeepsByteUTF16ViewportAndReopensWithRealFont",
+      "result": "passed",
+      "seconds": 90.769
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testMultiMegabyteTXTHeadMiddleTailResourcesAndAnchorsRemainBoundedAfterReopen",
+      "result": "passed",
+      "seconds": 25.812
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testRealTXTContinuousLongParagraphRestoresByteCharacterViewportAndTOC",
+      "result": "passed",
+      "seconds": 13.443
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testRealTXTSearchPositionsJumpAndCloseCancelSession",
+      "result": "passed",
+      "seconds": 5.752
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testTXTChineseAppearanceAndNonzeroUTF16AnchorSurviveTypographyAndReopen",
+      "result": "passed",
+      "seconds": 22.635
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testTXTLocatorByteTextAndViewportRoundTripRejectsContentAndInvalidAnchors",
+      "result": "passed",
+      "seconds": 0.182
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.TXTReadingTests",
+      "method": "testTXTReadiumResourcesAreBoundedEscapedAndDoNotReadNextChapter",
+      "result": "passed",
+      "seconds": 2.793
+    },
+    {
+      "moduleClass": "XianxiaReaderTests.ZWebKitLoadingControlTests",
+      "method": "testMinimalCustomSchemeLoadsAndReleasesAcrossRepeatedViews",
+      "result": "passed",
+      "seconds": 9.786
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "method": "testCoverEditorNativeFilesCancelDefaultSaveAndReopen",
+      "result": "passed",
+      "seconds": 102.374
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "method": "testDuplicateImportKeepsCustomBookAndRestoresTrashWithNativeFeedback",
+      "result": "passed",
+      "seconds": 70.459
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "method": "testGridRemovalReflowsAndRestoreReturnsOriginalOrder",
+      "result": "passed",
+      "seconds": 50.073
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "method": "testNativeListSwipeCancelCommitReopenAndRestore",
+      "result": "passed",
+      "seconds": 75.69
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.LibraryInteractionUITests",
+      "method": "testReducedMotionRemovalAndRestoreKeepUsableGrid",
+      "result": "passed",
+      "seconds": 47.467
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderAppearanceUITests",
+      "method": "testNativeThemesTypographyAndPersistenceAfterRelaunch",
+      "result": "passed",
+      "seconds": 104.993
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testAdditionalReducedMotionMenuCanHideAndReturnWithNativeDrag",
+      "result": "passed",
+      "seconds": 42.323
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testAutomaticSlowScrollRespectsAdditionalReduceMotion",
+      "result": "passed",
+      "seconds": 33.876
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testAutomaticSlowScrollTouchBackgroundDarkControlsSpeedAndStaticRelaunch",
+      "result": "passed",
+      "seconds": 160.089
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testInstantVerticalScreenRepeatedReverseKeepsControlsAndReadableText",
+      "result": "passed",
+      "seconds": 63.423
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testNativeMenuLayoutGroupsPublisherRulesAndRelaunch",
+      "result": "passed",
+      "seconds": 135.067
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testPaperProbeIncludesSurroundingPaperAndRejectsWrongTheme",
+      "result": "passed",
+      "seconds": 1.701
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates",
+      "result": "passed",
+      "seconds": 144.504
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testReadingDragHidesMenuModePersistsAndOptOutKeepsMenu",
+      "result": "passed",
+      "seconds": 122.942
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions",
+      "result": "passed",
+      "seconds": 214.109
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testReducedMotionNativeGroupedSettingsRemainUsable",
+      "result": "passed",
+      "seconds": 55.156
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testReturnPointContentsBookmarkAndCurrentPositionRelaunch",
+      "result": "passed",
+      "seconds": 143.253
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testReturnPointSearchDarkReducedMotionAndStay",
+      "result": "passed",
+      "seconds": 91.036
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testSurfaceControlsKeepSingleActivationAndHitRegionsAfterHeldPress",
+      "result": "passed",
+      "seconds": 156.325
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testThemedBookmarkSwipePersistsAndSearchClearDoesNotReuseResults",
+      "result": "passed",
+      "seconds": 201.578
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testTouchExtentComparisonKeeps44PointMinimumAndRejectsRealShortfalls",
+      "result": "passed",
+      "seconds": 0.309
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testUnsafeEdgesRemainCoveredDuringSlowScrollThemeAndRotation",
+      "result": "passed",
+      "seconds": 192.66
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReaderInterfaceUITests",
+      "method": "testVerticalScreenNativeDragControlsModeRestoreAndReturnToContinuous",
+      "result": "passed",
+      "seconds": 225.742
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingExperienceUITests",
+      "method": "testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection",
+      "result": "passed",
+      "seconds": 149.308
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingExperienceUITests",
+      "method": "testSystemDarkShelfSearchStaysDarkAcrossRepeatedReaderSessions",
+      "result": "passed",
+      "seconds": 153.588
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingFontUITests",
+      "method": "testBundledChineseFontCardsSelectPersistAndSwitchInDarkMode",
+      "result": "passed",
+      "seconds": 123.84
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingFontUITests",
+      "method": "testCompactSettingsKeepFontRowsStableAndLayoutWithinOneScreen",
+      "result": "passed",
+      "seconds": 70.279
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingFontUITests",
+      "method": "testNativeFontSelectionPickerCancelDarkResetAndRelaunch",
+      "result": "passed",
+      "seconds": 127.826
+    },
+    {
+      "moduleClass": "XianxiaReaderUITests.ReadingFontUITests",
+      "method": "testSixNativeFontSamplesAndCustomTypographyPersist",
+      "result": "passed",
+      "seconds": 134.574
+    }
+  ],
+  "components": [
+    {
+      "module": "ReaderLogic",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderLogic/tests.xml",
+          "sha256": "34419b30daf7d921c9741c988256150f764db2ae46ba727efe1b1048ea271dc6"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderLogic/dependencies.json",
+          "sha256": "241e2bb463e98716b1900c796c315657c405c79fcea5d6f67c564498681da2df"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderLogic/tests.log",
+          "sha256": "e7b2331eaee67f532ab84d7f4273d83cd3c89a883d5d05e41618d86fc6912b2d"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderLogic/environment.log",
+          "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderLogic/receipt.json",
+          "sha256": "824592c594f0d407e2683ed7ff2e15123cac1a362c21a7f0131097ffc34d1479"
+        }
+      ]
+    },
+    {
+      "module": "ReaderPositions",
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderPositions/tests.xml",
+          "sha256": "15b38d185cadd3f00aa315f41466309e86f632793f1649b0d53da1d1ced74929"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderPositions/dependencies.json",
+          "sha256": "cc9a62fec32789bb5f04a78692cdc0dea18521f659ad79d8233aa145603ecb83"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderPositions/tests.log",
+          "sha256": "14965378a0461918fa115ebbfabbb8330e381ed60e4bdc60aa96c29aa309fe1a"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderPositions/environment.log",
+          "sha256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderPositions/receipt.json",
+          "sha256": "0b4bab36ac036bfee1b0b1e38a8110903d65976affa0b6ea23677c3cb676592e"
+        }
+      ]
+    },
+    {
+      "module": "ReaderSessions",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSessions/tests.xml",
+          "sha256": "f7e42f5594a09da72f53ebb11cea990aecee4fac8c70ea3e2cb39133540a170e"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSessions/dependencies.json",
+          "sha256": "759a186c693d57ad0217df15100721d3c154bc04c565511adc92c164b189c50f"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSessions/tests.log",
+          "sha256": "1f52818e6d6abddb7193fe7fabf56b8c6a9b1b683bc670a13a247580d14b32f8"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSessions/environment.log",
+          "sha256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSessions/receipt.json",
+          "sha256": "2f84a1345c3ca60181db25c398744e9cdc579f17c5c14cca36c724bb6a7a3797"
+        }
+      ]
+    },
+    {
+      "module": "LibraryShelf",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/LibraryShelf/tests.xml",
+          "sha256": "8fe11c105f307c3151937901514e06b59b43af830024a25893bc93f0375e64de"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/LibraryShelf/dependencies.json",
+          "sha256": "3ebb9e90729e6a28202979ede1ce3cc400d2cb2469c0d4fe9ae421c0ac84ac96"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/LibraryShelf/tests.log",
+          "sha256": "9c7508472c2f3405efa5fe0c827cdc8586906df4eabdb6ab5bd86bf6ae85e896"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/LibraryShelf/environment.log",
+          "sha256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/LibraryShelf/receipt.json",
+          "sha256": "71922816169810880623c21945856cdbc5610e95484980c64c302473e7a648ec"
+        }
+      ]
+    },
+    {
+      "module": "BookImports",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/BookImports/tests.xml",
+          "sha256": "999c41c0532f4bc422b58c544694366350efb142960c3e1a7e1d412c5884c5ee"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/BookImports/dependencies.json",
+          "sha256": "4c03d1bb58747d96d733d6dfc29afc2d419871e30b4e9495f38b612898bb0a19"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/BookImports/tests.log",
+          "sha256": "0c66547682d8a7c9e7a7b9381378f4185069158808479b4af30f6aca02d64420"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/BookImports/environment.log",
+          "sha256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/BookImports/receipt.json",
+          "sha256": "419993fcdc4eb3cba700320311010763ab969c33eca592873a955315fe106056"
+        }
+      ]
+    },
+    {
+      "module": "ReaderSearch",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "rawReverified": true,
+      "evidence": [
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSearch/tests.xml",
+          "sha256": "1594e60db961b7f84a7c9fa7cc9b7d1b8a295af129ebbf1c07cee654c7b1d7f0"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSearch/dependencies.json",
+          "sha256": "b11769388c5f5a3eb2ab4a4dd9762852680b7400929e04052c33909ed7fade8f"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSearch/tests.log",
+          "sha256": "757a72140e8d647b919ebce381ae879b56b1ba90963b3d7336da8bc4f65bd7ac"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSearch/environment.log",
+          "sha256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935"
+        },
+        {
+          "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSearch/receipt.json",
+          "sha256": "11f71ac326c6c1b711bc796fe08564ee48b6fc2dd00c4d4ab137d74678325a4a"
+        }
+      ]
+    }
+  ],
+  "core": [
+    {
+      "platform": "macOS",
+      "uniqueScheduled": 137,
+      "scheduleOccurrences": 137,
+      "probeCases": [
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        }
+      ],
+      "componentPassed": true,
+      "containingJobConclusion": "failure"
+    },
+    {
+      "platform": "Linux",
+      "uniqueScheduled": 137,
+      "scheduleOccurrences": 137,
+      "probeCases": [
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        },
+        {
+          "configuration": "Release",
+          "allChecksPassed": true
+        }
+      ],
+      "componentPassed": true,
+      "containingJobConclusion": "success"
+    }
+  ],
+  "cost": {
+    "dispatches": 1,
+    "actualCaseSeconds": {
+      "XianxiaReaderTests": 846.937,
+      "XianxiaReaderUITests": 3194.564
+    },
+    "totalActualCaseSeconds": 4041.501,
+    "mainStepSeconds": 5947.0,
+    "beforeFirstNativeSuiteSeconds": 1653.361,
+    "preflightExecutions": 0
+  },
+  "compilation": {
+    "errors": [],
+    "warnings": [
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift",
+        "line": 7,
+        "kind": "warning",
+        "message": "extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift",
+        "line": 72,
+        "kind": "warning",
+        "message": "type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift",
+        "line": 72,
+        "kind": "warning",
+        "message": "type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift",
+        "line": 73,
+        "kind": "warning",
+        "message": "non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift",
+        "line": 73,
+        "kind": "warning",
+        "message": "non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift",
+        "line": 73,
+        "kind": "warning",
+        "message": "type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift",
+        "line": 1128,
+        "kind": "warning",
+        "message": "capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode"
+      },
+      {
+        "path": "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift",
+        "line": 4,
+        "kind": "warning",
+        "message": "add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+      }
+    ]
+  },
+  "artifactReceipts": {
+    "apple": {
+      "run": 39735403242,
+      "artifact": 12411464644,
+      "kind": "apple",
+      "archiveBytes": 1196915933,
+      "archiveSHA256": "edbe1c6972311ab31124e20a525a5c612e4805ef2c0d3870c8642353651ac8a8",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\artifacts\\XianxiaReader-build-diagnostics",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0000.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0001.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0002.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0003.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0004.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0005.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0006.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0007.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0008.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0009.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0010.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0011.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0012.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0013.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0014.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0015.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0016.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0017.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0018.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0019.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0020.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0021.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0022.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0023.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0024.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0025.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0026.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0027.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0028.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0029.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0030.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0031.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0032.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0033.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0034.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0035.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0036.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0037.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0038.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0039.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0040.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0041.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0042.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0043.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0044.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0045.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0046.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0047.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0048.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0049.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0050.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0051.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0052.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0053.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0054.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0055.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0056.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0057.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0058.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0059.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0060.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0061.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0062.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0063.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0064.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0065.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0066.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0067.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0068.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0069.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0070.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0071.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0072.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0073.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0074.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0075.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0076.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0077.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0078.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0079.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0080.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0081.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0082.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0083.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0084.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0085.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0086.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0087.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0088.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0089.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0090.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0091.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0092.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0093.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0094.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0095.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0096.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0097.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0098.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0099.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0100.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0101.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0102.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0103.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0104.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0105.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0106.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0107.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0108.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0109.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0110.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0111.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0112.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0113.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0114.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0115.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0116.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0117.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0118.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0119.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0120.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0121.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0122.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0123.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0124.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0125.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0126.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0127.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0128.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0129.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0130.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0131.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0132.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0133.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0134.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0135.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0136.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0137.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0138.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0139.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0140.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0141.bin",
+          "bytes": 8388608
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-download-chunks\\0142.bin",
+          "bytes": 5733597
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\apple-diagnostics.zip",
+          "bytes": 1196915933,
+          "sha256": "edbe1c6972311ab31124e20a525a5c612e4805ef2c0d3870c8642353651ac8a8"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    },
+    "core": {
+      "run": 39735403242,
+      "artifact": 12406981251,
+      "kind": "core",
+      "archiveBytes": 116294,
+      "archiveSHA256": "c94ea0a806317f85b392d8f68e4e3b66c3e8d292e2b522c503c258a715df3376",
+      "githubDigestMatches": true,
+      "zipCRC": true,
+      "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\core",
+      "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\core",
+      "extractionScope": "complete artifact",
+      "duplicatePathsRemoved": [
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\core-download-chunks\\0000.bin",
+          "bytes": 116294
+        },
+        {
+          "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39735403242\\core-diagnostics.zip",
+          "bytes": 116294,
+          "sha256": "c94ea0a806317f85b392d8f68e4e3b66c3e8d292e2b522c503c258a715df3376"
+        }
+      ],
+      "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+      "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+    }
+  },
+  "evidence": [
+    {
+      "path": "build/ci/39735403242/run.json",
+      "sha256": "9c5b91111ca17a4f24f9ae40b63a75a3e2a1dced0240bc220d04b31c922a46ea"
+    },
+    {
+      "path": "build/ci/39735403242/artifacts.json",
+      "sha256": "182d26647916dfdaf578d454494b9ace2d45e2fc1e2e20b49d16075043cc14b2"
+    },
+    {
+      "path": "build/ci/39735403242/full.log",
+      "sha256": "dd502293849b7f3021272166955ac8aa6a27668975757cfc095a591e5025db23"
+    },
+    {
+      "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/logs/build.log",
+      "sha256": "717ebebcabb0ffea3927423e8d2b2cfc58e63e3c93a627296cdaa041b3bc5524"
+    },
+    {
+      "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+      "sha256": "b7112f09b771e78075c1abe91ddca000e22dfa0d21445ed13158ba4b1bb7fa6c"
+    },
+    {
+      "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/manifest.json",
+      "sha256": "c3b0d41c125c9a5faa19d75171c9dfe227dca3e423239316c4e2801e7e98856e"
+    }
+  ],
+  "phoneAccepted": false,
+  "simulatorVisualReviewComplete": false,
+  "ipaInspectionComplete": false,
+  "allI6Complete": false,
+  "phase": "i6_full_failure_preserved_no_retry",
+  "actualStatuses": {
+    "test": 65,
+    "summary": 0,
+    "attachmentExport": 0,
+    "recording": 0
+  },
+  "native": {
+    "integrationPassed": 162,
+    "integrationFailed": 1,
+    "uiPassed": 29,
+    "uiFailed": 0,
+    "total": 192,
+    "passed": 191,
+    "failed": 1,
+    "skipped": 0,
+    "uniqueStarted": 192,
+    "uniqueEnded": 192,
+    "allCasesRanOnce": true
+  },
+  "diagnosis": {
+    "case": "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+    "failedAtLine": 81,
+    "caseSeconds": 38.021,
+    "originalConditionBudgetSeconds": 30,
+    "firstResize": {
+      "portrait": [
+        402,
+        874
+      ],
+      "landscape": [
+        874,
+        402
+      ],
+      "nativeWebFrame": [
+        874,
+        306
+      ],
+      "nativeWindowAttached": true,
+      "contentAlpha": 1,
+      "documentReady": "complete",
+      "loadedResourceSlots": 2,
+      "viewportRevision": 2,
+      "outerOffsetY": 2670,
+      "contentInsetTop": 62,
+      "slotWrapperOriginY": 365,
+      "localWebScrollY": 2367,
+      "currentReportedCharOffset": 777
+    },
+    "exactFailedSubconditionKnown": false,
+    "originalSavedCharAndRangeNotRecorded": true,
+    "originalWebIdentityComparisonNotRecorded": true,
+    "resizeMeasureStartCompletionNotRecorded": true,
+    "originalMethodIdenticalToDeliveredBuild30": true,
+    "unchangedEngineFilesVsBuild30": [
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift"
+    ],
+    "otherReadiumAndFixtureChangesRemainPossible": true,
+    "preparationWeakness": {
+      "expression": "scrollY > 500",
+      "cannotProveRequested600Movement": true,
+      "currentFailureCausalityProven": false,
+      "previousDifferentCaseReference": "Documentation/READER_POSITION_ISOLATION.md"
+    },
+    "hypotheses": [
+      "Preparation captured before the requested +600 viewport was committed; original saved anchor must be qualified first.",
+      "Native/DOM reflow or async measure failed to preserve a qualified original anchor; record measure decision/identity/revision and actual original Range.",
+      "The conjunction failed on identity/geometry; existing terminal diagnostics do not isolate every predicate."
+    ],
+    "nextExperiment": {
+      "selection": "only this original XCTest method",
+      "productionAlgorithmChanges": false,
+      "record": [
+        "initialY/requestedY/actualY and original full captured Locator",
+        "original character Range before resizing, width/height/native offsets/WebView identity",
+        "original Range and each predicate after each width change",
+        "bounded measure start/end: anchor/revision/desired offset and restoration decision"
+      ],
+      "keep": [
+        "30 second and100ms polling budgets",
+        "same WebView, original glyph visibility and12-view bound",
+        "landscape then portrait order",
+        "all existing full-source behavior and assertions"
+      ],
+      "newCIRequiresUserScopeDecision": true,
+      "estimatedColdPreparationMinutes": [
+        25,
+        35
+      ],
+      "fullRerunForbidden": true
+    },
+    "references": [
+      {
+        "url": "https://developer.apple.com/documentation/uikit/uiview/layoutifneeded()",
+        "use": "UIKit subtree layout contract only; not evidence of a completed WebKit DOM anchor restoration."
+      },
+      {
+        "url": "https://github.com/readium/swift-toolkit/blob/3.11.0/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+        "use": "Matching3.11.0 lifecycle uses view size/transition notifications. Our infinite container is a local extension; do not copy paged reload into it."
+      },
+      {
+        "url": "https://github.com/pointfreeco/swift-snapshot-testing/blob/1.18.4/Sources/SnapshotTesting/Common/View.swift",
+        "use": "Pinned mature fixture establishes native window sizing/traits and cleanup; it is not a reader anchor-preservation algorithm. No new dependency."
+      }
+    ],
+    "attachments": [
+      {
+        "label": "continuous-failure-testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()-81_0_EF69D701-8AAF-4AFC-AB50-6B632FF58E42.txt",
+        "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/5AB12AE9-1819-426C-8B1D-E22A058CDDB8.txt",
+        "sha256": "11d1a48f368082e83445498c0935342fe80a34830adbf2f4bc28112411897380"
+      },
+      {
+        "label": "Complete Issue Description.txt",
+        "path": "build/ci/39735403242/artifacts/XianxiaReader-build-diagnostics/build/ReaderSnapshots/C8ED47EE-ABED-4731-88C3-079384433E40.txt",
+        "sha256": "c65d42d446d56c44dab8efa89f35cf37bece96158d8c4d67c6c9030389d93449"
+      }
+    ]
+  },
+  "closeFixtureBothModesVerified": true,
+  "closeTraces": [
+    {
+      "mode": "paged",
+      "phase": "prepared",
+      "values": {
+        "documentReady": "complete",
+        "href": "/OEBPS/cover.xhtml",
+        "nativeFontState": "pending",
+        "ownReadyNow": true,
+        "probe": {
+          "fontSetAliveAtCall": true,
+          "installed": true,
+          "installHref": "/OEBPS/cover.xhtml",
+          "instanceCalls": 1,
+          "nativeReady": true,
+          "ownReadyAtCall": true,
+          "prototypeCalls": 0,
+          "released": false,
+          "sameFontSetAtCall": true,
+          "settledCalls": 0
+        },
+        "started": true
+      }
+    },
+    {
+      "mode": "paged",
+      "phase": "closed",
+      "values": {
+        "delegatesDisconnected": true,
+        "remainingChildren": 0,
+        "remainingWebViews": 0,
+        "retiredCount": 2
+      }
+    },
+    {
+      "mode": "paged",
+      "phase": "gate-cleanup",
+      "values": {
+        "released": true
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "prepared",
+      "values": {
+        "documentReady": "complete",
+        "href": "/OEBPS/cover.xhtml",
+        "nativeFontState": "pending",
+        "ownReadyNow": true,
+        "probe": {
+          "fontSetAliveAtCall": true,
+          "installed": true,
+          "installHref": "/OEBPS/cover.xhtml",
+          "instanceCalls": 1,
+          "nativeReady": true,
+          "ownReadyAtCall": true,
+          "prototypeCalls": 0,
+          "released": false,
+          "sameFontSetAtCall": true,
+          "settledCalls": 0
+        },
+        "started": true
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "closed",
+      "values": {
+        "delegatesDisconnected": true,
+        "remainingChildren": 0,
+        "remainingWebViews": 0,
+        "retiredCount": 1
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "gate-cleanup",
+      "values": {
+        "released": true
+      }
+    }
+  ],
+  "compilationStatus": {
+    "nativeAppAndTestsCompiled": true,
+    "sourceErrors": 0,
+    "existingUniqueWarningMessages": 6,
+    "deviceReleaseExecuted": false,
+    "existingWarningDiagnosticLocations": 8,
+    "newWarningMessages": 0,
+    "comparisonRun": 39729365995
+  },
+  "fullGateAccepted": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "ciDispatches": 1,
+  "githubRunAttempt": 1,
+  "automaticRetries": 0,
+  "preflightExecutions": 0
+}
