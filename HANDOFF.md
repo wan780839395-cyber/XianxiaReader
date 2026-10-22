@@ -1,3 +1,19 @@
+# 统一准入原生smoke单轮通过：已收齐原件，不再派发
+
+2026-10-23 统一准入/逐条排空修正版仅一轮CI39806769382/2a9fdfb5/attempt1：原生编译、机制6组、原smoke单例1/1（17.851秒）及回执校验通过。主M原7项guard全true，真实退出后另一M及sample逐条准入；79事件，五类清理集合全空。S首采样committed，原字499横/竖均可见。617输入/算法/S诊断/原断言预算保持；未重跑或执行full/Release，旧191/192与I6/手机缺口、Build30不变。见[本轮结果](Documentation/I6_SMOKE_ADMISSION_NATIVE.md)。
+
+实测源2a9fdfb5，恢复目录build/maintenance/I6-smoke-admission-native-20261022。先核final-checkpoint、result、run-api completed success/attempt1和原件摘要；唯一派发锁保持，禁止中断后再次POST。控制器机制取消与真实SDK正常完成后的关闭清理分开记录；未注入真实SDK挂起取消/邻章排队，不能扩大验收。
+
+本片源码零变化、无新IPA；旧S第三次原因、自然并发/H1及旧full根因仍未证。下一项须另定最小匹配对照，不自动实施或派CI，不改算法/断言预算。普通HEAD/index、Build30及既有隔离和定位修复保持，不关机。
+
+---
+
+# smoke原生单例运行中：只派一次，禁止重派（2026-10-22）
+
+冻结源2a9fdfb51281407472b01f1729591d09690a5efd，CI39806769382，selection=continuous-resize-smoke，只跑原视口方法1例及其机制6项。定位源码、原断言/预算保持；不跑Core/组件/23项/UI/full/设备Release。当前尚无原生结果，恢复先核build/maintenance/I6-smoke-admission-native-20261022的attempt/dispatch/frozen与真实job，禁止因中断再派。完整编译/测试原件须收齐再判，失败不自动重跑。旧full191/192与Build30保持，不关机。
+
+---
+
 # 统一准入/逐条排空唯一原生验证：冻结前，最多一轮CI（2026-10-22）
 
 用户已授权只派一轮CI验证5b2047cd统一准入/逐条排空候选，覆盖上轮零CI限制。只用现有continuous-resize-smoke原方法1例及机制6项；核捕获前入场、主M原7项guard、SDK实际终结、随后逐条排空以及取消/关闭清理。S诊断及原定位行为/断言预算保持；本样本不能追认旧full或旧S第三次拒绝根因。
