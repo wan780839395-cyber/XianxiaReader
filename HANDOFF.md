@@ -1,3 +1,19 @@
+# S诊断单轮已保存：S首采样通过、M资格失败，禁止自动重派（2026-10-22）
+
+2026-10-22 新S诊断仅一轮CI39793517830/2274ba25/attempt1：原生编译/链接、机制6项及Linux111工具通过；smoke 0/1（10.318秒），失败在M资格。本次S clipTop0/documentTop2367与期望一致，首采样committed，未出现第三次，旧S拒绝原因仍未证。未持有过渡measure和后续native采样改变版本/锚点，held M原恢复guard为false；失败后清理全空。617运行输入/算法/原断言预算保持，未重派，旧full191/192与Release/手机缺口、Build30保持。见[本轮结果](Documentation/I6_VIEWPORT_S_NATIVE.md)。
+
+实测2274ba25，最新保存源见build/maintenance/I6-viewport-s-native-20261022/final-checkpoint.json；恢复先核attempt/dispatch、真实completed状态及原件，禁止中断后再次POST。本次S只attempt0，不能声称查清旧第三次rejected。s-diagnostic-analysis逐项核同次JS/snapshot和guard，m-failure-analysis保留过渡measure、native采样、held M false guard。
+
+下一片先审阅fixture安全顺序如何处理未持有过渡measure，不自动实施或派CI、不改算法/断言预算；若用户指定继续查S，先明确如何取得旧拒绝条件，不能无假设重放。原字可见断言未执行，measure committed不等于锚点已恢复。完整原件build/ci/39793517830，普通HEAD/index及Build30保持，无新IPA、不关机。
+
+---
+
+# smoke原生单例运行中：只派一次，禁止重派（2026-10-22）
+
+冻结源2274ba253c1d172edbfb05d2efa6ebeba0acc5fd，CI39793517830，selection=continuous-resize-smoke，只跑原视口方法1例及其机制6项。定位源码、原断言/预算保持；不跑Core/组件/23项/UI/full/设备Release。当前尚无原生结果，恢复先核build/maintenance/I6-viewport-s-native-20261022的attempt/dispatch/frozen与真实job，禁止因中断再派。完整编译/测试原件须收齐再判，失败不自动重跑。旧full191/192与Build30保持，不关机。
+
+---
+
 # 新S诊断唯一原生验证：冻结前，最多一轮CI（2026-10-22）
 
 用户已授权只派一轮CI验证a446a68e新增S诊断，覆盖上轮零CI限制。只用现有continuous-resize-smoke原方法1例及机制6项；核clipTop/documentTop、逐项上下文观察和实际reason，区分第三次采样context-invalid、snapshot-unavailable、document-top-mismatch-exhausted或其他实际分支。若未重现拒绝，记录本样本结果，不能追认旧失败根因。

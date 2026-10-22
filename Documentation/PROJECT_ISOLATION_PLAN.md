@@ -1,5 +1,9 @@
 # 全项目隔离与维护计划
 
+2026-10-22 新S诊断仅一轮CI39793517830/2274ba25/attempt1：原生编译/链接、机制6项及Linux111工具通过；smoke 0/1（10.318秒），失败在M资格。本次S clipTop0/documentTop2367与期望一致，首采样committed，未出现第三次，旧S拒绝原因仍未证。未持有过渡measure和后续native采样改变版本/锚点，held M原恢复guard为false；失败后清理全空。617运行输入/算法/原断言预算保持，未重派，旧full191/192与Release/手机缺口、Build30保持。见[本轮结果](I6_VIEWPORT_S_NATIVE.md)。
+
+以下保留当时范围，不能混同为本轮结果。
+
 2026-10-22 S rejected被动诊断切片完成，零CI：旧同请求attempt0/1/2可证明前两次有效snapshot后documentTop不匹配，第三次终止原因仍缺。只补两Swift DEBUG诊断（冻结clip/frame、同次documentTop、逐项guard观察/实际reason）及两项Vendor摘要，原JS/await/算法/测试/断言预算保持；其余614运行输入不变。484语法/静态及14工具通过/1 POSIX跳过，未编译/原生运行。不能称S已通过或旧full根因已证，旧191/192及Release/手机缺口、Build30保持。见[诊断与判读](I6_VIEWPORT_S_DIAGNOSTICS.md)。
 
 以下为先前范围和实测记录，不能当作新诊断的运行结果。

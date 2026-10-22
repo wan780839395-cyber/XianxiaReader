@@ -1,0 +1,519 @@
+{
+  "recordedAtUTC": "2026-10-22T14:40:53.540214+00:00",
+  "run": 39793517830,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39793517830",
+  "sourceRevision": "2274ba253c1d172edbfb05d2efa6ebeba0acc5fd",
+  "conclusion": "failure",
+  "smokeAccepted": false,
+  "compiled": true,
+  "nativeExecuted": 1,
+  "nativeEvents": {
+    "started": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+      ]
+    ],
+    "ended": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "failed",
+        "10.318"
+      ]
+    ]
+  },
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 0,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792679298.698,
+    "passedTests": 0,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792679108.645,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed: caught error: \"invalid(\"safe-M-original-guard-not-qualified\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 1,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "testName": "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "actualStatuses": {
+    "test": 65,
+    "summary": 0,
+    "export": 0
+  },
+  "mechanismMarkers": 1,
+  "verifiedReceipt": null,
+  "verificationError": "Original native position cases must each start and pass exactly once",
+  "fixtureRecordCount": 1,
+  "fixtureBrief": [
+    {
+      "stage": 3,
+      "failure": "safe-M-original-guard-not-qualified",
+      "eventCount": 33,
+      "active": [],
+      "tasks": [],
+      "waiters": []
+    }
+  ],
+  "sourceErrors": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:458: error: -[XianxiaReaderTests.ReaderRenderingTests testContinuousViewportResizeKeepsOriginalWordAndLiveWebView] : failed: caught error: \"invalid(\"safe-M-original-guard-not-qualified\")\"",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:258: error: -[XianxiaReaderTests.ReaderRenderingTests testContinuousViewportResizeKeepsOriginalWordAndLiveWebView] : failed - Viewport fixture: safe-M-original-guard-not-qualified"
+  ],
+  "warnings": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1502:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:403:31: warning: expression implicitly coerced from 'Any?' to 'Any'",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+  ],
+  "cost": {
+    "dispatches": 1,
+    "nativeStepSeconds": 1003.0,
+    "beforeFirstSuiteSeconds": 879.264,
+    "caseSeconds": 10.318,
+    "beforeBuildSucceededSeconds": 499.246,
+    "afterBuildBeforeFirstSuiteSeconds": 380.018,
+    "afterFirstSuiteExcludingCaseSeconds": 113.418,
+    "dispatchToRunCompletedSeconds": 1700.0,
+    "beforeNativeStepSeconds": 68.0,
+    "afterNativeStepToRunFinalStatusSeconds": 629.0,
+    "nativeJobSeconds": 1112.0,
+    "nativeJobCompletionAt": "2026-10-22T14:30:45Z",
+    "runFinalStatusUpdatedAt": "2026-10-22T14:39:33Z",
+    "afterNativeCostLimit": "Includes upload, post steps and wait for job/run final status; not attributed to test execution or a proven infrastructure root cause"
+  },
+  "artifact": {
+    "recordedAtUTC": "2026-10-22T14:32:39.678980+00:00",
+    "run": 39793517830,
+    "artifact": {
+      "id": 12432398908,
+      "node_id": "MDg6QXJ0aWZhY3QxMjQzMjM5ODkwOA==",
+      "name": "XianxiaReader-continuous-resize-smoke",
+      "size_in_bytes": 59823458,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12432398908",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12432398908/zip",
+      "expired": false,
+      "digest": "sha256:1b5c7a317cfafb24a3a362bc2862be31ef323808ba186ff38b1b6747e3a78304",
+      "created_at": "2026-10-22T14:29:27Z",
+      "updated_at": "2026-10-22T14:29:27Z",
+      "expires_at": "2026-10-29T14:29:08Z",
+      "workflow_run": {
+        "id": 39793517830,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/continuous-viewport-s-native",
+        "head_sha": "2274ba253c1d172edbfb05d2efa6ebeba0acc5fd"
+      }
+    },
+    "compressedBytes": 59823458,
+    "extractedBytes": 62012600,
+    "files": 1071,
+    "sha256": "1b5c7a317cfafb24a3a362bc2862be31ef323808ba186ff38b1b6747e3a78304",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "freeBytesBefore": 49029431296,
+    "directory": "build/ci/39793517830/diagnostic",
+    "duplicateArchiveRemoved": true
+  },
+  "rootCauseOfOldFullProven": false,
+  "algorithmModified": false,
+  "runtimeDrift": [],
+  "evidence": [
+    {
+      "path": "build/ci/39793517830/full.log",
+      "sha256": "f20c0f00477e3aab06327aa8dc30b55900c85d8f35fdbb881ea30e637bac9d60"
+    },
+    {
+      "path": "build/ci/39793517830/run.json",
+      "sha256": "6c0e0ac78ca9c6f5538275a9d14afe757a74023a082a4cc1784dd3cb558bb217"
+    },
+    {
+      "path": "build/ci/39793517830/artifacts.json",
+      "sha256": "d50370c887adfeb3128d9acb6d2ecad56bfa2bcf8ea67f2aefd6acc16af1db7d"
+    },
+    {
+      "path": "build/ci/39793517830/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "7e3e948b1237e4d4127943985b94c34bd3ad1445e069bf0fbc110ee6e0a4dbd5"
+    },
+    {
+      "path": "build/ci/39793517830/diagnostic/test-results-summary.json",
+      "sha256": "4dcae260fadd6078573bc6b748284e73277999a54cc3f0825510870285273b70"
+    },
+    {
+      "path": "build/ci/39793517830/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39793517830/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "fcbc9c27483c126c3762e3e3bc34073b18c6c77c28b2576c546128750e471710"
+    }
+  ],
+  "acceptance": {
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false
+  },
+  "runAttempt": 1,
+  "toolingPassed": 111,
+  "toolingSeconds": 29.87,
+  "sDiagnosticsCompiledAndObserved": true,
+  "sDiagnosticAnalysis": {
+    "recordedAtUTC": "2026-10-22T14:40:53.938071+00:00",
+    "run": 39793517830,
+    "source": "2274ba253c1d172edbfb05d2efa6ebeba0acc5fd",
+    "compiled": true,
+    "nativeExecuted": 1,
+    "smokeAccepted": false,
+    "samples": [
+      {
+        "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+        "source": "test-auxiliary",
+        "request": {
+          "anchor": "87718199b4c850a3",
+          "clipBottom": "778.0",
+          "clipTop": "0.0",
+          "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+          "index": "1",
+          "kind": "sample-before-read",
+          "localTop": "2367.0",
+          "moving": "false",
+          "nativeHeight": "778.0",
+          "nativeWidth": "402.0",
+          "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+          "outerY": "2369.0",
+          "positioning": "false",
+          "reader": "ObjectIdentifier(0x0000000108180800)",
+          "ready": "true",
+          "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+          "revision": "2",
+          "sequence": "2",
+          "slot": "ObjectIdentifier(0x0000000104893fa0)",
+          "source": "test-auxiliary",
+          "viewMinYAtStart": "2367.0",
+          "viewportTopAtStart": "2431.0",
+          "webView": "ObjectIdentifier(0x0000000107028e00)",
+          "wrapperMinYAtStart": "64.0"
+        },
+        "held": {
+          "gate": "sample-before-read",
+          "kind": "held",
+          "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+          "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+          "sequence": "3"
+        },
+        "release": [
+          {
+            "disposition": "run",
+            "kind": "released",
+            "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+            "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+            "sequence": "11"
+          }
+        ],
+        "terminal": {
+          "anchor": "6f417c8a0ff9e69e",
+          "clipBottom": "778.0",
+          "clipTop": "0.0",
+          "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+          "index": "1",
+          "kind": "sample-finished",
+          "localTop": "2367.0",
+          "moving": "false",
+          "nativeHeight": "778.0",
+          "nativeWidth": "402.0",
+          "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+          "outcome": "committed",
+          "outerY": "2369.0",
+          "positioning": "false",
+          "reader": "ObjectIdentifier(0x0000000108180800)",
+          "ready": "true",
+          "reason": "committed",
+          "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+          "revision": "2",
+          "sequence": "14",
+          "slot": "ObjectIdentifier(0x0000000104893fa0)",
+          "source": "test-auxiliary",
+          "webView": "ObjectIdentifier(0x0000000107028e00)"
+        },
+        "attempts": [
+          {
+            "attempt": "0",
+            "domSequence": "12",
+            "clipTop": "0.0",
+            "clipBottom": "778.0",
+            "dom": {
+              "anchor": "87718199b4c850a3",
+              "attempt": "0",
+              "clipBottom": "778.0",
+              "clipTop": "0.0",
+              "dom.documentTop": "2367.0",
+              "dom.documentTopFinite": "1.0",
+              "dom.documentY": "2363.875",
+              "dom.documentYFinite": "1.0",
+              "dom.evaluationSucceeded": "1.0",
+              "dom.height": "778.0",
+              "dom.locatorPresent": "1.0",
+              "dom.resultObject": "1.0",
+              "dom.scrollY": "2367.0",
+              "dom.visibleBottom": "778.0",
+              "dom.visibleTop": "0.0",
+              "dom.width": "402.0",
+              "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+              "index": "1",
+              "kind": "sample-dom",
+              "localTop": "2367.0",
+              "moving": "false",
+              "nativeHeight": "778.0",
+              "nativeWidth": "402.0",
+              "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+              "outerY": "2369.0",
+              "positioning": "false",
+              "reader": "ObjectIdentifier(0x0000000108180800)",
+              "ready": "true",
+              "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+              "revision": "2",
+              "sequence": "12",
+              "slot": "ObjectIdentifier(0x0000000104893fa0)",
+              "source": "test-auxiliary",
+              "viewMinYAtStart": "2367.0",
+              "viewportTopAtStart": "2431.0",
+              "webView": "ObjectIdentifier(0x0000000107028e00)",
+              "wrapperMinYAtStart": "64.0"
+            },
+            "decision": {
+              "anchor": "87718199b4c850a3",
+              "attempt": "0",
+              "clipBottom": "778.0",
+              "clipTop": "0.0",
+              "currentLocalTop": "2367.0",
+              "currentRevision": "2",
+              "currentViewMinY": "2367.0",
+              "documentTop": "2367.0",
+              "documentTopDelta": "0.0",
+              "documentTopMatches": "true",
+              "documentY": "2363.875",
+              "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+              "epochMatches": "true",
+              "expectedDocumentTop": "2367.0",
+              "index": "1",
+              "indexMatches": "true",
+              "kind": "sample-decision",
+              "localMatches": "true",
+              "localTop": "2367.0",
+              "moving": "false",
+              "movingMatches": "true",
+              "nativeHeight": "778.0",
+              "nativeWidth": "402.0",
+              "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+              "notCancelled": "true",
+              "notPositioning": "true",
+              "observationPoint": "after-snapshot-await",
+              "outerY": "2369.0",
+              "positioning": "false",
+              "reader": "ObjectIdentifier(0x0000000108180800)",
+              "ready": "true",
+              "reason": "committed",
+              "recordingPoint": "iteration-exit",
+              "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+              "revision": "2",
+              "revisionMatches": "true",
+              "sequence": "13",
+              "slot": "ObjectIdentifier(0x0000000104893fa0)",
+              "slotMatches": "true",
+              "snapshotAvailable": "true",
+              "source": "test-auxiliary",
+              "viewMinYAtStart": "2367.0",
+              "viewportMatches": "true",
+              "viewportTopAtStart": "2431.0",
+              "webView": "ObjectIdentifier(0x0000000107028e00)",
+              "wrapperMinYAtStart": "64.0"
+            },
+            "observedFalseFlags": [],
+            "sameEvaluationFormulaMatches": true,
+            "sameSnapshotMatchesDOM": true,
+            "expectedDocumentTopMatchesRequest": true
+          }
+        ],
+        "thirdAttempt": null,
+        "terminalReason": "committed",
+        "terminalOutcome": "committed",
+        "lastDecisionMatchesTerminalReason": true,
+        "cleanup": {
+          "stage": 3,
+          "failure": "safe-M-original-guard-not-qualified",
+          "active": [],
+          "tasks": [],
+          "waiters": []
+        }
+      }
+    ],
+    "thirdAttemptObserved": false,
+    "noRuntimeChangesDuringRun": true,
+    "oldFullRootCauseProven": false,
+    "limitations": [
+      "Only this run can establish its own terminal branch; absence of a third attempt does not repair or explain an old rejected sample",
+      "Guard flags precede the original guard; actual terminal reason takes precedence over flag observations for cancellation races",
+      "No observation here identifies a DOM scroll writer unless independent trace evidence does so"
+    ]
+  },
+  "mFailureAnalysis": {
+    "held": {
+      "gate": "measure-before-commit",
+      "kind": "held",
+      "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "sequence": "21"
+    },
+    "guard": {
+      "anchor": "ba9c2d8ae5057f9e",
+      "anchorCurrentAtStart": "true",
+      "anchorCurrentNow": "false",
+      "anchorEqual": "false",
+      "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+      "index": "1",
+      "kind": "measure-guard",
+      "localMatches": "false",
+      "localTop": "2151.0",
+      "mayRestore": "false",
+      "moving": "false",
+      "nativeHeight": "306.0",
+      "nativeWidth": "874.0",
+      "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+      "outerY": "2153.0",
+      "ownerMatches": "true",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x0000000108180800)",
+      "ready": "true",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "revision": "3",
+      "revisionMatches": "false",
+      "sequence": "30",
+      "slot": "ObjectIdentifier(0x0000000104893fa0)",
+      "source": "native",
+      "webView": "ObjectIdentifier(0x0000000107028e00)"
+    },
+    "earlierUnheldMeasure": {
+      "anchor": "6f417c8a0ff9e69e",
+      "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+      "index": "1",
+      "kind": "measure-finished",
+      "localTop": "2151.0",
+      "moving": "false",
+      "nativeHeight": "306.0",
+      "nativeWidth": "874.0",
+      "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+      "outcome": "committed",
+      "outerY": "2153.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x0000000108180800)",
+      "ready": "true",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "3",
+      "sequence": "19",
+      "slot": "ObjectIdentifier(0x0000000104893fa0)",
+      "source": "native",
+      "webView": "ObjectIdentifier(0x0000000107028e00)"
+    },
+    "earlierUnheldDOM": {
+      "anchor": "6f417c8a0ff9e69e",
+      "dom.height": "778",
+      "dom.scrollY": "2367",
+      "dom.width": "402",
+      "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+      "index": "1",
+      "kind": "measure-before-commit",
+      "localTop": "2367.0",
+      "moving": "false",
+      "nativeHeight": "306.0",
+      "nativeWidth": "874.0",
+      "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+      "outerY": "2369.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x0000000108180800)",
+      "ready": "true",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "2",
+      "sequence": "17",
+      "slot": "ObjectIdentifier(0x0000000104893fa0)",
+      "source": "native",
+      "webView": "ObjectIdentifier(0x0000000107028e00)"
+    },
+    "nativeSampleWhileHeld": {
+      "anchor": "ba9c2d8ae5057f9e",
+      "clipBottom": "306.0",
+      "clipTop": "0.0",
+      "epoch": "4DC362AA-F382-48E7-8F97-5FA17CFD09CB",
+      "index": "1",
+      "kind": "sample-finished",
+      "localTop": "2151.0",
+      "moving": "false",
+      "nativeHeight": "306.0",
+      "nativeWidth": "874.0",
+      "nonce": "F5DE1A33-B420-45B8-B374-25C168A95EA7",
+      "outcome": "committed",
+      "outerY": "2153.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x0000000108180800)",
+      "ready": "true",
+      "reason": "committed",
+      "requestID": "0457D334-F826-4482-A96F-777CF2EC637F",
+      "revision": "3",
+      "sequence": "28",
+      "slot": "ObjectIdentifier(0x0000000104893fa0)",
+      "source": "native",
+      "webView": "ObjectIdentifier(0x0000000107028e00)"
+    },
+    "finding": "A previously unheld measure finished before the qualifying M gate, changing revision/local position; a native sample replaced the anchor while M was held. Original restore guards became false.",
+    "limit": "M finished/committed metadata does not assert that anchor restoration happened; original glyph assertion was not reached. No product regression or old S/full root cause is established."
+  },
+  "sdkSampleHeld": 1,
+  "sdkSampleCommitted": 1,
+  "thirdAttemptObserved": false,
+  "oldThirdAttemptReasonProven": false,
+  "mechanismChecksPassed": 6,
+  "cleanupEmpty": true,
+  "sourceChangesThisRound": [],
+  "runtimeInputCount": 617,
+  "deliveredBuild30HashesUnchanged": true,
+  "currentRoundClosed": true,
+  "nextRoundCIAllowed": false,
+  "next": "Save the single-run evidence. Before another native experiment, audit the fixture safe-order qualification against the earlier unheld measure; old S third rejection still not reproduced. No algorithm or budget changes, and no automatic CI."
+}
