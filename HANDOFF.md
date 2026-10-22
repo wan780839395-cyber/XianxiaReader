@@ -1,3 +1,21 @@
+# smoke安全顺序审阅已保存：最小方案明确，未实施/零CI（2026-10-22）
+
+2026-10-22 smoke安全顺序审阅完成，未实施、零CI：已证旧宽M1绕过屏障使revision/local改变，后续native采样又改写锚点指纹；held M2的原恢复guard因而失效。最小方案是在捕获上下文前，对受控reader/epoch的measure/sample统一准入，主M实际完成后逐条新捕获排空；保留原提交屏障/guard、S诊断、断言及全部预算。不能只扩大旧结果屏障或放宽guard。617运行输入保持，旧smoke0/1及full191/192未变。见[审阅与方案](Documentation/I6_SMOKE_SAFE_ORDER_REVIEW.md)。
+
+最新保存源见build/maintenance/I6-smoke-safe-order-review-20261022/final-checkpoint.json，before/review-result和文档检查同目录；实际运行源仍2274ba25/CI39793517830 completed failure。原33项事件和原件摘要保持，无运行helper。M1提交18→19无await使revision2/local2367变3/2151；native采样22→28改锚点A为B，M2 guard30合法为false。measure committed不等于恢复锚点，drain分支本次未执行，不能将静态风险当已发生根因。旧S第三次拒绝仍未证。
+
+下一片若用户要求，仅实现报告规定的测试入场控制：measure和sample捕获上下文前暂停、按reader/epoch管测量、主M后等待真实终结再逐条排空；入场/提交许可必须区分点，合计32waiter/128事件及原所有时钟保持。原M提交guard/S诊断/JS与可见断言保留，候选尚未实施、未Swift编译，不能说smoke已修好。未来拟限5个运行文件，不自动派CI或冲突对照，不改产品定位算法。普通HEAD/index及Build30保持，无新IPA、不关机。
+
+---
+
+# smoke安全顺序单独审阅进行中：仅设计、零CI/源码改动（2026-10-22）
+
+用户授权单独审阅并发measure/sample为何使M资格失效，明确最小修正方案；不实施、不派CI、不改定位算法/断言预算。已核617运行输入与66d25ece保存源一致，旧CI39793517830 completed failure/attempt1，无运行helper；原件摘要保持。基线build/maintenance/I6-smoke-safe-order-review-20261022/before.json。
+
+审阅已见两条已证路径：旧宽M1未匹配屏障而提交，使revision/local改变；新native采样在held M2期间改写锚点指纹。后者单独冻结不能消除前者。将核捕获点、主M选择、排空与取消清理；只写明确的测试编排方案，不把smoke前置失败当旧full根因或放宽guard。S诊断/既有隔离定位修复均保留，普通HEAD/index及Build30保持，不关机。
+
+---
+
 # S诊断单轮已保存：S首采样通过、M资格失败，禁止自动重派（2026-10-22）
 
 2026-10-22 新S诊断仅一轮CI39793517830/2274ba25/attempt1：原生编译/链接、机制6项及Linux111工具通过；smoke 0/1（10.318秒），失败在M资格。本次S clipTop0/documentTop2367与期望一致，首采样committed，未出现第三次，旧S拒绝原因仍未证。未持有过渡measure和后续native采样改变版本/锚点，held M原恢复guard为false；失败后清理全空。617运行输入/算法/原断言预算保持，未重派，旧full191/192与Release/手机缺口、Build30保持。见[本轮结果](Documentation/I6_VIEWPORT_S_NATIVE.md)。

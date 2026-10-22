@@ -1,5 +1,7 @@
 # 全项目隔离与维护计划
 
+2026-10-22 smoke安全顺序审阅完成，未实施、零CI：已证旧宽M1绕过屏障使revision/local改变，后续native采样又改写锚点指纹；held M2的原恢复guard因而失效。最小方案是在捕获上下文前，对受控reader/epoch的measure/sample统一准入，主M实际完成后逐条新捕获排空；保留原提交屏障/guard、S诊断、断言及全部预算。不能只扩大旧结果屏障或放宽guard。617运行输入保持，旧smoke0/1及full191/192未变。见[审阅与方案](I6_SMOKE_SAFE_ORDER_REVIEW.md)。
+
 2026-10-22 新S诊断仅一轮CI39793517830/2274ba25/attempt1：原生编译/链接、机制6项及Linux111工具通过；smoke 0/1（10.318秒），失败在M资格。本次S clipTop0/documentTop2367与期望一致，首采样committed，未出现第三次，旧S拒绝原因仍未证。未持有过渡measure和后续native采样改变版本/锚点，held M原恢复guard为false；失败后清理全空。617运行输入/算法/原断言预算保持，未重派，旧full191/192与Release/手机缺口、Build30保持。见[本轮结果](I6_VIEWPORT_S_NATIVE.md)。
 
 以下保留当时范围，不能混同为本轮结果。

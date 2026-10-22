@@ -1,0 +1,178 @@
+{
+  "recordedAtUTC": "2026-10-22T15:03:20.991429+00:00",
+  "reviewComplete": true,
+  "planSpecified": true,
+  "implemented": false,
+  "parent": "66d25ece6a6fc854ef6c2ef668e281a3c7b9e05b",
+  "runtimeInputCount": 617,
+  "runtimeDrift": [],
+  "ciDispatches": 0,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "evidenceRun": 39793517830,
+  "evidenceSource": "2274ba253c1d172edbfb05d2efa6ebeba0acc5fd",
+  "evidenceFile": "build/maintenance/I6-viewport-s-native-20261022/fixture-evidence.json",
+  "evidenceSHA256": "9c56f032db9b22ff32858b7750b4cc8ca46779ec5c727f97ceb3c85905c46420",
+  "evidenceChain": [
+    {
+      "sequence": 14,
+      "kind": "sample-finished",
+      "requestID": "61688E44-6D64-409E-923D-BE1C2508ED39",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "outcome": "committed"
+    },
+    {
+      "sequence": 15,
+      "kind": "measure-start",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e"
+    },
+    {
+      "sequence": 16,
+      "kind": "measure-start",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e"
+    },
+    {
+      "sequence": 17,
+      "kind": "measure-before-commit",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "dom.width": "402"
+    },
+    {
+      "sequence": 18,
+      "kind": "measure-guard",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "mayRestore": "true"
+    },
+    {
+      "sequence": 19,
+      "kind": "measure-finished",
+      "requestID": "DB5E61A8-6FE1-438C-86DE-96A200062B82",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "outcome": "committed"
+    },
+    {
+      "sequence": 20,
+      "kind": "measure-before-commit",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "revision": "2",
+      "localTop": "2367.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "dom.width": "874"
+    },
+    {
+      "sequence": 21,
+      "kind": "held",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1"
+    },
+    {
+      "sequence": 22,
+      "kind": "sample-start",
+      "requestID": "0457D334-F826-4482-A96F-777CF2EC637F",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "6f417c8a0ff9e69e"
+    },
+    {
+      "sequence": 25,
+      "kind": "sample-decision",
+      "requestID": "0457D334-F826-4482-A96F-777CF2EC637F",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "6f417c8a0ff9e69e"
+    },
+    {
+      "sequence": 26,
+      "kind": "sample-dom",
+      "requestID": "0457D334-F826-4482-A96F-777CF2EC637F",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "6f417c8a0ff9e69e",
+      "dom.width": "402.0"
+    },
+    {
+      "sequence": 28,
+      "kind": "sample-finished",
+      "requestID": "0457D334-F826-4482-A96F-777CF2EC637F",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "ba9c2d8ae5057f9e",
+      "outcome": "committed"
+    },
+    {
+      "sequence": 29,
+      "kind": "released",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1"
+    },
+    {
+      "sequence": 30,
+      "kind": "measure-guard",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "ba9c2d8ae5057f9e",
+      "mayRestore": "false"
+    },
+    {
+      "sequence": 31,
+      "kind": "measure-finished",
+      "requestID": "B7886A69-05A0-420F-9EB9-5A876CFE49A1",
+      "revision": "3",
+      "localTop": "2151.0",
+      "anchor": "ba9c2d8ae5057f9e",
+      "outcome": "committed"
+    },
+    {
+      "sequence": 32,
+      "kind": "closing",
+      "requestID": "4A145994-CCCD-478B-9F2B-98C55CE581EF"
+    },
+    {
+      "sequence": 33,
+      "kind": "abort-issued",
+      "requestID": "D30B3F37-1516-4018-952F-6CF6FE435B61"
+    }
+  ],
+  "proven": [
+    "Width-only post-evaluation filtering lets M1 commit before held M2; revision/local change during its synchronous commit path",
+    "Only the first S is selected; the later fresh native sample overwrites the saved anchor fingerprint while M2 is held",
+    "The held M2 preserves owner identity but its original restoration predicates are false; its finished/committed marker does not mean anchor restored"
+  ],
+  "latentNotExecuted": [
+    "drainMeasures opens admission before real group finish; not reached in this run",
+    "Holding all post-evaluation M requests can replay stale height results after a newer M, because height assignment is not guarded by mayRestoreAnchor"
+  ],
+  "plan": "Add opt-in pre-context admission for measure and sampling, serialize the controlled reader epoch through primary M and acknowledged drain, retaining original post-DOM M gate and all assertions/budgets",
+  "prospectiveFiles": [
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json",
+    "scripts/verify_reader_positions.py",
+    "scripts/test_reader_positions_tools.py"
+  ],
+  "originalAlgorithmsAssertionsBudgetsPreserved": true,
+  "sDiagnosticsPreserved": true,
+  "oldSFinalRejectionProven": false,
+  "oldFullRootCauseProven": false,
+  "nextCIAllowed": false,
+  "references": [
+    "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/Gate.swift",
+    "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/GatedSequence.swift",
+    "https://github.com/swiftlang/swift-evolution/blob/main/proposals/0300-continuation.md"
+  ]
+}
