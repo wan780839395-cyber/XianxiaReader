@@ -1,0 +1,188 @@
+{
+  "recordedAtUTC": "2026-10-22T02:18:14.127752+00:00",
+  "phase": "i5_library_targeted_accepted",
+  "revision": "1532b86300247bb8c6697323bfd6230d88a39bbb",
+  "run": 39707770264,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39707770264",
+  "logic": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "testChangeNotificationPrecedesEachListMutationSynchronously",
+      "testCommittedRenameAndCoverRetainReadingSummaryAndRejectOldSnapshot",
+      "testFreshPostcommitSnapshotCanReconcileBothLists",
+      "testLatestRefreshOwnsBothListsAndOldFailureIsRejected",
+      "testMissingCommitDoesNotInventBookAndStillInvalidatesRefresh",
+      "testTrashAndRestoreKeepSummaryOrderAndRejectPrecommitRefresh"
+    ],
+    "appHostUsed": false
+  },
+  "native": {
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "BookCoverTests/testBackgroundDownsamplingAppliesEXIFOnceAndRetainsOriginalBytes",
+      "BookCoverTests/testFirstFileDelegateCallbackSurvivesWrapperAndInvalidSelectionCanRetry",
+      "BookCoverTests/testLateCancelledLoadAndClosedEditorCannotReplaceNewDraftOrSession",
+      "BookCoverTests/testMissingThumbnailUsesOriginalWithWarningAndBothFailuresRemainVisible",
+      "BookCoverTests/testNativeCoverPreviewErrorSavedShelfAndRestoreDefaultSnapshots",
+      "BookCoverTests/testPhotoFileTransferCopiesBeforeProviderDisappearsAndCancellationPreservesBook",
+      "BookCoverTests/testRealDatabaseFailureKeepsDraftForRetryAndRefreshKeepsLatestMetadata",
+      "BookCoverTests/testRealTXTAndEPUBCoverSaveStartupTrashRestoreAndDefaultPreserveRelatedData",
+      "LibraryBoundaryTests/testShelfDefersModelCreationUntilMountedAndKeepsItAcrossLayout",
+      "LibraryRemovalTests/testConfirmationCancelMissingBookErrorAndRecoveryRetryKeepShelfTruthful",
+      "LibraryRemovalTests/testNativeRemovalConfirmationTrashAndEmptySnapshots",
+      "LibraryRemovalTests/testOverlappingRefreshDoesNotBringBackRemovedBookOrHideRestoredBook",
+      "LibraryRemovalTests/testTXTAndEPUBRemovalSurvivesRealAppStartupRecoveryAndRestoresRelatedData",
+      "LibraryTests/testLayoutSortPreferencesPersistAndInvalidValuesFallBack",
+      "LibraryTests/testMetadataOnlyFilteringNumericSortAndReadingProgress",
+      "LibraryTests/testNativeShelfGridListFilterAndRenameErrorSnapshots",
+      "LibraryTests/testRefreshOverlappingCommittedRenameKeepsLatestTitle",
+      "LibraryTests/testRenameThroughShelfPersistsOriginalAndCompleteReadingPosition"
+    ],
+    "appHostUsed": true
+  },
+  "implementation": {
+    "module": "LibraryShelf",
+    "dependencies": [
+      "XianxiaCore"
+    ],
+    "state": "synchronous lists, refresh owner and committed metadata/trash merges",
+    "repositoryPort": [
+      "librarySnapshot",
+      "renameBook",
+      "moveToTrash",
+      "restoreBook",
+      "setCoverOverride"
+    ],
+    "assembly": "App/LibraryAssembly.swift",
+    "deferredStateObjectInitializationPreserved": true,
+    "appUIStillSharesTarget": true,
+    "forbiddenSameTargetIdentifiersGuarded": true,
+    "fullTypeIsolationClaimed": false
+  },
+  "preservation": {
+    "originalAwaitExpressionsUnchanged": true,
+    "unchangedOriginalMethods": [
+      "beginRename",
+      "cancelImport",
+      "dismissCoverEditor",
+      "dismissDuplicates",
+      "finishCoverEditing",
+      "importBooks",
+      "importSamples",
+      "moveToTrash",
+      "receivePickedDocuments",
+      "reportCoverError",
+      "requestRemoval",
+      "restoreBook",
+      "retainPickerCoordinator",
+      "retryTXTImport",
+      "showTrash",
+      "startImport",
+      "startSamplesImport",
+      "startTXTSamplesImport"
+    ],
+    "original17NativeBodiesUnchanged": true,
+    "fixtureMoveByteIdentical": true,
+    "readerPositionSessionFontCoreAdapterVendorResourcesAndLocksUnchanged": true,
+    "importSearchOrchestrationUnchanged": true,
+    "originalReadingPositionAndBookmarkStorageUnchanged": true
+  },
+  "local": {
+    "swiftGrammarFiles": 476,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorGrammarLimitations": 54,
+    "pythonTests": 90,
+    "pythonWindowsPassed": 83,
+    "pythonPOSIXSkipped": 7,
+    "changedToolingRetested": 12,
+    "finalLinuxToolingPassed": 90
+  },
+  "architecture": {
+    "firstPartySwiftFiles": 150,
+    "areas": 21,
+    "graphNodes": 22,
+    "preciseExceptions": 2
+  },
+  "compilation": {
+    "macOSPackage": true,
+    "iOSAppAndTests": true,
+    "sourceCompileErrors": 0,
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ],
+    "knownWarnings": [
+      {
+        "file": "App/LibraryAssembly.swift",
+        "line": 7,
+        "kind": "retroactive conformance of imported SQLiteBookRepository to imported LibraryRepository",
+        "occurrences": 2,
+        "unique": 1,
+        "diagnosticSuppressed": false,
+        "scopeDecision": "Both packages are owned by this repository. Keep the single App assembly declaration; do not change Core protocol ownership or silence diagnostics in this slice."
+      }
+    ]
+  },
+  "cost": {
+    "workflowDispatches": 2,
+    "completedNativeExecutions": 1,
+    "supersededInputCancelledBeforePackageTestCompletion": true,
+    "combinedPackageAndNativeStepSeconds": 1519.0,
+    "packageSwiftBuildSeconds": 62.12,
+    "untilFirstNativeSuiteSeconds": 1470.829,
+    "afterLogicCompletionUntilFirstNativeSuiteSeconds": 1373.218,
+    "actualNativeCaseSeconds": 18.019
+  },
+  "previousAttempt": {
+    "run": 39707366902,
+    "revision": "cc592909d4f4c827de84262d525d1ee1adedb6e2",
+    "conclusion": "cancelled",
+    "reason": "Agent caught eager default model construction and stopped superseded input during package compilation",
+    "packageTestsCompleted": false,
+    "nativeBuildExecuted": false,
+    "nativeTestsExecuted": false,
+    "artifact": 12395048460,
+    "artifactSHA256": "f2ae4a9a2baf11dfdfc82a7f1e338b8a8bce12a5a11a2a3002411fa6bb06fe25"
+  },
+  "artifact": {
+    "id": 12396681750,
+    "bytes": 9630545,
+    "sha256": "de1ce10e2392a7b45c8d7ca63f77bee2023c6155cc182255da8fe97826427ca3",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39707770264\\diagnostic"
+  },
+  "acceptance": {
+    "implementation": true,
+    "compilation": true,
+    "independentContracts": true,
+    "targetedNative": true,
+    "full192Executed": false,
+    "deviceRelease": false,
+    "ordinaryDevice": false,
+    "trollStore": false,
+    "phoneAccepted": false,
+    "newIPA": false
+  },
+  "remaining": "I5 import and search boundaries deferred; full project and device delivery gates pending",
+  "visualReview": {
+    "checked": [
+      "library-grid-build10",
+      "library-trash-populated-build11",
+      "library-cover-saved-build13"
+    ],
+    "result": "Shelf grid, populated trash and saved fixture cover visibly present; no phone or animation acceptance"
+  }
+}

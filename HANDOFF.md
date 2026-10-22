@@ -1,3 +1,27 @@
+# 当前断点：I5a书库本片完成，导入/搜索留后续（2026-10-22）
+
+原生有1项新编译警告（同处发出2次）：LibraryAssembly:7对本仓库Core类型/LibraryShelf协议做外部符合，未来重复声明可能冲突；本片保留单一App组装声明，不静音、不为此改Core协议归属扩片。它不是编译错误或功能失败，完整原警告保留。已查看本次书架网格、非空回收站、保存封面三张原生图，均有预期内容；不代表手机或动效验收。
+
+2026-10-22 I5a书库本片完成：LibraryShelf真实Foundation/Core包拥有同步列表、刷新身份及提交合并，窄仓库不暴露导入/搜索/位置写入。App组装原引擎/导入器，书库不再持有AppServices/创建Readium；原await、导入/搜索流程、Reader/R1/R2/R3/R4及定位/字体保持。最终1532b863 / CI39707770264独立6/6、原17+新增延迟初始化1=18/18，包和App/测试真实编译通过。书库UI仍同App target，特定类型静态检查不等于完整类型隔离。完整163+29=192/Release/设备/手机未跑，无新IPA，最后交付Build30；导入/搜索留后续。见Documentation/LIBRARY_ISOLATION.md和ValidationLogs/project-isolation-i5-library.json。
+
+最终源1532b86300247bb8c6697323bfd6230d88a39bbb / refs/heads/codex/preserve-library-model-initialization / CI39707770264 completed/success。独立6和原17+新增StateObject挂载1原生18全部通过，无失败/跳过，test/summary/export=0。Windows476语法新增0/54既有，90工具83过7 POSIX跳过，修正影响4+8另验；最终Linux90/90。静态150第一方Swift/21区域/22图节点/2精确测试例外。
+
+成本：两派发、首候选由Agent主动停止在包编译、无包测试完成或原生执行；修正源一次实际原生执行。包Swift构建62.12秒，包+原生步骤1519.0秒，包合同完成至首原生suite1373.218秒，18项实际合计18.019秒；准备/编译成本不称用例执行。
+
+权威Documentation/ValidationLogs/project-isolation-i5-library.json；原件build/ci/39707770264/diagnostic，artifact12396681750/9630545字节/SHAde1ce10e2392a7b45c8d7ca63f77bee2023c6155cc182255da8fe97826427ca3，digest/CRC/完整解压已核；取消轮39707366902/full.log与artifact12395048460同样保留。只精确删重复ZIP，无历史/源码清理。
+
+build/maintenance/I5-library-20261022含before/frozen/corrected-frozen/scope-audit/result/final-checkpoint。603运行输入冻结，1208原路径按精确范围保护；fixture移至App原件字节不变，所有旧原生测试/导入方法/搜索/阅读生产保持。普通HEAD仍6d761749911233122bcd031fcf718d22a19f9e77、index SHAb0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28；恢复核实际ref和进程，不重派本片CI，不reset/clean旧WIP。电脑保持开机。
+
+用户本片已完成，不自动进入导入/搜索或新增产品。原特性计划保留在ROADMAP/READING_FEATURE_IDEAS。Library UI仍在App target，状态独立编译；全项目隔离/完整192/Release/手机仍待后续。
+
+以下为过程与历史，不覆盖顶部最终事实。
+
+观察修正：GitHub实时日志按分页延迟加载，聚焦步骤后单次Ctrl+End仍可能停旧页；已连续读状态/到末尾，直至可见最大行号不再增长，确认当前原生SwiftCompile（DifferenceKit），不是从旧尾部推断卡住。完整日志最终仍以下载原件为准。
+
+CI39707770264独立6项实际通过（日志Verified library logic:6）；原生已完成XcodeGen和锁定依赖解析，当前模拟器首次数据迁移，18原生尚未开始，不称原生/编译验收。日志搜索框焦点会使Ctrl+End停留旧片段，已改从步骤标题聚焦至真实尾部；只读观察、不重派。生产603输入保持。
+
+修正输入1532b86300247bb8c6697323bfd6230d88a39bbb / refs/heads/codex/preserve-library-model-initialization已冻结（603运行输入），仅派CI39707770264，6+18待结果。Windows476语法新增0/54既有，受改工具4+8通过；其余90工具既有通过，最终Linux90须重新核。首CI39707366902 cancelled：包编译尚未完成、无测试完成/无原生build/test执行，不称6或17通过；主动停止不是源码失败。full.log/metadata/artifact12395048460/1423字节/SHAf2ae4a9a2baf11dfdfc82a7f1e338b8a8bce12a5a11a2a3002411fa6bb06fe25已CRC/digest保存，重复ZIP精确清除。watch_i5_library_corrected.py只读观察新run，不重派。全192/Release/手机未执行，所有原生旧测试与阅读定位保护。
+
 审阅发现并纠正默认model提前创建：按Apple StateObject thunk合同改LibraryView model参数为escaping autoclosure，保持原延迟初始化。CI39707366902已主动cancel（不是源码失败），待收实际步骤/完整原件。新增LibraryBoundaryTests1原生合同，原17正文保持，修正源仅跑6+18；完整计数163+29=192但本片不跑。下一步本地定向检查后冻结修正输入，仅补一次真实编译与18原生。前轮cc5929不能作为修正App输入的原生证据。
 
 已冻结cc592909d4f4c827de84262d525d1ee1adedb6e2 / refs/heads/codex/isolate-library-shelf，仅派发CI39707366902（library-isolation）。frozen.json保护602运行输入、26路径（含原fixture无改动移动），原所有Tests/iOS/导入/搜索/reader/Core/Adapter/Vendor/资源/锁保持。scope-audit核原导入等未改方法正文与所有await表达式相同。Windows475语法新增0/54既有、90工具83过7跳过、静态149源/21区/22节点/2精确测试例外通过。观察脚本watch_i5_library.py只读收原件，不重派；Swift编译与6+17真实结果待收，完整191/Release/手机未跑。

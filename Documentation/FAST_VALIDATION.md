@@ -1,4 +1,4 @@
-2026-10-22 I5a待验入口：`bash scripts/test_library_shelf.sh <fresh-output-folder>`仅LibraryShelf六合同；`library-isolation`仅该包+原书库/回收站/封面17+新增延迟初始化1=18项，不跑完整192/IPA。Swift编译及真实原生结果须单独核验，细节见LIBRARY_ISOLATION。
+2026-10-22 I5a已验入口：`bash scripts/test_library_shelf.sh <fresh-output-folder>`仅LibraryShelf六合同；`library-isolation`仅该包+原书库/回收站/封面17+新增延迟初始化1=18项，不跑完整192/IPA。最终1532b863/CI39707770264独立6+原生18及编译通过，仅本片门槛，详见LIBRARY_ISOLATION。
 
 # 隔离模块快速验证
 

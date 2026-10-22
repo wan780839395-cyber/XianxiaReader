@@ -1,5 +1,7 @@
 # 开发路线与阶段门槛
 
+2026-10-22 I5a书库本片完成：LibraryShelf真实Foundation/Core包拥有同步列表、刷新身份及提交合并，窄仓库不暴露导入/搜索/位置写入。App组装原引擎/导入器，书库不再持有AppServices/创建Readium；原await、导入/搜索流程、Reader/R1/R2/R3/R4及定位/字体保持。最终1532b863 / CI39707770264独立6/6、原17+新增延迟初始化1=18/18，包和App/测试真实编译通过。书库UI仍同App target，特定类型静态检查不等于完整类型隔离。完整163+29=192/Release/设备/手机未跑，无新IPA，最后交付Build30；导入/搜索留后续。见Documentation/LIBRARY_ISOLATION.md和ValidationLogs/project-isolation-i5-library.json。
+
 2026-10-22 当前断点：R4b本片已实际接线/编译并通过独立15项、原13项生命周期回归（c0008349 / CI39703522408）；原挂起点、发布/关闭顺序与定位保持。R4a归属及R4b编排两片完成各自定向门槛；全项目隔离、R3整组和完整191/Release/手机验收仍未完成。下一阶段I5按一片一门槛整理书库、导入、搜索与组装；本轮不进入I5、不提前做新产品功能。首编译失败/纯夹具14项补证分别保留，不冒充最终15/原生结果。详见[R4b原始结果](Documentation/ValidationLogs/project-isolation-r4b.json)与READER_SESSION_LIFECYCLE_ISOLATION。
 
 2026-10-22 当前断点：R4a会话归属/关闭失效已通过独立6项、同机旧1项负对照和候选13项生命周期回归，原生接线/编译通过；原await、旧28测试、定位及R1/R2/R3保留。下一独立片R4b只提取打开/重试/关闭编排，保留时序及结果发布，不混入字体事务、导航或新产品功能。R4整体、R3整组、全项目隔离和完整191/Release/手机均不能称完成；无新IPA。后续产品计划保持原条目。详见[R4a原始结果](Documentation/ValidationLogs/project-isolation-r4a.json)与READER_SESSION_ISOLATION。
