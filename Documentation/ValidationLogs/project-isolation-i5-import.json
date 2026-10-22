@@ -1,0 +1,132 @@
+{
+  "recordedAtUTC": "2026-10-22T03:01:21.713650+00:00",
+  "phase": "i5_import_transactions_targeted_accepted",
+  "revision": "c8b53e38f9148f0a1968567191e1bca8471558b6",
+  "run": 39712813755,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39712813755",
+  "logic": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "testCancellationAfterMetadataCannotFinalizeOrCommit",
+      "testCleanupFailureReportsOriginalErrorWithoutFollowingManagedSymlink",
+      "testDatabaseFailureRollsBackFinalizedFilesAndKeepsExistingBook",
+      "testEPUBCommitKeepsOriginalFallbackCoverChaptersAndWarnings",
+      "testInvalidAndNonFileInputsNeverReachMetadataOrStorage",
+      "testMetadataFailureRollsBackStagedFilesAndPreservesSource",
+      "testPreflightDuplicatePreservesRemovedBookAndCompleteHistory",
+      "testTXTUsesExistingNormalizerWithoutCallingEPUBMetadata"
+    ],
+    "appHostUsed": false
+  },
+  "native": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "BookDuplicateTests/testCancelledDuplicateImportDoesNotRemoveAlreadyCommittedBook",
+      "BookDuplicateTests/testDuplicateTrashFeedbackRestoresExplicitlyAndKeepsSavedProgressAfterRestart",
+      "BookDuplicateTests/testMixedBatchCountsDuplicatesNewBooksAndBadFilesTruthfully",
+      "BookDuplicateTests/testRealEPUBAndTXTRenamedCopiesKeepUUIDCoverAndFullReadingHistory",
+      "DocumentImportTests/testBroadPickerImportsTXTAndUppercaseEPUBRejectsUnsupportedFileInSameBatch",
+      "DocumentImportTests/testBundledSamplesImportWithoutFileProvider",
+      "DocumentImportTests/testEmptyBatchReportsErrorAndCanRetryWithSamples",
+      "DocumentImportTests/testFirstEPUBSelectionThroughNativeSheetImportsWithoutRetry",
+      "DocumentImportTests/testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip",
+      "DocumentImportTests/testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry",
+      "DocumentImportTests/testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles",
+      "EPUBIntegrationTests/testCorruptEPUBImportRollsBackFilesAndDatabase",
+      "EPUBIntegrationTests/testEPUB2AndEPUB3MetadataAndNavigationIndex",
+      "EPUBIntegrationTests/testRealImportPersistsBookAndCachedTOC"
+    ],
+    "appHostUsed": true
+  },
+  "implementation": {
+    "module": "BookImports",
+    "dependencies": [
+      "XianxiaCore"
+    ],
+    "appCompatibility": "App/Import/EPUBImportService.swift three typealiases",
+    "readingCompatibility": "ImportedPublication and EPUBMetadataReading public typealiases in ReadingInterfaces",
+    "newAsyncWrappers": false,
+    "batchPickerFontInboxExtraction": false
+  },
+  "preservation": {
+    "originalServiceOnlyAccessModifiersAndImportChanged": true,
+    "originalAwaitCount": 11,
+    "metadataDeclarationsByteEquivalent": true,
+    "readerEngineProtocolRemainderUnchanged": true,
+    "appBridgeOnlyTypealiases": true,
+    "noAsyncWrappersOrTasksAdded": true,
+    "originalNativeTestsAndAllOtherAppFilesUnchanged": true,
+    "allOtherAppFilesCoreLibraryShelfReaderPositionsSessionsFontsReadiumAdapterVendorResourcesLocksUnchanged": true,
+    "fullPositionBookmarkAndOriginalRetentionUnchanged": true
+  },
+  "local": {
+    "swiftGrammarFiles": 480,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "pythonTests": 96,
+    "windowsPassed": 89,
+    "windowsPOSIXSkipped": 7,
+    "finalLinuxPassed": 96,
+    "initialToolingNameGenerationFailureRetained": "tooling.log; fixed exact ExistingShelf test name, corrected full96 passed"
+  },
+  "architecture": {
+    "firstPartySwiftFiles": 153,
+    "areas": 23,
+    "graphNodes": 24,
+    "preciseExceptions": 2
+  },
+  "compilation": {
+    "macOSPackage": true,
+    "iOSAppAndTests": true,
+    "sourceCompileErrors": 0,
+    "newImportWarnings": [],
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ]
+  },
+  "cost": {
+    "workflowDispatches": 1,
+    "nativeTestExecutions": 1,
+    "moduleStepSeconds": 65.0,
+    "moduleSwiftBuildSeconds": 48.08,
+    "nativeStepSeconds": 775.0,
+    "beforeFirstNativeSuiteSeconds": 713.681,
+    "actualNativeCaseSeconds": 18.4
+  },
+  "artifact": {
+    "id": 12397619362,
+    "bytes": 1673922,
+    "sha256": "b5bb4ab86d11dc20f8e2a03577d57e4b2c5ef460db51f0e96be3e7efa5ff5d32",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39712813755\\diagnostic"
+  },
+  "acceptance": {
+    "implementation": true,
+    "compilation": true,
+    "independentMacContracts": true,
+    "independentLinuxPackage": false,
+    "targetedNative": true,
+    "full192Executed": false,
+    "Core137Executed": false,
+    "deviceRelease": false,
+    "ordinaryDevice": false,
+    "trollStore": false,
+    "phoneAccepted": false,
+    "newIPA": false
+  },
+  "remaining": "App batch UI/picker/tasks remain App responsibilities; search deferred, complete project/release/device gates pending"
+}

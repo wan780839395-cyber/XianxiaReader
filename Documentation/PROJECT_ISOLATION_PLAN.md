@@ -1,5 +1,7 @@
 # 全项目隔离与维护计划
 
+2026-10-22 I5b导入事务本片完成：BookImports为真实Foundation/Core独立包，拥有原EPUB/TXT导入服务与元数据合同；App/ReadingInterfaces以typealias保留旧调用名称/协议身份，无async包装、原11await与服务body保持。最终c8b53e38 / CI39712813755独立macOS8/8、原生14/14，包及App/测试接线编译通过。App批次UI/Task/picker/FontInbox、书库、搜索及阅读/字体/定位/会话/Core/Adapter/Vendor/资源/锁保持；批次呈现仍在App，不能称全部导入编排或全项目已隔离。完整163+29=192/Core137全组/Release/设备/手机未跑，无新IPA，最后交付Build30。搜索后续。详见Documentation/IMPORT_ISOLATION.md及ValidationLogs/project-isolation-i5-import.json。
+
 2026-10-22 I5a书库本片完成：LibraryShelf真实Foundation/Core包拥有同步列表、刷新身份及提交合并，窄仓库不暴露导入/搜索/位置写入。App组装原引擎/导入器，书库不再持有AppServices/创建Readium；原await、导入/搜索流程、Reader/R1/R2/R3/R4及定位/字体保持。最终1532b863 / CI39707770264独立6/6、原17+新增延迟初始化1=18/18，包和App/测试真实编译通过。书库UI仍同App target，特定类型静态检查不等于完整类型隔离。完整163+29=192/Release/设备/手机未跑，无新IPA，最后交付Build30；导入/搜索留后续。见Documentation/LIBRARY_ISOLATION.md和ValidationLogs/project-isolation-i5-library.json。
 
 2026-10-22 维护进度：R4b本片完成，ReaderSessions真实驱动打开/重试/关闭编排，App保留类型化SDK桥接。最终c0008349 / CI39703522408独立15/15、原生生命周期13/13及编译通过；R4a、原await/发布顺序、字体及定位源码保持。首轮actor方法值接线编译失败与单独夹具14项验证分别留证。I4两片定向门槛已形成，下一阶段I5逐片推进；完整191/R3整组/发布/手机尚未验收，原有产品计划保留，无新IPA。见[本片结果](ValidationLogs/project-isolation-r4b.json)。
@@ -64,7 +66,7 @@ App 组装层创建具体存储、引擎和服务，向功能模块注入最小�
 | I2 / R2 字体编排 | 从 ReaderViewModel 提取目录/刷新/选择编排，复用导入和预览 | 浏览不重开、明确选择才应用、取消/修复/迟到结果及旧字体定位回归通过 | 本片完成：实际target编译、修正源53/53；失败历史及独立位置观察保留，完整发布留I6 |
 | I3 / R3 阅读位置 | 完整捕获、保存、错误与会话身份 | 完整 Locator/TXT锚点、乱序/关闭/失败保旧及真实重开位置保持 | 原24+6合同及分页加载修正保留；返回原单例与更新后截图本片1/1，历史18/19与5/6不改写，整组/发布未重跑 |
 | I4 / R4 阅读会话 | 统一打开、重试、关闭及异步失效 | 打开中关闭、重叠打开、迟到加载/位置/字体结果不能影响新会话 | R4a归属6+13与R4b编排15+13均已实际编译及定向通过，原await/定位保留；全项目/完整发布留I6 |
-| I5 App功能边界 | 书库状态/窄仓库/阅读呈现组装本片完成；导入/搜索后续逐片 | LibraryShelf6+原生18与真实编译通过；同target特定类型有静态正反例，UI仍同App target | 书库本片完成，导入/搜索待实施 |
+| I5 App功能边界 | 书库状态/组装及导入事务/元数据本片完成；批次UI仍App桥接，搜索后续 | LibraryShelf6+原生18、BookImports8+原生14及编译通过；App UI未整体独立target | 书库/导入事务本片完成，搜索待实施 |
 | I6 发布与可维护性验收 | 同源最终回归、原生范围复核、设备反馈、交接与剩余例外 | 逐项报告实现/编译/定向/完整/原生/设备结果；各片输入不混称一次通过 | 待实施 |
 
 每轮只推进一个可独立验证的切片，不一次完成整表。出现其他边界失败时先留证并判断关联；必要时可阻塞发布，但不自动混入修复。开发检查不为每个小编辑导出 IPA；生产/UI输入变化的最终发布仍须同源完整验证。

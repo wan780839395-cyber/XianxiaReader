@@ -1,3 +1,21 @@
+# 当前断点：I5b导入事务本片完成，搜索留后续（2026-10-22）
+
+2026-10-22 I5b导入事务本片完成：BookImports为真实Foundation/Core独立包，拥有原EPUB/TXT导入服务与元数据合同；App/ReadingInterfaces以typealias保留旧调用名称/协议身份，无async包装、原11await与服务body保持。最终c8b53e38 / CI39712813755独立macOS8/8、原生14/14，包及App/测试接线编译通过。App批次UI/Task/picker/FontInbox、书库、搜索及阅读/字体/定位/会话/Core/Adapter/Vendor/资源/锁保持；批次呈现仍在App，不能称全部导入编排或全项目已隔离。完整163+29=192/Core137全组/Release/设备/手机未跑，无新IPA，最后交付Build30。搜索后续。详见Documentation/IMPORT_ISOLATION.md及ValidationLogs/project-isolation-i5-import.json。
+
+Windows480语法新增0（54既有Vendor限制，非编译）、96工具89通过7 POSIX跳过；首工具用例名生成错误原日志保留，修正后全96复核。最终Linux96/96；包合同仅macOS，不声称Linux包可编译。静态153第一方源/23区/24节点/2精确例外。原所有iOS测试正文与预算不变；原生只选DocumentImport7、BookDuplicate4、真实EPUB metadata/import/rollback3。真实test/summary/export=0，早期build-for-testing在模拟器启动前通过。新导入源码编译警告数量0；上片LibraryAssembly外部符合警告仍按原记录保留，不静音。
+
+本轮仅1次派发、1次原生执行：独立包步骤65.0秒（Swift构建48.08秒），原生步骤775.0秒，其中首原生suite前713.681秒；14个用例实际合计18.4秒。准备/工程生成/依赖解析/编译/模拟器成本与用例执行分开；不补旧负对照或全套凑绿。
+
+原件build/ci/39712813755/diagnostic，artifact12397619362/1673922字节/SHAb5bb4ab86d11dc20f8e2a03577d57e4b2c5ef460db51f0e96be3e7efa5ff5d32，digest/CRC/完整解压已核，仅精确清除重复ZIP。权威Documentation/ValidationLogs/project-isolation-i5-import.json；build/maintenance/I5-import-20261022含before/frozen/scope-audit/result与final-checkpoint，610运行输入冻结。普通HEAD/index与1219原路径基线保留，实际例外以检查点精确清单为准；不reset/clean旧WIP，恢复先核现场/ref/进程，不重派本片CI。电脑保持开机。
+
+本片停止在导入事务，不自动进入批次重构、搜索或新产品。原产品计划保留ROADMAP/READING_FEATURE_IDEAS；后续按一片一门槛推进。
+
+以下为本片过程与上片历史，不覆盖顶部最终事实。
+
+CI39712813755：独立BookImports8项通过；原生已越过早期build-for-testing进入模拟器首次数据迁移，14项尚未开始。当前仅确认包与接线编译，不称原生验收；完整日志/xcresult结束后核。生产610输入保持，不重派。
+
+已冻结c8b53e38f9148f0a1968567191e1bca8471558b6 / refs/heads/codex/isolate-book-import-transactions，仅派CI39712813755（import-isolation）。frozen.json核610运行输入、20路径，scope-audit核service只改public/去掉ReadingInterfaces import，11await原文、元数据声明和ReaderEngine剩余协议正文保持；所有旧Tests/iOS/其他App/LibraryShelf/Core/Adapter/Vendor/锁/资源不改。Windows480语法新增0/54既有、96工具89通过7 POSIX跳过；首96工具名称错误原日志保留，修正复核全通过。watch_i5_import.py只读收本run，勿重派；独立8/原生14与真实编译待结果。完整192/Release/手机/IPA未执行，电脑保持开机。
+
 Windows480语法新增0/54既有、静态153源/23区/24节点/2例外通过。96工具首检发现生成验证器时把用例名中的Shelf误替成Import，已只修回精确原用例名；失败原日志保留，不涉及生产或原测试。复核工具后再冻结，原生/Swift仍待验。
 
 源码和8+14定向入口已接线，准备Windows静态/语法/工具检查；MetadataReading合同迁入BookImports，ReadingInterfaces/App保持typealias身份，原11await和service body须冻结时逐段核。App批次/picker/FontInbox/搜索/阅读/定位/LibraryShelf/所有原生旧测试保持；原生新增target先build-for-testing再boot。尚无新Swift编译/验收。
