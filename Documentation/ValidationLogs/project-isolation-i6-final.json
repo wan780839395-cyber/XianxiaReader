@@ -2439,12 +2439,15 @@
         "landscape then portrait order",
         "all existing full-source behavior and assertions"
       ],
-      "newCIRequiresUserScopeDecision": true,
       "estimatedColdPreparationMinutes": [
         25,
         35
       ],
-      "fullRerunForbidden": true
+      "fullRerunForbidden": true,
+      "userScopeDecision": "save-complete-checkpoint-now; diagnose-only-this-case-next-round",
+      "currentRoundClosed": true,
+      "additionalCurrentRoundCIDispatches": 0,
+      "nextRoundOnly": true
     },
     "references": [
       {
@@ -2571,5 +2574,15 @@
   "ciDispatches": 1,
   "githubRunAttempt": 1,
   "automaticRetries": 0,
-  "preflightExecutions": 0
+  "preflightExecutions": 0,
+  "userDecision": {
+    "recordedAtUTC": "2026-10-22T08:54:21.293074+00:00",
+    "answer": "先保存完整断点，下一轮只查此例（推荐）",
+    "currentRoundClosed": true,
+    "additionalCurrentRoundCIDispatches": 0,
+    "nextRoundSelection": "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+    "nextRoundOnly": true,
+    "fullRerunForbidden": true,
+    "productionOrTestCodeChanged": false
+  }
 }

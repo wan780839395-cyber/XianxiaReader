@@ -1,6 +1,6 @@
 # I6最终断点：一次full191/192，原件收齐，禁止重派（2026-10-22）
 
-2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；下一实验仅此单例诊断，是否追加冷准备已询问用户，未自行派发。I6未通过，不进入新功能。
+2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；用户已决定本轮保存完整断点，下一轮只查此单例；本轮不追加诊断或CI。I6未通过，不进入新功能。
 
 冻结源77eebf40ff70318c7bced90b28269aa5198084f0，GitHub实际run_attempt=1。只升工程构建号30→31；617输入现场匹配。生产/原生测试/资源/锁/预算与全部既有隔离定位修复保留。主步骤5947秒：首suite前1653.361秒含工具/组件/Core/解析/编译/启动，集成case846.937秒、UI3194.564秒，其余252.138秒含导出收束，无Release成本。
 
@@ -8,7 +8,7 @@
 
 完整artifact12411464644/1196915933B/SHA edbe1c6972311ab31124e20a525a5c612e4805ef2c0d3870c8642353651ac8a8，Core12406981251/116294B/SHA c94ea0a806317f85b392d8f68e4e3b66c3e8d292e2b522c503c258a715df3376，digest/CRC/完整展开均核，重复ZIP/分片按精确回执清除。build/ci/39735403242保留全部xcresult、内部完整tee日志、summary、文本/像素/录屏和六包/Core回执。workflow日志末缺退出marker，内部build.log实际test65/summary0/export0/recording0，不以外部缺尾倒写失败点。模拟器源码编译0错误，8处warning/6种消息与39729365995同，新增消息0。
 
-收口权威Documentation/I6_FINAL_ACCEPTANCE.md与ValidationLogs/project-isolation-i6-final.json；build/maintenance/I6-final-20261022含before/frozen/唯一dispatch/result/原失败切片、保护Build30哈希及后续final-checkpoint。只读watcher/下载已结束，无运行中的CI。用户新范围答复优先；未收到追加诊断授权不得再派发，尤其不可自动重跑192。若获单例授权，先补有界准备/原字/各子条件和measure探针，再冻结新输入，仅一例，原预算断言保持；不能承诺单例即发布验收。
+收口权威Documentation/I6_FINAL_ACCEPTANCE.md与ValidationLogs/project-isolation-i6-final.json；build/maintenance/I6-final-20261022含before/frozen/唯一dispatch/result/原失败切片、保护Build30哈希及后续final-checkpoint。只读watcher/下载已结束，无运行中的CI。用户已明确选择“先保存完整断点，下一轮只查此例”。本轮到此收口，不追加探针、原生诊断、CI或Release。下一轮恢复时仅查原连续视口缩放单例：先补有界准备/原字/各子条件和measure探针，再冻结新输入，保留原预算与断言；不自动重跑192，不能承诺单例即发布验收。
 
 当前仅完成取证/文档，未改生产或失败测试，未宣布根因修复、完整视觉/手机验收。普通HEAD/index及旧WIP保留，电脑保持开机。恢复先核final-checkpoint/实际文件/Git/进程与run；切勿重复派已完成CI。
 
