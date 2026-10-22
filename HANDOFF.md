@@ -1,3 +1,23 @@
+# 连续视口缩放：证据保存，本轮结束（2026-10-22）
+
+用户最新决定“先保存本轮证据，下一轮做该对照”。不追加CI、不应用对照patch，不跑23项/full/设备Release，不进入新功能。原生轮次均完成，自己的观察/下载任务已结束，电脑保持开机。
+
+本片先18e7bb94/CI39752863708探针编译失败（NSStringFromCGRect不可用），测试0次、654秒，原件留存；只修为String(describing:)后，b618ca861046499316bfb3ded1fdcd8826a4c66e / CI39754777198 success。实际原单例1/1、20.730秒；test/summary/export均0，原App/测试模拟器编译通过。修正轮主步骤1282秒，其中首suite前1213.758秒。总共2轮CI、实际原方法仅1次；没有盲重试或整套重跑。
+
+原字499：缩放前outer请求/实际2369、DOM2367、Range top=-3.125；横屏874宽原字top=-3.125，返回402宽top=23.875，均可见、同一WebView/挂窗/alpha1。横屏27次采样中见原生frame已变、DOM仍402的过渡，后续宽度874并通过；measure保存499、guard=true、desiredLocal2151并应用。回竖屏内部首字为495、desiredLocal2340，原499字仍可见。原合同是可见性，不是像素相等。旧full缺缩放前原字和measure决策，此次通过不能证明旧失败已修复；观察await影响未排除。定位算法/原断言/30秒100ms/12视图/横竖顺序及既有隔离保留。
+
+权威Documentation/I6_VIEWPORT_RESIZE.md及ValidationLogs/project-isolation-i6-viewport.json。build/maintenance/I6-viewport-20261022：before保护1247旧路径；attempt-1存首次冻结/派发/结果；compiled-probe存修正冻结/派发/结果及resize-evidence；user-decision.json确认本轮收口；后续final-checkpoint为最终快照。build/ci/39752863708和39754777198完整日志/xcresult/summary/附件及digest/CRC回执均保留；成功artifact12415489203/SHA1c15f4ed3e3fba8a62b089d2c3baaa5a329ecde0695dc7a71ccce86c209f18b9，2张截图有正文，非手机验收。新探针另有Optional Any转换warning，保留已测源码（9处/7种、新增1种），未静默清理/压制。
+
+下一轮只应用已保存未执行的next-control.patch：撤去`await domProbe(originalFrame.width)`这一个缩放前DOM观察挂起点，before字段标未查询；initialDOMY查询等其他探针保持。它只区分这一处观察的时序影响，并非恢复原方法全部await。保留原Locator、联合条件/重排记录及预算，预计20–30分钟冷准备，仅同例；先核现场/源码哈希和已完成run，禁止重派本轮。旧full39735403242仍191/192，Release/手机未执行，无新IPA，最后交付Build30。
+
+---
+
+# 连续视口缩放单例运行中：禁止重复派发（2026-10-22）
+
+冻结源b618ca861046499316bfb3ded1fdcd8826a4c66e，CI39754777198，selection=continuous-resize，仅原失败方法1例。原断言及30秒/100ms预算不变；不跑Core/模块/23项/UI/full/设备Release，无新IPA。此刻仍在准备/编译，尚无本片结果。恢复先核build/maintenance/I6-viewport-20261022/compiled-probe的frozen/dispatch与真实run，禁止重复派发。旧full191/192与全部原件仍保留，普通HEAD/index未改。
+
+---
+
 # 连续视口缩放：首轮编译错误已留证，仅修探针一行（2026-10-22）
 
 CI39752863708 / 18e7bb94在测试编译阶段失败，原生用例0次；新增诊断NSStringFromCGRect在当前Swift不可用，非阅读功能失败。完整workflow日志、PositionBuild.xcresult、原编译诊断artifact12415715147已digest/CRC核对保存；初轮冻结/派发/结果保存在build/maintenance/I6-viewport-20261022/attempt-1。实际原生主步骤耗时见其result，不冒称是测试执行。

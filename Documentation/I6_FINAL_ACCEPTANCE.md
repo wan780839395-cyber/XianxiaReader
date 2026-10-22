@@ -1,5 +1,7 @@
 # I6 最终验收：191/192，失败原件已保存
 
+后续单例诊断已保存：CI39754777198/1例通过，旧失败未复现、根因未证；它不替代本文full191/192和未执行的Release。用户已决定下一轮只做一个观察await的对照，详见[I6视口诊断](I6_VIEWPORT_RESIZE.md)。
+
 2026-10-22。用户授权的一次 `diagnostic_selection=full` 已执行完，未附加位置、字体或旋转原生预检，未重试工作流。冻结源 `77eebf40ff70318c7bced90b28269aa5198084f0`，GitHub [39735403242](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39735403242)，实际 `run_attempt=1`。本轮运行输入仅把工程构建号30升31，生产、原生测试、资源、锁、门禁与预算保持。完整门槛未通过，设备Release被阻止，未生成或交付Build31 IPA；最后交付仍Build30。
 
 ## 同源真实结果

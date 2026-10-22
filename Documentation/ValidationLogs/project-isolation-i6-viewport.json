@@ -1,0 +1,484 @@
+{
+  "recordedAtUTC": "2026-10-22T09:46:54.528162+00:00",
+  "run": 39754777198,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39754777198",
+  "sourceRevision": "b618ca861046499316bfb3ded1fdcd8826a4c66e",
+  "conclusion": "success",
+  "singleCasePassed": true,
+  "exactCaseExecution": true,
+  "events": {
+    "started": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+      ]
+    ],
+    "ended": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "passed",
+        "20.730"
+      ]
+    ]
+  },
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 1,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792662183.202,
+    "passedTests": 1,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792661998.413,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "actualStatuses": {
+    "test": 0,
+    "summary": 0,
+    "export": 0
+  },
+  "anchorEvidence": [
+    {
+      "phase": "before-resize",
+      "originPoint": {
+        "charOffset": 499,
+        "cssSelector": "html > body > p:nth-of-type(25)",
+        "textNodeIndex": 0
+      },
+      "initialDOMY": 1767,
+      "initialOuterY": 1769,
+      "requestedOuterY": 2369,
+      "actualOuterY": 2369,
+      "before": {
+        "accepted": true,
+        "firstRect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "height": 778,
+        "longTop": -599.125,
+        "ready": "complete",
+        "rect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "valid": true,
+        "visible": true,
+        "width": 402,
+        "widthMatches": true,
+        "y": 2367
+      },
+      "pollCount": 0,
+      "firstPoll": null,
+      "lastPoll": null
+    },
+    {
+      "phase": "passed-874",
+      "originPoint": {
+        "charOffset": 499,
+        "cssSelector": "html > body > p:nth-of-type(25)",
+        "textNodeIndex": 0
+      },
+      "initialDOMY": 1767,
+      "initialOuterY": 1769,
+      "requestedOuterY": 2369,
+      "actualOuterY": 2454,
+      "before": {
+        "accepted": true,
+        "firstRect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "height": 778,
+        "longTop": -599.125,
+        "ready": "complete",
+        "rect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "valid": true,
+        "visible": true,
+        "width": 402,
+        "widthMatches": true,
+        "y": 2367
+      },
+      "pollCount": 27,
+      "firstPoll": {
+        "alpha": 1,
+        "attached": true,
+        "dom": {
+          "accepted": false,
+          "firstRect": {
+            "bottom": 403.875,
+            "left": 271,
+            "right": 288,
+            "top": 380.875
+          },
+          "height": 778,
+          "longTop": 0.875,
+          "ready": "complete",
+          "rect": {
+            "bottom": 403.875,
+            "left": 271,
+            "right": 288,
+            "top": 380.875
+          },
+          "valid": true,
+          "visible": true,
+          "width": 402,
+          "widthMatches": false,
+          "y": 1767
+        },
+        "expectedWidth": 874,
+        "outerY": 2369,
+        "sameWebView": true,
+        "uptime": 1406.187400281,
+        "webFrame": "(0.0, 0.0, 874.0, 306.0)"
+      },
+      "lastPoll": {
+        "alpha": 1,
+        "attached": true,
+        "dom": {
+          "accepted": true,
+          "firstRect": {
+            "bottom": 19.875,
+            "left": 271,
+            "right": 288,
+            "top": -3.125
+          },
+          "height": 306,
+          "longTop": -383.125,
+          "ready": "complete",
+          "rect": {
+            "bottom": 19.875,
+            "left": 271,
+            "right": 288,
+            "top": -3.125
+          },
+          "valid": true,
+          "visible": true,
+          "width": 874,
+          "widthMatches": true,
+          "y": 2151
+        },
+        "expectedWidth": 874,
+        "outerY": 2454,
+        "sameWebView": true,
+        "uptime": 1409.0358046600002,
+        "webFrame": "(0.0, 0.0, 874.0, 306.0)"
+      }
+    },
+    {
+      "phase": "passed-402",
+      "originPoint": {
+        "charOffset": 499,
+        "cssSelector": "html > body > p:nth-of-type(25)",
+        "textNodeIndex": 0
+      },
+      "initialDOMY": 1767,
+      "initialOuterY": 1769,
+      "requestedOuterY": 2369,
+      "actualOuterY": 3092,
+      "before": {
+        "accepted": true,
+        "firstRect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "height": 778,
+        "longTop": -599.125,
+        "ready": "complete",
+        "rect": {
+          "bottom": 19.875,
+          "left": 85,
+          "right": 102,
+          "top": -3.125
+        },
+        "valid": true,
+        "visible": true,
+        "width": 402,
+        "widthMatches": true,
+        "y": 2367
+      },
+      "pollCount": 29,
+      "firstPoll": {
+        "alpha": 1,
+        "attached": true,
+        "dom": {
+          "accepted": false,
+          "firstRect": {
+            "bottom": 403.875,
+            "left": 271,
+            "right": 288,
+            "top": 380.875
+          },
+          "height": 778,
+          "longTop": 0.875,
+          "ready": "complete",
+          "rect": {
+            "bottom": 403.875,
+            "left": 271,
+            "right": 288,
+            "top": 380.875
+          },
+          "valid": true,
+          "visible": true,
+          "width": 402,
+          "widthMatches": false,
+          "y": 1767
+        },
+        "expectedWidth": 874,
+        "outerY": 2369,
+        "sameWebView": true,
+        "uptime": 1406.187400281,
+        "webFrame": "(0.0, 0.0, 874.0, 306.0)"
+      },
+      "lastPoll": {
+        "alpha": 1,
+        "attached": true,
+        "dom": {
+          "accepted": true,
+          "firstRect": {
+            "bottom": 46.875,
+            "left": 85,
+            "right": 102,
+            "top": 23.875
+          },
+          "height": 778,
+          "longTop": -572.125,
+          "ready": "complete",
+          "rect": {
+            "bottom": 46.875,
+            "left": 85,
+            "right": 102,
+            "top": 23.875
+          },
+          "valid": true,
+          "visible": true,
+          "width": 402,
+          "widthMatches": true,
+          "y": 2340
+        },
+        "expectedWidth": 402,
+        "outerY": 3092,
+        "sameWebView": true,
+        "uptime": 1410.4605567790002,
+        "webFrame": "(0.0, 0.0, 402.0, 778.0)"
+      }
+    }
+  ],
+  "rawEvidence": "build/maintenance/I6-viewport-20261022/compiled-probe/resize-evidence.json",
+  "rootCauseProven": false,
+  "productionBehaviorFixApplied": false,
+  "compilation": {
+    "earlyBuildSucceeded": true,
+    "sourceErrors": [],
+    "warnings": [
+      "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1174:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:99:31: warning: expression implicitly coerced from 'Any?' to 'Any'"
+    ],
+    "warningDiagnosticLocations": 9,
+    "uniqueWarningMessages": 7,
+    "addedWarningMessages": [
+      "expression implicitly coerced from 'Any?' to 'Any'"
+    ],
+    "addedWarningScope": "Optional JS initialDOMY value in new diagnostic dictionary only; retained in tested input, not suppressed or changed after run"
+  },
+  "cost": {
+    "dispatches": 1,
+    "nativeExecutions": 1,
+    "nativeStepSeconds": 1282.0,
+    "beforeFirstSuiteSeconds": 1213.758,
+    "caseSeconds": 20.73
+  },
+  "artifact": {
+    "run": 39754777198,
+    "artifact": 12415489203,
+    "kind": "diagnostic",
+    "archiveBytes": 2179722,
+    "archiveSHA256": "1c15f4ed3e3fba8a62b089d2c3baaa5a329ecde0695dc7a71ccce86c209f18b9",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39754777198\\diagnostic",
+    "extractionPath": "D:\\ai项目\\XianxiaReader\\build\\ci\\39754777198\\diagnostic",
+    "extractionScope": "complete artifact",
+    "duplicatePathsRemoved": [
+      {
+        "path": "D:\\ai项目\\XianxiaReader\\build\\ci\\39754777198\\diagnostic-received.zip",
+        "bytes": 2179722,
+        "sha256": "1c15f4ed3e3fba8a62b089d2c3baaa5a329ecde0695dc7a71ccce86c209f18b9"
+      }
+    ],
+    "authority": "AGENTS.md local CI retention 2026-10-17; only this completed artifact duplicate chunks/archive",
+    "retention": "Full current development extraction until next accepted delivery; packages/source/recovery backups unaffected"
+  },
+  "runtimeDrift": [],
+  "evidence": [
+    {
+      "path": "build/ci/39754777198/full.log",
+      "sha256": "ce9c4c9c060ec3203af51129f5912d6b24e2a55fee276a4cc4e18d80f7c92955"
+    },
+    {
+      "path": "build/ci/39754777198/run.json",
+      "sha256": "45de980c2e5b1b4b21ef9a92f00239ffd010f52e2a47d7698d6389baad1f30ba"
+    },
+    {
+      "path": "build/ci/39754777198/artifacts.json",
+      "sha256": "7a1cbb760b5b6c3573969775f60f63748a27e173356138e762394daf2cd8e895"
+    },
+    {
+      "path": "build/ci/39754777198/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "4d0cdb158a20e4fd08d6a5b79abe11724e4bd34312cd60c0b745821bf29ca298"
+    },
+    {
+      "path": "build/ci/39754777198/diagnostic/test-results-summary.json",
+      "sha256": "738a6148e8764f05358675cbf8a9100d6608bd7b858731012e28e85acdfe4327"
+    },
+    {
+      "path": "build/ci/39754777198/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39754777198/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "0c37515d9b8f80601fc5d002e1fd014955867dcfddcd1562a6487cef070c6b31"
+    }
+  ],
+  "acceptance": {
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false
+  },
+  "userDecision": {
+    "recordedAtUTC": "2026-10-22T09:51:14.168027+00:00",
+    "answer": "先保存本轮证据，下一轮做该对照（推荐）",
+    "currentRoundClosed": true,
+    "additionalCurrentRoundCIDispatches": 0,
+    "nextRoundOnly": true,
+    "nextCase": [
+      "ReaderRenderingTests",
+      "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+    ],
+    "nextExperiment": "Remove only the added await domProbe(originalFrame.width) checkpoint before resizing; retain initialDOMY observation, original Locator, all predicate samples, reflow records, assertions and budgets",
+    "estimatedColdPreparationMinutes": [
+      20,
+      30
+    ],
+    "fullRetryForbidden": true
+  },
+  "totalCIDispatches": 2,
+  "actualNativeMethodExecutions": 1,
+  "firstRunCompilationFailure": {
+    "run": 39752863708,
+    "source": "18e7bb94d5e07c38d4c4569a0c29eef0547c338a",
+    "nativeExecutions": 0,
+    "seconds": 654,
+    "error": "New probe used unavailable NSStringFromCGRect; corrected only to String(describing:)"
+  },
+  "snapshotReview": {
+    "images": 2,
+    "nonblankBodyObserved": true,
+    "scope": "Two original XCTest snapshots only; not phone or full visual acceptance"
+  },
+  "diagnosis": {
+    "beforeOriginalChar": 499,
+    "initialDOMY": 1767,
+    "requestedOuterY": 2369,
+    "actualOuterYBeforeResize": 2369,
+    "DOMYBeforeResize": 2367,
+    "beforeOriginalGlyphTop": -3.125,
+    "landscapeOriginalGlyphTop": -3.125,
+    "portraitOriginalGlyphTop": 23.875,
+    "originalGlyphVisibleBothResizes": true,
+    "sameWebView": true,
+    "landscapeRestoreDesiredLocal": 2151,
+    "portraitRestoreDesiredLocal": 2340,
+    "restoreGuardObservedTrue": true,
+    "portraitInternalSavedAnchorChar": 495,
+    "originalVisibilityContractNotPixelOffsetEquality": true,
+    "oldFailureReproduced": false,
+    "oldFailureRootCauseProven": false,
+    "productionPositionAlgorithmChanged": false,
+    "observerTimingEffectNotExcluded": true
+  },
+  "phase": "single_case_evidence_saved_root_unresolved",
+  "parentFinalFull": {
+    "run": 39735403242,
+    "source": "77eebf40ff70318c7bced90b28269aa5198084f0",
+    "passed": 191,
+    "failed": 1,
+    "deviceReleaseExecuted": false
+  },
+  "localChecks": {
+    "swiftGrammarFiles": 484,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "toolingTotal": 20,
+    "toolingPassed": 19,
+    "toolingPOSIXSkipped": 1,
+    "firstMissingPYTHONPATHInvocationPreserved": true,
+    "linuxToolingPassed": 109
+  },
+  "scope": {
+    "preservedPreviousPaths": 1241,
+    "originalPaths": 1247,
+    "productionBehaviorChanged": false,
+    "debugOnlyBoundedTrace": 64,
+    "originalMethodOnly": true,
+    "originalSetupConditionUnchanged": true,
+    "originalWaitBudgetSeconds": 30,
+    "pollNanoseconds": 100000000,
+    "sameWebViewOriginalRangeAnd12ViewBoundUnchanged": true,
+    "landscapeThenPortraitUnchanged": true,
+    "addedTeardownWindowRestore": true,
+    "noNewProductionAwait": true,
+    "defaultFullGateUnchanged": true,
+    "nativeCases": [
+      "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+    ]
+  }
+}
