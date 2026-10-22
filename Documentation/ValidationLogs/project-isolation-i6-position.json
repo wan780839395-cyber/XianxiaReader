@@ -209,7 +209,7 @@
     "newIPA": false,
     "allI6Complete": false
   },
-  "next": "Keep I6 blocked at targeted23. Await the user scope choice for one instrumented close-during-initialization case; do not rerun23/full192 or advance to Release.",
+  "next": "Current slice saved by explicit user choice. Next turn only diagnose the close-during-initialization case; preserve production/assertions/budgets and do not rerun23/full192.",
   "cases": [
     {
       "case": "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
@@ -345,7 +345,7 @@
     ],
     "causality": "Not established. Current production and native tests are byte-identical to the pre-gate source; this is not evidence that current isolation edits caused a close regression.",
     "nextDiscriminatingExperiment": "Only this case, same production and 30s/15s budgets: add a script-install marker/error, ready-getter count, per-WebView href/identity/native font state; qualify a pending barrier before closing. No retry, full-suite rerun, or production patch without evidence.",
-    "extraRemoteRun": "Pending user scope choice; no second dispatch made."
+    "extraRemoteRun": "User chose to preserve this run and diagnose only the failed case next turn. No further dispatch in this turn."
   },
   "visualReview": {
     "fontContactSheets": [
@@ -502,5 +502,10 @@
       "url": "https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
       "use": "Matching upstream paged delegate setup order compared with local; does not prove injection was missed in this run."
     }
-  ]
+  ],
+  "userDecision": {
+    "recordedAtUTC": "2026-10-22T05:29:01.623970+00:00",
+    "decision": "Save this run; investigate only this failed case next turn",
+    "extraDispatchAuthorizedThisTurn": false
+  }
 }

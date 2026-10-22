@@ -18,7 +18,7 @@
 
 已核对[Apple注入时机](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentstart)及Readium [3.11.0 Spread初始化](https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift)、[3.11.0 Navigator脚本装配](https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift)。本地沿用spread构造中开始加载、构造后委托安装用户脚本的顺序，并有既存原生bootstrap/关闭补丁；这使安装时机值得诊断，但源码顺序本身不能证明本轮脚本漏装。没有改动该生产顺序。
 
-下一实验只应运行这个case：保留生产和30秒准备/15秒字体预算，记录脚本安装/错误、每个WebView的href/身份、getter次数和原生字体状态，区分没安装、查错页面或没有进入拦截；关闭前必须证明门仍处于pending。若改故障注入，采用显式放行并保留原关闭断言和失败清理，不能用更长sleep/重试凑绿。当前未改原生测试、未派第二轮；继续耗时范围已询问用户。
+下一实验只应运行这个case：保留生产和30秒准备/15秒字体预算，记录脚本安装/错误、每个WebView的href/身份、getter次数和原生字体状态，区分没安装、查错页面或没有进入拦截；关闭前必须证明门仍处于pending。若改故障注入，采用显式放行并保留原关闭断言和失败清理，不能用更长sleep/重试凑绿。用户已选择本轮保存证据，下一轮单查这一例。当前不改原生测试、不派第二轮；下次恢复仅诊断该case，不能默认重跑23项或整套。
 
 ## 文本与像素证据
 

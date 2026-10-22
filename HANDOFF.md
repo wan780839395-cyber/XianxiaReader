@@ -2,7 +2,7 @@
 
 冻结运行源075c2ccfbc597eba2afa57c6622f44ecba1cf6ce，私有分支codex/position-loading-acceptance，CI39721680702已completed/failure。只派1轮，精确23项全部执行、22通过/1失败/0跳过，原生编译通过；test=65，summary/export=0。Core/独立包/全套192/设备Release/手机未执行，无新IPA，最后交付仍Build30。
 
-唯一失败ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews在原298行等待__xrCloseProbeStarted，发生于第一轮continuous=false分页；两个spread已初始化完成但探针未见。case本体engine.close与断开/移除断言均未运行、连续分支未进；随后teardown清理。共用错误中的Continuous不是模式证据，2条issue只有1个失败case。不能称关闭缺陷已复现或归咎环境/新隔离。仅下一单例可加安装/错误/getter次数/每个WebView身份诊断，保持生产与原预算；下一次耗时范围已询问用户，尚未二派。用户未答复时保持断点，不默认同意继续冷准备。
+唯一失败ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews在原298行等待__xrCloseProbeStarted，发生于第一轮continuous=false分页；两个spread已初始化完成但探针未见。case本体engine.close与断开/移除断言均未运行、连续分支未进；随后teardown清理。共用错误中的Continuous不是模式证据，2条issue只有1个失败case。不能称关闭缺陷已复现或归咎环境/新隔离。仅下一单例可加安装/错误/getter次数/每个WebView身份诊断，保持生产与原预算；用户已选择“先保存本轮证据，下一轮单查这一例”。本轮到此收口，不加探针、不再派发；下一轮仅诊断此case，保持原生产、断言和预算，不重跑23项或整套。
 
 正文返回、六字体双模式/隐藏重排、分页同宽resize、原生加载和TXT定位均通过。已核12字体图联系表、分页返回和连续重复seek更新后窗口/WK原图；六个连续字体截图后saved.visible=true/delta0/anchorCondition=true。原即时UIKit空白原件仍留，不能称手机瞬态已验收；不因该观察扩生产修复。Windows107工具100通过7POSIX跳过/Linux107通过；语法484新增0/既有Vendor54，语法不等于编译。
 
