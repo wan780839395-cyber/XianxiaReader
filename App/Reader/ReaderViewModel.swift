@@ -147,14 +147,15 @@ enum ReaderMode: CaseIterable, Hashable {
 
     private func makeSessionLifecycle() -> ReaderSessionLifecycle<ReaderSessionHost> {
         let engine = engine
+        let repository: any BookRepository = services.repository
         return ReaderSessionLifecycle(state: sessions, host: ReaderSessionHost(
             bookID: book.id, book: book,
             readAppearance: services.readerSettings.readingAppearance,
             loadFonts: fonts.loadResources,
             readInteraction: services.readerSettings.readingInteraction,
-            readPosition: services.repository.position(for:),
-            readChapters: services.repository.chapters(for:),
-            readBookmarks: services.repository.bookmarks(for:),
+            readPosition: repository.position(for:),
+            readChapters: repository.chapters(for:),
+            readBookmarks: repository.bookmarks(for:),
             openEngine: engine?.open(book:fileURL:position:),
             resolveFile: { try self.services.files.resolve(self.book.filePath) },
             begin: { owner in

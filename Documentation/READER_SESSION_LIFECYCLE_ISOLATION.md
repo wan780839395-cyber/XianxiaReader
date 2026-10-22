@@ -12,6 +12,8 @@
 
 新源码自动归入现有SwiftPM/XcodeGen路径，依赖/产品/target不增加；沿用已有架构区与5个精确例外，边界守卫须实际检查新文件。既有ci_ios会执行同一独立会话入口；session-lifecycle诊断只先包合同、后原13项。完整门槛数量仍162+29=191，独立14项另计，定向成功不能替代发布验收。
 
+首轮原生编译失败留证：7ea52d / CI39702147807的14合同通过，但VM直接对具体SQLiteBookRepository同步actor方法取值，触发3个partial-apply编译错误，未执行原生用例；不能记成定位/环境失败。修正只经现有any BookRepository的async协议要求取3个方法值，不改actor实现、无新await/Task；新增1个同型sync actor实现async协议的方法值合同，最终独立门槛成为15（原6+编排/桥接9）。Swift [SE-0306协议一致性](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0306-actors.md#protocol-conformances) 与partial application边界是本次取舍依据；首轮未将具体actor形状纳入快速fixture是本片接线验证缺口，现由该合同先于原生准备验证。
+
 参考：Swift [SE-0316](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0316-global-actors.md) 的global-actor函数类型与同actor同步调用合同（Swift5.5起）；[Swift官方Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/) 的方法/函数值转交。沿用本项目ReaderPositions和R4a已编译的包布局，方法值转交依据Swift官方合同；不升级依赖、工具链，不引入调度器或Task包装。
 
 首轮14合同已过、原生13尚在运行时，审阅发现新夹具若在重开身份XCTUnwrap处抛错会先于释放旧continuation。仅测试清理调整为：超时先放行/取消并收完旧Task，正常路径先放行/收完再断言新owner非空；断言、2秒准备超时和生产预算不变，Gate支持先release后wait且无额外重试。对这项测试输入变化只补独立14合同（session-lifecycle配session_logic_only=true），不重跑原生冷准备。首次原生的全部App/库生产源码、原iOS测试、工程/锁/工具链输入与最终生产源逐blob核对后，才分项复用其结果；不把独立14称手机/原生验收。

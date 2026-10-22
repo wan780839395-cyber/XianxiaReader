@@ -3,6 +3,13 @@ import ReaderSessions
 import XCTest
 
 final class ReaderSessionLifecycleTests: XCTestCase {
+    @MainActor func testAsyncProtocolMethodValuesKeepActorOwnedStorageCalls() async throws {
+        let storage: any StoredValues = Store()
+        let read: (UUID) async throws -> Int? = storage.value(for:)
+        let value = try await read(UUID())
+        XCTAssertEqual(value, 33)
+    }
+
     @MainActor func testOpeningPublishesInOriginalStageAndAwaitOrder() async {
         let state = ReaderSessionState(), host = Host()
         let lifecycle = ReaderSessionLifecycle(state: state, host: host)
@@ -151,6 +158,13 @@ final class ReaderSessionLifecycleTests: XCTestCase {
     private struct Failure: LocalizedError {
         let phase: String
         var errorDescription: String? { phase }
+    }
+
+    private protocol StoredValues: Sendable {
+        func value(for id: UUID) async throws -> Int?
+    }
+    private actor Store: StoredValues {
+        func value(for id: UUID) -> Int? { 33 }
     }
 
     @MainActor private final class Host: ReaderSessionLifecycleHost {

@@ -10,6 +10,10 @@ Windows首检已通过：470 Swift语法新增0（54既有Vendor限制），Pyth
 
 首轮独立14合同步骤已成功，原生13正在同一CI准备。随后审阅仅修新测试失败清理：进入屏障超时先release/cancel/await旧Task，重开后先释放收完旧Task再断言newOwner非空；Gate可提前release。原2秒/所有行为断言保留，不是重试。此fixture源码变化须额外验证独立14，新增session_logic_only=true仅用于现有session-lifecycle时跳过原生步骤，默认false并有工具守卫；不再派第二个原生。最终必须分别记录首轮原生源与测试清理源，逐blob核实际App/库生产/iOS测试/工程/锁/版本一致，才能分项复用原13。正式结果未出，不能预报通过。
 
+清理源已冻3fa3293277779ce990bbc182f001ddfa67462343 / refs/heads/codex/verify-reader-lifecycle-fixture，[CI39702833284](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39702833284)，session-lifecycle+session_logic_only=true；仅包合同，原生步骤必须skipped。fixture-frozen.json已核594输入仅测试fixture/工作流/工具scope测试3项runtime差异，全部App/库生产/原iOS测试/工程/锁/构建脚本与7ea52d相同；5文件子变更含文档/HANDOFF。Windows复核470语法及83工具76过7跳过。两进程只读观察各run，不重复派发；最终分别核日志/summary/xcresult与版本环境，不能把逻辑run当第二次原生。
+
+实际首轮失败已确认：CI39702147807 completed/failure，独立14/14过，App build-for-testing在VM155-157三处报actor-isolated sync method不能partial apply，未启动原生用例/模拟器测试。不是环境或旧定位问题，也不能复用为原生13通过。失败完整日志/metadata已保存，artifact12394101464保留下载核验；不重写失败历史。已仅将三个仓库引用经现有any BookRepository异步协议暴露，并补1个同型actor同步实现/异步协议方法值合同（独立将为15项），无新增await/Task、无DB实现改动。对这一明确修正才补一次15+原13；并行的14逻辑清理run继续收原始结果，不能当最终15或原生验收。下一步本地复核后冻结修正源。
+
 基线fd259b0f1a93df774c51fc74f1e521fc2254a06a；已核591运行输入与保存检查点一致、1203路径保护基线build/maintenance/R4b-20261022/before.json，普通HEAD/index不动，无旧运行观察进程。实现前已读4文档、实际源码、Git状态与原件；R4a真实6+13及旧1负保留。只跑新增包内编排合同与原13生命周期回归，不重跑旧负对照、Readium19、完整191或Release/IPA；先本地静态/工具，再冻结一次定向CI。原生准备成本与用例执行分记；发现其他边界失败先留证、不扩修。
 
 以下为R4a已保存结果及历史，不覆盖本轮继续指令。

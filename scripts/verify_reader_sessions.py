@@ -15,6 +15,7 @@ STATE_TESTS = {
     "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
 }
 LIFECYCLE_TESTS = {
+    "testAsyncProtocolMethodValuesKeepActorOwnedStorageCalls",
     "testOpeningPublishesInOriginalStageAndAwaitOrder",
     "testOrdinaryOpenFailureKeepsOwnerAndRetryClosesBeforeClearingFailure",
     "testFontFailureFallsBackButFontCancellationDoesNot",
