@@ -76,6 +76,21 @@ class ArchitectureTests(unittest.TestCase):
         with self.change(file, lambda original: original + text):
             check_architecture(self.root)
 
+    def test_library_cannot_reacquire_app_services_or_concrete_reader(self):
+        for name in ["AppServices", "SQLiteBookRepository", "ReaderView", "ReaderViewModel", "ReadiumEngineFactory", "ReadiumPublicationLoader"]:
+            with self.subTest(name=name), self.change("App/Library/LibraryView.swift", lambda text: text + f"\nlet forbidden: {name}? = nil\n"):
+                self.blocked(f"Library must not reference {name}")
+
+    def test_library_sdk_import_and_logic_ui_import_are_rejected(self):
+        for file, module in [("App/Library/LibraryView.swift", "ReadiumAdapter"),
+                             ("Packages/LibraryShelf/Sources/LibraryShelf/LibraryCollection.swift", "SwiftUI")]:
+            with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
+                self.blocked(f"must not import {module}")
+
+    def test_library_identifier_guard_ignores_comments_and_string_contents(self):
+        with self.change("App/Library/LibraryView.swift", lambda text: text + '\n// ReaderView AppServices\nlet description = "ReadiumEngineFactory"\n'):
+            check_architecture(self.root)
+
     def test_reader_cannot_borrow_another_files_readium_exception(self):
         with self.change("App/Reader/ReaderViewModel.swift", lambda text: text + "\nimport ReadiumAdapter\n"):
             self.blocked("Reader must not import ReadiumAdapter")

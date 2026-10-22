@@ -1,6 +1,5 @@
 import Foundation
 import ReaderSettings
-import ReadiumAdapter
 import XianxiaCore
 
 struct AppServices: Sendable {

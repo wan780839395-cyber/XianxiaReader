@@ -11,6 +11,7 @@ COMMANDS = {
     "reader-logic": "bash scripts/test_reader_logic.sh <fresh-output-folder>",
     "position-logic": "bash scripts/test_reader_positions.sh <fresh-output-folder>",
     "session-logic": "bash scripts/test_reader_sessions.sh <fresh-output-folder>",
+    "library-logic": "bash scripts/test_library_shelf.sh <fresh-output-folder>",
     "core": "swift test --package-path Packages/XianxiaCore --parallel",
     "ios-integration": "bash scripts/ci_reader_diagnostic.sh settings (settings changes); full integration for other App/engine changes",
     "native-ui": "existing native UI regressions for the affected feature; full UI at delivery",
@@ -50,6 +51,8 @@ def plan(changed, root=ROOT):
         tiers.add("position-logic")
     if affected & {"ReaderSessions", "ReaderSessionsTests"}:
         tiers.add("session-logic")
+    if affected & {"LibraryShelf", "LibraryShelfTests"}:
+        tiers.add("library-logic")
     if affected & {"XianxiaCore", "XianxiaCoreTests", "TXTPerformanceProbe"}:
         tiers.add("core")
     if affected & {"XianxiaReader", "XianxiaReaderTests", "ReadiumAdapter", "ReadingInterfaces"}:

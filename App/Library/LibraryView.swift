@@ -1,9 +1,9 @@
-import ReadiumAdapter
 import SwiftUI
 import XianxiaCore
 
 @MainActor struct LibraryView: View {
-    let services: AppServices
+    let files: BookFileStore
+    private let readerDestination: (Book, @escaping () -> Void) -> AnyView
     @StateObject private var model: LibraryViewModel
     @State private var selectedBook: ReaderPresentation?
     @EnvironmentObject private var fontInbox: FontDocumentInbox
@@ -13,9 +13,10 @@ import XianxiaCore
     private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20, alignment: .topLeading)]
 
-    init(services: AppServices, model: LibraryViewModel? = nil) {
-        self.services = services
-        _model = StateObject(wrappedValue: model ?? LibraryViewModel(services: services))
+    init(files: BookFileStore, model: LibraryViewModel, readerDestination: @escaping (Book, @escaping () -> Void) -> AnyView) {
+        self.files = files
+        self.readerDestination = readerDestination
+        _model = StateObject(wrappedValue: model)
     }
 
     var body: some View {
@@ -89,7 +90,7 @@ import XianxiaCore
                 Text("“\(book.title)”将移到回收站，原书、阅读位置和书签会保留，可随时恢复。")
             }
             .fullScreenCover(item: $selectedBook, onDismiss: { Task { await model.refresh() } }) { presentation in
-                ReaderView(book: presentation.book, services: services, factory: ReadiumEngineFactory(storageRoot: services.files.root), onReturnToLibrary: {
+                readerDestination(presentation.book, {
                     guard selectedBook?.id == presentation.id else { return }
                     selectedBook = nil
                 }).id(presentation.id)
@@ -231,13 +232,13 @@ import XianxiaCore
             Group {
                 if compact {
                     HStack(spacing: 16) {
-                        BookCoverView(book: summary.book, files: services.files, compact: true).frame(width: 56, height: 84)
+                        BookCoverView(book: summary.book, files: files, compact: true).frame(width: 56, height: 84)
                         details(summary)
                         Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary).accessibilityHidden(true)
                     }.padding(14).background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
                 } else {
                     VStack(alignment: .leading, spacing: 10) {
-                        BookCoverView(book: summary.book, files: services.files)
+                        BookCoverView(book: summary.book, files: files)
                         details(summary)
                     }
                 }

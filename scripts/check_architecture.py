@@ -267,6 +267,12 @@ def check_architecture(root=ROOT):
                 allowed = set(rule["imports"])
                 seen_rules.add(relative)
             tree = parse(parser, path.read_bytes(), relative)
+            forbidden = set(area.get("forbiddenIdentifiers", []))
+            for node in walk(tree):
+                if node.type in {"simple_identifier", "type_identifier"}:
+                    identifier = node.text.decode("utf-8").strip("`")
+                    require(identifier not in forbidden,
+                            f"{relative}:{node.start_point[0]+1}: {area['name']} must not reference {identifier}")
             imports = imported_modules(tree)
             for module, line in imports:
                 if module in allowed:

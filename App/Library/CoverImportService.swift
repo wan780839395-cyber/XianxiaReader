@@ -1,5 +1,6 @@
 import CoreGraphics
 import Foundation
+import LibraryShelf
 import XianxiaCore
 
 struct PreparedCover: Sendable {
@@ -10,8 +11,8 @@ struct PreparedCover: Sendable {
 
 actor CoverImportService {
     private let files: BookFileStore
-    private let repository: any BookRepository
-    init(files: BookFileStore, repository: any BookRepository) { self.files = files; self.repository = repository }
+    private let repository: any LibraryRepository
+    init(files: BookFileStore, repository: any LibraryRepository) { self.files = files; self.repository = repository }
 
     func prepare(from source: URL, bookID: UUID) async throws -> PreparedCover {
         let scoped = source.startAccessingSecurityScopedResource()

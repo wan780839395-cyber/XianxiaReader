@@ -1,3 +1,5 @@
+2026-10-22 I5a待验入口：`bash scripts/test_library_shelf.sh <fresh-output-folder>`仅LibraryShelf六合同；`library-isolation`仅该包+原书库/回收站/封面17项，不跑完整191/IPA。Swift编译及真实原生结果须单独核验，细节见LIBRARY_ISOLATION。
+
 # 隔离模块快速验证
 
 R4b当前入口（2026-10-22）：`bash scripts/test_reader_sessions.sh <新目录>`直接编译真实Foundation-only包，当前15合同（原会话6+编排/桥接9）；`session-lifecycle`默认先15再原13生命周期，仅本片。若只改此包/夹具，可显式`session_logic_only=true`，该模式已在CI39702833284验证当时14项通过且原生步骤skipped；最终15在CI39703522408完整包步骤重新编译/执行。不能把只跑逻辑模式称原生/设备验收。旧session-isolation的新旧回调对照仍保留，不为纯提取反复重跑旧负例。

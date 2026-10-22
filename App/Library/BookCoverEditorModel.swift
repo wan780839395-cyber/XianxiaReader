@@ -1,5 +1,6 @@
 import CoreGraphics
 import Foundation
+import LibraryShelf
 import PhotosUI
 import SwiftUI
 import XianxiaCore
@@ -21,9 +22,9 @@ import XianxiaCore
     private var coordinator: EPUBDocumentPicker.Coordinator?
     private var closed = false
 
-    init(book: Book, services: AppServices, library: LibraryViewModel) {
-        self.book = book; files = services.files; self.library = library
-        service = CoverImportService(files: services.files, repository: services.repository)
+    init(book: Book, files: BookFileStore, repository: any LibraryRepository, library: LibraryViewModel) {
+        self.book = book; self.files = files; self.library = library
+        service = CoverImportService(files: files, repository: repository)
     }
     func retainCoordinator(_ value: EPUBDocumentPicker.Coordinator) { coordinator?.invalidate(); coordinator = value }
     func receiveFiles(_ result: Result<[URL], Error>?) {

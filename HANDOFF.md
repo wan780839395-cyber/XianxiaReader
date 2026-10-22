@@ -1,3 +1,13 @@
+源码/定向入口已接线，准备Windows检查：新增LibraryShelf6合同、library-isolation一次包+原17，原生测试正文全部保护；只新增三个静态书库依赖正反例与四个证据/路由工具合同。原await未移动，LibraryPresentation/导入方法/搜索与reader完全保持。待冻结前检查/真实Swift编译，未验收。
+
+# 当前工作：I5a书库边界隔离（2026-10-22，用户已授权）
+
+仅书库：新Foundation/Core LibraryShelf拥有列表/刷新身份/已提交元数据和回收站状态，窄LibraryRepository不含导入、搜索和位置写入。App保留原await/错误/互斥编排；引擎、导入器在App组装，书库只接依赖。封面流程只改依赖类型，不改事务；LibraryInteractionFixture移到App组装区域，原生测试通过兼容组装入口保持原文。导入/搜索/阅读源码与所有原定位/会话行为保护，不运行全191/Release/手机、不产IPA。
+
+已核R4b最终594运行输入逐hash一致、1208保存路径基线build/maintenance/I5-library-20261022/before.json，普通HEAD/index保持，无旧观察/下载进程。下一步完成同步状态合同、静态依赖正反例和Windows检查，冻结后仅一次独立包+书库/回收站/封面原生定向编译验证。尚未编译/验收。遇到其他边界失败先留证，不扩修。
+
+以下为上片已保存结果，不覆盖本轮工作。
+
 # 当前断点：R4b本片完成，下一阶段I5（2026-10-22）
 
 本轮用户授权的打开/重试/关闭编排切片已完成，实现/编译/定向验收通过；收口在本片，不自动进入I5或新增功能。电脑保持开机。下一阶段按PROJECT_ISOLATION_PLAN一片一门槛整理书库/导入/搜索与组装；后续产品计划保留在ROADMAP/READING_FEATURE_IDEAS。

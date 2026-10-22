@@ -1,5 +1,5 @@
 import Foundation
-import ReadiumAdapter
+import LibraryShelf
 import SwiftUI
 import XianxiaCore
 
@@ -9,8 +9,9 @@ enum LibrarySheet: String, Identifiable {
 }
 
 @MainActor final class LibraryViewModel: ObservableObject {
-    @Published private(set) var books: [BookSummary] = []
-    @Published private(set) var removedBooks: [BookSummary] = []
+    var books: [BookSummary] { collection.books }
+    var removedBooks: [BookSummary] { collection.removedBooks }
+    private let collection = LibraryCollection()
     @Published var bookToRemove: Book?
     @Published private(set) var isManaging = false
     @Published private(set) var managementError: String?
@@ -31,38 +32,36 @@ enum LibrarySheet: String, Identifiable {
     var isEditingCover: Bool { coverEditor != nil }
     var visibleBooks: [BookSummary] { LibraryPresentation.books(books, query: query, order: sortOrder) }
     private let defaults: UserDefaults
-    private var refreshRequestID: UUID?
     private var importTask: Task<Void,Never>?
     private var pickerCoordinator: EPUBDocumentPicker.Coordinator?
     @Published private(set) var duplicateBooks: [DuplicateBook] = []
-    private let services: AppServices
+    private let repository: any LibraryRepository
+    private let files: BookFileStore
     private let importer: EPUBImportService
 
-    init(services: AppServices, defaults: UserDefaults = .standard) {
-        self.services = services
+    init(repository: any LibraryRepository, files: BookFileStore, importer: EPUBImportService, defaults: UserDefaults = .standard) {
+        self.repository = repository; self.files = files; self.importer = importer
         self.defaults = defaults
         layout = defaults.string(forKey: "library.layout.v1").flatMap(LibraryLayout.init(rawValue:)) ?? .grid
         sortOrder = defaults.string(forKey: "library.sort.v1").flatMap(LibrarySortOrder.init(rawValue:)) ?? .recent
-        importer = EPUBImportService(repository: services.repository, files: services.files,
-                                     metadata: ReadiumPublicationLoader())
+        collection.willChange = { [weak self] in self?.objectWillChange.send() }
     }
 
     func refresh() async {
-        let requestID = UUID(); refreshRequestID = requestID
+        let requestID = collection.beginRefresh()
         do {
-            let result = try await services.repository.librarySnapshot()
-            guard refreshRequestID == requestID else { return }
-            books = result.books
-            removedBooks = result.removedBooks
+            let result = try await repository.librarySnapshot()
+            guard collection.acceptsRefresh(requestID) else { return }
+            collection.apply(result, requestID: requestID)
         } catch {
-            guard refreshRequestID == requestID else { return }
+            guard collection.acceptsRefresh(requestID) else { return }
             errorMessage = error.localizedDescription
         }
     }
 
     func beginCoverEditing(_ book: Book) {
         guard !isImporting, !isRenaming, !isManaging, !isEditingCover, presentedSheet == nil else { return }
-        coverEditor = BookCoverEditorModel(book: book, services: services, library: self)
+        coverEditor = BookCoverEditorModel(book: book, files: files, repository: repository, library: self)
         presentedSheet = .cover
     }
 
@@ -79,11 +78,7 @@ enum LibrarySheet: String, Identifiable {
     func reportCoverError(_ message: String) { errorMessage = message }
 
     func didSaveCover(_ book: Book, editor: BookCoverEditorModel) async {
-        refreshRequestID = nil
-        if let index = books.firstIndex(where: { $0.id == book.id }) {
-            let previous = books[index]
-            books[index] = BookSummary(book: book, progression: previous.progression, lastReadAt: previous.lastReadAt)
-        }
+        collection.didCommitMetadata(book)
         importStatus = "封面已更新"
         await refresh()
     }
@@ -98,13 +93,8 @@ enum LibrarySheet: String, Identifiable {
         isRenaming = true; renameError = nil
         defer { isRenaming = false }
         do {
-            let updated = try await services.repository.renameBook(id, title: title)
-            // A refresh started before this commit must not publish an old title.
-            refreshRequestID = nil
-            if let index = books.firstIndex(where: { $0.id == id }) {
-                let previous = books[index]
-                books[index] = BookSummary(book: updated, progression: previous.progression, lastReadAt: previous.lastReadAt)
-            }
+            let updated = try await repository.renameBook(id, title: title)
+            collection.didCommitMetadata(updated)
             await refresh()
             return true
         } catch {
@@ -136,14 +126,9 @@ enum LibrarySheet: String, Identifiable {
         isManaging = true; managementError = nil; errorMessage = nil
         defer { isManaging = false }
         do {
-            if restoring { try await services.repository.restoreBook(id) }
-            else { try await services.repository.moveToTrash(id) }
-            refreshRequestID = nil
-            if restoring, let summary = removedBooks.first(where: { $0.id == id }) {
-                removedBooks.removeAll { $0.id == id }; books.removeAll { $0.id == id }; books.append(summary)
-            } else if !restoring, let summary = books.first(where: { $0.id == id }) {
-                books.removeAll { $0.id == id }; removedBooks.removeAll { $0.id == id }; removedBooks.insert(summary, at: 0)
-            }
+            if restoring { try await repository.restoreBook(id) }
+            else { try await repository.moveToTrash(id) }
+            collection.didCommitRemoval(id, restoring: restoring)
             bookToRemove = nil
             importStatus = restoring ? "已恢复到书架，阅读位置和书签已保留" : "已移到回收站，可随时恢复"
             await refresh()
