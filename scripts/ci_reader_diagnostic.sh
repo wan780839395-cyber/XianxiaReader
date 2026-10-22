@@ -5,6 +5,11 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  initialization-close)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
+    )
+    ;;
   position-acceptance)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible
@@ -313,7 +318,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
+if [[ "$selection" == 'initialization-close' || "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.

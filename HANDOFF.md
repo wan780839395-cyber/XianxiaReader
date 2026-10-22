@@ -1,3 +1,11 @@
+# I6c进行中：只查初始化中关闭单例（2026-10-22）
+
+用户已明确继续单查此例并有问题修好；不跑23项或整套。已核原CI39721680702为22/23、test65，原件和565bdee保存点存在，617运行输入无漂移、普通HEAD/index保持，无本轮后台任务。当前只修改该原生测试准备探针及单例CI/结果校验，生产未改、尚未派新CI。
+
+切片只涉及原ReaderRenderingTests关闭准备探针及必要的精确单例入口/证据校验。先核脚本安装、FontFaceSet拦截及WebView身份，保留现有功能/隔离/定位修复和30秒/15秒原预算。未有证据前不改生产加载顺序，不增加重试。恢复目录build/maintenance/I6-close-20261022；开始前快照before.json/HANDOFF-before.md。当前候选用原实例hook计数+prototype后备hook记录旧hook是否丢失，不持有最初FontFaceSet；新门由真实native ready与显式屏障同时满足，关闭前须nativeReady=true而生产FontReady仍pending，原关闭断言不改。只查询挂窗且几何可见的封面，记录prepared/closed/cleanup两个模式；未用更长sleep/重试。局部9工具8通过1POSIX跳过、语法484新增0/既有54；真实JS探针3个屏障/对象替换夹具通过（不是WebKit验收）。原关闭断言、该文件其余方法、生产及617输入中的其余612均保持；旧logic/native/acceptance验证函数AST保持。现在冻结并仅派initialization-close单例（内含分页/连续两分支）。若中断先核CI和dispatch.json，不重复派发；完整/设备不执行。电脑保持开机。
+
+---
+
 # I6b断点：23项已跑完22通过/1失败，原件收齐（2026-10-22）
 
 冻结运行源075c2ccfbc597eba2afa57c6622f44ecba1cf6ce，私有分支codex/position-loading-acceptance，CI39721680702已completed/failure。只派1轮，精确23项全部执行、22通过/1失败/0跳过，原生编译通过；test=65，summary/export=0。Core/独立包/全套192/设备Release/手机未执行，无新IPA，最后交付仍Build30。

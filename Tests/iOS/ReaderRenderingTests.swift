@@ -281,10 +281,35 @@ final class ReaderRenderingTests: XCTestCase {
 
     @MainActor func testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews() async throws {
         let delay = WKUserScript(source: """
-            Object.defineProperty(document.fonts,'ready',{get(){
-              window.__xrCloseProbeStarted=true;
-              return new Promise(resolve=>setTimeout(()=>resolve(document.fonts),2000));
-            }});
+            (()=>{
+              const state=window.__xrCloseProbe={installed:false,instanceCalls:0,prototypeCalls:0,
+                nativeReady:false,released:false,settledCalls:0,installHref:location.pathname};
+              try {
+                const first=document.fonts, prototype=Object.getPrototypeOf(first);
+                const descriptor=Object.getOwnPropertyDescriptor(prototype,'ready');
+                const nativeReady=descriptor.get, original=new WeakRef(first);
+                let release;
+                const gate=new Promise(resolve=>{release=resolve;});
+                window.__xrReleaseCloseProbe=()=>{state.released=true;release();};
+                function ready(kind,fonts) {
+                  state[kind+'Calls']++;
+                  window.__xrCloseProbeStarted=true;
+                  state.fontSetAliveAtCall=original.deref()!==undefined;
+                  state.sameFontSetAtCall=original.deref()===fonts;
+                  state.ownReadyAtCall=Object.hasOwn(fonts,'ready');
+                  const pending=nativeReady.call(fonts);
+                  pending.then(()=>{state.nativeReady=true;},error=>{state.nativeError=String(error);});
+                  return Promise.all([pending,gate]).then(()=>{state.settledCalls++;return fonts;});
+                }
+                // Keep the old instance hook observable without retaining its
+                // FontFaceSet wrapper. A prototype hook also covers a later
+                // wrapper; its counter distinguishes loss of the old hook.
+                Object.defineProperty(first,'ready',{get(){return ready('instance',this);}});
+                Object.defineProperty(prototype,'ready',{configurable:descriptor.configurable,
+                  enumerable:descriptor.enumerable,get(){return ready('prototype',this);}});
+                state.installed=true;
+              } catch(error) {state.installError=String(error);}
+            })();
             """, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         for continuous in [false, true] {
             let engine = ReadiumReaderEngine(additionalUserScripts: [delay])
@@ -295,10 +320,54 @@ final class ReaderRenderingTests: XCTestCase {
             try engine.setAppearance(appearance)
             let (_, state) = try mount(engine); state.visible = false
             let (_, navigator) = try await open(engine)
-            try await waitUntil {
-                guard let web = self.webViews(in: navigator.view).first else { return false }
-                return try await web.evaluateJavaScript("window.__xrCloseProbeStarted === true") as? Bool == true
+            var samples: [String: [String: Any]] = [:]
+            var heldWeb: WKWebView?
+            var prepared: [String: Any]?
+            func record(_ phase: String, _ values: [String: Any]) throws {
+                let data = try JSONSerialization.data(withJSONObject: ["phase": phase,
+                    "mode": continuous ? "continuous" : "paged", "values": values], options: .sortedKeys)
+                let text = String(decoding: data, as: UTF8.self)
+                print("CLOSE_INITIALIZATION_PROBE \(text)")
+                let attachment = XCTAttachment(string: text)
+                attachment.name = "close-initialization-\(continuous ? "continuous" : "paged")-\(phase)"
+                attachment.lifetime = .keepAlways; add(attachment)
             }
+            do {
+                try await waitUntil {
+                    // Preloaded neighbors can be first in the view hierarchy.
+                    // Qualify the attached native viewport without reading a
+                    // hidden document or treating an installed script as entry.
+                    for web in self.webViews(in: navigator.view) {
+                        let clip = self.clippedVisibleRect(web, root: engine.viewController.view)
+                        guard web.window != nil, clip.width > 0, clip.height > 0 else { continue }
+                        let value = try await web.evaluateJavaScript("""
+                            ({href:location.pathname,documentReady:document.readyState,
+                              started:window.__xrCloseProbeStarted===true,
+                              probe:window.__xrCloseProbe??null,
+                              ownReadyNow:Object.hasOwn(document.fonts,'ready'),
+                              nativeFontState:window.__xianxiaReadingFontReady??null})
+                            """)
+                        let snapshot = try XCTUnwrap(value as? [String: Any])
+                        samples[String(describing: ObjectIdentifier(web))] = snapshot
+                        guard let probe = snapshot["probe"] as? [String: Any],
+                              (snapshot["href"] as? String)?.hasSuffix("/cover.xhtml") == true,
+                              snapshot["started"] as? Bool == true,
+                              snapshot["nativeFontState"] as? String == "pending",
+                              probe["installed"] as? Bool == true,
+                              probe["nativeReady"] as? Bool == true,
+                              probe["released"] as? Bool == false,
+                              probe["settledCalls"] as? Int == 0 else { continue }
+                        heldWeb = web; prepared = snapshot
+                        return true
+                    }
+                    return false
+                }
+            } catch {
+                try record("preparation-failed", ["samples": samples,
+                    "nativeState": engine.continuousDiagnosticState])
+                throw error
+            }
+            try record("prepared", try XCTUnwrap(prepared))
             let retired = webViews(in: navigator.view)
             XCTAssertFalse(retired.isEmpty)
             engine.close()
@@ -311,6 +380,17 @@ final class ReaderRenderingTests: XCTestCase {
             }
             XCTAssertTrue(webViews(in: navigator.view).isEmpty, "Closed mode=\(continuous) must remove preloaded web views")
             XCTAssertTrue(engine.viewController.children.isEmpty)
+            try record("closed", ["retiredCount": retired.count,
+                "delegatesDisconnected": retired.allSatisfy {
+                    $0.navigationDelegate == nil && $0.uiDelegate == nil && $0.scrollView.delegate == nil
+                }, "remainingWebViews": webViews(in: navigator.view).count,
+                "remainingChildren": engine.viewController.children.count])
+            // Best-effort fixture cleanup after the real close assertions. Close
+            // may already have discarded the old context; retain that outcome.
+            do {
+                _ = try await XCTUnwrap(heldWeb).evaluateJavaScript("window.__xrReleaseCloseProbe?.(); true")
+                try record("gate-cleanup", ["released": true])
+            } catch { try record("gate-cleanup", ["contextUnavailableAfterClose": String(describing: error)]) }
         }
     }
 

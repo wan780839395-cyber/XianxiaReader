@@ -11,7 +11,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT, yaml
-from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, ACCEPTANCE_TESTS, verify_logic, verify_native, verify_acceptance
+from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, ACCEPTANCE_TESTS, CLOSE_TESTS, verify_logic, verify_native, verify_acceptance, verify_close
 
 
 class PositionEvidenceTests(unittest.TestCase):
@@ -127,6 +127,54 @@ class PositionEvidenceTests(unittest.TestCase):
         steps = [s for s in jobs["reader-positions"]["steps"] if "verify_reader_positions.py acceptance" in s.get("run", "")]
         self.assertEqual(len(steps), 1)
         self.assertIn("set -euo pipefail", steps[0]["run"])
+        self.assertNotIn("test_reader_positions.sh", steps[0]["run"])
+
+    def test_close_requires_pending_barrier_and_disconnection_in_both_modes(self):
+        log, _ = self.native_fixture(CLOSE_TESTS)
+        rows = []
+        for mode in ["paged", "continuous"]:
+            values = {"href": "/OEBPS/cover.xhtml", "started": True, "nativeFontState": "pending",
+                      "probe": {"installed": True, "nativeReady": True, "released": False,
+                                "settledCalls": 0, "instanceCalls": 0, "prototypeCalls": 1}}
+            rows.extend([dict(mode=mode, phase="prepared", values=values),
+                         dict(mode=mode, phase="closed", values=dict(retiredCount=2,
+                              delegatesDisconnected=True, remainingWebViews=0, remainingChildren=0)),
+                         dict(mode=mode, phase="gate-cleanup", values=dict(released=True))])
+        def write(records):
+            (self.root / "logs/reader-diagnostic.log").write_text(
+                log + "\n" + "\n".join("CLOSE_INITIALIZATION_PROBE " + json.dumps(r) for r in records))
+        write(rows)
+        self.assertEqual(verify_close(self.root)["passed"], 1)
+        with self.assertRaises(ValueError): verify_close(self.root, status=65)
+        for bad in [rows[:3], rows + rows[:1]]:
+            write(bad)
+            with self.assertRaises(ValueError): verify_close(self.root)
+        for key, value in [("installed", False), ("nativeReady", False), ("released", True),
+                           ("settledCalls", 1), ("prototypeCalls", 0), ("installError", "broken hook")]:
+            bad = deepcopy(rows); bad[0]["values"]["probe"][key] = value; write(bad)
+            with self.assertRaises(ValueError): verify_close(self.root)
+        for key, value in [("nativeFontState", "ready"), ("href", "/hidden/one.xhtml")]:
+            bad = deepcopy(rows); bad[0]["values"][key] = value; write(bad)
+            with self.assertRaises(ValueError): verify_close(self.root)
+        for key, value in [("delegatesDisconnected", False), ("remainingWebViews", 1), ("remainingChildren", 1)]:
+            bad = deepcopy(rows); bad[1]["values"][key] = value; write(bad)
+            with self.assertRaises(ValueError): verify_close(self.root)
+
+    def test_initialization_close_route_never_selects_other_cases_or_jobs(self):
+        shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
+        block = shell.split("  initialization-close)", 1)[1].split("    ;;", 1)[0]
+        self.assertEqual(re.findall(r"-only-testing:XianxiaReaderTests/(\w+/\w+)", block), sorted(CLOSE_TESTS))
+        workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        self.assertIn("initialization-close", workflow["on"]["workflow_dispatch"]["inputs"]["diagnostic_selection"]["options"])
+        jobs = workflow["jobs"]
+        for name in ["core-tests", "reading-diagnostic"]:
+            self.assertIn("!= 'initialization-close'", jobs[name]["if"])
+        self.assertNotIn("initialization-close", jobs["ios"]["if"])
+        self.assertIn("== 'initialization-close'", jobs["reader-positions"]["if"])
+        steps = [s for s in jobs["reader-positions"]["steps"] if "verify_reader_positions.py close" in s.get("run", "")]
+        self.assertEqual(len(steps), 1)
+        self.assertIn("set -euo pipefail", steps[0]["run"])
+        self.assertIn("ci_reader_diagnostic.sh initialization-close", steps[0]["run"])
         self.assertNotIn("test_reader_positions.sh", steps[0]["run"])
 
     @unittest.skipIf(os.name == "nt", "POSIX executable fixture validated on Linux CI")

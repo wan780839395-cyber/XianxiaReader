@@ -76,6 +76,8 @@ ACCEPTANCE_TESTS = NATIVE_TESTS | {
     "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
 }
 
+CLOSE_TESTS = {"ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews"}
+
 
 def verify_logic(folder):
     tree = ET.parse(folder / "tests.xml").getroot()
@@ -126,15 +128,48 @@ def verify_acceptance(folder, status=0):
     return result
 
 
+def verify_close(folder, status=0):
+    result = verify_native(folder, CLOSE_TESTS, status)
+    summary = json.loads((folder / "test-results-summary.json").read_text(encoding="utf-8"))
+    if summary.get("result") != "Passed":
+        raise ValueError("Close probe summary must report Passed")
+    log = (folder / "logs/reader-diagnostic.log").read_text(encoding="utf-8")
+    rows = [json.loads(line.removeprefix("CLOSE_INITIALIZATION_PROBE "))
+            for line in log.splitlines() if line.startswith("CLOSE_INITIALIZATION_PROBE ")]
+    phases = Counter((row.get("mode"), row.get("phase")) for row in rows)
+    if phases != Counter({(mode, phase): 1 for mode in ["paged", "continuous"]
+                          for phase in ["prepared", "closed", "gate-cleanup"]}):
+        raise ValueError("Both close modes need exactly one prepared, closed and cleanup record")
+    for row in rows:
+        value = row["values"]
+        if row["phase"] == "prepared":
+            probe = value.get("probe", {})
+            if (not value.get("href", "").endswith("/cover.xhtml")
+                    or value.get("started") is not True or value.get("nativeFontState") != "pending"
+                    or probe.get("installed") is not True or probe.get("nativeReady") is not True
+                    or probe.get("released") is not False or probe.get("settledCalls") != 0
+                    or probe.get("instanceCalls", 0) + probe.get("prototypeCalls", 0) < 1
+                    or probe.get("installError") or probe.get("nativeError")):
+                raise ValueError("Close must enter the real font wait while its explicit barrier is held")
+        elif row["phase"] == "closed":
+            if (value.get("retiredCount", 0) < 1 or value.get("delegatesDisconnected") is not True
+                    or value.get("remainingWebViews") != 0 or value.get("remainingChildren") != 0):
+                raise ValueError("Close must disconnect and detach the retained old views")
+        elif value.get("released") is not True and not value.get("contextUnavailableAfterClose"):
+            raise ValueError("Close gate cleanup outcome is missing")
+    return dict(result, closeProbe=rows)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("kind", choices=["logic", "native", "acceptance"])
+    parser.add_argument("kind", choices=["logic", "native", "acceptance", "close"])
     parser.add_argument("folder", type=Path)
     parser.add_argument("--report", required=True, type=Path)
     parser.add_argument("--status", type=int, default=0)
     args = parser.parse_args()
+    validators = {"native": verify_native, "acceptance": verify_acceptance, "close": verify_close}
     result = (verify_logic(args.folder) if args.kind == "logic" else
-              (verify_acceptance if args.kind == "acceptance" else verify_native)(args.folder, status=args.status))
+              validators[args.kind](args.folder, status=args.status))
     result.update(recordedAtUTC=datetime.now(timezone.utc).isoformat(), validationKind=f"reader_positions_{args.kind}",
                   releaseAccepted=False, deviceAccepted=False)
     args.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
