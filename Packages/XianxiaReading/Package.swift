@@ -11,10 +11,11 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../XianxiaCore"),
+        .package(path: "../BookImports"),
         .package(path: "../../Vendor/ReadiumToolkit")
     ],
     targets: [
-        .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore")]),
+        .target(name: "ReadingInterfaces", dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports")]),
         .target(name: "ReaderFonts", dependencies: [
             "ReadingInterfaces",
             .product(name: "XianxiaCore", package: "XianxiaCore")

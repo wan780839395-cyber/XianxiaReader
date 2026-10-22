@@ -18,6 +18,8 @@ packages:
     path: Packages/ReaderSessions
   LibraryShelf:
     path: Packages/LibraryShelf
+  BookImports:
+    path: Packages/BookImports
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -47,6 +49,8 @@ targets:
         product: ReaderSessions
       - package: LibraryShelf
         product: LibraryShelf
+      - package: BookImports
+        product: BookImports
       - package: XianxiaReading
         product: ReadingInterfaces
       - package: XianxiaReading

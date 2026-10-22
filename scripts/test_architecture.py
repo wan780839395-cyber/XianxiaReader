@@ -91,6 +91,18 @@ class ArchitectureTests(unittest.TestCase):
         with self.change("App/Library/LibraryView.swift", lambda text: text + '\n// ReaderView AppServices\nlet description = "ReadiumEngineFactory"\n'):
             check_architecture(self.root)
 
+    def test_book_import_module_cannot_acquire_ui_engine_or_reading_positions(self):
+        file = "Packages/BookImports/Sources/BookImports/EPUBImportService.swift"
+        for module in ["UIKit", "SwiftUI", "ReadiumAdapter", "ReadingInterfaces", "ReaderPositions"]:
+            with self.subTest(module=module), self.change(file, lambda text: text + f"\nimport {module}\n"):
+                self.blocked(f"Book import transactions must not import {module}")
+        with self.change(file, lambda text: text + "\nlet wrong: ReadingPosition? = nil\n"):
+            self.blocked("must not reference ReadingPosition")
+
+    def test_app_import_bridge_cannot_reintroduce_transaction_dependencies(self):
+        with self.change("App/Import/EPUBImportService.swift", lambda text: text + "\nimport XianxiaCore\n"):
+            self.blocked("Import must not import XianxiaCore")
+
     def test_reader_cannot_borrow_another_files_readium_exception(self):
         with self.change("App/Reader/ReaderViewModel.swift", lambda text: text + "\nimport ReadiumAdapter\n"):
             self.blocked("Reader must not import ReadiumAdapter")
@@ -173,7 +185,7 @@ class ArchitectureTests(unittest.TestCase):
 
     def test_nonliteral_dependency_array_is_rejected(self):
         file = "Packages/XianxiaReading/Package.swift"
-        with self.change(file, lambda text: text.replace('dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore")]', 'dependencies: injectedDependencies', 1)):
+        with self.change(file, lambda text: text.replace('dependencies: [.product(name: "XianxiaCore", package: "XianxiaCore"), .product(name: "BookImports", package: "BookImports")]', 'dependencies: injectedDependencies', 1)):
             self.blocked("expected a literal array")
 
     def test_package_cycle_is_rejected_even_without_a_target_cycle(self):

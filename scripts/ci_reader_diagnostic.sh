@@ -5,6 +5,24 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  import-isolation)
+    cases=(
+      -only-testing:XianxiaReaderTests/BookDuplicateTests/testCancelledDuplicateImportDoesNotRemoveAlreadyCommittedBook
+      -only-testing:XianxiaReaderTests/BookDuplicateTests/testDuplicateTrashFeedbackRestoresExplicitlyAndKeepsSavedProgressAfterRestart
+      -only-testing:XianxiaReaderTests/BookDuplicateTests/testMixedBatchCountsDuplicatesNewBooksAndBadFilesTruthfully
+      -only-testing:XianxiaReaderTests/BookDuplicateTests/testRealEPUBAndTXTRenamedCopiesKeepUUIDCoverAndFullReadingHistory
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testBroadPickerImportsTXTAndUppercaseEPUBRejectsUnsupportedFileInSameBatch
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testBundledSamplesImportWithoutFileProvider
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testEmptyBatchReportsErrorAndCanRetryWithSamples
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testFirstEPUBSelectionThroughNativeSheetImportsWithoutRetry
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testFirstFileSelectionWithExistingShelfAndEncodingSheetRoundTrip
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testFirstTXTSelectionThroughNativeSheetImportsWithoutRetry
+      -only-testing:XianxiaReaderTests/DocumentImportTests/testNativeSheetCancellationAndEmptySelectionCanRetryWithoutStaleFiles
+      -only-testing:XianxiaReaderTests/EPUBIntegrationTests/testCorruptEPUBImportRollsBackFilesAndDatabase
+      -only-testing:XianxiaReaderTests/EPUBIntegrationTests/testEPUB2AndEPUB3MetadataAndNavigationIndex
+      -only-testing:XianxiaReaderTests/EPUBIntegrationTests/testRealImportPersistsBookAndCachedTOC
+    )
+    ;;
   library-isolation)
     cases=(
       -only-testing:XianxiaReaderTests/LibraryBoundaryTests
@@ -251,7 +269,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' ]]; then
+if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.

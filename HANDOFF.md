@@ -1,3 +1,15 @@
+Windows480语法新增0/54既有、静态153源/23区/24节点/2例外通过。96工具首检发现生成验证器时把用例名中的Shelf误替成Import，已只修回精确原用例名；失败原日志保留，不涉及生产或原测试。复核工具后再冻结，原生/Swift仍待验。
+
+源码和8+14定向入口已接线，准备Windows静态/语法/工具检查；MetadataReading合同迁入BookImports，ReadingInterfaces/App保持typealias身份，原11await和service body须冻结时逐段核。App批次/picker/FontInbox/搜索/阅读/定位/LibraryShelf/所有原生旧测试保持；原生新增target先build-for-testing再boot。尚无新Swift编译/验收。
+
+# 当前工作：I5b导入事务边界隔离（2026-10-22，用户已授权）
+
+仅导入事务：新BookImports Foundation/Core包拥有EPUBImportService、ImportOutcome/ImportError、ImportedPublication/EPUBMetadataReading；ReadingInterfaces保留旧名称typealias兼容，阅读引擎协议正文不改。App保留同名alias、原picker/批次UI状态与原await；Readium loader在原Adapter实现，原服务暂存/身份/去重/解析/取消/最终化/提交/回滚顺序及security scope不变。FontInbox、搜索、reader/定位/字体/会话及LibraryShelf均保护；不推进新的批次编排提取，不跑完整192/Release/手机/IPA。
+
+已核上片603运行输入与e3ff6c73保存点一致、1219路径基线build/maintenance/I5-import-20261022/before.json，普通HEAD/index保持，无旧Python观察任务。下一步独立包合同与原DocumentImport/去重/EPUB导入最小选择，先本地静态/工具，再冻结一组原生编译；门槛及实际成本分记。尚无新Swift编译/验收。
+
+以下为上片保存结果与历史，不覆盖本轮工作。
+
 # 当前断点：I5a书库本片完成，导入/搜索留后续（2026-10-22）
 
 原生有1项新编译警告（同处发出2次）：LibraryAssembly:7对本仓库Core类型/LibraryShelf协议做外部符合，未来重复声明可能冲突；本片保留单一App组装声明，不静音、不为此改Core协议归属扩片。它不是编译错误或功能失败，完整原警告保留。已查看本次书架网格、非空回收站、保存封面三张原生图，均有预期内容；不代表手机或动效验收。
