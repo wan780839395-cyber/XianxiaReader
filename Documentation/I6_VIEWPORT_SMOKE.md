@@ -1,5 +1,9 @@
 # 连续视口smoke：单轮原生验证（2026-10-22）
 
+2026-10-22 Adapter桥修正版仅一轮CI39782692503/65a82618/attempt1：原生编译/链接通过，Linux111及控制器机制6项通过；原视口smoke 0/1（12.506秒），停在缩放前S资格。S实际命中/放行但终结rejected，M未执行；失败后active/tasks/waiters均空。1767/2367现场不足证明具体拒绝分支，clip/documentTop/guard诊断仍缺；旧full根因未证。本轮617运行输入零漂移、未改算法/原断言预算、未重派。原件与断点已保存，旧full191/192、Release/手机缺口和Build30保持。见[本片结果](I6_VIEWPORT_ADAPTER_SMOKE.md)。
+
+以下记录保留其当时范围；最新本轮状态以上文为准。
+
 2026-10-22 本片已收口：唯一[CI39777683114](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39777683114) / 9f1c503a / attempt1 **失败于测试包链接，用例与机制执行0**。已保存原件并修正两文件Debug桥接候选；候选仅本地静态通过，尚未原生验证。下面原计划保留为历史范围，实际结果以本节和[权威审计](ValidationLogs/project-isolation-i6-viewport-smoke.json)为准。
 
 ## 实际结果与原因

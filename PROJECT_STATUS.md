@@ -1,5 +1,7 @@
 # 项目状态
 
+2026-10-22 Adapter桥修正版仅一轮CI39782692503/65a82618/attempt1：原生编译/链接通过，Linux111及控制器机制6项通过；原视口smoke 0/1（12.506秒），停在缩放前S资格。S实际命中/放行但终结rejected，M未执行；失败后active/tasks/waiters均空。1767/2367现场不足证明具体拒绝分支，clip/documentTop/guard诊断仍缺；旧full根因未证。本轮617运行输入零漂移、未改算法/原断言预算、未重派。原件与断点已保存，旧full191/192、Release/手机缺口和Build30保持。见[本片结果](Documentation/I6_VIEWPORT_ADAPTER_SMOKE.md)。
+
 2026-10-22 smoke唯一CI已收口：9f1c503a/39777683114/attempt1，Linux111通过，原生准备/构建819秒后测试包链接失败（5组SDK诊断类型符号），原生/机制执行0。原因是夹具Adapter typealias未建立自有类型；已修2文件Debug桥候选，484语法/静态及本地14工具通过/1 POSIX跳过，尚未重新编译/原生验证。未重派、算法/原断言预算保持。旧full191/192、Release/手机缺口和Build30保持。见[结果与断点](Documentation/I6_VIEWPORT_SMOKE.md)。
 
 2026-10-22 连续视口最小Debug夹具已接线，默认关闭，仅原单例smoke检查S/M命中、放行回执和取消/关闭清理；6源/摘要文件内完成，原断言/预算与定位算法保留。484语法/静态检查通过（非编译），相关Python12通过/1 POSIX跳过。没有Swift编译或夹具实际运行，不能写屏障已命中；零CI，旧full191/192及Release/手机缺口保持，最后交付Build30。见[实现与验证边界](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)第9节。

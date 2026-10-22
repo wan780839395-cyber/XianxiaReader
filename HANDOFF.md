@@ -1,3 +1,19 @@
+# Adapter桥单轮原生验证已保存：编译通过，S前置失败，禁止自动重派（2026-10-22）
+
+2026-10-22 Adapter桥修正版仅一轮CI39782692503/65a82618/attempt1：原生编译/链接通过，Linux111及控制器机制6项通过；原视口smoke 0/1（12.506秒），停在缩放前S资格。S实际命中/放行但终结rejected，M未执行；失败后active/tasks/waiters均空。1767/2367现场不足证明具体拒绝分支，clip/documentTop/guard诊断仍缺；旧full根因未证。本轮617运行输入零漂移、未改算法/原断言预算、未重派。原件与断点已保存，旧full191/192、Release/手机缺口和Build30保持。见[本片结果](Documentation/I6_VIEWPORT_ADAPTER_SMOKE.md)。
+
+恢复先核build/maintenance/I6-viewport-smoke-adapter-20261022/final-checkpoint.json及唯一dispatch-attempt/frozen/result；CI已completed failure，不得因中断重新派发。上轮链接问题已获本轮真实编译通过依据；本轮用例失败不能写成全绿。failure-analysis含16项序列、真实S released/run后rejected、另一native committed/原capture cached、三次DOM scrollY1767/localTop2367；原JS documentTop还含未记clipTop，所以具体拒绝分支/回跳写入者不确定，不能归咎算法或环境。
+
+下一片先只做缺失S资格证据的无CI审阅/方案（clipTop/clipBottom/view.frame、同次documentTop、逐项guard原因），不自动实施或重跑。定位算法、原断言/30秒/3秒及原3次/32ms保持，M和真实SDK持有中取消仍未验收。完整日志/两xcresult/summary/附件及SHA/CRC收件在build/ci/39782692503；原件不得覆盖。普通HEAD/index及Build30两交付哈希保持，无新IPA，不关机。
+
+---
+
+# smoke原生单例运行中：只派一次，禁止重派（2026-10-22）
+
+冻结源65a82618fb1174c84be6c10729de92e828b79e25，CI39782692503，selection=continuous-resize-smoke，只跑原视口方法1例及其机制6项。定位源码、原断言/预算保持；不跑Core/组件/23项/UI/full/设备Release。当前尚无原生结果，恢复先核build/maintenance/I6-viewport-smoke-adapter-20261022的attempt/dispatch/frozen与真实job，禁止因中断再派。完整编译/测试原件须收齐再判，失败不自动重跑。旧full191/192与Build30保持，不关机。
+
+---
+
 # Adapter桥接修正版：新授权仅一轮smoke，冻结前（2026-10-22）
 
 用户已明确授权再派一轮CI，覆盖上轮“需新授权”限制；不是重派旧run。只验证f675c39b候选的原生编译及原视口smoke单例：机制6项、真实S/M命中/放行回执及取消/关闭清理。617运行输入与候选零漂移；复用其已核本地静态结果，不叠加本地预检，不改定位算法、原断言/预算，不跑整套或设备Release。

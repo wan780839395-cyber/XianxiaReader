@@ -1,0 +1,327 @@
+{
+  "recordedAtUTC": "2026-10-22T13:22:45.295921+00:00",
+  "run": 39782692503,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39782692503",
+  "sourceRevision": "65a82618fb1174c84be6c10729de92e828b79e25",
+  "conclusion": "failure",
+  "smokeAccepted": false,
+  "compiled": true,
+  "nativeExecuted": 1,
+  "nativeEvents": {
+    "started": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+      ]
+    ],
+    "ended": [
+      [
+        "ReaderRenderingTests",
+        "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "failed",
+        "12.506"
+      ]
+    ]
+  },
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 0,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792675160.061,
+    "passedTests": 0,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792674839.803,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed: caught error: \"invalid(\"safe-S-or-preexisting-measure-unqualified\")\"",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 1,
+        "testIdentifierString": "ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView",
+        "testName": "testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "actualStatuses": {
+    "test": 65,
+    "summary": 0,
+    "export": 0
+  },
+  "mechanismMarkers": 1,
+  "verifiedReceipt": null,
+  "verificationError": "Original native position cases must each start and pass exactly once",
+  "fixtureRecordCount": 1,
+  "fixtureBrief": [
+    {
+      "stage": 1,
+      "failure": "safe-S-or-preexisting-measure-unqualified",
+      "eventCount": 16,
+      "active": [],
+      "tasks": [],
+      "waiters": []
+    }
+  ],
+  "sourceErrors": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:458: error: -[XianxiaReaderTests.ReaderRenderingTests testContinuousViewportResizeKeepsOriginalWordAndLiveWebView] : failed: caught error: \"invalid(\"safe-S-or-preexisting-measure-unqualified\")\"",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:258: error: -[XianxiaReaderTests.ReaderRenderingTests testContinuousViewportResizeKeepsOriginalWordAndLiveWebView] : failed - Viewport fixture: safe-S-or-preexisting-measure-unqualified"
+  ],
+  "warnings": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1502:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:403:31: warning: expression implicitly coerced from 'Any?' to 'Any'",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+  ],
+  "cost": {
+    "dispatches": 1,
+    "nativeStepSeconds": 1286.0,
+    "beforeFirstSuiteSeconds": 1060.885,
+    "caseSeconds": 12.506,
+    "beforeBuildSucceededSeconds": 637.471,
+    "afterBuildBeforeFirstSuiteSeconds": 423.414,
+    "afterFirstSuiteExcludingCaseSeconds": 212.609
+  },
+  "artifact": {
+    "recordedAtUTC": "2026-10-22T13:22:22.763015+00:00",
+    "run": 39782692503,
+    "artifact": {
+      "id": 12429490803,
+      "node_id": "MDg6QXJ0aWZhY3QxMjQyOTQ5MDgwMw==",
+      "name": "XianxiaReader-continuous-resize-smoke",
+      "size_in_bytes": 55890913,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12429490803",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12429490803/zip",
+      "expired": false,
+      "digest": "sha256:d5e5fdc06047887a4636005a59a58e83fe93e86ce97292f0042a577b2c0d43a2",
+      "created_at": "2026-10-22T13:20:34Z",
+      "updated_at": "2026-10-22T13:20:34Z",
+      "expires_at": "2026-10-29T13:20:18Z",
+      "workflow_run": {
+        "id": 39782692503,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/continuous-viewport-smoke-adapter",
+        "head_sha": "65a82618fb1174c84be6c10729de92e828b79e25"
+      }
+    },
+    "compressedBytes": 55890913,
+    "extractedBytes": 58055820,
+    "files": 1035,
+    "sha256": "d5e5fdc06047887a4636005a59a58e83fe93e86ce97292f0042a577b2c0d43a2",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "freeBytesBefore": 116093808640,
+    "directory": "build/ci/39782692503/diagnostic",
+    "duplicateArchiveRemoved": true
+  },
+  "rootCauseOfOldFullProven": false,
+  "algorithmModified": false,
+  "runtimeDrift": [],
+  "evidence": [
+    {
+      "path": "build/ci/39782692503/full.log",
+      "sha256": "cb8d042e3317b8e9c46ffb885fcf6cc12ed1f52ff3e01ede94a6a30ad40bb5f6"
+    },
+    {
+      "path": "build/ci/39782692503/run.json",
+      "sha256": "04a9f6ab9d367bf3b1917818b67a938470692802bd70684fdc749991ec405e97"
+    },
+    {
+      "path": "build/ci/39782692503/artifacts.json",
+      "sha256": "d141a6284088691fce506f41ef4033102d2dc1e9c97a063d61f2dd6d3357771a"
+    },
+    {
+      "path": "build/ci/39782692503/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "6a5f4c313a5dfa2e0c83081c0f92d4007ced956f02dd968924464748b29dbacf"
+    },
+    {
+      "path": "build/ci/39782692503/diagnostic/test-results-summary.json",
+      "sha256": "4baedada03797808bbb5c9731bd97c3cd6d098594d1193ecc4f26047f64957a9"
+    },
+    {
+      "path": "build/ci/39782692503/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39782692503/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "b5be9d5d9b3d02e2aa84c5566f5c9b116c873d0c73e2a94011e420781abbe825"
+    }
+  ],
+  "acceptance": {
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false
+  },
+  "runAttempt": 1,
+  "toolingPassed": 111,
+  "failureAnalysis": {
+    "recordedAtUTC": "2026-10-22T13:27:01.508494+00:00",
+    "failureStage": "safe-order S qualification before resize/M",
+    "sampleRequest": "68457F71-D05E-4F7B-A5C7-BAF6243184D4",
+    "heldSequence": "3",
+    "releaseSequence": "10",
+    "terminalSequence": "14",
+    "terminalOutcome": "rejected",
+    "sampleDOM": [
+      {
+        "sequence": "11",
+        "attempt": "0",
+        "localTop": "2367.0",
+        "nativeWidth": "402.0",
+        "dom.width": "402.0",
+        "dom.height": "778.0",
+        "dom.scrollY": "1767.0"
+      },
+      {
+        "sequence": "12",
+        "attempt": "1",
+        "localTop": "2367.0",
+        "nativeWidth": "402.0",
+        "dom.width": "402.0",
+        "dom.height": "778.0",
+        "dom.scrollY": "1767.0"
+      },
+      {
+        "sequence": "13",
+        "attempt": "2",
+        "localTop": "2367.0",
+        "nativeWidth": "402.0",
+        "dom.width": "402.0",
+        "dom.height": "778.0",
+        "dom.scrollY": "1767.0"
+      }
+    ],
+    "originalCapture": {
+      "anchor": "6f417c8a0ff9e69e",
+      "epoch": "F0FFF708-0B14-4EEB-AF6B-7EB011048859",
+      "index": "1",
+      "kind": "sample-finished",
+      "localTop": "2367.0",
+      "moving": "false",
+      "nativeHeight": "778.0",
+      "nativeWidth": "402.0",
+      "nonce": "B12113E3-A154-41A1-BC27-2E9E8FC4B08F",
+      "outcome": "cached",
+      "outerY": "2369.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x00000001060db000)",
+      "ready": "true",
+      "requestID": "64256050-44A7-4615-966A-B4804CE24A3A",
+      "revision": "2",
+      "sequence": "9",
+      "slot": "ObjectIdentifier(0x0000000105d55210)",
+      "source": "original-capture",
+      "webView": "ObjectIdentifier(0x0000000106952400)"
+    },
+    "nativeCommitted": {
+      "anchor": "6f417c8a0ff9e69e",
+      "epoch": "F0FFF708-0B14-4EEB-AF6B-7EB011048859",
+      "index": "1",
+      "kind": "sample-finished",
+      "localTop": "2367.0",
+      "moving": "false",
+      "nativeHeight": "778.0",
+      "nativeWidth": "402.0",
+      "nonce": "B12113E3-A154-41A1-BC27-2E9E8FC4B08F",
+      "outcome": "committed",
+      "outerY": "2369.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x00000001060db000)",
+      "ready": "true",
+      "requestID": "D73540DB-D381-4088-B48B-A291633613C7",
+      "revision": "2",
+      "sequence": "7",
+      "slot": "ObjectIdentifier(0x0000000105d55210)",
+      "source": "native",
+      "webView": "ObjectIdentifier(0x0000000106952400)"
+    },
+    "terminal": {
+      "anchor": "6f417c8a0ff9e69e",
+      "epoch": "F0FFF708-0B14-4EEB-AF6B-7EB011048859",
+      "index": "1",
+      "kind": "sample-finished",
+      "localTop": "2367.0",
+      "moving": "false",
+      "nativeHeight": "778.0",
+      "nativeWidth": "402.0",
+      "nonce": "B12113E3-A154-41A1-BC27-2E9E8FC4B08F",
+      "outcome": "rejected",
+      "outerY": "2369.0",
+      "positioning": "false",
+      "reader": "ObjectIdentifier(0x00000001060db000)",
+      "ready": "true",
+      "requestID": "68457F71-D05E-4F7B-A5C7-BAF6243184D4",
+      "revision": "2",
+      "sequence": "14",
+      "slot": "ObjectIdentifier(0x0000000105d55210)",
+      "source": "test-auxiliary",
+      "webView": "ObjectIdentifier(0x0000000106952400)"
+    },
+    "measureEvents": 0,
+    "resizeExecuted": false,
+    "cleanup": {
+      "active": [],
+      "tasks": [],
+      "waiters": [],
+      "abortCount": "0"
+    },
+    "missingEvidence": [
+      "sample clipTop/clipBottom and snapshot documentTop",
+      "individual sample rejection guard results",
+      "writer and time responsible for DOM scrollY change"
+    ],
+    "proven": "Adapter bridge compiles/links; controller mechanics pass; real S enters/releases/terminates rejected and cleanup empties; smoke preparation fails before resize/M",
+    "unproven": "Exact SDK rejection branch and origin of DOM scroll change; old full resize failure remains unproven",
+    "next": "First audit/propose only missing S qualification diagnostics without CI or algorithm changes; another CI requires new authorization",
+    "attachment": "build/ci/39782692503/diagnostic/ReaderSnapshots/3BD93236-8A64-4B1A-8E99-F64285702ED0.txt",
+    "attachmentMatchesLog": true
+  },
+  "sourceChangesThisRound": [],
+  "runtimeInputCount": 617,
+  "nativeCompilationAndLinkPassed": true,
+  "mechanismChecksPassed": 6,
+  "sdkSampleHeld": 1,
+  "sdkSampleReleased": 1,
+  "sdkSampleCommitted": 0,
+  "sdkMeasuresHeld": 0,
+  "sdkMeasureReceiptsVerified": false,
+  "cleanupEmpty": true,
+  "cancellationScope": "Six synthetic-event controller checks use real Swift tasks/continuations; this real reader sample checks close/quiescence, not cancellation while a real SDK request is held",
+  "warningComparison": "Same nine Swift warning locations/messages as previous run; previous two linker warnings absent; no new Swift warning",
+  "nextRoundCIAllowed": false,
+  "currentRoundClosed": true,
+  "next": "First audit/propose only missing S qualification diagnostics without CI or algorithm changes; another CI requires new authorization",
+  "deliveredBuild30HashesUnchanged": true
+}
