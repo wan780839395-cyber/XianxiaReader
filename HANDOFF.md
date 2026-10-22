@@ -1,3 +1,11 @@
+# 新S诊断唯一原生验证：冻结前，最多一轮CI（2026-10-22）
+
+用户已授权只派一轮CI验证a446a68e新增S诊断，覆盖上轮零CI限制。只用现有continuous-resize-smoke原方法1例及机制6项；核clipTop/documentTop、逐项上下文观察和实际reason，区分第三次采样context-invalid、snapshot-unavailable、document-top-mismatch-exhausted或其他实际分支。若未重现拒绝，记录本样本结果，不能追认旧失败根因。
+
+617运行输入须与保存候选零漂移；不改算法、原断言/预算、控制器或测试准备，不叠加预检/整套/设备Release。唯一派发锁及冻结目录build/maintenance/I6-viewport-s-native-20261022；先写attempt再POST一次，恢复只读核真实run，失败留原件、不自动重派。原失败CI39782692503资料保留。普通HEAD/index、既有隔离/定位修复及Build30保持，不关机。当前尚未派发、没有新原生结果。
+
+---
+
 # S拒绝诊断已保存：零CI，未编译，下一步需新执行授权（2026-10-22）
 
 2026-10-22 S rejected被动诊断切片完成，零CI：旧同请求attempt0/1/2可证明前两次有效snapshot后documentTop不匹配，第三次终止原因仍缺。只补两Swift DEBUG诊断（冻结clip/frame、同次documentTop、逐项guard观察/实际reason）及两项Vendor摘要，原JS/await/算法/测试/断言预算保持；其余614运行输入不变。484语法/静态及14工具通过/1 POSIX跳过，未编译/原生运行。不能称S已通过或旧full根因已证，旧191/192及Release/手机缺口、Build30保持。见[诊断与判读](Documentation/I6_VIEWPORT_S_DIAGNOSTICS.md)。
