@@ -5,6 +5,33 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  position-acceptance)
+    cases=(
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress
+      -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress
+      -only-testing:XianxiaReaderTests/ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord
+      -only-testing:XianxiaReaderTests/ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord
+      -only-testing:XianxiaReaderTests/TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen
+    )
+    ;;
   search-isolation)
     cases=(
       -only-testing:XianxiaReaderTests/ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay
@@ -286,7 +313,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'position-isolation' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
+if [[ "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.
