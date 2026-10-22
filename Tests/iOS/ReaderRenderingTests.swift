@@ -13,6 +13,19 @@ import XianxiaCore
     typealias Event = ReadiumReaderEngine.ViewportFixtureEvent
     private enum Failure: Error { case invalid(String) }
     private struct GateKey: Hashable { let requestID: UUID; let point: String }
+    enum PairMode: String { case safe = "paired-safe", conflict = "paired-conflict" }
+    private enum PairPhase: String { case seal, oldSample, width, measure, newSample, measureExit, drain, visible }
+    @MainActor private final class PairState {
+        let mode: PairMode
+        var phase: PairPhase = .seal
+        var captureOwner: [String: String] = [:]
+        var origin: [String: String] = [:]
+        var result: Event?
+        var effect = "pending"
+        var lastPredicate: [String: String] = [:]
+        init(_ mode: PairMode) { self.mode = mode }
+    }
+    private let pair: PairState?
     private weak var engine: ReadiumReaderEngine?
     private weak var window: UIWindow?
     private let originalFrame: CGRect
@@ -49,15 +62,19 @@ import XianxiaCore
     var onEvidence: ((XCTAttachment) -> Void)?
     var waiterCount: Int { waiters.count }
     var sampleHeld: Bool { sample.map { waiters[GateKey(requestID: $0.requestID, point: "sample-before-read")] != nil } ?? false }
-    var needsDOMReadiness: Bool { stage == 2 && primary == nil }
+    var needsDOMReadiness: Bool {
+        if let pair { return pair.phase == .width && primary == nil }
+        return stage == 2 && primary == nil
+    }
     var queuedWorkCount: Int { entryQueue.count }
     var admittedWorkID: UUID? { entryRunning }
     private var isQuiescent: Bool {
         entryQueue.isEmpty && entryRunning == nil && workActive.isEmpty && active.isEmpty && waiters.isEmpty
     }
 
-    init(engine: ReadiumReaderEngine? = nil, window: UIWindow? = nil) {
+    init(engine: ReadiumReaderEngine? = nil, window: UIWindow? = nil, pairMode: PairMode? = nil) {
         self.engine = engine; self.window = window; originalFrame = window?.frame ?? .zero
+        pair = pairMode.map { PairState($0) }
     }
 
     func armSample(outerY: Double) { armed = true; sampleOuterY = outerY }
@@ -74,6 +91,9 @@ import XianxiaCore
             if entryRunning == event.requestID { entryRunning = nil }
         }
         if event.kind == "measure-start" || event.kind == "sample-start" {
+            if pair != nil, admissionActive, event.requestID != sample?.requestID, event.requestID != entryRunning {
+                fail("pair-work-bypassed-admission"); return
+            }
             guard active.count < 128 else { fail("request-overflow"); return }
             active[event.requestID] = event
         }
@@ -124,6 +144,12 @@ import XianxiaCore
             guard measureWidth.map({ abs((Double(event.values["dom.width"] ?? "") ?? -.infinity) - $0) < 2 }) == true,
                   ["reader", "epoch", "slot", "webView", "index", "anchor"].allSatisfy({ event.values[$0] == owner[$0] }) else {
                 fail("primary-M-DOM-or-owner-unqualified"); return false
+            }
+            if let pair {
+                guard ["result.height", "result.anchorY"].allSatisfy({ Double(event.values[$0] ?? "")?.isFinite == true }) else {
+                    fail("pair-M-result-unqualified"); return false
+                }
+                pair.result = event
             }
         }
         if admissionActive, event.kind == "measure-before-commit", entryRunning != event.requestID {
@@ -260,6 +286,240 @@ import XianxiaCore
             fail("capture-A-has-no-qualified-old-layout-provenance"); try checkFailure(); return
         }
         originalAnchor = anchor
+        pair?.captureOwner = receipt
+    }
+
+    func bindPairOrigin(_ data: [String: Any]) throws {
+        guard let pair else { return }
+        guard let href = data["href"] as? String, let locations = data["locations"] as? [String: Any],
+              let range = locations["domRange"] as? [String: Any], let start = range["start"] as? [String: Any],
+              let selector = start["cssSelector"] as? String, let node = start["textNodeIndex"] as? Int,
+              let offset = start["charOffset"] as? Int, offset > 100,
+              let viewportOffset = locations["xianxiaViewportOffset"] as? NSNumber, viewportOffset.doubleValue.isFinite else {
+            fail("pair-origin-unqualified"); try checkFailure(); return
+        }
+        pair.origin = ["href":href, "selector":selector, "textNodeIndex":String(node), "charOffset":String(offset),
+            "viewportOffset":viewportOffset.stringValue, "windowWidth":String(describing:originalFrame.width),
+            "windowHeight":String(describing:originalFrame.height)]
+    }
+
+    func advanceResize(to size: CGSize, domWidthReady: Bool) throws -> Bool {
+        if pair != nil { return try advancePairResize(to: size, domWidthReady: domWidthReady) }
+        return try advanceSafeResize(to: size, domWidthReady: domWidthReady)
+    }
+
+    private func advancePairResize(to size: CGSize, domWidthReady: Bool) throws -> Bool {
+        try checkFailure()
+        guard let pair, let sample, let originalAnchor else { throw Failure.invalid("missing-pair-context") }
+        func resize() {
+            window?.frame = CGRect(origin: originalFrame.origin, size: size)
+            window?.layoutIfNeeded()
+            append(Event(requestID:UUID(), kind:"pair-resize", values:["mode":pair.mode.rawValue,
+                "width":String(describing:window?.frame.width ?? 0), "height":String(describing:window?.frame.height ?? 0),
+                "attached":String(window != nil)]))
+            pair.phase = .width
+        }
+        func sampleEnded() -> Bool { finished[sample.requestID] != nil && workActive[sample.requestID] == nil && tasks.isEmpty }
+        switch pair.phase {
+        case .seal:
+            guard sampleHeld, !pair.origin.isEmpty, !pair.captureOwner.isEmpty,
+                  Set(active.keys) == Set([sample.requestID]), Set(workActive.keys) == Set([sample.requestID]),
+                  ["nativeWidth", "nativeHeight"].allSatisfy({ sample.values[$0] == pair.captureOwner[$0] }),
+                  tasks.count == (sample.values["source"] == "test-auxiliary" ? 1 : 0) else {
+                fail("pair-preexisting-work-unqualified"); try checkFailure(); return false
+            }
+            pair.origin["sampleSource"] = sample.values["source"]
+            pair.origin["targetWidth"] = String(describing:size.width)
+            pair.origin["targetHeight"] = String(describing:size.height)
+            armMeasures(width: Double(size.width), owner: pair.captureOwner)
+            append(Event(requestID: sample.requestID, kind: "pair-sealed", values: pair.origin.merging(["mode":pair.mode.rawValue]) { _, new in new }))
+            if pair.mode == .safe { release(sample.requestID); pair.phase = .oldSample }
+            else { resize() }
+        case .oldSample:
+            guard sampleEnded() else { return false }
+            guard finished[sample.requestID]?.values["outcome"] == "committed",
+                  finished[sample.requestID]?.values["anchor"] == originalAnchor,
+                  abs((Double(dom[sample.requestID]?.values["dom.width"] ?? "") ?? -.infinity)
+                    - (Double(sample.values["nativeWidth"] ?? "") ?? .infinity)) < 2 else {
+                fail("pair-safe-S-unqualified"); try checkFailure(); return false
+            }
+            pair.effect = "unchanged"; resize()
+        case .width:
+            if admitPrimary(domWidthReady: domWidthReady) { pair.phase = .measure }
+        case .measure:
+            guard let id = primary, pair.result?.requestID == id,
+                  waiters[GateKey(requestID: id, point: "measure-before-commit")] != nil else { return false }
+            if pair.mode == .conflict { release(sample.requestID); pair.phase = .newSample }
+            else { release(id); pair.phase = .measureExit }
+        case .newSample:
+            guard sampleEnded(), let terminal = finished[sample.requestID] else { return false }
+            let reads = events.filter { $0["requestID"] == sample.requestID.uuidString && $0["kind"] == "sample-dom" }
+            let decisions = events.filter { $0["requestID"] == sample.requestID.uuidString && $0["kind"] == "sample-decision" }
+            let context = ["notCancelled", "epochMatches", "indexMatches", "slotMatches", "movingMatches", "notPositioning", "revisionMatches", "localMatches", "viewportMatches"]
+            guard !reads.isEmpty, reads.count == decisions.count,
+                  reads.allSatisfy({ abs((Double($0["dom.width"] ?? "") ?? -.infinity) - Double(size.width)) < 2 }),
+                  decisions.allSatisfy({ d in context.allSatisfy { d[$0] == "true" } }) else {
+                fail("pair-conflict-S-context-unqualified"); try checkFailure(); return false
+            }
+            switch terminal.values["reason"] {
+            case "committed" where terminal.values["outcome"] == "committed":
+                pair.effect = terminal.values["anchor"] == originalAnchor ? "unchanged" : "anchor-replaced"
+            case "document-top-mismatch-exhausted" where terminal.values["outcome"] == "rejected": pair.effect = "blocked"
+            case "snapshot-unavailable" where terminal.values["outcome"] == "rejected": pair.effect = "read-unavailable"
+            default: fail("pair-conflict-S-terminal-unqualified"); try checkFailure(); return false
+            }
+            guard let id = primary else { throw Failure.invalid("missing-primary-M") }
+            release(id); pair.phase = .measureExit
+        case .measureExit:
+            guard let id = primary, let terminal = finished[id], workActive[id] == nil,
+                  sampleEnded(), let decision = guards[id] else { return false }
+            let required = ["ownerMatches", "indexMatches", "anchorCurrentAtStart", "anchorCurrentNow", "revisionMatches", "localMatches"]
+            let replaced = pair.effect == "anchor-replaced"
+            guard terminal.values["outcome"] == "committed", decision.values["positioning"] == "false",
+                  required.allSatisfy({ decision.values[$0] == "true" }),
+                  decision.values["anchor"] == finished[sample.requestID]?.values["anchor"],
+                  decision.values["anchorEqual"] == String(!replaced), decision.values["mayRestore"] == String(!replaced) else {
+                fail("pair-M-guard-chain-unqualified"); try checkFailure(); return false
+            }
+            append(Event(requestID: id, kind: "pair-effect", values: ["effect":pair.effect]))
+            pair.phase = .drain
+        case .drain:
+            guard drainMeasures(), tasks.isEmpty else { return false }
+            append(Event(requestID:UUID(), kind:"pair-drained", values:["queued":"0", "running":"0", "waiters":"0"]))
+            pair.phase = .visible; stage = 4
+        case .visible:
+            if !isQuiescent { pair.phase = .drain; _ = drainMeasures(); return false }
+        }
+        return pair.phase == .visible
+    }
+
+    func recordPairPredicate(_ row: [String: Any], dom: [String: Any]? = nil, loaded: Int) {
+        guard let pair else { return }
+        var last = ["point":dom == nil ? "native" : "DOM", "loaded":String(loaded), "afterSequence":String(sequence)]
+        for key in ["sameWebView", "attached", "alpha", "expectedWidth", "uptime"] {
+            if ["sameWebView", "attached"].contains(key), let value = row[key] as? Bool { last[key] = String(value) }
+            else if let value = row[key] { last[key] = String(describing:value) }
+        }
+        if let dom {
+            for key in ["accepted", "valid", "visible", "widthMatches", "width", "height"] {
+                if ["accepted", "valid", "visible", "widthMatches"].contains(key), let value = dom[key] as? Bool { last[key] = String(value) }
+                else if let value = dom[key] { last[key] = String(describing:value) }
+            }
+        }
+        pair.lastPredicate = last
+    }
+
+    /// Synthetic controller receipts only. Never emitted as native pair evidence.
+    static func checkPairMechanics(_ mode: PairMode, test: XCTestCase) async throws {
+        let values = ["reader":"pair-mechanics", "epoch":"epoch", "slot":"slot", "webView":"web", "index":"1",
+            "revision":"1", "localTop":"100", "outerY":"100", "ready":"true", "moving":"false",
+            "positioning":"false", "anchor":"A", "nativeWidth":"402", "nativeHeight":"778", "source":"mechanics"]
+        let size = CGSize(width:874, height:402)
+        func drive(_ c: ViewportFixture) {
+            do {
+                for _ in 0..<8 {
+                    let phase = c.pair?.phase
+                    _ = try c.advancePairResize(to:size, domWidthReady:true)
+                    if c.pair?.phase == phase { break }
+                }
+            } catch { c.fail("pair-mechanics-drive"); XCTFail("Pair mechanics: \(error)") }
+        }
+        func captured(_ c: ViewportFixture) throws {
+            let id = UUID(); var old = values; old["source"] = "original-capture"
+            c.observe(Event(requestID:id, kind:"sample-start", values:old))
+            old["dom.width"] = "402"; c.observe(Event(requestID:id, kind:"sample-dom", values:old))
+            old["outcome"] = "committed"; c.observe(Event(requestID:id, kind:"sample-finished", values:old))
+            try c.verifyOriginalCapture()
+            let start: [String: Any] = ["cssSelector":"p", "textNodeIndex":0, "charOffset":499]
+            let locations: [String: Any] = ["domRange":["start":start], "xianxiaViewportOffset":-3.125]
+            try c.bindPairOrigin(["href":"one.xhtml", "locations":locations])
+        }
+        func sampleTask(_ c: ViewportFixture, done: XCTestExpectation, after: @escaping @MainActor () -> Void) -> Task<Void, Never> {
+            Task { @MainActor in
+                let id = UUID(); c.observe(Event(requestID:id, kind:"work-start", values:values))
+                c.observe(Event(requestID:id, kind:"sample-start", values:values))
+                let run = await c.pause(Event(requestID:id, kind:"sample-before-read", values:values))
+                var terminal = values
+                if run {
+                    var read = values; read["dom.width"] = mode == .safe ? "402" : "874"
+                    c.observe(Event(requestID:id, kind:"sample-dom", values:read))
+                    var decision = Dictionary(uniqueKeysWithValues:["notCancelled", "epochMatches", "indexMatches", "slotMatches", "movingMatches", "notPositioning", "revisionMatches", "localMatches", "viewportMatches"].map { ($0,"true") })
+                    decision["reason"] = "committed"; c.observe(Event(requestID:id, kind:"sample-decision", values:decision))
+                    terminal["anchor"] = mode == .safe ? "A" : "B"
+                }
+                terminal["outcome"] = run ? "committed" : "aborted"; terminal["reason"] = run ? "committed" : "barrier-aborted"
+                c.observe(Event(requestID:id, kind:"sample-finished", values:terminal))
+                c.observe(Event(requestID:id, kind:"work-finished", values:["captured":"true"]))
+                after(); done.fulfill()
+            }
+        }
+        func workTask(_ c: ViewportFixture, measure: Bool, done: XCTestExpectation, after: @escaping @MainActor () -> Void) -> Task<Void, Never> {
+            Task { @MainActor in
+                let id = UUID(), kind = measure ? "measure" : "sample"
+                c.observe(Event(requestID:id, kind:"work-start", values:values))
+                let run = await c.pause(Event(requestID:id, kind:kind + "-before-capture", values:values))
+                if run {
+                    guard c.entryRunning == id else { c.fail("mechanics-overlap"); done.fulfill(); return }
+                    var start = values; start["nativeWidth"] = "874"; start["nativeHeight"] = "306"
+                    c.observe(Event(requestID:id, kind:kind + "-start", values:start))
+                    start["dom.width"] = "874"; start["result.height"] = "2000"; start["result.anchorY"] = "96.875"
+                    let commit = await c.pause(Event(requestID:id, kind:measure ? "measure-before-commit" : "sample-before-read", values:start))
+                    if commit, measure {
+                        var flags = start
+                        for key in ["ownerMatches", "indexMatches", "anchorCurrentAtStart", "anchorCurrentNow", "revisionMatches", "localMatches"] { flags[key] = "true" }
+                        flags["anchor"] = mode == .safe ? "A" : "B"
+                        flags["anchorEqual"] = String(mode == .safe); flags["mayRestore"] = String(mode == .safe)
+                        c.observe(Event(requestID:id, kind:"measure-guard", values:flags))
+                        c.release(id); c.release(id)
+                    }
+                    c.observe(Event(requestID:id, kind:kind + "-finished", values:["outcome":commit ? "committed" : "aborted"]))
+                }
+                c.observe(Event(requestID:id, kind:"work-finished", values:["captured":String(run)]))
+                after(); done.fulfill()
+            }
+        }
+        let c = ViewportFixture(pairMode:mode); c.armSample(outerY:100)
+        let entered = XCTestExpectation(description:"pair S held")
+        let finished = XCTestExpectation(description:"pair work really exited"); finished.expectedFulfillmentCount = 3
+        c.onHeld = { [weak c] in
+            guard let c else { return }
+            if c.pair?.phase == .seal { entered.fulfill() } else { drive(c) }
+        }
+        let s = sampleTask(c, done:finished, after:{ drive(c) })
+        defer { s.cancel(); c.onHeld = nil; c.cleanUp() }
+        await test.fulfillment(of:[entered], timeout:3)
+        try captured(c); _ = try c.advancePairResize(to:size, domWidthReady:true)
+        let m = workTask(c, measure:true, done:finished, after:{ drive(c) })
+        let p = workTask(c, measure:false, done:finished, after:{ drive(c) })
+        defer { m.cancel(); p.cancel() }
+        await test.fulfillment(of:[finished], timeout:3)
+        guard c.stage == 4, c.failure == nil, c.isQuiescent,
+              c.pair?.effect == (mode == .safe ? "unchanged" : "anchor-replaced") else { throw Failure.invalid("pair-mechanics-order") }
+
+        // Hold both designated requests and a queued entry; cancelling one must abort all.
+        let cancelled = ViewportFixture(pairMode:.conflict); cancelled.armSample(outerY:100)
+        let initial = XCTestExpectation(description:"cancel S held")
+        let both = XCTestExpectation(description:"S/M held plus queued entry")
+        let exits = XCTestExpectation(description:"cancelled pair drained"); exits.expectedFulfillmentCount = 3
+        cancelled.onHeld = { initial.fulfill() }
+        let cs = sampleTask(cancelled, done:exits, after:{})
+        defer { cs.cancel(); cancelled.onHeld = nil; cancelled.cleanUp() }
+        await test.fulfillment(of:[initial], timeout:3)
+        try captured(cancelled); _ = try cancelled.advancePairResize(to:size, domWidthReady:true)
+        cancelled.onHeld = { [weak cancelled] in
+            guard let cancelled else { return }
+            if cancelled.pair?.phase == .width { drive(cancelled) }
+            if cancelled.waiterCount == 3, cancelled.measures.count == 1 { both.fulfill() }
+        }
+        let cm = workTask(cancelled, measure:true, done:exits, after:{})
+        let cp = workTask(cancelled, measure:false, done:exits, after:{})
+        defer { cm.cancel(); cp.cancel() }
+        await test.fulfillment(of:[both], timeout:3)
+        cs.cancel()
+        await test.fulfillment(of:[exits], timeout:3)
+        let late = await cancelled.pause(Event(requestID:UUID(), kind:"measure-before-capture", values:values))
+        guard cancelled.failure == "task-cancelled", cancelled.isQuiescent, !late else { throw Failure.invalid("pair-mechanics-cancel") }
+        print("CONTINUOUS_VIEWPORT_PAIR_MECHANICS mode=\(mode.rawValue) passed=2 liveSDKReceiptsRequired=true")
     }
 
     /// Safe order only: S commits at old size, then real resize, M release/receipt/drain.
@@ -336,17 +596,23 @@ import XianxiaCore
         }
         if let failure { XCTFail("Viewport fixture: " + failure) }
         do {
-            let payload: [String: Any] = ["nonce":nonce, "events":events, "stage":stage,
+            var payload: [String: Any] = ["nonce":nonce, "events":events, "stage":stage,
                 "active":Set(active.keys).union(workActive.keys).map(\.uuidString), "tasks":tasks.keys.map(\.uuidString),
                 "waiters":waiters.keys.map { $0.requestID.uuidString + ":" + $0.point },
                 "queued":entryQueue.map { $0.requestID.uuidString }, "running":entryRunning.map { [$0.uuidString] } ?? [],
                 "failure":failure ?? "none"]
+            if let pair {
+                payload["pairMode"] = pair.mode.rawValue; payload["pairPhase"] = pair.phase.rawValue
+                payload["pairOrigin"] = pair.origin; payload["pairEffect"] = pair.effect
+                payload["pairSampleID"] = sample?.requestID.uuidString
+                payload["pairMeasureID"] = primary?.uuidString; payload["pairPredicate"] = pair.lastPredicate
+            }
             let data = try JSONSerialization.data(withJSONObject: payload, options: .sortedKeys)
             let text = String(decoding: data, as: UTF8.self)
             let attachment = XCTAttachment(string: text); attachment.name = "continuous-viewport-fixture"
             attachment.lifetime = .keepAlways
             onEvidence?(attachment)
-            print("CONTINUOUS_VIEWPORT_FIXTURE \(text)")
+            print("\(pair == nil ? "CONTINUOUS_VIEWPORT_FIXTURE" : "CONTINUOUS_VIEWPORT_PAIR") \(text)")
         } catch { XCTFail("Fixture evidence serialization failed: \(error)") }
     }
 }
@@ -397,17 +663,19 @@ final class ReaderRenderingTests: XCTestCase {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (window, state) = try mount(engine); state.visible = false
         #if DEBUG
-            if let mode = ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"], mode != "smoke" {
+            let mode = ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"]
+            let pairMode = mode.flatMap { ViewportFixture.PairMode(rawValue:$0) }
+            if let mode, mode != "smoke", pairMode == nil {
                 XCTFail("Unknown viewport fixture mode: " + mode); throw RenderFailure.invalidProbe
             }
-            let fixture: ViewportFixture? = ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"] == "smoke"
-                ? ViewportFixture(engine: engine, window: window) : nil
+            let fixture = mode.map { _ in ViewportFixture(engine: engine, window: window, pairMode: pairMode) }
             if let fixture {
                 // Registered after mount, before open; replaces both bare frame cleanups below.
                 addTeardownBlock { await fixture.tearDown() }
                 fixture.onEvidence = { [weak self] attachment in self?.add(attachment) }
                 engine.viewportFixtureControl = fixture
-                try await checkViewportFixtureMechanics()
+                if let pairMode { try await ViewportFixture.checkPairMechanics(pairMode, test: self) }
+                else { try await checkViewportFixtureMechanics() }
             }
             defer { fixture?.cleanUp() }
         #endif
@@ -460,6 +728,9 @@ final class ReaderRenderingTests: XCTestCase {
         let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
         let originalWeb = try resourceWebView(engine, index: 1)
         let originalFrame = window.frame
+        #if DEBUG
+            try fixture?.bindPairOrigin(data)
+        #endif
         let requestedOuterY = initialOuterY + 600
         var polls: [[String: Any]] = []
         var checkpoints: [[String: Any]] = []
@@ -529,7 +800,7 @@ final class ReaderRenderingTests: XCTestCase {
                                 polls.append(["phase":"fixture-width-readiness", "dom":dom])
                                 ready = dom["widthMatches"] as? Bool == true
                             }
-                            guard try fixture.advanceSafeResize(to: size, domWidthReady: ready) else { return false }
+                            guard try fixture.advanceResize(to: size, domWidthReady: ready) else { return false }
                         }
                     #endif
                     let web = try self.resourceWebView(engine, index: 1)
@@ -537,12 +808,16 @@ final class ReaderRenderingTests: XCTestCase {
                         "attached":web.window != nil,"alpha":web.scrollView.alpha,"outerY":scroll.contentOffset.y,
                         "webFrame":String(describing:web.frame),"uptime":ProcessInfo.processInfo.systemUptime]
                     if polls.count == 320 { polls.removeFirst() }
+                    #if DEBUG
+                        if size != originalFrame.size { fixture?.recordPairPredicate(row, loaded:engine.continuousLoadedResourceCount) }
+                    #endif
                     guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else {
                         row["accepted"] = false;polls.append(row);return false
                     }
                     let dom = try await domProbe(size.width);row["dom"] = dom;polls.append(row)
                     #if DEBUG
                         if let fixture, size != originalFrame.size {
+                            fixture.recordPairPredicate(row, dom:dom, loaded:engine.continuousLoadedResourceCount)
                             guard dom["accepted"] as? Bool == true else { return false }
                             return try fixture.acceptVisibleResize()
                         }

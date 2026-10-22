@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT, yaml
 from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, ACCEPTANCE_TESTS, CLOSE_TESTS, VIEWPORT_SMOKE_TESTS, verify_logic, verify_native, verify_acceptance, verify_close, verify_viewport_smoke
+from verify_reader_positions import verify_viewport_pair_arm, compare_viewport_pair_receipts
 
 
 class PositionEvidenceTests(unittest.TestCase):
@@ -266,6 +267,128 @@ class PositionEvidenceTests(unittest.TestCase):
         self.assertEqual(steps[0]["env"]["DIAGNOSTIC_SELECTION"], "${{ inputs.diagnostic_selection }}")
         self.assertIn("set -euo pipefail", steps[0]["run"])
         self.assertNotIn("retry", steps[0]["run"])
+
+    def pair_fixture(self, mode, status=0, effect=None):
+        effect = effect or ("unchanged" if mode=="paired-safe" else "anchor-replaced")
+        values=dict(reader=mode,epoch="epoch",slot="body",webView="web",index="1",revision="1",localTop="100",
+                    nativeWidth="402",nativeHeight="778",anchor="A",source="test-auxiliary",clipTop="0",clipBottom="778")
+        neighbor=dict(values,slot="neighbor",webView="other-web",index="0")
+        origin=dict(href="OEBPS/one.xhtml",selector="p",textNodeIndex="0",charOffset="499",viewportOffset="-3.125",
+                    windowWidth="402",windowHeight="874",targetWidth="874",targetHeight="402",sampleSource="test-auxiliary")
+        saved=dict(href=origin["href"],locations=dict(domRange=dict(start=dict(cssSelector="p",textNodeIndex=0,charOffset=499)),xianxiaViewportOffset=-3.125))
+        events=[]
+        def add(rid, kind, **fields):
+            events.append(dict(fields,requestID=rid,kind=kind,sequence=str(len(events)+1),nonce="pair"))
+        add("S","work-start",**values);add("S","sample-start",**values)
+        add("S","sample-before-read",**values);add("S","held",gate="sample-before-read")
+        old=dict(values,source="original-capture",outcome="committed")
+        add("A","work-start",**old);add("A","sample-start",**old)
+        add("A","sample-dom",**old,**{"dom.width":"402"})
+        add("A","sample-finished",**old);add("A","work-finished",captured="true")
+        add("arm","admission-armed",**values,targetWidth="874")
+        add("S","pair-sealed",**origin,mode=mode)
+        def finish_sample():
+            add("S","released",point="sample-before-read",disposition="run")
+            for attempt in range(3 if effect=="blocked" else 1):
+                top=110 if effect=="blocked" else 100
+                reason=("document-top-mismatch-retry" if attempt<2 else "document-top-mismatch-exhausted") if effect=="blocked" else ("snapshot-unavailable" if effect=="read-unavailable" else "committed")
+                read=dict(values,attempt=str(attempt))
+                read.update({"dom.width":"402" if mode=="paired-safe" else "874","dom.visibleTop":"0","dom.scrollY":str(top),"dom.documentTop":str(top)})
+                add("S","sample-dom",**read)
+                decision=dict.fromkeys(["notCancelled","epochMatches","indexMatches","slotMatches","movingMatches","notPositioning","revisionMatches","localMatches","viewportMatches"],"true")
+                decision.update(attempt=str(attempt),reason=reason,snapshotAvailable=str(effect!="read-unavailable").lower(),documentTop=str(top),expectedDocumentTop="100",documentTopDelta=str(top-100),documentTopMatches=str(top==100).lower())
+                add("S","sample-decision",**decision)
+            end=dict(values,anchor="B" if effect=="anchor-replaced" else "A",outcome="rejected" if effect in ["blocked","read-unavailable"] else "committed",reason=reason)
+            add("S","sample-finished",**end);add("S","work-finished",captured="true")
+        if mode=="paired-safe":finish_sample()
+        add("resize","pair-resize",mode=mode,width="874",height="402",attached="true")
+        for rid,kind,data in [("N","measure",neighbor),("M","measure",values)]:
+            add(rid,"work-start",**data);add(rid,kind+"-before-capture",**data);add(rid,"queued",gate=kind+"-before-capture")
+        add("M","admitted",point="measure-before-capture",disposition="run")
+        m=dict(values,nativeWidth="874",nativeHeight="306")
+        add("M","measure-start",**m)
+        add("M","measure-before-commit",**m,**{"dom.width":"874","result.height":"2000","result.anchorY":"96.875"})
+        add("M","held",gate="measure-before-commit")
+        add("P","work-start",**values);add("P","sample-before-capture",**values);add("P","queued",gate="sample-before-capture")
+        if mode=="paired-conflict":finish_sample()
+        add("M","released",point="measure-before-commit",disposition="run")
+        guard=dict(m,anchor="B" if effect=="anchor-replaced" else "A",positioning="false")
+        guard.update(dict.fromkeys(["ownerMatches","indexMatches","anchorCurrentAtStart","anchorCurrentNow","revisionMatches","localMatches"],"true"))
+        guard.update(anchorEqual=str(effect!="anchor-replaced").lower(),mayRestore=str(effect!="anchor-replaced").lower())
+        add("M","measure-guard",**guard);add("M","measure-finished",outcome="committed");add("M","work-finished",captured="true")
+        add("M","pair-effect",effect=effect)
+        for rid,kind,data in [("N","measure",neighbor),("P","sample",values)]:
+            add(rid,"admitted",point=kind+"-before-capture",disposition="run");add(rid,kind+"-start",**data)
+            add(rid,kind+"-finished",outcome="committed");add(rid,"work-finished",captured="true")
+        add("drained","pair-drained",queued="0",running="0",waiters="0")
+        predicate=dict(point="DOM",loaded="2",afterSequence=str(len(events)),sameWebView="true",attached="true",widthMatches="true",valid="true",alpha="1",visible=str(status==0).lower(),accepted=str(status==0).lower())
+        if status==0:add("accepted","admission-complete",queued="0",running="0",waiters="0")
+        add("close","closing");add("abort","abort-issued",count="0")
+        row=dict(nonce="pair",events=events,stage=4,failure="none",active=[],tasks=[],waiters=[],queued=[],running=[],pairMode=mode,pairPhase="visible",pairSampleID="S",pairMeasureID="M",pairOrigin=origin,pairEffect=effect,pairPredicate=predicate)
+        cls,name=next(iter(VIEWPORT_SMOKE_TESTS)).split("/");prefix=f"Test Case '-[XianxiaReaderTests.{cls} {name}]' "
+        base=prefix+"started.\n"+prefix+("passed" if status==0 else "failed")+" (1.000 seconds).\n"
+        base+=f"CONTINUOUS_VIEWPORT_PAIR_MECHANICS mode={mode} passed=2 liveSDKReceiptsRequired=true\n"
+        summary=dict(totalTestCount=1,passedTests=int(status==0),failedTests=int(status!=0),skippedTests=0,result="Passed" if status==0 else "Failed",testFailures=[] if status==0 else [{"failureText":"Continuous reader did not reach expected state"}])
+        phases=["before-resize","passed-874","passed-402"] if status==0 else ["before-resize","failed-874"]
+        resize=[dict(phase=p,origin=saved) for p in phases]
+        return row,base,summary,resize
+
+    def write_pair(self, folder, fixture):
+        row,base,summary,resize=fixture
+        (folder/"logs").mkdir(parents=True,exist_ok=True)
+        (folder/"logs/reader-diagnostic.log").write_text(base+"CONTINUOUS_VIEWPORT_PAIR "+json.dumps(row)+"\n"+"".join("CONTINUOUS_RESIZE_EVIDENCE "+json.dumps(x)+"\n" for x in resize),encoding="utf-8")
+        (folder/"test-results-summary.json").write_text(json.dumps(summary),encoding="utf-8")
+
+    def test_paired_arms_separate_original_failure_from_state_change_and_keep_exit(self):
+        safe_folder=self.root/"safe";safe_fixture=self.pair_fixture("paired-safe")
+        self.write_pair(safe_folder,safe_fixture);safe=verify_viewport_pair_arm(safe_folder,"paired-safe")
+        self.assertEqual(safe["classification"],"unchanged")
+        for status,effect,classification in [(0,"anchor-replaced","state-interleaving-only"),
+                (65,"anchor-replaced","candidate-controlled-word-failure"),(0,"unchanged","unchanged"),
+                (0,"blocked","blocked"),(0,"read-unavailable","read-unavailable")]:
+            folder=self.root/f"conflict-{effect}-{status}";fixture=self.pair_fixture("paired-conflict",status,effect)
+            self.write_pair(folder,fixture);result=verify_viewport_pair_arm(folder,"paired-conflict",status)
+            self.assertEqual(result["classification"],classification)
+            self.assertEqual(result["originalExit"],status)
+            pair=compare_viewport_pair_receipts(safe,result)
+            self.assertEqual(pair["originalExits"],[0,status]);self.assertTrue(pair["semanticPairCompatible"])
+            self.assertFalse(pair["matchedBuildVerified"]);self.assertFalse(pair["matchedPairAccepted"])
+            self.assertFalse(pair["oldFullRootCauseProven"])
+        bad=deepcopy(result);bad["origin"]["sampleSource"]="native"
+        with self.assertRaises(ValueError):compare_viewport_pair_receipts(safe,bad)
+        with self.assertRaises(ValueError):compare_viewport_pair_receipts(dict(safe,originalPassed=False),result)
+        failed=self.pair_fixture("paired-conflict",65)
+        for key,value in [("sameWebView","false"),("attached","false"),("valid","false"),("widthMatches","false"),("alpha","0.1")]:
+            bad=deepcopy(failed);bad[0]["pairPredicate"][key]=value;self.write_pair(self.root/"other",bad)
+            self.assertEqual(verify_viewport_pair_arm(self.root/"other","paired-conflict",65)["classification"],"other-original-failure")
+
+    def test_paired_receipts_reject_confounds_early_resume_wrong_gate_and_missing_evidence(self):
+        fixture=self.pair_fixture("paired-conflict");row=fixture[0];events=row["events"]
+        ix=lambda rid,kind:next(i for i,e in enumerate(events) if e["requestID"]==rid and e["kind"]==kind)
+        def rejected(bad,status=0):
+            self.write_pair(self.root/"bad",bad)
+            with self.assertRaises(ValueError):verify_viewport_pair_arm(self.root/"bad","paired-conflict",status)
+        for key,value in [("pairMode","smoke"),("pairPhase","newSample"),("failure","context-invalid"),
+                ("active",["S"]),("tasks",["aux"]),("waiters",["M"]),("queued",["P"]),("running",["N"])]:
+            bad=deepcopy(fixture);bad[0][key]=value;rejected(bad)
+        for rid,kind,key,value in [("S","sample-dom","dom.width","402"),("S","sample-dom","clipTop","2"),
+                ("S","sample-decision","documentTopDelta","50"),("S","sample-decision","revisionMatches","false"),
+                ("M","measure-guard","indexMatches","false"),("M","measure-guard","localMatches","false"),
+                ("M","measure-guard","anchorEqual","true"),("M","measure-before-commit","result.anchorY","nan"),
+                ("M","released","point","measure-before-capture"),("P","admitted","point","sample-before-read"),
+                ("P","work-finished","captured","false"),("A","sample-dom","dom.width","874")]:
+            bad=deepcopy(fixture);bad[0]["events"][ix(rid,kind)][key]=value;rejected(bad)
+        for rid,kind,before_rid,before_kind in [("S","released","M","held"),("M","released","S","work-finished"),
+                ("N","admitted","M","work-finished"),("P","sample-start","P","admitted")]:
+            bad=deepcopy(fixture);moving=bad[0]["events"].pop(ix(rid,kind));bad[0]["events"].insert(ix(before_rid,before_kind),moving)
+            for i,e in enumerate(bad[0]["events"]):e["sequence"]=str(i+1)
+            rejected(bad)
+        for i in range(len(events)):
+            bad=deepcopy(fixture);bad[0]["events"].pop(i);rejected(bad)
+        bad=list(deepcopy(fixture));bad[1]+=bad[1];rejected(bad)
+        bad=deepcopy(fixture);bad[2]["passedTests"]=0;rejected(bad)
+        # The existing smoke route and CLI remain unchanged; pairing has no CI wiring here.
+        with self.assertRaises(ValueError):verify_viewport_pair_arm(self.root/"bad","smoke")
 
     @unittest.skipIf(os.name == "nt", "POSIX executable fixture validated on Linux CI")
     def test_shell_preserves_swift_failure_and_rejects_stale_evidence(self):

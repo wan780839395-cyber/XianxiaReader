@@ -489,6 +489,11 @@ public struct EPUBViewportFixtureEvent: Sendable {
         #if DEBUG
             if let fixture, let id = fixtureID {
                 var values = fixtureContext
+                if case let .success(value) = result, let data = value as? [String: Any] {
+                    for key in ["height", "anchorY"] {
+                        if let number = data[key] as? NSNumber { values["result." + key] = number.stringValue }
+                    }
+                }
                 if case let .success(value) = result, let data = value as? [String: Any],
                    let metadata = data["fixture"] as? [String: Any] {
                     for key in ["width", "height", "scrollY"] {
@@ -521,6 +526,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
                 if let id = fixtureID {
                     var values = fixtureValues(index, slot)
                     values["ownerMatches"] = String(epoch == request && slots[index] === slot)
+                    values["indexMatches"] = String(index == currentIndex)
                     values["anchorEqual"] = String(slot.savedAnchor == measuredAnchor)
                     values["anchorCurrentAtStart"] = String(measuredAnchorIsCurrent)
                     values["anchorCurrentNow"] = String(savedAnchorMatchesViewport(slot, revision: measuredRevision))
