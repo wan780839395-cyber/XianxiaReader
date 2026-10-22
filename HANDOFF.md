@@ -1,14 +1,14 @@
-# I6b冻结前：本地检查通过，准备仅派发23项（2026-10-22）
+# I6b断点：23项已跑完22通过/1失败，原件收齐（2026-10-22）
 
-Windows语法484无新增诊断（非编译），工具107项100通过/7 POSIX跳过，shell语法通过；精确23选择与事件/summary/真实退出码正反例均通过。原生产/原生测试/断言/预算不变。现在冻结输入并仅派发position-acceptance，不重跑独立包，不跑全套/Release。目录build/maintenance/I6-position-20261022保留before、检查及frozen；若中断先核实际CI，不重复派发。
+冻结运行源075c2ccfbc597eba2afa57c6622f44ecba1cf6ce，私有分支codex/position-loading-acceptance，CI39721680702已completed/failure。只派1轮，精确23项全部执行、22通过/1失败/0跳过，原生编译通过；test=65，summary/export=0。Core/独立包/全套192/设备Release/手机未执行，无新IPA，最后交付仍Build30。
 
----
+唯一失败ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews在原298行等待__xrCloseProbeStarted，发生于第一轮continuous=false分页；两个spread已初始化完成但探针未见。case本体engine.close与断开/移除断言均未运行、连续分支未进；随后teardown清理。共用错误中的Continuous不是模式证据，2条issue只有1个失败case。不能称关闭缺陷已复现或归咎环境/新隔离。仅下一单例可加安装/错误/getter次数/每个WebView身份诊断，保持生产与原预算；下一次耗时范围已询问用户，尚未二派。用户未答复时保持断点，不默认同意继续冷准备。
 
-# 当前断点：I6b 23项位置/加载定向验收开始（2026-10-22）
+正文返回、六字体双模式/隐藏重排、分页同宽resize、原生加载和TXT定位均通过。已核12字体图联系表、分页返回和连续重复seek更新后窗口/WK原图；六个连续字体截图后saved.visible=true/delta0/anchorCondition=true。原即时UIKit空白原件仍留，不能称手机瞬态已验收；不因该观察扩生产修复。Windows107工具100通过7POSIX跳过/Linux107通过；语法484新增0/既有Vendor54，语法不等于编译。
 
-用户授权本轮执行原19位置+4加载的23项，保留全部功能/隔离/定位，失败先留证查因，不跑整套。已核e76c8b0保存点617运行输入、普通HEAD/index保持，无运行中的本地测试或远程CI。初始快照build/maintenance/I6-position-20261022/before.json。
+成本：原生步骤1821秒，首Selected suite前1335.783秒含准备/编译/启动，case合计314.763秒；不能把30分钟都算测试或纯编译。artifact12401799234/102227599B，GitHub digest与SHA 9a56a41979b0ee22fb7ef702ec990069288aabe6eba3ea0e102bb97ba6f84626一致、CRC通过；完整展开/日志/xcresult/summary/manifest在build/ci/39721680702，重复ZIP校验后已删。
 
-本片只接精确position-acceptance选择入口和严格结果验证器，原生产/原生测试/断言/预算不改；不重跑已按输入复核的24独立位置合同或其他模块。精确入口与结果验证器已接线，原生Swift/测试均未改；即将执行本地语法/107项工具检查（非Apple编译）。Windows检查后冻结，一次原生23项；完整192、Release/IPA与设备不执行。真实日志/xcresult/原生像素另核，失败不追加无假设重跑。电脑保持开机。
+本轮运行输入仅workflow、ci_reader_diagnostic.sh、verify_reader_positions.py及对应tooling测试4处变化；原生产/App/Packages/Vendor/原生测试/资源/工程/锁原样。独立位置verify_logic AST保持且旧24 xUnit用当前验证器核过，未重新执行Swift包；旧CI39585860717仍失败18/19。本地before/frozen/scope-audit/result/失败切片在build/maintenance/I6-position-20261022；权威记录Documentation/I6_POSITION_ACCEPTANCE.md及ValidationLogs/project-isolation-i6-position.json。只读watcher与下载进程均已完成。恢复核对最新答复、Git/输入、进程及已有原件，不重复派发。普通HEAD/index保持，电脑保持开机。
 
 ---
 

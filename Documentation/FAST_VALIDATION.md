@@ -1,6 +1,6 @@
-# I6b 位置/加载定向入口（2026-10-22，待执行）
+# I6b 位置/加载定向入口（2026-10-22，已执行22/23）
 
-workflow `diagnostic_selection=position-acceptance` 只运行审计确定的23项原生用例，不执行独立包、Core、全套或设备打包。结果以verify_reader_positions.py acceptance核对精确事件、summary及真实退出码；原生产/测试正文与预算保持。当前只完成入口，尚未完成Apple编译/原生验收。
+workflow `diagnostic_selection=position-acceptance` 只运行审计确定的23项原生用例，不执行独立包、Core、全套或设备打包。结果以verify_reader_positions.py acceptance核对精确事件、summary及真实退出码；原生产/测试正文与预算保持。源075c2cc / CI39721680702真实编译通过，23项实际22通过/1失败/0跳过，test=65、summary/export=0；初始化中关闭用例在准备探针处超时，未执行关闭断言。原件已保留，不能重跑整组凑绿；下一步仅单查这一例，见[I6b结果与断点](I6_POSITION_ACCEPTANCE.md)。
 
 ---
 

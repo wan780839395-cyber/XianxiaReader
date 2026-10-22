@@ -1,0 +1,506 @@
+{
+  "recordedAtUTC": "2026-10-22T04:54:12.350776+00:00",
+  "phase": "i6b_23_failed_evidence_preserved",
+  "revision": "075c2ccfbc597eba2afa57c6622f44ecba1cf6ce",
+  "run": 39721680702,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39721680702",
+  "workflowConclusion": "failure",
+  "native": {
+    "accepted": false,
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "x86_64",
+            "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+            "deviceName": "iPhone 16 Pro",
+            "modelName": "iPhone 16 Pro",
+            "osBuildNumber": "22F77",
+            "osVersion": "18.5",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 22,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1792644559.532,
+      "passedTests": 22,
+      "result": "Failed",
+      "skippedTests": 0,
+      "startTime": 1792643887.518,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "failed - Continuous reader did not reach expected state at testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews():298",
+          "targetName": "XianxiaReaderTests",
+          "testIdentifier": 16,
+          "testIdentifierString": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()",
+          "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+          "testName": "testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()"
+        }
+      ],
+      "title": "Test - XianxiaReader",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "59% of duration",
+          "text": "1 longest test run with outlier durations exceeding 128.12s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 23
+    },
+    "failures": [
+      {
+        "case": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+        "event": "failed (34.106 seconds)."
+      }
+    ],
+    "verificationError": "Original native position cases must each start and pass exactly once"
+  },
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 22,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1792644559.532,
+    "passedTests": 22,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1792643887.518,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "failed - Continuous reader did not reach expected state at testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews():298",
+        "targetName": "XianxiaReaderTests",
+        "testIdentifier": 16,
+        "testIdentifierString": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()",
+        "testIdentifierURL": "test://com.apple.xcode/XianxiaReader/XianxiaReaderTests/ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+        "testName": "testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews()"
+      }
+    ],
+    "title": "Test - XianxiaReader",
+    "topInsights": [
+      {
+        "category": "Longest Test Runs",
+        "impact": "59% of duration",
+        "text": "1 longest test run with outlier durations exceeding 128.12s (three standard deviations)"
+      }
+    ],
+    "totalTestCount": 23
+  },
+  "preservation": {
+    "productionNativeTestsProjectsResourcesLocksUnchanged": true,
+    "onlySelectorAddedToOriginalNativeScript": true,
+    "originalNativeScriptBodyCommandsBudgetsUnchanged": true,
+    "expectedCases": [
+      "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+      "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+      "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+      "ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+      "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen"
+    ],
+    "standalonePackagesNotRerun": true,
+    "independentLogicValidationFunctionUnchanged": true,
+    "old24XunitReverifiedWithoutSwiftExecution": true,
+    "oldComponentWorkflowStillFailedNative18of19": true
+  },
+  "local": {
+    "swiftGrammarFiles": 484,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "pythonTests": 107,
+    "windowsPassed": 100,
+    "windowsPOSIXSkipped": 7,
+    "linuxPassed": 107
+  },
+  "compilation": {
+    "earlyBuildSucceeded": true,
+    "testExit": 65,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "sourceWarnings": [
+      "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1048:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+    ],
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ]
+  },
+  "cost": {
+    "dispatches": 1,
+    "nativeExecutions": 1,
+    "nativeStepSeconds": 1821.0,
+    "beforeFirstNativeSuiteSeconds": 1335.783,
+    "actualCaseSeconds": 314.763
+  },
+  "artifact": {
+    "id": 12401799234,
+    "bytes": 102227599,
+    "sha256": "9a56a41979b0ee22fb7ef702ec990069288aabe6eba3ea0e102bb97ba6f84626",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39721680702\\diagnostic"
+  },
+  "acceptance": {
+    "targeted23": false,
+    "visualReviewComplete": true,
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false
+  },
+  "next": "Keep I6 blocked at targeted23. Await the user scope choice for one instrumented close-during-initialization case; do not rerun23/full192 or advance to Release.",
+  "cases": [
+    {
+      "case": "ReaderLifecycleTests/testFailedFreshSaveKeepsStoredProgressAndRetryIsVisible",
+      "outcome": "passed",
+      "elapsedSeconds": 0.082
+    },
+    {
+      "case": "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "outcome": "passed",
+      "elapsedSeconds": 0.036
+    },
+    {
+      "case": "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "outcome": "passed",
+      "elapsedSeconds": 0.039
+    },
+    {
+      "case": "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "outcome": "passed",
+      "elapsedSeconds": 0.04
+    },
+    {
+      "case": "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "outcome": "passed",
+      "elapsedSeconds": 0.036
+    },
+    {
+      "case": "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "outcome": "passed",
+      "elapsedSeconds": 0.046
+    },
+    {
+      "case": "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest",
+      "outcome": "passed",
+      "elapsedSeconds": 0.037
+    },
+    {
+      "case": "ReaderLifecycleTests/testReturnCaptureFailureAndCancellationNeverPublishOrNavigate",
+      "outcome": "passed",
+      "elapsedSeconds": 0.036
+    },
+    {
+      "case": "ReaderLifecycleTests/testReturnPointFailureRetryAndClosePreserveCurrentProgressWithoutPersistingOrigin",
+      "outcome": "passed",
+      "elapsedSeconds": 0.033
+    },
+    {
+      "case": "ReaderLifecycleTests/testReturnPointRetainsFirstFullAnchorAcrossContentsBookmarkSearchAndStay",
+      "outcome": "passed",
+      "elapsedSeconds": 0.037
+    },
+    {
+      "case": "ReaderLifecycleTests/testSaveNowUsesFreshFullAnchorInsteadOfDelayedCachedChapterHead",
+      "outcome": "passed",
+      "elapsedSeconds": 0.06
+    },
+    {
+      "case": "ReaderLifecycleTests/testSaveNowWaitsForReflowSamplingAndKeepsTheCompleteLocator",
+      "outcome": "passed",
+      "elapsedSeconds": 0.101
+    },
+    {
+      "case": "ReaderLifecycleTests/testSettingsCommitDoesNotSampleCoveredPageAndFreshPositionFailureStillPreservesProgress",
+      "outcome": "passed",
+      "elapsedSeconds": 0.33
+    },
+    {
+      "case": "ReaderLifecycleTests/testSupersededAndCancelledSaveCapturesCannotOverwriteNewerProgress",
+      "outcome": "passed",
+      "elapsedSeconds": 0.036
+    },
+    {
+      "case": "ReaderProgressTests/testSummaryChangesDoNotDiscardOpaquePositionOrPublishEquivalentDisplay",
+      "outcome": "passed",
+      "elapsedSeconds": 0.002
+    },
+    {
+      "case": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+      "outcome": "failed",
+      "elapsedSeconds": 34.106
+    },
+    {
+      "case": "ReaderRenderingTests/testContinuousNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "outcome": "passed",
+      "elapsedSeconds": 5.962
+    },
+    {
+      "case": "ReaderRenderingTests/testFreshReturnCaptureRestoresNonzeroEPUBTextInPagedAndContinuousModes",
+      "outcome": "passed",
+      "elapsedSeconds": 29.05
+    },
+    {
+      "case": "ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes",
+      "outcome": "passed",
+      "elapsedSeconds": 185.574
+    },
+    {
+      "case": "ReaderRenderingTests/testPagedNativeLoadDoesNotWaitForAnimationFrameBridge",
+      "outcome": "passed",
+      "elapsedSeconds": 6.382
+    },
+    {
+      "case": "ReaderRenderingTests/testSameWidthBodyResizeDoesNotOverwritePendingPagedWord",
+      "outcome": "passed",
+      "elapsedSeconds": 4.168
+    },
+    {
+      "case": "ReaderRenderingTests/testSelectingAnotherFontDuringHiddenReflowKeepsTheOriginalPagedWord",
+      "outcome": "passed",
+      "elapsedSeconds": 19.115
+    },
+    {
+      "case": "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen",
+      "outcome": "passed",
+      "elapsedSeconds": 29.455
+    }
+  ],
+  "investigation": {
+    "failedCase": "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews",
+    "failedSource": "Tests/iOS/ReaderRenderingTests.swift:298",
+    "branch": "first iteration continuous=false (paged); continuous=true iteration never reached",
+    "contractNotReached": "No engine.close() or delegate/detachment assertion ran in the case body; teardown later closed the engine.",
+    "observed": [
+      "The first web view never returned __xrCloseProbeStarted === true during the original 30 second wait.",
+      "Both paged spreads reached initialization.finished and the visible cover reached complete/alpha1 before timeout.",
+      "The test uses a document-start script and a fixed 2000ms promise, then polls only the first recursively found WebView. No install marker, hook error, getter count, document identity, or gate-pending evidence was captured.",
+      "XCTest reported two issues for one failed case; the word continuous in the generic error helper does not identify the active mode."
+    ],
+    "candidateCauses": [
+      "Script did not install in the target document, or did not survive into the observed document.",
+      "Hook installed but the probed first WebView was not the one consuming the intercepted FontFaceSet.",
+      "The original fixed-delay gate was already released by the time the test could observe it; a true started marker would still persist, so this alone cannot explain the absent marker."
+    ],
+    "causality": "Not established. Current production and native tests are byte-identical to the pre-gate source; this is not evidence that current isolation edits caused a close regression.",
+    "nextDiscriminatingExperiment": "Only this case, same production and 30s/15s budgets: add a script-install marker/error, ready-getter count, per-WebView href/identity/native font state; qualify a pending barrier before closing. No retry, full-suite rerun, or production patch without evidence.",
+    "extraRemoteRun": "Pending user scope choice; no second dispatch made."
+  },
+  "visualReview": {
+    "fontContactSheets": [
+      "build/maintenance/I6-position-20261022/font-contact-continuous.jpg",
+      "build/maintenance/I6-position-20261022/font-contact-paged.jpg"
+    ],
+    "fontOriginalsReviewedViaContactSheets": 12,
+    "fontContinuousAfterSnapshot": [
+      {
+        "name": "font-rendered-reopen-xiaoWei-true-after-native-snapshot_0_5207200F-5F59-4D0A-AEEA-4665D6233332.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\DC8D205A-FA31-470A-94B6-76BBA8F9FC82.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      },
+      {
+        "name": "font-rendered-reopen-maShanZheng-true-after-native-snapshot_0_5CC79EE6-3907-488A-8351-6CFAB720A183.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\84F1BEBA-B353-47B8-A02F-DD8BD9763019.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      },
+      {
+        "name": "font-rendered-reopen-zhuque-true-after-native-snapshot_0_4B620AFA-5477-4B99-AA94-DC9124F5FF74.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\8E2CCEB1-DA93-47AF-B73E-C763817CB67C.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      },
+      {
+        "name": "font-rendered-reopen-sourceHanSans-true-after-native-snapshot_0_BD95865A-D0E6-42CA-9D5A-143263E1AD98.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\70BD9942-DB69-4ED8-A914-A4DF2DD25625.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      },
+      {
+        "name": "font-rendered-reopen-wenKai-true-after-native-snapshot_0_DB2F7974-8FF0-483C-A2E1-031CF28150D9.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\1CF09508-C31B-4983-A2F9-8AD4ABB8014D.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      },
+      {
+        "name": "font-rendered-reopen-sourceHanSerif-true-after-native-snapshot_0_5C3BBF71-E39C-47E0-865A-05363A34E786.txt",
+        "file": "build\\ci\\39721680702\\diagnostic\\ReaderSnapshots\\89515A56-5725-41AD-ADAB-2BAEC17C40B5.txt",
+        "delta": 0,
+        "visible": true,
+        "anchorCondition": true
+      }
+    ],
+    "continuousRepeatedUpdatedNativeAndWKReadable": true,
+    "continuousRepeatedOriginalImmediateHierarchyBlank": true,
+    "initialContinuousReturnHierarchyBlank": true,
+    "blankObservation": "The already retained immediate UIKit snapshots can be blank before the later native WebKit snapshot; current updated snapshots are readable. No new production fix or proof of transient on-device rendering.",
+    "updatedGeometry": {
+      "afterScreenUpdates": true,
+      "finalWordTop": -9.125,
+      "hierarchyComplete": true,
+      "native": {
+        "contentAlpha": 1,
+        "frame": [
+          0,
+          0,
+          402,
+          778
+        ],
+        "innerY": 2373,
+        "inRoot": [
+          0,
+          62,
+          402,
+          778
+        ],
+        "nativeState": "preferences:  / index=1 revision=4 top=2438.0 navigation=false screenCover=false slot0{ready=false positioning=true failure=none wrapper=(0.0, 9248.0, 402.0, 778.0) frame=(0.0, 0.0, 402.0, 778.0) savedTop=nil anchor=not sampled} lifecycle={trace=9A05695B navigationFinished=false initialization=false/false cleared=false attached=true loading=true hasURL=true progress=0.1 stages=1584255:request,1584262:window.attached} beforeTimeoutClear={not timed out} slot1{ready=true positioning=false failure=none wrapper=(0.0, 64.0, 402.0, 8342.0) frame=(0.0, 2374.0, 402.0, 778.0) savedTop=nil anchor=sample=0 documentY=2363.875 documentTop=2373.0 local=2374.0 revision=4} lifecycle={trace=93181D74 navigationFinished=true initialization=true/true cleared=false attached=true loading=false hasURL=true progress=1.0 stages=1581503:request,1581514:window.attached,1582965:navigation.started,1583889:navigation.committed,1583988:navigation.finished,1583988:bootstrap.start,1583990:initialization.start,1583993:bootstrap.ready,1584204:initialization.content-returned,1584207:initialization.delegate-returned,1584207:initialization.finished} beforeTimeoutClear={not timed out}",
+        "presentationAlpha": 1,
+        "rootBounds": [
+          0,
+          0,
+          402,
+          874
+        ],
+        "sameCurrentWebView": true,
+        "uptime": 1588.3143574550002,
+        "viewport": [
+          0,
+          62,
+          402,
+          778
+        ],
+        "visibleHeightFraction": 1,
+        "visibleRect": [
+          0,
+          62,
+          402,
+          778
+        ],
+        "webAlpha": 1,
+        "webHidden": false,
+        "windowAttached": true,
+        "windowHidden": false,
+        "windowKey": true
+      },
+      "phase": "native-webkit-snapshot",
+      "webInkFraction": 0.1449652777777778,
+      "windowInkFraction": 0.1877170138888889
+    },
+    "phoneOrMotionAcceptance": false
+  },
+  "evidence": [
+    {
+      "path": "build/ci/39721680702/full.log",
+      "sha256": "4553bcd777a6a1d5ea4c2e0311d1d072a4df7ac6f5d1aab5e55f450ec0d5d323"
+    },
+    {
+      "path": "build/ci/39721680702/run.json",
+      "sha256": "76e2eaddb6cf83c11d7567f9463360ade324f5c14cfb4017a3586aed47343cf5"
+    },
+    {
+      "path": "build/ci/39721680702/artifacts.json",
+      "sha256": "33e316c6281197a6f8841f7bbfd8026b4e28badab2986ad5ff15cd4a05f120dc"
+    },
+    {
+      "path": "build/ci/39721680702/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "fc1f3b93c3eb53ef5edd7261d679333cb7d112b7914a973fa298275729e7579c"
+    },
+    {
+      "path": "build/ci/39721680702/diagnostic/test-results-summary.json",
+      "sha256": "7633198778062377cf618ce07141138532868d219ef903398caee90903fe0fb5"
+    },
+    {
+      "path": "build/ci/39721680702/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39721680702/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "3815aa9ddfe4d3fcf4678c2fd711f9772ff05ea277d7c27f938dfd2bd3887794"
+    },
+    {
+      "path": "build/maintenance/I6-position-20261022/close-initialization-failure.log",
+      "sha256": "95b0ee2dd973f0da35e750d97643f1e892a7d18ae454790db79154bc64b5c7ff"
+    }
+  ],
+  "references": [
+    {
+      "url": "https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentstart",
+      "use": "Document-start injection timing; no claim of retrospective injection guarantee."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "use": "Matching upstream3.11.0 starts loading in spread init; local file includes existing native readiness/close changes."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/readium/swift-toolkit/3.11.0/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "use": "Matching upstream paged delegate setup order compared with local; does not prove injection was missed in this run."
+    }
+  ]
+}
