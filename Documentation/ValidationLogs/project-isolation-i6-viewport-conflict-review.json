@@ -1,0 +1,71 @@
+{
+  "recordedAtUTC": "2026-10-22T16:31:27.674893+00:00",
+  "parent": "f3cfd0b0b3fb3a92da0ac4febe3d9cce16951b3e",
+  "reviewComplete": true,
+  "implemented": false,
+  "ciDispatches": 0,
+  "compiledThisRound": false,
+  "nativeExecutedThisRound": 0,
+  "runtimeInputCount": 617,
+  "runtimeDrift": [],
+  "clarification": {
+    "source": "direct user reply in this turn",
+    "accepted": "Preserve existing smoke; add separate paired-safe and paired-conflict modes; production guards, original word assertions and budgets unchanged; conflict M guards are observations"
+  },
+  "evidenceRun": 39806769382,
+  "evidenceSource": "2a9fdfb51281407472b01f1729591d09690a5efd",
+  "lastNativeSmokeAccepted": true,
+  "historicalSafeNotReusableAsPairedControl": true,
+  "design": {
+    "commonEntrySealBeforeSelectedSRelease": true,
+    "exactOverlappingRequests": [
+      "selected old-context S",
+      "selected primary M"
+    ],
+    "otherWork": "queued before capture, then fresh serial drain after both actual exits",
+    "intentionalIntervention": "S release before resize versus after primary M returns real new-layout result",
+    "primaryMSelection": "first queued target-slot measure before capture, never replace after failure",
+    "requiredFutureScalarDiagnostics": [
+      "same-result height",
+      "same-result anchorY",
+      "actual M current-index match"
+    ],
+    "localImplementationRuntimeFileCap": 5,
+    "ciRouteNotImplemented": true,
+    "futureNativeMaximum": "one fresh paired-safe case, then at most one paired-conflict case if the safe control qualifies; not authorized now",
+    "preserve": [
+      "existing smoke",
+      "production guards and JavaScript",
+      "S diagnostics",
+      "original word/WebView/width/alpha/resource assertions",
+      "capture/cleanup 3 seconds",
+      "100ms/30 seconds per original wait",
+      "3 samples/32ms",
+      "32 waiters/128 events"
+    ],
+    "classifyStateChangeSeparatelyFromWordFailure": true,
+    "keepActualNativeFailureExit": true
+  },
+  "evidenceFacts": {
+    "originalSFinishedSequence": 22,
+    "currentSmokeSealSequence": 24,
+    "queuedNewSampleSequence": 41,
+    "newSampleAdmittedSequence": 48,
+    "eventCount": 79
+  },
+  "previousRawEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "oldFullRootCauseProven": false,
+  "oldSThirdRejectionProven": false,
+  "fullAcceptance": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "next": "Implement paired fixture and minimal diagnostics locally only after a new user request; review CI routing/build reuse separately; no CI authorized",
+  "references": [
+    "https://github.com/swiftlang/swift-evolution/blob/main/proposals/0306-actors.md",
+    "https://github.com/swiftlang/swift-evolution/blob/main/proposals/0300-continuation.md",
+    "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/GatedSequence.swift",
+    "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/Gate.swift"
+  ]
+}

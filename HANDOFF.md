@@ -1,3 +1,13 @@
+# 冲突配对方案审阅完成：未实施、零CI（2026-10-23）
+
+2026-10-23 可控冲突配对方案审阅完成，未实施、零CI。用户已确认保留smoke原样，另设安全/冲突模式；两臂在旧S仍持有时共同封入口，仅指定S/M允许交错，其余请求保持捕获前排队和逐条排空。只改变S相对resize/M的放行顺序，生产guard/原字断言/预算保持；锚点替换、M放弃恢复和原字不可见分层判读，不拿旧smoke当新安全臂。未来本地夹具最多5项运行输入，CI接线/构建复用另审，均未实施。617输入及原件保持，旧full191/192、I6/Release/手机缺口和Build30不变。见[方案与边界](Documentation/I6_VIEWPORT_CONFLICT_REVIEW.md)。
+
+基线f3cfd0b0，恢复目录build/maintenance/I6-viewport-conflict-review-20261023的before/review-result/文档检查/final-checkpoint。用户澄清已收到：smoke原样保留；新配对冲突臂7项guard作诊断观测，原业务断言/生产guard/预算不变。S/M双操作与独立配对模式尚未接线，缺同次M height/anchorY和index匹配标量；现CI入口仍只认smoke，不能直接派发配对或复用旧1/1作安全臂。
+
+下一片若用户要求，只实现最多5项输入的本地配对夹具/最小诊断，不自动派CI。CI路由与构建复用另审；原字真正失败仍保留test65，H1支持不冒充测试通过。运行输入/原件/普通HEAD/index及Build30保持，无IPA，不关机。
+
+---
+
 # 统一准入原生smoke单轮通过：已收齐原件，不再派发
 
 2026-10-23 统一准入/逐条排空修正版仅一轮CI39806769382/2a9fdfb5/attempt1：原生编译、机制6组、原smoke单例1/1（17.851秒）及回执校验通过。主M原7项guard全true，真实退出后另一M及sample逐条准入；79事件，五类清理集合全空。S首采样committed，原字499横/竖均可见。617输入/算法/S诊断/原断言预算保持；未重跑或执行full/Release，旧191/192与I6/手机缺口、Build30不变。见[本轮结果](Documentation/I6_SMOKE_ADMISSION_NATIVE.md)。
