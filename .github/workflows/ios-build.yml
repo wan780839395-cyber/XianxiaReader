@@ -10,6 +10,10 @@ on:
         description: First real local Readium resolution; adopt artifact then rerun with this off
         type: boolean
         default: false
+      session_logic_only:
+        description: For session-lifecycle only, stop after the standalone contracts
+        type: boolean
+        default: false
       diagnostic_selection:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
@@ -163,7 +167,7 @@ jobs:
           mkdir -p build/logs
           bash scripts/ci_reader_session_control.sh 2>&1 | tee build/logs/session-control-driver.log
       - name: Validate only the existing session lifecycle cases
-        if: ${{ inputs.diagnostic_selection == 'session-lifecycle' }}
+        if: ${{ inputs.diagnostic_selection == 'session-lifecycle' && !inputs.session_logic_only }}
         run: |
           set -euo pipefail
           mkdir -p build/logs
@@ -173,7 +177,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.diagnostic_selection == 'session-lifecycle' && 'XianxiaReader-session-lifecycle' || inputs.diagnostic_selection == 'session-isolation' && 'XianxiaReader-session-isolation' || inputs.diagnostic_selection == 'continuous-return' && 'XianxiaReader-continuous-return' || inputs.diagnostic_selection == 'epub-ready-control' && 'XianxiaReader-epub-ready-control' || 'XianxiaReader-position-isolation' }}
+          name: ${{ inputs.diagnostic_selection == 'session-lifecycle' && inputs.session_logic_only && 'XianxiaReader-session-lifecycle-logic' || inputs.diagnostic_selection == 'session-lifecycle' && 'XianxiaReader-session-lifecycle' || inputs.diagnostic_selection == 'session-isolation' && 'XianxiaReader-session-isolation' || inputs.diagnostic_selection == 'continuous-return' && 'XianxiaReader-continuous-return' || inputs.diagnostic_selection == 'epub-ready-control' && 'XianxiaReader-epub-ready-control' || 'XianxiaReader-position-isolation' }}
           retention-days: 7
           if-no-files-found: warn
           path: |

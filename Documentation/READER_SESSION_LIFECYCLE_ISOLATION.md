@@ -12,4 +12,6 @@
 
 新源码自动归入现有SwiftPM/XcodeGen路径，依赖/产品/target不增加；沿用已有架构区与5个精确例外，边界守卫须实际检查新文件。既有ci_ios会执行同一独立会话入口；session-lifecycle诊断只先包合同、后原13项。完整门槛数量仍162+29=191，独立14项另计，定向成功不能替代发布验收。
 
-参考：Swift [SE-0316](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0316-global-actors.md) 的global-actor函数类型与同actor同步调用合同（Swift5.5起）；[Swift官方Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/) 的方法/函数值转交。延续本项目ReaderPositions和R4a实际编译的包/方法引用模式，不升级依赖、工具链，不引入调度器或Task包装。
+参考：Swift [SE-0316](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0316-global-actors.md) 的global-actor函数类型与同actor同步调用合同（Swift5.5起）；[Swift官方Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/) 的方法/函数值转交。沿用本项目ReaderPositions和R4a已编译的包布局，方法值转交依据Swift官方合同；不升级依赖、工具链，不引入调度器或Task包装。
+
+首轮14合同已过、原生13尚在运行时，审阅发现新夹具若在重开身份XCTUnwrap处抛错会先于释放旧continuation。仅测试清理调整为：超时先放行/取消并收完旧Task，正常路径先放行/收完再断言新owner非空；断言、2秒准备超时和生产预算不变，Gate支持先release后wait且无额外重试。对这项测试输入变化只补独立14合同（session-lifecycle配session_logic_only=true），不重跑原生冷准备。首次原生的全部App/库生产源码、原iOS测试、工程/锁/工具链输入与最终生产源逐blob核对后，才分项复用其结果；不把独立14称手机/原生验收。

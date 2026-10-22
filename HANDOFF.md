@@ -6,6 +6,10 @@
 
 Windows首检已通过：470 Swift语法新增0（54既有Vendor限制），Python83中76通过/7 POSIX跳过；工具新增核新choice不会执行旧负对照，独立14合同按各自类精确验收。此后仅修测试final-close observer的局部强引用为bookID值，避免fixture持有自身；不影响合同/入口，冻结前保留对其静态复核。当前无Swift编译/原生新结果，不记通过。
 
+已冻结7ea52d41cbca4bdbe9271c3a984cb656a48872b8 / refs/heads/codex/isolate-reader-open-lifecycle，只派一次[CI39702147807](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39702147807)，selection=session-lifecycle。冻结收据build/maintenance/R4b-20261022/frozen.json：594运行输入逐blob核、9文件切片；原open完整流程经机械映射逐body比对一致，7await、检查/发布顺序保留，无异步转发/Task包装；其他VM方法及Tests/iOS/ReaderLifecycleTests.swift原件完全相同。普通HEAD/index保持。只读观察进程保存run/full日志/artifact元数据到build/ci/39702147807；若中断先查真实状态，不重派。当前编译/定向待结果。
+
+首轮独立14合同步骤已成功，原生13正在同一CI准备。随后审阅仅修新测试失败清理：进入屏障超时先release/cancel/await旧Task，重开后先释放收完旧Task再断言newOwner非空；Gate可提前release。原2秒/所有行为断言保留，不是重试。此fixture源码变化须额外验证独立14，新增session_logic_only=true仅用于现有session-lifecycle时跳过原生步骤，默认false并有工具守卫；不再派第二个原生。最终必须分别记录首轮原生源与测试清理源，逐blob核实际App/库生产/iOS测试/工程/锁/版本一致，才能分项复用原13。正式结果未出，不能预报通过。
+
 基线fd259b0f1a93df774c51fc74f1e521fc2254a06a；已核591运行输入与保存检查点一致、1203路径保护基线build/maintenance/R4b-20261022/before.json，普通HEAD/index不动，无旧运行观察进程。实现前已读4文档、实际源码、Git状态与原件；R4a真实6+13及旧1负保留。只跑新增包内编排合同与原13生命周期回归，不重跑旧负对照、Readium19、完整191或Release/IPA；先本地静态/工具，再冻结一次定向CI。原生准备成本与用例执行分记；发现其他边界失败先留证、不扩修。
 
 以下为R4a已保存结果及历史，不覆盖本轮继续指令。

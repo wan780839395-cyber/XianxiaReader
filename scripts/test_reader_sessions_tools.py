@@ -105,6 +105,8 @@ class SessionEvidenceTests(unittest.TestCase):
         old_control = steps["Validate old callback control and focused session lifecycle"]
         self.assertNotIn("session-lifecycle", old_control["if"])
         positive = steps["Validate only the existing session lifecycle cases"]
+        self.assertIn("!inputs.session_logic_only", positive["if"])
+        self.assertEqual(workflow["on"]["workflow_dispatch"]["inputs"]["session_logic_only"]["default"], "false")
         self.assertIn("ci_reader_diagnostic.sh session-isolation", positive["run"])
         self.assertNotIn("ci_reader_session_control", positive["run"])
         self.assertIn("verify_reader_sessions.py candidate", positive["run"])

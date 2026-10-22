@@ -64,7 +64,7 @@ final class ReaderSessionLifecycleTests: XCTestCase {
         XCTAssertEqual(state.requestID, owner); XCTAssertEqual(host.events.count, count)
     }
 
-    @MainActor func testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession() async throws {
+    @MainActor func testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession() async {
         for phase in ["appearance", "fonts", "interaction", "position", "chapters", "bookmarks", "engine"] {
             let state = ReaderSessionState(), host = Host()
             let lifecycle = ReaderSessionLifecycle(state: state, host: host)
@@ -73,11 +73,16 @@ final class ReaderSessionLifecycleTests: XCTestCase {
             host.gatePhase = phase; host.gate = gate
             let old = Task { await lifecycle.open() }
             await fulfillment(of: [entered], timeout: 2)
+            if !gate.entered {
+                gate.release(); old.cancel(); await old.value
+                continue // fulfillment already recorded the preparation failure.
+            }
             lifecycle.close()
             XCTAssertNil(state.requestID)
             await ReaderSessionLifecycle(state: state, host: host).open()
-            let newOwner = try XCTUnwrap(state.requestID)
+            let newOwner = state.requestID
             gate.release(); await old.value
+            XCTAssertNotNil(newOwner, phase)
             XCTAssertEqual(state.requestID, newOwner, phase)
             XCTAssertEqual(host.readyCount, 1, phase)
             XCTAssertEqual(host.engineCloses, 1, phase)
@@ -133,9 +138,14 @@ final class ReaderSessionLifecycleTests: XCTestCase {
     @MainActor private final class Gate {
         private var continuation: CheckedContinuation<Void, Never>?
         private let onEntered: () -> Void
+        private var released = false
+        private(set) var entered = false
         init(_ onEntered: @escaping () -> Void) { self.onEntered = onEntered }
-        func wait() async { await withCheckedContinuation { continuation = $0; onEntered() } }
-        func release() { let pending = continuation; continuation = nil; pending?.resume() }
+        func wait() async {
+            if released { return }
+            await withCheckedContinuation { continuation = $0; entered = true; onEntered() }
+        }
+        func release() { released = true; let pending = continuation; continuation = nil; pending?.resume() }
     }
 
     private struct Failure: LocalizedError {
