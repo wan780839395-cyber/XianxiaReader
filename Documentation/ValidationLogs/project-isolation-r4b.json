@@ -1,0 +1,224 @@
+{
+  "recordedAtUTC": "2026-10-22T01:25:42.790515+00:00",
+  "phase": "r4b_targeted_accepted",
+  "revision": "c00083492fcfccd56fae978178f72e56a5542e35",
+  "run": 39703522408,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39703522408",
+  "layout": "ReaderSessions Foundation-only lifecycle with typed direct method values; App SDK wiring only",
+  "logic": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "testAcceptedWorkFinishesButLateErrorCannotPublishIntoReopenedSession",
+      "testAdmissionRetainsFailedOpenUntilCloseAndRejectsDuplicateOpen",
+      "testAsyncProtocolMethodValuesKeepActorOwnedStorageCalls",
+      "testBoundEntryRetainsHostUntilReleasedWithoutCreatingTaskWrapper",
+      "testCallerCancellationClosesOnlyItsOwnedEngine",
+      "testCapturedCallbacksCannotPublishAfterCloseOrSameBookReopen",
+      "testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession",
+      "testCloseOrderingAcceptsFinalPositionBeforeInvalidating",
+      "testDuplicateOpenAndMissingEngineDoNotStartAnotherRequest",
+      "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
+      "testFinalSynchronousPositionIsAcceptedBeforeInvalidation",
+      "testFontFailureFallsBackButFontCancellationDoesNot",
+      "testForeignBookCannotPublishWithinCurrentSession",
+      "testOpeningPublishesInOriginalStageAndAwaitOrder",
+      "testOrdinaryOpenFailureKeepsOwnerAndRetryClosesBeforeClearingFailure"
+    ],
+    "appHostUsed": false
+  },
+  "native": {
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "ReaderLifecycleTests/testAutomaticScrollExplicitStartSpeedPersistenceBackgroundPauseAndStaticReopen",
+      "ReaderLifecycleTests/testCloseDuringOpenCannotReturnReaderToReadyState",
+      "ReaderLifecycleTests/testClosedAndReopenedSessionRejectsCapturedOldCallbacks",
+      "ReaderLifecycleTests/testClosedSessionRejectsEventsAndPreservesFinalEmittedPosition",
+      "ReaderLifecycleTests/testFailedOpenCanRetryAndBecomeReady",
+      "ReaderLifecycleTests/testInteractionRestoresSerialEditsAndLateGesturesCannotHideMenuAfterClose",
+      "ReaderLifecycleTests/testLateBookmarkFailureAfterCloseCannotShowError",
+      "ReaderLifecycleTests/testLateChapterNavigationCannotHideReopenedReadersMenu",
+      "ReaderLifecycleTests/testLatePositionAfterCloseIsNotPersisted",
+      "ReaderLifecycleTests/testLateSaveCaptureCannotOverwriteProgressAfterCloseAndReopen",
+      "ReaderLifecycleTests/testOldSettingsFailureCannotPublishIntoSameModelReopenedSession",
+      "ReaderLifecycleTests/testPositionBurstPublishesOnlyProgressAndPreservesLatestFullLocator",
+      "ReaderLifecycleTests/testReturnCaptureCloseReopenLateResultCannotNavigateOrClearNewRequest"
+    ],
+    "qualifiedNegative": false,
+    "originalExit": 0,
+    "appHostUsed": true
+  },
+  "previousAttempts": [
+    {
+      "run": 39702147807,
+      "revision": "7ea52d41cbca4bdbe9271c3a984cb656a48872b8",
+      "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39702147807",
+      "outcome": "compile_failure",
+      "logic": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "cases": [
+          "testAcceptedWorkFinishesButLateErrorCannotPublishIntoReopenedSession",
+          "testAdmissionRetainsFailedOpenUntilCloseAndRejectsDuplicateOpen",
+          "testBoundEntryRetainsHostUntilReleasedWithoutCreatingTaskWrapper",
+          "testCallerCancellationClosesOnlyItsOwnedEngine",
+          "testCapturedCallbacksCannotPublishAfterCloseOrSameBookReopen",
+          "testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession",
+          "testCloseOrderingAcceptsFinalPositionBeforeInvalidating",
+          "testDuplicateOpenAndMissingEngineDoNotStartAnotherRequest",
+          "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
+          "testFinalSynchronousPositionIsAcceptedBeforeInvalidation",
+          "testFontFailureFallsBackButFontCancellationDoesNot",
+          "testForeignBookCannotPublishWithinCurrentSession",
+          "testOpeningPublishesInOriginalStageAndAwaitOrder",
+          "testOrdinaryOpenFailureKeepsOwnerAndRetryClosesBeforeClearingFailure"
+        ],
+        "appHostUsed": false
+      },
+      "nativeExecuted": false,
+      "nativeGatePassed": false,
+      "artifact": {
+        "id": 12394101464,
+        "bytes": 194991,
+        "sha256": "5f9a3b2e2baf202a0997464c986554da69d0733f0db47810f4395d2c2f39b03d",
+        "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39702147807\\diagnostic"
+      },
+      "cost": {
+        "moduleStepSeconds": 83.0,
+        "nativeBuildStepSeconds": 390.0
+      },
+      "sourceCompileErrors": [
+        "/Users/runner/work/XianxiaReader/XianxiaReader/App/Reader/ReaderViewModel.swift:155:47: error: actor-isolated instance method 'position(for:)' can not be partially applied",
+        "/Users/runner/work/XianxiaReader/XianxiaReader/App/Reader/ReaderViewModel.swift:156:47: error: actor-isolated instance method 'chapters(for:)' can not be partially applied",
+        "/Users/runner/work/XianxiaReader/XianxiaReader/App/Reader/ReaderViewModel.swift:157:48: error: actor-isolated instance method 'bookmarks(for:)' can not be partially applied"
+      ],
+      "buildForTestingPassed": false,
+      "trueStepExit": 65
+    },
+    {
+      "run": 39702833284,
+      "revision": "3fa3293277779ce990bbc182f001ddfa67462343",
+      "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39702833284",
+      "outcome": "fixture_logic_only",
+      "logic": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "cases": [
+          "testAcceptedWorkFinishesButLateErrorCannotPublishIntoReopenedSession",
+          "testAdmissionRetainsFailedOpenUntilCloseAndRejectsDuplicateOpen",
+          "testBoundEntryRetainsHostUntilReleasedWithoutCreatingTaskWrapper",
+          "testCallerCancellationClosesOnlyItsOwnedEngine",
+          "testCapturedCallbacksCannotPublishAfterCloseOrSameBookReopen",
+          "testCloseDuringEachSuspensionCannotReadyOrInvalidateReopenedSession",
+          "testCloseOrderingAcceptsFinalPositionBeforeInvalidating",
+          "testDuplicateOpenAndMissingEngineDoNotStartAnotherRequest",
+          "testFailedFontRebuildAllowsOpeningWithoutPrematurelyDroppingOwner",
+          "testFinalSynchronousPositionIsAcceptedBeforeInvalidation",
+          "testFontFailureFallsBackButFontCancellationDoesNot",
+          "testForeignBookCannotPublishWithinCurrentSession",
+          "testOpeningPublishesInOriginalStageAndAwaitOrder",
+          "testOrdinaryOpenFailureKeepsOwnerAndRetryClosesBeforeClearingFailure"
+        ],
+        "appHostUsed": false
+      },
+      "nativeExecuted": false,
+      "nativeGatePassed": false,
+      "artifact": {
+        "id": 12393403553,
+        "bytes": 3452,
+        "sha256": "590e45f72e3e4eee9d47234bc0ce1648ec46c3c54b6d2472604ca3f9907c6270",
+        "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39702833284\\diagnostic"
+      },
+      "cost": {
+        "moduleStepSeconds": 109.0,
+        "nativeBuildStepSeconds": 0
+      },
+      "sourceCompileErrors": [],
+      "nativeStepExplicitlySkipped": true
+    }
+  ],
+  "preservation": {
+    "originalOpenAwaitCount": 7,
+    "originalOpenMappingPreserved": true,
+    "retryCloseMappingPreserved": true,
+    "noAsyncForwardingOrProductionTasksAdded": true,
+    "otherVMMethodsAndAllOriginalNativeTestsUnchanged": true,
+    "R4aStateCallbacksAndFinalWritePreserved": true,
+    "R1R2R3CoreAdapterVendorFontResourcesAndLockUnchanged": true
+  },
+  "implementation": {
+    "module": "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionLifecycle.swift",
+    "appHost": "App/Reader/ReaderSessionHost.swift",
+    "appWiring": "App/Reader/ReaderViewModel.swift",
+    "actorBinding": "existing BookRepository async protocol witnesses, no database implementation change",
+    "standaloneOnlyModeVerifiedRun": 39702833284,
+    "standaloneOnlyModeVerifiedCases": 14,
+    "finalPackageContracts": 15
+  },
+  "local": {
+    "swiftGrammarFiles": 470,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorGrammarLimitations": 54,
+    "pythonTests": 83,
+    "pythonPassed": 76,
+    "pythonPOSIXSkipped": 7,
+    "finalLinuxToolingTests": 83,
+    "finalLinuxToolingPassed": 83
+  },
+  "compilation": {
+    "standaloneMac": true,
+    "iOSAppAndTests": true,
+    "sourceCompileErrors": 0,
+    "testExit": 0,
+    "summaryExit": 0,
+    "exportExit": 0,
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ]
+  },
+  "cost": {
+    "finalModuleStepSeconds": 92.0,
+    "moduleSwiftBuildSeconds": 68.55,
+    "finalNativeStepSeconds": 1054.0,
+    "untilFirstNativeSuiteSeconds": 992.658,
+    "actualNativeCaseSeconds": 0.652,
+    "workflowDispatches": 3,
+    "nativeBuildAttempts": 2,
+    "nativeTestExecutions": 1,
+    "oldControlExecuted": false,
+    "fullGateExecuted": false
+  },
+  "artifact": {
+    "id": 12395005666,
+    "bytes": 422570,
+    "sha256": "f0a471e244d22b4c1fcd7f3a4a8154aec88f051cf4940d69187273fe1ee3e754",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39703522408\\diagnostic"
+  },
+  "acceptance": {
+    "implementation": true,
+    "compilation": true,
+    "independentContracts": true,
+    "targetedNative": true,
+    "full191Executed": false,
+    "R3RenderingGroupExecuted": false,
+    "deviceRelease": false,
+    "ordinaryDevice": false,
+    "trollStore": false,
+    "phoneAccepted": false,
+    "newIPA": false
+  },
+  "remaining": "I5 App/library/import/search boundaries one slice at a time; complete project/release gate remains pending"
+}

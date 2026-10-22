@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-22 R4b：ReaderSessions的ReaderSessionLifecycle拥有打开/重试/关闭顺序，类型化Host保持SDK/领域值不透明；App/ReaderSessionHost只是现有方法值和同步应用，VM用一次调用上下文的绑定方法值入口避免async转发/Task包装，同时保留原接收者生命期。原7打开await/检查位置、章节书签同步发布、字体降级、取消与普通失败、retry清理/清错、close最终位置后失效均保持。SQLite actor的同步方法不能直接取值，现经已有BookRepository async协议要求取得函数值，不改actor实现；同型桥接合同已加入。最终15+13及实际原生编译通过，5个精确例外不增加，静态145文件/19区域/20节点。详见[本片设计](Documentation/READER_SESSION_LIFECYCLE_ISOLATION.md)及[R4b原始结果](Documentation/ValidationLogs/project-isolation-r4b.json)。
+
 2026-10-22 R4a：App → ReaderSessions → Foundation，真实SwiftPM产品已接入XcodeGen并实际编译。包拥有started/request/book身份与同步accept门；App每次open绑定owner，完整位置还校验book，迟到写入只过滤错误发布。engine.close最后位置先接收，随后invalidate；原Task写入和全部原await顺序保留，字体失败allowReopening保留旧owner直到下一次begin。原生同机旧1项负对照/候选13项、包6项通过；没有新增生产await，R4b异步编排后续。5个精确依赖例外不增加，静态142文件/19区域/20节点。详细合同见[会话隔离](Documentation/READER_SESSION_ISOLATION.md)与[R4a原始结果](Documentation/ValidationLogs/project-isolation-r4a.json)。
 
 2026-10-21重复定位本片只修测试渲染边界，未改生产或引入新异步生产层。原go/字符坐标可先于截图像素生效；当前挂窗WebView/alpha正确时即时drawHierarchy也可白，即使返回true。测试在原坐标断言之后用WK afterScreenUpdates=true纳入pending updates，再验实际窗口非白和字/外层仍不变；viewport与生产同样扣contentInset。9aac4d / CI39619940734真实编译、原单例1/1。原即时图保留而不当渲染完成证明；手机瞬态/精确GPU时序未验。分页bootstrap及R1/R2/R3保持；下一独立片R4。见[权威结果](Documentation/ValidationLogs/repeated-seek-snapshot-boundary.json)。

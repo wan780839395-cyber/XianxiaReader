@@ -1,3 +1,27 @@
+# 当前断点：R4b本片完成，下一阶段I5（2026-10-22）
+
+本轮用户授权的打开/重试/关闭编排切片已完成，实现/编译/定向验收通过；收口在本片，不自动进入I5或新增功能。电脑保持开机。下一阶段按PROJECT_ISOLATION_PLAN一片一门槛整理书库/导入/搜索与组装；后续产品计划保留在ROADMAP/READING_FEATURE_IDEAS。
+
+## 当前实际结果
+
+- 最终运行源c00083492fcfccd56fae978178f72e56a5542e35 / refs/heads/codex/fix-reader-lifecycle-repository-binding，[CI39703522408](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39703522408) completed/success：真实Foundation包15/15、原13项生命周期13/13，App/测试build-for-testing成功，源码编译错误0，test/summary/export均0。
+- ReaderSessionLifecycle实际拥有原7个打开await与同步应用、retry完整close/清错、close最终位置后失效；App仅类型化SDK方法值/同步桥接。VM直接转交绑定入口，无async转发/额外Task；每次上下文保留接收者至结束，不由VM长期持有。R4a状态/回调、所有其他VM方法及原30项生命周期测试正文、R1/R2/R3定位/字体、Core/Adapter/Vendor/资源/锁不改。
+- 首轮7ea52d / CI39702147807：14独立通过，App3处具体actor同步方法值编译失败，原生未执行；保留真实65与失败原件。改用已有any BookRepository async要求取值，不改DB，实现对应桥接合同使最终15；原计划复用首轮原生结果未成立，最终13是修正源重新执行。中间3fa329 / CI39702833284仅夹具清理14/14与session_logic_only=true快入口验收，原生skipped；不称最终15或原生验收。
+- 本地470语法新增0（54既有Vendor限制，非编译）、83工具76过/7 POSIX跳过；最终CI Linux83/83。静态145第一方Swift/19区/20图节点、5精确例外不增加。最终生产/原生输入冻结后未再改；全部594输入逐blob保护，普通HEAD/index保留。
+- 当前仅R4b本片及已有R4a各自门槛通过。全项目隔离/I5、R3整组、完整162+29=191、设备Release/普通设备/TrollStore/手机均未验收，无新IPA，最后交付Build30。
+
+## 成本、原件与恢复
+
+最终包步骤92.0秒（Swift构建68.55秒），原生步骤1054.0秒；首suite前992.658秒，13项实际0.652秒，其余为准备/编译/模拟器与宿主/结果采集。总体3派发、2原生构建尝试、原生用例真正执行1次；首编译失败与纯夹具轮成本分别保留，不隐藏也不统称测试执行。
+
+权威Documentation/ValidationLogs/project-isolation-r4b.json；设计READER_SESSION_LIFECYCLE_ISOLATION及FAST_VALIDATION。三个run完整原件在build/ci/{39702147807,39702833284,39703522408}/diagnostic，下载均CRC/digest验证后只精确删重复ZIP，原件/日志/xcresult保留。最终artifact12395005666/422570字节/SHAf0a471e244d22b4c1fcd7f3a4a8154aec88f051cf4940d69187273fe1ee3e754。首失败与清理artifact详情见权威回执，不继续声称首轮有原生结果。
+
+build/maintenance/R4b-20261022含1203路径before、frozen/fixture-frozen/corrected-frozen、机械映射审阅、attempts/result及最终检查点。普通HEAD仍6d761749911233122bcd031fcf718d22a19f9e77，index SHA仍b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28；不得reset/clean旧WIP。收口ref为refs/heads/codex/reader-lifecycle-isolation-saved，实际SHA以final-checkpoint.json/远程ref核对；不要重派本片CI。收口已核无本人启动的观察/下载进程。
+
+## 本片过程与历史
+
+以下保留当时中间状态与失败/旧断点，不覆盖上方最终事实；“待编译/运行中/14项/复用原生”的文字不是最终门槛。
+
 # 当前工作：R4b打开/重试/关闭编排隔离（2026-10-22，用户已授权）
 
 仅推进现有ReaderSessions的编排切片。Foundation合同通过类型化方法引用接收原7个打开异步操作和原同步应用/清理；App保留SDK桥接。VM使用绑定方法值转交open/retryOpen，避免额外异步转发/Task；每次调用的编排上下文保留VM直到结束，VM不持有该上下文形成环。原阶段顺序、await后检查、字体失败降级、取消与普通失败区分、retry完整close后清错、close最终位置先接收再失效全部保留。R4a回调门/位置/字体事务和Core/Adapter/Vendor/锁不改。
@@ -13,6 +37,8 @@ Windows首检已通过：470 Swift语法新增0（54既有Vendor限制），Pyth
 清理源已冻3fa3293277779ce990bbc182f001ddfa67462343 / refs/heads/codex/verify-reader-lifecycle-fixture，[CI39702833284](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39702833284)，session-lifecycle+session_logic_only=true；仅包合同，原生步骤必须skipped。fixture-frozen.json已核594输入仅测试fixture/工作流/工具scope测试3项runtime差异，全部App/库生产/原iOS测试/工程/锁/构建脚本与7ea52d相同；5文件子变更含文档/HANDOFF。Windows复核470语法及83工具76过7跳过。两进程只读观察各run，不重复派发；最终分别核日志/summary/xcresult与版本环境，不能把逻辑run当第二次原生。
 
 实际首轮失败已确认：CI39702147807 completed/failure，独立14/14过，App build-for-testing在VM155-157三处报actor-isolated sync method不能partial apply，未启动原生用例/模拟器测试。不是环境或旧定位问题，也不能复用为原生13通过。失败完整日志/metadata已保存，artifact12394101464保留下载核验；不重写失败历史。已仅将三个仓库引用经现有any BookRepository异步协议暴露，并补1个同型actor同步实现/异步协议方法值合同（独立将为15项），无新增await/Task、无DB实现改动。对这一明确修正才补一次15+原13；并行的14逻辑清理run继续收原始结果，不能当最终15或原生验收。下一步本地复核后冻结修正源。
+
+修正源已冻c00083492fcfccd56fae978178f72e56a5542e35 / refs/heads/codex/fix-reader-lifecycle-repository-binding，只派[CI39703522408](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39703522408)，session-lifecycle（默认session_logic_only=false），先15包合同、后原13。corrected-frozen.json核定相对3fa仅VM协议引用、测试/验证器及文档5文件变化；编排实现、所有其他VM方法、原生测试/工程/锁保持。原件：首失败artifact12394101464/194991字节/SHA5f9a3b2e2baf202a0997464c986554da69d0733f0db47810f4395d2c2f39b03d已CRC/digest完整保留；清理逻辑run39702833284 completed/success、14/14，原生步骤skipped，artifact12393403553/3452字节/SHA590e45f72e3e4eee9d47234bc0ce1648ec46c3c54b6d2472604ca3f9907c6270已核完整。均只精确删重复ZIP。Windows修正后470语法及83工具76过7跳过。新观察进程只读收39703522408，不要重派；当前Swift/原生最终结果待收。
 
 基线fd259b0f1a93df774c51fc74f1e521fc2254a06a；已核591运行输入与保存检查点一致、1203路径保护基线build/maintenance/R4b-20261022/before.json，普通HEAD/index不动，无旧运行观察进程。实现前已读4文档、实际源码、Git状态与原件；R4a真实6+13及旧1负保留。只跑新增包内编排合同与原13生命周期回归，不重跑旧负对照、Readium19、完整191或Release/IPA；先本地静态/工具，再冻结一次定向CI。原生准备成本与用例执行分记；发现其他边界失败先留证、不扩修。
 
