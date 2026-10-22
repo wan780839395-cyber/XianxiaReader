@@ -133,6 +133,8 @@ open class EPUBNavigatorViewController: InputObservableViewController,
         }
     }
 
+    private var viewportFixtureStorage: AnyObject?
+
     public var continuousScrollLoadedResourceCount: Int { infiniteScrollView?.loadedViews.count ?? 0 }
     public var continuousScrollDiagnosticState: String {
         infiniteScrollView?.diagnosticState ?? "paged preferences: " + preferenceReflowTrace.joined(separator: "; ")
@@ -549,6 +551,9 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
         if viewModel.infiniteScroll {
             let isv = EPUBInfiniteScrollView(frame: view.bounds)
+            #if DEBUG
+                isv.viewportFixtureControl = viewportFixtureControl
+            #endif
             isv.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             isv.infiniteDelegate = self
             isv.backgroundColor = .clear
@@ -696,7 +701,12 @@ open class EPUBNavigatorViewController: InputObservableViewController,
 
     private var paginationView: PaginationView?
     private var infiniteScrollView: EPUBInfiniteScrollView? {
-        didSet { infiniteScrollView?.screenPagingEnabled = verticalScreenPagingEnabled }
+        didSet {
+            infiniteScrollView?.screenPagingEnabled = verticalScreenPagingEnabled
+            #if DEBUG
+                infiniteScrollView?.viewportFixtureControl = viewportFixtureControl
+            #endif
+        }
     }
     /// Local input policy for the bounded continuous container; no EPUB reflow.
     public var verticalScreenPagingEnabled = false {
@@ -723,6 +733,9 @@ open class EPUBNavigatorViewController: InputObservableViewController,
                 old.removeFromSuperview()
                 paginationView = nil
                 let isv = EPUBInfiniteScrollView(frame: view.bounds)
+            #if DEBUG
+                isv.viewportFixtureControl = viewportFixtureControl
+            #endif
                 isv.autoresizingMask = [.flexibleHeight, .flexibleWidth]
                 isv.infiniteDelegate = self
                 isv.backgroundColor = .clear
@@ -1616,3 +1629,12 @@ extension EPUBNavigatorViewController: EPUBInfiniteScrollViewDelegate {
         updateCurrentLocation()
     }
 }
+
+#if DEBUG
+extension EPUBNavigatorViewController {
+    public var viewportFixtureControl: (any EPUBViewportFixtureControl)? {
+        get { viewportFixtureStorage as? any EPUBViewportFixtureControl }
+        set { viewportFixtureStorage = newValue; infiniteScrollView?.viewportFixtureControl = newValue }
+    }
+}
+#endif

@@ -24,6 +24,8 @@ import XianxiaCore
     private var txtReading: TXTPreparedPublication?
     private let additionalUserScripts: [WKUserScript]
     private var navigator: EPUBNavigatorViewController?
+    // Opaque nil storage keeps test installation APIs entirely in the DEBUG extension.
+    private var viewportFixtureStorage: AnyObject?
     private var readingFonts: [ReaderFontResource] = []
     public var fontProvider: (any ReaderFontProviding)? { self }
 
@@ -156,6 +158,9 @@ import XianxiaCore
         self.bookID = book.id
         txtReading = txt
         self.navigator = navigator
+        #if DEBUG
+            navigator.viewportFixtureControl = viewportFixtureControl
+        #endif
         navigator.verticalScreenPagingEnabled = interaction.verticalScreenPaging
         appliedPreferences = preferences
         searchProvider = publication.isSearchable ? ReadiumSearchProvider(publication: publication, bookID: book.id, txtPlan: txt?.plan) : nil
@@ -570,3 +575,19 @@ extension ReadiumReaderEngine {
         }
     }
 }
+
+#if DEBUG
+extension ReadiumReaderEngine {
+    typealias ViewportFixtureEvent = EPUBViewportFixtureEvent
+    typealias ViewportFixtureControl = EPUBViewportFixtureControl
+    var viewportFixtureControl: (any ViewportFixtureControl)? {
+        get { viewportFixtureStorage as? any ViewportFixtureControl }
+        set { viewportFixtureStorage = newValue; navigator?.viewportFixtureControl = newValue }
+    }
+    func requestViewportFixtureSample() async {
+        await EPUBViewportFixtureEvent.$source.withValue("test-auxiliary") {
+            _ = await navigator?.firstVisibleElementLocator()
+        }
+    }
+}
+#endif

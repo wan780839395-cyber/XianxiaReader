@@ -1,3 +1,15 @@
+# 连续视口最小Debug夹具：源码接线完成，未原生验证、零CI（2026-10-22）
+
+用户仅授权最小fixture及命中/放行/取消清理检查，不派CI、不改定位算法。已在设计规定6个源/摘要文件实现，默认关闭；原单例测试进程显式XIANXIA_VIEWPORT_FIXTURE=smoke才安装实例控制器，未知模式失败。现有App/Core/ReadingInterfaces/隔离模块/资源/依赖/项目/CI均未动，原断言/预算保留。实现与未来执行资格详见[设计第9节](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)。
+
+S在缓存未命中、首次DOM读取前；M组在真实结果之后/原guard之前。身份/TaskLocal来源/同次JS几何/实际finished均有记录，安全顺序先放S、再resize放M；未实现冲突顺序。六项控制器自检已编写，但未运行。复合清理在open前注册，替代本方法两个裸frame清理：先关闭失效，abort全部waiter后恢复frame，异步teardown以3秒检查残留及晚提交，不能仅依赖defer。
+
+Windows实际检查：仓库7类静态及484文件语法通过，新增诊断0/保留Vendor54；相关Python13项中12通过/1 POSIX跳过。第一次因本地解析器不支持类内#if成员而失败，日志保留；改为文件级Debug扩展，无白名单/检查/架构例外变更。Release无安装入口，三个私有nil opaque槽/内部默认nil元数据参数不参与业务；5Swift的Release归一化文本对照保持，不能代替编译。源码风险仍为Swift6.1.2桥接/continuation/XCTest接线未编译，实际缓存/尺寸资格尚无运行原件。
+
+本机无Swift编译器；docker info exit1，Linux引擎管道不存在，未启容器/重置工具。零CI、零Swift执行，原生屏障命中、放行和取消清理均未验收，旧根因未证。源基线f167a752；617输入中仅预定6项改变，其他611保持；普通HEAD/index保持。证据与恢复build/maintenance/I6-viewport-fixture-20261022，项目审计Documentation/ValidationLogs/project-isolation-i6-viewport-fixture.json。保存后下一步应先明确仅此smoke的原生验证范围，未有新授权不得派CI/冲突复现/改算法。旧full39735403242仍191/192，I6/Release/手机未验收，无新IPA，最后交付Build30，不关机。
+
+---
+
 # 连续视口可控复现设计：设计完成，未实施、零CI（2026-10-22）
 
 用户本轮只授权设计与静态审阅；保留原断言/预算、现有隔离及定位修复，不实施屏障、不改定位算法、不派CI。已完成[可控复现设计](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)：H1为“旧请求上下文跨尺寸后读新DOM，B覆盖A，measure因anchorEqual=false不恢复A”；它仍是假设，不能追认为旧full根因。

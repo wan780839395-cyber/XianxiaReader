@@ -1,5 +1,7 @@
 # 连续视口缩放：可控复现设计
 
+2026-10-22 后续实现状态：用户已授权最小夹具；六个源/摘要文件已接线，默认关闭，仅原单例显式Debug smoke使用。**未派CI、未编译/运行Swift夹具，不能称屏障已实际命中。**本页1–8节保留原设计时状态，当前实现及证据边界见第9节。
+
 2026-10-22。本片仅完成设计和静态审阅：**不实现屏障、不修改定位算法或测试源码、不派CI**。实现、编译、原生复现及根因验证均未完成。设计基线为保存源7048594f，运行输入仍为82b35f76 / CI39759498210的617项。
 
 ## 1. 已知事实与待验证假设
@@ -128,3 +130,23 @@ Swift的任务取消是合作式；不能在teardown无限await某个任务.valu
 - 本地Readium3.11锁定源`EPUBSpreadView.evaluateScript`254–268使用带completion的evaluateJavaScript并封装continuation；没有在此调用callAsyncJavaScript。因此不通过塞一个JS Promise冒充可暂停的原始对象结果，避免重演“屏障未命中却已通过”。本项目连续容器是本地扩展，不能把上游分页重载当作此处修复。
 
 本片只核文档/源码合同和617输入保持；无fixture实现、无Swift编译、无新增测试执行、无CI。旧full191/192、Release/手机未验收和最后交付Build30全部保持。
+
+## 9. 最小夹具实现片（2026-10-22，尚待原生验证）
+
+本片仅实现安全顺序的夹具检查，不实现/执行H1冲突顺序，不增加测试方法或改CI选择器。运行时由原单例的测试进程环境变量`XIANXIA_VIEWPORT_FIXTURE=smoke`显式启用；未设置时保持原路径，未知非空值失败，不能静默回到普通单例。此开关尚未接CI/新scheme，不能凭源码存在就宣称可远程运行。
+
+实际范围仍为第7节六文件：Adapter内部实例桥与一次辅助采样入口；Navigator在连续容器创建、挂载前传递控制器；InfiniteScroll的S/M与真实提交收件；Spread同次JS的width/height/scrollY元数据；原单例私有控制器/机制检查/生命周期清理；Vendor摘要及3文件SHA256。ReadingInterfaces、UI、Core、隔离模块、项目、依赖锁、资源、脚本/工作流没有修改。
+
+- S只认领+600后的实际物理位置、当前资源的一个缓存未命中请求。必要时只补一次Adapter辅助调用，以TaskLocal标记来源；原capture另标为original-capture，A须追溯到同次真实旧布局采样/缓存来源。+600请求值和实际值均保留，不强行纠正坐标。
+- 安全顺序在原第一次30秒/100ms谓词内分阶段推进：S放行→实际finished及旧宽/原A不变→真实resize→新DOM宽匹配的M组命中→M0放行及原guard回执→其余Mi显式drain。未收到结束回执不能通过；M0的原owner/anchor/revision/local条件不成立时归夹具未合格。原竖屏等待、offset>100、同WebView/挂窗/alpha、DOM宽/原字Range可见、12资源和截屏断言保留。S原3次/32ms和capture原3秒不变。
+- CheckedContinuation由MainActor管理；先移除再resume，重复release幂等，先release后enter保存许可，M组支持多waiter。取消前/后注册均检查；终止先关闭/使所有者失效，再给abort；关闭后的晚进入不能得到run。32waiter/128事件超限直接失败并清理，不丢continuation来拿绿。
+- 只在本同例启用六项控制器机制检查：先放行后进入、已挂起后放行/重复放行、挂起时取消、注册前取消、两个M共同drain、关闭后晚进入。它们是待执行的Swift代码，**本片没有运行这些检查**；合成事件也不替代真实SDK S/M收件。各fixture expectation的3秒只限机制检查；清理另有3秒截止，不延长原业务30秒或capture3秒。
+- mount后/open前登记复合teardown，显式defer共用幂等清理；fixture启用时不再登记两处裸frame清理。取消自持任务，关闭reader/释放abort后才恢复frame、移除安装入口；teardown有界检查活动请求/任务/waiter归零和晚提交，输出完整事件日志及XCTest附件。局部defer不是唯一清理保证。
+
+本地解析器不支持类内条件成员声明，初检如实失败并保留原日志。已改成文件级Debug扩展，未扩充语法白名单/架构例外。Release只留下三个私有nil `AnyObject`存储槽及内部默认nil元数据参数，没有安装器、控制器类型或新增await；元数据JS仅显式安装时附加。逐文件去除Debug分支并对这些明确的空存储/空插值/未使用参数做归一化后，5个Swift文件的Release业务逻辑与f167a752相同。该文本对照不是编译/ABI或运行验收。
+
+本片验证：`check_repository.py --swift-syntax`通过7类静态检查及484文件语法，新增诊断0，原Vendor54限制保持；13项相关Python检查中12通过、1 POSIX跳过。原断言/预算与非目标测试体的源差异另核。Windows无Swift编译器，Docker Linux引擎实际不可用（保留exit1），未启动容器/重置工具。Swift编译、机制检查实际运行、SDK屏障命中/放行/取消、可控复现均未验收；零CI，旧full191/192及Release/手机缺口保持，无新IPA，最后交付Build30。
+
+后续必须先对这一个smoke选择取得真实编译、6项机制检查和S/M收件/清理原件，再讨论冲突顺序；不得跳过夹具命中资格直接改算法、扩大组数或宣称根因已证。当前用户未授权CI，本片保存后停止。权威记录：[实现片审计](ValidationLogs/project-isolation-i6-viewport-fixture.json)，本地恢复`build/maintenance/I6-viewport-fixture-20261022/final-checkpoint.json`。
+
+补充参考：[Swift SE-0311 TaskLocal](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0311-task-locals.md)用于逐任务来源，不用共享last-result字段；[Swift6.1.2取消实现](https://github.com/swiftlang/swift/blob/swift-6.1.2-RELEASE/stdlib/public/Concurrency/TaskCancellation.swift)核对operation/handler顺序与并发通知，只采用已实现的语义。前述Gate只借显式许可模式，不复制UnsafeContinuation。

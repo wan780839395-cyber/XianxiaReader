@@ -1,0 +1,71 @@
+{
+  "recordedAtUTC": "2026-10-22T12:05:55.137452+00:00",
+  "slice": "I6 minimal opt-in viewport fixture; safe-order smoke only",
+  "design": "Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md",
+  "sourceParent": "f167a7526c0ae4fea77b174ac7a65b441578805b",
+  "runtimeInputCount": 617,
+  "changedRuntimeInputCount": 6,
+  "unchangedRuntimeInputCount": 611,
+  "fixtureSourceImplemented": true,
+  "enabledByDefault": false,
+  "testProcessOptIn": "XIANXIA_VIEWPORT_FIXTURE=smoke",
+  "unknownModeFails": true,
+  "ciDispatches": 0,
+  "algorithmModified": false,
+  "originalAssertionsAndBudgetsUnchanged": true,
+  "fixtureMechanicsChecks": {
+    "implemented": 6,
+    "executed": 0,
+    "cases": [
+      "release before enter",
+      "held release plus duplicate release",
+      "cancel while held",
+      "cancel before registration",
+      "two-M draining",
+      "late entry after close"
+    ]
+  },
+  "sdkGateHitsVerified": false,
+  "sdkReleaseVerified": false,
+  "sdkCancellationCleanupVerified": false,
+  "conflictOrderImplemented": false,
+  "compile": "not run",
+  "nativeTests": "not run",
+  "checks": {
+    "repositoryAndSwiftGrammar": {
+      "exitCode": 0,
+      "files": 484,
+      "addedDiagnostics": 0,
+      "retainedVendorLimitations": 54,
+      "compiler": false
+    },
+    "pythonRelated": {
+      "tests": 13,
+      "passed": 12,
+      "skippedPOSIX": 1,
+      "failed": 0
+    },
+    "releaseSourceComparison": {
+      "files": 5,
+      "equalAfterDocumentedNormalization": true,
+      "compiler": false
+    }
+  },
+  "environment": {
+    "swiftCompiler": false,
+    "dockerInfoExitCode": 1,
+    "dockerLinuxEngineAvailable": false,
+    "containerStarted": false
+  },
+  "oldFull": {
+    "run": 39735403242,
+    "passed": 191,
+    "total": 192,
+    "rootCauseProven": false
+  },
+  "deviceReleaseExecuted": false,
+  "phoneAccepted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "next": "Explicit single smoke native verification scope is needed; no automatic CI, conflict replay or algorithm change."
+}

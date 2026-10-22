@@ -9,6 +9,25 @@ import UIKit
     func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView)
 }
 
+#if DEBUG
+/// Instance-only test bridge. Values contain geometry/identities, never book text.
+public struct EPUBViewportFixtureEvent: Sendable {
+    @TaskLocal public static var source = "native"
+    public let requestID: UUID
+    public let kind: String
+    public let values: [String: String]
+    public init(requestID: UUID, kind: String, values: [String: String]) {
+        self.requestID = requestID; self.kind = kind; self.values = values
+    }
+}
+
+@MainActor public protocol EPUBViewportFixtureControl: AnyObject {
+    func observe(_ event: EPUBViewportFixtureEvent)
+    func pause(_ event: EPUBViewportFixtureEvent) async -> Bool
+    func invalidate(_ reason: String)
+}
+#endif
+
 @MainActor final class EPUBInfiniteScrollView: UIScrollView, UIScrollViewDelegate, Loggable {
     @MainActor private final class Slot {
         let view: EPUBSpreadView
@@ -40,6 +59,8 @@ import UIKit
     private var navigation = false
     private var lastSize = CGSize.zero
     private var viewportRevision: UInt64 = 0
+    // Release has no installer or controller type, only unused nil opaque storage.
+    private var viewportFixtureStorage: AnyObject?
     // Debug evidence only: no extra await, scheduling or restoration decisions.
     private var reflowTrace: [String] = []
     private func recordReflow(_ message: @autoclosure () -> String) {
@@ -232,6 +253,9 @@ import UIKit
         setContentOffset(contentOffset, animated: false)
         epoch = UUID()
         for index in Array(slots.keys) { evict(index) }
+        #if DEBUG
+            viewportFixtureControl?.invalidate("viewport-cleared")
+        #endif
     }
     func shutdown() {
         chapterCount = 0
@@ -399,6 +423,22 @@ import UIKit
         let measuredAnchor = slot.savedAnchor
         let measuredLocalTop = viewportTop - slot.wrapper.frame.minY
         let measuredAnchorIsCurrent = savedAnchorMatchesViewport(slot, revision: measuredRevision)
+        #if DEBUG
+            let fixture = viewportFixtureControl
+            let fixtureID = fixture.map { _ in UUID() }
+            let fixtureContext = fixture == nil ? [:] : fixtureValues(index, slot)
+            var fixtureOutcome = "not-committed"
+            if let id = fixtureID { fixture?.observe(.init(requestID: id, kind: "measure-start", values: fixtureContext)) }
+            defer {
+                if let id = fixtureID {
+                    var values = fixtureValues(index, slot); values["outcome"] = fixtureOutcome
+                    fixture?.observe(.init(requestID: id, kind: "measure-finished", values: values))
+                }
+            }
+            let fixtureJS = fixture == nil ? "" : ",fixture:{width:innerWidth,height:innerHeight,scrollY}"
+        #else
+            let fixtureJS = ""
+        #endif
         do {
             anchorJSON = try slot.savedAnchor?.jsonString() ?? "{}"
         } catch {
@@ -424,11 +464,25 @@ import UIKit
           }
           const anchor = (\(EPUBSpreadView.continuousAnchorRectFunction))(\(anchorJSON));
           return {height: Math.ceil(bottom + (parseFloat(style.marginBottom) || 0)),
-                  anchorY: anchor ? anchor.top + scrollY : null};
+                  anchorY: anchor ? anchor.top + scrollY : null\(fixtureJS)};
         })()
         """
         recordReflow("start index=\(index) revision=\(measuredRevision) local=\(measuredLocalTop) currentAnchor=\(measuredAnchorIsCurrent) anchor=\(anchorJSON)")
         let result = await slot.view.evaluateScript(script)
+        #if DEBUG
+            if let fixture, let id = fixtureID {
+                var values = fixtureContext
+                if case let .success(value) = result, let data = value as? [String: Any],
+                   let metadata = data["fixture"] as? [String: Any] {
+                    for key in ["width", "height", "scrollY"] {
+                        if let number = metadata[key] as? NSNumber { values["dom." + key] = number.stringValue }
+                    }
+                }
+                guard await fixture.pause(.init(requestID: id, kind: "measure-before-commit", values: values)) else {
+                    fixtureOutcome = "aborted"; return
+                }
+            }
+        #endif
         guard epoch == request, slots[index] === slot else {
             recordReflow("discard index=\(index) revision=\(measuredRevision) staleEpochOrSlot")
             return
@@ -446,6 +500,20 @@ import UIKit
                 && slot.savedAnchor == measuredAnchor && savedAnchorMatchesViewport(slot, revision: measuredRevision)
                 && viewportRevision == measuredRevision
                 && abs(viewportTop - slot.wrapper.frame.minY - measuredLocalTop) < 0.5
+            #if DEBUG
+                if let id = fixtureID {
+                    var values = fixtureValues(index, slot)
+                    values["ownerMatches"] = String(epoch == request && slots[index] === slot)
+                    values["anchorEqual"] = String(slot.savedAnchor == measuredAnchor)
+                    values["anchorCurrentAtStart"] = String(measuredAnchorIsCurrent)
+                    values["anchorCurrentNow"] = String(savedAnchorMatchesViewport(slot, revision: measuredRevision))
+                    values["revisionMatches"] = String(viewportRevision == measuredRevision)
+                    values["localMatches"] = String(abs(viewportTop - slot.wrapper.frame.minY - measuredLocalTop) < 0.5)
+                    values["mayRestore"] = String(mayRestoreAnchor)
+                    fixture?.observe(.init(requestID: id, kind: "measure-guard", values: values))
+                    fixtureOutcome = "committed"
+                }
+            #endif
             let desiredLocal: CGFloat? = mayRestoreAnchor ? newAnchorY.map { y in
                 y - CGFloat(measuredAnchor?.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0)
             } : nil
@@ -633,17 +701,52 @@ import UIKit
         let localTop = viewportTop - slot.wrapper.frame.minY
         let moving = automaticScrolling
         slot.anchorDiagnostic = "requested local=\(localTop) clip=\(clipTop)...\(clipBottom) revision=\(revision)"
+        #if DEBUG
+            let fixture = viewportFixtureControl
+            let fixtureID = fixture.map { _ in UUID() }
+            let fixtureContext = fixture == nil ? [:] : fixtureValues(index, slot)
+            var fixtureOutcome = "rejected"
+            if let id = fixtureID { fixture?.observe(.init(requestID: id, kind: "sample-start", values: fixtureContext)) }
+            defer {
+                if let id = fixtureID {
+                    var values = fixtureValues(index, slot); values["outcome"] = fixtureOutcome
+                    fixture?.observe(.init(requestID: id, kind: "sample-finished", values: values))
+                }
+            }
+        #endif
         // Keep the old DOM anchor across reflow until measure() compensates;
         // a resize notification is not a user scroll.
         if !moving, savedAnchorMatchesViewport(slot, revision: revision), let anchor = slot.savedAnchor {
             slot.anchorDiagnostic = "cached local=\(localTop) revision=\(revision)"
+            #if DEBUG
+                fixtureOutcome = "cached"
+            #endif
             return anchor
         }
+        #if DEBUG
+            if let fixture, let id = fixtureID {
+                guard await fixture.pause(.init(requestID: id, kind: "sample-before-read", values: fixtureContext)) else {
+                    fixtureOutcome = "aborted"; return nil
+                }
+            }
+        #endif
         // Native UIScrollView can publish its new offset before WebKit has
         // committed the same document viewport. Collect all DOM values in
         // one callback and retry only this mismatch, for at most 3 samples.
         for attempt in 0..<3 {
-            let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom)
+            #if DEBUG
+                let metadata: (([String: Double]) -> Void)? = fixtureID.map { id in
+                    { values in
+                        var fields = fixtureContext; fields["attempt"] = String(attempt)
+                        for (key, number) in values { fields["dom." + key] = String(number) }
+                        fixture?.observe(.init(requestID: id, kind: "sample-dom", values: fields))
+                    }
+                }
+                let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom,
+                                                                               fixtureMetadata: metadata)
+            #else
+                let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom)
+            #endif
             guard !Task.isCancelled, epoch == request, currentIndex == index, slots[index] === slot,
                   automaticScrolling == moving, !slot.positioning,
                   moving || (viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5) else { return nil }
@@ -664,6 +767,9 @@ import UIKit
             slot.anchorRevision = revision
             slot.anchorViewportTop = localTop
             slot.savedAnchor = snapshot.locator
+            #if DEBUG
+                fixtureOutcome = "committed"
+            #endif
             slot.anchorDocumentY = snapshot.documentY
             slot.anchorDiagnostic += " accepted"
             return snapshot.locator
@@ -671,3 +777,38 @@ import UIKit
         return nil
     }
 }
+
+#if DEBUG
+extension EPUBInfiniteScrollView {
+    var viewportFixtureControl: (any EPUBViewportFixtureControl)? {
+        get { viewportFixtureStorage as? any EPUBViewportFixtureControl }
+        set { viewportFixtureStorage = newValue }
+    }
+
+    private func fixtureAnchor(_ anchor: Locator?) -> String {
+        guard let anchor else { return "nil" }
+        do {
+            let object = try JSONSerialization.jsonObject(with: Data(try anchor.jsonString().utf8))
+            let bytes = try JSONSerialization.data(withJSONObject: object, options: .sortedKeys)
+            // Diagnostic equality fingerprint only; text never leaves this function.
+            var value: UInt64 = 14695981039346656037
+            for byte in bytes { value = (value ^ UInt64(byte)) &* 1099511628211 }
+            return String(value, radix: 16)
+        } catch {
+            // The controller treats this marker as a fixture failure, not a usable anchor.
+            return "serialization-error"
+        }
+    }
+
+    private func fixtureValues(_ index: Int, _ slot: Slot) -> [String: String] {
+        ["reader": String(describing: ObjectIdentifier(self)), "epoch": epoch.uuidString,
+         "slot": String(describing: ObjectIdentifier(slot)), "index": String(index),
+         "webView": String(describing: ObjectIdentifier(slot.view.webView)),
+         "revision": String(viewportRevision), "localTop": String(describing: viewportTop - slot.wrapper.frame.minY),
+         "outerY": String(describing: contentOffset.y), "nativeWidth": String(describing: slot.view.bounds.width),
+         "nativeHeight": String(describing: slot.view.bounds.height), "moving": String(automaticScrolling),
+         "positioning": String(slot.positioning), "ready": String(slot.ready),
+         "anchor": fixtureAnchor(slot.savedAnchor), "source": EPUBViewportFixtureEvent.source]
+    }
+}
+#endif

@@ -1419,7 +1419,7 @@
   "localModifiedFiles": [
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
-      "sha256": "b54fa451bc1b9cfb9494814fe0ded75577ce15599e8204b542a94e047e4a3104"
+      "sha256": "a6d3227ff91992b24a9335546bc7c9318221f00c3d5ca6eb2b81b9fca2955500"
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "6488e15006a38620bb2d2aea92f99416d7e8e5e1c632f021340a7d02195907ac"
+      "sha256": "5ddc8e8d8e28510328546d9d7eb0a120178b23ee2f8415c08df5054bd542618a"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "154ad2e2b266a688076d731928d7f589e3baa6b0fc3ebab48ea1f698569c9066"
+      "sha256": "182a3413cf8d719b7116ad4ed76f7430c65c528c5e60f5e80717fa804abb625c"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
@@ -1803,5 +1803,20 @@
     "preserved": "Font and full pending locator restoration, once guard, close cancellation, continuous path, position guards, all budgets and dependencies.",
     "regression": "Hold the actual one.xhtml spreadLoaded animation-frame callback, prove DOM complete and held, require a visible full native position before explicit release, then retain that position. Exact old1/new6 control pending.",
     "validationPendingAtSourceCheckpoint": true
+  },
+  "viewportFixtureReview": {
+    "date": "2026-10-22",
+    "scope": "Instance-owned opt-in DEBUG S-before-read/M-before-commit test bridge and same-evaluation geometry only; default nil adds no await. Original guards, locator business values, retries, budgets and commit order retained.",
+    "design": "Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md",
+    "mode": "safe-order smoke only; conflict replay not implemented",
+    "nativeCompiled": false,
+    "nativeGateHitsVerified": false,
+    "ciDispatches": 0,
+    "dependenciesChanged": false,
+    "references": [
+      "https://github.com/swiftlang/swift-evolution/blob/main/proposals/0300-continuation.md",
+      "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/Gate.swift"
+    ],
+    "releaseStorage": "Only three private nil AnyObject slots remain; installer types/methods and metadata execution are file-level DEBUG extensions. No new await in the default nil path."
   }
 }

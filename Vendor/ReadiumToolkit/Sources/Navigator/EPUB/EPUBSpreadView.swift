@@ -626,9 +626,15 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         return (try result.get() as? NSNumber).map { CGFloat($0.doubleValue) }
     }
 
-    func continuousVisibleAnchorSnapshot(visibleTop: CGFloat, visibleBottom: CGFloat) async
+    func continuousVisibleAnchorSnapshot(visibleTop: CGFloat, visibleBottom: CGFloat,
+                                         fixtureMetadata: (([String: Double]) -> Void)? = nil) async
         -> (locator: Locator, documentY: CGFloat, documentTop: CGFloat)?
     {
+        #if DEBUG
+            let fixtureJS = fixtureMetadata == nil ? "" : ",fixture:{width:innerWidth,height:innerHeight,scrollY}"
+        #else
+            let fixtureJS = ""
+        #endif
         let script = """
         (() => {
           const top = \(visibleTop), bottom = \(visibleBottom);
@@ -699,10 +705,22 @@ class EPUBSpreadView: UIView, Loggable, PageView {
           const locator = {href:'#',type:'application/xhtml+xml',locations,text};
           const rect = (\(Self.continuousAnchorRectFunction))(locator);
           if (rect) locations.xianxiaViewportOffset = rect.top - top;
-          return rect ? {locator, documentY:rect.top + scrollY, documentTop:scrollY + top} : null;
+          return rect ? {locator, documentY:rect.top + scrollY, documentTop:scrollY + top\(fixtureJS)} : null;
         })()
         """
         let result = await evaluateScript(script)
+        #if DEBUG
+            if let fixtureMetadata {
+                var fields: [String: Double] = [:]
+                if case let .success(value) = result, let data = value as? [String: Any],
+                   let metadata = data["fixture"] as? [String: Any] {
+                    for key in ["width", "height", "scrollY"] {
+                        if let value = metadata[key] as? NSNumber { fields[key] = value.doubleValue }
+                    }
+                }
+                fixtureMetadata(fields)
+            }
+        #endif
         do {
             guard let snapshot = try result.get() as? [String: Any],
                   let y = snapshot["documentY"] as? NSNumber, y.doubleValue.isFinite,

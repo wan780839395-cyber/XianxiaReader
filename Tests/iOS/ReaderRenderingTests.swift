@@ -7,6 +7,270 @@ import XCTest
 import XianxiaCore
 @testable import XianxiaReader
 
+#if DEBUG
+/// Opt-in controller for this single case; no global hooks or production state writes.
+@MainActor private final class ViewportFixture: ReadiumReaderEngine.ViewportFixtureControl {
+    typealias Event = ReadiumReaderEngine.ViewportFixtureEvent
+    private enum Failure: Error { case invalid(String) }
+    private weak var engine: ReadiumReaderEngine?
+    private weak var window: UIWindow?
+    private let originalFrame: CGRect
+    private let nonce = UUID().uuidString
+    private var armed = false
+    private var closed = false
+    private var cleaning = false
+    private var readerCloseIssued = false
+    private var failure: String?
+    private var sequence = 0
+    private var events: [[String: String]] = []
+    private var active: [UUID: Event] = [:]
+    private var finished: [UUID: Event] = [:]
+    private var dom: [UUID: Event] = [:]
+    private var guards: [UUID: Event] = [:]
+    private var waiters: [UUID: CheckedContinuation<Bool, Never>] = [:]
+    private var permits: Set<UUID> = []
+    private var tasks: [UUID: Task<Void, Never>] = [:]
+    private var auxiliaryStarted = false
+    private var sampleOuterY: Double?
+    private var sample: Event?
+    private var originalAnchor: String?
+    private var measureWidth: Double?
+    private var owner: [String: String] = [:]
+    private var measures: [UUID] = []
+    private var draining = false
+    private var stage = 0
+    var onHeld: (() -> Void)?
+    var onEvidence: ((XCTAttachment) -> Void)?
+    var waiterCount: Int { waiters.count }
+    var sampleHeld: Bool { sample.map { waiters[$0.requestID] != nil } ?? false }
+
+    init(engine: ReadiumReaderEngine? = nil, window: UIWindow? = nil) {
+        self.engine = engine; self.window = window; originalFrame = window?.frame ?? .zero
+    }
+
+    func armSample(outerY: Double) { armed = true; sampleOuterY = outerY }
+    func bindActualScroll(outerY: Double) { sampleOuterY = outerY }
+    func armMeasures(width: Double, owner: [String: String]) { measureWidth = width; self.owner = owner }
+
+    func observe(_ event: Event) {
+        if event.kind.hasSuffix("-start") {
+            guard active.count < 128 else { fail("request-overflow"); return }
+            active[event.requestID] = event
+        }
+        if event.kind.hasSuffix("-finished") { active.removeValue(forKey: event.requestID) }
+        guard armed else { return }
+        if event.kind.hasSuffix("-finished") {
+            finished[event.requestID] = event
+            if closed, event.values["outcome"] == "committed" { fail("commit-after-close", closeReader: false) }
+        }
+        if event.kind == "sample-dom" { dom[event.requestID] = event }
+        if event.kind == "measure-guard" { guards[event.requestID] = event }
+        if event.values["anchor"] == "serialization-error" { fail("anchor-serialization") }
+        append(event)
+        if active.count > 128 || finished.count > 128 || dom.count > 128 { fail("request-overflow") }
+    }
+
+    private func append(_ event: Event) {
+        guard events.count < 128 else { fail("event-overflow"); return }
+        sequence += 1
+        var row = event.values
+        row["nonce"] = nonce; row["sequence"] = String(sequence)
+        row["requestID"] = event.requestID.uuidString; row["kind"] = event.kind
+        events.append(row)
+    }
+
+    func pause(_ event: Event) async -> Bool {
+        observe(event)
+        guard !closed else { return false }
+        if Task.isCancelled { cancelled(); return false }
+        guard armed else { return true }
+        let matchingSample = event.kind == "sample-before-read" && sample == nil
+            && event.values["index"] == "1" && event.values["ready"] == "true"
+            && event.values["moving"] == "false" && event.values["positioning"] == "false"
+            && abs((Double(event.values["outerY"] ?? "") ?? -.infinity) - (sampleOuterY ?? .infinity)) < 0.5
+        let matchingMeasure = event.kind == "measure-before-commit" && !draining
+            && measureWidth.map { abs((Double(event.values["dom.width"] ?? "") ?? -.infinity) - $0) < 2 } == true
+            && ["reader", "epoch", "slot", "webView", "index"].allSatisfy { event.values[$0] == owner[$0] }
+        guard matchingSample || matchingMeasure else { return true }
+        if matchingSample { sample = event }
+        if matchingMeasure { measures.append(event.requestID) }
+        let run = await withTaskCancellationHandler {
+            await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
+                if closed || Task.isCancelled { continuation.resume(returning: false); return }
+                if permits.contains(event.requestID) { continuation.resume(returning: true); return }
+                guard waiters.count < 32 else {
+                    fail("waiter-overflow"); continuation.resume(returning: false); return
+                }
+                guard waiters[event.requestID] == nil else {
+                    fail("duplicate-enter"); continuation.resume(returning: false); return
+                }
+                waiters[event.requestID] = continuation
+                append(Event(requestID: event.requestID, kind: "held", values: ["gate": event.kind]))
+                if !closed { onHeld?() }
+            }
+        } onCancel: { [weak self] in
+            Task { @MainActor in self?.cancelled() }
+        }
+        if Task.isCancelled { cancelled(); return false }
+        return run && !closed
+    }
+
+    private func cancelled() {
+        guard !cleaning, !closed else { return }
+        fail("task-cancelled")
+    }
+
+    func release(_ id: UUID) {
+        guard !closed else { return }
+        guard permits.count < 128 || permits.contains(id) else { fail("permit-overflow"); return }
+        // Remember a release arriving before enter. Repeated release cannot resume twice.
+        let first = permits.insert(id).inserted
+        let continuation = waiters.removeValue(forKey: id)
+        if first { append(Event(requestID: id, kind: "released", values: ["disposition":"run"])) }
+        continuation?.resume(returning: !closed)
+    }
+
+    func drainMeasures() {
+        draining = true
+        for id in measures { release(id) }
+    }
+
+    func invalidate(_ reason: String) {
+        // Initial mount/navigation clear happens before arming; it is not an injected failure.
+        guard armed, !cleaning, !closed else { return }
+        if stage == 4 { abort(closeReader: false) }
+        else { fail("owner-invalidated:" + reason, closeReader: false) }
+    }
+
+    private func fail(_ reason: String, closeReader: Bool = true) {
+        if failure == nil { failure = reason }
+        abort(closeReader: closeReader)
+    }
+
+    private func abort(closeReader: Bool) {
+        guard !closed else { return }
+        // Terminal first; close invalidates epoch/slots before any waiter gets abort.
+        closed = true
+        append(Event(requestID: UUID(), kind: "closing", values: ["reason":failure ?? "cleanup"]))
+        for task in tasks.values { task.cancel() }
+        if closeReader { closeOwnedReader() }
+        let pending = waiters; waiters.removeAll()
+        append(Event(requestID: UUID(), kind: "abort-issued", values: ["count":String(pending.count)]))
+        for (_, continuation) in pending { continuation.resume(returning: false) }
+    }
+
+    private func closeOwnedReader() {
+        guard !readerCloseIssued else { return }
+        readerCloseIssued = true; engine?.close()
+    }
+
+    func checkFailure() throws {
+        if let failure { throw Failure.invalid(failure) }
+        if closed { throw Failure.invalid("controller-closed") }
+    }
+
+    func startAuxiliarySampleOnce() {
+        guard sample == nil, !auxiliaryStarted, !closed, let engine else { return }
+        auxiliaryStarted = true
+        let id = UUID()
+        tasks[id] = Task { @MainActor [weak self] in
+            defer { self?.tasks.removeValue(forKey: id) }
+            await engine.requestViewportFixtureSample()
+            if let self, !self.closed, self.sample == nil { self.fail("no-cache-miss-sample") }
+        }
+    }
+
+    func verifyOriginalCapture() throws {
+        try checkFailure()
+        guard sampleHeld, let sample,
+              let receipt = events.last(where: { $0["kind"] == "sample-finished" && $0["source"] == "original-capture" }),
+              ["committed", "cached"].contains(receipt["outcome"] ?? ""), let anchor = receipt["anchor"], anchor != "nil",
+              let accepted = finished.first(where: { $0.value.kind == "sample-finished" && $0.value.values["anchor"] == anchor
+                  && $0.value.values["outcome"] == "committed" }), let metadata = dom[accepted.key],
+              let oldWidth = Double(sample.values["nativeWidth"] ?? ""),
+              abs((Double(metadata.values["dom.width"] ?? "") ?? -.infinity) - oldWidth) < 2,
+              ["reader", "epoch", "slot", "webView", "revision", "localTop"].allSatisfy({ sample.values[$0] == receipt[$0] }) else {
+            fail("capture-A-has-no-qualified-old-layout-provenance"); try checkFailure(); return
+        }
+        originalAnchor = anchor
+    }
+
+    /// Safe order only: S commits at old size, then real resize, M release/receipt/drain.
+    /// Called by the original 100ms/30s predicate; never waits on a gate here.
+    func advanceSafeResize(to size: CGSize) throws -> Bool {
+        try checkFailure()
+        guard let sample else { throw Failure.invalid("missing-S") }
+        switch stage {
+        case 0:
+            release(sample.requestID); stage = 1
+        case 1:
+            guard let receipt = finished[sample.requestID] else { return false }
+            guard receipt.values["outcome"] == "committed", receipt.values["anchor"] == originalAnchor,
+                  let metadata = dom[sample.requestID],
+                  abs((Double(metadata.values["dom.width"] ?? "") ?? -.infinity)
+                      - (Double(sample.values["nativeWidth"] ?? "") ?? .infinity)) < 2,
+                  !active.values.contains(where: { $0.kind == "measure-start" }) else {
+                fail("safe-S-or-preexisting-measure-unqualified"); try checkFailure(); return false
+            }
+            armMeasures(width: Double(size.width), owner: receipt.values)
+            window?.frame = CGRect(origin: originalFrame.origin, size: size)
+            window?.layoutIfNeeded(); stage = 2
+        case 2:
+            guard let id = measures.first, let start = active[id] else { return false }
+            guard start.values["anchor"] == originalAnchor else {
+                fail("M-did-not-capture-A"); try checkFailure(); return false
+            }
+            release(id); stage = 3
+        case 3:
+            guard let id = measures.first, let receipt = finished[id] else { return false }
+            guard receipt.values["outcome"] == "committed", let decision = guards[id],
+                  ["ownerMatches", "anchorEqual", "anchorCurrentAtStart", "anchorCurrentNow", "revisionMatches", "localMatches", "mayRestore"]
+                    .allSatisfy({ decision.values[$0] == "true" }) else {
+                fail("safe-M-original-guard-not-qualified"); try checkFailure(); return false
+            }
+            drainMeasures()
+            guard measures.allSatisfy({ finished[$0] != nil }) else { return false }
+            stage = 4
+        default: return true
+        }
+        return false
+    }
+
+    func cleanUp() {
+        guard !cleaning else { return }
+        cleaning = true; abort(closeReader: true)
+        // abort may already have run on cancellation; close still precedes restoring frame.
+        closeOwnedReader()
+        if let window { window.frame = originalFrame; window.layoutIfNeeded() }
+        engine?.viewportFixtureControl = nil
+    }
+
+    func tearDown() async {
+        cleanUp()
+        let deadline = Date().addingTimeInterval(3)
+        while (!active.isEmpty || !tasks.isEmpty) && Date() < deadline {
+            do { try await Task.sleep(nanoseconds: 100_000_000) }
+            catch { XCTFail("Fixture cleanup cancelled: \(error)"); break }
+        }
+        if !active.isEmpty || !tasks.isEmpty || !waiters.isEmpty {
+            XCTFail("Fixture cleanup residual requests=\(active.keys) tasks=\(tasks.keys) waiters=\(waiters.keys)")
+        }
+        if let failure { XCTFail("Viewport fixture: " + failure) }
+        do {
+            let payload: [String: Any] = ["nonce":nonce, "events":events, "stage":stage,
+                "active":active.keys.map(\.uuidString), "tasks":tasks.keys.map(\.uuidString),
+                "waiters":waiters.keys.map(\.uuidString), "failure":failure ?? "none"]
+            let data = try JSONSerialization.data(withJSONObject: payload, options: .sortedKeys)
+            let text = String(decoding: data, as: UTF8.self)
+            let attachment = XCTAttachment(string: text); attachment.name = "continuous-viewport-fixture"
+            attachment.lifetime = .keepAlways
+            onEvidence?(attachment)
+            print("CONTINUOUS_VIEWPORT_FIXTURE \(text)")
+        } catch { XCTFail("Fixture evidence serialization failed: \(error)") }
+    }
+}
+#endif
+
 final class ReaderRenderingTests: XCTestCase {
     @MainActor func testRepeatedAppliedPreferencesKeepFreshCaptureAvailableAndCancelQueuedChange() async throws {
         let engine = ReadiumReaderEngine()
@@ -51,6 +315,21 @@ final class ReaderRenderingTests: XCTestCase {
     @MainActor func testContinuousViewportResizeKeepsOriginalWordAndLiveWebView() async throws {
         let engine = ReadiumReaderEngine(); engine.setContinuousScrolling(true)
         let (window, state) = try mount(engine); state.visible = false
+        #if DEBUG
+            if let mode = ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"], mode != "smoke" {
+                XCTFail("Unknown viewport fixture mode: " + mode); throw RenderFailure.invalidProbe
+            }
+            let fixture: ViewportFixture? = ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"] == "smoke"
+                ? ViewportFixture(engine: engine, window: window) : nil
+            if let fixture {
+                // Registered after mount, before open; replaces both bare frame cleanups below.
+                addTeardownBlock { await fixture.tearDown() }
+                fixture.onEvidence = { [weak self] attachment in self?.add(attachment) }
+                engine.viewportFixtureControl = fixture
+                try await checkViewportFixtureMechanics()
+            }
+            defer { fixture?.cleanUp() }
+        #endif
         let (book, navigator) = try await open(engine)
         _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
         try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
@@ -63,9 +342,36 @@ final class ReaderRenderingTests: XCTestCase {
         let preparationWeb = try resourceWebView(engine, index: 1)
         let initialDOMY = try await preparationWeb.evaluateJavaScript("scrollY")
         let initialOuterY = scroll.contentOffset.y
+        #if DEBUG
+            fixture?.armSample(outerY: Double(initialOuterY + 600))
+        #endif
         scroll.contentOffset.y += 600
-        try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
-        let saved = try await engine.captureCurrentPosition()
+        #if DEBUG
+            fixture?.bindActualScroll(outerY: Double(scroll.contentOffset.y))
+        #endif
+        #if DEBUG
+            try await waitUntil {
+                if let fixture {
+                    try fixture.checkFailure()
+                    fixture.startAuxiliarySampleOnce()
+                    guard fixture.sampleHeld else { return false }
+                }
+                return ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500
+            }
+        #else
+            try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
+        #endif
+        #if DEBUG
+            let saved: ReadingPosition
+            if fixture != nil {
+                saved = try await ReadiumReaderEngine.ViewportFixtureEvent.$source.withValue("original-capture") {
+                    try await engine.captureCurrentPosition()
+                }
+            } else { saved = try await engine.captureCurrentPosition() }
+            try fixture?.verifyOriginalCapture()
+        #else
+            let saved = try await engine.captureCurrentPosition()
+        #endif
         let data = try XCTUnwrap(JSONSerialization.jsonObject(with: saved.locatorData) as? [String: Any])
         let locations = try XCTUnwrap(data["locations"] as? [String: Any])
         let range = try XCTUnwrap(locations["domRange"] as? [String: Any])
@@ -109,13 +415,35 @@ final class ReaderRenderingTests: XCTestCase {
         try record("before-resize")
         // A real mounted viewport resize checks the live continuous path.
         // The existing UI scenario separately rotates the physical simulator.
-        addTeardownBlock { await MainActor.run { window.frame = originalFrame; window.layoutIfNeeded() } }
-        defer { window.frame = originalFrame; window.layoutIfNeeded() }
+        #if DEBUG
+            if fixture == nil {
+                addTeardownBlock { await MainActor.run { window.frame = originalFrame; window.layoutIfNeeded() } }
+            }
+            defer {
+                if let fixture { fixture.cleanUp() }
+                else { window.frame = originalFrame; window.layoutIfNeeded() }
+            }
+        #else
+            addTeardownBlock { await MainActor.run { window.frame = originalFrame; window.layoutIfNeeded() } }
+            defer { window.frame = originalFrame; window.layoutIfNeeded() }
+        #endif
         for size in [CGSize(width: originalFrame.height, height: originalFrame.width), originalFrame.size] {
-            window.frame = CGRect(origin: originalFrame.origin, size: size)
-            window.layoutIfNeeded()
+            #if DEBUG
+                if fixture == nil || size == originalFrame.size {
+                    window.frame = CGRect(origin: originalFrame.origin, size: size)
+                    window.layoutIfNeeded()
+                }
+            #else
+                window.frame = CGRect(origin: originalFrame.origin, size: size)
+                window.layoutIfNeeded()
+            #endif
             do {
                 try await waitUntil {
+                    #if DEBUG
+                        if let fixture, size != originalFrame.size {
+                            guard try fixture.advanceSafeResize(to: size) else { return false }
+                        }
+                    #endif
                     let web = try self.resourceWebView(engine, index: 1)
                     var row: [String: Any] = ["expectedWidth":size.width,"sameWebView":web === originalWeb,
                         "attached":web.window != nil,"alpha":web.scrollView.alpha,"outerY":scroll.contentOffset.y,
@@ -141,6 +469,8 @@ final class ReaderRenderingTests: XCTestCase {
         }
         engine.close()
     }
+
+
 
     @MainActor func testSameWidthBodyResizeDoesNotOverwritePendingPagedWord() async throws {
         let barrier = WKUserScript(source: """
@@ -2488,3 +2818,72 @@ final class ReaderRenderingTests: XCTestCase {
         return view.subviews.flatMap { webViews(in: $0) }
     }
 }
+
+#if DEBUG
+private extension ReaderRenderingTests {
+    /// Controller checks only. Real SDK gate receipts remain a separate requirement.
+    @MainActor private func checkViewportFixtureMechanics() async throws {
+        typealias Event = ReadiumReaderEngine.ViewportFixtureEvent
+        let values = ["reader":"mechanics", "epoch":"epoch", "slot":"slot", "webView":"web",
+                      "index":"1", "revision":"1", "localTop":"100", "outerY":"100",
+                      "ready":"true", "moving":"false", "positioning":"false", "anchor":"A",
+                      "nativeWidth":"402", "dom.width":"874"]
+        let early = ViewportFixture(); early.armSample(outerY: 100)
+        let earlyID = UUID(); early.release(earlyID)
+        let earlyRun = await early.pause(Event(requestID: earlyID, kind: "sample-before-read", values: values))
+        guard earlyRun else { throw RenderFailure.invalidProbe }; early.cleanUp()
+        for cancelled in [false, true] {
+            let control = ViewportFixture(); control.armSample(outerY: 100)
+            let entered = XCTestExpectation(description: "fixture registered continuation")
+            let finished = XCTestExpectation(description: "fixture resumed continuation")
+            control.onHeld = { entered.fulfill() }
+            let id = UUID()
+            var outcome: Bool?
+            let task = Task { @MainActor in
+                outcome = await control.pause(Event(requestID: id, kind: "sample-before-read", values: values))
+                finished.fulfill()
+            }
+            defer { task.cancel(); control.cleanUp() }
+            await fulfillment(of: [entered], timeout: 3)
+            guard control.waiterCount == 1 else { throw RenderFailure.invalidProbe }
+            if cancelled { task.cancel() }
+            else { control.release(id); control.release(id) }
+            await fulfillment(of: [finished], timeout: 3)
+            guard outcome == !cancelled, control.waiterCount == 0 else { throw RenderFailure.invalidProbe }
+        }
+        let before = ViewportFixture(); before.armSample(outerY: 100)
+        let cancelledFinished = XCTestExpectation(description: "cancel before registration")
+        var cancelledOutcome: Bool?
+        let cancelledTask = Task { @MainActor in
+            cancelledOutcome = await before.pause(Event(requestID: UUID(), kind: "sample-before-read", values: values))
+            cancelledFinished.fulfill()
+        }
+        cancelledTask.cancel()
+        defer { cancelledTask.cancel(); before.cleanUp() }
+        await fulfillment(of: [cancelledFinished], timeout: 3)
+        guard cancelledOutcome == false, before.waiterCount == 0 else { throw RenderFailure.invalidProbe }
+
+        let group = ViewportFixture(); group.armSample(outerY: 100)
+        group.armMeasures(width: 874, owner: values)
+        let entered = XCTestExpectation(description: "two measure waiters"); entered.expectedFulfillmentCount = 2
+        let finished = XCTestExpectation(description: "two measure receipts"); finished.expectedFulfillmentCount = 2
+        group.onHeld = { entered.fulfill() }
+        var outcomes: [Bool] = []
+        let tasks = (0..<2).map { _ in Task { @MainActor in
+            let run = await group.pause(Event(requestID: UUID(), kind: "measure-before-commit", values: values))
+            outcomes.append(run)
+            finished.fulfill()
+        } }
+        defer { tasks.forEach { $0.cancel() }; group.cleanUp() }
+        await fulfillment(of: [entered], timeout: 3)
+        guard group.waiterCount == 2 else { throw RenderFailure.invalidProbe }
+        group.drainMeasures()
+        await fulfillment(of: [finished], timeout: 3)
+        guard outcomes == [true, true], group.waiterCount == 0 else { throw RenderFailure.invalidProbe }
+        group.cleanUp()
+        let late = await group.pause(Event(requestID: UUID(), kind: "measure-before-commit", values: values))
+        guard !late else { throw RenderFailure.invalidProbe }
+        print("CONTINUOUS_FIXTURE_MECHANICS passed=6 liveSDKReceiptsRequired=true")
+    }
+}
+#endif
