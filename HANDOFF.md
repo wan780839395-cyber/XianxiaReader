@@ -1,3 +1,23 @@
+# I6d断点：最终验收范围审计完成，未派CI（2026-10-22）
+
+用户要求先核缺口/复用/必要范围，本轮只审计和写项目记录，生产/测试/CI/门禁/版本均不改，无新编译或Swift测试、无新IPA。基线b4e2edc保存点，当前617运行输入与598aedd真实编译/单例源完全一致；最新CI39729365995已远端重新核实completed/success，无本轮后台任务。普通HEAD/index保持。
+
+六独立模块原件及传递输入重核：Settings7、Positions24、Sessions15、Shelf6、Imports8、Search8可分项引用。位置69项只有校验器文件变化，logic imports/常量/函数AST保持，旧xUnit用当前验证器重核；不要写成69文件全同或新执行68项。各包Apple Swift6.1.2/Xcode16F6/Intel/macOS15.7.9对应最新环境。Core Linux/mac各137和TXT Release各4保留历史输入/原件；Core parallel137按job筛选调度项+原真实成功退出核对，尾部Swift Testing0不是这组测试。SQLite环境本轮未重新执行核定，最终Core门禁不绕过。
+
+当前静态库存163集成+29UI=192、156第一方Swift/25区域/26图节点/2精确例外。旧23项22/23与新关闭1/1分项引用，不能相加成同源23/23；生产/工程/资源不变且只有关闭一个方法变化，其余191方法/助手保持，后续full会覆盖23，不再另起23预检。最新109工具与编译属598源原CI，本轮未重跑这些工具或Apple构建。
+
+UI实际配置仍39196134450/8f5b427的28项ARM，当前29项Intel且54受保护输入变化；最后交付Build30的29项也有51项变化，不可复用，不走unit-release。当前工程仍Build30；若交付新包须先定构建号再冻结，不能验证后改工程沿用旧结果。
+
+下一轮推荐现有diagnostic_selection=full一次：原生163+29全部且零失败/跳过，完整日志/xcresult/真实退出/像素录屏核验，同源严格CODE_SIGNING_ALLOWED=NO设备Release和包核验；不前置position-acceptance/fonts-full/rotation-full，不失败后自动整套重试。现有full附带六模块/mac Core/TXT4、并行Linux Core/TXT4快检保留，不单开组件CI；本轮不造新复用/跳过框架。当前只确定范围，未派下一轮。
+
+最近交付源旧180完整主步骤6647秒：实际集成804.415、UI3899.124，其余1943.461含准备/编译/启动/导出/设备Release/打包；额外旋转预检另1477秒。六模块各轮冷构建历史合计415.36秒，仅为量级，不能相加预测当前缓存。当前192非旧180，final是两小时级任务；150分钟是workflow上限、非ETA，不能用单例17秒估计。真正避免的是重复原生预检/多次冷准备。
+
+仍缺当前同源192、设备Release/包、普通/TrollStore手机与流畅度反馈。Reader宿主AppServices、App批次/呈现、同target UI类型访问及字体iOS依赖保留为明确边界债务，不宣称全项目彻底类型隔离；不混入重构或Swift6 warning修复。I6整体未验收。
+
+权威Documentation/I6_FINAL_ACCEPTANCE_SCOPE.md与ValidationLogs/project-isolation-i6-final-scope.json；原件hash/源比较/范围在build/maintenance/I6-final-audit-20261022。边界/UI复用工具正反例42/42通过、零失败跳过，未重跑109全组；最终静态守卫及484语法新增0/既有54通过（非编译）。仅保存私有恢复点，具体revision见本地final-checkpoint.json，恢复先查final-checkpoint.json/实际文件/Git/进程，不派CI。电脑保持开机。
+
+---
+
 # I6c断点：初始化关闭单例已收口，生产不改（2026-10-22）
 
 用户授权仅查这一例。冻结运行源598aedd02ab6f6d95876ccac5f17658b8cc11905，codex/initialization-close-probe；CI39729365995已completed/success。只派一次initialization-close，原单例1/1，分页/连续均在真实字体已ready、生产字体状态pending、屏障未释放时关闭；原三个delegate/移除断言全部通过。test/summary/export=0，原生编译通过，未跑23项/完整192/Core/独立包/Release/手机，无新IPA，最后交付仍Build30。

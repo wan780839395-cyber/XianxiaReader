@@ -1,3 +1,9 @@
+# I6d 最终范围已核（2026-10-22，尚未派发）
+
+下一轮推荐冻结最终输入后仅选择workflow `diagnostic_selection=full` 一次，原生163+29=192及同源严格设备Release/包；保留现有组件/Core/TXT快检。不要前置position-acceptance/fonts-full/rotation-full，不走不合格的unit-release旧UI复用。本轮仅审计，未启动。可复用原件、剩余门槛及成本见[I6d最终范围](I6_FINAL_ACCEPTANCE_SCOPE.md)。
+
+---
+
 # I6c 初始化关闭单例入口（2026-10-22，1/1）
 
 workflow `diagnostic_selection=initialization-close` 只执行原初始化关闭单例（分页/连续两个分支），不跑Core/独立包/23项/全套或打包。598aedd / CI39729365995编译、原单例及两模式pending门/断开清理回执通过；原实例hook丢失机制与测试准备修正见[I6c结果](I6_INITIALIZATION_CLOSE.md)。verify_reader_positions.py close严格核事件/summary/两模式证据，保持真实退出码。

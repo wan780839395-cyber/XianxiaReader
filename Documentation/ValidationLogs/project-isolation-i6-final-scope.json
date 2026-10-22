@@ -1,0 +1,2002 @@
+{
+  "recordedAtUTC": "2026-10-22T06:14:59.326253+00:00",
+  "phase": "i6d_final_scope_audit_no_dispatch",
+  "savedBaseline": "b4e2edc34af75057934a52dd7b16ef1f6a91c2ed",
+  "runtimeSource": "598aedd02ab6f6d95876ccac5f17658b8cc11905",
+  "runtimeInputCount": 617,
+  "runtimeDrift": [],
+  "architecture": {
+    "swiftFiles": 156,
+    "areas": 25,
+    "targets": 26,
+    "exceptions": [
+      {
+        "file": "Tests/iOS/ReadiumSearchTests.swift",
+        "import": "ReadiumShared",
+        "reason": "Real Readium search extension integration fixture; not a production allowance.",
+        "removeIn": "Review when separating integration test targets in I1"
+      },
+      {
+        "file": "Tests/iOS/TXTReadingTests.swift",
+        "import": "ReadiumShared",
+        "reason": "Real TXT/Readium publication integration fixture; not a production allowance.",
+        "removeIn": "Review when separating integration test targets in I1"
+      }
+    ],
+    "staticOnly": true,
+    "sameTargetTypeIsolationComplete": false
+  },
+  "components": [
+    {
+      "module": "ReaderSettings",
+      "run": 39398382008,
+      "revision": "1545a3cdafa248e563c01c408e04cd8cc3e71154",
+      "workflowConclusion": "success",
+      "passed": 7,
+      "sourceScope": [
+        "Packages/ReaderSettings",
+        "scripts/test_reader_logic.sh",
+        "scripts/verify_reader_logic.py",
+        ".gitattributes",
+        "Packages/XianxiaCore"
+      ],
+      "scopeFileCount": 65,
+      "scopeChanges": [],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39398382008/reader-logic/ReaderLogic",
+        "xunitSHA256": "bce65e7242279fef408421d45c88b97dc0ff0a080f267ef8d62aa159f742a145",
+        "testLogSHA256": "1a5cbe3d6f2f678f0cccb5a92dade2bf09c5059c5fbfa17be8936c9df131e313",
+        "dependencyGraphSHA256": "241e2bb463e98716b1900c796c315657c405c79fcea5d6f67c564498681da2df",
+        "environmentSHA256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b",
+        "fullWorkflowLog": "build/ci/39398382008/full.log",
+        "fullWorkflowLogSHA256": "a55f6af912de90bfebf444e4a9212bc1c008bab5c1d2a6232538bd83d063aa5f",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/ReaderSettings/Package.swift",
+          "gitBlob": "2d1a48952136d8e0a2e9322ee4364ebbcd71d1e0"
+        },
+        {
+          "path": "Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift",
+          "gitBlob": "6f2404104d7e0f1036d762ad31905b45250b5ee8"
+        },
+        {
+          "path": "Packages/ReaderSettings/Tests/ReaderSettingsTests/ReaderSettingsPersistenceTests.swift",
+          "gitBlob": "42a2eba94ffd4c41a79653cd00a3b1aaa45ad52c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+          "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+        },
+        {
+          "path": "Packages/XianxiaCore/Package.swift",
+          "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+          "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+          "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+          "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+          "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+          "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+          "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+          "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+          "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+          "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+          "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+          "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+          "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+          "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+          "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+          "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+          "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+          "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+          "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+          "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+          "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+          "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+          "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+          "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+          "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+          "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+          "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+          "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+          "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+          "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+          "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+          "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+          "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+          "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+          "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+          "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+          "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+          "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+          "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+          "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+          "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+          "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+          "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+          "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+          "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+          "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+          "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+          "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+          "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+          "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+          "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+          "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+          "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+          "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+          "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+          "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+          "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+          "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+        },
+        {
+          "path": "scripts/test_reader_logic.sh",
+          "gitBlob": "0898d69b8c0ea5132a9a273afdabda8467e2f5b5"
+        },
+        {
+          "path": "scripts/verify_reader_logic.py",
+          "gitBlob": "d3633eb3b928813557e6b30ee27ee777de826b20"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": true
+    },
+    {
+      "module": "ReaderPositions",
+      "run": 39585860717,
+      "revision": "c180e1126cb1283f5599644a9232b8ee6ccf717e",
+      "workflowConclusion": "failure",
+      "passed": 24,
+      "sourceScope": [
+        "Packages/ReaderPositions",
+        "scripts/test_reader_positions.sh",
+        "scripts/verify_reader_positions.py",
+        ".gitattributes",
+        "Packages/XianxiaCore"
+      ],
+      "scopeFileCount": 69,
+      "scopeChanges": [
+        "scripts/verify_reader_positions.py"
+      ],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39585860717/diagnostic/ReaderPositions",
+        "xunitSHA256": "049fa9dce6e99f5c666205846005928d716a9c8653853fca63b57c60b398d790",
+        "testLogSHA256": "9dc9779eba53bea4501dd74c604762af9099c2311c6dcfdcd0b7ad54b84aeaa9",
+        "dependencyGraphSHA256": "cc9a62fec32789bb5f04a78692cdc0dea18521f659ad79d8233aa145603ecb83",
+        "environmentSHA256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935",
+        "fullWorkflowLog": "build/ci/39585860717/complete-run.log",
+        "fullWorkflowLogSHA256": "1a46b508e686e3f01e6cff0c03be0537672545f53777bea37b2e3f5b7b8386b5",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/ReaderPositions/Package.swift",
+          "gitBlob": "a3e18bd3ec260d111b2f1124f026b0cb566e17c1"
+        },
+        {
+          "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderNavigationCoordinator.swift",
+          "gitBlob": "10c50e91c074b7b40f61153c51df4be370c8cc7d"
+        },
+        {
+          "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionPersistence.swift",
+          "gitBlob": "53e3b216c6c4384f8a0f672270dc57ff4a81e4cf"
+        },
+        {
+          "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionState.swift",
+          "gitBlob": "2ba2d5cd1ef9d123702c5962b0b1212b8d1cae18"
+        },
+        {
+          "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderNavigationCoordinatorTests.swift",
+          "gitBlob": "e7ce72adb307251684e025ccaa155cdb66e07765"
+        },
+        {
+          "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionPersistenceTests.swift",
+          "gitBlob": "4b7a16f422bd051fc9402f8f95f501379be7fbf4"
+        },
+        {
+          "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionStateTests.swift",
+          "gitBlob": "a79052dfc701c7ec501eadde7266bf4f23ef272d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+          "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+        },
+        {
+          "path": "Packages/XianxiaCore/Package.swift",
+          "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+          "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+          "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+          "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+          "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+          "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+          "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+          "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+          "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+          "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+          "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+          "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+          "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+          "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+          "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+          "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+          "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+          "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+          "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+          "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+          "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+          "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+          "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+          "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+          "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+          "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+          "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+          "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+          "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+          "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+          "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+          "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+          "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+          "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+          "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+          "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+          "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+          "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+          "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+          "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+          "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+          "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+          "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+          "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+          "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+          "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+          "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+          "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+          "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+          "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+          "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+          "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+          "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+          "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+          "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+          "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+          "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+          "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+        },
+        {
+          "path": "scripts/test_reader_positions.sh",
+          "gitBlob": "3f7036c746c0e5306ea365af92cf8e521b2723a2"
+        },
+        {
+          "path": "scripts/verify_reader_positions.py",
+          "gitBlob": "fc3f98cd5414912cdb8ccbc781effa434dac5e25"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": false,
+      "logicImportsConstantsAndFunctionASTUnchanged": true,
+      "originalXunitReverifiedWithCurrentValidator": true
+    },
+    {
+      "module": "ReaderSessions",
+      "run": 39703522408,
+      "revision": "c00083492fcfccd56fae978178f72e56a5542e35",
+      "workflowConclusion": "success",
+      "passed": 15,
+      "sourceScope": [
+        "Packages/ReaderSessions",
+        "scripts/test_reader_sessions.sh",
+        "scripts/verify_reader_sessions.py",
+        ".gitattributes"
+      ],
+      "scopeFileCount": 8,
+      "scopeChanges": [],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39703522408/diagnostic/ReaderSessions",
+        "xunitSHA256": "e34bb984b8ac6d7c8a95d2f7a34c11970210aead38afced8bdbef9f235d31919",
+        "testLogSHA256": "2e2a8d77688cad8f126ea168e23b9fe056dce32e34414f3485210263aaaa4009",
+        "dependencyGraphSHA256": "759a186c693d57ad0217df15100721d3c154bc04c565511adc92c164b189c50f",
+        "environmentSHA256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935",
+        "fullWorkflowLog": "build/ci/39703522408/full.log",
+        "fullWorkflowLogSHA256": "302aaa0ca892e81bb0b99890b0ce0db238884bc9ff55b76b84fbfefc3d0a423d",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/ReaderSessions/Package.swift",
+          "gitBlob": "01e43a87778321ad5d5c1c5af5eab3700ca63147"
+        },
+        {
+          "path": "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionLifecycle.swift",
+          "gitBlob": "cbd1601094b91cd8d25dc0e6636e32a51f6ee0d5"
+        },
+        {
+          "path": "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift",
+          "gitBlob": "4d0798eb7fa2d0804acaadf6136bc8339bc0bd3e"
+        },
+        {
+          "path": "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionLifecycleTests.swift",
+          "gitBlob": "0364c51ecef5d66b1b89e6cd443562a0b63da323"
+        },
+        {
+          "path": "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionStateTests.swift",
+          "gitBlob": "1bd21299a181da49d45970591eb35be46d4de16b"
+        },
+        {
+          "path": "scripts/test_reader_sessions.sh",
+          "gitBlob": "a302f6135d12d34c3a57629370935f2374aa1a00"
+        },
+        {
+          "path": "scripts/verify_reader_sessions.py",
+          "gitBlob": "ce3ee01d5fd18dfb6df194092c5282c15bb117dd"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": true
+    },
+    {
+      "module": "LibraryShelf",
+      "run": 39707770264,
+      "revision": "1532b86300247bb8c6697323bfd6230d88a39bbb",
+      "workflowConclusion": "success",
+      "passed": 6,
+      "sourceScope": [
+        "Packages/LibraryShelf",
+        "scripts/test_library_shelf.sh",
+        "scripts/verify_library_shelf.py",
+        ".gitattributes",
+        "Packages/XianxiaCore"
+      ],
+      "scopeFileCount": 66,
+      "scopeChanges": [],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39707770264/diagnostic/LibraryShelf",
+        "xunitSHA256": "4f815a0cdf745a6c0cb5476cbd772560f5c71d25469989f8a9d441d7e650c91f",
+        "testLogSHA256": "f469b70fc62f750ef04dbacd46c31c570dc9de5d7531720b22eafb23a19bbfb8",
+        "dependencyGraphSHA256": "3ebb9e90729e6a28202979ede1ce3cc400d2cb2469c0d4fe9ae421c0ac84ac96",
+        "environmentSHA256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935",
+        "fullWorkflowLog": "build/ci/39707770264/full.log",
+        "fullWorkflowLogSHA256": "c8f47d61781ad2ab366a3b622733b131584a1c322b56b62bce99a7847f81ccea",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/LibraryShelf/Package.swift",
+          "gitBlob": "81b81fa7106248d4147b96c8f8fcae89a165564c"
+        },
+        {
+          "path": "Packages/LibraryShelf/Sources/LibraryShelf/LibraryCollection.swift",
+          "gitBlob": "4f304c33c1bbfc5f77f53f6d6f47cabc4dd545d2"
+        },
+        {
+          "path": "Packages/LibraryShelf/Sources/LibraryShelf/LibraryRepository.swift",
+          "gitBlob": "1117bd95da895f40fafae20632d3efc9e6efa11a"
+        },
+        {
+          "path": "Packages/LibraryShelf/Tests/LibraryShelfTests/LibraryCollectionTests.swift",
+          "gitBlob": "21cff607fd79e2ad248b0e09a8fd100e93bbd948"
+        },
+        {
+          "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+          "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+        },
+        {
+          "path": "Packages/XianxiaCore/Package.swift",
+          "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+          "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+          "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+          "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+          "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+          "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+          "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+          "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+          "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+          "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+          "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+          "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+          "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+          "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+          "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+          "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+          "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+          "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+          "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+          "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+          "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+          "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+          "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+          "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+          "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+          "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+          "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+          "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+          "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+          "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+          "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+          "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+          "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+          "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+          "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+          "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+          "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+          "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+          "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+          "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+          "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+          "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+          "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+          "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+          "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+          "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+          "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+          "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+          "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+          "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+          "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+          "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+          "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+          "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+          "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+          "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+          "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+          "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+        },
+        {
+          "path": "scripts/test_library_shelf.sh",
+          "gitBlob": "b18d18b5b8c58d93c11e1ff4e8b14dd06bdd607b"
+        },
+        {
+          "path": "scripts/verify_library_shelf.py",
+          "gitBlob": "2913be2a4a1c659ff313434115ca668c76049f4d"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": true
+    },
+    {
+      "module": "BookImports",
+      "run": 39712813755,
+      "revision": "c8b53e38f9148f0a1968567191e1bca8471558b6",
+      "workflowConclusion": "success",
+      "passed": 8,
+      "sourceScope": [
+        "Packages/BookImports",
+        "scripts/test_book_imports.sh",
+        "scripts/verify_book_imports.py",
+        ".gitattributes",
+        "Packages/XianxiaCore"
+      ],
+      "scopeFileCount": 66,
+      "scopeChanges": [],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39712813755/diagnostic/BookImports",
+        "xunitSHA256": "d190bba8b081d7f9f2bf42248ea2f94ae16a6e9670cfe21e68cafd2c4fbc0a4a",
+        "testLogSHA256": "33ab6b9364150f246ddfdc21047495a54712c566ef0ebaa37c4e6bf89c5ea14c",
+        "dependencyGraphSHA256": "4c03d1bb58747d96d733d6dfc29afc2d419871e30b4e9495f38b612898bb0a19",
+        "environmentSHA256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935",
+        "fullWorkflowLog": "build/ci/39712813755/full.log",
+        "fullWorkflowLogSHA256": "673ce76266d97987d376b2c9e39efcab66d845300d55e0054e235520c751aeed",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/BookImports/Package.swift",
+          "gitBlob": "0dc249ad0e54d0cbf88579c15707911dce2629ed"
+        },
+        {
+          "path": "Packages/BookImports/Sources/BookImports/EPUBImportService.swift",
+          "gitBlob": "00be5ff8a554ef2c526af15a1b4d0332c0a735eb"
+        },
+        {
+          "path": "Packages/BookImports/Sources/BookImports/EPUBMetadataReading.swift",
+          "gitBlob": "e0a693e01f00594d12252db1203b9724e699604a"
+        },
+        {
+          "path": "Packages/BookImports/Tests/BookImportsTests/BookImportServiceTests.swift",
+          "gitBlob": "ca080b32d72e6210f67be8b3e9ba86f21d30eecf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+          "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+        },
+        {
+          "path": "Packages/XianxiaCore/Package.swift",
+          "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+          "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+          "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+          "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+          "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+          "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+          "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+          "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+          "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+          "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+          "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+          "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+          "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+          "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+          "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+          "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+          "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+          "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+          "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+          "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+          "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+          "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+          "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+          "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+          "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+          "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+          "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+          "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+          "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+          "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+          "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+          "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+          "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+          "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+          "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+          "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+          "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+          "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+          "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+          "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+          "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+          "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+          "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+          "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+          "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+          "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+          "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+          "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+          "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+          "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+          "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+          "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+          "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+          "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+          "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+          "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+          "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+          "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+        },
+        {
+          "path": "scripts/test_book_imports.sh",
+          "gitBlob": "76f393920af25ce69803f9bdd4f87352f9987437"
+        },
+        {
+          "path": "scripts/verify_book_imports.py",
+          "gitBlob": "1fce275270b9ef5b44fab56558d68e5cd10991c3"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": true
+    },
+    {
+      "module": "ReaderSearch",
+      "run": 39715718761,
+      "revision": "53f7e1f268d58f37219dcbbba1d47204c57db124",
+      "workflowConclusion": "success",
+      "passed": 8,
+      "sourceScope": [
+        "Packages/ReaderSearch",
+        "scripts/test_reader_search.sh",
+        "scripts/verify_reader_search.py",
+        ".gitattributes",
+        "Packages/XianxiaCore"
+      ],
+      "scopeFileCount": 66,
+      "scopeChanges": [],
+      "reusableComponentOnly": true,
+      "evidence": {
+        "folder": "build/ci/39715718761/diagnostic/ReaderSearch",
+        "xunitSHA256": "b48496906681bc765595a4327eb52f48beaebb0eaa0766000e2d4905b316c782",
+        "testLogSHA256": "434aa8a92e23cd04543ad883ca98f529f6a51c8c83221b99d59a2f9e7c559266",
+        "dependencyGraphSHA256": "b11769388c5f5a3eb2ab4a4dd9762852680b7400929e04052c33909ed7fade8f",
+        "environmentSHA256": "370a3114bb82be248f4a7493f02b3973757234f405aa7564a3691e0025a4c935",
+        "fullWorkflowLog": "build/ci/39715718761/full.log",
+        "fullWorkflowLogSHA256": "105de0e874bc2cac10fcb9f953feb1367775a3a9bc8f48a6f1614deb5d65c9b9",
+        "swiftVersion": "Apple Swift 6.1.2",
+        "freshExecutionThisTurn": false
+      },
+      "inputs": [
+        {
+          "path": ".gitattributes",
+          "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+        },
+        {
+          "path": "Packages/ReaderSearch/Package.swift",
+          "gitBlob": "382501773b0a14b08c38e66004d6758ec317083c"
+        },
+        {
+          "path": "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearch.swift",
+          "gitBlob": "e901668766d350cf62f8132230a61b0ee9f0687e"
+        },
+        {
+          "path": "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearchViewModel.swift",
+          "gitBlob": "f62e210346dcb15538d558e11d92d4968ff7160a"
+        },
+        {
+          "path": "Packages/ReaderSearch/Tests/ReaderSearchTests/ReaderSearchViewModelTests.swift",
+          "gitBlob": "cf07c005efbe1f06ee1e294e4b02053c07bcc494"
+        },
+        {
+          "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+          "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+        },
+        {
+          "path": "Packages/XianxiaCore/Package.swift",
+          "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+          "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+          "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+          "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+          "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+          "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+          "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+          "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+          "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+          "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+          "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+          "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+          "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+          "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+          "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+          "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+          "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+          "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+          "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+          "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+          "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+          "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+          "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+          "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+          "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+          "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+          "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+          "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+          "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+          "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+          "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+          "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+          "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+          "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+          "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+          "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+          "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+          "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+          "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+          "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+        },
+        {
+          "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+          "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+          "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+          "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+          "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+          "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+          "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+          "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+          "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+          "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+          "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+          "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+          "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+          "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+          "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+          "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+          "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+          "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+        },
+        {
+          "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+          "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+        },
+        {
+          "path": "scripts/test_reader_search.sh",
+          "gitBlob": "4242271f9034b19a3145eb39f461d289487911c9"
+        },
+        {
+          "path": "scripts/verify_reader_search.py",
+          "gitBlob": "3b6f96903d7ceb6ad047a4ff5ce5156c12cca9c8"
+        }
+      ],
+      "environmentMatchesLatest": true,
+      "exactWholeFileMatch": true
+    }
+  ],
+  "coreHistoricalEvidence": [
+    {
+      "platform": "Linux",
+      "run": 39418977905,
+      "revision": "410343b7bbdb7b0f667d277c910f7f349a4d4ae7",
+      "scope": [
+        "Packages/XianxiaCore",
+        ".gitattributes"
+      ],
+      "scopeChanges": [],
+      "uniqueTestEvents": 137,
+      "fullLog": "build/ci/39418977905/core/logs/core-tests.log",
+      "logSHA256": "b12bc116980fcfae4501457ae9bfc06c4a0b5a4129e41fcdfd91d80e4eba9a61",
+      "componentEvidenceOnly": true,
+      "freshExecutionThisTurn": false,
+      "limits": "Recheck the actual intended toolchain/SDK/SQLite environment at final delivery; historical Core evidence is not a current full/Apple-coordination/device gate.",
+      "uniqueScheduledCases": 137,
+      "scheduledCaseOccurrences": 137,
+      "countBasis": "SwiftPM parallel [n/137] Testing entries plus the real successful strict workflow step; the separate Swift Testing banner with0 cases is not this XCTest suite.",
+      "macOSHostMatchesLatest": null,
+      "sqliteVersionReverifiedThisTurn": false,
+      "reuse": "Historical unchanged Core component evidence; retain current final Core environment gate rather than claim a new execution or skip it on uncaptured SQLite environment identity."
+    },
+    {
+      "platform": "macOS",
+      "run": 39373881574,
+      "revision": "aa0a119a71b10f1f345bc6f4cd54f6c8b4e2871a",
+      "scope": [
+        "Packages/XianxiaCore",
+        ".gitattributes"
+      ],
+      "scopeChanges": [],
+      "uniqueTestEvents": 137,
+      "fullLog": "build/ci/39373881574/full.log",
+      "logSHA256": "ad8419567ce2d61e7985ba5ab9e7394d029376f1ed757cc04a8416e52b22fe79",
+      "componentEvidenceOnly": true,
+      "freshExecutionThisTurn": false,
+      "limits": "Recheck the actual intended toolchain/SDK/SQLite environment at final delivery; historical Core evidence is not a current full/Apple-coordination/device gate.",
+      "uniqueScheduledCases": 137,
+      "scheduledCaseOccurrences": 137,
+      "countBasis": "SwiftPM parallel [n/137] Testing entries plus the real successful strict workflow step; the separate Swift Testing banner with0 cases is not this XCTest suite.",
+      "macOSHostMatchesLatest": true,
+      "sqliteVersionReverifiedThisTurn": false,
+      "reuse": "Historical unchanged Core component evidence; retain current final Core environment gate rather than claim a new execution or skip it on uncaptured SQLite environment identity."
+    }
+  ],
+  "testInventory": {
+    "XianxiaReaderTests": 163,
+    "XianxiaReaderUITests": 29
+  },
+  "nativeEvidence": {
+    "old23Run": 39721680702,
+    "oldPassed": 22,
+    "oldFailed": 1,
+    "latestSingleRun": 39729365995,
+    "latestPassed": 1,
+    "latestHasBothModes": true,
+    "productionProjectsResourcesLocksUnchangedBetweenRuns": true,
+    "changedNativeMethods": 1,
+    "other191MethodsAndHelpersUnchanged": true,
+    "sourceDifference": [
+      "Tests/iOS/ReaderRenderingTests.swift"
+    ],
+    "canCiteFocusedContractsSeparately": true,
+    "combinedSameSource23Pass": false,
+    "noSeparate23PreflightNeededBeforeFull": true,
+    "reason": "Full192 includes this cohort. Preserve the old failure and validate same-process order there rather than add another cold23 run."
+  },
+  "latestTools": {
+    "run": 39729365995,
+    "linuxPassed": 109,
+    "sourceUnchanged": true,
+    "freshExecutionThisTurn": false
+  },
+  "uiReuse": {
+    "configuredRun": 39196134450,
+    "configuredRevision": "8f5b4271fb728ce7f6bd457d1be0a5ed2baeed95",
+    "configuredCount": 28,
+    "currentCount": 29,
+    "configuredProtectedChangedPaths": [
+      "App/AppServices.swift",
+      "App/Import/EPUBImportService.swift",
+      "App/Library/BookCoverEditorModel.swift",
+      "App/Library/CoverImportService.swift",
+      "App/Library/LibraryView.swift",
+      "App/Library/LibraryViewModel.swift",
+      "App/LibraryAssembly.swift",
+      "App/LibraryInteractionFixture.swift",
+      "App/Reader/BundledReadingFont.swift",
+      "App/Reader/ReaderPositionAdapters.swift",
+      "App/Reader/ReaderProgressView.swift",
+      "App/Reader/ReaderSessionHost.swift",
+      "App/Reader/ReaderViewModel.swift",
+      "App/Search/ReaderSearchViewModel.swift",
+      "Packages/BookImports/Package.swift",
+      "Packages/BookImports/Sources/BookImports/EPUBImportService.swift",
+      "Packages/BookImports/Sources/BookImports/EPUBMetadataReading.swift",
+      "Packages/BookImports/Tests/BookImportsTests/BookImportServiceTests.swift",
+      "Packages/LibraryShelf/Package.swift",
+      "Packages/LibraryShelf/Sources/LibraryShelf/LibraryCollection.swift",
+      "Packages/LibraryShelf/Sources/LibraryShelf/LibraryRepository.swift",
+      "Packages/LibraryShelf/Tests/LibraryShelfTests/LibraryCollectionTests.swift",
+      "Packages/ReaderPositions/Package.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderNavigationCoordinator.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionPersistence.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionState.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderNavigationCoordinatorTests.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionPersistenceTests.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionStateTests.swift",
+      "Packages/ReaderSearch/Package.swift",
+      "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearch.swift",
+      "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearchViewModel.swift",
+      "Packages/ReaderSearch/Tests/ReaderSearchTests/ReaderSearchViewModelTests.swift",
+      "Packages/ReaderSessions/Package.swift",
+      "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionLifecycle.swift",
+      "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift",
+      "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionLifecycleTests.swift",
+      "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionStateTests.swift",
+      "Packages/ReaderSettings/Package.swift",
+      "Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift",
+      "Packages/ReaderSettings/Tests/ReaderSettingsTests/ReaderSettingsPersistenceTests.swift",
+      "Packages/XianxiaReading/Package.swift",
+      "Packages/XianxiaReading/Sources/ReaderFonts/ReaderFontCoordinator.swift",
+      "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
+      "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
+      "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "Tests/UI/ReaderInterfaceUITests.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
+      "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "project.yml"
+    ],
+    "deliveredBuild30ProtectedChangedPaths": [
+      "App/AppServices.swift",
+      "App/Import/EPUBImportService.swift",
+      "App/Library/BookCoverEditorModel.swift",
+      "App/Library/CoverImportService.swift",
+      "App/Library/LibraryView.swift",
+      "App/Library/LibraryViewModel.swift",
+      "App/LibraryAssembly.swift",
+      "App/LibraryInteractionFixture.swift",
+      "App/Reader/BundledReadingFont.swift",
+      "App/Reader/ReaderPositionAdapters.swift",
+      "App/Reader/ReaderProgressView.swift",
+      "App/Reader/ReaderSessionHost.swift",
+      "App/Reader/ReaderViewModel.swift",
+      "App/Search/ReaderSearchViewModel.swift",
+      "Packages/BookImports/Package.swift",
+      "Packages/BookImports/Sources/BookImports/EPUBImportService.swift",
+      "Packages/BookImports/Sources/BookImports/EPUBMetadataReading.swift",
+      "Packages/BookImports/Tests/BookImportsTests/BookImportServiceTests.swift",
+      "Packages/LibraryShelf/Package.swift",
+      "Packages/LibraryShelf/Sources/LibraryShelf/LibraryCollection.swift",
+      "Packages/LibraryShelf/Sources/LibraryShelf/LibraryRepository.swift",
+      "Packages/LibraryShelf/Tests/LibraryShelfTests/LibraryCollectionTests.swift",
+      "Packages/ReaderPositions/Package.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderNavigationCoordinator.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionPersistence.swift",
+      "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionState.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderNavigationCoordinatorTests.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionPersistenceTests.swift",
+      "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionStateTests.swift",
+      "Packages/ReaderSearch/Package.swift",
+      "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearch.swift",
+      "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearchViewModel.swift",
+      "Packages/ReaderSearch/Tests/ReaderSearchTests/ReaderSearchViewModelTests.swift",
+      "Packages/ReaderSessions/Package.swift",
+      "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionLifecycle.swift",
+      "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift",
+      "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionLifecycleTests.swift",
+      "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionStateTests.swift",
+      "Packages/ReaderSettings/Package.swift",
+      "Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift",
+      "Packages/ReaderSettings/Tests/ReaderSettingsTests/ReaderSettingsPersistenceTests.swift",
+      "Packages/XianxiaReading/Package.swift",
+      "Packages/XianxiaReading/Sources/ReaderFonts/ReaderFontCoordinator.swift",
+      "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
+      "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "project.yml"
+    ],
+    "eligible": false,
+    "configuredArchitecture": "Target: arm64-apple-macosx15.0",
+    "currentArchitecture": "x86_64-apple-macosx15.0",
+    "reason": "54 protected changes, historical28 vs29 and ARM vsIntel; even delivered Build30 has51 protected changes."
+  },
+  "finalEntry": {
+    "selection": "full",
+    "nativeRequired": 192,
+    "integration": 163,
+    "ui": 29,
+    "preflightSelectionsToAvoid": [
+      "position-acceptance",
+      "fonts-full",
+      "rotation-full"
+    ],
+    "reuseUnitReleaseEligible": false,
+    "originalFastComponentAndCoreChecksStillInScript": true,
+    "fastComponentsCanBeCitedWithoutSeparateCI": true,
+    "doNotCreateNewReuseFrameworkThisAudit": true,
+    "strictSummaryGuardBeforeRelease": true,
+    "requiredExits": [
+      "test",
+      "summary",
+      "attachment export",
+      "recording"
+    ],
+    "deviceRelease": "generic/platform=iOS Release CODE_SIGNING_ALLOWED=NO",
+    "frozenSourceRequired": true,
+    "failedTestsBlockPackage": true
+  },
+  "gaps": [
+    {
+      "id": "F1",
+      "kind": "Native integration",
+      "required": "One frozen-source full192 including current23 and all29UI; zero failures/skips, full logs/xcresult/text/pixels/recording review.",
+      "completed": false
+    },
+    {
+      "id": "F2",
+      "kind": "Release",
+      "required": "Same-source unsigned device Release, lock/vendor/resource/IPA verification after all gate exits pass.",
+      "completed": false
+    },
+    {
+      "id": "F3",
+      "kind": "Device",
+      "required": "Separate ordinary/TrollStore install/upgrade and EPUB/TXT/font/location/background/rotation/motion feedback; CI is insufficient.",
+      "completed": false
+    }
+  ],
+  "remainingBoundaries": [
+    {
+      "id": "A1",
+      "file": "App/Reader/ReaderViewModel.swift",
+      "line": 69,
+      "owner": "App reader host",
+      "finding": "Still holds AppServices and concrete Core storage through the host; extracted coordinators do not eliminate this broad capability.",
+      "disposition": "Explicit remaining boundary debt; new features must use their owned narrow ports. Any removal is a separate responsibility slice, not a prerequisite to blindly create UI targets."
+    },
+    {
+      "id": "A2",
+      "file": "App/Library/LibraryViewModel.swift",
+      "line": 35,
+      "owner": "App shelf presentation",
+      "finding": "Batch import task, picker, feedback and presentation guards remain together in the screen model; import transaction is independently owned by BookImports.",
+      "disposition": "Keep current screen coordination; do not add import business into this model. No batch/UI rewrite in I6a."
+    },
+    {
+      "id": "A3",
+      "file": "project.yml",
+      "owner": "App composition",
+      "finding": "Library/reader/search views share the App compiler target; area import/identifier guards are static restrictions, not complete same-target type isolation.",
+      "disposition": "Retain declared limitation. Moving all UI into new targets is not required merely to increase target count."
+    },
+    {
+      "id": "A4",
+      "file": "Packages/XianxiaReading/Package.swift",
+      "owner": "ReaderFonts",
+      "finding": "Font coordinator depends on iOS ReadingInterfaces; no independent macOS font execution.",
+      "disposition": "Native font contract verification remains necessary; historical 53-case result cannot certify current integration."
+    },
+    {
+      "id": "A5",
+      "file": "Documentation/architecture-boundaries.json",
+      "owner": "iOS integration fixtures",
+      "finding": "Exactly two ReadiumShared import exceptions, both explicit integration test files.",
+      "disposition": "Retain with recorded reason/removal stage; no production Readium import exception."
+    }
+  ],
+  "warnings": {
+    "unique": 8,
+    "newMessages": 0,
+    "blocksSwift5Compilation": false,
+    "scope": "Do not mix warning suppression or Swift6 migration into final acceptance."
+  },
+  "scope": {
+    "productionChanged": false,
+    "testsChanged": false,
+    "configurationChanged": false,
+    "remoteDispatches": 0,
+    "newIPA": false
+  },
+  "decision": {
+    "auditComplete": true,
+    "allI6Accepted": false,
+    "next": "In a later requested execution slice, freeze intended release inputs and use existing full entry once; no preceding23/fonts/rotation preflight or UI reuse. Preserve existing fast/Core gates; no new reuse framework in this audit.",
+    "deviceAcceptanceSeparate": true
+  },
+  "latestCompilationMetadataRechecked": {
+    "conclusion": "success",
+    "databaseId": 39729365995,
+    "headSha": "598aedd02ab6f6d95876ccac5f17658b8cc11905",
+    "status": "completed",
+    "updatedAt": "2026-10-22T05:58:22Z",
+    "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39729365995"
+  },
+  "txtProbeHistoricalEvidence": [
+    {
+      "platform": "macOS",
+      "run": 39373881574,
+      "passed": 4,
+      "sourceChanges": [],
+      "summary": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/TXTPerformance/summary.json",
+      "sha256": "a6a385316ccc5c51eb2ea2f6c3c57c3d82c3286a30989eb85c4c83a9c3aea9a0",
+      "caseNames": [
+        "utf8-5MiB-1000chapters",
+        "utf8-50MiB-3000chapters",
+        "utf8-50MiB-no-newline",
+        "utf16-5MiB-1000chapters"
+      ],
+      "freshExecutionThisTurn": false,
+      "scope": "Historical desktop Release probe; not phone UI performance. Existing final entry retains current probe execution."
+    },
+    {
+      "platform": "Linux",
+      "run": 39418977905,
+      "passed": 4,
+      "sourceChanges": [],
+      "summary": "build/ci/39418977905/core/TXTPerformance/summary.json",
+      "sha256": "763aa1e2b8da10e95036c158544f0521a5d0fa7fc58d48c0119ac58a385cc5e7",
+      "caseNames": [
+        "utf8-5MiB-1000chapters",
+        "utf8-50MiB-3000chapters",
+        "utf8-50MiB-no-newline",
+        "utf16-5MiB-1000chapters"
+      ],
+      "freshExecutionThisTurn": false,
+      "scope": "Historical desktop Release probe; not phone UI performance. Existing final entry retains current probe execution."
+    }
+  ],
+  "costReference": {
+    "run": 39373881574,
+    "historicalFullCases": 180,
+    "currentFullCases": 192,
+    "historicalFullMainStepSeconds": 6647.0,
+    "historicalAdditionalRotationPreflightSeconds": 1477.0,
+    "componentSeparateColdBuildSeconds": [
+      {
+        "module": "ReaderSettings",
+        "historicalSeparateBuildSeconds": 92.18
+      },
+      {
+        "module": "ReaderPositions",
+        "historicalSeparateBuildSeconds": 93.38
+      },
+      {
+        "module": "ReaderSessions",
+        "historicalSeparateBuildSeconds": 68.55
+      },
+      {
+        "module": "LibraryShelf",
+        "historicalSeparateBuildSeconds": 62.12
+      },
+      {
+        "module": "BookImports",
+        "historicalSeparateBuildSeconds": 48.08
+      },
+      {
+        "module": "ReaderSearch",
+        "historicalSeparateBuildSeconds": 51.05
+      }
+    ],
+    "componentHistoricalSumSeconds": 415.36,
+    "currentWorkflowTimeoutMinutes": 150,
+    "notAnETA": true,
+    "decision": "Avoid duplicate native preflight/cold preparation. Preserve the simple final entry and its fast/Core checks; no new reuse framework merely to skip the roughly7 minute historical sum of component cold builds.",
+    "originalFullSummary": "build/ci/39373881574/artifacts/XianxiaReader-build-diagnostics/build/test-results-summary.json",
+    "originalFullSummarySHA256": "45886f9834158be59382411b8aaa222cce7e534ad85cc40f025517ddd10e81db",
+    "originalNativeExecuted": {
+      "XianxiaReaderTests": 151,
+      "XianxiaReaderUITests": 29
+    },
+    "originalActualCaseSeconds": {
+      "XianxiaReaderTests": 804.415,
+      "XianxiaReaderUITests": 3899.124
+    },
+    "otherMainStepSeconds": 1943.461,
+    "otherCostMeaning": "Preparation, independent package/Core/benchmark builds, resolve, simulator launch, instrumentation/export, device Release and packaging combined; not pure compile time."
+  },
+  "releaseInputs": {
+    "currentMarketingVersion": "0.0.1",
+    "currentBuild": 30,
+    "lastDeliveredBuild": 30,
+    "sourceChangeThisTurn": false,
+    "beforeRelease": "If producing a new installable package, set the intended build number before freezing and starting the single final gate; never change project inputs after validation."
+  },
+  "localAuditVerification": {
+    "pythonTooling": {
+      "total": 42,
+      "passed": 42,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "modules": [
+        "test_architecture",
+        "test_ui_baseline"
+      ],
+      "all109Rerun": false
+    },
+    "appleCompileExecuted": false,
+    "nativeTestsExecuted": false,
+    "swiftGrammarFiles": 484,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "grammarIsCompilation": false,
+    "staticLogSHA256": "05c894e72f9f3e46142180c4dbc3f112b71eb9b9758bce1d34a721194f96cde6",
+    "toolingLogSHA256": "fa036e45e2e859ddcd6124c7fb19d9bfe76e91fc5dfb99ff75598b954540e82c"
+  }
+}
