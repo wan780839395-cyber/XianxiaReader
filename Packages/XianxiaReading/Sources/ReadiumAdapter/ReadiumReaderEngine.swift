@@ -159,7 +159,7 @@ import XianxiaCore
         txtReading = txt
         self.navigator = navigator
         #if DEBUG
-            navigator.viewportFixtureControl = viewportFixtureControl
+            navigator.viewportFixtureControl = viewportFixtureStorage as? ReaderViewportFixtureBridge
         #endif
         navigator.verticalScreenPagingEnabled = interaction.verticalScreenPaging
         appliedPreferences = preferences
@@ -577,16 +577,48 @@ extension ReadiumReaderEngine {
 }
 
 #if DEBUG
+// Test clients link ReadiumAdapter. These are owned types, not aliases of SDK metadata.
+struct ReaderViewportFixtureEvent: Sendable {
+    let requestID: UUID
+    let kind: String
+    let values: [String: String]
+}
+
+@MainActor protocol ReaderViewportFixtureControl: AnyObject {
+    func observe(_ event: ReaderViewportFixtureEvent)
+    func pause(_ event: ReaderViewportFixtureEvent) async -> Bool
+    func invalidate(_ reason: String)
+}
+
+@MainActor private final class ReaderViewportFixtureBridge: EPUBViewportFixtureControl {
+    let control: any ReaderViewportFixtureControl
+    init(_ control: any ReaderViewportFixtureControl) { self.control = control }
+    private func convert(_ event: EPUBViewportFixtureEvent) -> ReaderViewportFixtureEvent {
+        .init(requestID: event.requestID, kind: event.kind, values: event.values)
+    }
+    func observe(_ event: EPUBViewportFixtureEvent) { control.observe(convert(event)) }
+    func pause(_ event: EPUBViewportFixtureEvent) async -> Bool { await control.pause(convert(event)) }
+    func invalidate(_ reason: String) { control.invalidate(reason) }
+}
+
 extension ReadiumReaderEngine {
-    typealias ViewportFixtureEvent = EPUBViewportFixtureEvent
-    typealias ViewportFixtureControl = EPUBViewportFixtureControl
+    typealias ViewportFixtureEvent = ReaderViewportFixtureEvent
+    typealias ViewportFixtureControl = ReaderViewportFixtureControl
     var viewportFixtureControl: (any ViewportFixtureControl)? {
-        get { viewportFixtureStorage as? any ViewportFixtureControl }
-        set { viewportFixtureStorage = newValue; navigator?.viewportFixtureControl = newValue }
+        get { (viewportFixtureStorage as? ReaderViewportFixtureBridge)?.control }
+        set {
+            let bridge = newValue.map { ReaderViewportFixtureBridge($0) }
+            viewportFixtureStorage = bridge; navigator?.viewportFixtureControl = bridge
+        }
     }
     func requestViewportFixtureSample() async {
         await EPUBViewportFixtureEvent.$source.withValue("test-auxiliary") {
             _ = await navigator?.firstVisibleElementLocator()
+        }
+    }
+    func captureViewportFixturePosition() async throws -> ReadingPosition {
+        try await EPUBViewportFixtureEvent.$source.withValue("original-capture") {
+            try await captureCurrentPosition()
         }
     }
 }

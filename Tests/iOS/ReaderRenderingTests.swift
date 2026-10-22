@@ -364,9 +364,7 @@ final class ReaderRenderingTests: XCTestCase {
         #if DEBUG
             let saved: ReadingPosition
             if fixture != nil {
-                saved = try await ReadiumReaderEngine.ViewportFixtureEvent.$source.withValue("original-capture") {
-                    try await engine.captureCurrentPosition()
-                }
+                saved = try await engine.captureViewportFixturePosition()
             } else { saved = try await engine.captureCurrentPosition() }
             try fixture?.verifyOriginalCapture()
         #else

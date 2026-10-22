@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-22 smoke唯一CI已收口：9f1c503a/39777683114/attempt1，Linux111通过，原生准备/构建819秒后测试包链接失败（5组SDK诊断类型符号），原生/机制执行0。原因是夹具Adapter typealias未建立自有类型；已修2文件Debug桥候选，484语法/静态及本地14工具通过/1 POSIX跳过，尚未重新编译/原生验证。未重派、算法/原断言预算保持。旧full191/192、Release/手机缺口和Build30保持。见[结果与断点](Documentation/I6_VIEWPORT_SMOKE.md)。
+
 2026-10-22 连续视口最小Debug夹具已接线，默认关闭，仅原单例smoke检查S/M命中、放行回执和取消/关闭清理；6源/摘要文件内完成，原断言/预算与定位算法保留。484语法/静态检查通过（非编译），相关Python12通过/1 POSIX跳过。没有Swift编译或夹具实际运行，不能写屏障已命中；零CI，旧full191/192及Release/手机缺口保持，最后交付Build30。见[实现与验证边界](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)第9节。
 
 2026-10-22 连续视口可控复现设计已完成，尚未实施：只检验“旧尺寸请求跨到新DOM读取后，是否覆盖A并令重排放弃恢复”的假设。设计明确缓存未命中采样屏障、并发测量提交屏障组、放行回执、关闭失效后清理，以及准备不成立/状态交错/原字故障的判读。原断言、预算及617运行输入保持；零CI、零源码/测试修改，旧full191/192与Release/手机未验收保持，最后交付Build30。见[可控复现设计](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)。

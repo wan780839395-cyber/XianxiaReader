@@ -1,3 +1,21 @@
+# smoke单轮失败已保存，Debug桥候选修正未原生验证（2026-10-22）
+
+唯一CI39777683114 / 9f1c503a6be4bbc15ad333613adad73a38352380 / run_attempt1已结束；禁止重派。Linux111通过，原生步骤819秒，Swift对象编译已发生，但XianxiaReaderTests链接失败exit65，测试和机制执行0。五组缺符号都是SDK Event/Control（含TaskLocal/元数据），Tests.o通过Adapter typealias直接引用SDK类型；Tests工程只链接Adapter。不是定位断言失败，不能宣称编译或smoke验收通过。
+
+原件已核：artifact12426406178，250175字节，SHA256 6e6fa624c7a61f77c40455e37839d85566aadbf09bb0149c1f986d3b01de5d7b，CRC通过，9文件/1776693字节位于build/ci/39777683114/diagnostic；日志/PositionBuild.xcresult存在，测试xcresult/summary不存在（未执行）。只移除校验后的重复ZIP。frozen/唯一dispatch-attempt/run-api/原始measured-result-before-correction及undefined-symbols保留，不能用修后候选冒充已测源。
+
+已局部修正2文件Debug桥候选：Adapter自己拥有事件DTO/控制协议，私有bridge转换SDK事件；TaskLocal与fixture capture包装留在Adapter，Tests不再引用SDK事件/协议/TaskLocal。SDK/Vendor/工程/依赖不变，原算法/断言/预算保持；两文件Release完整投影逐字一致，默认nil无新增await，34个其他测试体/waitUntil保持。候选484语法/静态通过（新增0/原Vendor54），15定向工具中14通过/1 POSIX跳过；没有编译/机制/原生结果，不可写已修复链接或已命中。
+
+当前源应以最终saved checkpoint为准；父为本轮已测9f1c503a，普通HEAD/index保持。证据及恢复build/maintenance/I6-viewport-smoke-20261022/final-checkpoint.json，权威报告Documentation/I6_VIEWPORT_SMOKE.md和ValidationLogs/project-isolation-i6-viewport-smoke.json。当前唯一CI预算已耗尽；下一步只在新授权后，对当前Adapter自有类型候选再做同一smoke原生验证，不改算法/不启动冲突复现/不扩大整组。旧full191/192、I6/Release/手机未验收、最后交付Build30保持，无新IPA、不关机。
+
+---
+
+# smoke原生单例运行中：只派一次，禁止重派（2026-10-22）
+
+冻结源9f1c503a6be4bbc15ad333613adad73a38352380，CI39777683114，selection=continuous-resize-smoke，只跑原视口方法1例及其机制6项。定位源码、原断言/预算保持；不跑Core/组件/23项/UI/full/设备Release。当前尚无原生结果，恢复先核build/maintenance/I6-viewport-smoke-20261022的attempt/dispatch/frozen与真实job，禁止因中断再派。完整编译/测试原件须收齐再判，失败不自动重跑。旧full191/192与Build30保持，不关机。
+
+---
+
 # smoke单轮原生验证准备：最多一次CI，不自动重跑（2026-10-22）
 
 用户授权仅一轮CI，编译并验证原视口单例的smoke夹具，确认机制6项、真实S/M命中/放行回执和取消/关闭清理。定位算法、原断言/预算不改，不跑Core/组件/23项/UI/full/设备Release。当前还未派发；基线2d490b6a及617运行输入零漂移，before与尝试锁目录build/maintenance/I6-viewport-smoke-20261022。

@@ -1,5 +1,29 @@
 # 连续视口smoke：单轮原生验证（2026-10-22）
 
+2026-10-22 本片已收口：唯一[CI39777683114](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39777683114) / 9f1c503a / attempt1 **失败于测试包链接，用例与机制执行0**。已保存原件并修正两文件Debug桥接候选；候选仅本地静态通过，尚未原生验证。下面原计划保留为历史范围，实际结果以本节和[权威审计](ValidationLogs/project-isolation-i6-viewport-smoke.json)为准。
+
+## 实际结果与原因
+
+- Linux111项工具检查全部通过。Xcode16.4/Swift6.1.2/Intel执行对象编译，但build-for-testing在XianxiaReaderTests链接失败，exit65；不能称原生编译验收通过。原生步骤819秒（13分39秒），均为准备/构建，测试0秒；还未进入模拟器用例，30秒业务断言与6项机制检查均没有执行。
+- 5组undefined全部属于ReadiumNavigator的EPUBViewportFixtureEvent/Control：TaskLocal source、初始化器、metadata accessor、nominal descriptor、protocol descriptor。测试目标明确只链接Adapter产品；typealias仍表示SDK原类型，并没有建立Adapter自己的类型边界。这是上一片夹具桥的实现缺口，不能归因定位算法或本地网络。
+- 完整实际link命令、undefined引用来自ReaderRenderingTests.o的原件，保存在build/maintenance/I6-viewport-smoke-20261022/undefined-symbols.txt及原日志。现有9处Swift警告和2条链接警告均保留，未压制；失败依据是5组缺符号，未另行扩修警告。
+
+## 已做的局部修正，尚未原生验证
+
+只改Adapter和本同例2个Swift文件：由ReadiumAdapter声明自己的Sendable事件DTO/MainActor控制协议，私有bridge转换SDK事件；Tests不再构造/遵循SDK类型或引用SDK TaskLocal，原capture来源通过Adapter内部方法标记。SDK/Vendor/项目/依赖/正常定位算法不动，不给测试目标追加SDK链接项。两个文件DEBUG=false完整投影与已测源逐字一致；默认关闭路径、原断言/预算、34个其他测试体及原waitUntil保持。
+
+候选本地check_repository --swift-syntax通过484文件（新增0，原Vendor54），定向Python15项中14通过/1 POSIX跳过；这不是编译/运行。候选没有新CI，不能称链接已验收、smoke通过或根因复现成功。相对2d490b6a本轮共6项运行输入改变、其他611保持；相对本轮已测9f1c候选仅2项改变、其他615保持。原生确认仍停在0例。单次预算已耗尽，下一轮需用户新授权；不得直接重派。
+
+## 原件与恢复
+
+artifact12426406178，250175字节，SHA256 6e6fa624c7a61f77c40455e37839d85566aadbf09bb0149c1f986d3b01de5d7b。GitHub摘要及ZIP CRC通过，9文件/解压1776693字节；完整日志、build-environment和PositionBuild.xcresult在build/ci/39777683114/diagnostic。由于未进入测试，DiagnosticTests.xcresult/用例summary/屏障附件不存在，不能写为已下载或已验证。校验展开后只删除了重复ZIP。
+
+本地冻结、单次派发锁、measured-result-before-correction、candidate-correction及final-checkpoint在build/maintenance/I6-viewport-smoke-20261022；测得失败源与当前候选分开保留，普通HEAD/index未动。旧full191/192、Release/手机未验收及最后交付Build30保持，无新IPA、不关机。
+
+原因/取舍参考：[Swift typealias声明](https://docs.swift.org/latest/documentation/the-swift-programming-language/declarations/)说明别名不建立新类型；[Apple产品链接](https://help.apple.com/xcode/mac/current/en.lproj/devb83d64851.html)说明目标须实际链接所用package产品。本片按已有Adapter边界修类型归属，未更改工程链接图。
+
+---
+
 用户授权只派一轮CI，验证[最小夹具](I6_VIEWPORT_REPRODUCTION_DESIGN.md)的原生编译、六项控制器机制、真实S/M命中/放行收件及取消/关闭清理。当前准备完成、尚未派发，冻结及dispatch记录为实际运行身份依据。失败保存原件后查清，禁止自动重跑；不改定位算法、原断言或预算，不跑23项/整套/Core/组件/UI/设备Release，不产IPA。
 
 夹具源2d490b6a的5Swift及Vendor摘要逐字保持。本轮只补4个现有CI/tooling文件：workflow选择continuous-resize-smoke，诊断脚本严格选择原方法1例，使用TEST_RUNNER_XIANXIA_VIEWPORT_FIXTURE=smoke传给测试进程，原生成功后由位置证据校验器核原始收件；对应工具测试含正例及缺标记/未命中/漏放行/晚提交/残留/错序等反例。

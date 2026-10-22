@@ -1,0 +1,159 @@
+{
+  "recordedAtUTC": "2026-10-22T12:45:48.478797+00:00",
+  "run": 39777683114,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39777683114",
+  "sourceRevision": "9f1c503a6be4bbc15ad333613adad73a38352380",
+  "conclusion": "failure",
+  "smokeAccepted": false,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "nativeEvents": {
+    "started": [],
+    "ended": []
+  },
+  "summary": null,
+  "actualStatuses": {
+    "test": null,
+    "summary": null,
+    "export": null
+  },
+  "mechanismMarkers": 0,
+  "verifiedReceipt": null,
+  "verificationError": "Original native position cases must each start and pass exactly once",
+  "fixtureRecordCount": 0,
+  "fixtureBrief": [],
+  "sourceErrors": [
+    "clang: error: linker command failed with exit code 1 (use -v to see invocation)"
+  ],
+  "warnings": [
+    "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1504:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:405:31: warning: expression implicitly coerced from 'Any?' to 'Any'",
+    "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'",
+    "ld: warning: Could not find or use auto-linked framework 'CoreAudioTypes': framework 'CoreAudioTypes' not found",
+    "ld: warning: Could not parse or use implicit file '/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/SwiftUICore.framework/SwiftUICore.tbd': cannot link directly with 'SwiftUICore' because product being built is not an allowed client of it"
+  ],
+  "cost": {
+    "dispatches": 1,
+    "nativeStepSeconds": 819.0,
+    "beforeFirstSuiteSeconds": null,
+    "caseSeconds": 0
+  },
+  "artifact": {
+    "recordedAtUTC": "2026-10-22T12:37:39.705092+00:00",
+    "run": 39777683114,
+    "artifact": {
+      "id": 12426406178,
+      "node_id": "MDg6QXJ0aWZhY3QxMjQyNjQwNjE3OA==",
+      "name": "XianxiaReader-continuous-resize-smoke",
+      "size_in_bytes": 250175,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12426406178",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12426406178/zip",
+      "expired": false,
+      "digest": "sha256:6e6fa624c7a61f77c40455e37839d85566aadbf09bb0149c1f986d3b01de5d7b",
+      "created_at": "2026-10-22T12:36:26Z",
+      "updated_at": "2026-10-22T12:36:26Z",
+      "expires_at": "2026-10-29T12:36:25Z",
+      "workflow_run": {
+        "id": 39777683114,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/continuous-viewport-smoke",
+        "head_sha": "9f1c503a6be4bbc15ad333613adad73a38352380"
+      }
+    },
+    "compressedBytes": 250175,
+    "extractedBytes": 1776693,
+    "files": 9,
+    "sha256": "6e6fa624c7a61f77c40455e37839d85566aadbf09bb0149c1f986d3b01de5d7b",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "freeBytesBefore": 122368884736,
+    "directory": "build/ci/39777683114/diagnostic",
+    "duplicateArchiveRemoved": true
+  },
+  "rootCauseOfOldFullProven": false,
+  "algorithmModified": false,
+  "runtimeDrift": [],
+  "evidence": [
+    {
+      "path": "build/ci/39777683114/full.log",
+      "sha256": "b192c94909a047089bb1916efb3156c17144b40cc9c58f7271337f1c42c97765"
+    },
+    {
+      "path": "build/ci/39777683114/run.json",
+      "sha256": "85a86cc3b83293dad3a9e15a5e4d3ad5d25c90b1062db21ef23d1809fd4fdd28"
+    },
+    {
+      "path": "build/ci/39777683114/artifacts.json",
+      "sha256": "cf42c9ec22735ee1df46b616136dd249e0aadb4aab768931f6283bff80cdc6b1"
+    },
+    {
+      "path": "build/ci/39777683114/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "5fade21e8ac3b424f2dd42bf20020d959112ddd840ae1376cef27f826323a5d3"
+    },
+    {
+      "path": "build/ci/39777683114/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    }
+  ],
+  "acceptance": {
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false
+  },
+  "diagnosis": {
+    "stage": "test bundle link; Swift objects compiled, build-for-testing failed",
+    "undefinedSymbolGroups": 5,
+    "symbols": [
+      "SDK Event.$source",
+      "SDK Event.init",
+      "SDK Event metadata accessor",
+      "SDK Event nominal descriptor",
+      "SDK Control protocol descriptor"
+    ],
+    "cause": "Adapter typealiases still denote ReadiumNavigator types. Tests link Adapter product, not the SDK concrete symbol surface.",
+    "runAttempt": 1,
+    "toolingCITests": 111,
+    "nativeCasesExecuted": 0,
+    "nextLocalCorrection": "Owned Adapter DTO/protocol and private SDK conversion; keep TaskLocal binding inside Adapter; no new CI."
+  },
+  "failedSourcePreserved": true,
+  "candidateCorrectionApplied": true,
+  "candidateCorrection": {
+    "testedSource": "9f1c503a6be4bbc15ad333613adad73a38352380",
+    "run": 39777683114,
+    "failureStage": "XianxiaReaderTests link",
+    "undefinedSDKSymbolGroups": 5,
+    "localCandidateFiles": [
+      "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "Tests/iOS/ReaderRenderingTests.swift"
+    ],
+    "releaseProjectionsByteIdentical": true,
+    "SDKAndProjectAndAssertionsUnchanged": true,
+    "localChecks": [
+      {
+        "label": "candidate-repository",
+        "exitCode": 0
+      },
+      {
+        "label": "candidate-tooling",
+        "exitCode": 0
+      }
+    ],
+    "candidateNativeCompileVerified": false,
+    "candidateNativeTestsExecuted": 0,
+    "newCIDispatches": 0,
+    "remainingCIDispatchBudget": 0
+  },
+  "resultBoundary": "The only native run tested 9f1c503a and failed at test-bundle link. Current owned-Adapter bridge candidate has local checks only; no native pass, gate hits or cancellation acceptance.",
+  "maximumCIDispatches": 1,
+  "runAttempt": 1
+}
