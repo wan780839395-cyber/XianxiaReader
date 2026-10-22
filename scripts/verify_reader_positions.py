@@ -77,6 +77,7 @@ ACCEPTANCE_TESTS = NATIVE_TESTS | {
 }
 
 CLOSE_TESTS = {"ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews"}
+VIEWPORT_SMOKE_TESTS = {"ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"}
 
 
 def verify_logic(folder):
@@ -160,14 +161,75 @@ def verify_close(folder, status=0):
     return dict(result, closeProbe=rows)
 
 
+def verify_viewport_smoke(folder, status=0):
+    result = verify_native(folder, VIEWPORT_SMOKE_TESTS, status)
+    if json.loads((folder / "test-results-summary.json").read_text(encoding="utf-8")).get("result") != "Passed":
+        raise ValueError("Smoke xcresult summary must report Passed")
+    log = (folder / "logs/reader-diagnostic.log").read_text(encoding="utf-8")
+    if log.splitlines().count("CONTINUOUS_FIXTURE_MECHANICS passed=6 liveSDKReceiptsRequired=true") != 1:
+        raise ValueError("All six controller mechanism checks must complete once")
+    rows = [json.loads(line.removeprefix("CONTINUOUS_VIEWPORT_FIXTURE "))
+            for line in log.splitlines() if line.startswith("CONTINUOUS_VIEWPORT_FIXTURE ")]
+    if len(rows) != 1:
+        raise ValueError("Require exactly one real smoke cleanup record, not an ordinary case pass")
+    row = rows[0]
+    if (row.get("stage") != 4 or row.get("failure") != "none"
+            or any(row.get(key) != [] for key in ["active", "tasks", "waiters"])):
+        raise ValueError("Smoke must finish its safe sequence and clean all registered work")
+    events = row.get("events", [])
+    if (not row.get("nonce") or not 1 <= len(events) <= 128
+            or [e.get("sequence") for e in events] != [str(i + 1) for i in range(len(events))]
+            or any(e.get("nonce") != row["nonce"] or not e.get("requestID") for e in events)):
+        raise ValueError("Require bounded, ordered, same-instance event receipts")
+
+    def event(request, kind):
+        found = [e for e in events if e["requestID"] == request and e.get("kind") == kind]
+        if len(found) != 1:
+            raise ValueError(f"Missing or repeated {kind} receipt for {request}")
+        return found[0]
+
+    held = [e for e in events if e.get("kind") == "held"]
+    samples = [e for e in held if e.get("gate") == "sample-before-read"]
+    measures = [e for e in held if e.get("gate") == "measure-before-commit"]
+    if len(samples) != 1 or not 1 <= len(measures) <= 32 or len(held) != 1 + len(measures):
+        raise ValueError("Require a real cache-miss S and the qualifying M group")
+    sample_finished = None
+    for entry in samples + measures:
+        request = entry["requestID"]
+        before = event(request, entry["gate"])
+        release = event(request, "released")
+        finished_kind = "sample-finished" if entry in samples else "measure-finished"
+        finished = event(request, finished_kind)
+        if (release.get("disposition") != "run" or finished.get("outcome") != "committed"
+                or not int(before["sequence"]) < int(entry["sequence"]) < int(release["sequence"]) < int(finished["sequence"])):
+            raise ValueError("Gate entry, release and real terminal receipt must agree")
+        if entry in samples:
+            sample_finished = finished
+        elif int(sample_finished["sequence"]) >= int(entry["sequence"]):
+            raise ValueError("This scope requires safe S completion before M is held")
+    decision = event(measures[0]["requestID"], "measure-guard")
+    if any(decision.get(key) != "true" for key in ["ownerMatches", "anchorEqual", "anchorCurrentAtStart",
+                                                  "anchorCurrentNow", "revisionMatches", "localMatches", "mayRestore"]):
+        raise ValueError("The first real M must retain the original safe-order guards")
+    closing = [e for e in events if e.get("kind") == "closing"]
+    abort = [e for e in events if e.get("kind") == "abort-issued"]
+    if (len(closing) != 1 or len(abort) != 1 or abort[0].get("count") != "0"
+            or int(closing[0]["sequence"]) >= int(abort[0]["sequence"])):
+        raise ValueError("Require explicit terminal close and abort cleanup receipts")
+    return dict(result, mechanismChecks=6, sdkSampleHeld=1, sdkMeasuresHeld=len(measures),
+                realTerminalReceipts=len(held), cleanupEmpty=True, fixture=row,
+                conflictReplayExecuted=False, oldFullRootCauseProven=False)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("kind", choices=["logic", "native", "acceptance", "close"])
+    parser.add_argument("kind", choices=["logic", "native", "acceptance", "close", "viewport-smoke"])
     parser.add_argument("folder", type=Path)
     parser.add_argument("--report", required=True, type=Path)
     parser.add_argument("--status", type=int, default=0)
     args = parser.parse_args()
-    validators = {"native": verify_native, "acceptance": verify_acceptance, "close": verify_close}
+    validators = {"native": verify_native, "acceptance": verify_acceptance, "close": verify_close,
+                  "viewport-smoke": verify_viewport_smoke}
     result = (verify_logic(args.folder) if args.kind == "logic" else
               validators[args.kind](args.folder, status=args.status))
     result.update(recordedAtUTC=datetime.now(timezone.utc).isoformat(), validationKind=f"reader_positions_{args.kind}",

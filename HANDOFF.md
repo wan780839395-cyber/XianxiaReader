@@ -1,3 +1,13 @@
+# smoke单轮原生验证准备：最多一次CI，不自动重跑（2026-10-22）
+
+用户授权仅一轮CI，编译并验证原视口单例的smoke夹具，确认机制6项、真实S/M命中/放行回执和取消/关闭清理。定位算法、原断言/预算不改，不跑Core/组件/23项/UI/full/设备Release。当前还未派发；基线2d490b6a及617运行输入零漂移，before与尝试锁目录build/maintenance/I6-viewport-smoke-20261022。
+
+现有continuous-resize只跑普通单例，必须补专用continuous-resize-smoke选择、TEST_RUNNER_XIANXIA_VIEWPORT_FIXTURE=smoke环境传递、成功后的收件校验，避免普通单例冒充fixture通过。仅改workflow/诊断入口/既有位置证据校验器及相应Python工具测试；五个Swift夹具/算法源和Vendor摘要保持。Apple官方环境变量文档与WWDC22-110361核对TEST_RUNNER_剥前缀规则。本地15工具项14通过/1 POSIX跳过，484语法/静态通过；Swift/Vendor等613输入保持。下一步冻结输入/私有分支并写dispatch-attempt后只派一次；任何失败先保留完整原件再查，不重派。
+
+恢复先核frozen/dispatch-attempt/dispatch与真实run；不可用旧“未派发”字样替代GitHub状态。旧full191/192及Release/手机缺口保持，无新IPA，最后交付Build30，不关机。
+
+---
+
 # 连续视口最小Debug夹具：源码接线完成，未原生验证、零CI（2026-10-22）
 
 用户仅授权最小fixture及命中/放行/取消清理检查，不派CI、不改定位算法。已在设计规定6个源/摘要文件实现，默认关闭；原单例测试进程显式XIANXIA_VIEWPORT_FIXTURE=smoke才安装实例控制器，未知模式失败。现有App/Core/ReadingInterfaces/隔离模块/资源/依赖/项目/CI均未动，原断言/预算保留。实现与未来执行资格详见[设计第9节](Documentation/I6_VIEWPORT_REPRODUCTION_DESIGN.md)。

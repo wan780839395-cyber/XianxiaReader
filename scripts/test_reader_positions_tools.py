@@ -11,7 +11,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from check_architecture import ROOT, yaml
-from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, ACCEPTANCE_TESTS, CLOSE_TESTS, verify_logic, verify_native, verify_acceptance, verify_close
+from verify_reader_positions import LOGIC_TESTS, STATE_TESTS, TEST_CLASSES, NATIVE_TESTS, ACCEPTANCE_TESTS, CLOSE_TESTS, VIEWPORT_SMOKE_TESTS, verify_logic, verify_native, verify_acceptance, verify_close, verify_viewport_smoke
 
 
 class PositionEvidenceTests(unittest.TestCase):
@@ -176,6 +176,60 @@ class PositionEvidenceTests(unittest.TestCase):
         self.assertIn("set -euo pipefail", steps[0]["run"])
         self.assertIn("ci_reader_diagnostic.sh initialization-close", steps[0]["run"])
         self.assertNotIn("test_reader_positions.sh", steps[0]["run"])
+
+    def test_viewport_smoke_requires_real_gates_receipts_and_empty_cleanup(self):
+        log, _ = self.native_fixture(VIEWPORT_SMOKE_TESTS)
+        events = []
+        def add(request, kind, **values):
+            events.append(dict(requestID=request, kind=kind, sequence=str(len(events) + 1), nonce="fixture", **values))
+        add("S", "sample-before-read"); add("S", "held", gate="sample-before-read")
+        add("S", "released", disposition="run"); add("S", "sample-finished", outcome="committed")
+        add("M", "measure-before-commit"); add("M", "held", gate="measure-before-commit")
+        add("M", "released", disposition="run")
+        flags = dict.fromkeys(["ownerMatches", "anchorEqual", "anchorCurrentAtStart", "anchorCurrentNow",
+                               "revisionMatches", "localMatches", "mayRestore"], "true")
+        add("M", "measure-guard", **flags); add("M", "measure-finished", outcome="committed")
+        add("close", "closing"); add("abort", "abort-issued", count="0")
+        row = dict(nonce="fixture", stage=4, failure="none", active=[], tasks=[], waiters=[], events=events)
+        marker = "CONTINUOUS_FIXTURE_MECHANICS passed=6 liveSDKReceiptsRequired=true\n"
+        def write(value, mechanics=marker):
+            (self.root / "logs/reader-diagnostic.log").write_text(log + "\n" + mechanics + "CONTINUOUS_VIEWPORT_FIXTURE " + json.dumps(value) + "\n")
+        write(row)
+        self.assertEqual(verify_viewport_smoke(self.root)["realTerminalReceipts"], 2)
+        with self.assertRaises(ValueError): verify_viewport_smoke(self.root, status=65)
+        for mechanics in ["", marker + marker]:
+            write(row, mechanics)
+            with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+        for key, value in [("stage", 3), ("failure", "late-commit"), ("active", ["S"]),
+                           ("tasks", ["T"]), ("waiters", ["M"])]:
+            bad = deepcopy(row); bad[key] = value; write(bad)
+            with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+        for index, key, value in [(1,"gate","cache-hit"), (2,"disposition","abort"),
+                                   (3,"outcome","cached"), (7,"mayRestore","false"),
+                                   (0,"nonce","other"), (8,"sequence","1")]:
+            bad = deepcopy(row); bad["events"][index][key] = value; write(bad)
+            with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+        for index in range(len(events)):
+            bad = deepcopy(row); bad["events"].pop(index); write(bad)
+            with self.assertRaises(ValueError): verify_viewport_smoke(self.root)
+
+    def test_viewport_smoke_route_is_single_case_and_passes_runner_environment(self):
+        shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
+        block = shell.split("  continuous-resize-smoke)", 1)[1].split("    ;;", 1)[0]
+        self.assertEqual(re.findall(r"-only-testing:XianxiaReaderTests/(\w+/\w+)", block), sorted(VIEWPORT_SMOKE_TESTS))
+        self.assertIn("export TEST_RUNNER_XIANXIA_VIEWPORT_FIXTURE=smoke", block)
+        workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        self.assertIn("continuous-resize-smoke", workflow["on"]["workflow_dispatch"]["inputs"]["diagnostic_selection"]["options"])
+        jobs = workflow["jobs"]
+        for name in ["core-tests", "reading-diagnostic"]:
+            self.assertIn("!= 'continuous-resize-smoke'", jobs[name]["if"])
+        self.assertNotIn("continuous-resize-smoke", jobs["ios"]["if"])
+        self.assertIn("== 'continuous-resize-smoke'", jobs["reader-positions"]["if"])
+        steps = [s for s in jobs["reader-positions"]["steps"] if "verify_reader_positions.py viewport-smoke" in s.get("run", "")]
+        self.assertEqual(len(steps), 1)
+        self.assertEqual(steps[0]["env"]["DIAGNOSTIC_SELECTION"], "${{ inputs.diagnostic_selection }}")
+        self.assertIn("set -euo pipefail", steps[0]["run"])
+        self.assertNotIn("retry", steps[0]["run"])
 
     @unittest.skipIf(os.name == "nt", "POSIX executable fixture validated on Linux CI")
     def test_shell_preserves_swift_failure_and_rejects_stale_evidence(self):
