@@ -1,5 +1,7 @@
 # 项目状态
 
+2026-10-22 I6c初始化关闭单例已收口：598aedd / CI39729365995真实编译及原单例1/1通过，含分页/连续两分支。原生记录证实分页初始FontFaceSet JS包装对象已回收，旧实例hook未进、prototype后备接住真实ready；仅修测试探针生命周期和显式屏障，生产/隔离/定位修复、原关闭断言与30秒/15秒预算保持。只派1轮，未跑23项或整套，旧22/23保留历史；完整192/Release/手机仍待验收，无新IPA。见[本片原因与证据](Documentation/I6_INITIALIZATION_CLOSE.md)及ValidationLogs/project-isolation-i6-close.json。
+
 2026-10-22 I6b已执行精确23项位置/加载门槛：源075c2cc / CI39721680702真实编译通过，22通过、1失败、0跳过，test退出65；唯一失败在分页“初始化中关闭”的准备探针，关闭断言和连续分支未执行，根因尚未证实。生产/原生测试/原断言预算及现有隔离定位修复未改，完整原件已校验保留；未重派、未跑完整192/Release/手机，无新IPA。用户已确认本轮保存证据、下一轮仅单查此例；I6整体仍未验收。见[I6b结果与断点](Documentation/I6_POSITION_ACCEPTANCE.md)及ValidationLogs/project-isolation-i6-position.json。以下I6a等段为各自历史结果。
 
 2026-10-22 I6a边界/证据审计及两处发布门禁修补完成：原始合同与传递输入核实后，6个独立模块只可分项引用，不能相加成同源验收。补齐完整artifact的设置/导入/搜索证据目录，并在Release前增加full192全部通过、零失败/跳过摘要门禁。105项本地工具98通过/7 POSIX跳过，语法484无新增诊断（非编译）；首旧夹具失败及修正保留。仅5个CI/tooling输入变化，其余612及全部生产Swift/原生测试/工程/资源/锁保持。Reader宿主AppServices、UI/批次桥接和字体iOS依赖仍是边界限制；下一片只做原19位置+4加载=23项，不复用旧28项UI配置。当前零CI派发、未跑原生/完整192/Release/手机、无新App IPA，I6整体未验收。详见[审计与精确门槛](Documentation/I6_ACCEPTANCE_AUDIT.md)及ValidationLogs/project-isolation-i6-audit.json。

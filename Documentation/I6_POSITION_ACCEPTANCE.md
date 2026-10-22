@@ -1,5 +1,7 @@
 # I6b 位置与加载定向验收
 
+后续（2026-10-22）：[I6c关闭单例](I6_INITIALIZATION_CLOSE.md)已取得实例hook丢失机制证据并修正测试准备，真实1/1（含两模式）通过，生产未改。下文仍保留本轮源075c2cc的22/23历史，不相加成新源23/23。
+
 2026-10-22，冻结源 `075c2ccfbc597eba2afa57c6622f44ecba1cf6ce`，[CI39721680702](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39721680702)。只派发一次 `position-acceptance`，原生23项实际执行，22通过、1失败、0跳过；原生编译通过，test退出65，summary/export退出0。I6仍未验收，不能进入发布。
 
 ## 实现范围

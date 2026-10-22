@@ -1,5 +1,7 @@
 # 架构与技术决策
 
+2026-10-22 I6c未改变生产依赖或异步顺序，仅修初始化关闭测试的探针生命周期与显式字体门。原生分页记录证明实例hook随初始JS包装对象丢失，prototype后备捕获实际读取；在初始化仍pending时，分页/连续原关闭断言全部通过。原隔离/定位行为保持，完整验收仍待I6下一片。见[原因与证据](Documentation/I6_INITIALIZATION_CLOSE.md)。
+
 2026-10-22 I6b未调整模块或生产行为，只增加精确23项原生入口与严格结果门禁。源075c2cc真实编译通过，22/23，初始化关闭用例准备探针失败、关闭合同未验到；不能以其他定位用例通过宣称I6整体验收。所有既有隔离/await顺序/定位修复保持。见[I6b实际结果](Documentation/I6_POSITION_ACCEPTANCE.md)；后续仅诊断该case，以下I6a等段为历史记录。
 
 2026-10-22 I6a边界/证据审计及两处发布门禁修补完成：原始合同与传递输入核实后，6个独立模块只可分项引用，不能相加成同源验收。补齐完整artifact的设置/导入/搜索证据目录，并在Release前增加full192全部通过、零失败/跳过摘要门禁。105项本地工具98通过/7 POSIX跳过，语法484无新增诊断（非编译）；首旧夹具失败及修正保留。仅5个CI/tooling输入变化，其余612及全部生产Swift/原生测试/工程/资源/锁保持。Reader宿主AppServices、UI/批次桥接和字体iOS依赖仍是边界限制；下一片只做原19位置+4加载=23项，不复用旧28项UI配置。当前零CI派发、未跑原生/完整192/Release/手机、无新App IPA，I6整体未验收。详见[审计与精确门槛](Documentation/I6_ACCEPTANCE_AUDIT.md)及ValidationLogs/project-isolation-i6-audit.json。

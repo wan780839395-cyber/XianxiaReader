@@ -1,0 +1,483 @@
+{
+  "recordedAtUTC": "2026-10-22T06:00:11.543722+00:00",
+  "phase": "i6c_single_case_pass",
+  "revision": "598aedd02ab6f6d95876ccac5f17658b8cc11905",
+  "run": 39729365995,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39729365995",
+  "workflowConclusion": "success",
+  "native": {
+    "cases": [
+      "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews"
+    ],
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "appHostUsed": true,
+    "closeProbe": [
+      {
+        "mode": "paged",
+        "phase": "prepared",
+        "values": {
+          "documentReady": "complete",
+          "href": "/OEBPS/cover.xhtml",
+          "nativeFontState": "pending",
+          "ownReadyNow": false,
+          "probe": {
+            "fontSetAliveAtCall": false,
+            "installed": true,
+            "installHref": "/OEBPS/cover.xhtml",
+            "instanceCalls": 0,
+            "nativeReady": true,
+            "ownReadyAtCall": false,
+            "prototypeCalls": 1,
+            "released": false,
+            "sameFontSetAtCall": false,
+            "settledCalls": 0
+          },
+          "started": true
+        }
+      },
+      {
+        "mode": "paged",
+        "phase": "closed",
+        "values": {
+          "delegatesDisconnected": true,
+          "remainingChildren": 0,
+          "remainingWebViews": 0,
+          "retiredCount": 2
+        }
+      },
+      {
+        "mode": "paged",
+        "phase": "gate-cleanup",
+        "values": {
+          "released": true
+        }
+      },
+      {
+        "mode": "continuous",
+        "phase": "prepared",
+        "values": {
+          "documentReady": "complete",
+          "href": "/OEBPS/cover.xhtml",
+          "nativeFontState": "pending",
+          "ownReadyNow": true,
+          "probe": {
+            "fontSetAliveAtCall": true,
+            "installed": true,
+            "installHref": "/OEBPS/cover.xhtml",
+            "instanceCalls": 1,
+            "nativeReady": true,
+            "ownReadyAtCall": true,
+            "prototypeCalls": 0,
+            "released": false,
+            "sameFontSetAtCall": true,
+            "settledCalls": 0
+          },
+          "started": true
+        }
+      },
+      {
+        "mode": "continuous",
+        "phase": "closed",
+        "values": {
+          "delegatesDisconnected": true,
+          "remainingChildren": 0,
+          "remainingWebViews": 0,
+          "retiredCount": 1
+        }
+      },
+      {
+        "mode": "continuous",
+        "phase": "gate-cleanup",
+        "values": {
+          "released": true
+        }
+      }
+    ]
+  },
+  "verificationError": null,
+  "summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "x86_64",
+          "deviceId": "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+          "deviceName": "iPhone 16 Pro",
+          "modelName": "iPhone 16 Pro",
+          "osBuildNumber": "22F77",
+          "osVersion": "18.5",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 1,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "XianxiaReader · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1792648524.653,
+    "passedTests": 1,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1792648370.296,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - XianxiaReader",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "actualStatuses": {
+    "test": 0,
+    "summary": 0,
+    "export": 0
+  },
+  "traces": [
+    {
+      "mode": "paged",
+      "phase": "prepared",
+      "values": {
+        "documentReady": "complete",
+        "href": "/OEBPS/cover.xhtml",
+        "nativeFontState": "pending",
+        "ownReadyNow": false,
+        "probe": {
+          "fontSetAliveAtCall": false,
+          "installed": true,
+          "installHref": "/OEBPS/cover.xhtml",
+          "instanceCalls": 0,
+          "nativeReady": true,
+          "ownReadyAtCall": false,
+          "prototypeCalls": 1,
+          "released": false,
+          "sameFontSetAtCall": false,
+          "settledCalls": 0
+        },
+        "started": true
+      }
+    },
+    {
+      "mode": "paged",
+      "phase": "closed",
+      "values": {
+        "delegatesDisconnected": true,
+        "remainingChildren": 0,
+        "remainingWebViews": 0,
+        "retiredCount": 2
+      }
+    },
+    {
+      "mode": "paged",
+      "phase": "gate-cleanup",
+      "values": {
+        "released": true
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "prepared",
+      "values": {
+        "documentReady": "complete",
+        "href": "/OEBPS/cover.xhtml",
+        "nativeFontState": "pending",
+        "ownReadyNow": true,
+        "probe": {
+          "fontSetAliveAtCall": true,
+          "installed": true,
+          "installHref": "/OEBPS/cover.xhtml",
+          "instanceCalls": 1,
+          "nativeReady": true,
+          "ownReadyAtCall": true,
+          "prototypeCalls": 0,
+          "released": false,
+          "sameFontSetAtCall": true,
+          "settledCalls": 0
+        },
+        "started": true
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "closed",
+      "values": {
+        "delegatesDisconnected": true,
+        "remainingChildren": 0,
+        "remainingWebViews": 0,
+        "retiredCount": 1
+      }
+    },
+    {
+      "mode": "continuous",
+      "phase": "gate-cleanup",
+      "values": {
+        "released": true
+      }
+    }
+  ],
+  "observedInstanceHookLoss": [
+    {
+      "mode": "paged",
+      "fontSetAliveAtCall": false,
+      "installed": true,
+      "installHref": "/OEBPS/cover.xhtml",
+      "instanceCalls": 0,
+      "nativeReady": true,
+      "ownReadyAtCall": false,
+      "prototypeCalls": 1,
+      "released": false,
+      "sameFontSetAtCall": false,
+      "settledCalls": 0
+    }
+  ],
+  "causality": {
+    "currentSampleInstanceHookLossObserved": true,
+    "previousFailure": 39721680702,
+    "previousFailureHasNoIdentityProbe": true,
+    "exactGCTimingOrNativeWrapperCauseProven": false,
+    "productionChanged": false,
+    "originalCloseAssertionsUnchanged": true
+  },
+  "compilation": {
+    "earlyBuildSucceeded": true,
+    "errors": [],
+    "warnings": [
+      "/Users/runner/work/XianxiaReader/XianxiaReader/App/LibraryAssembly.swift:7:1: warning: extension declares a conformance of imported type 'SQLiteBookRepository' to imported protocol 'LibraryRepository'; this will not behave correctly if the owners of 'XianxiaCore' introduce this conformance in the future",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:13: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:72:20: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:28: warning: non-sendable type 'Task<ImportOutcome, any Error>' cannot exit main actor-isolated context in call to nonisolated property 'value'; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: non-sendable type 'ImportOutcome' of nonisolated property 'value' cannot be sent to main actor-isolated context; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/BookDuplicateTests.swift:73:33: warning: type 'ImportOutcome' does not conform to the 'Sendable' protocol; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:1128:76: warning: capture of 'previousDelegate' with non-sendable type '(any UIScrollViewDelegate)?' in a '@Sendable' closure; this is an error in the Swift 6 language mode",
+      "/Users/runner/work/XianxiaReader/XianxiaReader/Tests/iOS/ReaderRenderingTests.swift:4:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'UIKit'"
+    ],
+    "environment": [
+      "Xcode 16.4",
+      "Build version 16F6",
+      "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Target: x86_64-apple-macosx15.0",
+      "ProductName:\t\tmacOS",
+      "ProductVersion:\t\t15.7.9",
+      "BuildVersion:\t\t24G830"
+    ],
+    "uniqueSourceWarnings": 6,
+    "newWarningMessagesComparedTo39721680702": []
+  },
+  "local": {
+    "pythonTotal": 9,
+    "pythonWindowsPassed": 8,
+    "pythonPOSIXSkipped": 1,
+    "jsFixtureCases": 3,
+    "swiftGrammarFiles": 484,
+    "addedGrammarDiagnostics": 0,
+    "retainedVendorLimitations": 54,
+    "linuxToolingPassed": 109
+  },
+  "cost": {
+    "dispatches": 1,
+    "nativeExecutions": 1,
+    "nativeStepSeconds": 901.0,
+    "beforeFirstNativeSuiteSeconds": 817.675,
+    "actualCaseSeconds": 17.101
+  },
+  "artifact": {
+    "id": 12405307611,
+    "bytes": 427326,
+    "sha256": "363949aa0042eb3c224a68ab118dcf0bdf043e42de9524842df9abb72d89a233",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "completeExtractionRetained": "D:\\ai项目\\XianxiaReader\\build\\ci\\39729365995\\diagnostic"
+  },
+  "preservation": {
+    "productionResourcesProjectsLocksUnchanged": true,
+    "onlyOneNativeMethodChanged": true,
+    "originalCloseAssertionsUnchanged": true,
+    "otherNativeMethodsUnchanged": true,
+    "originalShellBodyUnchanged": true,
+    "existingThreeVerifierFunctionsUnchanged": true,
+    "localTooling": {
+      "total": 9,
+      "passed": 8,
+      "skipped": 1
+    },
+    "jsFixtureCases": 3,
+    "expectedCases": [
+      "ReaderRenderingTests/testClosingDuringInitializationDisconnectsPagedAndContinuousWebViews"
+    ]
+  },
+  "runtimeDrift": [],
+  "evidence": [
+    {
+      "path": "build/ci/39729365995/full.log",
+      "sha256": "5abb1c2d2ed037b9288b85f06e7df145652fb68ab7ef55b3e9fab1732bb52d48"
+    },
+    {
+      "path": "build/ci/39729365995/run.json",
+      "sha256": "79ded6e3ea60befed1f56be71d1544d3f9158fe0fd766b5a607bcd539fc4df45"
+    },
+    {
+      "path": "build/ci/39729365995/artifacts.json",
+      "sha256": "56778deb1f3f015d470813bd98b0c7dc60ddcb0886c9d8eb0a48802b6d34782e"
+    },
+    {
+      "path": "build/ci/39729365995/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "66e22396c5190574d724b100f0889a419f25480f176a7bd8d2eac9148d04f445"
+    },
+    {
+      "path": "build/ci/39729365995/diagnostic/test-results-summary.json",
+      "sha256": "8559e081d2dac13eb2def7ca9a9f0917e80fc6f002fdd51ec031281438f46b72"
+    },
+    {
+      "path": "build/ci/39729365995/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "6e1528ec16203691cba50288d2146b578f8cc6fec2b8e6793b925db8d20fd535"
+    }
+  ],
+  "acceptance": {
+    "targetedSingleCase": true,
+    "previous23ChangedToPass": false,
+    "full192": false,
+    "deviceRelease": false,
+    "phone": false,
+    "newIPA": false,
+    "allI6Complete": false,
+    "textEvidenceReviewed": true,
+    "productionFixRequired": false
+  },
+  "attachmentsReviewed": [
+    {
+      "name": "close-initialization-continuous-gate-cleanup_0_EE64EB32-5BD3-4F07-9388-42FF11044B62.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/8AFB5B95-3E9E-4111-9611-9327472C9C59.txt",
+      "sha256": "f88ccb8eb383db5e1b61e1c0bce098b8028d5c364449c48a409be4717322e631",
+      "record": {
+        "mode": "continuous",
+        "phase": "gate-cleanup",
+        "values": {
+          "released": true
+        }
+      }
+    },
+    {
+      "name": "close-initialization-continuous-closed_0_45D7822C-A6C9-4031-A4FF-B289727658F6.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/15A595D2-96EE-42C1-9E86-B6EBFE0B45E4.txt",
+      "sha256": "65c1d04bdae4b8d31bff5908af2c5f5e8e690f7c6713ae3b6c31b84593a43d2f",
+      "record": {
+        "mode": "continuous",
+        "phase": "closed",
+        "values": {
+          "delegatesDisconnected": true,
+          "remainingChildren": 0,
+          "remainingWebViews": 0,
+          "retiredCount": 1
+        }
+      }
+    },
+    {
+      "name": "close-initialization-continuous-prepared_0_7A55EA75-E7A3-4E5B-8F13-0D6501775063.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/5B10D9A3-592B-43F6-B507-1EA803339D9A.txt",
+      "sha256": "aebd1fbfe6d0eb70aa0609715905a7f44f49f33efe51f0aec04db45f67da9d50",
+      "record": {
+        "mode": "continuous",
+        "phase": "prepared",
+        "values": {
+          "documentReady": "complete",
+          "href": "/OEBPS/cover.xhtml",
+          "nativeFontState": "pending",
+          "ownReadyNow": true,
+          "probe": {
+            "fontSetAliveAtCall": true,
+            "installed": true,
+            "installHref": "/OEBPS/cover.xhtml",
+            "instanceCalls": 1,
+            "nativeReady": true,
+            "ownReadyAtCall": true,
+            "prototypeCalls": 0,
+            "released": false,
+            "sameFontSetAtCall": true,
+            "settledCalls": 0
+          },
+          "started": true
+        }
+      }
+    },
+    {
+      "name": "close-initialization-paged-gate-cleanup_0_30804C67-B397-4A10-A960-46E7D692D069.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/A80FF554-6741-4A52-AA9E-87E478337E94.txt",
+      "sha256": "6cfbdb7230c06c6a71c568570df1f4620fecade94a68a39f8082738bc92292ab",
+      "record": {
+        "mode": "paged",
+        "phase": "gate-cleanup",
+        "values": {
+          "released": true
+        }
+      }
+    },
+    {
+      "name": "close-initialization-paged-closed_0_A51B875F-B3AA-4B15-8033-08452BA4F503.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/BB49EEDB-DD81-4DAA-BD39-2916F94D1519.txt",
+      "sha256": "660cbc4277cd539dbdfb0ebed0b8cdacd91419d25b17005a29a6799538a63c6f",
+      "record": {
+        "mode": "paged",
+        "phase": "closed",
+        "values": {
+          "delegatesDisconnected": true,
+          "remainingChildren": 0,
+          "remainingWebViews": 0,
+          "retiredCount": 2
+        }
+      }
+    },
+    {
+      "name": "close-initialization-paged-prepared_0_82668818-33A7-459A-BA0F-2DBE258BC67A.txt",
+      "path": "build/ci/39729365995/diagnostic/ReaderSnapshots/83BA9F0A-2F66-45A1-9D8D-7DC0632F2EFF.txt",
+      "sha256": "6ab0ccc81abe9d3658238896ba09430a04d9f3222693570394c0aedc050f3372",
+      "record": {
+        "mode": "paged",
+        "phase": "prepared",
+        "values": {
+          "documentReady": "complete",
+          "href": "/OEBPS/cover.xhtml",
+          "nativeFontState": "pending",
+          "ownReadyNow": false,
+          "probe": {
+            "fontSetAliveAtCall": false,
+            "installed": true,
+            "installHref": "/OEBPS/cover.xhtml",
+            "instanceCalls": 0,
+            "nativeReady": true,
+            "ownReadyAtCall": false,
+            "prototypeCalls": 1,
+            "released": false,
+            "sameFontSetAtCall": false,
+            "settledCalls": 0
+          },
+          "started": true
+        }
+      }
+    }
+  ],
+  "diagnosis": {
+    "confirmedDefect": "The original fixture overrode ready only on the first FontFaceSet JavaScript wrapper. In the instrumented paged sample that wrapper was no longer alive, and the current wrapper had no own ready hook; the production read entered the prototype hook instead. The old instance hook therefore could not set its started marker.",
+    "nativeProof": {
+      "pagedOriginalInstalled": true,
+      "pagedOriginalWrapperAlive": false,
+      "pagedOriginalInstanceCalls": 0,
+      "pagedCurrentOwnReady": false,
+      "pagedPrototypeCalls": 1,
+      "continuousSameOriginalWrapper": true,
+      "continuousInstanceCalls": 1
+    },
+    "interpretation": "Fixture preparation hook lifetime defect confirmed in this native sample. Both original production close contracts pass while initialization is explicitly held. No production shutdown fix was required.",
+    "limits": "The earlier run did not record object identity. Current evidence confirms the loss mechanism, but not the exact GC event/time in the earlier run or destruction of an underlying native FontFaceSet. Continuous mode did not lose its wrapper in this sample.",
+    "repair": "Keep the old instance hook observable, add a prototype fallback with real native font readiness and an explicitly released Promise barrier; qualify the visible cover while native font state remains pending; preserve close assertions and original budgets."
+  },
+  "next": "This single-case slice is complete. Preserve prior23 result22/23 as history; do not add separate sources into a same-source23 pass. Review I6 final gate scope in a later slice; full192/Release/device remain pending."
+}

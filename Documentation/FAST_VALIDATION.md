@@ -1,3 +1,9 @@
+# I6c 初始化关闭单例入口（2026-10-22，1/1）
+
+workflow `diagnostic_selection=initialization-close` 只执行原初始化关闭单例（分页/连续两个分支），不跑Core/独立包/23项/全套或打包。598aedd / CI39729365995编译、原单例及两模式pending门/断开清理回执通过；原实例hook丢失机制与测试准备修正见[I6c结果](I6_INITIALIZATION_CLOSE.md)。verify_reader_positions.py close严格核事件/summary/两模式证据，保持真实退出码。
+
+---
+
 # I6b 位置/加载定向入口（2026-10-22，已执行22/23）
 
 workflow `diagnostic_selection=position-acceptance` 只运行审计确定的23项原生用例，不执行独立包、Core、全套或设备打包。结果以verify_reader_positions.py acceptance核对精确事件、summary及真实退出码；原生产/测试正文与预算保持。源075c2cc / CI39721680702真实编译通过，23项实际22通过/1失败/0跳过，test=65、summary/export=0；初始化中关闭用例在准备探针处超时，未执行关闭断言。原件已保留，不能重跑整组凑绿；下一步仅单查这一例，见[I6b结果与断点](I6_POSITION_ACCEPTANCE.md)。

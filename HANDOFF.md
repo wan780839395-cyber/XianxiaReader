@@ -1,8 +1,16 @@
-# I6c进行中：只查初始化中关闭单例（2026-10-22）
+# I6c断点：初始化关闭单例已收口，生产不改（2026-10-22）
 
-用户已明确继续单查此例并有问题修好；不跑23项或整套。已核原CI39721680702为22/23、test65，原件和565bdee保存点存在，617运行输入无漂移、普通HEAD/index保持，无本轮后台任务。当前只修改该原生测试准备探针及单例CI/结果校验，生产未改、尚未派新CI。
+用户授权仅查这一例。冻结运行源598aedd02ab6f6d95876ccac5f17658b8cc11905，codex/initialization-close-probe；CI39729365995已completed/success。只派一次initialization-close，原单例1/1，分页/连续均在真实字体已ready、生产字体状态pending、屏障未释放时关闭；原三个delegate/移除断言全部通过。test/summary/export=0，原生编译通过，未跑23项/完整192/Core/独立包/Release/手机，无新IPA，最后交付仍Build30。
 
-切片只涉及原ReaderRenderingTests关闭准备探针及必要的精确单例入口/证据校验。先核脚本安装、FontFaceSet拦截及WebView身份，保留现有功能/隔离/定位修复和30秒/15秒原预算。未有证据前不改生产加载顺序，不增加重试。恢复目录build/maintenance/I6-close-20261022；开始前快照before.json/HANDOFF-before.md。当前候选用原实例hook计数+prototype后备hook记录旧hook是否丢失，不持有最初FontFaceSet；新门由真实native ready与显式屏障同时满足，关闭前须nativeReady=true而生产FontReady仍pending，原关闭断言不改。只查询挂窗且几何可见的封面，记录prepared/closed/cleanup两个模式；未用更长sleep/重试。局部9工具8通过1POSIX跳过、语法484新增0/既有54；真实JS探针3个屏障/对象替换夹具通过（不是WebKit验收）。原关闭断言、该文件其余方法、生产及617输入中的其余612均保持；旧logic/native/acceptance验证函数AST保持。现在冻结并仅派initialization-close单例（内含分页/连续两分支）。若中断先核CI和dispatch.json，不重复派发；完整/设备不执行。电脑保持开机。
+根因机制已有直接原生记录：分页installed=true且封面路径正确，WeakRef初始包装对象已不可取（alive=false/same=false），原实例hook0次、当前own ready=false，prototype后备hook1次。原测试只绑临时FontFaceSet JS包装对象，包装对象回收后实例覆盖失效，无法置started标记。连续本次保留原包装对象、实例hook1次；不能称两模式本次都回收，也不能追认前轮精确GC事件或底层原生对象销毁。前轮39721680702原22/23失败/test65保持历史，不相加成同源23/23。
+
+修正只限原ReaderRenderingTests一个方法：实例/WeakRef诊断、prototype后备、真实native ready与显式Promise屏障，替换2秒自动释放；原30秒/生产15秒预算不变。仅查询挂窗当前视口封面，准备要求installed/start/nativeReady、pending且未释放/未完成。原关闭断言逐字保持；旧视图有记录清理和原teardown保持。生产/App/Packages/Vendor/工程/资源/锁、其他原生方法与原有隔离/定位修复不改；617运行输入仅5处差异。旧logic/native/acceptance函数AST和原shell主体命令保持。
+
+本地9工具8通过/1POSIX跳过，真实JS3夹具通过；Linux109工具通过。Swift语法484新增0/既有54（非编译）；真实Apple编译0源码错误，8条唯一源码warning与前轮逐条同消息，仅后方行号变。6原生附件/日志/summary/回执已核。原生步骤901秒，首Selected suite前817.675秒含准备/编译/启动，实际单例17.101秒。
+
+artifact12405307611/427326B，SHA363949aa0042eb3c224a68ab118dcf0bdf043e42de9524842df9abb72d89a233与GitHub digest一致、CRC通过；完整原件在build/ci/39729365995，重复ZIP校验后清除，原39721680702仍用于对照而保留。当前watcher/下载均已完成；本地build/maintenance/I6-close-20261022保存before/frozen/dispatch/result/范围与原件hash。权威Documentation/I6_INITIALIZATION_CLOSE.md及ValidationLogs/project-isolation-i6-close.json。
+
+本片不再加跑；下一片回到I6最终验收范围核对，完整192/Release/手机仍未验收，不自动开展新功能。接下来只做文档/最终静态核对与私有恢复点保存，普通HEAD/index不得改。若恢复先查实际文件/Git/CI/进程和final-checkpoint.json，不重复派发。电脑保持开机。
 
 ---
 
