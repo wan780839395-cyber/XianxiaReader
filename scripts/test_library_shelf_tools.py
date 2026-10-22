@@ -36,9 +36,9 @@ class LibraryEvidenceTests(unittest.TestCase):
             folder = Path(value); (folder / "logs").mkdir()
             text = "".join(f"Test Case '-[XianxiaReaderTests.{name.replace('/', ' ')}]' {outcome}\n" for name in sorted(NATIVE_TESTS) for outcome in ["started.", "passed (0.001 seconds)."])
             (folder / "logs/reader-diagnostic.log").write_text(text, encoding="utf-8")
-            summary = dict(totalTestCount=17, passedTests=17, failedTests=0, skippedTests=0, result="Passed")
+            summary = dict(totalTestCount=18, passedTests=18, failedTests=0, skippedTests=0, result="Passed")
             file = folder / "test-results-summary.json"; file.write_text(json.dumps(summary))
-            self.assertEqual(verify_native(folder)["passed"], 17)
+            self.assertEqual(verify_native(folder)["passed"], 18)
             with self.assertRaises(ValueError): verify_native(folder, 65)
             summary["skippedTests"] = 1; file.write_text(json.dumps(summary))
             with self.assertRaises(ValueError): verify_native(folder)
@@ -48,13 +48,13 @@ class LibraryEvidenceTests(unittest.TestCase):
 
     def test_selection_matches_original_three_suites_and_exact_cases(self):
         actual = set()
-        for name in ["LibraryTests", "LibraryRemovalTests", "BookCoverTests"]:
+        for name in ["LibraryBoundaryTests", "LibraryTests", "LibraryRemovalTests", "BookCoverTests"]:
             text = (ROOT / f"Tests/iOS/{name}.swift").read_text(encoding="utf-8")
             actual.update(name + "/" + method for method in re.findall(r"func (test\w+)\(", text))
         self.assertEqual(actual, NATIVE_TESTS)
         shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
         block = shell.split("  library-isolation)", 1)[1].split(";;", 1)[0]
-        self.assertEqual(Counter(re.findall(r"-only-testing:(\S+)", block)), Counter(dict.fromkeys(["XianxiaReaderTests/" + n for n in ["LibraryTests", "LibraryRemovalTests", "BookCoverTests"]], 1)))
+        self.assertEqual(Counter(re.findall(r"-only-testing:(\S+)", block)), Counter(dict.fromkeys(["XianxiaReaderTests/" + n for n in ["LibraryBoundaryTests", "LibraryTests", "LibraryRemovalTests", "BookCoverTests"]], 1)))
 
     def test_workflow_routes_library_only_to_targeted_job(self):
         workflow = yaml.load((ROOT / ".github/workflows/ios-build.yml").read_text(encoding="utf-8"), Loader=yaml.BaseLoader)

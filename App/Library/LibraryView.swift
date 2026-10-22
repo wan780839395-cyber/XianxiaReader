@@ -13,10 +13,10 @@ import XianxiaCore
     private var reduceMotion: Bool { systemReduceMotion || requestedReduceMotion }
     private let columns = [GridItem(.adaptive(minimum: 140, maximum: 190), spacing: 20, alignment: .topLeading)]
 
-    init(files: BookFileStore, model: LibraryViewModel, readerDestination: @escaping (Book, @escaping () -> Void) -> AnyView) {
+    init(files: BookFileStore, model: @autoclosure @escaping () -> LibraryViewModel, readerDestination: @escaping (Book, @escaping () -> Void) -> AnyView) {
         self.files = files
         self.readerDestination = readerDestination
-        _model = StateObject(wrappedValue: model)
+        _model = StateObject(wrappedValue: model())
     }
 
     var body: some View {

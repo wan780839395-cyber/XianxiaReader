@@ -16,4 +16,6 @@ CoverImportService和BookCoverEditorModel只收窄repository/显式files，原�
 
 原生只选原LibraryTests5、LibraryRemovalTests4、BookCoverTests8，共17；覆盖偏好/排序/改名/完整定位原件、原库重启回收站与书签/章节、封面失败回滚/取消/照片与窗口截图。导入仅作为原书库fixture使用，不单跑DocumentImport/全文搜索/阅读生命周期/191全套。6与17精确名称、真实exit、xcresult/完整日志核验；Windows语法/工具/依赖正反例先行，再冻结一次原生。所有原生测试正文不改。此处尚无新Swift编译/验收结果。
 
+审阅纠正：首候选cc5929的组装转交会提前创建默认model，丢失原StateObject thunk。按[Apple StateObject说明](https://developer.apple.com/documentation/swiftui/stateobject)将LibraryView的model参数保留为escaping autoclosure，原App默认model表达式也进入同一thunk。新增1原生合同验证构造书库值不创建model、挂载后只创建一次；此后定向为原17+1=18，完整为163+29=192（不运行）。首CI39707366902由Agent主动停止，不称源码失败，实际已完成阶段以完整日志为准；仅对修正输入重新编译。
+
 完整191/Release/普通设备/TrollStore/手机与IPA不在本片门槛。源码保护覆盖全部Reader/Core/Adapter/Vendor/资源/锁及导入/搜索；仅允许列明书库/组装/包接线/检查/文档变化。其他失败先留证，不为凑绿扩大。

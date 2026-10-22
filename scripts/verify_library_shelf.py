@@ -17,6 +17,7 @@ LOGIC_TESTS = {
 
 # Enumerate names independently of the current source so lost cases cannot pass by count.
 NATIVE_TESTS = {cls + "/" + name for cls, names in {
+    "LibraryBoundaryTests": ["testShelfDefersModelCreationUntilMountedAndKeepsItAcrossLayout"],
     "LibraryTests": [
         "testLayoutSortPreferencesPersistAndInvalidValuesFallBack",
         "testMetadataOnlyFilteringNumericSortAndReadingProgress",

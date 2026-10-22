@@ -1,3 +1,7 @@
+审阅发现并纠正默认model提前创建：按Apple StateObject thunk合同改LibraryView model参数为escaping autoclosure，保持原延迟初始化。CI39707366902已主动cancel（不是源码失败），待收实际步骤/完整原件。新增LibraryBoundaryTests1原生合同，原17正文保持，修正源仅跑6+18；完整计数163+29=192但本片不跑。下一步本地定向检查后冻结修正输入，仅补一次真实编译与18原生。前轮cc5929不能作为修正App输入的原生证据。
+
+已冻结cc592909d4f4c827de84262d525d1ee1adedb6e2 / refs/heads/codex/isolate-library-shelf，仅派发CI39707366902（library-isolation）。frozen.json保护602运行输入、26路径（含原fixture无改动移动），原所有Tests/iOS/导入/搜索/reader/Core/Adapter/Vendor/资源/锁保持。scope-audit核原导入等未改方法正文与所有await表达式相同。Windows475语法新增0/54既有、90工具83过7跳过、静态149源/21区/22节点/2精确测试例外通过。观察脚本watch_i5_library.py只读收原件，不重派；Swift编译与6+17真实结果待收，完整191/Release/手机未跑。
+
 源码/定向入口已接线，准备Windows检查：新增LibraryShelf6合同、library-isolation一次包+原17，原生测试正文全部保护；只新增三个静态书库依赖正反例与四个证据/路由工具合同。原await未移动，LibraryPresentation/导入方法/搜索与reader完全保持。待冻结前检查/真实Swift编译，未验收。
 
 # 当前工作：I5a书库边界隔离（2026-10-22，用户已授权）

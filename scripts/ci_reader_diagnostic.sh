@@ -7,6 +7,7 @@ selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings
 case "$selection" in
   library-isolation)
     cases=(
+      -only-testing:XianxiaReaderTests/LibraryBoundaryTests
       -only-testing:XianxiaReaderTests/LibraryTests
       -only-testing:XianxiaReaderTests/LibraryRemovalTests
       -only-testing:XianxiaReaderTests/BookCoverTests
