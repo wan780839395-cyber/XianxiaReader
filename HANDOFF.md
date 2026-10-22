@@ -1,3 +1,11 @@
+# Adapter桥接修正版：新授权仅一轮smoke，冻结前（2026-10-22）
+
+用户已明确授权再派一轮CI，覆盖上轮“需新授权”限制；不是重派旧run。只验证f675c39b候选的原生编译及原视口smoke单例：机制6项、真实S/M命中/放行回执及取消/关闭清理。617运行输入与候选零漂移；复用其已核本地静态结果，不叠加本地预检，不改定位算法、原断言/预算，不跑整套或设备Release。
+
+本轮唯一尝试锁及冻结目录build/maintenance/I6-viewport-smoke-adapter-20261022；冻结后写dispatch-attempt再POST一次，恢复先核真实run，失败留原件、禁止自动再派。上轮39777683114链接失败原件完整保留；本轮尚未派发、原生结果未知。普通HEAD/index及Build30交付保持，不关机。
+
+---
+
 # smoke单轮失败已保存，Debug桥候选修正未原生验证（2026-10-22）
 
 唯一CI39777683114 / 9f1c503a6be4bbc15ad333613adad73a38352380 / run_attempt1已结束；禁止重派。Linux111通过，原生步骤819秒，Swift对象编译已发生，但XianxiaReaderTests链接失败exit65，测试和机制执行0。五组缺符号都是SDK Event/Control（含TaskLocal/元数据），Tests.o通过Adapter typealias直接引用SDK类型；Tests工程只链接Adapter。不是定位断言失败，不能宣称编译或smoke验收通过。
