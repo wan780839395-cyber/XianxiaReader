@@ -1,3 +1,21 @@
+# 连续视口缩放：探针完成，准备冻结单例（2026-10-22）
+
+本地语法484无新增诊断（非编译）；受影响工具20项19通过/1 POSIX跳过，首次缺PYTHONPATH导入错误及更正原件均保存。已审阅Debug有界重排记录不增加await、不改恢复guard/应用顺序；只修改失败方法的观察，原30秒/100ms/联合条件/12视图/横竖顺序不变。
+
+准备冻结并仅派发continuous-resize：原方法1例，不跑Core/组件/23项/UI/full/Release。此刻尚无编译或单例结果，未宣布根因/修复。实际范围与假设见Documentation/I6_VIEWPORT_RESIZE.md，基线及日志见build/maintenance/I6-viewport-20261022。若中断须先核frozen/dispatch及真实run，禁止重复派发。
+
+---
+
+# 连续视口缩放单例诊断开始（2026-10-22）
+
+用户已恢复并授权：先补缩放前后锚点和重排证据，仅运行 ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView；保留原断言、30秒/100ms预算及全部既有隔离定位修复，不跑23项/整套/Release。
+
+现场基线：上一轮完整断点3ca60eff，617冻结输入零漂移，普通HEAD/index匹配，未见遗留诊断进程。build/maintenance/I6-viewport-20261022/before.json保护全部1247路径原始哈希。旧full191/192及Release未执行仍为历史事实，不提前写为通过。
+
+本片先仅补失败方法中的准备坐标、完整Locator、原字Range、WebView身份及每个缩放谓词；必要时添加受诊断开关约束的有界measure记录。不改变滚动/恢复算法、原await顺序与断言，不修未证实假设。新增精确单例入口需静态检查、冻结后仅派发一次诊断；如发现实际缺陷，再据原件选择最小修复与必要同例验证。下一步：审阅现有诊断接口与适用参考，完成探针后更新此处再构建。
+
+---
+
 # I6最终断点：一次full191/192，原件收齐，禁止重派（2026-10-22）
 
 2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；用户已决定本轮保存完整断点，下一轮只查此单例；本轮不追加诊断或CI。I6未通过，不进入新功能。

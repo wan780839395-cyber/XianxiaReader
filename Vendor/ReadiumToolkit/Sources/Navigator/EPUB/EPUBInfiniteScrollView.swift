@@ -40,6 +40,13 @@ import UIKit
     private var navigation = false
     private var lastSize = CGSize.zero
     private var viewportRevision: UInt64 = 0
+    // Debug evidence only: no extra await, scheduling or restoration decisions.
+    private var reflowTrace: [String] = []
+    private func recordReflow(_ message: @autoclosure () -> String) {
+        guard epubLoadingDiagnosticsEnabled else { return }
+        if reflowTrace.count == 64 { reflowTrace.removeFirst() }
+        reflowTrace.append("\(ProcessInfo.processInfo.systemUptime) \(message())")
+    }
     private var lastTrackedOffset: CGFloat = 0
     private var screenDragStart: CGFloat?
     private var screenTurnInFlight = false
@@ -102,6 +109,7 @@ import UIKit
                 }
                 return state
             }.joined(separator: " ")
+            + (epubLoadingDiagnosticsEnabled ? " reflowTrace={" + reflowTrace.joined(separator: "; ") + "}" : "")
     }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
@@ -419,8 +427,12 @@ import UIKit
                   anchorY: anchor ? anchor.top + scrollY : null};
         })()
         """
+        recordReflow("start index=\(index) revision=\(measuredRevision) local=\(measuredLocalTop) currentAnchor=\(measuredAnchorIsCurrent) anchor=\(anchorJSON)")
         let result = await slot.view.evaluateScript(script)
-        guard epoch == request, slots[index] === slot else { return }
+        guard epoch == request, slots[index] === slot else {
+            recordReflow("discard index=\(index) revision=\(measuredRevision) staleEpochOrSlot")
+            return
+        }
         switch result {
         case let .success(value):
             guard let data = value as? [String: Any], let number = data["height"] as? NSNumber, number.doubleValue.isFinite else {
@@ -437,6 +449,7 @@ import UIKit
             let desiredLocal: CGFloat? = mayRestoreAnchor ? newAnchorY.map { y in
                 y - CGFloat(measuredAnchor?.locations.otherLocations["xianxiaViewportOffset"]?.double ?? 0)
             } : nil
+            recordReflow("complete index=\(index) revision=\(measuredRevision)->\(viewportRevision) current=\(index == currentIndex) positioning=\(slot.positioning) anchorCurrentAtStart=\(measuredAnchorIsCurrent) anchorEqual=\(slot.savedAnchor == measuredAnchor) anchorCurrentNow=\(savedAnchorMatchesViewport(slot, revision: measuredRevision)) local=\(measuredLocalTop)->\(viewportTop - slot.wrapper.frame.minY) anchorY=\(String(describing: newAnchorY)) desiredLocal=\(String(describing: desiredLocal)) mayRestore=\(mayRestoreAnchor) heightChanged=\(changed)")
             if let newAnchorY, mayRestoreAnchor { slot.anchorDocumentY = newAnchorY }
             slot.height = height
             slot.ready = true
@@ -445,6 +458,7 @@ import UIKit
             }
             if let desiredLocal, let currentSlot = slots[currentIndex] {
                 let desired = currentSlot.wrapper.frame.minY + desiredLocal - contentInset.top
+                recordReflow("apply index=\(index) outer=\(contentOffset.y) desired=\(desired) wrapper=\(currentSlot.wrapper.frame.minY)")
                 if abs(contentOffset.y - desired) > 0.5 {
                     screenTurnInFlight = false
                     contentOffset.y = desired
@@ -469,6 +483,7 @@ import UIKit
                 setContentOffset(contentOffset, animated: false)
             }
             lastSize = bounds.size
+            recordReflow("resize size=\(lastSize) revision=\(viewportRevision) outer=\(contentOffset.y) local=\(viewportTop - (slots[currentIndex]?.wrapper.frame.minY ?? 0))")
             for (index, slot) in slots {
                 slot.view.frame.size = CGSize(width: bounds.width, height: viewportHeight)
                 if slot.ready { Task { @MainActor in await self.measure(index, slot: slot, request: self.epoch) } }

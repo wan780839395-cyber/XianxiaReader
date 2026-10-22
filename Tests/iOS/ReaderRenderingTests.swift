@@ -60,6 +60,9 @@ final class ReaderRenderingTests: XCTestCase {
             guard web.window != nil, web.scrollView.alpha > 0.99 else { return false }
             return abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5
         }
+        let preparationWeb = try resourceWebView(engine, index: 1)
+        let initialDOMY = try await preparationWeb.evaluateJavaScript("scrollY")
+        let initialOuterY = scroll.contentOffset.y
         scroll.contentOffset.y += 600
         try await waitUntil { ((try await self.resourceWebView(engine, index: 1).evaluateJavaScript("scrollY") as? Double) ?? 0) > 500 }
         let saved = try await engine.captureCurrentPosition()
@@ -72,22 +75,65 @@ final class ReaderRenderingTests: XCTestCase {
         let quoted = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
         let originalWeb = try resourceWebView(engine, index: 1)
         let originalFrame = window.frame
+        let requestedOuterY = initialOuterY + 600
+        var polls: [[String: Any]] = []
+        var checkpoints: [[String: Any]] = []
+        func domProbe(_ width: CGFloat) async throws -> [String: Any] {
+            let value = try await originalWeb.evaluateJavaScript("""
+                (()=>{const n=document.querySelector(\(quoted))?.firstChild;
+                const valid=!!n&&n.nodeType===3&&n.length>\(offset);
+                let rect=null,visible=false,firstRect=null;
+                if(valid){const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));
+                  const b=r.getBoundingClientRect();rect={top:b.top,bottom:b.bottom,left:b.left,right:b.right};
+                  const f=r.getClientRects()[0];if(f)firstRect={top:f.top,bottom:f.bottom,left:f.left,right:f.right};
+                  visible=b.bottom>0&&b.top<innerHeight&&b.right>0&&b.left<innerWidth;}
+                const widthMatches=Math.abs(innerWidth-\(width))<2;
+                return {y:scrollY,width:innerWidth,height:innerHeight,ready:document.readyState,
+                  valid,rect,firstRect,visible,widthMatches,accepted:widthMatches&&visible,
+                  longTop:document.getElementById('long-paragraph')?.getBoundingClientRect().top??null};})()
+                """)
+            return try XCTUnwrap(value as? [String: Any])
+        }
+        func record(_ phase: String) throws {
+            let evidence: [String: Any] = ["phase":phase,"origin":data,"checkpoints":checkpoints,"polls":polls,
+                "initialDOMY":initialDOMY,"initialOuterY":initialOuterY,"requestedOuterY":requestedOuterY,
+                "actualOuterY":scroll.contentOffset.y,"originalWeb":String(describing:ObjectIdentifier(originalWeb)),
+                "currentNativeState":engine.continuousDiagnosticState,"uptime":ProcessInfo.processInfo.systemUptime]
+            let text = String(decoding:try JSONSerialization.data(withJSONObject:evidence,options:[.sortedKeys]),as:UTF8.self)
+            let attachment = XCTAttachment(string:text);attachment.name = "continuous-resize-evidence-\(phase)"
+            attachment.lifetime = .keepAlways;add(attachment)
+            print("CONTINUOUS_RESIZE_EVIDENCE \(text)")
+        }
+        checkpoints.append(["phase":"before-resize","dom":try await domProbe(originalFrame.width),
+            "nativeState":engine.continuousDiagnosticState,"outerY":scroll.contentOffset.y])
+        try record("before-resize")
         // A real mounted viewport resize checks the live continuous path.
         // The existing UI scenario separately rotates the physical simulator.
+        addTeardownBlock { await MainActor.run { window.frame = originalFrame; window.layoutIfNeeded() } }
         defer { window.frame = originalFrame; window.layoutIfNeeded() }
         for size in [CGSize(width: originalFrame.height, height: originalFrame.width), originalFrame.size] {
             window.frame = CGRect(origin: originalFrame.origin, size: size)
             window.layoutIfNeeded()
-            try await waitUntil {
-                let web = try self.resourceWebView(engine, index: 1)
-                guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else { return false }
-                return try await web.evaluateJavaScript("""
-                    (()=>{const n=document.querySelector(\(quoted))?.firstChild;
-                    if(!n||n.nodeType!==3||n.length<=\(offset))return false;
-                    const r=document.createRange();r.setStart(n,\(offset));r.setEnd(n,\(offset+1));const b=r.getBoundingClientRect();
-                    return Math.abs(innerWidth-\(size.width))<2 && b.bottom>0 && b.top<innerHeight && b.right>0 && b.left<innerWidth;})()
-                    """) as? Bool == true
+            do {
+                try await waitUntil {
+                    let web = try self.resourceWebView(engine, index: 1)
+                    var row: [String: Any] = ["expectedWidth":size.width,"sameWebView":web === originalWeb,
+                        "attached":web.window != nil,"alpha":web.scrollView.alpha,"outerY":scroll.contentOffset.y,
+                        "webFrame":NSStringFromCGRect(web.frame),"uptime":ProcessInfo.processInfo.systemUptime]
+                    if polls.count == 320 { polls.removeFirst() }
+                    guard web === originalWeb, web.window != nil, web.scrollView.alpha > 0.99 else {
+                        row["accepted"] = false;polls.append(row);return false
+                    }
+                    let dom = try await domProbe(size.width);row["dom"] = dom;polls.append(row)
+                    return dom["accepted"] as? Bool == true
+                }
+            } catch {
+                try record("failed-\(Int(size.width))")
+                throw error
             }
+            checkpoints.append(["phase":"passed-\(Int(size.width))","outerY":scroll.contentOffset.y,
+                "nativeState":engine.continuousDiagnosticState])
+            try record("passed-\(Int(size.width))")
             XCTAssertLessThanOrEqual(engine.continuousLoadedResourceCount, 12)
             let image = XCTAttachment(image: UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
                 window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
