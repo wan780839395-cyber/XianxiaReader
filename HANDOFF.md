@@ -1,3 +1,33 @@
+# FixedSpread修正版唯一CI收口：编译过，S准备65（2026-10-23）
+
+39912011242/dfc20131/attempt1，一次构建0/编译链接成功，签名错误消除；142工具/484语法、619源码/609产物/三计划和实际版本、安全前后冻结一致。原同例只执行一次0/1/0、19.164秒，oldSample/stage0的pair-safe-S-unqualified，原test/driver65，冲突null；未resize/主M/原字缩放断言，完整双臂验收未完成。原smoke未重跑，FixedSpread运行转发未专项执行，不能扩大编译结果。
+
+新证据33控制事件/18独立诊断、零丢弃：native有效采样的snapshot返回时inner2367（uptime1726.615739598）；S首个实际WK提交前inner已1767（1726.999230717），窗口上限0.383491119秒。S三次提交/回调/返回均inner1767，同次JS起止亦1767，live锚点A保持；原九上下文guard全true、outer local/frame2367，documentTop差-600，原guard正确拒绝。不是本次S脚本读取过程中才回退，也不是旧DOM快照重放；具体写入者仍未知。
+
+同WebView有3条同步记录但仅2个writerID：scroll-delegate原条件一次显式赋值2367；layout-slots一次未赋值，关联native/S各一条。均在有效native结果前，回退窗口无该点新记录。不能把未覆盖go/canonical JS/系统等路径排除，更不能追认旧full根因。清理active/tasks/waiters/queued/running全空，原验证器通用preparation and cleanup错误并不证明清理失败。
+
+目标1299秒：准备315.814、编译313.886、后续669.300；test命令379.809中用例19.164，boot214.857/外观32.377。完整原件build/ci/39912011242（artifact12483609769，1057文件/65390762字节，SHA/CRC核对、重复ZIP删除）。恢复build/maintenance/I6-viewport-fixed-override-native-20261023含唯一锁/frozen、全部原退出、native/correlation/sample/source/timing分析、rollback-window/result、文档检查/最终私有快照。
+
+619输入/1305旧证据/Build30/普通HEAD/index保持，无源码/算法/guard/原断言预算/等待重试变化、未取消或重派。旧full191/192、I6/Release/手机缺口保持，不关机。详细Documentation/I6_VIEWPORT_FIXED_OVERRIDE_NATIVE.md和ValidationLogs/project-isolation-i6-viewport-fixed-override-native.json。
+
+本片仅收口。下一最小片建议无CI本地审阅0.383秒内未覆盖的inner写入入口，先补明确来源设计，不加等待或调整资格碰绿；本轮未实施、无新CI授权。之后仅文档静态与私有快照，不重复已有源码检查。
+
+---
+
+# FixedSpread修正版配对CI运行中：39912011242，只派一次（2026-10-23）
+
+冻结源dfc20131232a76061bf074bc1cc739c013ccd8df，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# FixedSpread修正版唯一原生CI准备（2026-10-23）
+
+用户新授权仅一轮continuous-resize-pair，冻结dfc20131232a76061bf074bc1cc739c013ccd8df，619输入及实际Git blob、既有原件/Build30/普通HEAD/index已核。当前无运行助手，远端最近任务均completed。一次构建、每臂只执行一次原同例，安全原测试/机制/提取/夹具/来源全合格才冲突；真实未启动退出保留null。只核S实际WK提交/回调/内层滚动及来源；不改算法/guard/原断言预算，不加等待重试，不跑整套或自动重派。
+
+复用上轮FixedSpread定向5工具、484语法/静态和精确源码合同检查，不加本地预检；保留工作流已有repository-checks。恢复build/maintenance/I6-viewport-fixed-override-native-20261023含before/frozen，派发前写持久锁；未知结果只查询原run，禁止再次POST。当前未派发，无新原生结论，旧full191/192及I6/Release/手机缺口保持，最后交付Build30，不关机。
+
+---
+
 # FixedSpread签名本地收口，原生待验（2026-10-23）
 
 仅FixedSpread的override补与父类同样第三参数/default nil，并在原唯一super await透传同一观察者。精确对照整文件除这两处外完全相同，原href默认值/脚本包装/转义/await顺序保持。Vendor保留上游baseline、新增本地覆盖摘要；现有provenance工具加一项合同检查及4种变异反例。共3运行输入变化，其余616与全部smoke/隔离/定位/S诊断/guard/原断言预算保持，无新增等待重试/挂起点，零CI。
