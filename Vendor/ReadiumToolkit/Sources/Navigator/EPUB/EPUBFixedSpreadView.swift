@@ -119,10 +119,11 @@ final class EPUBFixedSpreadView: EPUBSpreadView {
         goToContinuations.removeAll()
     }
 
-    override func evaluateScript(_ script: String, inHREF href: AnyURL? = nil) async -> Result<Any, any Error> {
+    override func evaluateScript(_ script: String, inHREF href: AnyURL? = nil,
+                                 fixtureReadObserver: ((String, [String: Double]) -> Void)? = nil) async -> Result<Any, any Error> {
         let href = href?.string ?? ""
         let script = "spread.eval('\(href)', `\(script.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "`", with: "\\`"))`);"
-        return await super.evaluateScript(script)
+        return await super.evaluateScript(script, fixtureReadObserver: fixtureReadObserver)
     }
 
     override func convertPointToNavigatorSpace(_ point: CGPoint) -> CGPoint {

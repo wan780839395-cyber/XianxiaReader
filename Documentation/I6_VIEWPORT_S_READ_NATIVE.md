@@ -1,5 +1,7 @@
 # I6 S关联诊断唯一原生CI（2026-10-23）
 
+后续[FixedSpread签名候选已本地修正](I6_VIEWPORT_FIXED_OVERRIDE.md)，零CI；新源仍待原生编译，本页原构建65/两臂null保持。
+
 [CI39908431098](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39908431098)，冻结`3ab0bcbe6a9a15e51eb2423ac526dcc08ac0d52e`，attempt1。**只派一次、只构建一次，编译失败原退出65；安全/冲突臂均未启动，退出均为null。没有新的S关联观测，更没有证明1767根因已修。**
 
 ## 明确的失败原因

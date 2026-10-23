@@ -1,3 +1,23 @@
+# FixedSpread签名本地收口，原生待验（2026-10-23）
+
+仅FixedSpread的override补与父类同样第三参数/default nil，并在原唯一super await透传同一观察者。精确对照整文件除这两处外完全相同，原href默认值/脚本包装/转义/await顺序保持。Vendor保留上游baseline、新增本地覆盖摘要；现有provenance工具加一项合同检查及4种变异反例。共3运行输入变化，其余616与全部smoke/隔离/定位/S诊断/guard/原断言预算保持，无新增等待重试/挂起点，零CI。
+
+定向检查在旧源码按预期失败1，修正后provenance5/5、484语法/七类静态及源码合同全部通过；保留54上游语法限制、新增0。只查此边界，未跑整套。语法/文本合同不是Swift类型编译，新源码未原生编译或配对；旧39908431098构建65与两臂未启动/null、1767真实疑点及full191/192/Release/手机缺口保持。
+
+恢复build/maintenance/I6-viewport-fixed-override-20261023含before/三文件原件、红例/工具/语法/合同完整日志、source-audit/result及最终私有快照。1282旧证据、Build30与普通HEAD/index保持，不关机。详见Documentation/I6_VIEWPORT_FIXED_OVERRIDE.md及ValidationLogs/project-isolation-i6-viewport-fixed-override.json。
+
+本片结束；下一门槛若获新授权，只一次构建与原同例配对，安全全合格才冲突，保留真实退出和S关联journal；当前不派发或自动重跑。后续只做文档静态及实际私有Git摘要核验，不重复已过源码检查。
+
+---
+
+# FixedSpread签名候选已修正，开始本地检查（2026-10-23）
+
+用户新授权仅修FixedSpread override与观察者透传并本地检查，零CI。基线d2304c38，619输入、既有原件、Build30及普通HEAD/index已核，无其他运行助手。只触及FixedSpread/必需Vendor摘要及现有provenance工具的一项定向合同检查；原href/脚本包装/转义和唯一super await不变，不改父类或S诊断、算法/guard/原断言预算，不加等待重试。
+
+恢复build/maintenance/I6-viewport-fixed-override-20261023含before和三文件原件。定向检查在旧源码已按预期失败并保留原退出1；FixedSpread现已只补第三参数/default nil和super观察者透传，原href/包装/转义/await数量保持；Vendor保留上游baseline并新增本地覆盖摘要。开始精确源码合同、5项provenance工具及仓库语法/静态检查。本地检查不能证明Swift编译成功，旧39908431098构建65/两臂null、1767疑点与full191/192、Release/手机缺口保持，不关机。
+
+---
+
 # S关联诊断唯一CI失败原件已收齐（2026-10-23）
 
 39908431098/3ab0bcbe/attempt1只派一次，一次build-for-testing原退出65。失败在EPUBFixedSpreadView.swift:122：新增父类evaluateScript第三个诊断参数后，原两参数override不再匹配；默认nil不保留方法身份。这是本次诊断补丁漏审继承合同，本地语法不代表编译，不能归咎旧项目或S断言。未改源码/重派。

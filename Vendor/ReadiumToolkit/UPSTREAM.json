@@ -1456,6 +1456,10 @@
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
       "sha256": "b9cd6bff152af694720549b1e1111b016c5ef482e1842c3bab506695ff471833"
+    },
+    {
+      "path": "Sources/Navigator/EPUB/EPUBFixedSpreadView.swift",
+      "sha256": "b5dd2e053af083d5dac769d2e3eebe0c6d78a1db1724bddd6d173ce6d2cd96b3"
     }
   ],
   "remoteDependencyPins": [

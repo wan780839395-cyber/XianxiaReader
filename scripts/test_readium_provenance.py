@@ -3,6 +3,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -19,6 +20,34 @@ class ReadiumProvenanceTests(unittest.TestCase):
             path = Path(directory) / "Package.resolved"
             path.write_text(json.dumps({"pins": pins}))
             return verify_lock(path, allow_upstream=allow_upstream)
+
+    def test_fixed_spread_evaluator_signature_and_observer_forwarding(self):
+        # A narrow source contract, not Swift type checking. Defaults must not
+        # hide the two-argument override regression from CI39908431098.
+        folder = ROOT / "Vendor/ReadiumToolkit/Sources/Navigator/EPUB"
+        parent = (folder / "EPUBSpreadView.swift").read_text(encoding="utf-8")
+        child = (folder / "EPUBFixedSpreadView.swift").read_text(encoding="utf-8")
+        pattern = r"\bfunc evaluateScript\((.*?)\)\s+async\s*->"
+
+        def matches(base, override):
+            signatures = [re.search(pattern, text, re.S) for text in [base, override]]
+            if not all(signatures):
+                return False
+            params = [re.sub(r"\s+", "", m.group(1)) for m in signatures]
+            forwarded = re.findall(r"return\s+await\s+super\.evaluateScript\(\s*script\s*,\s*"
+                                   r"fixtureReadObserver:\s*fixtureReadObserver\s*\)", override)
+            return params[0] == params[1] and len(forwarded) == 1
+
+        self.assertTrue(matches(parent, child), "FixedSpread override/observer must match the superclass")
+        signature = re.search(pattern, child, re.S).group(1)
+        old_signature = re.sub(r",\s*fixtureReadObserver:.*", "", signature, flags=re.S)
+        mutations = [child.replace(signature, old_signature, 1),
+                     child.replace("[String: Double]", "[String: String]", 1),
+                     child.replace("fixtureReadObserver:", "readObserver:", 1),
+                     child.replace("fixtureReadObserver: fixtureReadObserver", "fixtureReadObserver: nil", 1)]
+        for changed in mutations:
+            with self.subTest(variant=changed):
+                self.assertFalse(matches(parent, changed))
 
     def test_missing_changed_or_duplicate_remote_pin_fails(self):
         changed = copy.deepcopy(self.pins)

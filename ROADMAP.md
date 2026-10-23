@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+2026-10-23 FixedSpread签名候选已本地修正，零CI：仅override补与父类一致的默认nil观察者参数及原super await直接透传，href/脚本包装/转义与其他源码字节保持。加一项窄边界合同检查，旧两参数源码先失败、修正后provenance5/5通过；484语法/七类静态通过（非编译），未改语法基线。只改FixedSpread/必需Vendor摘要/对应工具共3输入，其余616保持；原smoke/隔离/定位/S诊断/guard/原断言预算和等待重试规则不变。1282旧证据/Build30/普通HEAD/index保持。新源尚未原生编译或配对，旧39908431098构建65/两臂null与full191/192、Release/手机缺口保持。见[修正与验证边界](Documentation/I6_VIEWPORT_FIXED_OVERRIDE.md)。
+
+以下保留各自当时状态，本轮本地候选以上文为准。
+
 2026-10-23 S关联诊断唯一CI39908431098/3ab0bcbe/attempt1已失败收口：141工具/484语法与构建前619来源通过；一次原生构建原退出65，新增父类evaluateScript第三诊断参数使FixedSpread原两参数override不再匹配，错误在122行。这是本次诊断改动漏审继承合同，本地语法不是编译。安全/冲突/Swift配对机制均未启动，两臂退出null；没有新的S关联回执，产物/完整双臂同构建校验未到达。定向467秒（准备335.161、编译至失败131.946），用例0秒。原件已核SHA/CRC保存，619输入/旧证据/Build30/普通HEAD/index保持，未改源码/重派/算法/guard/原断言预算。旧full191/192与Release/手机缺口保持。见[结果与明确断点](Documentation/I6_VIEWPORT_S_READ_NATIVE.md)。
 
 以下保留各自当时状态，本轮原生结果以上文为准。
