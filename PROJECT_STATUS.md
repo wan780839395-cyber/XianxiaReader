@@ -1,5 +1,9 @@
 # 项目状态
 
+2026-10-23 准备期CancellationError/预arm交付本地审阅完成，零CI/619输入变化。已确认SDK缓存等采样flush、测试接收还要求armed，且clear/换fixture会在未排空时丢弃旧缓冲。首个抛错await与取消发起者仍未知；原Spread取消Result在tag/locator导航转false再报navigationFailed，slot timeout自身sleep取消被本Task捕获，不能直接当裸取消来源。参考Swift6.1.2/Readium3.11固定实现及Apple回调/fixture合同，建议下一片仅5输入：paired准备阶段和只写一次首错先于原defer、同步helper观察、不改变await；原关闭coverage后/换epoch和丢storage前向旧owner一次排空；只开放paired元数据的未arm接收，原SDK控制guard和两本账预算保持。标记已知shutdown/reload/timeout入口，未知仍unknown。不加WK调用/Task/handler/等待重试、不改算法/Adapter/override/JS/CI或原字双向/返程；首错原样抛出，不把取消改timeout或fixture成功。方案未实施；619输入/4835旧证据/Build30/普通HEAD index保持，原39946614486 build0/safe65/conflict null、原生观察及I6/Release缺口不变。见[审阅与最小补证方案](Documentation/I6_PREPARATION_CANCELLATION_REVIEW.md)。
+
+以下保留历史状态。
+
 2026-10-23 DEBUG writer观察唯一CI39946614486/0b55a4ea/attempt1失败收口：157工具/484语法及一次原生编译链接0通过；619输入、609产物、三计划和实际七版本/安全前后一致，但冲突未启动，驱动双臂matchedBuildVerified仍false。安全原单例一次0/1、38.343秒，原test/driver65；冲突null。失败为准备期seal、尚未armSample的CancellationError，fixture.failure=none不是通过；仅closing/abort两控制事件、五类跟踪集合为空，S/M/resize/返程均未到达。诊断交付0，真实WebKit framework版本/来源标签/scrollTo参数及恢复未验；18.5/22F77仅OS信息，不替代framework版本。预arm元数据等采样才flush，提前失败存在交付缺口；不能从零记录断言未执行观察/已恢复，首个抛错await、清理发起者及与观察器/环境的关系未证。定向步骤1606秒=准备518.008/编译294.072/构建后793.921，其中原用例38.343秒；取证下载另有EOF/SSL中断，按同一artifact接续后完整SHA/CRC通过，非CI重跑。619输入/3742旧证据/Build30/普通HEAD index保持，未改算法/guard/原断言预算/WK调用/等待重试，无整套/Release/新IPA。旧回跳根因、原生观察及I6/full191/192/Release缺口保持。见[原生结果与断点](Documentation/I6_WEBKIT_WRITER_NATIVE.md)。
 
 以下保留历史状态。
