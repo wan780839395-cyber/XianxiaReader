@@ -272,6 +272,8 @@ class PositionEvidenceTests(unittest.TestCase):
         effect = effect or ("unchanged" if mode=="paired-safe" else "anchor-replaced")
         values=dict(reader=mode,epoch="epoch",slot="body",webView="web",index="1",revision="1",localTop="100",
                     nativeWidth="402",nativeHeight="778",anchor="A",source="test-auxiliary",clipTop="0",clipBottom="778")
+        if effect == "layout-invalidated":
+            values.update(layoutGeneration="00000000-0000-0000-0000-000000000001",layoutWidth="402",layoutHeight="778")
         neighbor=dict(values,slot="neighbor",webView="other-web",index="0")
         origin=dict(href="OEBPS/one.xhtml",selector="p",textNodeIndex="0",charOffset="499",viewportOffset="-3.125",
                     windowWidth="402",windowHeight="874",targetWidth="874",targetHeight="402",sampleSource="test-auxiliary")
@@ -293,14 +295,17 @@ class PositionEvidenceTests(unittest.TestCase):
             add("S","released",point="sample-before-read",disposition="run")
             for attempt in range(3 if effect=="blocked" else 1):
                 top=110 if effect=="blocked" else 100
-                reason=("document-top-mismatch-retry" if attempt<2 else "document-top-mismatch-exhausted") if effect=="blocked" else ("snapshot-unavailable" if effect=="read-unavailable" else "committed")
+                reason=("document-top-mismatch-retry" if attempt<2 else "document-top-mismatch-exhausted") if effect=="blocked" else ("snapshot-unavailable" if effect=="read-unavailable" else ("layout-invalidated" if effect=="layout-invalidated" else "committed"))
                 read=dict(values,attempt=str(attempt))
                 read.update({"dom.width":"402" if mode=="paired-safe" else "874","dom.visibleTop":"0","dom.scrollY":str(top),"dom.documentTop":str(top)})
                 add("S","sample-dom",**read)
                 decision=dict.fromkeys(["notCancelled","epochMatches","indexMatches","slotMatches","movingMatches","notPositioning","revisionMatches","localMatches","viewportMatches"],"true")
                 decision.update(attempt=str(attempt),reason=reason,snapshotAvailable=str(effect!="read-unavailable").lower(),documentTop=str(top),expectedDocumentTop="100",documentTopDelta=str(top-100),documentTopMatches=str(top==100).lower())
+                if effect == "layout-invalidated":
+                    decision.update(layoutGeneration=values["layoutGeneration"],layoutWidth="402",layoutHeight="778",layoutMatches="false",
+                                    currentLayoutGeneration="00000000-0000-0000-0000-000000000002",currentLayoutWidth="874",currentLayoutHeight="306")
                 add("S","sample-decision",**decision)
-            end=dict(values,anchor="B" if effect=="anchor-replaced" else "A",outcome="rejected" if effect in ["blocked","read-unavailable"] else "committed",reason=reason)
+            end=dict(values,anchor="B" if effect=="anchor-replaced" else "A",outcome="rejected" if effect in ["blocked","read-unavailable","layout-invalidated"] else "committed",reason=reason)
             add("S","sample-finished",**end);add("S","work-finished",captured="true")
         if mode=="paired-safe":finish_sample()
         add("resize","pair-resize",mode=mode,width="874",height="402",attached="true")
@@ -576,6 +581,59 @@ class PositionEvidenceTests(unittest.TestCase):
             self.assert_pair_rejected(bad)
         bad=deepcopy(fixture);bad[3][-1]["polls"][-1]["dom"]["visible"]=False
         self.assert_pair_rejected(bad)
+
+    def test_layout_rejection_keeps_original_word_and_real_failure_exit(self):
+        fixture=self.pair_fixture("paired-conflict",effect="layout-invalidated")
+        self.write_pair(self.root/"fixed",fixture)
+        proof=verify_viewport_pair_arm(self.root/"fixed","paired-conflict",0)
+        self.assertEqual(proof["classification"],"layout-invalidated")
+        self.assertTrue(proof["originalWideNarrowDOMVerified"])
+        self.assertTrue(proof["allSDKEventsAccounted"])
+        failed=self.pair_fixture("paired-conflict",65,"layout-invalidated")
+        self.write_pair(self.root/"failed",failed)
+        proof=verify_viewport_pair_arm(self.root/"failed","paired-conflict",65)
+        self.assertEqual(proof["originalExit"],65)
+        self.assertFalse(proof["originalPassed"])
+        self.assertEqual(proof["classification"],"other-original-failure")
+
+    def test_layout_rejection_requires_generation_proof_preserved_anchor_and_M_guards(self):
+        fixture=self.pair_fixture("paired-conflict",effect="layout-invalidated")
+        changes=[("S","sample-decision","layoutMatches","true"),
+            ("S","sample-decision","currentLayoutGeneration","00000000-0000-0000-0000-000000000001"),
+            ("S","sample-decision","currentLayoutGeneration","invalid"),
+            ("S","sample-decision","layoutGeneration","00000000-0000-0000-0000-000000000002"),
+            ("S","sample-decision","currentLayoutWidth","402"),
+            ("S","sample-decision","currentLayoutHeight","778"),
+            ("S","sample-decision","snapshotAvailable","false"),
+            ("S","sample-decision","revisionMatches","false"),
+            ("S","sample-finished","anchor","B"),
+            ("S","sample-finished","outcome","committed"),
+            ("M","measure-guard","anchorEqual","false"),
+            ("M","measure-guard","mayRestore","false")]
+        for rid,kind,key,value in changes:
+            with self.subTest(receipt=kind,key=key):
+                bad=deepcopy(fixture)
+                next(e for e in bad[0]["events"] if e["requestID"]==rid and e["kind"]==kind)[key]=value
+                self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);bad[3][-1]["polls"][-1]["dom"]["visible"]=False
+        self.assert_pair_rejected(bad)
+
+    def test_return_layout_rejection_is_accounted_even_after_size_returns(self):
+        fixture=self.pair_with_return()
+        rows=[e for e in fixture[0]["events"] if e["requestID"]=="return-S"]
+        for e in rows:
+            e.update(layoutGeneration="00000000-0000-0000-0000-000000000001",layoutWidth="402",layoutHeight="778")
+            if e["kind"]=="sample-decision":
+                e.update(reason="layout-invalidated",layoutMatches="false",currentLayoutGeneration="00000000-0000-0000-0000-000000000002",currentLayoutWidth="402",currentLayoutHeight="778")
+            if e["kind"]=="sample-finished":e.update(reason="layout-invalidated",outcome="rejected")
+        self.write_pair(self.root/"return-layout",fixture)
+        proof=verify_viewport_pair_arm(self.root/"return-layout","paired-safe",0)
+        self.assertEqual(proof["postControlRequestCount"],3)
+        self.assertTrue(proof["originalWideNarrowDOMVerified"])
+        for key,value in [("layoutMatches","true"),("currentLayoutGeneration","00000000-0000-0000-0000-000000000001"),("layoutWidth","874")]:
+            bad=deepcopy(fixture)
+            next(e for e in bad[0]["events"] if e["requestID"]=="return-S" and e["kind"]=="sample-decision")[key]=value
+            self.assert_pair_rejected(bad)
 
     def test_paired_arms_separate_original_failure_from_state_change_and_keep_exit(self):
         safe_folder=self.root/"safe";safe_fixture=self.pair_fixture("paired-safe")

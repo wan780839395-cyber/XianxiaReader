@@ -1,5 +1,13 @@
 # 项目状态
 
+2026-10-23 跨布局旧S最小修正本地收口，6输入：独立UUID布局代次跟踪有效viewport（含inset后高度），S原回调后核代次/尺寸，跨尺寸及A→B→A旧结果作废而不写缓存；不复用滚动revision，M整段测量/恢复及真正新锚点保护保持。fixture/验收器仅识别有真实新代次/原上下文/快照、保留A和M原guard的layout-invalidated，逐个审返程SDK；原字宽窄/预算及原方法字节保持。32工具+1原样Swift6.1.2旧新对照=33唯一检查通过（首轮1skip仅补该项后通过），7静态/484语法、54上游限制/新增0；旧S跨尺寸覆盖A抑制M，新S作废并允许2151补偿，ABA/同尺寸/滚动/导航覆盖，但均为Foundation替身，不是UIKit/WK验收。镜像ID核同上一轮，仅改canonical缓存引用，无安装/拉取/重置。619其余613、5966旧证据、Build30/普通HEAD index保持。零推送/CI/full/Release/新IPA；本修正版未iOS编译或原生验收，旧自然full、2367→1767、准备取消与JS参数缺口不宣称修好，I6仍未验收。见[实现与本地验证](Documentation/I6_LAYOUT_SAMPLE_INVALIDATION.md)。
+
+恢复build/maintenance/I6-layout-sample-invalidation-20261023/保留6原件、首轮skip/镜像引用错误、旧新原样Swift及真实退出、历史原件只读复核、语法和最终checkpoint。只有另行授权后才考虑新原生单例；本轮额度0。普通工作区/用户改动保留，不关机/不停止Docker和其他任务。
+
+---
+
+# 项目状态
+
 2026-10-23 有界解阻/唯一CI39962812139收口：现有Docker/Swift6.1.2原样helper一次退出0，无安装/拉取/环境重置；本轮运行源码变化0、619输入保持。CI162工具/484语法、一次原生build/link0通过；同构建619源码/609产物/三计划及四快照一致，驱动matchedBuildVerified=true。安全原case1/1、13.221秒/退出0，冲突0/1、44.702秒/原driver65，分类candidate-controlled-word-failure；M因anchorEqual=false抑制恢复，宽874原字在视口上方超时，未到冲突返程，安全双向/3返程请求通过。两臂准备completed、firstError空/记录点取消false，旧准备期CancellationError未复现/来源仍未知。191/200诊断零丢弃，旧38条缓冲向原owner/epoch完整交付，4组覆盖配对；全部取消路径未验。公开WebKit8621/8621.2.5.10.10已获，但JS参数options-value/incomplete，restored回执true仍非完整观察通过；旧2367→1767未记录、旧full根因未证。原生步骤27分24秒、case合计57.923秒，下载另计。1046原件SHA/CRC验证保留，仅删除重复传输副本，4867旧证据/Build30/普通HEAD index保持。无重派/full/Release/新IPA，I6仍未验收。下一步仅建议本地审阅已保存S/M冲突证据，不叠诊断或CI。见[原生结果与断点](Documentation/I6_PREPARATION_NATIVE.md)。
 
 恢复build/maintenance/I6-preparation-diagnostics-native-20261023/与build/ci/39962812139/；source=410b14af/attempt1/唯一POST。最终私有恢复revision/ref见final-checkpoint.json，不推送结果文档、不关机/停Docker或别的任务。准备期取消与不完整参数仍缺证，不能宣称已修，不自动续跑。

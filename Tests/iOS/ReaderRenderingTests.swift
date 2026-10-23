@@ -441,6 +441,18 @@ import XianxiaCore
                 pair.effect = terminal.values["anchor"] == originalAnchor ? "unchanged" : "anchor-replaced"
             case "document-top-mismatch-exhausted" where terminal.values["outcome"] == "rejected": pair.effect = "blocked"
             case "snapshot-unavailable" where terminal.values["outcome"] == "rejected": pair.effect = "read-unavailable"
+            case "layout-invalidated" where terminal.values["outcome"] == "rejected":
+                guard reads.count == 1, let decision = decisions.first,
+                      decision["layoutMatches"] == "false",
+                      decision["snapshotAvailable"] == "true",
+                      let captured = decision["layoutGeneration"], UUID(uuidString: captured) != nil,
+                      let current = decision["currentLayoutGeneration"], UUID(uuidString: current) != nil,
+                      captured != current, terminal.values["anchor"] == originalAnchor,
+                      Double(decision["layoutWidth"] ?? "") == Double(sample.values["nativeWidth"] ?? ""),
+                      abs((Double(decision["currentLayoutWidth"] ?? "") ?? -.infinity) - Double(size.width)) < 2 else {
+                    fail("pair-layout-invalidation-unqualified"); try checkFailure(); return false
+                }
+                pair.effect = "layout-invalidated"
             default: fail("pair-conflict-S-terminal-unqualified"); try checkFailure(); return false
             }
             guard let id = primary else { throw Failure.invalid("missing-primary-M") }
@@ -489,7 +501,8 @@ import XianxiaCore
         checkReadDiagnosticJournal(mode)
         let values = ["reader":"pair-mechanics", "epoch":"epoch", "slot":"slot", "webView":"web", "index":"1",
             "revision":"1", "localTop":"100", "outerY":"100", "ready":"true", "moving":"false",
-            "positioning":"false", "anchor":"A", "nativeWidth":"402", "nativeHeight":"778", "source":"mechanics"]
+            "positioning":"false", "anchor":"A", "nativeWidth":"402", "nativeHeight":"778", "source":"mechanics",
+            "layoutGeneration":UUID().uuidString, "layoutWidth":"402", "layoutHeight":"778"]
         let size = CGSize(width:874, height:402)
         func drive(_ c: ViewportFixture) {
             do {
@@ -520,10 +533,16 @@ import XianxiaCore
                     var read = values; read["dom.width"] = mode == .safe ? "402" : "874"
                     c.observe(Event(requestID:id, kind:"sample-dom", values:read))
                     var decision = Dictionary(uniqueKeysWithValues:["notCancelled", "epochMatches", "indexMatches", "slotMatches", "movingMatches", "notPositioning", "revisionMatches", "localMatches", "viewportMatches"].map { ($0,"true") })
-                    decision["reason"] = "committed"; c.observe(Event(requestID:id, kind:"sample-decision", values:decision))
-                    terminal["anchor"] = mode == .safe ? "A" : "B"
+                    decision["reason"] = mode == .safe ? "committed" : "layout-invalidated"
+                    decision["layoutGeneration"] = values["layoutGeneration"]
+                    decision["currentLayoutGeneration"] = mode == .safe ? values["layoutGeneration"] : UUID().uuidString
+                    decision["layoutMatches"] = String(mode == .safe)
+                    decision["snapshotAvailable"] = "true"
+                    decision["layoutWidth"] = "402"; decision["currentLayoutWidth"] = mode == .safe ? "402" : "874"
+                    c.observe(Event(requestID:id, kind:"sample-decision", values:decision))
                 }
-                terminal["outcome"] = run ? "committed" : "aborted"; terminal["reason"] = run ? "committed" : "barrier-aborted"
+                terminal["outcome"] = run ? (mode == .safe ? "committed" : "rejected") : "aborted"
+                terminal["reason"] = run ? (mode == .safe ? "committed" : "layout-invalidated") : "barrier-aborted"
                 c.observe(Event(requestID:id, kind:"sample-finished", values:terminal))
                 c.observe(Event(requestID:id, kind:"work-finished", values:["captured":"true"]))
                 after(); done.fulfill()
@@ -543,8 +562,8 @@ import XianxiaCore
                     if commit, measure {
                         var flags = start
                         for key in ["ownerMatches", "indexMatches", "anchorCurrentAtStart", "anchorCurrentNow", "revisionMatches", "localMatches"] { flags[key] = "true" }
-                        flags["anchor"] = mode == .safe ? "A" : "B"
-                        flags["anchorEqual"] = String(mode == .safe); flags["mayRestore"] = String(mode == .safe)
+                        flags["anchor"] = "A"
+                        flags["anchorEqual"] = "true"; flags["mayRestore"] = "true"
                         c.observe(Event(requestID:id, kind:"measure-guard", values:flags))
                         c.release(id); c.release(id)
                     }
@@ -570,7 +589,7 @@ import XianxiaCore
         defer { m.cancel(); p.cancel() }
         await test.fulfillment(of:[finished], timeout:3)
         guard c.stage == 4, c.failure == nil, c.isQuiescent,
-              c.pair?.effect == (mode == .safe ? "unchanged" : "anchor-replaced") else { throw Failure.invalid("pair-mechanics-order") }
+              c.pair?.effect == (mode == .safe ? "unchanged" : "layout-invalidated") else { throw Failure.invalid("pair-mechanics-order") }
 
         // Hold both designated requests and a queued entry; cancelling one must abort all.
         let cancelled = ViewportFixture(pairMode:.conflict); cancelled.armSample(outerY:100)

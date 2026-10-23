@@ -3,6 +3,7 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
+import uuid
 import math
 from pathlib import Path
 import re
@@ -436,11 +437,33 @@ def verify_viewport_pair_arm(folder, mode, status=0):
     if decisions[-1].get("reason") != end_s.get("reason"):
         raise ValueError("The actual S exit reason was not retained")
     effect = row.get("pairEffect")
+    layout_invalidated = mode == "paired-conflict" and end_s.get("reason") == "layout-invalidated"
+    if layout_invalidated:
+        verdict = decisions[-1]
+        captured = before_s.get("layoutGeneration")
+        current = verdict.get("currentLayoutGeneration")
+        # A specific stale layout result, never a blanket context-error exemption.
+        try:
+            valid_generations = str(uuid.UUID(captured)) == captured.lower() and str(uuid.UUID(current)) == current.lower()
+        except (ValueError, TypeError, AttributeError):
+            valid_generations = False
+        if (len(reads) != 1 or not valid_generations or captured == current
+                or verdict.get("layoutGeneration") != captured or verdict.get("layoutMatches") != "false"
+                or verdict.get("snapshotAvailable") != "true"
+                or number(verdict.get("layoutWidth")) != old_width
+                or number(verdict.get("layoutHeight")) != number(before_s.get("nativeHeight"))
+                or number(verdict.get("currentLayoutWidth")) != new_width
+                or number(verdict.get("currentLayoutHeight")) != number(before_m.get("nativeHeight"))
+                or end_s.get("anchor") != arm["anchor"]):
+            raise ValueError("Layout rejection lacks a new generation, real read, or preserved A")
+    elif any(d.get("layoutMatches", "true") != "true" for d in decisions):
+        raise ValueError("A changed layout was used by an unrelated S terminal branch")
     if end_s.get("outcome") == "committed" and end_s.get("reason") == "committed":
         expected_effect = "unchanged" if end_s.get("anchor") == arm["anchor"] else "anchor-replaced"
         if effect != expected_effect: raise ValueError("S cache effect was misclassified")
     elif (mode == "paired-conflict" and end_s.get("outcome") == "rejected"
-          and {"document-top-mismatch-exhausted":"blocked", "snapshot-unavailable":"read-unavailable"}.get(end_s.get("reason")) == effect):
+          and {"document-top-mismatch-exhausted":"blocked", "snapshot-unavailable":"read-unavailable",
+               "layout-invalidated":"layout-invalidated"}.get(end_s.get("reason")) == effect):
         pass
     else: raise ValueError("S did not follow a supported original terminal branch")
     if mode == "paired-safe" and effect != "unchanged": raise ValueError("Safe S changed A")
@@ -554,6 +577,22 @@ def verify_viewport_pair_arm(folder, mode, status=0):
                         or any(verdict.get(k) != "true" for k in contexts)):
                     raise ValueError("Post-control sample read order or original context is unqualified")
                 reason = verdict.get("reason")
+                layout_rejected = reason == "layout-invalidated"
+                if layout_rejected:
+                    try:
+                        old_generation = str(uuid.UUID(captured.get("layoutGeneration")))
+                        new_generation = str(uuid.UUID(verdict.get("currentLayoutGeneration")))
+                    except (ValueError, TypeError, AttributeError):
+                        raise ValueError("Post-control layout rejection lacks real generations")
+                    if (index != len(reads)-1 or old_generation == new_generation
+                            or verdict.get("layoutGeneration") != captured.get("layoutGeneration")
+                            or verdict.get("layoutMatches") != "false" or verdict.get("snapshotAvailable") != "true"
+                            or number(verdict.get("layoutWidth")) != number(captured.get("nativeWidth"))
+                            or number(verdict.get("layoutHeight")) != number(captured.get("nativeHeight"))
+                            or number(verdict.get("currentLayoutWidth")) <= 0 or number(verdict.get("currentLayoutHeight")) <= 0):
+                        raise ValueError("Post-control layout rejection hid a different context or changed frozen inputs")
+                elif verdict.get("layoutMatches", "true") != "true":
+                    raise ValueError("Post-control sample used an invalid layout")
                 if verdict.get("snapshotAvailable") == "true":
                     top = number(read.get("dom.documentTop")); local = max(0, number(captured.get("localTop")))
                     delta = top-local
@@ -563,7 +602,7 @@ def verify_viewport_pair_arm(folder, mode, status=0):
                             or number(verdict.get("expectedDocumentTop")) != local
                             or abs(number(verdict.get("documentTopDelta"))-delta) >= 1e-7
                             or verdict.get("documentTopMatches") != str(abs(delta)<1).lower()
-                            or reason != ("committed" if abs(delta)<1 else
+                            or not layout_rejected and reason != ("committed" if abs(delta)<1 else
                                           "document-top-mismatch-retry" if index<2 else "document-top-mismatch-exhausted")):
                         raise ValueError("Post-control sample decision disagrees with the same DOM read")
                 elif verdict.get("snapshotAvailable") != "false" or reason != "snapshot-unavailable":
@@ -573,7 +612,7 @@ def verify_viewport_pair_arm(folder, mode, status=0):
                 previous_read = seq(verdict)
             reason = verdicts[-1].get("reason")
             outcome = "committed" if reason == "committed" else "rejected"
-            if (reason not in ["committed", "document-top-mismatch-exhausted", "snapshot-unavailable"]
+            if (reason not in ["committed", "document-top-mismatch-exhausted", "snapshot-unavailable", "layout-invalidated"]
                     or terminal.get("reason") != reason or terminal.get("outcome") != outcome
                     or (outcome == "committed" and terminal.get("anchor") in [None, "nil", "serialization-error"])):
                 raise ValueError("Post-control sample did not retain its real terminal branch")

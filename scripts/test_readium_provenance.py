@@ -111,6 +111,120 @@ def preparation_harness(test_source, sdk_source):
 '''
 
 
+def layout_sample_harness(source, legacy=False):
+    """Actual Release S/cache and M expressions; UIKit/WK are explicit test doubles."""
+    release = release_source(source)
+    helper = swift_diagnostic_declaration(release, 'private struct EPUBSamplingLayout')
+    sample = swift_diagnostic_declaration(release, 'func firstVisibleElementLocator()')
+    if legacy:
+        sample = sample.replace('        let layoutGeneration = samplingLayout.generation\n', '')
+        sample = sample.replace('        let layoutSize = samplingViewportSize\n', '')
+        sample = sample.replace('            guard samplingLayout.matches(layoutGeneration, size: layoutSize, currentSize: samplingViewportSize) else {\n                return nil\n            }\n', '')
+        # Exact frozen 050c2b2 Release S, not a replacement implementation.
+        assert hashlib.sha256(sample.encode()).hexdigest() == '25a2496ca7fdb22fb6e50cff1dddba503439ca26e78d5ef9c54981a5f654d85e'
+    cache = swift_diagnostic_declaration(release, 'private func savedAnchorMatchesViewport(')
+    measure = release.split('private func measure(', 1)[1].split('override func layoutSubviews()', 1)[0]
+    start = measure.index('            let mayRestoreAnchor =')
+    expressions = measure[start:measure.index('            recordReflow(', start)]
+    owner = re.search(r'guard epoch == request, slots\[index\] === slot else', measure).group(0)
+    size = swift_diagnostic_declaration(release, 'private var samplingViewportSize:')
+    return 'import Foundation\n' + helper + r'''
+private struct Number: Equatable { let double: Double? }
+private struct Locations: Equatable { var otherLocations: [String: Number] = ["xianxiaViewportOffset":Number(double:-3.125)] }
+private struct Locator: Equatable { let word: Int; var locations = Locations() }
+private struct Snapshot { let locator: Locator; let documentY: CGFloat; let documentTop: CGFloat }
+@MainActor private final class View {
+    var frame = CGRect(x:0,y:0,width:402,height:778)
+    var pending: CheckedContinuation<Snapshot?, Never>?
+    var entered: CheckedContinuation<Void, Never>?
+    func continuousVisibleAnchorSnapshot(visibleTop: CGFloat, visibleBottom: CGFloat) async -> Snapshot? {
+        await withCheckedContinuation { continuation in
+            pending = continuation; entered?.resume(); entered = nil
+        }
+    }
+    func waitForRead() async {
+        if pending != nil { return }
+        await withCheckedContinuation { entered = $0 }
+    }
+    func finish(_ snapshot: Snapshot) { let c = pending; pending = nil; c!.resume(returning:snapshot) }
+}
+@MainActor private final class Slot {
+    let view = View(); let wrapper = View()
+    var ready = true, positioning = false
+    var height: CGFloat = 9000
+    var anchorRevision: UInt64?, anchorViewportTop: CGFloat?, anchorDocumentY: CGFloat?
+    var savedAnchor: Locator?; var anchorDiagnostic = ""
+    init() { view.frame.origin.y = 2367 }
+}
+@MainActor private final class Label { var text: String? }
+@MainActor private final class Reader {
+    var epoch = UUID(), currentIndex = 1
+    var slots: [Int: Slot] = [1:Slot()]
+    var bounds = CGRect(x:0,y:0,width:402,height:778)
+    var viewportHeight: CGFloat = 778, viewportTop: CGFloat = 2367
+    var viewportRevision: UInt64 = 2
+    var automaticScrolling = false
+    var samplingLayout = EPUBSamplingLayout()
+    let boundaryLabel = Label()
+    init() { samplingLayout.update(samplingViewportSize) }
+''' + size + '\n' + sample + '\n' + cache + r'''
+    func resize(_ width: CGFloat, _ height: CGFloat, observeLayout: Bool = true) {
+        bounds.size = CGSize(width:width,height:height); viewportHeight = height
+        if observeLayout { samplingLayout.update(samplingViewportSize) }
+    }
+    func restore(_ slot: Slot, request: UUID, measuredAnchor: Locator?, measuredRevision: UInt64,
+                 measuredLocalTop: CGFloat, newAnchorY: CGFloat?) -> CGFloat? {
+        let index = 1, measuredAnchorIsCurrent = true
+''' + owner + ' { return nil }\n' + expressions + r'''
+        return desiredLocal
+    }
+}
+@main private struct Harness {
+    @MainActor static func main() async {
+        let baseline = CommandLine.arguments.contains("--baseline")
+        let original = Locator(word:499), newer = Locator(word:818)
+        for scenario in ["same", "same-layout-pass", "resize", "ABA", "pending-layout", "scroll", "physical-scroll", "navigation", "new-layout"] {
+            let reader = Reader()
+            if scenario == "new-layout" { reader.resize(874,306) }
+            let slot = reader.slots[1]!, request = reader.epoch
+            let task = Task { @MainActor in await reader.firstVisibleElementLocator() }
+            await slot.view.waitForRead()
+            // Equivalent to the separate original capture while old S is held.
+            slot.savedAnchor = original; slot.anchorRevision = 2; slot.anchorViewportTop = 2367
+            switch scenario {
+            case "resize": reader.resize(874,306)
+            case "ABA": reader.resize(874,306); reader.resize(402,778)
+            case "pending-layout": reader.resize(874,306,observeLayout:false)
+            case "same-layout-pass": reader.resize(402,778)
+            case "scroll": reader.viewportRevision = 3; reader.viewportTop += 600
+            case "physical-scroll": reader.viewportTop += 600
+            case "navigation": reader.epoch = UUID()
+            default: break
+            }
+            slot.view.finish(Snapshot(locator:newer,documentY:3000,documentTop:2367))
+            let returned = await task.value
+            let dimensionsChanged = ["resize","ABA","pending-layout"].contains(scenario)
+            let normal = ["same","same-layout-pass","new-layout"].contains(scenario) || (baseline && dimensionsChanged)
+            precondition(returned == (normal ? newer : nil), "S terminal: " + scenario)
+            precondition(slot.savedAnchor == (normal ? newer : original), "cache: " + scenario)
+            let desired = reader.restore(slot,request:request,measuredAnchor:original,measuredRevision:2,
+                                         measuredLocalTop:2367,newAnchorY:2147.875)
+            let mustRestore = !baseline && dimensionsChanged
+            precondition((desired != nil) == mustRestore, "M guard: " + scenario)
+            if scenario == "resize", !baseline {
+                precondition(desired == 2151 && 2147.875 - desired! == -3.125)
+                precondition(slot.savedAnchor?.word == 499)
+            }
+            print("LAYOUT_SAMPLE_CASE " + (baseline ? "baseline " : "fixed ") + scenario
+                  + " returnedNew=" + String(returned == newer) + " preserved=" + String(slot.savedAnchor == original)
+                  + " restore=" + String(desired != nil))
+        }
+        print(baseline ? "LAYOUT_SAMPLE_BASELINE_CONFIRMED" : "LAYOUT_SAMPLE_SWIFT_PASS actual-S/cache/M-expressions; UIKit-WK-unverified")
+    }
+}
+'''
+
+
 def release_source(text):
     """Select DEBUG=false; these three EPUB files have only DEBUG conditionals."""
     live = [True]
@@ -140,6 +254,88 @@ def release_source(text):
 class ReadiumProvenanceTests(unittest.TestCase):
     def setUp(self):
         self.pins = json.loads((ROOT / "Vendor/ReadiumToolkit/UPSTREAM.json").read_text())["remoteDependencyPins"]
+
+    def test_layout_generation_actual_sample_and_restore_behavior(self):
+        import uuid
+        source = self.inner_sources()['EPUBInfiniteScrollView.swift']
+        generated = layout_sample_harness(source)
+        baseline_generated = layout_sample_harness(source, legacy=True)
+        folder = ROOT / '.cache/layout-sample'
+        folder.mkdir(parents=True, exist_ok=True)
+        harness = folder / 'harness.swift'
+        harness.write_text(generated, encoding='utf-8', newline='\n')
+        baseline = folder / 'baseline.swift'
+        baseline.write_text(baseline_generated, encoding='utf-8', newline='\n')
+        record = dict(kind='actual-Release-S-and-M-expressions-with-Foundation-doubles',
+                      harnessSHA256=hashlib.sha256(generated.encode()).hexdigest(),
+                      baselineHarnessSHA256=hashlib.sha256(baseline_generated.encode()).hexdigest(),
+                      executed=False, passed=False, nativeCompiled=False)
+        receipt = folder / 'behavior.json'
+        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+        compiler = shutil.which('swiftc')
+        if compiler:
+            baseline_executable = folder / 'baseline.exe'
+            old_compile = subprocess.run([compiler, '-swift-version', '6', '-parse-as-library', str(baseline), '-o', str(baseline_executable)], capture_output=True, text=True, encoding='utf-8', timeout=60)
+            record.update(baselineCompileExit=old_compile.returncode, baselineCompileLog=old_compile.stdout + old_compile.stderr)
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.assertEqual(old_compile.returncode, 0, record['baselineCompileLog'])
+            old_run = subprocess.run([str(baseline_executable), '--baseline'], capture_output=True, text=True, encoding='utf-8', timeout=30)
+            record.update(baselineExit=old_run.returncode, baselineLog=old_run.stdout + old_run.stderr)
+            self.assertEqual(old_run.returncode, 0, record['baselineLog'])
+            self.assertIn('LAYOUT_SAMPLE_BASELINE_CONFIRMED', old_run.stdout)
+            executable = folder / 'harness.exe'
+            args = [compiler, '-swift-version', '6', '-parse-as-library', str(harness), '-o', str(executable)]
+            compiled = subprocess.run(args, capture_output=True, text=True, encoding='utf-8', timeout=60)
+            record.update(compileExit=compiled.returncode, compileLog=compiled.stdout + compiled.stderr)
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.assertEqual(compiled.returncode, 0, record['compileLog'])
+            args = [str(executable)]
+        else:
+            image = 'swift@sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f'
+            docker = shutil.which('docker')
+            if not docker:
+                self.skipTest('No existing Swift compiler/Docker; actual layout behavior unexecuted')
+            inspected = subprocess.run([docker, 'image', 'inspect', image], capture_output=True, timeout=20)
+            if inspected.returncode:
+                record['environmentError'] = inspected.stderr.decode(errors='replace')
+                receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+                self.skipTest('Locked cached image/engine unavailable; no pull or installation')
+            cached_image = json.loads(inspected.stdout)[0]
+            record['imageID'] = cached_image['Id']
+            record['imageRepoDigests'] = cached_image.get('RepoDigests', [])
+            cid = folder / ('container-' + uuid.uuid4().hex + '.txt')
+            args = [docker, 'run', '--pull=never', '--network=none', '--platform', 'linux/amd64',
+                    '--cidfile', str(cid), '--mount', f'type=bind,source={folder},target=/fixture,readonly',
+                    image, 'bash', '-lc', 'set -euo pipefail\nswiftc --version\n'
+                    'swiftc -swift-version 6 -parse-as-library /fixture/baseline.swift -o /tmp/layout-baseline\n/tmp/layout-baseline --baseline\n'
+                    'swiftc -swift-version 6 -parse-as-library /fixture/harness.swift -o /tmp/layout-harness\n/tmp/layout-harness\n']
+        result = subprocess.run(args, capture_output=True, text=True, encoding='utf-8', timeout=90)
+        record.update(command=args, executed=True, realExit=result.returncode,
+                      passed=result.returncode == 0, stdout=result.stdout, stderr=result.stderr)
+        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('LAYOUT_SAMPLE_SWIFT_PASS', result.stdout)
+        if not compiler:
+            self.assertIn('LAYOUT_SAMPLE_BASELINE_CONFIRMED', result.stdout)
+
+    def test_layout_generation_preserves_measure_and_original_sampling_contracts(self):
+        source = self.inner_sources()['EPUBInfiniteScrollView.swift']
+        measure = source.split('    private func measure(', 1)[1].split('    override func layoutSubviews()', 1)[0]
+        self.assertEqual(hashlib.sha256(measure.encode()).hexdigest(), 'ca3050402bf2b21effbd565bde72f94c8d65cc59fc73beeac1b0bd3274bee798')
+        layout = source.split('override func layoutSubviews()', 1)[1].split('private func layoutSlots', 1)[0]
+        self.assertLess(layout.index('samplingLayout.update(samplingViewportSize)'), layout.index('guard !layingOut'))
+        self.assertNotIn('viewportRevision &+=', layout)
+        sample = swift_diagnostic_declaration(release_source(source), 'func firstVisibleElementLocator()')
+        self.assertLess(sample.index('let layoutGeneration ='), sample.index('await slot.view.continuousVisibleAnchorSnapshot'))
+        guard = 'guard samplingLayout.matches(layoutGeneration, size: layoutSize, currentSize: samplingViewportSize)'
+        self.assertLess(sample.index('await slot.view.continuousVisibleAnchorSnapshot'), sample.index(guard))
+        self.assertLess(sample.index(guard), sample.index('slot.anchorRevision = revision'))
+        self.assertIn('viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5', sample)
+        self.assertIn('epoch == request, currentIndex == index, slots[index] === slot', sample)
+        self.assertIn('for attempt in 0..<3', sample)
+        self.assertEqual(sample.count('Task.sleep(nanoseconds: 32_000_000)'), 1)
+        # Reverse only the new guard/captures and require the exact old Release S.
+        self.assertIn('LAYOUT_SAMPLE_BASELINE_CONFIRMED', layout_sample_harness(source, legacy=True))
 
     def lock(self, pins, allow_upstream=False):
         with tempfile.TemporaryDirectory() as directory:
@@ -183,7 +379,7 @@ class ReadiumProvenanceTests(unittest.TestCase):
     def test_inner_diagnostics_preserve_release_and_embedded_js(self):
         # Baseline 3bb3ef43. Intentional production/JS changes require a new
         # reviewed contract; passing this check is not native compilation.
-        expected = {'EPUBSpreadView.swift': {'release': 'd79a01c99e5db34ba8b9e5e87729aad8da23619f53f79285fea594db546fb043', 'js': '24360e6a630a6ba33fb73d5be413a0fc7ab7a5645b689e4eb12552c81eab97f3', 'awaits': '838acea36ee3ecadcffb7cc7fa3c958a1a50a2b8bdce77c503ce87b318670be8'}, 'EPUBReflowableSpreadView.swift': {'release': '2daeba600700a62ba06fb2aac79920e8aacf68891936ed17cc434a3d9dff46ed', 'js': 'bbe1d6418414ec65dcaedd227261be1e8444a1cdeae27c00941c8c64f482b541', 'awaits': 'f9b28569ff9c4eb31320e3d74143b688d97826d9c1b1ced202e0f597fd5d3261'}, 'EPUBInfiniteScrollView.swift': {'release': '8d05487ee656b8e7506d24717a49125bc11eb9e7bc82cebc7ec80d65769083ed', 'js': '2abb959598e79a25c3c7176b7b3369e2a1235dd1456ebbc7e8019b722d0df00d', 'awaits': '184f24176cf7e255fcd0425a0fb5b8592a12b8540133562bea0db4bed3d4713d'}}
+        expected = {'EPUBSpreadView.swift': {'release': 'd79a01c99e5db34ba8b9e5e87729aad8da23619f53f79285fea594db546fb043', 'js': '24360e6a630a6ba33fb73d5be413a0fc7ab7a5645b689e4eb12552c81eab97f3', 'awaits': '838acea36ee3ecadcffb7cc7fa3c958a1a50a2b8bdce77c503ce87b318670be8'}, 'EPUBReflowableSpreadView.swift': {'release': '2daeba600700a62ba06fb2aac79920e8aacf68891936ed17cc434a3d9dff46ed', 'js': 'bbe1d6418414ec65dcaedd227261be1e8444a1cdeae27c00941c8c64f482b541', 'awaits': 'f9b28569ff9c4eb31320e3d74143b688d97826d9c1b1ced202e0f597fd5d3261'}, 'EPUBInfiniteScrollView.swift': {'release': '0aebd46a3813dc75c5f7db1f2bca0a7559b861245411fecb5a0f58fe23ad2bd8', 'js': '2abb959598e79a25c3c7176b7b3369e2a1235dd1456ebbc7e8019b722d0df00d', 'awaits': '184f24176cf7e255fcd0425a0fb5b8592a12b8540133562bea0db4bed3d4713d'}}
         self.assertEqual(len(expected), 3)
         for name, text in self.inner_sources().items():
             with self.subTest(file=name):

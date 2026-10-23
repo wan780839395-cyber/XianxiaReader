@@ -1,3 +1,29 @@
+# 跨布局旧采样本地修正收口：33通过/484语法，零推送CI（2026-10-23）
+
+2026-10-23 跨布局旧S最小修正本地收口，6输入：独立UUID布局代次跟踪有效viewport（含inset后高度），S原回调后核代次/尺寸，跨尺寸及A→B→A旧结果作废而不写缓存；不复用滚动revision，M整段测量/恢复及真正新锚点保护保持。fixture/验收器仅识别有真实新代次/原上下文/快照、保留A和M原guard的layout-invalidated，逐个审返程SDK；原字宽窄/预算及原方法字节保持。32工具+1原样Swift6.1.2旧新对照=33唯一检查通过（首轮1skip仅补该项后通过），7静态/484语法、54上游限制/新增0；旧S跨尺寸覆盖A抑制M，新S作废并允许2151补偿，ABA/同尺寸/滚动/导航覆盖，但均为Foundation替身，不是UIKit/WK验收。镜像ID核同上一轮，仅改canonical缓存引用，无安装/拉取/重置。619其余613、5966旧证据、Build30/普通HEAD index保持。零推送/CI/full/Release/新IPA；本修正版未iOS编译或原生验收，旧自然full、2367→1767、准备取消与JS参数缺口不宣称修好，I6仍未验收。见[实现与本地验证](Documentation/I6_LAYOUT_SAMPLE_INVALIDATION.md)。
+
+恢复build/maintenance/I6-layout-sample-invalidation-20261023/保留6原件、首轮skip/镜像引用错误、旧新原样Swift及真实退出、历史原件只读复核、语法和最终checkpoint。只有另行授权后才考虑新原生单例；本轮额度0。普通工作区/用户改动保留，不关机/不停止Docker和其他任务。
+
+---
+
+# 跨布局旧S：32定向+1实际Swift旧新对照通过，待一次语法（2026-10-23）
+
+首轮缺失的行为检查已只补一次：镜像digest实际ID与上一轮一致，仅名称解析差异，改用已有canonical RepoDigest；无新环境/拉取/重置。旧/新实际S方法+M表达式在Swift6.1.2各9场景退出0；旧S跨尺寸/ABA覆盖A且M不恢复，新S作废并保留A/M恢复；同尺寸/新锚点、滚动/导航保护不变。首轮32工具通过保留，合计33唯一检查通过；不是iOS原生验收。历史原件只验收器复读仍0/65。6输入范围保持，无推送/CI；下一步仅一次仓库语法/静态，最后保存。设计Documentation/I6_LAYOUT_SAMPLE_INVALIDATION.md与本轮恢复目录记录完整限制。
+
+---
+
+# 跨布局旧S最小修正已实现，进入本地定向检查（2026-10-23）
+
+独立UUID布局代次跟踪有效viewport宽/扣除inset后的高度，位于layoutSubviews原super后/重入guard前；S捕获代次和尺寸，原await后先核原上下文，再核布局，失效返回nil而不写锚点。M整段代码保持原字节。fixture/验收新增明确layout-invalidated分支，要求真实新代次、原上下文与快照、保留A和M原guard；返程请求也逐项验收，原字双向与预算保持。已补同一实际S/M表达式的旧/新Foundation替身对照（含ABA、滚动、导航），无新WK/await/等待/重试。仅6运行输入，无推送/CI；下一步只定向工具及现有Swift6.1.2镜像，再一次语法。尚未通过本轮行为或原生验证。
+
+---
+
+# 跨尺寸旧S最小修正开始：仅本地，不推送/CI（2026-10-23）
+
+最新明确授权“当然 交给你了”，只实施独立布局身份作废跨尺寸旧S，保留M真正新锚点保护及全部原断言/预算。已核050c2b2/619输入、旧证据与实际Docker，无本地并行源码助手；协调host读取暂不可用，当前转交的更新范围明确。影响6运行输入：InfiniteScroll、UPSTREAM、ReaderRenderingTests、位置验收器及两个既有工具测试；不新增target/Adapter/JS或等待重试。本轮先按原源码抽取S方法/M恢复表达式执行Swift6.1.2 Foundation替身行为、验收正反例及一次语法。UIKit/WK未原生验证，不派CI/不推送，不关机。恢复build/maintenance/I6-layout-sample-invalidation-20261023/已保留before/6原件/普通Git状态。
+
+---
+
 # 唯一配对CI39962812139收口，原退出0/65；不再派发（2026-10-23）
 
 2026-10-23 有界解阻/唯一CI39962812139收口：现有Docker/Swift6.1.2原样helper一次退出0，无安装/拉取/环境重置；本轮运行源码变化0、619输入保持。CI162工具/484语法、一次原生build/link0通过；同构建619源码/609产物/三计划及四快照一致，驱动matchedBuildVerified=true。安全原case1/1、13.221秒/退出0，冲突0/1、44.702秒/原driver65，分类candidate-controlled-word-failure；M因anchorEqual=false抑制恢复，宽874原字在视口上方超时，未到冲突返程，安全双向/3返程请求通过。两臂准备completed、firstError空/记录点取消false，旧准备期CancellationError未复现/来源仍未知。191/200诊断零丢弃，旧38条缓冲向原owner/epoch完整交付，4组覆盖配对；全部取消路径未验。公开WebKit8621/8621.2.5.10.10已获，但JS参数options-value/incomplete，restored回执true仍非完整观察通过；旧2367→1767未记录、旧full根因未证。原生步骤27分24秒、case合计57.923秒，下载另计。1046原件SHA/CRC验证保留，仅删除重复传输副本，4867旧证据/Build30/普通HEAD index保持。无重派/full/Release/新IPA，I6仍未验收。下一步仅建议本地审阅已保存S/M冲突证据，不叠诊断或CI。见[原生结果与断点](Documentation/I6_PREPARATION_NATIVE.md)。

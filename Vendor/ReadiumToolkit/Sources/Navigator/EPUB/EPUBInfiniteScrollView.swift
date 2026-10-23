@@ -9,6 +9,22 @@ import UIKit
     func infiniteScrollViewDidUpdateViews(_ view: EPUBInfiniteScrollView)
 }
 
+/// Sampling lifetime only. A resize preserves the cached anchor needed by measure().
+private struct EPUBSamplingLayout {
+    private var size = CGSize.zero
+    private(set) var generation = UUID()
+
+    mutating func update(_ size: CGSize) {
+        guard self.size != size else { return }
+        self.size = size
+        generation = UUID()
+    }
+
+    func matches(_ generation: UUID, size: CGSize, currentSize: CGSize) -> Bool {
+        self.generation == generation && size == currentSize
+    }
+}
+
 #if DEBUG
 private let epubViewportReadDiagnosticsEnabled = ["paired-safe", "paired-conflict"].contains(
     ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"] ?? "")
@@ -82,6 +98,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
     private var layingOut = false
     private var navigation = false
     private var lastSize = CGSize.zero
+    private var samplingLayout = EPUBSamplingLayout()
     private var viewportRevision: UInt64 = 0
     // Release has no installer or controller type, only unused nil opaque storage.
     private var viewportFixtureStorage: AnyObject?
@@ -161,6 +178,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
             + (epubLoadingDiagnosticsEnabled ? " reflowTrace={" + reflowTrace.joined(separator: "; ") + "}" : "")
     }
     private var viewportHeight: CGFloat { max(1, bounds.height - contentInset.top - contentInset.bottom) }
+    private var samplingViewportSize: CGSize { CGSize(width: bounds.width, height: viewportHeight) }
     private var viewportTop: CGFloat { max(0, contentOffset.y + contentInset.top) }
     // Keep the last tenth of the viewport visible so a wrapped line is never
     // skipped at a screen boundary. This is not a new pagination/DOM engine.
@@ -613,6 +631,9 @@ public struct EPUBViewportFixtureEvent: Sendable {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
+        // Track every observed size transition, including reentrant layout and A→B→A.
+        // This does not invalidate the scroll revision or M's saved anchor.
+        samplingLayout.update(samplingViewportSize)
         guard !layingOut else { return }
         if lastSize != bounds.size {
             automaticScrolling = false
@@ -823,6 +844,8 @@ public struct EPUBViewportFixtureEvent: Sendable {
         let request = epoch
         let index = currentIndex
         let revision = viewportRevision
+        let layoutGeneration = samplingLayout.generation
+        let layoutSize = samplingViewportSize
         let localTop = viewportTop - slot.wrapper.frame.minY
         let moving = automaticScrolling
         slot.anchorDiagnostic = "requested local=\(localTop) clip=\(clipTop)...\(clipBottom) revision=\(revision)"
@@ -835,6 +858,9 @@ public struct EPUBViewportFixtureEvent: Sendable {
                 fixtureInputs["viewMinYAtStart"] = String(describing: slot.view.frame.minY)
                 fixtureInputs["wrapperMinYAtStart"] = String(describing: slot.wrapper.frame.minY)
                 fixtureInputs["viewportTopAtStart"] = String(describing: viewportTop)
+                fixtureInputs["layoutGeneration"] = layoutGeneration.uuidString
+                fixtureInputs["layoutWidth"] = String(describing: layoutSize.width)
+                fixtureInputs["layoutHeight"] = String(describing: layoutSize.height)
             }
             let fixtureContext = fixtureInputs
             if readDiagnosticsFixture != nil, let id = fixtureID {
@@ -920,6 +946,10 @@ public struct EPUBViewportFixtureEvent: Sendable {
                     fixtureDecision["viewportMatches"] = String(moving || (viewportRevision == revision
                         && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5))
                     fixtureDecision["snapshotAvailable"] = String(snapshot != nil)
+                    fixtureDecision["layoutMatches"] = String(samplingLayout.matches(layoutGeneration, size: layoutSize, currentSize: samplingViewportSize))
+                    fixtureDecision["currentLayoutGeneration"] = samplingLayout.generation.uuidString
+                    fixtureDecision["currentLayoutWidth"] = String(describing: bounds.width)
+                    fixtureDecision["currentLayoutHeight"] = String(describing: viewportHeight)
                     fixtureDecision["currentRevision"] = String(viewportRevision)
                     fixtureDecision["currentLocalTop"] = String(describing: viewportTop - slot.wrapper.frame.minY)
                     fixtureDecision["currentViewMinY"] = String(describing: slot.view.frame.minY)
@@ -945,6 +975,12 @@ public struct EPUBViewportFixtureEvent: Sendable {
                   moving || (viewportRevision == revision && abs(viewportTop - slot.wrapper.frame.minY - localTop) < 0.5) else {
                 #if DEBUG
                     fixtureReason = "context-invalid"
+                #endif
+                return nil
+            }
+            guard samplingLayout.matches(layoutGeneration, size: layoutSize, currentSize: samplingViewportSize) else {
+                #if DEBUG
+                    fixtureReason = "layout-invalidated"
                 #endif
                 return nil
             }

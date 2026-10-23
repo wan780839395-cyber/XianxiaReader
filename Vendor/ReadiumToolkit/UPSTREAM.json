@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "a054bb4a74210d6a58833935129f8f2954f290808b00c8c328cd0b6c1fcf528c"
+      "sha256": "c7850d5bf5343f147050a6ce4d9b37172cee926425766280e5aa21cf62e07b5e"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
@@ -1858,5 +1858,19 @@
     "nativeCompiled": false,
     "nativeAcceptance": false,
     "ciDispatches": 0
+  },
+  "layoutSampleInvalidationReview": {
+    "date": "2026-10-23",
+    "design": "Documentation/I6_LAYOUT_SAMPLE_INVALIDATION.md",
+    "scope": "Independent effective-viewport layout generation, sampled before await and revalidated after callback before cache writes. A-B-A invalidates old sampling; cached anchor and original M guards remain.",
+    "layoutIdentityIndependentOfScrollRevision": true,
+    "measurementCodeUnchanged": true,
+    "newWKCallsWaitsRetries": 0,
+    "newAwaitOrTaskInProduction": false,
+    "assetsChanged": false,
+    "nativeCompiled": false,
+    "nativeAccepted": false,
+    "ciDispatches": 0,
+    "pushes": 0
   }
 }
