@@ -1,3 +1,35 @@
+# I6当前断点：必要停点接线已本地通过，下一步冻结并唯一full（2026-10-24）
+
+当前目标仍为一次同源163集成+29真实UI及原模块/Core，成功后停止在设备Release/IPA之前。12项CI控制流和10项UI摘要门禁全通过；484 Swift语法/7静态通过，新增0，非编译。默认Release尾段已核与原件字节一致；原真实失败优先、export/summary/录屏和严格192保持，停点显式开启且来源一致才成功退出，IPA上传明确跳过。156+ReaderSettings7库存及29UI已核，原门槛192不变。
+
+当前运行输入仅workflow、ci_ios.sh、test_ci_failure_paths.py三项变化；产品/原测试/工程/资源/锁与72b07cc保持，现有草稿已保留并完成。尚未推送或派CI。接下来核1325旧文件/619输入/原件与普通HEAD/index，冻结私有codex分支，确认远端准确源后只一次workflow_dispatch：full、stop_after_full_tests=true，其余两个布尔false；不叠预检、不走unit-release。派发锁一旦存在只查询原run，不再次POST。首轮失败收原件/首错后停止，不自动修源码或再派。旧取消审阅不再是当前任务；历史以下保留。恢复build/maintenance/I6-integration-only-20261024/本地日志与原件；不关机、不停止其他任务。
+
+---
+
+# 当前唯一目标：I6完整同源整合验收，成功后停在设备Release之前（2026-10-24）
+
+协调线程已核明：16:31 UTC转交的I6授权仍有效；上下文压缩后误恢复12:38旧取消审阅，属于任务偏移，现已纠正。旧取消审阅已完成，仅保留材料，不是当前任务，不再据旧限制停止当前授权。保留所有历史、用户改动、已完成CI接线和普通HEAD/index。
+
+当前已核库存163=Tests/iOS156+ReaderSettings7、UI29，严格192不变；产品基线72b07cc/CI39979277641的受控修正保留。workflow、ci_ios.sh和test_ci_failure_paths.py已开始加入默认关闭的stop_after_full_tests；尚未完成本地检查，尚未推送或派本轮CI。下一步仅完成这3项必要接线/定向失败传播检查，成功后冻结准确输入，只派一次既有full，包含原模块/Core门槛、163集成与29真实UI、summary/附件/录屏/严格192成功后明确停止，并跳过IPA上传。本轮不进入设备Release、不生成新IPA、不做unit-release/额外配对或预检；不改产品/定位算法、不扩大重构或诊断。
+
+首轮失败保留原件/真实退出和首错后收口，不自动重派；同artifact安全续取允许。已有build/maintenance/I6-integration-only-20261024/保存before/3原件/库存；此前只数156已纠正，不降低192。普通HEAD/index、Build30、旧证据保持；不关机、不停其他任务、不建并行代理。每一可恢复步骤更新此处；压缩恢复始终以本段目标继续，除非新的人类指令明确改向。
+
+---
+
+# 当前片已收口：准备期取消来源未知，旧交付缺口已有后续证据（2026-10-24）
+
+用户本轮要求只审阅CancellationError来源及最小补证方案，现已完成。原39946614486的首错await/取消发起者仍未知；旧预arm缓冲/armed接收/退休丢弃路径已证，后续5输入方案已实施，39962812139/39979277641四份真实附件核出旧owner/epoch缓冲38/38/38/35条交付、零丢弃。四次准备均成功、firstError空，不能追认原取消已修或首错失败分支已验。方案更新在Documentation/I6_PREPARATION_CANCELLATION_REVIEW.md首节：复用现有首错/cleanup/coverage/交付，不重复改5文件；以后若另获原生观察授权，按首错阶段和同owner时间线区分，缺证或仍成功则保留未知，不自然重放。
+
+本轮只改文档，零运行输入变化/测试/编译/推送/CI；不改算法/WK调用/等待/重试/原guard/预算/返程窄屏和双向原字。已有I6 full停点3项未完成接线原样保留，本轮不推进或测试；此前授权记录作为历史保留，不能据下文直接派发。619输入/1325现有文件、2327相关原件与正常HEAD/index在build/maintenance/I6-preparation-cancellation-recheck-20261024/冻结，审阅断言和4份原件摘要在review-audit.json。最终保护/文档校验见result.json；没有新Swift或原生验收，旧I6/full/Release/手机及JS参数缺口保持，不关机。
+
+---
+
+# I6整合准备：163+29库存已核，原full越权Release须先安全停点（2026-10-24）
+
+最新授权仅一次full163集成+29真实UI及原模块/Core，不构建设备Release/IPA、不重跑配对。已按project.yml核163=Tests/iOS156+ReaderSettings7，UI29；初始只数iOS目录的156已纠正，门禁192不变。候选工程版本31、BundleVersion$(CURRENT_PROJECT_VERSION)与72b07cc保持，最后交付仍Build30，不改号。原full无停点，会在summary/附件/录屏后Release/package/upload，不能原样派。必要接线限定3运行输入：workflow、ci_ios.sh、test_ci_failure_paths.py；新stop_after_full_tests默认false，开启必须完整full，保留原失败退出优先及严格192门禁，在收齐证据后明确退出0且禁止IPA上传。复用原source_inputs函数做前后来源回执。不改任何产品源码/测试/工程/锁/预算，不新增预检、target或其他重构。before/3原件/库存/旧证据在build/maintenance/I6-integration-only-20261024/；尚未改接线、推送或派CI。
+
+---
+
 # 跨布局采样单轮原生通过：39979277641/72b07cc/[0,0]（2026-10-24）
 
 2026-10-24 跨布局旧S修正唯一原生验收通过：已推72b07cc，CI39979277641/attempt1/唯一POST；167工具/484语法、一次build/link0，安全1/1（16.668秒）/冲突1/1（9.898秒），真实退出[0,0]/driver0。619源码/609产物/三计划/实际七版本及四快照一致，matchedBuildVerified=true。冲突旧S在874宽读取后真实layout-invalidated/rejected且A保持，M原7项guard全true、补偿至2151；两臂宽874/返窄402原字均可见，每臂3返程SDK请求审计通过，跟踪集合全空。198/194诊断零丢弃、旧缓冲身份及4组coverage配对。旧配对语义原点相同，支持受控跨布局竞态修正；旧full、2367→1767、准备取消自然根因及JS参数options-value仍未证。步骤22分38秒、case合计26.566秒；artifact181原件SHA/CRC保留，5992旧证据、Build30/普通HEAD index保持，本验证轮代码变化0。无重派/full/设备Release/新IPA，完整I6及手机验收未完成。见[原生结果](Documentation/I6_LAYOUT_SAMPLE_NATIVE.md)。

@@ -1,5 +1,50 @@
 # I6 准备期取消与诊断交付：本地审阅及最小补证（2026-10-23）
 
+## 2026-10-24 复核：旧失败与当前已完成补证分开判读
+
+本轮最新指令只允许本地审阅、明确最小补证；不派CI、不改算法、不增加WK调用、等待或重试。已核实际文件、原件、正常Git HEAD/index及远端最近5轮均completed。工作区已有I6 full停点的3项未完成CI接线，原样保留，本轮不推进或测试这些草稿。以下10月23日方案是历史设计，**不能再次当作尚未实施的5输入任务**。
+
+### 已确认与仍缺证据
+
+| 问题 | 本轮原件与源码复核 |
+| --- | --- |
+| 原取消发生在哪一段 | 39946614486原summary、日志和附件一致：原单例38.343秒、test/driver65，冲突未启动；pair仍seal/stage0，未进入S/M、resize或返程。host已就绪；不能把它扩大为所有正文准备完成 |
+| 最先抛错的await、取消发起者 | 仍未知。原附件没有preparation首错，只有closing/abort-issued。clear先于XCTest打印不证明clear先于错误发生；不能据38秒反推20秒加载保护、WK故障或环境原因 |
+| 原诊断为什么是0条 | 已核失败源0b55a4ea：SDK预arm缓冲要等采样才交付；接收端另要求armed；clear/换fixture丢旧storage前未排空。0条不能证明观察没有执行或属性已恢复 |
+| 当前是否仍缺同一交付接线 | 已实施。现有首错同步记录在原defer清理前，原错误继续抛出；只让paired元数据在未arm时接收；旧coverage-end后、epoch/storage失效前向旧owner一次交付。原控制armed/guard不变 |
+| 已取得哪些真实交付证据 | 39962812139安全/冲突各交付旧缓冲38条；39979277641安全38条、冲突35条。4份真实附件都可核旧reader/epoch与批次一致、零丢弃，随后正常sampling交付仍存在 |
+| 哪些取消行为仍未验到 | 这4份附件均preparation.completed=true、firstError为空，记录点取消标志false。它们没有复现原准备期取消，不能证明原生首错失败分支、fixture-replaced或所有取消/迟到路径已验证 |
+| 原生观察还有什么独立缺口 | 真实公开WebKit Bundle版本已取得：8621 / 8621.2.5.10.10；scrollTo观察仍incomplete/options-value，实际参数未验。该缺口不作为解释本次CancellationError的证据，也不在本片扩大修复 |
+
+取消传播仍按原分支判断：loader/engine.open的checkCancellation或请求身份失效、测试公开WK求值、原轮询sleep均是需要首错区分的候选；Spread的Result.failure在已核tag/Locator导航转为false，再由章节go报navigationFailed，不能直接等同裸CancellationError。slot保护Task对自己的sleep取消会catch并return，但超时后clear的间接影响仍待同owner时间线证明。S/M未到达，不动定位算法。
+
+重新核对[Swift6.1.2取消实现](https://raw.githubusercontent.com/swiftlang/swift/swift-6.1.2-RELEASE/stdlib/public/Concurrency/TaskCancellation.swift)及[同版本sleep](https://raw.githubusercontent.com/swiftlang/swift/swift-6.1.2-RELEASE/stdlib/public/Concurrency/TaskSleep.swift)：CancellationError可直接构造，类型本身不包含发起者；原sleep可因当前Task取消而抛错。固定Readium3.11与Async Algorithms1.0.4参考原件的哈希已复核。现有实现使用Swift5.1起已有的取消能力，不引入新版API；Swift6.1.2编译器源码不等同iOS18.5的精确系统runtime。Apple动态页面本轮未取得可读Markdown，不用该失败读取推导取消语义。
+
+### 当前最小补证方案：复用已有记录，暂不新增运行输入
+
+本轮源码、夹具与CI修改额度均为0。上述5输入方案已实施且有后续交付原件，不重复加探针、重跑成功样本或扩大日志。若后续另获一次原生观察授权，只使用已有paired准备记录，收齐以下同一份失败证据；本轮不执行：
+
+1. 保留原测试退出码、summary、完整日志和原fixture附件。先取`preparation.latestStage/firstError/firstCleanup`，核同nonce/mode；firstError必须在原cleanup前只写一次，并继续原样throw，不能改成timeout或成功。
+2. 按已有reader/epoch/slot/WebView和uptime，把首错与shutdown/reload/真正timeout-fired、coverage-start/end、旧buffer-delivery逐项对齐。接收早期元数据不能推进armed、授予S/M资格或伪造SDK终结。
+3. 在原256诊断容量、255预arm记录加1交付回执内，核旧owner一次交付、条数、丢弃和覆盖起止；缺首错/错身份/溢出/进程退出明确判证据不完整。返程窄屏、原字双向断言、真实SDK回执、原guard及预算全部保留，准备失败则如实标未到达。
+
+| 后续首错证据 | 最多支持的判断及停止点 |
+| --- | --- |
+| poll-sleep且测试Task取消为true | 找到观察取消的等待区间；发起者仍unknown，不加等待/重试或直接归咎子Task |
+| 公开WK求值且测试Task取消为false | 保留动态错误类型/NSError domain/code，优先审阅该原回调和同owner失效时间线；错误类型不能单独证明WebKit缺陷 |
+| open.publication | 仅缩小到原打开区间；loader、checkCancellation及请求身份仍未区分。先保存，下一片才审阅这个区间，不预先扩散改Adapter |
+| 同owner timeout-fired先于首错 | 支持加载保护间接终止候选，仍需链路证据；不提高20秒预算 |
+| 首错先于cleanup/clear | 该后续清理是结果候选，不能把它倒写成首次取消原因 |
+| 仍成功、首错为空或观察不完整 | 原自然取消继续未定位；不自然重放碰运气，不把“未复现”写成“已修复” |
+
+本地helper的首错/原错误传播/旧sink/容量行为曾取得Swift6.1.2检查；这里只复核已有证据和当前接线，**没有重新执行测试、语法检查、Swift编译或原生验收**。本轮无推送、CI、full、设备Release或IPA；I6完整及设备门槛不变。
+
+[本轮持久复核记录](ValidationLogs/project-isolation-i6-preparation-cancellation-recheck.json)。恢复目录`build/maintenance/I6-preparation-cancellation-recheck-20261024/`保存当前619运行输入/1325文件、2327相关原件哈希、审阅断言与4份交付摘要；本轮只更新项目文档，旧原件、Build30与正常Git HEAD/index保留。
+
+---
+
+以下为2026-10-23当时的设计及验收边界，保留历史原文。
+
 本片只审阅39946614486原件、当前冻结源码及官方/固定版本实现。619运行输入不变，没有实施探针、修改算法或派CI。上轮编译0、安全test/driver65、冲突null与未完成的原生观察验收保持。
 
 ## 结论与边界

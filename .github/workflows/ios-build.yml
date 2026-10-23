@@ -14,6 +14,10 @@ on:
         description: For session-lifecycle only, stop after the standalone contracts
         type: boolean
         default: false
+      stop_after_full_tests:
+        description: Full 192-test integration acceptance only; stop before device Release and IPA
+        type: boolean
+        default: false
       diagnostic_selection:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
@@ -270,6 +274,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       READIUM_RESOLVE_BOOTSTRAP: ${{ inputs.resolve_local_readium && '1' || '0' }}
       IOS_TEST_SCOPE: ${{ inputs.diagnostic_selection == 'unit-release' && 'unit-release' || 'full' }}
+      IOS_STOP_AFTER_FULL_TESTS: ${{ inputs.stop_after_full_tests && '1' || '0' }}
       GH_TOKEN: ${{ github.token }}
     defaults:
       run:
@@ -324,8 +329,10 @@ jobs:
             build/continuous-rotation-preflight-summary.json
             build/ui-baseline-receipt.json
             build/TXTPerformance/
+            build/I6Integration/
             XianxiaReader.xcodeproj/
       - name: Upload unsigned device IPA
+        if: ${{ success() && !inputs.stop_after_full_tests }}
         uses: actions/upload-artifact@v4
         with:
           name: XianxiaReader-unsigned-ipa

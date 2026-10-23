@@ -1,0 +1,169 @@
+{
+  "recordedAtUTC": "2026-10-23T16:57:11.837142+00:00",
+  "scope": "local preparation cancellation and diagnostic delivery review only",
+  "reviewCompleted": true,
+  "originalRun": "39946614486",
+  "originalSource": "0b55a4ea35e81663b0c0aa0ac4634c92616bb310",
+  "originalSafeTestExit": 65,
+  "originalConflictExit": null,
+  "originalFirstThrowingAwaitIdentified": false,
+  "originalCancellationRequesterIdentified": false,
+  "originalDiagnosticDeliveryGapConfirmed": true,
+  "gapAlreadyImplementedBeforeThisRound": true,
+  "laterNativeAttachmentsRechecked": [
+    {
+      "run": "39962812139",
+      "mode": "paired-conflict",
+      "path": "build/ci/39962812139/artifact/ViewportPair/paired-conflict/ReaderSnapshots/913F5312-24F4-4C24-B0DD-326E2320AFFA.txt",
+      "sha256": "7f7f038fe2017a25c7ec393196e0a9d064719a69089282db61ec5dee756f70b8",
+      "preparation": {
+        "completed": true,
+        "firstCleanup": {
+          "stage": "cleanUp",
+          "taskCancelled": "false",
+          "taskRole": "fixture-cleanup-current",
+          "uptime": "1614.014151025"
+        },
+        "firstError": {},
+        "latestStage": {
+          "enteredTaskCancelled": "false",
+          "enteredUptime": "1581.5148908340002",
+          "stage": "body-ready.initial-scroll-js",
+          "taskRole": "test-current"
+        }
+      },
+      "diagnostics": 200,
+      "dropped": 0,
+      "retiredBuffered": 38,
+      "retiredReader": "ObjectIdentifier(0x0000000109929e00)",
+      "retiredEpoch": "4A4570D3-90C0-407F-8C39-58A164C63497",
+      "samplingBuffered": 60,
+      "oldOwnerEpochMatched": true
+    },
+    {
+      "run": "39962812139",
+      "mode": "paired-safe",
+      "path": "build/ci/39962812139/artifact/ViewportPair/paired-safe/ReaderSnapshots/D565F364-1B09-45AC-8B5A-AEC86891A27B.txt",
+      "sha256": "e430e3a3b95a4f641dfedec37fc1c226be66ded2f56b885486aa153a68e104d6",
+      "preparation": {
+        "completed": true,
+        "firstCleanup": {
+          "stage": "cleanUp",
+          "taskCancelled": "false",
+          "taskRole": "fixture-cleanup-current",
+          "uptime": "1360.141700826"
+        },
+        "firstError": {},
+        "latestStage": {
+          "enteredTaskCancelled": "false",
+          "enteredUptime": "1358.1750131140002",
+          "stage": "body-ready.initial-scroll-js",
+          "taskRole": "test-current"
+        }
+      },
+      "diagnostics": 191,
+      "dropped": 0,
+      "retiredBuffered": 38,
+      "retiredReader": "ObjectIdentifier(0x00000001110f0c00)",
+      "retiredEpoch": "4D11C4A5-5210-4318-B267-DA1813A2F49D",
+      "samplingBuffered": 60,
+      "oldOwnerEpochMatched": true
+    },
+    {
+      "run": "39979277641",
+      "mode": "paired-conflict",
+      "path": "build/ci/39979277641/artifact/ViewportPair/paired-conflict/ReaderSnapshots/EA8742D1-1DC6-48B1-B78C-F6395060F9B8.txt",
+      "sha256": "d2a53e55ca98c6c05e2b38a7353f5d50f94af68c359c60b687ca3c2af748b918",
+      "preparation": {
+        "completed": true,
+        "firstCleanup": {
+          "stage": "cleanUp",
+          "taskCancelled": "false",
+          "taskRole": "fixture-cleanup-current",
+          "uptime": "1622.1853836080002"
+        },
+        "firstError": {},
+        "latestStage": {
+          "enteredTaskCancelled": "false",
+          "enteredUptime": "1620.3132465180001",
+          "stage": "body-ready.initial-scroll-js",
+          "taskRole": "test-current"
+        }
+      },
+      "diagnostics": 194,
+      "dropped": 0,
+      "retiredBuffered": 35,
+      "retiredReader": "ObjectIdentifier(0x00000001118f6400)",
+      "retiredEpoch": "00E8FBE0-7793-4F61-A94F-7F1B8683C12F",
+      "samplingBuffered": 57,
+      "oldOwnerEpochMatched": true
+    },
+    {
+      "run": "39979277641",
+      "mode": "paired-safe",
+      "path": "build/ci/39979277641/artifact/ViewportPair/paired-safe/ReaderSnapshots/AA19A9F5-748C-4020-B2D3-980850E0A060.txt",
+      "sha256": "867c5f77171ba7828c10a04f33c4d7178670bad727386c648e0e6d6421f042e1",
+      "preparation": {
+        "completed": true,
+        "firstCleanup": {
+          "stage": "cleanUp",
+          "taskCancelled": "false",
+          "taskRole": "fixture-cleanup-current",
+          "uptime": "1449.2054385390002"
+        },
+        "firstError": {},
+        "latestStage": {
+          "enteredTaskCancelled": "false",
+          "enteredUptime": "1447.0429678960002",
+          "stage": "body-ready.initial-scroll-js",
+          "taskRole": "test-current"
+        }
+      },
+      "diagnostics": 198,
+      "dropped": 0,
+      "retiredBuffered": 38,
+      "retiredReader": "ObjectIdentifier(0x000000010e040600)",
+      "retiredEpoch": "873B0B31-AB8F-48D6-80A2-3D7B2479AEC1",
+      "samplingBuffered": 57,
+      "oldOwnerEpochMatched": true
+    }
+  ],
+  "firstErrorNativeFailureBranchCovered": false,
+  "allNativeCancellationPathsVerified": false,
+  "minimumNextEvidence": "reuse existing paired firstError, firstCleanup, clear origins, coverage and old-owner buffer delivery; no new runtime input or natural replay proposed now",
+  "futureObservationRequiresSeparateAuthorization": true,
+  "newRuntimeChanges": 0,
+  "runtimeInputsProtected": 619,
+  "existingPendingCIInputsPreserved": [
+    ".github/workflows/ios-build.yml",
+    "scripts/ci_ios.sh",
+    "scripts/test_ci_failure_paths.py"
+  ],
+  "sourceFilesCompared": 1325,
+  "changedExistingDocumentation": [
+    "Documentation/I6_PREPARATION_CANCELLATION_REVIEW.md",
+    "HANDOFF.md",
+    "PROJECT_STATUS.md"
+  ],
+  "originalEvidenceProtected": 2327,
+  "ordinaryHeadIndexUnchanged": true,
+  "deliveredBuild30Protected": {
+    "build/XianxiaReader-SettingsIsolation-Build30.ipa": true,
+    "build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip": true
+  },
+  "ciDispatches": 0,
+  "pushes": 0,
+  "newWKCallsWaitsRetries": 0,
+  "algorithmGuardBudgetAssertionsChanged": false,
+  "toolingTestsRun": false,
+  "swiftSyntaxRun": false,
+  "swiftCompilationRun": false,
+  "nativeRun": false,
+  "fullRun": false,
+  "deviceReleaseRun": false,
+  "newIPA": false,
+  "I6Accepted": false,
+  "WebKitActualVersionPreviouslyObserved": "8621 / 8621.2.5.10.10",
+  "scrollToParametersStillIncomplete": true,
+  "audit": "build/maintenance/I6-preparation-cancellation-recheck-20261024/review-audit.json"
+}

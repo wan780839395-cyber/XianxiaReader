@@ -1,5 +1,25 @@
 # I6d 最终验收范围与证据复用
 
+## 2026-10-24 当前授权：只做整合，成功后不进入设备Release
+
+当前唯一任务是一次同源I6整合验收，产品基线72b07cc及CI39979277641受控修正保持。旧准备期取消审阅已完成，保留未知，不再作为本轮先行诊断任务；此前压缩后误回旧审阅已在HANDOFF顶部纠正。
+
+库存按project.yml实际测试target的全部source项解析并排除resources：Tests/iOS为156，另外显式编入Packages/ReaderSettings/Tests/ReaderSettingsTests的7项，合计163；Tests/UI29，总192。目录单计156并非丢了7项，原严格192门槛不变。候选CURRENT_PROJECT_VERSION保持31、CFBundleVersion仍为原构建变量；最后交付仍Build30。
+
+必要接线仅3运行输入：workflow、ci_ios.sh、对应CI失败路径工具测试。新增stop_after_full_tests默认false，开启必须完整full；复用既有source_inputs记录运行前后源码/提交与原环境，任何漂移阻止成功回执。原test/附件export/summary/录屏退出及严格192门槛全通过后，写明确整合成功回执并退出0，随后IPA上传跳过。原默认设备Release/打包段原字节保持，未启用停点时仍沿原路径；没有故意失败、取消、unit-release或UI复用。
+
+本轮选择diagnostic_selection=full、stop_after_full_tests=true，保留原六模块/macOS Core/TXT与并行Linux Core/TXT门槛。只派一次，不叠position-acceptance、配对、字体或旋转预检，不增加任何产品日志/等待/重试。失败先保留全部原件、真实退出及首错，不自动重跑、追加实验或扩大修复；同一artifact安全续取允许。
+
+本地仅12项CI真实shell控制流夹具加10项摘要/复用门禁检查通过，484语法/7静态通过，新增语法诊断0。它们是本地接线证据，不是iOS编译或192原生通过。本轮原生/full尚未派发；source-before/source-after、192摘要、附件/录屏以及完整日志都必须以实际run取得后再报告结果。下文旧安排第4项的自动设备Release/IPA不适用于本轮；设备Release、包与手机验收明确留待后续授权。
+
+AppServices广泛能力、App批次/呈现、同target UI类型访问、字体UIKit接口和2处Readium集成fixture例外继续登记，不为整合验收重拆App。未来功能按PROJECT_ISOLATION_PLAN/ROADMAP/READING_FEATURE_IDEAS保留；维护收口后再按模块归属、状态/持久化负责人、依赖、取消/迟到规则及独立/跨模块门槛接入，不提前实现新功能。
+
+恢复及冻结记录：build/maintenance/I6-integration-only-20261024/。正常HEAD/index、用户已有工作、旧原件和Build30保持；不关机、不停止其他任务。派发锁若存在，中断只核同run，不再次POST。
+
+---
+
+以下保留2026-10-22范围核对的当时证据与推荐，执行边界以上述当前授权为准。
+
 2026-10-22 I6最终full已完成一次，源77eebf40/CI39735403242/Build31：192全部执行，191通过、1失败、0跳过（集成162/163、UI29/29）。六模块68、两平台Core各137/TXT Release各4、Linux109工具通过；模拟器编译通过。唯一失败为连续视口变宽后的原字/WebView联合等待，缺缩放前原锚点及子条件诊断，未证明根因或修复。test65、summary/export/recording0；Release被阻止、未执行，无新IPA，最后交付仍Build30。无额外原生预检/重跑，完整原件已核；用户已决定本轮保存完整断点，下一轮只查此单例；本轮不追加诊断或CI。I6未通过，不进入新功能。 见[本轮结果与下一实验](I6_FINAL_ACCEPTANCE.md)。以下I6d等为历史阶段记录。
 
 2026-10-22。本轮只做审计与项目记录，不改生产、原生测试、CI/门禁或版本，不派CI。当前保存源b4e2edc与被测598aedd的617运行输入一致；最新CI39729365995已从远端重新核实为成功，历史原件hash逐项匹配。I6尚未整体验收。

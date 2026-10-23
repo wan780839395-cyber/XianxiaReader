@@ -1,0 +1,40 @@
+{
+  "recordedAtUTC": "2026-10-23T17:01:42.004552+00:00",
+  "status": "frozen-inputs-ready-not-dispatched",
+  "scope": "one full163+29 and original module/Core gates; no device Release or IPA",
+  "productBaseline": "72b07cc52bff3b2900e48c83d520dba15aac1236",
+  "runtimeInputs": 619,
+  "allowedRuntimeChanges": [
+    ".github/workflows/ios-build.yml",
+    "scripts/ci_ios.sh",
+    "scripts/test_ci_failure_paths.py"
+  ],
+  "productAndNativeTestsProjectResourcesLockUnchanged": true,
+  "inventory": {
+    "XianxiaReaderTests": 163,
+    "XianxiaReaderUITests": 29
+  },
+  "integrationCountOrigin": "Tests/iOS156 plus project.yml explicit ReaderSettingsTests7",
+  "candidateBuild": 31,
+  "lastDeliveredBuild": 30,
+  "localControlFlowTests": 12,
+  "localSummaryGateTests": 10,
+  "swiftGrammarFiles": 484,
+  "addedGrammarDiagnostics": 0,
+  "compiledNativeThisRound": false,
+  "fullExecutedThisRound": false,
+  "defaultReleaseTailIdentical": true,
+  "stopFlagDefault": false,
+  "dispatchInputs": {
+    "diagnostic_selection": "full",
+    "stop_after_full_tests": true,
+    "resolve_local_readium": false,
+    "session_logic_only": false
+  },
+  "maximumFullDispatches": 1,
+  "deviceReleaseAllowed": false,
+  "IPAAllowed": false,
+  "ordinaryHeadIndexPreserved": true,
+  "oldEvidenceProtected": 6211,
+  "priorCancellationReviewRetainedNotActiveTask": true
+}
