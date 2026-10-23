@@ -1,0 +1,262 @@
+{
+  "recordedAtUTC": "2026-10-23T09:50:04.660809+00:00",
+  "run": 39930462353,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39930462353",
+  "source": "d3f59cd272e78e863c2bc75a38fcb735e0d768ab",
+  "attempt": 1,
+  "ciDispatches": 1,
+  "conclusion": "failure",
+  "buildAttempts": 1,
+  "nativeBuildExit": 0,
+  "compiled": true,
+  "linked": true,
+  "sourceAndSafeSnapshotsMatchFrozen": true,
+  "actualSevenVersionFieldsMatch": true,
+  "actualVersionFields": {
+    "Xcode ": "16.4",
+    "Build version ": "16F6",
+    "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+    "Target:": "x86_64-apple-macosx15.0",
+    "ProductName:": "macOS",
+    "ProductVersion:": "15.7.9",
+    "BuildVersion:": "24G830"
+  },
+  "preparedInputs": 619,
+  "products": 609,
+  "plansOnlyDifferByMode": true,
+  "driverExit": 65,
+  "safeOriginalExit": 65,
+  "conflictOriginalExit": null,
+  "nativeCaseInvocations": 1,
+  "nativeCasePassed": 0,
+  "nativeCaseFailed": 1,
+  "nativeCaseSeconds": 39.16,
+  "swiftPairedMechanicGroupsPassed": 2,
+  "safeWholeArmAccepted": false,
+  "nativeMatchedBuildVerified": false,
+  "safeValidationErrors": [
+    "Pair fixture did not complete its bounded preparation and cleanup"
+  ],
+  "failurePhase": "oldSample",
+  "failure": "pair-safe-S-unqualified",
+  "measureID": null,
+  "resizeReached": false,
+  "admissionEndReached": false,
+  "returnIntervalReached": false,
+  "returnRequestsAvailable": 0,
+  "returnRequestsVerified": false,
+  "wideNarrowWordAssertionsReached": false,
+  "intervalFixNativeAcceptance": "not reached",
+  "controlEvents": 31,
+  "diagnosticsCount": 87,
+  "diagnosticsDropped": 0,
+  "innerRecords": 73,
+  "firstObservedRollback": {
+    "previousY": 2367,
+    "innerY": 1767,
+    "seconds": 0.07818078600007539,
+    "afterEventSequence": 9,
+    "beforeSelectedSSubmission": true,
+    "afterResize": false
+  },
+  "old1767RollbackReproduced": true,
+  "proximateWebKitScrollCallStackObserved": true,
+  "initiatingCauseProven": false,
+  "oldFullResizeRootCauseProven": false,
+  "SContextGuardsAllTrue": true,
+  "SDocumentTop": 1767,
+  "SExpectedDocumentTop": 2367,
+  "SDocumentTopDelta": -600,
+  "cleanupEmpty": true,
+  "targetCoverageStartAndEndObserved": true,
+  "targetEvaluationTriples": 13,
+  "targetEvaluationsComplete": true,
+  "targetWriterPairs": 9,
+  "targetWritersComplete": true,
+  "targetCoveragePendingEvaluations": "0",
+  "targetCoveragePendingWriters": "0",
+  "allNewCancellationPathsValidated": false,
+  "linuxPythonTests": {
+    "total": 150,
+    "passed": 150,
+    "seconds": 24.249
+  },
+  "swiftGrammarFiles": 484,
+  "upstreamGrammarLimitations": 54,
+  "newGrammarDiagnostics": 0,
+  "timing": {
+    "targetStepSeconds": 1568.0,
+    "buildInvocations": 1,
+    "buildSuccessMarkers": 1,
+    "preparationToBuildSeconds": 547.389226,
+    "buildToSuccessSeconds": 307.165427,
+    "afterBuildToStepEndSeconds": 713.445347,
+    "arms": {
+      "paired-safe": {
+        "originalCaseSeconds": [
+          39.16
+        ],
+        "commands": [
+          {
+            "command": [
+              "xcodebuild",
+              "-version"
+            ],
+            "rawExit": 0,
+            "seconds": 0.144677
+          },
+          {
+            "command": [
+              "swift",
+              "--version"
+            ],
+            "rawExit": 0,
+            "seconds": 0.329599
+          },
+          {
+            "command": [
+              "sw_vers"
+            ],
+            "rawExit": 0,
+            "seconds": 0.032643
+          },
+          {
+            "command": [
+              "xcrun",
+              "simctl",
+              "list",
+              "devices",
+              "available",
+              "--json"
+            ],
+            "rawExit": 0,
+            "seconds": 1.076052
+          },
+          {
+            "command": [
+              "xcrun",
+              "simctl",
+              "bootstatus",
+              "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "-b"
+            ],
+            "rawExit": 0,
+            "seconds": 204.532305
+          },
+          {
+            "command": [
+              "xcrun",
+              "simctl",
+              "ui",
+              "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "appearance",
+              "light"
+            ],
+            "rawExit": 0,
+            "seconds": 69.94642
+          },
+          {
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "-xctestrun",
+              "/Users/runner/work/XianxiaReader/XianxiaReader/build/DerivedData/Build/Products/XianxiaReader-paired-safe.xctestrun",
+              "-destination",
+              "platform=iOS Simulator,id=08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9",
+              "-parallel-testing-enabled",
+              "NO",
+              "-resultBundlePath",
+              "/Users/runner/work/XianxiaReader/XianxiaReader/build/ViewportPair/paired-safe/DiagnosticTests.xcresult",
+              "-only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView"
+            ],
+            "rawExit": 65,
+            "seconds": 401.523997
+          },
+          {
+            "command": [
+              "xcrun",
+              "xcresulttool",
+              "get",
+              "test-results",
+              "summary",
+              "--path",
+              "/Users/runner/work/XianxiaReader/XianxiaReader/build/ViewportPair/paired-safe/DiagnosticTests.xcresult"
+            ],
+            "rawExit": 0,
+            "seconds": 8.068616
+          },
+          {
+            "command": [
+              "xcrun",
+              "xcresulttool",
+              "export",
+              "attachments",
+              "--path",
+              "/Users/runner/work/XianxiaReader/XianxiaReader/build/ViewportPair/paired-safe/DiagnosticTests.xcresult",
+              "--output-path",
+              "/Users/runner/work/XianxiaReader/XianxiaReader/build/ViewportPair/paired-safe/ReaderSnapshots"
+            ],
+            "rawExit": 0,
+            "seconds": 0.140264
+          }
+        ]
+      },
+      "paired-conflict": {
+        "originalCaseSeconds": [],
+        "commands": []
+      }
+    },
+    "jobSeconds": 1678.0,
+    "workflowSeconds": 1721.0
+  },
+  "artifact": {
+    "recordedAtUTC": "2026-10-23T09:43:59.717032+00:00",
+    "run": 39930462353,
+    "artifact": {
+      "id": 12492239303,
+      "node_id": "MDg6QXJ0aWZhY3QxMjQ5MjIzOTMwMw==",
+      "name": "XianxiaReader-continuous-resize-pair",
+      "size_in_bytes": 56722406,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12492239303",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12492239303/zip",
+      "expired": false,
+      "digest": "sha256:d7bf3f6719ae8505e78c2e1c78e64a28e3cd9229a3a2e3612e90c2b2ff9b211c",
+      "created_at": "2026-10-23T09:42:11Z",
+      "updated_at": "2026-10-23T09:42:11Z",
+      "expires_at": "2026-10-30T09:41:54Z",
+      "workflow_run": {
+        "id": 39930462353,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/continuous-viewport-pair-interval-fix-saved",
+        "head_sha": "d3f59cd272e78e863c2bc75a38fcb735e0d768ab"
+      }
+    },
+    "compressedBytes": 56722406,
+    "extractedBytes": 61004518,
+    "files": 1067,
+    "sha256": "d7bf3f6719ae8505e78c2e1c78e64a28e3cd9229a3a2e3612e90c2b2ff9b211c",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "freeBytesBefore": 48609792000,
+    "directory": "build/ci/39930462353/diagnostic",
+    "duplicateArchiveRemoved": true
+  },
+  "runtimeInputCount": 619,
+  "runtimeChanges": [],
+  "protectedOldEvidenceCount": 2593,
+  "fullExecuted": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "I6Accepted": false,
+  "releaseAccepted": false,
+  "originalGuardAssertionsBudgetsPreserved": true,
+  "productionAlgorithmChanged": false,
+  "waitsOrRetriesAdded": false,
+  "automaticRerun": false,
+  "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+  "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+  "documentStaticPassed": true,
+  "nextStep": "Only review the captured WK scroll-position synchronization and native sample submit/callback interval; no automatic CI or algorithm change"
+}

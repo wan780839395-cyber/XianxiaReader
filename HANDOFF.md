@@ -1,3 +1,23 @@
+# 验收区间修正版唯一CI收口：编译过，安全S失败（2026-10-23）
+
+2026-10-23 验收区间修正版唯一CI39930462353/d3f59cd2/attempt1失败收口：150工具/484语法与一次原生编译链接0通过；619来源/609产物/三计划/实际七版本及安全前后冻结一致。安全原单例一次0/1、39.160秒，原test/driver65，冲突未启动/null。失败为缩放前oldSample阶段pair-safe-S-unqualified，主M/resize/准入结束/返程均未到达，不能称本片区间修正或返程3请求已获原生验收。87诊断无丢弃，捕获native先行样本提交2367至回调前1767的约78ms窗口及WebKit滚动入口栈；S三次真实读取1767对期望2367，九项上下文guard全真、documentTop差-600而正确拒绝。更早触发者与旧full根因未证，不改算法/原guard/断言预算/等待重试，不自动重派。控制31事件、清理五类全空，目标13评价三点/9 writer回执及覆盖起止完整，新取消分支仍未验。定向1568秒拆为准备547.389/编译307.165/构建后713.445秒，测试命令401.524秒中用例39.160秒。原件完整校验保留，619输入/2593旧证据/Build30/普通HEAD/index保持，无full/Release/新IPA。
+
+恢复build/maintenance/I6-pair-interval-native-20261023含before/frozen/唯一派发锁、native/source/timing/inner/rollback-correlation分析、result及最终私有快照；原件build/ci/39930462353，持久结果Documentation/ValidationLogs/project-isolation-i6-pair-interval-native.json。本轮只剩文档静态与断点保存，不重跑/改源码。下一最小片建议只本地审阅已捕获的WebKit位置回写入口与先行native range-read提交/回调跨越回退的关系，先查对应官方/成熟实现及iOS18.5适用性；不得将观测栈直接当成发起因果已证，不先补等待/重试或丢弃失败。旧窗口约0.383s不能改写为本次精确78ms；本次是新同型回退样本。AGENTS已有额外文字原样保留，不关机。
+
+---
+
+# 验收区间修正版配对CI运行中：39930462353，只派一次（2026-10-23）
+
+冻结源d3f59cd272e78e863c2bc75a38fcb735e0d768ab，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 验收区间修正版唯一原生CI准备（2026-10-23）
+
+用户新授权只派一轮continuous-resize-pair，冻结d3f59cd272e78e863c2bc75a38fcb735e0d768ab。已核619输入/实际Git blob、旧证据、Build30及普通HEAD/index，无运行助手，远端最近任务均completed。复用已完成37定向/484语法/静态，不加本地预检；保留工作流原repository-checks。一次构建、每臂只执行原同例一次，安全所有门槛合格才冲突，未启动保留null。核验真实准入结束、每个返程SDK请求、原字宽窄双向DOM与真实回执；并保留S关联及内层诊断/覆盖清理，不改源码/算法/guard/原断言预算，不增加等待重试，不跑整套、不自动重派。恢复build/maintenance/I6-pair-interval-native-20261023，派发前持久锁；未知结果仅查询原run，禁止再次POST。新源尚无原生结果，旧full191/192与I6/Release/手机缺口和Build30保持，不关机。
+
+---
+
 # 配对验收区间最小修正收口（2026-10-23）
 
 2026-10-23 配对验收区间最小修正已本地实现：只改verify_reader_positions.py和test_reader_positions_tools.py。首轮准入/FIFO核至真实complete，之后逐请求核实际capture、domain/work终结和身份到关闭；保留自然并发与mayRestore=false，不过滤SDK事件。成功须真实宽/窄原字DOM和同一完整Locator/WebView。原39920796794副本保留全部85事件，旧validator仍拒绝，新验收分别核出3请求7/7/8回执，另存离线结果，不改写旧safe0/driver2/conflict null。定向7配对+2原smoke+28驱动工具通过；484语法/七静态通过（非Swift编译，54上游限制/新增0）。其余617运行输入、2567旧证据、Build30/普通HEAD/index保持，未派CI、未改Swift/SDK/算法/guard/双向原断言/预算/等待重试。旧1767、原生取消新分支、I6/full191/192/Release/手机缺口保持，无新IPA。
