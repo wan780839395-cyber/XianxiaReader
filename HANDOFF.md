@@ -1,3 +1,17 @@
+# WebKit回写本地审阅收口，补证方案未实施（2026-10-23）
+
+2026-10-23 WebKit回写/native提交回调本地审阅完成，零CI/运行输入变化。核官方Safari18.5适用说明、WebKit同代发布tag的固定commit e7257323和Readium3.11.0实际导航/原根元素scrollTo实现。发布源码存在滚动树事务提交后应用requestedScroll→PageClient→WK offset链；两次旧导航JS回调时native仍0，支持“旧目标请求较晚应用”的首要候选，尚未证明具体发起者。tagID false脚本候选与原摘要匹配，不能据此推断locator动画/数值target；iOS18.5/22F77已知但精确WebKit framework版本仍缺，不能当同二进制源码。最小下一补证建议3输入内仅DEBUG包裹已存在Readium writer表达式，临时观察根元素自身scrollTo的实际参数/执行前后，finally原样恢复，原WK一次调用/原返回错误/等待预算保持；补真实framework版本与有界上游栈标签，不拦原型/window、不改Release JS。方案未实现，须先本地透明性/恢复/错误正反例，再由用户另授权CI。619输入/3699旧证据/Build30/普通HEAD index保持；旧CI build0/safe65/conflict null，区间/返程未验及I6/full/Release缺口保持。
+
+恢复build/maintenance/I6-webkit-scroll-review-20261023有before、reference原件/HTTP失败与固定tag对象、source-review-audit、已知候选摘要复核、result及最终快照。只剩文档静态与保存，不跑语法/工具整套/原生，不派CI。临时根元素方法观察是新测试干预：参数/this/返回/错误传播/属性恢复均须先本地核验；不能称零干预或据未复现认定修复。未知原型/只读属性/根节点更换/超量/关闭迟到均须明确不完整，不豁免guard。原16帧栈、128控制/256诊断/32 waiter、3次32ms采样及原100ms/30秒/3秒预算保持，不扩取消覆盖结论。精确框架版本须用公开Bundle元数据补，不调用/替换WebKit私有方法。AGENTS现有额外文字保留，不关机。
+
+---
+
+# WebKit回写与native采样本地审阅开始（2026-10-23）
+
+用户授权仅审阅39930462353捕获的2367→1767、先行native提交/回调与WebKit回写栈，先核官方/成熟实现及iOS18.5适用性，再明确最小补证方案。基线1586e802，619输入/原件/普通HEAD index和Build30已核。本轮不派CI、不改运行源码/算法/等待重试/guard/预算，保留全部隔离/定位/S诊断/返程窄屏与双向原字断言；旧安全65/冲突null和发布缺口保持。恢复build/maintenance/I6-webkit-scroll-review-20261023；只读分析和文档，未知因果不据栈猜定论，不关机。
+
+---
+
 # 验收区间修正版唯一CI收口：编译过，安全S失败（2026-10-23）
 
 2026-10-23 验收区间修正版唯一CI39930462353/d3f59cd2/attempt1失败收口：150工具/484语法与一次原生编译链接0通过；619来源/609产物/三计划/实际七版本及安全前后冻结一致。安全原单例一次0/1、39.160秒，原test/driver65，冲突未启动/null。失败为缩放前oldSample阶段pair-safe-S-unqualified，主M/resize/准入结束/返程均未到达，不能称本片区间修正或返程3请求已获原生验收。87诊断无丢弃，捕获native先行样本提交2367至回调前1767的约78ms窗口及WebKit滚动入口栈；S三次真实读取1767对期望2367，九项上下文guard全真、documentTop差-600而正确拒绝。更早触发者与旧full根因未证，不改算法/原guard/断言预算/等待重试，不自动重派。控制31事件、清理五类全空，目标13评价三点/9 writer回执及覆盖起止完整，新取消分支仍未验。定向1568秒拆为准备547.389/编译307.165/构建后713.445秒，测试命令401.524秒中用例39.160秒。原件完整校验保留，619输入/2593旧证据/Build30/普通HEAD/index保持，无full/Release/新IPA。
