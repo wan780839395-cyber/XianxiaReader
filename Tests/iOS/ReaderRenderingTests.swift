@@ -8,6 +8,50 @@ import XianxiaCore
 @testable import XianxiaReader
 
 #if DEBUG
+/// Paired preparation metadata only. No qualification, cancellation or cleanup actions.
+@MainActor private final class ViewportPreparationTrace {
+    private(set) var latestStage: [String: String] = [:]
+    private(set) var firstError: [String: String]?
+    private(set) var firstCleanup: [String: String]?
+    private(set) var completed = false
+
+    func enter(_ stage: String, cancelled: Bool = Task.isCancelled,
+               uptime: Double = ProcessInfo.processInfo.systemUptime) {
+        guard !completed, firstError == nil else { return }
+        latestStage = ["stage": String(stage.prefix(72)), "enteredUptime": String(uptime),
+                       "enteredTaskCancelled": String(cancelled), "taskRole": "test-current"]
+    }
+
+    func capture(_ error: Error, cancelled: Bool = Task.isCancelled,
+                 uptime: Double = ProcessInfo.processInfo.systemUptime) {
+        guard !completed, firstError == nil else { return }
+        let native = error as NSError
+        var values = latestStage
+        values["stage"] = values["stage"] ?? "not-entered"
+        values["caughtUptime"] = String(uptime)
+        values["taskCancelled"] = String(cancelled)
+        values["taskRole"] = "test-current"
+        values["errorType"] = String(String(reflecting: type(of: error)).prefix(128))
+        values["errorDomain"] = String(native.domain.prefix(128))
+        values["errorCode"] = String(native.code)
+        firstError = values
+    }
+
+    func cleanup(_ stage: String, cancelled: Bool = Task.isCancelled,
+                 uptime: Double = ProcessInfo.processInfo.systemUptime) {
+        guard firstCleanup == nil else { return }
+        firstCleanup = ["stage": String(stage.prefix(72)), "uptime": String(uptime),
+                        "taskCancelled": String(cancelled), "taskRole": "fixture-cleanup-current"]
+    }
+
+    func finish() { completed = true }
+
+    var payload: [String: Any] {
+        ["latestStage": latestStage, "completed": completed,
+         "firstError": firstError ?? [:], "firstCleanup": firstCleanup ?? [:]]
+    }
+}
+
 /// Opt-in controller for this single case; no global hooks or production state writes.
 @MainActor private final class ViewportFixture: ReadiumReaderEngine.ViewportFixtureControl {
     typealias Event = ReadiumReaderEngine.ViewportFixtureEvent
@@ -26,6 +70,7 @@ import XianxiaCore
         init(_ mode: PairMode) { self.mode = mode }
     }
     private let pair: PairState?
+    private let preparation: ViewportPreparationTrace?
     private weak var engine: ReadiumReaderEngine?
     private weak var window: UIWindow?
     private let originalFrame: CGRect
@@ -80,7 +125,16 @@ import XianxiaCore
     init(engine: ReadiumReaderEngine? = nil, window: UIWindow? = nil, pairMode: PairMode? = nil) {
         self.engine = engine; self.window = window; originalFrame = window?.frame ?? .zero
         pair = pairMode.map { PairState($0) }
+        preparation = pairMode.map { _ in ViewportPreparationTrace() }
     }
+
+    var preparationObserver: (@MainActor (String) -> Void)? {
+        guard let preparation else { return nil }
+        return { preparation.enter($0) }
+    }
+
+    func recordPreparationError(_ error: Error) { preparation?.capture(error) }
+    func completePreparation() { preparation?.finish() }
 
     func armSample(outerY: Double) { armed = true; sampleOuterY = outerY }
     func bindActualScroll(outerY: Double) { sampleOuterY = outerY }
@@ -91,7 +145,9 @@ import XianxiaCore
 
     func observe(_ event: Event) {
         if event.kind.hasPrefix("sample-read-") || event.kind == "viewport-sync" {
-            guard pair != nil, armed else { return }
+            // Metadata may arrive while an old pre-arm lifetime is retiring.
+            // This branch cannot arm, admit, release or qualify SDK work.
+            guard pair != nil else { return }
             readDiagnosticSequence += 1
             var row = event.values
             row["nonce"] = nonce; row["diagnosticSequence"] = String(readDiagnosticSequence)
@@ -596,6 +652,24 @@ import XianxiaCore
     }
 
     private static func checkReadDiagnosticJournal(_ mode: PairMode) {
+        let preparing = ViewportFixture(pairMode: mode)
+        preparing.preparationObserver?("cover-probe.javascript")
+        preparing.observe(Event(requestID: UUID(), kind: "sample-read-inner-coverage-end", values: [:]))
+        XCTAssertEqual(preparing.readDiagnostics.count, 1)
+        XCTAssertFalse(preparing.armed); XCTAssertTrue(preparing.events.isEmpty)
+        XCTAssertTrue(preparing.active.isEmpty); XCTAssertTrue(preparing.guards.isEmpty)
+        let original = NSError(domain: "fixture-preparation", code: 7)
+        preparing.recordPreparationError(original)
+        let first = preparing.preparation?.firstError
+        preparing.cleanUp(); preparing.cleanUp()
+        preparing.recordPreparationError(CancellationError())
+        XCTAssertEqual(preparing.preparation?.firstError, first)
+        XCTAssertEqual(first?["stage"], "cover-probe.javascript")
+        XCTAssertEqual(first?["errorDomain"], "fixture-preparation")
+        XCTAssertEqual(preparing.preparation?.firstCleanup?["stage"], "cleanUp")
+        let completed = ViewportPreparationTrace()
+        completed.enter("ready"); completed.finish(); completed.capture(original)
+        XCTAssertNil(completed.firstError)
         let smoke = ViewportFixture(); smoke.armSample(outerY: 100)
         let id = UUID()
         smoke.observe(Event(requestID: id, kind: "sample-read-js-submit", values: [:]))
@@ -626,6 +700,7 @@ import XianxiaCore
 
     func cleanUp() {
         guard !cleaning else { return }
+        preparation?.cleanup("cleanUp")
         cleaning = true; abort(closeReader: true)
         // abort may already have run on cancellation; close still precedes restoring frame.
         closeOwnedReader()
@@ -655,6 +730,7 @@ import XianxiaCore
                 payload["readDiagnostics"] = readDiagnostics
                 payload["readDiagnosticsTotal"] = readDiagnosticSequence
                 payload["readDiagnosticsDropped"] = readDiagnosticsDropped
+                payload["preparation"] = preparation?.payload
                 payload["pairOrigin"] = pair.origin; payload["pairEffect"] = pair.effect
                 payload["pairSampleID"] = sample?.requestID.uuidString
                 payload["pairMeasureID"] = primary?.uuidString; payload["pairPredicate"] = pair.lastPredicate
@@ -731,19 +807,33 @@ final class ReaderRenderingTests: XCTestCase {
             }
             defer { fixture?.cleanUp() }
         #endif
-        let (book, navigator) = try await open(engine)
-        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml")
-        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph")
+        #if DEBUG
+            let preparationObserver = fixture?.preparationObserver
+        #else
+            let preparationObserver: (@MainActor (String) -> Void)? = nil
+        #endif
+        // Keep the original function defer outside this catch. Existing embedded
+        // JS indentation is retained; no async wrapper or new suspension is added.
+        do {
+        preparationObserver?("open.enter")
+        let (book, navigator) = try await open(engine, preparationObserver: preparationObserver)
+        _ = try await probe(navigator, engine: engine, resource: "cover.xhtml", preparationObserver: preparationObserver)
+        try await jump(engine, book: book, href: "OEBPS/one.xhtml#long-paragraph", preparationObserver: preparationObserver)
         let scroll = try continuousScroll(engine)
-        try await waitUntil {
+        try await waitUntil(preparationObserver: preparationObserver, preparationPrefix: "body-ready") {
+            preparationObserver?("body-ready.resolve-web")
             let web = try self.resourceWebView(engine, index: 1)
             guard web.window != nil, web.scrollView.alpha > 0.99 else { return false }
+            preparationObserver?("body-ready.rectangle-js")
             return abs((try await web.evaluateJavaScript("document.getElementById('long-paragraph')?.getBoundingClientRect().top ?? 10000") as? Double) ?? 10000) < 5
         }
+        preparationObserver?("body-ready.initial-web")
         let preparationWeb = try resourceWebView(engine, index: 1)
+        preparationObserver?("body-ready.initial-scroll-js")
         let initialDOMY = try await preparationWeb.evaluateJavaScript("scrollY")
         let initialOuterY = scroll.contentOffset.y
         #if DEBUG
+            fixture?.completePreparation()
             fixture?.armSample(outerY: Double(initialOuterY + 600))
         #endif
         scroll.contentOffset.y += 600
@@ -889,6 +979,12 @@ final class ReaderRenderingTests: XCTestCase {
             }); image.name = "continuous-resize-same-word-\(Int(size.width))"; image.lifetime = .keepAlways; add(image)
         }
         engine.close()
+        } catch {
+            #if DEBUG
+                fixture?.recordPreparationError(error)
+            #endif
+            throw error
+        }
     }
 
 
@@ -2458,10 +2554,11 @@ final class ReaderRenderingTests: XCTestCase {
         return (window, state)
     }
 
-    @MainActor private func open(_ engine: ReadiumReaderEngine) async throws -> (Book, UIViewController) {
+    @MainActor private func open(_ engine: ReadiumReaderEngine,
+                                 preparationObserver: (@MainActor (String) -> Void)? = nil) async throws -> (Book, UIViewController) {
         // Opening a publication is a separate step from attaching a SwiftUI
         // host. Match the real foreground presentation before starting WebKit.
-        try await waitUntil {
+        try await waitUntil(preparationObserver: preparationObserver, preparationPrefix: "open.host") {
             guard let host = self.diagnosticHost, host.hasAppeared,
                   let window = engine.viewController.view.window,
                   window.isKeyWindow, !window.isHidden,
@@ -2472,12 +2569,15 @@ final class ReaderRenderingTests: XCTestCase {
         print("RENDER_HOST_READY uptimeMs=\(Int(ProcessInfo.processInfo.systemUptime * 1000)) appeared=\(diagnosticHost?.hasAppeared == true) key=\(engine.viewController.view.window?.isKeyWindow == true) bounds=\(engine.viewController.view.bounds)")
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader-layout", withExtension: "epub", subdirectory: "Fixtures"))
         let book = Book(title: "阅读页面测试", format: .epub, filePath: "reader-layout.epub")
+        preparationObserver?("open.publication")
         try await engine.open(book: book, fileURL: url, position: nil)
+        preparationObserver?("open.returned")
         return (book, try XCTUnwrap(engine.viewController.children.first))
     }
 
     @MainActor private func probe(_ navigator: UIViewController, engine: ReadiumReaderEngine,
-                                 resource: String, continuousResourceIndex: Int? = nil) async throws -> [String: Any] {
+                                 resource: String, continuousResourceIndex: Int? = nil,
+                                 preparationObserver: (@MainActor (String) -> Void)? = nil) async throws -> [String: Any] {
         let deadline = Date().addingTimeInterval(20)
         var lastProbe = "No visible web view"
         let script = """
@@ -2492,6 +2592,7 @@ final class ReaderRenderingTests: XCTestCase {
         })()
         """
         while Date() < deadline {
+            preparationObserver?("cover-probe.resolve-web")
             let candidate: WKWebView?
             if let index = continuousResourceIndex {
                 candidate = view(identifier: "readium.chapter.\(index)", in: navigator.view).flatMap { webViews(in: $0).first }
@@ -2500,7 +2601,9 @@ final class ReaderRenderingTests: XCTestCase {
                 // Query the actual rendered WKWebView through its public API.
                 // The host app owns Readium's static symbols; importing its
                 // concrete Navigator metadata here would require duplicate linkage.
+                preparationObserver?("cover-probe.javascript")
                 let value = try await webView.evaluateJavaScript(script)
+                preparationObserver?("cover-probe.result")
                 guard let data = value as? [String: Any] else { throw RenderFailure.invalidProbe }
                 var locatedHref: String?
                 if let position = engine.currentPosition {
@@ -2523,6 +2626,7 @@ final class ReaderRenderingTests: XCTestCase {
                     return data
                 }
             }
+            preparationObserver?("cover-probe.poll-sleep")
             try await Task.sleep(nanoseconds: 100_000_000)
         }
         let native = webViews(in: navigator.view).map { "alpha=\($0.scrollView.alpha) hidden=\($0.isHidden) window=\($0.window != nil) offset=\($0.scrollView.contentOffset) size=\($0.scrollView.contentSize)" }.joined(separator: "; ")
@@ -2593,11 +2697,15 @@ final class ReaderRenderingTests: XCTestCase {
     }
 
     @MainActor private func waitUntil(caller: String = #function, line: Int = #line,
+                                     preparationObserver: (@MainActor (String) -> Void)? = nil,
+                                     preparationPrefix: String = "prepare",
                                      _ condition: @MainActor () async throws -> Bool) async throws {
         let deadline = Date().addingTimeInterval(30)
         while Date() < deadline {
+            preparationObserver?(preparationPrefix + ".condition")
             let ready = try await condition()
             if ready { return }
+            preparationObserver?(preparationPrefix + ".poll-sleep")
             try await Task.sleep(nanoseconds: 100_000_000)
         }
         var diagnostic = "\(caller):\(line) sampledAtUptime=\(ProcessInfo.processInfo.systemUptime)"
@@ -2667,9 +2775,11 @@ final class ReaderRenderingTests: XCTestCase {
         return try XCTUnwrap(webViews(in: wrapper).first)
     }
 
-    @MainActor private func jump(_ engine: ReadiumReaderEngine, book: Book, href: String) async throws {
+    @MainActor private func jump(_ engine: ReadiumReaderEngine, book: Book, href: String,
+                                 preparationObserver: (@MainActor (String) -> Void)? = nil) async throws {
+        preparationObserver?("jump.navigation")
         try await engine.go(to: Chapter(id: "fixture:\(href)", bookID: book.id, ordinal: 1, title: "测试目标", href: href))
-        try await waitUntil {
+        try await waitUntil(preparationObserver: preparationObserver, preparationPrefix: "jump.location") {
             guard let position = engine.currentPosition,
                   let json = try JSONSerialization.jsonObject(with: position.locatorData) as? [String: Any] else { return false }
             return (json["href"] as? String)?.hasSuffix(String(href.split(separator: "#")[0])) == true

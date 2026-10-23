@@ -1,5 +1,9 @@
 # 项目状态
 
+2026-10-23 准备期首错/旧缓冲保全已按追加收敛授权在约定5输入落地，本地28通过/1真实Swift行为skip、7静态/484语法通过（54上游限制/新增0）；不是Swift编译或取消行为验收。paired同步阶段/首错先于原defer并原样throw，原coverage-end后/旧owner失效前一次排空，仅诊断分支接收预arm；原await/JS/control/pause、armed/guard/清理顺序、255/256与原预算、返程窄屏/双向原字保持。619仅5变化/其余614、4848旧证据、Build30与普通HEAD/index保持。本机无swiftc、Docker engine失败、WSL仅docker-desktop，关键首错/旧sink行为未执行，派发前必要证据不成立，本轮零CI/推送。首个取消await/发起者及真实WebKit观察仍未知；旧39946614486 build0/safe65/conflict null和I6/full191/192/Release缺口不变。下一步仅建议先在可用Swift6.1.2环境执行已保存的原样helper检查。见[本地实现与限制](Documentation/I6_PREPARATION_DIAGNOSTICS.md)。
+
+以下保留历史状态。
+
 2026-10-23 准备期CancellationError/预arm交付本地审阅完成，零CI/619输入变化。已确认SDK缓存等采样flush、测试接收还要求armed，且clear/换fixture会在未排空时丢弃旧缓冲。首个抛错await与取消发起者仍未知；原Spread取消Result在tag/locator导航转false再报navigationFailed，slot timeout自身sleep取消被本Task捕获，不能直接当裸取消来源。参考Swift6.1.2/Readium3.11固定实现及Apple回调/fixture合同，建议下一片仅5输入：paired准备阶段和只写一次首错先于原defer、同步helper观察、不改变await；原关闭coverage后/换epoch和丢storage前向旧owner一次排空；只开放paired元数据的未arm接收，原SDK控制guard和两本账预算保持。标记已知shutdown/reload/timeout入口，未知仍unknown。不加WK调用/Task/handler/等待重试、不改算法/Adapter/override/JS/CI或原字双向/返程；首错原样抛出，不把取消改timeout或fixture成功。方案未实施；619输入/4835旧证据/Build30/普通HEAD index保持，原39946614486 build0/safe65/conflict null、原生观察及I6/Release缺口不变。见[审阅与最小补证方案](Documentation/I6_PREPARATION_CANCELLATION_REVIEW.md)。
 
 以下保留历史状态。

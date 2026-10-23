@@ -22,6 +22,95 @@ def without_writer_body(text):
     return re.sub(r'    private static let writerObservationBody = #""".*?"""#\n', '', text, flags=re.S)
 
 
+def swift_diagnostic_declaration(text, marker):
+    """Extract these small helpers verbatim; none contains JS or brace literals."""
+    start = text.index(marker)
+    opening = text.index("{", start)
+    depth = 1
+    end = opening + 1
+    while depth:
+        depth += (text[end] == "{") - (text[end] == "}")
+        end += 1
+    return text[start:end]
+
+
+def preparation_harness(test_source, sdk_source):
+    # Real source bodies, with only the UIKit owner/protocol replaced by a sink.
+    # This verifies synchronous helpers, not the iOS wiring or WK behavior.
+    extracted = [swift_diagnostic_declaration(test_source, "@MainActor private final class ViewportPreparationTrace"),
+                 swift_diagnostic_declaration(sdk_source, "@MainActor private final class EPUBInnerDiagnosticBuffer"),
+                 swift_diagnostic_declaration(sdk_source, "public struct EPUBViewportFixtureEvent")]
+    delivery = swift_diagnostic_declaration(sdk_source, "private func fixtureDeliverInnerDiagnostics(")
+    return "import Foundation\n" + "\n".join(extracted) + r'''
+@MainActor private protocol EPUBViewportFixtureControl: AnyObject {
+    func observe(_ event: EPUBViewportFixtureEvent)
+}
+@MainActor private final class Sink: EPUBViewportFixtureControl {
+    var events: [EPUBViewportFixtureEvent] = []
+    func observe(_ event: EPUBViewportFixtureEvent) { events.append(event) }
+}
+@MainActor private final class Owner {
+    var epoch = UUID()
+''' + delivery + r'''
+    func deliver(_ buffer: EPUBInnerDiagnosticBuffer, to sink: Sink) {
+        fixtureDeliverInnerDiagnostics(buffer, to: sink, reason: "fixture-replaced")
+    }
+}
+@main private struct Harness {
+    @MainActor static func fail(_ trace: ViewportPreparationTrace, _ original: NSError) throws {
+        defer { trace.cleanup("cleanUp") }
+        do { trace.enter("cover-probe.javascript"); throw original }
+        catch { trace.capture(error); throw error }
+    }
+    @MainActor static func main() async {
+        let trace = ViewportPreparationTrace()
+        let original = NSError(domain: "original-WK-error", code: 7)
+        do { try fail(trace, original); preconditionFailure("error swallowed") }
+        catch { precondition((error as NSError) === original) }
+        let first = trace.firstError
+        precondition(first?["errorDomain"] == "original-WK-error")
+        precondition(first?["stage"] == "cover-probe.javascript")
+        precondition(trace.firstCleanup?["stage"] == "cleanUp")
+        precondition(Double(first!["caughtUptime"]!)! <= Double(trace.firstCleanup!["uptime"]!)!)
+        trace.capture(CancellationError()); trace.enter("later"); trace.cleanup("again")
+        precondition(trace.firstError == first && trace.firstCleanup?["stage"] == "cleanUp")
+        let completed = ViewportPreparationTrace()
+        completed.enter("ready"); completed.finish(); completed.capture(original)
+        precondition(completed.firstError == nil)
+        let cancelled = ViewportPreparationTrace()
+        // Same actor: cancel before this parent yields, no sleep or timing window.
+        let task = Task { @MainActor in
+            defer { cancelled.cleanup("cancel-cleanup") }
+            do { cancelled.enter("original-poll-sleep"); try Task.checkCancellation() }
+            catch { cancelled.capture(error) }
+        }
+        task.cancel(); await task.value
+        precondition(cancelled.firstError?["taskCancelled"] == "true")
+        precondition(cancelled.firstCleanup?["taskCancelled"] == "true")
+        let owner = Owner(), old = Sink(), new = Sink(), buffer = EPUBInnerDiagnosticBuffer()
+        let epoch = owner.epoch.uuidString
+        var input: [EPUBViewportFixtureEvent] = []
+        for n in 0..<256 {
+            let event = EPUBViewportFixtureEvent(requestID: UUID(), kind: "sample-read-inner", values: ["epoch":epoch,"n":String(n)])
+            input.append(event); precondition(buffer.store(event))
+        }
+        owner.deliver(buffer, to: old)
+        precondition(old.events.count == 256 && new.events.isEmpty && buffer.events.isEmpty)
+        precondition(old.events[0].values["preArmDropped"] == "1")
+        precondition(old.events[0].values["incomplete"] == "true")
+        precondition(old.events[0].values["epoch"] == epoch)
+        precondition(Array(old.events.dropFirst()).map(\.requestID) == Array(input.dropFirst()).map(\.requestID))
+        owner.epoch = UUID(); owner.deliver(buffer, to: new); owner.deliver(buffer, to: old)
+        precondition(old.events.count == 256 && new.events.isEmpty)
+        precondition(!buffer.store(input[0]))
+        let empty = EPUBInnerDiagnosticBuffer()
+        precondition(empty.take()?.events.isEmpty == true && empty.take() == nil)
+        print("PREPARATION_SWIFT_HELPERS_PASS original-error/cancel/first-only/complete/255/old-sink/one-drain")
+    }
+}
+'''
+
+
 def release_source(text):
     """Select DEBUG=false; these three EPUB files have only DEBUG conditionals."""
     live = [True]
@@ -355,16 +444,102 @@ assert.equal(failed.restored, false); assert.equal(failed.reason, 'restore-error
         self.assertIn("self?.slots[index] === slot", bind)
         self.assertIn("guard current || terminal else { return }", bind)
         self.assertIn("if sameController, !late, let self", bind)
-        self.assertIn("state.events.count == 255", source)
-        self.assertIn('"preArmDropped": String(state.dropped)', source)
+        self.assertIn("events.count == 255", swift_diagnostic_declaration(source, "@MainActor private final class EPUBInnerDiagnosticBuffer"))
+        self.assertIn('"preArmDropped": String(batch.dropped)', source)
         self.assertIn('["test-auxiliary", "original-capture"].contains', source)
-        self.assertIn("let events = state.events; state.events.removeAll()", source)
+        self.assertIn("let batch = events; events.removeAll()", source)
         clear = source.split("private func clear()", 1)[1].split("func shutdown()", 1)[0]
         self.assertLess(clear.index('reason: "viewport-clear"'), clear.index("epoch = UUID()"))
         self.assertIn("fixtureInnerDiagnosticStorage = nil", clear)
         eviction = source.split("private func evict(", 1)[1].split("func reload(", 1)[0]
         self.assertLess(eviction.index('reason: "slot-evicted"'), eviction.index("slot.loadTask?.cancel()"))
         self.assertIn('epubViewportReadDiagnosticsEnabled ? viewportFixtureControl : nil', source)
+
+
+    def test_preparation_preserves_suspensions_scripts_and_control(self):
+        source = (ROOT / "Tests/iOS/ReaderRenderingTests.swift").read_text(encoding="utf-8")
+        expected = {'awaits': '55b33d92731c8172d7e296cca51adc78ddf2e7840d946838eb2f9338cfb967d5', 'js': 'c8dc3354db5e7ce1edf96773a89d84dc839d65c6294925418bd9cbe5cbcf90de', 'control': 'f8f3a3de5203a08cd248074bc0b3a09fe48f7462c937db416a11a936a0928ef7', 'pause': '152886fad492634268e0243851a66ae115c7c433461a50eeaaa7c3715d976fa5', 'cleanup': '84f4259a0f115236cff96e256bc8fd0301a1df3e76c082c73d3fdf37ba3dcb76'}
+        protected = {
+            "awaits": json.dumps(re.findall(r"\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)", source)),
+            "js": json.dumps(re.findall(r'"""(.*?)"""', source, re.S)),
+            "control": source.split('        if event.kind == "work-start"', 1)[1].split('    private func append(', 1)[0],
+            "pause": source.split('    func pause(', 1)[1].split('    private func abort(', 1)[0],
+            "cleanup": source.split('    func cleanUp()', 1)[1].split('    func tearDown()', 1)[0].replace('        preparation?.cleanup("cleanUp")\n', '')}
+        for name, value in protected.items():
+            with self.subTest(contract=name):
+                self.assertEqual(hashlib.sha256(value.encode()).hexdigest(), expected[name])
+        case = source.split('func testContinuousViewportResizeKeepsOriginalWordAndLiveWebView()', 1)[1].split('    @MainActor func testSameWidthBodyResize', 1)[0]
+        self.assertLess(case.index('defer { fixture?.cleanUp() }'), case.index('        do {'))
+        self.assertLess(case.index('fixture?.completePreparation()'), case.index('fixture?.armSample('))
+        self.assertTrue(case.rstrip().endswith('throw error\n        }\n    }'))
+        self.assertEqual(case.count('fixture?.recordPreparationError(error)'), 1)
+        trace = swift_diagnostic_declaration(source, '@MainActor private final class ViewportPreparationTrace')
+        self.assertEqual(trace.count('guard !completed, firstError == nil'), 2)
+        self.assertNotRegex(trace, r'\b(?:await|throw|Task\s*\{|withTaskCancellationHandler)\b')
+        self.assertNotIn('localizedDescription', trace)
+        self.assertNotIn('userInfo', trace)
+        for helper in ['open(_ engine', 'probe(_ navigator', 'waitUntil(caller:', 'jump(_ engine']:
+            signature = source.split('func ' + helper, 1)[1].split(' async throws', 1)[0]
+            self.assertIn('preparationObserver: (@MainActor (String) -> Void)? = nil', signature)
+        metadata = source.split('    func observe(_ event: Event)', 1)[1].split('        if event.kind == "work-start"', 1)[0]
+        self.assertIn('guard pair != nil else', metadata)
+        self.assertNotIn('armed', metadata)
+        self.assertIn('readDiagnostics.count == 256', metadata)
+        self.assertIn('preparation = pairMode.map', source)
+
+    def test_retiring_buffer_delivered_before_old_owner_invalidation(self):
+        source = self.inner_sources()['EPUBInfiniteScrollView.swift']
+        clear = source.split('private func clear()', 1)[1].split('func shutdown()', 1)[0]
+        ordered = ['reason: "viewport-clear"', 'fixtureDrainRetiringInnerDiagnostics(reason: "viewport-clear")',
+                   'epoch = UUID()', 'fixtureInnerDiagnosticStorage = nil']
+        self.assertEqual([clear.index(x) for x in ordered], sorted(clear.index(x) for x in ordered))
+        setter = source.split('var viewportFixtureControl:', 1)[1].split('private func fixtureAnchor', 1)[0]
+        ordered = ['reason: "fixture-replaced"', 'fixtureDrainRetiringInnerDiagnostics(reason: "fixture-replaced")',
+                   'fixtureInnerDiagnosticStorage = nil', 'viewportFixtureStorage = newValue']
+        self.assertEqual([setter.index(x) for x in ordered], sorted(setter.index(x) for x in ordered))
+        drain = swift_diagnostic_declaration(source, 'private func fixtureDrainRetiringInnerDiagnostics(')
+        self.assertIn('let fixture = readDiagnosticsFixture', drain)
+        self.assertIn('fixtureInnerDiagnosticStorage as? EPUBInnerDiagnosticBuffer', drain)
+        self.assertNotIn('fixtureInnerState', drain)  # no new empty lifetime
+        self.assertNotRegex(drain, r'\b(?:await|Task)\b')
+        timeout = source.split('slot.timeoutTask = Task', 1)[1].split('slot.loadTask = Task', 1)[0]
+        self.assertLess(timeout.index('guard '), timeout.index('self.fixtureRecordClearOrigin("timeout-fired"'))
+        self.assertLess(timeout.index('self.fixtureRecordClearOrigin("timeout-fired"'), timeout.index('slot.view.clear()'))
+        for origin in ['shutdown', 'reload']:
+            self.assertIn('fixtureRecordClearOrigin("' + origin + '")', source)
+        for forbidden in ['withTaskCancellationHandler', 'Task.detached']:
+            self.assertNotIn(forbidden, drain)
+
+    def test_preparation_helpers_actual_swift_behavior(self):
+        source = (ROOT / 'Tests/iOS/ReaderRenderingTests.swift').read_text(encoding='utf-8')
+        sdk = self.inner_sources()['EPUBInfiniteScrollView.swift']
+        generated = preparation_harness(source, sdk)
+        folder = ROOT / '.cache/preparation-diagnostics'
+        folder.mkdir(parents=True, exist_ok=True)
+        harness = folder / 'harness.swift'
+        harness.write_text(generated, encoding='utf-8', newline='\n')
+        record = dict(kind='exact-source-host-Swift-helpers', nativeCompiled=False,
+                      harnessSHA256=hashlib.sha256(generated.encode()).hexdigest(),
+                      executed=False, passed=False, compiler=shutil.which('swiftc'))
+        receipt = folder / 'behavior.json'
+        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+        if not record['compiler']:
+            record['reason'] = 'Swift compiler unavailable; behavior unexecuted; CI gate blocked'
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.skipTest(record['reason'])
+        with tempfile.TemporaryDirectory() as directory:
+            executable = Path(directory) / 'harness.exe'
+            compile_result = subprocess.run([record['compiler'], '-swift-version', '6', '-parse-as-library',
+                str(harness), '-o', str(executable)], capture_output=True, text=True, timeout=60)
+            record.update(compileExit=compile_result.returncode, compileLog=compile_result.stdout + compile_result.stderr)
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.assertEqual(compile_result.returncode, 0, record['compileLog'])
+            result = subprocess.run([str(executable)], capture_output=True, text=True, timeout=30)
+            record.update(executed=True, passed=result.returncode == 0, runExit=result.returncode,
+                          runLog=result.stdout + result.stderr)
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.assertEqual(result.returncode, 0, record['runLog'])
+            self.assertIn('PREPARATION_SWIFT_HELPERS_PASS', result.stdout)
 
     def test_missing_changed_or_duplicate_remote_pin_fails(self):
         changed = copy.deepcopy(self.pins)

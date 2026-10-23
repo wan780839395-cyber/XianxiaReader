@@ -17,6 +17,21 @@ private let epubViewportReadDiagnosticsEnabled = ["paired-safe", "paired-conflic
     var events: [EPUBViewportFixtureEvent] = []
     var dropped = 0
     var live = false
+
+    /// False means this lifetime is already live; deliver through its captured sink.
+    func store(_ event: EPUBViewportFixtureEvent) -> Bool {
+        guard !live else { return false }
+        if events.count == 255 { events.removeFirst(); dropped += 1 }
+        events.append(event)
+        return true
+    }
+
+    func take() -> (events: [EPUBViewportFixtureEvent], dropped: Int)? {
+        guard !live else { return nil }
+        live = true
+        let batch = events; events.removeAll()
+        return (batch, dropped)
+    }
 }
 
 /// Instance-only test bridge. Values contain geometry/identities, never book text.
@@ -266,6 +281,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
         setContentOffset(contentOffset, animated: false)
         #if DEBUG
             for slot in slots.values { slot.view.configureInnerScrollDiagnostics(nil, reason: "viewport-clear") }
+            fixtureDrainRetiringInnerDiagnostics(reason: "viewport-clear")
         #endif
         epoch = UUID()
         for index in Array(slots.keys) { evict(index) }
@@ -277,6 +293,9 @@ public struct EPUBViewportFixtureEvent: Sendable {
     }
     func shutdown() {
         chapterCount = 0
+        #if DEBUG
+            fixtureRecordClearOrigin("shutdown")
+        #endif
         clear()
         infiniteDelegate = nil
     }
@@ -292,6 +311,9 @@ public struct EPUBViewportFixtureEvent: Sendable {
         setNeedsLayout()
     }
     func reload(at index: Int, location: PageLocation, count: Int) {
+        #if DEBUG
+            fixtureRecordClearOrigin("reload")
+        #endif
         clear()
         chapterCount = count
         guard count > 0 else { return }
@@ -359,6 +381,9 @@ public struct EPUBViewportFixtureEvent: Sendable {
             catch is CancellationError { return }
             catch { self?.boundaryLabel.text = error.localizedDescription; return }
             guard let self, let slot, self.epoch == request, self.slots[index] === slot, !slot.ready else { return }
+            #if DEBUG
+                self.fixtureRecordClearOrigin("timeout-fired", index: index, slot: slot)
+            #endif
             if epubLoadingDiagnosticsEnabled { slot.timeoutLifecycle = slot.view.loadingLifecycleDiagnostic }
             slot.failure = "章节加载超时"
             slot.view.clear()
@@ -1017,24 +1042,49 @@ extension EPUBInfiniteScrollView {
 
     private func fixtureRecordInnerDiagnostic(_ event: EPUBViewportFixtureEvent, fixture: any EPUBViewportFixtureControl) {
         let state = fixtureInnerState
-        if state.live { fixture.observe(event); return }
         // Reserve one of the existing 256 journal entries for the delivery
         // receipt; losses before arming remain explicit, never a green result.
-        if state.events.count == 255 { state.events.removeFirst(); state.dropped += 1 }
-        state.events.append(event)
+        if !state.store(event) { fixture.observe(event) }
     }
 
     private func fixtureFlushInnerDiagnostics() {
         guard let fixture = readDiagnosticsFixture else { return }
-        let state = fixtureInnerState
-        guard !state.live else { return }
-        state.live = true
-        let events = state.events; state.events.removeAll()
+        fixtureDeliverInnerDiagnostics(fixtureInnerState, to: fixture, reason: "sampling")
+    }
+
+    private func fixtureDrainRetiringInnerDiagnostics(reason: String) {
+        // Capture the old sink and existing state before epoch/storage/owner changes.
+        // Never allocate a buffer or invent coverage to report an empty lifetime.
+        guard let fixture = readDiagnosticsFixture,
+              let state = fixtureInnerDiagnosticStorage as? EPUBInnerDiagnosticBuffer else { return }
+        fixtureDeliverInnerDiagnostics(state, to: fixture, reason: reason)
+    }
+
+    private func fixtureDeliverInnerDiagnostics(_ state: EPUBInnerDiagnosticBuffer,
+                                                to fixture: any EPUBViewportFixtureControl, reason: String) {
+        guard let batch = state.take() else { return }
         fixture.observe(.init(requestID: UUID(), kind: "sample-read-inner-buffer-delivery", values: [
-            "uptime": String(ProcessInfo.processInfo.systemUptime), "buffered": String(events.count),
-            "preArmDropped": String(state.dropped), "incomplete": String(state.dropped > 0),
-            "deliverySource": EPUBViewportFixtureEvent.source]))
-        for event in events { fixture.observe(event) }
+            "uptime": String(ProcessInfo.processInfo.systemUptime), "buffered": String(batch.events.count),
+            "preArmDropped": String(batch.dropped), "incomplete": String(batch.dropped > 0),
+            "reader": String(describing: ObjectIdentifier(self)), "epoch": epoch.uuidString,
+            "deliverySource": EPUBViewportFixtureEvent.source, "deliveryReason": reason]))
+        for event in batch.events { fixture.observe(event) }
+    }
+
+    private func fixtureRecordClearOrigin(_ origin: String, index: Int? = nil, slot: Slot? = nil) {
+        guard let fixture = readDiagnosticsFixture,
+              fixtureInnerDiagnosticStorage is EPUBInnerDiagnosticBuffer else { return }
+        var fields = ["origin": origin, "reader": String(describing: ObjectIdentifier(self)),
+            "epoch": epoch.uuidString, "uptime": String(ProcessInfo.processInfo.systemUptime),
+            "taskRole": origin == "timeout-fired" ? "slot-timeout" : "clear-caller-current",
+            "taskCancelled": String(Task.isCancelled)]
+        if let index { fields["index"] = String(index) }
+        if let slot {
+            fields["slot"] = String(describing: ObjectIdentifier(slot))
+            fields["webView"] = String(describing: ObjectIdentifier(slot.view.webView))
+        }
+        fixtureRecordInnerDiagnostic(.init(requestID: UUID(), kind: "sample-read-inner-clear-origin", values: fields),
+                                     fixture: fixture)
     }
 
     private func fixtureViewportWrite(_ index: Int, _ slot: Slot, source: String, target: CGFloat,
@@ -1072,6 +1122,7 @@ extension EPUBInfiniteScrollView {
             if let current = viewportFixtureControl, let newValue, current === newValue { return }
             if viewportFixtureControl == nil, newValue == nil { return }
             for slot in slots.values { slot.view.configureInnerScrollDiagnostics(nil, reason: "fixture-replaced") }
+            fixtureDrainRetiringInnerDiagnostics(reason: "fixture-replaced")
             fixtureInnerDiagnosticStorage = nil
             viewportFixtureStorage = newValue
             for (index, slot) in slots { fixtureBindInnerDiagnostics(index, slot) }

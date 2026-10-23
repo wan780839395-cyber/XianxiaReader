@@ -1,3 +1,29 @@
+# 准备期最小诊断本地收口，关键行为未验，零CI（2026-10-23）
+
+2026-10-23 准备期首错/旧缓冲保全已按追加收敛授权在约定5输入落地，本地28通过/1真实Swift行为skip、7静态/484语法通过（54上游限制/新增0）；不是Swift编译或取消行为验收。paired同步阶段/首错先于原defer并原样throw，原coverage-end后/旧owner失效前一次排空，仅诊断分支接收预arm；原await/JS/control/pause、armed/guard/清理顺序、255/256与原预算、返程窄屏/双向原字保持。619仅5变化/其余614、4848旧证据、Build30与普通HEAD/index保持。本机无swiftc、Docker engine失败、WSL仅docker-desktop，关键首错/旧sink行为未执行，派发前必要证据不成立，本轮零CI/推送。首个取消await/发起者及真实WebKit观察仍未知；旧39946614486 build0/safe65/conflict null和I6/full191/192/Release缺口不变。下一步仅建议先在可用Swift6.1.2环境执行已保存的原样helper检查。见[本地实现与限制](Documentation/I6_PREPARATION_DIAGNOSTICS.md)。
+
+恢复build/maintenance/I6-preparation-cancellation-implementation-20261023/；真实Swift夹具与未执行receipt同时保存.cache/preparation-diagnostics/。本轮授权附带本地必要行为证据门槛；skip不满足门槛，不能因unittest显示OK而派发。本轮无Swift/native/full/Release/设备/新IPA，不关机、不动其他任务；未推送。私有恢复revision/ref见final-checkpoint.json。无需重跑原23项或full，也不先为取一次失败启动原生CI。
+
+---
+
+# 准备期诊断本地定向28通过/1行为未执行，CI门槛不成立（2026-10-23）
+
+已执行18 provenance+原smoke2/配对7/新增2，共29：28通过，真实Swift helper行为1项因无swiftc明确skip。原样Swift夹具与未执行receipt保存.cache/preparation-diagnostics/；完整日志在build/maintenance/I6-preparation-cancellation-implementation-20261023/。原await/JS/control/pause及清理物理顺序源码合同、255/256/旧sink边界源码检查、准备失败不能换绿和SDK/返程逐条拒绝均通过，但不能替代行为执行。派发前关键证据未成立，因此本轮不派CI、不推送。下一步仅一次check_repository --swift-syntax，再保存实现/未验证边界与私有恢复点；零重跑/等待重试/算法变化。
+
+---
+
+# 准备期最小诊断已实现，待本地定向检查（2026-10-23）
+
+修改限既定5输入：paired阶段/首错同步记录、未arm元数据接收、原coverage-end后旧owner缓冲排空及已知清理入口标签；生产await/清理/控制guard和预算保持。已补原样抽取Swift helper行为夹具、容量/旧sink/首错/真实Task取消检查及验收反例，尚未执行。本机无swift，Docker失败，WSL仅docker-desktop；若关键Swift行为跳过，不派CI。下一步仅provenance18与原smoke2/配对7/新增2及一次仓库语法静态，不跑整套。
+
+---
+
+# 准备期首错/旧缓冲最小实现中（2026-10-23）
+
+收到主线程收敛执行授权：只按既定5输入实施首错阶段和清理前旧诊断保全，先本地必要检查；仅必要行为证据成立才最多一轮现有配对CI。不得改算法/guard/断言/armed/清理顺序/预算/WK调用/await包装/等待重试。已核1317源码路径/619输入及旧证据、Build30、普通HEAD/index；恢复build/maintenance/I6-preparation-cancellation-implementation-20261023/保留before和原件。本机无swift命令，Docker engine连接失败，原始环境错误保留；行为验证能力尚待确认。若无法本地执行关键Swift行为，不派CI碰运气，保存准确缺口。此状态尚非实现/编译或行为验收。
+
+---
+
 # 准备期取消与诊断交付审阅收口，未实施（2026-10-23）
 
 2026-10-23 准备期CancellationError/预arm交付本地审阅完成，零CI/619输入变化。已确认SDK缓存等采样flush、测试接收还要求armed，且clear/换fixture会在未排空时丢弃旧缓冲。首个抛错await与取消发起者仍未知；原Spread取消Result在tag/locator导航转false再报navigationFailed，slot timeout自身sleep取消被本Task捕获，不能直接当裸取消来源。参考Swift6.1.2/Readium3.11固定实现及Apple回调/fixture合同，建议下一片仅5输入：paired准备阶段和只写一次首错先于原defer、同步helper观察、不改变await；原关闭coverage后/换epoch和丢storage前向旧owner一次排空；只开放paired元数据的未arm接收，原SDK控制guard和两本账预算保持。标记已知shutdown/reload/timeout入口，未知仍unknown。不加WK调用/Task/handler/等待重试、不改算法/Adapter/override/JS/CI或原字双向/返程；首错原样抛出，不把取消改timeout或fixture成功。方案未实施；619输入/4835旧证据/Build30/普通HEAD index保持，原39946614486 build0/safe65/conflict null、原生观察及I6/Release缺口不变。

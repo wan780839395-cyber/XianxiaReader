@@ -1447,7 +1447,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
-      "sha256": "bf120f01b488473f2b3d2dd047c0257811d08204f821673871a5d364b144604b"
+      "sha256": "a054bb4a74210d6a58833935129f8f2954f290808b00c8c328cd0b6c1fcf528c"
     },
     {
       "path": "Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
@@ -1841,6 +1841,22 @@
     "nativeCompiled": false,
     "nativeAcceptance": false,
     "exactSimulatorWebKitBuildKnown": false,
+    "ciDispatches": 0
+  },
+  "preparationDiagnosticReview": {
+    "date": "2026-10-23",
+    "design": "Documentation/I6_PREPARATION_CANCELLATION_REVIEW.md",
+    "scope": "DEBUG old-owner buffer delivery after coverage-end before epoch/storage invalidation; known shutdown/reload/timeout labels. Paired preparation first error and metadata receiver are test-only.",
+    "physicalCleanupAndArmedGuardsUnchanged": true,
+    "bufferCapacity": 255,
+    "journalCapacity": 256,
+    "newWKCallsWaitsRetries": 0,
+    "newAwaitOrCancellationHandler": false,
+    "algorithmChanged": false,
+    "releaseSourceUnchanged": true,
+    "hostSwiftBehaviorExecuted": false,
+    "nativeCompiled": false,
+    "nativeAcceptance": false,
     "ciDispatches": 0
   }
 }

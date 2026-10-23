@@ -540,6 +540,43 @@ class PositionEvidenceTests(unittest.TestCase):
         (folder/"logs/reader-diagnostic.log").write_text(base+"CONTINUOUS_VIEWPORT_PAIR "+json.dumps(row)+"\n"+"".join("CONTINUOUS_RESIZE_EVIDENCE "+json.dumps(x)+"\n" for x in resize),encoding="utf-8")
         (folder/"test-results-summary.json").write_text(json.dumps(summary),encoding="utf-8")
 
+    def test_preparation_metadata_cannot_qualify_unarmed_safe_failure(self):
+        for include_diagnostics in [False, True]:
+            failed = list(self.pair_fixture("paired-safe", 65))
+            row = failed[0]
+            row.update(stage=0, pairPhase="seal", pairSampleID=None, pairMeasureID=None,
+                       pairEffect="pending", pairOrigin={}, pairPredicate={},
+                       preparation={"completed":False, "firstError":{"stage":"cover-probe.javascript",
+                           "errorType":"CancellationError", "taskCancelled":"false"},
+                           "firstCleanup":{"stage":"cleanUp"}})
+            row["events"] = [dict(requestID="close",kind="closing",sequence="1",nonce="pair"),
+                             dict(requestID="abort",kind="abort-issued",count="0",sequence="2",nonce="pair")]
+            row["readDiagnostics"] = ([dict(kind="sample-read-inner-buffer-delivery",buffered="1",
+                preArmDropped="0",incomplete="false",frameworkVersion="observed",restored="true")]
+                if include_diagnostics else [])
+            failed[2]["testFailures"] = [dict(failureText="CancellationError()")]
+            failed[3] = []
+            # Original 65 and no S/M/word proof still fail, including when
+            # cleanup is empty and additional diagnostic labels look complete.
+            self.assert_pair_rejected(failed, status=65)
+
+    def test_preparation_metadata_cannot_replace_sdk_or_return_receipts(self):
+        fixture = self.pair_with_return()
+        fixture[0].update(preparation={"completed":True,"firstError":{},"firstCleanup":{"stage":"cleanUp"}},
+            readDiagnostics=[dict(kind="sample-read-inner-buffer-delivery",incomplete="false",
+                                  buffered="1",preArmDropped="0",outcome="committed")])
+        self.write_pair(self.root/"original",fixture)
+        proof = verify_viewport_pair_arm(self.root/"original","paired-safe",0)
+        self.assertEqual(proof["originalExit"],0)
+        for rid, kind in [("S","sample-finished"),("M","measure-guard"),
+                          ("return-M1","work-finished"),("return-S","sample-decision")]:
+            bad = deepcopy(fixture)
+            bad[0]["events"] = [e for e in bad[0]["events"] if (e["requestID"],e["kind"]) != (rid,kind)]
+            self.resequence_pair(bad)
+            self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);bad[3][-1]["polls"][-1]["dom"]["visible"]=False
+        self.assert_pair_rejected(bad)
+
     def test_paired_arms_separate_original_failure_from_state_change_and_keep_exit(self):
         safe_folder=self.root/"safe";safe_fixture=self.pair_fixture("paired-safe")
         self.write_pair(safe_folder,safe_fixture);safe=verify_viewport_pair_arm(safe_folder,"paired-safe")
