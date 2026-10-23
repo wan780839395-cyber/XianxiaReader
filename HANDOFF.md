@@ -2,7 +2,7 @@
 
 2026-10-23 DEBUG writer观察已在约定3输入内实现并本地收口：EPUBSpreadView.swift、UPSTREAM.json、test_readium_provenance.py。只包现有明确Readium id/locator/progression同步表达式，临时替换根元素自有scrollTo，原this/同一参数对象/一次原调用及原返回保留，finally恢复原描述符或删除影子属性；不触及S/M/range/canonical、全局原型或Release JS。正常回执随同一次WK回调解包进原256诊断journal；原异常重抛，WK失败没有成功信封时记incomplete，不改失败为成功。公开Bundle身份及同原16帧来源标签已接线，真实框架版本仍待原生测得，缺符号为unknown，不推断IPC发起者。15项provenance（其中5项执行源码原样JS模板）+2原smoke/7配对工具=24定向通过；484语法、7静态通过，54上游限制/新增0，均非原生编译。原算法/guard/双向字可见/窄屏/预算/调用/await/等待重试保持；仅Release两个值别名，规范化后与原源码一致，nil脚本原字节提交。其余616输入、3727旧证据、Build30/普通HEAD index保持，零CI/full/Release/IPA。旧39930462353 build0/safe65/conflict null及未到达的返程、旧故障根因/I6/Release缺口不变。
 
-恢复build/maintenance/I6-webkit-writer-observation-20261023/有原件、before、冻结619输入、首次失败与最终日志、result及待保存快照；文档记录Documentation/ValidationLogs/project-isolation-i6-webkit-writer-observation.json。首次14/15仅新增计数合同把既有独立readiness读数混入当前入口，原件保留，改检查作用域后15/15。新观察是测试干预，不能称零干扰；未知/thenable结果原样交回、不读then/不等待，诊断不完整。原错误分支只能保证本地finally和同一错误传播，不能声称失败WK回调携带了调用明细。下一步如另获授权，只派一次原配对单例：先真实版本/同构建来源/观察命中恢复/各请求终结，安全全合格才冲突，保留实际退出码；观察未命中、restore失败或溢出留证停查，不能忽略原SDK回执。当前不派、不重跑。
+恢复build/maintenance/I6-webkit-writer-observation-20261023/有原件、before、冻结619输入、首次失败与最终日志、result及已保存本地恢复快照（revision见同目录final-checkpoint.json，未推送）；文档记录Documentation/ValidationLogs/project-isolation-i6-webkit-writer-observation.json。首次14/15仅新增计数合同把既有独立readiness读数混入当前入口，原件保留，改检查作用域后15/15。新观察是测试干预，不能称零干扰；未知/thenable结果原样交回、不读then/不等待，诊断不完整。原错误分支只能保证本地finally和同一错误传播，不能声称失败WK回调携带了调用明细。下一步如另获授权，只派一次原配对单例：先真实版本/同构建来源/观察命中恢复/各请求终结，安全全合格才冲突，保留实际退出码；观察未命中、restore失败或溢出留证停查，不能忽略原SDK回执。当前不派、不重跑。
 
 ---
 
