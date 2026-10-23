@@ -1,3 +1,31 @@
+# 单次命令CI收口：真实单例一次，安全S资格65（2026-10-23）
+
+唯一39895434704/eb7b4662/attempt1：141工具/484语法、一次原生编译/链接和实际版本检查通过。619来源、609产物/三份计划与安全前后冻结一致；新单次命令有效，安全原单例真实一次、0/1/0、16.061秒，Swift配对机制2组通过。原test/driver65，summary/export0，安全失败正确停止，冲突null；完整双臂同构建验收未完成。
+
+失败pair-safe-S-unqualified发生oldSample/stage0、尚未resize或主M。33事件：辅助S先被持有；native另采样先1767后2367并提交，原capture缓存A；pair封口放S后，S三次documentTop/scrollY1767对期望2367、clipTop0，九上下文guard全true，documentTopMatches false，终结document-top-mismatch-exhausted/rejected。五类清理集合均空。已证本次拒绝分支，尚不知DOM为何又报旧值，不能追认历史旧S或full根因/定位算法已证。
+
+目标1335秒：准备394.784、编译358.434，其后581.782；boot179.350/外观55.807，test命令321.560中实际单例16.061。完整1059文件/62518843字节artifact已核GitHub SHA/CRC，重复ZIP删除，原件build/ci/39895434704。恢复目录build/maintenance/I6-viewport-single-native-20261023含before/frozen、唯一派发锁/dispatch、原始native/sample/source/timing分析/result；文档检查与最终本地私有快照见document-check.log/final-checkpoint.json。
+
+本轮619输入零改动，原smoke/隔离/定位/S诊断/默认值/比较/生产guard/原字断言预算、旧原件/Build30/普通HEAD/index保持；无取消/重派/整套/Release，无新IPA、不关机。旧full191/192、历史根因及I6/手机缺口保持。派发前Git空响应仅只读核远端及以单命令HTTP/1.1上传恢复，CI只POST一次，不将该网络问题归因本例。
+
+下一最小片建议仅无CI审阅辅助S与native采样/DOM回调时序，解释“native2367后held S三次1767”；不直接加等待/重试或改算法/guard/断言预算。本轮未实施，不授权下一CI。详细Documentation/I6_VIEWPORT_SINGLE_NATIVE.md及ValidationLogs/project-isolation-i6-viewport-single-native.json；当前片已收齐，保存断点后停止。
+
+---
+
+# 单次执行修正版配对CI运行中：39895434704，只派一次（2026-10-23）
+
+冻结源eb7b46628905797e15b1bc3115c77de7dd20e1ac，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 单次执行修正版唯一原生CI准备（2026-10-23）
+
+用户新授权仅一轮continuous-resize-pair，冻结eb7b46628905797e15b1bc3115c77de7dd20e1ac。619运行输入与实际Git blob、133旧原件、Build30和普通HEAD/index已核；无其他运行任务。只一次build-for-testing，安全原测试/机制/提取/夹具/来源全部合格才冲突，真实退出未启动为null；失败先留原件，不重派或改算法/guard/默认值/比较/断言预算，不跑整套。复用本地28工具和484语法结果，不叠加预检，保留工作流既有repository-checks。
+
+恢复目录build/maintenance/I6-viewport-single-native-20261023，before/frozen已保存；派发前持久锁，未知结果只查询原run，禁止再次POST。当前尚未派发，旧full191/192及Release/手机缺口保持，最后交付Build30，不关机。
+
+---
+
 # 配对单次命令本地收口：28/28，零CI（2026-10-23）
 
 驱动仅删除-test-iterations和1两个token，其余源码运行逻辑完全保持。工具测试禁止重复/重试参数、确认成功路径每臂一次；真实本地Python子进程回放旧CLI原字节并返回64，驱动/exits/原件保留64、安全停止无冲突调用，export23亦不覆盖64。子进程回执真实记录Python，不冒充Xcode。
