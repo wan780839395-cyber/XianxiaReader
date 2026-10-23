@@ -1,3 +1,27 @@
+# Swift版本前缀解析本地收口：26/26，零CI（2026-10-23）
+
+已修version_fields，仅识别已知数字三段driver前缀并保留原七字段完整比较；未知/缺失/空值/重复/冲突继续拒绝。真实39886254329环境及三命令样本内嵌SHA与原始字节一致，冻结旧函数仍拒绝、新函数全部七字段与真实prepared一致。定向工具26/26（12.374秒、零跳过），七字段漂移均在安全测试前拒绝；484语法/静态通过（非编译）。
+
+仅2项工具输入改变，其余617与所有Swift、smoke/隔离/定位/S诊断、默认值比较、guard/原字断言预算保持。驱动其余AST不变，安全失败停止/真实退出和同构建来源门禁不变；76项原件、Build30、普通HEAD/index保持。实现/本地检查已完成，真实新源双臂和完整同构建验收未执行，未派CI/原生/full/Release。旧原生编译成功只属于978816c9；旧191/192和历史根因/旧S及I6/手机缺口保持，无IPA、不关机。
+
+恢复目录build/maintenance/I6-viewport-version-parser-20261023含before/日志/同字节对照/范围审计/runtime-diff/result；阶段末文档静态核对和最终本地私有快照见document-check.log/final-checkpoint.json。不推送或派CI；下一原生执行需新指令，禁止复用旧授权。详细Documentation/I6_VIEWPORT_VERSION_PARSER.md及ValidationLogs/project-isolation-i6-viewport-version-parser.json。
+
+---
+
+# Swift版本解析已修正，定向验证前断点（2026-10-23）
+
+仅改解析器与工具测试2项输入；已知数字三段driver前缀规范化后仍使用原7字段解析及完整比较，重复/冲突/缺失与未知driver格式拒绝。真实39886254329四份样本已内嵌并登记原始SHA；新增本地驱动成功和7字段漂移拒绝检查。下一步只跑test_viewport_pair_ci、实际原件旧/新解析对照及规定静态/语法检查，尚未取得结果；零CI，Swift/算法/guard/原断言预算不变。恢复目录build/maintenance/I6-viewport-version-parser-20261023。
+
+---
+
+# Swift版本前缀解析本地修正开始（2026-10-23）
+
+用户仅授权本地修正和定向检查，禁止派CI。基线0143f1f5，619运行输入、旧原件、普通HEAD/index与Build30已核；无运行CI助手。仅修改scripts/ci_viewport_pair.py的版本规范化和scripts/test_viewport_pair_ci.py真实样本/拒绝回归。保留7项完整字段比较、Xcode16.4限制、来源/产物/计划校验、安全失败停止及真实退出；所有Swift、smoke、隔离、定位、S诊断、生产guard、原字断言和预算保持。
+
+先保存实际39886254329输出及旧解析失败，再修已知数字三段driver前缀；未知格式、缺失、重复/冲突和真实字段漂移继续拒绝。计划只运行对应Python工具、实际原件离线对照和项目规定语法/静态检查；不跑整套工具/原生/full/Release。恢复目录build/maintenance/I6-viewport-version-parser-20261023，当前尚未修改解析器或执行验证；旧CI编译成功但两臂未运行的状态保持，不关机。
+
+---
+
 # 显式Double版CI已收口：原生编译通过，版本解析前置失败2（2026-10-23）
 
 唯一CI39886254329/attempt1，冻结978816c9；127工具/484语法、619构建前来源通过。原生build-for-testing一次成功，测试包编译/链接通过，342行类型推断错误未再出现。与旧失败b2c17c9d只有同一Swift输入不同，Xcode/Swift/OS字段一致。

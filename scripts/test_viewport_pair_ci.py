@@ -1,5 +1,6 @@
 """Exercise pair routing, source/build proof and real exit handling without Xcode/CI."""
 import copy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -17,6 +18,76 @@ import test_reader_positions_tools as fixtures
 ROOT = Path(__file__).resolve().parents[1]
 DEV = "/Applications/Xcode_16.4.app/Contents/Developer"
 VERSIONS = {"xcode-version": "Xcode 16.4\nBuild version 16F6\n", "swift-version": "Apple Swift version 6.1.2\nTarget: x86_64-apple-macosx15.5\n", "os-version": "ProductName: macOS\nProductVersion: 15.5\nBuildVersion: 24F74\n"}
+
+
+# Exact bytes from run 39886254329, attempt 1, source 978816c9:
+# diagnostic/build-environment.txt and ViewportPair/paired-safe/logs/*-version.log.
+# These small samples remain usable without downloading historical artifacts.
+CAPTURED_ENVIRONMENT = (
+    "Xcode 16.4\nBuild version 16F6\n"
+    "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)\n"
+    "Target: x86_64-apple-macosx15.0\n"
+    "ProductName:\t\tmacOS\nProductVersion:\t\t15.7.9\nBuildVersion:\t\t24G830\n"
+)
+CAPTURED_VERSIONS = {
+    "xcode-version": "Xcode 16.4\nBuild version 16F6\n",
+    "swift-version": (
+        "swift-driver version: 1.120.5 Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)\n"
+        "Target: x86_64-apple-macosx15.0\n"
+    ),
+    "os-version": "ProductName:\t\tmacOS\nProductVersion:\t\t15.7.9\nBuildVersion:\t\t24G830\n",
+}
+
+
+class VersionFieldsTests(unittest.TestCase):
+    def test_real_stdout_and_merged_samples_keep_all_seven_fields(self):
+        samples = {"environment": CAPTURED_ENVIRONMENT, **CAPTURED_VERSIONS}
+        hashes = {
+            "environment": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b",
+            "xcode-version": "a8be4f9af0a29137fe7e59b9928056d4a0df297bb46ba40f80eaa6b0ae982f12",
+            "swift-version": "c787cdae4c1e5c4b19cdea9e1e6ba7f1064fae1dbbe4dc8f9a1bf952b1a7a087",
+            "os-version": "31fd674ddb951680692d7b68cafdeab5baa6b3e82aae843269dad73b53f25fc5",
+        }
+        self.assertEqual({k: hashlib.sha256(v.encode()).hexdigest() for k, v in samples.items()}, hashes)
+        expected = {
+            "Xcode ": "16.4", "Build version ": "16F6",
+            "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+            "Target:": "x86_64-apple-macosx15.0", "ProductName:": "macOS",
+            "ProductVersion:": "15.7.9", "BuildVersion:": "24G830",
+        }
+        self.assertEqual(pair.version_fields(CAPTURED_ENVIRONMENT), expected)
+        self.assertEqual(pair.version_fields("".join(CAPTURED_VERSIONS.values())), expected)
+
+    def test_missing_empty_duplicate_or_conflicting_fields_are_rejected(self):
+        lines = CAPTURED_ENVIRONMENT.splitlines(keepends=True)
+        for index, line in enumerate(lines):
+            prefix = next(p for p in pair.version_fields(CAPTURED_ENVIRONMENT) if line.startswith(p))
+            for label, text in {
+                "missing": "".join(lines[:index] + lines[index + 1:]),
+                "empty": CAPTURED_ENVIRONMENT.replace(line, prefix + "\n"),
+                "duplicate": CAPTURED_ENVIRONMENT + line,
+                "conflict": CAPTURED_ENVIRONMENT + line.rstrip() + "-different\n",
+            }.items():
+                with self.subTest(field=prefix, kind=label), self.assertRaises(ValueError):
+                    pair.version_fields(text)
+
+    def test_prefixed_and_plain_compiler_rows_cannot_hide_duplicates(self):
+        merged = "".join(CAPTURED_VERSIONS.values())
+        plain = CAPTURED_ENVIRONMENT.splitlines(keepends=True)[2]
+        prefixed = CAPTURED_VERSIONS["swift-version"].splitlines(keepends=True)[0]
+        for extra in [plain, prefixed, plain.replace("6.1.2.1.2", "6.1.2.1.3")]:
+            with self.subTest(extra=extra), self.assertRaises(ValueError):
+                pair.version_fields(merged + extra)
+
+    def test_unknown_driver_shapes_are_not_arbitrarily_stripped(self):
+        merged = "".join(CAPTURED_VERSIONS.values())
+        prefix = "swift-driver version: 1.120.5 "
+        for unknown in ["swift-driver version: unknown ", "swift-driver version: 1.120 ",
+                        "swift-driver version: 1.120.5 extra ", "warning: " + prefix]:
+            with self.subTest(prefix=unknown), self.assertRaises(ValueError):
+                pair.version_fields(merged.replace(prefix, unknown))
+        with self.assertRaises(ValueError):
+            pair.version_fields(CAPTURED_ENVIRONMENT + "swift-driver version: unknown\n")
 
 
 class ViewportPairCITests(unittest.TestCase):
@@ -44,12 +115,13 @@ class ViewportPairCITests(unittest.TestCase):
         (self.products / "original.xctestrun").write_bytes(plistlib.dumps(self.base))
         self.calls = []; self.status = {m: 0 for m in pair.MODES}; self.export_exit = 0
         self.mutate = None; self.bad_safe = False; self.duplicate_pid = False; self.duplicate_nonce = False; self.version_drift = False
+        self.versions = VERSIONS.copy()
 
     def runner(self, command, log, env=None):
         mode = log.relative_to(self.folder).parts[0]; self.calls.append((mode, command))
         log.parent.mkdir(parents=True, exist_ok=True); raw = 0; body = "fixture command\n"
         if log.stem in VERSIONS:
-            body = VERSIONS[log.stem]
+            body = self.versions[log.stem]
             if self.version_drift and mode == pair.MODES[1]:
                 body = body.replace("16F6", "16F7")
         elif command[:4] == ["xcrun", "simctl", "list", "devices"]:
@@ -83,6 +155,63 @@ class ViewportPairCITests(unittest.TestCase):
     def run_driver(self):
         status = pair.run_pair(self.root, "SIM", runner=self.runner)
         return status, json.loads((self.folder / "result.json").read_text())
+
+    def captured_versions(self):
+        self.versions = CAPTURED_VERSIONS.copy()
+        (self.root / "build/build-environment.txt").write_text(CAPTURED_ENVIRONMENT, encoding="utf-8")
+        prepared = json.loads((self.folder / "prepared.json").read_text())
+        prepared.update(environment=CAPTURED_ENVIRONMENT, versions=pair.version_fields(CAPTURED_ENVIRONMENT))
+        pair.save(self.folder / "prepared.json", prepared)
+
+    def test_real_prefixed_versions_pass_both_local_driver_arms(self):
+        self.captured_versions()
+        status, report = self.run_driver()
+        self.assertEqual(status, 0); self.assertEqual(report["originalExits"], [0, 0])
+        self.assertTrue(report["matchedBuildVerified"])
+        self.assertEqual((self.folder / "paired-safe/logs/swift-version.log").read_text(), CAPTURED_VERSIONS["swift-version"])
+
+    def test_real_prefixed_compiler_build_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["swift-version"] = self.versions["swift-version"].replace("6.1.2.1.2", "6.1.2.1.3")
+        self.assert_version_rejected_before_safe_test()
+
+    def test_real_prefixed_target_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["swift-version"] = self.versions["swift-version"].replace("x86_64", "arm64")
+        self.assert_version_rejected_before_safe_test()
+
+    def test_real_xcode_version_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["xcode-version"] = self.versions["xcode-version"].replace("16.4", "16.3")
+        self.assert_version_rejected_before_safe_test("Require actual Xcode 16.4")
+
+    def test_real_xcode_build_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["xcode-version"] = self.versions["xcode-version"].replace("16F6", "16F7")
+        self.assert_version_rejected_before_safe_test()
+
+    def test_real_os_product_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["os-version"] = self.versions["os-version"].replace("macOS", "otherOS")
+        self.assert_version_rejected_before_safe_test()
+
+    def test_real_os_version_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["os-version"] = self.versions["os-version"].replace("15.7.9", "15.7.8")
+        self.assert_version_rejected_before_safe_test()
+
+    def test_real_os_build_drift_stops_before_safe_test(self):
+        self.captured_versions()
+        self.versions["os-version"] = self.versions["os-version"].replace("24G830", "24G831")
+        self.assert_version_rejected_before_safe_test()
+
+    def assert_version_rejected_before_safe_test(self, message="Actual Xcode/Swift/OS"):
+        status, report = self.run_driver()
+        self.assertEqual(status, 2); self.assertEqual(report["originalExits"], [None, None])
+        self.assertFalse(report["matchedBuildVerified"])
+        self.assertIn(message, report["driverError"])
+        self.assertFalse(any(c[0] == "xcrun" or c[:2] == ["xcodebuild", "test-without-building"] for _, c in self.calls))
+        self.assertFalse(any(mode == pair.MODES[1] for mode, _ in self.calls))
 
     def test_fresh_two_arms_share_products_and_only_mode_differs(self):
         status, report = self.run_driver()

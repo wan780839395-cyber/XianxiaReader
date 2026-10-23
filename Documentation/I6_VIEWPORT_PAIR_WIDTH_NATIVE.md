@@ -1,5 +1,7 @@
 # I6 显式Double修正版唯一CI（2026-10-23）
 
+后续本地解析修正见[I6版本解析记录](I6_VIEWPORT_VERSION_PARSER.md)：26/26工具与484语法通过，零CI；不改变本记录中旧运行失败和两臂未启动的事实。
+
 运行 [39886254329](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39886254329)，源 `978816c9dfaed955d0bca2a2fd7be21e2fe8a741`，attempt1。**测试包原生编译/链接通过，原342行错误未再出现；随后驱动版本解析返回2，两臂均未启动。**没有重派、取消或源码修改。
 
 ## 分层结果

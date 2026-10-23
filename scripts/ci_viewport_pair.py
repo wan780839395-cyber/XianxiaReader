@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import plistlib
+import re
 import subprocess
 import sys
 
@@ -33,10 +34,19 @@ def save(path, value):
 
 def version_fields(text):
     # Retain full logs, but unrelated stderr warnings are not version changes.
+    lines = []
+    for line in text.splitlines():
+        if line.startswith("swift-driver version:"):
+            # Swift 6.1.2 writes this prefix to stderr without a newline.
+            match = re.fullmatch(r"swift-driver version: [0-9]+\.[0-9]+\.[0-9]+ (Apple Swift version .+)", line)
+            if not match:
+                raise ValueError("Unrecognized Swift driver version output")
+            line = match[1]
+        lines.append(line)
     prefixes = ["Xcode ", "Build version ", "Apple Swift version ", "Target:", "ProductName:", "ProductVersion:", "BuildVersion:"]
     values = {}
     for prefix in prefixes:
-        rows = [line[len(prefix):].strip() for line in text.splitlines() if line.startswith(prefix)]
+        rows = [line[len(prefix):].strip() for line in lines if line.startswith(prefix)]
         if len(rows) != 1 or not rows[0]:
             raise ValueError("Missing or ambiguous tool version: " + prefix)
         values[prefix] = rows[0]
