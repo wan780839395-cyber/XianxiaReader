@@ -1,3 +1,21 @@
+# 控制/验收区间审阅收口，方案未实施（2026-10-23）
+
+2026-10-23 配对控制/验收区间本地审阅完成，零运行源码/CI变化。原控制在admission-complete61结束，原pair验收却要求seal22→closing84全程queued，因此拒绝返程62–83的2 measure+1 sample；三请求真实捕获/终结完整，宽窄两份原DOM证据齐全。最小方案只改verify_reader_positions.py及对应test_reader_positions_tools.py：首轮准入/FIFO核至真实结束点，之后每个SDK请求另核完整生命周期至关闭，全部事件归属且禁止豁免/伪造准入；成功窄屏须核实际DOM而非passed标签。保留Swift夹具现有自然返程、smoke/S/M guard、原字双向断言与原预算，不加JS/等待重试/事件或算法变更；方案尚未实施，新正反例未编写执行。619输入/2556旧证据/Build30/普通HEAD/index保持，原CI仍build0/test0/driver2/conflict null，旧1767、I6/full191/192/Release/手机缺口保持。
+
+方案边界：不只缩短旧validator窗口，也不把SDK请求删掉。按唯一work-start归属区间，首轮所有工作须原准入/真实终结且不可跨终点；结束后原生请求须实际capture/domain terminal/work-finished、归属一致、无孤立/重复/关闭后提交。返程保留自然并发，不伪造FIFO或主M全true；revision/local可依原行为变化。原件包含宽窄最后DOM poll，可在两工具文件内补验收，无需改Swift/SDK/新事件。
+
+详情Documentation/I6_PAIR_INTERVAL_REVIEW.md；恢复build/maintenance/I6-pair-interval-review-20261023含before、只读review-audit、result、文档检查/最终私有快照。之后只文档静态与保存，不跑原生或工具整套，不关机。旧39920796794原件/result不可被未来离线新验收结果改写为绿；下一实现片另按用户指令，不能自动派CI。
+
+保存时发现本轮未编辑的AGENTS.md第17行另有文字变化（“编译、”变为“编译在·、”），已原样保留当前文件及恢复副本/差异/哈希，不纠正或归作本轮实现。审阅私有快照沿用父AGENTS版本；恢复原件与来源说明在unattributed-working-tree-change.json，普通HEAD/index不动。文档静态七项已实际通过；这份附加文字只做保存与差异核对，无需重复编译或CI。
+
+---
+
+# 配对控制/验收区间本地审阅开始（2026-10-23）
+
+用户授权仅审阅39920796794中seq61准入结束、返程窄屏seq62–83三个请求及seal→closing验收区间，明确最小修正方案。基线1b6bcda0，619运行输入、CI原件及普通HEAD/index/Build30已核，无运行助手。本轮零CI/零运行源码变化，不改算法/guard/原断言预算，不加等待重试，不直接忽略尾部三请求。核对原方案、smoke/paired控制边界、真实SDK完整生命周期及原字双向证据，给出有边界和负例的最小方案。恢复build/maintenance/I6-pair-interval-review-20261023；旧driver2/safe0/conflict null、1767疑点与I6/Release缺口保持，不关机。
+
+---
+
 # 内层诊断唯一CI收口：编译/单例过，夹具边界拒绝（2026-10-23）
 
 2026-10-23 内层诊断唯一CI39920796794/47bb1edd/attempt1收口：145工具/484语法、一次原生构建0通过；安全原单例1/1、15.881秒、原test0，但原夹具校验以Unregistered SDK work拒绝，driver真实2、冲突未启动/null，完整双臂未通过。619来源/609产物/三计划/实际七版本及安全前后冻结一致。142诊断/116内层、早期56记录、零丢弃；目标18次JS三点/18组writer、覆盖起止及关闭pending0已核。S本轮在2367提交，旧1767未复现；首次回退2367→2151位于resize/主M之后，已关联viewport显式setter及栈，不能解释旧0.383秒故障。准入在seq61结束，返程窄屏3个SDK请求seq62–83未登记，而验收仍检查至closing84，合同范围不一致；本轮不忽略事件/改校验或重派。原清理五类全空，但新增取消/迟到分支未命中，不能称全取消专项通过。定向1016秒中准备262.751/编译337.967、原单例15.881；workflow1200秒。原件及619输入/旧证据/Build30/普通HEAD/index保持，旧full191/192与I6/Release/手机缺口保持，无新IPA。

@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+2026-10-23 配对控制/验收区间本地审阅完成，零运行源码/CI变化。原控制在admission-complete61结束，原pair验收却要求seal22→closing84全程queued，因此拒绝返程62–83的2 measure+1 sample；三请求真实捕获/终结完整，宽窄两份原DOM证据齐全。最小方案只改verify_reader_positions.py及对应test_reader_positions_tools.py：首轮准入/FIFO核至真实结束点，之后每个SDK请求另核完整生命周期至关闭，全部事件归属且禁止豁免/伪造准入；成功窄屏须核实际DOM而非passed标签。保留Swift夹具现有自然返程、smoke/S/M guard、原字双向断言与原预算，不加JS/等待重试/事件或算法变更；方案尚未实施，新正反例未编写执行。619输入/2556旧证据/Build30/普通HEAD/index保持，原CI仍build0/test0/driver2/conflict null，旧1767、I6/full191/192/Release/手机缺口保持。见[审阅与最小方案](Documentation/I6_PAIR_INTERVAL_REVIEW.md)。
+
+以下保留历史状态。
+
 2026-10-23 内层诊断唯一CI39920796794/47bb1edd/attempt1收口：145工具/484语法、一次原生构建0通过；安全原单例1/1、15.881秒、原test0，但原夹具校验以Unregistered SDK work拒绝，driver真实2、冲突未启动/null，完整双臂未通过。619来源/609产物/三计划/实际七版本及安全前后冻结一致。142诊断/116内层、早期56记录、零丢弃；目标18次JS三点/18组writer、覆盖起止及关闭pending0已核。S本轮在2367提交，旧1767未复现；首次回退2367→2151位于resize/主M之后，已关联viewport显式setter及栈，不能解释旧0.383秒故障。准入在seq61结束，返程窄屏3个SDK请求seq62–83未登记，而验收仍检查至closing84，合同范围不一致；本轮不忽略事件/改校验或重派。原清理五类全空，但新增取消/迟到分支未命中，不能称全取消专项通过。定向1016秒中准备262.751/编译337.967、原单例15.881；workflow1200秒。原件及619输入/旧证据/Build30/普通HEAD/index保持，旧full191/192与I6/Release/手机缺口保持，无新IPA。见[原生结果与失败断点](Documentation/I6_INNER_SCROLL_NATIVE.md)。
 
 以下保留历史状态。
