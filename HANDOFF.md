@@ -1,3 +1,17 @@
+# 内层写入入口审阅收口，未实施新探针（2026-10-23）
+
+2026-10-23 内层滚动写入入口本地审阅完成，零CI/运行输入改动。1767与原测试加600前DOM值相同；当前章初始化/最后measure均早于约0.383秒窗口，窗口内附件没有inner读数，不能继续缩短回退时间。核清native首尾setter、canonical/window与Readium根元素JS、几何/内部同步等未覆盖入口；本地bundle与固定上游只有原宽度保护补丁差异，未发现连续resize直接写Y的源码。具体写入者仍未证。最小下一片建议5输入内补原生delegate变化、显式setter前后与通用JS实际提交/回调，不先改JS bundle/算法/签名/等待重试；清理、覆盖起止和结果判读已列明，尚未实现或授权CI。619输入/2390证据记录/Build30/普通HEAD/index保持，原生最新仍安全65/冲突null，旧full191/192与I6/Release/手机缺口保持。
+
+详细Documentation/I6_INNER_SCROLL_WRITER_REVIEW.md；恢复build/maintenance/I6-inner-scroll-writer-review-20261023。之后仅一次文档静态检查及私有快照，不派CI、不重跑整套，不关机。复原时先核本目录result/final-checkpoint，不能把设计写成已实现/已修复。
+
+---
+
+# 内层滚动写入入口本地审阅开始（2026-10-23）
+
+用户仅授权审阅39912011242中1726.615739598→1726.999230717（Swift uptime）约0.383秒窗口，核对未覆盖inner写入入口并明确最小补证方案。基线d0b94066、619运行输入、旧原件、Build30和普通HEAD/index已逐项核对。本轮零CI、零运行源码改动，不改算法/生产guard/原断言预算，不增加等待或重试；仅源码与原件审阅及文档。恢复build/maintenance/I6-inner-scroll-writer-review-20261023；具体写入者尚未证明，旧full191/192与Release/手机缺口保持，不关机。
+
+---
+
 # FixedSpread修正版唯一CI收口：编译过，S准备65（2026-10-23）
 
 39912011242/dfc20131/attempt1，一次构建0/编译链接成功，签名错误消除；142工具/484语法、619源码/609产物/三计划和实际版本、安全前后冻结一致。原同例只执行一次0/1/0、19.164秒，oldSample/stage0的pair-safe-S-unqualified，原test/driver65，冲突null；未resize/主M/原字缩放断言，完整双臂验收未完成。原smoke未重跑，FixedSpread运行转发未专项执行，不能扩大编译结果。

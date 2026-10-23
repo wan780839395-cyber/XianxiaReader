@@ -1,5 +1,9 @@
 # 项目状态
 
+2026-10-23 内层滚动写入入口本地审阅完成，零CI/运行输入改动。1767与原测试加600前DOM值相同；当前章初始化/最后measure均早于约0.383秒窗口，窗口内附件没有inner读数，不能继续缩短回退时间。核清native首尾setter、canonical/window与Readium根元素JS、几何/内部同步等未覆盖入口；本地bundle与固定上游只有原宽度保护补丁差异，未发现连续resize直接写Y的源码。具体写入者仍未证。最小下一片建议5输入内补原生delegate变化、显式setter前后与通用JS实际提交/回调，不先改JS bundle/算法/签名/等待重试；清理、覆盖起止和结果判读已列明，尚未实现或授权CI。619输入/2390证据记录/Build30/普通HEAD/index保持，原生最新仍安全65/冲突null，旧full191/192与I6/Release/手机缺口保持。见[本地审阅与最小补证设计](Documentation/I6_INNER_SCROLL_WRITER_REVIEW.md)。
+
+以下保留历史状态。
+
 2026-10-23 FixedSpread修正版唯一CI39912011242/dfc20131/attempt1：142工具/484语法、一次原生编译链接通过，签名错误已验证消除。619来源/609产物/计划及安全前后冻结一致；安全原单例只执行一次、0/1、19.164秒，S准备资格失败原test/driver65，冲突null，尚未resize/M，完整双臂未完成。新18条关联诊断无丢弃：native内层最后2367至S实际提交时1767之间约0.383秒；S三次提交/回调/返回内层及JS起止均1767。同WebView同步点只有一次显式写2367、一次布局未赋值，未见写1767；具体未覆盖写入者仍未知。原guard正确拒绝，A保留，清理全空。原件保存、619输入及旧证据/Build30/HEAD/index保持，未改算法/重派。旧full191/192与Release/手机缺口保持。见[结果与回退窗口](Documentation/I6_VIEWPORT_FIXED_OVERRIDE_NATIVE.md)。
 
 以下保留各自当时状态，本轮原生结果以上文为准。
