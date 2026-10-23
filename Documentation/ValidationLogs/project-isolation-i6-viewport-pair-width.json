@@ -1,0 +1,67 @@
+{
+  "recordedAtUTC": "2026-10-23T01:42:55.663629+00:00",
+  "parent": "6b4fca1dc0d524265ad942cbb226ec3b3b0d88d7",
+  "implemented": true,
+  "compileFixCandidateApplied": true,
+  "localStaticPassed": true,
+  "runtimeInputCount": 619,
+  "runtimeChanges": [
+    "Tests/iOS/ReaderRenderingTests.swift"
+  ],
+  "otherRuntimeInputsUnchanged": 618,
+  "swiftGrammarFiles": 484,
+  "swiftGrammarNotCompilation": true,
+  "pythonTests": {
+    "total": 13,
+    "passed": 12,
+    "skipped": 1,
+    "failed": 0
+  },
+  "swiftCompilerAvailable": false,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "ciDispatches": 0,
+  "defaultsComparisonOrderFailurePathPreserved": true,
+  "smokeSDKAlgorithmsSGuardsAssertionsBudgetsUnchanged": true,
+  "previousRawEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "failedNativeRun": 39882224654,
+  "failedNativeSource": "b2c17c9d3312e942ad2448d4d9ecf244f78062e8",
+  "previousNativeBuildExit": 65,
+  "safeOriginalExit": null,
+  "conflictOriginalExit": null,
+  "actualMatchedBuildVerified": false,
+  "oldFullRootCauseProven": false,
+  "oldSFinalRejectionProven": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "nextRoundCIAllowed": false,
+  "evidence": [
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-20261023/before.json",
+      "sha256": "43d2d838a73c7ebba9b717bf9a7370271602a166be6a73f6ef4f0640e8ccef7b"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-20261023/local-check.log",
+      "sha256": "05c894e72f9f3e46142180c4dbc3f112b71eb9b9758bce1d34a721194f96cde6"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-20261023/local-tools.log",
+      "sha256": "ef5a579c2f2b01d9a4d6dffab2f074674ec0900504ea5bb496fd1c3261e7c5b9"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-20261023/scope-audit.json",
+      "sha256": "a8667c3e151ff2bc35ef11811a5715bc3cba15b185dbc7d0674aaa838bf7550e"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-20261023/document-check.log",
+      "sha256": "1f124f252949c667028c800246aa5e16c784bda95a418fb165672413e6d5f7b2"
+    }
+  ],
+  "validationKind": "project-isolation-i6-viewport-pair-width",
+  "report": "Documentation/I6_VIEWPORT_PAIR_NATIVE.md",
+  "recoveryDirectory": "build/maintenance/I6-viewport-pair-width-20261023",
+  "documentStaticPassed": true
+}

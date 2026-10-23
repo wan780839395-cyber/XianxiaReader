@@ -338,9 +338,12 @@ import XianxiaCore
         case .oldSample:
             guard sampleEnded() else { return false }
             guard finished[sample.requestID]?.values["outcome"] == "committed",
-                  finished[sample.requestID]?.values["anchor"] == originalAnchor,
-                  abs((Double(dom[sample.requestID]?.values["dom.width"] ?? "") ?? -.infinity)
-                    - (Double(sample.values["nativeWidth"] ?? "") ?? .infinity)) < 2 else {
+                  finished[sample.requestID]?.values["anchor"] == originalAnchor else {
+                fail("pair-safe-S-unqualified"); try checkFailure(); return false
+            }
+            let sampledWidth: Double = Double(dom[sample.requestID]?.values["dom.width"] ?? "") ?? -Double.infinity
+            let nativeWidth: Double = Double(sample.values["nativeWidth"] ?? "") ?? Double.infinity
+            guard abs(sampledWidth - nativeWidth) < 2 else {
                 fail("pair-safe-S-unqualified"); try checkFailure(); return false
             }
             pair.effect = "unchanged"; resize()

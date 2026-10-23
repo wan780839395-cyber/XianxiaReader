@@ -1,5 +1,7 @@
 # I6 配对夹具唯一一轮原生 CI（2026-10-23）
 
+2026-10-23 后续：下文失败点的显式Double拆分已实施，仅本地检查通过，尚未Swift编译/原生验证，零新增CI。见本页末“宽度表达式本地修正”。本页原CI65和两臂未执行仍保留其原始含义。
+
 唯一运行 [39882224654](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39882224654)，源 `b2c17c9d3312e942ad2448d4d9ecf244f78062e8`，attempt1，selection=`continuous-resize-pair`。**失败于原生测试包编译，build-for-testing 原退出65；安全/冲突均未启动。**没有重派、取消、追加原生或整套，也没有源码改动。
 
 ## 实际完成的门槛
@@ -49,3 +51,14 @@ artifact12471895707，压缩292900字节，SHA-256 `fbeeb90323651c88fdaf50dff45b
 本轮全部619运行输入零变化：现有smoke、隔离、定位修复、S诊断、生产guard、原字可见断言和预算保持。普通HEAD/index、旧12项原件与Build30包摘要保持。阶段末只同步项目状态/交接及静态文档检查，不重复工具全组或语法/原生验证。
 
 当前唯一后续是上述夹具表达式的最小修正和本地核对；再次CI需新的明确执行指令，不能复用本轮授权。旧full39735403242仍191/192，历史根因和旧S第三次拒绝未证；I6/Release/手机未验收，最后成功原生旧smoke仍2a9fdfb5/39806769382的1/1，不代表配对已通过。电脑保持运行。
+
+
+## 宽度表达式本地修正（2026-10-23，零CI）
+
+用户限定的单处改动已实施：仍先等S实际退出，再核committed及A相等；随后分别声明`sampledWidth: Double`、`nativeWidth: Double`，继续原`abs(sampledWidth - nativeWidth) < 2`检查。默认值分别为`-Double.infinity`与`Double.infinity`；拆开的两条失败分支都保留原`pair-safe-S-unqualified`及原checkFailure路径。这样保留原短路检查顺序，没有新增await、事件、重试或预算。
+
+本轮相对6b4fca1d仅Tests/iOS/ReaderRenderingTests.swift这一运行输入变化，其余618项保持。审计确认完整文件只有该块替换，Release投影、全部原多行JS/await序列、原smoke和其他Pair分支、SDK/定位/S诊断/生产guard/原字断言及预算保持。
+
+本地`check_repository.py --swift-syntax`通过484文件，保留上游54项既有语法限制，新增0；现有`test_reader_positions_tools`共13项，12通过、1原有POSIX用例在Windows跳过。不新增镜像测试、不运行CI驱动组或整套。本机无Swift编译器，因此这是消除复杂表达式的修正候选，尚不能宣称完整原生编译已通过。
+
+恢复目录build/maintenance/I6-viewport-pair-width-20261023，含before、local-check/local-tools、scope-audit、document-check、result和final-checkpoint；[持久验证记录](ValidationLogs/project-isolation-i6-viewport-pair-width.json)。上轮失败原件34项、Build30包及普通HEAD/index摘要保持，没有派发或自动重试。再次原生编译/配对执行仍需新的明确指令，本轮不执行，最后交付Build30与I6/Release/手机缺口保持。

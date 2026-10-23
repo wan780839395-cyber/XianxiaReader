@@ -1,3 +1,13 @@
+# 配对夹具宽度拆分完成：本地检查通过，原生未验，零CI（2026-10-23）
+
+相对6b4fca1d仅Tests/iOS/ReaderRenderingTests.swift的oldSample一块：sampleEnded→committed/A→两个显式Double宽度→abs差值<2。保留负/正infinity缺省和原失败路径；无新await/事件/重试，生产guard及原字断言预算保持。其余618运行输入、smoke/其他Pair分支/SDK/隔离/定位/S诊断/工作流全部保持。
+
+484语法/静态通过（上游54既有限制、新增0，非编译）；现有位置工具12通过/1 POSIX在Windows跳过。范围审计通过，Release投影及JS/await不变，旧原件34项/Build30/普通HEAD/index保持。本机无Swift编译器，不能称39882224654编译65已被原生验证修复；两臂及同构建产物校验仍未执行。文档静态核对通过；私有恢复快照以本轮final-checkpoint.json为准，不派CI。
+
+恢复目录build/maintenance/I6-viewport-pair-width-20261023，最后快照见final-checkpoint；详细补充在Documentation/I6_VIEWPORT_PAIR_NATIVE.md末段及ValidationLogs/project-isolation-i6-viewport-pair-width.json。再次CI需新指令，不能复用上轮唯一派发授权。旧full191/192、I6/Release/手机缺口及最后交付Build30不变，电脑不关机。
+
+---
+
 # 配对CI已失败收口：构建65，两臂未启动，禁止重派（2026-10-23）
 
 唯一CI39882224654/attempt1，冻结源b2c17c9d。repository检查通过：484语法（非编译）、Linux127工具通过；619项实际构建前Git来源与冻结一致。原生build-for-testing一次，新增配对夹具ReaderRenderingTests.swift:342宽度表达式触发Swift类型推断超时（同处5条批次诊断），构建原退出65；没有完整测试包编译/链接，安全/冲突及Swift机制执行0，两臂退出均null。不能写成0/2、配对通过或算法失败。
