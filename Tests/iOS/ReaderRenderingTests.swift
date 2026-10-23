@@ -37,6 +37,11 @@ import XianxiaCore
     private var failure: String?
     private var sequence = 0
     private var events: [[String: String]] = []
+    // Supplementary paired diagnostics cannot consume the original event budget
+    // or participate in admission, failure, commit or cleanup decisions.
+    private var readDiagnostics: [[String: String]] = []
+    private var readDiagnosticSequence = 0
+    private var readDiagnosticsDropped = 0
     private var active: [UUID: Event] = [:]
     private var finished: [UUID: Event] = [:]
     private var dom: [UUID: Event] = [:]
@@ -85,6 +90,17 @@ import XianxiaCore
     }
 
     func observe(_ event: Event) {
+        if event.kind.hasPrefix("sample-read-") || event.kind == "viewport-sync" {
+            guard pair != nil, armed else { return }
+            readDiagnosticSequence += 1
+            var row = event.values
+            row["nonce"] = nonce; row["diagnosticSequence"] = String(readDiagnosticSequence)
+            row["afterEventSequence"] = String(sequence)
+            row["requestID"] = event.requestID.uuidString; row["kind"] = event.kind
+            if readDiagnostics.count == 256 { readDiagnostics.removeFirst(); readDiagnosticsDropped += 1 }
+            readDiagnostics.append(row)
+            return
+        }
         if event.kind == "work-start" { workActive[event.requestID] = event }
         if event.kind == "work-finished" {
             workActive.removeValue(forKey: event.requestID)
@@ -414,6 +430,7 @@ import XianxiaCore
 
     /// Synthetic controller receipts only. Never emitted as native pair evidence.
     static func checkPairMechanics(_ mode: PairMode, test: XCTestCase) async throws {
+        checkReadDiagnosticJournal(mode)
         let values = ["reader":"pair-mechanics", "epoch":"epoch", "slot":"slot", "webView":"web", "index":"1",
             "revision":"1", "localTop":"100", "outerY":"100", "ready":"true", "moving":"false",
             "positioning":"false", "anchor":"A", "nativeWidth":"402", "nativeHeight":"778", "source":"mechanics"]
@@ -578,6 +595,35 @@ import XianxiaCore
         return true
     }
 
+    private static func checkReadDiagnosticJournal(_ mode: PairMode) {
+        let smoke = ViewportFixture(); smoke.armSample(outerY: 100)
+        let id = UUID()
+        smoke.observe(Event(requestID: id, kind: "sample-read-js-submit", values: [:]))
+        XCTAssertTrue(smoke.events.isEmpty); XCTAssertTrue(smoke.readDiagnostics.isEmpty)
+        let c = ViewportFixture(pairMode: mode); c.armSample(outerY: 100)
+        c.observe(Event(requestID: id, kind: "work-start", values: [:]))
+        c.observe(Event(requestID: id, kind: "sample-start", values: [:]))
+        let sequence = c.sequence
+        for n in 0..<257 {
+            let kind = n.isMultiple(of: 2) ? "viewport-sync" : "sample-read-js-callback"
+            c.observe(Event(requestID: id, kind: kind, values: ["attempt":"0", "outcome":"committed"]))
+        }
+        XCTAssertEqual(c.sequence, sequence); XCTAssertEqual(c.events.count, 2)
+        XCTAssertEqual(c.readDiagnostics.count, 256); XCTAssertEqual(c.readDiagnosticsDropped, 1)
+        XCTAssertEqual(c.readDiagnostics.first?["diagnosticSequence"], "2")
+        XCTAssertEqual(c.readDiagnostics.last?["requestID"], id.uuidString)
+        XCTAssertEqual(c.readDiagnostics.last?["afterEventSequence"], String(sequence))
+        XCTAssertEqual(c.active.count, 1); XCTAssertEqual(c.workActive.count, 1)
+        XCTAssertTrue(c.finished.isEmpty); XCTAssertTrue(c.dom.isEmpty); XCTAssertTrue(c.guards.isEmpty)
+        XCTAssertNil(c.failure); XCTAssertFalse(c.closed)
+        c.observe(Event(requestID: id, kind: "sample-finished", values: ["outcome":"aborted"]))
+        c.observe(Event(requestID: id, kind: "work-finished", values: ["captured":"true"]))
+        c.cleanUp()
+        c.observe(Event(requestID: id, kind: "sample-read-js-callback", values: ["read.nativeAvailable":"0"]))
+        XCTAssertTrue(c.isQuiescent); XCTAssertNil(c.failure)
+        XCTAssertEqual(c.readDiagnostics.last?["read.nativeAvailable"], "0")
+    }
+
     func cleanUp() {
         guard !cleaning else { return }
         cleaning = true; abort(closeReader: true)
@@ -606,6 +652,9 @@ import XianxiaCore
                 "failure":failure ?? "none"]
             if let pair {
                 payload["pairMode"] = pair.mode.rawValue; payload["pairPhase"] = pair.phase.rawValue
+                payload["readDiagnostics"] = readDiagnostics
+                payload["readDiagnosticsTotal"] = readDiagnosticSequence
+                payload["readDiagnosticsDropped"] = readDiagnosticsDropped
                 payload["pairOrigin"] = pair.origin; payload["pairEffect"] = pair.effect
                 payload["pairSampleID"] = sample?.requestID.uuidString
                 payload["pairMeasureID"] = primary?.uuidString; payload["pairPredicate"] = pair.lastPredicate

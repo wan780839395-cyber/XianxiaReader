@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+2026-10-23 S关联诊断已本地实现，零CI：仅三份Swift及必需Vendor摘要共4输入变化，其余615保持。配对实例限定的实际WK提交/回调/采样返回、同次JS布局前后scrollY/时间及updateViewports三来源写入前后已接线；独立256条journal不占原128控制事件，保留丢弃计数。原视口用例、smoke/Release JS字节保持，原guard/断言/预算/等待重试规则保持，无新挂起点。484语法/七类静态、4工具、4离线JS样本、4附加回执正反例通过；新增Swift机制与真实WK/编译仍未验，不能认定1767根因已证或旧故障已修。1211旧原件/Build30/普通HEAD/index保持，旧full191/192及Release/手机缺口不变。见[实现与验证边界](Documentation/I6_VIEWPORT_S_READ_DIAGNOSTICS.md)。
+
+以下保留各自当时状态，本轮本地实现以上文为准。
+
 2026-10-23 S读取时序本地审阅完成，零CI/运行输入改动。已证S在屏障前只查一次缓存，放行后不会复用native后来提交的2367锚点，而是重新执行三次JS；1767来自新返回值，不是屏障前快照重放。终结时2367锚点仍保留，原guard正确拒绝S。原件缺少实际JS提交时的inner native offset及写入关联，尚不能确定为何DOM又报1767；已写最小被动观测建议，未实施/未派CI。619输入、1201原件、Build30和普通HEAD/index保持；旧full191/192、Release/手机缺口不变。见[审阅与证据边界](Documentation/I6_VIEWPORT_S_READ_REVIEW.md)。
 
 以下保留各自当时状态，本轮本地审阅以上文为准。

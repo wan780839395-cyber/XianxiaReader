@@ -1,3 +1,33 @@
+# S关联诊断本地收口（2026-10-23）
+
+基线b58b55b9上仅三份Swift和必需UPSTREAM摘要共4输入变化，其余615保持。配对模式且实例fixture才开启：实际WK提交（原load await后）、completion（原continuation前）、snapshot返回及实时inner native状态；同次JS前后scrollY/JS时间；updateViewports的load-ready/layout-slots/scroll-delegate来源，frame设置前/offset赋值前后及请求关联。没有新增await挂起点/Task/等待/重试/滚动写入，算法/生产guard/原字断言预算与原视口用例不变。原smoke/Release JS提取字节相同。
+
+补充诊断独立256条journal，不占原128控制事件或更新资格/准入/清理；有独立sequence/afterEventSequence及丢弃总数，原样本仍必须真实终结。clear清空关联，defer移除请求；Release只有nil关联槽和默认nil参数，DEBUG记录器文件级扩展。新增同步journal机制（smoke忽略、超额不污染、晚回调清理）仅待下一原生配对执行，不能写成已编译通过。
+
+已执行：源码合同/615输入与1211原件核验、484语法/七类静态、4既有smoke/配对工具、4真实提取JS的有界DOM离线样本、4附加journal回执正反例全部通过。首次语法候选/诊断保留，已改文件级DEBUG声明，未改检查基线；工具路径/普通索引显示误差有单独记录，不算Swift编译或源码删除。后续仅项目文档静态检查与私有快照，不重复运行已通过的源码检查。
+
+恢复build/maintenance/I6-viewport-s-read-diagnostics-20261023含before/四文件原件、首次语法候选、source-diffs/source-audit、提取JS、完整本地命令/原退出/输出、frozen-inputs/result及final-checkpoint。新版本未Swift编译/原生/完整full/Release/手机，零CI；旧安全65/冲突null、full191/192及I6/手机缺口保持。原件/Build30/普通HEAD/index保持，不关机。
+
+当前片结束；1767真实回退原因仍未证。下一项若获新授权，仅一次构建/原同例配对，安全全合格才冲突，保留真实退出与新journal；失败先留证，不自动重派或整套。当前没有CI授权。详见Documentation/I6_VIEWPORT_S_READ_DIAGNOSTICS.md及ValidationLogs/project-isolation-i6-viewport-s-read-diagnostics.json。
+
+---
+
+# S关联诊断实现后检查准备（2026-10-23）
+
+三份Swift和两项Vendor摘要已补：实际WK提交/回调/snapshot返回，JS同次布局读取前后scrollY与单调时间，updateViewports三调用来源及frame/inner offset写入前后。配对独立256条journal保留丢弃计数，不影响原128事件/控制。源码审计确认原视口用例字节相同、smoke/Release JS字节相同、Release控制流按诊断签名/空存储归一后等价，615输入及1211原件保持，无新挂起点。
+
+首次语法检查已留候选和诊断：类内新增DEBUG声明使本地语法器产生额外ERROR；改用现有文件级DEBUG extension，关联字典只留Release nil槽，不修改语法基线。开始语法/静态、实际提取JS的离线有界DOM样本及四个既有smoke/配对工具检查；这些均不是Swift编译/真实WebKit。零CI，无新等待/重试/算法/guard/原断言预算修改；新Swift journal机制仍待原生，旧full/Release/手机缺口保持。
+
+---
+
+# S关联诊断本地实现开始（2026-10-23）
+
+用户仅授权最小被动诊断：串联实际WK提交/回调/采样返回、inner native offset和updateViewports既有写入来源；原同次JS补布局读取前后scrollY/JS单调时间。仅三份Swift加必需UPSTREAM摘要登记；Adapter/CI不动，零CI。配对模式且安装实例fixture才启用，独立有界诊断journal不挤占原128事件、不改变资格/屏障/guard/原断言预算。无新await/等待/重试/滚动赋值或定位算法修改。
+
+基线b58b55b9、619输入/既有原件/Build30/普通HEAD/index已核，无其他运行助手。恢复build/maintenance/I6-viewport-s-read-diagnostics-20261023含before和四文件原件。当前未实现/未本地验证、未编译/原生，旧安全S资格65与full191/192、Release/手机缺口保持，不关机。
+
+---
+
 # S读取时序本地审阅收口（2026-10-23）
 
 零CI/零运行输入改动，审阅已完成，具体DOM回退写入者尚未证。关键已证：S先冻结native输入并完成一次缓存检查，再被sample-before-read持有；期间native新读2367并提交A，original-capture命中A。S放行从缓存检查之后继续，三次均新evaluateJavaScript返回1767，原guard以document-top-mismatch-exhausted拒绝；终结时A指纹仍在，旧冻结诊断context中的anchor不代表缓存被改回。未resize/主M，不能追认为旧full根因。

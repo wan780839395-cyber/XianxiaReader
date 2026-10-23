@@ -1,0 +1,3172 @@
+{
+  "recordedAtUTC": "2026-10-23T05:50:06.426990+00:00",
+  "parent": "b58b55b9c85cac5ef1f629a195eb73c0d87f9697",
+  "implementationComplete": true,
+  "scope": "paired S read correlation diagnostics; local only",
+  "ciDispatches": 0,
+  "runtimeInputCount": 619,
+  "changedRuntimeInputs": [
+    "Tests/iOS/ReaderRenderingTests.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+    "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+    "Vendor/ReadiumToolkit/UPSTREAM.json"
+  ],
+  "unchangedRuntimeInputs": 615,
+  "inputs": [
+    {
+      "path": ".gitattributes",
+      "sha256": "ba46cd41f095c6a1775934b1e890f699557f65298b4324b088d17b94bb82d914",
+      "gitBlob": "5217ba8c0391d14735cf0f625e64db0c30eeceec"
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "sha256": "9a8f3de8c73b9a8d239277b89915c8159bc20803cafa6d0fb5716aab758bed11",
+      "gitBlob": "08d5422ebb00bb72a93080fa894e2ed86c18456f"
+    },
+    {
+      "path": "App/AppRootView.swift",
+      "sha256": "62cc4867236f46ec91de135e103eb77aad5076688cfb6f780096dcc565012995",
+      "gitBlob": "c0d3a2883257062dbff074f1af57f9c9091291f9"
+    },
+    {
+      "path": "App/AppServices.swift",
+      "sha256": "2be769ac62d81eb9fd9ac1237e71ec2d715ed6dbfafd826956260871289a4ddb",
+      "gitBlob": "97b0f9ecdd57fdd4276c051225fcf8e43ad73e5a"
+    },
+    {
+      "path": "App/Import/DocumentImportSheet.swift",
+      "sha256": "8da1543fea93d56638316fe6129d9c3f0705ecd5bf6a4b8132148e2b972d3847",
+      "gitBlob": "b7531ec0302f7f57becf8499c7d2454201b67484"
+    },
+    {
+      "path": "App/Import/EPUBDocumentPicker.swift",
+      "sha256": "7f2455a6bfcc0919b83db9fa59069c31a0510d31743cee7436b676ef1f4e66e1",
+      "gitBlob": "d1235984cda7e094479ee51e21c6eb4fb2021234"
+    },
+    {
+      "path": "App/Import/EPUBImportService.swift",
+      "sha256": "b1c845ead44450dcad321817c3a4e5dbf91e21ea4a25fef4090cbbe3ba339672",
+      "gitBlob": "768ffe3f00bea25ea9bb1fdb8cb13498e7b68fce"
+    },
+    {
+      "path": "App/Import/FontDocumentInbox.swift",
+      "sha256": "976085f45993fe8ff2437524eb38b93b4927db3a6c13858d006b3b5f952a8a29",
+      "gitBlob": "2b5da37fb0035422fb9d30dad4393e84851d5914"
+    },
+    {
+      "path": "App/Library/BookCoverArtwork.swift",
+      "sha256": "34d7f46fc75fa4a8da1d638fff788d6227d8e49e623bce331d6d360008f923ff",
+      "gitBlob": "6f17438c46823c69fef9ad35f83c0ff51b672b0e"
+    },
+    {
+      "path": "App/Library/BookCoverEditorModel.swift",
+      "sha256": "c10c498958f4199f7066081de65d1b4dcd419296363035002043cbdbafa3f839",
+      "gitBlob": "0ef7908c0ef16ea79ab92965d99724e29c73809f"
+    },
+    {
+      "path": "App/Library/BookCoverEditorSheet.swift",
+      "sha256": "fb09fc3c11536423b4941cbd3291977589185bf8efa980b8c559843eecf206f5",
+      "gitBlob": "f41039363c392f4a39bf80dc975a5276f16c3ed7"
+    },
+    {
+      "path": "App/Library/BookCoverView.swift",
+      "sha256": "735552a4d9f7f71e21d17ff7dcb407db44c1e16302801468652fbe0674ca4b9f",
+      "gitBlob": "0ff2f3b3063dba9a8c3c53761f3f8e04695bf1ec"
+    },
+    {
+      "path": "App/Library/BookRenameSheet.swift",
+      "sha256": "57c4f9d00968dc093f82c9fa9707bd5cac04b65f71ff77ea57dde9cc41395870",
+      "gitBlob": "f665e32d09ed77b1cf7271d6faa141b728c0fba8"
+    },
+    {
+      "path": "App/Library/CoverImagePipeline.swift",
+      "sha256": "63d202142529dda8c77087009e59973975ca40f86b8e9056705291b13e2b2e73",
+      "gitBlob": "6c446a1cb0b78efd84c9f1e92bdcf154537dfd4f"
+    },
+    {
+      "path": "App/Library/CoverImportService.swift",
+      "sha256": "0adf9c9f80248041eeb01ec5fff6b84b7cdfef2511ffa563f759b4270e6cfd25",
+      "gitBlob": "0ccd2296bb4222f6f15088918cfa98ef7c27768b"
+    },
+    {
+      "path": "App/Library/CoverPhotoFile.swift",
+      "sha256": "8de1c70b6c8d474cff2af622d4f96474a394a33ffeecc6d9eb18ad152770fd62",
+      "gitBlob": "3887c9eeda7a89c0a31b74cd4de8b175ef691af5"
+    },
+    {
+      "path": "App/Library/LibraryMotion.swift",
+      "sha256": "3ef8be81ac88c9c3dcd554a149715c62f15a5bf3e14f847d9c9ded8e55701192",
+      "gitBlob": "8b48aadf92b64ae7806bfb23e06261c8d812437d"
+    },
+    {
+      "path": "App/Library/LibraryPresentation.swift",
+      "sha256": "13b5bf5a0fc1760f88b43cac1e4b1efa1dc95a05d32f8535d8ce4e22f068a6d9",
+      "gitBlob": "7f2ec44afa732ede1b02d7b40ce8833cda8d741c"
+    },
+    {
+      "path": "App/Library/LibraryTrashSheet.swift",
+      "sha256": "3f5cd22cb7d724a9453abee6d91395f94cf20d3ba05eb93751cb386457fdaeda",
+      "gitBlob": "337e3f2ff7bb0ff5e639003dcc92c472fc92d24d"
+    },
+    {
+      "path": "App/Library/LibraryView.swift",
+      "sha256": "be50e9bb76f1f686a847bf85ec1898e9ff3914dbfbbe3894df2055c5f450d0f7",
+      "gitBlob": "16e842e746701582a33a6ba56c55e5f8581821f0"
+    },
+    {
+      "path": "App/Library/LibraryViewModel.swift",
+      "sha256": "2205aec7045f0ab44407227d0bdcfde1c9a11c4099eae25da14f0649e29f0e03",
+      "gitBlob": "af4f884ec2f27903fb8f7328b5366187859e936d"
+    },
+    {
+      "path": "App/Library/ReaderPresentation.swift",
+      "sha256": "bad485d608c5329e649b1f8b2376f6a92573d80334148927fc5e7a3ef1c4e1c7",
+      "gitBlob": "82c1f11003e06aa3e61ba9815e8abc24db3d6938"
+    },
+    {
+      "path": "App/Library/TXTEncodingSheet.swift",
+      "sha256": "33708562463bda223bed3eb753b5b9df177cc913d218e139f2bb00e8710387b5",
+      "gitBlob": "d09d39a723869e001607ce8fa95a7778f9f0df48"
+    },
+    {
+      "path": "App/LibraryAssembly.swift",
+      "sha256": "ffd418154739046a2e98ba474149a69df23a7d521abba940fedb9adf791a12dc",
+      "gitBlob": "e4ae870f0575c95232234fe945d9a0f78e96f75b"
+    },
+    {
+      "path": "App/LibraryInteractionFixture.swift",
+      "sha256": "b06a1183b6ae854821aa1876c519453b04651f3f19ac6a2fda99d6ec33333574",
+      "gitBlob": "5eeed0ad35fb7422f62a0ce2248c6b582f879bb1"
+    },
+    {
+      "path": "App/Reader/BundledReadingFont.swift",
+      "sha256": "c2179b8b8fcaeba8a3d136d4f303b460e735b132e7cc96552d7ea17bac61abda",
+      "gitBlob": "fb770296fcaf48296c20d7bf4b9334ae6e7b85fd"
+    },
+    {
+      "path": "App/Reader/ReaderAppearanceView.swift",
+      "sha256": "62adc867e738de4f24fca0535ba351b2b6173dfb91f9bdcfa44794af8d3e0c65",
+      "gitBlob": "0b4be78919c64c567bc7636d4e0c08f27a767e52"
+    },
+    {
+      "path": "App/Reader/ReaderCollectionViews.swift",
+      "sha256": "8ce4aab2c25fd2535812d029a6a8618498aaf0a4b29e99230215ce44bbfca51a",
+      "gitBlob": "ddc8f6354a3e652f23ad21cfd2e1c57891ad8153"
+    },
+    {
+      "path": "App/Reader/ReaderColorScheme.swift",
+      "sha256": "0d747f533e9e15318b017d23715348f731c4ed0a08425308a17873f6d01cb8ee",
+      "gitBlob": "e01ad673d0c6942e79840907727e9398775e097c"
+    },
+    {
+      "path": "App/Reader/ReaderImportedFontsView.swift",
+      "sha256": "85aad462fb0b07ea0a193b42db55de5c61baa9513e0f999877aca60611ac6919",
+      "gitBlob": "3b93d06109d9fcae6df3c323987b4517f7f31527"
+    },
+    {
+      "path": "App/Reader/ReaderMenuView.swift",
+      "sha256": "071c970e15013c0de0ff7e206682b672abdea4adc6f368a7aa0a14a6e825dfe4",
+      "gitBlob": "8081f2de661ae3770dda18c068118ed4d459639d"
+    },
+    {
+      "path": "App/Reader/ReaderPositionAdapters.swift",
+      "sha256": "f3f0423a98d1e6c9fcc40bdb19d47ed13b50e4261e2fd02ab6cb6e034244c4f3",
+      "gitBlob": "ec7c558340c20d0d0fb9ad861b979bb20d67ad7a"
+    },
+    {
+      "path": "App/Reader/ReaderProgressView.swift",
+      "sha256": "3a9dfbbdf8e59d00491866559933505b8c729be406353c4eca2ccbcce0780150",
+      "gitBlob": "68ce4a60f62803f622d2e543a2033687f8ee81d6"
+    },
+    {
+      "path": "App/Reader/ReaderSessionHost.swift",
+      "sha256": "9fc7c9fb915e31786ef3bb7805dd4ff4d541d13e44bcc6f674f8e8759b446425",
+      "gitBlob": "19fd2464c6745b7d6b52562ea4434dd7278dca49"
+    },
+    {
+      "path": "App/Reader/ReaderSurface.swift",
+      "sha256": "ad077fbde1ef24915ddc6a8bc82226a3e9d327f4cf09bc314ba712a14b296f90",
+      "gitBlob": "ca7cb856ad618a5f38e64cf1336d303b1f9cf649"
+    },
+    {
+      "path": "App/Reader/ReaderView.swift",
+      "sha256": "05a12711d7a31b4cf26c8fe790ca4f4a56e3c557384976c18c60fe0fb7da19fd",
+      "gitBlob": "e103882757df9cc51a1a17c9749d7a794be88cc3"
+    },
+    {
+      "path": "App/Reader/ReaderViewModel.swift",
+      "sha256": "1088600e6a0b7fecea6b8806941b4c2f908ede45165b823bb762370712dfeaf5",
+      "gitBlob": "3eb63b3ee37818c60e54e596f9af723d1b17889b"
+    },
+    {
+      "path": "App/Reader/ReaderVisualStyle.swift",
+      "sha256": "eb54d552ccca88cecbab07ef408536b1968ae4b36deaa1042f3f61acc741f2ad",
+      "gitBlob": "0892d1307da7ccd478cfda818c3b750f6892ff40"
+    },
+    {
+      "path": "App/Reader/ReadingFontImportService.swift",
+      "sha256": "319dc11b87e209756cc67f9c8ab3014b3305b13c1c19a7475bb1419a9281b43c",
+      "gitBlob": "20654abdda6280cd4bdf6408f5c2fe727bcb736a"
+    },
+    {
+      "path": "App/Reader/ReadingFontPreview.swift",
+      "sha256": "d22c50d600c4f634ded859da4e7862d0cdc20ecb32613de6648777e509f8efbd",
+      "gitBlob": "e109cc11897a1545f60f7f74eb4cefbcbc0e2b1a"
+    },
+    {
+      "path": "App/Reader/ReadingFontPreviewRenderer.swift",
+      "sha256": "86e410a4b5b99b299f36188a9b5cfd5fadbba20e6b0192d0615bc9932f2b77fe",
+      "gitBlob": "d43efe7bff03897c24e4c6be51ee5290fa3e6e85"
+    },
+    {
+      "path": "App/Reader/ReadingLayoutPreset.swift",
+      "sha256": "b9f000f4551f0b11cf0b63279bc7b8e3fbfe98e3463c6075d7f45c6916cd74c1",
+      "gitBlob": "505e6b29ff9c31a0d3070cc92ec9e9dda0446b04"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "4ff59f84e094ea8a283785a1aa07d18a6a580372eb96940cc03aa67629b7f93f",
+      "gitBlob": "83a5b78aefe76fcef27ccfb324b3dd94bd303062"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722",
+      "gitBlob": "8537dc6c6d252bcf96bc11b374a4769a42e92db5"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "412c9c9bc971304e71c454ff9f8d50f1a312a1dfac93e0445db0356d7c5f460b",
+      "gitBlob": "63f4b44b2d5cce8e94906c71019e5bde01d4f764"
+    },
+    {
+      "path": "App/Resources/Assets.xcassets/Contents.json",
+      "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49",
+      "gitBlob": "f223229d3bb31f7cb8bd5ca05dec684d49f13a18"
+    },
+    {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular-OFL.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0",
+      "gitBlob": "bb1634cb03ee7202d5c66bf2754705493bd73e1e"
+    },
+    {
+      "path": "App/Resources/Fonts/LXGWWenKai-Regular.ttf",
+      "sha256": "bf73f995c05f3f7baf7840b9d76d8d9678c8b150a020946a394ca63c67ed1350",
+      "gitBlob": "a138a96154c6978324fb5faf95214dacafe7b42d"
+    },
+    {
+      "path": "App/Resources/Fonts/MaShanZheng-Regular-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "gitBlob": "9e252e1997092670936a7f1d38560973d919f6b0"
+    },
+    {
+      "path": "App/Resources/Fonts/MaShanZheng-Regular.ttf",
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "gitBlob": "11bbfb9867d70612158229d037e7a5f622bd0e38"
+    },
+    {
+      "path": "App/Resources/Fonts/PROVENANCE.json",
+      "sha256": "02ff8d5fc3a03c388312f6ad1b5ece510373aeaea98276028e09d0b83f7a3605",
+      "gitBlob": "f9d3a55d25d13a3e5784fc37da32b45ee9e6d9e9"
+    },
+    {
+      "path": "App/Resources/Fonts/README.txt",
+      "sha256": "f5c2c83d3072883178ad73f7bb739faaa1d40fce2a9f5a67d7d5f19dea25933f",
+      "gitBlob": "0fcdb6e3d3120b5eb1a635bb312de84b341609bf"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSansSC-Regular-OFL.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+      "gitBlob": "3ff0ccaba06857bf292ade9a50f16a0f02b3b8d4"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSansSC-Regular.otf",
+      "sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
+      "gitBlob": "8113ad53da18b6a08b133c6c460ae1d818a0f865"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular-OFL.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903",
+      "gitBlob": "07235a78b936958799812313565ba0d03e7cd7dd"
+    },
+    {
+      "path": "App/Resources/Fonts/SourceHanSerifSC-Regular.otf",
+      "sha256": "78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117",
+      "gitBlob": "cb41635674be23029e98469f729eded6ebc54611"
+    },
+    {
+      "path": "App/Resources/Fonts/ZCOOLXiaoWei-Regular-OFL.txt",
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a",
+      "gitBlob": "8e5184b269289a6adda77caa05defe3acc309651"
+    },
+    {
+      "path": "App/Resources/Fonts/ZCOOLXiaoWei-Regular.ttf",
+      "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+      "gitBlob": "2d8731a231f2e6625b32d96b87f84852e24f9d82"
+    },
+    {
+      "path": "App/Resources/Fonts/ZhuqueFangsong-Regular-OFL.txt",
+      "sha256": "66cc01ad4df62fca6936431a426104cb32a52ce8da49de9a7d643e02d7659043",
+      "gitBlob": "1091c8f8b724daaa25b0c941ae3115217744c6c6"
+    },
+    {
+      "path": "App/Resources/Fonts/ZhuqueFangsong-Regular.ttf",
+      "sha256": "558c62730844fe54ba220146ed62f859d4e2880188d92d985f8921c6e3743bc4",
+      "gitBlob": "3f69b67fc67f1fd6b640b00c101db8a39c547502"
+    },
+    {
+      "path": "App/Resources/Info.plist",
+      "sha256": "1b9809e2ea8a6edc54de45035b343f2f7c1d60468f9ede2ffccf660c8f84ccd5",
+      "gitBlob": "42df18d9272d09a143358cdc3e2d5e8c34385cef"
+    },
+    {
+      "path": "App/Resources/ThirdPartyNotices.txt",
+      "sha256": "533ba133944e2d4b20d963b5aa0bd9413f8a07638e57ae0fcdc95809fc619ac8",
+      "gitBlob": "d6aaf933fc836598e526d9350543a4274e7493a0"
+    },
+    {
+      "path": "App/Search/ReaderSearchField.swift",
+      "sha256": "66b64ec1118a99152620e082bbd8cff81979cb301b45e9153240dd8ca8598af5",
+      "gitBlob": "1608148423c4e1b16dee7efdc1d57976c7af05a5"
+    },
+    {
+      "path": "App/Search/ReaderSearchView.swift",
+      "sha256": "5b8a702145cbe02f86a878fe78ab93fb74f145d153b36b3420f74f7fe7d3d9ea",
+      "gitBlob": "30311db1e4bb047424b4d6db8948f70aab8809fd"
+    },
+    {
+      "path": "App/Search/ReaderSearchViewModel.swift",
+      "sha256": "ba78f31067cf927524ea94d608b171d54da53a332b7592cd015ba7cfc6e962c9",
+      "gitBlob": "06f36c4b3b61c1618632c9fa5872cae6d168a59a"
+    },
+    {
+      "path": "App/XianxiaReaderApp.swift",
+      "sha256": "498fed27efc62b4a9c194e348c28fdd4798d58ead8fd70a15b1b63560c637f97",
+      "gitBlob": "383f03f079018e6ae09bfd8f22ea3d089f4d9deb"
+    },
+    {
+      "path": "Package.resolved",
+      "sha256": "cda92b91b4ac6bd6a2231342773432c11da7d623ce9e100d8476be99506b5537",
+      "gitBlob": "ec778d9d8289498372c2a8923d8ab2f8cd1ed798"
+    },
+    {
+      "path": "Packages/BookImports/Package.swift",
+      "sha256": "edba844e721f6615b5585f8a573ba8509d0163413bf05c1fa4165be9acc4d3b9",
+      "gitBlob": "0dc249ad0e54d0cbf88579c15707911dce2629ed"
+    },
+    {
+      "path": "Packages/BookImports/Sources/BookImports/EPUBImportService.swift",
+      "sha256": "d23be340ff115635acc76862db09821fbcef3e63cdbade69c35d4d47cf8052b2",
+      "gitBlob": "00be5ff8a554ef2c526af15a1b4d0332c0a735eb"
+    },
+    {
+      "path": "Packages/BookImports/Sources/BookImports/EPUBMetadataReading.swift",
+      "sha256": "3999ce6ead4290493237336588bc079b8c5214d490981c34b824cbb9d1bca3d4",
+      "gitBlob": "e0a693e01f00594d12252db1203b9724e699604a"
+    },
+    {
+      "path": "Packages/BookImports/Tests/BookImportsTests/BookImportServiceTests.swift",
+      "sha256": "83d20602c3b65545cf0e9b08bdbc45afe7a070f1db7a5f2a01a8f426eaa05abe",
+      "gitBlob": "ca080b32d72e6210f67be8b3e9ba86f21d30eecf"
+    },
+    {
+      "path": "Packages/LibraryShelf/Package.swift",
+      "sha256": "d7433e9635507733160c0fab51e6f00cdbcfe4f9c66b55ce8a1b3e76d4ed39c6",
+      "gitBlob": "81b81fa7106248d4147b96c8f8fcae89a165564c"
+    },
+    {
+      "path": "Packages/LibraryShelf/Sources/LibraryShelf/LibraryCollection.swift",
+      "sha256": "5f7a68ef955d3655d78188cb85a96bc214f15350af5391d5b4358d22cf303bc7",
+      "gitBlob": "4f304c33c1bbfc5f77f53f6d6f47cabc4dd545d2"
+    },
+    {
+      "path": "Packages/LibraryShelf/Sources/LibraryShelf/LibraryRepository.swift",
+      "sha256": "70aa06ff1a24faa1a01a41abdf5bb8bf9442d16e97f581bf9ad55cb8834c2674",
+      "gitBlob": "1117bd95da895f40fafae20632d3efc9e6efa11a"
+    },
+    {
+      "path": "Packages/LibraryShelf/Tests/LibraryShelfTests/LibraryCollectionTests.swift",
+      "sha256": "fd64c2d5ff12703827b12a38972498d33c37f973de7d089d76a2dd79e5f8439b",
+      "gitBlob": "21cff607fd79e2ad248b0e09a8fd100e93bbd948"
+    },
+    {
+      "path": "Packages/ReaderPositions/Package.swift",
+      "sha256": "75528f2fb0e3d3aa090e4dbe2a83d8048aed91d5df91e1677b943a0197743ad0",
+      "gitBlob": "a3e18bd3ec260d111b2f1124f026b0cb566e17c1"
+    },
+    {
+      "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderNavigationCoordinator.swift",
+      "sha256": "903727d12ce67bb0db6ec150d1ec3797018a11436c7639624680038305921626",
+      "gitBlob": "10c50e91c074b7b40f61153c51df4be370c8cc7d"
+    },
+    {
+      "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionPersistence.swift",
+      "sha256": "b5dfeddbc7dfe513a998c585eae951cfbfca89ae228cc77b0ca85f2dfd015a12",
+      "gitBlob": "53e3b216c6c4384f8a0f672270dc57ff4a81e4cf"
+    },
+    {
+      "path": "Packages/ReaderPositions/Sources/ReaderPositions/ReaderPositionState.swift",
+      "sha256": "92fb1d0b9a0e5aa0d19a1d98d20a728d3a01e8ffe5133c2841be3dcb5c306976",
+      "gitBlob": "2ba2d5cd1ef9d123702c5962b0b1212b8d1cae18"
+    },
+    {
+      "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderNavigationCoordinatorTests.swift",
+      "sha256": "dee424b94e4747bfef78d0e2bb4763dd7a061cfbc445b798d73ad98374c243f1",
+      "gitBlob": "e7ce72adb307251684e025ccaa155cdb66e07765"
+    },
+    {
+      "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionPersistenceTests.swift",
+      "sha256": "226977ded8ee2378ebd36ddfd7fbde1e879fac73ec67e1a77745f4a37e63837f",
+      "gitBlob": "4b7a16f422bd051fc9402f8f95f501379be7fbf4"
+    },
+    {
+      "path": "Packages/ReaderPositions/Tests/ReaderPositionsTests/ReaderPositionStateTests.swift",
+      "sha256": "4e44c6760c29a0490389e365242fb5519e4f0f341a9717b27469e5123208723e",
+      "gitBlob": "a79052dfc701c7ec501eadde7266bf4f23ef272d"
+    },
+    {
+      "path": "Packages/ReaderSearch/Package.swift",
+      "sha256": "a6fd7adef1449a641bd23110487a9b8443f3333e47a8e668a914d7109ac88f8e",
+      "gitBlob": "382501773b0a14b08c38e66004d6758ec317083c"
+    },
+    {
+      "path": "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearch.swift",
+      "sha256": "4c5367f2c13ab9253df15bb8d13e9a596e614594dc280cba7e6282a24c140c4a",
+      "gitBlob": "e901668766d350cf62f8132230a61b0ee9f0687e"
+    },
+    {
+      "path": "Packages/ReaderSearch/Sources/ReaderSearch/ReaderSearchViewModel.swift",
+      "sha256": "fca55734b2807283812c1df37df9c9c1c45ffb2f2d453d1a58b63a56d257c1e8",
+      "gitBlob": "f62e210346dcb15538d558e11d92d4968ff7160a"
+    },
+    {
+      "path": "Packages/ReaderSearch/Tests/ReaderSearchTests/ReaderSearchViewModelTests.swift",
+      "sha256": "d8d3e6031f4728b3162cd5ff692c08c2bab6576de4e5591d714b73dd9be45265",
+      "gitBlob": "cf07c005efbe1f06ee1e294e4b02053c07bcc494"
+    },
+    {
+      "path": "Packages/ReaderSessions/Package.swift",
+      "sha256": "09c03ee7b160d6f5af474302a93997696c7569f33f51fd5ceccc05a78a44b68b",
+      "gitBlob": "01e43a87778321ad5d5c1c5af5eab3700ca63147"
+    },
+    {
+      "path": "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionLifecycle.swift",
+      "sha256": "294e337366b05e9ca64f5288aad684579d15503eb98ffd51c8df875b1decfd25",
+      "gitBlob": "cbd1601094b91cd8d25dc0e6636e32a51f6ee0d5"
+    },
+    {
+      "path": "Packages/ReaderSessions/Sources/ReaderSessions/ReaderSessionState.swift",
+      "sha256": "5a3b60d436fc857683cd508af3249f03e5b047d63467399f8678fb0209a2bfdc",
+      "gitBlob": "4d0798eb7fa2d0804acaadf6136bc8339bc0bd3e"
+    },
+    {
+      "path": "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionLifecycleTests.swift",
+      "sha256": "3b5a4b57f5f472e489d2989ddf5e990895861060d52743eea1829c7b6f339b47",
+      "gitBlob": "0364c51ecef5d66b1b89e6cd443562a0b63da323"
+    },
+    {
+      "path": "Packages/ReaderSessions/Tests/ReaderSessionsTests/ReaderSessionStateTests.swift",
+      "sha256": "97a75224b8abdd5367211c355a751a059268ed702740ac0fe10b9d9d087cf11b",
+      "gitBlob": "1bd21299a181da49d45970591eb35be46d4de16b"
+    },
+    {
+      "path": "Packages/ReaderSettings/Package.swift",
+      "sha256": "7b42b0f6c8060ab457a175b41e0165ed024354df2174703e742187e1fc3e6ee4",
+      "gitBlob": "2d1a48952136d8e0a2e9322ee4364ebbcd71d1e0"
+    },
+    {
+      "path": "Packages/ReaderSettings/Sources/ReaderSettings/ReaderSettingsPersistence.swift",
+      "sha256": "408b582fc0cc0ef0a89566ff86b73078fc79f6e03137fd5d793429803dee1951",
+      "gitBlob": "6f2404104d7e0f1036d762ad31905b45250b5ee8"
+    },
+    {
+      "path": "Packages/ReaderSettings/Tests/ReaderSettingsTests/ReaderSettingsPersistenceTests.swift",
+      "sha256": "fdd0c80ee2f084bea169639846de4bd01de951fe01091e0bf66cbbce3a591ed8",
+      "gitBlob": "42a2eba94ffd4c41a79653cd00a3b1aaa45ad52c"
+    },
+    {
+      "path": "Packages/XianxiaCore/Benchmarks/TXTPerformanceProbe/Probe.swift",
+      "sha256": "749143ca594e57561eb0772ee0ea0daaa3dd1740fcfe741030657d2f7d70a9de",
+      "gitBlob": "761eb74006313cf52f79974b95da62f56ebf2200"
+    },
+    {
+      "path": "Packages/XianxiaCore/Package.swift",
+      "sha256": "601947d583aafbeffe7cfb3ce0ea716e863b092982773b119a086644de423ee1",
+      "gitBlob": "1fd1d7969932e1b56c36aa7163330413bac5d7ff"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/module.modulemap",
+      "sha256": "bbfe59a972a3e8e09e347c04bc22c0eacd2544881af8a4b6068bfc30b38466e8",
+      "gitBlob": "0a291b5e206495789da0b517a1e500707eabac9d"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CSQLite/shim.h",
+      "sha256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024",
+      "gitBlob": "f52e1f09e6bbfc8a3cb0c03c6f4624b77a664277"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CTextCodec/TextCodec.c",
+      "sha256": "09ab7f8b7256f3bd75084dbc74c035f45259ecf211efff1fa125a3f2023c0d9a",
+      "gitBlob": "e098599d3cd30b7465d30f635b7117de48b02e34"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/CTextCodec/include/TextCodec.h",
+      "sha256": "e8522dfd95a6ec6e2f0ae8e6829bffe103482c1bf97f789f2760ffbb9e75ffa8",
+      "gitBlob": "bc3861e204f68242e4d13ad2d0b0c7d54ad1b3da"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/BookRepository.swift",
+      "sha256": "734472726af60b277073d783bcad4e44dff203a58fd2489c7155d27f75742fa5",
+      "gitBlob": "93266acce32114faaf55336ae1b94366dbb99e71"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/001_initial.sql",
+      "sha256": "13368de0f9334bc1ff1ee171410db7655abf92ff305b2f4e5cd6c09db5e80845",
+      "gitBlob": "66d240831249219654ae4fb6c842a4150be1c02c"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/002_removed_books.sql",
+      "sha256": "5637e08f6a43da4b54ac820607f417ef93a912c0e18dcd3d23310c13d961717f",
+      "gitBlob": "04e333615e2b429061b2d7a8c0ac1cd093ccb141"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/Migrations/003_import_identities.sql",
+      "sha256": "2ccca1e5c302453c8a41cde812cc481ec7f0103c39e2656cef7606f7a0e0092c",
+      "gitBlob": "b8dec60ec8ebe4e7694adb6498b28f1d72a83b21"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteBookRepository.swift",
+      "sha256": "940abc285fe5eb1e70787f2a48523af5d2d5e17575720bf52ef66cdf3f592afa",
+      "gitBlob": "56710ac2abe706554066f94d11f42df6b4d7e7ce"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Database/SQLiteConnection.swift",
+      "sha256": "4200e82109ffe402484b35d00603cbc8492c10fc6fd598bf281b4d6261b6e1a3",
+      "gitBlob": "8a2ea0d4aee3a1f4bae33d11b3ed1fa17e73c6b2"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookCoverStorage.swift",
+      "sha256": "f76c85d73df7a97c2e4f1998f35bb0496afa83245319b633db9358b1561dff5d",
+      "gitBlob": "0d8e8114a42f16573b084fea3b68fdf42f8254ec"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookFileStore.swift",
+      "sha256": "5e66ba59fa4cca9c9f3fac640274daca99d40b5722c94d8bf51871e2bcb1512f",
+      "gitBlob": "43f28ca8144ec9ff9161a576194fbcd521aaf99c"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/BookImportDeduplicator.swift",
+      "sha256": "d296d214666f686171c3380f334d16530712593c00763ebb6ac8cca49fa8c207",
+      "gitBlob": "4275afbe7b9fed1bc5cfec557b198914044f59f4"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingAppearanceStorage.swift",
+      "sha256": "6a1c53d0d0cdab0b704199a2581e742d761a035e4efff9ca3294e048635653bc",
+      "gitBlob": "537562e2497f1cbc65a2287d3ad7df2785f2a57b"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingFontStorage.swift",
+      "sha256": "54ff14a83958717d9e8309a3a7d025ee408455e623377b081e2711c564be9d95",
+      "gitBlob": "a034707acc1e6ffb845dc5339f51edb9cd6d6607"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/ReadingInteractionStorage.swift",
+      "sha256": "32d8f0a2de694e25dae9564a9ee85d450c0f8b21c34b49a1a4e6b95b7765e6e0",
+      "gitBlob": "7615edf7f61af1eb2dc42b75dffa6f8bb05b1dae"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Import/SourceFileCopying.swift",
+      "sha256": "544d50ed01f307aa2cada2c63d7abd37d760c190f7e96982874a7d318f8752aa",
+      "gitBlob": "f33439f75f36b494192441d740b29bd4402bf7ae"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/AutomaticScrollClock.swift",
+      "sha256": "68c80533eb8cf49e0f2e0b9475122bdd343e7ca7ab245de123fcff289e52d25b",
+      "gitBlob": "6793da5aff0d6c1f2f8580d7e555f7163141d556"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Book.swift",
+      "sha256": "11fac52df8fcaf3ab13bf89ede6b54ee944eb943bd47df2cd608cf72b1e877da",
+      "gitBlob": "e5cd764753afba880982e4d4ccab7a3b71e178f0"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookCoverOverride.swift",
+      "sha256": "fe6e07c55eab7bb42624eae07950149e8e46633e35b1faed19ad360ae0dbf305",
+      "gitBlob": "865d5b1a5be503140c23d7cfeef0e6f4155b6259"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookImportIdentity.swift",
+      "sha256": "99e42fb3d8370d5201e5f2b7422ab829cd16ce661b2577878c2061552c134997",
+      "gitBlob": "a2585bf7310414b36bdfab69d16ff9bb1a8e332b"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/BookTitle.swift",
+      "sha256": "bb1a8f01296aa58fc254a8655d32407e382a48cc32c67bb1cb4951d4d87bee97",
+      "gitBlob": "e43e392b0118cca77d3fa791d5ad09f14718d7fa"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Bookmark.swift",
+      "sha256": "dcff87fc3ddeb18b7d9ae1f99eb5956b4d49e45093a838dc611db1f76ae930b0",
+      "gitBlob": "32be1936b7657d20debc0b0bfa939987b2ded5d9"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/Chapter.swift",
+      "sha256": "42de49f68d4590ebac50849817356eead9bb5ae3de43c9397cad41ece2659399",
+      "gitBlob": "461b679ceff5bb543f9856e4f4bb9ea2cf9dfeaf"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/LibrarySnapshot.swift",
+      "sha256": "b4f04c15636b7ec3414e528ff4a0890dbb35897d627e1b1db44628a390c910cb",
+      "gitBlob": "592b0978f3838c8a926673c312b2085b5d88a20e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingAppearance.swift",
+      "sha256": "110f5c76f8885cc2943b35965856f14b673377416ed2f284d0951c147bbd5f83",
+      "gitBlob": "3b8590ec7191f14c60182e484252a9293d848b4e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingFontAsset.swift",
+      "sha256": "90f1956dd2e08a115842c8b39c5791f860f0ff46db10939185ccbdf93bd59447",
+      "gitBlob": "b167ee4d982f991cdcfa559c4158280be9eb5797"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingInteraction.swift",
+      "sha256": "65a14418f4084ea234da026dadbb0f7d414dbc87536548794bc6de076eb1537d",
+      "gitBlob": "f0de65d9bdc1f8e319835e382e05cf0392b51506"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/Models/ReadingPosition.swift",
+      "sha256": "c550f99a01b41b6b4aab476a153fe31e32cdae96b5b509a532529f861c505265",
+      "gitBlob": "3802e9c4f0434b3e3aa4566f6cdec8eb2afceff5"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTBookImportService.swift",
+      "sha256": "f12737f4ec442d6eac8a2b4533a635ce9d831e7d3662b0d657c4c6e0eca47b8c",
+      "gitBlob": "8b332cc2be6196f0ad48f14b3d3f2934fb07f0aa"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterHeading.swift",
+      "sha256": "75073b46ed80cb092b8cf7ee1ab7a8cb48a2e0255450c5dd3aff7d145e05e544",
+      "gitBlob": "c740397519d989e631a7a9c603c0d8fb54bfbc8e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterScanner.swift",
+      "sha256": "88944b1484c93c320ed826492805330ca242fc027d8a2315bfc361332c204c4e",
+      "gitBlob": "5a52a588b6bbd10fcc4d4cfd947c7b7d88c3b910"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTChapterWindowReader.swift",
+      "sha256": "65ebd28a0206490482d85f93c34e64a3b6d19e2804495c6a314b1ea5088b6977",
+      "gitBlob": "d878c4b643f4e388e26eb4c25a7adbee5a65e7f7"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTContentDigest.swift",
+      "sha256": "28f272160181f8ee1d36a0bd8916393fbc26ac3a99468d642042458c3e765fb9",
+      "gitBlob": "0625cfd2d16a50a99cb503e887cb214ef0907aa4"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexCache.swift",
+      "sha256": "04468541eb21e3db6a027f550832905257c0e7d554d0562c591fc858e5ab4dba",
+      "gitBlob": "917f7829772b91879df377e56b5d4c9b6d49ba86"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTIndexing.swift",
+      "sha256": "379c4894c9ee012971634ce58ec8105d8c5f5882fcc3fbd6b35068989511857c",
+      "gitBlob": "e5ddcb763eb1f0a31329294c69bfdcd0e9f49976"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTNormalizer.swift",
+      "sha256": "ce2d53d8a7e89393b51f30238ede4e47010398fac3d23882ebaa6b455aa5910d",
+      "gitBlob": "e4edee6d9d6b6943d0874fe93063c35c5c81c8b9"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlan.swift",
+      "sha256": "cd6c3c6b0eb2146a7648875a5699065ef599f258c3a9bed20e653664e6177ec1",
+      "gitBlob": "80c366efa2cc7fef6aeed4a5ae496fa56210bd1a"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTReadingPlanCache.swift",
+      "sha256": "41e4da8c7b56e9d38e193ca7a7181bde182f885d41b48f4e476f0d81f87d27cf",
+      "gitBlob": "6d5b00ad7bba018bd8c3d6ed854a4f07653ca7d4"
+    },
+    {
+      "path": "Packages/XianxiaCore/Sources/XianxiaCore/TXT/TXTUTF8Stream.swift",
+      "sha256": "21909001c065386a0a6535b36dbf3f24a781fcfb1924ca51e20c419b5138a373",
+      "gitBlob": "769e2d28cd9db086e7d1901b5feb326b91db400f"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/AutomaticScrollTests.swift",
+      "sha256": "81a71c84189e74d2bd42ac96c7f1931f3c5f4f49ee2c6afd602d806ee09c0090",
+      "gitBlob": "f181c4fa359bd4709fba3aba7cdf650db4b3620b"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookCoverTests.swift",
+      "sha256": "0c6a5003845ebfffc4a64ac5e5a7c9025c6c8bf35d428bf6c901f257a934883d",
+      "gitBlob": "363ac6d804f53ef41780cd67a6a36576cefb4dce"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookDuplicateTests.swift",
+      "sha256": "95ea8de2a8873d5dae2ff5e78359e77c8ca70bbafa26c9733ecf3dd0f20888eb",
+      "gitBlob": "3c7c5aed5c4a6e2ddb50c156421137b7d2b5f206"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookEditingTests.swift",
+      "sha256": "73d3387f5507bee25379c70402defc8c09b3d2db5d3a248f3d82888b53553126",
+      "gitBlob": "1a00627a73c6bc5ed84af8feb2db33baaefb514a"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/BookRemovalTests.swift",
+      "sha256": "ad8ff240cf0d92d05ed4487aeabb45638020d436a85756daa1469f456e0677f1",
+      "gitBlob": "29d3db5016150411376a1721fe5c0a43f572a21e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/FileStoreTests.swift",
+      "sha256": "b9f1443e24047f6b844a44d21b33799e7c6d0e45a3478dce0c6cef50d6c543ef",
+      "gitBlob": "56972858bc16b1791771aa366daa0e2071a0d49e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingAppearanceTests.swift",
+      "sha256": "e357bd0c59823ea66659b42ef7d069b2216329bde7542d12393c25beed618b7a",
+      "gitBlob": "1ba7a572942787933144e1cffd71f0f35788dbb3"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingFontTests.swift",
+      "sha256": "fe230c340ababb7969b378299d1febc588edadefbcbb19216ad5ae8e65ba8d96",
+      "gitBlob": "fbcb51fff06985124ab101ffe16193966aaf6f0e"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/ReadingInteractionTests.swift",
+      "sha256": "5d172c08dc5ce685b3f31c514c4e28a80d044855f4f98f682e8eba529135070d",
+      "gitBlob": "efa0079a6ac1b5b356ef8c35832930bf82ee6d88"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/RepositoryTests.swift",
+      "sha256": "e1d57e76fe6d59690620bae6b98915435f39f94ce5e88cc96626458562f14822",
+      "gitBlob": "b973debc2c45df7a55578aa29aed9439bab1a761"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTCacheTests.swift",
+      "sha256": "f76663171daa1cba2a436cd40d31e5956ca5904a5613c856c3d349565cfe285d",
+      "gitBlob": "40c3323f8465d2e5325b3eff3456815da0acea0a"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTContentDigestTests.swift",
+      "sha256": "1a9a2b1302f9972b6da02b726774446cba46538900e5188f0d7bd3f7deb46923",
+      "gitBlob": "f39c6f0cff36773a0bef6a7dc5f038567614bcb2"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTIndexTests.swift",
+      "sha256": "9e745494f4af878a67476e8a47859af6f325c79b65eac8981b57e150f914dc92",
+      "gitBlob": "c648e1f9aae6d6a83cdf08b5d7b123662761b31f"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTLegacyEncodingTests.swift",
+      "sha256": "e0bde8c8a818d0bbf603e808c138802d06b7e625752dee8cceac82bf27f5c0aa",
+      "gitBlob": "29ea75612f9fef3bd5e88b59a89ac939dba50688"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTNormalizationTests.swift",
+      "sha256": "3790926b5c252e3c830daf09483b2c18f0746333255894ec2a1202fd5714fd6c",
+      "gitBlob": "074aad83f330686d8c10603a035b92f6f02fcfcd"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTProductTests.swift",
+      "sha256": "66d4865ea9d93bcb6839c632f5ce2cd7c10606e02993f29c69df3229a37c00a3",
+      "gitBlob": "888070aaa5bf42a3128ec1e63762a6e6ec726d96"
+    },
+    {
+      "path": "Packages/XianxiaCore/Tests/XianxiaCoreTests/TXTReadingPlanCacheTests.swift",
+      "sha256": "b8b3541c4fad922659143b44e3a81f5b52719671a866575ddee5abc4d1b426a5",
+      "gitBlob": "0110966451ede445ea42c3b8d150351295bd7358"
+    },
+    {
+      "path": "Packages/XianxiaReading/Package.swift",
+      "sha256": "dbf64077cfd4f40714cf00d02769509c1baea70ec752faf993d005540531bbaf",
+      "gitBlob": "0b15ddb3e629f31afdc9bd7a5ad6b39d36a11d38"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReaderFonts/ReaderFontCoordinator.swift",
+      "sha256": "fff11b51607eb263d436d89eb234ed0e30c3c14277f5f965859c2aa07df8726a",
+      "gitBlob": "08fe303ab6ac363e6029570a6a92176333d045a1"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderEngine.swift",
+      "sha256": "5aed8b51b0cc543d278377b31e40bf2c86bc34e44ebfbb3d10bde8d4e484a1de",
+      "gitBlob": "5144b6bab931588a1647100e0d49eb3b8e2909f8"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadingInterfaces/ReaderSearch.swift",
+      "sha256": "18d5e0806a9c980604aa5d15377699792b6ac11fedd994ed30c7199847feed69",
+      "gitBlob": "9cf64173a31e6ade87b17a9aca306d3559c1b5cc"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/AutomaticScrollSupport.swift",
+      "sha256": "ec0a2567fe3bfe6fcfe6c763d12b0478a3f3b638197df2c06757406d72d1f855",
+      "gitBlob": "334aa6ef6cdbf1f8987d8d0969321d699d19930d"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumAppearance.swift",
+      "sha256": "0e6c2b5f79c7895c3d0abb49d3739027d8f360b0464191fe97bb5f1a1b399437",
+      "gitBlob": "8a99a0207cf5b0af4f9d10ae37565a058cbb6611"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPositionCodec.swift",
+      "sha256": "c2c2ac71881b8a2868f71d03488ac869ffb2dbe97c4fdd4e8b99d3ee48fe3097",
+      "gitBlob": "518a1004f25c2b9257e600652e8bad5417924a47"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumPublicationLoader.swift",
+      "sha256": "259ce5b03f6cbddcd5965e368add7c7efe951f0af7ae070d6bda30ba235a8d50",
+      "gitBlob": "e9421aec7f69c60bdea6137b405146c239e62439"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumReaderEngine.swift",
+      "sha256": "6019454e871ac165871f6df893d336df446cf591f34df0e7a3acaaa699f3709d",
+      "gitBlob": "e385d745a34cab3250481df2234e357758e52ee9"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumSearchProvider.swift",
+      "sha256": "c7fc0d84c59d1200356a68358bf7a8d2e4c8887aa3830a1d868350b18e5f932d",
+      "gitBlob": "7c3910cd5a2a29a9e8c4eac6ff57528dea789b07"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/ReadiumViewportScript.swift",
+      "sha256": "b25e2cbbc5044eddd1a1c4d0507e7f06aca0b48508a287b1cca9da4557a31a32",
+      "gitBlob": "9becf34b659f59ab50a4b52fc8b5379029cafb47"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/SafeTextSearchService.swift",
+      "sha256": "e1cb4c52a06051ff3a98b03b6e2745093c8e8fc6f80ea321dc5bcab409a5a48e",
+      "gitBlob": "b481e2a81c0415527464b395bf45bbb574c9ad26"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTPositionCodec.swift",
+      "sha256": "0ea2449c9ac3a5ced254c9d268a6b5481c49eaa182c356a20ef762a73e9cff23",
+      "gitBlob": "072e5f949a07a1bab03e46b106cee3d238775da9"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTReadiumPublicationLoader.swift",
+      "sha256": "b5b2b4818d0948947105541c9df29a7bf8d9c0d488e33aee41de84cbaeebc3d6",
+      "gitBlob": "aaff34d63fc56921f01e935858a868f9e429d60d"
+    },
+    {
+      "path": "Packages/XianxiaReading/Sources/ReadiumAdapter/TXTResourceRenderer.swift",
+      "sha256": "432033e86857713039c87ef222f41bf4ae522e3e6469ef9d828120bd455d79a5",
+      "gitBlob": "e22653a48a61eb8332457656095a594e1f91cdc6"
+    },
+    {
+      "path": "Tests/Fixtures/Fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a",
+      "gitBlob": "3261f95cf62310f5e89b1c49db7e651df0f88460"
+    },
+    {
+      "path": "Tests/Fixtures/Fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a",
+      "gitBlob": "7e75aa351cf4ce6a8f31d1b8126491e0d12b4c74"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub2.epub",
+      "sha256": "210266e6953706373e0758c39aabaf70db65f2f7acd7ea0ea9f4f2ffa5856dfb",
+      "gitBlob": "f2b57c7bb824971398e61093612237a4f93babf5"
+    },
+    {
+      "path": "Tests/Fixtures/chinese-epub3.epub",
+      "sha256": "f270592a728fb5f0ed0a74e4a9ce705d2ee7fe92fb9dcf32b232cc5be5dd7677",
+      "gitBlob": "79a865132ba56324c4704a2d6cf5559b9d6f0117"
+    },
+    {
+      "path": "Tests/Fixtures/cover-original.png",
+      "sha256": "f01f80aea25168082f3fbb6f275b59395b2eba69c1f8ba4ee63d28cbbee80722",
+      "gitBlob": "8537dc6c6d252bcf96bc11b374a4769a42e92db5"
+    },
+    {
+      "path": "Tests/Fixtures/reader-layout.epub",
+      "sha256": "b6f6658d2249fd93be5da9ddac638ec53e9d62cdf40e80663e940f6b8d9b7e70",
+      "gitBlob": "e74e5166771319b518f1a2d443621c736a783843"
+    },
+    {
+      "path": "Tests/Fixtures/window-long.epub",
+      "sha256": "578aa77613390356959cafdce0ef0fc93209c6325609ec3a65f169be60146624",
+      "gitBlob": "78a62c62c6cbd982854d802efdf32bbac036c298"
+    },
+    {
+      "path": "Tests/Fixtures/云海问道-GB18030.txt",
+      "sha256": "15817cdb18475dbb342519dae5511ba5a0244fa7d0d7645f03e0efd591bf2838",
+      "gitBlob": "ab0b404b9a737da0b5213c05e5a5000fa845922a"
+    },
+    {
+      "path": "Tests/Fixtures/云海问道-UTF16.txt",
+      "sha256": "835f8668dda7e01a79b53581c0c38270cc42bc30423d0d8313fc7d09bd77b5a8",
+      "gitBlob": "504619ef7f03c0128e7c14d4496a420061117bd7"
+    },
+    {
+      "path": "Tests/Fixtures/云海问道-UTF8.txt",
+      "sha256": "c7ea65c3fdde01b63e16d7b2518bfc45a4a27d273ef80f10f70492ccfc1cf6d5",
+      "gitBlob": "e1ba987a3985332a61416788388a2e42a78d5101"
+    },
+    {
+      "path": "Tests/UI/LibraryInteractionUITests.swift",
+      "sha256": "b35cd63e46c1318ac101e29e386c3b7a21d3156bb0acbdc1af093f15c6aa81e5",
+      "gitBlob": "e2e47dc03d87efdb94536c433af11b3141560107"
+    },
+    {
+      "path": "Tests/UI/ReaderAppearanceUITests.swift",
+      "sha256": "d3890e1d2bc33414c9675f763cf9b260fa7e25547b55051601b68c7532618a2d",
+      "gitBlob": "f8b7d62e636e1c39307e6104b0e6eb212e386bd2"
+    },
+    {
+      "path": "Tests/UI/ReaderInterfaceUITests.swift",
+      "sha256": "ff44734bc7d58e895b7254fcf6d7c00417ed410d889d8104f895afd24b092fc4",
+      "gitBlob": "71cfeb0437b9bc2c6962e843b279164c0dfbd494"
+    },
+    {
+      "path": "Tests/UI/ReaderUITestCase.swift",
+      "sha256": "5a538768937ec60a084cbd38a47d01b232bf02c437aed61b930b2a4a25f46042",
+      "gitBlob": "7ca12869ae801be6513c4123fd9875f5196a6033"
+    },
+    {
+      "path": "Tests/UI/ReadingExperienceUITests.swift",
+      "sha256": "ff913cacba3decc2a880c716d5b09f6ea6bc6c5ecb5a6631011c751fc2b0d4cd",
+      "gitBlob": "a6282215b5af8b8ec1b12f62d71ffef560469800"
+    },
+    {
+      "path": "Tests/UI/ReadingFontUITests.swift",
+      "sha256": "9412c95896fb5597e5e12ccf9dcdc1a67287e5a68724871c4885bc672d680c45",
+      "gitBlob": "63940dddc5302fc239a23091a049ae3141729e39"
+    },
+    {
+      "path": "Tests/iOS/BookCoverTests.swift",
+      "sha256": "e625f95cbc6040bbbd9012ae18df4dc9f8f6b23bace6fb0b0aa2af04c45a3f4f",
+      "gitBlob": "73247656f11fe5c0256a1cbab2fdd30ab8237f56"
+    },
+    {
+      "path": "Tests/iOS/BookDuplicateTests.swift",
+      "sha256": "29c1e56799ed535258e21e71739249bc1e9edc06eb298a55771d0c69665460d4",
+      "gitBlob": "48966b80676ee3aedc82f1c3fc63bc80a67f8cea"
+    },
+    {
+      "path": "Tests/iOS/DocumentImportTests.swift",
+      "sha256": "e009f2a3ebd584906924a660e2062760756b9d0892604a67eb3dadb50b684b2d",
+      "gitBlob": "7f5a9c66e9ad1056083787779c5a13a396f0e076"
+    },
+    {
+      "path": "Tests/iOS/EPUBIntegrationTests.swift",
+      "sha256": "ca6afd02922568004cd7fd91b21850becdd3197c1823343224604fd822c6122a",
+      "gitBlob": "bedf875c35865dbc2e9b16d3d97cf773b81498a3"
+    },
+    {
+      "path": "Tests/iOS/LibraryBoundaryTests.swift",
+      "sha256": "a0fc68796758569f54bd28b6f644bb33e8b9c3cf2f7cfbce355804af0e55a9a5",
+      "gitBlob": "45926e7370130d6db4eedb999da5a46aa91bad98"
+    },
+    {
+      "path": "Tests/iOS/LibraryRemovalTests.swift",
+      "sha256": "c663e5d2444af87eefacc4bf739d9cfedd63936052b4fd1be2936652536e59f1",
+      "gitBlob": "13dbf31af34f1135d7dce0a64364d0cd59ebc373"
+    },
+    {
+      "path": "Tests/iOS/LibraryTests.swift",
+      "sha256": "9a01addfe9fd782889d60af384c1a50f3a49102038571c449fc7a82edfbfcfa1",
+      "gitBlob": "5f42d3d0d96c78f6232169667bf301a82ee8a56b"
+    },
+    {
+      "path": "Tests/iOS/PositionCodecTests.swift",
+      "sha256": "b41b6b7fce304a3e081e24184780d59dc3690f7e045b275d11725c96d8ab3d0a",
+      "gitBlob": "ad230fd44745f4f73219fb233839a92ddfd88228"
+    },
+    {
+      "path": "Tests/iOS/ReaderFontCoordinatorTests.swift",
+      "sha256": "c632887b50db8914d729e4e67c7c05db5eb1ba857b5eed7a0e00fd76a48b34cc",
+      "gitBlob": "d4c7aab1e09c1212b0bac2b5e31ac556753a7c31"
+    },
+    {
+      "path": "Tests/iOS/ReaderLifecycleTests.swift",
+      "sha256": "5c0979d42b2a728ed3faa6eff8c24167b3ee15a691bdb55d4a1b24aad4904f04",
+      "gitBlob": "c903dc5531d3b74fb78b3e8524dde4eef46ee82e"
+    },
+    {
+      "path": "Tests/iOS/ReaderLoadingControlTests.swift",
+      "sha256": "a81b1a53bdf63281963530cca12f6a04e1862f18e7e0baeb57fdc21c69505a07",
+      "gitBlob": "7306421c7b80fa8785a9a8637549b96ac02a1cd6"
+    },
+    {
+      "path": "Tests/iOS/ReaderProgressTests.swift",
+      "sha256": "294444db841d58da77682b28c79d8a31e790ceaf42c26c214bd4b663f75350ec",
+      "gitBlob": "0bb07bcf6f5e8a30d4d181092bd750d4646fa8fe"
+    },
+    {
+      "path": "Tests/iOS/ReaderRenderingTests.swift",
+      "sha256": "16afa64224179739c7a8399ad6449e0b158df772884de826ea31bcbde22a3a3a",
+      "gitBlob": "4d5ee4b228591cd49d9adeb34de7c07913944ac3"
+    },
+    {
+      "path": "Tests/iOS/ReaderSearchFieldTests.swift",
+      "sha256": "49d437c757a429c4ae8c1973ac0ebd04e1d888626fdeb1d4b67c958750ea849a",
+      "gitBlob": "a39091656fa81eb5a8ff0394b168077395f761fe"
+    },
+    {
+      "path": "Tests/iOS/ReaderSearchViewModelTests.swift",
+      "sha256": "aef1f94ca6c2933dde6f66a1d7e3938f9d2c87dee87a07fa73eafd1215e7cb75",
+      "gitBlob": "eaf46c65897899bd884c63b40f05825ec4065ee0"
+    },
+    {
+      "path": "Tests/iOS/ReaderSurfaceTests.swift",
+      "sha256": "14dabaffad5624a46e8b4652d459d72fc2835fee9e77dd7887403b5cf4a6bd79",
+      "gitBlob": "69d47071be97ca2a9a55ec80b692fec98fc48354"
+    },
+    {
+      "path": "Tests/iOS/ReadingExperienceTests.swift",
+      "sha256": "1efd120f1a65cab3e12d6a401a77a6ce2cc701dcf69dfe747acd190cb257c0b8",
+      "gitBlob": "099b9b5a09a4cf9c3f901f2392201a3ad1c9a809"
+    },
+    {
+      "path": "Tests/iOS/ReadingFontTests.swift",
+      "sha256": "495240b2d66fae2b10010ceaa2b47f3ff9190e5c77a9bc7f60be0d301b122dda",
+      "gitBlob": "9d6324212f508e370e56e803d560d8e6054ff5e6"
+    },
+    {
+      "path": "Tests/iOS/ReadiumSearchTests.swift",
+      "sha256": "b7b297fef436c652a78a8c3ed7bc8b161644aefce81e2c6182e6cf69c1a57701",
+      "gitBlob": "7a5a36af8cbf81dd401e60da041c161df332147c"
+    },
+    {
+      "path": "Tests/iOS/TXTReadingTests.swift",
+      "sha256": "47283b64f4ef7a4e1f9f897f8ad558b0213a004ac5ca138adc25785e6bba25d1",
+      "gitBlob": "849ab24d71aeb6028f21c9e4a0a89b453275765a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/LICENSE",
+      "sha256": "24f2c3ab11f53400e2dba782df51eaba55625858ab57636d94ba49b638817e44",
+      "gitBlob": "5f60d0c9519d5504c3b4b529fde30a5b4527a479"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Package.swift",
+      "sha256": "0829044050ff52303088cdd7ed565f78de08a5d70408a64235eb5af2678c4e55",
+      "gitBlob": "74a5f9f0b2301a1a5dec1aefbc159737c4a3de97"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/README.md",
+      "sha256": "78e3ae359722aac93a891e56e0c9ad3bcc7e892605d593206778dcf3bcb0c3a4",
+      "gitBlob": "82688a3508fd8b7da73fcd22f22dcc86bf689736"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Array.swift",
+      "sha256": "bb678ec91d7f3f7c76b8784cfd9a54778db3076bc4157ddeed89af0b0ad87d3b",
+      "gitBlob": "6c1bf08da83414d3a0daa186c6a9d9327316f8f9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Collection.swift",
+      "sha256": "32a5a5e662a647e3754e53518958045677a45620c987dfee057dde3e09a80de8",
+      "gitBlob": "f8419f53d7596ec2a9ed72f63c8fbeb3986da36c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Comparable.swift",
+      "sha256": "955ce4461009f69d0553c3fe6a19d56e68befe09a56aeca8d0db1709a3259ff8",
+      "gitBlob": "3b7480cac647337913471cdd7d100cd594b5c143"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Data.swift",
+      "sha256": "2f92c658f58456a91f694629aea73deb4b0cd89f010cb4dc4c0cb28610dfd18b",
+      "gitBlob": "257b17a8fa2d1d4b5abb809d7f63041f69923ff7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Date+ISO8601.swift",
+      "sha256": "0c172cbd13e2e6d444d180245b9a532a9c13ea12ca2ba3d640a28e887fe18a96",
+      "gitBlob": "6f3cc79ec9d18d370e5acff7d54ab600fb837c8a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Double.swift",
+      "sha256": "d3fa096c02c3b67d81dae5dd09acd687b452163479ccc39c3e05a266a0b1f263",
+      "gitBlob": "efe9dde61e7e56aead04bb9819b1afc4932d5591"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/NSRegularExpression.swift",
+      "sha256": "b8d029f20d58a938128a2b7136f2497bd8a4e950f749832b0d8b0550b2378331",
+      "gitBlob": "614d135e6cdcef66b786f975090a8fe724e061c8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Number.swift",
+      "sha256": "aaf30edb3100490232c1b2a55e460beba6d88240611b13c8a61d9f80d50079f5",
+      "gitBlob": "bd6a9da34b60a027e40ed0f6e179221811e2d21f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Optional.swift",
+      "sha256": "bd3eeaa9678a472d052f8b7f4912b545c0dae3991d6159d520466c10fa5548b7",
+      "gitBlob": "e9fe54171f66d278aef9dd9ffd3faacb4a044381"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Range.swift",
+      "sha256": "a98ff9ff16ad58c8db0efc980c8d8ee80574c9cf5b183d5c0b8ce18e0dff5f0f",
+      "gitBlob": "546ce91bc6f540f2cd194f2cc5f291da4721cc73"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Result.swift",
+      "sha256": "04a61b953aa1004a7e0e4bbe8c676b108393f8ea9b1556b597b46796ffb92a36",
+      "gitBlob": "9177e23dac2155cfb20dca4c921cf10021d170c5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Sequence.swift",
+      "sha256": "9e5d8260c8710f6a50f3e99fc3b13371214d7bea4b9c066a7f8dc1c73a6cb688",
+      "gitBlob": "cc9ed5727f825f8ed1e65ad08f1bb380159c7c36"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/String.swift",
+      "sha256": "d11d6d66e46417a18c2d3bef728ca4400dba37a0e26462906729a14ef18936f1",
+      "gitBlob": "603687e799ea136971e3525fd8037a16188ff3f9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/Task.swift",
+      "sha256": "11adf372364788953d935ec9ccfc8295fb5c76f21ae8253c9a0da52313eae114",
+      "gitBlob": "f6358ec44a2c1d786b68d76fd011d2d3a56c2fd3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/UInt64.swift",
+      "sha256": "dcc835a359331a769a142a0427d8f6de46b505e77d539636496e7c53f5021537",
+      "gitBlob": "cc8704c9d6d2575e3612aee7342d27cf53235309"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/Extensions/URL.swift",
+      "sha256": "d2454a646f0672dfd59fd6f8a9d0dec9097e7231a2689b6a261c45eea0434bfa",
+      "gitBlob": "a09e089b986e1709bac4d07e9ac68cd36eb5f375"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Internal/UTI.swift",
+      "sha256": "d62b4694b86f69c17b434cd3d2b7c2cf456022fda670662d4176c55f27c5db03",
+      "gitBlob": "63d1e89262ef06d35c660e3d1c177767ae3f0656"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Audiobook/AudioNavigator.swift",
+      "sha256": "a4b74b56edebcbaf64abf97a5d11097976fd6466fd387ac1e3d65af184173c91",
+      "gitBlob": "1e1edf631d49df4e733538fecca989fe97aaa22a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Audiobook/Preferences/AudioPreferences.swift",
+      "sha256": "298020bc262b65b9bfa1d865cd7b5b454ff1f281bedaf8f120257515dd743345",
+      "gitBlob": "54e4da684eada772dd40791b8950f9934eaae100"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Audiobook/Preferences/AudioPreferencesEditor.swift",
+      "sha256": "87230f54266f4c51cc1fc56075432d01c6f9c47f54b2aa9d6cf7b3060368ee3b",
+      "gitBlob": "3a92538b14705da039db3baac6d0576df3904047"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Audiobook/Preferences/AudioSettings.swift",
+      "sha256": "208a24939955e6987e9a256169989b706f0efb5c378f2b73a01e1805a1a41997",
+      "gitBlob": "be042b74d750128f410e93d0d86799ca4a1b3d37"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Audiobook/PublicationMediaLoader.swift",
+      "sha256": "e2f08b68cb85f6f9ed9dbbf7a1842427893297f776d205b9bf5c0d29c04c3a22",
+      "gitBlob": "0c918bb7688f827515411cfdf4301d16411aa3c3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/CBZ/CBZNavigatorViewController.swift",
+      "sha256": "f51a560c5592d62c168fffade1dd872b4fcb6d372224cc12d164c173d2bb3890",
+      "gitBlob": "c539f87fcf118640b29241b01b6e879c5b77ddb1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/CBZ/ImageViewController.swift",
+      "sha256": "aade1a343ee587872306e1fc912e08c2ffbfe71ceb7301d5f2aba9b1e4ab04d7",
+      "gitBlob": "3d6644487ab60d180be110e701b8f8651bac8f4a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Decorator/DecorableNavigator.swift",
+      "sha256": "54e3fa41038b912ab80fdfc3415be695f1f1a47144bc2b17b9b1a3b7c781d063",
+      "gitBlob": "2f8749b75d3904006033c9d357892a5d0b4d49b8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Decorator/DiffableDecoration.swift",
+      "sha256": "ecdbefe77bd4c8475d11563772fd2b35bce981883a73ca0289b729d9b8c94748",
+      "gitBlob": "75ed4ee8f6fddece1e94a8e704a46b909599503d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/DirectionalNavigationAdapter.swift",
+      "sha256": "27c53f2a918ae439c0672a6ed4818a79ec4fc875ba59d8889dd53025d4c726bf",
+      "gitBlob": "ce32177ef5d7be9182c394ef7a7e881021b31ce2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/fonts/OpenDyslexic-Bold.otf",
+      "sha256": "84cc2b8adaffe43edd5295004b627caac868f58d7e21e4afb019559312acfa5a",
+      "gitBlob": "4c492e2fcc283b05ef4d25ddfb288ea9b47e7a8a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/fonts/OpenDyslexic-BoldItalic.otf",
+      "sha256": "f4713bbb9a294df6ab38b28b0b5ec0547ed987a886f3ae46aec1d601de2109ae",
+      "gitBlob": "f71b4303fa60ad065dcc3f5ffcb2a45c0f9d9784"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/fonts/OpenDyslexic-Italic.otf",
+      "sha256": "6abd13b9690e8140655fcda16f7a3d2a1fc1f5a4da61895cce7bed9eb774a1af",
+      "gitBlob": "fdead4d54517cf6b06b1442043d1f8ed333b4eec"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/fonts/OpenDyslexic-Regular.otf",
+      "sha256": "e2da53e6ae0d57455acaecf9151769780f875f17ce0aed72d90a7be3edf98b57",
+      "gitBlob": "1226d2ab281901464fd557285ea937e14e852e3d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadMe.md",
+      "sha256": "83041b9053ba92e72b45e2ff9f2455c74951cda700a4993d1058e559419e4164",
+      "gitBlob": "b9d6ef6ee4c84549e0cd380f9c581542e7e59549"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-after.css",
+      "sha256": "38daed65315122fc993313044468f129ac5eb42efcf3af9e8fe4d1aa5ef98273",
+      "gitBlob": "eb6124c2861224e2f1abf79eacecf4774eda8219"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-before.css",
+      "sha256": "acd5a537d479f9efae37d42c5ad7236250afb78914635afa2bcc59bf856ff792",
+      "gitBlob": "6511e6d589bd3c3676d6ad3cb759136ce9044e25"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-default.css",
+      "sha256": "4ca9447934eea202007c0d1452af06736aac00aab0369639ddc6d1a766a69add",
+      "gitBlob": "78aa0172b690d350e5bae91fd4169b6002441bf4"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/ReadiumCSS-ebpaj_fonts_patch.css",
+      "sha256": "63f95613bf56e08ec326cc0d0e40c43a3016b69afc9dac025113cc0c8980a29d",
+      "gitBlob": "b73eb6744f71f826e02446ae72cec315b39cbe87"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-after.css",
+      "sha256": "033a0f73e4211d5d4eae3e0a59c3190f0e30df5ee1618dd2bc1d1bdf66119ebe",
+      "gitBlob": "3e2aaadbba10b0c7dfd13cb3660ce2dc2c593fac"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-before.css",
+      "sha256": "3f3d491c7121c8768aba50f8b075b7896626410a2d3d65b3c7e124117af2a773",
+      "gitBlob": "dcb79fffddd9e7c591b275bdc3f9900203d36f09"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-horizontal/ReadiumCSS-default.css",
+      "sha256": "55cfcbffae6f11051ab47f00811dac158ac52b4317a4546608d4c3dec9d5d772",
+      "gitBlob": "37530d830a8ccb32ec065bbf24b2809f518b9596"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-vertical/ReadiumCSS-after.css",
+      "sha256": "944e41f8d9224bbeb490904a993a507a34d10363fc1153065d47aa370311f24d",
+      "gitBlob": "d60d264dcad05ca6ec29b34ca3a3bd6c66ac0915"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-vertical/ReadiumCSS-before.css",
+      "sha256": "91e72052f8ccbfe4d3597ed3967c1c6583edaf22bb28f08c9a0f87758bc2cf6c",
+      "gitBlob": "2c8d03df4cf8ae00692d386f6333fc20986dabad"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/cjk-vertical/ReadiumCSS-default.css",
+      "sha256": "cd7312a4c0736729e0f25d4ada5a140251013ee3abdf2b7a37c938ccb56cc3b6",
+      "gitBlob": "7122cfa6cc51e703f23f48220be97bd8bf79e502"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/fonts/AccessibleDfA.otf",
+      "sha256": "984b7c90a660a62b52d02814e67ce376968de31ce9f49548986b18658bcef2c2",
+      "gitBlob": "69c02218a5ab163c634edcc34b14e8a735513f82"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/fonts/LICENSE-AccessibleDfa",
+      "sha256": "7bc99bedcbf4d523abc21f1b96121380c366905d6d9bc35d32a0a69e94309bd5",
+      "gitBlob": "bf56c05169502853adfb817e627b05889ffdf7d4"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/fonts/LICENSE-IaWriterDuospace.md",
+      "sha256": "6222ee66f8b389bf12d067775f2f10aede6592d4e0ee02a0740e683aa80e1e0a",
+      "gitBlob": "3261f95cf62310f5e89b1c49db7e651df0f88460"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/fonts/iAWriterDuospace-Regular.ttf",
+      "sha256": "79e8378e17d79ca6f975939fb0cf6e7ff4ec3614600b233ee7635ce90f537d0a",
+      "gitBlob": "7e75aa351cf4ce6a8f31d1b8126491e0d12b4c74"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/rtl/ReadiumCSS-after.css",
+      "sha256": "2828320d452909f5dc96879520605bc5846f77a3231ab887be9628b74030828a",
+      "gitBlob": "92ea61f1380ab812e3539a684540facc5d084264"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/rtl/ReadiumCSS-before.css",
+      "sha256": "3f3d491c7121c8768aba50f8b075b7896626410a2d3d65b3c7e124117af2a773",
+      "gitBlob": "dcb79fffddd9e7c591b275bdc3f9900203d36f09"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/readium-css/rtl/ReadiumCSS-default.css",
+      "sha256": "af722cbcefd537600c4d86106be65eab985df3c58415acf31068b123103d6d18",
+      "gitBlob": "18bb89311d998c1e3f917d2a3c0bbead785edf8c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/.gitignore",
+      "sha256": "6ab16435d81b1800562ed41ab337a66cccc8652e9440275409b3ca330194034a",
+      "gitBlob": "c7de605bd8a00869c85a1dfab72e74c8b6158cf1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-fixed-wrapper-one.js",
+      "sha256": "548d0f6a361343f49c1b81eb562b9af8015e6fbf31a21d5a87f22d2f58d95c89",
+      "gitBlob": "2eb0bf7a18e9a5e1f4a4cae1aa3d0a286cda1a4b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-fixed-wrapper-two.js",
+      "sha256": "e6b7099b66ac701472d787b53400111fb761315021e4a480d5e79e9ff3fa8ce2",
+      "gitBlob": "b97786da83a3763bd72af16325d39947ec0bba73"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-fixed.js",
+      "sha256": "bc9a0706a03adbb50627a249475c53bc8d8629ef052f1fb606e7158c2c3f573e",
+      "gitBlob": "5913290ee518d8bc66d1811e350cd970ef89507c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/Static/scripts/readium-reflowable.js",
+      "sha256": "b9cd6bff152af694720549b1e1111b016c5ef482e1842c3bab506695ff471833",
+      "gitBlob": "23982f97c22134a1df29a0dddeb93116f0d182ef"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/fxl-spread-one.html",
+      "sha256": "20e61a2c90d0756d4a016683596fc1953f285eb235cbf44e1921dc6d09c602f5",
+      "gitBlob": "ab7c8f419ea468345ff9897e5710329b772e7525"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Assets/fxl-spread-two.html",
+      "sha256": "413c67d365e8606004f8ceb5005d8ba673e923cc0cef50eed72dd757a9ed8041",
+      "gitBlob": "07768fe23e50f4bec3772c41a2fe70917ca87b6c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/CSS/CSSLayout.swift",
+      "sha256": "81ab90ce2661b2963011d886fbdb0ee0c0564a786bd2e19df9e66920e2b5851e",
+      "gitBlob": "60a1c1a33fb5356f050d2bbd95d6c65c94139733"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/CSS/CSSProperties.swift",
+      "sha256": "6159a3f94a6d961fdffdb0a8703dfb2ad625d1276d8fdd327c42e860edad574e",
+      "gitBlob": "ec654d1dcdd62d4311d1b820bb3a926bef2e1d39"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/CSS/HTMLFontFamilyDeclaration.swift",
+      "sha256": "8bc40851a250859d2aac9f0deb3826c775f8228ba73966a78df40bf106de9f22",
+      "gitBlob": "186e7985d29607d75c4844a43aa973ff2d0039d1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/CSS/ReadiumCSS.swift",
+      "sha256": "c54432afa214e545ceb49cd27c70cd471e1433242b7e5049cf90d2d253b263cb",
+      "gitBlob": "b8a00aab4fba22dc9931c7c0876360133c777a55"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/DiffableDecoration+HTML.swift",
+      "sha256": "5b0ee2f9d9361aca44273fa331fc1371ff47f23854736e762dcea165cae86804",
+      "gitBlob": "3c748b2885e13227cb411054d85b23c65567215c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBExtensions.swift",
+      "sha256": "557ce399b53edf04a9c910553172d5f088b1791e598526c6c8a3449738e381af",
+      "gitBlob": "f8d43769ad39e4345409447f6014b94e5cfff0d2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBFixedSpreadView.swift",
+      "sha256": "9e8e356cc0abea49f8ea91e8a743b2a376b4a32f79ed18d94a09bed39d73806b",
+      "gitBlob": "1a2645ac9f8720c9d96adf1fb893390cc56185c0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "sha256": "1ea8103bbbad8d06d269ad73ea3b391631013a5bb483a27ac134a1df6b42cb20",
+      "gitBlob": "1e8f718559c176e7a19dde8ce0641f39892a6441"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewController.swift",
+      "sha256": "a6d3227ff91992b24a9335546bc7c9318221f00c3d5ca6eb2b81b9fca2955500",
+      "gitBlob": "91d82df83dfe46f16dfc7908a761c3df3feef3ef"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBNavigatorViewModel.swift",
+      "sha256": "097da89b1e9aef30050af2ac4a271cc86914b6c3e0e64bd35504f25917d6863a",
+      "gitBlob": "ca040a5183fe7a748c4cb13c0a1c64ebc4593574"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+      "sha256": "b25a7028ae52f04f343bdb900f5064df0443ac2274ab55266e37739f52cd2c82",
+      "gitBlob": "6c9735489a789cb4d22aec702150fb7a8ab4a62d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpread.swift",
+      "sha256": "9152f2f9fa4ea40901d19b03c04e594df192887027c33514f985ade8f8ece0b5",
+      "gitBlob": "e067390383ce9265cbdd2513d625f8411812b956"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "sha256": "58154d9a56bffe01950ccd3e23ae404cfd92cb3a8168b7010cee5c4f2a61db7b",
+      "gitBlob": "8b6a1b475f297b5ebd0a0fc40cc0cbfbd367e464"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBViewportAndLocationCalculator.swift",
+      "sha256": "a6175f049a0e5d894b43fc5b08c37abc07a79925b302730bf670a5046dd53107",
+      "gitBlob": "f471fdad0a23d438c16197cddcf8704a0c571222"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/HTMLDecorationTemplate.swift",
+      "sha256": "3cb2e5b4b1b93cb2bbc456b9ddd06488748ceeeb9d7c20177e24def587f93f6e",
+      "gitBlob": "ef1f945b96bcc65c0d860265d6aa50a6903f25a3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBPreferences+Legacy.swift",
+      "sha256": "1d8897d70563b1717bc1a29e5ba480f20e44b45f3b945dabfdd1984cda8a9999",
+      "gitBlob": "b70a9af8d4ed76ea8f0646c6d3ed47f663ae9ce1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
+      "sha256": "e95563907b9bffb56131a97e90581d9a29866330b7cb2b67737440291fa39159",
+      "gitBlob": "2e6ed37b48c46dd2bf5841073589fe85360de9cb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBPreferencesEditor.swift",
+      "sha256": "c5bd97626bcc428926cb84fab6b24905b5f55dcbf817f73a12752ca8c5513415",
+      "gitBlob": "986a05af65c526acecc157f56cd0fdf89df1202f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/Preferences/EPUBSettings.swift",
+      "sha256": "371fbdbad00f9029f6b869fc4c28c31077492ede1454438f62129dcdc1716bab",
+      "gitBlob": "46a0543f01cd50eaf2442439b11cfeaa0651afaf"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/WebViewServer.swift",
+      "sha256": "4a644bd1d736bddab2c9a9b5be17befba7304735b327f3afc81b736c0daa8500",
+      "gitBlob": "a1cbac3fb61859b9834ce8a5644b446563cafe5a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/EditingAction.swift",
+      "sha256": "9404943a9b22b4521089529f65309b77e95ab1d443643ec62fc6dce4c186a8ae",
+      "gitBlob": "ef4727904ef7b4a0294c4afaa35af44b388bbd19"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/CompositeInputObserver.swift",
+      "sha256": "06dfa121c12be7ebcc9987f9fdadc35655c5ac7ab53dab88c0522e36f7a58b6f",
+      "gitBlob": "0beb8783ebf22c3b864822a4fc78285f8ecd2692"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/InputObservable+Legacy.swift",
+      "sha256": "28660fa876b6bc93fb662d006fcd33b4a2960e189161e39af464285672fe15a5",
+      "gitBlob": "150357025cc02ea4cddd40ec94f6277a02da3bf9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/InputObservable.swift",
+      "sha256": "a5d366d025e509abea62102cf4d2321d19835756032860e8ed27673538f85175",
+      "gitBlob": "363c0ab49c4cc0854c1f0fdb01d909eab8a272ce"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/InputObservableViewController.swift",
+      "sha256": "9217d27e8e6c985cc1b1798a644f1f8d9f02f56f7607998eda6d61e7e28d38ea",
+      "gitBlob": "fa6ba1744dd7e64ec08d122de740fda6bceb2df8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/InputObserving.swift",
+      "sha256": "7a8094d4dbfff31accd2834f413f7d6636db0940d7f1ee38621d5a9de6de8920",
+      "gitBlob": "762e9e0d049e4bcd0942fc683b499a1ddc32dafd"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/InputObservingGestureRecognizerAdapter.swift",
+      "sha256": "61b3642acfe2148d3b2f16315bc023f460535bba696906af2f7cda71266f2706",
+      "gitBlob": "7a51105365c3c47a2a30af54327c46e2fd885cc9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Key/Key.swift",
+      "sha256": "dc79ceac209da24807ca46b60c34221b1f1ceb8a6c5b130ab80c9e37485e3efe",
+      "gitBlob": "8c5f5de167ee423cd6b17645cccc7c3ac0a1f71d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Key/KeyEvent.swift",
+      "sha256": "42ab624a0a9ac952e77a2996cad1a20be52c957dd627d6932a2ce9ce51aa6973",
+      "gitBlob": "e170a27163fef84d2befd84b00d14f3b983202f3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Key/KeyModifiers.swift",
+      "sha256": "1b6c89b4369e12ba11dd029ca18520ea7cebb6eb8d28b874b67cf3baf33292c2",
+      "gitBlob": "98542fce85b2015326b97bfd2ad89de1b20ef37f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Key/KeyObserver.swift",
+      "sha256": "5abec10b2215cf4d8991dff9f047d8074b7e6c92a53fda78f2b049c81ab1556a",
+      "gitBlob": "ddf1bdcd95de6fbf662b189122b1e811ab4dde72"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Pointer/ActivatePointerObserver.swift",
+      "sha256": "a518425334d984be277da9da23d95d18619342f93474f8f5139821cf8eab6d3b",
+      "gitBlob": "5765e05bf9380922b38cc5818314904060ef328b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Pointer/DragPointerObserver.swift",
+      "sha256": "337d3d4629736a73cf71969a457fd67652a28a508df6856cdbc7ad09e5eac40e",
+      "gitBlob": "2b3728ba2354557eccb2b431d27a2f79b901e392"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Input/Pointer/PointerEvent.swift",
+      "sha256": "b50d0981165109d7acb3b0daa1a941229d7435aa24dab8801bd7849609c303f0",
+      "gitBlob": "9d81c7ff847f37d7ee5b118f4dca9200f4b384c1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Navigator.swift",
+      "sha256": "e4251ed944594d54b2e4c39bca84618ec12b5079559961611d0f4ceefb1bbc7e",
+      "gitBlob": "004154c87c1d0e2c5e796fcb4f9c173b7baec825"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/PDFDocumentView.swift",
+      "sha256": "52e51362909473d04d7ff4ed5ecd292ede7a7f2795f2786e090fa5ce326f39bc",
+      "gitBlob": "1661184e6c4396810ec9d0fe984df77818d5e4e0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/PDFNavigatorViewController.swift",
+      "sha256": "58473afa524e914d2a6bfd2833c930a4a980c08ffca6bd5753b0b13dd7cb853e",
+      "gitBlob": "16087945adcc7a0d32bc08763eea3ec604ccb4ac"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/PDFPageNumberResolver.swift",
+      "sha256": "0835611bb232d64a5c4b85957f20e85ecb23fb7bff7674b0cdabb7cbcf6d6ae4",
+      "gitBlob": "064dc31793283aef886783af974bcdbeb33502f0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/PDFTapGestureController.swift",
+      "sha256": "f154377d487c35f7ae498e5ea6ed4a48bd69013cb91a3281cb416891d35243d3",
+      "gitBlob": "a652c23a029cbac10cb1412d2f7afbef953ac9d6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/PDFViewportCalculator.swift",
+      "sha256": "ff53f0666650be30832215ee59d7a231dd5ff144be27758c0513729773790bc7",
+      "gitBlob": "1928b1bc1759a268e396e04efefa2685de8c460f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/Preferences/PDFPreferences.swift",
+      "sha256": "387179b341b1b44be7d07375385318a4ec303243ac633d8a9cf4c6b004b25df7",
+      "gitBlob": "723565f582e075afe91920d6a336aa28ebc94686"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/Preferences/PDFPreferencesEditor.swift",
+      "sha256": "d1a42dafd6d44b4373d1432acf881d1b44ff3872b5ba94c946f9c1887f2e110d",
+      "gitBlob": "91240411942d8283ce107baebdcc392f77d0cf3d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/PDF/Preferences/PDFSettings.swift",
+      "sha256": "6a69b0a36f2f6aa55b827d949c8472d32a1cdece56bb036393813a23616b0f14",
+      "gitBlob": "936daee8abb2fc5addc87108b0769d42260178d7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/Configurable.swift",
+      "sha256": "84c57a41c1a09975bb236f7ab6fe3a768218a797f5aaef46db64e7039d69cb65",
+      "gitBlob": "7eee624d9cd2a136a164e72071a3240dd74d6958"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/MappedPreference.swift",
+      "sha256": "8efd28353bfa619b296d18ee6a26e0363818aae212b87ed75abad5b8134f80f5",
+      "gitBlob": "c66514db3a05ddfa632576419815955db83c2dc8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/Preference.swift",
+      "sha256": "4d05ba59590c8f2bd3f2bf6c956d76d15250d41399ad7ca42efb13d2152a45d7",
+      "gitBlob": "85f11f36374b4732e8999d7cbd46144fe98a8720"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/PreferencesEditor.swift",
+      "sha256": "5b6ddebd57c331b4385e319efa6caa38268dda09cd687b344529b6ff097b46de",
+      "gitBlob": "407f7b890b14e7b60a21a946e6e80aa3ffd7820a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/ProgressionStrategy.swift",
+      "sha256": "6b08a7e76ab6f63628fc2eb19a3b29871826f4b68e0f3341606e66d0f896375d",
+      "gitBlob": "81b7f860c856874cb870fe8dc5c834a35d88187d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/ProxyPreference.swift",
+      "sha256": "6ef0af141fa28e1d88d127280474613d97a7f133306adaaf82f3aa18bf41c6c4",
+      "gitBlob": "999457a1868ad177db421266066984b510d6c01d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Preferences/Types.swift",
+      "sha256": "d85d157c41248f5b76ba896f9a60770b56976eed368a6dfbb160d6184d14761d",
+      "gitBlob": "7672ad620a63855be0508656a3896e01e87aeb6f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/ReadingOrder.swift",
+      "sha256": "ed9a78c685a800c85bc6fab30fbcf1dc925053d3034249dcdeb983ff793908cc",
+      "gitBlob": "6c6a80211e91cef4f19f783d567a10ff083c3f9e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Resources/en.lproj/Localizable.strings",
+      "sha256": "b1cd6d702d7262a47e4ab53d4c00b3504b2be2336c92e3e25d6a22ed63d1337a",
+      "gitBlob": "1a86bd0174c5cb8f0d92f9d43237d40b5f6755bf"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/SelectableNavigator.swift",
+      "sha256": "aafaa85caca43f3e128e36704721a1c5e66c11bbd2244fd39f21944b4a6e76d8",
+      "gitBlob": "c53f18396c2ae61052e409c653a6f86bef1b5f49"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/TTS/AVTTSEngine.swift",
+      "sha256": "5e79faea95d63cfd5bd7606b0346cb55c6a477fe9069215a30f024d831eb60e2",
+      "gitBlob": "22cdb90638249668f569ef4f5c7df7150d992f27"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/TTS/PublicationSpeechSynthesizer.swift",
+      "sha256": "cf81f41614abea2d859116c7bdaf823aed2cf3516d2a7151d4a202f4bff1c715",
+      "gitBlob": "eff418ff89d5860631b359d71b150454ae1e1b25"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/TTS/TTSEngine.swift",
+      "sha256": "61f7de5bf2227c1bf3aff6f3bf7b99e6f4a9a0613a8fbbeba78f3bc3526e6140",
+      "gitBlob": "66ea8e5eab2c73ea796100966dd8f0a65e2e5857"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/TTS/TTSVoice.swift",
+      "sha256": "30aa743d42621d3fa3504d8ca9f82f352aefc4c195f20ef72cc6f82d454ed0c0",
+      "gitBlob": "d482ef0f4e8cc59ef0634469f52ed0e1420e21ff"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/CompletionList.swift",
+      "sha256": "90f794921c257cf4ff33d8c4102ba15b77e7db4c6f353243849b826763d4aadc",
+      "gitBlob": "a6a2bba5875fc30cb55c899a829d02a4e1588093"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/CursorList.swift",
+      "sha256": "cb239754dab5e0e14d2e6207e9a9d4b8de1910b0333619ba7468956fdc0bb37f",
+      "gitBlob": "1b2e27522b0a52a0fb1a58356f352c1e4f98f7d0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/Bundle.swift",
+      "sha256": "349d59e02301683e36d57a8da38473c6aa00bf8c6a5dfafc22e3028407a8e475",
+      "gitBlob": "6d7a1c85898c1e4dd94ea88cb6db3dfff65fd454"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/CGRect.swift",
+      "sha256": "92c579964c08c47e9056ec904553ae1090982ea84246017ac012fd203716be77",
+      "gitBlob": "79188133204da5034a0266f12648a351b5c4ce94"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/Language.swift",
+      "sha256": "aaf9155de9c660e44746449a52ebb7c5ac532d7a83690037b06661cc9cf9ae08",
+      "gitBlob": "f83734b8404c02707ab92df93a296d018c7a5870"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/Range.swift",
+      "sha256": "c4f569b6873fce2728413b0f646fed5c188320a867826cdbcf52cd7c95184260",
+      "gitBlob": "5e7b9a2c488930ca075ab51671f8205537c3b2fb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/UIColor.swift",
+      "sha256": "f632a27493fe1860bd968c11d2f5e65bf0801aec682c24dda3706ee707eabcb1",
+      "gitBlob": "6520aeff6db85213f9824147852aba821f1017ec"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/UIView.swift",
+      "sha256": "b02861c94641196b229c7316703872d698beb7e34316d9fc5bfe5b9a61a9d1ae",
+      "gitBlob": "47436a4aa663e29f7a15401ce3cb6c0af05ca918"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/Extensions/WKWebView.swift",
+      "sha256": "4928ee45ed0fdad5789aa9b87eee7f7d2a5e8506d8a2307446152b302487449d",
+      "gitBlob": "d23a7a4f601451dd80789173f658fdb60976c495"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/HTMLInjection.swift",
+      "sha256": "fefe7eb208edf89e7a3f380afb3c372988733002ee13f2577a28110ab214ce49",
+      "gitBlob": "1b91e21054ef8fbb3288f3ba898916825099e145"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/PaginationView.swift",
+      "sha256": "8536735aba17b5fe1f21794c14f2b5012c7090366ad9af2336c8bdcfa194c607",
+      "gitBlob": "b72488c731fa56f48807b342be664c7ea22137e3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/ReadiumNavigatorLocalizedString.swift",
+      "sha256": "7c16bfc538c422bce951c55df2361ab6b0d3f2dca07818b0abde40ccb0b08502",
+      "gitBlob": "619a1d5e1ed70bb55d41b08ce8a30f4189f21bc4"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/TargetAction.swift",
+      "sha256": "33c76213606edd4f20bfd1cf9b49a436f55ab6610e71a1d50d003dfc0ff8d9de",
+      "gitBlob": "8195efc7d563f0943dce336d1141c2145b248062"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Toolkit/WebView.swift",
+      "sha256": "efe4486a59104a533125e37d300b32ced726d720ec62767241a401b4844f2cfc",
+      "gitBlob": "fe561b87e6cf0342ba9d0965cbc7d369a87403b9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Viewport/ViewportObservingNavigator.swift",
+      "sha256": "d29b0d5922674fd1fecd880a4b363ff8fda7ef33083a5080dee53b42cccfabfa",
+      "gitBlob": "757c25b2b5e9a49e8014aec440bcd13c98911dd0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/Viewport/ViewportProgressionCalculator.swift",
+      "sha256": "f9ed5bc6402042318dec1550889a450ff22313dcd91f01657b440d91a876b083",
+      "gitBlob": "b88310335c262468cfd60b9e035f61da8c70b61b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Navigator/VisualNavigator.swift",
+      "sha256": "ecfcc0324d3d960808546be774a2aa2809177ccd63260d7078a7f84a373f5eb7",
+      "gitBlob": "c9bf1ccca56fc8eb78d1bcc33b0b2336553ad777"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Logger/Loggable.swift",
+      "sha256": "fccbccd1eda978c4714c47460ae3175726ab9280ecd9f3ed20161121c51f69d5",
+      "gitBlob": "b15a9e7e196eb5568a744167574eccf96dc384ad"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Logger/Logger.swift",
+      "sha256": "2108d749b1446bf87f3aaf8b5b7e4ae9b32e6ae28c89325c25fcc743bc73cce7",
+      "gitBlob": "c92a9bc24f4f88d51fc7e85a3c734b80a8a5015f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Logger/LoggerStub.swift",
+      "sha256": "78ee1f2e1a85db24f6e4483f23c4ed3a337d63e3481110b2dd13321a3058dc26",
+      "gitBlob": "c4f55e5554413b4346e779b8817003d4550f4d13"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/Facet.swift",
+      "sha256": "f04959fdb29dbc576819b53930521b2c98b911433df16da4444a9a421022008b",
+      "gitBlob": "8eb52e1c28bc285e4fdc4b339b0bafac320ad6a7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/Feed.swift",
+      "sha256": "9e4772044f1f8e21468b3d6c08378374e23f33363c580c0352adddc4453f9a8a",
+      "gitBlob": "1f2f0a97cb14321c4c4add49ee754c494845befc"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/Group.swift",
+      "sha256": "ffd3c0c4bc243f67c6cd5843f4b0600322d5b1615d8aa87a471654d80843e5d6",
+      "gitBlob": "992abf7bd1a22259ed3a95a0f5f253ca5330b2a9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OPDSAcquisition.swift",
+      "sha256": "7145dd9880ff1b7cbe9baf3aabe14d4d229f9908be2ec0de2f57b59c80e4870a",
+      "gitBlob": "acfead473081bb3d75bf8e7bd54d3803eba7713f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OPDSAvailability.swift",
+      "sha256": "1c0b495035074f0ae37d7cc1bbbaa330664fde7fac7d7e0d4c7d919241fbc399",
+      "gitBlob": "6136f8dda9d7252dee1dcc613db43d39f09287bb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OPDSCopies.swift",
+      "sha256": "c85021f732626a8a6a2a6168d9d2f3c05d670dba87c5cc413470dd3472168f35",
+      "gitBlob": "c325a821c5a0a2430be2879c5dafbfea65ad1565"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OPDSHolds.swift",
+      "sha256": "1361b15cb10aa0aba82512f65b4843690c87ce5021ce31c722a3e22e21df8eba",
+      "gitBlob": "5d1ea32cdae9749b0e5dbac91578b0659e84321f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OPDSPrice.swift",
+      "sha256": "a3e3741e6dc23659fd3c788819c3d1a0aefba7a1518264a72e0931165f4972f5",
+      "gitBlob": "38bbcd0f76220738b49fe10b4fa79ecdb089033d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/OPDS/OpdsMetadata.swift",
+      "sha256": "92ac9b71e34b682824f87dfbb807a6ce794dcd082e8c870d056258c43a7e543d",
+      "gitBlob": "26b9d0aa62f40bb58de8721d833a9b0b71a10db6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Accessibility/Accessibility.swift",
+      "sha256": "40863df3e0160dc4ca62c13fb22a9a517d3e6449f47ed2de581dda1416d43582",
+      "gitBlob": "9ff67cb0bfc0204d219c5dad895627f4b620c1bb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Accessibility/AccessibilityDisplayString+Generated.swift",
+      "sha256": "7b95d080cdab2da9eca14deed409afbd8d41c8bba932bf1af5a526f58e32e25b",
+      "gitBlob": "b5970ad50454861344cbecfc8a7c410a0a4f7fba"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Accessibility/AccessibilityMetadataDisplayGuide.swift",
+      "sha256": "65bca7747b050ad9963d2b4fc1bf9c3d633c61702bb350106acfea120dad02c3",
+      "gitBlob": "44708469be9c2622a4a72d257dbb70b0b6eace1f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Contributor.swift",
+      "sha256": "8fb27603aaf81c910c7679ebaf16175675ed01cfe181f0babfe3d1669cc2c1c5",
+      "gitBlob": "d5a0eaef6f771d96bbdc55b7e07879ee7d554d1c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/Archive/Properties+Archive.swift",
+      "sha256": "57a9526062bbb4e58999a3c8b5893be2771eefc4448976ad6fd2e5bc5485141f",
+      "gitBlob": "500d35b1e37bff55cc0c4cdc8f98a6e5e6045104"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/Audio/Locator+Audio.swift",
+      "sha256": "77a88e97730224b8346fb3757b68be2cad28662f92fd24a4d1f85814c6c9a925",
+      "gitBlob": "4d9fb600021fc4caa828088efd8483c143ff1a25"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/EPUB/EPUBLayout.swift",
+      "sha256": "c3c9f7333c683a11c5fb42bf03ae888af9a947d1f072790e7baa36caaaaf3f5e",
+      "gitBlob": "3b9a8b9940e5870d93a2a2bcd190990b2383cae8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/EPUB/EPUBMediaOverlay.swift",
+      "sha256": "a8a5cf109681fd8e6a39536f035534fd95212fe0687065ab5d228fb23083bfe4",
+      "gitBlob": "c496d4a30c5e2c33f66fcfa6dcdd2007444e4e03"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/EPUB/Metadata+EPUB.swift",
+      "sha256": "6bf649678ab335ff10948ee5d37b899630871de07ee5d54ccc761101f88d4164",
+      "gitBlob": "79c2d79310fe2e1faa81ef400b5495155b84c7ac"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/EPUB/Properties+EPUB.swift",
+      "sha256": "834b0f531f97c5acbd218053098f477f18c7e4ed3d82785e016bac003a8d4498",
+      "gitBlob": "134a64e169c048edd198c6cb86f9ba9bae6bbec6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/EPUB/Publication+EPUB.swift",
+      "sha256": "5d6c39474a0e2d5825f7682efa09ab2b48ef33e934b6efe25ea3dd78ae9cce3a",
+      "gitBlob": "5a0123970e0dd581c9e8a49742c23d7a2c91461e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/Encryption/Encryption.swift",
+      "sha256": "bd31377a81402f92d82d2ba8fe12f5ae6de8f372d719d87f4e309ee6b3525b3f",
+      "gitBlob": "eb6e1ccec5faded2c7a5d54d336fddf4d26f08c7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/Encryption/Properties+Encryption.swift",
+      "sha256": "9b0e6640e7c906fb7224c0526a83083d177d9afa478a9f3d141a214add8d5332",
+      "gitBlob": "fc92496f8dcd0c0e411ec73b326be21f0a237338"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/HTML/DOMRange.swift",
+      "sha256": "e257b5544ac9c5ec1cd4d3250edfece8c4baee13fe9ce11c9ea99e12ead2ee73",
+      "gitBlob": "c586b0e46f1b3d4e845e94019108cf79a86d6857"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/HTML/Locator+HTML.swift",
+      "sha256": "30043350832a524d9dcb35de30806f532f1b17d60cfc853a7629b6b59c47ef37",
+      "gitBlob": "46d14804e2d5b9664ffea62b71f846f99a501de5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/OPDS/Properties+OPDS.swift",
+      "sha256": "80bc94d3aa0d915e9c2d6ae4ebf3f3c7c4a785ebcf8c099aba3f1b450f7095a1",
+      "gitBlob": "cece2a9ff86f09f7bff2960916e0a314c0e20830"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/OPDS/Publication+OPDS.swift",
+      "sha256": "b7332b7b728374254882d9d6aa6cab3cc673d5ced4a398c4baeb457f86010157",
+      "gitBlob": "3018cf696669c88153bf0606e5c86a260c598ee3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Extensions/PDF/Locator+PDF.swift",
+      "sha256": "40750af4d72a3161562cff065e00c8780bb1dedda35e832d3b97f9a66d185807",
+      "gitBlob": "d2bf84e1b751efe572081e0b1601437249b6c1a0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/GuidedNavigation/GuidedNavigationDocument.swift",
+      "sha256": "f944ccd24b75e0af2bb36cd9df5fdb23c03728b431a075ce7347dbc4b8688b68",
+      "gitBlob": "39cd0af09815385894dd333c7d5a7cfc0c1ba9a2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/GuidedNavigation/GuidedNavigationObject.swift",
+      "sha256": "a2d5bfe01df06c53168c6e4ef61520dfcbb8a9b16f78a7756319aaa5a43a3a7b",
+      "gitBlob": "433f13eb5941f54c3e679c833ec6b826104a81c8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/HREFNormalizer.swift",
+      "sha256": "b72fb8c5bd34c9c0c809d97ed81f9c60e597039784c1b836024eb6d7690963fc",
+      "gitBlob": "8ef9f7ae9cd73ad3a9a7c7828bb3070fb7ea4f06"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Layout.swift",
+      "sha256": "9f86b765d466e4e8fe533ee4aaf6e03579cf85541a1601fa6727b2072ede555d",
+      "gitBlob": "1e0651172f8d4e67515303492f3c37efbdaea719"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Link.swift",
+      "sha256": "b153c9bf0bf5a7a8ff39a35c8bf57597d3540f1a2253e4754719664915c628fd",
+      "gitBlob": "e2e50bcffab74812df31fb0572888f5f4fed4ca6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/LinkRelation.swift",
+      "sha256": "6d001a03fa3a84223a024429431cab0af98a4e2ca4b678b236a382097d7eb044",
+      "gitBlob": "c58e75d7e8ea3f4b3d8b12067a861d665456950b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/LocalizedString.swift",
+      "sha256": "ddb19cfb83c897af6acbc82aa312bb7165da94805d819d3587804100023f749e",
+      "gitBlob": "f4cd6c8fda4146acf472a55e6315372586fba0e1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Locator.swift",
+      "sha256": "854fe8a0de6cb9d635c52888e981cfa79b252c241206cac765a4779cc3080985",
+      "gitBlob": "d6106496b5a8deb959c48901199e375e55f8e01a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Manifest.swift",
+      "sha256": "f267fda1affca2542d3d9f71bab67afc2d5138e393ef9fc0f3a8568bc36e6d27",
+      "gitBlob": "d29ddc6de6328bce350ded21a94009140ba714f5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/ManifestTransformer.swift",
+      "sha256": "d839437661dd159fe1d6c23c2e5e282fd2377c27b7c6c8dd8b9b97c4817ee48f",
+      "gitBlob": "305619882907a08577b612dcd09f60a66de4b582"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Metadata.swift",
+      "sha256": "4d7f974fedd864fcd4e98a80841089b4fa63a9f5f6825bc2c1ca6356f082747b",
+      "gitBlob": "5ee37de2a107c92af20b03627bd5fa5f4a158838"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Properties.swift",
+      "sha256": "ea006424cd3971368eb6b50a817d3ad7396e7182cedd866f50e97b4b781e73a6",
+      "gitBlob": "bc9c0cbab786a65f69bf9c154b80ebc91c35fea2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Protection/ContentProtection.swift",
+      "sha256": "ef62b5d4021eda4062cf1546e1c55849f0c2f8eef28261dcac229daf470b03be",
+      "gitBlob": "83ea59659d3099feeb762689bc13eac7d7916b7a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Protection/FallbackContentProtection.swift",
+      "sha256": "29796565e719c6c6ea0bd40fd5fbb6f40cd1ece6841c7d2444e9bfe1ee21fdfe",
+      "gitBlob": "1909fe6b796f24c4ea4a60587afcddbb09d4c91c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Publication.swift",
+      "sha256": "0b8495b44fdb0777a032b1f04d3e1e01e3de8e739e9f17f858ed12da85bfd797",
+      "gitBlob": "febb79d8c9d5e2e47d50aee8bbeaeb6a1056c159"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/PublicationCollection.swift",
+      "sha256": "19a8752f6d71c9ad1af53f3042b058bdd53eb2cd8e1e18ebc99462a00620adde",
+      "gitBlob": "546901ce326d4cea48196c4d7323b90ea819e7a7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/ReadingProgression.swift",
+      "sha256": "80a98b870145c4c9279047c6ae22966989017199a313e27ce474facf8c769b0e",
+      "gitBlob": "5aec3f9453ce45f8c6fb07bbe6845f5d3660137c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content Protection/ContentProtectionService.swift",
+      "sha256": "e89c286674039c889dd92f8bc96bc4eec1437e3fddfe8fb70a417c51588408f8",
+      "gitBlob": "2993eb2401df8ab7d0fcb86c6c88172b3e294d0f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content Protection/UserRights.swift",
+      "sha256": "8b3ee7caa1a3fb6cfa695703ff2fb3f6cfcc8e825fea29aec43ee13a638a3dac",
+      "gitBlob": "1a247a0536617355b73d173ad8eb86b0fb0d523e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/Content.swift",
+      "sha256": "83fa14cec383d4895aab91e250ee61d320cf987b31397c1d59528753628ba2c8",
+      "gitBlob": "bfb281eb6cfd5858a9bc1b82c3a92d9d41288e0e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/ContentService.swift",
+      "sha256": "538a09277d55b68f3110ea29a02afecb1c979145f0d1c1a64a1b1b378de856f3",
+      "gitBlob": "e2b79a9df2d1917df0db808513d7af93ad683bb0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/ContentTokenizer.swift",
+      "sha256": "4900d81d8c77884d9426149376556e06888566bc555425b750357c3f67286545",
+      "gitBlob": "744503946180852937181eec506e489dd8e7f8bd"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/Iterators/HTMLResourceContentIterator.swift",
+      "sha256": "414a7297c5b7fee92b6bca5c83609bdac9edd08bad942a8beca161d341e14edf",
+      "gitBlob": "c144ffa94f66770e506f80728898bb7c9bb15ba4"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/Iterators/PDFResourceContentIterator.swift",
+      "sha256": "f5678904514510105afba330b4d7d01d62f9585bacbc92638a6c4a6c0c778b1d",
+      "gitBlob": "ce922bb99bb74af6b0998b184a2e6afb24532914"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Content/Iterators/PublicationContentIterator.swift",
+      "sha256": "d59fc570263d946738f89a94b9064d1c235cecb96891ce3cb58fc1aa02739bac",
+      "gitBlob": "f2b3c156123177d79921c93cb906a3d2f801a579"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Cover/CoverService.swift",
+      "sha256": "7e5001b9237418e08bde79443f285d0b6cc9c4cb294f8ca3cda37be40418d2ba",
+      "gitBlob": "5498ee003e1275a06fce3070f20a7ee53762b3b6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Cover/GeneratedCoverService.swift",
+      "sha256": "c282bd283cf2528bbd176f0f7d8d886dd0f55fb5c46e85bb118fbdae1c7a8216",
+      "gitBlob": "cca40733a305aa5ade9388cf6c94a95c9a4741b1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Cover/ResourceCoverService.swift",
+      "sha256": "6475d63134bdaa583306d60583491d2ccf49181329265d3626110a43d6492d9c",
+      "gitBlob": "942d3ba6c666f042fa3a2bb72ee0c1536345f18d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/GuidedNavigation/GuidedNavigationService.swift",
+      "sha256": "a150d0e12335e01fd949b3a3a34285ac62d709a8f1b58a52a62fe3d6d0729c38",
+      "gitBlob": "78bbfb13fa94756d076308f30c6635da66a9d80d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Locator/DefaultLocatorService.swift",
+      "sha256": "316e581a4e88de1379f1038866d467c587ffdd524ad7051f338dd604cca2fa27",
+      "gitBlob": "a4ca37b17adb538ebfbe4d980844c38ddf810398"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Locator/LocatorService.swift",
+      "sha256": "6288072888c87537f0c952670d4e66ecdb035b8aa427142369b262add0e51cc1",
+      "gitBlob": "aad19b0362c2584e3d1c6d4986d94459948d5428"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Positions/InMemoryPositionsService.swift",
+      "sha256": "265fcf838761f060adf4963f771656b6079b517c25532e1df5b225049b39d859",
+      "gitBlob": "e34c7343d6727c225e7ac402aa6ed1ffe551f025"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Positions/PerResourcePositionsService.swift",
+      "sha256": "17641906743cc6b391f198cf030482f80d3097caa4ed570805f0f4606e3b8891",
+      "gitBlob": "1bdc239308f52af162a19b3d24be4e9303df0898"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Positions/PositionsService.swift",
+      "sha256": "12025762898d0a67ff8e00fa2f21afac18d89b09802864b8b6b0f5ad347c0607",
+      "gitBlob": "47f4bdbb1ab2b905ccc34781c0ec4a37619ffb51"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/PublicationService.swift",
+      "sha256": "5a2368f81643d0a08ecdae6ea0eb9de6805beb87ad465fc598da04f3990739b8",
+      "gitBlob": "ac90a932b2b582d338de41ef09bbdc62844b3a3e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/PublicationServicesBuilder.swift",
+      "sha256": "05a89ae65df380eb7131ba6845aa0ec090af60e94f5877f1f730773f72dc0f05",
+      "gitBlob": "56027899dc2b3f3dfcdb65d1e8edf9c799fa12d3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Search/ContentSearchService.swift",
+      "sha256": "9d1078a67c506a5314056be676a12504dbfd7e017089b941ae1bc1aa1b1d309c",
+      "gitBlob": "0c5fa2e6fb98ac4bcda2555069fe9d9ef8d50902"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Search/SearchService.swift",
+      "sha256": "cdfa2e664c3f87db85ac2edbef158cf8f6905aa488880e15aef87b944449b193",
+      "gitBlob": "d16689af34f71ec0574d71591590f155fefa9fb5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Search/StringSearchAlgorithm.swift",
+      "sha256": "fdd7232bf61a49f366bdd16b0ff7d0f299005cbbc086a7ebac73455bc1c7d694",
+      "gitBlob": "29fc42473369d0d5dc2c1304196429361fcf050c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Search/StringSearchService.swift",
+      "sha256": "7850e4332ece4f1a8bf516264fe26057e20b5ee3d1d7cbb278819092ec34834d",
+      "gitBlob": "293096191ce87d8e3d267ba4b4a29a9d504dfa16"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Services/Table Of Contents/TableOfContentsService.swift",
+      "sha256": "817d23d4952601d5aef27706e69cfa7468d6afba99d953e801bf0d9c28bda8f2",
+      "gitBlob": "b177c081370a7e2b9023825d37b9cbef2ff4985d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/Subject.swift",
+      "sha256": "efaa92cdc4a0180cd0181a8af6ed539874b4f9893a1aa58c14918899ea410740",
+      "gitBlob": "985cf5dba5cd4107008fd4c099b23ceb4c7dce46"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Publication/TDM.swift",
+      "sha256": "73504135309ee497ec3704980aa58f96d992804376034ed735cc8172139e2eea",
+      "gitBlob": "a737c795e5844435460226b1c1b9646748b722e2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Resources/en.lproj/W3CAccessibilityMetadataDisplayGuide.strings",
+      "sha256": "a08a4e4a4464b085a5be0e7b967126406d4332de2b3a7d7e5fb3c18fabcf2d15",
+      "gitBlob": "b5b399fad2ad09d936d10c0fd60b0dff7982dfd1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Resources/fr.lproj/W3CAccessibilityMetadataDisplayGuide.strings",
+      "sha256": "c8bfa6d2eb119e7e78007e3180ed8aa3c6b0f8e3882a7907220763c24df8432f",
+      "gitBlob": "0d2105ce0c92ecebe63e22c743c02a070ad8e889"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Resources/it.lproj/W3CAccessibilityMetadataDisplayGuide.strings",
+      "sha256": "70791e9a9d8162f23d9e45c05e3c0f9315a5cec5b05610c2246ba9b77981de02",
+      "gitBlob": "4a1fe716db66cd4f119547da9978c48a6e2e7a99"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Archive/ArchiveOpener.swift",
+      "sha256": "1d23b443434992400eb7a2df57cd39168c1ff37c5eb57fb55d909031bd68893c",
+      "gitBlob": "e22b0c463f4e087c6cf7aac42ff0368d557cf516"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Archive/ArchiveProperties.swift",
+      "sha256": "9895ae2c3d70e3f8921f8d627ea6c4ae9a081cd26aab55eb04c2e18640bf07da",
+      "gitBlob": "c9460c5eb8a72ebd3d0572a5038d9bbfc4f9694a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Archive/CompositeArchiveOpener.swift",
+      "sha256": "a2bd0d048afd6a520fbe3ac5c94d950b94363315808076a48ba5f41070a459fc",
+      "gitBlob": "79c57930c1b6a68eba0bfd86b8f4e2d6fb26bfa9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Archive/DefaultArchiveOpener.swift",
+      "sha256": "fedff9d7c9eafa3c784e5aaba4895d96dbc15439662f35da9c810925e572c0d7",
+      "gitBlob": "73e1bdfa56a975734cbaaf8bc9a5338e60e604e9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/AsyncMemoizer.swift",
+      "sha256": "477b4ac1d9b290204e3423352ad58de6bd60b755bbae16d67761b3164f59687a",
+      "gitBlob": "e31bf74747ef91f40a647727b1ec6350aa62dd4e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Atomic.swift",
+      "sha256": "3637faca92b4b2207f6ef23f160f246ebc43b619ada02a08ac7fec509a56f53a",
+      "gitBlob": "0a5bc21ba804a3cb543ff630c1ee84ad97839cfd"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Benchmark.swift",
+      "sha256": "1c781ff3103470d9cf7e359fdae56a250108526ede154a19e3c9a8b84dcada86",
+      "gitBlob": "c2cc631c6d63241f253bc7a1e7bf2b75d4d12e2c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Cache.swift",
+      "sha256": "b4d0061745c79f5bb6dfde8d68665ea92e6366eb70a0fc3a88d2649793df5f00",
+      "gitBlob": "49456bd4358c1cf488d5b3fda9e7c526751cb981"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Cancellable.swift",
+      "sha256": "8581d8c8d7266fa339c380bb2ef5e4601c985765d5f93178d9cba187baee3c2f",
+      "gitBlob": "a59090fc14c0694d79fc2ed9bb2516aa4cf2ab32"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Closeable.swift",
+      "sha256": "69ddb61a865eca85a087354eb2749e16c4ac266c9934f6e65f2fdfedde762c94",
+      "gitBlob": "0ae54d84c24ce7ce627cbcfe4676032996352054"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ControlFlow.swift",
+      "sha256": "f7ff146e30de692f72658f7bb79c595bc6e27885bf49d93e24f01521241644db",
+      "gitBlob": "3f951cb9e8e3ff1b4389a123ed47ace78ddc1ae6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Asset/Asset.swift",
+      "sha256": "ecb303f1eaef7074350e1fd588b4e88b396c9b259d1022e22fb2fb9d927f6dba",
+      "gitBlob": "9091a34e68aeef34fafd924f60b3f7b20e270e86"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Asset/AssetRetriever.swift",
+      "sha256": "36e323944b776ebbd43289f98fb53ff95566b11ec9384d71dc9bd9edbf547861",
+      "gitBlob": "76137ec2039e30c70d1393accfbc8027a4328d96"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Container/Container.swift",
+      "sha256": "382337bcb0b9edbce750dae6b76059dc650e70486e240fdbcfe8410accfc9183",
+      "gitBlob": "e6a18fd9065a1c409d0a40271cfa8f5379e20b18"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Container/SingleResourceContainer.swift",
+      "sha256": "50ae124a0722a6f03df9805d006b8d1af7995a25f26600b924a2b6e63a48ad6a",
+      "gitBlob": "4b37c828cde2e0ac36aa11a46ec6979afddbaf76"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Container/TransformingContainer.swift",
+      "sha256": "76d0e365cdc7a833903b0b24b6d88f54c355873676685bf95ec2cee8f88db221",
+      "gitBlob": "44c0e1c21118d7cb64d720d8de9799b9a9b56994"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/ReadError.swift",
+      "sha256": "3eb89251a8403068b965e2658f87c43259601853b61ff767a5bfd70ba4c1e756",
+      "gitBlob": "6d38c907319b844fe9fe18d0cb75ea866a15ff21"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/ReadResult.swift",
+      "sha256": "83b293bc6bcf501da338af4e013fcda6a2ce6ccea8350127f0df291ec1b1fd6d",
+      "gitBlob": "b3a8c571ea70b96ea2c0153d4fc3ff94c55cf2df"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/BorrowedResource.swift",
+      "sha256": "bbdda880bb13bedc62823a5e521d646bec958446fac546e0fe013f90222abcda",
+      "gitBlob": "0fb74c5daf4d2eb0cd2ac42bc715f4d50d09e8bf"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/BufferingResource.swift",
+      "sha256": "871d929c631fb71c036ee90d22b2e0a622c20ff274d3404f74988802d977fd65",
+      "gitBlob": "fa8fe234f712ddc5086a0544ccb1685463bc8ca8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/CachingResource.swift",
+      "sha256": "042014c56359651f73b9a7a3a05a26a7ef74305e96d9a48d6818005a7c2d6104",
+      "gitBlob": "f310bb078b28fba8a73ea55cc8110c24b7af8fd0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/DataResource.swift",
+      "sha256": "736ae9d7624c79083e4968a1121e4ff84ebe8d89564fcbc0d740f7859cef8008",
+      "gitBlob": "d86afe802a4a5dd6bb7335d4f13a6997489255fe"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/FailureResource.swift",
+      "sha256": "95c6d3385f065cdbfa87482f3a334368a2f45b6121e5bd322564d9bbdc4454f8",
+      "gitBlob": "7cc0f3934115b99a52169b51a00f0f82ec39a079"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/Resource.swift",
+      "sha256": "11765cb36867abfb208620a123c8ae37d9466ec5d30415d1368decb5d830daf7",
+      "gitBlob": "fc6648130fb097fea2f168050b9fe58f95feb8ec"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/ResourceContentExtractor.swift",
+      "sha256": "1b147402cfa29c217668cd057c77c5c68acfa2dca469cfa6fb68cd8dc6a78cdc",
+      "gitBlob": "d92531ce492a2c7e5d24677322e30f6cc8290b50"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/ResourceFactory.swift",
+      "sha256": "475f8840b521927a3fe99b51ab4c29e076fb83a3b25ce77530b72e684154c207",
+      "gitBlob": "774546678625a35018cec112d716b189e7e6ac60"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/ResourceProperties.swift",
+      "sha256": "0e3157d9addf7bac4031c3896988d7d151b2ab3e42994f165565b3b5a997ae95",
+      "gitBlob": "a6256a4d7fd3dd6af924b8f9385109ba6574a2d2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/TailCachingResource.swift",
+      "sha256": "dc61298a48d688cdf6035e3e7425e935fc9c82f10f214c7317089ea74e1515d8",
+      "gitBlob": "fb64c17420bf6824a3f32deb5a0660726dab579d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Resource/TransformingResource.swift",
+      "sha256": "6e6006a9ec0944dc65a366204e696a002e8d9bbccd0702de0e6921b9d62b46b3",
+      "gitBlob": "f425dd1388f7623260b162e0f21f0fced42ab439"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Data/Streamable.swift",
+      "sha256": "853be1efe9931d06c7f594d0288e52c6ae8f922600be47f87a50ac323be523e6",
+      "gitBlob": "0331fda4758f85bc96717c80b62f1ad8e3fbf6ae"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/DebugError.swift",
+      "sha256": "7a839624655ab5c43a6ca6c8f8b233d7a158a450c6d7b50386527d1c8df61704",
+      "gitBlob": "0268e1dfc37f3b270c15178726ba1d5aa65bcf15"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/DocumentTypes.swift",
+      "sha256": "da4fd63df55f88d2c02abafa042fb2ca2f9fbf2e14f034c3a739c87ed80dca55",
+      "gitBlob": "bf98d7de711ec4aa14df64fe430e3ff66bba34e8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Either.swift",
+      "sha256": "cca2dd6948e67daf2cc6892e8a84dccd5e8ba0f44e854eb9aac120a3b8998b57",
+      "gitBlob": "122339ca179bc12536e9146babfa9bc32fdce522"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Extensions/Bundle.swift",
+      "sha256": "1ec798bc52e19deb1fa26f082531f8f9b16caaf3284ed56604ea42745448e942",
+      "gitBlob": "6ff7bb8abe03cd21bad590ddeec19cdec5fe69df"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Extensions/Optional.swift",
+      "sha256": "700c35608ead86444a2aaf62996b26cb7f9746d4961cc41118dccdaf022436f1",
+      "gitBlob": "20d12083e081a7a42fbc0b0a12750878283c6e4b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Extensions/Range.swift",
+      "sha256": "e516e6aa263b3c3b674a57348c3fd897861488a123b191123056e55df60b40a4",
+      "gitBlob": "df5f1ebaff8b5d55770d95183107893de1c9ae15"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Extensions/StringEncoding.swift",
+      "sha256": "da46172f3a2e69f7483c206a528f67aeb8227c926c8df4c32f28484428f10c49",
+      "gitBlob": "1600599a70f222674994684a9ba56ebd108359e6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Extensions/UIImage.swift",
+      "sha256": "c8f3739b7ffc9a42244b8d2ff362ff7bff5deaf85dc95b319d775f3d6ecb16c3",
+      "gitBlob": "b00fd0fd88a5a7398ef19d1aa4143b07b4959b5d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/File/DirectoryContainer.swift",
+      "sha256": "ef41ce1a907cd9c5666dd0ae7ae4b4e8f75eba78f69c9118d58a3cd6233e1781",
+      "gitBlob": "478661bbfed3df08140a32ad28f73944499107e8"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/File/FileContainer.swift",
+      "sha256": "5c256f49cdb1e6ce410a78322494969affc08b950e254519c46992f0211a14f1",
+      "gitBlob": "20990411d7c65ae6adb3badcf361bd8982f2478f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/File/FileResource.swift",
+      "sha256": "c0a765a871266548ee01c844e8913b068ccd2699e9f968d01c2f5f7df5fb36c6",
+      "gitBlob": "6ef63b7d5c54932f0023e9da3dec55457e3d959f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/File/FileResourceFactory.swift",
+      "sha256": "d79c75a9b5b2fb57c4ec583fda1abe7a060ae8a23587ba6c6031b7553010824c",
+      "gitBlob": "b71b282ba7113b11b56be91908747739c04e9bba"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/File/FileSystemError.swift",
+      "sha256": "05bae935b19e996ca8ff6e5d7b6f3aca6119e16b8bd5d708ec712e2064e21251",
+      "gitBlob": "6a4637c349f6ed3bca5b621ad7bf9057f72bbeb0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/FileExtension.swift",
+      "sha256": "c8c2ada66502299759bf4bfab4fba285d42c90f33928b3ffd129a4f66749bcd0",
+      "gitBlob": "86380c0c3c4bd9e36130397fd0756b56b7b0d3ec"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Format.swift",
+      "sha256": "f5b1f273b27f2b700779007c60e2bf7807005078e08daba095a0193464c9e373",
+      "gitBlob": "4f395e70351dbffb2f0ded6b12e503750ec6c540"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/FormatSniffer.swift",
+      "sha256": "ba6bb36f61fd91720b45c9cbab98d2fba182817936d8c67db4552b4696aacdce",
+      "gitBlob": "a87674ab5bcb8ece73407fb777e44699281fea0a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/FormatSnifferBlob.swift",
+      "sha256": "77f090ea5b727ccfcda5b2e2e40fcfff3bf255d49170450bf7dcabf860c2228b",
+      "gitBlob": "80342ed91cd3fbfec2593b3572f94ab86ee8786f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/MediaType.swift",
+      "sha256": "acc3b3c663dfa21fcd6b9944368f132524dd8ebb838869b5b033e0f3347cae5c",
+      "gitBlob": "ac3e33233162ba892a67ebc86fbe82511d469b12"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/AudioFormatSniffer.swift",
+      "sha256": "9b2dad7784cbbe4358a90448bfb7289face2b5cdcb984423ed0f0ca06b93b8e5",
+      "gitBlob": "50792893f2d75b43a4dd2e97b4176d8894b0b58d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/AudiobookFormatSniffer.swift",
+      "sha256": "a08cf2204ad868e5537697f20e0308fa84dbc9072d141998e56a5d29c24fce28",
+      "gitBlob": "dfd5bdac27e44292003f6d12a59a446e721e1f16"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/BitmapFormatSniffer.swift",
+      "sha256": "70009fdf085ba0ced9e3350ca04ce0c203d5d3405489bef9f2b7892d18a051a4",
+      "gitBlob": "165e44a59ff5addd0ee64dcbfa7386f6a17ebd9a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/ComicFormatSniffer.swift",
+      "sha256": "da5761b5b1cb7eaefb8ef5714a6d886972f83025e147160afa23c8aa391722a3",
+      "gitBlob": "0cbe03383dd8711147c1450b9fbfb6cfcb5b5097"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/CompositeFormatSniffer.swift",
+      "sha256": "0c1c9b2b8e789a3309d3f8d055a6aea2d61f8a2184007d7ccb0022964f18798a",
+      "gitBlob": "1fdfdcd79b36b850945c46d61b610778f5d7d85d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/DefaultFormatSniffer.swift",
+      "sha256": "2e6b280ef6f616ae304a4d43f85b4f227dc992a722b6a212c005dc177ad0eaed",
+      "gitBlob": "2dcc9212fbb90b1994d4ed27adc7b5a97073f259"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/EPUBFormatSniffer.swift",
+      "sha256": "1a2a07bbdd7cb4db526dcb536bb263ae9f7dc7211aa156c7f0fbab55d866707d",
+      "gitBlob": "5aa775bacebeaae5bbfb1696a5b629bd67421b58"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/HTMLFormatSniffer.swift",
+      "sha256": "f7124de9b7fbcc51b15f4c426fda38f7ebb0639486bc9055e61ae92c4eb92eb1",
+      "gitBlob": "8c324b2358f61db5acde71d9f225f39b62ed78fb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/JSONFormatSniffer.swift",
+      "sha256": "55999e33785771bb896bd269cf4f6e416665c909f397db9eaae80edd9d776bc5",
+      "gitBlob": "b3f588bd6fcf1b99ec2e83e386e61fb8ab397c87"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/LCPLicenseFormatSniffer.swift",
+      "sha256": "4797194e04ec955212cb195377093c6bd673c10865ca31205aeb6f1d9210fbc3",
+      "gitBlob": "f780980f4bcdbb0c52ea50fc72e6ae842bc38cb7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/LanguageFormatSniffer.swift",
+      "sha256": "0fbb9664328837f23a1314200cbb44d2e15081b4e4defc3a93d19cbbcf9c43f1",
+      "gitBlob": "84f952dd095583bb7744787658cb193b879f025a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/OPDSFormatSniffer.swift",
+      "sha256": "69afb59cfa22964d8ce7964eb693a42ed5a9d1e9903e860fa14a4ac99af4b60d",
+      "gitBlob": "444ca3ffd92b514d3182accfc5e5bfb994406303"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/PDFFormatSniffer.swift",
+      "sha256": "9efdef48f9c04a270a7dfa895902ebef56e8bd31dad894812abdeff999d7009e",
+      "gitBlob": "cde825e181b481599e5482aa59c090625ee40621"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/RARFormatSniffer.swift",
+      "sha256": "de93e131bc9d2ab1533f0d8b474fbba9ac29210bae7d86a7d4fcf064c56e08d8",
+      "gitBlob": "11bbf15d2753766044888d7798cbd36c3ca1d2b5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/RPFFormatSniffer.swift",
+      "sha256": "bb638d0bf6b2275921042603962f79d08976cd82b0d3f8a968911b27563ef637",
+      "gitBlob": "b5f6f8a6be446f368568b9132f9dbb6fb099582c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/RWPMFormatSniffer.swift",
+      "sha256": "a96e5039b40c7c6b8e008bc07c887ff8877d8973ea1e780d474d1bcb386ac927",
+      "gitBlob": "4373e0a38178f729954303de2797836901fd66ee"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/XMLFormatSniffer.swift",
+      "sha256": "aa8b5583f7a2db45d2affca906d6da22ada78bc6f1238b627ea24386fa464233",
+      "gitBlob": "b2f8b00e9913afed89fb5ea6c7d5fb4ceaf58e7a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Format/Sniffers/ZIPFormatSniffer.swift",
+      "sha256": "c154283ce412a3a4c64c074cca5fbf38b3830a5e4c289c14d14131534b4f7961",
+      "gitBlob": "6b0f13ca97f7b42c0df583af4b5c59fe2490b61d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/DefaultHTTPClient.swift",
+      "sha256": "89b15c898cf98111780185c4071c91ffe1ed500512a0fb1fda11be121b2a4973",
+      "gitBlob": "94d420d1842685bbceb6933c9eb7db0ebb51efe0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPClient.swift",
+      "sha256": "35827497b32211b21a4af462a00fdc1024bc8a165986df284717c2fa811c23c2",
+      "gitBlob": "b43b27a3c3adfd66c001a4ac25ee3fbb811c73e1"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPContainer.swift",
+      "sha256": "b18cac6d2308f2ea434eecbf9fa14355861e5946b678377dbfd4225bc89febbf",
+      "gitBlob": "6146be9911c8a514e077dc25537831709558758d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPError.swift",
+      "sha256": "8fa0a7802145198b3083954bd9f3d663a68c81be8762ec120a6ac12092c905da",
+      "gitBlob": "dbbe8cd843173efcda252adf3267751a33e8da29"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPProblemDetails.swift",
+      "sha256": "d4bc3508d21820b69f6cb7b05beb0d7c82d35a9d76b20a00ef75b21e2f2732b7",
+      "gitBlob": "2aa39d849c84a52d232b88bdd2ddd793ff125cef"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPRequest.swift",
+      "sha256": "c6b0a84d42dac06eff828958a2be268c91d9efa01dc3401ecf63309a981c5948",
+      "gitBlob": "f6ca759d1e03500c0327d3b875c9ea6097913d1f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPResource.swift",
+      "sha256": "1982dc2dcd960d09cd96a73202cd227fe5cab51f64331dc7e077749eae984b3d",
+      "gitBlob": "14225792891c61cd1cd30d4b126733d3a5a36ae2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPResourceFactory.swift",
+      "sha256": "db953fe35542a9f2bc12e5012f0f375421e05428bacc92430a7e14d4410c9a49",
+      "gitBlob": "526dc7e85d6bb0743994ea28b7b0750fc0392edb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/HTTP/HTTPServer.swift",
+      "sha256": "0718368868cc80fbc1b017a76b7af521ab1035d0e37fff0a01cebf0bb1629bc9",
+      "gitBlob": "24098445dab860d66e0093527ac58c495d25a1a6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/JSONValue.swift",
+      "sha256": "b8c511f07492829f8fa142fea3c4158ecfb57c3ebb8dbee4eab78c1681500a40",
+      "gitBlob": "ef6acfc6ae193bd8ddb39a91ae34cd94861220e9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Keychain.swift",
+      "sha256": "f2f5eab982e475ca05f4f65587ddd10c7baa98bb282b81c629f7e81b59d8691d",
+      "gitBlob": "6ab3de82c256a6ef64f145859514a58a62fdf4e7"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Language.swift",
+      "sha256": "e58cd51971a28b279efd3785fef5ba6c8ac129fcf55ae28b212d6076169d6c79",
+      "gitBlob": "b65db7bfe8f25a2f7df1e2da640ff6a8f1d8bbdc"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Logging/WarningLogger.swift",
+      "sha256": "e942ca1faaf3ddedf4f95823ca8877483cefaa628bf0b74d781c4b146940d13a",
+      "gitBlob": "d92fd9cacdcb1dea97bc6ee8e5acc213c29aea36"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Media/AudioSession.swift",
+      "sha256": "bc859129957c19719d3097d4e9c8000b7ef22357f1952d91ac2161b0e789d764",
+      "gitBlob": "39dfd2641c2cbc33a2700e01b373921863f0347d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Media/NowPlayingInfo.swift",
+      "sha256": "362a96ce75adcb43a694228bd7eaf4f8415792822a0ec2922fbda02ccbb79215",
+      "gitBlob": "5c2904f7e96c76695b105b0196ffb59f2e448edb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/PDF/CGPDF.swift",
+      "sha256": "14c75fa7eb26354ab12cdd3cecd84ea4c058faa9e0280548fda2fedb40bd5895",
+      "gitBlob": "a876728f5c7697cda1a66bfc01f5cf03b59695ae"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/PDF/PDFDocument.swift",
+      "sha256": "125c34c60b7fb94c40ad99975a4ee39c1e5e731e327dfca995bde0e7e007256d",
+      "gitBlob": "132b20157690ebf83f899049a3a1a3e0de05eff2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/PDF/PDFDocumentService.swift",
+      "sha256": "3272872181e214e1776d0dc9263ecfe8a8c0e9edcff4fe96ddbd8ef97eb68f3d",
+      "gitBlob": "9ba24ef93dea458cb9c9d732a9363675f4dfcf15"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/PDF/PDFKit.swift",
+      "sha256": "35e6792667a28416d44222c9bf1cdb35b5facb6353c565bf137931893a2e859e",
+      "gitBlob": "47c8cb18f2952c898403ad7b53f27e5cfbf16de3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/PDF/PDFOutlineNode.swift",
+      "sha256": "d52f1923a0dd81cdf427c58d073435a5229d2e986030a8f4a2be003ca09c6184",
+      "gitBlob": "72fa1f658cad431d3c9eb0fd79485a738d3136e5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ReadiumLocalizedString.swift",
+      "sha256": "3edc75a573ab6438b7925edf9c5993ee1dfc099bfd621417c3e2b2574bc93790",
+      "gitBlob": "8b11b587fdd9278556d60b5415b0ec3a7af04820"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Tokenizer/TextTokenizer.swift",
+      "sha256": "ceda8fb3c2d6d0118bf4f0cfc3182873e86f25cd9c8b54fae3aa382c838966c5",
+      "gitBlob": "efd7cc96454c83c33b574203b371b36b06655513"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Tokenizer/Tokenizer.swift",
+      "sha256": "91ea2d622e02da3b564805ea7bbd2a429230147afb34cab301710c3663fa7033",
+      "gitBlob": "c739402c3936ea30bd823fc13895e90b60f8bf35"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/Absolute URL/AbsoluteURL.swift",
+      "sha256": "e1f068edb73f8b7f2db1d2049b920a2e81e85e22b76f6cffd31ac550ae37d644",
+      "gitBlob": "363e166ce8d34b020e879c7321267bea1938b205"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/Absolute URL/FileURL.swift",
+      "sha256": "1b6d177547215b486245d663568c678c32c4028fc9c12e0e1ef188c9498d982e",
+      "gitBlob": "eb3f01b8d1346fab716f948ecc45ad3a1034bee6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/Absolute URL/HTTPURL.swift",
+      "sha256": "36f1864a5a9ff83c95a4d565ffab6adff8af1273674c96ba4a46a9301b03405f",
+      "gitBlob": "48aba2898001b87fc70533678aa760f927b0e0eb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/Absolute URL/UnknownAbsoluteURL.swift",
+      "sha256": "62e19f5ee95ba78dfe91f0863ef9f414c3cd476e66da50e985560015dd8a5098",
+      "gitBlob": "5ca29a03e03745b4b62c9a9d9924e1dba40e6fb3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/AnyURL.swift",
+      "sha256": "ea0f6314d6ce735b1b0d26319835266b516f5924181a68860ae0e38aa58c3319",
+      "gitBlob": "3f5ea72c48f865ef830a0bcf88b82d725e4ffb73"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/RelativeURL.swift",
+      "sha256": "65471ea97e46831bbb385e26194fbe40fa3563cba712fd1f231bf3574bfc5e13",
+      "gitBlob": "e306c93c5bf04b98793afe1b0cc56a8e1bcb689a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/URITemplate.swift",
+      "sha256": "3b623e5e7bacc0e183474c30460c25fbd9c0e71f34eb243d22dcfb0be75e914d",
+      "gitBlob": "2ac1b62e01b7ebf406618538b7f2d0d8140effbb"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/URLConvertible.swift",
+      "sha256": "4c48505ede7d3071cd4bfc11931d995453f5635165348807567aa6276a8b577d",
+      "gitBlob": "b3e4f4ae1a0d5eb80d8b4cef01ea276c43865c72"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/URLExtensions.swift",
+      "sha256": "407131c280e7cdbc2cbfb331940d9f8a1dfb447ff7a4c050d8cbb28429b719e3",
+      "gitBlob": "9252f7ab45cabc027accab44aab3cfba97e1d98e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/URLProtocol.swift",
+      "sha256": "7e456508c26a9dfc1a4ad44ea2c4890c30aa618b03a33447e2f05a6fbfebd460",
+      "gitBlob": "25fae7dbfd38ebff7528027cb3030cd9a4cbbdc0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/URL/URLQuery.swift",
+      "sha256": "90702defe4bd94f52c09e61fb381ef0111c88389d29f1fde1c5c477666fcb1d2",
+      "gitBlob": "ef02bd5514a92f00f23d23a3462aafe20fe1583c"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/UncheckedSendable.swift",
+      "sha256": "62b0fc8f31c821e401a632351a44f0fb1ee37ab08b5978efeaf57ee510b06d43",
+      "gitBlob": "34534a8bc625a98a4bf33e9f4a615d2951715440"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/Weak.swift",
+      "sha256": "2dc5daf6896dd740831f2d43a1ba6564f9ccca036b6ee76efc1b98c5a2402d73",
+      "gitBlob": "87d5970b9a74b18edc45a82c2a659470ac876cdc"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/XML/Fuzi.swift",
+      "sha256": "250392289fbbc1a946be9df8679fbf24d194ab6409b2a1b49843fb230b68686b",
+      "gitBlob": "7276cf180c909d66b38b9b051facde7ceaef67fa"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/XML/XML.swift",
+      "sha256": "135430039cdf454358ec5caf2b5bf5b4547c55629b45c0e0ec0de7b5f281399b",
+      "gitBlob": "25dd4fe1844947812188b15398a0bfc3897efab9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/Minizip/MinizipArchiveOpener.swift",
+      "sha256": "e725af6e1f32dd4f0bc8d78dfdd595aba52167bc96ceab45028f79fb7ad15dc2",
+      "gitBlob": "4312b1008a8ec9a4d6291fd198b666581c70c4f4"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/Minizip/MinizipContainer.swift",
+      "sha256": "1df120fd1445c55d5e9e0cca6e69d84b7f2cf57e7488aeaf58212a5a906cd3c4",
+      "gitBlob": "d49ea41f32ee378b855839b4b5123d8a2189767d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/RelativeURL+ZIP.swift",
+      "sha256": "c3ba523d4d9234971c1880cc1f8029d2c8b398be138679402cd4bc5d8f00d71a",
+      "gitBlob": "129bfb2155295ac311e9d06be3591d3b6502f75f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/ZIPArchiveOpener.swift",
+      "sha256": "81ceef38f8f7c76f578f7d5951f273e4ceba7c440e97367b654b57c81c2eb5f7",
+      "gitBlob": "1b2476637f53a16d7c6b474ecd7a0218cb5586ac"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/ZIPFoundation/ZIPFoundationArchiveFactory.swift",
+      "sha256": "be83884c866d701d2607be122ad672a2595d3714a55b0f7d8cd1c981726210f9",
+      "gitBlob": "09dddd1a3d3b195033df62bc888c152bbd497c51"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/ZIPFoundation/ZIPFoundationArchiveOpener.swift",
+      "sha256": "1857c94d49f619e4938c43af8c61f9c9278f17a0974b30a3c9b09815240b36cd",
+      "gitBlob": "1c09e67e5553cb824189fe78effe23a0cad58e1a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Shared/Toolkit/ZIP/ZIPFoundation/ZIPFoundationContainer.swift",
+      "sha256": "5af559d4270fb3602cc22955ea082972eaea82216f8cd69370bc100875310208",
+      "gitBlob": "e91f7346de3c2e3924c0807ba843a731fe96ad4e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Assets/fonts/OpenDyslexic-Regular.otf",
+      "sha256": "e2da53e6ae0d57455acaecf9151769780f875f17ce0aed72d90a7be3edf98b57",
+      "gitBlob": "1226d2ab281901464fd557285ea937e14e852e3d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Audio/AudioParser.swift",
+      "sha256": "103c8ffc1d3bcbd871d47ab205b5ba739ae42613379dc88f96d93159d581cedd",
+      "gitBlob": "821415a60898ce7a4cdbac93268f1e20b1241e41"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Audio/AudioPublicationManifestAugmentor.swift",
+      "sha256": "a74f5ec2aca2473f541217e2ef9fa4379aeed855397e1f58ac701afb5187b2d4",
+      "gitBlob": "24c25be8b1b2b4722ba6a4c6954ddfbf23f38749"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Audio/Services/AudioLocatorService.swift",
+      "sha256": "0a32a624e773707c50be2ab2684410017cc5ad8ceeae7997cccd8d9a5d83f5b6",
+      "gitBlob": "5fea158fe04020e4dce8d602981ced6d363639a2"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/CompositePublicationParser.swift",
+      "sha256": "3b8be99e6f9270fcc36acfa9eb85c131cc16b90421a880fb53fbe6acff50214e",
+      "gitBlob": "49f53633aafa412869a4957a52c9730bfde8b59d"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/DefaultPublicationParser.swift",
+      "sha256": "dde8fd060a157eb2b9f7a55e95e6920d605d735e74ab1225cd19cdb7c1654a0f",
+      "gitBlob": "1466d9cac81b56550fb51fe8e2976a7f2f2e9efe"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/EPUBContainerParser.swift",
+      "sha256": "4e96a1aed32915d5beeccb734141170ff4e3b75a40216224aeba5a066788220b",
+      "gitBlob": "3f790047536026688fdfb0a7ac3e1808de306240"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/EPUBEncryptionParser.swift",
+      "sha256": "bec2538998d6d36846dc79a85587d4ef6b85caccabca05efc9419d45fe39fe5d",
+      "gitBlob": "18a981750935d4e0f4bdb7070ec4d087e4553e5e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/EPUBManifestParser.swift",
+      "sha256": "fc8d7c12bf9b81a2e84029f5749c619b18a04c8bb38f3b078b0fe67db181838c",
+      "gitBlob": "19a5ac62b20cb97cb72c1f949e585157754ffdd5"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/EPUBMetadataParser.swift",
+      "sha256": "c7512759db2f1baacfe905ba68103c1ac775a0000e6c569396a80d71570b349f",
+      "gitBlob": "f00443f4700b294eaeb2b991ab080aaade7ce0d0"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/EPUBParser.swift",
+      "sha256": "4735cf5d561024328ab01f474758d68095dae14e62d14e8cc181b7f8a8080583",
+      "gitBlob": "4d53e72a71d959133d3d447a234143b11c120340"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/Extensions/Layout+EPUB.swift",
+      "sha256": "0779017badaf0f7fe44060532ba5ab66dca7623da91809a8e82e7a8c896079c7",
+      "gitBlob": "9da0f56b36f49256e5320162dc8049d3dbc78e12"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/Extensions/LinkRelation+EPUB.swift",
+      "sha256": "0328710ba0fd09301b6021bca609a3d16340c2b1144975ac8f8274b71e3f0c1d",
+      "gitBlob": "ff5ce484687df523e1db9e5500a687f5a4d27e2b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/NCXParser.swift",
+      "sha256": "5caa6fa8a78b1e106fc7cd45003851a55707f3f618a405b6950481db7db90646",
+      "gitBlob": "2b5ec7d8e63482b253b2da796e8f4135b419e57f"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/NavigationDocumentParser.swift",
+      "sha256": "6d77de245a84b18066e9c29996ef509558b9feb2aea3af9d43e26a3d10888c0e",
+      "gitBlob": "80fb012e8860e7852b02dde47547f07b35f6e4d9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/OPFMeta.swift",
+      "sha256": "2b2df54455ebdcd89e428ffee1603a70d34ffd4bb0528f715564c6f314ffd3a8",
+      "gitBlob": "86ed3cadb75142b83a61bd4a3614c81c4aabaf42"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/OPFParser.swift",
+      "sha256": "aa015c308dd6ebeb501d540bc2d5ec8241ee0dae394615659d6dfa2cc7cd630c",
+      "gitBlob": "2beb9340aea74e575f84f8d6d475ed8a7daf3139"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/Resource Transformers/EPUBDeobfuscator.swift",
+      "sha256": "b0dfae54ff12cd5a5a1c15865ec367edfa053fa2bec7ae45d6600d9500065880",
+      "gitBlob": "7b9fbfe95db2499a0b5adb4e3f4c3df7e76529bc"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/SMIL/SMILGuidedNavigationService.swift",
+      "sha256": "facb6c577584a165231173f57109cf895749a1ab7d8f6d1ad8030d57451b4a84",
+      "gitBlob": "f03c7569d01e11b8d107d499c6c59227237bde7b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/SMIL/SMILParser.swift",
+      "sha256": "9a102cecf905a9815edcaca8f6c9b4a75bd1c070a15ea734a02130af9f4f75a2",
+      "gitBlob": "fabe4dc518f0416a9ee82550e923d7987160ab25"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/Services/EPUBPositionsService.swift",
+      "sha256": "d7d4be7c5ed8c43598dfe83474f7ce5dc0e23ddac33df0cd78235c74939f3e36",
+      "gitBlob": "26a81e59abbabade8ab30ef878a8dc261c9e21e6"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/EPUB/XMLNamespace.swift",
+      "sha256": "7ecf697a6b6795dcaa23b2f63e7242bb4e2b0ac25b931fe7a5ab17db5fece80d",
+      "gitBlob": "46017431acd7d3c616fa5fb28b344f4704bcf753"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Image/ComicInfoParser.swift",
+      "sha256": "81bfff9e6f26e82f3dbb1ba13ff3d7514ad2b441ebe0cd1bc7fcd9b685e75634",
+      "gitBlob": "54ae7e4dd178385e3dcde6eef15ec1aa29236013"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Image/ImageParser.swift",
+      "sha256": "b2af143abe4722306415aa4ec705485ded1e752a9bed51ae9f319612ce45c5f8",
+      "gitBlob": "a1b25fa4d25c3ecb1e037460acaf790f2f863460"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/PDF/PDFParser.swift",
+      "sha256": "83c4b676a8db4e1acafbb447ffb8b64ac5eea1eb6184f0a397f1f474ef290cc6",
+      "gitBlob": "1d65c2dd1ed8e033be209f8b698623d1c14b9c5b"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/PDF/Services/LCPDFPositionsService.swift",
+      "sha256": "fbe5c539abdbadeff35a9c1ad377b540eaaf8f9347633647c12b124b2d19548e",
+      "gitBlob": "c840070d3a5a9ce7464e7c44584d1dd16dea9e30"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/PDF/Services/LCPDFTableOfContentsService.swift",
+      "sha256": "c03669ceac39227355da1a4ee043fea2181eb3d6588d71761a1f3b8b4d65cd9c",
+      "gitBlob": "c007f9628a30070d7fbac3dedca8f0b3862ca092"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/PDF/Services/PDFPositionsService.swift",
+      "sha256": "1e2b1df93b064cf4b1c1dd021c9dd4ece13d8a3f74451739ae6309722614cfb8",
+      "gitBlob": "f4a3fc3b037710cd8659373027aab6f7377812da"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/PublicationParser.swift",
+      "sha256": "2fa06d1c41bcb7165b25770a82e0c5f2ab5a156920dc5829f553bce0b0c27bc1",
+      "gitBlob": "3f2685cbc1b7efd0b6521c0b045259b16ec5609a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Readium/ReadiumGuidedNavigationService.swift",
+      "sha256": "7b27e9c34d14f43438c6a0eb54e725f55070f77814ccbdceda0a77405b58de6b",
+      "gitBlob": "2bf078741ac17a3cade37112b51bce14ec24b4c9"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Parser/Readium/ReadiumWebPubParser.swift",
+      "sha256": "658c5a0346625bfda7d89b566f5c8a33cee74dca7091e03221e6df5d91014e80",
+      "gitBlob": "7f70ca1a54f6995d4302340f011b01e8170f934e"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/PublicationOpener.swift",
+      "sha256": "1097560f7b8f2369ac3a289b174c332f6b2d0a7e714901f9ae1bf525694c18c2",
+      "gitBlob": "cf2be569645a84422b4120348034c46192f38719"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Toolkit/DataCompression.swift",
+      "sha256": "a408ff8bafa9f854932725c2fd366a0974b1054f36c4a6180bc1b61c5d8f24b3",
+      "gitBlob": "e6b93a33ab0c6ef267c805d53de09eed4789f715"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Toolkit/Extensions/Bundle.swift",
+      "sha256": "ad0c45d9624ed281b2b851d209c93554951facfed245832d0f806af5f90ad466",
+      "gitBlob": "c90b400258728bf77da2f542189f3ff0edbf5f77"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Toolkit/Extensions/Container.swift",
+      "sha256": "3a52c90f4fe25c4f5d0f9e8113e553c0bfaeb0733220de119e0208c8945b2d41",
+      "gitBlob": "9e69dce983d37c56266b6aa12435147b9cfab0a3"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/Sources/Streamer/Toolkit/StringExtension.swift",
+      "sha256": "2c2ebbfcfe54e5d9cddb6bb4cdc5c7cfbbc2a44348adffc4714fe01a06facbc4",
+      "gitBlob": "85395ba131b6095d99ebeee0403bd5e5b5b8d73a"
+    },
+    {
+      "path": "Vendor/ReadiumToolkit/UPSTREAM.json",
+      "sha256": "d919cb9d9faf2f4a18047a4368feb72c349486e489c7fd6b32931fd067e67fc6",
+      "gitBlob": "27e409ef5857d0417ba2292cfa3ca30747f8f06a"
+    },
+    {
+      "path": "project.yml",
+      "sha256": "0fb02777f4718c53dd876040d0facb2a18b6cf7f12ad8b873c2b5830d7f7e06c",
+      "gitBlob": "59f71856284a29ac521eb9c8b620cb5909e28f6a"
+    },
+    {
+      "path": "scripts/capture_native_resources.py",
+      "sha256": "e4a1a588baf18db90fb3f51ca5af27c2fb00e860c8457d72c3bee256a4c41fcc",
+      "gitBlob": "9a40f9eedc671822a5444308869813bb3bbadd8c"
+    },
+    {
+      "path": "scripts/check_architecture.py",
+      "sha256": "1f4c202136d094324ed7fe1a2502238d3113239b08ead2a91e2d04c7d52e2862",
+      "gitBlob": "25d5fcfa8b6afb6125d8ddccf22033adac0586c8"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "sha256": "435ccf3ab8045865b05a98de4155a8685e22160906e14c0ab8af2571c30478c9",
+      "gitBlob": "d15635ed18b072591951c6a9dc8ce193a97e21a6"
+    },
+    {
+      "path": "scripts/ci_epub_ready_control.sh",
+      "sha256": "ad439bdab10601f12085e9c0e75f5e0856cdb2b7eaffd478dcc43de10be25a59",
+      "gitBlob": "a5dad70ed63c93e916f7a429b81e2e85223ee3af"
+    },
+    {
+      "path": "scripts/ci_ios.sh",
+      "sha256": "cf7fe887ad532120b002c1330d6ae52a11d224a3dbfc33c527e8c1a2af49860f",
+      "gitBlob": "2b86fae2588720d8da09af755774b71c26ba88b3"
+    },
+    {
+      "path": "scripts/ci_paged_font_control.sh",
+      "sha256": "3e31ee38bfc9d8ea8b25c7f5b3384bf6bcbf88dac705e445ce1b9eb29d1901be",
+      "gitBlob": "4ff3c0a07ce69001c4604bb4f54e55dd02958da9"
+    },
+    {
+      "path": "scripts/ci_position_offset_control.sh",
+      "sha256": "3fe35171db81d58df427eb31a724d2269925b27a32d4d6001814ceefa0a9ded4",
+      "gitBlob": "216971cd1fa5bf060e7e23104815c499e6c0033b"
+    },
+    {
+      "path": "scripts/ci_reader_diagnostic.sh",
+      "sha256": "860a68772c1834becee2d3cadf50905ddcd2b435839e222c5de24529e36afb68",
+      "gitBlob": "9939764c3f7ccd11ff80683df0468b792615ee07"
+    },
+    {
+      "path": "scripts/ci_reader_session_control.sh",
+      "sha256": "52455ae726f299da5bcb9440c97c2aabfe0204c99e847ad217668ee0e1df23c3",
+      "gitBlob": "28501abde2d873d274185c3a3a8f514ac912da3a"
+    },
+    {
+      "path": "scripts/ci_recording_control.sh",
+      "sha256": "1a4218e70572c808dffd0ffdd320ec1c3b0c4460ca382f7eaf222299f5e27cce",
+      "gitBlob": "1c549eb795cbe7c28d24879f2ed14def8c219242"
+    },
+    {
+      "path": "scripts/ci_viewport_pair.py",
+      "sha256": "40e03f394d8ab31f7351c0ce9a8bf4960d6159505febf4935f1395089f35d9f2",
+      "gitBlob": "ee419f2417f76151ac3a7d82f8d6bce9ac9bcc4d"
+    },
+    {
+      "path": "scripts/generate_app_icon.py",
+      "sha256": "294217ccd489d77ed45ed7a979d9f64229c582d258255cc3aeb86ed97f467494",
+      "gitBlob": "33069b25fe16f97f615ef0347ee58ac838be74a3"
+    },
+    {
+      "path": "scripts/generate_fixtures.py",
+      "sha256": "26cbbe7dfe4999744a58ab3bc16e4bb92380f8f4af626425a338f9aab535b962",
+      "gitBlob": "9fcf239d47c1b26b5d45cb595edb1944da4e8ba0"
+    },
+    {
+      "path": "scripts/generate_reader_fixture.py",
+      "sha256": "bc916df91d6f977606bcf73e3cffcda721d5e3cc3eb57d0320709e80df86dce0",
+      "gitBlob": "5c275728bb272f0b074580f3c584c93eef34ecd2"
+    },
+    {
+      "path": "scripts/generate_window_fixture.py",
+      "sha256": "9f069fb8bd60604d0f56569b3d38307509a4cee03b59d63768e9993e1b41cf5e",
+      "gitBlob": "42f930d969c2e40683127b1c30c2c327cfd3a724"
+    },
+    {
+      "path": "scripts/package_ipa.py",
+      "sha256": "79d9f3c61ac0af7e7b9ddf37bcac49610c32eb2b81a4c989c61aa86927a391e6",
+      "gitBlob": "e4282b2681fac8f7ecc7884cee9410a1b6a6abbe"
+    },
+    {
+      "path": "scripts/plan_validation.py",
+      "sha256": "5a485a59dc1803f0d307c04ff1fc71c21a50f3219dee455fde65f57d23c25b8d",
+      "gitBlob": "828301e31c30adb90aba9c5cc4bbe0bf120a86ba"
+    },
+    {
+      "path": "scripts/requirements-assets.txt",
+      "sha256": "41b54a6fb2918667ca47a61d73b522629d84490f3d78f0f20b21135faba10d35",
+      "gitBlob": "e7cc6c178b542946a555ad07fa55b5dde3fca566"
+    },
+    {
+      "path": "scripts/requirements-checks.txt",
+      "sha256": "2d9f32a3779f936a0332921172efa5efb6d9f6b20006ee50a617ecf777cf2144",
+      "gitBlob": "585975466f2cb2f2af1cf1bbaab828faa52a665a"
+    },
+    {
+      "path": "scripts/resolve_local_readium.sh",
+      "sha256": "93a652e54cb199fb728a6f391ef278b574c7fd7ca709bb18557383229d72bead",
+      "gitBlob": "9ee84c10e3a77b4192e032369f8874070c7fbc6d"
+    },
+    {
+      "path": "scripts/run_txt_performance.py",
+      "sha256": "bd131a7d38913eeffc678b60234c2f9047d95569d0dcb95f4670697288c5aa32",
+      "gitBlob": "ed84ee57789098a00eb42241edf4e01c458a21db"
+    },
+    {
+      "path": "scripts/select_simulator.py",
+      "sha256": "8a445855e12e8e0d7e1f8fcc0cba67c62f33a5ae23ce048f85d09bd27978913a",
+      "gitBlob": "cd67a68589e4ea71505bb76114fdac195d72f047"
+    },
+    {
+      "path": "scripts/test_architecture.py",
+      "sha256": "5f9b8d1862ad87928441b87016bcbcef60e3ba12b0c925b26c14275d33daee9a",
+      "gitBlob": "1276fd6398c91c7292e5accc0fdc640bb235cb6f"
+    },
+    {
+      "path": "scripts/test_book_imports.sh",
+      "sha256": "b2b1cc8027c4b57d4b7c63dd4a81e19744a4c4d6cb1da8abe367c061c4c37b3d",
+      "gitBlob": "76f393920af25ce69803f9bdd4f87352f9987437"
+    },
+    {
+      "path": "scripts/test_book_imports_tools.py",
+      "sha256": "267673ec14991ea9ee263da0ff15a89ad4b105e6e0be90421b4e535bb4a1b6f5",
+      "gitBlob": "1046beb1aecf26ab1a5a25f0e4a7a81386f36bb9"
+    },
+    {
+      "path": "scripts/test_ci_failure_paths.py",
+      "sha256": "b655afa08e1c54cfdee049ee45c5fc84a27830c545663b0cd8fecd3e5a707316",
+      "gitBlob": "3a66fcc696ba423810fd5d5a3c11e0b1e53136f4"
+    },
+    {
+      "path": "scripts/test_core_container.ps1",
+      "sha256": "14ec03f62867ec9ff50ac6a51e21e6359fcee11a59dc31bccc4f1cbbdc25132e",
+      "gitBlob": "0b5c314a1eb6c95ae1bbe7811805599dbfa66d1a"
+    },
+    {
+      "path": "scripts/test_epub_ready_control.py",
+      "sha256": "f5b565f0073af0e1a52e726ac297ca0e1db676cd864ab72d0aa7aa0df2613ad2",
+      "gitBlob": "48c681e7f24d66ab9b93e15829ef1408e5c8ced9"
+    },
+    {
+      "path": "scripts/test_library_shelf.sh",
+      "sha256": "765ffd14c5426f48381366e65eacdfcc4f735314fd5624cfab4a66aadfac94b9",
+      "gitBlob": "b18d18b5b8c58d93c11e1ff4e8b14dd06bdd607b"
+    },
+    {
+      "path": "scripts/test_library_shelf_tools.py",
+      "sha256": "08c9966ce8dd1fe3db8532de40f1a511b4e2b0fb9eea2b2e6da1f5af206acbd2",
+      "gitBlob": "a5e812d664b715d9b6735b9c5ffa9bbcb5d789f5"
+    },
+    {
+      "path": "scripts/test_paged_font_control.py",
+      "sha256": "fcfbd2924e484f3a26d86d119cca0b51556fd91a848a25328c6ceca2a18755cf",
+      "gitBlob": "e4f59fc6834b2825e144c89e7ee0d153aa59d826"
+    },
+    {
+      "path": "scripts/test_position_control.py",
+      "sha256": "de0063be4599c43df9df881b5d18fce5177dd9015176602551167e46a041abca",
+      "gitBlob": "44add96906405919dd91930b30d6ad4471857900"
+    },
+    {
+      "path": "scripts/test_reader_logic.sh",
+      "sha256": "5d5a3067d11e3ab3930b05da5471515bb2dc329e8950625903810387ced374c3",
+      "gitBlob": "0898d69b8c0ea5132a9a273afdabda8467e2f5b5"
+    },
+    {
+      "path": "scripts/test_reader_logic_tools.py",
+      "sha256": "eb5006e08427fa549bf559aa77d1260df1c17f0aec22ae91fe5f12f0e010cac4",
+      "gitBlob": "c16f256906e9b50b4920794f7ec5559986062591"
+    },
+    {
+      "path": "scripts/test_reader_positions.sh",
+      "sha256": "111846cce0571d3621394c7554314cc4e01793ea938ac0a3b902f7d35f3e7782",
+      "gitBlob": "3f7036c746c0e5306ea365af92cf8e521b2723a2"
+    },
+    {
+      "path": "scripts/test_reader_positions_tools.py",
+      "sha256": "558e233e78721ab4d4cf2bc9862ffc52b287ceec86a0fe78bcb3256318e0a68d",
+      "gitBlob": "253fd566561d4956177e5953e3b2afea1d6d9a8b"
+    },
+    {
+      "path": "scripts/test_reader_search.sh",
+      "sha256": "ca8ad7f3be2a358a28892eebbe4f04ff4f8e983152d9efd21b722677b3461b62",
+      "gitBlob": "4242271f9034b19a3145eb39f461d289487911c9"
+    },
+    {
+      "path": "scripts/test_reader_search_tools.py",
+      "sha256": "d183cd49720c2df1c02a4a46c33a3abda5ecdd656475eae0d7cdba63cee194fc",
+      "gitBlob": "8d2a835fd320e527c57ff744a3d08f7ff9ec25aa"
+    },
+    {
+      "path": "scripts/test_reader_sessions.sh",
+      "sha256": "4592aa2f05603cfbbbf294ccdfd6d8ffb5fcda360dd99ec7bff29b1a199f5ff7",
+      "gitBlob": "a302f6135d12d34c3a57629370935f2374aa1a00"
+    },
+    {
+      "path": "scripts/test_reader_sessions_tools.py",
+      "sha256": "9ac0b9743646095c9c3fcfe1a358ea6a2708abf3cb258005a0f613a99e7a26dd",
+      "gitBlob": "f2bd30168beafe67806e9e0e2e3fc484b970d789"
+    },
+    {
+      "path": "scripts/test_readium_provenance.py",
+      "sha256": "51551cbc2d6b7e45b711a8bd18365e1bbbe6ce1f894ca9e25a1c87b16c78ea13",
+      "gitBlob": "64d585d4d07742cc7fb4d50a6045a061bd1b3bfe"
+    },
+    {
+      "path": "scripts/test_recording_control.py",
+      "sha256": "2d1f88c6fe3a7c8a16eff87df89e3590dec8b2fb1036c0c138f0d99effdf8082",
+      "gitBlob": "a7c7b2aa2e9804a7efd862d9cfc4ba7c9dd507d6"
+    },
+    {
+      "path": "scripts/test_tooling.py",
+      "sha256": "d6825cf62062b3c0dc8100e574e16379db7b98d4db96079c544e19e9493c4f50",
+      "gitBlob": "662bf29774d617f1655bb24a521c55fb90ddf799"
+    },
+    {
+      "path": "scripts/test_txt_performance.py",
+      "sha256": "ebeb9199e84c4a0d1cef6630670d1f845aae528819f01cc133ebe0ee5f26a2a3",
+      "gitBlob": "490bc1b8ddea0f4ac96bc6ca972e331f1ccc2ca1"
+    },
+    {
+      "path": "scripts/test_ui_baseline.py",
+      "sha256": "830f87c0bcdb239c3840eab19257a43c23f385fbb0028a4c51c130b1a4a802c2",
+      "gitBlob": "db02372935198c314c6a46fe1f36e00f869b45f6"
+    },
+    {
+      "path": "scripts/test_viewport_pair_ci.py",
+      "sha256": "03b1955d8f00eaadff5314d84d9aec2471a811a1e6344cc4a34877b8e5d477aa",
+      "gitBlob": "2ef10571abf0b6419c4dcd2e5d2a72835d5e0d89"
+    },
+    {
+      "path": "scripts/verify_book_imports.py",
+      "sha256": "e3ce8f62cf095469c01ce84acec9aaabfc71308c80bb27cc914aa56033617d95",
+      "gitBlob": "1fce275270b9ef5b44fab56558d68e5cd10991c3"
+    },
+    {
+      "path": "scripts/verify_epub_ready_control.py",
+      "sha256": "61f2628339d1052d2f1ad034eabf5d620017024bf5ba6b3ab80b2980a3bfba90",
+      "gitBlob": "07ec5f20688186a51c5fc1c6d5bf2a7fc823d782"
+    },
+    {
+      "path": "scripts/verify_library_shelf.py",
+      "sha256": "015395cd97464d3b25ee3f4fc6df0057a3dfa704731f2e1d0f3fac745ebee0eb",
+      "gitBlob": "2913be2a4a1c659ff313434115ca668c76049f4d"
+    },
+    {
+      "path": "scripts/verify_reader_logic.py",
+      "sha256": "97d71a68dc7ae051aefc1524f8e4fd9f345c5ef4225d4e810bba74edc4aa9c3f",
+      "gitBlob": "d3633eb3b928813557e6b30ee27ee777de826b20"
+    },
+    {
+      "path": "scripts/verify_reader_positions.py",
+      "sha256": "57dc6c25e8f20ce2270e5644d95d4f8c241c8f225943dae21f2cd7956136940e",
+      "gitBlob": "98c1318e8ba6f29996ae17698bbc03924cf91da0"
+    },
+    {
+      "path": "scripts/verify_reader_search.py",
+      "sha256": "dbd29364b454100b79eefd0816bbfa140bffd9b6a4954edc3086cdcd61feeb4f",
+      "gitBlob": "3b6f96903d7ceb6ad047a4ff5ce5156c12cca9c8"
+    },
+    {
+      "path": "scripts/verify_reader_sessions.py",
+      "sha256": "03e7279348ba796cb7cae4ba3c0a2b3f943ae037bc092dc52d6b3dcc94d77dea",
+      "gitBlob": "ce3ee01d5fd18dfb6df194092c5282c15bb117dd"
+    },
+    {
+      "path": "scripts/verify_readium_lock.py",
+      "sha256": "850ece40b47b9e252fea90db96d429e5234474926f7d0915962a8a9bdccdb689",
+      "gitBlob": "dbbace3306887c938c0a66e8fc83a5c0504cd9be"
+    },
+    {
+      "path": "scripts/verify_ui_baseline.py",
+      "sha256": "ae4cc7eb3e978a093f21caf475bced265eb59aac7812c76b910a7db2af785924",
+      "gitBlob": "fa3798545efebe0f12556d3199010d709f1fa582"
+    },
+    {
+      "path": "scripts/verify_vendor.py",
+      "sha256": "f7efafed2cf56ef41b8de540300ca61508e5dc0d5cced2b728d00d487c86315d",
+      "gitBlob": "727a6005ee79f0e5e30348cdcf3575b76c5d693c"
+    },
+    {
+      "path": "scripts/write_inventory.py",
+      "sha256": "0e44ed924cef12161f5a90cabcc46324857e5ae1fbeabe93acc64ef08bfe8364",
+      "gitBlob": "52d57f95be14ec1347e67bd26f8968b3f3fba37c"
+    }
+  ],
+  "protectedEvidenceCount": 1211,
+  "protectedEvidenceUnchanged": true,
+  "sourceAudit": {
+    "releaseControlFlowEquivalentAfterDiagnosticOnlySignatureAndNilStorageNormalization": true,
+    "originalCaseByteIdentical": true,
+    "smokeJSByteIdentical": true,
+    "releaseJSByteIdentical": true,
+    "productionGuardsAndRetryBudgetUnchanged": true,
+    "newSuspensionPoints": 0,
+    "actualSubmissionAndCallbackSeamsOrdered": true,
+    "independentBoundedJournal": true,
+    "runtimeInputCount": 619,
+    "changedRuntimeInputs": [
+      "Tests/iOS/ReaderRenderingTests.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift",
+      "Vendor/ReadiumToolkit/Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Vendor/ReadiumToolkit/UPSTREAM.json"
+    ],
+    "unchangedRuntimeInputs": 615,
+    "protectedEvidenceCount": 1211,
+    "protectedEvidenceUnchanged": true,
+    "vendorHashChangesOnly": [
+      "Sources/Navigator/EPUB/EPUBSpreadView.swift",
+      "Sources/Navigator/EPUB/EPUBInfiniteScrollView.swift"
+    ],
+    "swiftGrammarNotCompilation": true
+  },
+  "tests": {
+    "swiftGrammarFiles": 484,
+    "swiftGrammarAdditionalDiagnostics": 0,
+    "staticChecks": 7,
+    "selectedPythonToolsPassed": 4,
+    "offlineSamplerCasesPassed": 4,
+    "syntheticSupplementalReceiptChecksPassed": 4,
+    "newSwiftJournalMechanicsExecuted": false
+  },
+  "swiftCompiled": false,
+  "nativeCaseExecuted": false,
+  "nativeDiagnosticsVerified": false,
+  "oldDOMReadCauseProven": false,
+  "productionAlgorithmChanged": false,
+  "newSuspensionPoints": 0,
+  "originalAssertionsGuardsBudgetsUnchanged": true,
+  "newWaitsOrRetries": false,
+  "originalSmokePreserved": true,
+  "newDependencies": false,
+  "fullExecuted": false,
+  "deviceReleaseExecuted": false,
+  "phoneAcceptanceExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "oldFull": {
+    "passed": 191,
+    "total": 192,
+    "accepted": false
+  },
+  "oldNativeSafeOriginalExit": 65,
+  "oldNativeConflictOriginalExit": null,
+  "documentStaticPassed": true,
+  "recoveryDirectory": "build/maintenance/I6-viewport-s-read-diagnostics-20261023"
+}

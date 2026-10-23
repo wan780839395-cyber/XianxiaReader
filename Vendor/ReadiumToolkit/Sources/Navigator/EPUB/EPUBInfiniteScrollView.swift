@@ -10,6 +10,9 @@ import UIKit
 }
 
 #if DEBUG
+private let epubViewportReadDiagnosticsEnabled = ["paired-safe", "paired-conflict"].contains(
+    ProcessInfo.processInfo.environment["XIANXIA_VIEWPORT_FIXTURE"] ?? "")
+
 /// Instance-only test bridge. Values contain geometry/identities, never book text.
 public struct EPUBViewportFixtureEvent: Sendable {
     @TaskLocal public static var source = "native"
@@ -61,6 +64,8 @@ public struct EPUBViewportFixtureEvent: Sendable {
     private var viewportRevision: UInt64 = 0
     // Release has no installer or controller type, only unused nil opaque storage.
     private var viewportFixtureStorage: AnyObject?
+    // Nil in Release; the installer and all mutations live in DEBUG code.
+    private var fixtureReadRequests: [UUID: [String: String]]?
     // Debug evidence only: no extra await, scheduling or restoration decisions.
     private var reflowTrace: [String] = []
     private func recordReflow(_ message: @autoclosure () -> String) {
@@ -254,6 +259,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
         epoch = UUID()
         for index in Array(slots.keys) { evict(index) }
         #if DEBUG
+            fixtureReadRequests = nil
             viewportFixtureControl?.invalidate("viewport-cleared")
         #endif
     }
@@ -360,7 +366,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
                 self.contentOffset.y = y - self.contentInset.top
             }
             slot.positioning = false
-            self.updateViewports()
+            self.updateViewports(source: "load-ready")
             self.preload()
             self.infiniteDelegate?.infiniteScrollViewDidUpdateViews(self)
         }
@@ -634,18 +640,35 @@ public struct EPUBViewportFixtureEvent: Sendable {
             contentOffset.y = -contentInset.top
             lastTrackedOffset = contentOffset.y
         }
-        updateViewports()
+        updateViewports(source: "layout-slots")
         bringSubviewToFront(previousBoundary)
         bringSubviewToFront(boundary)
     }
-    private func updateViewports() {
+    private func updateViewports(source: String) {
         for index in readyIndices {
             guard let slot = slots[index], !slot.positioning else { continue }
             let local = min(max(viewportTop - slot.wrapper.frame.minY, 0), max(slot.height - 24 - viewportHeight, 0))
+            #if DEBUG
+                let fixtureBefore: (uptime: Double, innerY: CGFloat, frameY: CGFloat)? = readDiagnosticsFixture == nil ? nil : (
+                    ProcessInfo.processInfo.systemUptime, slot.view.webView.scrollView.contentOffset.y, slot.view.frame.minY)
+                var fixtureWrote = false
+            #endif
             slot.view.frame = CGRect(x: 0, y: local, width: bounds.width, height: viewportHeight)
+            #if DEBUG
+                let fixtureBeforeAssignment = fixtureBefore.map { _ in slot.view.webView.scrollView.contentOffset.y }
+            #endif
             if abs(slot.view.webView.scrollView.contentOffset.y - local) > 0.5 {
+                #if DEBUG
+                    fixtureWrote = true
+                #endif
                 slot.view.webView.scrollView.contentOffset.y = local
             }
+            #if DEBUG
+                if let before = fixtureBefore, let beforeAssignment = fixtureBeforeAssignment {
+                    fixtureViewportWrite(index, slot, source: source, target: local, before: before,
+                                         beforeAssignment: beforeAssignment, wrote: fixtureWrote)
+                }
+            #endif
         }
     }
     private func preload() {
@@ -673,7 +696,7 @@ public struct EPUBViewportFixtureEvent: Sendable {
             viewportRevision &+= 1
             lastTrackedOffset = contentOffset.y
         }
-        updateViewports()
+        updateViewports(source: "scroll-delegate")
         if !navigation, let focused = readyIndices.first(where: { (slots[$0]?.wrapper.frame.maxY ?? 0) > viewportTop }) {
             currentIndex = focused
         }
@@ -760,6 +783,11 @@ public struct EPUBViewportFixtureEvent: Sendable {
                 fixtureInputs["viewportTopAtStart"] = String(describing: viewportTop)
             }
             let fixtureContext = fixtureInputs
+            if readDiagnosticsFixture != nil, let id = fixtureID {
+                if fixtureReadRequests == nil { fixtureReadRequests = [:] }
+                fixtureReadRequests?[id] = fixtureContext
+            }
+            defer { if let id = fixtureID { fixtureReadRequests?.removeValue(forKey: id) } }
             var fixtureOutcome = "rejected"
             var fixtureReason = "not-finished"
             if let id = fixtureID { fixture?.observe(.init(requestID: id, kind: "sample-start", values: fixtureContext)) }
@@ -795,6 +823,20 @@ public struct EPUBViewportFixtureEvent: Sendable {
         // one callback and retry only this mismatch, for at most 3 samples.
         for attempt in 0..<3 {
             #if DEBUG
+                if let id = fixtureID { fixtureReadRequests?[id]?["attempt"] = String(attempt) }
+                let readObserver: ((String, [String: Double]) -> Void)? = readDiagnosticsFixture == nil ? nil : fixtureID.map { id in
+                    { [weak self, weak slot] phase, numbers in
+                        var fields = fixtureContext; fields["attempt"] = String(attempt)
+                        fields["observerUptime"] = String(ProcessInfo.processInfo.systemUptime)
+                        for (key, number) in numbers { fields["read." + key] = String(number) }
+                        if let self, let slot {
+                            for (key, value) in self.fixtureValues(index, slot) { fields["live." + key] = value }
+                            fields["live.innerY"] = String(describing: slot.view.webView.scrollView.contentOffset.y)
+                            fields["live.slotCurrent"] = String(self.slots[index] === slot)
+                        }
+                        fixture?.observe(.init(requestID: id, kind: "sample-read-" + phase, values: fields))
+                    }
+                }
                 let metadata: (([String: Double]) -> Void)? = fixtureID.map { id in
                     { values in
                         var fields = fixtureContext; fields["attempt"] = String(attempt)
@@ -803,7 +845,8 @@ public struct EPUBViewportFixtureEvent: Sendable {
                     }
                 }
                 let snapshot = await slot.view.continuousVisibleAnchorSnapshot(visibleTop: clipTop, visibleBottom: clipBottom,
-                                                                               fixtureMetadata: metadata)
+                                                                               fixtureMetadata: metadata, fixtureReadObserver: readObserver)
+                readObserver?("snapshot-returned", ["uptime": ProcessInfo.processInfo.systemUptime])
                 var fixtureDecision: [String: String] = [:]
                 if fixtureID != nil {
                     fixtureDecision = fixtureContext
@@ -905,6 +948,39 @@ public struct EPUBViewportFixtureEvent: Sendable {
 
 #if DEBUG
 extension EPUBInfiniteScrollView {
+    private var readDiagnosticsFixture: (any EPUBViewportFixtureControl)? {
+        epubViewportReadDiagnosticsEnabled ? viewportFixtureControl : nil
+    }
+
+    private func fixtureViewportWrite(_ index: Int, _ slot: Slot, source: String, target: CGFloat,
+                                      before: (uptime: Double, innerY: CGFloat, frameY: CGFloat),
+                                      beforeAssignment: CGFloat, wrote: Bool) {
+        guard let fixture = readDiagnosticsFixture else { return }
+        var values = fixtureValues(index, slot)
+        values["writerID"] = UUID().uuidString; values["writer.source"] = source
+        values["writer.startUptime"] = String(before.uptime)
+        values["writer.endUptime"] = String(ProcessInfo.processInfo.systemUptime)
+        values["writer.targetY"] = String(describing: target)
+        values["writer.innerBeforeFrame"] = String(describing: before.innerY)
+        values["writer.frameBeforeY"] = String(describing: before.frameY)
+        values["writer.frameAfterY"] = String(describing: slot.view.frame.minY)
+        values["writer.innerBeforeAssignment"] = String(describing: beforeAssignment)
+        values["writer.innerAfter"] = String(describing: slot.view.webView.scrollView.contentOffset.y)
+        values["writer.assigned"] = String(wrote)
+        let reads = (fixtureReadRequests ?? [:]).filter { $0.value["webView"] == values["webView"] }
+        if reads.isEmpty {
+            values["associatedRead"] = "false"
+            fixture.observe(.init(requestID: UUID(), kind: "viewport-sync", values: values))
+        } else {
+            for (id, context) in reads.sorted(by: { $0.key.uuidString < $1.key.uuidString }) {
+                var linked = values; linked["associatedRead"] = "true"
+                linked["attempt"] = context["attempt"] ?? "before-loop"
+                linked["readSource"] = context["source"]
+                fixture.observe(.init(requestID: id, kind: "viewport-sync", values: linked))
+            }
+        }
+    }
+
     var viewportFixtureControl: (any EPUBViewportFixtureControl)? {
         get { viewportFixtureStorage as? any EPUBViewportFixtureControl }
         set { viewportFixtureStorage = newValue }

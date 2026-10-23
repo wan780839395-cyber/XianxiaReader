@@ -251,13 +251,27 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     /// Evaluates the given JavaScript into the resource's HTML page.
     @discardableResult
-    func evaluateScript(_ script: String, inHREF href: AnyURL? = nil) async -> Result<Any, Error> {
+    func evaluateScript(_ script: String, inHREF href: AnyURL? = nil,
+                        fixtureReadObserver: ((String, [String: Double]) -> Void)? = nil) async -> Result<Any, Error> {
         await spreadLoaded()
         guard !wasCleared, !Task.isCancelled else { return .failure(CancellationError()) }
 
         log(.trace, "Evaluate script: \(script)")
         return await withCheckedContinuation { continuation in
+            #if DEBUG
+                // After the existing load await, at the actual WK submission.
+                fixtureReadObserver?("js-submit", viewportReadNativeValues())
+            #endif
             webView.evaluateJavaScript(script) { [weak self] res, error in
+                #if DEBUG
+                    if let fixtureReadObserver {
+                        var values = self?.viewportReadNativeValues() ?? [
+                            "uptime": ProcessInfo.processInfo.systemUptime, "nativeAvailable": 0]
+                        values["evaluationSucceeded"] = error == nil ? 1 : 0
+                        values["resultObject"] = res is [String: Any] ? 1 : 0
+                        fixtureReadObserver("js-callback", values)
+                    }
+                #endif
                 if let error = error {
                     self?.log(.error, error)
                     continuation.resume(returning: .failure(error))
@@ -627,17 +641,21 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     }
 
     func continuousVisibleAnchorSnapshot(visibleTop: CGFloat, visibleBottom: CGFloat,
-                                         fixtureMetadata: (([String: Double]) -> Void)? = nil) async
+                                         fixtureMetadata: (([String: Double]) -> Void)? = nil,
+                                         fixtureReadObserver: ((String, [String: Double]) -> Void)? = nil) async
         -> (locator: Locator, documentY: CGFloat, documentTop: CGFloat)?
     {
         #if DEBUG
-            let fixtureJS = fixtureMetadata == nil ? "" : ",fixture:{width:innerWidth,height:innerHeight,scrollY}"
+            let fixtureReadStartJS = fixtureReadObserver == nil ? "" : "const fixtureReadStart = {scrollY, now:performance.now()};"
+            let fixtureReadJS = fixtureReadObserver == nil ? "" : ",readStartScrollY:fixtureReadStart.scrollY,readStartNow:fixtureReadStart.now,readEndScrollY:scrollY,readEndNow:performance.now()"
+            let fixtureJS = fixtureMetadata == nil ? "" : ",fixture:{width:innerWidth,height:innerHeight,scrollY\(fixtureReadJS)}"
         #else
+            let fixtureReadStartJS = ""
             let fixtureJS = ""
         #endif
         let script = """
         (() => {
-          const top = \(visibleTop), bottom = \(visibleBottom);
+          const top = \(visibleTop), bottom = \(visibleBottom);\(fixtureReadStartJS)
           function find(root) {
             for (const child of root.children) {
               const style = getComputedStyle(child), rect = child.getBoundingClientRect();
@@ -708,13 +726,17 @@ class EPUBSpreadView: UIView, Loggable, PageView {
           return rect ? {locator, documentY:rect.top + scrollY, documentTop:scrollY + top\(fixtureJS)} : null;
         })()
         """
-        let result = await evaluateScript(script)
+        #if DEBUG
+            let result = await evaluateScript(script, fixtureReadObserver: fixtureReadObserver)
+        #else
+            let result = await evaluateScript(script)
+        #endif
         #if DEBUG
             if let fixtureMetadata {
                 var fields: [String: Double] = [:]
                 if case let .success(value) = result, let data = value as? [String: Any],
                    let metadata = data["fixture"] as? [String: Any] {
-                    for key in ["width", "height", "scrollY"] {
+                    for key in ["width", "height", "scrollY", "readStartScrollY", "readStartNow", "readEndScrollY", "readEndNow"] {
                         if let value = metadata[key] as? NSNumber { fields[key] = value.doubleValue }
                     }
                     // Already returned by this evaluation; no second DOM read.
@@ -874,6 +896,18 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             .flatMap { try? String(contentsOf: $0) }!
     }
 }
+
+#if DEBUG
+extension EPUBSpreadView {
+    private func viewportReadNativeValues() -> [String: Double] {
+        ["uptime": ProcessInfo.processInfo.systemUptime, "nativeAvailable": 1,
+         "innerY": Double(webView.scrollView.contentOffset.y),
+         "viewMinY": Double(frame.minY), "width": Double(webView.bounds.width),
+         "height": Double(webView.bounds.height), "attached": window == nil ? 0 : 1,
+         "cleared": wasCleared ? 1 : 0]
+    }
+}
+#endif
 
 // MARK: - WKScriptMessageHandler for handling incoming message from the javascript layer.
 
