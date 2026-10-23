@@ -4,11 +4,22 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
+import subprocess
 import tempfile
 import unittest
 
 from verify_readium_lock import ROOT, verify_lock
 from verify_vendor import verify_vendor
+
+
+def writer_body(text):
+    """Execute the exact shipped DEBUG template, not a Python reimplementation."""
+    return re.search(r'writerObservationBody = #"""\n(.*?)\n    """#', text, re.S).group(1)
+
+
+def without_writer_body(text):
+    return re.sub(r'    private static let writerObservationBody = #""".*?"""#\n', '', text, flags=re.S)
 
 
 def release_source(text):
@@ -88,10 +99,21 @@ class ReadiumProvenanceTests(unittest.TestCase):
         for name, text in self.inner_sources().items():
             with self.subTest(file=name):
                 protected = release_source(text).encode()
+                # The only Release text difference is two explicit value aliases.
+                # This avoids Swift shadow/capture ambiguity in the DEBUG closure.
+                if name == "EPUBSpreadView.swift":
+                    release = protected.decode()
+                    self.assertIn("let submittedScript = script", release)
+                    self.assertIn("let businessResult = res", release)
+                    release = release.replace("                let submittedScript = script\n", "")
+                    release = release.replace("                    let businessResult = res\n", "")
+                    release = release.replace("evaluateJavaScript(submittedScript)", "evaluateJavaScript(script)")
+                    release = release.replace(".success(businessResult ?? ())", ".success(res ?? ())")
+                    protected = release.encode()
                 self.assertEqual(hashlib.sha256(protected).hexdigest(), expected[name]["release"])
-                literals = re.findall(r'"""(.*?)"""', text, re.S)
+                literals = re.findall(r'"""(.*?)"""', without_writer_body(text), re.S)
                 self.assertEqual(hashlib.sha256(json.dumps(literals).encode()).hexdigest(), expected[name]["js"])
-                awaits = re.findall(r"\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)", text)
+                awaits = re.findall(r"\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)", without_writer_body(text))
                 self.assertEqual(hashlib.sha256(json.dumps(awaits).encode()).hexdigest(), expected[name]["awaits"])
                 altered = release_source(text).replace("guard ", "guard false, ", 1)
                 self.assertNotEqual(hashlib.sha256(altered.encode()).hexdigest(), expected[name]["release"])
@@ -101,9 +123,9 @@ class ReadiumProvenanceTests(unittest.TestCase):
         evaluator = base.split("    func evaluateScript(", 1)[1].split("    /// Called from the JS code", 1)[0]
         markers = ["enterEvaluation(script)", "await spreadLoaded()", "guard !wasCleared, !Task.isCancelled",
                    'fixtureReadObserver?("js-submit"', "submitEvaluation(evaluationID)",
-                   "webView.evaluateJavaScript(script)", 'fixtureReadObserver("js-callback"',
+                   "webView.evaluateJavaScript(submittedScript)", 'fixtureReadObserver("js-callback"',
                    "finishEvaluation(evaluationID, error: error)", "continuation.resume(returning: .failure(error))",
-                   "continuation.resume(returning: .success(res ?? ()))"]
+                   "continuation.resume(returning: .success(businessResult ?? ()))"]
 
         def ordered(text):
             positions = [text.find(value) for value in markers]
@@ -114,7 +136,8 @@ class ReadiumProvenanceTests(unittest.TestCase):
         self.assertIn("defer {\n                if !diagnosticSubmitted", evaluator)
         self.assertIn("cancelEvaluation(evaluationID)", evaluator)
         helper = base.split("@MainActor final class EPUBInnerScrollDiagnostics", 1)[1].split("extension EPUBSpreadView", 1)[0]
-        self.assertNotRegex(helper, r"\b(?:await|Task\s*\{|evaluateJavaScript|setContentOffset|layoutIfNeeded)\b")
+        swift_helper = without_writer_body(helper)
+        self.assertNotRegex(swift_helper, r"\b(?:await\s+\w|Task\s*\{|evaluateJavaScript|setContentOffset|layoutIfNeeded)\b")
         self.assertNotRegex(helper, r"contentOffset\s*(?:\.[xy])?\s*=")
         close = helper.split("func close(", 1)[1].split("func record(", 1)[0]
         self.assertLess(close.index("active = false"), close.index('emit("coverage-end"'))
@@ -123,6 +146,205 @@ class ReadiumProvenanceTests(unittest.TestCase):
         self.assertIn("recordLateEvaluation(id", helper)
         self.assertIn("Thread.callStackSymbols.prefix(16)", helper)
         self.assertIn("previousY - y > 0.5, !capturedRollback", helper)
+
+    def run_writer_js(self, case):
+        node = shutil.which("node")
+        self.assertIsNotNone(node, "Node is required; source checks do not replace JS semantic execution")
+        body = writer_body(self.inner_sources()["EPUBSpreadView.swift"])
+        common = r"""
+const assert = require('node:assert/strict');
+const vm = require('node:vm');
+const payload = JSON.parse(require('node:fs').readFileSync(0, 'utf8'));
+const setup = `
+  let tick = 0;
+  globalThis.performance = {now: () => ++tick};
+  globalThis.window = {scrollY: 0};
+  globalThis.document = {scrollingElement: null};
+  function fixture(method, own = false, flags = {}) {
+    const proto = {scrollTo: method}, root = Object.create(proto);
+    root.scrollTop = 0;
+    if (own) Object.defineProperty(root, 'scrollTo',
+      {value: method, configurable: true, enumerable: true, writable: true, ...flags});
+    document.scrollingElement = root;
+    return root;
+  }
+  const options = () => ({left: 0, top: 1767, behavior: 'instant'});
+  const observe = ${payload.body};
+`;
+vm.runInNewContext(setup + payload.case, {assert}, {timeout: 3000});
+process.stdout.write('ok');
+"""
+        result = subprocess.run([node, "-e", common], input=json.dumps({"body": body, "case": case}),
+                                capture_output=True, text=True, timeout=10)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "ok")
+
+    def test_writer_forwarding_identity_values_and_descriptor_restoration(self):
+        self.run_writer_js(r"""
+for (const own of [false, true]) for (const writable of [false, true])
+for (const value of [true, false, undefined, null, 8.5, 'original']) {
+  const args = options(); let count = 0;
+  const method = function(...received) {
+    ++count; assert.equal(this, root); assert.equal(received.length, 1);
+    assert.equal(received[0], args); this.scrollTop = args.top; window.scrollY = args.top;
+    return 'method-value';
+  };
+  const root = fixture(method, own, {writable});
+  const before = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+  const report = observe('eval', 'coverage', () => {
+    assert.equal(root.scrollTo(args), 'method-value'); return value;
+  });
+  assert.equal(count, 1); assert.deepEqual(Object.getOwnPropertyDescriptor(root, 'scrollTo'), before);
+  assert.equal(report.incomplete, false); assert.equal(report.restored, true);
+  assert.equal(report.evaluationID, 'eval'); assert.equal(report.coverageID, 'coverage');
+  assert.equal(report.resultKind, value === null ? 'null' : typeof value);
+  assert.equal(report.value, value); assert.equal(report.calls.length, 1);
+  assert.deepEqual({...report.calls[0].parameters}, args);
+  assert.equal(report.calls[0].before.scrollTop, 0); assert.equal(report.calls[0].after.scrollTop, 1767);
+  assert.ok(report.calls[0].before.time < report.calls[0].after.time);
+  assert.equal(report.calls[0].terminal, 'returned');
+}
+// A writable non-configurable own data property can also be restored exactly.
+const root = fixture(function(){}, true, {configurable: false});
+const before = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+assert.equal(observe('e', 'c', () => root.scrollTo(options())).restored, true);
+assert.deepEqual(Object.getOwnPropertyDescriptor(root, 'scrollTo'), before);
+""")
+
+    def test_writer_errors_escape_identically_and_finally_restores(self):
+        self.run_writer_js(r"""
+for (const own of [false, true]) for (const source of ['method', 'expression']) {
+  const sentinel = {originalError: true}; let count = 0;
+  const root = fixture(function(){ ++count; if (source === 'method') throw sentinel; }, own);
+  const before = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+  assert.throws(() => observe('e', 'c', () => { root.scrollTo(options()); throw sentinel; }),
+    error => error === sentinel);
+  assert.equal(count, 1); assert.deepEqual(Object.getOwnPropertyDescriptor(root, 'scrollTo'), before);
+}
+""")
+
+    def test_writer_unknown_arguments_do_not_read_getters_or_coerce(self):
+        self.run_writer_js(r"""
+let reads = 0, conversions = 0, calls = 0;
+const args = {left: 0, get top(){ ++reads; return {valueOf(){ ++conversions; return 1767; }}; }, behavior: 'instant'};
+const root = fixture(function(arg){ ++calls; this.scrollTop = Number(arg.top); });
+const report = observe('e', 'c', () => root.scrollTo(args));
+assert.equal(calls, 1); assert.equal(reads, 1); assert.equal(conversions, 1);
+assert.equal(report.incomplete, true); assert.equal(report.calls[0].parameters, null);
+let received;
+root.scrollTo = function(...args){ received = args; };
+const overload = observe('e', 'c', () => root.scrollTo(1, 2));
+assert.deepEqual([...received], [1, 2]); assert.equal(overload.reason, 'unsupported-overload');
+// Unknown result objects/thenables go straight back, without touching .then.
+let thenReads = 0; const unknown = {get then(){ ++thenReads; throw new Error('must not read'); }};
+assert.equal(observe('e', 'c', () => unknown), unknown); assert.equal(thenReads, 0);
+let receiver;
+root.scrollTo = function(){ receiver = this; };
+const alternate = {};
+const changed = observe('e', 'c', () => root.scrollTo.call(alternate, options()));
+assert.equal(receiver, alternate); assert.equal(changed.reason, 'receiver-changed');
+let geometryCalls = 0; root.scrollTo = function(){ ++geometryCalls; };
+Object.defineProperty(root, 'scrollTop', {get(){ throw new Error('geometry'); }});
+const unavailable = observe('e', 'c', () => root.scrollTo(options()));
+assert.equal(geometryCalls, 1); assert.equal(unavailable.reason, 'geometry-error');
+assert.equal(unavailable.restored, true);
+""")
+
+    def test_writer_unavailable_method_no_call_and_root_change_are_incomplete(self):
+        self.run_writer_js(r"""
+for (const kind of ['frozen-own', 'nonextensible', 'accessor']) {
+  let calls = 0, methodReads = 0;
+  const method = function(){ ++calls; return false; };
+  const root = fixture(method, kind === 'frozen-own', {configurable: false, writable: false});
+  if (kind === 'nonextensible') Object.preventExtensions(root);
+  if (kind === 'accessor') Object.defineProperty(root, 'scrollTo', {get(){ ++methodReads; return method; }, configurable: true});
+  const before = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+  const report = observe('e', 'c', () => root.scrollTo(options()));
+  assert.equal(report.value, false); assert.equal(report.incomplete, true);
+  assert.equal(calls, 1); assert.equal(methodReads, kind === 'accessor' ? 1 : 0);
+  assert.deepEqual(Object.getOwnPropertyDescriptor(root, 'scrollTo'), before);
+}
+const root = fixture(function(){});
+const noCall = observe('e', 'c', () => false);
+assert.equal(noCall.value, false); assert.equal(noCall.reason, 'no-call');
+document.scrollingElement = null;
+assert.equal(observe('e', 'c', () => false).reason, 'no-root');
+document.scrollingElement = root;
+const changed = observe('e', 'c', () => { root.scrollTo(options()); document.scrollingElement = {}; });
+assert.equal(changed.reason, 'root-changed'); assert.equal(changed.restored, true);
+assert.equal(Object.hasOwn(root, 'scrollTo'), false);
+""")
+
+    def test_writer_nested_capacity_and_restore_failure_do_not_hide_original_calls(self):
+        self.run_writer_js(r"""
+let calls = 0; const root = fixture(function(){ ++calls; });
+const original = root.scrollTo;
+let inner;
+const outer = observe('outer', 'c', () => {
+  const outerMethod = root.scrollTo;
+  inner = observe('inner', 'c', () => root.scrollTo(options()));
+  assert.equal(root.scrollTo, outerMethod); return true;
+});
+assert.equal(calls, 1); assert.equal(root.scrollTo, original);
+assert.equal(outer.restored, true); assert.equal(inner.restored, true);
+assert.equal(outer.calls.length, 1); assert.equal(inner.calls.length, 1);
+assert.equal(outer.evaluationID, 'outer'); assert.equal(inner.evaluationID, 'inner');
+calls = 0;
+const capped = observe('e', 'c', () => { for (let i=0; i<17; ++i) root.scrollTo(options()); });
+assert.equal(calls, 17); assert.equal(capped.calls.length, 16);
+assert.equal(capped.reason, 'call-capacity'); assert.equal(capped.incomplete, true);
+const failed = observe('e', 'c', () => {
+  root.scrollTo(options()); Object.defineProperty(root, 'scrollTo', {value: original, configurable: false}); return true;
+});
+assert.equal(failed.value, true); assert.equal(failed.incomplete, true);
+assert.equal(failed.restored, false); assert.equal(failed.reason, 'restore-error');
+""")
+
+    def test_writer_selection_rejects_embedded_text_and_extra_statements(self):
+        source = self.inner_sources()["EPUBSpreadView.swift"]
+        pattern = re.search(r'writerPattern = #"(.*?)"#', source).group(1).replace(r"\z", r"\Z")
+        for value in ["readium.scrollToId('long-paragraph', false);",
+                      "readium.scrollToId('escaped\\\'id', true);",
+                      "readium.scrollToPosition('0.4', 'ltr', false)"]:
+            self.assertRegex(value, pattern)
+        for value in ["readium.scrollToId('x', false); window.scrollTo(0,0)",
+                      "(() => readium.scrollToId('x', false))()", "readium.scrollToId('x\n', false);",
+                      "readium.scrollToId('x', false);\n", "document.createRange()",
+                      '({text:"readium.scrollToId(\\\'x\\\', false);"})',
+                      "window.__xrCanonicalGoTarget = readium.scrollToId('x', false);"]:
+            self.assertIsNone(re.search(pattern, value), value)
+        selector = source.split("private static func supportedWriter", 1)[1].split("func observeWriter", 1)[0]
+        self.assertIn("script.hasPrefix(prefix)", selector)
+        self.assertIn("script.hasSuffix($0)", selector)
+        self.assertIn("JSONSerialization.jsonObject(with: data) is [String: Any]", selector)
+        self.assertNotIn(".contains(", selector)
+
+    def test_writer_ownership_runtime_version_and_symbol_only_labels(self):
+        source = self.inner_sources()["EPUBSpreadView.swift"]
+        observer = source.split("func observeWriter", 1)[1].split("func writerResult", 1)[0]
+        self.assertIn("guard active, let view, view.innerScrollDiagnostics === self", observer)
+        self.assertIn('evaluations[id]?["phase"] == "submitted"', observer)
+        result = source.split("func writerResult", 1)[1].split("private static let writerObservationBody", 1)[0]
+        for marker in ['body["evaluationID"] as? String == id.uuidString',
+                       'body["coverageID"] as? String == coverageID.uuidString',
+                       'evaluations[id]?["phase"] == "submitted"', 'view.innerScrollDiagnostics === self',
+                       '"wk-error-no-envelope"', '"identity-or-envelope"',
+                       'if kind == "undefined" { return nil }', 'if kind == "null" { return NSNull() }']:
+            self.assertIn(marker, result)
+        self.assertIn('let framework = Bundle(for: WKWebView.self)', source)
+        self.assertIn('forInfoDictionaryKey: "CFBundleVersion"', source)
+        self.assertIn('"exactSourceMatch": "unknown"', source)
+        self.assertEqual(source.count("Thread.callStackSymbols"), 1)
+        self.assertIn('labels.isEmpty ? "unknown"', source)
+        self.assertIn('"same-16-native-symbols"', source)
+        # Observation receipts never manufacture SDK terminals or alter fixture gates.
+        body = writer_body(source)
+        self.assertNotRegex(body, r"\b(?:eval|setTimeout|requestAnimationFrame|Promise|await)\s*\(")
+        self.assertNotIn(".then", re.sub(r"//[^\n]*", "", body))
+        evaluator = source.split("    func evaluateScript(", 1)[1].split("    /// Called from the JS code", 1)[0]
+        self.assertEqual(evaluator.count("webView.evaluateJavaScript("), 1)
+        # The other existing call is the separate native-readiness observation.
+        self.assertEqual(source.count("webView.evaluateJavaScript("), 2)
 
     def test_inner_binding_and_bounded_prearm_delivery(self):
         source = self.inner_sources()["EPUBInfiniteScrollView.swift"]

@@ -1,5 +1,37 @@
 # I6 WebKit回写与先行native采样审阅（2026-10-23）
 
+## 后续实施状态：仅本地检查完成（2026-10-23）
+
+已按用户新授权实现上述3输入切片，以下原审阅与提案保留为历史。运行输入没有扩到其他Swift文件、Adapter、JS资产、CI或验收驱动。
+
+- `evaluateScript`原spreadLoaded await、取消guard、提交/回调发布及continuation顺序保留。一次WK求值，DEBUG诊断实例为空时提交原字符串；Release只有提交字符串/业务结果两个直接值别名，本地规范化后与原Release源码摘要一致。
+- 选择器锚定整个id/progression表达式；locator要求完整前后缀且参数能按JSON对象完整解析。正文中的函数名、额外语句、range/S/M/canonical不触发包裹；未知表达式原样执行。不会由contains分类标签决定是否观察。
+- 同一次JS执行中仅暂存/替换当前root的自有scrollTo描述符，Reflect.apply保留this、参数列表和同一options对象。数据描述符观察left/top/behavior，不重复读accessor/强制转换；before/after记录scrollTop、scrollY和同文档performance.now。原方法/原表达式的异常重抛同一对象，finally仍恢复属性；不能承诺WK错误栈/行号逐字不变。
+- 每次表达式最多保留16条调用明细，超出仍执行原调用并记incomplete；接入既有256诊断journal，128控制、32 waiter、16栈帧、3次/32ms、100ms/30秒及3秒capture/cleanup全部不变。不登记新SDK终结、不授予主M或S资格。
+- 根变换、非可观察方法、不可恢复/不允许替换描述符、参数/几何观察失败、无调用、超量及缺信封均明确incomplete。false且没有滚动调用仍返回false；业务结果不因观察完整性改写。
+- true/false/undefined/null及有限原始值在同WK回调解包；undefined还原nil后走原`res ?? ()`语义，null还原NSNull。未知对象/thenable原样回交WK，不读then、不await；该分支没有信封，记不完整。原异常直接走WK原失败，成功信封不能跨越失败带回调用细节，因此原生仅记`wk-error-no-envelope`，不伪造调用明细或真实终结。
+- 回执匹配旧coverageID/evaluationID及submitted状态；观察只绑定原实例。关闭后业务结果仍可还原，但新记录受原active与实例所有权过滤，原finishEvaluation管理旧sink的晚到终结，不写新controller。跨关闭清理仅源码合同，未声称本片有原生取消覆盖。
+- coverage-start公开读取Bundle(for: WKWebView.self)的CFBundleShortVersionString/CFBundleVersion及OS，缺字段unknown；没有运行本片原生，故精确18.5 WebKit版本仍未知。同一次原16帧stack继续原样规范化保留，来源标签仅由其中实际符号匹配，缺符号unknown；WK入口单列观测，不据此推断滚动树/IPC来源，不调用私有方法。
+
+本地首次14/15：新增源码计数合同将原有独立readiness WK求值也计入当前入口；原件共2处、evaluateScript内1处。保留首次日志，仅纠正检查作用域并保留全文件原2处约束，生产代码未为该失败改动。
+
+| 验证 | 本片结果和边界 |
+| --- | --- |
+| provenance/源码合同 | 15/15；保留旧Release/嵌入JS/await、override、绑定/清理、依赖正反例 |
+| 源码原样JS模板语义 | 上述15项中的5项由Node真实执行；参数身份/this/一次调用、原始值、原异常、继承/自有/非配置描述符、嵌套、receiver/根变换、几何错误、容量与恢复失败均核验。不是WebKit执行 |
+| 既有控制/验收工具 | 原smoke2+配对7=9/9，保留返程3请求、窄屏、双向原字DOM及真实退出码正反例 |
+| 静态与语法 | 7静态通过、484 Swift语法；54原上游限制/新增0。不是Swift编译 |
+| 原生/CI/full/设备Release | 均未执行；0派发，无新IPA，不替代旧191/192与I6发布门槛 |
+
+[持久检查记录](ValidationLogs/project-isolation-i6-webkit-writer-observation.json)。恢复`build/maintenance/I6-webkit-writer-observation-20261023/`保存原件、首次失败、冻结619输入、最终日志和快照。仅3运行输入变化，其余616及3727旧证据、Build30、普通HEAD/index保持；AGENTS已有文字变化不覆盖。旧39930462353的build0/safe65/conflict null、返程未到达、旧故障根因未证状态不变。
+
+下一原生轮须另获用户授权：一次构建、安全全合格才冲突，先核真实版本、观察命中/恢复与实际SDK终结；不完整结果留证，不降低guard或放宽预算，不把没有回退当根因已修。本片至此停止，不派CI。
+
+---
+
+## 以下为实施前审阅原件
+
+
 本片仅审阅39930462353原件、官方和固定版本源码，明确最小补证；没有实现夹具或修改619运行输入，没有CI、编译或新原生执行。保留隔离、定位修复、S诊断、smoke、返程窄屏、原字双向断言、原guard和全部预算。
 
 ## 本轮结论

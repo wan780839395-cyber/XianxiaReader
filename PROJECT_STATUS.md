@@ -1,5 +1,9 @@
 # 项目状态
 
+2026-10-23 DEBUG writer观察已在约定3输入内实现并本地收口：EPUBSpreadView.swift、UPSTREAM.json、test_readium_provenance.py。只包现有明确Readium id/locator/progression同步表达式，临时替换根元素自有scrollTo，原this/同一参数对象/一次原调用及原返回保留，finally恢复原描述符或删除影子属性；不触及S/M/range/canonical、全局原型或Release JS。正常回执随同一次WK回调解包进原256诊断journal；原异常重抛，WK失败没有成功信封时记incomplete，不改失败为成功。公开Bundle身份及同原16帧来源标签已接线，真实框架版本仍待原生测得，缺符号为unknown，不推断IPC发起者。15项provenance（其中5项执行源码原样JS模板）+2原smoke/7配对工具=24定向通过；484语法、7静态通过，54上游限制/新增0，均非原生编译。原算法/guard/双向字可见/窄屏/预算/调用/await/等待重试保持；仅Release两个值别名，规范化后与原源码一致，nil脚本原字节提交。其余616输入、3727旧证据、Build30/普通HEAD index保持，零CI/full/Release/IPA。旧39930462353 build0/safe65/conflict null及未到达的返程、旧故障根因/I6/Release缺口不变。见[实施边界与验证](Documentation/I6_WEBKIT_SCROLL_REVIEW.md)、[持久检查记录](Documentation/ValidationLogs/project-isolation-i6-webkit-writer-observation.json)。
+
+以下保留历史状态。
+
 2026-10-23 WebKit回写/native提交回调本地审阅完成，零CI/运行输入变化。核官方Safari18.5适用说明、WebKit同代发布tag的固定commit e7257323和Readium3.11.0实际导航/原根元素scrollTo实现。发布源码存在滚动树事务提交后应用requestedScroll→PageClient→WK offset链；两次旧导航JS回调时native仍0，支持“旧目标请求较晚应用”的首要候选，尚未证明具体发起者。tagID false脚本候选与原摘要匹配，不能据此推断locator动画/数值target；iOS18.5/22F77已知但精确WebKit framework版本仍缺，不能当同二进制源码。最小下一补证建议3输入内仅DEBUG包裹已存在Readium writer表达式，临时观察根元素自身scrollTo的实际参数/执行前后，finally原样恢复，原WK一次调用/原返回错误/等待预算保持；补真实framework版本与有界上游栈标签，不拦原型/window、不改Release JS。方案未实现，须先本地透明性/恢复/错误正反例，再由用户另授权CI。619输入/3699旧证据/Build30/普通HEAD index保持；旧CI build0/safe65/conflict null，区间/返程未验及I6/full/Release缺口保持。见[审阅与最小补证设计](Documentation/I6_WEBKIT_SCROLL_REVIEW.md)。
 
 以下保留历史状态。

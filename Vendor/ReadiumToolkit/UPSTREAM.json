@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "3656f25664d6af35eb675159b9c67ba044c6458d23a048fa1c90c88ef755063d"
+      "sha256": "4745091926e0b61f24897640f5aeac37803a6b9b88567a755db6acb83210dd36"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1822,5 +1822,25 @@
       "https://github.com/apple/swift-async-algorithms/blob/1.0.4/Tests/AsyncAlgorithmsTests/Support/Gate.swift"
     ],
     "releaseStorage": "Only three private nil AnyObject slots remain; installer types/methods and metadata execution are file-level DEBUG extensions. No new await in the default nil path."
+  },
+  "writerObservationReview": {
+    "date": "2026-10-23",
+    "scope": "Opt-in instance-owned DEBUG observation around strictly selected existing synchronous Readium navigation expressions; root own scrollTo forwarding/restoration and same-callback diagnostics; public WebKit bundle identity and labels from the same original 16 stack frames.",
+    "design": "Documentation/I6_WEBKIT_SCROLL_REVIEW.md",
+    "references": [
+      "https://github.com/readium/swift-toolkit/blob/d82f44f4f05d87add9e22a8b75abbd61dce745dd/Sources/Navigator/EPUB/EPUBReflowableSpreadView.swift",
+      "https://github.com/WebKit/WebKit/blob/e725732395be8ec3e8fd4d77704b807025ff62ff/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm"
+    ],
+    "originalErrors": "Rethrow the same JS error after finally; WK failure without a success envelope is diagnostic-incomplete, never converted to success.",
+    "intervention": "Temporary own method adds synchronous observation and stack frames; not an unobserved replay.",
+    "defaultNilScriptBytesUnchanged": true,
+    "newWKCallsWaitsRetries": 0,
+    "algorithmChanged": false,
+    "assetsChanged": false,
+    "overrideSignatureChanged": false,
+    "nativeCompiled": false,
+    "nativeAcceptance": false,
+    "exactSimulatorWebKitBuildKnown": false,
+    "ciDispatches": 0
   }
 }

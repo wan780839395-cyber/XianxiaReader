@@ -1,3 +1,21 @@
+# DEBUG writer观察本地收口，尚未原生验收（2026-10-23）
+
+2026-10-23 DEBUG writer观察已在约定3输入内实现并本地收口：EPUBSpreadView.swift、UPSTREAM.json、test_readium_provenance.py。只包现有明确Readium id/locator/progression同步表达式，临时替换根元素自有scrollTo，原this/同一参数对象/一次原调用及原返回保留，finally恢复原描述符或删除影子属性；不触及S/M/range/canonical、全局原型或Release JS。正常回执随同一次WK回调解包进原256诊断journal；原异常重抛，WK失败没有成功信封时记incomplete，不改失败为成功。公开Bundle身份及同原16帧来源标签已接线，真实框架版本仍待原生测得，缺符号为unknown，不推断IPC发起者。15项provenance（其中5项执行源码原样JS模板）+2原smoke/7配对工具=24定向通过；484语法、7静态通过，54上游限制/新增0，均非原生编译。原算法/guard/双向字可见/窄屏/预算/调用/await/等待重试保持；仅Release两个值别名，规范化后与原源码一致，nil脚本原字节提交。其余616输入、3727旧证据、Build30/普通HEAD index保持，零CI/full/Release/IPA。旧39930462353 build0/safe65/conflict null及未到达的返程、旧故障根因/I6/Release缺口不变。
+
+恢复build/maintenance/I6-webkit-writer-observation-20261023/有原件、before、冻结619输入、首次失败与最终日志、result及待保存快照；文档记录Documentation/ValidationLogs/project-isolation-i6-webkit-writer-observation.json。首次14/15仅新增计数合同把既有独立readiness读数混入当前入口，原件保留，改检查作用域后15/15。新观察是测试干预，不能称零干扰；未知/thenable结果原样交回、不读then/不等待，诊断不完整。原错误分支只能保证本地finally和同一错误传播，不能声称失败WK回调携带了调用明细。下一步如另获授权，只派一次原配对单例：先真实版本/同构建来源/观察命中恢复/各请求终结，安全全合格才冲突，保留实际退出码；观察未命中、restore失败或溢出留证停查，不能忽略原SDK回执。当前不派、不重跑。
+
+---
+
+首次定向14/15：5项Node语义用例均通过，唯一失败是新增调用计数合同误算了原已有的独立readiness WK读数（原件共2处，evaluateScript内1处）。已保留provenance-first.log；仅收窄该检查到当前入口并保留全文件原2处校验，不改生产代码。补receiver/几何读错的透明转发负例，准备重查provenance与既有2 smoke/7配对边界，之后一次仓库语法/静态。
+
+本轮实现已落入约定3输入，准备首次本地定向检查：执行Swift源码内原样JS模板的Node语义正反例及provenance合同；失败先保存输出。本轮暂无Swift原生编译/新CI/旧故障修复结论。
+
+# DEBUG writer观察实现中（2026-10-23）
+
+本轮获授权仅3输入：EPUBSpreadView.swift、UPSTREAM.json、test_readium_provenance.py。先做临时实例scrollTo透明转发/恢复与错误传播本地语义测试，再语法/边界检查；不派CI，不改算法、原guard、断言、预算、WK调用/await/等待重试数量。补公开WebKit框架身份与同16帧来源标签。原错误继续失败，无观察信封时明确incomplete；不改为成功。已保存原件、619输入、旧证据、Build30/普通HEAD index基线至build/maintenance/I6-webkit-writer-observation-20261023/。尚无本轮实现/测试/编译验收。
+
+---
+
 # WebKit回写本地审阅收口，补证方案未实施（2026-10-23）
 
 2026-10-23 WebKit回写/native提交回调本地审阅完成，零CI/运行输入变化。核官方Safari18.5适用说明、WebKit同代发布tag的固定commit e7257323和Readium3.11.0实际导航/原根元素scrollTo实现。发布源码存在滚动树事务提交后应用requestedScroll→PageClient→WK offset链；两次旧导航JS回调时native仍0，支持“旧目标请求较晚应用”的首要候选，尚未证明具体发起者。tagID false脚本候选与原摘要匹配，不能据此推断locator动画/数值target；iOS18.5/22F77已知但精确WebKit framework版本仍缺，不能当同二进制源码。最小下一补证建议3输入内仅DEBUG包裹已存在Readium writer表达式，临时观察根元素自身scrollTo的实际参数/执行前后，finally原样恢复，原WK一次调用/原返回错误/等待预算保持；补真实framework版本与有界上游栈标签，不拦原型/window、不改Release JS。方案未实现，须先本地透明性/恢复/错误正反例，再由用户另授权CI。619输入/3699旧证据/Build30/普通HEAD index保持；旧CI build0/safe65/conflict null，区间/返程未验及I6/full/Release缺口保持。

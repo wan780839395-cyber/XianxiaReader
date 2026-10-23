@@ -278,23 +278,33 @@ class EPUBSpreadView: UIView, Loggable, PageView {
                     diagnosticSubmitted = true
                     innerDiagnostic?.submitEvaluation(evaluationID)
                 }
+                let writerObservation = evaluationID.flatMap { innerDiagnostic?.observeWriter(script, id: $0) }
+                let submittedScript = writerObservation ?? script
+            #else
+                let submittedScript = script
             #endif
-            webView.evaluateJavaScript(script) { [weak self] res, error in
+            webView.evaluateJavaScript(submittedScript) { [weak self] res, error in
                 #if DEBUG
+                    var businessResult = res
+                    if writerObservation != nil, let evaluationID {
+                        businessResult = innerDiagnostic?.writerResult(res, id: evaluationID, error: error)
+                    }
                     if let fixtureReadObserver {
                         var values = self?.viewportReadNativeValues() ?? [
                             "uptime": ProcessInfo.processInfo.systemUptime, "nativeAvailable": 0]
                         values["evaluationSucceeded"] = error == nil ? 1 : 0
-                        values["resultObject"] = res is [String: Any] ? 1 : 0
+                        values["resultObject"] = businessResult is [String: Any] ? 1 : 0
                         fixtureReadObserver("js-callback", values)
                     }
                     if let evaluationID { innerDiagnostic?.finishEvaluation(evaluationID, error: error) }
+                #else
+                    let businessResult = res
                 #endif
                 if let error = error {
                     self?.log(.error, error)
                     continuation.resume(returning: .failure(error))
                 } else {
-                    continuation.resume(returning: .success(res ?? ()))
+                    continuation.resume(returning: .success(businessResult ?? ()))
                 }
             }
         }
@@ -916,7 +926,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 }
 
 #if DEBUG
-/// Passive, instance-owned metadata. No tasks, DOM calls or scroll writes.
+/// Instance-owned DEBUG metadata. Writer observation uses the existing WK call only.
 @MainActor final class EPUBInnerScrollDiagnostics {
     typealias Sink = (UUID, String, [String: String]) -> Void
     private weak var view: EPUBSpreadView?
@@ -937,9 +947,14 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     init(view: EPUBSpreadView, sink: @escaping Sink) { self.view = view; self.sink = sink }
 
     func start(navigationFinished: Bool, initializationStarted: Bool, initializationFinished: Bool) {
+        let framework = Bundle(for: WKWebView.self)
         record("coverage-start", fields: ["navigationFinished": String(navigationFinished),
             "initializationStarted": String(initializationStarted), "initializationFinished": String(initializationFinished),
-            "preBindingCommandsCovered": "false"])
+            "preBindingCommandsCovered": "false", "osVersion": ProcessInfo.processInfo.operatingSystemVersionString,
+            "webKitBundleID": framework.bundleIdentifier ?? "unknown",
+            "webKitVersion": framework.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown",
+            "webKitBuild": framework.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "unknown",
+            "webKitVersionSource": "runtime-public-bundle", "exactSourceMatch": "unknown"])
     }
 
     func close(_ reason: String) {
@@ -967,13 +982,24 @@ class EPUBSpreadView: UIView, Loggable, PageView {
                 var rollback = native
                 rollback["previousY"] = String(previousY); rollback["observedAt"] = phase
                 rollback["previousUptime"] = previousUptime ?? "unknown"
-                let frames: [String] = Thread.callStackSymbols.prefix(16).map { frame in
+                let symbols = Array(Thread.callStackSymbols.prefix(16))
+                let frames: [String] = symbols.map { frame in
                     let tokens = frame.split(separator: " ").filter { !$0.contains("/") && !$0.contains("\\") }
                     let normalized = tokens.joined(separator: " ").replacingOccurrences(of: #"0x[0-9a-fA-F]+"#,
                         with: "<address>", options: .regularExpression)
                     return String(normalized.prefix(160))
                 }
                 rollback["stack"] = frames.joined(separator: "\n")
+                // Labels describe observed symbols, never an inferred IPC initiator.
+                let origins = [("scrolling-tree-commit", "RemoteLayerTreeDrawingAreaProxy::commitLayerTree"),
+                    ("scrolling-tree-commit", "RemoteLayerTreeDrawingAreaProxy::didCommitLayerTree"),
+                    ("scrolling-tree-commit", "RemoteScrollingCoordinatorProxy::commitScrollingTreeState"),
+                    ("web-page-proxy-request", "WebPageProxy::requestScroll"),
+                    ("page-client-request", "PageClientImpl::requestScroll")]
+                let labels = Set(origins.filter { entry in symbols.contains { $0.contains(entry.1) } }.map { $0.0 })
+                rollback["originLabels"] = labels.isEmpty ? "unknown" : labels.sorted().joined(separator: ",")
+                rollback["originLabelSource"] = "same-16-native-symbols"
+                rollback["wkScrollEntryObserved"] = String(symbols.contains { $0.contains("_scrollToContentScrollPosition:") })
                 emit("first-rollback", id: id ?? coverageID, fields: rollback)
             }
             previousY = y
@@ -1025,6 +1051,166 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         recentEvaluation = id; evaluations[id]?["phase"] = "submitted"
         record("evaluation-submit", id: id, fields: evaluations[id] ?? [:])
     }
+
+    // Strictly one synchronous Readium call. Text inside a Locator cannot select
+    // a different script; unknown expressions keep their original bytes.
+    private static let writerPattern = #"\Areadium\.(?:scrollToId\('(?:[^'\\\r\n]|\\[^\r\n])*', (?:true|false)\);|scrollToPosition\('(?:0|1|0\.[0-9]+|[0-9.]+[eE]-[0-9]+)', '(?:ltr|rtl|ttb|btt)', (?:true|false)\))\z"#
+
+    private static func supportedWriter(_ script: String) -> Bool {
+        if script.range(of: writerPattern, options: .regularExpression) != nil { return true }
+        let prefix = "readium.scrollToLocator("
+        guard script.hasPrefix(prefix),
+              let suffix = [", true);", ", false);"].first(where: { script.hasSuffix($0) }),
+              let data = String(script.dropFirst(prefix.count).dropLast(suffix.count)).data(using: .utf8)
+        else { return false }
+        do { return try JSONSerialization.jsonObject(with: data) is [String: Any] }
+        catch { return false } // Unsupported diagnostic shape; original script still executes.
+    }
+
+    func observeWriter(_ script: String, id: UUID) -> String? {
+        guard active, let view, view.innerScrollDiagnostics === self,
+              evaluations[id]?["phase"] == "submitted", Self.supportedWriter(script)
+        else { return nil }
+        let expression = script.hasSuffix(";") ? String(script.dropLast()) : script
+        // Insert the original expression last: text cannot replace template tokens.
+        return Self.writerObservationBody + "(\"\(id.uuidString)\",\"\(coverageID.uuidString)\",function(){return " + expression + ";});"
+    }
+
+    func writerResult(_ result: Any?, id: UUID, error: Error?) -> Any? {
+        // Decode for the original caller even after close. record() is active-only;
+        // the existing finishEvaluation owns the one late terminal on the old sink.
+        guard error == nil, let body = result as? [String: Any],
+              body["schema"] as? String == "xr-scroll-observation-1",
+              let kind = body["resultKind"] as? String,
+              ["undefined", "null", "boolean", "number", "string"].contains(kind)
+        else {
+            record("writer-js-incomplete", id: id, fields: ["reason": error == nil ? "no-envelope" : "wk-error-no-envelope",
+                "incomplete": "true"])
+            return result
+        }
+        let identityMatches = body["evaluationID"] as? String == id.uuidString &&
+            body["coverageID"] as? String == coverageID.uuidString
+        if identityMatches, evaluations[id]?["phase"] == "submitted", let view, view.innerScrollDiagnostics === self,
+           let calls = body["calls"] as? [[String: Any]], calls.count <= 16,
+           let data = try? JSONSerialization.data(withJSONObject: calls, options: [.sortedKeys]),
+           let callsJSON = String(data: data, encoding: .utf8) {
+            record("writer-js-observation", id: id, fields: ["schema": "xr-scroll-observation-1",
+                "incomplete": String(body["incomplete"] as? Bool ?? true),
+                "reason": body["reason"] as? String ?? "unknown", "calls": callsJSON,
+                "callCount": String(calls.count), "restored": String(body["restored"] as? Bool ?? false),
+                "resultKind": kind, "observerIntervention": "temporary-root-own-method"])
+        } else {
+            record("writer-js-incomplete", id: id, fields: ["reason": "identity-or-envelope", "incomplete": "true"])
+        }
+        if kind == "undefined" { return nil }
+        if kind == "null" { return NSNull() }
+        return body["value"]
+    }
+
+    // Tested verbatim in Node. No global hooks or persistent state. Only known
+    // synchronous helpers are eligible. Original exceptions escape unchanged;
+    // WK errors cannot carry this success envelope and are explicitly incomplete.
+    private static let writerObservationBody = #"""
+    ((evaluationID, coverageID, invoke) => {
+      const report = {schema: 'xr-scroll-observation-1', evaluationID, coverageID,
+        calls: [], incomplete: false, reason: 'complete', restored: false};
+      const incomplete = reason => { report.incomplete = true;
+        if (report.reason === 'complete') report.reason = reason; };
+      let root, own, original, installed = false;
+      const snapshot = () => {
+        try {
+          const top = root.scrollTop, y = window.scrollY, time = performance.now();
+          if (![top, y, time].every(v => typeof v === 'number' && Number.isFinite(v))) {
+            incomplete('geometry-unavailable'); return null;
+          }
+          return {scrollTop: top, scrollY: y, time};
+        } catch (_) { incomplete('geometry-error'); return null; }
+      };
+      const parameters = args => {
+        if (args.length !== 1 || args[0] === null || typeof args[0] !== 'object') {
+          incomplete('unsupported-overload'); return null;
+        }
+        const options = args[0], proto = Object.getPrototypeOf(options);
+        if (proto !== Object.prototype && proto !== null) { incomplete('options-prototype'); return null; }
+        const values = {};
+        for (const key of ['left', 'top', 'behavior']) {
+          const descriptor = Object.getOwnPropertyDescriptor(options, key);
+          // Never evaluate option accessors or coerce values a second time.
+          if (!descriptor || !('value' in descriptor)) { incomplete('options-accessor-or-missing'); return null; }
+          const value = descriptor.value;
+          if (key === 'behavior' ? !['auto', 'instant', 'smooth'].includes(value) :
+              typeof value !== 'number' || !Number.isFinite(value)) {
+            incomplete('options-value'); return null;
+          }
+          values[key] = value;
+        }
+        return values;
+      };
+      try {
+        root = document.scrollingElement;
+        if (!root) incomplete('no-root');
+        else {
+          own = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+          let cursor = root, descriptor;
+          while (cursor && !descriptor) { descriptor = Object.getOwnPropertyDescriptor(cursor, 'scrollTo');
+            cursor = Object.getPrototypeOf(cursor); }
+          if (!descriptor || !('value' in descriptor) || typeof descriptor.value !== 'function' ||
+              (own ? !own.configurable && !own.writable : !Object.isExtensible(root))) incomplete('method-unavailable');
+          else {
+            original = descriptor.value;
+            const observed = function(...args) {
+              let call;
+              try {
+                if (report.calls.length < 16) {
+                  call = {index: report.calls.length, receiverMatches: this === root,
+                    parameters: parameters(args), before: snapshot(), terminal: 'entered'};
+                  report.calls.push(call);
+                  if (this !== root) incomplete('receiver-changed');
+                } else incomplete('call-capacity');
+              } catch (_) { incomplete('observation-error'); }
+              try {
+                const value = Reflect.apply(original, this, args);
+                if (call) call.terminal = 'returned';
+                return value;
+              } catch (error) {
+                if (call) call.terminal = 'threw';
+                throw error;
+              } finally {
+                if (call) call.after = snapshot();
+              }
+            };
+            Object.defineProperty(root, 'scrollTo', own ? {...own, value: observed} :
+              {value: observed, configurable: true, writable: true, enumerable: false});
+            installed = true;
+          }
+        }
+      } catch (_) { incomplete('installation-error'); }
+      let value;
+      try { value = invoke(); }
+      finally {
+        try {
+          if (installed) {
+            if (own) Object.defineProperty(root, 'scrollTo', own);
+            else if (!delete root.scrollTo) throw new Error('restore');
+            const current = Object.getOwnPropertyDescriptor(root, 'scrollTo');
+            report.restored = own ? !!current && current.value === own.value &&
+              current.writable === own.writable && current.enumerable === own.enumerable &&
+              current.configurable === own.configurable : current === undefined;
+            if (!report.restored) incomplete('restore-mismatch');
+          } else incomplete('not-installed');
+          if (document.scrollingElement !== root) incomplete('root-changed');
+        } catch (_) { incomplete('restore-error'); }
+      }
+      if (report.calls.length === 0) incomplete('no-call');
+      report.resultKind = value === undefined ? 'undefined' : value === null ? 'null' : typeof value;
+      // Unknown objects/thenables retain WK's original handling. Do not inspect
+      // .then or await them, and do not invent a serializable business value.
+      if (!['undefined', 'null', 'boolean', 'number', 'string'].includes(report.resultKind) ||
+          typeof value === 'number' && !Number.isFinite(value)) return value;
+      if (value !== undefined) report.value = value;
+      return report;
+    })
+    """#
 
     func cancelEvaluation(_ id: UUID) {
         guard active else {
