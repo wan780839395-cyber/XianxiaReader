@@ -1,0 +1,220 @@
+{
+  "recordedAtUTC": "2026-10-23T02:10:05.507817+00:00",
+  "run": 39886254329,
+  "source": "978816c9dfaed955d0bca2a2fd7be21e2fe8a741",
+  "attempt": 1,
+  "ciDispatches": 1,
+  "selection": "continuous-resize-pair",
+  "conclusion": "failure",
+  "runtimeInputCount": 619,
+  "runtimeDrift": [],
+  "originalDefaultsComparisonsOrderGuardsAssertionsBudgetsUnchanged": true,
+  "repositoryStaticPassed": true,
+  "swiftGrammarFiles": 484,
+  "swiftGrammarNotCompilation": true,
+  "linuxPythonTests": {
+    "total": 127,
+    "passed": 127,
+    "skipped": 0,
+    "failed": 0
+  },
+  "buildAttempts": 1,
+  "nativeBuildExit": 0,
+  "compiled": true,
+  "linked": true,
+  "widthCompilerFixValidated": true,
+  "driverExit": 2,
+  "failureKind": "Version parser rejects swift-driver prefix on the same line as Apple Swift version",
+  "actualVersionFieldsMatchPrepared": true,
+  "actualPreparedGitBlobsMatchFrozen": true,
+  "compiledProductEntries": 609,
+  "initialBeforeSnapshotMatchesFrozen": true,
+  "modeOnlyPlanDifferenceVerified": true,
+  "actualMatchedBuildVerified": false,
+  "nativeCaseInvocations": 0,
+  "swiftPairMechanicsExecuted": false,
+  "safeOriginalExit": null,
+  "conflictOriginalExit": null,
+  "originalExitAbsenceReason": "Stopped at version preflight before either XCTest arm",
+  "pairedModeAccepted": false,
+  "oldFullRootCauseProven": false,
+  "oldSFinalRejectionProven": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "runtimeFixAppliedThisRound": false,
+  "lastSuccessfulNativeSource": "2a9fdfb51281407472b01f1729591d09690a5efd",
+  "lastSuccessfulNativeRun": 39806769382,
+  "timings": {
+    "targetStepSeconds": 652.0,
+    "toBuildCommandSeconds": 346.699244,
+    "buildCommandToSuccessSeconds": 299.706638,
+    "successToDriverFailureSeconds": 6.134238,
+    "nativeCaseSeconds": 0,
+    "nativeCaseInvocations": 0,
+    "nativeJobSeconds": 669.0,
+    "workflowCreatedToUpdatedSeconds": 725.0,
+    "repositoryToolsSeconds": 36.499
+  },
+  "evidence": [
+    {
+      "path": "build/ci/39886254329/run.json",
+      "sha256": "5526edca5fb89965ef3157be49d3806e7e2477a807156ffebc250973df76ab4a"
+    },
+    {
+      "path": "build/ci/39886254329/run-api.json",
+      "sha256": "ea38c85d67aa766b9b0b0919aa04ae668032dafe9952fb634e6a3a43420abda5"
+    },
+    {
+      "path": "build/ci/39886254329/full.log",
+      "sha256": "717f7f3c6a6544156f75a11f76782f0875dd939c0aa3211e66483f39fda5a256"
+    },
+    {
+      "path": "build/ci/39886254329/artifacts.json",
+      "sha256": "3fd552331fbc696f9aec5a382a42ee0559a99e6e2a89410014f11f9f9e9ba2d8"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic-download-receipt.json",
+      "sha256": "749d8a882b0dd8afe696783fa25b7170bf58898fd89c001a8375dec73bea6f57"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/native-analysis.json",
+      "sha256": "d30d78d6823f1f382ac0c2d0f9a5249df285829caf84a05c6e30cbf86cb34125"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/timing-analysis.json",
+      "sha256": "f90eeb34172606fd71dea0e135da1dd0eeb4a5d982aac4f1f8764e0b219d6ae1"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/version-output-analysis.json",
+      "sha256": "572f69f822be4e2f39d199297b8849dad1c4a4595210ada11398d9c118c3cbe8"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/build-source-analysis.json",
+      "sha256": "691c88b8a8884b12d79b3a086837277575480a5bbe7c2e9295b130681293e936"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/dispatch-attempt.json",
+      "sha256": "94c52d53bb6eb4d64791226bfa4149dbaf29e3cad45c854b0c4c51b974ccc099"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/dispatch.json",
+      "sha256": "c8225520d3d2e9cd2c42e1f5f454f86e80abadc38435392d81c32be7c334bc90"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/frozen.json",
+      "sha256": "ac269da1665b0679d370e2e23d9d289ef56ecd86b58cc7abf89824ae44b4ff8e"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/scope-audit.json",
+      "sha256": "4c6b44977529d28c5ee9458ba502de5231b2d302710df45ab5126bd2e60090eb"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-width-native-20261023/document-check.log",
+      "sha256": "1f124f252949c667028c800246aa5e16c784bda95a418fb165672413e6d5f7b2"
+    }
+  ],
+  "artifactFiles": [
+    {
+      "path": "build/ci/39886254329/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/logs/viewport-pair-driver.log",
+      "sha256": "852372339fa831d8657ea981694fd5f5e19b529b36801babe4e12ec4e64276e3"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Info.plist",
+      "sha256": "a16fff316206b8ba4b4eb9a9172eb62463111e8381a6ea21b042521a2892127b"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/data.0~4UGZ-dnF4SRNcQ_qh1cRLKhtQK2jifX0FoBxzIrnfAWmSszKK-hPXTQq21euZnk8-O0xQ8Av20niigmoMnC4Og==",
+      "sha256": "33fa7f08a9ac2753221b7a1bb1865e083f4d4c5617e59b436520ac18f6405ad8"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/data.0~dZHA7vbtPnySy20xYfx_S6yy-_2HHq3BSxKxANzzApmunGdqmErkDk01AECthE7pNppRoniDhiBt3-hVXh_3Kg==",
+      "sha256": "29856e84fbe1d525273e67da7da7053e4e11269d9b61fdc2e8ab14978c5734a3"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/data.0~Fpk4Nyku5XIG3ZOgDqsIbL9CIpuwMWiLh5PkDdlPc_C269-F7Ovtmp5xcgGITQ_Z1gc3fnhFMpMs_0B6vd6QEA==",
+      "sha256": "32870024e0c2c5b9614542918004d861423cd7b2705811400eb510112addf8ce"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/refs.0~4UGZ-dnF4SRNcQ_qh1cRLKhtQK2jifX0FoBxzIrnfAWmSszKK-hPXTQq21euZnk8-O0xQ8Av20niigmoMnC4Og==",
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/refs.0~dZHA7vbtPnySy20xYfx_S6yy-_2HHq3BSxKxANzzApmunGdqmErkDk01AECthE7pNppRoniDhiBt3-hVXh_3Kg==",
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/PositionBuild.xcresult/Data/refs.0~Fpk4Nyku5XIG3ZOgDqsIbL9CIpuwMWiLh5PkDdlPc_C269-F7Ovtmp5xcgGITQ_Z1gc3fnhFMpMs_0B6vd6QEA==",
+      "sha256": "77f9721db7d61a19c60ecfecbfdfdde2d18950520f6cd9a47dcbb0801c058739"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/build-manifest.json",
+      "sha256": "f7270b7b1b669438fc5877dec8b2249fa0f077ae1cd3a06677f1f3142337e3d0"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/original.xctestrun",
+      "sha256": "3fd6099e78758ef4ce648e9111f515cad2e33e03212b739f2d46e9f4fc553874"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-conflict.xctestrun",
+      "sha256": "a40db3b1c747aa899a56970d7a2cc1ae1a5588c3f496fbc980cc2346cad25a2b"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe.xctestrun",
+      "sha256": "f41ab7117e89d49c7194e52225103d43386773ac1fd236c1b8139dd34e994e83"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/prepared.json",
+      "sha256": "b6195e2aa874bb4d2fe1af663682da48322186415b3fb59cbb7d7a27039f7a05"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/result.json",
+      "sha256": "dcc43943a391df95c6e03e699f23f415c35b2178673f48b62c5762351b13d01d"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/before.json",
+      "sha256": "5f6fa10d54d1205036d9e4f38a87dcaeee947b389efe2db9d2438f26f5e604f8"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/exits.json",
+      "sha256": "5763326b084063f66244e2e533a0c14d6fc51b5280c67559fdcf7bd184ebc9a1"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/os-version.command.json",
+      "sha256": "4a389b81eaeeb028657fc8226f84826daf52eee7d8c9bd7381e94494ffbe279a"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/os-version.log",
+      "sha256": "31fd674ddb951680692d7b68cafdeab5baa6b3e82aae843269dad73b53f25fc5"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/swift-version.command.json",
+      "sha256": "d17eb1f201c2c40058a4d2251581a98f952da7640a278c9977fa3dad45c0a603"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/swift-version.log",
+      "sha256": "c787cdae4c1e5c4b19cdea9e1e6ba7f1064fae1dbbe4dc8f9a1bf952b1a7a087"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/xcode-version.command.json",
+      "sha256": "7c2190135416c8c15d914836a7cc02eb9134642f797df496b4910bc2667396e1"
+    },
+    {
+      "path": "build/ci/39886254329/diagnostic/ViewportPair/paired-safe/logs/xcode-version.log",
+      "sha256": "a8be4f9af0a29137fe7e59b9928056d4a0df297bb46ba40f80eaa6b0ae982f12"
+    }
+  ],
+  "nextCIAllowed": false,
+  "automaticRetryForbidden": true,
+  "validationKind": "project-isolation-i6-viewport-pair-width-native",
+  "report": "Documentation/I6_VIEWPORT_PAIR_WIDTH_NATIVE.md",
+  "recoveryDirectory": "build/maintenance/I6-viewport-pair-width-native-20261023",
+  "documentStaticPassed": true,
+  "previousRawEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true
+}

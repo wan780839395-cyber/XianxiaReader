@@ -1,5 +1,7 @@
 # I6 配对夹具唯一一轮原生 CI（2026-10-23）
 
+2026-10-23 最新：[显式Double版CI39886254329](I6_VIEWPORT_PAIR_WIDTH_NATIVE.md)已通过测试包原生编译/链接，原342行错误未再出现；新阻塞为驱动版本输出前缀解析，两臂仍未启动。以下编译65/本地未编译均保留其当时含义。
+
 2026-10-23 后续：下文失败点的显式Double拆分已实施，仅本地检查通过，尚未Swift编译/原生验证，零新增CI。见本页末“宽度表达式本地修正”。本页原CI65和两臂未执行仍保留其原始含义。
 
 唯一运行 [39882224654](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39882224654)，源 `b2c17c9d3312e942ad2448d4d9ecf244f78062e8`，attempt1，selection=`continuous-resize-pair`。**失败于原生测试包编译，build-for-testing 原退出65；安全/冲突均未启动。**没有重派、取消、追加原生或整套，也没有源码改动。

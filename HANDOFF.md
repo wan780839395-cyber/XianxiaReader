@@ -1,3 +1,33 @@
+# 显式Double版CI已收口：原生编译通过，版本解析前置失败2（2026-10-23）
+
+唯一CI39886254329/attempt1，冻结978816c9；127工具/484语法、619构建前来源通过。原生build-for-testing一次成功，测试包编译/链接通过，342行类型推断错误未再出现。与旧失败b2c17c9d只有同一Swift输入不同，Xcode/Swift/OS字段一致。
+
+本轮在安全臂启动前版本检查停止：合并输出以swift-driver version: 1.120.5 Apple Swift version...开头，version_fields只按Apple前缀行首识别，拒绝Missing or ambiguous tool version。对真实原件离线仅移除该前缀即可与prepared全部7字段完全相等，定位为驱动输出解析缺口。当前源未改；不放宽版本守卫、不重派。
+
+已有609项产物冻结、两份仅模式不同的计划、首次before与冻结一致；尚未模拟器启动/XCTest/Swift机制/双臂后核，安全/冲突原退出均null，驱动2，matchedBuildVerified仍false。完整23文件/3270330字节artifact已核GitHub摘要/CRC，重复ZIP已删除。
+
+目标步骤652秒：至构建346.699秒，构建到成功299.707秒，再到驱动2约6.134秒，原生用例0秒。恢复目录build/maintenance/I6-viewport-pair-width-native-20261023；完整原件build/ci/39886254329。后续最小片只修版本输出解析并用真实样本核正反例，严格字段/歧义/缺失拒绝保持；本轮未实施/未再派CI。
+
+619输入/原默认值比较/生产guard/原字断言预算、smoke/隔离/定位/S诊断、普通HEAD/index与Build30保持。旧full191/192、历史根因/旧S第三次拒绝及I6/Release/手机缺口仍在，无新IPA，不关机。详情Documentation/I6_VIEWPORT_PAIR_WIDTH_NATIVE.md；文档静态核对已通过，最终私有快照以本轮final-checkpoint.json为准，不改运行输入。
+
+---
+
+# 显式Double配对CI运行中：39886254329，只派一次（2026-10-23）
+
+冻结源978816c9dfaed955d0bca2a2fd7be21e2fe8a741，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 显式Double修正版原生CI准备：新授权只允许一轮（2026-10-23）
+
+用户明确授权978816c9dfaed955d0bca2a2fd7be21e2fe8a741再派唯一一轮continuous-resize-pair。619输入/远端修正版/上轮原件/Build30/普通HEAD/index已核，无运行helper。相对上轮仅oldSample显式Double局部值，原缺省/比较/检查顺序与生产guard、原字断言预算保持。本轮不再改输入，不重跑本地预检；保留工作流内既有repository-checks。
+
+只build-for-testing一次，安全原测试/Swift机制/提取/夹具/来源全部合格才冲突，最多原视口方法两次。保存两臂真实退出，未启动则null；失败先保存完整log/xcresult/产物查清，不自动重派、改算法或追加Core/组件/23项/UI/full/Release。
+
+恢复目录build/maintenance/I6-viewport-pair-width-native-20261023，before/frozen已写；派发前attempt锁，未知响应只查询原run。上轮39882224654构建65与两臂未启动保持历史，不作本轮结果；旧full191/192与I6/Release/手机缺口、Build30不变。电脑不关机。
+
+---
+
 # 配对夹具宽度拆分完成：本地检查通过，原生未验，零CI（2026-10-23）
 
 相对6b4fca1d仅Tests/iOS/ReaderRenderingTests.swift的oldSample一块：sampleEnded→committed/A→两个显式Double宽度→abs差值<2。保留负/正infinity缺省和原失败路径；无新await/事件/重试，生产guard及原字断言预算保持。其余618运行输入、smoke/其他Pair分支/SDK/隔离/定位/S诊断/工作流全部保持。
