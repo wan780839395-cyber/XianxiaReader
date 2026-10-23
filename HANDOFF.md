@@ -1,3 +1,17 @@
+# 准备期Swift行为退出0，唯一原生CI准备中（2026-10-23）
+
+2026-10-23 已按具体批准隐藏启动现有Docker，未安装/拉取/重置/清理环境。现有锁定Swift6.1.2/Linux镜像仅一次原样helper编译执行退出0，覆盖首错只写一次/原NSError重抛/真实Task取消/完成后忽略/255溢出/旧sink及一次排空；UIKit/WK接线仍待原生。619输入与a6457cdb保持；复用此前28本地通过及484语法，不重跑。下一步仅条件授权的一轮continuous-resize-pair：一次构建/每臂一次，安全全合格才冲突，真实退出/未启动null。尚未派发；零算法/guard/armed/预算/断言变化。 见[本轮结果与断点](Documentation/I6_PREPARATION_NATIVE.md)。
+
+恢复目录内dispatch锁若存在，任何中断只查原run，不再次POST；首次原因未知、不能以空清理集合判定取消专项通过，不关机。
+
+---
+
+# 准备期诊断有界解阻开始，尚未启动CI（2026-10-23）
+
+协调线程转交用户对具体动作再次批准“你开吧”：允许隐藏启动已安装Docker，只用现有Swift6.1.2镜像执行唯一缺失行为检查；通过且前置证据成立才推送并最多一轮现有配对CI。不得安装/拉镜像/重置/清理用户环境或接受新协议，失败即停。已核a6457cdb的619输入与原样harness SHA一致，工作区只此助手活跃，现无Docker/python/gh/Swift助手进程。先查询现有CI避免重复，再启动环境。不重跑已通过28项/语法，不改5输入/算法/guard/armed/预算/断言，不关机。恢复build/maintenance/I6-preparation-diagnostics-native-20261023/保留before、旧HANDOFF和原harness；尚无本轮行为/编译结论。
+
+---
+
 # 准备期最小诊断本地收口，关键行为未验，零CI（2026-10-23）
 
 2026-10-23 准备期首错/旧缓冲保全已按追加收敛授权在约定5输入落地，本地28通过/1真实Swift行为skip、7静态/484语法通过（54上游限制/新增0）；不是Swift编译或取消行为验收。paired同步阶段/首错先于原defer并原样throw，原coverage-end后/旧owner失效前一次排空，仅诊断分支接收预arm；原await/JS/control/pause、armed/guard/清理顺序、255/256与原预算、返程窄屏/双向原字保持。619仅5变化/其余614、4848旧证据、Build30与普通HEAD/index保持。本机无swiftc、Docker engine失败、WSL仅docker-desktop，关键首错/旧sink行为未执行，派发前必要证据不成立，本轮零CI/推送。首个取消await/发起者及真实WebKit观察仍未知；旧39946614486 build0/safe65/conflict null和I6/full191/192/Release缺口不变。下一步仅建议先在可用Swift6.1.2环境执行已保存的原样helper检查。见[本地实现与限制](Documentation/I6_PREPARATION_DIAGNOSTICS.md)。
