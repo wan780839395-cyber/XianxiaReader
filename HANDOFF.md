@@ -1,3 +1,25 @@
+# DEBUG writer观察原生CI失败收口，不重派（2026-10-23）
+
+2026-10-23 DEBUG writer观察唯一CI39946614486/0b55a4ea/attempt1失败收口：157工具/484语法及一次原生编译链接0通过；619输入、609产物、三计划和实际七版本/安全前后一致，但冲突未启动，驱动双臂matchedBuildVerified仍false。安全原单例一次0/1、38.343秒，原test/driver65；冲突null。失败为准备期seal、尚未armSample的CancellationError，fixture.failure=none不是通过；仅closing/abort两控制事件、五类跟踪集合为空，S/M/resize/返程均未到达。诊断交付0，真实WebKit framework版本/来源标签/scrollTo参数及恢复未验；18.5/22F77仅OS信息，不替代framework版本。预arm元数据等采样才flush，提前失败存在交付缺口；不能从零记录断言未执行观察/已恢复，首个抛错await、清理发起者及与观察器/环境的关系未证。定向步骤1606秒=准备518.008/编译294.072/构建后793.921，其中原用例38.343秒；取证下载另有EOF/SSL中断，按同一artifact接续后完整SHA/CRC通过，非CI重跑。619输入/3742旧证据/Build30/普通HEAD index保持，未改算法/guard/原断言预算/WK调用/等待重试，无整套/Release/新IPA。旧回跳根因、原生观察及I6/full191/192/Release缺口保持。
+
+恢复build/maintenance/I6-webkit-writer-native-20261023/：before/frozen/dispatch锁、native/source/timing/inner/writer-observation/preparation-boundary分析、result及最终checkpoint。原件build/ci/39946614486/含完整文字日志/API、1047个提取文件/xcresult及校验receipt；同artifact断传接续metadata和错误保留，合并校验后仅移除重复传输片段/ZIP。下一步建议先本地审阅准备期取消传播与失败前元数据交付的最小阶段/首错回执，不先自然重放、不修改算法或等候预算；当前没有下一轮CI授权。不把清理空集合算全取消通过，不把来源局部一致算双臂验收通过。未确定首个取消await，不归咎观察器或运行环境。最终保存revision见本目录final-checkpoint.json。
+
+---
+
+当前CI39946614486：仓库完整日志已保存，157工具/484语法通过（上游限制54/新增0）；仅reader-positions原配对步骤运行，Core/full iOS/其他诊断均skipped。原生编译与两臂结果尚未知，禁止从运行时长推断失败或把空结果写为0。恢复先核build/maintenance/I6-webkit-writer-native-20261023/dispatch和当前run；保持唯一派发，不追加测试。
+
+# DEBUG writer观察配对CI运行中：39946614486，只派一次（2026-10-23）
+
+冻结源0b55a4ea35e81663b0c0aa0ac4634c92616bb310，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# DEBUG writer观察唯一原生CI准备（2026-10-23）
+
+用户新授权仅一轮continuous-resize-pair，冻结0b55a4ea/619输入。已复核实际文件/blob、旧证据、Build30、普通HEAD/index；最近远端均completed，无运行助手。复用本地24定向/484语法/7静态，不叠加预检；保留工作流原repository-checks。一次构建，每臂只跑原同例一次，安全所有门槛合格才冲突，保留原退出码/未启动null。核真实WebKit framework版本、同16帧来源标签、实际scrollTo参数及finally属性恢复；保留S诊断、返程窄屏、原字双向和每请求真实SDK回执。零算法/guard/预算/WK调用/等待重试变化，不跑整套、不自动重派。恢复build/maintenance/I6-webkit-writer-native-20261023/：派发先持久锁，未知结果只查原run，不再次POST。未有本轮原生结论，旧full191/192、I6/Release/手机及旧回跳根因缺口保持，不关机。
+
+---
+
 # DEBUG writer观察本地收口，尚未原生验收（2026-10-23）
 
 2026-10-23 DEBUG writer观察已在约定3输入内实现并本地收口：EPUBSpreadView.swift、UPSTREAM.json、test_readium_provenance.py。只包现有明确Readium id/locator/progression同步表达式，临时替换根元素自有scrollTo，原this/同一参数对象/一次原调用及原返回保留，finally恢复原描述符或删除影子属性；不触及S/M/range/canonical、全局原型或Release JS。正常回执随同一次WK回调解包进原256诊断journal；原异常重抛，WK失败没有成功信封时记incomplete，不改失败为成功。公开Bundle身份及同原16帧来源标签已接线，真实框架版本仍待原生测得，缺符号为unknown，不推断IPC发起者。15项provenance（其中5项执行源码原样JS模板）+2原smoke/7配对工具=24定向通过；484语法、7静态通过，54上游限制/新增0，均非原生编译。原算法/guard/双向字可见/窄屏/预算/调用/await/等待重试保持；仅Release两个值别名，规范化后与原源码一致，nil脚本原字节提交。其余616输入、3727旧证据、Build30/普通HEAD index保持，零CI/full/Release/IPA。旧39930462353 build0/safe65/conflict null及未到达的返程、旧故障根因/I6/Release缺口不变。
