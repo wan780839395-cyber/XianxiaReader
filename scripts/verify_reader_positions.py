@@ -454,7 +454,16 @@ def verify_viewport_pair_arm(folder, mode, status=0):
     effect_event = event(mid, "pair-effect")
     if not seq(exit_m) < seq(effect_event) or effect_event.get("effect") != effect:
         raise ValueError("Pair effect must follow actual M completion")
-    # All other work remains single-file admission, including requests queued while S/M overlap.
+    # Admission ends after the qualified wide predicate. The original narrow return
+    # remains natural SDK work, with its own complete lifetime audit below.
+    completions = [e for e in events if e["kind"] == "admission-complete"]
+    if len(completions) > 1 or (status == 0 and not completions):
+        raise ValueError("Pair needs a unique actual admission end")
+    complete = completions[0] if completions else None
+    control_end = seq(complete) if complete else seq(closing)
+    if (not seq(exit_m) < control_end <= seq(closing)
+            or (complete and any(complete.get(k) != "0" for k in ["queued", "running", "waiters"]))):
+        raise ValueError("Pair admission ended before actual completion or hid pending work")
     queued = [e for e in events if e["kind"] == "queued"]
     records = {}
     for queue in queued:
@@ -464,7 +473,7 @@ def verify_viewport_pair_arm(folder, mode, status=0):
         kind = "measure" if point.startswith("measure") else "sample"
         start, entry, admitted = event(rid, "work-start"), event(rid, point), event(rid, "admitted")
         captured, terminal, exited = event(rid, kind+"-start"), event(rid, kind+"-finished"), event(rid, "work-finished")
-        if (not seq(seal) < seq(start) < seq(entry) < seq(queue) < seq(admitted) < seq(captured) < seq(terminal) < seq(exited) < seq(closing)
+        if (not seq(seal) < seq(start) < seq(entry) < seq(queue) < seq(admitted) < seq(captured) < seq(terminal) < seq(exited) < control_end
                 or admitted.get("point") != point or admitted.get("disposition") != "run" or exited.get("captured") != "true"
                 or any(entry.get(k) != captured.get(k) or not entry.get(k) for k in owner_keys)
                 or any(captured.get(k) != arm[k] for k in ["reader", "epoch"])):
@@ -480,14 +489,114 @@ def verify_viewport_pair_arm(folder, mode, status=0):
     for rid in ordered[1:]:
         if seq(records[rid]["admitted"]) <= previous: raise ValueError("Non-selected work overlapped S/M or previous drain work")
         previous = seq(records[rid]["exited"])
-    registered = set(records) | {sid}
-    for e in events:
-        if seq(seal) < seq(e) < seq(closing) and e["kind"] in ["work-start", "measure-start", "sample-start", "work-finished", "admitted"] and e["requestID"] not in registered:
-            raise ValueError("Unregistered SDK work crossed the paired interval")
     drained = [e for e in events if e["kind"] == "pair-drained"]
-    if (not drained or seq(drained[-1]) < previous or seq(drained[-1]) >= seq(closing)
+    if (not drained or seq(drained[-1]) < previous or seq(drained[-1]) >= control_end
             or any(e.get(k) != "0" for e in drained for k in ["queued", "running", "waiters"])):
         raise ValueError("Pair did not record real bounded drain before the original predicate")
+    is_sdk = lambda e: e["kind"] in ["work-start", "work-finished"] or e["kind"].startswith(("sample-", "measure-"))
+    post_starts = [e for e in events if e["kind"] == "work-start" and control_end < seq(e) < seq(closing)]
+    observed = []
+    for start in post_starts:
+        rid = start["requestID"]
+        if rid in records or rid == sid:
+            raise ValueError("Pair SDK identity was reused across the admission end")
+        sdk = [e for e in events if e["requestID"] == rid and is_sdk(e)]
+        kind = "measure" if any(e["kind"] == "measure-start" for e in sdk) else "sample"
+        entry, captured = event(rid, kind+"-before-capture"), event(rid, kind+"-start")
+        terminal, exited = event(rid, kind+"-finished"), event(rid, "work-finished")
+        if (event(rid, "work-start") != start
+                or not control_end < seq(start) < seq(entry) < seq(captured) < seq(terminal) < seq(exited) < seq(closing)
+                or exited.get("captured") != "true"
+                or any(start.get(k) != arm[k] for k in ["reader", "epoch"])
+                or any(not start.get(k) or e.get(k) != start[k] for e in sdk for k in owner_keys)):
+            raise ValueError("Post-control SDK work lacks a complete same-owner captured lifetime")
+        expected = ["work-start", kind+"-before-capture", kind+"-start"]
+        if kind == "measure":
+            before, guard = event(rid, "measure-before-commit"), event(rid, "measure-guard")
+            keys = ["ownerMatches", "indexMatches", "anchorCurrentAtStart", "anchorCurrentNow",
+                    "anchorEqual", "revisionMatches", "localMatches", "positioning", "mayRestore"]
+            if (not seq(captured) < seq(before) < seq(guard) < seq(terminal)
+                    or any(guard.get(k) not in ["true", "false"] for k in keys)
+                    or guard.get("ownerMatches") != "true" or terminal.get("outcome") != "committed"
+                    or number(before.get("result.height")) <= 0):
+                raise ValueError("Post-control measure lacks its actual result, guard or terminal")
+            for key in ["dom.width", "dom.height", "dom.scrollY"]:
+                number(before.get(key))
+            if "result.anchorY" in before:
+                number(before["result.anchorY"])
+            # Observe the real production decision; a valid neighbor/stale anchor
+            # may commit a measurement without restoring the reading position.
+            may_restore = (guard["positioning"] == "false" and captured.get("anchor") not in [None, "nil", "serialization-error"]
+                           and all(guard[k] == "true" for k in keys[:7]))
+            if guard["mayRestore"] != str(may_restore).lower():
+                raise ValueError("Post-control measure guard and restore receipt disagree")
+            expected += ["measure-before-commit", "measure-guard"]
+        elif terminal.get("outcome") == terminal.get("reason") == "cached":
+            if (terminal.get("anchor") in [None, "nil", "serialization-error"]
+                    or terminal["anchor"] != captured.get("anchor")):
+                raise ValueError("Post-control cached sample lacks an actual anchor")
+        else:
+            before = event(rid, "sample-before-read")
+            reads = [e for e in sdk if e["kind"] == "sample-dom"]
+            verdicts = [e for e in sdk if e["kind"] == "sample-decision"]
+            if (not seq(captured) < seq(before) < seq(terminal) or not 1 <= len(reads) <= 3
+                    or len(reads) != len(verdicts)
+                    or [e.get("attempt") for e in reads] != [str(i) for i in range(len(reads))]
+                    or [e.get("attempt") for e in verdicts] != [e["attempt"] for e in reads]):
+                raise ValueError("Post-control sample lacks each original bounded read/decision")
+            frozen = ["revision", "localTop", "nativeWidth", "nativeHeight", "clipTop", "clipBottom"]
+            if any(e.get(k) != captured.get(k) or captured.get(k) is None
+                   for e in [before, *reads, *verdicts] for k in frozen):
+                raise ValueError("Post-control sample changed its frozen read inputs")
+            previous_read = seq(before)
+            for index, (read, verdict) in enumerate(zip(reads, verdicts)):
+                if (not previous_read < seq(read) < seq(verdict) < seq(terminal)
+                        or any(verdict.get(k) != "true" for k in contexts)):
+                    raise ValueError("Post-control sample read order or original context is unqualified")
+                reason = verdict.get("reason")
+                if verdict.get("snapshotAvailable") == "true":
+                    top = number(read.get("dom.documentTop")); local = max(0, number(captured.get("localTop")))
+                    delta = top-local
+                    if (number(read.get("dom.visibleTop")) != number(captured.get("clipTop"))
+                            or abs(top-number(read.get("dom.scrollY"))-number(read.get("dom.visibleTop"))) >= 1e-7
+                            or number(verdict.get("documentTop")) != top
+                            or number(verdict.get("expectedDocumentTop")) != local
+                            or abs(number(verdict.get("documentTopDelta"))-delta) >= 1e-7
+                            or verdict.get("documentTopMatches") != str(abs(delta)<1).lower()
+                            or reason != ("committed" if abs(delta)<1 else
+                                          "document-top-mismatch-retry" if index<2 else "document-top-mismatch-exhausted")):
+                        raise ValueError("Post-control sample decision disagrees with the same DOM read")
+                elif verdict.get("snapshotAvailable") != "false" or reason != "snapshot-unavailable":
+                    raise ValueError("Post-control sample omitted its actual snapshot branch")
+                if index < len(reads)-1 and reason != "document-top-mismatch-retry":
+                    raise ValueError("Post-control sample continued after a terminal decision")
+                previous_read = seq(verdict)
+            reason = verdicts[-1].get("reason")
+            outcome = "committed" if reason == "committed" else "rejected"
+            if (reason not in ["committed", "document-top-mismatch-exhausted", "snapshot-unavailable"]
+                    or terminal.get("reason") != reason or terminal.get("outcome") != outcome
+                    or (outcome == "committed" and terminal.get("anchor") in [None, "nil", "serialization-error"])):
+                raise ValueError("Post-control sample did not retain its real terminal branch")
+            expected += ["sample-before-read"] + [k for _ in reads for k in ["sample-dom", "sample-decision"]]
+        expected += [kind+"-finished", "work-finished"]
+        if [e["kind"] for e in sdk] != expected:
+            raise ValueError("Post-control SDK lifetime contains missing, repeated or unexplained events")
+        observed.append(dict(requestID=rid, kind=kind, startSequence=seq(start), endSequence=seq(exited),
+                             outcome=terminal["outcome"], captured=True, eventCount=len(sdk)))
+    registered = set(records) | {sid} | {r["requestID"] for r in observed}
+    # No SDK event is dropped: even orphan domain events must belong to a
+    # verified request. Work begun before the boundary cannot be relabeled.
+    for e in events:
+        if seq(seal) < seq(e) and is_sdk(e):
+            rid = e["requestID"]
+            if rid not in registered:
+                raise ValueError("Unregistered SDK work crossed the paired interval")
+            start, exited = event(rid, "work-start"), event(rid, "work-finished")
+            request_kind = "measure" if any(v["requestID"] == rid and v["kind"] == "measure-start" for v in events) else "sample"
+            if (not seq(start) <= seq(e) <= seq(exited) < (control_end if rid in records or rid == sid else seq(closing))
+                    or (e["kind"].startswith(("sample-", "measure-")) and not e["kind"].startswith(request_kind+"-"))
+                    or any(e.get(k) != start.get(k) or not start.get(k) for k in owner_keys)):
+                raise ValueError("SDK event escaped its verified lifetime or request identity")
     pending = set()
     for e in events:
         if e["kind"] in ["queued", "held"]:
@@ -499,25 +608,55 @@ def verify_viewport_pair_arm(folder, mode, status=0):
             key=(e["requestID"],e.get("point"))
             if key not in pending: raise ValueError("Wrong pair gate permission")
             pending.remove(key)
-        if e["kind"] in ["pair-drained", "closing"] and pending: raise ValueError("Pair completion hid pending work")
+        if complete and control_end < seq(e) and e["kind"] in ["queued", "held", "admitted", "released"]:
+            raise ValueError("Pair permission occurred after admission ended")
+        if e["kind"] in ["pair-drained", "admission-complete", "closing"] and pending: raise ValueError("Pair completion hid pending work")
         if seq(e)>seq(closing) and e.get("outcome")=="committed": raise ValueError("Pair committed after close")
     if pending: raise ValueError("Pair cleanup left a continuation")
     predicate = row.get("pairPredicate", {})
-    if number(predicate.get("afterSequence")) < seq(drained[-1]): raise ValueError("Original predicate predates the latest drain")
+    if not seq(drained[-1]) <= number(predicate.get("afterSequence")) < control_end:
+        raise ValueError("Original predicate escaped the controlled drain interval")
     joint = (predicate.get("point")=="DOM" and all(predicate.get(k)=="true" for k in ["sameWebView","attached","widthMatches","valid"])
              and number(predicate.get("alpha"))>0.99 and number(predicate.get("loaded"))<=12)
     resize_rows=[json.loads(line.removeprefix("CONTINUOUS_RESIZE_EVIDENCE ")) for line in log.splitlines() if line.startswith("CONTINUOUS_RESIZE_EVIDENCE ")]
     phases=[v.get("phase") for v in resize_rows]
     for sample in resize_rows:
         original=sample.get("origin",{}); locations=original.get("locations",{}); point=locations.get("domRange",{}).get("start",{})
-        if (original.get("href")!=origin["href"] or any(str(point.get(k))!=origin[k] for k in ["textNodeIndex","charOffset"])
+        if (original != resize_rows[0].get("origin") or original.get("href")!=origin["href"] or any(str(point.get(k))!=origin[k] for k in ["textNodeIndex","charOffset"])
                 or point.get("cssSelector")!=origin["selector"]
                 or abs(number(locations.get("xianxiaViewportOffset"))-number(origin["viewportOffset"]))>=0.5):
             raise ValueError("Original business predicate used a different saved Locator")
     wide, narrow=int(number(origin["targetWidth"])),int(number(origin["windowWidth"]))
+    def passed_dom(sample, width):
+        polls = sample.get("polls", [])
+        if not isinstance(polls, list) or not polls:
+            raise ValueError("Original pass lacks its actual DOM poll")
+        poll = polls[-1]; dom = poll.get("dom", {}); rect = dom.get("rect", {})
+        height, actual_width = number(dom.get("height")), number(dom.get("width"))
+        top, bottom, left, right = (number(rect.get(k)) for k in ["top", "bottom", "left", "right"])
+        if (poll.get("sameWebView") is not True or poll.get("attached") is not True
+                or number(poll.get("alpha")) <= 0.99 or abs(number(poll.get("expectedWidth"))-width) >= 2
+                or abs(actual_width-width) >= 2 or height <= 0
+                or any(dom.get(k) is not True for k in ["valid", "visible", "widthMatches", "accepted"])
+                or not (bottom > 0 and top < height and right > 0 and left < actual_width)
+                or number(poll.get("uptime")) > number(sample.get("uptime"))):
+            raise ValueError("Original wide/narrow DOM poll does not prove the saved word is visible")
+        number(dom.get("y"))
+        return number(poll["uptime"])
+    if not resize_rows or any(v.get("originalWeb") != before_s["webView"] for v in resize_rows):
+        raise ValueError("Original business proof changed its WebView")
+    if any(number(a.get("uptime")) >= number(b.get("uptime")) for a,b in zip(resize_rows,resize_rows[1:])):
+        raise ValueError("Original resize records are not ordered")
+    if complete:
+        if (not joint or predicate.get("visible") != "true" or predicate.get("accepted") != "true"
+                or len(resize_rows) < 2 or phases[1] != f"passed-{wide}"
+                or passed_dom(resize_rows[1], wide) != number(predicate.get("uptime"))):
+            raise ValueError("Admission ended without the actual qualified wide DOM predicate")
     if status==0:
         if not joint or predicate.get("visible")!="true" or predicate.get("accepted")!="true" or phases!=["before-resize",f"passed-{wide}",f"passed-{narrow}"]:
             raise ValueError("Pair pass lacks unchanged original visibility and both directions")
+        if passed_dom(resize_rows[2], narrow) <= number(predicate.get("uptime")):
+            raise ValueError("Narrow return reused the wide DOM poll")
         classification="state-interleaving-only" if replaced else effect
     elif joint and predicate.get("visible")==predicate.get("accepted")=="false" and phases==["before-resize",f"failed-{wide}"]:
         classification="candidate-controlled-word-failure" if replaced else "other-original-failure"
@@ -525,6 +664,9 @@ def verify_viewport_pair_arm(folder, mode, status=0):
     return dict(mode=mode, originalExit=status, originalPassed=status==0, classification=classification, effect=effect,
                 origin=origin, nativeContext={k:before_s[k] for k in ["localTop","nativeWidth","nativeHeight"]},
                 actualDomainAndWorkReceipts=True, serialDrainVerified=True, cleanupEmpty=True,
+                controlledInterval=dict(start=seq(seal), end=control_end, admissionCompleted=bool(complete)),
+                postControlRequests=observed, postControlRequestCount=len(observed), allSDKEventsAccounted=True,
+                originalWideNarrowDOMVerified=status==0,
                 matchedBuildVerified=False, oldFullRootCauseProven=False, fixture=row)
 
 

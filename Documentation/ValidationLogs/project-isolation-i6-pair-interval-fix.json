@@ -1,0 +1,145 @@
+{
+  "recordedAtUTC": "2026-10-23T09:03:59.881465+00:00",
+  "baseline": "cc4483a436fc7bb5a08dea58ff9ca7e07f6e56a8",
+  "implementation": true,
+  "ciDispatches": 0,
+  "runtimeInputCount": 619,
+  "runtimeChanges": [
+    "scripts/test_reader_positions_tools.py",
+    "scripts/verify_reader_positions.py"
+  ],
+  "otherRuntimeInputsUnchanged": 617,
+  "protectedEvidenceUnchanged": true,
+  "changedVerifierTopLevelFunctions": [
+    "verify_viewport_pair_arm"
+  ],
+  "localChecks": [
+    {
+      "label": "paired-local-final",
+      "count": 7,
+      "exitCode": 0,
+      "command": [
+        "C:\\Users\\78083\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_reader_positions_tools.py",
+        "-k",
+        "paired",
+        "-v"
+      ],
+      "log": "build/maintenance/I6-pair-interval-fix-20261023/paired-local-final.log",
+      "elapsedSeconds": 2.779201
+    },
+    {
+      "label": "smoke-local",
+      "count": 2,
+      "exitCode": 0,
+      "command": [
+        "C:\\Users\\78083\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_reader_positions_tools.py",
+        "-k",
+        "viewport_smoke",
+        "-v"
+      ],
+      "log": "build/maintenance/I6-pair-interval-fix-20261023/smoke-local.log",
+      "elapsedSeconds": 0.5803
+    },
+    {
+      "label": "driver-local-final",
+      "count": 28,
+      "exitCode": 0,
+      "command": [
+        "C:\\Users\\78083\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_viewport_pair_ci.py",
+        "-v"
+      ],
+      "log": "build/maintenance/I6-pair-interval-fix-20261023/driver-local-final.log",
+      "elapsedSeconds": 13.795268
+    }
+  ],
+  "uniqueTargetedToolChecksPassed": 37,
+  "swiftGrammarFiles": 484,
+  "upstreamGrammarLimitations": 54,
+  "newGrammarDiagnostics": 0,
+  "swiftSyntaxIsNotCompilation": true,
+  "smokeUnchanged": true,
+  "sourceAndOriginalAudit": "build/maintenance/I6-pair-interval-fix-20261023/final-source-and-original-audit.json",
+  "originalOfflineReplayRun": 39920796794,
+  "allOriginal85ControlEventsRetained": true,
+  "postControlRequests": [
+    {
+      "requestID": "97616F62-EA3D-4006-BD51-87D98C02B584",
+      "kind": "measure",
+      "startSequence": 62,
+      "endSequence": 68,
+      "outcome": "committed",
+      "captured": true,
+      "eventCount": 7
+    },
+    {
+      "requestID": "B21FDA31-92A5-45FD-ACA3-58439F691DB4",
+      "kind": "measure",
+      "startSequence": 69,
+      "endSequence": 75,
+      "outcome": "committed",
+      "captured": true,
+      "eventCount": 7
+    },
+    {
+      "requestID": "C1E3C098-8924-499E-9D4F-98842EE0194F",
+      "kind": "sample",
+      "startSequence": 76,
+      "endSequence": 83,
+      "outcome": "committed",
+      "captured": true,
+      "eventCount": 8
+    }
+  ],
+  "bothOriginalDOMsVerified": true,
+  "noRequestAllowlistOrFiltering": true,
+  "controlEnd": 61,
+  "observationEnd": 84,
+  "oldValidatorStillRejectsOriginal": true,
+  "oldCIReclassified": false,
+  "originalSafeExit": 0,
+  "originalDriverExit": 2,
+  "originalConflictExit": null,
+  "matchedBuildVerified": false,
+  "newNativeCompile": false,
+  "newNativeTest": false,
+  "fullExecuted": false,
+  "deviceOrReleaseExecuted": false,
+  "newIPA": false,
+  "productionAlgorithmChanged": false,
+  "SwiftSDKAdapterChanged": false,
+  "CIWiringChanged": false,
+  "productionAndOriginalSMGuardsUnchanged": true,
+  "originalWideNarrowWordAssertionsUnchanged": true,
+  "budgetsWaitsAndRetriesUnchanged": true,
+  "cancellationNativeCoverageExpanded": false,
+  "old1767RootCauseProven": false,
+  "I6Accepted": false,
+  "releaseAccepted": false,
+  "lastDeliveredBuild": 30,
+  "ordinaryHead": "6d761749911233122bcd031fcf718d22a19f9e77",
+  "ordinaryIndexSHA256": "b0f65fcef8c336009cf63acec064446b8627a71ef0231d161a9e8bb2e1dc0f28",
+  "nextCINotAuthorized": true,
+  "documentStaticPassed": true,
+  "protectedEvidenceCount": 2567
+}

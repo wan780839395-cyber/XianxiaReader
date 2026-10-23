@@ -1,5 +1,22 @@
 # I6 配对控制与验收区间审阅（2026-10-23）
 
+## 后续最小实现与本地检查（2026-10-23）
+
+已按下文方案实施，仅两个工具文件有运行输入变化；原审阅记录从下一节起保留其当时状态。
+
+- `verify_viewport_pair_arm`区分真实准入结束点和关闭观察终点。前者继续原S/M guard、FIFO与真实排空；之后按唯一work-start归属核每个SDK请求，禁止跨界重命名、复用身份、孤立/重复事件、缺终结、假captured及关闭后提交。原128事件/32 waiter/3采样上限不变。
+- 返程measure保留实际布尔guard与mayRestore=false，真实committed不等于已执行位置补偿；不对返程强制FIFO。sample区分实际缓存、读取和原有三次内分支，核冻结clipTop/局部位置、同次DOM/decision与真实terminal，不伪造JS或忽略失败。
+- 原完整Locator与WebView贯穿宽窄两个原记录；成功须各自最后实际DOM poll的有限坐标、宽度、挂窗/alpha/可见/accepted和原时间顺序。返程仅有passed标签、宽屏poll冒充窄屏、换origin、字不可见都拒绝。真实65和安全失败停止保持。
+- 原件副本旧validator仍报`Unregistered SDK work crossed the paired interval`；新验收保留全部85事件并明确返回97616F62(62–68/7条)、B21FDA31(69–75/7条)、C1E3C098(76–83/8条)，未按请求ID豁免。此离线结果位于`build/maintenance/I6-pair-interval-fix-20261023/original-safe-offline-review.json`，没有覆写旧CI或授权启动冲突臂。
+- 本地定向7配对（含逐条删除/重复/串身份/跨界/未退出、缓存和真实三采样/超限、双向DOM及65反例）+2既有smoke+28驱动消费者检查通过，共37项唯一工具检查。首轮6/2/28及最终7/28真实命令/日志均保留，日志中CLI64是本地真实子进程失败样本，不是原生执行。smoke实现及两项测试AST无变化，复用本轮实际2/2；484 Swift语法通过，54既有上游限制/新增0，不是Swift编译。
+
+619输入仅两工具变化，其余617逐哈希保持；验收器只有上述一个顶层函数AST变化，smoke/CI/Swift/SDK/Adapter不变。2567旧证据、原Build30与普通HEAD/index保持，AGENTS既有文字变化原样保留，未归入本片。恢复`build/maintenance/I6-pair-interval-fix-20261023/`有before、各次检查原日志/退出、原件副本、源边界/原件核验、result与最终私有快照；[持久结果](ValidationLogs/project-isolation-i6-pair-interval-fix.json)。
+
+本片未派CI、未编译/执行新原生配对、未跑full/设备Release或产出IPA。旧CI仍safe0/driver2/conflict null；没有冲突臂、同构建双臂通过或旧1767根因的新结论。I6/full191/192/Release/手机和新取消分支未命中缺口保持，不自动运行下一CI。
+
+---
+
+
 本轮仅本地审阅与最小修正设计，基线`1b6bcda0`。**零运行源码改动、零CI，没有实现新的验收器，也没有重新判定旧CI通过。**保留返程窄屏、原字双向断言、实际SDK回执、smoke、隔离/定位修复及S诊断；生产guard、原S/M资格和等待/事件预算保持。
 
 ## 已查清的不一致

@@ -1,3 +1,29 @@
+# 配对验收区间最小修正收口（2026-10-23）
+
+2026-10-23 配对验收区间最小修正已本地实现：只改verify_reader_positions.py和test_reader_positions_tools.py。首轮准入/FIFO核至真实complete，之后逐请求核实际capture、domain/work终结和身份到关闭；保留自然并发与mayRestore=false，不过滤SDK事件。成功须真实宽/窄原字DOM和同一完整Locator/WebView。原39920796794副本保留全部85事件，旧validator仍拒绝，新验收分别核出3请求7/7/8回执，另存离线结果，不改写旧safe0/driver2/conflict null。定向7配对+2原smoke+28驱动工具通过；484语法/七静态通过（非Swift编译，54上游限制/新增0）。其余617运行输入、2567旧证据、Build30/普通HEAD/index保持，未派CI、未改Swift/SDK/算法/guard/双向原断言/预算/等待重试。旧1767、原生取消新分支、I6/full191/192/Release/手机缺口保持，无新IPA。
+
+具体文件/负例/结果见Documentation/I6_PAIR_INTERVAL_REVIEW.md新实施节与Documentation/ValidationLogs/project-isolation-i6-pair-interval-fix.json。恢复build/maintenance/I6-pair-interval-fix-20261023含before、全部首轮/最终原日志/实际退出、原件字节副本、旧/新离线对照、最终源边界核验。下一步仅文档静态与私有快照保存；不派CI/追加原生或整套，不能将离线核验改写为旧CI成功。AGENTS既有额外文字保持且恢复副本已在上一片；不关机。
+
+---
+
+# 配对验收修正最终定向检查前（2026-10-23）
+
+原件副本旧validator仍拒绝，新validator已核85事件和返程7/7/8回执及双向DOM。首轮6配对、2 smoke、28驱动、七静态/484语法通过；本地审阅再补缓存anchor/完整Locator与样本冻结输入核对，以及原三次采样/超限正反例。现在仅重跑受新校验影响的7配对与28驱动并在原件副本复核，不重跑smoke/语法或整套。旧CI状态、原guard预算及Swift/SDK/smoke/CI接线保持，零CI。所有首次结果保留，最终结果以后续实际日志为准。
+
+---
+
+# 配对验收修正已实现，定向检查前（2026-10-23）
+
+只改两个Python工具：准入到真实complete，返程每个SDK生命周期单独核验到关闭，补原宽/窄DOM实际poll与逐项删改/身份/跨界/晚回执反例。未改Swift/SDK/CI/smoke/算法/guard/等待重试/预算。现在运行8项位置配对/smoke工具测试及配对CI驱动消费者组，失败先原样记录再查当前两文件；不派CI/整套。编译/原生/Release未执行，旧39920796794 test0/driver2/conflict null不改。
+
+---
+
+# 配对验收区间最小修正开始（2026-10-23）
+
+用户授权仅修改verify_reader_positions.py与test_reader_positions_tools.py，按已审阅方案分别核验首轮控制和准入结束后每个SDK请求至关闭，保留真实宽窄DOM、原字双向断言和真实回执。基线cc4483a4；619输入及旧证据已核，普通HEAD/index/Build30保持，AGENTS现有文字变化原样保留。本轮只本地位置证据及配对驱动定向工具检查、必要静态/语法，不派CI、不改Swift/SDK/算法/smoke/guard/等待重试/预算。原CI39920796794的safe0/driver2/conflict null不改写，旧1767和I6/Release未验收保持。恢复build/maintenance/I6-pair-interval-fix-20261023。
+
+---
+
 # 控制/验收区间审阅收口，方案未实施（2026-10-23）
 
 2026-10-23 配对控制/验收区间本地审阅完成，零运行源码/CI变化。原控制在admission-complete61结束，原pair验收却要求seal22→closing84全程queued，因此拒绝返程62–83的2 measure+1 sample；三请求真实捕获/终结完整，宽窄两份原DOM证据齐全。最小方案只改verify_reader_positions.py及对应test_reader_positions_tools.py：首轮准入/FIFO核至真实结束点，之后每个SDK请求另核完整生命周期至关闭，全部事件归属且禁止豁免/伪造准入；成功窄屏须核实际DOM而非passed标签。保留Swift夹具现有自然返程、smoke/S/M guard、原字双向断言与原预算，不加JS/等待重试/事件或算法变更；方案尚未实施，新正反例未编写执行。619输入/2556旧证据/Build30/普通HEAD/index保持，原CI仍build0/test0/driver2/conflict null，旧1767、I6/full191/192/Release/手机缺口保持。

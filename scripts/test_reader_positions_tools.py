@@ -278,6 +278,8 @@ class PositionEvidenceTests(unittest.TestCase):
         saved=dict(href=origin["href"],locations=dict(domRange=dict(start=dict(cssSelector="p",textNodeIndex=0,charOffset=499)),xianxiaViewportOffset=-3.125))
         events=[]
         def add(rid, kind, **fields):
+            if kind in ["work-start", "work-finished"] or kind.startswith(("sample-", "measure-")):
+                fields = {**(neighbor if rid == "N" else values), **fields}
             events.append(dict(fields,requestID=rid,kind=kind,sequence=str(len(events)+1),nonce="pair"))
         add("S","work-start",**values);add("S","sample-start",**values)
         add("S","sample-before-read",**values);add("S","held",gate="sample-before-read")
@@ -321,7 +323,7 @@ class PositionEvidenceTests(unittest.TestCase):
             add(rid,"admitted",point=kind+"-before-capture",disposition="run");add(rid,kind+"-start",**data)
             add(rid,kind+"-finished",outcome="committed");add(rid,"work-finished",captured="true")
         add("drained","pair-drained",queued="0",running="0",waiters="0")
-        predicate=dict(point="DOM",loaded="2",afterSequence=str(len(events)),sameWebView="true",attached="true",widthMatches="true",valid="true",alpha="1",visible=str(status==0).lower(),accepted=str(status==0).lower())
+        predicate=dict(point="DOM",loaded="2",afterSequence=str(len(events)),sameWebView="true",attached="true",widthMatches="true",valid="true",alpha="1",visible=str(status==0).lower(),accepted=str(status==0).lower(),uptime="1.5")
         if status==0:add("accepted","admission-complete",queued="0",running="0",waiters="0")
         add("close","closing");add("abort","abort-issued",count="0")
         row=dict(nonce="pair",events=events,stage=4,failure="none",active=[],tasks=[],waiters=[],queued=[],running=[],pairMode=mode,pairPhase="visible",pairSampleID="S",pairMeasureID="M",pairOrigin=origin,pairEffect=effect,pairPredicate=predicate)
@@ -330,8 +332,207 @@ class PositionEvidenceTests(unittest.TestCase):
         base+=f"CONTINUOUS_VIEWPORT_PAIR_MECHANICS mode={mode} passed=2 liveSDKReceiptsRequired=true\n"
         summary=dict(totalTestCount=1,passedTests=int(status==0),failedTests=int(status!=0),skippedTests=0,result="Passed" if status==0 else "Failed",testFailures=[] if status==0 else [{"failureText":"Continuous reader did not reach expected state"}])
         phases=["before-resize","passed-874","passed-402"] if status==0 else ["before-resize","failed-874"]
-        resize=[dict(phase=p,origin=saved) for p in phases]
+        resize=[dict(phase=p,origin=saved,originalWeb="web",uptime=i+1,polls=[]) for i,p in enumerate(phases)]
+        for record,width,height,uptime in zip(resize[1:],[874,402],[306,778],[1.5,2.5]):
+            dom=dict(width=width,height=height,y=100,valid=True,visible=status==0,widthMatches=True,accepted=status==0,
+                     rect=dict(top=-3.125,bottom=20,left=50,right=60))
+            record["polls"]=[dict(expectedWidth=width,sameWebView=True,attached=True,alpha=1,uptime=uptime,dom=dom)]
         return row,base,summary,resize
+
+    def pair_with_return(self, cached=False):
+        fixture = self.pair_fixture("paired-safe")
+        events = fixture[0]["events"]
+        insert_at = next(i for i,e in enumerate(events) if e["kind"] == "closing")
+        context = dict(next(e for e in events if e["kind"] == "admission-armed"))
+        for key in ["requestID", "kind", "sequence", "nonce", "targetWidth"]:
+            context.pop(key)
+        context.update(source="native", revision="3", localTop="2151", nativeWidth="402", nativeHeight="778")
+        tail = []
+        def add(rid, kind, **fields):
+            tail.append({**context, **fields})
+            tail[-1].update(requestID=rid, kind=kind, nonce="pair")
+        for rid in ["return-M1", "return-M2"]:
+            add(rid,"work-start");add(rid,"measure-before-capture");add(rid,"measure-start")
+            add(rid,"measure-before-commit",**{"dom.width":"402","dom.height":"778","dom.scrollY":"2151",
+                                               "result.height":"8318","result.anchorY":"2336.875"})
+            guard=dict.fromkeys(["ownerMatches","indexMatches","anchorCurrentAtStart","anchorCurrentNow",
+                                 "anchorEqual","revisionMatches","localMatches","mayRestore"],"true")
+            if rid == "return-M2":
+                guard.update(anchorCurrentAtStart="false",anchorCurrentNow="false",mayRestore="false")
+            add(rid,"measure-guard",positioning="false",**guard)
+            context.update(revision="4", localTop="2340")
+            add(rid,"measure-finished",outcome="committed");add(rid,"work-finished",captured="true")
+        rid="return-S"
+        add(rid,"work-start");add(rid,"sample-before-capture");add(rid,"sample-start")
+        if not cached:
+            add(rid,"sample-before-read")
+            add(rid,"sample-dom",attempt="0",**{"dom.documentTop":"2340","dom.scrollY":"2340","dom.visibleTop":"0"})
+            guard=dict.fromkeys(["notCancelled","epochMatches","indexMatches","slotMatches","movingMatches",
+                                 "notPositioning","revisionMatches","localMatches","viewportMatches"],"true")
+            add(rid,"sample-decision",attempt="0",reason="committed",snapshotAvailable="true",documentTop="2340",
+                expectedDocumentTop="2340",documentTopDelta="0",documentTopMatches="true",**guard)
+        add(rid,"sample-finished",outcome="cached" if cached else "committed",reason="cached" if cached else "committed")
+        add(rid,"work-finished",captured="true")
+        events[insert_at:insert_at]=tail
+        self.resequence_pair(fixture)
+        return fixture
+
+    @staticmethod
+    def resequence_pair(fixture):
+        for i,e in enumerate(fixture[0]["events"]):
+            e["sequence"]=str(i+1)
+        drains=[e for e in fixture[0]["events"] if e["kind"]=="pair-drained"]
+        if drains:
+            fixture[0]["pairPredicate"]["afterSequence"]=drains[-1]["sequence"]
+
+    def assert_pair_rejected(self, fixture, status=0):
+        self.write_pair(self.root/"bad", fixture)
+        with self.assertRaises(ValueError):
+            verify_viewport_pair_arm(self.root/"bad", fixture[0]["pairMode"], status)
+
+    def test_paired_return_audits_each_request_without_forcing_fifo_or_restore(self):
+        for cached in [False, True]:
+            fixture=self.pair_with_return(cached)
+            self.write_pair(self.root/"return",fixture)
+            proof=verify_viewport_pair_arm(self.root/"return","paired-safe")
+            self.assertEqual([v["requestID"] for v in proof["postControlRequests"]],["return-M1","return-M2","return-S"])
+            self.assertEqual(proof["postControlRequestCount"],3)
+            self.assertTrue(proof["allSDKEventsAccounted"] and proof["originalWideNarrowDOMVerified"])
+        # Natural SDK work may overlap and belong to a neighboring resource.
+        fixture=self.pair_with_return();events=fixture[0]["events"]
+        second=[e for e in events if e["requestID"]=="return-M2"]
+        for e in second:
+            e.update(slot="neighbor",webView="neighbor-web",index="0")
+            if e["kind"]=="measure-guard":e["indexMatches"]="false"
+        events[:]=[e for e in events if e not in second]
+        first=next(i for i,e in enumerate(events) if e["requestID"]=="return-M1")
+        events[first:first]=second[:3];events[-2:-2]=second[3:]
+        self.resequence_pair(fixture);self.write_pair(self.root/"overlap",fixture)
+        self.assertEqual(verify_viewport_pair_arm(self.root/"overlap","paired-safe")["postControlRequestCount"],3)
+        self.write_pair(self.root/"none",self.pair_fixture("paired-safe"))
+        self.assertEqual(verify_viewport_pair_arm(self.root/"none","paired-safe")["postControlRequestCount"],0)
+
+    def test_paired_return_rejects_each_missing_duplicate_mixed_or_false_receipt(self):
+        fixture=self.pair_with_return();events=fixture[0]["events"]
+        indices=[i for i,e in enumerate(events) if e["requestID"].startswith("return-")]
+        for i in indices:
+            for operation in ["delete","duplicate"]:
+                with self.subTest(request=events[i]["requestID"],kind=events[i]["kind"],operation=operation):
+                    bad=deepcopy(fixture)
+                    if operation=="delete":bad[0]["events"].pop(i)
+                    else:bad[0]["events"].insert(i,deepcopy(events[i]))
+                    self.resequence_pair(bad);self.assert_pair_rejected(bad)
+            for key in ["reader","epoch","slot","webView","index"]:
+                with self.subTest(kind=events[i]["kind"],key=key):
+                    bad=deepcopy(fixture);bad[0]["events"][i][key]="wrong";self.assert_pair_rejected(bad)
+        for kind,key,value in [("work-finished","captured","false"),("sample-finished","reason","not-finished"),
+                               ("measure-finished","outcome","not-committed"),("measure-guard","mayRestore","false"),
+                               ("sample-decision","documentTopDelta","600"),("sample-dom","dom.scrollY","1767")]:
+            bad=deepcopy(fixture);e=next(e for e in bad[0]["events"] if e["requestID"].startswith("return-") and e["kind"]==kind)
+            e[key]=value;self.assert_pair_rejected(bad)
+        for kind in ["sample-start","sample-finished","measure-guard"]:
+            bad=deepcopy(fixture);bad[0]["events"].insert(-2,dict(events[-3],requestID="orphan",kind=kind))
+            self.resequence_pair(bad);self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);bad[0]["events"][-3]["requestID"]="M";self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);moving=bad[0]["events"].pop(-3);bad[0]["events"].append(moving)
+        self.resequence_pair(bad);self.assert_pair_rejected(bad)
+        bad=self.pair_with_return(True)
+        next(e for e in bad[0]["events"] if e["requestID"]=="return-S" and e["kind"]=="sample-finished")["reason"]="committed"
+        self.assert_pair_rejected(bad)
+
+    def test_paired_return_keeps_actual_sample_branches_and_original_attempt_budget(self):
+        fixture=self.pair_with_return();events=fixture[0]["events"]
+        read=next(e for e in events if e["requestID"]=="return-S" and e["kind"]=="sample-dom")
+        verdict=next(e for e in events if e["requestID"]=="return-S" and e["kind"]=="sample-decision")
+        for terminal_reason in ["committed","document-top-mismatch-exhausted","snapshot-unavailable"]:
+            branch=deepcopy(fixture);rows=branch[0]["events"]
+            if terminal_reason=="snapshot-unavailable":
+                next(e for e in rows if e["requestID"]=="return-S" and e["kind"]=="sample-decision").update(
+                    reason=terminal_reason,snapshotAvailable="false")
+            else:
+                at=next(i for i,e in enumerate(rows) if e["requestID"]=="return-S" and e["kind"]=="sample-dom")
+                attempts=[]
+                for i in range(3):
+                    last=i==2;success=last and terminal_reason=="committed";top=2340 if success else 2342
+                    attempts.extend([dict(read,attempt=str(i),**{"dom.documentTop":str(top),"dom.scrollY":str(top)}),
+                        dict(verdict,attempt=str(i),reason="committed" if success else "document-top-mismatch-exhausted" if last else "document-top-mismatch-retry",
+                             documentTop=str(top),documentTopDelta=str(top-2340),documentTopMatches=str(success).lower())])
+                rows[at:at+2]=attempts
+            if terminal_reason!="committed":
+                next(e for e in rows if e["requestID"]=="return-S" and e["kind"]=="sample-finished").update(
+                    outcome="rejected",reason=terminal_reason)
+            self.resequence_pair(branch);self.write_pair(self.root/terminal_reason,branch)
+            proof=verify_viewport_pair_arm(self.root/terminal_reason,"paired-safe")
+            self.assertEqual(proof["postControlRequests"][-1]["outcome"],"committed" if terminal_reason=="committed" else "rejected")
+            if terminal_reason=="committed":
+                bad=deepcopy(branch);rows=bad[0]["events"]
+                at=next(i for i,e in enumerate(rows) if e["requestID"]=="return-S" and e["kind"]=="sample-finished")
+                rows[at:at]=[dict(read,attempt="3"),dict(verdict,attempt="3")]
+                self.resequence_pair(bad);self.assert_pair_rejected(bad)
+        for kind,key,value in [("sample-before-read","clipTop","2"),("sample-dom","revision","9"),
+                               ("sample-decision","localTop","1767"),("sample-finished","anchor","nil")]:
+            bad=deepcopy(fixture)
+            next(e for e in bad[0]["events"] if e["requestID"]=="return-S" and e["kind"]==kind)[key]=value
+            self.assert_pair_rejected(bad)
+        bad=self.pair_with_return(True)
+        next(e for e in bad[0]["events"] if e["requestID"]=="return-S" and e["kind"]=="sample-finished")["anchor"]="different"
+        self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);rows=bad[0]["events"]
+        while len(rows)<=128:rows.insert(-2,dict(read,requestID="overflow"))
+        self.resequence_pair(bad);self.assert_pair_rejected(bad)
+
+    def test_paired_admission_end_cannot_hide_crossing_work_or_continuations(self):
+        fixture=self.pair_with_return();events=fixture[0]["events"]
+        complete=next(i for i,e in enumerate(events) if e["kind"]=="admission-complete")
+        for action in ["missing","duplicate","early","late","pending","post-permission"]:
+            with self.subTest(action=action):
+                bad=deepcopy(fixture);rows=bad[0]["events"]
+                if action=="missing":rows.pop(complete)
+                elif action=="duplicate":rows.insert(complete,dict(rows[complete]))
+                elif action=="early":rows.insert(complete-3,rows.pop(complete))
+                elif action=="late":rows.insert(complete+2,rows.pop(complete))
+                elif action=="pending":rows[complete]["waiters"]="1"
+                else:rows.insert(-2,dict(rows[-3],kind="admitted",point="sample-before-capture",disposition="run"))
+                self.resequence_pair(bad);self.assert_pair_rejected(bad)
+        # A controlled request whose finish is delayed beyond complete remains controlled.
+        bad=deepcopy(fixture);rows=bad[0]["events"]
+        moving=next(e for e in rows if e["requestID"]=="P" and e["kind"]=="work-finished")
+        rows.remove(moving);rows.insert(-2,moving);self.resequence_pair(bad);self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);rows=bad[0]["events"]
+        for e in rows:
+            if e["requestID"]=="return-M1":e["requestID"]="M"
+        self.assert_pair_rejected(bad)
+
+    def test_paired_return_requires_real_wide_and_narrow_dom_and_keeps_failure_65(self):
+        fixture=self.pair_with_return()
+        for which in [1,2]:
+            for action in ["no-poll","origin","origin-metadata","web","not-attached","invisible","wrong-width","wrong-expected","nan","offscreen","stale-poll"]:
+                with self.subTest(direction=which,action=action):
+                    bad=deepcopy(fixture);record=bad[3][which];poll=record["polls"][-1]
+                    if action=="no-poll":record["polls"]=[]
+                    elif action=="origin":record["origin"]["locations"]["domRange"]["start"]["charOffset"]=1
+                    elif action=="origin-metadata":record["origin"]=dict(record["origin"],text={"highlight":"changed"})
+                    elif action=="web":record["originalWeb"]="other-web"
+                    elif action=="not-attached":poll["attached"]=False
+                    elif action=="invisible":poll["dom"]["visible"]=False
+                    elif action=="wrong-width":poll["dom"]["width"]+=50
+                    elif action=="wrong-expected":poll["expectedWidth"]+=50
+                    elif action=="nan":poll["dom"]["rect"]["left"]=float("nan")
+                    elif action=="offscreen":poll["dom"]["rect"].update(top=10000,bottom=10020)
+                    else:poll["uptime"]=4
+                    self.assert_pair_rejected(bad)
+        bad=deepcopy(fixture);bad[3][2]["polls"]=deepcopy(bad[3][1]["polls"]);self.assert_pair_rejected(bad)
+        for direction in ["wide","narrow"]:
+            if direction=="wide":failed=self.pair_fixture("paired-conflict",65)
+            else:
+                failed=list(deepcopy(fixture));failed[1]=failed[1].replace("' passed (","' failed (")
+                failed[2].update(passedTests=0,failedTests=1,result="Failed",testFailures=[dict(failureText="Continuous reader did not reach expected state")])
+                failed[3][-1]["phase"]="failed-402";failed[3][-1]["polls"][-1]["dom"].update(accepted=False,visible=False)
+            self.write_pair(self.root/direction,failed)
+            proof=verify_viewport_pair_arm(self.root/direction,failed[0]["pairMode"],65)
+            self.assertEqual(proof["originalExit"],65);self.assertFalse(proof["originalPassed"])
+            self.assertFalse(proof["originalWideNarrowDOMVerified"])
+            if direction=="narrow":self.assertEqual(proof["classification"],"other-original-failure")
 
     def write_pair(self, folder, fixture):
         row,base,summary,resize=fixture

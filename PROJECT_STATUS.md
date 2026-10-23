@@ -1,5 +1,9 @@
 # 项目状态
 
+2026-10-23 配对验收区间最小修正已本地实现：只改verify_reader_positions.py和test_reader_positions_tools.py。首轮准入/FIFO核至真实complete，之后逐请求核实际capture、domain/work终结和身份到关闭；保留自然并发与mayRestore=false，不过滤SDK事件。成功须真实宽/窄原字DOM和同一完整Locator/WebView。原39920796794副本保留全部85事件，旧validator仍拒绝，新验收分别核出3请求7/7/8回执，另存离线结果，不改写旧safe0/driver2/conflict null。定向7配对+2原smoke+28驱动工具通过；484语法/七静态通过（非Swift编译，54上游限制/新增0）。其余617运行输入、2567旧证据、Build30/普通HEAD/index保持，未派CI、未改Swift/SDK/算法/guard/双向原断言/预算/等待重试。旧1767、原生取消新分支、I6/full191/192/Release/手机缺口保持，无新IPA。见[实施与证据](Documentation/I6_PAIR_INTERVAL_REVIEW.md)。
+
+以下保留历史状态。
+
 2026-10-23 配对控制/验收区间本地审阅完成，零运行源码/CI变化。原控制在admission-complete61结束，原pair验收却要求seal22→closing84全程queued，因此拒绝返程62–83的2 measure+1 sample；三请求真实捕获/终结完整，宽窄两份原DOM证据齐全。最小方案只改verify_reader_positions.py及对应test_reader_positions_tools.py：首轮准入/FIFO核至真实结束点，之后每个SDK请求另核完整生命周期至关闭，全部事件归属且禁止豁免/伪造准入；成功窄屏须核实际DOM而非passed标签。保留Swift夹具现有自然返程、smoke/S/M guard、原字双向断言与原预算，不加JS/等待重试/事件或算法变更；方案尚未实施，新正反例未编写执行。619输入/2556旧证据/Build30/普通HEAD/index保持，原CI仍build0/test0/driver2/conflict null，旧1767、I6/full191/192/Release/手机缺口保持。见[审阅与最小方案](Documentation/I6_PAIR_INTERVAL_REVIEW.md)。
 
 以下保留历史状态。
