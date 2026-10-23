@@ -1,5 +1,9 @@
 # 开发路线与阶段门槛
 
+2026-10-23 内层诊断唯一CI39920796794/47bb1edd/attempt1收口：145工具/484语法、一次原生构建0通过；安全原单例1/1、15.881秒、原test0，但原夹具校验以Unregistered SDK work拒绝，driver真实2、冲突未启动/null，完整双臂未通过。619来源/609产物/三计划/实际七版本及安全前后冻结一致。142诊断/116内层、早期56记录、零丢弃；目标18次JS三点/18组writer、覆盖起止及关闭pending0已核。S本轮在2367提交，旧1767未复现；首次回退2367→2151位于resize/主M之后，已关联viewport显式setter及栈，不能解释旧0.383秒故障。准入在seq61结束，返程窄屏3个SDK请求seq62–83未登记，而验收仍检查至closing84，合同范围不一致；本轮不忽略事件/改校验或重派。原清理五类全空，但新增取消/迟到分支未命中，不能称全取消专项通过。定向1016秒中准备262.751/编译337.967、原单例15.881；workflow1200秒。原件及619输入/旧证据/Build30/普通HEAD/index保持，旧full191/192与I6/Release/手机缺口保持，无新IPA。见[原生结果与失败断点](Documentation/I6_INNER_SCROLL_NATIVE.md)。
+
+以下保留历史状态。
+
 2026-10-23 内层被动诊断本地实现完成，零CI。只改Spread/Reflowable/Infinite三Swift、UPSTREAM摘要与provenance共5输入，其余614保持；补首次观测回退/有界栈、显式setter及frame前后、原evaluator实际提交/回调、固定身份/覆盖起止/关闭失效。原fixture armed前忽略诊断，现以最多255条早期暂存加1交付状态同步排出，原256诊断/128控制容量不变，溢出与覆盖缺口明示。取消/旧回执不进入新slot/controller，不加Task/等待重试/JS/屏障，不改算法/guard/断言预算。最终定向8/8、484语法/七静态通过（54既有上游限制/新增0）；首轮失败原件保留，未降低合同或新增豁免。三Swift除两个Release nil存储槽外生产源码一致，原JS/await及原源码顺序保持。新源尚未原生编译/运行，写入者与旧full根因仍未证，最新原生安全65/冲突null，I6/full191/192/Release/手机缺口及Build30保持。见[实现与验证边界](Documentation/I6_INNER_SCROLL_DIAGNOSTICS.md)。
 
 以下保留历史状态。

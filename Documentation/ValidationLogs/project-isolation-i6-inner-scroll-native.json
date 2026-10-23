@@ -1,0 +1,221 @@
+{
+  "recordedAtUTC": "2026-10-23T08:18:47.710173+00:00",
+  "run": 39920796794,
+  "source": "47bb1edd7c9f384c9fdd885a604c0fb34d15ef0d",
+  "attempt": 1,
+  "conclusion": "failure",
+  "ciDispatches": 1,
+  "buildAttempts": 1,
+  "nativeBuildExit": 0,
+  "compiled": true,
+  "linked": true,
+  "sourceAndSafeSnapshotsMatchFrozen": true,
+  "actualSevenVersionFieldsMatch": true,
+  "actualVersionFields": {
+    "Xcode ": "16.4",
+    "Build version ": "16F6",
+    "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+    "Target:": "x86_64-apple-macosx15.0",
+    "ProductName:": "macOS",
+    "ProductVersion:": "15.7.9",
+    "BuildVersion:": "24G830"
+  },
+  "preparedInputs": 619,
+  "products": 609,
+  "plansOnlyDifferByMode": true,
+  "driverExit": 2,
+  "safeOriginalExit": 0,
+  "conflictOriginalExit": null,
+  "nativeCaseInvocations": 1,
+  "nativeCasePassed": 1,
+  "nativeCaseFailed": 0,
+  "nativeCaseSeconds": 15.881,
+  "swiftPairedMechanicGroupsPassed": 2,
+  "safeWholeArmAccepted": false,
+  "nativeMatchedBuildVerified": false,
+  "safeValidationErrors": [
+    "Unregistered SDK work crossed the paired interval"
+  ],
+  "fixtureControlValidationPassed": false,
+  "unregisteredRequests": 3,
+  "unregisteredEventSequences": [
+    62,
+    64,
+    68,
+    69,
+    71,
+    75,
+    76,
+    78,
+    83
+  ],
+  "admissionCompleteSequence": 61,
+  "closingSequence": 84,
+  "diagnosticsCount": 142,
+  "diagnosticsDropped": 0,
+  "innerDiagnosticsCount": 116,
+  "preArmBuffered": 56,
+  "preArmDropped": 0,
+  "targetCoverageStartAndEndObserved": true,
+  "targetEvaluationTriples": 18,
+  "targetWriterPairs": 18,
+  "originalSActualSubmitCallbackCorrelated": true,
+  "originalSCommittedAt2367": true,
+  "firstObservedRollback": {
+    "previousY": 2367,
+    "innerY": 2151,
+    "source": "viewport-scroll-delegate",
+    "writerID": "B0409405-CCA1-46E8-B282-A62E3338B288",
+    "uptime": "1538.423951943",
+    "afterEventSequence": 40,
+    "afterResize": true,
+    "original1767Failure": false
+  },
+  "old1767RollbackReproduced": false,
+  "old1767WriterIdentified": false,
+  "cleanupEmpty": true,
+  "targetCoveragePendingEvaluations": 0,
+  "targetCoveragePendingWriters": 0,
+  "cancelledBeforeSubmitObserved": false,
+  "lateEvaluationObserved": false,
+  "allNewCancellationPathsValidated": false,
+  "preBindingCommandsCovered": false,
+  "linuxPythonTests": {
+    "total": 145,
+    "passed": 145,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 38.21
+  },
+  "swiftGrammarFiles": 484,
+  "swiftGrammarNotCompilation": true,
+  "upstreamGrammarLimitationsRetained": 54,
+  "newGrammarExceptions": 0,
+  "runtimeFixAppliedThisRound": false,
+  "runtimeInputCount": 619,
+  "runtimeDrift": [],
+  "originalSmokeRerun": false,
+  "oldFullRootCauseProven": false,
+  "I6Accepted": false,
+  "fullExecuted": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "artifact": {
+    "recordedAtUTC": "2026-10-23T08:14:35.815153+00:00",
+    "run": 39920796794,
+    "artifact": {
+      "id": 12488490925,
+      "node_id": "MDg6QXJ0aWZhY3QxMjQ4ODQ5MDkyNQ==",
+      "name": "XianxiaReader-continuous-resize-pair",
+      "size_in_bytes": 2845667,
+      "url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12488490925",
+      "archive_download_url": "https://api.github.com/repos/wan780839395-cyber/XianxiaReader/actions/artifacts/12488490925/zip",
+      "expired": false,
+      "digest": "sha256:27f88725772acfb0f86dc37d9d07b6f9d00cd2848549fea55ac278049cc6ac06",
+      "created_at": "2026-10-23T08:11:29Z",
+      "updated_at": "2026-10-23T08:11:29Z",
+      "expires_at": "2026-10-30T08:11:26Z",
+      "workflow_run": {
+        "id": 39920796794,
+        "repository_id": 1416864001,
+        "head_repository_id": 1416864001,
+        "head_branch": "codex/continuous-viewport-inner-diagnostics-saved",
+        "head_sha": "47bb1edd7c9f384c9fdd885a604c0fb34d15ef0d"
+      }
+    },
+    "compressedBytes": 2845667,
+    "extractedBytes": 7610769,
+    "files": 96,
+    "sha256": "27f88725772acfb0f86dc37d9d07b6f9d00cd2848549fea55ac278049cc6ac06",
+    "githubDigestMatches": true,
+    "zipCRC": true,
+    "freeBytesBefore": 48644247552,
+    "directory": "build/ci/39920796794/diagnostic",
+    "duplicateArchiveRemoved": true
+  },
+  "timing": {
+    "targetStepSeconds": 1016.0,
+    "preparationToBuildSeconds": 262.751064,
+    "buildToSuccessSeconds": 337.966634,
+    "afterBuildToStepEndSeconds": 415.282302,
+    "testCommandSeconds": 190.630258,
+    "nativeCaseSeconds": 15.881,
+    "jobSeconds": 1140.0,
+    "workflowSeconds": 1200.0,
+    "commands": [
+      {
+        "command": [
+          "xcodebuild",
+          "-version"
+        ],
+        "seconds": 0.160375
+      },
+      {
+        "command": [
+          "swift",
+          "--version"
+        ],
+        "seconds": 0.391817
+      },
+      {
+        "command": [
+          "sw_vers"
+        ],
+        "seconds": 0.02806
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "list"
+        ],
+        "seconds": 0.939734
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "bootstatus"
+        ],
+        "seconds": 165.635562
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "ui"
+        ],
+        "seconds": 31.433806
+      },
+      {
+        "command": [
+          "xcodebuild",
+          "test-without-building",
+          "-xctestrun"
+        ],
+        "seconds": 190.630258
+      },
+      {
+        "command": [
+          "xcrun",
+          "xcresulttool",
+          "get"
+        ],
+        "seconds": 10.906189
+      },
+      {
+        "command": [
+          "xcrun",
+          "xcresulttool",
+          "export"
+        ],
+        "seconds": 0.147517
+      }
+    ]
+  },
+  "currentRoundClosed": true,
+  "nextRoundCIAllowed": false,
+  "automaticRetryForbidden": true,
+  "documentStaticPassed": true
+}

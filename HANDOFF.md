@@ -1,3 +1,25 @@
+# 内层诊断唯一CI收口：编译/单例过，夹具边界拒绝（2026-10-23）
+
+2026-10-23 内层诊断唯一CI39920796794/47bb1edd/attempt1收口：145工具/484语法、一次原生构建0通过；安全原单例1/1、15.881秒、原test0，但原夹具校验以Unregistered SDK work拒绝，driver真实2、冲突未启动/null，完整双臂未通过。619来源/609产物/三计划/实际七版本及安全前后冻结一致。142诊断/116内层、早期56记录、零丢弃；目标18次JS三点/18组writer、覆盖起止及关闭pending0已核。S本轮在2367提交，旧1767未复现；首次回退2367→2151位于resize/主M之后，已关联viewport显式setter及栈，不能解释旧0.383秒故障。准入在seq61结束，返程窄屏3个SDK请求seq62–83未登记，而验收仍检查至closing84，合同范围不一致；本轮不忽略事件/改校验或重派。原清理五类全空，但新增取消/迟到分支未命中，不能称全取消专项通过。定向1016秒中准备262.751/编译337.967、原单例15.881；workflow1200秒。原件及619输入/旧证据/Build30/普通HEAD/index保持，旧full191/192与I6/Release/手机缺口保持，无新IPA。
+
+具体断点：原seal22→closing84验收范围内，admission-complete61后返程窄屏产生2 measure+1 sample，九条原工作事件未queued登记；原validator拒绝且按规则停止。这不是新diagnostic事件混入控制账本，不能直接忽略尾部换绿。下一最小片建议仅无CI本地审阅排空/准入结束/返程窄屏/关闭的合同边界，保留原字双向断言和真实SDK回执；本轮未修源码或再派。
+
+详情Documentation/I6_INNER_SCROLL_NATIVE.md，原件build/ci/39920796794，恢复build/maintenance/I6-inner-scroll-native-20261023含before/frozen/唯一派发锁/全部分析/result及最终快照。后续仅文档静态和本地私有快照，运行输入保持冻结，不关机。恢复先核final-checkpoint和真实run，禁止重复POST。
+
+---
+
+# 内层回退诊断配对CI运行中：39920796794，只派一次（2026-10-23）
+
+冻结源47bb1edd7c9f384c9fdd885a604c0fb34d15ef0d，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 内层回退诊断唯一原生CI准备（2026-10-23）
+
+用户新授权只派一轮continuous-resize-pair，冻结47bb1edd7c9f384c9fdd885a604c0fb34d15ef0d。已核619输入/实际Git blob、旧证据、Build30及普通HEAD/index，无运行助手，远端最近任务均completed。复用已完成8定向/484语法/静态，不加本地预检；保留工作流原repository-checks。一次构建、每臂只执行原同例一次，安全所有门槛合格才冲突，未启动保留null。只观察首次回退/显式赋值/JS提交回调/覆盖起止/清理，不改源码/算法/guard/原断言预算，不增加等待重试，不跑整套、不自动重派。恢复build/maintenance/I6-inner-scroll-native-20261023，派发前持久锁；未知结果仅查询原run，禁止再次POST。新源尚无原生结果，旧full191/192与I6/Release/手机缺口和Build30保持，不关机。
+
+---
+
 # 内层被动诊断本地收口，原生待验（2026-10-23）
 
 2026-10-23 内层被动诊断本地实现完成，零CI。只改Spread/Reflowable/Infinite三Swift、UPSTREAM摘要与provenance共5输入，其余614保持；补首次观测回退/有界栈、显式setter及frame前后、原evaluator实际提交/回调、固定身份/覆盖起止/关闭失效。原fixture armed前忽略诊断，现以最多255条早期暂存加1交付状态同步排出，原256诊断/128控制容量不变，溢出与覆盖缺口明示。取消/旧回执不进入新slot/controller，不加Task/等待重试/JS/屏障，不改算法/guard/断言预算。最终定向8/8、484语法/七静态通过（54既有上游限制/新增0）；首轮失败原件保留，未降低合同或新增豁免。三Swift除两个Release nil存储槽外生产源码一致，原JS/await及原源码顺序保持。新源尚未原生编译/运行，写入者与旧full根因仍未证，最新原生安全65/冲突null，I6/full191/192/Release/手机缺口及Build30保持。
