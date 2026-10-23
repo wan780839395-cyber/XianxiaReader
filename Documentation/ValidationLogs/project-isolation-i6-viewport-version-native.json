@@ -1,0 +1,151 @@
+{
+  "recordedAtUTC": "2026-10-23T02:56:38.327623+00:00",
+  "run": 39890156016,
+  "source": "6254e86620863361e37acff83d35ce8c5ac0632c",
+  "attempt": 1,
+  "conclusion": "failure",
+  "ciDispatches": 1,
+  "buildAttempts": 1,
+  "nativeBuildExit": 0,
+  "compiled": true,
+  "linked": true,
+  "versionParserFixValidated": true,
+  "actualVersionFields": {
+    "Xcode ": "16.4",
+    "Build version ": "16F6",
+    "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+    "Target:": "x86_64-apple-macosx15.0",
+    "ProductName:": "macOS",
+    "ProductVersion:": "15.7.9",
+    "BuildVersion:": "24G830"
+  },
+  "actualSevenVersionFieldsMatch": true,
+  "actualPreparedGitBlobsMatchFrozen": true,
+  "actualPreparedInputCount": 619,
+  "products": 609,
+  "safeBeforeAndAfterMatchFrozen": true,
+  "plansOnlyDifferByMode": true,
+  "safeCommandInvoked": true,
+  "safeOriginalExit": 64,
+  "conflictOriginalExit": null,
+  "driverExit": 64,
+  "nativeCaseInvocations": 0,
+  "swiftPairMechanicsExecuted": false,
+  "nativeMatchedBuildVerified": false,
+  "safeValidationErrors": [
+    "Require a known pair arm and its real original test exit"
+  ],
+  "transientSummaryIsNotNativeCase": true,
+  "failure": "Xcode 16.4 rejects -test-iterations 1 before XCTest",
+  "originalPlanRepetitionSettings": [],
+  "fixAppliedThisRound": false,
+  "linuxPythonTests": {
+    "total": 139,
+    "passed": 139,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 26.946
+  },
+  "swiftGrammarFiles": 484,
+  "swiftGrammarNotCompilation": true,
+  "lastSuccessfulNativeSource": "2a9fdfb51281407472b01f1729591d09690a5efd",
+  "lastSuccessfulNativeRun": 39806769382,
+  "oldFullRootCauseProven": false,
+  "oldSFinalRejectionProven": false,
+  "deviceReleaseExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "timing": {
+    "targetStepSeconds": 1019.0,
+    "preparationToBuildSeconds": 413.123029,
+    "buildToSuccessSeconds": 356.905404,
+    "afterBuildToStepEndSeconds": 248.971567,
+    "commandSeconds": [
+      {
+        "command": [
+          "xcodebuild",
+          "-version"
+        ],
+        "seconds": 0.659242
+      },
+      {
+        "command": [
+          "swift",
+          "--version"
+        ],
+        "seconds": 0.647564
+      },
+      {
+        "command": [
+          "sw_vers"
+        ],
+        "seconds": 0.048035
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "list"
+        ],
+        "seconds": 1.686548
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "bootstatus"
+        ],
+        "seconds": 178.400441
+      },
+      {
+        "command": [
+          "xcrun",
+          "simctl",
+          "ui"
+        ],
+        "seconds": 31.435199
+      },
+      {
+        "command": [
+          "xcodebuild",
+          "test-without-building",
+          "-xctestrun"
+        ],
+        "seconds": 3.361856
+      },
+      {
+        "command": [
+          "xcrun",
+          "xcresulttool",
+          "get"
+        ],
+        "seconds": 7.562388
+      },
+      {
+        "command": [
+          "xcrun",
+          "xcresulttool",
+          "export"
+        ],
+        "seconds": 0.116133
+      }
+    ],
+    "nativeXCTestSeconds": 0,
+    "jobSeconds": 1207.0,
+    "workflowSeconds": 1254.0
+  },
+  "currentRoundClosed": true,
+  "nextRoundCIAllowed": false,
+  "automaticRetryForbidden": true,
+  "artifactID": 12475171979,
+  "artifactSHA256": "0d5999b2dd702a84849dacc1f40f965c7c724b86a1e6f345b58338c50cc3b957",
+  "artifactFiles": 48,
+  "artifactBytes": 4684251,
+  "artifactHashAndCRCVerified": true,
+  "duplicateZIPRemoved": true,
+  "rawEvidenceDirectory": "build/ci/39890156016",
+  "recoveryDirectory": "build/maintenance/I6-viewport-version-native-20261023",
+  "runtimeInputsChanged": 0,
+  "ordinaryHeadIndexPreserved": true,
+  "nextMinimalSlice": "Local only: remove invalid -test-iterations 1, check command and real 64 fixture; keep original exits and all budgets. Not implemented; no new CI authorization."
+}

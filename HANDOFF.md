@@ -1,3 +1,31 @@
+# 版本前缀修正版CI收口：解析/编译通过，CLI参数64（2026-10-23）
+
+唯一39890156016/6254e866/attempt1：139工具/484语法、一次原生build-for-testing/编译链接通过。真实driver前缀成功解析，7版本字段完整相等；619Git来源、609产物/三份计划及安全命令before/after与冻结一致。
+
+新增驱动的-test-iterations 1被Xcode16.4明确拒绝（Must specify...more than 1），安全xcodebuild/驱动真实退出64，冲突null，安全门禁正确停止。命令被调用不等于XCTest执行：Transient Testing摘要只含CLI错误，原单例/Swift机制/配对事件执行0，完整双臂同构建验收未到达。未改参数/算法/生产guard/断言预算或重派；不能写成安全行为0/1或配对通过。
+
+目标1019秒：准备413.123、编译356.905、其后248.972；boot178.400/外观31.435、CLI3.362、XCTest0。完整48文件/4684251字节artifact已核GitHub SHA/CRC，重复ZIP已删除；原件build/ci/39890156016，恢复目录build/maintenance/I6-viewport-version-native-20261023含单次锁/frozen/dispatch、真实来源/版本/时间分析/result。所有619输入、旧原件/Build30/普通HEAD/index保持，原smoke/隔离/定位/S诊断/默认值/比较/guard/原字断言预算保持，其他模块/full/Release未执行，不关机。
+
+下一最小片仅本地审改命令：删除无效两个token、核计划无重复/重试配置，补真实64和命令参数拒绝检查；不改成2/增加重试/吞64。本轮未实施，下一CI需新指令。已核Apple重复测试说明与Bazel基础runner；此前假runner只检查存在参数，未覆盖CLI真实值限制。旧full191/192、历史缩放/旧S根因及I6/Release/手机缺口保持，无新IPA。
+
+详细Documentation/I6_VIEWPORT_VERSION_NATIVE.md及ValidationLogs/project-isolation-i6-viewport-version-native.json。阶段末仅文档静态核对与最终本地私有快照，见本轮document-check.log/final-checkpoint.json；不重复预检/工具/原生，不派第二轮。
+
+---
+
+# 版本前缀修正版配对CI运行中：39890156016，只派一次（2026-10-23）
+
+冻结源6254e86620863361e37acff83d35ce8c5ac0632c，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 版本前缀修正版唯一原生CI准备（2026-10-23）
+
+用户新授权仅一轮continuous-resize-pair，冻结6254e86620863361e37acff83d35ce8c5ac0632c。619运行输入与实际Git blob、76旧原件、Build30和普通HEAD/index已核；无其他运行任务。只一次build-for-testing，安全原测试/机制/提取/夹具/来源全部合格才冲突，真实退出未启动为null；失败先留原件，不重派或改算法/guard/默认值/比较/断言预算，不跑整套。复用本地26工具和484语法结果，不叠加预检，保留工作流既有repository-checks。
+
+恢复目录build/maintenance/I6-viewport-version-native-20261023，before/frozen已保存；派发前持久锁，未知结果只查询原run，禁止再次POST。当前尚未派发，旧full191/192及Release/手机缺口保持，最后交付Build30，不关机。
+
+---
+
 # Swift版本前缀解析本地收口：26/26，零CI（2026-10-23）
 
 已修version_fields，仅识别已知数字三段driver前缀并保留原七字段完整比较；未知/缺失/空值/重复/冲突继续拒绝。真实39886254329环境及三命令样本内嵌SHA与原始字节一致，冻结旧函数仍拒绝、新函数全部七字段与真实prepared一致。定向工具26/26（12.374秒、零跳过），七字段漂移均在安全测试前拒绝；484语法/静态通过（非编译）。
