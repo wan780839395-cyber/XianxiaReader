@@ -1,5 +1,13 @@
 # 项目状态
 
+2026-10-24 跨布局旧S修正唯一原生验收通过：已推72b07cc，CI39979277641/attempt1/唯一POST；167工具/484语法、一次build/link0，安全1/1（16.668秒）/冲突1/1（9.898秒），真实退出[0,0]/driver0。619源码/609产物/三计划/实际七版本及四快照一致，matchedBuildVerified=true。冲突旧S在874宽读取后真实layout-invalidated/rejected且A保持，M原7项guard全true、补偿至2151；两臂宽874/返窄402原字均可见，每臂3返程SDK请求审计通过，跟踪集合全空。198/194诊断零丢弃、旧缓冲身份及4组coverage配对。旧配对语义原点相同，支持受控跨布局竞态修正；旧full、2367→1767、准备取消自然根因及JS参数options-value仍未证。步骤22分38秒、case合计26.566秒；artifact181原件SHA/CRC保留，5992旧证据、Build30/普通HEAD index保持，本验证轮代码变化0。无重派/full/设备Release/新IPA，完整I6及手机验收未完成。见[原生结果](Documentation/I6_LAYOUT_SAMPLE_NATIVE.md)。
+
+恢复build/maintenance/I6-layout-sample-native-20261023/，原件build/ci/39979277641/。最终本地结果revision/ref见final-checkpoint.json；远端已验证源固定72b07cc，不再派本轮CI。下一步只回I6最终范围核对，full/Release须另行授权；不关机/停Docker或其他任务。
+
+---
+
+# 项目状态
+
 2026-10-23 跨布局旧S最小修正本地收口，6输入：独立UUID布局代次跟踪有效viewport（含inset后高度），S原回调后核代次/尺寸，跨尺寸及A→B→A旧结果作废而不写缓存；不复用滚动revision，M整段测量/恢复及真正新锚点保护保持。fixture/验收器仅识别有真实新代次/原上下文/快照、保留A和M原guard的layout-invalidated，逐个审返程SDK；原字宽窄/预算及原方法字节保持。32工具+1原样Swift6.1.2旧新对照=33唯一检查通过（首轮1skip仅补该项后通过），7静态/484语法、54上游限制/新增0；旧S跨尺寸覆盖A抑制M，新S作废并允许2151补偿，ABA/同尺寸/滚动/导航覆盖，但均为Foundation替身，不是UIKit/WK验收。镜像ID核同上一轮，仅改canonical缓存引用，无安装/拉取/重置。619其余613、5966旧证据、Build30/普通HEAD index保持。零推送/CI/full/Release/新IPA；本修正版未iOS编译或原生验收，旧自然full、2367→1767、准备取消与JS参数缺口不宣称修好，I6仍未验收。见[实现与本地验证](Documentation/I6_LAYOUT_SAMPLE_INVALIDATION.md)。
 
 恢复build/maintenance/I6-layout-sample-invalidation-20261023/保留6原件、首轮skip/镜像引用错误、旧新原样Swift及真实退出、历史原件只读复核、语法和最终checkpoint。只有另行授权后才考虑新原生单例；本轮额度0。普通工作区/用户改动保留，不关机/不停止Docker和其他任务。

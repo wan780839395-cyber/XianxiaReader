@@ -1,0 +1,366 @@
+{
+  "recordedAtUTC": "2026-10-23T16:11:01.190436+00:00",
+  "reportClientDate": "2026-10-24",
+  "clientTimezone": "Asia/Shanghai",
+  "run": 39979277641,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39979277641",
+  "attempt": 1,
+  "ciDispatches": 1,
+  "sourceRevision": "72b07cc52bff3b2900e48c83d520dba15aac1236",
+  "sourcePushed": true,
+  "runtimeChangesThisRound": 0,
+  "runtimeInputsUnchanged": 619,
+  "sourceVerification": {
+    "run": 39979277641,
+    "attempt": 1,
+    "revision": "72b07cc52bff3b2900e48c83d520dba15aac1236",
+    "sourceFilesMatched": 619,
+    "canonicalBlobSHA256Matched": 619,
+    "rawWindowsSHA256Matched": 572,
+    "CRLFDifferencesVerified": 47,
+    "productsMatched": 609,
+    "beforeAfterSnapshotsMatched": 4,
+    "plansMatched": 3,
+    "versions": {
+      "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Build version ": "16F6",
+      "BuildVersion:": "24G830",
+      "ProductName:": "macOS",
+      "ProductVersion:": "15.7.9",
+      "Target:": "x86_64-apple-macosx15.0",
+      "Xcode ": "16.4"
+    },
+    "driverMatchedBuildVerified": true,
+    "semanticPairCompatible": true,
+    "originalExits": [
+      0,
+      0
+    ],
+    "candidateObservation": "layout-invalidated",
+    "oldFullRootCauseProven": false,
+    "arms": {
+      "paired-safe": {
+        "actualDomainAndWorkReceipts": true,
+        "allSDKEventsAccounted": true,
+        "classification": "unchanged",
+        "cleanupEmpty": true,
+        "effect": "unchanged",
+        "matchedBuildVerified": false,
+        "mode": "paired-safe",
+        "oldFullRootCauseProven": false,
+        "originalExit": 0,
+        "originalPassed": true,
+        "originalWideNarrowDOMVerified": true,
+        "postControlRequestCount": 3,
+        "serialDrainVerified": true
+      },
+      "paired-conflict": {
+        "actualDomainAndWorkReceipts": true,
+        "allSDKEventsAccounted": true,
+        "classification": "layout-invalidated",
+        "cleanupEmpty": true,
+        "effect": "layout-invalidated",
+        "matchedBuildVerified": false,
+        "mode": "paired-conflict",
+        "oldFullRootCauseProven": false,
+        "originalExit": 0,
+        "originalPassed": true,
+        "originalWideNarrowDOMVerified": true,
+        "postControlRequestCount": 3,
+        "serialDrainVerified": true
+      }
+    },
+    "buildCount": 1
+  },
+  "repositoryToolingTestsPassed": 167,
+  "swiftGrammarFiles": 484,
+  "addedGrammarDiagnostics": 0,
+  "nativeBuildCount": 1,
+  "nativeBuildExit": 0,
+  "safeOriginalExit": 0,
+  "conflictOriginalExit": 0,
+  "driverOriginalExit": 0,
+  "safeCasesPassed": 1,
+  "conflictCasesPassed": 1,
+  "safeCaseSeconds": 16.668,
+  "conflictCaseSeconds": 9.898,
+  "nativeTargetedAccepted": true,
+  "safeWideAndNarrowOriginalWordVerified": true,
+  "conflictWideAndNarrowOriginalWordVerified": true,
+  "returnSDKRequestsEach": 3,
+  "SDKRequestsAllAccountedBoth": true,
+  "conflictStaleSActuallyRejected": true,
+  "conflictRejectReason": "layout-invalidated",
+  "conflictOldWidth": 402,
+  "conflictActualReadWidth": 874,
+  "conflictSnapshotDocumentTop": 2367,
+  "layoutGenerationActuallyChanged": true,
+  "originalAnchorPreservedForMBoth": true,
+  "originalMGuardsAllTrueBoth": true,
+  "actualMResultAnchorY": 2147.875,
+  "originalViewportOffset": -3.125,
+  "actualMFinalLocalTopBoth": 2151,
+  "wideWordTopBoth": -3.125,
+  "narrowWordTopBoth": 23.875,
+  "journalCounts": [
+    198,
+    194
+  ],
+  "diagnosticDroppedBoth": 0,
+  "oldBufferOwnerEpochMatchedBoth": true,
+  "coveragePairsEach": 4,
+  "emptyTrackedCleanupBoth": true,
+  "allNativeCancellationPathsExercised": false,
+  "preparationCompletedBoth": true,
+  "preparationCancellationReproduced": false,
+  "preparationCancellationRootCauseProven": false,
+  "old2367to1767RootCauseProven": false,
+  "oldFullRootCauseProven": false,
+  "jsObservationIncompleteBoth": true,
+  "jsObservationReasonBoth": "options-value",
+  "actualScrollToParametersVerified": false,
+  "nativeWebKitVersion": "8621",
+  "nativeWebKitBuild": "8621.2.5.10.10",
+  "exactWebKitSourceMatch": "unknown",
+  "algorithmOrFixtureModifiedDuringValidation": false,
+  "guardsBudgetsWordAssertionsChangedThisRound": false,
+  "extraWKCallsWaitsRetries": 0,
+  "fullOrReleaseOrDeviceExecuted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "I6Accepted": false,
+  "releaseAccepted": false,
+  "oldEvidenceProtectedCount": 5992,
+  "oldEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "artifact": {
+    "artifact": 12513783206,
+    "archiveBytes": 5419291,
+    "sha256": "0a742766afa1d11cd11760763bc1760d2cb54bbcdf61d7e9bbbf654306e36671",
+    "digestMatches": true,
+    "crcVerified": true,
+    "expandedBytes": 14046911,
+    "fileCount": 181
+  },
+  "timing": {
+    "nativeStepSeconds": 1358.0,
+    "buildStartLogUTC": "2026-10-23T15:42:36.3443930Z",
+    "buildEndLogUTC": "2026-10-23T15:48:31.3933720Z",
+    "buildSecondsByLog": 355.048979,
+    "preBuildSecondsByStepLog": 445.344393,
+    "caseSeconds": [
+      [
+        "passed",
+        "16.668"
+      ],
+      [
+        "passed",
+        "9.898"
+      ]
+    ],
+    "arms": {
+      "paired-safe": [
+        {
+          "kind": "other",
+          "durationSeconds": 0.131986,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "-version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.394935,
+          "rawExit": 0,
+          "commandPrefix": [
+            "swift",
+            "--version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.055693,
+          "rawExit": 0,
+          "commandPrefix": [
+            "sw_vers"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.890167,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "list",
+            "devices"
+          ]
+        },
+        {
+          "kind": "boot",
+          "durationSeconds": 157.525217,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "bootstatus",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "appearance",
+          "durationSeconds": 44.813768,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "ui",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "test",
+          "durationSeconds": 176.592178,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "test-without-building",
+            "-xctestrun",
+            "/Users/runner/work/XianxiaReader/XianxiaReader/build/DerivedData/Build/Products/XianxiaReader-paired-safe.xctestrun"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 10.375952,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "get",
+            "test-results"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.171081,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "export",
+            "attachments"
+          ]
+        }
+      ],
+      "paired-conflict": [
+        {
+          "kind": "other",
+          "durationSeconds": 0.404017,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "-version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.761165,
+          "rawExit": 0,
+          "commandPrefix": [
+            "swift",
+            "--version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.052408,
+          "rawExit": 0,
+          "commandPrefix": [
+            "sw_vers"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 2.848389,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "list",
+            "devices"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 4.629012,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "shutdown",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "boot",
+          "durationSeconds": 53.046481,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "bootstatus",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "appearance",
+          "durationSeconds": 15.446241,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "ui",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "test",
+          "durationSeconds": 61.312771,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "test-without-building",
+            "-xctestrun",
+            "/Users/runner/work/XianxiaReader/XianxiaReader/build/DerivedData/Build/Products/XianxiaReader-paired-conflict.xctestrun"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.724463,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "get",
+            "test-results"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.116413,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "export",
+            "attachments"
+          ]
+        }
+      ]
+    },
+    "note": "Step timestamps/log delimiters include shell overhead; per-command durations are actual receipts. Artifact download is separate."
+  },
+  "nextGate": "Return to I6 final acceptance audit, verify reusable results and freeze the necessary full/Release gate only after separate authorization; no further CI in this completed slice."
+}
