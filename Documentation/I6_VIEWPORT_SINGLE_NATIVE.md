@@ -1,5 +1,7 @@
 # I6 单次命令修正版唯一原生CI（2026-10-23）
 
+后续本地审阅已完成，见[S读取时序与尚缺证据](I6_VIEWPORT_S_READ_REVIEW.md)。已排除屏障前DOM结果重放并查清缓存检查位置；具体写入者仍未证。本页原生结果保持。
+
 [CI39895434704](https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39895434704)，冻结`eb7b46628905797e15b1bc3115c77de7dd20e1ac`，attempt1。**一次编译/链接通过，单次命令被Xcode接受；安全单例真实执行一次，0/1、16.061秒，停在缩放前S资格。原test/driver65，冲突null。**没有重派、取消或输入修改。
 
 ## 分层验收

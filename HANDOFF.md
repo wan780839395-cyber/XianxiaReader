@@ -1,3 +1,23 @@
+# S读取时序本地审阅收口（2026-10-23）
+
+零CI/零运行输入改动，审阅已完成，具体DOM回退写入者尚未证。关键已证：S先冻结native输入并完成一次缓存检查，再被sample-before-read持有；期间native新读2367并提交A，original-capture命中A。S放行从缓存检查之后继续，三次均新evaluateJavaScript返回1767，原guard以document-top-mismatch-exhausted拒绝；终结时A指纹仍在，旧冻结诊断context中的anchor不代表缓存被改回。未resize/主M，不能追认为旧full根因。
+
+缺口在实际WK提交/回调的inner native offset及既有滚动写入关联；已审阅updateViewports、布局/测量、初始化/go/canonical写入、capture与seal/release，未找到原件可证明的写回者。不因猜测改guard/缓存/算法或加等待/重试。最多三运行输入的下一项被动观测仅写方案，未实施，也不授权CI。详细Documentation/I6_VIEWPORT_S_READ_REVIEW.md。
+
+恢复build/maintenance/I6-viewport-s-read-review-20261023：before、sequence-audit、result、document-check与final-checkpoint；619运行输入/1201原件/Build30/普通HEAD/index保持。限定xcresult不透明blob查看遇256MiB解码上限即止，仅留头信息，不扩大私有格式解析或据未解码资料断言无日志。本轮无Swift语法/编译/工具整套/原生/full/Release/手机新结果，旧191/192及缺口保持，不关机。
+
+下一步若用户继续，仅先本地实现上述被动诊断并核对原行为，不自动派CI。当前本地审阅片结束，不把尚未证的DOM回退解释写成修复完成。
+
+---
+
+# S读取时序本地审阅开始（2026-10-23）
+
+用户仅授权审阅：解释39895434704中native采样对齐2367后，held auxiliary S三次仍报1767。基线fbb9e875，619运行输入、当前/旧原件、Build30和普通HEAD/index已核；无运行助手。零CI，不修改生产/测试/SDK/算法/guard/断言/预算，也不增加等待或重试。审阅屏障前捕获值、每次JS调用、回调先后与所有候选写入；明确源码可排除项、原件能证明项和仍缺观测项。
+
+当前已核原S三次guard为document-top-mismatch-exhausted、其余上下文true；DOM脚本在屏障放行后每次重新evaluateJavaScript，尚无缓存重放证据。继续围绕同一slot/WebView核读写时序，不把未知归咎网络或扩大到全项目。恢复目录build/maintenance/I6-viewport-s-read-review-20261023；本片未生成原生新结果，不关机。
+
+---
+
 # 单次命令CI收口：真实单例一次，安全S资格65（2026-10-23）
 
 唯一39895434704/eb7b4662/attempt1：141工具/484语法、一次原生编译/链接和实际版本检查通过。619来源、609产物/三份计划与安全前后冻结一致；新单次命令有效，安全原单例真实一次、0/1/0、16.061秒，Swift配对机制2组通过。原test/driver65，summary/export0，安全失败正确停止，冲突null；完整双臂同构建验收未完成。
