@@ -1,5 +1,9 @@
 # 全项目隔离与维护计划
 
+2026-10-23 内层被动诊断本地实现完成，零CI。只改Spread/Reflowable/Infinite三Swift、UPSTREAM摘要与provenance共5输入，其余614保持；补首次观测回退/有界栈、显式setter及frame前后、原evaluator实际提交/回调、固定身份/覆盖起止/关闭失效。原fixture armed前忽略诊断，现以最多255条早期暂存加1交付状态同步排出，原256诊断/128控制容量不变，溢出与覆盖缺口明示。取消/旧回执不进入新slot/controller，不加Task/等待重试/JS/屏障，不改算法/guard/断言预算。最终定向8/8、484语法/七静态通过（54既有上游限制/新增0）；首轮失败原件保留，未降低合同或新增豁免。三Swift除两个Release nil存储槽外生产源码一致，原JS/await及原源码顺序保持。新源尚未原生编译/运行，写入者与旧full根因仍未证，最新原生安全65/冲突null，I6/full191/192/Release/手机缺口及Build30保持。见[实现与验证边界](I6_INNER_SCROLL_DIAGNOSTICS.md)。
+
+以下保留历史状态。
+
 2026-10-23 内层滚动写入入口本地审阅完成，零CI/运行输入改动。1767与原测试加600前DOM值相同；当前章初始化/最后measure均早于约0.383秒窗口，窗口内附件没有inner读数，不能继续缩短回退时间。核清native首尾setter、canonical/window与Readium根元素JS、几何/内部同步等未覆盖入口；本地bundle与固定上游只有原宽度保护补丁差异，未发现连续resize直接写Y的源码。具体写入者仍未证。最小下一片建议5输入内补原生delegate变化、显式setter前后与通用JS实际提交/回调，不先改JS bundle/算法/签名/等待重试；清理、覆盖起止和结果判读已列明，尚未实现或授权CI。619输入/2390证据记录/Build30/普通HEAD/index保持，原生最新仍安全65/冲突null，旧full191/192与I6/Release/手机缺口保持。见[本地审阅与最小补证设计](I6_INNER_SCROLL_WRITER_REVIEW.md)。
 
 以下保留历史状态。

@@ -439,6 +439,11 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
             contentOffset.y = (progression == 0)
                 ? -scrollView.contentInset.top
                 : (scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom)
+            #if DEBUG
+                let diagnostic = innerScrollDiagnostics
+                let writerID = diagnostic?.beginWrite(progression == 0 ? "progression-start" : "progression-end", target: contentOffset.y)
+                defer { if let writerID { diagnostic?.endWrite(writerID) } }
+            #endif
             scrollView.contentOffset = contentOffset
             return true
         } else {

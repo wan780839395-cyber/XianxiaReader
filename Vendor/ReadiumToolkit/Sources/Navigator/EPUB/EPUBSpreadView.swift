@@ -74,6 +74,8 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     private let onContinuousInitializationReady = CompletionList()
     private var loadingStages: [String] = []
     private let loadingTraceID = epubLoadingDiagnosticsEnabled ? UUID().uuidString : ""
+    // Nil opaque storage in Release; all access/installers are DEBUG-only.
+    private var innerScrollDiagnosticStorage: AnyObject?
 
     /// Bounded metadata only: no book URL, locator, title or document text.
     private func recordLoadingStage(_ stage: String) {
@@ -139,6 +141,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     /// Called when the spread view is removed from the view hierarchy, to
     /// clear pending operations and retain cycles.
     func clear() {
+        #if DEBUG
+            configureInnerScrollDiagnostics(nil, reason: "spread-clear")
+        #endif
         recordLoadingStage("clear")
         wasCleared = true
         // A retired resource must not reload the current layout when WebKit
@@ -253,6 +258,14 @@ class EPUBSpreadView: UIView, Loggable, PageView {
     @discardableResult
     func evaluateScript(_ script: String, inHREF href: AnyURL? = nil,
                         fixtureReadObserver: ((String, [String: Double]) -> Void)? = nil) async -> Result<Any, Error> {
+        #if DEBUG
+            let innerDiagnostic = innerScrollDiagnostics
+            let evaluationID = innerDiagnostic?.enterEvaluation(script)
+            var diagnosticSubmitted = false
+            defer {
+                if !diagnosticSubmitted, let evaluationID { innerDiagnostic?.cancelEvaluation(evaluationID) }
+            }
+        #endif
         await spreadLoaded()
         guard !wasCleared, !Task.isCancelled else { return .failure(CancellationError()) }
 
@@ -261,6 +274,10 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             #if DEBUG
                 // After the existing load await, at the actual WK submission.
                 fixtureReadObserver?("js-submit", viewportReadNativeValues())
+                if let evaluationID {
+                    diagnosticSubmitted = true
+                    innerDiagnostic?.submitEvaluation(evaluationID)
+                }
             #endif
             webView.evaluateJavaScript(script) { [weak self] res, error in
                 #if DEBUG
@@ -271,6 +288,7 @@ class EPUBSpreadView: UIView, Loggable, PageView {
                         values["resultObject"] = res is [String: Any] ? 1 : 0
                         fixtureReadObserver("js-callback", values)
                     }
+                    if let evaluationID { innerDiagnostic?.finishEvaluation(evaluationID, error: error) }
                 #endif
                 if let error = error {
                     self?.log(.error, error)
@@ -898,7 +916,194 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 }
 
 #if DEBUG
+/// Passive, instance-owned metadata. No tasks, DOM calls or scroll writes.
+@MainActor final class EPUBInnerScrollDiagnostics {
+    typealias Sink = (UUID, String, [String: String]) -> Void
+    private weak var view: EPUBSpreadView?
+    private let sink: Sink
+    private let coverageID = UUID()
+    private var active = true
+    private var previousY: Double?
+    private var previousUptime: String?
+    private var capturedRollback = false
+    private var recordedLateCallback = false
+    private var writerCapacityExceeded = false
+    private var writers: [(id: UUID, source: String)] = []
+    private var recentWriter: UUID?
+    private var recentEvaluation: UUID?
+    private var evaluations: [UUID: [String: String]] = [:]
+    private var untrackedEvaluations = 0
+
+    init(view: EPUBSpreadView, sink: @escaping Sink) { self.view = view; self.sink = sink }
+
+    func start(navigationFinished: Bool, initializationStarted: Bool, initializationFinished: Bool) {
+        record("coverage-start", fields: ["navigationFinished": String(navigationFinished),
+            "initializationStarted": String(initializationStarted), "initializationFinished": String(initializationFinished),
+            "preBindingCommandsCovered": "false"])
+    }
+
+    func close(_ reason: String) {
+        guard active else { return }
+        active = false
+        var fields = nativeValues()
+        fields["reason"] = reason
+        fields["pendingEvaluations"] = String(evaluations.count)
+        fields["pendingEvaluationIDs"] = evaluations.keys.map(\.uuidString).sorted().prefix(16).joined(separator: ",")
+        fields["pendingIDsTruncated"] = String(evaluations.count > 16)
+        fields["untrackedEvaluations"] = String(untrackedEvaluations)
+        fields["pendingWriters"] = String(writers.count)
+        fields["writerCapacityExceeded"] = String(writerCapacityExceeded)
+        emit("coverage-end", id: coverageID, fields: fields)
+        evaluations.removeAll(); writers.removeAll(); previousY = nil; previousUptime = nil
+        recentWriter = nil; recentEvaluation = nil; view = nil
+    }
+
+    func record(_ phase: String, id: UUID? = nil, fields: [String: String] = [:]) {
+        guard active else { return }
+        let native = nativeValues()
+        if let y = Double(native["innerY"] ?? ""), y.isFinite {
+            if let previousY, previousY - y > 0.5, !capturedRollback {
+                capturedRollback = true
+                var rollback = native
+                rollback["previousY"] = String(previousY); rollback["observedAt"] = phase
+                rollback["previousUptime"] = previousUptime ?? "unknown"
+                let frames: [String] = Thread.callStackSymbols.prefix(16).map { frame in
+                    let tokens = frame.split(separator: " ").filter { !$0.contains("/") && !$0.contains("\\") }
+                    let normalized = tokens.joined(separator: " ").replacingOccurrences(of: #"0x[0-9a-fA-F]+"#,
+                        with: "<address>", options: .regularExpression)
+                    return String(normalized.prefix(160))
+                }
+                rollback["stack"] = frames.joined(separator: "\n")
+                emit("first-rollback", id: id ?? coverageID, fields: rollback)
+            }
+            previousY = y
+            previousUptime = native["uptime"]
+        }
+        emit(phase, id: id ?? coverageID, fields: native.merging(fields) { _, new in new })
+    }
+
+    func beginWrite(_ source: String, target: CGFloat) -> UUID? {
+        guard active else { return nil }
+        guard writers.count < 16 else {
+            if !writerCapacityExceeded { record("writer-capacity", fields: ["incomplete": "true"]) }
+            writerCapacityExceeded = true; return nil
+        }
+        let id = UUID(); writers.append((id, source)); recentWriter = id
+        record("writer-before", id: id, fields: ["writerSource": source, "targetY": String(describing: target)])
+        return id
+    }
+
+    func endWrite(_ id: UUID) {
+        defer { if writers.last?.id == id { writers.removeLast() } }
+        record("writer-after", id: id, fields: ["writerScopeMatches": String(writers.last?.id == id)])
+    }
+
+    func enterEvaluation(_ script: String) -> UUID? {
+        guard active else { return nil }
+        guard evaluations.count < 256 else {
+            untrackedEvaluations += 1
+            if untrackedEvaluations == 1 { record("evaluation-capacity", fields: ["incomplete": "true"]) }
+            return nil
+        }
+        let id = UUID()
+        var digest: UInt64 = 14695981039346656037
+        for byte in script.utf8 { digest = (digest ^ UInt64(byte)) &* 1099511628211 }
+        // Shape labels and equality fingerprints only; never retain the script.
+        let shapes: [(String, String)] = [("window.__xrCanonicalGoTarget", "canonical"),
+                      ("readium.scrollToLocator(", "readium-locator"), ("readium.scrollToId(", "readium-id"),
+                      ("readium.scrollToPosition(", "readium-progression"), ("window.scrollBy(", "window-by"),
+                      ("window.scrollTo(", "window-to"), ("readium.setCSSProperties(", "css"),
+                      ("document.createRange()", "range-read")]
+        let category = shapes.first { script.contains($0.0) }?.1 ?? "other"
+        evaluations[id] = ["category": category, "scriptDigest": String(digest, radix: 16), "phase": "entered"]
+        record("evaluation-enter", id: id, fields: evaluations[id] ?? [:])
+        return id
+    }
+
+    func submitEvaluation(_ id: UUID) {
+        guard active else { return }
+        recentEvaluation = id; evaluations[id]?["phase"] = "submitted"
+        record("evaluation-submit", id: id, fields: evaluations[id] ?? [:])
+    }
+
+    func cancelEvaluation(_ id: UUID) {
+        guard active else {
+            recordLateEvaluation(id, phase: "cancelled-before-submit", succeeded: false)
+            return
+        }
+        var fields = evaluations[id] ?? [:]
+        fields["taskCancelled"] = String(Task.isCancelled)
+        record("evaluation-cancelled-before-submit", id: id, fields: fields)
+        evaluations.removeValue(forKey: id)
+    }
+
+    func finishEvaluation(_ id: UUID, error: Error?) {
+        guard active else {
+            recordLateEvaluation(id, phase: "callback", succeeded: error == nil)
+            return
+        }
+        var fields = evaluations[id] ?? [:]
+        fields["succeeded"] = String(error == nil)
+        if let error { fields["errorCode"] = String((error as NSError).code) }
+        record("evaluation-callback", id: id, fields: fields)
+        evaluations.removeValue(forKey: id)
+    }
+
+    private func recordLateEvaluation(_ id: UUID, phase: String, succeeded: Bool) {
+        guard !recordedLateCallback else { return }
+        recordedLateCallback = true
+        emit("evaluation-late-" + phase, id: id, fields: ["uptime": String(ProcessInfo.processInfo.systemUptime),
+            "nativeAvailable": "false", "closed": "true", "succeeded": String(succeeded)])
+    }
+
+    private func emit(_ phase: String, id: UUID, fields: [String: String]) {
+        var values = fields
+        values["coverageID"] = coverageID.uuidString; values["coverageActive"] = String(active)
+        values["currentWriterID"] = writers.last?.id.uuidString ?? "none"
+        values["currentWriterSource"] = writers.last?.source ?? "none"
+        values["recentWriterID"] = recentWriter?.uuidString ?? "none"
+        values["recentEvaluationID"] = recentEvaluation?.uuidString ?? "none"
+        sink(id, "sample-read-inner-" + phase, values)
+    }
+
+    private func nativeValues() -> [String: String] {
+        var values = ["uptime": String(ProcessInfo.processInfo.systemUptime), "nativeAvailable": "false"]
+        guard let view else { return values }
+        let scroll = view.webView.scrollView
+        values["nativeAvailable"] = "true"
+        let numbers: [String: CGFloat] = ["innerY": scroll.contentOffset.y, "innerX": scroll.contentOffset.x,
+            "frameY": view.frame.minY, "webFrameY": view.webView.frame.minY, "boundsY": scroll.bounds.minY,
+            "width": scroll.bounds.width, "height": scroll.bounds.height,
+            "contentWidth": scroll.contentSize.width, "contentHeight": scroll.contentSize.height,
+            "insetTop": scroll.contentInset.top, "insetBottom": scroll.contentInset.bottom,
+            "adjustedInsetTop": scroll.adjustedContentInset.top, "adjustedInsetBottom": scroll.adjustedContentInset.bottom,
+            "zoom": scroll.zoomScale]
+        for (key, value) in numbers { values[key] = String(describing: value) }
+        values["attached"] = String(view.window != nil); values["dragging"] = String(scroll.isDragging)
+        values["decelerating"] = String(scroll.isDecelerating); values["tracking"] = String(scroll.isTracking)
+        values["scrollEnabled"] = String(scroll.isScrollEnabled)
+        values["layerHasAnimations"] = String(!(scroll.layer.animationKeys() ?? []).isEmpty)
+        return values
+    }
+}
+
 extension EPUBSpreadView {
+    var innerScrollDiagnostics: EPUBInnerScrollDiagnostics? {
+        get { innerScrollDiagnosticStorage as? EPUBInnerScrollDiagnostics }
+        set { innerScrollDiagnosticStorage = newValue }
+    }
+
+    func configureInnerScrollDiagnostics(_ sink: EPUBInnerScrollDiagnostics.Sink?, reason: String) {
+        let previous = innerScrollDiagnostics
+        innerScrollDiagnostics = nil
+        previous?.close(reason)
+        guard !wasCleared, let sink else { return }
+        let diagnostic = EPUBInnerScrollDiagnostics(view: self, sink: sink)
+        innerScrollDiagnostics = diagnostic
+        diagnostic.start(navigationFinished: navigationFinished, initializationStarted: initializationStarted,
+                         initializationFinished: initializationFinished)
+    }
+
     private func viewportReadNativeValues() -> [String: Double] {
         ["uptime": ProcessInfo.processInfo.systemUptime, "nativeAvailable": 1,
          "innerY": Double(webView.scrollView.contentOffset.y),
@@ -982,6 +1187,9 @@ extension EPUBSpreadView: UIScrollViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        #if DEBUG
+            if scrollView === webView.scrollView { innerScrollDiagnostics?.record("offset") }
+        #endif
         // Do not remove, overridden in subclasses.
     }
 }
