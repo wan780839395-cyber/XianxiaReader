@@ -1,33 +1,365 @@
 {
-  "recordedAtUTC": "2026-10-23T13:36:12.854502+00:00",
-  "baseline": "a6457cdb11e168df99a9dd35e3d2968811b4cdaa",
+  "recordedAtUTC": "2026-10-23T14:28:19.131626+00:00",
+  "run": 39962812139,
+  "url": "https://github.com/wan780839395-cyber/XianxiaReader/actions/runs/39962812139",
+  "attempt": 1,
+  "ciDispatches": 1,
+  "sourceRevision": "410b14affcb1e6afa87b422ce14adde5deb116c3",
+  "localHelperOriginalExit": 0,
+  "actualHostSwift": "6.1.2 x86_64-unknown-linux-gnu",
+  "existingImageOnly": true,
+  "newEnvironmentsPulledOrInstalled": false,
+  "codeRuntimeChangesThisRound": 0,
   "runtimeInputCount": 619,
   "runtimeInputsUnchanged": true,
-  "runtimeChanges": 0,
-  "swiftHelperRunExit": 0,
-  "swiftVersion": "6.1.2",
-  "target": "x86_64-unknown-linux-gnu",
-  "harnessSHA256": "fc58e570180ea234de5f5e945a3da1e208994dc006a7b52d210e5f836095fcea",
-  "hostBehaviorPassed": true,
-  "previousLocalChecksReused": 28,
-  "previousSwiftGrammarReused": 484,
-  "nativeCompiled": false,
-  "nativeExecuted": false,
-  "ciDispatches": 0,
-  "ciPredispatchGateMet": true,
-  "maximumDispatches": 1,
-  "buildsAllowed": 1,
-  "perArmRunsAllowed": 1,
-  "safeAllGatesBeforeConflict": true,
-  "preserveOriginalExits": true,
-  "conflictNotRunExit": null,
-  "algorithmGuardsBudgetsChanged": false,
-  "firstThrowingAwaitIdentified": false,
+  "sourceVerification": {
+    "run": 39962812139,
+    "attempt": 1,
+    "revision": "410b14affcb1e6afa87b422ce14adde5deb116c3",
+    "sourceFilesMatched": 619,
+    "canonicalBlobSHA256Matched": 619,
+    "rawWindowsSHA256Matched": 572,
+    "CRLFDifferencesVerified": 47,
+    "productsMatched": 609,
+    "beforeAfterSnapshotsMatched": 4,
+    "plansMatched": 3,
+    "versions": {
+      "Apple Swift version ": "6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+      "Build version ": "16F6",
+      "BuildVersion:": "24G830",
+      "ProductName:": "macOS",
+      "ProductVersion:": "15.7.9",
+      "Target:": "x86_64-apple-macosx15.0",
+      "Xcode ": "16.4"
+    },
+    "driverMatchedBuildVerified": true,
+    "semanticPairCompatible": true,
+    "originalExits": [
+      0,
+      65
+    ],
+    "candidateObservation": "candidate-controlled-word-failure",
+    "oldFullRootCauseProven": false,
+    "arms": {
+      "paired-safe": {
+        "actualDomainAndWorkReceipts": true,
+        "allSDKEventsAccounted": true,
+        "classification": "unchanged",
+        "cleanupEmpty": true,
+        "effect": "unchanged",
+        "matchedBuildVerified": false,
+        "mode": "paired-safe",
+        "oldFullRootCauseProven": false,
+        "originalExit": 0,
+        "originalPassed": true,
+        "originalWideNarrowDOMVerified": true,
+        "postControlRequestCount": 3,
+        "serialDrainVerified": true
+      },
+      "paired-conflict": {
+        "actualDomainAndWorkReceipts": true,
+        "allSDKEventsAccounted": true,
+        "classification": "candidate-controlled-word-failure",
+        "cleanupEmpty": true,
+        "effect": "anchor-replaced",
+        "matchedBuildVerified": false,
+        "mode": "paired-conflict",
+        "oldFullRootCauseProven": false,
+        "originalExit": 65,
+        "originalPassed": false,
+        "originalWideNarrowDOMVerified": false,
+        "postControlRequestCount": 0,
+        "serialDrainVerified": true
+      }
+    },
+    "buildCount": 1
+  },
+  "repositoryToolingTestsPassed": 162,
+  "swiftGrammarFiles": 484,
+  "upstreamGrammarLimitations": 54,
+  "addedGrammarDiagnostics": 0,
+  "nativeBuildCount": 1,
+  "nativeBuildExit": 0,
+  "nativeCaseCount": 2,
+  "safeOriginalExit": 0,
+  "safeOriginalPassed": true,
+  "safeCaseSeconds": 13.221,
+  "conflictOriginalExit": 65,
+  "conflictOriginalPassed": false,
+  "conflictCaseSeconds": 44.702,
+  "driverOriginalExit": 65,
+  "candidateObservation": "candidate-controlled-word-failure",
+  "conflictFailure": "Original word invisible at width874: top -219.125/bottom -196.125; original 30s budget timed out before narrow return.",
+  "preparedBothArms": true,
+  "preparationCancellationReproduced": false,
+  "firstThrowingPreparationAwaitIdentified": false,
   "cancellationRequesterIdentified": false,
+  "firstPreparationErrorNativeBranchHit": false,
+  "nativePreparationAndCleanupCancelledFlags": "false in both arms at recorded points; not an attribution of old cancellation",
+  "timeoutFiredCount": 0,
+  "safeDiagnostics": 191,
+  "conflictDiagnostics": 200,
+  "diagnosticDroppedBoth": 0,
+  "oldRetiringBufferRecordsEach": 38,
+  "normalSamplingBufferRecordsEach": 60,
+  "oldBufferOwnerEpochMatched": true,
+  "coverageStartEndPairsEach": 4,
+  "originalWideNarrowDOMSafe": true,
+  "conflictNarrowReturnReached": false,
+  "safeReturnSDKRequests": 3,
+  "SDKReceiptsAllAccountedBoth": true,
+  "emptyTrackedCleanupBoth": true,
+  "allNativeCancellationPathsVerified": false,
+  "actualWebKitBundleID": "com.apple.WebKit",
+  "actualWebKitVersion": "8621",
+  "actualWebKitBuild": "8621.2.5.10.10",
+  "actualWebKitVersionSource": "runtime-public-bundle",
+  "exactWebKitSourceMatch": "unknown",
+  "jsObservationRestoredReceiptBoth": "true",
+  "jsObservationIncompleteBoth": true,
+  "jsObservationReasonBoth": "options-value",
+  "actualScrollToParametersVerified": false,
+  "old2367to1767RecordedThisRound": false,
+  "oldFullRootCauseProven": false,
+  "nativeWriterObservationFullyAccepted": false,
+  "guardBudgetArmedAssertionsAlgorithmsChanged": false,
   "newWKCallsWaitsRetries": 0,
-  "fullReleaseDeviceExecuted": false,
+  "fullOrReleaseOrDeviceExecuted": false,
   "ipaProduced": false,
   "lastDeliveredBuild": 30,
   "I6Accepted": false,
-  "releaseAccepted": false
+  "releaseAccepted": false,
+  "oldEvidenceProtectedCount": 4867,
+  "oldEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true,
+  "artifact": {
+    "artifact": 12507775826,
+    "archiveBytes": 62275323,
+    "sha256": "5bcd95244b56cffdd4ed9fc5686fba958d5ec29c3827905cd7fd6a2be6cc5ead",
+    "digestMatches": true,
+    "crcVerified": true,
+    "expandedBytes": 71076630,
+    "fileCount": 1046
+  },
+  "timing": {
+    "nativeStepSeconds": 1644.0,
+    "buildStartLogUTC": "2026-10-23T13:46:00.1120260Z",
+    "buildEndLogUTC": "2026-10-23T13:51:17.8028130Z",
+    "buildSecondsByLog": 317.690787,
+    "preBuildSecondsByStepLog": 383.112026,
+    "caseSeconds": [
+      [
+        "passed",
+        "13.221"
+      ],
+      [
+        "failed",
+        "44.702"
+      ]
+    ],
+    "arms": {
+      "paired-safe": [
+        {
+          "kind": "other",
+          "durationSeconds": 0.497024,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "-version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.357907,
+          "rawExit": 0,
+          "commandPrefix": [
+            "swift",
+            "--version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.024863,
+          "rawExit": 0,
+          "commandPrefix": [
+            "sw_vers"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.987382,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "list",
+            "devices"
+          ]
+        },
+        {
+          "kind": "boot",
+          "durationSeconds": 196.190814,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "bootstatus",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "appearance",
+          "durationSeconds": 144.555726,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "ui",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "test",
+          "durationSeconds": 212.150718,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "test-without-building",
+            "-xctestrun",
+            "/Users/runner/work/XianxiaReader/XianxiaReader/build/DerivedData/Build/Products/XianxiaReader-paired-safe.xctestrun"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 8.997078,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "get",
+            "test-results"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.122347,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "export",
+            "attachments"
+          ]
+        }
+      ],
+      "paired-conflict": [
+        {
+          "kind": "other",
+          "durationSeconds": 0.839585,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcodebuild",
+            "-version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 2.918168,
+          "rawExit": 0,
+          "commandPrefix": [
+            "swift",
+            "--version"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.066661,
+          "rawExit": 0,
+          "commandPrefix": [
+            "sw_vers"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 4.273725,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "list",
+            "devices"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 7.912989,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "shutdown",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "boot",
+          "durationSeconds": 65.795569,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "bootstatus",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "appearance",
+          "durationSeconds": 14.378559,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "simctl",
+            "ui",
+            "08AEF2F6-6BFD-48DC-9538-9B3FB7DE50B9"
+          ]
+        },
+        {
+          "kind": "test",
+          "durationSeconds": 238.977332,
+          "rawExit": 65,
+          "commandPrefix": [
+            "xcodebuild",
+            "test-without-building",
+            "-xctestrun",
+            "/Users/runner/work/XianxiaReader/XianxiaReader/build/DerivedData/Build/Products/XianxiaReader-paired-conflict.xctestrun"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.495645,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "get",
+            "test-results"
+          ]
+        },
+        {
+          "kind": "other",
+          "durationSeconds": 0.147932,
+          "rawExit": 0,
+          "commandPrefix": [
+            "xcrun",
+            "xcresulttool",
+            "export",
+            "attachments"
+          ]
+        }
+      ]
+    },
+    "note": "Step timestamps/log delimiters include shell overhead; per-command durations are actual receipts. Artifact download is separate."
+  },
+  "nextRecommendation": "Only locally review the saved matched S/M conflict evidence to determine how a sample committed across width change changes anchor equality and suppresses M restore; no new diagnostics/CI or algorithm changes in this completed slice."
 }

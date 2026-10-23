@@ -1,3 +1,29 @@
+# 唯一配对CI39962812139收口，原退出0/65；不再派发（2026-10-23）
+
+2026-10-23 有界解阻/唯一CI39962812139收口：现有Docker/Swift6.1.2原样helper一次退出0，无安装/拉取/环境重置；本轮运行源码变化0、619输入保持。CI162工具/484语法、一次原生build/link0通过；同构建619源码/609产物/三计划及四快照一致，驱动matchedBuildVerified=true。安全原case1/1、13.221秒/退出0，冲突0/1、44.702秒/原driver65，分类candidate-controlled-word-failure；M因anchorEqual=false抑制恢复，宽874原字在视口上方超时，未到冲突返程，安全双向/3返程请求通过。两臂准备completed、firstError空/记录点取消false，旧准备期CancellationError未复现/来源仍未知。191/200诊断零丢弃，旧38条缓冲向原owner/epoch完整交付，4组覆盖配对；全部取消路径未验。公开WebKit8621/8621.2.5.10.10已获，但JS参数options-value/incomplete，restored回执true仍非完整观察通过；旧2367→1767未记录、旧full根因未证。原生步骤27分24秒、case合计57.923秒，下载另计。1046原件SHA/CRC验证保留，仅删除重复传输副本，4867旧证据/Build30/普通HEAD index保持。无重派/full/Release/新IPA，I6仍未验收。下一步仅建议本地审阅已保存S/M冲突证据，不叠诊断或CI。见[原生结果与断点](Documentation/I6_PREPARATION_NATIVE.md)。
+
+恢复build/maintenance/I6-preparation-diagnostics-native-20261023/与build/ci/39962812139/；source=410b14af/attempt1/唯一POST。最终私有恢复revision/ref见final-checkpoint.json，不推送结果文档、不关机/停Docker或别的任务。准备期取消与不完整参数仍缺证，不能宣称已修，不自动续跑。
+
+---
+
+# CI39962812139仓库162/162、484语法已核，原生仍运行（2026-10-23）
+
+已下载完整repository-checks日志，162/162（含新增Swift helper实际执行）、484语法/54上游限制/新增0。初次gh日志读取拒绝terminal escape，原错误保留；仅对同一已完成job改为原样保存日志，未重跑CI。reader-positions仍in_progress，无原生编译/安全臂结论。只跟踪39962812139 attempt1，禁止重派/追加整套；恢复目录repository-proof和build/ci/39962812139/保留原件。
+
+---
+
+# 唯一配对CI运行中：39962812139（2026-10-23）
+
+冻结410b14af/619输入，Swift6.1.2实际helper一次退出0；唯一POST已确认run 39962812139。只查询此run/attempt1，任何中断不再派发。一次build/安全全合格才冲突，每臂原case一次；尚无本轮原生编译/测试结论。恢复build/maintenance/I6-preparation-diagnostics-native-20261023/，原full191/192/I6/Release缺口及Build30保持，不关机。
+
+---
+
+# 唯一原生配对CI派发锁已写，未知只查询不再POST（2026-10-23）
+
+源码410b14affcb1e6afa87b422ce14adde5deb116c3，branch=codex/continuous-viewport-preparation-diagnostics-native，619输入与a6457cdb一致；原样Swift6.1.2 helper一次退出0。selection=continuous-resize-pair，一次构建/每臂一次/安全全合格才冲突，真实退出/未启动null。锁在build/maintenance/I6-preparation-diagnostics-native-20261023/dispatch-intent.json；若中断先核dispatch-result及匹配源run，禁止再次POST。原生尚无结论，旧I6/Release缺口和Build30保持，不关机。
+
+---
+
 # 准备期Swift行为退出0，唯一原生CI准备中（2026-10-23）
 
 2026-10-23 已按具体批准隐藏启动现有Docker，未安装/拉取/重置/清理环境。现有锁定Swift6.1.2/Linux镜像仅一次原样helper编译执行退出0，覆盖首错只写一次/原NSError重抛/真实Task取消/完成后忽略/255溢出/旧sink及一次排空；UIKit/WK接线仍待原生。619输入与a6457cdb保持；复用此前28本地通过及484语法，不重跑。下一步仅条件授权的一轮continuous-resize-pair：一次构建/每臂一次，安全全合格才冲突，真实退出/未启动null。尚未派发；零算法/guard/armed/预算/断言变化。 见[本轮结果与断点](Documentation/I6_PREPARATION_NATIVE.md)。
