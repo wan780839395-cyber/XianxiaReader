@@ -1,3 +1,31 @@
+# 配对CI已失败收口：构建65，两臂未启动，禁止重派（2026-10-23）
+
+唯一CI39882224654/attempt1，冻结源b2c17c9d。repository检查通过：484语法（非编译）、Linux127工具通过；619项实际构建前Git来源与冻结一致。原生build-for-testing一次，新增配对夹具ReaderRenderingTests.swift:342宽度表达式触发Swift类型推断超时（同处5条批次诊断），构建原退出65；没有完整测试包编译/链接，安全/冲突及Swift机制执行0，两臂退出均null。不能写成0/2、配对通过或算法失败。
+
+完整full.log、原始PositionBuild.xcresult、prepared、环境、run/attempt及artifact已下载核摘要/CRC，10文件/1919545字节，重复ZIP已删除。目标步骤706秒，其中到build约427.926秒、build到失败278.314秒，原生用例0秒；没有第二轮/重试或取消。全部619输入无变动，原smoke/隔离/定位/S诊断/guard/断言预算保持，普通HEAD/index及Build30保持。
+
+最小后续候选仅把oldSample中的可选宽度解析拆为显式Double局部值，保留原fallback/差值<2与结果门槛，无新await；本轮未应用、未再派CI。恢复目录build/maintenance/I6-viewport-pair-native-20261023，权威result/native-analysis/timing-analysis和dispatch锁；完整原件build/ci/39882224654。结果见Documentation/I6_VIEWPORT_PAIR_NATIVE.md；项目状态已同步，文档检查及最终私有断点在本轮恢复目录，不改运行输入。
+
+旧full39735403242仍191/192，历史根因及旧S第三次拒绝未证；真实同构建产物/两臂运行未验，I6/Release/手机缺口、最后交付Build30和无新IPA保持。电脑不关机。
+
+---
+
+# 配对原生CI运行中：39882224654，只派一次（2026-10-23）
+
+冻结源b2c17c9d3312e942ad2448d4d9ecf244f78062e8，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# 配对原生CI准备派发：本轮只允许一次，禁止自动重派（2026-10-23）
+
+用户已明确授权唯一一轮continuous-resize-pair，冻结源b2c17c9d3312e942ad2448d4d9ecf244f78062e8，619运行输入与远端分支/旧原件/Build30/普通HEAD/index已核。一次build-for-testing；安全臂原测试/机制/提取/夹具/来源全部合格才启动冲突臂，最多原视口方法两次。保留两臂真实0/65或其他退出；冲突故障候选也不得变成功。没有生产/测试/CI输入变动，不跑Core/独立模块/23项/UI/full/设备Release，保留工作流原有repository-checks。
+
+本轮假设：先确认Swift夹具和同构建xctestrun驱动可真实编译/运行，安全控制具备资格，再观察旧F0采样跨到F1时的状态与原字结果。编译/准备失败只能说明该层未完成；状态交错、原字故障和历史full根因分别判读，不混为修复。
+
+恢复目录build/maintenance/I6-viewport-pair-native-20261023：before/frozen已写。派发前写dispatch-attempt锁，未知结果仅查询原run，绝不再次POST；派发后真实run见dispatch.json。中断先核实际CI/完整日志/原件，不凭网页旧尾部判挂起。失败先收齐证据查清，不自动重跑、改算法或追加实验。当前尚未派发/编译/原生，旧full191/192和I6/Release/手机缺口、最后交付Build30保持，电脑不关机。
+
+---
+
 # 配对 CI 接线收口：仅本地验证，零派发（2026-10-23）
 
 本轮在94df7632夹具上只接工作流/原选择器/新驱动/工具测试4项输入；基线617中615保持，新增2后619项。所有Swift/SDK、原smoke和配对夹具、隔离/定位/S诊断/guard/原字断言及预算保持。原shell删除配对专属分支后逐字节一致，工作流删除新路由后语义一致。

@@ -1,0 +1,176 @@
+{
+  "recordedAtUTC": "2026-10-23T01:25:24.072627+00:00",
+  "run": 39882224654,
+  "source": "b2c17c9d3312e942ad2448d4d9ecf244f78062e8",
+  "attempt": 1,
+  "ciDispatches": 1,
+  "conclusion": "failure",
+  "selection": "continuous-resize-pair",
+  "runtimeInputCount": 619,
+  "runtimeDrift": [],
+  "productionGuardAssertionsAndBudgetsUnchanged": true,
+  "repositoryStaticPassed": true,
+  "swiftGrammarFiles": 484,
+  "swiftGrammarNotCompilation": true,
+  "linuxPythonTests": {
+    "total": 127,
+    "passed": 127,
+    "skipped": 0,
+    "failed": 0
+  },
+  "buildAttempts": 1,
+  "nativeBuildExit": 65,
+  "compiled": false,
+  "linked": false,
+  "nativeCaseInvocations": 0,
+  "swiftPairMechanicsExecuted": false,
+  "safeOriginalExit": null,
+  "conflictOriginalExit": null,
+  "originalExitAbsenceReason": "Neither arm started; build-for-testing failed first",
+  "actualPreparedGitBlobsMatchFrozen": true,
+  "actualPreparedInputs": 619,
+  "actualMatchedBuildVerified": false,
+  "failureFile": "Tests/iOS/ReaderRenderingTests.swift",
+  "failureLine": 342,
+  "failureKind": "Swift compiler type-check timeout on new pair-safe width expression",
+  "diagnosticEmissionsAtSameLocation": 5,
+  "oldFullRootCauseProven": false,
+  "oldSFinalRejectionProven": false,
+  "pairedModeAccepted": false,
+  "deviceReleaseExecuted": false,
+  "deviceAccepted": false,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "lastNativeSource": "2a9fdfb51281407472b01f1729591d09690a5efd",
+  "lastNativeRun": 39806769382,
+  "timings": {
+    "targetStepSeconds": 706.0,
+    "toBuildCommandSeconds": 427.925993,
+    "buildCommandToFailureSeconds": 278.313933,
+    "nativeCaseSeconds": 0,
+    "nativeCaseInvocations": 0,
+    "nativeJobSeconds": 730.0,
+    "workflowCreatedToUpdatedSeconds": 787.0,
+    "repositoryToolsSeconds": 35.606,
+    "buildCommandAtUTC": "2026-10-23T01:16:10.925993+00:00",
+    "buildFailureAtUTC": "2026-10-23T01:20:49.239926+00:00"
+  },
+  "evidence": [
+    {
+      "path": "build/ci/39882224654/run.json",
+      "sha256": "b6215e4c6a53c629b4229389a32e75966cc28d5efe8dee82613b9542d62b5220"
+    },
+    {
+      "path": "build/ci/39882224654/run-api.json",
+      "sha256": "ed8e6d738e66b82f87e20fb6c13ada3e7dd535bc9578a70b6186a3ebc562e05f"
+    },
+    {
+      "path": "build/ci/39882224654/full.log",
+      "sha256": "458fcfdc3a7e20fdce36e8e70900fe2cdd26da2be503a1ea98742837713b1313"
+    },
+    {
+      "path": "build/ci/39882224654/artifacts.json",
+      "sha256": "fbf098eb7c16b8706229d768808e2e94422846bdd7347648aad805cedac89150"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic-download-receipt.json",
+      "sha256": "ecf8cf89f8524535d6ac389623089a5c84d1f8669ec09a17f3662d7d1430c598"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/logs/viewport-pair-driver.log",
+      "sha256": "d0b60e90762634523817890fd2dd166e364fcb69c4ff3d0aac7a5b807e8dbe2f"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/ViewportPair/prepared.json",
+      "sha256": "a0fbb5eceaa41ce47f43389aaeacebf26e7fe7bc849be517ebed267b2370f23b"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Info.plist",
+      "sha256": "4cd1d7e28b437db3dcfc2e0a5c432332dc2890a8d53e05a5f21ab4583126a5c8"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/native-analysis.json",
+      "sha256": "e066f9408bcabb7f534d1fe5cf2b0937e27ecf73ffe24688da5677c9fe07a010"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/timing-analysis.json",
+      "sha256": "2b8073b8cf281dc8e968884e059e2c0b7de227b75f7bf6d7891ec7f4c08aa2c7"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/dispatch-attempt.json",
+      "sha256": "0fc01b697b6c20488e4df83d451dca92048d12fd09bcedf4217cb900d05682bb"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/dispatch.json",
+      "sha256": "2e7760e6a2886306c9ff19fc18faf58f6d60cab15c34b9b0af6d0e090f8b4e70"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/frozen.json",
+      "sha256": "73df9c265a9ff41ef8ef9031f72168db2c2f9397b93656a005d074796940c0e8"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/document-check.log",
+      "sha256": "1f124f252949c667028c800246aa5e16c784bda95a418fb165672413e6d5f7b2"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-native-20261023/scope-audit.json",
+      "sha256": "36510f78e3cc595219d4dea128102f13a5c8e46aed36f59c1563095161bc9777"
+    }
+  ],
+  "artifactFiles": [
+    {
+      "path": "build/ci/39882224654/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/logs/viewport-pair-driver.log",
+      "sha256": "d0b60e90762634523817890fd2dd166e364fcb69c4ff3d0aac7a5b807e8dbe2f"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Info.plist",
+      "sha256": "4cd1d7e28b437db3dcfc2e0a5c432332dc2890a8d53e05a5f21ab4583126a5c8"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/data.0~alYNGDUMDYeNuzX1IkGvJzKVc4gap2v_NYDmlQNT6cyc0K2D1DyKgCrr6975MAAkglgeU_fSpcKK3G1qQ7Fmrw==",
+      "sha256": "dfa7b3fa5047fdb75ba88e052d9a1068d572cf249012a26cdacd5b9e6af3e7a9"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/data.0~fDkSZRgmHA5MWemOH6FeA1t40hsKwzLapXqvyAO7dc0_FzNkhBYG4QCZFVwvn5wZkcKPQXN8h-addPVsoOPFQQ==",
+      "sha256": "d40cdc80c6dc04cb995184ace103011438a39c8d60be1cf526f48a111de0709b"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/data.0~lb0zWLe4jplQsyeWUiY_WlARc7Siblb-pxKBoFAuvdIgDL0n_F5xN5hMWyC3AanH6UpaDmn_BbLIRsK7Ptbozw==",
+      "sha256": "4e421c5fd29dc445c1b5d134c64fd6ddba60e8e35ebf90f011503d2a6562c2a8"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/refs.0~alYNGDUMDYeNuzX1IkGvJzKVc4gap2v_NYDmlQNT6cyc0K2D1DyKgCrr6975MAAkglgeU_fSpcKK3G1qQ7Fmrw==",
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/refs.0~fDkSZRgmHA5MWemOH6FeA1t40hsKwzLapXqvyAO7dc0_FzNkhBYG4QCZFVwvn5wZkcKPQXN8h-addPVsoOPFQQ==",
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/PositionBuild.xcresult/Data/refs.0~lb0zWLe4jplQsyeWUiY_WlARc7Siblb-pxKBoFAuvdIgDL0n_F5xN5hMWyC3AanH6UpaDmn_BbLIRsK7Ptbozw==",
+      "sha256": "65bb7549e07ee7b05485e33884006277b35e836e1543691aa8fc5465c099c105"
+    },
+    {
+      "path": "build/ci/39882224654/diagnostic/ViewportPair/prepared.json",
+      "sha256": "a0fbb5eceaa41ce47f43389aaeacebf26e7fe7bc849be517ebed267b2370f23b"
+    }
+  ],
+  "nextCIAllowed": false,
+  "automaticRetryForbidden": true,
+  "runtimeFixApplied": false,
+  "validationKind": "project-isolation-i6-viewport-pair-native",
+  "report": "Documentation/I6_VIEWPORT_PAIR_NATIVE.md",
+  "recoveryDirectory": "build/maintenance/I6-viewport-pair-native-20261023",
+  "documentStaticPassed": true,
+  "previousRawEvidenceUnchanged": true,
+  "deliveredBuild30Unchanged": true,
+  "ordinaryHeadIndexUnchanged": true
+}
