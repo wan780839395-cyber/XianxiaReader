@@ -105,3 +105,10 @@ CLI读job日志收到terminal escape protection时，应保存原stderr，明确
 ## R3a接线与低收益准备教训（2026-10-21）
 
 新增真实target不能只依赖静态检查和独立SwiftPM通过来判定iOS接线可行。首案Core包内产品独立6/6，但Xcode规划auto dynamic/CSQLite失败，原生0项；1130秒原生步骤大多支付了准备成本。优先复用项目已验的产品消费布局；对新target先原生构建再昂贵模拟器启动，保留真实构建错误，不能靠强制全局static/dynamic或升级依赖盲补。修正采用ReaderSettings已有独立包模式，状态/合同/App字节保持，后续6+13通过；此观察支持该接线可用，未精确证明Xcode内部原因。前后两轮日志/成本都保留，不将冷准备、编译、选例执行和导出混算。
+
+
+## 2026-10-23：诊断参数也必须核对继承合同
+
+39908431098中S诊断给EPUBSpreadView.evaluateScript增加默认nil参数，漏审未改动的EPUBFixedSpreadView两参数override，原生编译在122行失败65。默认参数不保留旧override身份；484语法/离线JS通过没有编译Swift类型关系。这是诊断改动的审阅遗漏，不能归咎旧模块或写成S断言失败。两个臂和新journal实际执行0，原退出均null，原件保留。
+
+以后改父类或协议方法的签名，即使只加诊断/默认参数，也先检索全部override/实现及super转发，连同原包装、参数标签和默认行为一起审阅。本地补匹配/不匹配样本可以防止同类遗漏，但仍不替代原生编译。不能仅核Release归一化流程等价便宣称接口兼容。当前只记录教训与最小签名修正方案，未顺便修改源码或追加CI；详见[I6 S诊断原生结果](I6_VIEWPORT_S_READ_NATIVE.md)。

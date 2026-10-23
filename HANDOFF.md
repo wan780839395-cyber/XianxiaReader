@@ -1,3 +1,29 @@
+# S关联诊断唯一CI失败原件已收齐（2026-10-23）
+
+39908431098/3ab0bcbe/attempt1只派一次，一次build-for-testing原退出65。失败在EPUBFixedSpreadView.swift:122：新增父类evaluateScript第三个诊断参数后，原两参数override不再匹配；默认nil不保留方法身份。这是本次诊断补丁漏审继承合同，本地语法不代表编译，不能归咎旧项目或S断言。未改源码/重派。
+
+两个测试臂/Swift配对机制/新S关联journal均未执行，两臂退出null，构建产物/完整同构建来源校验未到达；本次没有真实JS提交/回调/内层offset回执，1767根因仍待证。141工具/484语法通过，构建前619源码与实际Git blob及版本字段一致。定向步骤467秒：准备335.161、编译至失败131.946，原生用例0秒。
+
+完整日志/元数据/构建xcresult/prepare已保留build/ci/39908431098；artifact12481383819，215192压缩字节/1265079展开字节/10文件，GitHub SHA/CRC已核，仅重复ZIP删除。恢复build/maintenance/I6-viewport-s-read-native-20261023含唯一派发锁/frozen、native/compile-failure/timing分析与result。619输入/1247旧原件/Build30/普通HEAD/index保持，旧full191/192及Release/手机缺口保持，不关机。
+
+本片仅收口文档与私有恢复快照；下一最小片拟仅本地修复FixedSpread override签名/默认nil观察者透传并登记Vendor摘要，保留href包装和原super await，尚未实施，也无新CI授权。
+
+---
+
+# S关联诊断配对CI运行中：39908431098，只派一次（2026-10-23）
+
+冻结源3ab0bcbe6a9a15e51eb2423ac526dcc08ac0d52e，selection=continuous-resize-pair。619输入保持；一次构建，安全全合格才冲突，最多两次原视口单例。保存真实退出与全量原件，不自动重派/改算法/追加整套。当前尚无编译/原生结论。恢复先核本轮attempt/dispatch/frozen和实际job，禁止因中断再POST；旧full191/192、Release/手机缺口及Build30保持，不关机。
+
+---
+
+# S关联诊断唯一原生CI准备（2026-10-23）
+
+用户新授权仅一轮continuous-resize-pair，冻结3ab0bcbe6a9a15e51eb2423ac526dcc08ac0d52e，619输入及实际Git blob、既有原件/Build30/普通HEAD/index已核。当前无运行助手，远端最近任务均completed。一次构建、每臂只执行一次原同例，安全原测试/机制/提取/夹具/来源全合格才冲突；真实未启动退出保留null。只核S实际WK提交/回调/内层滚动及来源；不改算法/guard/原断言预算，不加等待重试，不跑整套或自动重派。
+
+复用上轮484语法/静态和4工具/4离线JS/4回执检查，不加本地预检；保留工作流已有repository-checks。恢复build/maintenance/I6-viewport-s-read-native-20261023含before/frozen，派发前写持久锁；未知结果只查询原run，禁止再次POST。当前未派发，无新原生结论，旧full191/192及I6/Release/手机缺口保持，最后交付Build30，不关机。
+
+---
+
 # S关联诊断本地收口（2026-10-23）
 
 基线b58b55b9上仅三份Swift和必需UPSTREAM摘要共4输入变化，其余615保持。配对模式且实例fixture才开启：实际WK提交（原load await后）、completion（原continuation前）、snapshot返回及实时inner native状态；同次JS前后scrollY/JS时间；updateViewports的load-ready/layout-slots/scroll-delegate来源，frame设置前/offset赋值前后及请求关联。没有新增await挂起点/Task/等待/重试/滚动写入，算法/生产guard/原字断言预算与原视口用例不变。原smoke/Release JS提取字节相同。
