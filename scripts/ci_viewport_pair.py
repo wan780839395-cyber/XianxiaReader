@@ -247,7 +247,7 @@ def run_pair(root, simulator, runner=execute):
             env = dict(os.environ); env.pop(KEY, None); env.pop("TEST_RUNNER_" + KEY, None)
             test = command(["xcodebuild", "test-without-building", "-xctestrun", plans[mode],
                             "-destination", "platform=iOS Simulator,id=" + simulator,
-                            "-parallel-testing-enabled", "NO", "-test-iterations", "1",
+                            "-parallel-testing-enabled", "NO",
                             "-resultBundlePath", arm / "DiagnosticTests.xcresult", "-only-testing:" + CASE], "reader-diagnostic", env)
             row.update(executed=True, originalExit=test["rawExit"], testProcessPID=test["pid"])
             result["originalExits"][index] = test["rawExit"]

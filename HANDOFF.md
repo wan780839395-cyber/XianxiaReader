@@ -1,3 +1,35 @@
+# 配对单次命令本地收口：28/28，零CI（2026-10-23）
+
+驱动仅删除-test-iterations和1两个token，其余源码运行逻辑完全保持。工具测试禁止重复/重试参数、确认成功路径每臂一次；真实本地Python子进程回放旧CLI原字节并返回64，驱动/exits/原件保留64、安全停止无冲突调用，export23亦不覆盖64。子进程回执真实记录Python，不冒充Xcode。
+
+原始计划无重复/重试配置、arm_plan仅模式差异、实际错误字节及摘要投影已核旧39890156016原件。首次28项27通过/1 Windows文本换行失败已留原日志；夹具改buffer写原字节后28/28（13.325秒、零跳过），精确断言不变。484语法/静态通过（非编译），阶段末文档静态检查见document-check.log。
+
+仅2工具输入改变，其余617、133项旧原件、Build30/普通HEAD/index与全部Swift/smoke/隔离/定位/S诊断/默认值/比较/生产guard/原字断言预算保持。零CI/原生/full/Release；旧6254e866编译/真实版本通过不作为新命令原生验收，旧安全64/冲突null、原生用例0和完整配对未完成保持，旧full191/192与历史根因/I6/手机缺口不变，无IPA、不关机。
+
+恢复目录build/maintenance/I6-viewport-single-execution-20261023有before/日志/真实字节和计划审计/runtime-diff/result；最终本地私有快照见final-checkpoint.json，不推送、不派CI。详细Documentation/I6_VIEWPORT_SINGLE_EXECUTION.md及ValidationLogs/project-isolation-i6-viewport-single-execution.json。后续只有新指令才做一轮原生验证，当前片已完成，不追加实验。
+
+---
+
+# 64回放夹具换行已修正，复核前断点（2026-10-23）
+
+首次本地28项27通过、1失败：Windows文本stderr把真实原件LF变CRLF，字节断言正确失败；原日志local-pair-tools-first.log保留。只将测试子进程改为buffer写原始字节，原驱动仅删除两个token、原断言不变。下一步复核同一模块和范围；已完成484语法静态通过（非编译），零CI。
+
+---
+
+# 单次命令修正已实现，验证前断点（2026-10-23）
+
+驱动仅删除-test-iterations和1两个token，其余运行逻辑保持；对应工具测试禁止重复/重试参数、断言每臂一次，新增真实子进程64与原始CLI错误回放、安全失败停止及提取23不覆盖64检查。下一步仅对应Python模块、实际计划/原件审计、484语法与项目静态；当前尚无本地验证结论，未派CI，Swift/算法/原guard/断言预算不变。恢复目录build/maintenance/I6-viewport-single-execution-20261023。
+
+---
+
+# 单次配对命令本地修正开始（2026-10-23）
+
+用户仅授权本地修无效-test-iterations 1，不派CI。基线297627ef，619运行输入、旧原件、Build30和普通HEAD/index已核，无运行助手。只改ci_viewport_pair.py命令两个token和对应工具测试，保留每臂一次、原计划/来源/版本守卫、真实退出及安全失败停止；所有Swift/smoke/隔离/定位/S诊断/guard/原断言预算不变。
+
+已核39890156016真实stderr/64回执和无重复计划，并复核Apple重复测试说明与Bazel基础runner。下一步删除无效参数，补真实子进程64及原错误字节回放、安全停止与提取失败不覆盖64检查，更新原命令断言为禁止重复/重试。仅跑对应Python模块、实际原件/范围审计与规定静态语法检查。恢复目录build/maintenance/I6-viewport-single-execution-20261023；当前尚未修改/验证，旧原生0执行/full191/192/Release手机缺口保持，不关机。
+
+---
+
 # 版本前缀修正版CI收口：解析/编译通过，CLI参数64（2026-10-23）
 
 唯一39890156016/6254e866/attempt1：139工具/484语法、一次原生build-for-testing/编译链接通过。真实driver前缀成功解析，7版本字段完整相等；619Git来源、609产物/三份计划及安全命令before/after与冻结一致。

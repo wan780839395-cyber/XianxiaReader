@@ -39,6 +39,20 @@ CAPTURED_VERSIONS = {
 }
 
 
+# Run 39890156016, attempt 1: exact stderr and selected summary fields.
+# A real local child replays exit 64; it does not invoke Xcode or XCTest.
+CAPTURED_CLI64_ERROR = "xcodebuild: error: Must specify -test-iterations with more than 1 iteration.\n"
+CAPTURED_CLI64_SUMMARY = {
+    "result": "Failed", "totalTestCount": 1, "passedTests": 0, "failedTests": 1, "skippedTests": 0,
+    "testFailures": [{
+        "failureText": "Must specify -test-iterations with more than 1 iteration.",
+        "targetName": "(Transient Testing)", "testIdentifier": 1,
+        "testIdentifierString": "EC8D1271-86C5-41FE-BD68-26264589E7BC",
+        "testName": "xcodebuild encountered an error (64)",
+    }],
+}
+
+
 class VersionFieldsTests(unittest.TestCase):
     def test_real_stdout_and_merged_samples_keep_all_seven_fields(self):
         samples = {"environment": CAPTURED_ENVIRONMENT, **CAPTURED_VERSIONS}
@@ -130,8 +144,15 @@ class ViewportPairCITests(unittest.TestCase):
             self.assertEqual(command.count("-only-testing:" + pair.CASE), 1)
             self.assertNotIn(pair.KEY, env); self.assertNotIn("TEST_RUNNER_" + pair.KEY, env)
             self.assertEqual(plistlib.loads(Path(command[command.index("-xctestrun") + 1]).read_bytes()), pair.arm_plan(self.base, mode))
-            self.assertIn("-test-iterations", command); self.assertNotIn("-retry-tests-on-failure", command)
+            for option in ["-test-iterations", "-retry-tests-on-failure", "-run-tests-until-failure", "-test-repetition-relaunch-enabled"]:
+                self.assertFalse(any(arg == option or str(arg).startswith(option + "=") for arg in command))
             raw = self.status[mode]
+            if raw == 64:
+                result = Path(command[command.index("-resultBundlePath") + 1]); result.mkdir()
+                child = "import sys;sys.stderr.buffer.write(" + repr(CAPTURED_CLI64_ERROR.encode()) + ");raise SystemExit(64)"
+                receipt = pair.execute([sys.executable, "-c", child], log)
+                (result / "original-result").write_text(str(receipt["rawExit"]))
+                return receipt
             sample = fixtures.PositionEvidenceTests.pair_fixture(None, mode, status=raw)
             row, base, summary, resize = sample
             row["nonce"] = "duplicate" if self.duplicate_nonce else mode
@@ -143,7 +164,8 @@ class ViewportPairCITests(unittest.TestCase):
             result = Path(command[command.index("-resultBundlePath") + 1]); result.mkdir()
             (result / "original-result").write_text(str(raw))
         elif command[:5] == ["xcrun", "xcresulttool", "get", "test-results", "summary"]:
-            body = json.dumps(fixtures.PositionEvidenceTests.pair_fixture(None, mode, status=self.status[mode])[2])
+            body = json.dumps(CAPTURED_CLI64_SUMMARY if self.status[mode] == 64 else
+                              fixtures.PositionEvidenceTests.pair_fixture(None, mode, status=self.status[mode])[2])
         elif command[:3] == ["xcrun", "xcresulttool", "export"]:
             raw = self.export_exit
             path = Path(command[-1]); path.mkdir(); (path / "original.txt").write_text("kept even after 65")
@@ -220,6 +242,8 @@ class ViewportPairCITests(unittest.TestCase):
         self.assertFalse(report["releaseAccepted"]); self.assertFalse(report["oldFullRootCauseProven"])
         commands = [c for _, c in self.calls]
         self.assertEqual(sum(c[:2] == ["xcodebuild", "test-without-building"] for c in commands), 2)
+        for mode in pair.MODES:
+            self.assertEqual(sum(m == mode and c[:2] == ["xcodebuild", "test-without-building"] for m, c in self.calls), 1)
         self.assertFalse(any("build-for-testing" in c or "test" in c for c in commands))
         self.assertEqual(sum(c[:3] == ["xcrun", "simctl", "shutdown"] for c in commands), 1)
         self.assertEqual(sum(c[:3] == ["xcrun", "simctl", "bootstatus"] for c in commands), 2)
@@ -234,6 +258,36 @@ class ViewportPairCITests(unittest.TestCase):
         self.assertEqual(set(report["arms"]), {pair.MODES[0]})
         self.assertFalse(any(mode == pair.MODES[1] for mode, _ in self.calls))
         self.assertTrue((self.folder / "paired-safe/DiagnosticTests.xcresult/original-result").is_file())
+        self.assertTrue((self.folder / "paired-safe/ReaderSnapshots/original.txt").is_file())
+
+    def test_captured_cli64_keeps_real_child_exit_and_stops_before_conflict(self):
+        self.status[pair.MODES[0]] = 64
+        status, report = self.run_driver()
+        self.assertEqual(status, 64); self.assertEqual(report["originalExits"], [64, None])
+        self.assertEqual(set(report["arms"]), {pair.MODES[0]})
+        self.assertFalse(any(mode == pair.MODES[1] for mode, _ in self.calls))
+        self.assertEqual(sum(c[:2] == ["xcodebuild", "test-without-building"] for _, c in self.calls), 1)
+        self.assertFalse(report["matchedBuildVerified"]); self.assertFalse(report["releaseAccepted"])
+        self.assertEqual(report["stopReason"], "Safe arm failed; conflict not started")
+        arm = self.folder / "paired-safe"
+        self.assertEqual((arm / "logs/reader-diagnostic.log").read_bytes(), CAPTURED_CLI64_ERROR.encode())
+        self.assertEqual(hashlib.sha256(CAPTURED_CLI64_ERROR.encode()).hexdigest(),
+                         "ce4e83dd5528a01a356303dff0386e1c1e54ed87cc496e24041a5a6cd6c3444f")
+        receipt = json.loads((arm / "logs/reader-diagnostic.command.json").read_text())
+        self.assertEqual(receipt["rawExit"], 64)
+        self.assertEqual((arm / "DiagnosticTests.xcresult/original-result").read_text(), "64")
+        self.assertEqual(json.loads((arm / "exits.json").read_text())["originalExit"], 64)
+        self.assertEqual(json.loads((arm / "test-results-summary.json").read_text()), CAPTURED_CLI64_SUMMARY)
+        self.assertTrue((arm / "ReaderSnapshots/original.txt").is_file())
+
+    def test_export_error_after_real_child_64_does_not_replace_exit_or_start_conflict(self):
+        self.status[pair.MODES[0]] = 64; self.export_exit = 23
+        status, report = self.run_driver()
+        self.assertEqual(status, 64); self.assertEqual(report["originalExits"], [64, None])
+        self.assertFalse(any(mode == pair.MODES[1] for mode, _ in self.calls))
+        arm = report["arms"][pair.MODES[0]]
+        self.assertEqual(arm["originalExit"], 64)
+        self.assertEqual(arm["commands"][-1]["rawExit"], 23)
         self.assertTrue((self.folder / "paired-safe/ReaderSnapshots/original.txt").is_file())
 
     def test_conflict_65_is_a_failed_driver_even_for_qualified_word_fault(self):
@@ -310,7 +364,7 @@ class ViewportPairCITests(unittest.TestCase):
         with self.assertRaises(ValueError): pair.arm_plan(bad, pair.MODES[0])
 
     def test_raw_subprocess_exit_is_persisted_without_shell_masking(self):
-        for raw in [0, 65, 23]:
+        for raw in [0, 64, 65, 23]:
             log = self.root / ("child-" + str(raw) + ".log")
             result = pair.execute([sys.executable, "-c", "print('raw child');raise SystemExit(" + str(raw) + ")"], log)
             self.assertEqual(result["rawExit"], raw)
