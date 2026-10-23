@@ -5,6 +5,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
+  continuous-resize-pair)
+    cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView)
+    ;;
   continuous-resize-smoke)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView)
     export TEST_RUNNER_XIANXIA_VIEWPORT_FIXTURE=smoke
@@ -312,6 +315,9 @@ test -d "${DEVELOPER_DIR:?Select Xcode 16.4}/Platforms/iPhoneOS.platform"
 xcodebuild -version | tee build/build-environment.txt
 swift --version | tee -a build/build-environment.txt
 sw_vers | tee -a build/build-environment.txt
+if [[ "$selection" == 'continuous-resize-pair' ]]; then
+  python3 scripts/ci_viewport_pair.py prepare
+fi
 if [[ ! -d .cache/XcodeGen ]]; then
   git clone --depth 1 --branch 2.46.0 https://github.com/yonaskolb/XcodeGen.git .cache/XcodeGen
 fi
@@ -326,7 +332,7 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
-if [[ "$selection" == 'initialization-close' || "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'continuous-resize' || "$selection" == 'continuous-resize-smoke' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
+if [[ "$selection" == 'continuous-resize-pair' || "$selection" == 'initialization-close' || "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'continuous-resize' || "$selection" == 'continuous-resize-smoke' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps
   # its cases, assertions and budgets, reusing these ordinary build products.
@@ -337,6 +343,10 @@ if [[ "$selection" == 'initialization-close' || "$selection" == 'position-isolat
     -clonedSourcePackagesDirPath "$PWD/build/SourcePackages" \
     -resultBundlePath "$PWD/build/PositionBuild.xcresult" \
     "${cases[@]}" CODE_SIGNING_ALLOWED=NO
+fi
+if [[ "$selection" == 'continuous-resize-pair' ]]; then
+  # Only this route reuses the exact built products in two fresh test processes.
+  exec python3 scripts/ci_viewport_pair.py run "$SIMULATOR_ID"
 fi
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
 if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi

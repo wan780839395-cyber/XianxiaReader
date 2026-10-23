@@ -1,0 +1,145 @@
+{
+  "recordedAtUTC": "2026-10-23T00:58:55.932059+00:00",
+  "sourceParent": "94df7632d74547bc3e9e83c9dc0c4432cb1c79fd",
+  "implemented": true,
+  "ciWiringImplemented": true,
+  "sourceGuardImplemented": true,
+  "localStaticPassed": true,
+  "baselineRuntimeInputCount": 617,
+  "currentRuntimeInputCount": 619,
+  "runtimeChanges": [
+    ".github/workflows/ios-build.yml",
+    "scripts/ci_reader_diagnostic.sh",
+    "scripts/ci_viewport_pair.py",
+    "scripts/test_viewport_pair_ci.py"
+  ],
+  "otherRuntimeInputsUnchanged": 615,
+  "pythonTests": {
+    "total": 31,
+    "passed": 30,
+    "skipped": 1,
+    "failed": 0
+  },
+  "swiftSyntaxRerun": false,
+  "swiftUnchanged": true,
+  "firstLocalFailure": "Temporary Git sample CRLF versus LF blob; fixture fixed to LF; strict guard retained",
+  "subsequentLocalWarning": "Output pipe ResourceWarning; pipe closed and warnings-as-errors passed",
+  "ciDispatches": 0,
+  "compiled": false,
+  "nativeExecuted": 0,
+  "swiftMechanicsExecuted": false,
+  "actualMatchedBuildVerified": false,
+  "pairedModeAccepted": false,
+  "originalSmokePreserved": true,
+  "productionGuardAssertionsAndBudgetsUnchanged": true,
+  "deviceReleaseExecuted": false,
+  "deviceAccepted": false,
+  "oldFull": {
+    "run": 39735403242,
+    "passed": 191,
+    "total": 192,
+    "rootCauseProven": false
+  },
+  "oldSFinalRejectionProven": false,
+  "lastNativeSource": "2a9fdfb51281407472b01f1729591d09690a5efd",
+  "lastNativeRun": 39806769382,
+  "lastNativeSmokePassed": 1,
+  "newIPA": false,
+  "lastDeliveredBuild": 30,
+  "ordinaryHeadIndexUnchanged": true,
+  "evidence": [
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/before.json",
+      "sha256": "923ca8214e78ab7d4f6a21bf3c88cf2ce1904b4136f0428c46ab7a739bda7d33"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/local-tools.log",
+      "sha256": "17500c9596bc07b08f61ad69e5cbfaf2662ea057fb9e4f17b2904b040d491c19"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/local-tools-lf.log",
+      "sha256": "5cc761b4186ab94a32168d3284b69da79fbaee5bf7fc3c0a0cd8de7920d4c241"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/local-tools-final.log",
+      "sha256": "890ebbdb733fee2c2196e067a835f7035fd35f81d34f9849ceb83abf5c081960"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/local-tools-versions.log",
+      "sha256": "8ae056272e0a605b12dfee247f54842bfeb442f8d9e15ab959228181db24c32d"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/scope-audit.json",
+      "sha256": "9f6976c1fd1128ab22e47e6fdc6a7796f96efe4b86ef09d2449584883b7829b4"
+    },
+    {
+      "path": "build/maintenance/I6-viewport-pair-ci-20261023/document-check.log",
+      "sha256": "1f124f252949c667028c800246aa5e16c784bda95a418fb165672413e6d5f7b2"
+    }
+  ],
+  "previousRawEvidence": [
+    {
+      "path": "build/ci/39806769382/full.log",
+      "sha256": "8c0d58624d289318cc5080776f35b04afa059a42ddcd2052d820efb3853c67b5"
+    },
+    {
+      "path": "build/ci/39806769382/run.json",
+      "sha256": "4494c866dbb0ab4908bf790c16e768db3c0bb8da442e79a5bd10f8f0e7b4c7c7"
+    },
+    {
+      "path": "build/ci/39806769382/artifacts.json",
+      "sha256": "af772d356aeeb2a0a41087cbe0299f87ebc44287acc75f4af1a88ca4b9450803"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/logs/reader-diagnostic.log",
+      "sha256": "bb6d545293813d0127356ba1082be8876fe9508c000a4dfc86e579f8ddbe3a85"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/test-results-summary.json",
+      "sha256": "489fca9e1da690afbf49e22ef3ea8b682c61246da833d936db0add44a967c88b"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/build-environment.txt",
+      "sha256": "0e2e3b1bfdd7e49b6b4f2c8586123362e50845e8b379bb2aabfe5bd0c8b9e99b"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/ReaderSnapshots/manifest.json",
+      "sha256": "8e376f85739a17d105fa74a026b4b220b92047eece03e08178059aa3160688b6"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/logs/viewport-smoke-receipt.json",
+      "sha256": "d053f80d10aa0ee5199c3ac84e06aca7dfae5f10bed0fa5bcb93d4ce6d8a30c3"
+    },
+    {
+      "path": "build/ci/39806769382/run-api.json",
+      "sha256": "174785b2be53b1630ee96f7e75080c756f74cfc46e7b43eedc39c5c8a7207859"
+    },
+    {
+      "path": "build/maintenance/I6-smoke-admission-native-20261022/admission-analysis.json",
+      "sha256": "b2c1a53fd1fb483759c6a9daf4c1ddfc3e1979319a06be32fa07216c5483b9fe"
+    },
+    {
+      "path": "build/maintenance/I6-smoke-admission-native-20261022/s-diagnostic-analysis.json",
+      "sha256": "3a4d67595811535b2f66462f970b6f31f8a1e77febe1d946bcae4171de65bdd7"
+    },
+    {
+      "path": "build/ci/39806769382/diagnostic/ReaderSnapshots/122C0B04-10B9-40C1-A8A9-9E2B8131A812.txt",
+      "sha256": "ba62116a89a48f2cf10c678e64d30ca43ff9e8473e40f48bf6ad9cd4f2325324"
+    }
+  ],
+  "deliveredBuild30": {
+    "build/XianxiaReader-SettingsIsolation-Build30.ipa": {
+      "sha256": "35752183296684a573bf866c84ad34f555adc5d16aadcab7148763c1f839a638",
+      "matchesPrevious": true
+    },
+    "build/XianxiaReader-SettingsIsolation-Build30-TestKit.zip": {
+      "sha256": "c61538db0ea6f209c1aadcbbbf9f6fc067d82f8af1cd0ddaa597b76e31be7128",
+      "matchesPrevious": true
+    }
+  },
+  "nextRoundCIAllowed": false,
+  "validationKind": "project-isolation-i6-viewport-pair-ci",
+  "report": "Documentation/I6_VIEWPORT_PAIR_CI.md",
+  "recoveryDirectory": "build/maintenance/I6-viewport-pair-ci-20261023",
+  "documentStaticPassed": true
+}

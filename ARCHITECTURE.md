@@ -1,5 +1,9 @@
 # 架构与技术决策
 
+2026-10-23 配对CI接线与同构建来源守卫已完成本地检查，零派发：显式continuous-resize-pair只复用一次build-for-testing，两臂test-without-building使用仅模式不同的计划；源码/锁/书籍/产物/版本/模拟器前后核对。安全原测试、提取、夹具或来源失败即止，冲突65仍返回65，原件始终保存。仅4项工具/工作流输入变化或新增，615旧项及全部Swift/SDK/smoke/隔离/定位/S诊断/guard/断言预算保持，现共619项。31项本地工具30通过/1 POSIX跳过；未编译/原生，真实同构建来源未验，旧full191/192与I6/Release/手机缺口、Build30保持。见[接线与验证边界](Documentation/I6_VIEWPORT_PAIR_CI.md)。
+
+以下记录保留各自当时范围，本轮接线以上文为准。
+
 2026-10-23 本地配对夹具已实现、零CI：保留原smoke，另设paired-safe/conflict，共同提前封入口，仅指定S/M交错，实际退出后逐条排空；只补3项M标量诊断及本地回执正反例。5项运行输入变化，其余612保持；Release代码/原JS/S诊断/原guard/断言预算保持。484语法通过（非编译），工具16通过/1 POSIX跳过；新Swift机制及原生未执行。同构建来源核验与CI接线后续，当前比较不授予配对验收。旧smoke1/1只属旧源，旧full191/192与I6/Release/手机缺口、Build30保持。见[实现与验证边界](Documentation/I6_VIEWPORT_PAIR_FIXTURE.md)。
 
 以下记录保留各自当时范围，本轮实现以上文为准。
