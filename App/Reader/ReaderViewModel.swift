@@ -8,6 +8,12 @@ import ReadingInterfaces
 import SwiftUI
 import XianxiaCore
 
+#if DEBUG
+private let readerSaveDiagnosticsAvailable = true
+#else
+private let readerSaveDiagnosticsAvailable = false
+#endif
+
 enum ReaderMode: CaseIterable, Hashable {
     case horizontal, continuous, verticalScreen
     var title: String {
@@ -24,6 +30,10 @@ enum ReaderMode: CaseIterable, Hashable {
         case .verticalScreen: return "arrow.up.arrow.down.square"
         }
     }
+}
+
+enum ReaderSaveSource: String {
+    case unspecified, settingsDismissed, returnToLibrary, sceneInactive, positionRetry
 }
 
 @MainActor final class ReaderViewModel: ObservableObject {
@@ -75,6 +85,31 @@ enum ReaderMode: CaseIterable, Hashable {
     private var positions: ReaderPositionState { progress.positions }
     private lazy var positionPersistence = ReaderPositionPersistence(
         state: positions, storage: ReaderPositionRepository(services.repository))
+
+    // F5 save observation: no publishing, tasks, engine reads or unbounded output.
+    private let saveDiagnosticsEnabled = readerSaveDiagnosticsAvailable && ProcessInfo.processInfo.environment["XR_READER_UI_SETTINGS"] == "1"
+    private lazy var saveDiagnosticOwner = UUID().uuidString
+    private var saveDiagnosticRequests = 0
+    private var saveDiagnosticRows: [String] = []
+    var saveDiagnosticSummary: String {
+        return saveDiagnosticRows.isEmpty ? "" : " | saveCoverage=first-32-requests,last-8-rows | " + saveDiagnosticRows.joined(separator: " | ")
+    }
+
+    private func beginSaveDiagnostic(source: ReaderSaveSource, sessionID: UUID?) -> String? {
+        guard saveDiagnosticsEnabled, saveDiagnosticRequests < 32 else { return nil }
+        saveDiagnosticRequests += 1
+        let identity = "owner=\(saveDiagnosticOwner) session=\(sessionID?.uuidString ?? "nil") request=\(saveDiagnosticRequests) source=\(source.rawValue)"
+        recordSaveDiagnostic("\(identity) phase=begin")
+        return identity
+    }
+
+    private func recordSaveDiagnostic(_ value: String) {
+        guard saveDiagnosticsEnabled else { return }
+        let row = "t=\(Int(ProcessInfo.processInfo.systemUptime * 1000)) \(value)"
+        saveDiagnosticRows.append(row)
+        if saveDiagnosticRows.count > 8 { saveDiagnosticRows.removeFirst(saveDiagnosticRows.count - 8) }
+        NSLog("XRSave %@", row)
+    }
 
     init(book: Book, services: AppServices, factory: any ReaderEngineFactory) {
         self.book = book
@@ -219,17 +254,38 @@ enum ReaderMode: CaseIterable, Hashable {
         return appearanceSaveFailure == nil && interactionSaveFailure == nil
     }
 
-    func saveNow() async {
+    func saveNow(source: ReaderSaveSource = .unspecified) async {
         pauseAutomaticScroll()
         let sessionID = openRequestID
         let requestID = positions.beginSave(sessionID: sessionID)
         defer { positions.endSave(requestID) }
+        let diagnosticID = beginSaveDiagnostic(source: source, sessionID: sessionID)
+        var phase = "motion-flush", capture = "not-entered"
+        var returnedNil = 0, engineUnavailable = 0
+        defer {
+            if let diagnosticID {
+                recordSaveDiagnostic("\(diagnosticID) phase=end boundary=\(phase) capture=\(capture) returnedNil=\(returnedNil) engineUnavailable=\(engineUnavailable) ready=\(isReady) positionFailure=\(positionSaveFailure != nil) settingsFailure=\(settingsSaveFailure != nil)")
+            }
+        }
         await engine?.automaticScrollProvider?.flushAutomaticScrollPosition()
         guard positions.isCurrent(requestID, sessionID: openRequestID), !Task.isCancelled else { return }
+        phase = "settings-flush"
         await services.readerSettings.flush()
         guard positions.isCurrent(requestID, sessionID: openRequestID),
               !Task.isCancelled, sessionID != nil, isReady, let engine else { return }
-        await positionPersistence.captureAndSave(from: ReaderEnginePositionSource(engine), request: requestID) { self.openRequestID }
+        phase = "position"
+        let unavailableObserver: ((ReaderEnginePositionSource.UnavailableReason) -> Void)? = diagnosticID == nil ? nil : { reason in
+            switch reason {
+            case .returnedNil: returnedNil += 1
+            case .engineUnavailable: engineUnavailable += 1
+            }
+        }
+        let captureObserver: ((ReaderPositionPersistence.CaptureDiagnostic) -> Void)? = diagnosticID == nil ? nil : { value in
+            capture = "\(value.reason.rawValue),attempts:\(value.attempts),unavailable:\(value.unavailableCaptures),failurePublished:\(value.failurePublished)"
+        }
+        await positionPersistence.captureAndSave(from: ReaderEnginePositionSource(engine, observeUnavailable: unavailableObserver), request: requestID,
+                                                 diagnostic: captureObserver) { self.openRequestID }
+        phase = "returned"
     }
 
     func setAppearance(_ value: ReadingAppearance) {

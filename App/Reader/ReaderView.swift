@@ -57,7 +57,7 @@ private let readerPresentationDiagnosticsEnabled = false
                 guard !returningToLibrary else { return }
                 returningToLibrary = true
                 Task {
-                    await model.saveNow()
+                    await model.saveNow(source: .returnToLibrary)
                     guard visible else { return }
                     if let failure = model.settingsSaveFailure {
                         returningToLibrary = false; model.errorMessage = failure
@@ -83,7 +83,7 @@ private let readerPresentationDiagnosticsEnabled = false
             tracePresentation("settings.dismissed")
             guard visible else { return }
             Task {
-                await model.saveNow()
+                await model.saveNow(source: .settingsDismissed)
                 guard visible, !returningToLibrary, !showAppearance, model.isReady, scenePhase == .active else { return }
                 if let failure = model.positionSaveFailure { model.errorMessage = failure }
             }
@@ -128,13 +128,13 @@ private let readerPresentationDiagnosticsEnabled = false
         .onChange(of: model.navigationInProgress) { _ in tracePresentation("navigation.changed") }
         .onDisappear { tracePresentation("reader.disappeared"); visible = false; model.close() }
         .onChange(of: scenePhase) { phase in
-            if phase != .active { model.pauseAutomaticScroll(); Task { await model.saveNow() } }
+            if phase != .active { model.pauseAutomaticScroll(); Task { await model.saveNow(source: .sceneInactive) } }
         }
     }
 
     @ViewBuilder private var presentationDiagnostic: some View {
         if readerPresentationDiagnosticsEnabled && ProcessInfo.processInfo.environment["XR_READER_UI_SETTINGS"] == "1" {
-            Text(presentationTrace.joined(separator: " | "))
+            Text(presentationTrace.joined(separator: " | ") + model.saveDiagnosticSummary)
                 .font(.system(size: 1)).frame(width: 1, height: 1).clipped().opacity(0.01)
                 .allowsHitTesting(false).accessibilityIdentifier("reader.presentation.diagnostic")
         }

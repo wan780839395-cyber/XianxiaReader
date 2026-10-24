@@ -60,7 +60,7 @@ import XianxiaCore
                         if let failure = model.positionSaveFailure {
                             settingsCard {
                                 Label(failure, systemImage: "exclamationmark.circle").font(.footnote).foregroundStyle(.red)
-                                Button("重试保存阅读位置") { Task { await model.saveNow() } }.frame(minHeight: 44)
+                                Button("重试保存阅读位置") { Task { await model.saveNow(source: .positionRetry) } }.frame(minHeight: 44)
                             }.accessibilityIdentifier("reader.position.save-error")
                         }
                         VStack(spacing: 4) {

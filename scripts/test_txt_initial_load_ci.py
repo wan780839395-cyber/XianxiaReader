@@ -13,6 +13,7 @@ import unittest
 import check_repository  # Existing cached validation dependencies, including YAML.
 import yaml
 from verify_reader_positions import verify_native
+from test_f5_save_origin_ci import restore_pre_f5_driver, restore_pre_f5_workflow
 
 ROOT = Path(__file__).resolve().parents[1]
 CASE = "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen"
@@ -54,7 +55,7 @@ class TXTInitialLoadCITests(unittest.TestCase):
         self.assertEqual(source.count(SHELL_BRANCH), 1)
         # e15f8ef6: exactly reverse the new branch; preserve all old flags,
         # awaits/budgets, exit handling and the driver's no-packaging path.
-        old = source.replace(SHELL_BRANCH, "", 1)
+        old = restore_pre_f5_driver(source).replace(SHELL_BRANCH, "", 1)
         self.assertEqual(hashlib.sha256(old.encode()).hexdigest(), "860a68772c1834becee2d3cadf50905ddcd2b435839e222c5de24529e36afb68")
         for changed in [source.replace(SHELL_BRANCH, ""),
                         source.replace(SHELL_BRANCH, SHELL_BRANCH.replace(CASE, "ReaderRenderingTests/testOther")),
@@ -80,7 +81,7 @@ class TXTInitialLoadCITests(unittest.TestCase):
         upload = next(step for step in jobs["reading-diagnostic"]["steps"] if step.get("name") == "Preserve diagnostic logs and original test result")
         self.assertEqual(upload["if"], "always()")
         self.assertIn("build/txt-initial-load-receipt.json", upload["with"]["path"].splitlines())
-        old = source.replace(", txt-initial-load]", "]", 1).replace(RECEIPT_BLOCK, "", 1).replace(receipt_path, "", 1)
+        old = restore_pre_f5_workflow(source).replace(", txt-initial-load]", "]", 1).replace(RECEIPT_BLOCK, "", 1).replace(receipt_path, "", 1)
         # e15f8ef6 exact old workflow, CRLF normalized by read_text; raw
         # baseline remains 4b67339c5efdedf20edfd3a2eacf9659fa9ffc5e19809d21137efe159226172f.
         self.assertEqual(hashlib.sha256(old.encode()).hexdigest(), "2625c84aeb7102c6246267b79a07786905effdf2552db176ae48bf15055ff2a1")

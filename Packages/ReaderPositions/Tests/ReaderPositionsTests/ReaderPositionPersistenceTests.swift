@@ -32,12 +32,16 @@ final class ReaderPositionPersistenceTests: XCTestCase {
         c.source.currentPosition = c.source.value
         await c.save()
         XCTAssertEqual(c.storage.saved, [c.source.value!]); XCTAssertEqual(c.source.calls, 0)
+        XCTAssertEqual(c.diagnostics.last?.reason, .saved)
+        XCTAssertEqual(c.diagnostics.last?.attempts, 0)
         let old = c.state.position
         c.source.currentPosition = nil
         await c.save()
         XCTAssertEqual(c.source.calls, 0); XCTAssertEqual(c.storage.saved.count, 1)
         XCTAssertEqual(c.state.position, old)
         XCTAssertEqual(c.state.saveFailure, "阅读进度尚未保存：当前位置尚未稳定，请稍后再试。")
+        XCTAssertEqual(c.diagnostics.last?.reason, .fixedPositionMissing)
+        XCTAssertEqual(c.diagnostics.last?.failurePublished, true)
     }
 
     @MainActor func testUnavailableCaptureRetriesThenPreservesFullLocator() async {
@@ -46,6 +50,10 @@ final class ReaderPositionPersistenceTests: XCTestCase {
         XCTAssertEqual(c.source.calls, 3)
         XCTAssertEqual(c.storage.saved, [c.source.value!]); XCTAssertEqual(c.state.position, c.source.value)
         XCTAssertNil(c.state.saveFailure)
+        XCTAssertEqual(c.diagnostics.count, 1, "One report per save, never one per retry")
+        XCTAssertEqual(c.diagnostics.last?.reason, .saved)
+        XCTAssertEqual(c.diagnostics.last?.attempts, 3)
+        XCTAssertEqual(c.diagnostics.last?.unavailableCaptures, 2)
     }
 
     @MainActor func testUnavailableDeadlineKeepsOriginalPositionAndBudget() async {
@@ -55,6 +63,10 @@ final class ReaderPositionPersistenceTests: XCTestCase {
         await c.save()
         XCTAssertGreaterThanOrEqual(Date().timeIntervalSince(started), 3)
         XCTAssertGreaterThan(c.source.calls, 1); XCTAssertTrue(c.storage.attempts.isEmpty)
+        XCTAssertEqual(c.diagnostics.last?.reason, .nilAtDeadline)
+        XCTAssertEqual(c.diagnostics.last?.attempts, c.source.calls)
+        XCTAssertEqual(c.diagnostics.last?.unavailableCaptures, c.source.calls)
+        XCTAssertEqual(c.diagnostics.last?.failurePublished, true)
         XCTAssertEqual(c.state.position, old)
         XCTAssertEqual(c.state.saveFailure, "阅读进度尚未保存：当前位置尚未稳定，请稍后再试。")
     }
@@ -67,10 +79,14 @@ final class ReaderPositionPersistenceTests: XCTestCase {
             await c.save()
             XCTAssertEqual(c.state.position, old); XCTAssertTrue(c.storage.saved.isEmpty)
             XCTAssertEqual(c.state.saveFailure, "阅读进度尚未保存：controlled failure")
+            XCTAssertEqual(c.diagnostics.last?.reason, failingCapture ? .sourceThrew : .storageThrew)
+            XCTAssertEqual(c.diagnostics.last?.failurePublished, true)
             c.source.failure = nil; c.storage.failure = nil
             await c.save()
             XCTAssertEqual(c.state.position, c.source.value)
             XCTAssertEqual(c.storage.saved, [c.source.value!]); XCTAssertNil(c.state.saveFailure)
+            XCTAssertEqual(c.diagnostics.last?.reason, .saved)
+            XCTAssertEqual(c.diagnostics.last?.failurePublished, false)
         }
     }
 
@@ -80,7 +96,8 @@ final class ReaderPositionPersistenceTests: XCTestCase {
             let token = c.state.beginSave(sessionID: c.owner.id)
             let began = expectation(description: "capture held \(action)")
             c.source.onCapture = { began.fulfill() }
-            let task = Task { await c.persistence.captureAndSave(from: c.source, request: token) { c.owner.id } }
+            let task = Task { await c.persistence.captureAndSave(from: c.source, request: token,
+                diagnostic: { c.diagnostics.append($0) }) { c.owner.id } }
             await fulfillment(of: [began], timeout: 2)
             if action == "reopened" { c.state.invalidateSave(); c.owner.id = UUID() }
             if action != "cancelled" { _ = c.state.beginSave(sessionID: c.owner.id) }
@@ -89,6 +106,9 @@ final class ReaderPositionPersistenceTests: XCTestCase {
             await task.value
             XCTAssertTrue(c.storage.attempts.isEmpty); XCTAssertNil(c.state.position)
             XCTAssertNil(c.state.saveFailure)
+            XCTAssertEqual(c.diagnostics.count, 1)
+            XCTAssertEqual(c.diagnostics.last?.reason, action == "cancelled" ? .cancelled : .ownerChangedBeforeStorage)
+            XCTAssertEqual(c.diagnostics.last?.failurePublished, false)
         }
     }
 
@@ -158,11 +178,13 @@ final class ReaderPositionPersistenceTests: XCTestCase {
     @MainActor private final class Owner { var id: UUID? = UUID() }
     @MainActor private final class Context {
         let owner = Owner(), state = ReaderPositionState(), source = Source(), storage = Storage()
+        var diagnostics: [ReaderPositionPersistence.CaptureDiagnostic] = []
         lazy var persistence = ReaderPositionPersistence(state: state, storage: storage)
         func save() async {
             let token = state.beginSave(sessionID: owner.id)
             defer { state.endSave(token) }
-            await persistence.captureAndSave(from: source, request: token) { self.owner.id }
+            await persistence.captureAndSave(from: source, request: token,
+                diagnostic: { self.diagnostics.append($0) }) { self.owner.id }
         }
     }
     @MainActor private final class Source: ReaderPositionSource {

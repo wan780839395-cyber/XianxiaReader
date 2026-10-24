@@ -188,6 +188,9 @@ case "$selection" in
   position-observation)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes)
     ;;
+  f5-save-origin)
+    cases=(-only-testing:XianxiaReaderUITests/ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection)
+    ;;
   txt-initial-load)
     cases=(-only-testing:XianxiaReaderTests/TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen)
     ;;
@@ -352,7 +355,7 @@ if [[ "$selection" == 'continuous-resize-pair' ]]; then
   exec python3 scripts/ci_viewport_pair.py run "$SIMULATOR_ID"
 fi
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'f5-save-origin' || "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
 resource_monitor_pid=''
@@ -392,12 +395,14 @@ if xcrun xcresulttool export attachments --path build/DiagnosticTests.xcresult -
 else export_status=$?; fi
 # Best-effort, bounded service context; no command arguments or book text.
 # Missing/slow diagnostic tools are recorded, preserving the actual test exit.
-if python3 - "$SIMULATOR_ID" <<'XR_CONTEXT'
+if python3 - "$SIMULATOR_ID" "$selection" <<'XR_CONTEXT'
 from pathlib import Path
 import json, subprocess, sys
 folder=Path("build/logs");folder.mkdir(parents=True,exist_ok=True);records=[]
+lifecycle_predicate='eventMessage BEGINSWITH "XRReadingLifecycle" OR eventMessage BEGINSWITH "XRPresentation"'
+if sys.argv[2] == 'f5-save-origin': lifecycle_predicate += ' OR eventMessage BEGINSWITH "XRSave"'
 commands=[("processes-after-tests",["ps","-axo","pid,ppid,state,rss,comm"],10),
-          ("reading-lifecycle",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","20m","--info","--style","compact","--predicate",'eventMessage BEGINSWITH "XRReadingLifecycle" OR eventMessage BEGINSWITH "XRPresentation"'],20),
+          ("reading-lifecycle",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","20m","--info","--style","compact","--predicate",lifecycle_predicate],20),
           ("document-services",["xcrun","simctl","spawn",sys.argv[1],"log","show","--last","10m","--style","compact","--predicate",'subsystem CONTAINS "DocumentManager" OR subsystem CONTAINS "FileProvider"'],20)]
 for name,command,seconds in commands:
     try:
