@@ -46,6 +46,18 @@ jobs:
         run: python scripts/check_repository.py --swift-syntax
       - name: Test simulator selection and IPA packaging safeguards
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Preserve bounded layout sample evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-layout-sample-evidence
+          retention-days: 7
+          if-no-files-found: warn
+          include-hidden-files: true
+          path: |
+            .cache/layout-sample/baseline.swift
+            .cache/layout-sample/harness.swift
+            .cache/layout-sample/behavior.json
 
   core-tests:
     if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'position-acceptance' && inputs.diagnostic_selection != 'initialization-close' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'continuous-resize' && inputs.diagnostic_selection != 'continuous-resize-smoke' && inputs.diagnostic_selection != 'continuous-resize-pair' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' && inputs.diagnostic_selection != 'library-isolation' && inputs.diagnostic_selection != 'import-isolation' && inputs.diagnostic_selection != 'search-isolation' }}

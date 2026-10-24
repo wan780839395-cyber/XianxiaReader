@@ -11,6 +11,7 @@ import unittest
 
 from verify_readium_lock import ROOT, verify_lock
 from verify_vendor import verify_vendor
+from layout_sample_evidence import LayoutSampleEvidence, bounded_output
 
 
 # Frozen edits against 12a32bc4 / original observation before.json. Restore the
@@ -543,23 +544,27 @@ class ReadiumProvenanceTests(unittest.TestCase):
                       baselineHarnessSHA256=hashlib.sha256(baseline_generated.encode()).hexdigest(),
                       executed=False, passed=False, nativeCompiled=False)
         receipt = folder / 'behavior.json'
-        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+        evidence = LayoutSampleEvidence(receipt, record)
         compiler = shutil.which('swiftc')
         if compiler:
             baseline_executable = folder / 'baseline.exe'
-            old_compile = subprocess.run([compiler, '-swift-version', '6', '-parse-as-library', str(baseline), '-o', str(baseline_executable)], capture_output=True, text=True, encoding='utf-8', timeout=60)
-            record.update(baselineCompileExit=old_compile.returncode, baselineCompileLog=old_compile.stdout + old_compile.stderr)
-            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            try:
+                old_compile = evidence.run("baseline-compile", [compiler, '-swift-version', '6', '-parse-as-library', str(baseline), '-o', str(baseline_executable)], timeout=60)
+            finally:
+                evidence.compiler_version(compiler)
+            record.update(baselineCompileExit=old_compile.returncode, baselineCompileLog=evidence.message(old_compile))
+            evidence.persist()
             self.assertEqual(old_compile.returncode, 0, record['baselineCompileLog'])
-            old_run = subprocess.run([str(baseline_executable), '--baseline'], capture_output=True, text=True, encoding='utf-8', timeout=30)
-            record.update(baselineExit=old_run.returncode, baselineLog=old_run.stdout + old_run.stderr)
+            old_run = evidence.run("baseline-run", [str(baseline_executable), '--baseline'], timeout=30)
+            record.update(baselineExit=old_run.returncode, baselineLog=evidence.message(old_run))
+            evidence.persist()
             self.assertEqual(old_run.returncode, 0, record['baselineLog'])
             self.assertIn('LAYOUT_SAMPLE_BASELINE_CONFIRMED', old_run.stdout)
             executable = folder / 'harness.exe'
             args = [compiler, '-swift-version', '6', '-parse-as-library', str(harness), '-o', str(executable)]
-            compiled = subprocess.run(args, capture_output=True, text=True, encoding='utf-8', timeout=60)
-            record.update(compileExit=compiled.returncode, compileLog=compiled.stdout + compiled.stderr)
-            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            compiled = evidence.run("current-compile", args, timeout=60)
+            record.update(compileExit=compiled.returncode, compileLog=evidence.message(compiled))
+            evidence.persist()
             self.assertEqual(compiled.returncode, 0, record['compileLog'])
             args = [str(executable)]
         else:
@@ -567,10 +572,10 @@ class ReadiumProvenanceTests(unittest.TestCase):
             docker = shutil.which('docker')
             if not docker:
                 self.skipTest('No existing Swift compiler/Docker; actual layout behavior unexecuted')
-            inspected = subprocess.run([docker, 'image', 'inspect', image], capture_output=True, timeout=20)
+            inspected = evidence.run("docker-inspect", [docker, 'image', 'inspect', image], timeout=20, text=False)
             if inspected.returncode:
-                record['environmentError'] = inspected.stderr.decode(errors='replace')
-                receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+                record['environmentError'] = evidence.message(inspected)
+                evidence.persist()
                 self.skipTest('Locked cached image/engine unavailable; no pull or installation')
             cached_image = json.loads(inspected.stdout)[0]
             record['imageID'] = cached_image['Id']
@@ -581,14 +586,16 @@ class ReadiumProvenanceTests(unittest.TestCase):
                     image, 'bash', '-lc', 'set -euo pipefail\nswiftc --version\n'
                     'swiftc -swift-version 6 -parse-as-library /fixture/baseline.swift -o /tmp/layout-baseline\n/tmp/layout-baseline --baseline\n'
                     'swiftc -swift-version 6 -parse-as-library /fixture/harness.swift -o /tmp/layout-harness\n/tmp/layout-harness\n']
-        result = subprocess.run(args, capture_output=True, text=True, encoding='utf-8', timeout=90)
+        result = evidence.run("current-run" if compiler else "docker-combined", args, timeout=90)
         record.update(command=args, executed=True, realExit=result.returncode,
-                      passed=result.returncode == 0, stdout=result.stdout, stderr=result.stderr)
-        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                      stdout=bounded_output(result.stdout)["text"], stderr=bounded_output(result.stderr)["text"])
+        evidence.persist()
+        self.assertEqual(result.returncode, 0, evidence.message(result))
         self.assertIn('LAYOUT_SAMPLE_SWIFT_PASS', result.stdout)
         if not compiler:
             self.assertIn('LAYOUT_SAMPLE_BASELINE_CONFIRMED', result.stdout)
+        record['passed'] = True
+        evidence.persist()
 
     def test_layout_generation_preserves_measure_and_original_sampling_contracts(self):
         source = self.inner_sources()['EPUBInfiniteScrollView.swift']

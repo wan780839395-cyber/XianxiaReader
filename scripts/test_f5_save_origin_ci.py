@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from layout_sample_evidence import without_layout_sample_upload
 
 ROOT = Path(__file__).resolve().parents[1]
 SELECTION = "f5-save-origin"
@@ -42,6 +43,7 @@ def replace_exact(text, old, new):
 
 
 def restore_pre_f5_workflow(text):
+    text = without_layout_sample_upload(text)
     text = replace_exact(text, ", f5-save-origin]", "]")
     text = replace_exact(text, RECEIPT_BLOCK, "")
     return replace_exact(text, RECEIPT_PATH, "")
