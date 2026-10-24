@@ -13,6 +13,93 @@ from verify_readium_lock import ROOT, verify_lock
 from verify_vendor import verify_vendor
 
 
+# Frozen edits against 12a32bc4 / original observation before.json. Restore the
+# exact old source before applying its existing JS hash; never rebaseline it.
+_FONT_ANCHOR_MARKER = '    @MainActor func testImportedFontReallyLoadsAndRebuildKeepsNonzeroEPUBAnchorInBothModes()'
+_FONT_ANCHOR_EDITS = (
+    ('',
+     r'''            // Latest observations for the first import only; never a qualification source.
+            var anchorEvidence: [String: Any] = [
+                "schema": 1, "scope": "first-font-import-anchor",
+                "continuous": continuous, "bookID": String(describing: book.id),
+                "targetCharacterUTF16": character,
+                "beforeWebView": String(describing: ObjectIdentifier(original)),
+                "beforeReadReturned": false, "afterReadReturned": false,
+                "initialWaitCompleted": false
+            ]
+            defer {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: anchorEvidence, options: [.sortedKeys])
+                    let text = String(decoding: data, as: UTF8.self)
+                    let observation = XCTAttachment(string: text)
+                    observation.name = "font-original-anchor-\(continuous)"; observation.lifetime = .keepAlways
+                    add(observation); print("FONT_ORIGINAL_ANCHOR \(text)")
+                } catch {
+                    // Preserve the original test outcome; failed evidence is explicitly incomplete.
+                    let text = "incomplete: font anchor evidence serialization failed: \(String(reflecting: type(of: error)))"
+                    let observation = XCTAttachment(string: text)
+                    observation.name = "font-original-anchor-incomplete-\(continuous)"; observation.lifetime = .keepAlways
+                    add(observation); print("FONT_ORIGINAL_ANCHOR_INCOMPLETE \(text)")
+                }
+            }
+'''),
+    (r'''                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));return r.getBoundingClientRect().top;})()
+''',
+     r'''                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+                return {targetCharacterUTF16:\(character),rect:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height},
+                  viewport:{width:innerWidth,height:innerHeight,scrollX:scrollX,scrollY:scrollY}};})()
+'''),
+    (r'''            let initialTopValue = try await original.evaluateJavaScript(initialTopScript) as? Double
+''',
+     r'''            let initialObservation = try await original.evaluateJavaScript(initialTopScript) as? [String: Any]
+            anchorEvidence["beforeReadReturned"] = true
+            anchorEvidence["before"] = (initialObservation as Any?) ?? NSNull()
+            let initialTopValue = (initialObservation?["rect"] as? [String: Any])?["top"] as? Double
+'''),
+    ('',
+     r'''                """
+            let anchorObservationScript = """
+                (() => {const n=document.getElementById('long-paragraph')?.firstChild;
+                const viewport={width:innerWidth,height:innerHeight,scrollX:scrollX,scrollY:scrollY};
+                if(!n)return {targetCharacterUTF16:\(character),rect:null,viewport:viewport,passed:false,reason:'missing-node'};
+                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+                const passed=b.right>0 && b.left<innerWidth && b.bottom>0 && b.top<innerHeight && (\(initialVerticalCheck));
+                return {targetCharacterUTF16:\(character),rect:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height},
+                  viewport:viewport,passed:passed};})()
+'''),
+    (r'''            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(anchorScript) as? Bool == true }
+''',
+     r'''            try await waitUntil {
+                anchorEvidence["afterReadReturned"] = false
+                anchorEvidence["afterAttemptWebView"] = NSNull()
+                guard let web = active() else { anchorEvidence["afterWebAvailable"] = false; return false }
+                anchorEvidence["afterWebAvailable"] = true
+                anchorEvidence["afterAttemptWebView"] = String(describing: ObjectIdentifier(web))
+                let observation = try await web.evaluateJavaScript(anchorObservationScript) as? [String: Any]
+                anchorEvidence["afterReadReturned"] = true
+                anchorEvidence["afterWebView"] = String(describing: ObjectIdentifier(web))
+                anchorEvidence["after"] = (observation as Any?) ?? NSNull()
+                return observation?["passed"] as? Bool == true
+            }
+            anchorEvidence["initialWaitCompleted"] = true
+'''),
+)
+
+
+def font_anchor_case(source):
+    return source.split(_FONT_ANCHOR_MARKER, 1)[1].split('\n    @MainActor func ', 1)[0]
+
+
+def restore_font_anchor_observation(source):
+    case = font_anchor_case(source)
+    restored = case
+    for original, observed in _FONT_ANCHOR_EDITS:
+        if not observed or restored.count(observed) != 1:
+            raise ValueError('Font observation differs from the exact reviewed edit')
+        restored = restored.replace(observed, original, 1)
+    return source.replace(_FONT_ANCHOR_MARKER + case, _FONT_ANCHOR_MARKER + restored, 1)
+
+
 def writer_body(text):
     """Execute the exact shipped DEBUG template, not a Python reimplementation."""
     return re.search(r'writerObservationBody = #"""\n(.*?)\n    """#', text, re.S).group(1)
@@ -652,12 +739,115 @@ assert.equal(failed.restored, false); assert.equal(failed.reason, 'restore-error
         self.assertIn('epubViewportReadDiagnosticsEnabled ? viewportFixtureControl : nil', source)
 
 
+    def test_font_observation_exactly_restores_original_case_and_js_contract(self):
+        source = (ROOT / "Tests/iOS/ReaderRenderingTests.swift").read_text(encoding="utf-8")
+        restored = restore_font_anchor_observation(source)
+        case = font_anchor_case(source)
+        original = font_anchor_case(restored)
+        # Original case in 12a32bc4 and the frozen before.json, not a new baseline.
+        self.assertEqual(hashlib.sha256(original.encode()).hexdigest(),
+                         '35481381b9b4ba04ba9c4ab8a2a1165c71e06b8515d06140253fa9728d717b80')
+        awaits = lambda text: re.findall(r"\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)", text)
+        assertions = lambda text: [line.strip() for line in text.splitlines() if 'XCTAssert' in line or 'XCTUnwrap' in line]
+        self.assertEqual(len(awaits(original)), 61)
+        self.assertEqual(awaits(case), awaits(original))
+        self.assertEqual(case.count('.evaluateJavaScript('), 18)
+        self.assertEqual(len(assertions(original)), 44)
+        self.assertEqual(assertions(case), assertions(original))
+        # The global original JS hash also protects every unrelated script.
+        literals = lambda text: json.dumps(re.findall(r'"""(.*?)"""', text, re.S))
+        self.assertEqual(hashlib.sha256(literals(restored).encode()).hexdigest(),
+                         'c8dc3354db5e7ce1edf96773a89d84dc839d65c6294925418bd9cbe5cbcf90de')
+        for before, after in [('const passed=b.right>0', 'const passed=b.right>=0'),
+                              ('width:b.width,height:b.height', 'width:0,height:b.height'),
+                              ('return observation?["passed"] as? Bool == true', 'return true'),
+                              ('"afterAttemptWebView"', '"differentOwner"')]:
+            with self.subTest(mutation=before), self.assertRaises(ValueError):
+                restore_font_anchor_observation(source.replace(before, after, 1))
+        changed = restored.replace("c.font='30px serif'", "c.font='31px serif'", 1)
+        self.assertNotEqual(literals(changed), literals(restored))
+        wait = source.split('private func waitUntil(caller:', 1)[1].split('\n    @MainActor', 1)[0]
+        self.assertIn('Date().addingTimeInterval(30)', wait)
+
+    def test_font_observation_actual_js_preserves_predicate_and_single_rect_read(self):
+        node = shutil.which('node')
+        if not node:
+            self.skipTest('Node unavailable; exact JS behavior unexecuted')
+        source = (ROOT / "Tests/iOS/ReaderRenderingTests.swift").read_text(encoding="utf-8")
+        restored = restore_font_anchor_observation(source)
+
+        def literal(text, name):
+            return re.search(r'let ' + name + r' = """(.*?)"""', font_anchor_case(text), re.S).group(1)
+
+        scripts = dict(initial=literal(source, 'initialTopScript'),
+                       oldInitial=literal(restored, 'initialTopScript'),
+                       after=literal(source, 'anchorObservationScript'),
+                       oldAfter=literal(restored, 'anchorScript'))
+        harness = r'''
+const assert=require('node:assert/strict'),vm=require('node:vm');
+let input='';process.stdin.setEncoding('utf8');process.stdin.on('data',v=>input+=v);
+process.stdin.on('end',()=>{
+ const scripts=JSON.parse(input),target=1540,initialTop=2;
+ function run(script, rect, continuous, missing=false, throws=false) {
+  let reads=0, starts=[], ends=[], n={};
+  const context={innerWidth:402,innerHeight:874,scrollX:2010,scrollY:600,
+   document:{getElementById:()=>missing?null:{firstChild:n},createRange:()=>({
+    setStart:(node,offset)=>{assert.equal(node,n);starts.push(offset)},
+    setEnd:(node,offset)=>{assert.equal(node,n);ends.push(offset)},
+    getBoundingClientRect:()=>{reads++;if(throws)throw new Error('original-rect-error');return rect}
+   })}};
+  script=script.replaceAll('\\(character+1)',String(target+1)).replaceAll('\\(character)',String(target))
+   .replaceAll('\\(initialVerticalCheck)',continuous?'Math.abs(b.top - '+initialTop+') < 3':'true');
+  let value,error;try{value=vm.runInNewContext(script,context)}catch(e){error=e.message}
+  return {value,error,reads,starts,ends};
+ }
+ const base={left:1,right:10,top:2,bottom:22,width:9,height:20};
+ const samples=[base,{...base,right:0},{...base,left:402},{...base,bottom:0},
+  {...base,top:874},{...base,top:4.999},{...base,top:5},{...base,top:-.999},
+  {...base,top:-1},{...base,left:-9,right:1},{...base,width:0,height:0}];
+ let count=0;
+ for(const continuous of [false,true])for(const rect of samples){
+  const old=run(scripts.oldAfter,rect,continuous),observed=run(scripts.after,rect,continuous);
+  assert.equal(old.error,undefined);assert.equal(observed.error,undefined);assert.equal(observed.value.passed,old.value);
+  assert.equal(observed.reads,1);assert.equal(old.reads,1);
+  assert.deepEqual(observed.starts,[target]);assert.deepEqual(observed.ends,[target+1]);
+  assert.deepEqual(JSON.parse(JSON.stringify(observed.value.rect)),rect);
+  assert.equal(observed.value.targetCharacterUTF16,target);
+  assert.deepEqual(JSON.parse(JSON.stringify(observed.value.viewport)),{width:402,height:874,scrollX:2010,scrollY:600});
+  const before=run(scripts.initial,rect,continuous),oldBefore=run(scripts.oldInitial,rect,continuous);
+  assert.equal(before.value.rect.top,oldBefore.value);assert.equal(before.reads,1);assert.equal(oldBefore.reads,1);
+  assert.deepEqual(JSON.parse(JSON.stringify(before.value.rect)),rect);
+  assert.equal(before.value.targetCharacterUTF16,target);count++;
+ }
+ for(const continuous of [false,true]){
+  const old=run(scripts.oldAfter,base,continuous,true),observed=run(scripts.after,base,continuous,true);
+  assert.equal(old.value,false);assert.equal(observed.value.passed,old.value);
+  assert.equal(observed.value.rect,null);assert.equal(observed.reads,0);
+  for(const names of [['oldInitial','initial'],['oldAfter','after']]){
+   const a=run(scripts[names[0]],base,continuous,false,true),b=run(scripts[names[1]],base,continuous,false,true);
+   assert.equal(a.error,'original-rect-error');assert.equal(b.error,a.error);assert.equal(b.reads,1);
+  }count++;
+ }
+ console.log('FONT_ANCHOR_JS_PASS '+count+' cases; exact old predicate/top; one rect; missing node and original errors');
+});
+'''
+        result = subprocess.run([node, '-e', harness], input=json.dumps(scripts),
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+        folder = ROOT / '.cache/font-anchor-observation'
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / 'js-behavior.json').write_text(json.dumps(dict(
+            executed=True, realExit=result.returncode, stdout=result.stdout, stderr=result.stderr,
+            scripts=scripts, harnessSHA256=hashlib.sha256(harness.encode()).hexdigest(),
+            nativeCompiled=False, fixture='Node vm with DOM/Range doubles'), indent=2) + '\n', encoding='utf-8')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('FONT_ANCHOR_JS_PASS 24 cases', result.stdout)
+
     def test_preparation_preserves_suspensions_scripts_and_control(self):
         source = (ROOT / "Tests/iOS/ReaderRenderingTests.swift").read_text(encoding="utf-8")
         expected = {'awaits': '55b33d92731c8172d7e296cca51adc78ddf2e7840d946838eb2f9338cfb967d5', 'js': 'c8dc3354db5e7ce1edf96773a89d84dc839d65c6294925418bd9cbe5cbcf90de', 'control': 'f8f3a3de5203a08cd248074bc0b3a09fe48f7462c937db416a11a936a0928ef7', 'pause': '152886fad492634268e0243851a66ae115c7c433461a50eeaaa7c3715d976fa5', 'cleanup': '84f4259a0f115236cff96e256bc8fd0301a1df3e76c082c73d3fdf37ba3dcb76'}
         protected = {
             "awaits": json.dumps(re.findall(r"\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)", source)),
-            "js": json.dumps(re.findall(r'"""(.*?)"""', source, re.S)),
+            "js": json.dumps(re.findall(r'"""(.*?)"""', restore_font_anchor_observation(source), re.S)),
             "control": source.split('        if event.kind == "work-start"', 1)[1].split('    private func append(', 1)[0],
             "pause": source.split('    func pause(', 1)[1].split('    private func abort(', 1)[0],
             "cleanup": source.split('    func cleanUp()', 1)[1].split('    func tearDown()', 1)[0].replace('        preparation?.cleanup("cleanUp")\n', '')}

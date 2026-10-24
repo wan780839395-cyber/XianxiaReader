@@ -1707,11 +1707,40 @@ final class ReaderRenderingTests: XCTestCase {
                 stableCharacter = value; return true
             }
             let character = try XCTUnwrap(stableCharacter); XCTAssertGreaterThan(character, 100)
+            // Latest observations for the first import only; never a qualification source.
+            var anchorEvidence: [String: Any] = [
+                "schema": 1, "scope": "first-font-import-anchor",
+                "continuous": continuous, "bookID": String(describing: book.id),
+                "targetCharacterUTF16": character,
+                "beforeWebView": String(describing: ObjectIdentifier(original)),
+                "beforeReadReturned": false, "afterReadReturned": false,
+                "initialWaitCompleted": false
+            ]
+            defer {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: anchorEvidence, options: [.sortedKeys])
+                    let text = String(decoding: data, as: UTF8.self)
+                    let observation = XCTAttachment(string: text)
+                    observation.name = "font-original-anchor-\(continuous)"; observation.lifetime = .keepAlways
+                    add(observation); print("FONT_ORIGINAL_ANCHOR \(text)")
+                } catch {
+                    // Preserve the original test outcome; failed evidence is explicitly incomplete.
+                    let text = "incomplete: font anchor evidence serialization failed: \(String(reflecting: type(of: error)))"
+                    let observation = XCTAttachment(string: text)
+                    observation.name = "font-original-anchor-incomplete-\(continuous)"; observation.lifetime = .keepAlways
+                    add(observation); print("FONT_ORIGINAL_ANCHOR_INCOMPLETE \(text)")
+                }
+            }
             let initialTopScript = """
                 (()=>{const n=document.getElementById('long-paragraph').firstChild;
-                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));return r.getBoundingClientRect().top;})()
+                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+                return {targetCharacterUTF16:\(character),rect:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height},
+                  viewport:{width:innerWidth,height:innerHeight,scrollX:scrollX,scrollY:scrollY}};})()
                 """
-            let initialTopValue = try await original.evaluateJavaScript(initialTopScript) as? Double
+            let initialObservation = try await original.evaluateJavaScript(initialTopScript) as? [String: Any]
+            anchorEvidence["beforeReadReturned"] = true
+            anchorEvidence["before"] = (initialObservation as Any?) ?? NSNull()
+            let initialTopValue = (initialObservation?["rect"] as? [String: Any])?["top"] as? Double
             let initialTop = try XCTUnwrap(initialTopValue)
             let initialVerticalCheck = continuous ? "Math.abs(b.top - \(initialTop)) < 3" : "true"
             let fontURL = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "iAWriterDuospace-Regular", withExtension: "ttf", subdirectory: "Fixtures/Fonts"))
@@ -1722,6 +1751,15 @@ final class ReaderRenderingTests: XCTestCase {
                 (() => {const n=document.getElementById('long-paragraph')?.firstChild;if(!n)return false;
                 const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
                 return b.right>0 && b.left<innerWidth && b.bottom>0 && b.top<innerHeight && (\(initialVerticalCheck));})()
+                """
+            let anchorObservationScript = """
+                (() => {const n=document.getElementById('long-paragraph')?.firstChild;
+                const viewport={width:innerWidth,height:innerHeight,scrollX:scrollX,scrollY:scrollY};
+                if(!n)return {targetCharacterUTF16:\(character),rect:null,viewport:viewport,passed:false,reason:'missing-node'};
+                const r=document.createRange();r.setStart(n,\(character));r.setEnd(n,\(character+1));const b=r.getBoundingClientRect();
+                const passed=b.right>0 && b.left<innerWidth && b.bottom>0 && b.top<innerHeight && (\(initialVerticalCheck));
+                return {targetCharacterUTF16:\(character),rect:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height},
+                  viewport:viewport,passed:passed};})()
                 """
             let fontScript = """
                 (() => {const family='\(font.cssFamily)'; const p=document.getElementById('long-paragraph');
@@ -1758,7 +1796,19 @@ final class ReaderRenderingTests: XCTestCase {
                 print("FONT_REOPEN_CHECKPOINT \(details)")
             }
             try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(fontScript) as? Bool == true }
-            try await waitUntil { guard let web = active() else { return false }; return try await web.evaluateJavaScript(anchorScript) as? Bool == true }
+            try await waitUntil {
+                anchorEvidence["afterReadReturned"] = false
+                anchorEvidence["afterAttemptWebView"] = NSNull()
+                guard let web = active() else { anchorEvidence["afterWebAvailable"] = false; return false }
+                anchorEvidence["afterWebAvailable"] = true
+                anchorEvidence["afterAttemptWebView"] = String(describing: ObjectIdentifier(web))
+                let observation = try await web.evaluateJavaScript(anchorObservationScript) as? [String: Any]
+                anchorEvidence["afterReadReturned"] = true
+                anchorEvidence["afterWebView"] = String(describing: ObjectIdentifier(web))
+                anchorEvidence["after"] = (observation as Any?) ?? NSNull()
+                return observation?["passed"] as? Bool == true
+            }
+            anchorEvidence["initialWaitCompleted"] = true
             let sizeValue = try await XCTUnwrap(active()).evaluateJavaScript("parseFloat(getComputedStyle(document.getElementById('long-paragraph')).fontSize)") as? Double
             let originalSize = try XCTUnwrap(sizeValue)
             var updated = model.appearance; updated.fontScale = 1.5; updated.theme = .charcoal
