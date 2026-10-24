@@ -22,7 +22,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load]
 
 permissions:
   contents: read
@@ -366,6 +366,19 @@ jobs:
           else
             bash scripts/ci_reader_diagnostic.sh "$DIAGNOSTIC_SELECTION" 2>&1 | tee build/logs/reader-diagnostic.log
           fi
+          if [[ "$DIAGNOSTIC_SELECTION" == 'txt-initial-load' ]]; then
+            python3 - <<'TXT_INITIAL_LOAD_RECEIPT'
+          from pathlib import Path
+          import json, os, sys
+          sys.path.insert(0, "scripts")
+          from verify_reader_positions import verify_native
+          case = "TXTReadingTests/testFreshReturnCaptureKeepsTXTByteUTF16AnchorAcrossJumpAndStaticReopen"
+          receipt = verify_native(Path("build"), expected_tests={case})
+          receipt.update(selection="txt-initial-load", source=os.environ["GITHUB_SHA"], nativeCompiled=True)
+          Path("build/txt-initial-load-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+          print("TXT_INITIAL_LOAD_RECEIPT " + json.dumps(receipt, sort_keys=True))
+          TXT_INITIAL_LOAD_RECEIPT
+          fi
       - name: Preserve paged font baseline text for diagnosis
         if: always() && inputs.diagnostic_selection == 'paged-font-control'
         uses: actions/upload-artifact@v4
@@ -398,6 +411,7 @@ jobs:
             build/test-results-summary.json
             build/build-environment.txt
             build/Package.resolved
+            build/txt-initial-load-receipt.json
             build/RecordingControl/
             build/PositionControl/
             build/PagedFontControl/

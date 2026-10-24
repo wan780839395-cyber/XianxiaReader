@@ -1431,7 +1431,7 @@
     },
     {
       "path": "Sources/Navigator/EPUB/EPUBSpreadView.swift",
-      "sha256": "4745091926e0b61f24897640f5aeac37803a6b9b88567a755db6acb83210dd36"
+      "sha256": "6a7f3bc693a40287575d91e6e318cdaaea538d780067ccb866be748949f838e7"
     },
     {
       "path": "Sources/Navigator/EPUB/Preferences/EPUBPreferences.swift",
@@ -1460,6 +1460,10 @@
     {
       "path": "Sources/Navigator/EPUB/EPUBFixedSpreadView.swift",
       "sha256": "b5dd2e053af083d5dac769d2e3eebe0c6d78a1db1724bddd6d173ce6d2cd96b3"
+    },
+    {
+      "path": "Sources/Navigator/EPUB/WebViewServer.swift",
+      "sha256": "a06f15301dfb03597d2edc1e8fc72a82675e5f3f0c2e81ec8aaed61ecd2716fa"
     }
   ],
   "remoteDependencyPins": [
@@ -1872,5 +1876,16 @@
     "nativeAccepted": false,
     "ciDispatches": 0,
     "pushes": 0
+  },
+  "txtInitialLoadObservationReview": {
+    "scope": "DEBUG-only bounded synchronous scheme-handler receipts, paired with existing failure snapshot; no extra request, await, polling or changed WK callback order",
+    "baseline": "d64b974b36b7d6cd5c951316aa710116f8f5ad6d",
+    "limits": {
+      "owners": 16,
+      "requestsPerOwner": 32
+    },
+    "nativeValidation": "not executed; Foundation journal and source contracts only",
+    "documentation": "Documentation/I6_TXT_LOADING_OBSERVATION.md",
+    "releaseStorage": "one unused nil AnyObject slot, following existing diagnostics; exact declaration removed solely to verify original Release hash"
   }
 }

@@ -338,9 +338,194 @@ def release_source(text):
     return "\n".join(rows)
 
 
+def loading_request_harness(source):
+    # Actual DEBUG journal, Foundation only. This cannot compile/check WK wiring.
+    journal = source[source.index('private struct LoadingRequestReceipt:'):source.rindex('#endif')]
+    # The real DEBUG bridge with a Foundation object replacing WKWebView, not WK type checking.
+    bridge = swift_diagnostic_declaration(source, 'extension WebViewServer {')
+    storage = '    private var loadingRequestObservationStorage: AnyObject?'
+    if source.count(storage) != 1:
+        raise ValueError('Opaque storage must remain exactly one unused nil slot in Release')
+    return ('import Foundation\ntypealias WKWebView = NSObject\n@MainActor final class WebViewServer {\n'
+            + storage + '\n}\n' + bridge + '\n' + journal) + r'''
+@main struct LoadingObservationChecks {
+    @MainActor static func main() throws {
+        func check(_ condition: Bool) { precondition(condition) }
+        let web = NSObject(), otherWeb = NSObject()
+        let owner = UUID().uuidString, second = UUID().uuidString
+        let root = URL(string: "readium://book/private-secret/chapter.xhtml?token=secret#one")!
+        let server = WebViewServer(), otherServer = WebViewServer()
+        server.bindLoadingObservation(web, trace: owner, documentURL: root)
+        otherServer.bindLoadingObservation(web, trace: owner, documentURL: root)
+        let bound = try JSONSerialization.jsonObject(with: Data(server.loadingRequestDiagnostic(web, trace: owner).utf8)) as! [String: Any]
+        let isolated = try JSONSerialization.jsonObject(with: Data(otherServer.loadingRequestDiagnostic(web, trace: owner).utf8)) as! [String: Any]
+        check(bound["available"] as! Bool && bound["server"] as! String != isolated["server"] as! String)
+        let journal = LoadingRequestJournal(clock: { 123.5 })
+        var retained: [NSObject] = []
+        func task() -> ObjectIdentifier {
+            let value = NSObject(); retained.append(value); return ObjectIdentifier(value)
+        }
+        func snapshot(_ trace: String = owner, _ target: NSObject = web) throws -> [String: Any] {
+            let text = journal.snapshot(web: ObjectIdentifier(target), owner: trace)
+            check(!text.contains("secret") && !text.contains("chapter.xhtml"))
+            return try JSONSerialization.jsonObject(with: Data(text.utf8)) as! [String: Any]
+        }
+        func rows(_ trace: String = owner) throws -> [[String: Any]] { try snapshot(trace)["requests"] as! [[String: Any]] }
+        journal.bind(web: ObjectIdentifier(web), owner: owner, documentURL: root)
+        let first = task()
+        journal.start(task: first, web: ObjectIdentifier(web), url: URL(string: "readium://book/private-secret/chapter.xhtml?token=secret#two"))
+        journal.note(task: first, phase: .readAwait)
+        var row = try rows()[0]
+        check(row["root"] as! Bool && row["phase"] as! String == "readAwait")
+        check(!(row["readReturned"] as! Bool) && !(row["finishCalled"] as! Bool))
+        check(try snapshot()["coverageComplete"] as! Bool) // Coverage is not delivery/readiness.
+        journal.note(task: first, phase: .readReturned, bytes: 789)
+        journal.note(task: first, phase: .responsePrepared)
+        journal.note(task: first, phase: .finishCalled)
+        journal.note(task: first, phase: .stopSeen)
+        journal.returned(task: first, cancelled: true)
+        row = try rows()[0]
+        check(row["phase"] as! String == "finishCalled" && row["lastEvent"] as! String == "returned")
+        for flag in ["readReturned", "responsePrepared", "finishCalled", "stopSeen", "returned", "cancelledAtReturn"] {
+            check(row[flag] as! Bool)
+        }
+        check(row["bytes"] as! Int == 789)
+        journal.note(task: first, phase: .failCalled) // Returned IDs cannot mutate retained receipts.
+        check(!(try rows()[0]["failCalled"] as! Bool))
+        for (ext, expected) in [("css", "css"), ("js", "js"), ("woff2", "font"), ("png", "image"), ("unknown", "other")] {
+            let id = task(); journal.start(task: id, web: ObjectIdentifier(web), url: URL(string: "readium://assets/private-secret.\(ext)"))
+            journal.returned(task: id, cancelled: false)
+            check(try rows().last!["category"] as! String == expected)
+        }
+        let failed = task()
+        journal.start(task: failed, web: ObjectIdentifier(web), url: root)
+        journal.note(task: failed, phase: .readFailure, error: NSError(domain: "private-secret", code: 42, userInfo: [NSLocalizedDescriptionKey: "secret body"]))
+        journal.note(task: failed, phase: .failCalled, error: NSError(domain: NSURLErrorDomain, code: -1008))
+        journal.returned(task: failed, cancelled: false)
+        row = try rows().last!
+        check(row["firstErrorDomain"] as! String == "other" && row["firstErrorCode"] as! Int == 42)
+        check(row["callbackErrorDomain"] as! String == NSURLErrorDomain && row["callbackErrorCode"] as! Int == -1008)
+        let pending = task(); journal.start(task: pending, web: ObjectIdentifier(web), url: root)
+        journal.retire(web: ObjectIdentifier(web), owner: owner)
+        journal.bind(web: ObjectIdentifier(web), owner: second, documentURL: root)
+        journal.note(task: pending, phase: .readReturned, bytes: 9)
+        check(try rows().last!["bytes"] as! Int == 9 && rows(second).isEmpty)
+        journal.navigationError(web: ObjectIdentifier(web), owner: owner, error: NSError(domain: NSURLErrorDomain, code: -999))
+        journal.processTerminated(web: ObjectIdentifier(web), owner: owner)
+        let old = try snapshot()
+        check(old["retired"] as! Bool && old["processTerminated"] as! Bool && old["navigationErrorCode"] as! Int == -999)
+        check(!(try snapshot(owner, otherWeb)["available"] as! Bool))
+        let newTask = task(); journal.start(task: newTask, web: ObjectIdentifier(web), url: root)
+        check(try rows(second).count == 1 && rows().count == 8)
+        journal.bind(web: ObjectIdentifier(otherWeb), owner: second, documentURL: root)
+        check(!(try snapshot(second)["coverageComplete"] as! Bool))
+        for _ in 0..<40 { journal.start(task: task(), web: ObjectIdentifier(web), url: root) }
+        let bounded = try snapshot(second)
+        check((bounded["requests"] as! [Any]).count == 32 && bounded["droppedRequests"] as! Int == 9)
+        check(!(bounded["coverageComplete"] as! Bool))
+        for _ in 0..<16 { journal.bind(web: ObjectIdentifier(otherWeb), owner: UUID().uuidString, documentURL: root) }
+        journal.note(task: pending, phase: .finishCalled) // Evicted IDs never leak into another owner.
+        let evicted = try snapshot()
+        check(!(evicted["available"] as! Bool) && evicted["evictedOwners"] as! Int == 2)
+        let unbound = LoadingRequestJournal()
+        unbound.bind(web: ObjectIdentifier(web), owner: "private-secret", documentURL: root)
+        unbound.start(task: task(), web: ObjectIdentifier(web), url: root)
+        let absent = unbound.snapshot(web: ObjectIdentifier(web), owner: "private-secret")
+        check(!absent.contains("private-secret") && absent.contains("unbound-or-evicted"))
+        let brokenClock = LoadingRequestJournal(clock: { .infinity })
+        let incomplete = brokenClock.snapshot(web: ObjectIdentifier(web), owner: owner)
+        check(incomplete.contains("serialization-failed") && incomplete.contains("\"available\":false"))
+        print("LOADING_REQUEST_JOURNAL_PASS actual-source; bounded/ownership/privacy/pending/delivery/failure/stop; WK-native-unverified")
+        withExtendedLifetime(retained) {}
+    }
+}
+'''
+
+
 class ReadiumProvenanceTests(unittest.TestCase):
     def setUp(self):
         self.pins = json.loads((ROOT / "Vendor/ReadiumToolkit/UPSTREAM.json").read_text())["remoteDependencyPins"]
+
+    def test_loading_observation_preserves_original_execution(self):
+        folder = ROOT / 'Vendor/ReadiumToolkit/Sources/Navigator/EPUB'
+        server = (folder / 'WebViewServer.swift').read_text(encoding='utf-8')
+        spread = (folder / 'EPUBSpreadView.swift').read_text(encoding='utf-8')
+        txt = (ROOT / 'Tests/iOS/TXTReadingTests.swift').read_text(encoding='utf-8')
+        # d64b974b / original upstream server and existing modified spread.
+        # Same opaque-nil-slot pattern as existing spread diagnostics. Reverse
+        # only this exact declaration; preserve the original Release hash.
+        nil_slot = '    // Nil opaque storage in Release; access is confined to the DEBUG extension.\n    private var loadingRequestObservationStorage: AnyObject?\n'
+        self.assertEqual(server.count(nil_slot), 1)
+        for source, expected in [(server.replace(nil_slot, '', 1), '0b3d3371f2011f11489063911fc6100e95f9d0ccb694e5ce9bb3a04a7e8ad72d'),
+                                 (spread, '2f0c07ad81fdd77651daecf29dd47f0913aad19c9c6d6f1ee087db94756a2c42')]:
+            self.assertEqual(hashlib.sha256(release_source(source).encode()).hexdigest(), expected)
+        edits = [
+            ('var diagnostic = "checkpoint=\\(description) deadlineUnix=\\(deadline.timeIntervalSince1970) snapshotUnix=\\(Date().timeIntervalSince1970) snapshotUptime=\\(ProcessInfo.processInfo.systemUptime)"',
+             'var diagnostic = "checkpoint=\\(description)"'),
+            ('            let scene = root.window?.windowScene\n'
+             '            diagnostic += "\\npositionPresent=\\(engine.currentPosition != nil) sceneState=\\(scene.map { String($0.activationState.rawValue) } ?? "nil") foregroundActive=\\(scene?.activationState == .foregroundActive)"\n', ''),
+            ('web[\\(index)] id=\\(ObjectIdentifier(web)) attached=', 'web[\\(index)] attached=')]
+        for observed, original in edits:
+            self.assertEqual(txt.count(observed), 1)
+            txt = txt.replace(observed, original, 1)
+        self.assertEqual(hashlib.sha256(txt.encode()).hexdigest(), '47283b64f4ef7a4e1f9f897f8ad558b0213a004ac5ca138adc25785e6bba25d1')
+        # DEBUG hooks add no suspension, task, request or JavaScript invocation.
+        for source, expected in [(server, '9ee79d6638220f5d2c4809cd551071af6bf6e9a777e9d8f37189beb278eb969d'),
+                                 (spread, '0fee855f61579e66ef8534086c3377e1400af4b8c88692af8beb0535a25f1e3f')]:
+            awaits = re.findall(r'\bawait\s+([A-Za-z_][A-Za-z0-9_?.]*)', source)
+            self.assertEqual(hashlib.sha256(json.dumps(awaits).encode()).hexdigest(), expected)
+        self.assertEqual(server.count('activeTasks[taskID] = Task {'), 1)
+        self.assertIn('guard !Task.isCancelled else { return }\n        #if DEBUG', server)
+        self.assertIn('urlSchemeTask.didReceive(response)\n        urlSchemeTask.didReceive(data)\n        urlSchemeTask.didFinish()', server)
+        self.assertLess(server.index('phase: .responsePrepared'), server.index('urlSchemeTask.didReceive(response)'))
+        self.assertLess(server.index('urlSchemeTask.didFinish()'), server.index('phase: .finishCalled'))
+        self.assertIn('activeTasks.removeValue(forKey: taskID)?.cancel()\n        #if DEBUG', server)
+        self.assertLess(spread.index('bindLoadingObservation('), spread.index('        loadSpread()'))
+        journal = server[server.index('private struct LoadingRequestReceipt:'):]
+        self.assertNotRegex(journal, r'\b(await|async|Task|WKWebView|Data)\b')
+        self.assertNotIn('localizedDescription', journal)
+
+    def test_loading_observation_actual_swift_journal(self):
+        import uuid
+        source = (ROOT / 'Vendor/ReadiumToolkit/Sources/Navigator/EPUB/WebViewServer.swift').read_text(encoding='utf-8')
+        generated = loading_request_harness(source)
+        folder = ROOT / '.cache/loading-request-observation'
+        folder.mkdir(parents=True, exist_ok=True)
+        harness = folder / 'harness.swift'
+        harness.write_text(generated, encoding='utf-8', newline='\n')
+        record = dict(kind='actual-DEBUG-journal-with-Foundation-fixtures',
+                      harnessSHA256=hashlib.sha256(generated.encode()).hexdigest(),
+                      executed=False, passed=False, nativeCompiled=False)
+        receipt = folder / 'behavior.json'
+        compiler = shutil.which('swiftc')
+        if compiler:
+            executable = folder / 'harness.exe'
+            compiled = subprocess.run([compiler, '-swift-version', '6', '-parse-as-library', str(harness), '-o', str(executable)],
+                                      capture_output=True, text=True, encoding='utf-8', timeout=60)
+            record.update(compileExit=compiled.returncode, compileLog=compiled.stdout + compiled.stderr)
+            receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+            self.assertEqual(compiled.returncode, 0, record['compileLog'])
+            args = [str(executable)]
+        else:
+            image = 'swift@sha256:1122c18e938491180820e9b4902c489dadd5a89f7e6bd99ff9b64e7f1b18f41f'
+            docker = shutil.which('docker')
+            inspected = subprocess.run([docker, 'image', 'inspect', image], capture_output=True, timeout=20) if docker else None
+            if not inspected or inspected.returncode:
+                record['environmentError'] = inspected.stderr.decode(errors='replace') if inspected else 'Docker/compiler unavailable'
+                receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+                self.skipTest('Existing compiler/cached canonical image unavailable; no pull or install')
+            info = json.loads(inspected.stdout)[0]
+            record.update(imageID=info['Id'], imageRepoDigests=info.get('RepoDigests', []))
+            args = [docker, 'run', '--rm', '--pull=never', '--network=none', '--platform', 'linux/amd64',
+                    '--cidfile', str(folder / ('container-' + uuid.uuid4().hex + '.txt')),
+                    '--mount', f'type=bind,source={folder},target=/fixture,readonly', image,
+                    'bash', '-lc', 'set -euo pipefail\nswiftc --version\nswiftc -swift-version 6 -parse-as-library /fixture/harness.swift -o /tmp/loading-observation\n/tmp/loading-observation\n']
+        result = subprocess.run(args, capture_output=True, text=True, encoding='utf-8', timeout=90)
+        record.update(command=args, executed=True, realExit=result.returncode, passed=result.returncode == 0,
+                      stdout=result.stdout, stderr=result.stderr)
+        receipt.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('LOADING_REQUEST_JOURNAL_PASS', result.stdout)
 
     def test_layout_generation_actual_sample_and_restore_behavior(self):
         import uuid
@@ -391,7 +576,7 @@ class ReadiumProvenanceTests(unittest.TestCase):
             record['imageID'] = cached_image['Id']
             record['imageRepoDigests'] = cached_image.get('RepoDigests', [])
             cid = folder / ('container-' + uuid.uuid4().hex + '.txt')
-            args = [docker, 'run', '--pull=never', '--network=none', '--platform', 'linux/amd64',
+            args = [docker, 'run', '--rm', '--pull=never', '--network=none', '--platform', 'linux/amd64',
                     '--cidfile', str(cid), '--mount', f'type=bind,source={folder},target=/fixture,readonly',
                     image, 'bash', '-lc', 'set -euo pipefail\nswiftc --version\n'
                     'swiftc -swift-version 6 -parse-as-library /fixture/baseline.swift -o /tmp/layout-baseline\n/tmp/layout-baseline --baseline\n'

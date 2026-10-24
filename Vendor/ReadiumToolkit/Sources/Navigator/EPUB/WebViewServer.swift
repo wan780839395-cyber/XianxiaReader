@@ -115,6 +115,9 @@ import WebKit
     /// Oldest entries are evicted when the cache exceeds its capacity.
     private var resourceCache = BoundedResourceCache()
 
+    // Nil opaque storage in Release; access is confined to the DEBUG extension.
+    private var loadingRequestObservationStorage: AnyObject?
+
     /// Removes cached resources matching the given predicate, forcing them to
     /// be re-served on the next request.
     func clearResourceCache(where predicate: (RelativeURL, MediaType) -> Bool) {
@@ -125,15 +128,24 @@ import WebKit
 
     func webView(_ webView: WKWebView, start urlSchemeTask: any WKURLSchemeTask) {
         let taskID = ObjectIdentifier(urlSchemeTask)
+        #if DEBUG
+            loadingRequests.start(task: taskID, web: ObjectIdentifier(webView), url: urlSchemeTask.request.url)
+        #endif
         activeTasks[taskID] = Task {
             await serve(urlSchemeTask)
             _ = activeTasks.removeValue(forKey: taskID)
+            #if DEBUG
+                loadingRequests.returned(task: taskID, cancelled: Task.isCancelled)
+            #endif
         }
     }
 
     func webView(_ webView: WKWebView, stop urlSchemeTask: any WKURLSchemeTask) {
         let taskID = ObjectIdentifier(urlSchemeTask)
         activeTasks.removeValue(forKey: taskID)?.cancel()
+        #if DEBUG
+            loadingRequests.note(task: taskID, phase: .stopSeen)
+        #endif
     }
 
     // MARK: - Serving
@@ -151,6 +163,9 @@ import WebKit
                 guard route.baseURL.isEquivalentTo(requestURL) else {
                     continue
                 }
+                #if DEBUG
+                    loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .routeFile)
+                #endif
                 await serveFile(urlSchemeTask, at: file, requestURL: requestURL, allowCrossOrigin: true)
                 return
 
@@ -162,6 +177,9 @@ import WebKit
                 else {
                     continue
                 }
+                #if DEBUG
+                    loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .routeDirectory)
+                #endif
                 await serveFile(urlSchemeTask, at: file, requestURL: requestURL, allowCrossOrigin: true)
                 return
 
@@ -169,6 +187,9 @@ import WebKit
                 guard let relativeURL = route.baseURL.relativize(requestURL) else {
                     continue
                 }
+                #if DEBUG
+                    loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .routePublication)
+                #endif
                 await serveResource(
                     urlSchemeTask,
                     relativeURL: relativeURL,
@@ -195,9 +216,15 @@ import WebKit
         let resource: Resource
         let mediaType: MediaType
         if let (cachedResource, cachedMediaType) = resourceCache[relativeURL] {
+            #if DEBUG
+                loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .cacheHit)
+            #endif
             resource = cachedResource
             mediaType = cachedMediaType
         } else {
+            #if DEBUG
+                loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .handlerAwait)
+            #endif
             guard let (newResource, newMediaType) = await handler(relativeURL) else {
                 await fail(urlSchemeTask, with: URLError(.fileDoesNotExist))
                 return
@@ -206,6 +233,10 @@ import WebKit
             mediaType = newMediaType
             resourceCache.set(relativeURL, resource: resource, mediaType: mediaType)
         }
+
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .resourceReady)
+        #endif
 
         await serveResource(
             resource,
@@ -244,15 +275,27 @@ import WebKit
     ) async {
         // Try to serve a byte range if the client requested one and the
         // resource length is known.
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .lengthAwait)
+        #endif
         if
             let totalLength = await (try? resource.estimatedLength().get()).flatMap({ $0 }),
             let range = urlSchemeTask.request.byteRange(in: totalLength)
         {
+            #if DEBUG
+                loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .rangeReadAwait)
+            #endif
             let result = await resource.read(range: range)
             switch result {
             case let .success(data):
+                #if DEBUG
+                    loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .readReturned, bytes: data.count)
+                #endif
                 await respond(urlSchemeTask, with: data, range: range, totalLength: totalLength, mediaType: mediaType, url: requestURL, allowCrossOrigin: allowCrossOrigin)
             case let .failure(error):
+                #if DEBUG
+                    loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .readFailure, error: error as NSError)
+                #endif
                 log(.error, "Failed to read resource \(requestURL.path) range \(range): \(error)")
                 await fail(urlSchemeTask, with: URLError(.resourceUnavailable))
             }
@@ -260,11 +303,20 @@ import WebKit
         }
 
         // Full read fallback.
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .readAwait)
+        #endif
         let result = await resource.read()
         switch result {
         case let .success(data):
+            #if DEBUG
+                loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .readReturned, bytes: data.count)
+            #endif
             await respond(urlSchemeTask, with: data, range: nil, totalLength: UInt64(data.count), mediaType: mediaType, url: requestURL, allowCrossOrigin: allowCrossOrigin)
         case let .failure(error):
+            #if DEBUG
+                loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .readFailure, error: error as NSError)
+            #endif
             log(.error, "Failed to read resource \(requestURL.path): \(error)")
             await fail(urlSchemeTask, with: URLError(.resourceUnavailable))
         }
@@ -337,14 +389,23 @@ import WebKit
         // Guard against task cancellation to avoid calling WKURLSchemeTask
         // methods after WebKit has stopped the task.
         guard !Task.isCancelled else { return }
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .responsePrepared, bytes: data.count)
+        #endif
         urlSchemeTask.didReceive(response)
         urlSchemeTask.didReceive(data)
         urlSchemeTask.didFinish()
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .finishCalled)
+        #endif
     }
 
     private func fail(_ urlSchemeTask: WKURLSchemeTask, with error: Error) async {
         guard !Task.isCancelled else { return }
         urlSchemeTask.didFailWithError(error)
+        #if DEBUG
+            loadingRequests.note(task: ObjectIdentifier(urlSchemeTask), phase: .failCalled, error: error as NSError)
+        #endif
     }
 }
 
@@ -391,3 +452,241 @@ private struct BoundedResourceCache {
         order = order.filter { entries[$0] != nil }
     }
 }
+
+#if DEBUG
+extension WebViewServer {
+    private var loadingRequests: LoadingRequestJournal {
+        if let journal = loadingRequestObservationStorage as? LoadingRequestJournal { return journal }
+        let journal = LoadingRequestJournal()
+        loadingRequestObservationStorage = journal
+        return journal
+    }
+
+    func bindLoadingObservation(_ webView: WKWebView, trace: String, documentURL: URL) {
+        loadingRequests.bind(web: ObjectIdentifier(webView), owner: trace, documentURL: documentURL)
+    }
+
+    func loadingRequestDiagnostic(_ webView: WKWebView, trace: String) -> String {
+        loadingRequests.snapshot(web: ObjectIdentifier(webView), owner: trace)
+    }
+
+    func retireLoadingObservation(_ webView: WKWebView, trace: String) {
+        loadingRequests.retire(web: ObjectIdentifier(webView), owner: trace)
+    }
+
+    func recordLoadingNavigationError(_ webView: WKWebView, trace: String, error: NSError) {
+        loadingRequests.navigationError(web: ObjectIdentifier(webView), owner: trace, error: error)
+    }
+
+    func recordLoadingProcessTermination(_ webView: WKWebView, trace: String) {
+        loadingRequests.processTerminated(web: ObjectIdentifier(webView), owner: trace)
+    }
+}
+
+// Synchronous, metadata-only observation. Never retains WebKit objects or resource data.
+private struct LoadingRequestReceipt: Encodable {
+    enum Phase: String, Encodable {
+        case started, routeFile, routeDirectory, routePublication, handlerAwait, cacheHit, resourceReady
+        case lengthAwait, rangeReadAwait, readAwait, readReturned, readFailure
+        case responsePrepared, finishCalled, failCalled, stopSeen, returned
+    }
+    let request: Int
+    let category: String
+    let root: Bool
+    let startedAfterRetire: Bool
+    let startedUptime: Double
+    var lastUptime: Double
+    var phase: Phase = .started
+    var lastEvent: Phase = .started
+    var readReturned = false
+    var responsePrepared = false
+    var finishCalled = false
+    var failCalled = false
+    var stopSeen = false
+    var returned = false
+    var cancelledAtReturn = false
+    var bytes: Int?
+    var firstErrorDomain: String?
+    var firstErrorCode: Int?
+    var callbackErrorDomain: String?
+    var callbackErrorCode: Int?
+}
+
+private struct LoadingRequestSnapshot: Encodable {
+    let schema = 1
+    let scope = "observed-scheme-handler-starts-only"
+    let server: String
+    let available: Bool
+    let ownerTrace: String?
+    let webView: String?
+    let capturedUptime: Double
+    let coverageComplete: Bool
+    let retired: Bool
+    let rebound: Bool
+    let rootRequests: Int
+    let droppedRequests: Int
+    let evictedOwners: Int
+    let unboundStarts: Int
+    let navigationErrorDomain: String?
+    let navigationErrorCode: Int?
+    let processTerminated: Bool
+    let requests: [LoadingRequestReceipt]
+    let reason: String?
+}
+
+@MainActor private final class LoadingRequestJournal {
+    static let maximumOwners = 16 // Existing navigator budget is at most 12 live resource views.
+    static let maximumRequestsPerOwner = 32 // Overflow is explicit; never evidence of delivery.
+    @MainActor private final class Owner {
+        let trace: String
+        let web: ObjectIdentifier
+        // Equality binding only, never encoded or printed; no body/header data is stored.
+        let documentURL: URL
+        var retired = false
+        var rebound = false
+        var rootRequests = 0
+        var droppedRequests = 0
+        var navigationErrorDomain: String?
+        var navigationErrorCode: Int?
+        var processTerminated = false
+        var order: [Int] = []
+        var rows: [Int: LoadingRequestReceipt] = [:]
+        init(trace: String, web: ObjectIdentifier, documentURL: URL) {
+            self.trace = trace; self.web = web; self.documentURL = documentURL
+        }
+    }
+    private let server = UUID().uuidString
+    private let clock: () -> Double
+    private var bindings: [ObjectIdentifier: String] = [:]
+    private var owners: [String: Owner] = [:]
+    private var ownerOrder: [String] = []
+    private var tasks: [ObjectIdentifier: (owner: String, request: Int)] = [:]
+    private var nextRequest = 0
+    private var evictedOwners = 0
+    private var unboundStarts = 0
+
+    init(clock: @escaping () -> Double = { ProcessInfo.processInfo.systemUptime }) { self.clock = clock }
+
+    private static func documentIdentity(_ url: URL) -> URL {
+        if var parts = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            parts.fragment = nil
+            if let clean = parts.url { return clean }
+        }
+        return url
+    }
+
+    func bind(web: ObjectIdentifier, owner: String, documentURL: URL) {
+        guard UUID(uuidString: owner) != nil else { return }
+        let url = Self.documentIdentity(documentURL)
+        if let previous = owners[owner] {
+            if previous.web != web || previous.documentURL != url { previous.rebound = true }
+            return
+        }
+        if ownerOrder.count == Self.maximumOwners {
+            let oldest = ownerOrder.removeFirst()
+            if let old = owners.removeValue(forKey: oldest), bindings[old.web] == oldest {
+                bindings.removeValue(forKey: old.web)
+            }
+            tasks = tasks.filter { $0.value.owner != oldest }
+            evictedOwners += 1
+        }
+        owners[owner] = Owner(trace: owner, web: web, documentURL: url)
+        ownerOrder.append(owner); bindings[web] = owner
+    }
+
+    private static func category(_ url: URL?) -> String {
+        switch url?.pathExtension.lowercased() {
+        case "xhtml", "html", "htm": return "document"
+        case "css": return "css"
+        case "js": return "js"
+        case "ttf", "otf", "woff", "woff2": return "font"
+        case "png", "jpg", "jpeg", "gif", "svg", "webp": return "image"
+        default: return "other"
+        }
+    }
+
+    func start(task: ObjectIdentifier, web: ObjectIdentifier, url: URL?) {
+        guard let trace = bindings[web], let owner = owners[trace] else { unboundStarts += 1; return }
+        if let old = tasks.removeValue(forKey: task) { owners[old.owner]?.droppedRequests += 1 }
+        let root = url.map { Self.documentIdentity($0) == owner.documentURL } ?? false
+        if root { owner.rootRequests += 1 }
+        guard owner.order.count < Self.maximumRequestsPerOwner else { owner.droppedRequests += 1; return }
+        nextRequest += 1
+        let now = clock()
+        owner.rows[nextRequest] = LoadingRequestReceipt(request: nextRequest, category: Self.category(url),
+            root: root, startedAfterRetire: owner.retired, startedUptime: now, lastUptime: now)
+        owner.order.append(nextRequest); tasks[task] = (trace, nextRequest)
+    }
+
+    private static func safeDomain(_ error: NSError) -> String {
+        switch error.domain {
+        case "NSCocoaErrorDomain", "NSURLErrorDomain", "NSPOSIXErrorDomain", "WKErrorDomain", "ReadiumShared.ReadError": return error.domain
+        default: return "other"
+        }
+    }
+
+    func note(task: ObjectIdentifier, phase: LoadingRequestReceipt.Phase, bytes: Int? = nil, error: NSError? = nil) {
+        guard let key = tasks[task], let owner = owners[key.owner], var row = owner.rows[key.request] else { return }
+        row.lastEvent = phase; row.lastUptime = clock()
+        if phase != .stopSeen && phase != .returned { row.phase = phase }
+        if let bytes { row.bytes = bytes }
+        switch phase {
+        case .readReturned: row.readReturned = true
+        case .responsePrepared: row.responsePrepared = true
+        case .finishCalled: row.finishCalled = true
+        case .failCalled: row.failCalled = true
+        case .stopSeen: row.stopSeen = true
+        case .returned: row.returned = true
+        default: break
+        }
+        if let error {
+            if row.firstErrorDomain == nil { row.firstErrorDomain = Self.safeDomain(error); row.firstErrorCode = error.code }
+            if phase == .failCalled { row.callbackErrorDomain = Self.safeDomain(error); row.callbackErrorCode = error.code }
+        }
+        owner.rows[key.request] = row
+    }
+
+    func returned(task: ObjectIdentifier, cancelled: Bool) {
+        note(task: task, phase: .returned)
+        if let key = tasks.removeValue(forKey: task), let owner = owners[key.owner] {
+            owner.rows[key.request]?.cancelledAtReturn = cancelled
+        }
+    }
+
+    func retire(web: ObjectIdentifier, owner trace: String) {
+        guard let owner = owners[trace], owner.web == web else { return }
+        owner.retired = true
+    }
+
+    func navigationError(web: ObjectIdentifier, owner trace: String, error: NSError) {
+        guard let owner = owners[trace], owner.web == web, owner.navigationErrorDomain == nil else { return }
+        owner.navigationErrorDomain = Self.safeDomain(error); owner.navigationErrorCode = error.code
+    }
+
+    func processTerminated(web: ObjectIdentifier, owner trace: String) {
+        guard let owner = owners[trace], owner.web == web else { return }
+        owner.processTerminated = true
+    }
+
+    func snapshot(web: ObjectIdentifier, owner trace: String) -> String {
+        let owner = owners[trace].flatMap { $0.web == web ? $0 : nil }
+        let value = LoadingRequestSnapshot(server: server, available: owner != nil, ownerTrace: owner?.trace,
+            webView: owner.map { String(describing: $0.web) }, capturedUptime: clock(),
+            coverageComplete: owner.map { $0.droppedRequests == 0 && !$0.rebound && $0.rootRequests > 0 } ?? false,
+            retired: owner?.retired ?? false, rebound: owner?.rebound ?? false,
+            rootRequests: owner?.rootRequests ?? 0, droppedRequests: owner?.droppedRequests ?? 0,
+            evictedOwners: evictedOwners, unboundStarts: unboundStarts,
+            navigationErrorDomain: owner?.navigationErrorDomain, navigationErrorCode: owner?.navigationErrorCode,
+            processTerminated: owner?.processTerminated ?? false,
+            requests: owner.map { item in item.order.compactMap { item.rows[$0] } } ?? [],
+            reason: owner == nil ? "unbound-or-evicted" : nil)
+        do {
+            let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+            return String(decoding: try encoder.encode(value), as: UTF8.self)
+        } catch {
+            // Evidence failure is explicit; never replace the original load/test outcome.
+            return "{\"schema\":1,\"available\":false,\"coverageComplete\":false,\"reason\":\"serialization-failed\"}"
+        }
+    }
+}
+#endif

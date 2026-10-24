@@ -352,12 +352,14 @@ final class TXTReadingTests: XCTestCase {
         }
         // Preserve the original deadline and failure. Synchronous native state
         // must remain obtainable even when the WebKit bridge is unresponsive.
-        var diagnostic = "checkpoint=\(description)"
+        var diagnostic = "checkpoint=\(description) deadlineUnix=\(deadline.timeIntervalSince1970) snapshotUnix=\(Date().timeIntervalSince1970) snapshotUptime=\(ProcessInfo.processInfo.systemUptime)"
         if let engine = mountedEngine, let root = engine.viewController.viewIfLoaded {
             diagnostic += "\nwindow=\(root.window != nil) key=\(root.window?.isKeyWindow == true) bounds=\(root.bounds) resources=\(engine.continuousLoadedResourceCount)"
+            let scene = root.window?.windowScene
+            diagnostic += "\npositionPresent=\(engine.currentPosition != nil) sceneState=\(scene.map { String($0.activationState.rawValue) } ?? "nil") foregroundActive=\(scene?.activationState == .foregroundActive)"
             diagnostic += "\n" + engine.continuousDiagnosticState
             for (index, web) in webViews(root).enumerated() {
-                diagnostic += "\nweb[\(index)] attached=\(web.window != nil) loading=\(web.isLoading) alpha=\(web.scrollView.alpha) bounds=\(web.bounds) offset=\(web.scrollView.contentOffset)"
+                diagnostic += "\nweb[\(index)] id=\(ObjectIdentifier(web)) attached=\(web.window != nil) loading=\(web.isLoading) alpha=\(web.scrollView.alpha) bounds=\(web.bounds) offset=\(web.scrollView.contentOffset)"
             }
         }
         let attachment = XCTAttachment(string: diagnostic)

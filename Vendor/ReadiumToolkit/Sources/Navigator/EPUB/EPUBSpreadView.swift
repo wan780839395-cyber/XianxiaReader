@@ -86,6 +86,11 @@ class EPUBSpreadView: UIView, Loggable, PageView {
 
     var loadingLifecycleDiagnostic: String {
         guard epubLoadingDiagnosticsEnabled else { return "disabled" }
+        #if DEBUG
+            if self is EPUBReflowableSpreadView {
+                return "trace=\(loadingTraceID.prefix(8)) navigationFinished=\(navigationFinished) initialization=\(initializationStarted)/\(initializationFinished) cleared=\(wasCleared) attached=\(window != nil) loading=\(webView.isLoading) hasURL=\(webView.url != nil) progress=\(webView.estimatedProgress) stages=\(loadingStages.joined(separator: ",")) requests={\(viewModel.server.loadingRequestDiagnostic(webView, trace: loadingTraceID))}"
+            }
+        #endif
         return "trace=\(loadingTraceID.prefix(8)) navigationFinished=\(navigationFinished) initialization=\(initializationStarted)/\(initializationFinished) cleared=\(wasCleared) attached=\(window != nil) loading=\(webView.isLoading) hasURL=\(webView.url != nil) progress=\(webView.estimatedProgress) stages=\(loadingStages.joined(separator: ","))"
     }
 
@@ -129,6 +134,12 @@ class EPUBSpreadView: UIView, Loggable, PageView {
         NotificationCenter.default.addObserver(self, selector: #selector(voiceOverStatusDidChange), name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
 
         updateActivityIndicator()
+        #if DEBUG
+            if epubLoadingDiagnosticsEnabled, self is EPUBReflowableSpreadView {
+                viewModel.server.bindLoadingObservation(webView, trace: loadingTraceID,
+                    documentURL: viewModel.url(to: spread.first.link).url)
+            }
+        #endif
         recordLoadingStage("request")
         loadSpread()
     }
@@ -145,6 +156,9 @@ class EPUBSpreadView: UIView, Loggable, PageView {
             configureInnerScrollDiagnostics(nil, reason: "spread-clear")
         #endif
         recordLoadingStage("clear")
+        #if DEBUG
+            viewModel.server.retireLoadingObservation(webView, trace: loadingTraceID)
+        #endif
         wasCleared = true
         // A retired resource must not reload the current layout when WebKit
         // delivers a late process-termination or scroll callback.
@@ -1323,10 +1337,16 @@ extension EPUBSpreadView: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         recordLoadingStage("navigation.provisional-error.\((error as NSError).code)")
+        #if DEBUG
+            viewModel.server.recordLoadingNavigationError(webView, trace: loadingTraceID, error: error as NSError)
+        #endif
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         recordLoadingStage("navigation.error.\((error as NSError).code)")
+        #if DEBUG
+            viewModel.server.recordLoadingNavigationError(webView, trace: loadingTraceID, error: error as NSError)
+        #endif
         log(.error, error)
     }
 
@@ -1358,6 +1378,9 @@ extension EPUBSpreadView: WKNavigationDelegate {
 
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         recordLoadingStage("process.terminated")
+        #if DEBUG
+            viewModel.server.recordLoadingProcessTermination(webView, trace: loadingTraceID)
+        #endif
         guard !wasCleared else { return }
         delegate?.spreadViewDidTerminate()
     }
