@@ -39,7 +39,7 @@ import XianxiaCore
                     VStack(alignment: .leading, spacing: 14) {
                         if section == .appearance { preview; appearanceControls }
                         else if section == .layout { layoutControls }
-                        else { interactionControls }
+                        else { interactionControls; progressVisibilityControls }
                         if !supportsText && section != .interaction {
                             Label("固定布局书籍保留原有页面，正文排版不可调整。", systemImage: "info.circle")
                                 .font(.footnote).foregroundStyle(palette.secondaryText)
@@ -135,6 +135,16 @@ import XianxiaCore
         VStack(alignment: .leading, spacing: 10, content: content)
             .padding(14).frame(maxWidth: .infinity, alignment: .leading)
             .readerSurface(palette, radius: 18)
+    }
+
+    private var progressVisibilityControls: some View {
+        settingsCard {
+            Toggle("显示全书进度", isOn: Binding(get: { model.interaction.showsBookProgress },
+                                          set: { model.setBookProgressVisible($0) }))
+                .accessibilityIdentifier("reader.progress.visibility")
+            Text("隐藏百分比和进度条，保留当前章节。")
+                .font(.caption).foregroundStyle(palette.secondaryText)
+        }
     }
 
     private var interactionControls: some View {

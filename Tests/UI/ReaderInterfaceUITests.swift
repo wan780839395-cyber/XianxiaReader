@@ -186,6 +186,27 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
             app.buttons["reader.return.go"].tap()
             waitForReturnText("本样书用于", in: app)
         }
+        // A fresh synthetic library keeps this preference scenario independent of the themes above.
+        let visibilityApp = start(); defer { visibilityApp.terminate() }
+        visibilityApp.buttons["reader.contents.open"].tap()
+        let chapter = visibilityApp.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第二章'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        waitForReturnText("灯下第1段", in: visibilityApp)
+        centerTap(in: visibilityApp)
+        assertBookProgress(true, stage: "default", in: visibilityApp)
+        changeBookProgress(from: true, to: false, in: visibilityApp)
+        assertBookProgress(false, stage: "hidden", in: visibilityApp)
+        visibilityApp.buttons["返回书库"].tap()
+        let book = visibilityApp.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+        let returned = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: book)
+        XCTAssertEqual(XCTWaiter.wait(for: [returned], timeout: 20), .completed)
+        openBook(in: visibilityApp)
+        assertBookProgress(false, stage: "reopened-hidden", in: visibilityApp)
+        // Reuse the same test-library UUID across this actual process relaunch.
+        visibilityApp.terminate(); visibilityApp.launch(); openBook(in: visibilityApp)
+        assertBookProgress(false, stage: "relaunched-hidden", in: visibilityApp)
+        changeBookProgress(from: false, to: true, in: visibilityApp)
+        assertBookProgress(true, stage: "visible-again", in: visibilityApp)
     }
 
     @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions() {
@@ -484,6 +505,33 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
             app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()
             XCTAssertEqual(app.buttons["reader.mode"].value as? String, "上下连续滚动")
         }
+    }
+
+    @MainActor private func changeBookProgress(from old: Bool, to visible: Bool, in app: XCUIApplication) {
+        let settings = app.buttons["reader.appearance.open"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 10)); settings.tap()
+        app.buttons["手感"].tap()
+        let toggle = app.switches["reader.progress.visibility"]
+        reveal(toggle, in: app)
+        XCTAssertEqual(toggle.value as? String, old ? "1" : "0")
+        toggle.tap()
+        XCTAssertEqual(toggle.value as? String, visible ? "1" : "0")
+        app.buttons["reader.appearance.done"].tap()
+        waitForPanelToClose("reader.appearance.done", in: app)
+    }
+
+    @MainActor private func assertBookProgress(_ visible: Bool, stage: String, in app: XCUIApplication) {
+        let title = app.staticTexts["reader.progress.title"]
+        let percentage = app.staticTexts["reader.progress.percentage"]
+        let bar = app.descendants(matching: .any)["reader.progress.bar"]
+        let expected = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            title.exists && title.label.contains("第二章") && percentage.exists == visible && bar.exists == visible
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [expected], timeout: 10), .completed)
+        XCTAssertTrue(title.label.contains("第二章"))
+        XCTAssertEqual(percentage.exists, visible); XCTAssertEqual(bar.exists, visible)
+        print("BOOK_PROGRESS_UI stage=\(stage) percentage=\(percentage.exists) bar=\(bar.exists) chapter=\(title.label.contains("第二章"))")
+        snapshot("book-progress-\(stage)", in: app)
     }
 
     @MainActor private func start(reduceMotion: Bool = false) -> XCUIApplication {

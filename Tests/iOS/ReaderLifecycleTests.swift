@@ -519,10 +519,13 @@ final class ReaderLifecycleTests: XCTestCase {
         var interactionProvider: (any ReaderInteractionProviding)? { self }
         var onReadingGesture: (() -> Void)?
         var interaction: ReadingInteraction?
+        var interactionApplications = 0
         var supportsContinuousScrolling = true
         var continuous = false
         var continuousChanges = 0
-        func setInteraction(_ value: ReadingInteraction) throws { interaction = try value.validated() }
+        func setInteraction(_ value: ReadingInteraction) throws {
+            interaction = try value.validated(); interactionApplications += 1
+        }
         func setContinuousScrolling(_ enabled: Bool) { continuous = enabled; continuousChanges += 1 }
         var closeCount = 0
         var finalPositionOnClose: ReadingPosition?
@@ -730,7 +733,7 @@ final class ReaderLifecycleTests: XCTestCase {
     }
 
     @MainActor func testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist() async throws {
-        let (_, services, engine, model) = try await context()
+        let (book, services, engine, model) = try await context()
         let started = expectation(description: "open")
         engine.onOpenStarted = { started.fulfill() }
         let opening = Task { await model.open() }
@@ -747,7 +750,89 @@ final class ReaderLifecycleTests: XCTestCase {
         let restored = try await services.files.readingInteraction()
         XCTAssertTrue(restored.continuousScrolling); XCTAssertFalse(restored.reduceMotion)
         model.setAdditionalReduceMotion(false); XCTAssertEqual(engine.interaction?.reduceMotion, false)
+
+        let applications = engine.interactionApplications, captures = engine.captureCalls
+        let kept = ReadingPosition(bookID: book.id, engineID: "test", locatorVersion: 3,
+                                   locatorData: Data([4, 2, 7]), chapterTitle: "当前章", progression: 0.45)
+        try await services.repository.save(kept)
+        engine.onPositionChanged?(kept)
+        model.setBookProgressVisible(false)
+        await services.readerSettings.flush()
+        XCTAssertFalse(model.interaction.showsBookProgress)
+        XCTAssertEqual(model.position, kept)
+        let hidden = try await services.files.readingInteraction()
+        XCTAssertFalse(hidden.showsBookProgress)
+        XCTAssertEqual(engine.interactionApplications, applications)
+        XCTAssertEqual(engine.captureCalls, captures)
+
+        let preference = try services.files.resolve("Preferences/interaction-v1.json")
+        let prior = try Data(contentsOf: preference)
+        try FileManager.default.removeItem(at: preference)
+        try FileManager.default.createDirectory(at: preference, withIntermediateDirectories: false)
+        engine.automaticScrollState = .running
+        engine.onAutomaticScrollStateChanged?(.running)
+        model.setBookProgressVisible(true)
+        await services.readerSettings.flush()
+        XCTAssertNotNil(model.interactionSaveFailure)
+        XCTAssertTrue(model.isReady)
+        XCTAssertEqual(engine.automaticScrollState, .running)
+        try FileManager.default.removeItem(at: preference)
+        try prior.write(to: preference)
+        model.retryInteractionSave()
+        await services.readerSettings.flush()
+        XCTAssertNil(model.interactionSaveFailure)
+        XCTAssertEqual(engine.interactionApplications, applications)
+        XCTAssertEqual(engine.captureCalls, captures)
+        let persistedPosition = try await services.repository.position(for: book.id)
+        XCTAssertEqual(persistedPosition, kept)
+
+        let pureRetryApplications = engine.interactionApplications
+        let mixedPrior = try Data(contentsOf: preference)
+        try FileManager.default.removeItem(at: preference)
+        try FileManager.default.createDirectory(at: preference, withIntermediateDirectories: false)
+        var typography = model.appearance; typography.fontScale = 1.25
+        var mixed = model.interaction; mixed.automaticScrollSpeed = 2.5
+        // No suspension between these setters: both queues see the pending engine edit.
+        model.setAppearance(typography)
+        model.setInteraction(mixed)
+        engine.automaticScrollState = .running
+        engine.onAutomaticScrollStateChanged?(.running)
+        model.setBookProgressVisible(false)
+        await services.readerSettings.flush()
+        XCTAssertEqual(engine.appearance?.fontScale, 1.25)
+        XCTAssertEqual(engine.interaction?.automaticScrollSpeed, 2.5)
+        XCTAssertEqual(engine.interactionApplications, applications + 1)
+        XCTAssertEqual(engine.automaticScrollState, .paused)
+        XCTAssertNotNil(model.interactionSaveFailure)
+        XCTAssertNil(model.appearanceSaveFailure)
+        let savedTypography = try await services.files.readingAppearance()
+        XCTAssertEqual(savedTypography.fontScale, 1.25)
+        try FileManager.default.removeItem(at: preference)
+        try mixedPrior.write(to: preference)
+        model.retryInteractionSave()
+        await services.readerSettings.flush()
+        XCTAssertNil(model.interactionSaveFailure)
+        XCTAssertEqual(engine.interactionApplications, applications + 2)
+        XCTAssertEqual(engine.captureCalls, captures)
+        let savedMixed = try await services.files.readingInteraction()
+        XCTAssertEqual(savedMixed.automaticScrollSpeed, 2.5)
+        XCTAssertFalse(savedMixed.showsBookProgress)
+        model.setBookProgressVisible(false)
+        await services.readerSettings.flush()
         model.close()
+        model.setBookProgressVisible(true)
+        XCTAssertFalse(model.interaction.showsBookProgress)
+
+        let nextEngine = SuspendedEngine()
+        let next = ReaderViewModel(book: book, services: services, factory: Factory(engine: nextEngine))
+        let nextStarted = expectation(description: "reopen restores progress visibility")
+        nextEngine.onOpenStarted = { nextStarted.fulfill() }
+        let reopening = Task { await next.open() }
+        await fulfillment(of: [nextStarted], timeout: 2); nextEngine.finishOpen(); await reopening.value
+        XCTAssertFalse(next.interaction.showsBookProgress)
+        XCTAssertEqual(next.position, kept)
+        print("BOOK_PROGRESS_MODEL pureRetryNoEngine=\(pureRetryApplications == applications) mixedApplied=\(engine.interactionApplications == applications + 2) positionKept=\(next.position == kept) restoredHidden=\(!next.interaction.showsBookProgress)")
+        next.close()
     }
 
     @MainActor func testUnsupportedBookKeepsPreferredContinuousModeForOtherBooks() async throws {

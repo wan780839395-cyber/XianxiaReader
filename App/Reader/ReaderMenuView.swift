@@ -103,7 +103,7 @@ import XianxiaCore
 
     private var footer: some View {
         VStack(spacing: 14) {
-            ReaderProgressView(state: model.progress, palette: palette)
+            ReaderProgressView(state: model.progress, palette: palette, showBookProgress: model.interaction.showsBookProgress)
             HStack(spacing: 12) {
                 pageButton(forward: false)
                 Spacer(minLength: 0)

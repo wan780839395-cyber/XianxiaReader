@@ -6,6 +6,7 @@ Swift behavior is additionally checked by the ReaderPositions package tests.
 from pathlib import Path
 import hashlib
 import unittest
+from test_book_progress_visibility import project_visibility
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -63,7 +64,7 @@ class SaveObservationTests(unittest.TestCase):
                             "catch ReaderPositionCaptureError.unavailable { return nil }")
         self.assertEqual(sha(text), ADAPTER_SHA)
         for name, origins, expected in VIEW_HASHES:
-            text = self.read(name)
+            text = project_visibility(name, self.read(name))
             for origin in origins:
                 self.assertEqual(text.count("saveNow(source: ." + origin + ")"), 1)
                 text = text.replace("saveNow(source: ." + origin + ")", "saveNow()")

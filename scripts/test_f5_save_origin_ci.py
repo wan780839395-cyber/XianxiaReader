@@ -11,6 +11,7 @@ import sys
 import tempfile
 import unittest
 from layout_sample_evidence import without_layout_sample_upload
+from test_book_progress_visibility import without_progress_workflow, without_progress_driver
 
 ROOT = Path(__file__).resolve().parents[1]
 SELECTION = "f5-save-origin"
@@ -43,6 +44,7 @@ def replace_exact(text, old, new):
 
 
 def restore_pre_f5_workflow(text):
+    text = without_progress_workflow(text)
     text = without_layout_sample_upload(text)
     text = replace_exact(text, ", f5-save-origin]", "]")
     text = replace_exact(text, RECEIPT_BLOCK, "")
@@ -50,6 +52,7 @@ def restore_pre_f5_workflow(text):
 
 
 def restore_pre_f5_driver(text):
+    text = without_progress_driver(text)
     text = replace_exact(text, SHELL_BRANCH, "")
     text = replace_exact(text, "if [[ \"$selection\" == 'f5-save-origin' || \"$selection\" == 'panels'", "if [[ \"$selection\" == 'panels'")
     text = replace_exact(text, 'if python3 - "$SIMULATOR_ID" "$selection" <<\'XR_CONTEXT\'', 'if python3 - "$SIMULATOR_ID" <<\'XR_CONTEXT\'')

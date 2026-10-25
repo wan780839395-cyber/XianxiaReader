@@ -71,8 +71,8 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         defer { storage.failPendingWrites() }
         let store = ReaderSettingsPersistence(storage: storage)
         let owner = UUID()
-        var first = ReadingInteraction(); first.automaticScrollSpeed = 2
-        var last = first; last.automaticScrollSpeed = 3
+        var first = ReadingInteraction(); first.automaticScrollSpeed = 2; first.showsBookProgress = false
+        var last = first; last.automaticScrollSpeed = 3; last.showsBookProgress = true
         let started = expectation(description: "interaction first write")
         storage.onInteractionStarted = { started.fulfill() }
         store.saveInteraction(first, owner: owner)
@@ -85,6 +85,7 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         storage.finishInteraction(error: ControlledReaderSettingsStorage.Failure.write)
         await store.flush()
         XCTAssertEqual(storage.storedInteraction, first)
+        XCTAssertFalse(storage.storedInteraction.showsBookProgress)
         XCTAssertNotNil(store.interactionCompletion?.errorMessage)
         XCTAssertNil(store.appearanceCompletion)
 
@@ -96,6 +97,7 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         await store.flush()
         XCTAssertEqual(storage.interactionAttempts, [first, last, last])
         XCTAssertEqual(storage.storedInteraction, last)
+        XCTAssertTrue(storage.storedInteraction.showsBookProgress)
         XCTAssertNil(store.interactionCompletion?.errorMessage)
     }
 
@@ -108,7 +110,8 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         storage.onAppearanceStarted = { appearanceStarted.fulfill() }
         storage.onInteractionStarted = { interactionStarted.fulfill() }
         store.saveAppearance(ReadingAppearance(), owner: UUID())
-        store.saveInteraction(ReadingInteraction(), owner: UUID())
+        var hidden = ReadingInteraction(); hidden.showsBookProgress = false
+        store.saveInteraction(hidden, owner: UUID())
         await fulfillment(of: [appearanceStarted, interactionStarted], timeout: 2)
         let flushStarted = expectation(description: "flush entered")
         var flushFinished = false
@@ -128,6 +131,7 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         await flushing.value
         XCTAssertTrue(flushFinished)
         XCTAssertEqual(storage.storedAppearance, newest)
+        XCTAssertEqual(storage.storedInteraction, hidden)
     }
 
     @MainActor func testNewReaderRestoreWaitsForPendingAppearanceWrite() async throws {
@@ -167,7 +171,7 @@ final class ReaderSettingsPersistenceTests: XCTestCase {
         defer { do { try FileManager.default.removeItem(at: root) } catch { XCTFail("Fixture cleanup failed: \(error)") } }
         let store = ReaderSettingsPersistence(storage: files)
         var appearance = ReadingAppearance(); appearance.fontScale = 1.5; appearance.theme = .charcoal
-        var interaction = ReadingInteraction(); interaction.reduceMotion = true
+        var interaction = ReadingInteraction(); interaction.reduceMotion = true; interaction.showsBookProgress = false
         store.saveAppearance(appearance, owner: UUID())
         store.saveInteraction(interaction, owner: UUID())
         await store.flush()

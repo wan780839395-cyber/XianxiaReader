@@ -7,12 +7,13 @@ public struct ReadingInteraction: Codable, Equatable, Sendable {
     public var verticalScreenPaging = false
     public var reduceMotion = false
     public var autoHideMenu = true
+    public var showsBookProgress = true
     public var automaticScrollSpeed = 1.5
 
     public init() { version = 1 }
 
     private enum CodingKeys: String, CodingKey {
-        case version, continuousScrolling, verticalScreenPaging, reduceMotion, autoHideMenu, automaticScrollSpeed
+        case version, continuousScrolling, verticalScreenPaging, reduceMotion, autoHideMenu, showsBookProgress, automaticScrollSpeed
     }
 
     public init(from decoder: Decoder) throws {
@@ -23,6 +24,8 @@ public struct ReadingInteraction: Codable, Equatable, Sendable {
             ? values.decode(Bool.self, forKey: .verticalScreenPaging) : false
         reduceMotion = try values.decode(Bool.self, forKey: .reduceMotion)
         autoHideMenu = try values.decode(Bool.self, forKey: .autoHideMenu)
+        showsBookProgress = try values.contains(.showsBookProgress)
+            ? values.decode(Bool.self, forKey: .showsBookProgress) : true
         automaticScrollSpeed = try values.contains(.automaticScrollSpeed)
             ? values.decode(Double.self, forKey: .automaticScrollSpeed) : 1.5
     }

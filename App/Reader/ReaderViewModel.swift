@@ -80,6 +80,7 @@ enum ReaderSaveSource: String {
     private let sessions = ReaderSessionState()
     private var openRequestID: UUID? { sessions.requestID }
     private var settingsSubscriptions: Set<AnyCancellable> = []
+    private var interactionHasPendingEngineEdits = false
     private var additionalReduceMotionRequested = false
     private let navigation = ReaderNavigationCoordinator()
     private var positions: ReaderPositionState { progress.positions }
@@ -127,7 +128,8 @@ enum ReaderSaveSource: String {
         services.readerSettings.$interactionCompletion.sink { [weak self] completion in
             guard let self, self.openRequestID != nil, completion?.owner == self.openRequestID else { return }
             self.interactionSaveFailure = completion?.errorMessage.map { "阅读手感尚未保存：\($0)" }
-            if completion?.errorMessage != nil { self.pauseAutomaticScroll() }
+            if completion?.errorMessage == nil { self.interactionHasPendingEngineEdits = false }
+            else if self.interactionHasPendingEngineEdits { self.pauseAutomaticScroll() }
         }.store(in: &settingsSubscriptions)
     }
 
@@ -217,6 +219,7 @@ enum ReaderSaveSource: String {
             applyInteraction: { restored in
                 try self.applyInteraction(restored)
                 self.interaction = restored
+                self.interactionHasPendingEngineEdits = false
             },
             publishChapters: { self.chapters = $0 },
             publishBookmarks: { self.bookmarks = $0 },
@@ -446,10 +449,22 @@ enum ReaderSaveSource: String {
         do { try applyInteraction(value); interaction = value }
         catch { errorMessage = error.localizedDescription; return }
         guard let owner = openRequestID else { return }
+        interactionHasPendingEngineEdits = true
         services.readerSettings.saveInteraction(value, owner: owner)
     }
 
-    func retryInteractionSave() { setInteraction(interaction) }
+    func setBookProgressVisible(_ visible: Bool) {
+        guard isReady, let owner = openRequestID else { return }
+        var updated = interaction
+        updated.showsBookProgress = visible
+        interaction = updated
+        services.readerSettings.saveInteraction(updated, owner: owner)
+    }
+
+    func retryInteractionSave() {
+        if interactionHasPendingEngineEdits { setInteraction(interaction) }
+        else { setBookProgressVisible(interaction.showsBookProgress) }
+    }
 
     func setAdditionalReduceMotion(_ requested: Bool) {
         if requested { pauseAutomaticScroll() }

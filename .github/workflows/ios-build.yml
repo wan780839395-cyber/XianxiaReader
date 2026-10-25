@@ -22,7 +22,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility]
 
 permissions:
   contents: read
@@ -364,6 +364,10 @@ jobs:
       DIAGNOSTIC_SELECTION: ${{ inputs.diagnostic_selection }}
     steps:
       - uses: actions/checkout@v4
+      - name: Validate progress visibility settings persistence
+        if: ${{ inputs.diagnostic_selection == 'book-progress-visibility' }}
+        shell: bash
+        run: bash scripts/test_reader_logic.sh build/ReaderLogic
       - name: Run selected native diagnostics without device packaging
         shell: bash
         run: |
@@ -403,6 +407,19 @@ jobs:
           print("F5_SAVE_ORIGIN_RECEIPT " + json.dumps(receipt, sort_keys=True))
           F5_SAVE_ORIGIN_RECEIPT
           fi
+          if [[ "$DIAGNOSTIC_SELECTION" == 'book-progress-visibility' ]]; then
+            python3 - <<'BOOK_PROGRESS_RECEIPT'
+          from pathlib import Path
+          import json, os, sys
+          sys.path.insert(0, "scripts")
+          from test_book_progress_visibility import verify_book_progress_native
+          receipt = verify_book_progress_native(Path("build"))
+          receipt.update(source=os.environ["GITHUB_SHA"], nativeCompiled=True)
+          Path("build/BookProgressVisibility").mkdir(exist_ok=True)
+          Path("build/BookProgressVisibility/native-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+          print("BOOK_PROGRESS_RECEIPT " + json.dumps(receipt, sort_keys=True))
+          BOOK_PROGRESS_RECEIPT
+          fi
       - name: Preserve paged font baseline text for diagnosis
         if: always() && inputs.diagnostic_selection == 'paged-font-control'
         uses: actions/upload-artifact@v4
@@ -437,6 +454,8 @@ jobs:
             build/Package.resolved
             build/txt-initial-load-receipt.json
             build/f5-save-origin-receipt.json
+            build/BookProgressVisibility/
+            build/ReaderLogic/
             build/RecordingControl/
             build/PositionControl/
             build/PagedFontControl/

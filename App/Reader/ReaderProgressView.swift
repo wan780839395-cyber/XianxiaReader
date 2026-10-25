@@ -33,6 +33,7 @@ struct ReaderProgressSummary: Equatable {
 @MainActor struct ReaderProgressView: View {
     @ObservedObject var state: ReaderProgressState
     let palette: ReaderPalette
+    var showBookProgress = true
 
     var body: some View {
         VStack(spacing: 10) {
@@ -40,14 +41,15 @@ struct ReaderProgressSummary: Equatable {
                 Text(state.summary.chapterTitle).font(.footnote).lineLimit(1)
                     .accessibilityIdentifier("reader.progress.title")
                 Spacer(minLength: 0)
-                if let progress = state.summary.progression {
+                if showBookProgress, let progress = state.summary.progression {
                     Text("\(Int(progress * 100))%")
                         .font(.caption.monospacedDigit()).foregroundStyle(palette.secondaryText)
                         .accessibilityIdentifier("reader.progress.percentage")
                 }
             }
-            if let progress = state.summary.progression {
+            if showBookProgress, let progress = state.summary.progression {
                 ProgressView(value: progress).accessibilityLabel("全书阅读进度")
+                    .accessibilityIdentifier("reader.progress.bar")
             }
         }
     }
