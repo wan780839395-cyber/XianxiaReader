@@ -16,6 +16,16 @@ import ci_viewport_pair as pair
 import test_reader_positions_tools as fixtures
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def _viewport_contract_shell(shell):
+    # The independent F5 route has its own one-build/two-action execution tests.
+    # Strip only its exact, hash-protected blocks; unknown additions remain checked.
+    if "# F5_WAIT_CONTROL_PAIR_BEGIN" in shell:
+        from test_f5_first_open_observation import without_wait_control_driver
+        return without_wait_control_driver(shell)
+    return shell
+
+
 DEV = "/Applications/Xcode_16.4.app/Contents/Developer"
 VERSIONS = {"xcode-version": "Xcode 16.4\nBuild version 16F6\n", "swift-version": "Apple Swift version 6.1.2\nTarget: x86_64-apple-macosx15.5\n", "os-version": "ProductName: macOS\nProductVersion: 15.5\nBuildVersion: 24F74\n"}
 
@@ -385,11 +395,47 @@ class ViewportPairCITests(unittest.TestCase):
         self.assertEqual(upload["if"], "always()"); self.assertIn("build/ViewportPair/", upload["with"]["path"])
         shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
         self.assertIn('exec python3 scripts/ci_viewport_pair.py run "$SIMULATOR_ID"', shell)
-        self.assertEqual(shell.count("xcodebuild build-for-testing"), 1)
+        self._assert_one_viewport_build(shell)
         bash = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "Git/bin/bash.exe"
         executable = str(bash) if os.name == "nt" and bash.is_file() else shutil.which("bash")
         self.assertIsNotNone(executable)
         subprocess.run([executable, "-n", "scripts/ci_reader_diagnostic.sh"], cwd=ROOT, check=True, capture_output=True)
+
+
+    def _assert_one_viewport_build(self, shell):
+        self.assertEqual(_viewport_contract_shell(shell).count("xcodebuild build-for-testing"), 1)
+
+    def test_build_guard_accepts_only_the_exact_independent_f5_route(self):
+        shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
+        self._assert_one_viewport_build(shell)
+        scoped = _viewport_contract_shell(shell)
+        self.assertIn('exec python3 scripts/ci_viewport_pair.py run "$SIMULATOR_ID"', scoped)
+        self.assertNotIn("F5_WAIT_CONTROL_PAIR_BEGIN", scoped)
+        self.assertNotIn("f5-wait-api-control", scoped)
+        # The new route remains independently protected instead of being ignored.
+        from test_f5_first_open_observation import without_wait_control_driver
+        self.assertEqual(scoped, without_wait_control_driver(shell))
+
+    def test_build_guard_rejects_extra_viewport_or_unscoped_builds(self):
+        shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
+        viewport_call = "  xcodebuild build-for-testing -project"
+        self.assertEqual(shell.count(viewport_call), 1)
+        doubled_viewport = shell.replace(viewport_call, viewport_call + "\n" + viewport_call, 1)
+        for changed in (doubled_viewport, shell + "\nxcodebuild build-for-testing -project extra\n"):
+            with self.subTest(location="viewport" if changed == doubled_viewport else "outside"):
+                with self.assertRaises(AssertionError): self._assert_one_viewport_build(changed)
+
+    def test_build_guard_rejects_changed_or_duplicated_f5_build_block(self):
+        shell = (ROOT / "scripts/ci_reader_diagnostic.sh").read_text(encoding="utf-8")
+        marker = "# F5_WAIT_CONTROL_PAIR_BEGIN\n"
+        begin = shell.index(marker)
+        end = shell.index("# F5_WAIT_CONTROL_PAIR_END\n", begin) + len("# F5_WAIT_CONTROL_PAIR_END\n")
+        block = shell[begin:end]
+        call = 'xcodebuild build-for-testing "${shared_args[@]}"'
+        self.assertEqual(block.count(call), 1)
+        extra = shell[:begin] + block.replace(call, call + "\n" + call, 1) + shell[end:]
+        for changed in (extra, shell + block):
+            with self.assertRaises(ValueError): self._assert_one_viewport_build(changed)
 
 
 if __name__ == "__main__":
