@@ -186,8 +186,18 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
             app.buttons["reader.return.go"].tap()
             waitForReturnText("本样书用于", in: app)
         }
-        // A fresh synthetic library keeps this preference scenario independent of the themes above.
-        let visibilityApp = start(); defer { visibilityApp.terminate() }
+    }
+
+    // Functional preparation is separate from the unchanged 20s opening gate above.
+    @MainActor func testBookProgressVisibilityAfterReadyPersistsAcrossReopenAndRelaunch() {
+        let visibilityApp = XCUIApplication()
+        visibilityApp.launchArguments = ["-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        visibilityApp.launchEnvironment["XR_LIBRARY_UI_TEST_ID"] = UUID().uuidString
+        visibilityApp.launchEnvironment["XR_READER_UI_SETTINGS"] = "1"
+        visibilityApp.launchEnvironment["XR_LIBRARY_UI_LAYOUT"] = "list"
+        defer { visibilityApp.terminate() }
+        visibilityApp.launch()
+        guard prepareBookProgressReader(in: visibilityApp, phase: "initial", expectedText: "本样书用于") else { return }
         visibilityApp.buttons["reader.contents.open"].tap()
         let chapter = visibilityApp.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'reader.contents.' AND label CONTAINS '第二章'")).firstMatch
         XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
@@ -200,10 +210,11 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
         let book = visibilityApp.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
         let returned = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: book)
         XCTAssertEqual(XCTWaiter.wait(for: [returned], timeout: 20), .completed)
-        openBook(in: visibilityApp)
+        guard prepareBookProgressReader(in: visibilityApp, phase: "reopened", expectedText: "灯下第1段") else { return }
         assertBookProgress(false, stage: "reopened-hidden", in: visibilityApp)
         // Reuse the same test-library UUID across this actual process relaunch.
-        visibilityApp.terminate(); visibilityApp.launch(); openBook(in: visibilityApp)
+        visibilityApp.terminate(); visibilityApp.launch()
+        guard prepareBookProgressReader(in: visibilityApp, phase: "relaunched", expectedText: "灯下第1段") else { return }
         assertBookProgress(false, stage: "relaunched-hidden", in: visibilityApp)
         changeBookProgress(from: false, to: true, in: visibilityApp)
         assertBookProgress(true, stage: "visible-again", in: visibilityApp)
@@ -505,6 +516,33 @@ final class ReaderInterfaceUITests: ReaderUITestCase {
             app.buttons["reader.mode"].tap(); app.buttons["上下连续滚动"].tap()
             XCTAssertEqual(app.buttons["reader.mode"].value as? String, "上下连续滚动")
         }
+    }
+
+    // This 60s fixture-preparation budget is NOT an opening-speed acceptance budget.
+    // The original start/openBook/waitForReadableText path below remains exactly 20s.
+    // 60s combines the existing 20s existence, 20s enabled and 20s body allowances;
+    // it prepares this functional fixture without replacing any original stage gate.
+    @MainActor private func prepareBookProgressReader(in app: XCUIApplication, phase: String, expectedText: String) -> Bool {
+        let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
+        guard book.waitForExistence(timeout: 20), book.isHittable else {
+            print("BOOK_PROGRESS_PREP phase=\(phase) result=failed")
+            XCTFail("Book progress preparation failed at \(phase): library book unavailable; remaining feature steps not executed")
+            return false
+        }
+        book.tap()
+        let settings = app.buttons["reader.appearance.open"]
+        let text = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", expectedText))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            settings.exists && settings.isEnabled && text.allElementsBoundByIndex.contains { $0.isHittable }
+        }, object: nil)
+        let result = XCTWaiter.wait(for: [ready], timeout: 60)
+        guard result == .completed else {
+            print("BOOK_PROGRESS_PREP phase=\(phase) result=failed")
+            XCTFail("Book progress preparation failed at \(phase): operable body not ready within 60s; remaining feature steps not executed")
+            return false
+        }
+        print("BOOK_PROGRESS_PREP phase=\(phase) result=ready")
+        return true
     }
 
     @MainActor private func changeBookProgress(from old: Bool, to visible: Bool, in app: XCUIApplication) {

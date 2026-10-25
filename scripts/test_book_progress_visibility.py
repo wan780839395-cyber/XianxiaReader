@@ -123,7 +123,7 @@ class BookProgressVisibilityTests(unittest.TestCase):
         self.assertNotIn('engine', controls)
         self.assertIn('reader.interaction.save-error', text)
 
-    def test_swift_coverage_is_authored_without_changing_native_case_inventory(self):
+    def test_swift_coverage_keeps_existing_model_case_inventory(self):
         core = self.text('Packages/XianxiaCore/Tests/XianxiaCoreTests/BookProgressVisibilityTests.swift')
         for token in ['testLegacyDefaultsAndVisibilitySurviveFileStoreRecreation', 'testMalformedPresentVisibilityRemainsAnErrorWithoutRewritingTheFile',
                       'XCTAssertFalse(restored.showsBookProgress)', 'XCTAssertEqual(try Data(contentsOf: url), bad)']:
@@ -142,6 +142,7 @@ BOOK_PROGRESS_SELECTION = "book-progress-visibility"
 NATIVE_CASES = (
     ("XianxiaReaderTests", "ReaderLifecycleTests", "testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist"),
     ("XianxiaReaderUITests", "ReaderInterfaceUITests", "testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates"),
+    ("XianxiaReaderUITests", "ReaderInterfaceUITests", "testBookProgressVisibilityAfterReadyPersistsAcrossReopenAndRelaunch"),
 )
 UI_STAGES = ("default", "hidden", "reopened-hidden", "relaunched-hidden", "visible-again")
 PROGRESS_BRANCH = "  book-progress-visibility)\n    cases=(" + " ".join("-only-testing:" + "/".join(c) for c in NATIVE_CASES) + ")\n    ;;\n"
@@ -184,25 +185,28 @@ def verify_book_progress_native(folder):
     expected = Counter(NATIVE_CASES)
     starts = Counter(e[:3] for e in events if e[3] == "started.")
     passes = Counter(e[:3] for e in events if e[3].startswith("passed ("))
-    if len(events) != 4 or starts != expected or passes != expected:
-        raise ValueError("Exactly the two original methods must start/pass once, with zero other cases/failures/skips")
+    if len(events) != 2 * len(NATIVE_CASES) or starts != expected or passes != expected:
+        raise ValueError("Original opening gate, model and functional UI must each start/pass once with zero other cases/failures/skips")
     for case in NATIVE_CASES:
         rows = [e[3] for e in events if e[:3] == case]
         if rows[0] != "started.": raise ValueError("Pass must follow its own start")
     raw = re.findall(r"^DIAGNOSTIC ONLY: book-progress-visibility; test=(\d+) summary=(\d+) export=(\d+); no device Release or IPA$", log, re.M)
     if raw != [("0", "0", "0")]: raise ValueError("Original three exits must be zero exactly once")
     summary = json.loads((folder/"test-results-summary.json").read_text(encoding="utf-8"))
-    for key, value in {"totalTestCount": 2, "passedTests": 2, "failedTests": 0, "skippedTests": 0}.items():
+    for key, value in {"totalTestCount": 3, "passedTests": 3, "failedTests": 0, "skippedTests": 0}.items():
         if type(summary.get(key)) is not int or summary[key] != value: raise ValueError("Wrong xcresult count")
     if summary.get("result") != "Passed" or summary.get("testFailures") != []: raise ValueError("xcresult failed")
     stages = re.findall(r"^BOOK_PROGRESS_UI stage=(\S+) percentage=(true|false) bar=(true|false) chapter=(true|false)$", log, re.M)
     wanted = [(s, "true" if s in ("default", "visible-again") else "false", "true" if s in ("default", "visible-again") else "false", "true") for s in UI_STAGES]
     if stages != wanted: raise ValueError("All actual UI stages must complete in order")
+    preparation = re.findall(r"^BOOK_PROGRESS_PREP phase=(\S+) result=(\S+)$", log, re.M)
+    if preparation != [(s, "ready") for s in ("initial", "reopened", "relaunched")]:
+        raise ValueError("All functional preparations must finish; no failed/missing preparation can be a pass")
     marker = "BOOK_PROGRESS_MODEL pureRetryNoEngine=true mixedApplied=true positionKept=true restoredHidden=true"
     if log.splitlines().count(marker) != 1: raise ValueError("Model retry/mixed/reopen checks did not complete")
     return dict(selection=BOOK_PROGRESS_SELECTION, cases=["/".join(c) for c in NATIVE_CASES],
-                started=2, passed=2, failed=0, skipped=0, testExit=0, summaryExit=0, exportExit=0,
-                uiStages=list(UI_STAGES), modelRetryMixedPositionReopen=True)
+                started=3, passed=3, failed=0, skipped=0, testExit=0, summaryExit=0, exportExit=0,
+                uiStages=list(UI_STAGES), preparationPhases=[s for s, _ in preparation], original20SecondGatePassed=True, modelRetryMixedPositionReopen=True)
 
 class BookProgressNativeCITests(unittest.TestCase):
     def test_selection_keeps_prerequisites_and_never_enters_packaging(self):
@@ -242,12 +246,12 @@ class BookProgressNativeCITests(unittest.TestCase):
 
     def test_ui_keeps_original_method_and_covers_actual_reopen_relaunch(self):
         text = (ROOT/"Tests/UI/ReaderInterfaceUITests.swift").read_text(encoding="utf-8")
-        for token in ['let visibilityApp = start()', 'from: true, to: false', 'from: false, to: true',
-                      'visibilityApp.terminate(); visibilityApp.launch(); openBook(in: visibilityApp)',
+        for token in ['let visibilityApp = XCUIApplication()', 'from: true, to: false', 'from: false, to: true',
+                      'visibilityApp.terminate(); visibilityApp.launch()',
                       'hittable == true', 'XCTAssertEqual(percentage.exists, visible)',
                       'XCTAssertEqual(bar.exists, visible)', 'XCTAssertTrue(title.label.contains("第二章"))']:
             self.assertIn(token, text)
-        self.assertEqual(text.count('func '+NATIVE_CASES[1][2]+'('), 1)
+        for case in NATIVE_CASES[1:]: self.assertEqual(text.count('func '+case[2]+'('), 1)
         for stage in UI_STAGES: self.assertIn('stage: "'+stage+'"', text)
 
     def test_native_receipt_success_and_rejects_missing_wrong_duplicate_skip_failure(self):
@@ -259,27 +263,73 @@ class BookProgressNativeCITests(unittest.TestCase):
                 prefix = "Test Case '-["+module+"."+cls+" "+method+"]' "
                 log += prefix+"started.\n"+prefix+"passed (1.000 seconds).\n"
             log += "DIAGNOSTIC ONLY: book-progress-visibility; test=0 summary=0 export=0; no device Release or IPA\n"
+            for phase in ("initial", "reopened", "relaunched"):
+                log += f"BOOK_PROGRESS_PREP phase={phase} result=ready\n"
             for stage in UI_STAGES:
                 value = "true" if stage in ("default", "visible-again") else "false"
                 log += f"BOOK_PROGRESS_UI stage={stage} percentage={value} bar={value} chapter=true\n"
             log += "BOOK_PROGRESS_MODEL pureRetryNoEngine=true mixedApplied=true positionKept=true restoredHidden=true\n"
             target = root/"logs/reader-diagnostic.log"
-            summary = dict(totalTestCount=2, passedTests=2, failedTests=0, skippedTests=0, result="Passed", testFailures=[])
+            summary = dict(totalTestCount=3, passedTests=3, failedTests=0, skippedTests=0, result="Passed", testFailures=[])
             result = root/"test-results-summary.json"
             result.write_text(json.dumps(summary), encoding="utf-8"); target.write_text(log, encoding="utf-8")
-            self.assertEqual(verify_book_progress_native(root)["passed"], 2)
-            for bad in [log+log.splitlines()[0]+"\n", log.replace("XianxiaReaderUITests.", "WrongTests."),
+            self.assertEqual(verify_book_progress_native(root)["passed"], 3)
+            gate = NATIVE_CASES[1]
+            gate_label = "Test Case '-["+gate[0]+"."+gate[1]+" "+gate[2]+"]' "
+            gate_pass = gate_label+"passed (1.000 seconds)."
+            missing_gate = "\n".join(row for row in log.splitlines() if not row.startswith(gate_label))+"\n"
+            for bad in [missing_gate, log.replace(gate_pass, gate_pass.replace("passed (", "failed (")),
+                        log+log.splitlines()[0]+"\n", log.replace("XianxiaReaderUITests.", "WrongTests."),
                         log.replace("passed (1.000 seconds).", "skipped.", 1),
                         log.replace("passed (1.000 seconds).", "failed (1.000 seconds).", 1),
-                        log.replace("test=0", "test=65"), log.replace("stage=default", "stage=unknown"),
+                        log.replace("test=0", "test=65"),
+                        log.replace("phase=initial result=ready", "phase=initial result=failed"),
+                        log.replace("BOOK_PROGRESS_PREP phase=reopened result=ready\n", ""), log.replace("stage=default", "stage=unknown"),
                         log.replace("pureRetryNoEngine=true", "pureRetryNoEngine=false"),
                         "\n".join(s for s in log.splitlines() if "reopened-hidden" not in s)]:
                 target.write_text(bad, encoding="utf-8")
                 with self.assertRaises(ValueError): verify_book_progress_native(root)
             target.write_text(log, encoding="utf-8")
-            for change in [dict(skippedTests=1), dict(totalTestCount=3), dict(result="Failed"), dict(passedTests=True)]:
+            for change in [dict(skippedTests=1), dict(totalTestCount=2), dict(result="Failed"), dict(passedTests=True)]:
                 result.write_text(json.dumps(summary|change), encoding="utf-8")
                 with self.assertRaises(ValueError): verify_book_progress_native(root)
+
+
+
+LEGACY_UI_SHA = '4ab8579e8e7db695e3903996d29cb7d758bdb144c73ba7f0f210f602f748ed5a'
+FEATURE_UI_BLOCK_SHA = 'aeb0a4887218320012314d69e36f12e619ae436ccaefbad5c01958884cdf80cf'
+FEATURE_UI_HELPERS_SHA = '0643a640a675ef5863982fca1188f52dda969b7e15f4eba267f39792fdeed32a'
+
+def project_functional_ui(text):
+    text = replace_block(text, '    // Functional preparation is separate from the unchanged 20s opening gate above.\n', '    @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()', FEATURE_UI_BLOCK_SHA,
+                         '    @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()')
+    return replace_block(text, '    // This 60s fixture-preparation budget is NOT an opening-speed acceptance budget.\n', '    @MainActor private func start(', FEATURE_UI_HELPERS_SHA,
+                         '    @MainActor private func start(')
+
+class BookProgressBoundaryTests(unittest.TestCase):
+    def test_original_gate_all_assertions_and_twenty_second_helpers_are_exact(self):
+        text = (ROOT/"Tests/UI/ReaderInterfaceUITests.swift").read_text(encoding="utf-8")
+        self.assertEqual(hashlib.sha256(project_functional_ui(text).encode()).hexdigest(), LEGACY_UI_SHA)
+        changed = text.replace('timeout: 20', 'timeout: 60')
+        with self.assertRaises(ValueError): project_functional_ui(changed)
+
+    def test_preparation_cannot_turn_not_ready_into_skip_or_success(self):
+        text = (ROOT/"Tests/UI/ReaderInterfaceUITests.swift").read_text(encoding="utf-8")
+        preparation = text.split('    @MainActor private func prepareBookProgressReader(',1)[1].split('    @MainActor private func changeBookProgress(',1)[0]
+        self.assertIn('settings.exists && settings.isEnabled && text.allElementsBoundByIndex.contains { $0.isHittable }', preparation)
+        self.assertIn('guard result == .completed else {', preparation)
+        self.assertEqual(preparation.count('XCTFail('), 2)
+        self.assertEqual(preparation.count('return false'), 2)
+        self.assertIn('XCTWaiter.wait(for: [ready], timeout: 60)', preparation)
+        for token in ['XCTSkip','XCTExpectFailure','sleep(', 'try?', 'continueAfterFailure = true']:
+            self.assertNotIn(token, text)
+        feature = text.split('func '+NATIVE_CASES[2][2]+'()',1)[1].split('    @MainActor func testReadingPanelsFollowFiveThemesAndKeepNativeHitRegions()',1)[0]
+        self.assertNotIn('start()', feature)
+        self.assertNotIn('openBook(in:', feature)
+        self.assertIn('UUID().uuidString', feature)
+        for phase, expected in [('initial','本样书用于'),('reopened','灯下第1段'),('relaunched','灯下第1段')]:
+            self.assertIn('phase: "'+phase+'", expectedText: "'+expected+'") else { return }', feature)
+        self.assertEqual(feature.count('prepareBookProgressReader('), 3)
 
 
 if __name__ == '__main__':

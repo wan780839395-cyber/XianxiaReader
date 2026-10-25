@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
 case "$selection" in
   book-progress-visibility)
-    cases=(-only-testing:XianxiaReaderTests/ReaderLifecycleTests/testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates)
+    cases=(-only-testing:XianxiaReaderTests/ReaderLifecycleTests/testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testBookProgressVisibilityAfterReadyPersistsAcrossReopenAndRelaunch)
     ;;
   continuous-resize-pair)
     cases=(-only-testing:XianxiaReaderTests/ReaderRenderingTests/testContinuousViewportResizeKeepsOriginalWordAndLiveWebView)
