@@ -8,7 +8,18 @@ selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings
 if [[ -n "${XIANXIA_F5_FIRST_OPEN_ONLY:-}" || -n "${TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY:-}" ]]; then
   echo "F5 first-open override must come from the explicit selection" >&2; exit 2
 fi
+# F5_WAIT_CONTROL_GUARD_BEGIN
+if [[ -n "${XIANXIA_F5_WAIT_CONTROL:-}" || -n "${TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL:-}" ]]; then
+  echo "Wait API control overrides must come from the explicit paired selection" >&2; exit 2
+fi
+# F5_WAIT_CONTROL_GUARD_END
 case "$selection" in
+  # F5_WAIT_CONTROL_BRANCH_BEGIN
+  f5-wait-api-control)
+    cases=(-only-testing:XianxiaReaderUITests/ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection)
+    export TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY=1
+    ;;
+  # F5_WAIT_CONTROL_BRANCH_END
   f5-first-open)
     cases=(-only-testing:XianxiaReaderUITests/ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection)
     export TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY=1
@@ -349,6 +360,59 @@ xcodebuild -resolvePackageDependencies -project XianxiaReader.xcodeproj -scheme 
   -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
 xcrun simctl list devices available --json > build/devices.json
 SIMULATOR_ID=$(python3 scripts/select_simulator.py build/devices.json)
+# F5_WAIT_CONTROL_PAIR_BEGIN
+if [[ "$selection" == 'f5-wait-api-control' ]]; then
+  pair_root="$PWD/build/F5WaitControl"
+  if [[ -e "$pair_root" ]]; then echo "Wait control output already exists; inspect instead of rerunning" >&2; exit 2; fi
+  mkdir -p "$pair_root"
+  shared_args=(-project XianxiaReader.xcodeproj -scheme XianxiaReader
+    -onlyUsePackageVersionsFromResolvedFile -configuration Debug
+    -destination "platform=iOS Simulator,id=$SIMULATOR_ID"
+    -derivedDataPath "$PWD/build/DerivedData"
+    -clonedSourcePackagesDirPath "$PWD/build/SourcePackages"
+    -parallel-testing-enabled NO "${cases[@]}" CODE_SIGNING_ALLOWED=NO)
+  if xcodebuild build-for-testing "${shared_args[@]}" -resultBundlePath "$pair_root/Build.xcresult" > "$pair_root/build.log" 2>&1; then build_status=0
+  else build_status=$?; printf '{"build":%s,"armsExecuted":0}\n' "$build_status" > "$pair_root/build-status.json"; echo "Wait control build failed: $build_status; neither arm executed"; exit "$build_status"; fi
+  printf '{"build":0}\n' > "$pair_root/build-status.json"
+  xcrun simctl bootstatus "$SIMULATOR_ID" -b
+  xcrun simctl ui "$SIMULATOR_ID" appearance dark
+  pair_status=0
+  for arm in predicate property; do
+    arm_root="$pair_root/$arm"
+    mkdir -p "$arm_root"
+    export TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL="$arm"
+    # Independent test actions reuse one build; each method starts a new App/UUID fixture.
+    if xcodebuild test-without-building "${shared_args[@]}" -resultBundlePath "$arm_root/Tests.xcresult" > "$arm_root/native.log" 2>&1; then arm_status=0
+    else arm_status=$?; fi
+    if xcrun xcresulttool get test-results summary --path "$arm_root/Tests.xcresult" > "$arm_root/summary.json"; then summary_status=0
+    else summary_status=$?; fi
+    if xcrun xcresulttool export attachments --path "$arm_root/Tests.xcresult" --output-path "$arm_root/ReaderSnapshots"; then export_status=0
+    else export_status=$?; fi
+    python3 - "$arm_root" "$arm" "$arm_status" "$summary_status" "$export_status" <<'F5_WAIT_ARM_EXIT'
+from pathlib import Path
+import json, sys
+Path(sys.argv[1], "exits.json").write_text(json.dumps(dict(api=sys.argv[2], test=int(sys.argv[3]), summary=int(sys.argv[4]), export=int(sys.argv[5])), indent=2) + "\n")
+F5_WAIT_ARM_EXIT
+    for status in "$arm_status" "$summary_status" "$export_status"; do
+      if (( pair_status == 0 && status != 0 )); then pair_status=$status; fi
+    done
+    echo "F5_WAIT_CONTROL_ARM api=$arm test=$arm_status summary=$summary_status export=$export_status"
+  done
+  if python3 - "$pair_root" <<'F5_WAIT_PAIR_RECEIPT'
+from pathlib import Path
+import json, sys
+sys.path.insert(0, "scripts")
+from test_f5_first_open_observation import verify_wait_control_pair
+folder = Path(sys.argv[1])
+value = verify_wait_control_pair(folder)
+(folder / "pair-receipt.json").write_text(json.dumps(value, indent=2) + "\n")
+print("F5_WAIT_CONTROL_PAIR fullF5Accepted=false originalAcceptanceReplaced=false")
+F5_WAIT_PAIR_RECEIPT
+  then receipt_status=0; else receipt_status=$?; fi
+  if (( pair_status != 0 )); then exit "$pair_status"; fi
+  exit "$receipt_status"
+fi
+# F5_WAIT_CONTROL_PAIR_END
 if [[ "$selection" == 'continuous-resize-pair' || "$selection" == 'initialization-close' || "$selection" == 'position-isolation' || "$selection" == 'position-acceptance' || "$selection" == 'epub-ready-baseline' || "$selection" == 'epub-ready-patched' || "$selection" == 'continuous-return' || "$selection" == 'continuous-resize' || "$selection" == 'continuous-resize-smoke' || "$selection" == 'session-owner-baseline' || "$selection" == 'session-isolation' || "$selection" == 'import-isolation' || "$selection" == 'search-isolation' ]]; then
   # Catch new product/target wiring errors before waiting for simulator migration.
   # Compile the exact selected destination; the original test action below keeps

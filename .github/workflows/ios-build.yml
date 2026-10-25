@@ -22,7 +22,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility, f5-first-open, xcresult-export]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility, f5-first-open, xcresult-export, f5-wait-api-control]
 
 permissions:
   contents: read
@@ -467,6 +467,7 @@ jobs:
             build/Package.resolved
             build/txt-initial-load-receipt.json
             build/f5-first-open-receipt.json
+            build/F5WaitControl/
             build/f5-save-origin-receipt.json
             build/BookProgressVisibility/
             build/ReaderLogic/

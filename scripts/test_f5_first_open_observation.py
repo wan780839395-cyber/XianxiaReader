@@ -147,6 +147,7 @@ def once(text, old, new):
 
 
 def without_first_open_ui(text):
+    text = without_wait_control_ui(text)
     if 'F5_FIRST_OPEN_ONLY' not in text:
         return text
     text = once(text, ENTRY_NEW, ENTRY_OLD)
@@ -156,6 +157,7 @@ def without_first_open_ui(text):
 
 
 def without_first_open_driver(text):
+    text = without_wait_control_driver(text)
     if '  f5-first-open)' not in text:
         return text
     text = once(text, ENV_GUARD, '')
@@ -166,6 +168,7 @@ def without_first_open_driver(text):
 
 
 def without_first_open_workflow(text):
+    text = without_existing_export_workflow(without_wait_control_workflow(text))
     if ', f5-first-open]' not in text:
         return text
     text = once(text, ', f5-first-open]', ']')
@@ -206,6 +209,8 @@ def validate_timeout_evidence(value):
 
 def verify_first_open_success(folder):
     log = (folder / 'logs/reader-diagnostic.log').read_text(encoding='utf-8')
+    if 'F5_WAIT_CONTROL ' in log:
+        raise ValueError('Wait API controls cannot establish original first-open/body acceptance')
     target, cls, method = SELECTOR.split('/')
     prefix = "Test Case '-[" + target + '.' + cls + ' ' + method + "]' "
     events = re.findall(r"^Test Case '-\[([^\]]+)\]' (started\.|passed \([^\n]+\)\.|failed[^\n]*|skipped[^\n]*)$", log, re.M)
@@ -225,6 +230,97 @@ def verify_first_open_success(folder):
     return dict(selection=SELECTION, scope='first-open-only', originalMethod=SELECTOR,
                 firstOpenGatePassed=True, targetSaveExecuted=False, fullF5Accepted=False,
                 timeoutScreenshotExpected=False, started=1, passed=1, failed=0, skipped=0)
+
+
+
+WAIT_CONTROL_HASHES = {'ui_config': '7894b543d5e66794b480ef2a023b4244a86fae1e69a21339874d0855be8e9904', 'ui_gate': 'bbf45882e8cab70a5f14b69ea8c38a1510676debf6b4fdd01849da1e4a9c5fd6', 'driver_guard': '3cbd57f1508311258b3aa0e551f0344de3f4878d28926c6c04c5ee5d7a7be4d9', 'driver_branch': '9683cbad5943d64b966085263a9aface7e58ddfcd6a0bdfb8f4b2b2768de9c6f', 'driver_pair': 'e5f87a264182d83f1fd738e4dc9a87e416aaef3a23ab7526a56ef4d1148b65a2'}
+WAIT_GATE_OLD = '        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)\n        let readyResult = XCTWaiter.wait(for: [ready], timeout: 20)\n        let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch\n        XCTAssertEqual(readyResult, .completed, progress.exists ? progress.label : "No opening status")\n'
+EXISTING_EXPORT_TAIL_SHA = 'c04f266100bb82f066931b84123c810335005ae8b03784aed4267b9fddc7e441'
+
+def without_control_block(text, name, kind, replacement=''):
+    pattern = r'(?m)^[ \t]*(?://|#) F5_WAIT_CONTROL_' + name + r'_BEGIN\n[\s\S]*?^[ \t]*(?://|#) F5_WAIT_CONTROL_' + name + r'_END\n'
+    matches = list(re.finditer(pattern, text))
+    if not matches:
+        return text
+    if len(matches) != 1 or hashlib.sha256(matches[0].group().encode()).hexdigest() != WAIT_CONTROL_HASHES[kind]:
+        raise ValueError('Control block missing/changed/duplicated: ' + name)
+    return text[:matches[0].start()] + replacement + text[matches[0].end():]
+
+
+def without_wait_control_ui(text):
+    text = without_control_block(text, 'CONFIG', 'ui_config')
+    return without_control_block(text, 'GATE', 'ui_gate', WAIT_GATE_OLD)
+
+
+def without_wait_control_driver(text):
+    for name in ('GUARD', 'BRANCH', 'PAIR'):
+        text = without_control_block(text, name, 'driver_' + name.lower())
+    return text
+
+
+def without_wait_control_workflow(text):
+    if ', f5-wait-api-control]' in text:
+        text = once(text, ', f5-wait-api-control]', ']')
+        text = once(text, '            build/F5WaitControl/\n', '')
+    return text
+
+
+def without_existing_export_workflow(text):
+    # Preserve the original baseline hash. Remove only the exact published export addition.
+    marker = '\n  existing-result-export:\n'
+    if marker not in text:
+        return text
+    tail = text[text.index(marker):]
+    if hashlib.sha256(tail.encode()).hexdigest() != EXISTING_EXPORT_TAIL_SHA:
+        raise ValueError('Published export job changed')
+    text = text[:text.index(marker)]
+    text = once(text, ', xcresult-export]', ']')
+    text = once(text, "    if: ${{ inputs.diagnostic_selection != 'xcresult-export' }}\n", '')
+    prefix = "inputs.diagnostic_selection != 'xcresult-export' && "
+    if text.count(prefix) != 2:
+        raise ValueError('Published export exclusions changed')
+    return text.replace(prefix, '')
+
+
+def verify_wait_control_pair(folder):
+    if json.loads((folder / 'build-status.json').read_text()) != {'build': 0}:
+        raise ValueError('Both arms require the shared successful build')
+    target, cls, method = SELECTOR.split('/')
+    identity = target + '.' + cls + ' ' + method
+    result = {}
+    for api in ('predicate', 'property'):
+        arm = folder / api
+        exits = json.loads((arm / 'exits.json').read_text())
+        if any(type(exits.get(key)) is not int or exits[key] < 0 for key in ('test', 'summary', 'export')):
+            raise ValueError('Original numeric exits are required')
+        if exits.get('api') != api or exits.get('summary') != 0 or exits.get('export') != 0:
+            raise ValueError('Arm scope or evidence delivery failed')
+        log = (arm / 'native.log').read_text(encoding='utf-8')
+        events = re.findall(r"^Test Case '-\[([^\]]+)\]' (started\.|passed \([^\n]+\)\.|failed[^\n]*|skipped[^\n]*)$", log, re.M)
+        passed = exits.get('test') == 0
+        if (len(events) != 2 or [e[0] for e in events] != [identity, identity]
+                or events[0][1] != 'started.'
+                or not events[1][1].startswith('passed (' if passed else 'failed (')):
+            raise ValueError('Each arm must execute the one original method, with no skip/retry')
+        marker = 'F5_WAIT_CONTROL api=' + api + ' scope=settings-enabled-only targetSaveExecuted=false'
+        if log.splitlines().count(marker) != 1 or log.splitlines().count(MARKER) != 1:
+            raise ValueError('Wrong/missing runtime API or first-open-only marker')
+        if 'F5_FIRST_OPEN_RESULT' in log:
+            raise ValueError('Control arms must stop before the body wait')
+        summary = json.loads((arm / 'summary.json').read_text())
+        expected = dict(totalTestCount=1, passedTests=int(passed), failedTests=int(not passed), skippedTests=0)
+        if any(type(summary.get(k)) is not int or summary[k] != v for k, v in expected.items()):
+            raise ValueError('Arm xcresult counts do not match its original exit')
+        if summary.get('result') != ('Passed' if passed else 'Failed'):
+            raise ValueError('Arm summary result mismatch')
+        failures = summary.get('testFailures')
+        if not isinstance(failures, list) or bool(failures) == passed:
+            raise ValueError('Failure evidence cannot be hidden')
+        result[api] = dict(passed=passed, rawExit=exits['test'], started=1, skipped=0)
+    return dict(scope='settings-enabled-wait-api-control', originalMethod=SELECTOR, arms=result,
+                sharedBuildActions=1, independentTestActions=2, nativeProcessIDsVerified=False,
+                bodyAccepted=False, targetSaveExecuted=False, fullF5Accepted=False,
+                originalAcceptanceReplaced=False, systemCachesShared=True)
 
 
 class F5FirstOpenObservationTests(unittest.TestCase):
@@ -352,6 +448,182 @@ class F5FirstOpenObservationTests(unittest.TestCase):
 
 
 WORKFLOW_BASE_SHA = 'e1935b162493c150d0189e2017109f4e733cffcaf417a53eda844eb52a99c41a'
+
+
+ORIGINAL_F5_METHOD_SHA = '1070e0cf46fb4c9f6fae3140782b3b291402e61e98041bd5c5517a00ad7f4250'
+
+class F5WaitAPIControlTests(unittest.TestCase):
+    @staticmethod
+    def bash():
+        import os, shutil
+        value = Path(os.environ.get('ProgramFiles', 'C:/Program Files')) / 'Git/bin/bash.exe'
+        return str(value) if value.is_file() else shutil.which('bash')
+
+    def test_original_method_predicate_budget_and_no_extra_sampling(self):
+        text = (ROOT / 'Tests/UI/ReadingExperienceUITests.swift').read_text(encoding='utf-8')
+        start = text.index('    @MainActor func testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection()')
+        end = text.index('\n    }', start) + 6
+        self.assertEqual(hashlib.sha256(text[start:end].encode()).hexdigest(), ORIGINAL_F5_METHOD_SHA)
+        restored = without_wait_control_ui(text)
+        self.assertIn(WAIT_GATE_OLD, restored)
+        self.assertIn('settings.wait(for: \\.isEnabled, toEqual: true, timeout: 20)', text)
+        self.assertIn('#if compiler(>=6.1)', text)
+        config = text[text.index('// F5_WAIT_CONTROL_CONFIG_BEGIN'):text.index('// F5_WAIT_CONTROL_CONFIG_END')]
+        gate = text[text.index('// F5_WAIT_CONTROL_GATE_BEGIN'):text.index('// F5_WAIT_CONTROL_GATE_END')]
+        self.assertIn('guard observeFirstOpen', config)
+        self.assertIn('if waitControl != nil { return }', gate)
+        self.assertLess(text.index('if waitControl != nil { return }'), text.index('let texts = app.webViews'))
+        for forbidden in ('debugDescription', 'screenshot()', 'sleep(', 'isHittable', 'try?', 'XCTSkip'):
+            self.assertNotIn(forbidden, config + gate)
+        start_code = text[text.index('private func start('):text.index('@MainActor private func book(')]
+        self.assertIn('UUID().uuidString', start_code)
+        self.assertIn('if fonts {', start_code)
+        self.assertNotIn('XIANXIA_F5_WAIT_CONTROL', start_code)  # Runner only, identical App fixture inputs.
+        lifecycle = (ROOT / 'Tests/UI/ReaderUITestCase.swift').read_text(encoding='utf-8')
+        self.assertIn('if app.state != .notRunning { app.terminate() }', lifecycle)
+
+    def test_pair_selection_and_workflow_are_narrow(self):
+        from check_architecture import yaml
+        workflow = yaml.load((ROOT / '.github/workflows/ios-build.yml').read_text(), Loader=yaml.BaseLoader)
+        self.assertEqual(workflow['on']['workflow_dispatch']['inputs']['diagnostic_selection']['options'].count('f5-wait-api-control'), 1)
+        self.assertEqual(workflow['jobs']['reading-diagnostic']['needs'], ['repository-checks', 'core-tests'])
+        for name in ('ios', 'reader-positions', 'reader-logic', 'existing-result-export'):
+            self.assertNotIn('f5-wait-api-control', workflow['jobs'][name]['if'])
+        driver = (ROOT / 'scripts/ci_reader_diagnostic.sh').read_text()
+        self.assertIn('-parallel-testing-enabled NO', driver)
+        self.assertIn('for arm in predicate property; do', driver)
+        self.assertIn('test-without-building "${shared_args[@]}"', driver)
+        self.assertNotIn('retry-tests', driver)
+        # Existing export scope is preserved exactly, rather than resetting old provenance hashes.
+        self.assertIn('existing-result-export:', without_wait_control_workflow((ROOT / '.github/workflows/ios-build.yml').read_text()))
+
+    def test_leaked_api_parameters_are_rejected_before_any_tools(self):
+        import os, subprocess
+        self.assertIsNotNone(self.bash())
+        driver = (ROOT / 'scripts/ci_reader_diagnostic.sh').read_text()
+        dispatch = driver[driver.index('selection='):driver.index('\nesac\n') + len('\nesac\n')]
+        env = {k: v for k, v in os.environ.items() if k not in (KEY, 'TEST_RUNNER_' + KEY, 'XIANXIA_F5_WAIT_CONTROL', 'TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL')}
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory) / 'selector.sh'
+            fixture.write_text('set -euo pipefail\n' + dispatch + '\nprintf "%s\\n" "${cases[@]}"\n', newline='\n')
+            for key in ('XIANXIA_F5_WAIT_CONTROL', 'TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL'):
+                run = subprocess.run([self.bash(), fixture.as_posix(), 'f5-wait-api-control'], env={**env, key: 'property'}, capture_output=True, timeout=15)
+                self.assertEqual(run.returncode, 2, run.stderr.decode(errors='replace'))
+            run = subprocess.run([self.bash(), fixture.as_posix(), 'f5-wait-api-control'], env=env, capture_output=True, timeout=15)
+            self.assertEqual(run.returncode, 0, run.stderr.decode(errors='replace'))
+            self.assertEqual(run.stdout.decode().splitlines(), ['-only-testing:' + SELECTOR])
+
+    STUB = r"""
+import json, os, sys
+from pathlib import Path
+kind, args = sys.argv[1], sys.argv[2:]
+with open(os.environ['F5_STUB_TRACE'], 'a') as f:
+    f.write(json.dumps(dict(kind=kind, args=args, api=os.environ.get('TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL'))) + '\n')
+if kind == 'xcodebuild':
+    if args[0] == 'build-for-testing': sys.exit(77 if os.environ.get('F5_STUB_BUILD_FAIL') == '1' else 0)
+    assert args[0] == 'test-without-building'
+    api = os.environ['TEST_RUNNER_XIANXIA_F5_WAIT_CONTROL']
+    assert api in ('predicate', 'property')
+    failed = os.environ.get('F5_STUB_FAIL_ARM') == api
+    identity = 'XianxiaReaderUITests.ReadingExperienceUITests testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection'
+    print("Test Case '-[" + identity + "]' started.")
+    print('F5_FIRST_OPEN_ONLY targetSaveExecuted=false')
+    print('F5_WAIT_CONTROL api=' + api + ' scope=settings-enabled-only targetSaveExecuted=false')
+    print("Test Case '-[" + identity + "]' " + ('failed' if failed else 'passed') + ' (1.000 seconds).')
+    sys.exit(65 if failed else 0)
+assert kind == 'xcrun'
+if args[0] == 'simctl': sys.exit(0)
+assert args[:3] in (['xcresulttool','get','test-results'], ['xcresulttool','export','attachments'])
+if args[1] == 'get':
+    arm = Path(args[args.index('--path') + 1]).parent.name
+    failed = os.environ.get('F5_STUB_FAIL_ARM') == arm
+    print(json.dumps(dict(totalTestCount=1, passedTests=int(not failed), failedTests=int(failed), skippedTests=0, result='Failed' if failed else 'Passed', testFailures=[{'message':'controlled'}] if failed else [])))
+else:
+    Path(args[args.index('--output-path') + 1]).mkdir(parents=True)
+"""
+
+    def run_fake_pair(self, *, failed_arm='', build_failed=False, stale=False):
+        import os, shutil, subprocess, sys
+        driver = (ROOT / 'scripts/ci_reader_diagnostic.sh').read_text()
+        block = re.search(r'(?ms)^# F5_WAIT_CONTROL_PAIR_BEGIN\n.*?^# F5_WAIT_CONTROL_PAIR_END\n', driver).group()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'scripts').mkdir()
+            shutil.copyfile(__file__, root / 'scripts/test_f5_first_open_observation.py')
+            stub = root / 'stub.py'; stub.write_text(self.STUB)
+            fixture = root / 'pair.sh'
+            prefix = ('set -euo pipefail\n'
+                      'python3() { "$F5_PYTHON" "$@"; }\n'
+                      'xcodebuild() { "$F5_PYTHON" "$F5_STUB" xcodebuild "$@"; }\n'
+                      'xcrun() { "$F5_PYTHON" "$F5_STUB" xcrun "$@"; }\n'
+                      'selection=f5-wait-api-control\nSIMULATOR_ID=controlled\n'
+                      'export TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY=1\n'
+                      'cases=(-only-testing:' + SELECTOR + ')\n')
+            fixture.write_text(prefix + block, newline='\n')
+            if stale: (root / 'build/F5WaitControl').mkdir(parents=True)
+            trace = root / 'trace.jsonl'
+            env = {**os.environ, 'F5_PYTHON': sys.executable.replace('\\', '/'), 'F5_STUB': stub.as_posix(), 'F5_STUB_TRACE': str(trace), 'F5_STUB_FAIL_ARM': failed_arm, 'F5_STUB_BUILD_FAIL': str(int(build_failed))}
+            run = subprocess.run([self.bash(), fixture.as_posix()], cwd=root, env=env, capture_output=True, timeout=25)
+            calls = [json.loads(line) for line in trace.read_text().splitlines()] if trace.exists() else []
+            receipt = root / 'build/F5WaitControl/pair-receipt.json'
+            value = json.loads(receipt.read_text()) if receipt.exists() else None
+            return run, calls, value
+
+    def test_controlled_driver_builds_once_and_runs_two_independent_actions(self):
+        run, calls, value = self.run_fake_pair()
+        self.assertEqual(run.returncode, 0, run.stderr.decode(errors='replace'))
+        native = [c for c in calls if c['kind'] == 'xcodebuild']
+        self.assertEqual([c['args'][0] for c in native], ['build-for-testing', 'test-without-building', 'test-without-building'])
+        self.assertEqual([c['api'] for c in native[1:]], ['predicate', 'property'])
+        derived = [c['args'][c['args'].index('-derivedDataPath') + 1] for c in native]
+        self.assertEqual(len(set(derived)), 1)
+        self.assertTrue(all(c['args'].count('-only-testing:' + SELECTOR) == 1 for c in native))
+        self.assertFalse(value['fullF5Accepted']); self.assertFalse(value['nativeProcessIDsVerified'])
+        self.assertFalse(value['bodyAccepted']); self.assertTrue(value['systemCachesShared'])
+
+    def test_controlled_first_arm_failure_is_preserved_without_retry(self):
+        run, calls, value = self.run_fake_pair(failed_arm='predicate')
+        self.assertEqual(run.returncode, 65, run.stderr.decode(errors='replace'))
+        self.assertEqual([c['api'] for c in calls if c['kind'] == 'xcodebuild' and c['args'][0] == 'test-without-building'], ['predicate', 'property'])
+        self.assertFalse(value['arms']['predicate']['passed']); self.assertTrue(value['arms']['property']['passed'])
+        self.assertFalse(value['originalAcceptanceReplaced'])
+
+    def test_controlled_build_failure_runs_neither_arm(self):
+        run, calls, value = self.run_fake_pair(build_failed=True)
+        self.assertEqual(run.returncode, 77, run.stderr.decode(errors='replace'))
+        self.assertEqual(len([c for c in calls if c['kind'] == 'xcodebuild']), 1)
+        self.assertIsNone(value)
+
+    def test_controlled_existing_output_is_not_reused_or_rerun(self):
+        run, calls, value = self.run_fake_pair(stale=True)
+        self.assertEqual(run.returncode, 2)
+        self.assertEqual(calls, []); self.assertIsNone(value)
+
+    def test_control_receipt_refuses_skip_and_wrong_scope(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory); (folder / 'build-status.json').write_text('{"build":0}')
+            identity = 'XianxiaReaderUITests.ReadingExperienceUITests testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection'
+            for api in ('predicate', 'property'):
+                arm = folder / api; arm.mkdir()
+                (arm / 'exits.json').write_text(json.dumps(dict(api=api, test=0, summary=0, export=0)))
+                (arm / 'summary.json').write_text(json.dumps(dict(totalTestCount=1, passedTests=1, failedTests=0, skippedTests=0, result='Passed', testFailures=[])))
+                (arm / 'native.log').write_text("Test Case '-[" + identity + "]' started.\n" + MARKER + '\nF5_WAIT_CONTROL api=' + api + " scope=settings-enabled-only targetSaveExecuted=false\nTest Case '-[" + identity + "]' passed (1.000 seconds).\n")
+            self.assertFalse(verify_wait_control_pair(folder)['fullF5Accepted'])
+            arm = folder / 'property'; original = (arm / 'summary.json').read_text()
+            (arm / 'summary.json').write_text(original.replace('"skippedTests": 0', '"skippedTests": 1'))
+            with self.assertRaises(ValueError): verify_wait_control_pair(folder)
+            (arm / 'summary.json').write_text(original)
+            original_exits = (arm / 'exits.json').read_text()
+            for bad_exit in (None, False, -1):
+                bad = json.loads(original_exits); bad['test'] = bad_exit
+                (arm / 'exits.json').write_text(json.dumps(bad))
+                with self.assertRaises(ValueError): verify_wait_control_pair(folder)
+            (arm / 'exits.json').write_text(original_exits)
+            log = (arm / 'native.log').read_text(); (arm / 'native.log').write_text(log.replace('api=property', 'api=predicate'))
+            with self.assertRaises(ValueError): verify_wait_control_pair(folder)
+            (arm / 'native.log').write_text(log + 'F5_FIRST_OPEN_RESULT raw=1 targetSaveExecuted=false\n')
+            with self.assertRaises(ValueError): verify_wait_control_pair(folder)
+
 
 if __name__ == '__main__':
     unittest.main()

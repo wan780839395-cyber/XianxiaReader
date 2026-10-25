@@ -17,13 +17,35 @@ final class ReadingExperienceUITests: ReaderUITestCase {
         app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
     }
     @MainActor private func open(in app: XCUIApplication, observeFirstOpen: Bool = false) {
+        // F5_WAIT_CONTROL_CONFIG_BEGIN
+        let waitControl = ProcessInfo.processInfo.environment["XIANXIA_F5_WAIT_CONTROL"]
+        if let waitControl {
+            guard observeFirstOpen && ["predicate", "property"].contains(waitControl) else {
+                XCTFail("Wait API control requires explicit first-open scope and a known arm"); return
+            }
+            print("F5_WAIT_CONTROL api=\(waitControl) scope=settings-enabled-only targetSaveExecuted=false")
+        }
+        // F5_WAIT_CONTROL_CONFIG_END
         let entry = book(in: app); XCTAssertTrue(entry.waitForExistence(timeout: 20)); XCTAssertTrue(entry.isHittable); entry.tap()
         let settings = app.buttons["reader.appearance.open"]
         XCTAssertTrue(settings.waitForExistence(timeout: 20))
-        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
-        let readyResult = XCTWaiter.wait(for: [ready], timeout: 20)
-        let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch
-        XCTAssertEqual(readyResult, .completed, progress.exists ? progress.label : "No opening status")
+        // F5_WAIT_CONTROL_GATE_BEGIN
+        if waitControl == "property" {
+            #if compiler(>=6.1)
+            let readyResult = settings.wait(for: \.isEnabled, toEqual: true, timeout: 20)
+            let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch
+            XCTAssertTrue(readyResult, progress.exists ? progress.label : "No opening status")
+            #else
+            XCTFail("Property wait control requires Xcode 16.3 or newer"); return
+            #endif
+        } else {
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: settings)
+            let readyResult = XCTWaiter.wait(for: [ready], timeout: 20)
+            let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch
+            XCTAssertEqual(readyResult, .completed, progress.exists ? progress.label : "No opening status")
+        }
+        if waitControl != nil { return } // Both control arms stop before body/save acceptance.
+        // F5_WAIT_CONTROL_GATE_END
         let texts = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
         if observeFirstOpen {
             let observation = F5FirstOpenObservation()
