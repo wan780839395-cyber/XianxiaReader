@@ -4,7 +4,15 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 selection="${1:?Choose native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore reader-session or reader-ready-ui, background-ui, continuous-rotation}"
+# F5 first-open scope may only be supplied by its explicit selection.
+if [[ -n "${XIANXIA_F5_FIRST_OPEN_ONLY:-}" || -n "${TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY:-}" ]]; then
+  echo "F5 first-open override must come from the explicit selection" >&2; exit 2
+fi
 case "$selection" in
+  f5-first-open)
+    cases=(-only-testing:XianxiaReaderUITests/ReadingExperienceUITests/testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection)
+    export TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY=1
+    ;;
   book-progress-visibility)
     cases=(-only-testing:XianxiaReaderTests/ReaderLifecycleTests/testInteractionWriteFailureRetryAndAdditionalReductionDoesNotPersist -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testProgressAndHeaderBackdropKeepMenuGesturesAndChapterUpdates -only-testing:XianxiaReaderUITests/ReaderInterfaceUITests/testBookProgressVisibilityAfterReadyPersistsAcrossReopenAndRelaunch)
     ;;
@@ -358,7 +366,7 @@ if [[ "$selection" == 'continuous-resize-pair' ]]; then
   exec python3 scripts/ci_viewport_pair.py run "$SIMULATOR_ID"
 fi
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
-if [[ "$selection" == 'f5-save-origin' || "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
+if [[ "$selection" == 'f5-first-open' || "$selection" == 'f5-save-origin' || "$selection" == 'panels' || "$selection" == 'recovery' || "$selection" == 'settings-ui' || "$selection" == 'reader-ready-ui' || "$selection" == 'background-ui' || "$selection" == 'continuous-rotation' || "$selection" == 'initialization-pending' ]]; then xcrun simctl ui "$SIMULATOR_ID" appearance dark; fi
 if ps -axo pid,ppid,state,rss,comm > build/logs/processes-before-tests.log 2>&1; then :
 else echo "Additional pre-test process context unavailable; original tests still run"; fi
 resource_monitor_pid=''
@@ -398,6 +406,8 @@ if xcrun xcresulttool export attachments --path build/DiagnosticTests.xcresult -
 else export_status=$?; fi
 # Best-effort, bounded service context; no command arguments or book text.
 # Missing/slow diagnostic tools are recorded, preserving the actual test exit.
+# First-open evidence uses only the original test log and timeout attachments.
+if [[ "$selection" != 'f5-first-open' ]]; then
 if python3 - "$SIMULATOR_ID" "$selection" <<'XR_CONTEXT'
 from pathlib import Path
 import json, subprocess, sys
@@ -423,6 +433,8 @@ print("Additional simulated service context recorded; original test/build exits 
 XR_CONTEXT
 then echo "Additional context command exit: 0"
 else context_status=$?; echo "Additional context command exit: $context_status; original test/build exits preserved"; fi
+# End first-open context exclusion.
+fi
 echo "DIAGNOSTIC ONLY: $selection; test=$test_status summary=$summary_status export=$export_status; no device Release or IPA"
 if (( test_status != 0 )); then exit "$test_status"; fi
 if (( summary_status != 0 )); then exit "$summary_status"; fi

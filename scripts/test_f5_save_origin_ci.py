@@ -1,3 +1,4 @@
+from test_f5_first_open_observation import without_first_open_ui, without_first_open_driver
 """Protect the exact F5 UI route; also supply its narrowly scoped CI receipt."""
 from collections import Counter
 import hashlib
@@ -74,6 +75,8 @@ def verify_f5_native(folder, status=0):
     if type(status) is not int or status != 0:
         raise ValueError("Original native exit must be zero")
     log = (folder / "logs/reader-diagnostic.log").read_text(encoding="utf-8")
+    if "F5_FIRST_OPEN_ONLY" in log:
+        raise ValueError("First-open-only evidence cannot establish full F5 save acceptance")
     pattern = r"^Test Case '-\[([^ .]+)\.([^ ]+) ([^\]]+)\]' (started\.|passed \([^\n]+\)\.|failed \([^\n]+\)\.|skipped[^\n]*)$"
     events = re.findall(pattern, log, re.M)
     wanted = (MODULE, *CASE.split("/"))
@@ -122,7 +125,7 @@ class F5SaveOriginCITests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(restore_pre_f5_workflow(workflow).encode()).hexdigest(), WORKFLOW_SHA)
         self.assertEqual(driver.count('"log","show","--last","20m"'), 1)
         self.assertEqual(driver.count(PREDICATE_SETUP), 1)
-        self.assertIn("if [[ \"$selection\" == 'f5-save-origin' || \"$selection\" == 'panels'", driver)
+        self.assertIn("if [[ \"$selection\" == 'f5-save-origin' || \"$selection\" == 'panels'", without_first_open_driver(driver))
         self.assertIn('appearance dark; fi', driver)
         for bad in [driver.replace('"XRSave"', '"XRWrong"'), driver.replace("sys.argv[2] == 'f5-save-origin'", 'True')]:
             with self.assertRaises(ValueError): restore_pre_f5_driver(bad)
@@ -185,7 +188,7 @@ class F5SaveOriginCITests(unittest.TestCase):
 
     def test_original_ui_test_source_unchanged(self):
         text=(ROOT/'Tests/UI/ReadingExperienceUITests.swift').read_text(encoding='utf-8')
-        self.assertEqual(hashlib.sha256(text.encode()).hexdigest(), UI_SHA)
+        self.assertEqual(hashlib.sha256(without_first_open_ui(text).encode()).hexdigest(), UI_SHA)
 
 
 DRIVER_SHA = 'f04fe17c71a6e3121fa2b0b95bccc4e236cf908686050c4b139dbddebbd68527'

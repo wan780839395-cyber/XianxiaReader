@@ -2,6 +2,10 @@
 # macOS only. The caller tees ALL stdout/stderr; pipefail preserves real failures.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# First-open diagnostic overrides are never valid in full validation.
+if [[ -n "${XIANXIA_F5_FIRST_OPEN_ONLY:-}" || -n "${TEST_RUNNER_XIANXIA_F5_FIRST_OPEN_ONLY:-}" ]]; then
+  echo "F5 first-open override is invalid in full validation" >&2; exit 2
+fi
 mkdir -p build/logs .cache
 test -d "${DEVELOPER_DIR:?Select Xcode 16.4}/Platforms/iPhoneOS.platform"
 # Integration-only is opt-in. Default release gates and selection stay unchanged.

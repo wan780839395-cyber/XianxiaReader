@@ -22,7 +22,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility, f5-first-open]
 
 permissions:
   contents: read
@@ -395,6 +395,18 @@ jobs:
           print("TXT_INITIAL_LOAD_RECEIPT " + json.dumps(receipt, sort_keys=True))
           TXT_INITIAL_LOAD_RECEIPT
           fi
+          if [[ "$DIAGNOSTIC_SELECTION" == 'f5-first-open' ]]; then
+            python3 - <<'F5_FIRST_OPEN_RECEIPT'
+          from pathlib import Path
+          import json, os, sys
+          sys.path.insert(0, "scripts")
+          from test_f5_first_open_observation import verify_first_open_success
+          receipt = verify_first_open_success(Path("build"))
+          receipt.update(source=os.environ["GITHUB_SHA"], nativeCompiled=True)
+          Path("build/f5-first-open-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+          print("F5_FIRST_OPEN_RECEIPT " + json.dumps(receipt, sort_keys=True))
+          F5_FIRST_OPEN_RECEIPT
+          fi
           if [[ "$DIAGNOSTIC_SELECTION" == 'f5-save-origin' ]]; then
             python3 - <<'F5_SAVE_ORIGIN_RECEIPT'
           from pathlib import Path
@@ -453,6 +465,7 @@ jobs:
             build/build-environment.txt
             build/Package.resolved
             build/txt-initial-load-receipt.json
+            build/f5-first-open-receipt.json
             build/f5-save-origin-receipt.json
             build/BookProgressVisibility/
             build/ReaderLogic/

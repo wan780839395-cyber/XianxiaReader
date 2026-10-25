@@ -16,7 +16,7 @@ final class ReadingExperienceUITests: ReaderUITestCase {
     @MainActor private func book(in app: XCUIApplication) -> XCUIElement {
         app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'library.book.' AND label CONTAINS '云海问道'")).firstMatch
     }
-    @MainActor private func open(in app: XCUIApplication) {
+    @MainActor private func open(in app: XCUIApplication, observeFirstOpen: Bool = false) {
         let entry = book(in: app); XCTAssertTrue(entry.waitForExistence(timeout: 20)); XCTAssertTrue(entry.isHittable); entry.tap()
         let settings = app.buttons["reader.appearance.open"]
         XCTAssertTrue(settings.waitForExistence(timeout: 20))
@@ -25,8 +25,63 @@ final class ReadingExperienceUITests: ReaderUITestCase {
         let progress = app.descendants(matching: .any).matching(identifier: "reader.open.status").firstMatch
         XCTAssertEqual(readyResult, .completed, progress.exists ? progress.label : "No opening status")
         let texts = app.webViews.staticTexts.matching(NSPredicate(format: "label CONTAINS '本样书用于' OR label CONTAINS '山门'"))
+        if observeFirstOpen {
+            let observation = F5FirstOpenObservation()
+            let readable = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                let began = ProcessInfo.processInfo.systemUptime
+                let ordinal = observation.begin()
+                let elements = texts.allElementsBoundByIndex
+                let queryReturned = ProcessInfo.processInfo.systemUptime
+                var evaluated = 0
+                var firstHittable: Int?
+                let value = elements.contains { element in
+                    let hit = element.isHittable
+                    if hit { firstHittable = evaluated }
+                    evaluated += 1
+                    return hit
+                }
+                observation.finish(ordinal: ordinal, began: began, queryReturned: queryReturned,
+                                   ended: ProcessInfo.processInfo.systemUptime, count: elements.count,
+                                   evaluated: evaluated, firstHittable: firstHittable, value: value)
+                return value
+            }, object: nil)
+            let waitBegan = ProcessInfo.processInfo.systemUptime
+            let result = XCTWaiter.wait(for: [readable], timeout: 20)
+            let waitReturned = ProcessInfo.processInfo.systemUptime
+            if result == .timedOut {
+                var payload = observation.freeze()
+                let screenshotBegan = ProcessInfo.processInfo.systemUptime
+                let screenshot = XCUIScreen.main.screenshot()
+                let screenshotReturned = ProcessInfo.processInfo.systemUptime
+                let image = XCTAttachment(screenshot: screenshot)
+                image.name = "f5-first-open-after-timeout"; image.lifetime = .keepAlways; add(image)
+                payload["schemaVersion"] = 1
+                payload["scope"] = "first-open-only"
+                payload["targetSaveExecuted"] = false
+                payload["waitResult"] = "timedOut"
+                payload["timeoutSeconds"] = 20
+                payload["waitBeganUptime"] = waitBegan
+                payload["nominalDeadlineUptime"] = waitBegan + 20
+                payload["waitReturnedUptime"] = waitReturned
+                payload["screenshotBeganUptime"] = screenshotBegan
+                payload["screenshotReturnedUptime"] = screenshotReturned
+                payload["sameFrameClaim"] = false
+                payload["screenshotTiming"] = "API interval after wait return; actual pixel presentation time unavailable"
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+                    let metadata = XCTAttachment(string: String(decoding: data, as: UTF8.self))
+                    metadata.name = "f5-first-open-timeout-observation"; metadata.lifetime = .keepAlways; add(metadata)
+                } catch {
+                    let failure = XCTAttachment(string: "metadataEncodingFailed=true; original timedOut assertion retained")
+                    failure.name = "f5-first-open-observation-error"; failure.lifetime = .keepAlways; add(failure)
+                }
+            }
+            print("F5_FIRST_OPEN_RESULT raw=\(result.rawValue) targetSaveExecuted=false")
+            XCTAssertEqual(result, .completed)
+        } else {
         let readable = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in texts.allElementsBoundByIndex.contains { $0.isHittable } }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [readable], timeout: 20), .completed)
+        }
     }
     @MainActor private func snapshot(_ name: String, in app: XCUIApplication) {
         let image = XCTAttachment(screenshot: app.screenshot()); image.name = name + "-build27"
@@ -61,7 +116,11 @@ final class ReadingExperienceUITests: ReaderUITestCase {
     }
 
     @MainActor func testFontCollectionGridSearchAndOptInLayoutPresetsPreserveSelection() {
-        let app = start(fonts: true); defer { app.terminate() }; open(in: app)
+        let app = start(fonts: true); defer { app.terminate() }
+        let firstOpenOnly = ProcessInfo.processInfo.environment["XIANXIA_F5_FIRST_OPEN_ONLY"] == "1"
+        if firstOpenOnly { print("F5_FIRST_OPEN_ONLY targetSaveExecuted=false") }
+        open(in: app, observeFirstOpen: firstOpenOnly)
+        if firstOpenOnly { return } // Diagnostic scope ends before settings/save; never full F5 acceptance.
         app.buttons["reader.appearance.open"].tap()
         let collection = app.buttons["reader.fonts.open"]
         reveal(collection, in: app)
@@ -110,3 +169,36 @@ final class ReadingExperienceUITests: ReaderUITestCase {
         snapshot("experience-layout-custom-reopened", in: app)
     }
 }
+
+// F5_FIRST_OPEN_OBSERVATION_HELPER_BEGIN
+// Only primitive values from the original AX reads; one last sample, no body text/history.
+private final class F5FirstOpenObservation {
+    private let lock = NSLock()
+    private var polls = 0
+    private var inFlight = 0
+    private var closed = false
+    private var last: [String: Any] = [:]
+
+    func begin() -> Int {
+        lock.lock(); defer { lock.unlock() }
+        polls += 1; inFlight += 1
+        return polls
+    }
+
+    func finish(ordinal: Int, began: Double, queryReturned: Double, ended: Double,
+                count: Int, evaluated: Int, firstHittable: Int?, value: Bool) {
+        lock.lock(); defer { lock.unlock() }
+        inFlight -= 1
+        guard !closed else { return }
+        last = ["ordinal": ordinal, "evaluationBeganUptime": began, "queryReturnedUptime": queryReturned,
+                "evaluationEndedUptime": ended, "matchedCount": count, "evaluatedHittableCount": evaluated,
+                "firstHittableIndex": firstHittable.map { $0 as Any } ?? NSNull(), "predicateResult": value]
+    }
+
+    func freeze() -> [String: Any] {
+        lock.lock(); defer { lock.unlock() }
+        closed = true
+        return ["pollCount": polls, "evaluationsInFlightAtFreeze": inFlight, "lastCompletedEvaluation": last]
+    }
+}
+// F5_FIRST_OPEN_OBSERVATION_HELPER_END

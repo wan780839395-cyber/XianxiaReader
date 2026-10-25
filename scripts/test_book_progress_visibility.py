@@ -1,3 +1,4 @@
+from test_f5_first_open_observation import without_first_open_driver, without_first_open_workflow
 """Local source/wiring guards, not execution of Swift settings or native UI."""
 import hashlib
 from pathlib import Path
@@ -168,12 +169,14 @@ PROGRESS_RECEIPT = '''          if [[ "$DIAGNOSTIC_SELECTION" == 'book-progress-
 PROGRESS_PATHS = "            build/BookProgressVisibility/\n            build/ReaderLogic/\n"
 
 def without_progress_workflow(text):
+    text = without_first_open_workflow(text)
     for old, new in [(", book-progress-visibility]", "]"), (PROGRESS_SETTINGS_STEP, ""),
                      (PROGRESS_RECEIPT, ""), (PROGRESS_PATHS, "")]:
         text = replace_one(text, old, new)
     return text
 
 def without_progress_driver(text):
+    text = without_first_open_driver(text)
     return replace_one(text, PROGRESS_BRANCH, "")
 
 def verify_book_progress_native(folder):
@@ -240,7 +243,7 @@ class BookProgressNativeCITests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(without_progress_driver(driver).encode()).hexdigest(), "79f96b8934a9b2905356bb6831e91e79e49d7a9c549901893a7afe3c5d19a71d")
         self.assertEqual(driver.count(PROGRESS_BRANCH), 1)
         for bad in [workflow.replace(PROGRESS_RECEIPT, ""), workflow + PROGRESS_SETTINGS_STEP,
-                    workflow.replace('book-progress-visibility]', 'settings-ui]')]:
+                    workflow.replace('book-progress-visibility', 'settings-ui', 1)]:
             with self.assertRaises(ValueError): without_progress_workflow(bad)
         with self.assertRaises(ValueError): without_progress_driver(driver.replace(PROGRESS_BRANCH, ""))
 
