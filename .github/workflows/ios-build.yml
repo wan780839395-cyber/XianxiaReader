@@ -22,7 +22,7 @@ on:
         description: Full by default; unit-release requires verified identical UI inputs; diagnostics never package
         type: choice
         default: full
-        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility, f5-first-open]
+        options: [full, fonts-full, unit-release, native-input, fonts, panels, recovery, settings, settings-ui, webkit-loading, webkit-close, paged-restore, reader-session, recording-control, reader-ready-ui, background-ui, continuous-rotation, preferences-idempotency, initialization-pending, rotation-full, reader-logic, reader-logic-integration, font-isolation, position-observation, position-fix, paged-font, paged-font-control, position-isolation, position-acceptance, initialization-close, epub-ready-control, continuous-return, continuous-resize, continuous-resize-smoke, continuous-resize-pair, session-isolation, session-lifecycle, library-isolation, import-isolation, search-isolation, txt-initial-load, f5-save-origin, book-progress-visibility, f5-first-open, xcresult-export]
 
 permissions:
   contents: read
@@ -34,6 +34,7 @@ concurrency:
 
 jobs:
   repository-checks:
+    if: ${{ inputs.diagnostic_selection != 'xcresult-export' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +61,7 @@ jobs:
             .cache/layout-sample/behavior.json
 
   core-tests:
-    if: ${{ inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'position-acceptance' && inputs.diagnostic_selection != 'initialization-close' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'continuous-resize' && inputs.diagnostic_selection != 'continuous-resize-smoke' && inputs.diagnostic_selection != 'continuous-resize-pair' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' && inputs.diagnostic_selection != 'library-isolation' && inputs.diagnostic_selection != 'import-isolation' && inputs.diagnostic_selection != 'search-isolation' }}
+    if: ${{ inputs.diagnostic_selection != 'xcresult-export' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'position-acceptance' && inputs.diagnostic_selection != 'initialization-close' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'continuous-resize' && inputs.diagnostic_selection != 'continuous-resize-smoke' && inputs.diagnostic_selection != 'continuous-resize-pair' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' && inputs.diagnostic_selection != 'library-isolation' && inputs.diagnostic_selection != 'import-isolation' && inputs.diagnostic_selection != 'search-isolation' }}
     needs: repository-checks
     runs-on: ubuntu-22.04
     timeout-minutes: 15
@@ -353,7 +354,7 @@ jobs:
           path: build/XianxiaReader.ipa
 
   reading-diagnostic:
-    if: ${{ inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'position-acceptance' && inputs.diagnostic_selection != 'initialization-close' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'continuous-resize' && inputs.diagnostic_selection != 'continuous-resize-smoke' && inputs.diagnostic_selection != 'continuous-resize-pair' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' && inputs.diagnostic_selection != 'library-isolation' && inputs.diagnostic_selection != 'import-isolation' && inputs.diagnostic_selection != 'search-isolation' }}
+    if: ${{ inputs.diagnostic_selection != 'xcresult-export' && inputs.diagnostic_selection && inputs.diagnostic_selection != 'full' && inputs.diagnostic_selection != 'fonts-full' && inputs.diagnostic_selection != 'rotation-full' && inputs.diagnostic_selection != 'unit-release' && inputs.diagnostic_selection != 'reader-logic' && inputs.diagnostic_selection != 'reader-logic-integration' && inputs.diagnostic_selection != 'position-isolation' && inputs.diagnostic_selection != 'position-acceptance' && inputs.diagnostic_selection != 'initialization-close' && inputs.diagnostic_selection != 'epub-ready-control' && inputs.diagnostic_selection != 'continuous-return' && inputs.diagnostic_selection != 'continuous-resize' && inputs.diagnostic_selection != 'continuous-resize-smoke' && inputs.diagnostic_selection != 'continuous-resize-pair' && inputs.diagnostic_selection != 'session-isolation' && inputs.diagnostic_selection != 'session-lifecycle' && inputs.diagnostic_selection != 'library-isolation' && inputs.diagnostic_selection != 'import-isolation' && inputs.diagnostic_selection != 'search-isolation' }}
     needs: [repository-checks, core-tests]
     runs-on: macos-15-intel
     # The last cold native build reached its first test after28minutes.
@@ -472,3 +473,31 @@ jobs:
             build/RecordingControl/
             build/PositionControl/
             build/PagedFontControl/
+
+  existing-result-export:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_selection == 'xcresult-export' }}
+    runs-on: macos-15-intel
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export only the immutable result from run 40189698011
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/export_existing_xcresult.py
+      - name: Preserve existing stdout and exact export receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XianxiaReader-existing-result-40189698011
+          retention-days: 1
+          if-no-files-found: error
+          path: build/ExistingResultDiagnostics/result/
